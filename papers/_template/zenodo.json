@@ -1,0 +1,84 @@
+{
+  "title": "<<TITLE>>",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "<<DESCRIPTION>>",
+  "version": "1.0",
+  "publication_date": "2026-02",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  
+  "keywords": [
+    "cymatic k-space mechanics",
+    "CKS framework",
+    "hexagonal lattice",
+    "discrete spacetime",
+    "zero free parameters",
+    "falsifiable physics",
+    "substrate mechanics",
+    "python"
+  ],
+  
+  "notes": "<<NOTES>>",
+    
+  "related_identifiers": 
+  [
+  {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/cks/<<PATH>>",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+  }
+  ],
+
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "type": "Researcher",
+      "affiliation": "Google LLC"
+    },
+    {
+      "name": "DeepSeek-V3",
+      "type": "Researcher",
+      "affiliation": "DeepSeek AI"
+    }
+  ],
+  
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "cks"
+    }
+  ],
+  
+  "subjects": [
+    {
+      "term": "Physics",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+      "scheme": "url"
+    }
+  ],
+  
+  "language": "eng",
+  "method": "<<METHOD>>"
+}

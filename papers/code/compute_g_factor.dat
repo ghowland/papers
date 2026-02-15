@@ -1,0 +1,78 @@
+======================================================================
+ELECTRON G-FACTOR FROM CKS K-SPACE SUBSTRATE MECHANICS
+======================================================================
+
+Universe State:
+  N (bubble count) = 9.0e+60
+  M (shell number) = 1.73205e+30
+
+Fine Structure Constant (derived from N):
+  α     = 3.70701327680604e-20
+  α⁻¹   = 2.69758947522e+19
+
+======================================================================
+G-FACTOR CALCULATION
+======================================================================
+
+Base (Dirac topology):           g₀ = 2.0
+
+Lattice shell corrections (pure geometric from hexagonal lattice):
+  Shell 1 ( 6 sites):  C_1 = 0.159154943092,  δg = +1.87799486491925e-21
+  Shell 2 (12 sites):  C_2 = -0.0759908877318,  δg = -1.05805941379892e-41
+  Shell 3 (18 sites):  C_3 = 0.0337737278808,  δg = +5.54883494115691e-62
+  Shell 4 (24 sites):  C_4 = -0.00403144180415,  δg = -7.81551264433288e-83
+  Shell 5 (30 sites):  C_5 = 0.00134381393472,  δg = +3.07404686435948e-103
+
+Finite-age correction (1/M):     δg = 5.77350269189626e-31
+
+----------------------------------------------------------------------
+Total g-factor:                  g = 2.0
+======================================================================
+
+EXPERIMENTAL COMPARISON
+======================================================================
+Measured (experiment):       g_exp = 2.00231930436256
+Calculated (CKS axioms):     g_cks = 2.0
+Absolute error:              |Δg| = 0.00231930436256
+Relative error:            |Δg|/g = 0.00115830894578442
+Matching significant figures:       2
+
+⚠ FAIR - Geometric approximation, order of magnitude correct
+======================================================================
+
+DERIVATION:
+  All lattice coefficients from hexagonal coordination geometry
+  C_n = geometric factor from n-th shell interference pattern
+  No empirical constants - pure ratios (1, 2, 3, π, √3)
+
+SOURCE:
+  α(N) from kspace_physics.alpha_em(N)
+  C_n from hexagonal lattice shell sums
+  g = 2 + Σ C_n·(α/π)^n
+
+NOTE:
+  For precision beyond ~1%, exact lattice sum evaluation needed
+  Current: geometric approximation from interference structure
+
+# Raw data (machine-readable)
+N = 9.0e+60
+M = 1732050807568877293527446341505.8723669428052538104
+alpha = 3.707013276806041612627737323255115335106163464635e-20
+alpha_inv = 26975894752165518355.129945083606270640368375404942
+g_dirac = 2.0
+g_total = 2.0000000000000000000018779948654965964925547247524
+g_experimental = 2.00231930436256
+error = 0.0023193043625599999981220051345034035074452752475608
+relative_error = 0.0011583089457844249534031381557302120170258966742039
+
+# Shell corrections
+shell_1_coeff = 0.15915494309189533576888376337251436203445964574046
+shell_1_delta_g = 1.8779948649192462233756795820700359482404524986597e-21
+shell_2_coeff = -0.075990887731753328582909597407295729178269081004185
+shell_2_delta_g = -1.0580594137989173608040578843394513403225637623632e-41
+shell_3_coeff = 0.033773727880779257147959821069909212968119591557415
+shell_3_delta_g = 5.5488349411569120064445095348684165134147893884931e-62
+shell_4_coeff = -0.0040314418041499361480527565860704610741329170184348
+shell_4_delta_g = -7.8155126443328763974971698085641175445599310091066e-83
+shell_5_coeff = 0.0013438139347166453826842521953568203580443056728116
+shell_5_delta_g = 3.0740468643594822771346803594509253346528440383846e-103
