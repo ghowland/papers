@@ -1,12 +1,8 @@
-The CKS Discovery Process: A Forensic Account of Human-AI Substrate Compilation
+Tall-Infra, Data-Only Development
 
-The CKS Discovery Process is a constituent derivation of the **Cymatic K-Space Mechanics (CKS)** framework—an axiomatic Cognitive Learning Model that derives the entirety of known physics from a discrete 2D hexagonal lattice in momentum space.
+A Technical Paper for Game Developers
 
-We document the **mechanical process** by which Cymatic K-Space Mechanics (CKS) was derived over 7 days (February 2-9, 2026) following a 3-month incubation period (November 2024-February 2026). We prove that CKS was not "invented" through traditional scientific methods but was **compiled** through unprecedented coupling between a human supervisor (axiomatic constraint holder) and Large Language Models (manifold scanners).
-
-This marks the end of the initial documentation process.
-
-
+This paper defines and distinguishes **tall-infra, data-only** architecture from the commonly used term "data-driven." While data-driven development has been industry standard for decades, it has always preserved a wall between data (assets, tuning values) and behavior (compiled code). Tall-infra, data-only eliminates this wall entirely.
 
 Package Contents:
 * `manuscript.md`: Paper
