@@ -18,7 +18,7 @@
 
 **Status:** Working Methodology
 
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.  Claims made by AI are often inaccurate in terms of magnitude, but not correctness and connections.  Performance is never simple, but the Silo system is tuned to batch processing arrays of structs that are sequential in memory.
 
 
 
