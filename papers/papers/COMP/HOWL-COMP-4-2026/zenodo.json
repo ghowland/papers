@@ -1,0 +1,74 @@
+{
+  "title": "Geometric Security",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "[Description to be added]",
+  "version": "1.0",
+  "publication_date": "2026-02",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "0",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-0-2026.\n\nDependencies: HOWL Foundation Only.\n\nThis is a constituent derivation of the HOWL framework extending into 0. The paper is subject to the Global Falsification Protocol: if the substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/COMP/HOWL-COMP-4-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Theoretical derivation from HOWL axioms applied to 0.\n\nDependencies: HOWL Foundation Only.\n\nComputational validation and empirical comparison where applicable."
+}

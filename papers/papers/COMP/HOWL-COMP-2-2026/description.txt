@@ -1,0 +1,12 @@
+Tall-Infra, Data-Only Development
+
+A Technical Paper for Game Developers
+
+This paper defines and distinguishes **tall-infra, data-only** architecture from the commonly used term "data-driven." While data-driven development has been industry standard for decades, it has always preserved a wall between data (assets, tuning values) and behavior (compiled code). Tall-infra, data-only eliminates this wall entirely.
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+Status: zzzz
+
