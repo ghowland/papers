@@ -6,29 +6,30 @@
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
-  "license": "CC-BY-4.0",
+  "license": "CC0-1.0",
   
   "keywords": [
-    "cymatic k-space mechanics",
-    "CKS framework",
-    "hexagonal lattice",
-    "discrete spacetime",
-    "zero free parameters",
-    "falsifiable physics",
-    "substrate mechanics",
-    "python"
+    "axiomatic derivation",
+    "constraint-based systems",
+    "information theory",
+    "computational architecture",
+    "operational philosophy",
+    "data-only execution",
+    "geometric security",
+    "falsifiable methodology",
+    "Howland",
+    "tall-infra"
   ],
   
   "notes": "<<NOTES>>",
     
-  "related_identifiers": 
-  [
-  {
+  "related_identifiers": [
+    {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/cks/<<PATH>>",
+      "identifier": "https://github.com/ghowland/papers/<<PATH>>",
       "relation": "isSupplementedBy",
       "resource_type": "software"
-  }
+    }
   ],
 
   "creators": [
@@ -49,16 +50,6 @@
       "name": "Claude Sonnet 4.5",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
-    },
-    {
-      "name": "Gemini 3 Flash",
-      "type": "Researcher",
-      "affiliation": "Google LLC"
-    },
-    {
-      "name": "DeepSeek-V3",
-      "type": "Researcher",
-      "affiliation": "DeepSeek AI"
     }
   ],
   
@@ -67,14 +58,24 @@
       "identifier": "zenodo"
     },
     {
-      "identifier": "cks"
+      "identifier": "howland-archive"
     }
   ],
   
   "subjects": [
     {
-      "term": "Physics",
-      "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
       "scheme": "url"
     }
   ],

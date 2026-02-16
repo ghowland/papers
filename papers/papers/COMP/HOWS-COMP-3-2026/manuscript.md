@@ -1,4 +1,5 @@
-# Silo OS - Complete Project Overview
+# Silo OS
+## Complete Project Overview
 
 **Registry:** [@HOWL-COMP-3-2026]
 
@@ -10,9 +11,9 @@
 
 **Date:** February 2026
 
-**Domain:** Information Theory
+**Domain:** Software Architecture / Systems Engineering / Real-Time Computing
 
-**Status:** Working Methodology
+**Status:** Architectural Blueprint for Independent Implementation
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.  Claims made by AI are often inaccurate in terms of magnitude, but not correctness and connections.  Performance is never simple, but the Silo system is tuned to batch processing arrays of structs that are sequential in memory.
 
