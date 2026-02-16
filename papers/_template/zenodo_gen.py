@@ -60,9 +60,6 @@ def generate_zenodo_json(paper, template_str):
     zenodo['notes'] = (
         f"{prefix} ARCHIVE PAPER - Registry ID: {rid}.\n\n"
         f"Dependencies: {dep_str}.\n\n"
-        f"This is a constituent derivation of the {prefix} framework extending into {domain_name}. "
-        f"The paper is subject to the Global Falsification Protocol: if the substrate quantization "
-        f"is absent in relevant precision measurements, this derivation is invalidated."
     )
     
     # Keywords - Generalized
@@ -78,9 +75,7 @@ def generate_zenodo_json(paper, template_str):
     
     # Method
     zenodo['method'] = (
-        f"Theoretical derivation from {prefix} axioms applied to {domain_name}.\n\n"
         f"Dependencies: {dep_str}.\n\n"
-        f"Computational validation and empirical comparison where applicable."
     )
     
     return zenodo

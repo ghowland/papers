@@ -16,7 +16,7 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-3-2026.\n\nDependencies: HOWL Foundation Only.\n\nThis is a constituent derivation of the HOWL framework extending into Computation. The paper is subject to the Global Falsification Protocol: if the substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-3-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
@@ -70,5 +70,5 @@
     }
   ],
   "language": "eng",
-  "method": "Theoretical derivation from HOWL axioms applied to Computation.\n\nDependencies: HOWL Foundation Only.\n\nComputational validation and empirical comparison where applicable."
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
 }

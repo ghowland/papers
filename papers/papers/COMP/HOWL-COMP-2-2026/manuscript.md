@@ -7,7 +7,7 @@
 
 **Parent Framework:** [@HOWL-COMP-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.18655378
 
 **Date:** February 2026
 
@@ -16,7 +16,6 @@
 **Status:** Architectural Blueprint for Independent Implementation
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
-
 
 ---
 

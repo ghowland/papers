@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-0-2026,
+@article{ HOWL-COMP-1-2026,
   title={ Implementing a Tall-Infra Data-Only Execution System  },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.zzz},
-  url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-0-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.18655354},
+  url = {https://zenodo.org/record/18655354},
+  note={Howland Archive: HOWL-COMP-1-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
