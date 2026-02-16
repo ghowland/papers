@@ -1,7 +1,6 @@
 # Implementing a Tall-Infra Data-Only Execution System 
 ## Using Silo as an Example
 
-
 **Registry:** [@HOWL-COMP-1-2026]
 
 **Series Path:** [@HOWL-COMP-1-2026] → [@HOWL-COMP-2-2026] → [@HOWL-COMP-3-2026] → [@HOWL-COMP-4-2026] → [@HOWL-COMP-5-2026]

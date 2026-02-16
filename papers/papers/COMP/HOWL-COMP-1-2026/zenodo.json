@@ -8,16 +8,15 @@
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [
-    "cymatic k-space mechanics",
-    "CKS framework",
-    "hexagonal lattice",
+    "HOWL framework",
+    "howland archive",
     "discrete spacetime",
     "0",
     "zero free parameters",
     "falsifiable physics",
-    "substrate mechanics"
+    "theoretical derivation"
   ],
-  "notes": "CKS FRAMEWORK PAPER - Registry ID: CKS-0-2026.\n\nDependencies: CKS foundation only.\n\nThis is a constituent derivation of the Cymatic K-Space Mechanics (CKS) framework extending into 0. The paper is subject to the Global Falsification Protocol [CKS-TEST-1-2026]: if the 1/32 Hz substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-0-2026.\n\nDependencies: HOWL Foundation Only.\n\nThis is a constituent derivation of the HOWL framework extending into 0. The paper is subject to the Global Falsification Protocol: if the substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
   "related_identifiers": [
     {
       "scheme": "url",
@@ -71,5 +70,5 @@
     }
   ],
   "language": "eng",
-  "method": "Theoretical derivation from CKS axioms applied to 0.\n\nDependencies: CKS foundation only.\n\nComputational validation and empirical comparison where applicable."
+  "method": "Theoretical derivation from HOWL axioms applied to 0.\n\nDependencies: HOWL Foundation Only.\n\nComputational validation and empirical comparison where applicable."
 }

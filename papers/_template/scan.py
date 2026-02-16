@@ -7,8 +7,8 @@ import json
 class CKSRegistryScanner:
     def __init__(self, directory="."):
         self.directory = directory
-        # Regex to find Registry IDs like [CKS-MATH-1-2026]
-        self.id_pattern = re.compile(r"\[CKS-[A-Z0-9.-]+-202[0-9]\]")
+        # Regex to find Registry IDs like [HOWL-MATH-1-2026]
+        self.id_pattern = re.compile(r"\[HOWL-[A-Z0-9.-]+-202[0-9]\]")
         
     def scan_file(self, filename):
         filepath = os.path.join(self.directory, filename)
@@ -21,11 +21,11 @@ class CKSRegistryScanner:
         title = title_match.group(1) if title_match else filename
 
         # Extract the specific Registry ID for this file
-        registry_match = re.search(r"Registry:\*\*?\s+(\[CKS-[A-Z0-9.-]+-202[0-9]\])", content)
+        registry_match = re.search(r"Registry:\*\*?\s+(\[HOWL-[A-Z0-9.-]+-202[0-9]\])", content)
         self_id = registry_match.group(1) if registry_match else None
 
         if self_id is None:
-            self_id = 'CKS-0-2026'
+            self_id = 'HOWL-0-2026'
 
 
         # Extract Series Path
@@ -45,7 +45,7 @@ class CKSRegistryScanner:
         abstract_match = abstract_pattern.search(content)
         abstract = abstract_match.group(1).strip() if abstract_match else ""
 
-        # Find ALL [CKS-...] references for dependency mapping
+        # Find ALL [HOWL-...] references for dependency mapping
         all_refs = set(self.id_pattern.findall(content))
         
         # Remove self from dependencies if found

@@ -16,8 +16,6 @@ This publication is part of the **Howland Archive**, a collection of research sp
 
 ### Series Position
 
-**Track:** <<TRACK>> (INFO / COMP / SOPH)  
-
 **Prerequisites:** None (foundation paper)
 
 ---
@@ -48,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ CKS-0-2026,
+@article{ HOWL-0-2026,
   title={ Implementing a Tall-Infra Data-Only Execution System  },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.zzz},
   url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: CKS-0-2026. Track: <<TRACK>>. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-0-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
@@ -65,6 +63,8 @@ If you use this work in a pedagogical or research context, please cite:
 ### Q: How does this relate to CKS (Cymatic Substrate)?
 
 **A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
+
+CKS: https://github.com/ghowland/cks/
 
 ### Q: What is AI written and what is human written?
 
@@ -77,8 +77,6 @@ If you use this work in a pedagogical or research context, please cite:
 - **INFO Track:** Method definitions with measurement protocols
 - **COMP Track:** Complete data structures with reference implementations
 - **SOPH Track:** Operational frameworks with falsification criteria
-
-End of the author writing.
 
 ### Methodology: How to Work with Axiomatic Systems
 
