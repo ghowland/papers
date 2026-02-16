@@ -3,7 +3,7 @@
     "title": "Partial Geometric Security",
     "registry_id": "HOWL-COMP-5-2026",
     "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.18655440",
     "abstract": "This paper introduces **Partial Geometric Security**, a practical security model that significantly reduces attack surface in unsafe languages (e.g. C/C++) by enforcing **geometric invariants at system ingress**. Unlike full Geometric Security systems, which seal both interpretation and execution, Partial Geometric Security focuses on **structural closure at I/O boundaries**. By mapping all untrusted input into fixed\u2011shape memory structures\u2014or rejecting it outright\u2014this approach eliminates entire classes of exploits (buffer overflows, parser confusion, injection) while remaining compatible with existing software stacks. Partial Geometric Security is inexpensive to implement, deployable as a shim, and represents a decisive improvement over policy\u2011based defenses.",
     "dependencies": [],
     "raw_content_preview": "# Partial Geometric Security ## Structural Hardening of Unsafe Systems via Shape\u2011Validated Ingress  **Registry:** [@HOWL-COMP-5-2026]  **Series Path:** [@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HO..."

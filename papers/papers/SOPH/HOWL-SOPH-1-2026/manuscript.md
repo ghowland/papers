@@ -1,9 +1,10 @@
-# Paternal Operationalism: A Philosophy Born from Necessity
+# Paternal Operationalism
+## A Philosophy Born from Necessity
 ## The Five Pillars and Their Distinction from Established Frameworks
 
 **Registry:** [@HOWL-SOPH-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.18655527
 
 **Date:** February 2026
 
