@@ -24,7 +24,7 @@
 
 ## Unique Set of Information
 
-A unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.
+A unique set of information is created any time you abstract any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.
 
 Uniqueness requires constraint, so if you had a physical unit (such as a disk drive) you could consider either a given moment, or a set of moments (total life-span of this drive) as one unique set of state.
 
