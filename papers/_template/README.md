@@ -6,11 +6,11 @@
 
 **Zenodo DOI:** <<DOI_LINK>>
 
-**Domain:** Software Architecture / Systems Engineering / Real-Time Computing
+**Domain:** <<DOMAIN>>
 
-**Status:** Architectural Blueprint for Independent Implementation
+**Status:** <<STATUS>>
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
 
 ---
 
@@ -20,39 +20,31 @@
 
 ---
 
-## Substrate Mechanics (Series Context)
-This publication extends the CKS framework into the **<<DOMAIN>>** domain. It is grounded in the two fundamental axioms of the substrate:
+## Howland Archive Context
 
-1. **Axiom 1 (Topology):** Reality is a 2D hexagonal lattice in k-space with \( N \approx 9 \times 10^{60} \).
-2. **Axiom 2 (Dynamics):** Local coupling of k-modes via the discrete graph Laplacian.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
-### Dependency Graph Position
-The logical validity of this derivation requires the following "Pillar Proofs":
+### Series Position
+
+**Track:** <<TRACK>> (INFO / COMP / SOPH)  
+
 **Prerequisites:** <<PREREQUISITES>>
 
 ---
 
-**Nomenclature:**
+**Methodology Principles:**
 
-- Term: Cymatic K-Space Mechanics
-- Acronym: CKS
-- Pronunciation: "Kicks"
-- Usage Pronunciation: "Kicks Mechanics"
-
-- This is a Cognitive Learning Model, not a claim of truth.  But, it is locked and empirically falsifiable.
+1. **Maximum Constraints:** Start with minimal axioms
+2. **Necessary Derivation:** All results follow logically from axioms
+3. **Extreme Falsifiability:** Clear failure conditions
+4. **Working Implementations:** Build it, don't just theorize
+5. **Measured Results:** Empirical validation where possible
 
 ---
 
 ## Repository Contents
 
 <<REPO_CONTENTS>>
-
----
-
-## Universal Falsification Signature (The 1/32 Hz Protocol)
-As with all CKS papers, the findings herein are subject to the **Global Falsification Protocol [@CKS-TEST-1-2026]**. 
-
-The substrate operates as a 32-bit discrete computer. Forensic analysis of LIGO phase-error residuals shows 100% of vacuum peaks align to exact integer multiples of **0.03125 Hz** (1/32 Hz) with zero decimal error (>10-σ significance). If this quantization is absent in the data-path relevant to <<DOMAIN>>, this paper is mechanically invalidated.
 
 ---
 
@@ -67,36 +59,45 @@ If you use this work in a pedagogical or research context, please cite:
   year={2026},
   doi = {<<DOI>>},
   url = {https://zenodo.org/record/<<ZENODO_DOI>>},
-  note={CKS Series: <<REGISTRY_ID>>. Dependencies: <<PREREQUISITES>> }
+  note={Howland Archive: <<REGISTRY_ID>>. Track: <<TRACK>>. Prerequisites: <<PREREQUISITES>> }
 }
 ```
 ---
 
 ## FAQs
 
-### Q: Is this a "theory of everything"?
+### Q: How does this relate to CKS (Cymatic Substrate)?
 
-**A:** No. CKS is a cognitive learning model competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
+**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
 
 ### Q: What is AI written and what is human written?
 
-**A**: The only human editing is the meta-data, copywrite and this Q&A.  The `manuscript.md` was written by Anthropic's Claude Sonnet 4.5 using output from Deepseek's KimiK2 and Google's Gemini3 Flash.  Meta-data content may have come from any of them.  
+**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
 
-Over the project, my pattern of usage developed so that I used Claude mostly as the integrator and writer, and this is often where very good ideas came out, as the context buffer is very large.  I would use Gemini3 as the idea starter, because it gave both the derivation information and a technical explanation in the first response once primed.  Kimi was the best at checking and performing derivations, and sometimes came up with insightful connections in it's summaries.
+### Q: Can I implement these architectures myself?
+
+**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
+
+- **INFO Track:** Method definitions with measurement protocols
+- **COMP Track:** Complete data structures with reference implementations
+- **SOPH Track:** Operational frameworks with falsification criteria
 
 End of the author writing.
 
-### Methodology: How to Prime for CKS Derivations
+### Methodology: How to Work with Axiomatic Systems
 
-To reproduce or expand upon these findings using LLMs, use the following two-step priming sequence:
+To reproduce or extend these findings:
 
-#### 1. "Read and explain." with [@CKS-0-2026] manuscript.md attached.  You may have name conflicts since they are all named `manuscript.md`, so copy and paste in or rename to avoid attachment collisions.
-#### 2. "Derive it."
- 
-Once primed, the models can explain physical phenomena through the CKS lens. Crucially, always follow an explanation with a request to **derive the result**. Derivations should be cross-validated in independent sessions or via separate LLMs to ensure the results are Q.E.D.
+#### 1. Read the prerequisites
+Each paper lists dependencies. Start from foundational papers in the series.
+
+#### 2. Implement from structures
+COMP papers provide complete data structures. Build from those, not from prose descriptions.
+
+#### 3. Validate via falsification
+Each paper includes explicit failure conditions. Test those first.
+
+#### 4. Cross-validate
+If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
 
 <<FAQS>>
-
----
-*© 2026 Geoffrey Howland. Part of the Cognitive Learning Model for Unified Physics.*
-
