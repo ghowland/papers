@@ -1,15 +1,5 @@
 # Implementing a Tall-Infra Data-Only Execution System 
 
-**Registry ID:** CKS-0-2026  
-
-**Series Path:** [@HOWL-COMP-1-2026] → [@HOWL-COMP-2-2026] → [@HOWL-COMP-3-2026] → [@HOWL-COMP-4-2026] → [@HOWL-COMP-5-2026]  
-
-**Zenodo DOI:** 10.5281/zenodo.zzz
-
-**Domain:** 0
-
-**Status:** <<STATUS>>
-
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
 
 ---

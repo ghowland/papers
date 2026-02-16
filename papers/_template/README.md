@@ -1,15 +1,5 @@
 # <<TITLE>>
 
-**Registry ID:** <<REGISTRY_ID>>  
-
-**Series Path:** <<SERIES_PATH>>  
-
-**Zenodo DOI:** <<DOI_LINK>>
-
-**Domain:** <<DOMAIN>>
-
-**Status:** <<STATUS>>
-
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
 
 ---
