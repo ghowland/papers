@@ -1,7 +1,7 @@
 {
     "file_name": "manuscript.md",
     "title": "Tall-Infra, Data-Only Development",
-    "registry_id": "HOWL-0-2026",
+    "registry_id": "HOWL-COMP-2-2026",
     "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026]",
     "doi": "10.5281/zenodo.zzz",
     "abstract": "This paper defines and distinguishes **tall-infra, data-only** architecture from the commonly used term \"data-driven.\" While data-driven development has been industry standard for decades, it has always preserved a wall between data (assets, tuning values) and behavior (compiled code). Tall-infra, data-only eliminates this wall entirely. The runtime binary contains no gameplay types, no behavior code, no knowledge of what a \"goblin\" or \"quest\" or \"fireball\" is. All semantics\u2014every enemy, mechanic, system interaction\u2014exist purely as dataset rows that can be hot-swapped without recompilation.\n\nThis is not a proposal. It describes a working system running 200 entities with 100 followers each at 60fps, unoptimized, with a clear path to 10,000+ entities.",

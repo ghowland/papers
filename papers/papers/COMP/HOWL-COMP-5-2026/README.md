@@ -1,4 +1,4 @@
-# Partial Geometric Security  
+# Partial Geometric Security
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-0-2026,
-  title={ Partial Geometric Security   },
+@article{ HOWL-COMP-5-2026,
+  title={ Partial Geometric Security },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.zzz},
   url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-0-2026. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-COMP-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

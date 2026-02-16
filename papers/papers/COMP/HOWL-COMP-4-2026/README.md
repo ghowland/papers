@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-0-2026,
+@article{ HOWL-COMP-4-2026,
   title={ Geometric Security },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.zzz},
   url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-0-2026. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-COMP-4-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

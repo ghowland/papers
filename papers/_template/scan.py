@@ -21,11 +21,9 @@ class CKSRegistryScanner:
         title = title_match.group(1) if title_match else filename
 
         # Extract the specific Registry ID for this file
-        # registry_match = re.search(r"\*\*Registry:\*\*?\s+(\[HOWL-[A-Z0-9.-]+-202[0-9]\])", content)
         registry_match = re.search(r"Registry.*?\[@?(HOWL-[A-Z0-9.-]+)\]", content, re.IGNORECASE)
 
-        # print(f'Reg Match Content: {content}')
-        print(f'Reg Match: {registry_match}')
+        # print(f'Reg Match: {registry_match}')
 
         self_id = registry_match.group(1) if registry_match else None
 

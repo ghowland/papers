@@ -1,5 +1,5 @@
 {
-  "title": "Partial Geometric Security  ",
+  "title": "Partial Geometric Security",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "This paper introduces **Partial Geometric Security**, a practical security model that significantly reduces attack surface in unsafe languages (e.g. C/C++) by enforcing **geometric invariants at system ingress**. Unlike full Geometric Security systems, which seal both interpretation and execution, Partial Geometric Security focuses on **structural closure at I/O boundaries**. By mapping all untrusted input into fixed\u2011shape memory structures\u2014or rejecting it outright\u2014this approach eliminates entire classes of exploits (buffer overflows, parser confusion, injection) while remaining compatible with existing software stacks. Partial Geometric Security is inexpensive to implement, deployable as a shim, and represents a decisive improvement over policy\u2011based defenses.",
@@ -11,12 +11,12 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "0",
+    "computation",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-0-2026.\n\nDependencies: HOWL Foundation Only.\n\nThis is a constituent derivation of the HOWL framework extending into 0. The paper is subject to the Global Falsification Protocol: if the substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-5-2026.\n\nDependencies: HOWL Foundation Only.\n\nThis is a constituent derivation of the HOWL framework extending into Computation. The paper is subject to the Global Falsification Protocol: if the substrate quantization is absent in relevant precision measurements, this derivation is invalidated.",
   "related_identifiers": [
     {
       "scheme": "url",
@@ -70,5 +70,5 @@
     }
   ],
   "language": "eng",
-  "method": "Theoretical derivation from HOWL axioms applied to 0.\n\nDependencies: HOWL Foundation Only.\n\nComputational validation and empirical comparison where applicable."
+  "method": "Theoretical derivation from HOWL axioms applied to Computation.\n\nDependencies: HOWL Foundation Only.\n\nComputational validation and empirical comparison where applicable."
 }
