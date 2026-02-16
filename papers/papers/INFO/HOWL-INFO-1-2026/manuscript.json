@@ -3,8 +3,8 @@
     "title": "Multi-Dimensional Information Indexing",
     "registry_id": "HOWL-INFO-1-2026",
     "series_path": "[@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@HOWL-INFO-3-2026] \u2192 [@HOWL-INFO-4-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.18655616",
     "abstract": "Traditional information management treats knowledge as static truth claims that must be accepted or rejected. This paper documents an alternative framework observed in expert practice: multi-dimensional indexing that preserves source, temporal, contextual, and intentional metadata alongside content. This approach enables holding seemingly contradictory information without cognitive dissonance, tracking reliability patterns across sources, and forming valid assessments from accumulated data points. We present the theoretical framework, contrast it with single-index approaches, and analyze observable applications from collaborative reasoning sessions.",
     "dependencies": [],
-    "raw_content_preview": " # Multi-Dimensional Information Indexing ## A Framework for Context-Preserving Knowledge Management   **Registry:** [@HOWL-INFO-1-2026]  **Series Path:** [@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [..."
+    "raw_content_preview": "# Multi-Dimensional Information Indexing ## A Framework for Context-Preserving Knowledge Management  **Registry:** [@HOWL-INFO-1-2026]  **Series Path:** [@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@H..."
 }

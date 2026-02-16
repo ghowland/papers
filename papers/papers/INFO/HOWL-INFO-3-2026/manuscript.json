@@ -3,7 +3,7 @@
     "title": "The Pseudo-Socratic Method",
     "registry_id": "HOWL-INFO-3-2026",
     "series_path": "[@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@HOWL-INFO-3-2026] \u2192 [@HOWL-INFO-4-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.18655621",
     "abstract": "This paper describes a conversational reasoning methodology termed the \"Pseudo-Socratic Method\" - a flexible, state-aware approach to collaborative problem-solving and knowledge construction. Unlike classical Socratic dialogue, which employs questions to expose contradictions, this method uses a combination of statements and questions to build shared understanding incrementally. The approach centers on continuous assessment of the interlocutor's current comprehension state (\"you are here\") and adaptive information delivery based on that assessment. We present the theoretical framework, provide detailed examples, and analyze applications ranging from consensus-building on complex topics to exploratory discovery of novel solutions.",
     "dependencies": [],
     "raw_content_preview": "# The Pseudo-Socratic Method ## Adaptive Collaborative Reasoning Through Incremental State Assessment  **Registry:** [@HOWL-INFO-3-2026]  **Series Path:** [@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [..."

@@ -3,7 +3,7 @@
     "title": "The Scales Method",
     "registry_id": "HOWL-INFO-2-2026",
     "series_path": "[@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@HOWL-INFO-3-2026] \u2192 [@HOWL-INFO-4-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.18655618",
     "abstract": "This paper documents a sophisticated information evaluation methodology termed the \"Scales Method,\" observed through analysis of collaborative discourse. The method treats information assessment as a weighted evaluation problem where claims, evidence, and arguments are evaluated not binarily (true/false) but through multi-dimensional scoring that distinguishes between material and non-material impact. The practitioner uses explicit frameworks like \"material impact\" assessment, \"percentage affected\" calculations, and \"fruit of the plant\" outcome evaluation to synthesize complex information and guide collaborative reasoning. We present the theoretical framework, document observed applications with direct examples from discourse, and analyze both explicit uses and inferred patterns consistent with the methodology.",
     "dependencies": [],
     "raw_content_preview": "# The Scales Method ## A Framework for Weighted Information Synthesis and Collaborative Reasoning  **Registry:** [@HOWL-INFO-2-2026]  **Series Path:** [@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@HOW..."

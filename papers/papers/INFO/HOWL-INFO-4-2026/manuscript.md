@@ -6,14 +6,13 @@
 
 **Parent Framework:** [@HOWL-INFO-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.18655625
 
 **Date:** February 2026
 
 **Domain:** Information Theory
 
 **Status:** Working Methodology
-
 
 ---
 
