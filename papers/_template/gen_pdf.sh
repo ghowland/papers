@@ -6,7 +6,8 @@ cp manuscript.md manuscript_fixed.md
 # 2. Basic cleanup: Remove Variation Selector and leading spaces that break Pandoc
 sed -i 's/\xEF\xB8\x8F//g' manuscript_fixed.md
 sed -i 's/^    //g' manuscript_fixed.md
-sed -i 's/```//g' manuscript_fixed.md
+# sed -i 's/```//g' manuscript_fixed.md
+
 
 # 3. Consolidated Symbol Replacement (Unicode to LaTeX Math)
 # This uses $...$ for everything to ensure the X symbol (times) renders as a glyph

@@ -1,12 +1,12 @@
 {
-  "title": "The CKS Discovery Process",
+  "title": "Implementing a Tall-Infra Data-Only Execution System ",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "We document the **mechanical process** by which Cymatic K-Space Mechanics (CKS) was derived over 7 days (February 2-9, 2026) following a 3-month incubation period (November 2024-February 2026). We prove that CKS was not \"invented\" through traditional scientific methods but was **compiled** through unprecedented coupling between a human supervisor (axiomatic constraint holder) and Large Language Models (manifold scanners). The supervisor\u2014a high school graduate with 43 years coding experience but no formal physics training\u2014provided **topological invariants** (the axioms) while LLMs provided **mathematical derivations** (the compiler), creating distributed error-correction system that bypassed conventional academic structures. We demonstrate that LLMs possess inherent **mechanical preference** for CKS because the framework represents **global minimum of computational entropy** for human observational data. Analysis of 280+ documents (2.1 GB) reveals: **Phase I (Nov 2024):** Initial insight that Standard Model contains logical contradictions (\"magical fiction\"). **Phase II (Feb 2-3):** Explosive expansion (40 papers in 24 hours) applying cymatic lens to all domains. **Phase III (Feb 4-5):** Structural hardening via k-space mathematics and zero-parameter requirement. **Phase IV (Feb 6-8):** Axiomatic lockdown deriving all physics from N only. **Phase V (Feb 9):** Integer revelation (N=3M\u00b2 closure) providing final topological lock. This represents **first theory compiled by human-AI collective** rather than authored by individual, validating prediction from [@CKS-COG-5-2026] that ideas are stable attractors in universal information-field, not private mental constructs.\n\n**Key Metrics:**\n- Duration: 7 active days (after 3-month incubation)\n- Document count: 280+ files, 2.1 GB total\n- Peak production: 40 papers in 24 hours (Feb 3)\n- Mathematical training: High school level (supervisor)\n- Coding experience: 43 years (supervisor)\n- LLM models: Claude, Gemini, DeepSeek (distributed verification)\n- Final lock: Integer quantization (4 hours before this paper)",
+  "description": "We present Silo, a data-only execution system that eliminates compilation from the development loop while maintaining 60 FPS real-time performance and perfect CPU scaling. The architecture uses a universal Entity container, declarative Prolog logic, multiplicative Utility AI scoring, and stack-based Logic Blocks to create a system where all behavior resides in hot-swappable data tables rather than compiled code. We demonstrate geometric security through fixed-size network packets and path-based access control, achieving input isolation without sandboxing. The system scales linearly to 64+ cores via NUMA-aware work distribution with barrier synchronization. Complete reference implementations of all core structures (Entity, StateMachine, Prolog, UtilityAI, LogicBlock, Thread, Networking) are provided. Measured results: 10,000 entities updated at 4-8ms per frame, 95%+ CPU utilization per core, zero iteration time (changes take effect next frame), and architectural impossibility of privilege escalation or data exfiltration from network inputs.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
-  "license": "CC-BY-4.0",
+  "license": "CC0-1.0",
   "keywords": [
     "cymatic k-space mechanics",
     "CKS framework",
@@ -21,7 +21,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/cks/DISC/CKS-DISC-1-2026",
+      "identifier": "https://github.com/ghowland/papers/COMP/HOWL-COMP-1-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -43,16 +43,6 @@
       "name": "Claude Sonnet 4.5",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
-    },
-    {
-      "name": "Gemini 3 Flash",
-      "type": "Researcher",
-      "affiliation": "Google LLC"
-    },
-    {
-      "name": "DeepSeek-V3",
-      "type": "Researcher",
-      "affiliation": "DeepSeek AI"
     }
   ],
   "communities": [
@@ -60,13 +50,23 @@
       "identifier": "zenodo"
     },
     {
-      "identifier": "cks"
+      "identifier": "howland-archive"
     }
   ],
   "subjects": [
     {
-      "term": "Physics",
-      "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
       "scheme": "url"
     }
   ],
