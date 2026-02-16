@@ -1,16 +1,12 @@
-The CKS Discovery Process: A Forensic Account of Human-AI Substrate Compilation
+Geometric Security
 
-The CKS Discovery Process is a constituent derivation of the **Cymatic K-Space Mechanics (CKS)** framework—an axiomatic Cognitive Learning Model that derives the entirety of known physics from a discrete 2D hexagonal lattice in momentum space.
+Structural Security via Geometric Constraints
 
-We document the **mechanical process** by which Cymatic K-Space Mechanics (CKS) was derived over 7 days (February 2-9, 2026) following a 3-month incubation period (November 2024-February 2026). We prove that CKS was not "invented" through traditional scientific methods but was **compiled** through unprecedented coupling between a human supervisor (axiomatic constraint holder) and Large Language Models (manifold scanners).
-
-This marks the end of the initial documentation process.
-
-
+This paper describes a security model based on **Geometric Constraints**, implemented as a monotonic processing funnel within a single-address-space environment. Unlike conventional security models that rely on discretionary or mandatory access control policies applied to arbitrary execution, Geometric Security derives integrity from **anatomical limitation**. By restricting all state transitions to a closed set of six computational primitives and enforcing data I/O through a fixed-size relational Filter, the architecture eliminates broad classes of vulnerabilities including buffer overflows, privilege escalation, and unauthorized data exfiltration.
 
 Package Contents:
 * `manuscript.md`: Paper
 * `README.md`: Overview
 
-Status: zzzz
+**Status:** Architectural Blueprint for Independent Implementation
 
