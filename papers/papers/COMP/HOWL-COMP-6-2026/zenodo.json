@@ -1,37 +1,30 @@
 {
-  "title": "<<TITLE>>",
+  "title": "SIML - Silo Markup Language (TOML Format)",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "<<DESCRIPTION>>",
+  "description": "[Description to be added]",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
   "license": "CC0-1.0",
-  
   "keywords": [
-    "axiomatic derivation",
-    "constraint-based systems",
-    "information theory",
-    "computational architecture",
-    "operational philosophy",
-    "data-only execution",
-    "geometric security",
-    "falsifiable methodology",
-    "Howland",
-    "tall-infra"
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "computation",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
   ],
-  
-  "notes": "<<NOTES>>",
-    
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/<<PATH>>",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/COMP/HOWL-COMP-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
   ],
-
   "creators": [
     {
       "name": "Howland, Geoffrey",
@@ -39,7 +32,6 @@
       "orcid": "0009-0009-7752-341X"
     }
   ],
-  
   "contributors": [
     {
       "name": "Howland, Geoffrey",
@@ -52,7 +44,6 @@
       "affiliation": "Anthropic PBC"
     }
   ],
-  
   "communities": [
     {
       "identifier": "zenodo"
@@ -61,7 +52,6 @@
       "identifier": "howland-archive"
     }
   ],
-  
   "subjects": [
     {
       "term": "Computer Science",
@@ -79,7 +69,6 @@
       "scheme": "url"
     }
   ],
-  
   "language": "eng",
-  "method": "<<METHOD>>"
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
 }

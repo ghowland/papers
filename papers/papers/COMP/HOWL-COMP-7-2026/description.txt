@@ -1,0 +1,10 @@
+SiQL
+
+SiQL is a SQL-replacement for doing queries with Prolog.  Here is a minimal conversion chart:
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+**Status:** Architectural Blueprint for Independent Implementation
+

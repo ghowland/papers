@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "SIML - Silo Markup Language (TOML Format)",
+    "registry_id": "HOWL-COMP-6-2026",
+    "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026] \u2192 [@HOWL-COMP-6-2026]",
+    "doi": "10.5281/zenodo.18676935",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# SIML - Silo Markup Language (TOML Format)  ## The Vision  **Registry:** [@HOWL-COMP-6-2026]  **Series Path:** [@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 ..."
+}

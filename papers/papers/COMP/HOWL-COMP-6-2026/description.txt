@@ -1,0 +1,13 @@
+
+SIML - Silo Markup Language (TOML Format)
+
+The Vision
+
+Silo Web = Geocities Reborn
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+**Status:** Architectural Blueprint for Independent Implementation
+
