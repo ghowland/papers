@@ -27,7 +27,7 @@ import shutil
 #         topic_folder = "UNKNOWN"
 #         year = "2026"
 
-#     github_url = f"https://github.com/ghowland/cks/tree/main/papers/{topic_folder}/{full_id}"
+#     github_url = f"https://github.com/ghowland/papers/tree/main/papers/{topic_folder}/{full_id}"
     
 #     # BibTeX Mapping:
 #     # 1. Double braces protect exact casing.
@@ -56,7 +56,7 @@ def generate_bib_entry(manuscript_data, folder_id):
         topic_folder = parts[1]
         year = parts[3]
 
-    github_url = f"https://github.com/ghowland/cks/tree/main/papers/{topic_folder}/{full_id}"
+    github_url = f"https://github.com/ghowland/papers/tree/main/papers/{topic_folder}/{full_id}"
 
     doi = manuscript_data.get('doi', '[DOI]')
     try:
