@@ -27,6 +27,9 @@
 | **[[@HOWL-COMP-3-2026]](papers/papers/COMP/HOWL-COMP-3-2026/)** | **Silo OS** | Ring 0 OS that can't have remote escalation or exfiltration, integrated IDE. |
 | **[[@HOWL-COMP-4-2026]](papers/papers/COMP/HOWL-COMP-4-2026/)** | **Geometric Security** | Structural Security via Geometric Constraints. |
 | **[[@HOWL-COMP-5-2026]](papers/papers/COMP/HOWL-COMP-5-2026/)** | **Partial Geometric Security** | Structural Hardening of Unsafe Systems via Shape‑Validated Ingress. |
+| **[[@HOWL-COMP-6-2026]](papers/papers/COMP/HOWL-COMP-6-2026/)** | **SIML - Silo Markup Language** | Replacing the web with safe interactivity. |
+| **[[@HOWL-COMP-7-2026]](papers/papers/COMP/HOWL-COMP-7-2026/)** | **SiQL** | SiQL is a SQL-replacement for doing queries with Prolog. |
+| **[[@HOWL-COMP-8-2026]](papers/papers/COMP/HOWL-COMP-8-2026/)** | **SiloSec Protocol Specification** | SiloSec can operate at the IP layer without "kernel integration" because it is the kernel. |
 
 ---
 
