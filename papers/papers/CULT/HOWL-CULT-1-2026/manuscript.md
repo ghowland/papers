@@ -3,6 +3,8 @@
 
 **Registry:** [@HOWL-CULT-1-2026]
 
+**Series Path:** [@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026]
+
 **DOI:** 10.5281/zenodo.zzz
 
 **Date:** March 27 2026
