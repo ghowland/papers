@@ -65,7 +65,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-DISC-1-2026]](papers/papers/SOPH/HOWL-DISC-1-2026/)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+| **[[@HOWL-DISC-1-2026]](papers/papers/SOPH/HOWL-DISC-1-2026/)** | **The Discovery Process** | A Systematic Method for Omni-Domain Investigation, Construction, and Verification. |
+| **[[@HOWL-DISC-2-2026]](papers/papers/SOPH/HOWL-DISC-2-2026/)** | **Evaluation of the Discovery Process Through Triveritas Analysis** | Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties. |
 
 ---
-
