@@ -42,3 +42,30 @@
 
 ---
 
+## Neuro
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-NEURO-1-2026]](papers/papers/SOPH/HOWL-NEURO-1-2026/)** | **Elimination of Classical Carriers for Sub-Millisecond Motor Coordination** | An Engineering Analysis of Timing Requirements Across Human and Animal Motor Tasks. |
+
+---
+
+## Body
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-BODY-1-2026]](papers/papers/SOPH/HOWL-BODY-1-2026/)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+
+---
+
+## Discovery
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-DISC-1-2026]](papers/papers/SOPH/HOWL-DISC-1-2026/)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+
+---
+
