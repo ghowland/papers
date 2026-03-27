@@ -14,6 +14,7 @@
 | **[[@HOWL-INFO-2-2026]](papers/papers/INFO/HOWL-INFO-2-2026/)** | **The Scales Method** | Using Silo as an Example. |
 | **[[@HOWL-INFO-3-2026]](papers/papers/INFO/HOWL-INFO-3-2026/)** | **The Pseudo-Socratic Method** | Adaptive Collaborative Reasoning Through Incremental State Assessment. |
 | **[[@HOWL-INFO-4-2026]](papers/papers/INFO/HOWL-INFO-4-2026/)** | **Howland's Axiom of Information Locality** | A unique set of information is created any time you abstact any state into a single entity. |
+| **[[@HOWL-INFO-5-2026]](papers/papers/INFO/HOWL-INFO-5-2026/)** | **Coherence as Information Phenomenon** | How the CKS Corpus Achieved Maximum Logical Validity at Zero Mathematical Coherence. |
 
 ---
 
