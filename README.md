@@ -48,7 +48,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-NEURO-1-2026]](papers/papers/SOPH/HOWL-NEURO-1-2026/)** | **Elimination of Classical Carriers for Sub-Millisecond Motor Coordination** | An Engineering Analysis of Timing Requirements Across Human and Animal Motor Tasks. |
+| **[[@HOWL-NEURO-1-2026]](papers/papers/NEURO/HOWL-NEURO-1-2026/)** | **Elimination of Classical Carriers for Sub-Millisecond Motor Coordination** | An Engineering Analysis of Timing Requirements Across Human and Animal Motor Tasks. |
 
 ---
 
@@ -57,7 +57,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-BODY-1-2026]](papers/papers/SOPH/HOWL-BODY-1-2026/)** | **Neural Territory** | A Systematic Method for Nervous System Repair Through Proprioceptive Retraining. |
+| **[[@HOWL-BODY-1-2026]](papers/papers/BODY/HOWL-BODY-1-2026/)** | **Neural Territory** | A Systematic Method for Nervous System Repair Through Proprioceptive Retraining. |
 
 ---
 
@@ -66,7 +66,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-DISC-1-2026]](papers/papers/SOPH/HOWL-DISC-1-2026/)** | **The Discovery Process** | A Systematic Method for Omni-Domain Investigation, Construction, and Verification. |
-| **[[@HOWL-DISC-2-2026]](papers/papers/SOPH/HOWL-DISC-2-2026/)** | **Evaluation of the Discovery Process Through Triveritas Analysis** | Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties. |
+| **[[@HOWL-DISC-1-2026]](papers/papers/DISC/HOWL-DISC-1-2026/)** | **The Discovery Process** | A Systematic Method for Omni-Domain Investigation, Construction, and Verification. |
+| **[[@HOWL-DISC-2-2026]](papers/papers/DISC/HOWL-DISC-2-2026/)** | **Evaluation of the Discovery Process Through Triveritas Analysis** | Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties. |
 
 ---
