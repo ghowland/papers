@@ -57,7 +57,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-BODY-1-2026]](papers/papers/SOPH/HOWL-BODY-1-2026/)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+| **[[@HOWL-BODY-1-2026]](papers/papers/SOPH/HOWL-BODY-1-2026/)** | **Neural Territory** | A Systematic Method for Nervous System Repair Through Proprioceptive Retraining. |
 
 ---
 
