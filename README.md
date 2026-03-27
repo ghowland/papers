@@ -77,5 +77,11 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[[@HOWL-CULT-1-2026]](papers/papers/CULT/HOWL-CULT-1-2026/manuscript.md)** | **The N=1000 Fallacy** | Statistical Breadth as Institutional Substitute for Functional Depth. |
+| **[[@HOWL-CULT-2-2026]](papers/papers/CULT/HOWL-CULT-2-2026/manuscript.md)** | **The Domain Boundary** | Why Omni-Domain Investigation Exists and Who Owns the Gaps. |
+| **[[@HOWL-CULT-3-2026]](papers/papers/CULT/HOWL-CULT-3-2026/manuscript.md)** | **The Falsification Forfeiture** | How the Institution That Defined Itself by Falsification Structurally Ceased Practicing It. |
+| **[[@HOWL-CULT-4-2026]](papers/papers/CULT/HOWL-CULT-4-2026/manuscript.md)** | **What Falsification Actually Requires** | The Structural Consequences of the Standard Science Claims but Does Not Practice. |
+| **[[@HOWL-CULT-5-2026]](papers/papers/CULT/HOWL-CULT-5-2026/manuscript.md)** | **Falsification as Finding** | Why the Error Is the Error and No Replacement Is Required. |
+| **[[@HOWL-CULT-6-2026]](papers/papers/CULT/HOWL-CULT-6-2026/manuscript.md)** | **Immutable and Mortal** | Publications as Timestamps and the Death of Patching. |
 
 ---
+
