@@ -70,3 +70,12 @@
 | **[[@HOWL-DISC-2-2026]](papers/papers/DISC/HOWL-DISC-2-2026/manuscript.md)** | **Evaluation of the Discovery Process Through Triveritas Analysis** | Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties. |
 
 ---
+
+## Culture
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-CULT-1-2026]](papers/papers/CULT/HOWL-CULT-1-2026/manuscript.md)** | **The N=1000 Fallacy** | Statistical Breadth as Institutional Substitute for Functional Depth. |
+
+---
