@@ -40,6 +40,7 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[[@HOWL-SOPH-1-2026]](papers/papers/SOPH/HOWL-SOPH-1-2026/manuscript.md)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+| **[[@HOWL-SOPH-2-2026]](papers/papers/SOPH/HOWL-SOPH-2-2026/manuscript.md)** | **The Quadrium** | Truth and Utility as Independent Measurements: A Sidecar Extension to the Triveritas. |
 
 ---
 

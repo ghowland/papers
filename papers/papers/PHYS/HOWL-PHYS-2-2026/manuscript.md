@@ -3,6 +3,8 @@
 
 **Registry:** [@HOWL-PHYS-2-2026]
 
+**Series Path:** [@HOWL-PHYS-2-2026]
+
 **DOI:** 10.5281/zenodo.zzz
 
 **Date:** March 2026
