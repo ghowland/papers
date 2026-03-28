@@ -372,6 +372,112 @@ Each criterion is specific, testable, and stated before the evidence is examined
 
 ---
 
+## APPENDIX A: THE MASS-IS-INERTIA EVIDENCE CHAIN
+
+| Premise | Source | Year | Status | Implication |
+|---|---|---|---|---|
+| Mass is resistance to acceleration (F=ma) | Newton, Principia | 1687 | Foundational, uncontested | Operational definition of mass IS definition of inertia |
+| Gravitational mass = inertial mass to 10⁻⁸ | Eötvös experiment | 1922 | Confirmed | Two labels agree to high precision |
+| Gravitational mass = inertial mass to 10⁻¹¹ | Roll, Krotkov, Dicke | 1964 | Confirmed | Agreement improved by three orders |
+| Gravitational mass = inertial mass to 10⁻¹⁵ | MICROSCOPE satellite | 2022 | Confirmed | No deviation at any precision achieved |
+| Mass-energy equivalence E=mc² | Einstein, Special Relativity | 1905 | Confirmed by nuclear/particle physics | Mass is energy, energy is capacity for change |
+| 99% of proton mass is binding energy | QCD lattice calculations | 1990s–present | Confirmed | Mass is pattern coherence energy, not substance |
+| Higgs field determines resistance to acceleration | Higgs mechanism; Higgs boson discovery at LHC | 1964/2012 | Confirmed | Mass-generation mechanism is inertia-determination mechanism |
+| Equivalence principle as foundational postulate of GR | Einstein, General Relativity | 1915 | Foundational axiom | If mass IS inertia, postulate becomes tautology |
+
+---
+
+## APPENDIX B: IDENTIFIED SOLITON BOUNDARIES
+
+| Structure | Interior Regime | Exterior Regime | Boundary Feature | Institution's Name | Evidence of Different Readings |
+|---|---|---|---|---|---|
+| Electron (virtual cloud) | Bare charge, α ≈ 1/127 | Screened charge, α ≈ 1/137 | Vacuum polarization cloud | Running of QED coupling | 8% difference confirmed at LEP |
+| Hadron (proton/neutron) | Asymptotically free quarks, αs weak | Confined quarks, αs strong | Color confinement boundary | Confinement / asymptotic freedom | Order-of-magnitude variation confirmed |
+| Proton (internal structure) | Smaller charge radius (0.842 fm) | Larger charge radius (0.877 fm) | Proton form factor boundary | Proton radius puzzle | 4% discrepancy between muon and electron probes |
+| Atomic electron shell | Electromagnetic configuration dominates | Atom is point charge in external field | Electron orbital boundary | Atomic form factor | Spectroscopic measurements match external-frame calculations |
+| Nucleus (nuclear shell) | Nuclear force dominates, magic numbers | Nucleus is charged object in atomic field | Nuclear surface boundary | Nuclear shell model | Magic numbers require fitted potential parameters |
+| Molecule | Bond angles, molecular orbitals dominate | Molecule is unit in bulk material | Molecular boundary | Molecular orbital theory | Bond angles require correction factors from electron repulsion |
+| Cell | Biochemistry dominates, internal homeostasis | Cell is unit in tissue | Cell membrane | Cell biology | Internal conditions maintained independently of external environment |
+| Planet (Earth) | Local gravity dominates, surface reads flat | Planet is sphere in orbit | Gravitational well boundary | Equivalence principle / local flatness | Level says flat, satellite sees sphere — both correct per GR |
+| Star | Fusion dynamics dominate, internal pressure balance | Star is mass point in galactic dynamics | Stellar boundary | Stellar structure theory | Internal pressure/temperature vs external gravitational influence |
+| Galaxy | Local stellar dynamics dominate | Galaxy is mass point in cluster | Galactic boundary | Galactic dynamics | Rotation curves differ from external mass estimates (dark matter problem) |
+| Observable universe | CMB-derived measurements (H₀ = 67) | Local measurements (H₀ = 73) | Cosmological boundary | Hubble tension | 9% discrepancy between CMB and local distance ladder |
+
+---
+
+## APPENDIX C: ANOMALIES CORRELATED WITH BOUNDARY DEPTH
+
+| Anomaly | Measurement A | Measurement B | Structural Difference | Discrepancy | Institution's Status |
+|---|---|---|---|---|---|
+| Proton radius puzzle | Electron probe: 0.877 fm | Muon probe: 0.842 fm | Muon has 207× more inertia, probes deeper inside proton boundary | ~4% (>5σ at discovery) | Partially resolved; newer electron measurements trend toward muonic value; some tension remains |
+| Muon g-2 | Measured anomalous magnetic moment at Fermilab | Standard Model prediction | Muon interacts with vacuum at different depth than electron due to 207× more inertia | ~4.2σ in some analyses | Under active investigation; lattice QCD narrowing theoretical uncertainty |
+| Hubble tension | CMB (Planck): H₀ = 67.4 ± 0.5 km/s/Mpc | Local (SH0ES): H₀ = 73.0 ± 1.0 km/s/Mpc | CMB light transits entire observable universe (all boundaries); local light transits far fewer | ~9% (>4σ) | Unresolved; neither measurement shown to contain sufficient systematic error |
+| Running of α | Low energy: α ≈ 1/137 | Z-mass scale: α ≈ 1/127 | Different probe energy = different depth inside electron's virtual cloud | ~8% | Modeled, confirmed, not treated as anomaly — treated as feature |
+| Running of αs | Z-mass scale: αs ≈ 0.118 | Low energy: αs ~ O(1) | Different probe energy = different depth relative to hadron confinement boundary | >1 order of magnitude | Modeled, confirmed, Nobel Prize — not treated as anomaly |
+| Deuteron radius puzzle | Electronic deuterium: larger value | Muonic deuterium: smaller value | Same structural difference as proton — muon probes deeper | Scales with proton discrepancy | Confirmed by Pohl et al., matches proton puzzle pattern |
+| G measurement disagreements | Different experimental groups | Different methods, different configurations | Different experimental setups may probe different effective boundary depths | Beyond stated uncertainties | Attributed to systematic experimental difficulties |
+
+---
+
+## APPENDIX D: PROBE INERTIA AND INTERACTION DEPTH
+
+| Probe Particle | Inertia (MeV/c²) | Relative to Electron | Bohr Radius Scaling | Interaction Depth | Measured Proton Radius |
+|---|---|---|---|---|---|
+| Electron | 0.511 | 1× | 1× (baseline) | Shallow — interacts with outer proton structure | 0.877 fm (historical) / 0.841 fm (recent) |
+| Muon | 105.7 | 207× | ~1/207 of electron | Deep — interacts with inner proton structure | 0.842 fm |
+| Tau | 1776.9 | 3477× | ~1/3477 of electron | Deepest — predicted to interact with deepest proton structure | Not yet measured — predicted smaller than muon value |
+
+Note: The tau lepton decays too rapidly (lifetime ~2.9 × 10⁻¹³ s) for conventional spectroscopy. Tauonic hydrogen measurement is currently beyond technical reach. The prediction is stated for future falsification.
+
+---
+
+## APPENDIX E: BOUNDARY TRANSIT COUNT AND THE HUBBLE TENSION
+
+| Measurement Method | Light Path | Estimated Major Boundary Transits | Measured H₀ (km/s/Mpc) |
+|---|---|---|---|
+| CMB (Planck satellite) | From surface of last scattering (~380,000 years post-Big Bang) through entire observable universe to instrument | All large-scale structures: galaxy clusters, filaments, voids, galaxy groups, our galaxy, solar system, earth | 67.4 ± 0.5 |
+| Local distance ladder (SH0ES) | From Type Ia supernovae in relatively nearby galaxies to instrument | Local group structures: host galaxy, intergalactic space, our galaxy, solar system, earth | 73.0 ± 1.0 |
+| Gravitational lensing time delays | From distant quasars through intervening galaxy lenses to instrument | Intermediate transit count: source structures, lens galaxy, intergalactic space, local structures | 73.3 ± 1.8 (H0LiCOW) |
+| Tip of the Red Giant Branch | From red giant stars in nearby galaxies to instrument | Similar to local distance ladder but different calibration chain | 69.8 ± 1.7 (CCHP) |
+
+Structural observation: measurements involving more boundary transits tend to produce lower H₀ values. Measurements involving fewer boundary transits tend to produce higher values. The intermediate methods produce intermediate values. The trend is consistent with a cumulative boundary transit effect that has not been modeled.
+
+Note: This correlation is stated as a pattern in the data. Four data points with significant uncertainties do not establish a law. The pattern warrants systematic investigation across a broader range of measurement methods.
+
+---
+
+## APPENDIX F: THE EQUIVALENCE PRINCIPLE UNDER MASS-IS-INERTIA
+
+| Concept | Two-Label Framework (current) | One-Label Framework (mass = inertia) |
+|---|---|---|
+| Equivalence principle status | Foundational postulate of GR — assumed because observed | Tautology — inertia equals inertia, no postulate required |
+| Gravitational mass | Distinct concept: what creates/responds to gravitational field | Eliminated — inertia shapes geometry (active), everything follows geometry (passive) |
+| Inertial mass | Distinct concept: what resists acceleration | Primary and sole concept: pattern resistance to disruption |
+| Why they're equal | Deep mystery requiring explanation; potential for violation sought in experiments | Not a mystery — they are the same property measured two ways |
+| GR foundation | Requires equivalence principle as axiom | Loses one axiom, gains simplicity; equations unchanged |
+| Dark matter interpretation | Missing mass = missing substance = search for particles | Missing inertia = unaccounted pattern resistance; substance not required by gravitational evidence |
+| Photon behavior | Zero mass but responds to gravity — requires geometric explanation | Zero inertia, follows geometry shaped by inertia — consistent, no special explanation needed |
+| Mass hierarchy problem | Why do particles have different amounts of substance? | Why do different patterns resist disruption by different amounts? — structural question |
+
+---
+
+## APPENDIX G: INSTITUTION'S OWN DESCRIPTIONS THAT MAP TO VORTEX/SOLITON LANGUAGE
+
+| Institution's Language | Structural Translation | Source Domain | Key Difference in Emphasis |
+|---|---|---|---|
+| "Field excitation" | Self-sustaining vortex pattern in field | Quantum field theory | Institution emphasizes field; translation emphasizes pattern |
+| "Vacuum polarization screening" | Boundary of coherent structure filters readings | QED | Institution emphasizes computational correction; translation emphasizes structural boundary |
+| "Asymptotic freedom" | Interior of hadron soliton has different coupling reading | QCD | Institution emphasizes theoretical property; translation emphasizes measurement depth |
+| "Confinement" | Exterior reading of hadron soliton shows strong binding | QCD | Institution emphasizes phenomenological feature; translation emphasizes boundary effect |
+| "Running of coupling constant" | Reading changes with measurement depth relative to boundary | Renormalization group | Institution emphasizes dynamic process; translation emphasizes structural position |
+| "Flavor threshold" | Measurement crosses boundary of a new coherent structure | QCD/Standard Model | Institution emphasizes computational matching; translation emphasizes physical boundary crossing |
+| "Local flatness" (equivalence principle) | Interior reading of gravitational soliton is flat | GR | Institution emphasizes coordinate choice; translation emphasizes frame-dependent reading |
+| "Gravitational lensing" | Light transformed by transit through gravitational vortex boundary | Observational astronomy | Institution emphasizes observable effect; translation emphasizes boundary transit |
+| "Binding energy" | Pattern coherence energy = inertia of the pattern | QCD / nuclear physics | Institution emphasizes energy accounting; translation emphasizes inertia as pattern property |
+| "Spontaneous symmetry breaking" | Vortex pattern selects specific coherent configuration from symmetric possibility space | Higgs mechanism | Institution emphasizes mathematical structure; translation emphasizes pattern formation |
+
+---
+
 **END HOWL-PHYS-1-2026**
 
 **Registry:** [@HOWL-PHYS-1-2026]
