@@ -245,6 +245,136 @@ Each criterion is specific, testable, and stated before the evidence is examined
 
 ---
 
+## APPENDIX A: THE CATALOGUE OF "CONSTANTS" THAT AREN'T
+
+| Quantity | Institution's Label | Low-Energy Value | High-Energy Value | Variation | Direction | Mechanism | Experimental Confirmation |
+|---|---|---|---|---|---|---|---|
+| Electromagnetic coupling α | Fundamental constant | 1/137.036 (atomic scale) | ~1/127 (90 GeV, Z mass) | ~8% | Increases with energy | Vacuum polarization screening by virtual lepton pairs | LEP, SLC, LHC; multiple independent groups |
+| Strong coupling αs | Fundamental constant | ~O(1) (hadronic scale) | 0.1179 ± 0.0010 (90 GeV) | >1 order of magnitude | Decreases with energy (asymptotic freedom) | Gluon self-interaction anti-screening | Every hadron collider; Nobel Prize 2004 |
+| Weak coupling | Fundamental constant | Suppressed below W/Z mass | Comparable to α at ~246 GeV | From apparently weak to comparable to electromagnetic | Increases with energy toward unification | W/Z boson mass threshold | LEP, Tevatron, LHC; Nobel Prize 1979 |
+| Bottom quark mass (MS-bar) | Running mass | ~4.18 GeV (at own scale) | Different at other evaluation scales | Scale-dependent | Varies with renormalization scale | QCD running mass effects | Lattice QCD, collider measurements |
+| Top quark mass | Running mass | ~163 GeV (MS-bar at own scale) | ~173 GeV (pole mass convention) | ~6% between schemes | Convention and scale dependent | Renormalization scheme dependence | Tevatron, LHC |
+| Gravitational constant G | Fundamental constant | 6.674 × 10⁻¹¹ m³/(kg·s²) | Not measured at high energy | Disagreement between experimental groups beyond stated uncertainties | Unknown | Unknown — attributed to systematics | Multiple experimental groups, persistent disagreement |
+| Cosmological constant Λ | Fundamental constant | QFT prediction: ~10¹²⁰ × observed | Observed: ~10⁻⁵² m⁻² | 10¹²⁰ between QFT prediction and measurement | N/A — the two values are from incompatible scale contexts | Unknown | QFT calculation vs cosmological observation |
+
+---
+
+## APPENDIX B: FLAVOR THRESHOLDS AS BOUNDARY CROSSINGS
+
+| Quark Flavor | Approximate Mass (GeV) | Below Threshold | Above Threshold | Effect on Running | Boundary Interpretation |
+|---|---|---|---|---|---|
+| Up | ~0.002 | Quark does not contribute virtual pairs | Quark contributes virtual pairs to vacuum polarization | Beta function coefficient changes; running rate changes | Measurement has not yet crossed this structure's boundary |
+| Down | ~0.005 | Not active | Active | Running rate adjusted | Boundary crossed |
+| Strange | ~0.095 | Not active | Active | Running rate adjusted | Boundary crossed |
+| Charm | ~1.27 | Not active | Active | Running rate adjusted; matching condition applied | Boundary crossed — significant change in effective coupling environment |
+| Bottom | ~4.18 | Not active | Active | Running rate adjusted; matching condition applied | Boundary crossed — significant change in effective coupling environment |
+| Top | ~173 | Not active | Active | Running rate adjusted; matching condition applied | Boundary crossed — last quark threshold, most massive |
+
+At each threshold, the institution changes the beta function coefficients from nf to nf+1 active flavors and applies a matching condition to ensure continuity of physical predictions. This is a computational boundary crossing: the theory below the threshold is a different effective theory than the theory above it, matched at the boundary. The institution models this precisely. The institution does not call it a boundary crossing between coherent structures. The mathematical procedure is identical to what a boundary crossing would require.
+
+---
+
+## APPENDIX C: RUNNING COUPLING VALUES AT MEASURED SCALES
+
+| Energy Scale | Context | α (electromagnetic) | αs (strong) | Boundary Depth Interpretation |
+|---|---|---|---|---|
+| ~0 (atomic) | Chemistry, everyday electromagnetism | 1/137.036 | Not applicable (confined) | Outside all particle-physics boundaries; fully screened electromagnetic, fully confined strong |
+| ~1 GeV | Hadronic physics, nuclear structure | ~1/137 (negligible running) | ~0.5 (strong, non-perturbative) | Inside nuclear boundary but outside heavy quark boundaries |
+| ~5 GeV | Bottom quark threshold | ~1/136 | ~0.21 | Inside bottom boundary; five active flavors |
+| ~90 GeV | Z boson mass scale | ~1/127 | ~0.118 | Inside electroweak boundary; all light quarks and leptons active |
+| ~173 GeV | Top quark threshold | ~1/127 | ~0.108 | Inside top boundary; six active flavors |
+| ~246 GeV | Electroweak unification scale | α ≈ weak coupling | ~0.10 | Electroweak boundary crossed; two forces become one |
+| ~10¹⁶ GeV (projected) | Grand unification scale | α ≈ αs ≈ weak coupling | All three converge | All boundaries crossed; one interaction, one reading |
+| Planck scale ~10¹⁹ GeV (projected) | Quantum gravity regime | Unknown — QED Landau pole region | Unknown — beyond perturbative QCD | Deepest possible boundary depth; current theory breaks down |
+
+Note: Values above ~1 TeV are extrapolated using renormalization group equations. The extrapolation depends on assumptions about particle content beyond the Standard Model. The projected grand unification convergence is model-dependent — it works better in supersymmetric extensions than in the minimal Standard Model.
+
+---
+
+## APPENDIX D: THE RUNNING DIRECTIONS
+
+| Coupling | Low Energy Reading | High Energy Reading | Running Direction | Screening Mechanism | Boundary Type |
+|---|---|---|---|---|---|
+| Electromagnetic (α) | Weaker (~1/137) | Stronger (~1/127) | Increases with energy | Virtual lepton pairs screen bare charge; higher energy penetrates screening | Outside boundary: screened. Inside boundary: bare. Boundary = virtual cloud |
+| Strong (αs) | Stronger (~O(1)) | Weaker (~0.118) | Decreases with energy (asymptotic freedom) | Gluon self-interaction anti-screens; overwhelms quark screening | Outside boundary: confined. Inside boundary: free. Boundary = confinement zone |
+| Weak | Appears weak (suppressed) | Comparable to α at unification | Increases with energy | W/Z boson mass suppresses low-energy effects; above threshold, suppression lifts | Outside boundary: suppressed by boson mass. Inside boundary: full strength. Boundary = W/Z mass threshold |
+
+The three fundamental forces run in different directions because the boundary mechanisms differ. QED screening weakens the outside reading. QCD anti-screening strengthens the outside reading. Weak suppression is a mass-threshold effect. In each case, the inside reading and outside reading differ, and the mechanism is a specific structural feature of the coherent pattern's boundary.
+
+---
+
+## APPENDIX E: THE COSMOLOGICAL CONSTANT SCALE SEPARATION
+
+| Scale Level | Approximate Energy | Distance from Planck Scale | Coherent Structures Present | Cumulative Boundaries |
+|---|---|---|---|---|
+| Planck scale | 10¹⁹ GeV | 0 (reference point) | Quantum spacetime foam (hypothetical) | 0 |
+| Grand unification scale | 10¹⁶ GeV | 10³ below Planck | GUT-scale structures (hypothetical) | 1+ |
+| Electroweak scale | 10² GeV | 10¹⁷ below Planck | W/Z bosons, Higgs field, top quark | Multiple |
+| Hadronic scale | 1 GeV | 10¹⁹ below Planck | Protons, neutrons, pions | Many |
+| Atomic scale | 10⁻² eV | 10³⁰ below Planck | Atoms, electron shells | Many more |
+| Molecular scale | 10⁻¹ eV | 10³⁰ below Planck | Molecules, chemical bonds | More still |
+| Cellular/biological | 10⁻² eV (thermal) | 10³⁰ below Planck | Cells, organisms | Nested hierarchy |
+| Planetary | N/A (gravitational) | 10³⁰ below Planck | Planets, gravitational wells | Nested hierarchy |
+| Stellar | N/A (gravitational) | 10³⁰ below Planck | Stars, fusion zones | Nested hierarchy |
+| Galactic | N/A (gravitational) | 10³⁰ below Planck | Galaxies, dark matter halos | Nested hierarchy |
+| Cosmological | 10⁻³³ eV (Hubble scale) | 10⁵² below Planck | Observable universe, CMB | Full hierarchy |
+
+The QFT vacuum energy prediction sums quantum fluctuations from the cosmological scale up to the Planck scale — traversing the entire hierarchy. The measurement is at the cosmological scale — at the outermost boundary. The 10¹²⁰ discrepancy spans the full distance between the innermost and outermost boundaries. If each boundary crossing transforms the reading, the cumulative transformation across the full hierarchy would be enormous. The magnitude of the discrepancy is consistent with a cumulative boundary effect across the largest possible number of crossings.
+
+---
+
+## APPENDIX F: GRAND UNIFICATION CONVERGENCE
+
+| Coupling | Measured Value (Z mass scale) | Projected Value at GUT Scale (~10¹⁶ GeV) | Running Direction to GUT | Convergence Behavior |
+|---|---|---|---|---|
+| Electromagnetic (α) | ~1/127 | ~1/40 (model-dependent) | Continues increasing | Approaches other couplings from below |
+| Strong (αs) | ~0.118 | ~0.03 (model-dependent) | Continues decreasing | Approaches other couplings from above |
+| Weak (α₂) | ~1/30 | ~1/40 (model-dependent) | Slowly decreasing | Approaches electromagnetic from above |
+
+| Model | Three Couplings Converge? | Convergence Quality | Implication |
+|---|---|---|---|
+| Minimal Standard Model | Not precisely — near-miss | Close but imperfect | Suggestive but insufficient |
+| Minimal Supersymmetric SM (MSSM) | Yes — significantly improved | Convergence at ~2 × 10¹⁶ GeV within uncertainties | Supports grand unification with supersymmetric particle content |
+| Other extensions | Varies | Model-dependent | Convergence quality depends on assumed particle content above current measurement range |
+
+Boundary interpretation: at the measurement depth where all coherent structure boundaries have been crossed, all three readings converge. The low-energy diversity of three forces is a boundary effect. The high-energy unity is the underlying single interaction measured from inside all boundaries. The three "constants" are three readings of one value at three different boundary depths.
+
+---
+
+## APPENDIX G: G MEASUREMENT DISAGREEMENTS
+
+| Experiment / Group | Method | Reported G (× 10⁻¹¹ m³ kg⁻¹ s⁻²) | Uncertainty | Notes |
+|---|---|---|---|---|
+| BIPM (2014) | Torsion balance, servo-controlled | 6.67545 ± 0.00018 | ±2.7 ppm | |
+| LENS (2014) | Atom interferometry | 6.67191 ± 0.00099 | ±15 ppm | |
+| Zurich (2006) | Beam balance | 6.67425 ± 0.00012 | ±1.9 ppm | |
+| HUST (2018) | Torsion balance, two methods | 6.67484 ± 0.00012 / 6.67349 ± 0.00018 | ±1.8 / ±2.7 ppm | Two methods from same lab disagree |
+| NIST (1982) | Torsion balance | 6.6726 ± 0.0005 | ±75 ppm | Historical reference |
+| CODATA 2018 recommended | Weighted average | 6.67430 ± 0.00015 | ±2.2 ppm | Average of disagreeing experiments |
+
+The spread between the highest and lowest modern measurements exceeds the stated uncertainties of the individual measurements. The institution attributes this to unidentified systematic errors in individual experiments. The disagreement has persisted across decades, across continents, across experimental methods.
+
+The boundary interpretation: different experimental configurations may probe different effective boundary depths. A torsion balance measures gravitational interaction across centimeters. An atom interferometer measures across micrometers. Different probe scales may produce different readings of a scale-dependent quantity. The institution has not tested this hypothesis because G is assumed constant across all accessible laboratory scales.
+
+Note: This interpretation is an alternative hypothesis for the persistent disagreement. The conventional explanation — systematic experimental difficulties — has not been ruled out. Both hypotheses are consistent with the data. Neither is proven.
+
+---
+
+## APPENDIX H: THE WORD "CONSTANT" VERSUS THE DATA
+
+| Quantity | The Word Claims | The Data Shows | The Contradiction |
+|---|---|---|---|
+| α (electromagnetic) | Fixed value, same everywhere | Varies from 1/137 to 1/127 depending on measurement energy | 8% variation across accessible range |
+| αs (strong) | Fixed value, same everywhere | Varies by more than an order of magnitude across accessible range | Order-of-magnitude variation |
+| Weak coupling | Fixed value, same everywhere | Varies from apparently weak to comparable to electromagnetic | Qualitative change across accessible range |
+| Quark masses | Fixed values per species | "Running masses" that depend on evaluation scale | Values change with renormalization scale |
+| G (gravitational) | Fixed value, same everywhere | Different experiments produce different values beyond stated uncertainties | Persistent disagreement attributed to systematics |
+| Λ (cosmological) | Fixed value | QFT prediction and cosmological measurement disagree by 10¹²⁰ | Largest discrepancy in science |
+
+In every row, the word claims one thing and the data shows another. The institution models the data correctly while continuing to use the word incorrectly. The models work. The word doesn't. The physics is right. The label is wrong.
+
+---
+
 **END HOWL-PHYS-2-2026**
 
 **Registry:** [@HOWL-PHYS-2-2026]
