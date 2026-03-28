@@ -61,6 +61,16 @@
 
 ---
 
+## Physics
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-PHYS-1-2026]](papers/papers/PHYS/HOWL-PHYS-1-2026/manuscript.md)** | **The Inertial Vortex** | Mass as Pattern Resistance, Soliton Boundaries as Unmodeled Measurement Elements, and the Anomaly Correlation. |
+| **[[@HOWL-PHYS-2-2026]](papers/papers/PHYS/HOWL-PHYS-2-2026/manuscript.md)** | **There Are No Constants** | The Institution's Own Evidence That Fundamental "Constants" Are Scale-Dependent Boundary Readings. |
+
+---
+
 ## Discovery
 *The definitive test protocol.*
 
@@ -68,6 +78,9 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-DISC-1-2026]](papers/papers/DISC/HOWL-DISC-1-2026/manuscript.md)** | **The Discovery Process** | A Systematic Method for Omni-Domain Investigation, Construction, and Verification. |
 | **[[@HOWL-DISC-2-2026]](papers/papers/DISC/HOWL-DISC-2-2026/manuscript.md)** | **Evaluation of the Discovery Process Through Triveritas Analysis** | Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties. |
+| **[[@HOWL-DISC-3-2026]](papers/papers/DISC/HOWL-DISC-3-2026/manuscript.md)** | **They Are Coming For Your Jobs** | The Structural Contradiction of the LLM Replacement Narrative. |
+| **[[@HOWL-DISC-4-2026]](papers/papers/DISC/HOWL-DISC-4-2026/manuscript.md)** | **The Real Number High-Utility Trap** | Why the Tool That Built the Modern World Cannot Build the Next Level of Understanding. |
+| **[[@HOWL-DISC-5-2026]](papers/papers/DISC/HOWL-DISC-5-2026/manuscript.md)** | **The Institutional Coherence Gap** | Triveritas Assessment of the Three Pillars of Modern Physics. |
 
 ---
 
