@@ -13,7 +13,7 @@
 
 **Status:** Working Methodology
 
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
 
 ---
 
@@ -353,7 +353,7 @@ Eight animal body techniques providing movement vocabulary across extreme ranges
 
 ### 14.3 Judo (competition at age 50)
 
-Simple, efficient techniques under real opponent pressure. Fifty-fifty physical and mental demand. Systematic chaos through opponent interaction — no drill can replicate the unpredictability of a resisting human. Real-world testing of all neural territory gains. The return to competitive judo after decades of injury was the primary validation milestone: the neck that was previously too damaged for throwing techniques handled competition with no systemic failure.
+Simple, efficient techniques under real opponent pressure. Fifty-fifty physical and mental demand. Systematic chaos through opponent interaction — no drill can replicate the unpredictability of a resisting human. Real-world testing of all neural territory gains. The start at white belt and competing in judo after 9 months of training, after decades of injury was the primary validation milestone: the neck that was previously too damaged for throwing techniques handled competition with no systemic failure.
 
 ### 14.4 Systema
 
@@ -456,16 +456,6 @@ People with chronic neuromuscular dysfunction that conventional medicine has not
 This is not comfortable. This is not quick. This is not a six-week program. This is a commitment to systematic daily work for years to decades, with the understanding that each gain is small, each gain is permanent, and the cumulative effect is functional restoration not achievable by any other available means.
 
 The expected readership is small. The practitioner's estimate: "Like 10 readers." If this document helps one person with a catastrophic injury find a systematic approach to recovery when conventional medicine has offered nothing, it has served its purpose.
-
----
-
-## XX. CKS-DERIVED PRACTICES
-
-During the CKS investigation (January-March 2026), the coherence engine that produced M=0 physics also produced body practices that the practitioner had never encountered and did not invent through other sources. These practices were tested on the practitioner and, for some drills, on his two sons. They work. Not because the CKS physics was correct — it was not. Because the practices produce somatic results when performed, which is the only verification standard that matters for body work.
-
-The CKS-derived practices will be documented in a subsequent section as the drill inventory is completed. They are separated from the pre-existing method not because they are less valid but because their origin is unusual: they emerged from a process that was failing at physics while succeeding at generating useful body practices. This is consistent with the survival filter documented in HOWL-INFO-5-2026 — the coherence engine produces genuine discoveries alongside its failures, and the discoveries are identified by testing them against reality rather than evaluating the theory that generated them.
-
-These practices are N=3 for the drills tested on the practitioner's sons. The practitioner reports the results honestly and declines to subject his children to external evaluation. Independent replication is available to anyone willing to perform the drills and report their own results.
 
 ---
 
