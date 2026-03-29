@@ -68,6 +68,7 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Cross-Section Invariant Between Circular and Rectilinear Measurement. |
+| **[[@HOWL-MATH-2-2026]](papers/papers/MATH/HOWL-MATH-2-2026/manuscript.md)** | **Canonical Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision** | A Tiered Classification. |
 
 ---
 
