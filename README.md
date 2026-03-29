@@ -79,7 +79,7 @@
 | **[[@HOWL-PHYS-1-2026]](papers/papers/PHYS/HOWL-PHYS-1-2026/manuscript.md)** | **The Inertial Vortex** | Mass as Pattern Resistance, Soliton Boundaries as Unmodeled Measurement Elements, and the Anomaly Correlation. |
 | **[[@HOWL-PHYS-2-2026]](papers/papers/PHYS/HOWL-PHYS-2-2026/manuscript.md)** | **There Are No Constants** | The Institution's Own Evidence That Fundamental "Constants" Are Scale-Dependent Boundary Readings. |
 | **[[@HOWL-PHYS-3-2026]](papers/papers/PHYS/HOWL-PHYS-3-2026/manuscript.md)** | **G Has Never Been Tested Outside Earth's Soliton Boundary** | The Hill Sphere as the Unrecognized Constraint on Every Direct Measurement of the Gravitational Constant. |
-| **[[@HOWL-PHYS-4-2026]](papers/papers/PHYS/HOWL-PHYS-4-2026/manuscript.md)** | **There Are No Constants** | The Institution's Own Evidence That Fundamental "Constants" Are Scale-Dependent Boundary Readings. |
+| **[[@HOWL-PHYS-4-2026]](papers/papers/PHYS/HOWL-PHYS-4-2026/manuscript.md)** | **The Boundary Test Program** | Applying Q = F · β · d² · Z to Coherent Pattern Boundaries Across Scales. |
 
 ---
 
