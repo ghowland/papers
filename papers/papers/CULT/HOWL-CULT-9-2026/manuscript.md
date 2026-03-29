@@ -29,8 +29,6 @@ This paper specifies the institution that builds there. Not a reform proposal fo
 
 The specification covers what the institution produces (cross-domain IP, verified tools, credentialed investigators), how it funds itself (tools first, IP second, measurement services third, credentials fourth), why the existing academy cannot compete (the moat is the cage — the departmental structure is self-maintaining through inherited enforcement and cannot be dismantled from inside), and what the investor gets (first-mover ownership of the largest unclaimed intellectual territory in history, defended by a structural moat the competition cannot see, let alone cross).
 
-Weapons systems, intelligence operations, and surveillance technology are excluded from scope. The exclusion is operational safety for the institution and its people, not a claim that these domains lack cross-domain territory. They have territory. This institution does not touch it.
-
 ---
 
 ## II. THE TERRITORY
