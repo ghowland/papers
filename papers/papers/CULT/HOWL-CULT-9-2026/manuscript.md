@@ -285,13 +285,7 @@ Every unsolved problem sitting at a domain boundary becomes investigable because
 
 This is not a promise that the problems will be solved. It is a structural claim that the problems become investigable. They were not investigable before because no institution occupied the territory where they live. The omni-academy occupies it. Investigation becomes possible. Whether investigation produces solutions depends on what is in the territory. The method specifies how to find out.
 
-### IX.III The Succession Pipeline
-
-[@HOWL-DISC-3-2026] documented that the LLM replacement narrative terminates the pipeline producing domain experts. The omni-academy does not replace domain experts. It produces a different kind of expert — cross-domain investigators — while depending on domain experts for within-domain evaluation. The investigator makes the cross-domain claim. The specialist evaluates it within their domain. Neither can do the other's job. Both are needed.
-
-The omni-academy is the complement to the existing institution, not its replacement. The rooms and the hallways serve different functions. The rooms produce depth. The hallways produce connections. The connections depend on the depth. The depth benefits from the connections. The two institutions need each other even though the existing institution does not know it yet.
-
-### IX.IV The Standard Practiced
+### IX.III The Standard Practiced
 
 Falsification practiced, not just taught. The standard the institution claims as its defining feature ([@HOWL-CULT-3-2026]) practiced by an institution that actually practices it.
 
