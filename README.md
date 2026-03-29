@@ -34,6 +34,16 @@
 
 ---
 
+## LLM
+*Integer based Large Language Models.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-LLM-1-2026]](papers/papers/LLM/HOWL-LLM-1-2026/manuscript.md)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
+
+---
+
+
 ## Philosophy
 *Philosophical foundations.*
 
