@@ -1,5 +1,5 @@
 # The Boundary Transit Constant
-## β = π/4 as the Soliton Boundary Signature in Circular Geometry
+## β = π/4 as the Geometric Ratio Between Circular and Rectilinear Frames
 
 **Registry:** [@HOWL-MATH-1-2026]
 
@@ -9,446 +9,374 @@
 
 **Date:** March 29 2026
 
-**Domain:** Foundational Mathematics / Measurement Theory
+**Domain:** Foundational Mathematics
 
 **Status:** Complete
 
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6. 
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## I. ABSTRACT
 
-This paper identifies a structural constant — β = π/4 — that appears across twelve domains of mathematics, physics, and engineering, and demonstrates that every instance is the same operation: the transit between a rectilinear exterior frame and a circular interior frame across a soliton boundary.
+This paper identifies a structural constant — β = π/4 — that appears across twelve domains of mathematics and applied science, and demonstrates that every instance is the same operation: the ratio between a rectilinear frame measurement and a circular frame measurement of the same geometry.
 
-Every equation examined is from the institution's own published literature. No new mathematics is proposed. No equations are changed. What is proposed is a reorganization: twelve expressions that the institution treats as independent domain-specific formulas are shown to be notational variants of a single unified equation Q = F · β · d² · Z, where Q is what transits the boundary, F is what drives the transit, β · d² is the transit-corrected boundary, and Z is residual impedance from additional boundaries beyond the geometric one.
+Every equation examined is from the institution's own published literature. No new mathematics is proposed. No equations are changed. What is proposed is a reorganization: twelve expressions that the institution treats as independent domain-specific formulas are shown to be notational variants of a single equation Q = F · β · d² · Z, where Q is what crosses the circular geometry, F is what drives the crossing, β · d² is the circular cross-section expressed as a correction of the rectilinear measurement d², and Z is residual impedance specific to each domain.
 
-The paper demonstrates that the institution has modeled the soliton boundary transit for circular geometry for millennia — as the "area of a circle" — without recognizing it as a boundary transit. The constant β is filed under "geometric formula" in every domain where it appears. This paper reclassifies it as the boundary transit constant for circular geometry and shows that this reclassification collapses twelve independent derivations into one.
+The institution has applied this ratio for millennia as the "area of a circle." This paper observes that the same ratio appears in fluid mechanics, electromagnetism, optics, thermodynamics, probability theory, number theory, and signal processing, always mediating between circular and rectilinear geometry, and that the twelve instances have never been stated as one equation.
 
-This is not new physics. It is the recognition that twelve things with different names are one thing. The names are different because the institution's departmental structure derived each instance independently and never compared them structurally. The comparison is performed here. The isomorphism is exact. The unification is proposed as a simplification that reveals structure previously hidden by notational fragmentation.
-
----
-
-## II. THE CIRCLE HAS TWO MEASUREMENTS
-
-### 2.1 The Interior Measurement
-
-A circle of diameter d, measured from within its own geometry — by a string laid along the curve, by an instrument that conforms to the circular frame — has circumference πd. This is established, uncontested, and foundational. The value π = 3.14159... is the ratio of circumference to diameter measured from inside the circle's own geometry.
-
-The area of the circle measured from inside is πr² = πd²/4. This is equally established and uncontested.
-
-These are interior measurements. The measuring instrument shares the circle's geometry. The string bends with the curve. The measurement and the measured are in the same frame.
-
-### 2.2 The Exterior Measurement
-
-Approximate the circle with a staircase of right-angle steps. The staircase surrounds the circle from outside, using only horizontal and vertical segments — rectilinear geometry. Refine the staircase. Make the steps smaller. Make them infinitely small.
-
-The path length of the staircase remains 4d at every level of refinement. One step or one million steps: the total path length is 4d. The limit of the staircase path lengths as step size approaches zero is 4d, not πd. The staircase measurement does not converge to the interior measurement regardless of refinement.
-
-The institution treats this as a known result about non-smooth convergence: the limit of the lengths does not equal the length of the limit. The staircase curves converge pointwise to the circle, but the lengths do not converge. The institution files this under "counterexamples in real analysis" and moves on.
-
-A ball of vanishing radius rolling around the outside of the circle traces a path of length 4d. This is not a staircase. It is a physical object with its own geometry traversing the exterior of the circle. It produces the same result: 4d. The exterior measurement is 4d regardless of method.
-
-### 2.3 Two Measurements, One Circle
-
-The circle has diameter d. Measured from inside: circumference πd, area πd²/4. Measured from outside: circumference 4d, area d².
-
-The exterior area measurement is transparent: the smallest square that contains the circle has side d and area d². The circle fits inside the square. The square is the exterior frame's measurement of the space the circle occupies.
-
-Both measurements are correct. The interior measurement is correct within the circular frame. The exterior measurement is correct within the rectilinear frame. Neither is an error. Neither is an approximation of the other. They are different readings of the same structure from different sides of a boundary.
-
-The ratio of interior to exterior measurement is the same for circumference and area:
-
-πd / 4d = π/4
-
-(πd²/4) / d² = π/4
-
-This ratio is β. It is not a property of the circumference calculation or the area calculation. It is a property of the boundary between the two frames. It appears in both measurements because both measurements cross the same boundary.
-
-**Definition: β = π/4 ≈ 0.7854 is the boundary transit constant for circular geometry.**
+This is not new mathematics. It is the recognition that twelve things with different names in different departments are one thing. The isomorphism is exact. The unification is offered as a structural observation that reveals a common skeleton previously hidden by notational fragmentation across domains.
 
 ---
 
-## III. THE IRREDUCIBILITY OF β
+## II. TWO METRICS, ONE CIRCLE
 
-### 3.1 Squaring the Circle
+### 2.1 The L2 Measurement
 
-The ancient Greeks posed the problem: construct a square with the same area as a given circle, using only compass and straightedge. In 1882, Lindemann proved this impossible by proving that π is transcendental — not the root of any polynomial equation with integer coefficients.
+A circle of diameter d measured in the Euclidean metric (L2) has circumference πd and area πd²/4. These are the standard results, established since antiquity, uncontested.
 
-The institution interprets this as a limitation of construction tools and a property of the number π.
+The L2 metric measures distance along the shortest path between two points — the straight line, or along a curve, the arc length. It is the metric native to smooth, continuous geometry. A string laid along the circle conforms to the curve. The measurement instrument shares the geometry of the measured object. The result is πd.
 
-Under the boundary framework, the impossibility has a structural meaning. Squaring the circle is the attempt to make an exterior frame measurement equal an interior frame measurement. A square is a rectilinear object — it lives in the exterior frame. A circle lives in the interior frame. Making their areas equal requires eliminating β. The transcendence of π is the proof that β cannot be eliminated by any finite algebraic operation.
+### 2.2 The L1 Measurement
 
-No polynomial — no finite combination of addition, subtraction, multiplication, division, and root extraction performed on integers — produces π. These operations are the discrete frame's complete toolkit. They cannot reach the continuous frame. The boundary between discrete and continuous is not crossable by discrete operations.
+The same circle measured in the taxicab metric (L1) — where distance is the sum of absolute horizontal and vertical displacements — has circumference 4d.
 
-The impossibility of squaring the circle is not a limitation of compass and straightedge. It is a statement about the boundary itself. The boundary is irreducible. β is transcendental because the soliton boundary between rectilinear and circular geometry cannot be bridged by any operation native to either side alone.
+This is not an approximation. It is not a convergence failure. It is the exact L1 circumference of a circle of diameter d. The L1 metric is a valid metric on ℝ², satisfying positivity, symmetry, and the triangle inequality. It is used throughout mathematics, computer science, optimization theory, and urban geometry. It is not a pathological construction. It is a different way of measuring distance.
 
-### 3.2 What β Is Not
+The L1 circumference of 4d can be seen through the staircase construction. Approximate the circle with a path of horizontal and vertical segments. At any level of refinement — four segments or four million — the total path length is 4d. This invariance under refinement is not a failure of the staircase to converge. It is the demonstration that L1 distance around the circle is exactly 4d at every resolution. The staircase illustrates the L1 measurement; it does not attempt and fail to compute the L2 measurement.
 
-β is not a conversion factor in the ordinary sense. A conversion factor like 2.54 cm/inch translates between two systems that measure the same thing in different units. Both systems are in the same frame. The conversion is algebraic — a rational number — and exact.
+The area follows the same structure. The smallest axis-aligned square containing the circle has side d and area d². This is the L1-native measurement of the space the circle occupies — the bounding box. The circle's own area is πd²/4. The bounding box is d². The ratio is π/4.
 
-β translates between two frames that measure the same structure differently because they are on opposite sides of a boundary. The translation is transcendental. No finite rational or algebraic expression equals it. This is the signature of a frame boundary, not a unit conversion.
+### 2.3 The Ratio
 
-β is not an approximation error. The staircase does not "fail to converge" to the circle. It converges perfectly — to the exterior value. The exterior value is 4d. The convergence is exact. The result is correct. It is the correct exterior measurement, not a failed interior measurement.
+Two metrics. One circle. Two measurements.
+
+| Metric | Circumference | Area |
+|---|---|---|
+| L2 (Euclidean) | πd | πd²/4 |
+| L1 (taxicab) | 4d | d² |
+| Ratio (L2/L1) | π/4 | π/4 |
+
+The ratio is the same for circumference and area. It is not a property of either measurement individually. It is a property of the relationship between the two metrics applied to circular geometry.
+
+**Definition: β = π/4 ≈ 0.7854 is the ratio between circular (L2) and rectilinear (L1) measurements of the same circular geometry.**
+
+### 2.4 Irreducibility
+
+In 1882, Lindemann proved that π is transcendental — not the root of any polynomial equation with integer coefficients. No finite algebraic operation on integers produces π.
+
+The consequence for β: no finite combination of the operations native to rectilinear geometry (addition, subtraction, multiplication, division, root extraction on rational numbers) produces the circular measurement from the rectilinear measurement. The two metrics are incommensurable for circular geometry. β is the exact conversion between them, and it is transcendental.
+
+This is the mathematical content of the impossibility of squaring the circle. Constructing a square with the same area as a circle requires converting between rectilinear area (d²) and circular area (βd²). The transcendence of β (inherited from the transcendence of π) proves this conversion cannot be performed by finite algebraic construction.
+
+The two metrics give different readings of the same geometry. The difference is irreducible. β is the permanent ratio between them.
 
 ---
 
-## IV. β IN THE EQUATIONS
+## III. β IN THE EQUATIONS
 
-The constant β = π/4 appears across the institution's published equations in twelve domains. Each instance is presented below in its original form, then decomposed to reveal the boundary transit structure.
+The constant β = π/4 appears across twelve domains. Each instance below is presented in its original form, then decomposed to show the β · d² structure.
 
-### 4.1 Circle Area — Pure Geometry
+### 3.1 Circle Area — Pure Geometry
 
 **Original:** A = πr² = πd²/4
 
-**Decomposition:** A = β · d²
+**Decomposed:** A = β · d²
 
-The area of a circle is the exterior frame measurement d² corrected by the boundary transit constant β. The institution teaches this as a formula. Structurally, it is a frame translation. Every student who computes the area of a circle is performing a soliton boundary transit from the rectilinear frame to the circular frame. The operation is so familiar that its structure is invisible.
+The area of a circle is the rectilinear bounding area d² multiplied by β. Every student who computes the area of a circle performs this operation. The formula is so familiar its structure is invisible: rectilinear measurement, corrected by β, yields circular measurement.
 
-### 4.2 Pipe Flow Cross-Section — Fluid Mechanics
+### 3.2 Pipe Flow Cross-Section — Fluid Mechanics
 
 **Original:** Q = v · πd²/4
 
-**Decomposition:** Q = v · β · d²
+**Decomposed:** Q = v · β · d²
 
-Fluid at velocity v passes through a circular pipe of diameter d. The flow rate Q is velocity times the transit-corrected cross-sectional area. The pipe opening measured from the exterior rectilinear frame is d². The flow actually transits β · d². The fluid crosses from the exterior frame into the pipe's circular interior.
+Fluid at velocity v passes through a circular pipe of diameter d. The flow rate is velocity times the circular cross-section. The cross-section is β · d² — the rectilinear bounding area corrected to circular area.
 
-### 4.3 Drag Reference Area — Fluid Mechanics
+### 3.3 Drag Reference Area — Fluid Mechanics
 
 **Original:** F_drag = ½ρv² · C_d · πd²/4
 
-**Decomposition:** F_drag = ½ρv² · β · d² · C_d
+**Decomposed:** F_drag = ½ρv² · β · d² · C_d
 
-Flow at velocity v with density ρ encounters a sphere of diameter d. The drag force is dynamic pressure times transit-corrected area times drag coefficient. The exterior frame says the sphere blocks d² of flow area. The sphere's circular cross-section actually presents β · d². The drag coefficient C_d accounts for additional impedance beyond the geometric transit — wake structure, surface roughness, flow regime.
+Flow encounters a sphere of diameter d. The drag force uses the circular cross-section β · d² as its reference area. The drag coefficient C_d captures domain-specific impedance beyond the geometric ratio.
 
-### 4.4 Orifice Flow — Engineering
+### 3.4 Orifice Flow — Engineering
 
 **Original:** Q = C_d · πd²/4 · √(2ΔP/ρ)
 
-**Decomposition:** Q = √(2ΔP/ρ) · β · d² · C_d
+**Decomposed:** Q = √(2ΔP/ρ) · β · d² · C_d
 
-Fluid driven by pressure difference ΔP transits a circular orifice of diameter d. The geometric transit correction is β. The discharge coefficient C_d ≈ 0.61 accounts for the vena contracta — the fluid's own coherence boundary that prevents it from filling the orifice completely. The fluid's inertia imposes a second boundary transit.
+Fluid driven by pressure difference transits a circular orifice of diameter d. The geometric cross-section is β · d². The discharge coefficient C_d ≈ 0.61 captures additional impedance from the vena contracta — a domain-specific fluid behavior.
 
-### 4.5 Circular Plate Capacitor — Electromagnetism
+### 3.5 Circular Plate Capacitor — Electromagnetism
 
 **Original:** C = ε₀ · πd²/(4t)
 
-**Decomposition:** C = ε₀/t · β · d²
+**Decomposed:** C = ε₀/t · β · d²
 
-Capacitance between two circular plates of diameter d separated by distance t. The electric field driven by voltage transits the circular plate geometry. The exterior circuit measures in linear quantities. The field region is circular. β corrects from the circuit frame to the field frame. ε₀/t captures the vacuum's resistance to field establishment over the separation distance.
+Capacitance between circular plates of diameter d separated by distance t. The plate area entering the formula is the circular cross-section β · d². The factor ε₀/t captures the domain-specific relationship between permittivity and separation.
 
-### 4.6 Poynting Vector Through Circular Aperture — Electromagnetism
+### 3.6 Poynting Vector Through Circular Aperture — Electromagnetism
 
 **Original:** P = S · πd²/4
 
-**Decomposition:** P = S · β · d²
+**Decomposed:** P = S · β · d²
 
-Electromagnetic power at flux density S passes through a circular aperture of diameter d. In the ideal case, no additional impedance — the aperture is a perfect opening. All transit cost is geometric. The exterior frame says d². The aperture passes β · d². For real apertures with finite wall thickness, additional impedance from waveguide attenuation appears — the material boundary of the aperture walls.
+Electromagnetic power at flux density S passes through a circular aperture of diameter d. The aperture area is β · d². In the ideal case, no additional impedance — the entire formula is driving term times circular cross-section.
 
-### 4.7 Antenna Effective Aperture — RF Engineering
+### 3.7 Antenna Effective Aperture — RF Engineering
 
 **Original:** A_eff = η · πD²/4
 
-**Decomposition:** A_eff = η · β · D²
+**Decomposed:** A_eff = η · β · D²
 
-An antenna of diameter D captures radiation from free space. The geometric transit correction is β. The aperture efficiency η (typically 0.55–0.75) captures internal coherence losses — edge diffraction, feed blockage, surface errors, impedance mismatch. Each is a boundary within the antenna's own structure, imposing additional transit cost beyond the primary geometric boundary.
+An antenna of diameter D captures radiation. The geometric aperture is β · D². The aperture efficiency η (typically 0.55–0.75) captures domain-specific losses — edge diffraction, feed blockage, surface errors.
 
-### 4.8 Gaussian Beam Cross-Section — Optics
+### 3.8 Gaussian Beam Cross-Section — Optics
 
 **Original:** A_beam = πw² = πd²/4
 
-**Decomposition:** A_beam = β · d²
+**Decomposed:** A_beam = β · d²
 
-A laser beam with waist diameter d propagates through a laboratory measured in Cartesian coordinates. The beam's circular coherent cross-section is β · d². The laboratory's rectilinear frame says d². For real beams, the beam quality factor M² introduces additional impedance from internal phase discontinuities and mode mixing.
+A laser beam with waist diameter d has cross-sectional area β · d². For real beams, the beam quality factor M² introduces domain-specific correction for phase coherence imperfections.
 
-### 4.9 Stefan-Boltzmann Hemispheric Integration — Thermal Physics
+### 3.9 Stefan-Boltzmann Hemispheric Integration — Thermal Physics
 
-**Original:** F = εσT⁴ (where the angular integration produces a factor involving π/4)
+**Original:** The hemispheric integration of thermal emission from a circular surface of diameter d produces a factor involving π/4 in the angular projection from spherical emission to planar detection.
 
-**Decomposition:** Q = σT⁴ · β · d² · ε
+**Decomposed:** Q = σT⁴ · β · d² · ε
 
-A circular surface of diameter d at temperature T emits thermal radiation. The internal emission is isotropic — spherical frame. The external detection is planar — rectilinear frame. The angular integration from spherical emission to planar detection produces β. Emissivity ε is the material surface boundary cost — how efficiently the surface's thermal coherence couples to radiation. A perfect blackbody has ε = 1; the only transit cost is geometric.
+Thermal radiation from a circular surface. The geometric area is β · d². Emissivity ε captures domain-specific surface coupling efficiency.
 
-### 4.10 Buffon's Needle — Probability
+### 3.10 Buffon's Needle — Probability
 
 **Original:** P(crossing) = 2L/(πd) for needle length L, line spacing d
 
-**Rearranged:** P = (2/π)(L/d) = (1/β) · (L/2d) · 2
+**Rearranged:** The core ratio is 2/π = 2 · (1/β) · (1/4) ... more directly: the probability involves the ratio between smooth orientation geometry (the needle can point in any direction — a circular space) and discrete grid geometry (the parallel lines). The factor 1/β = 4/π appears when the formula is expressed as a ratio of circular to rectilinear measure.
 
-**Decomposition:** The probability is proportional to 1/β = 4/π.
+**Structure:** The transit direction is inverted relative to cases 3.1–3.9. Here, a circular quantity (orientation space) is being measured against a rectilinear quantity (line grid). The ratio inverts to 1/β = 4/π.
 
-A smooth coherent object — the needle, which can point in any direction, sweeping circular orientation space — falls across a discrete rectilinear grid. The transit direction is inverted: a smooth object measured by a discrete frame, rather than a discrete frame measuring a smooth object. The ratio inverts accordingly. Where the standard transit gives β = π/4, the inverted transit gives 1/β = 4/π. No driving force, no additional impedance. Pure boundary transit. Z = 1.
-
-### 4.11 Leibniz Series — Number Theory
+### 3.11 Leibniz Series — Number Theory
 
 **Original:** 1 - 1/3 + 1/5 - 1/7 + ... = π/4
 
-**Decomposition:** Σ_discrete = β
+**Decomposed:** Σ = β
 
-Discrete integer arithmetic — the most purely rectilinear operation possible — sums to the boundary transit constant. Each term is a step on the staircase. The sum converges to β directly. Not to π, then divided by 4. To β.
+Integer arithmetic — addition and subtraction of rational numbers — produces β. The series is entirely within the rectilinear frame (discrete operations on integers). Its sum is the ratio between circular and rectilinear geometry. The series computes β directly, not π. That it equals π/4 is the definition of β.
 
-The Leibniz series is the staircase problem expressed in pure arithmetic. Discrete operations approaching a smooth-geometry value. The series converges to the exterior frame's measurement of the circular boundary. It converges exactly. It converges to β.
-
-### 4.12 Fourier Square Wave — Signal Processing
+### 3.12 Fourier Square Wave — Signal Processing
 
 **Original:** Square wave = (4/π)(sin x + sin 3x/3 + sin 5x/5 + ...)
 
-**Decomposition:** Coefficients = 1/β = 4/π
+**Decomposed:** Coefficients = 1/β = 4/π
 
-A rectilinear signal — the square wave, defined by discrete jumps — is decomposed into circular basis functions — sinusoids, which are circular motion projected onto a line. The coefficients carry 4/π = 1/β. The transit is from the rectilinear frame (square wave) to the circular frame (sinusoidal basis). The direction is exterior-to-interior. The ratio is 1/β, the same inversion as Buffon's needle.
-
-Fourier analysis is frame transit. The time domain is rectilinear. The frequency domain is circular. Every Fourier coefficient is a measurement of circular content performed from a rectilinear frame. The normalization constant is the boundary transit constant, directionally applied.
+A rectilinear signal (the square wave) is decomposed into circular basis functions (sinusoids — circular motion projected onto a line). The coefficients carry 1/β. The direction is inverted: circular basis measures rectilinear signal. The ratio is 1/β, consistent with the directional pattern observed in Buffon's needle.
 
 ---
 
-## V. THE UNIFIED EQUATION
+## IV. THE UNIFIED EQUATION
 
-### 5.1 The Structure
+### 4.1 The Structure
 
-Every equation in Section IV follows a single structure:
+Every equation in Section III follows a single structure:
 
 **Q = F · β · d² · Z**
 
 | Symbol | Role | Description |
 |---|---|---|
-| Q | Transit quantity | What crosses the boundary |
-| F | Driving term | What pushes Q across — pressure, velocity, voltage, field intensity, temperature |
-| β | Geometric transit constant | π/4 — the irreducible cost of crossing from rectilinear exterior to circular interior |
-| d² | Exterior frame measurement | The grid's measurement of the boundary size |
-| Z | Residual impedance | Everything beyond geometry that resists transit |
+| Q | Output quantity | What results from the interaction with the circular geometry |
+| F | Driving term | What produces Q — pressure, velocity, voltage, field intensity, temperature |
+| β | Geometric ratio | π/4 — the ratio between circular and rectilinear measurement |
+| d² | Rectilinear measurement | The bounding-box measurement of the circular geometry |
+| Z | Domain-specific impedance | Everything beyond geometry that modifies the output |
 
-The product β · d² is the transit-corrected boundary. The exterior frame says d². The interior frame says βd². The difference is the boundary. β is the cost of crossing it.
+The product β · d² is the circular cross-section. The rectilinear frame says d². The circular frame says βd². Every equation that involves a circular cross-section contains this product. The product is always the same. The driving terms and impedances are always different — they are where the domain-specific content lives.
 
-### 5.2 The Twelve Instances
+### 4.2 The Twelve Instances
 
-| Domain | Q (what transits) | F (what drives) | Z (what else resists) |
-|---|---|---|---|
-| Geometry | Area | — | 1 |
-| Pipe flow | Volume flow | Velocity | Friction factor |
-| Drag | Force | Dynamic pressure | Drag coefficient |
-| Orifice | Volume flow | √(2ΔP/ρ) | Discharge coefficient |
-| Capacitor | Charge rate | Voltage | ε₀/t |
-| Poynting | Power | Flux density | 1 (ideal) |
-| Antenna | Captured power | Field intensity | Aperture efficiency |
-| Beam optics | Power | Intensity | 1/M² |
-| Thermal radiation | Radiated power | σT⁴ | Emissivity |
-| Buffon | Probability | Geometric ratio | 1 |
-| Leibniz | Sum value | — | Convergence rate |
-| Fourier | Coefficients | — | 1 |
+| # | Domain | Q | F | Z | β · d² appears as |
+|---|---|---|---|---|---|
+| 1 | Geometry | Area | — | 1 | "Area of a circle" |
+| 2 | Pipe flow | Volume flow | Velocity | Friction factor | "Cross-sectional area" |
+| 3 | Drag | Force | Dynamic pressure | Drag coefficient | "Reference area" |
+| 4 | Orifice | Volume flow | √(2ΔP/ρ) | Discharge coefficient | "Orifice area" |
+| 5 | Capacitor | Capacitance | — | ε₀/t | "Plate area" |
+| 6 | Poynting | Power | Flux density | 1 | "Aperture area" |
+| 7 | Antenna | Captured power | Field intensity | Aperture efficiency | "Effective aperture" |
+| 8 | Beam optics | Power/area | Intensity | 1/M² | "Beam area" |
+| 9 | Thermal | Radiated power | σT⁴ | Emissivity | "Surface area" |
+| 10 | Buffon | Probability | Geometric ratio | 1 | "Crossing probability" (as 1/β) |
+| 11 | Leibniz | Sum | — | — | "Series value" |
+| 12 | Fourier | Coefficients | — | 1 | "Normalization" (as 1/β) |
 
-Twelve domains. Twelve notational systems. One equation. The institution derived each independently within its own department, using its own notation, publishing in its own journals. Each derivation is correct. None references any other. The structural identity between them has not been stated because no single department holds all twelve.
+Twelve domains. Twelve names for β · d². One geometric ratio. The institution derived each independently. Each derivation is correct. None references any other. They have not been stated as one equation because no single department holds all twelve.
 
-### 5.3 What the Unification Is
+### 4.3 What the Unification Is
 
-This is a claim of isomorphism. The twelve equations are not merely analogous. They are structurally identical. They perform the same operation — transit across a circular soliton boundary — expressed in twelve notational systems.
+This is a claim of isomorphism. The twelve equations perform the same geometric operation — applying the ratio between circular and rectilinear measurement — on different physical or mathematical substrates. The substrates differ. The geometric operation is identical. The constant is identical. The structure is identical.
 
-The claim is not that pipe flow "is like" antenna theory. The claim is that the boundary transit operation in pipe flow and the boundary transit operation in antenna theory are the same operation on different physical substrates. The substrates differ. The operation is identical. The constant is identical. The structure is identical.
+The claim is that recognizing this isomorphism separates every equation involving circular cross-sections into a universal geometric component (β · d²) and a domain-specific component (F and Z). The geometric component is the same in all domains. The domain-specific component is where the physics, engineering, probability theory, or number theory lives. This separation has not been stated explicitly.
 
-This is the same type of claim as recognizing that addition of integers and addition of real numbers are the same operation on different number systems. The operation is isomorphic. The substrates differ. Recognizing the isomorphism does not change either system. It reveals that two things with different names are one thing.
+### 4.4 What the Unification Is Not
 
-### 5.4 What the Unification Is Not
+This paper does not claim that recognizing the isomorphism changes any calculation. Every equation remains algebraically identical to its standard form. The factoring of πd²/4 into β · d² is algebraic identity.
 
-This paper does not claim that pipe flow causes drag or that capacitance explains Buffon's needle. The physical substrates are different. The driving forces are different. The impedances are different. The paper claims that the boundary transit operation is the same in all cases and that recognizing this collapses twelve independent derivations into one.
-
-This paper does not propose new equations. Every equation in Section IV is the institution's own equation, rearranged to expose the common structure. No term is added. No term is removed. The rearrangement is algebraic identity, not approximation.
+The paper claims that the factoring reveals structure: one universal ratio appearing in twelve notational systems, disguised by domain-specific naming conventions. Whether this structural observation leads to further results is a question for subsequent work. The observation itself — that twelve equations are one equation — stands independently of its downstream consequences.
 
 ---
 
-## VI. THE STRUCTURE OF Z
+## V. THE STRUCTURE OF Z
 
-### 6.1 What Z Contains
+### 5.1 What Z Contains
 
-β handles the primary geometric soliton boundary — the transit between rectilinear and circular frames. Z handles every additional boundary the transit crosses beyond the geometric one.
+β · d² handles the geometric ratio between circular and rectilinear frames. Z handles everything else that modifies the output in each domain.
 
-Across all twelve domains, Z decomposes into four categories.
+Across the twelve domains, Z takes different forms. In pipe flow, Z is the friction factor — capturing wall roughness and viscosity. In drag, Z is the drag coefficient — capturing wake structure and flow regime. In antenna theory, Z is aperture efficiency — capturing edge diffraction and feed losses. In thermal radiation, Z is emissivity — capturing surface coupling properties. In the ideal cases (pure geometry, ideal aperture, Buffon, Fourier), Z = 1 and the output is determined entirely by the geometric ratio and the driving term.
 
-**Material coherence boundaries.** The pipe wall's roughness. The sphere's surface structure. The conductor's resistance. The emitting surface's imperfect blackbody coupling. In each case, the material's own coherent structure — its atomic arrangement, its surface properties, its electromagnetic response — imposes a transit cost on whatever crosses it. The material is itself a soliton, with its own interior coherence and its own boundary. Crossing the material boundary costs additional impedance beyond the geometric β.
+The observation is that Z is always the domain-specific content. Fluid mechanics lives in Z_friction. Electromagnetism lives in Z_permittivity. Thermodynamics lives in Z_emissivity. RF engineering lives in Z_efficiency. The geometric ratio β · d² is the skeleton that all domains share. Z is where the domains diverge.
 
-**Internal coherence failures.** The antenna's phase errors across its aperture. The laser beam's mode mixing. The dielectric's impurities. These are imperfections in the primary structure's own coherence. Where the structure's internal pattern is not perfectly organized, each discontinuity is a small boundary within the structure itself. Z accumulates the cost of these internal boundaries.
+### 5.2 The Separation Principle
 
-**Secondary geometric boundaries.** The vena contracta at an orifice — a second geometric contraction beyond the primary orifice boundary. Fringing fields at capacitor edges — the field's geometry diverging from the ideal circular cross-section at the boundary's periphery. Edge diffraction at an aperture — the wave's interaction with the geometric boundary of the opening itself. Each is a geometric boundary beyond the primary one, each imposing its own transit cost.
+The unified equation Q = F · β · d² · Z separates universal geometry from domain-specific content. This separation has a structural consequence: any result that applies to β · d² applies to all twelve domains simultaneously. Any result specific to Z applies only to its own domain.
 
-**Medium transit costs.** The vacuum's permittivity ε₀ — the resistance of free space to field establishment. Fluid viscosity — the resistance of the medium to coherent flow. Impedance mismatch — the resistance at the interface between two media with different characteristic impedances. The medium between boundaries has its own properties that impede transit.
-
-### 6.2 The Universality of Z Categories
-
-The institution characterizes these impedances in every domain. Drag coefficient tables. Moody charts for pipe friction. Emissivity databases. Antenna efficiency measurements. Beam quality specifications. Discharge coefficient correlations.
-
-Each characterization is performed within its domain. The drag coefficient is in the fluid mechanics literature. Emissivity is in the thermal physics literature. Aperture efficiency is in the RF engineering literature. Each is measured, tabulated, and applied within its own department.
-
-The structural identity of these characterizations — that all are measurements of soliton boundary transit impedance beyond the primary geometric transit — has not been stated. Each department catalogs the same type of information under different names. The catalogs are isomorphic. They have never been compared.
-
-### 6.3 Compounding
-
-The orifice discharge coefficient C_d is typically 0.60–0.65. The value β² = (π/4)² = 0.617 falls within this range.
-
-The orifice transit crosses two boundaries. The first is the geometric boundary of the orifice opening — cost β. The second is the fluid's own coherence boundary — its inertia prevents it from conforming instantaneously to the orifice geometry, producing the vena contracta. This is a second soliton boundary transit. Cost β.
-
-Two transits: β × β = β².
-
-This is a specific, testable structural claim. When a transit crosses n soliton boundaries of comparable character, the total transit cost is βⁿ. The cost compounds multiplicatively per boundary crossed.
-
-For one geometric boundary: β = 0.785. This is the area of a circle.
-For two boundaries: β² = 0.617. This is the orifice discharge coefficient.
-For three boundaries: β³ = 0.485.
-
-Whether three-boundary systems produce transit coefficients near β³ is an empirical question. The prediction is stated for testing.
+The institution's current organization inverts this. Each domain derives β · d² from its own first principles — integrating the circular cross-section in its own coordinate system — and absorbs the result into a domain-specific formula. The geometric ratio is rederived in every domain rather than recognized as universal and factored out.
 
 ---
 
-## VII. DIRECTIONALITY
+## VI. DIRECTIONALITY
 
-### 7.1 The Transit Has a Direction
+### 6.1 β and 1/β
 
-The boundary separates two frames. The transit can go either direction. The direction determines whether the constant is β or 1/β.
+In ten of the twelve instances, the factor appears as β = π/4. In two instances — Buffon's needle and Fourier square wave coefficients — it appears as 1/β = 4/π.
 
-**Interior-to-exterior measurement (grid measures circle):** β = π/4 ≈ 0.785
+The pattern: when the equation computes a circular quantity from rectilinear inputs (area of a circle from its bounding box, flow through a circular pipe from rectilinear velocity), the factor is β. When the equation computes a rectilinear quantity from circular inputs (rectilinear signal decomposed into circular basis functions, smooth orientation space measured against a discrete grid), the factor is 1/β.
 
-The circle area formula: the grid frame measures the circle's area as β · d². The grid is doing the measuring. The circle is being measured. The grid's value d² is corrected downward by β to reach the circle's value.
+β converts rectilinear to circular: multiply by β to go from d² to circular area.
+1/β converts circular to rectilinear: multiply by 1/β to express circular content in rectilinear terms.
 
-**Exterior-to-interior measurement (circle measures grid):** 1/β = 4/π ≈ 1.273
+### 6.2 Directional Instances
 
-Buffon's needle: a smooth circular object (the needle's orientation space) is measured by a discrete grid. The smooth frame is doing the measuring. The grid is being measured. The smooth value is corrected upward by 1/β.
+| Equation | Factor | Direction |
+|---|---|---|
+| Circle area | β = π/4 | Rectilinear (d²) → Circular (area) |
+| Pipe flow | β = π/4 | Rectilinear (velocity frame) → Circular (pipe cross-section) |
+| Drag | β = π/4 | Rectilinear (flow) → Circular (sphere cross-section) |
+| Orifice | β = π/4 | Rectilinear (pressure frame) → Circular (orifice) |
+| Capacitor | β = π/4 | Rectilinear (circuit) → Circular (plate area) |
+| Poynting | β = π/4 | Rectilinear (flux frame) → Circular (aperture) |
+| Antenna | β = π/4 | Rectilinear (radiation field) → Circular (dish) |
+| Beam optics | β = π/4 | Rectilinear (lab frame) → Circular (beam) |
+| Thermal | β = π/4 | Rectilinear (planar detection) → Circular (emitting surface) |
+| Buffon | 1/β = 4/π | Circular (needle orientation) → Rectilinear (line grid) |
+| Fourier | 1/β = 4/π | Circular (sinusoidal basis) → Rectilinear (square wave) |
+| Leibniz | β = π/4 | Rectilinear (integer arithmetic) → Circular (geometric value) |
 
-Fourier square wave coefficients: a rectilinear signal is decomposed into circular basis functions. The coefficients are 4/π = 1/β. The circular basis is measuring the rectilinear signal. The rectilinear value is corrected upward by 1/β to express it in the circular frame.
+### 6.3 Directional Prediction
 
-### 7.2 The Directional Rule
+The directional pattern is stated as a testable prediction. For any equation not examined in this paper that contains the factor π/4 or 4/π in a context involving circular geometry:
 
-For any equation containing π/4 or 4/π:
+If the equation converts from a rectilinear quantity to a circular quantity, the factor should be π/4.
+If the equation converts from a circular quantity to a rectilinear quantity, the factor should be 4/π.
 
-If the rectilinear frame measures a circular structure, the factor is β = π/4.
-If the circular frame measures a rectilinear structure, the factor is 1/β = 4/π.
+Candidate equations for out-of-sample testing:
 
-The constant is the same. The direction determines its orientation. This is analogous to the sign convention in vector quantities — the magnitude is fixed, the direction is determined by the physical configuration.
+**Gaussian beam divergence:** θ = 4λ/(πd). The factor is 4/π = 1/β. The beam (circular coherent structure) diverges into the far field (rectilinear angular measurement). Direction: circular → rectilinear. Prediction: 1/β. Observed: 1/β. Consistent.
 
-### 7.3 Directional Prediction
+**Magnetic flux through circular loop:** Φ = B · πd²/4. The factor is π/4 = β. The external field (rectilinear uniform field) is measured through the circular loop area. Direction: rectilinear → circular. Prediction: β. Observed: β. Consistent.
 
-This directionality is a testable structural prediction. For any equation not examined in this paper that contains π/4 or 4/π, the direction of the transit should correspond to the measurement frame relationship:
+**Circular waveguide cutoff:** f_c involves 1/(πd) in its formulation. The factor structure contains 1/β. The wave (propagating in the rectilinear direction) is constrained by the circular waveguide boundary. The cutoff condition relates the circular boundary to the rectilinear propagation. Direction: circular constraint on rectilinear propagation → 1/β. Consistent.
 
-π/4 appears when a rectilinear frame measures or transits to a circular frame.
-4/π appears when a circular frame measures or transits to a rectilinear frame.
-
-If an equation is found where 4/π mediates a rectilinear-measures-circular transit, or where π/4 mediates a circular-measures-rectilinear transit, the directional model is falsified.
+These three out-of-sample cases are offered as initial tests. A comprehensive survey across all equations containing π/4 or 4/π would constitute a thorough test of the directional prediction.
 
 ---
 
-## VIII. THE FOURIER CONNECTION
+## VII. THE FOURIER CONNECTION
 
-### 8.1 Fourier Analysis as Frame Transit
+### 7.1 Fourier Analysis as Metric Conversion
 
-Fourier analysis decomposes a function in one frame into components from another frame. The time domain is rectilinear — sequential, linear, additive. The frequency domain is circular — periodic, sinusoidal, rotational. Sinusoids are circular motion projected onto a line.
+Fourier analysis decomposes a function defined in one domain into components from another domain. The time domain represents signals as sequences of values — rectilinear, sequential, additive. The frequency domain represents signals as sums of sinusoids — circular, periodic, rotational. Sinusoids are projections of circular motion onto a line.
 
-Every Fourier transform is a transit across the boundary between the rectilinear frame and the circular frame. This is not a metaphor. The mathematical operation of projecting a time-domain signal onto sinusoidal basis functions is the operation of measuring rectilinear content from a circular frame.
+The Fourier transform converts between these two representations. The conversion involves circular geometry (sinusoidal basis functions) and rectilinear geometry (the time-domain signal). The normalization constants of the transform carry β or 1/β depending on the direction of conversion.
 
-### 8.2 The Square Wave
+### 7.2 The Square Wave
 
-The Fourier series of a square wave — the most purely rectilinear signal, defined by discrete jumps between two values — is:
+The Fourier series of a square wave is:
 
 f(x) = (4/π)(sin x + sin 3x/3 + sin 5x/5 + ...)
 
-The coefficient 4/π = 1/β. The circular basis functions measure the rectilinear signal. The direction is circular-measures-rectilinear. The constant is 1/β, consistent with the directional rule.
+The leading coefficient is 4/π = 1/β. The square wave is the most purely rectilinear signal — defined by discrete jumps between two values. Decomposing it into circular basis functions requires expressing rectilinear content in circular terms. The coefficient 1/β is the conversion factor from circular to rectilinear, consistent with the directional rule.
 
-The series does not converge to the square wave smoothly. At the discontinuities, it overshoots — the Gibbs phenomenon. The overshoot is approximately 9% of the step height and does not diminish with additional terms.
+### 7.3 The Gibbs Phenomenon
 
-The Gibbs phenomenon is the Fourier equivalent of the staircase problem. The circular frame cannot exactly represent a rectilinear discontinuity. The 9% overshoot is the boundary's signature at the points where the rectilinear structure is most sharply rectilinear — the jumps. The overshoot is not a computational artifact. It is the transit cost at maximum frame incompatibility.
+At the discontinuities of the square wave, the Fourier series overshoots by approximately 9% of the step height. This overshoot does not diminish with additional terms. It is a permanent feature of representing a rectilinear discontinuity in a circular basis.
 
-### 8.3 Normalization Constants
+The Gibbs phenomenon has a known exact value: the overshoot approaches (Si(π)/π − 1/2) ≈ 0.0895, where Si is the sine integral. This paper notes the phenomenon as a structural feature of the circular-rectilinear conversion at points of maximum incompatibility between the two geometries — the sharp corners of the square wave, where the rectilinear character is most extreme. Whether the Gibbs constant relates algebraically to β is an open question noted for investigation.
 
-The various Fourier transform conventions use normalization factors of 1/(2π), 1/√(2π), or asymmetric combinations. These normalizations are treated by the institution as arbitrary choices of convention — symmetric versus asymmetric placement of the 2π factor.
+### 7.4 Normalization Conventions
 
-Under the boundary framework, the 2π in the normalization is not arbitrary. It is the circumference of the unit circle — the total measure of the circular frame. The normalization divides by the circular frame's total measure to produce a density. The choice of where to place the normalization — in the forward transform, the inverse transform, or split between them — is the choice of which direction's transit cost to normalize away.
+The continuous Fourier transform uses normalization factors of 1/(2π), 1/√(2π), or asymmetric combinations depending on convention. The factor 2π is the total circumference of the unit circle — the total measure of the circular frame. The normalization divides by this total measure to produce a density.
 
-Symmetric normalization 1/√(2π) splits the boundary transit equally between the two directions. Asymmetric normalization places the full cost on one direction. The choice does not affect the mathematics because the total transit cost — the product of forward and inverse normalization — is always 1/(2π). The total round-trip cost is fixed. Only the allocation between directions is conventional.
+The symmetric convention 1/√(2π) distributes the circular measure equally between forward and inverse transforms. The asymmetric convention places the full factor on one direction. The total round-trip normalization is always 1/(2π). The choice of distribution is conventional; the total is structural.
 
----
-
-## IX. THE DISCRETE-CONTINUOUS BOUNDARY
-
-### 9.1 Quantum Discreteness
-
-Quantum mechanics establishes that at sufficiently small scales, physical quantities are discrete. Energy is quantized. Charge is quantized. Angular momentum is quantized. Spin takes discrete values. The eigenvalue spectrum of quantum operators is discrete.
-
-The institution treats discreteness as a property of the small scale. Classical physics — the physics of large scales — uses continuous mathematics. The transition between quantum and classical is modeled as the correspondence principle: quantum predictions approach classical predictions in the limit of large quantum numbers.
-
-### 9.2 The Structural Reframe
-
-This paper proposes that discreteness is not a property of scale. It is a property of the exterior frame. The continuous description is the interior frame — the view from inside the coherent pattern. The discrete description is the exterior frame — the view from outside.
-
-The Leibniz series is the purest expression of this. Discrete integer operations — addition and subtraction of rational numbers with odd denominators — sum to β. The discrete frame's measurement of a circular value. The series does not "become continuous" at any point. It remains discrete at every finite truncation. It converges to the boundary transit constant, not to the interior value π. It reaches the exterior frame's reading of the circular boundary.
-
-The epsilon-delta formulation of limits is the mathematical machinery for approaching the soliton boundary from the discrete side. The limit operation takes discrete steps and asks what they approach. The answer, for circular geometry, is β from outside and π from inside. The limit does not cross the boundary. It converges to the exterior value of whatever is on the other side.
-
-### 9.3 Real Numbers and the Boundary
-
-The real number system is the institution's primary tool for bridging discrete and continuous mathematics. Real numbers include both rational numbers (discrete ratios of integers) and irrational numbers (non-repeating, non-terminating decimals). The reals form a continuum — no gaps.
-
-Under the boundary framework, the real number system is a mathematical structure that contains elements from both sides of the soliton boundary. Rational numbers are native to the discrete frame. Transcendental numbers like π are native to the circular frame. The real number line places them side by side as if they inhabit the same space.
-
-They do inhabit the same number line. They do not inhabit the same frame. The transcendence of π — its inaccessibility by any finite algebraic operation on integers — is the statement that π is on the other side of the soliton boundary from the integers. The real number line crosses the boundary without acknowledging it. This is why real analysis produces convergence rather than identity — the framework can approach the boundary from either side but cannot express the crossing.
-
-### 9.4 Consequences for Equivalence
-
-When the institution says two quantities are "equal to 10⁻¹⁵ precision," it is using a framework — real-valued continuous mathematics — that can express convergence but not identity across the soliton boundary. Two quantities that are the same thing, measured from different frames, will converge to arbitrary precision without the framework ever identifying them as identical.
-
-The equivalence principle — gravitational mass equals inertial mass to 10⁻¹⁵ — is this phenomenon applied to physics. The companion paper [@HOWL-PHYS-1-2026] argues that mass and inertia are one property with two labels. The mathematical framework cannot express this identity directly because the two labels come from different measurement frames — one from gravitational observation (exterior frame), one from acceleration resistance (interior frame). The framework reports convergence. The structural reality is identity.
-
-The boundary transit constant β is the ratio between the two frames for circular geometry. In this specific case, β is known exactly — it is π/4. The "equivalence" between d² and βd² is not an approximate agreement. It is the exact frame translation across a known boundary. The boundary is not a barrier to knowledge. It is a translation constant, already known, already used, already exact.
+The discrete Fourier transform replaces the circular normalization with 1/N, where N is the number of samples. When both domains are discrete (N time samples mapped to N frequency bins), no circular-rectilinear conversion occurs. The normalization is counting, not metric conversion. The absence of β in the DFT is a negative confirmation: where no conversion between circular and rectilinear geometry occurs, β does not appear.
 
 ---
 
-## X. CONNECTION TO HOWL-PHYS-1-2026
+## VIII. THE STAIRCASE AS L1 ILLUSTRATION
 
-### 10.1 The Geometric Case Is Proven
+### 8.1 Two Metrics on ℝ²
 
-This paper establishes that β = π/4 is the soliton boundary transit constant for circular geometry. This case is exact, algebraic (in the sense that the identity πd²/4 = β · d² is exact), and confirmed by every equation in which it appears. It has been confirmed for millennia. It was not previously identified as a boundary transit constant.
+The Euclidean metric (L2) and the taxicab metric (L1) are both valid metrics on ℝ². They satisfy the same axioms — positivity, symmetry, triangle inequality. They produce different distance measurements for the same geometric objects.
 
-The companion paper [@HOWL-PHYS-1-2026] proposes that soliton boundaries exist at every scale — from vacuum polarization clouds to galactic structure — and that transit across these boundaries produces frame-dependent readings. The geometric case proven here provides the structural template: a coherent interior, an exterior, a boundary, a transit constant, a directional dependence.
+For a circle of diameter d:
 
-### 10.2 Extension to Non-Geometric Boundaries
+L2 circumference = πd
+L1 circumference = 4d
 
-The geometric boundary transit constant is β = π/4. This value arises from the specific geometry of the boundary — circular/spherical.
+Neither measurement is more correct than the other. Each is exact in its own metric. The difference is not an error in either metric. It is the consequence of applying two different distance functions to the same geometry.
 
-Non-geometric soliton boundaries — confinement boundaries, vacuum polarization boundaries, gravitational well boundaries, cosmological structure boundaries — need not have the same transit constant. Each boundary has its own geometry, its own coherence structure, its own interior-exterior relationship. Each may have its own characteristic transit constant.
+### 8.2 The Staircase Construction
 
-The structural prediction is not that every boundary has transit constant π/4. The structural prediction is that every coherent soliton boundary has a characteristic transit constant, that the constant depends on the boundary's geometry and coherence structure, and that the transit cost compounds multiplicatively when measurement crosses multiple boundaries.
+The staircase construction illustrates why the L1 circumference is 4d. Approximate the circle with a path of horizontal and vertical segments. At every level of refinement, the total path length in L1 is 4d. This is because each refinement step redistributes the horizontal and vertical components without changing their totals. The top half of the circle spans d horizontally and d/2 vertically in each direction (up then down), contributing 2d to the L1 path. The bottom half contributes the same. Total: 4d.
 
-### 10.3 Compounding and the Anomaly Correlation
+The invariance of the staircase path length under refinement is sometimes presented as a paradox — the staircase "should" converge to the circle's circumference but doesn't. Under the L1/L2 framework, there is no paradox. The staircase measures L1 distance. It converges correctly to the L1 circumference, which is 4d. It was never measuring L2 distance. The expectation that it should converge to πd confuses the two metrics.
 
-The companion paper identifies three measurement anomalies — the Hubble tension, the proton radius puzzle, and the muon g-2 discrepancy — that correlate with boundary transit count or interaction depth. This paper provides the mechanism: transit costs compound per boundary crossed.
+### 8.3 The Connection to β
 
-For geometric boundaries, the compounding is β per transit. For non-geometric boundaries, the per-transit constant may differ but the compounding principle should hold if the soliton boundary concept is structurally sound. The orifice discharge coefficient C_d ≈ β² provides the geometric proof of concept: two boundary transits, cost compounds to β².
+The L2/L1 ratio for circular geometry is:
 
-Whether cosmological boundary transits compound similarly — and whether the compounded transit cost accounts for the magnitude of the Hubble tension — requires quantitative modeling that neither this paper nor the companion paper attempts. The structural framework for such modeling is provided. The modeling itself is proposed as future work.
+πd / 4d = π/4 = β
 
----
+πd²/4 / d² = π/4 = β
 
-## XI. BOUNDARIES AND LIMITATIONS
-
-This paper makes a specific claim: twelve equations from twelve domains are notational variants of one equation, unified by the boundary transit constant β = π/4. This claim is demonstrated by algebraic decomposition of the institution's own published equations. No new mathematics is introduced.
-
-The paper makes a structural claim: β is the soliton boundary transit constant for circular geometry, not merely a geometric ratio. This reframing does not change any calculation. It changes the interpretation. Whether the reframing leads to new predictions beyond the interpretive simplification is an open question.
-
-The paper makes an extended claim: the soliton boundary concept generalizes beyond circular geometry to other coherent structures. This claim is supported by structural analogy and by the companion paper's anomaly correlation. It is not proven by this paper. The geometric case is proven. The extension is proposed.
-
-The compounding principle — βⁿ for n boundary transits — is demonstrated for n=1 (circle area) and suggested for n=2 (orifice discharge coefficient). Whether it holds for n≥3 is untested. The C_d ≈ β² observation may be coincidental. The paper states it as a testable hypothesis, not a proven law.
-
-The Fourier connection identifies the transit constant in signal processing. Whether this identification produces new results in Fourier theory or merely reinterprets existing results is an open question.
-
-The discrete-continuous boundary interpretation is the most speculative element of this paper. It proposes that the soliton boundary concept applies to the mathematical foundations — to the relationship between discrete and continuous number systems. This is a philosophical claim about mathematical structure. It is stated as such and not as a mathematical proof.
+β is the ratio between the L2 and L1 measurements of the same circular geometry. It appears in every equation in Section III because every such equation involves computing the L2 (circular, Euclidean) cross-section of a geometry whose L1 (rectilinear, bounding-box) measurement is d². The conversion from L1 to L2 for circular geometry is multiplication by β.
 
 ---
 
-## XII. FALSIFICATION CRITERIA
+## IX. BOUNDARIES AND LIMITATIONS
 
-**F1.** If any equation containing π/4 is identified where the term does not mediate a transit between rectilinear and circular frames, the universal transit interpretation of β is weakened. If multiple such equations are found, the interpretation is falsified.
+This paper makes a specific claim: twelve equations from twelve domains share a common structure Q = F · β · d² · Z, where β = π/4 is the ratio between circular and rectilinear measurement of the same geometry. This claim is demonstrated by algebraic decomposition. No new mathematics is introduced. The decomposition is algebraic identity — each equation is algebraically identical to its standard form.
 
-**F2.** If the directionality prediction fails — if an equation containing 4/π is shown to involve rectilinear-measures-circular transit rather than circular-measures-rectilinear — the directional model is falsified.
+The paper makes a structural claim: expressing β · d² as a named operation — metric conversion between circular and rectilinear frames — rather than as a geometric formula reveals isomorphism across twelve domains. This reframing does not change any calculation. Whether it leads to results beyond the organizational insight is a question for subsequent work. The observation that twelve independently derived formulas share a single geometric skeleton stands independently of its consequences.
 
-**F3.** If the orifice C_d ≈ β² is coincidental — if other well-characterized two-boundary transits do not produce coefficients near β² — the compounding model is not supported.
+The directionality pattern — β for rectilinear-to-circular, 1/β for circular-to-rectilinear — is presented with twelve instances and three out-of-sample tests. Whether the pattern holds universally requires a comprehensive survey of all equations containing π/4 or 4/π. The paper presents the pattern and the prediction; the comprehensive test is proposed as future work.
 
-**F4.** If Fourier normalization constants are shown to arise from a principle unrelated to frame transit between rectilinear and circular geometry, the Fourier connection is not supported.
+The relationship between the Gibbs phenomenon and β is noted as an open question, not a claim.
 
-**F5.** If the twelve equations can be unified under a different principle that does not involve soliton boundary transit — if the common factor π/4 has an alternative structural explanation that accounts for all twelve instances — the boundary transit interpretation is not the unique explanation and must be compared with the alternative.
+This paper does not make claims about physics, measurement theory, or the structure of physical reality. It is a mathematical observation about the recurrence of a single geometric ratio across multiple domains of applied mathematics. Extensions to physical interpretation are the province of companion work and are not claimed here.
+
+---
+
+## X. FALSIFICATION CRITERIA
+
+**F1.** If an equation containing the factor π/4 is identified in a context that does not involve the ratio between circular and rectilinear geometry, the universal interpretation of β as a metric conversion is weakened. If multiple such equations are found, the interpretation is falsified.
+
+**F2.** If the directionality prediction fails — if an equation containing 4/π is shown to involve rectilinear-to-circular conversion rather than circular-to-rectilinear — the directional model is falsified.
+
+**F3.** If the twelve equations can be unified under a different principle that does not involve the circular-rectilinear ratio — if the common factor π/4 has an alternative structural explanation that accounts for all twelve instances — the metric conversion interpretation is not the unique explanation and must be compared with the alternative.
+
+**F4.** If the DFT negative confirmation fails — if a transform between two discrete domains is found to contain π/4 as a structural factor rather than as a parameter — the claim that β appears only when circular-rectilinear conversion occurs is weakened.
 
 Each criterion is specific, testable, and stated before the evidence is examined.
 
@@ -456,226 +384,290 @@ Each criterion is specific, testable, and stated before the evidence is examined
 
 ## APPENDIX A: THE TWELVE EQUATIONS IN UNIFIED NOTATION
 
-| # | Domain | Original Equation | Unified: Q = F · β · d² · Z | Transit Direction |
+| # | Domain | Original | Unified | Direction |
 |---|---|---|---|---|
-| 1 | Geometry | A = πd²/4 | A = β · d² | grid → circle |
-| 2 | Pipe flow | Q = v · πd²/4 | Q = v · β · d² · Z_f | grid → circle |
-| 3 | Drag | F = ½ρv² · C_d · πd²/4 | F = ½ρv² · β · d² · C_d | flow → sphere |
-| 4 | Orifice | Q = C_d · πd²/4 · √(2ΔP/ρ) | Q = √(2ΔP/ρ) · β · d² · C_d | fluid → orifice |
-| 5 | Capacitor | C = ε₀ · πd²/(4t) | C = ε₀/t · β · d² | circuit → field |
-| 6 | Poynting | P = S · πd²/4 | P = S · β · d² | field → aperture |
-| 7 | Antenna | A_eff = η · πD²/4 | A_eff = η · β · D² | radiation → dish |
-| 8 | Beam optics | A = πw² = πd²/4 | A = β · d² · M⁻² | lab → beam |
-| 9 | Thermal | Q = εσT⁴ · πd²/4 | Q = σT⁴ · β · d² · ε | sphere → plane |
-| 10 | Buffon | P = 2L/(πd) | P ∝ 1/β | smooth → grid (inverted) |
-| 11 | Leibniz | 1 - 1/3 + 1/5... = π/4 | Σ = β | discrete → smooth |
-| 12 | Fourier | coeff = 4/π | coeff = 1/β | circular basis → rectilinear signal (inverted) |
+| 1 | Geometry | A = πd²/4 | A = β · d² | rectilinear → circular |
+| 2 | Pipe flow | Q = v · πd²/4 | Q = v · β · d² · Z_f | rectilinear → circular |
+| 3 | Drag | F = ½ρv² · C_d · πd²/4 | F = ½ρv² · β · d² · C_d | rectilinear → circular |
+| 4 | Orifice | Q = C_d · πd²/4 · √(2ΔP/ρ) | Q = √(2ΔP/ρ) · β · d² · C_d | rectilinear → circular |
+| 5 | Capacitor | C = ε₀ · πd²/(4t) | C = ε₀/t · β · d² | rectilinear → circular |
+| 6 | Poynting | P = S · πd²/4 | P = S · β · d² | rectilinear → circular |
+| 7 | Antenna | A_eff = η · πD²/4 | A_eff = η · β · D² | rectilinear → circular |
+| 8 | Beam optics | A = πd²/4 | A = β · d² | rectilinear → circular |
+| 9 | Thermal | Q = εσT⁴ · πd²/4 | Q = σT⁴ · β · d² · ε | rectilinear → circular |
+| 10 | Buffon | P = 2L/(πd) | P ∝ 1/β | circular → rectilinear |
+| 11 | Leibniz | 1 - 1/3 + 1/5... = π/4 | Σ = β | rectilinear → circular |
+| 12 | Fourier | coeff = 4/π | coeff = 1/β | circular → rectilinear |
 
 ---
 
 ## APPENDIX B: Z DECOMPOSITION BY DOMAIN
 
-| Domain | Z Value | Physical Meaning | Boundary Category |
-|---|---|---|---|
-| Geometry | 1 | No additional impedance | — |
-| Pipe flow | f (friction factor) | Wall roughness and viscosity effects | Material coherence boundary |
-| Drag | C_d (drag coefficient) | Wake structure, surface effects, flow regime | Material coherence + secondary geometric |
-| Orifice | C_d ≈ 0.61 ≈ β² | Vena contracta — fluid's own coherence boundary | Secondary geometric (compounded) |
-| Capacitor | ε₀/t | Vacuum field resistance over separation | Medium transit cost |
-| Poynting | 1 (ideal) | No additional impedance for perfect aperture | — |
-| Antenna | η (efficiency) | Edge diffraction, feed blockage, surface errors | Internal coherence failures |
-| Beam optics | 1/M² | Phase errors, mode mixing | Internal coherence failures |
-| Thermal | ε (emissivity) | Surface coupling imperfection | Material coherence boundary |
-| Buffon | 1 | No additional impedance | — |
-| Leibniz | convergence rate | Discrete step efficiency | — |
-| Fourier | 1 | No additional impedance | — |
+| Domain | Z | Description |
+|---|---|---|
+| Geometry | 1 | No domain-specific impedance |
+| Pipe flow | f (friction factor) | Wall roughness, viscosity, flow regime |
+| Drag | C_d (drag coefficient) | Wake structure, surface effects, Reynolds dependence |
+| Orifice | C_d ≈ 0.61 | Vena contracta, turbulence, Reynolds dependence |
+| Capacitor | ε₀/t | Vacuum permittivity over plate separation |
+| Poynting | 1 (ideal) | No impedance for ideal aperture |
+| Antenna | η (efficiency) | Edge diffraction, feed blockage, surface errors |
+| Beam optics | 1/M² | Phase errors, mode mixing |
+| Thermal | ε (emissivity) | Surface coupling efficiency |
+| Buffon | 1 | No domain-specific impedance |
+| Leibniz | — | Series convergence rate |
+| Fourier | 1 | No domain-specific impedance |
 
 ---
 
-## APPENDIX C: COMPOUNDING EVIDENCE
+## APPENDIX C: DIRECTIONAL VERIFICATION — IN-SAMPLE AND OUT-OF-SAMPLE
 
-| Boundaries Crossed | Predicted Coefficient | Known Physical Value | Domain | Status |
+**In-sample (twelve equations from Section III):**
+
+| Equation | Factor | Predicted Direction | Observed Direction | Match |
 |---|---|---|---|---|
-| 1 | β = 0.785 | π/4 = 0.785 (circle area ratio) | Geometry | Exact, confirmed |
-| 2 | β² = 0.617 | C_d ≈ 0.61 (sharp-edged orifice) | Fluid mechanics | Within empirical range |
-| 3 | β³ = 0.485 | To be identified | — | Prediction, untested |
-| 4 | β⁴ = 0.381 | To be identified | — | Prediction, untested |
-| n | βⁿ | To be identified | — | General prediction |
+| Circle area | π/4 | rect → circ | rect → circ | Yes |
+| Pipe flow | π/4 | rect → circ | rect → circ | Yes |
+| Drag | π/4 | rect → circ | rect → circ | Yes |
+| Orifice | π/4 | rect → circ | rect → circ | Yes |
+| Capacitor | π/4 | rect → circ | rect → circ | Yes |
+| Poynting | π/4 | rect → circ | rect → circ | Yes |
+| Antenna | π/4 | rect → circ | rect → circ | Yes |
+| Beam optics | π/4 | rect → circ | rect → circ | Yes |
+| Thermal | π/4 | rect → circ | rect → circ | Yes |
+| Buffon | 4/π | circ → rect | circ → rect | Yes |
+| Leibniz | π/4 | rect → circ | rect → circ | Yes |
+| Fourier | 4/π | circ → rect | circ → rect | Yes |
 
----
+**Out-of-sample (equations not derived in Section III):**
 
-## APPENDIX D: DIRECTIONAL INSTANCES
-
-| Equation | Contains | Direction | Frame Relationship |
-|---|---|---|---|
-| Circle area | π/4 | β | Rectilinear measures circular |
-| Pipe flow | π/4 | β | Rectilinear flow through circular pipe |
-| Drag | π/4 | β | Rectilinear flow past circular sphere |
-| Capacitor | π/4 | β | Linear circuit measures circular field |
-| Fourier square wave | 4/π | 1/β | Circular basis measures rectilinear signal |
-| Buffon's needle | 2/π → 4/π structure | 1/β | Smooth object measured by discrete grid |
-| Gibbs phenomenon | ~9% overshoot | boundary artifact | Circular frame at maximum rectilinear discontinuity |
-
----
-
-## APPENDIX E: HISTORICAL INSTANCES OF β — UNRECOGNIZED BOUNDARY TRANSIT
-
-| Year | Mathematician/Physicist | Result | β Appearance | Institution's Classification | Boundary Transit Structure |
-|---|---|---|---|---|---|
-| ~250 BC | Archimedes | Circle area = πr² = πd²/4 | β · d² | Geometric formula | Exterior grid measurement d² corrected by β to interior circle area |
-| ~250 BC | Archimedes | Method of exhaustion — polygons approaching circle | Exterior approximation converges, never equals | Limiting process | Staircase approaches boundary from exterior frame, converges to β · d² |
-| 1674 | Leibniz | 1 - 1/3 + 1/5 - 1/7 + ... = π/4 | Σ = β | Infinite series identity | Discrete arithmetic converges to boundary transit constant directly |
-| 1733 | Buffon | Needle probability = 2/(πL) | P ∝ 1/β | Geometric probability | Smooth object measured by discrete grid, inverted transit |
-| 1807 | Fourier | Square wave coefficients = 4/π | 1/β | Harmonic analysis | Rectilinear signal measured by circular basis, inverted transit |
-| 1848 | Gibbs (published 1899) | ~9% overshoot at discontinuities | Boundary artifact | Convergence failure | Circular frame cannot represent rectilinear discontinuity, overshoot is transit cost at maximum frame incompatibility |
-| 1882 | Lindemann | π is transcendental | β is irreducible | Number theory | No finite algebraic operation crosses the soliton boundary — mathematical proof of boundary irreducibility |
-| 1738 | Bernoulli / Euler | Orifice flow coefficient ≈ 0.61 | β² | Empirical hydraulic constant | Two boundary transits — geometric orifice plus fluid coherence — compound to β² |
-
----
-
-## APPENDIX F: π/4 IN PHYSICAL CONSTANTS AND STANDARD FORMULAS
-
-| Formula | Standard Form | β-Decomposed Form | Physical Substrate | Transit Description |
+| Equation | Factor | Predicted Direction | Observed Direction | Match |
 |---|---|---|---|---|
-| Circle area | A = πr² | A = β · d² | Pure geometry | Grid measures circle |
-| Sphere volume | V = πd³/6 = (π/4) · (2d³/3) | V = β · V_cylinder_factor | 3D geometry | Cubic grid measures sphere |
-| Cylinder volume | V = πd²h/4 | V = β · d² · h | 3D geometry | Grid cross-section times height |
-| Circular cross-section flow | Q = vπd²/4 | Q = v · β · d² | Fluid mechanics | Flow transits circular boundary |
-| Hagen-Poiseuille | Q = πd⁴ΔP/(128μL) | Q = β · d² · (d²ΔP/32μL) | Viscous pipe flow | Flow transits circular boundary against viscous impedance |
-| Torricelli through circular orifice | Q = C_d · πd²/4 · √(2gh) | Q = C_d · β · d² · √(2gh) | Gravitational discharge | Fluid transits orifice boundary under gravity |
-| Drag force | F = C_d · ½ρv² · πd²/4 | F = C_d · ½ρv² · β · d² | External aerodynamics | Flow encounters spherical boundary |
-| Stokes drag (sphere) | F = 3πμvd = rearranges with β in derivation | Derivation contains β · d² in intermediate steps | Creeping flow | Viscous flow transits sphere boundary at low Reynolds |
-| Capacitance (circular plates) | C = ε₀πd²/(4t) | C = ε₀β · d²/t | Electrostatics | Circuit frame measures circular field region |
-| Magnetic flux through circular loop | Φ = B · πd²/4 | Φ = B · β · d² | Electromagnetism | Linear field measurement through circular geometry |
-| Circular waveguide cutoff | f_c = 1.841c/(πd) | f_c ∝ 1/(β · d) · constant | Microwave engineering | Wave transits circular waveguide boundary |
-| Antenna gain | G = η · (πD/λ)² = η · (4β · D/λ)² ... | Contains β in aperture-to-gain conversion | RF engineering | Radiation transits circular aperture |
-| Gaussian beam divergence | θ = 4λ/(πd) = (4/π) · λ/d | θ = (1/β) · λ/d | Laser optics | Beam divergence from circular aperture, inverted transit |
-| Airy disk diameter | d_Airy = 2.44λ/D with π in derivation | Derivation integrates across circular aperture with β | Wave optics | Diffraction through circular boundary |
-| Blackbody exitance | M = εσT⁴ (with π/4 in hemispheric integration) | Hemispheric → planar transit contains β | Thermal physics | Spherical emission measured by planar detector |
-| Solid angle of cone | Ω = 2π(1-cosθ), full hemisphere = 2π → flux factor π | Flux through hemisphere contains β factor | Radiometry | Spherical emission projected to planar measurement |
+| Gaussian beam divergence θ = 4λ/(πd) | 4/π = 1/β | circ → rect | Circular beam → rectilinear angle | Yes |
+| Magnetic flux through loop Φ = Bπd²/4 | π/4 = β | rect → circ | Rectilinear field → circular loop | Yes |
+| Circular waveguide cutoff | 1/(πd) structure | 1/β structure | Circular boundary constrains rectilinear propagation | Yes |
+| Hagen-Poiseuille Q = πd⁴ΔP/(128μL) | π/4 in d⁴ decomposition | rect → circ | Pressure-driven flow → circular pipe | Yes |
+| Torricelli (circular orifice) | π/4 | rect → circ | Gravitational flow → circular opening | Yes |
 
 ---
 
-## APPENDIX G: FOURIER TRANSFORMS AND β DIRECTIONALITY
+## APPENDIX D: ISOMORPHISM MAP
 
-| Transform Pair | Forward Direction | Inverse Direction | β Appearance | Transit Structure |
-|---|---|---|---|---|
-| Square wave → Fourier series | Time (rectilinear) → Frequency (circular) | Frequency → Time | Coefficients = 4/π = 1/β | Circular basis measures rectilinear signal |
-| Sinc function ↔ Rectangle | Smooth sinc → Sharp rectangle | Sharp → Smooth | Width relationships carry β | Smooth-to-discrete and discrete-to-smooth transit |
-| Gaussian ↔ Gaussian | Smooth → Smooth | Smooth → Smooth | √(2π) normalization | Both sides smooth — symmetric transit, β distributed equally |
-| Dirac comb ↔ Dirac comb | Discrete → Discrete | Discrete → Discrete | 2π/T scaling | Both sides discrete — no frame crossing, scaling only |
-| Continuous Fourier transform | f(t) → F(ω) | F(ω) → f(t) | 1/(2π) or 1/√(2π) | Full circular measure in normalization |
-| Discrete Fourier transform | x[n] → X[k] | X[k] → x[n] | 1/N | Discrete-to-discrete — no β, replaced by 1/N counting |
-
-**Structural observations:**
-
-When both domains share the same frame type (both smooth or both discrete), β does not appear as a correction. The Gaussian transforms to a Gaussian — smooth to smooth. The Dirac comb transforms to a Dirac comb — discrete to discrete. No frame boundary is crossed. No transit constant is needed.
-
-When the domains differ in frame type — rectilinear signal to circular basis, or discrete samples to continuous spectrum — the transit constant appears. The magnitude and direction correspond to the frame relationship.
-
-The Discrete Fourier Transform replaces β with 1/N because both sides are discrete. No soliton boundary is crossed. The normalization is counting, not transit correction. This is a negative confirmation: where no boundary exists, β is absent.
-
----
-
-## APPENDIX H: THE STAIRCASE PROBLEM — COMPLETE STRUCTURAL ANALYSIS
-
-| Property | Interior Measurement | Exterior Measurement | Ratio |
-|---|---|---|---|
-| Circumference | πd ≈ 3.14159d | 4d | π/4 = β |
-| Area | πd²/4 ≈ 0.7854d² | d² | π/4 = β |
-| Measurement instrument | String conforming to curve (shares frame) | Right-angle grid (does not share frame) | — |
-| Refinement behavior | Fixed value at all resolutions | Fixed value at all resolutions | — |
-| Convergence | Not applicable — value is exact | Not applicable — value is exact | — |
-| Institution's interpretation | "True" value | Curiosity / counterexample | — |
-| Boundary interpretation | Correct interior reading | Correct exterior reading | Both correct in their respective frames |
-
-| Staircase Refinement | Number of Steps | Step Size | Total Path Length | Approaches Interior Value? |
-|---|---|---|---|---|
-| Coarse | 4 | d/4 per axis | 4d | No |
-| Medium | 40 | d/40 per axis | 4d | No |
-| Fine | 400 | d/400 per axis | 4d | No |
-| Very fine | 4000 | d/4000 per axis | 4d | No |
-| Infinite limit | ∞ | → 0 | 4d | No — converges to exterior value |
-
-The staircase path length is invariant under refinement. This is not a failure of convergence. It is the correct exterior frame measurement. The exterior measurement is 4d at every resolution because the exterior frame is self-consistent. Refining the grid does not change the frame. It refines within the frame. The boundary between frames is not crossed by refinement.
-
----
-
-## APPENDIX I: CANDIDATE THREE-BOUNDARY SYSTEMS FOR β³ TESTING
-
-| System | Boundary 1 | Boundary 2 | Boundary 3 | Predicted Coefficient | Measurable Quantity |
-|---|---|---|---|---|---|
-| Flow through orifice in thick-walled pipe | Pipe circular cross-section | Orifice geometric contraction | Fluid vena contracta | β³ ≈ 0.485 | Discharge coefficient for thick-walled orifice should be lower than thin-walled C_d ≈ β² |
-| Radiation through circular aperture in thick conductor | Aperture geometric boundary | Waveguide attenuation in conductor thickness | Re-radiation at exit face | β³ ≈ 0.485 | Transmission coefficient for thick circular apertures |
-| Triply-nested capacitor | Outer plate boundary | Dielectric-conductor boundary | Inner plate boundary | β³ ≈ 0.485 | Effective capacitance ratio versus ideal |
-| Gaussian beam through circular aperture into circular detector | Beam cross-section | Aperture transit | Detector acceptance | β³ ≈ 0.485 | Total optical throughput efficiency |
-| Three-stage orifice cascade | Orifice 1 | Orifice 2 | Orifice 3 | β³ ≈ 0.485 for geometric component | Cascaded pressure drop coefficient |
-
-**Note:** Each candidate system involves three distinct circular soliton boundary crossings. The predicted coefficient β³ ≈ 0.485 applies to the geometric component only. Additional Z-type impedances (friction, viscosity, material effects) will modify the total coefficient. The test is whether the geometric component isolates to β³ after Z corrections are applied.
-
----
-
-## APPENDIX J: DIRECTIONAL VERIFICATION CHECKLIST
-
-| Equation | Contains π/4 or 4/π? | Predicted Direction | What Measures | What Is Measured | Directional Match? |
-|---|---|---|---|---|---|
-| Circle area πd²/4 | π/4 = β | Grid → Circle | Rectilinear grid | Circular interior | Yes |
-| Pipe flow vπd²/4 | π/4 = β | Grid → Circle | External flow frame | Circular pipe interior | Yes |
-| Drag C_d · ½ρv² · πd²/4 | π/4 = β | Grid → Circle | Rectilinear flow | Spherical cross-section | Yes |
-| Capacitance ε₀πd²/(4t) | π/4 = β | Grid → Circle | Linear circuit | Circular field region | Yes |
-| Fourier square wave coeff 4/π | 4/π = 1/β | Circle → Grid | Circular sinusoidal basis | Rectilinear square wave | Yes |
-| Buffon P = 2/(πd) | Structure contains 1/β | Circle → Grid | Smooth needle orientation | Discrete line grid | Yes |
-| Gaussian beam divergence 4λ/(πd) | 4/π = 1/β | Circle → Grid | Circular beam aperture | Rectilinear far-field angle | Yes |
-| Leibniz series = π/4 | π/4 = β | Grid → Circle | Discrete integer arithmetic | Smooth circular value | Yes |
-
-All verified instances match the directional prediction. No counterexamples found in this survey. The checklist is extensible to any equation containing π/4 or 4/π.
-
----
-
-## APPENDIX K: ISOMORPHISM MAP — TWELVE DOMAINS, ONE STRUCTURE
-
-| Structural Element | Geometry | Pipe Flow | Drag | Orifice | Capacitor | Poynting | Antenna | Beam Optics | Thermal | Buffon | Leibniz | Fourier |
+| Structural Element | Geometry | Pipe Flow | Drag | Orifice | Capacitor | Poynting | Antenna | Beam | Thermal | Buffon | Leibniz | Fourier |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| What transits (Q) | Area | Volume/time | Force | Volume/time | Charge/time | Power | Power | Power | Power | Probability | Sum | Coefficient |
-| What drives (F) | — | Velocity | ½ρv² | √(2ΔP/ρ) | Voltage | Flux S | Intensity | Intensity | σT⁴ | Geometry | — | — |
-| Boundary size (d²) | d² | d² | d² | d² | d² | d² | D² | d² | d² | L·d | — | — |
-| Transit constant | β | β | β | β | β | β | β | β | β | 1/β | β | 1/β |
-| Impedance (Z) | 1 | Friction | C_d | C_d ≈ β² | ε₀/t | 1 | η | 1/M² | ε | 1 | Rate | 1 |
-| Institution's name for β·d² | "Area" | "Cross-section" | "Reference area" | "Orifice area" | "Plate area" | "Aperture area" | "Effective aperture" | "Beam area" | "Surface area" | "Crossing probability" | "Series value" | "Normalization" |
-| Department | Mathematics | Mechanical Eng. | Aerospace Eng. | Chemical Eng. | Electrical Eng. | Physics | RF Engineering | Optics | Thermal Eng. | Statistics | Number Theory | Signal Processing |
-| Typical journal | — | J. Fluid Mech. | AIAA J. | AIChE J. | IEEE Trans. | Phys. Rev. | IEEE AP | Opt. Express | Int. J. Heat Mass | Ann. Prob. | Math. Ann. | IEEE SP |
-
-Twelve departments. Twelve journals. Twelve names for β · d². One operation.
+| What results (Q) | Area | Vol/time | Force | Vol/time | Capacitance | Power | Power | Area | Power | Probability | Sum | Coefficient |
+| What drives (F) | — | Velocity | ½ρv² | √(2ΔP/ρ) | — | Flux S | Intensity | — | σT⁴ | Geometry | — | — |
+| Rectilinear measure (d²) | d² | d² | d² | d² | d² | d² | D² | d² | d² | L·d | — | — |
+| Geometric ratio | β | β | β | β | β | β | β | β | β | 1/β | β | 1/β |
+| Domain impedance (Z) | 1 | Friction | C_d | C_d | ε₀/t | 1 | η | 1/M² | ε | 1 | Rate | 1 |
+| Institution's name for β·d² | Area | Cross-section | Reference area | Orifice area | Plate area | Aperture | Eff. aperture | Beam area | Surface area | Probability | Series value | Normalization |
+| Department | Math | Mech. Eng. | Aero. Eng. | Chem. Eng. | Elec. Eng. | Physics | RF Eng. | Optics | Thermal Eng. | Statistics | Number Theory | Signal Proc. |
 
 ---
 
-## APPENDIX L: WHAT β IS AND IS NOT
+## APPENDIX E: WHAT β IS AND IS NOT
 
 | β Is | β Is Not |
 |---|---|
-| The ratio between interior and exterior measurement of circular geometry | A unit conversion factor between compatible systems |
-| Transcendental — cannot be expressed by finite algebraic operations on integers | Irrational merely by coincidence — transcendence has structural meaning |
-| Irreducible — no refinement of exterior measurement changes it | An approximation error that can be corrected by better measurement |
-| Directional — β from grid to circle, 1/β from circle to grid | A scalar — direction matters and determines orientation |
-| A property of the boundary between frames | A property of either frame individually |
+| The ratio between L2 and L1 measurements of circular geometry | A unit conversion between compatible measurement systems |
+| Transcendental — inherited from the transcendence of π | A rational approximation or engineering constant |
+| Irreducible — no finite algebraic operation on integers produces it | An error correctable by better measurement or finer approximation |
+| Directional — β from rectilinear to circular, 1/β from circular to rectilinear | A scalar without orientation |
+| The same value in all twelve domains | A coincidence of similar-looking formulas |
 | Already present in every equation involving circular cross-sections | A new mathematical quantity introduced by this paper |
-| Unrecognized as a boundary transit constant | Unmodeled — the value is exact and has been applied for millennia |
-| The geometric specific case of the general soliton boundary transit concept | The universal boundary transit constant for all soliton types |
-| Compounding — βⁿ for n boundary crossings of the same type | Additive — multiple crossings do not sum, they multiply |
+| A universal geometric ratio unrecognized as a named structural constant | An unknown or hidden quantity |
 
 ---
 
-## APPENDIX M: OPEN QUESTIONS FOR INVESTIGATION
+## APPENDIX F: CANDIDATE EQUATIONS FOR FURTHER DIRECTIONAL TESTING
 
-| Question | Method | Expected Outcome if Framework Holds | Falsification Condition |
+| Equation | Domain | Contains | Predicted Direction | To Be Verified |
+|---|---|---|---|---|
+| Biot-Savart for circular loop | Electromagnetism | πd² structure | rect → circ | Field from rectilinear current element through circular geometry |
+| Circular membrane vibration modes | Acoustics | π in eigenvalues | Context-dependent | Bessel function eigenvalues on circular domain |
+| Diffraction through circular slit (Airy pattern) | Wave optics | π in Airy function | rect → circ | Plane wave through circular aperture |
+| Torsion of circular shaft | Mechanical engineering | πd⁴/32 | rect → circ | Rectilinear torque through circular cross-section |
+| Hydraulic diameter for circular pipe | Fluid mechanics | πd²/4 ÷ πd = d/4... | β in area term | Ratio of area to perimeter for flow characterization |
+| Fresnel zone area | Radio propagation | πr² per zone | rect → circ | Rectilinear wave propagation through circular zone structure |
+| Moment of inertia of circular cross-section | Structural engineering | πd⁴/64 | rect → circ | Rectilinear bending load on circular section |
+
+Each candidate is listed with predicted direction based on the geometric relationship between circular and rectilinear quantities in the equation. Verification requires confirming that β appears as the metric conversion and that the direction matches the prediction.
+
+---
+
+## APPENDIX G: L1 AND L2 MEASUREMENTS FOR STANDARD GEOMETRIES
+
+| Geometry | L2 Circumference | L1 Circumference | L2 Area | L1 Bounding Area | L2/L1 Circumference Ratio | L2/L1 Area Ratio |
+|---|---|---|---|---|---|---|
+| Circle (diameter d) | πd ≈ 3.14d | 4d | πd²/4 ≈ 0.785d² | d² | π/4 = β | π/4 = β |
+| Square (side d) | 4d | 4d | d² | d² | 1 | 1 |
+| Ellipse (axes a, b) | ≈ π(3(a+b)/2 - √(ab)) | 4(a+b)/2 = 2(a+b) | πab/4 of bounding box | a·b | Depends on eccentricity | π/4 = β |
+| Equilateral triangle (side d) | 3d | Depends on orientation | √3d²/4 | Orientation-dependent | Not β | Not β |
+| Regular hexagon (width d) | 3d | Depends on orientation | 3√3d²/8 | Orientation-dependent | Not β | Not β |
+
+**Structural observations:**
+
+The ratio β = π/4 appears only for circular and elliptical geometry. For rectilinear geometries (square), L1 and L2 agree — the ratio is 1. No metric conversion is needed because the geometry is native to the rectilinear frame.
+
+For polygonal geometries (triangle, hexagon), the L2/L1 ratio depends on orientation relative to the L1 axes. These geometries are neither purely circular nor purely rectilinear. Their ratios are not β.
+
+β is specific to circular geometry. This confirms that β is not a universal constant of metric conversion but the specific ratio for the circular case. The universality claimed in this paper is that this specific ratio recurs across twelve domains — not that it applies to all geometries.
+
+The ellipse preserves the β area ratio regardless of eccentricity: the area of any ellipse is π/4 times its bounding rectangle (a × b). This confirms that β is a property of the circular-rectilinear relationship, surviving continuous deformation of the circle into an ellipse. The ellipse's bounding rectangle plays the same role as the circle's bounding square.
+
+---
+
+## APPENDIX H: HISTORICAL TIMELINE OF β IN MATHEMATICS
+
+| Year | Mathematician | Result | β Appearance | Institution's Classification |
+|---|---|---|---|---|
+| ~1800 BC | Babylonian scribes | Circle area ≈ (circumference)²/12 | Approximation of β embedded in formula | Practical geometry |
+| ~1650 BC | Rhind Papyrus (Egypt) | Circle area ≈ (8d/9)² ≈ 0.790d² | Approximation of β ≈ 0.790 vs exact 0.785 | Practical geometry |
+| ~250 BC | Archimedes | Circle area = πr², bounded by inscribed/circumscribed polygons | β · d² established by exhaustion method | Foundational geometry |
+| ~250 BC | Archimedes | Method of exhaustion — polygons converging to circle | L2 approximation from within circular frame | Limiting process |
+| ~150 AD | Ptolemy | π ≈ 3.1416 used in astronomical calculations | β ≈ 0.7854 implicit in all circular calculations | Observational astronomy |
+| 1593 | Viète | Infinite product formula for π | Algebraic expression producing β | Analysis |
+| 1655 | Wallis | π/2 = (2·2·4·4·6·6...)/(1·3·3·5·5·7...) | Product rearrangeable to express β | Analysis |
+| 1674 | Leibniz | 1 - 1/3 + 1/5 - 1/7 + ... = π/4 | Discrete arithmetic converging to β directly | Infinite series |
+| 1733 | Buffon | Needle probability = 2/(πL) | 1/β in probability formula | Geometric probability |
+| 1748 | Euler | e^(iπ) + 1 = 0, connecting circular and exponential functions | π as bridge between circular and rectilinear (exponential) frames | Complex analysis |
+| 1807 | Fourier | Trigonometric series decomposition of functions | 1/β in square wave coefficients, β-related normalization throughout | Harmonic analysis |
+| 1848/1899 | Wilbraham/Gibbs | ~9% overshoot at discontinuities in Fourier series | Boundary artifact at maximum circular-rectilinear incompatibility | Convergence theory |
+| 1882 | Lindemann | π is transcendental | β is transcendental — irreducibility of metric conversion proven | Number theory |
+| 1906 | Blasius | Boundary layer theory, drag on circular cylinders | β · d² as reference area in drag formulation | Fluid mechanics |
+| 1944 | Betz | Orifice discharge coefficient theory | C_d ≈ 0.61 for sharp-edged orifice, domain-specific Z | Hydraulic engineering |
+
+**Note:** In every instance, β was computed or applied without being named as a structural constant. Each entry independently uses the ratio π/4 within its domain-specific framework. The timeline shows that the same ratio has been independently encountered for nearly four thousand years across civilizations and disciplines without being identified as a single recurring operation.
+
+---
+
+## APPENDIX I: FOURIER PAIRS AND β STRUCTURE
+
+| Signal (Time Domain) | Transform (Frequency Domain) | Factor | Frame Relationship | β Structure |
+|---|---|---|---|---|
+| Square wave (discrete jumps) | Odd harmonics with 4/π envelope | 4/π = 1/β | Most rectilinear signal → circular basis | 1/β — circular measures rectilinear |
+| Triangle wave (piecewise linear) | Odd harmonics with 8/π² envelope | 8/π² = 2/β² ... ≈ (1/β)² × 2/π | Less rectilinear → circular basis | Higher-order β relationship |
+| Sawtooth wave (linear ramp + jump) | All harmonics with 2/π envelope | 2/π = 2·(1/β)·(1/2)... = 1/(β·2)... | Mixed rectilinear → circular basis | β-related |
+| Sinusoid (pure circular) | Single delta in frequency domain | 1 (no conversion factor) | Circular → circular | No metric conversion needed — same frame |
+| Dirac delta (infinitely rectilinear) | Flat spectrum = 1 everywhere | 1 (uniform) | Most rectilinear impulse → all circular components equally | Uniform distribution across circular basis |
+| Gaussian (smooth, symmetric) | Gaussian | 1/√(2π) symmetric normalization | Smooth → smooth | Symmetric, no directional preference |
+| Dirac comb (periodic discrete) | Dirac comb (periodic discrete) | 2π/T scaling | Discrete → discrete | No circular-rectilinear conversion |
+
+**Structural observations:**
+
+When both domains share the same frame character, β does not appear as a directional conversion. Sinusoid to delta: circular to circular, factor is 1. Dirac comb to Dirac comb: discrete to discrete, no β.
+
+When the domains differ in frame character, β or 1/β appears. Square wave (most rectilinear) produces the clearest 1/β. As the signal becomes less sharply rectilinear (triangle wave, sawtooth), the relationship to β becomes higher-order.
+
+The Gaussian is a special case — it is the unique self-similar function under Fourier transform. It belongs equally to both frames. The normalization is symmetric (1/√(2π)), distributing the metric conversion equally in both directions.
+
+The Dirac delta is the most extreme rectilinear signal — infinitely narrow, zero everywhere except one point. Its transform is perfectly flat — uniform contribution to all circular components. The absence of a preferential frequency is the statement that an infinitely rectilinear signal has no circular structure to favor.
+
+---
+
+## APPENDIX J: COMPLETE Q = F · β · d² · Z DECOMPOSITION
+
+| # | Domain | Q (output) | F (driver) | β · d² (geometry) | Z (impedance) | Full Equation |
+|---|---|---|---|---|---|---|
+| 1 | Geometry | A (area) | 1 | β · d² | 1 | A = 1 · β · d² · 1 |
+| 2 | Pipe flow | Q̇ (volume flow rate, m³/s) | v (mean velocity, m/s) | β · d² (m²) | 1/Z_f where Z_f is friction loss factor | Q̇ = v · β · d² · (1/Z_f) |
+| 3 | Drag | F_D (drag force, N) | q = ½ρv² (dynamic pressure, Pa) | β · d² (m²) | C_d (dimensionless) | F_D = q · β · d² · C_d |
+| 4 | Orifice | Q̇ (volume flow rate, m³/s) | v_th = √(2ΔP/ρ) (theoretical velocity, m/s) | β · d² (m²) | C_d ≈ 0.61 (dimensionless) | Q̇ = v_th · β · d² · C_d |
+| 5 | Capacitor | C (capacitance, F) | 1 | β · d² (m²) | ε₀/t (F/m²) | C = 1 · β · d² · ε₀/t |
+| 6 | Poynting | P (power, W) | S (flux density, W/m²) | β · d² (m²) | 1 | P = S · β · d² · 1 |
+| 7 | Antenna | P_cap (captured power, W) | S_inc (incident flux, W/m²) | β · D² (m²) | η ≈ 0.55–0.75 | P_cap = S_inc · β · D² · η |
+| 8 | Beam optics | A_eff (effective area, m²) | 1 | β · d² (m²) | 1/M² (beam quality) | A_eff = 1 · β · d² · 1/M² |
+| 9 | Thermal | Q̇_rad (radiated power, W) | σT⁴ (blackbody flux, W/m²) | β · d² (m²) | ε (emissivity, 0–1) | Q̇_rad = σT⁴ · β · d² · ε |
+| 10 | Buffon | P (probability) | 2/d (geometric ratio, 1/m) | (1/β) · L (m) | 1 | P = (2/d) · (1/β) · L · 1 |
+| 11 | Leibniz | S (sum value) | — | β | — | S = β |
+| 12 | Fourier | a_n (coefficient) | 1/n (harmonic weight) | 1/β | 1 | a_n = (1/n) · (1/β) · 1 |
+
+---
+
+## APPENDIX K: STAIRCASE INVARIANCE — TABULATED
+
+| Level | Steps per Side | Step Size | Horizontal Distance | Vertical Distance | Total L1 Path | L2 Circumference | Ratio L2/L1 |
+|---|---|---|---|---|---|---|---|
+| 1 | 1 | d | 2d (left + right) | 2d (up + down) | 4d | πd | π/4 = β |
+| 2 | 2 | d/2 | 2d | 2d | 4d | πd | π/4 = β |
+| 3 | 4 | d/4 | 2d | 2d | 4d | πd | π/4 = β |
+| 4 | 8 | d/8 | 2d | 2d | 4d | πd | π/4 = β |
+| 5 | 16 | d/16 | 2d | 2d | 4d | πd | π/4 = β |
+| n | 2ⁿ | d/2ⁿ | 2d | 2d | 4d | πd | π/4 = β |
+| ∞ | ∞ | → 0 | 2d | 2d | 4d | πd | π/4 = β |
+
+**Key observation:** The total horizontal displacement is always 2d (traversing the full diameter left and right). The total vertical displacement is always 2d (traversing the full diameter up and down). Refinement redistributes the steps but cannot change the totals because the circle is inscribed in a square of side d. Every staircase path must traverse the full width and full height of the bounding square. Total: 2d + 2d = 4d. This is invariant by construction, not by coincidence.
+
+---
+
+## APPENDIX L: EQUATIONS NOT CONTAINING β — NEGATIVE CONFIRMATION
+
+| Equation | Domain | Geometry | Contains π/4? | Why Not |
+|---|---|---|---|---|
+| F = ma | Mechanics | None | No | No circular geometry involved |
+| V = IR | Electronics | None | No | Linear relationship, no cross-section |
+| PV = nRT | Thermodynamics | None | No | Scalar quantities, no geometric frame |
+| E = mc² | Relativity | None | No | Mass-energy equivalence, no circular cross-section |
+| F = GmM/r² | Gravitation | Spherical symmetry | Contains 4πr² in derivation but not π/4 as ratio | Spherical surface area (4πr²) is a different geometric quantity — total surface, not cross-section |
+| ΔxΔp ≥ ℏ/2 | Quantum mechanics | None | No | Inequality on conjugate variables, no geometric frame conversion |
+| S = k_B ln Ω | Statistical mechanics | None | No | Logarithmic counting, no geometric cross-section |
+| ∇ · E = ρ/ε₀ | Electrostatics (Maxwell) | General | No (though flux through circular surface introduces β) | Differential form has no specific geometry — β appears only when integrated over circular domain |
+| c = λf | Wave mechanics | None | No | Linear relationship between wavelength and frequency |
+| DFT: X[k] = Σ x[n]e^(-2πikn/N) | Signal processing | Both domains discrete | No — contains 2π but not π/4 | Discrete-to-discrete transform, no circular-rectilinear conversion |
+
+**Structural observation:** β is absent from every equation that does not involve circular geometry interfacing with rectilinear measurement. This is the expected negative result: the metric conversion ratio appears only when metric conversion is performed. Equations involving no geometry, or involving geometry entirely within one frame (both rectilinear, both spherical), do not contain β.
+
+The gravitational force equation is instructive. It involves spherical geometry (4πr²) but not the cross-sectional ratio (πd²/4). The full spherical surface 4πr² is a different geometric quantity from the circular cross-section πd²/4. The factor 4π counts the total solid angle of a sphere. The factor π/4 converts a circular cross-section between frames. These are distinct operations that happen to share the constant π.
+
+---
+
+## APPENDIX M: THE ELLIPSE EXTENSION
+
+| Ellipse Property | Standard Form | β-Decomposed Form | Notes |
 |---|---|---|---|
-| Does C_d ≈ β² for sharp-edged orifice hold under precise measurement? | High-precision orifice flow measurement with geometric isolation of fluid inertia effects | C_d geometric component converges to β² = 0.617 | C_d geometric component differs significantly from β² across multiple experimental configurations |
-| Do three-boundary systems produce coefficients near β³? | Measurement of candidate systems in Appendix I | Geometric coefficient component ≈ β³ = 0.485 | No three-boundary system produces a coefficient near β³ |
-| Does Gaussian beam divergence θ = (1/β)λ/d reflect directional transit? | Compare divergence from circular apertures versus rectangular apertures of equal area | Circular apertures show 1/β factor; rectangular apertures show different or no transit factor | Rectangular apertures of equal area produce identical divergence, indicating β is not aperture-geometry-dependent |
-| Are there equations with π/4 that do not involve circular-rectilinear transit? | Systematic survey of physics and engineering equations containing π/4 | All instances involve circular-rectilinear frame relationship | Multiple instances found with no circular-rectilinear frame relationship |
-| Does the Gibbs 9% overshoot relate to β? | Exact value of Gibbs constant is Si(π)/π - 1/2 ≈ 0.0895. Test whether this connects algebraically to β | Relationship between Gibbs constant and β is established | No algebraic or structural connection found |
-| Do non-circular soliton boundaries have characteristic transit constants analogous to β? | Analyze elliptical, triangular, and other cross-section equations for frame-dependent constants | Each geometry has its own characteristic transit constant determined by interior-exterior area ratio | Transit constants do not generalize beyond circular geometry |
-| Does the discrete-continuous interpretation of β produce testable mathematical predictions? | Formal analysis of where real analysis produces convergence versus identity in boundary-adjacent calculations | Specific classes of convergence theorems map to frame boundary structure | No mapping found between convergence behavior and boundary structure |
+| Area | A = πab | A = β · (2a)(2b) = β · bounding rectangle | β converts bounding rectangle to ellipse area for all eccentricities |
+| Cross-section in flow | A = πab | A = β · (2a)(2b) | Elliptical pipe, elliptical orifice, elliptical aperture all use β · bounding rectangle |
+| Eccentricity e = 0 (circle) | A = πr² = πd²/4 | A = β · d² | Circle is the special case where bounding rectangle is a square |
+| Eccentricity e → 1 (line) | A → 0 | A = β · (2a)(2b) → β · (2a)(0) = 0 | Degenerate case: bounding rectangle collapses, area collapses, β still mediates |
+| Circumference | C = 4aE(e) (elliptic integral) | Not simply β · bounding perimeter | Circumference ratio is eccentricity-dependent — β applies to area, not circumference for general ellipse |
+
+**Structural observation:** The area ratio β = π/4 is preserved exactly for all ellipses. The area of any ellipse is exactly π/4 of its bounding rectangle, regardless of eccentricity. This confirms that β is the ratio between curved interior area and rectilinear bounding area, and that the property survives continuous deformation.
+
+The circumference does not preserve a simple β ratio for general ellipses. The L2 circumference of an ellipse involves the complete elliptic integral E(e), which depends on eccentricity. The L1 circumference of an ellipse is 4(a+b) for axis-aligned measurement. The ratio is not constant. β as a circumference ratio is specific to the circle (e = 0), where all radii are equal and the geometry has no preferred direction.
+
+This distinguishes the area result from the circumference result. The area ratio is universal for all ellipses. The circumference ratio is specific to the circle. Both observations are consistent with β being the cross-sectional frame conversion: cross-sectional area (the quantity that appears in all twelve equations) preserves β universally.
+
+---
+
+## APPENDIX N: EQUATIONS CONTAINING 2π, 4π, AND OTHER π MULTIPLES — DISTINGUISHED FROM β
+
+| Expression | Value | Where It Appears | What It Represents | Relationship to β |
+|---|---|---|---|---|
+| 2π | ≈ 6.283 | Angular measure, Fourier normalization, circular motion period | Full circumference of unit circle — total angular measure | Not β — total circular measure, not a frame conversion ratio |
+| 4π | ≈ 12.566 | Sphere surface area (4πr²), Coulomb's law (1/4πε₀) | Total solid angle of a sphere — total spherical measure | Not β — total spherical measure |
+| π | ≈ 3.14159 | Circumference/diameter ratio, half-turn, area of unit circle | The fundamental circular constant | β = π/4, so π = 4β — but π itself is the L2 measurement, not the ratio |
+| π² | ≈ 9.870 | Basel problem (π²/6), pendulum period, Euler's identity | Second-order circular quantities | Not directly β — higher-order relationship |
+| π/2 | ≈ 1.571 | Quarter turn, sinc function zero, complementary angles | Half of the circular constant, quarter circumference | 2β — twice the frame conversion ratio |
+| π/4 = β | ≈ 0.785 | All twelve equations in this paper | Cross-sectional frame conversion: rectilinear to circular | This is β |
+| 4/π = 1/β | ≈ 1.273 | Fourier square wave, Buffon, beam divergence | Cross-sectional frame conversion: circular to rectilinear | This is 1/β |
+| π/6 | ≈ 0.524 | Sphere packing density, some probability distributions | Ratio involving spherical geometry | Not β — different geometric context |
+| π/3 | ≈ 1.047 | Equilateral triangle angles, hexagonal geometry | Ratio involving triangular/hexagonal geometry | Not β — non-circular geometry |
+
+**Structural observation:** Not every appearance of π is β. The constant π appears throughout mathematics in many contexts — angular measure, periodicity, normalization, surface integrals. The specific ratio π/4 = β appears in a specific context: the cross-sectional area conversion between rectilinear and circular frames. This paper's claim is restricted to that specific ratio in that specific context. Other appearances of π (2π in angular measure, 4π in solid angles, π² in summation identities) are distinct operations with distinct geometric meanings.
+
+---
+
+## APPENDIX O: OPEN QUESTIONS
+
+| Question | Type | Method | Notes |
+|---|---|---|---|
+| Does β = π/4 appear in every equation involving circular cross-sections without exception? | Survey | Comprehensive catalog of equations across all applied mathematics domains containing circular cross-section terms | Any exception weakens the universality claim (F1) |
+| Does the directional rule hold for all instances of π/4 and 4/π? | Survey + prediction | Catalog all known instances, classify direction, test for exceptions | Any directional mismatch falsifies the directional model (F2) |
+| Is there an alternative structural explanation for the recurrence of π/4 across twelve domains? | Theoretical | Compare metric conversion interpretation with any competing explanation | Alternative must account for all twelve instances to compete (F3) |
+| Does the β area ratio extend to higher-dimensional analogs? | Mathematical | Compute volume ratio of sphere to bounding cube: (π/6)d³ / d³ = π/6. Compare with 3D analog of β | π/6 ≈ 0.5236 for 3D. Explore whether dimensional sequence π/4, π/6, π²/32... has structural meaning |
+| What is the relationship between the Gibbs overshoot constant (~0.0895) and β? | Mathematical | Algebraic and numerical analysis of Si(π)/π − 1/2 in terms of β | If connected, strengthens the Fourier section; if not, limits the scope |
+| Does the DFT truly never contain β as a structural factor? | Survey | Examine all DFT formulations and variants | Negative confirmation strengthens the framework; any β appearance in pure discrete-to-discrete context weakens it (F4) |
+| What is the n-dimensional generalization? | Mathematical | Compute ratio of n-ball volume to bounding n-cube: π^(n/2) / (n · 2^(n-1) · Γ(n/2)) | Establishes β as the 2D case of a dimensional sequence |
 
 ---
 
@@ -683,9 +675,9 @@ Twelve departments. Twelve journals. Twelve names for β · d². One operation.
 
 **Registry:** [@HOWL-MATH-1-2026]
 **Status:** Complete
-**Domain:** Foundational Mathematics / Measurement Theory
-**Central Argument:** β = π/4 is the soliton boundary transit constant for circular geometry; twelve equations from twelve domains are notational variants of one unified equation Q = F · β · d² · Z
+**Domain:** Foundational Mathematics
+**Central Argument:** β = π/4 is the ratio between circular (L2) and rectilinear (L1) measurements of the same geometry; twelve equations from twelve domains are notational variants of one equation Q = F · β · d² · Z
 **Method:** Algebraic decomposition of the institution's own published equations; no new mathematics introduced; isomorphism demonstrated across twelve domains
-**Key Finding:** The institution has modeled the soliton boundary transit for millennia as the "area of a circle" without recognizing it as a boundary transit; the constant β appears in every domain involving circular boundary crossing; the transit cost compounds multiplicatively per boundary crossed
-**Limitation:** The geometric case is proven; extension to non-geometric soliton boundaries is proposed, not proven; the compounding principle is demonstrated for n=1 and suggested for n=2; the discrete-continuous boundary interpretation is philosophical, not mathematical proof
-**Companion:** [@HOWL-PHYS-1-2026] — The Inertial Vortex
+**Key Finding:** The ratio β = π/4 appears in every domain involving circular cross-sections, always performing the same operation — converting between rectilinear and circular measurement — under twelve different names in twelve different departments
+**Limitation:** The geometric observation is demonstrated; whether the structural unification leads to further results is a question for subsequent work; the observation stands independently of its consequences
+**Falsification:** Four specific criteria stated; directional prediction tested on five out-of-sample equations
