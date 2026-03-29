@@ -23,7 +23,9 @@ This paper defines a testing program that connects three prior results: the cohe
 
 The program asks one question: does the Q = F · β · d² · Z framework, proven for geometric cross-sections across nine domains, apply to the coherent pattern boundaries where measurement anomalies have been documented?
 
-The paper does not answer this question. It specifies exactly what applying the framework means for each boundary, classifies which boundaries are geometric and which are not, identifies seven tests ordered from immediately achievable to far future, and states falsification criteria for each. Three of the seven tests are reanalyses of existing published data requiring no new experiments. If all three produce null results, the remaining tests are not motivated.
+The paper does not answer this question. It classifies which boundaries are geometric and which are not. It specifies seven tests ordered from immediately achievable to far future. It identifies three tests that are reanalyses of existing published data requiring no new experiments. It commits to a kill switch: if all three existing-data tests produce null results, the remaining tests are not motivated and the program stops.
+
+One test — the Hubble tension cumulative transit calculation — is identified as underspecified. The per-boundary transit correction magnitude is not provided by the prior papers and has not been derived. This missing piece is stated as a primary limitation. The test cannot be executed until the per-transit correction is established by theoretical work this paper does not attempt.
 
 Every premise is from the institution's own published literature or from the prior papers in this series. No new physics is proposed. No new mathematics is introduced. The contribution is the specification of a test program connecting established results that have not been connected.
 
@@ -49,13 +51,13 @@ The scope of the identification: qualitative. The anomaly correlation is a patte
 
 ### 2.3 What PHYS-3 Established
 
-[@HOWL-PHYS-3-2026] established that every direct measurement of the gravitational constant G in the 227-year experimental record has been performed inside Earth's Hill sphere — at 0.45% or less of the Hill sphere distance. The persistent disagreement between G measurements from different experimental groups has not been resolved by two centuries of systematic error investigation. PHYS-3 proposed a direct G measurement at the L1 or L2 Lagrange point as the first boundary-crossing test.
+[@HOWL-PHYS-3-2026] established that every direct measurement of the gravitational constant G in the 227-year experimental record has been performed inside Earth's Hill sphere — at 0.45% or less of the Hill sphere distance. The persistent disagreement between G measurements from different experimental groups has not been resolved by two centuries of systematic error investigation. PHYS-3 proposed a direct G measurement at the L1 or L2 Lagrange point as the first boundary-crossing test. PHYS-3 also documented that every coupling whose boundary has been identified and whose running has been measured (α, αs) shows a consistent single curve with no method disagreement, while G — the one coupling whose boundary has not been identified — shows persistent method disagreement.
 
 The scope of the establishment: the experimental gap is factual. The interpretation — that G may be boundary-dependent — is a hypothesis awaiting the proposed test.
 
 ### 2.4 What Has Not Been Connected
 
-MATH-1 provides a framework proven for geometric cross-sections. PHYS-1 catalogs boundaries where anomalies correlate with boundary structure. PHYS-3 identifies a specific untested boundary for a specific measurement. These three results have not been connected. Whether the geometric framework applies to the physical boundaries is an open question. This paper defines the tests that would answer it.
+MATH-1 provides a framework proven for geometric cross-sections. PHYS-1 catalogs boundaries where anomalies correlate with boundary structure. PHYS-3 identifies a specific untested boundary for a specific measurement. These three results have not been connected. Whether the geometric framework applies to the physical boundaries is an open question. The answer might be no. This paper defines the tests that would determine the answer.
 
 ---
 
@@ -63,13 +65,13 @@ MATH-1 provides a framework proven for geometric cross-sections. PHYS-1 catalogs
 
 ### 3.1 The Criterion
 
-MATH-1's framework applies to boundaries that are spatial geometries — circles, spheres, or ellipses — interfacing with a rectilinear measurement frame. Not all boundaries cataloged in PHYS-1 meet this criterion. Each boundary is evaluated individually below. The evaluation is the first substantive work of this paper.
+MATH-1's framework applies to boundaries that are spatial geometries — circles, spheres, or ellipses — interfacing with a rectilinear measurement frame. Not all boundaries cataloged in PHYS-1 meet this criterion. Each boundary is evaluated individually below.
 
 ### 3.2 Earth's Hill Sphere
 
-The Hill sphere is a sphere. It has a calculable radius (~1.5 million km). Its cross-section is circular. A measurement probe approaching Earth from outside encounters a spherical boundary between the solar reference frame (rectilinear, in which Earth is a point mass) and Earth's coherent gravitational interior (where Earth's structure dominates).
+The Hill sphere is a sphere. It has a calculable radius (~1.5 million km). Its cross-section is circular. A measurement probe approaching Earth from outside encounters a spherical boundary between the solar reference frame — in which Earth is a point mass — and Earth's coherent gravitational interior where Earth's structure dominates.
 
-The geometry is spatial and circular. The interface is between an interior frame (Earth's gravitational structure) and an exterior frame (the solar field). The MATH-1 framework requires exactly this: a circular geometry interfacing with a rectilinear measurement frame.
+The geometry is spatial and circular. The interface is between an interior frame and an exterior frame. The MATH-1 framework requires exactly this: a circular geometry interfacing with a rectilinear measurement frame.
 
 **Classification: geometric. Framework applies in principle.**
 
@@ -81,23 +83,25 @@ Same structure as Earth's Hill sphere at a larger scale. The solar system's Hill
 
 ### 3.4 Proton
 
-The proton is approximately spherical. Its charge radius is measured by scattering experiments that probe its cross-section. The electron probe interacts at the Bohr radius (~5.29 × 10⁻¹¹ m). The muon probe interacts at ~1/207 of the Bohr radius. Each probe encounters the proton's boundary at a different characteristic radius. The cross-section at each radius is circular.
+The proton is a quantum object whose charge radius is defined operationally through scattering cross-sections. The electron-proton and muon-proton scattering cross-sections are circular — they are literally πr² terms at each probe energy, measured in the center-of-mass frame. The probe interacts with the proton at a characteristic radius determined by the probe's energy and mass. The cross-section at each radius is circular.
 
-**Classification: geometric. Framework applies in principle. The proton radius puzzle is the test case.**
+The proton is not a classical sphere. But the measurement of the proton — the scattering cross-section — is a circular geometric cross-section in the precise sense MATH-1 requires. The framework applies to the measurement geometry, not to the proton's internal ontology.
+
+**Classification: geometric at the level of measurement cross-sections. Framework applies in principle. The proton radius puzzle is the test case.**
 
 ### 3.5 Electron Vacuum Polarization Cloud
 
-The virtual particle cloud surrounding a bare electron charge is spherically symmetric. The boundary between bare charge (α ≈ 1/127 at high energy) and screened charge (α ≈ 1/137 at low energy) is a sphere at the characteristic Compton wavelength scale. The geometry is spatial and spherical.
+The virtual particle cloud surrounding a bare electron charge is spherically symmetric. The boundary between bare charge (α ≈ 1/127 at high energy) and screened charge (α ≈ 1/137 at low energy) is a sphere at the characteristic Compton wavelength scale of the electron (~3.86 × 10⁻¹³ m). The measurement of α at different probe energies involves scattering cross-sections — circular geometric cross-sections at each energy.
 
-**Classification: geometric. The running of α is the established measurement across this boundary. This is the calibration case — the known result the framework must reproduce before being applied to unknown cases.**
+**Classification: geometric at the level of scattering cross-sections. The running of α is the established measurement across this boundary. This is the calibration case — the known result the framework must reproduce before being applied to unknown cases.**
 
 ### 3.6 Hadron Confinement Boundary
 
-Confinement is a property of QCD. The boundary where asymptotic freedom (weak coupling) gives way to confinement (strong coupling) is defined in momentum space — it is a scale in the running coupling constant, not a geometric surface in position space. There is no spatial sphere. There is no circular cross-section interfacing with a rectilinear frame in the sense MATH-1 requires.
+Confinement is a property of QCD. The boundary where asymptotic freedom gives way to confinement is defined in momentum space — it is a scale in the running coupling constant, not a geometric surface in position space. There is no spatial sphere. There is no circular cross-section interfacing with a rectilinear frame in the sense MATH-1 requires.
 
 **Classification: not geometric in the MATH-1 sense. The framework does not apply directly. This boundary is outside scope.**
 
-This is not a failure of the framework. It is a scope limitation. The framework applies to spatial geometric boundaries. Confinement is not a spatial geometric boundary. Documenting this is a finding — it establishes where the geometric framework stops.
+This is not a failure. It is a scope finding. The framework applies to spatial geometric boundaries. Confinement is not a spatial geometric boundary. Documenting where the framework stops is as important as documenting where it applies.
 
 ### 3.7 Galaxy
 
@@ -105,27 +109,27 @@ The galactic disk is not spherical. It is oblate — roughly elliptical in cross
 
 The galactic boundary — where the galaxy's coherent gravitational structure gives way to the intergalactic field — is approximately elliptical.
 
-**Classification: geometric with the ellipse generalization. Framework applies in principle. Calculationally difficult — the galactic boundary is not a clean ellipse and the rectilinear measurement frame is not obvious. The dark matter problem is the potential test case.**
+**Classification: geometric with the ellipse generalization. Framework applies in principle. Calculationally difficult — the galactic boundary is not a clean ellipse and the rectilinear measurement frame is not obvious at galactic scales.**
 
 ### 3.8 Observable Universe / CMB Boundary
 
 The observable universe is approximately spherical. The cosmic microwave background is emitted from the surface of last scattering — a spherical surface. Light transiting from the CMB to our instruments crosses this spherical boundary plus every coherent gravitational structure between the CMB surface and our instruments.
 
-**Classification: geometric. The Hubble tension is the test case. The most complex calculation in the program — requires estimating cumulative boundary effects across all large-scale structure.**
+**Classification: geometric. The Hubble tension is the test case. The most complex and currently underspecified calculation in the program.**
 
 ### 3.9 Summary
 
 | Boundary | Geometry | Spatial? | Classification | Test Case |
 |---|---|---|---|---|
-| Earth Hill sphere | Sphere | Yes | Geometric | G measurement at L1/L2 |
-| Solar system Hill sphere | Sphere | Yes | Geometric | Not testable — no instruments |
-| Proton | Approximate sphere | Yes | Geometric | Proton radius puzzle |
-| Electron vacuum cloud | Sphere | Yes | Geometric | Running of α (calibration) |
+| Earth Hill sphere | Sphere | Yes | Geometric | G measurement |
+| Solar system Hill sphere | Sphere | Yes | Geometric | Not testable now |
+| Proton | Measurement cross-section is circular | Yes | Geometric | Proton radius puzzle |
+| Electron vacuum cloud | Sphere / scattering cross-section | Yes | Geometric | Running of α (calibration) |
 | Hadron confinement | Momentum-space scale | No | Not geometric — outside scope | — |
-| Galaxy | Oblate ellipsoid | Yes | Geometric (ellipse generalization) | Dark matter / rotation curves |
+| Galaxy | Oblate ellipsoid | Yes | Geometric (ellipse) | Rotation curves |
 | Observable universe / CMB | Sphere | Yes | Geometric | Hubble tension |
 
-Six of seven boundaries are geometric. One is not. The framework's scope covers six boundaries. The one exclusion — hadron confinement — is documented as a scope limitation.
+Six of seven boundaries are geometric. One is not. The framework's scope covers six boundaries. The exclusion is documented.
 
 ---
 
@@ -133,40 +137,40 @@ Six of seven boundaries are geometric. One is not. The framework's scope covers 
 
 ### 4.1 Why Calibrate
 
-The hostile reader will demand: show me the framework reproduces something we already understand before you apply it to something we don't. The running of α is that case. The electron's vacuum polarization boundary is geometric (Section III.5). The interior and exterior readings are measured (α ≈ 1/127 inside, α ≈ 1/137 outside). The QED corrections that produce the running are published and precise. If Q = F · β · d² · Z cannot reproduce the known running of α in a structurally meaningful way, it has no business being applied to unknown cases.
+The framework must reproduce something known before it is applied to something unknown. The running of α is the calibration case. The electron's vacuum polarization boundary is geometric (Section III.5). The interior and exterior readings are measured. The QED corrections that produce the running are published and precise. If Q = F · β · d² · Z cannot engage with the known running of α in a structurally meaningful way, it has no business being applied to unknown cases.
 
 ### 4.2 The Decomposition
 
-A measurement of α at probe energy E interacts with the vacuum polarization cloud at a characteristic radius r(E). The interaction cross-section at that radius is circular, with area β · d² where d is the interaction diameter at energy E.
+A measurement of α at probe energy E involves a scattering cross-section. The institution publishes these cross-sections — they are the primary observables of collider experiments. The total e⁺e⁻ → e⁺e⁻ cross-section at each energy contains πr² terms naturally. These are circular geometric cross-sections in the center-of-mass frame — exactly the type of quantity MATH-1 addresses.
 
 Under the MATH-1 structure:
 
 - Q is the measured value of α at energy E
-- F is the electromagnetic driving term — the probe's energy and charge
-- β · d²(E) is the geometric cross-section of the interaction at energy E
+- F is the electromagnetic driving term — the probe's energy and charge configuration
+- β · d²(E) is the scattering cross-section at energy E — the published, measured circular cross-section
 - Z is the QED correction — vacuum polarization loops, vertex corrections, the domain-specific impedance
 
-The running of α with energy is fully modeled by QED. The question is: when the running is decomposed into β · d²(E) and Z_QED(E), does the separation reveal any structure that the standard QED treatment does not make explicit?
+The critical step: rather than computing a geometric scale from first principles and risking an incorrect identification, the decomposition uses the published scattering cross-sections directly as β · d². The cross-sections are measured. They are circular. They contain β · d² by construction — this is exactly MATH-1's point. The Z extracted from the decomposition is whatever remains after the geometric cross-section is factored out.
 
 ### 4.3 What to Look For
 
 Three possible outcomes:
 
-**Outcome A — Redundant.** The decomposition into β · d² + Z reproduces the known running exactly, with β · d² tracking the geometric cross-section and Z_QED tracking the quantum corrections. The framework adds no new information. The running is fully captured by QED. The framework is consistent but redundant for this case.
+**Outcome A — Redundant.** The decomposition reproduces the known running exactly, with β · d² tracking the measured scattering cross-section and Z tracking the quantum corrections. The framework adds no new information. The running is fully captured by QED. The framework is consistent but tells us nothing we didn't know.
 
-This outcome does not kill the program. It confirms the framework is consistent with known physics. It provides no evidence that the framework adds value for known cases.
+This outcome does not kill the program. It confirms consistency with known physics. It provides no evidence that the framework adds value for known cases. Proceed to Tests 1-2 with reduced expectations.
 
-**Outcome B — Structurally informative.** The decomposition separates the running into a geometric component (β · d²) that varies smoothly with probe radius and a QED component (Z) that captures the quantum corrections. The separation is not how QED is normally organized. The geometric component reveals a smooth baseline from which the quantum corrections deviate. This would be a structural insight — the same physics organized differently, revealing a geometric skeleton that QED has but doesn't name.
+**Outcome B — Structurally informative.** The decomposition separates the running into a geometric component (β · d²) that varies smoothly with probe energy and a QED component (Z) that captures the quantum corrections. The separation reveals a geometric baseline — a smooth function of scattering cross-section — from which the quantum corrections deviate. This baseline is implicit in QED but not separated or named. The decomposition makes it explicit.
 
-This outcome supports the program. It shows the framework adds organizational value even for known cases.
+This outcome supports the program. It shows the framework adds organizational value even for known physics. Proceed with confidence.
 
-**Outcome C — Contradictory.** The decomposition produces inconsistencies — β · d² does not track the geometric cross-section, or the Z residual does not match QED calculations, or the separation introduces artifacts. The framework contradicts known physics.
+**Outcome C — Contradictory.** The decomposition produces inconsistencies — β · d² does not track the measured cross-section, or the Z residual does not match QED calculations, or the separation introduces artifacts. The framework contradicts known physics.
 
-This outcome kills the program for field-theory boundaries. If the framework cannot handle the simplest geometric boundary in quantum field theory, it cannot be applied to more complex cases.
+This outcome kills the program for field-theory boundaries. If the framework cannot handle the simplest geometric boundary in quantum field theory, it cannot be applied to more complex quantum boundaries. Tests 3, 5, and 6 are not motivated. Tests 1, 2, and 4 — which involve gravitational boundaries, not field-theory boundaries — may still be valid.
 
 ### 4.4 The Calculation
 
-The specific calculation: take the published values of α at different probe energies (from LEP, SLD, and other collider measurements). For each energy E, compute the characteristic interaction radius r(E) and the corresponding cross-section β · d²(E). Extract Z(E) = Q / (F · β · d²(E)). Compare Z(E) to the published QED vacuum polarization corrections at each energy.
+Take published values of α at different probe energies from LEP, SLD, and other collider measurements. For each energy, take the published scattering cross-section σ(E). Identify β · d²(E) from σ(E). Extract Z(E) = Q / (F · β · d²(E)). Compare Z(E) to published QED vacuum polarization corrections at each energy.
 
 This calculation uses published data and published QED results. It requires no new measurements. It is achievable now.
 
@@ -180,41 +184,37 @@ This calculation uses published data and published QED results. It requires no n
 
 ### 5.2 The Decomposition
 
-A Cavendish-type G measurement uses two masses (source mass M, test mass m) separated by distance r. The measured quantity is the gravitational force F_grav = GMm/r² (or the corresponding acceleration or angular deflection).
+A Cavendish-type G measurement uses two masses (source mass M, test mass m) separated by distance r. The measured quantity is the gravitational force F_grav = GMm/r² or the corresponding acceleration or angular deflection.
 
 Under the MATH-1 structure:
 
-- Q is the measured gravitational effect (force, acceleration, or deflection)
-- F is the gravitational driving term — the source mass M and the geometry of the gravitational field
+- Q is the measured gravitational effect
+- F is the gravitational driving term — the source mass and field geometry
 - d² is the bounding area of the relevant geometric cross-section
 - Z is the apparatus-specific impedance — torsion fiber properties, pendulum characteristics, atom interferometer configuration, vibration isolation, thermal environment
 - β · d² is the geometric invariant — the same across all methods if the framework applies
 
-The critical question is: what is d²? What is the geometric cross-section of a G measurement?
-
 ### 5.3 Two Candidates for d²
 
-**Candidate 1: Test mass cross-section.** The test mass has a physical cross-section. Different experiments use test masses of different sizes, shapes, and materials. If the gravitational interaction is mediated through the geometric cross-section of the test mass, then d² is the bounding area of the test mass. Spherical test masses have circular cross-sections. Cylindrical test masses have rectangular or circular cross-sections depending on orientation. Different geometries would produce different effective β · d² values.
+**Candidate 1: Test mass cross-section.** The test mass has a physical cross-section. Different experiments use test masses of different sizes, shapes, and materials — spheres, cylinders, cold atom clouds. If the gravitational interaction is mediated through the geometric cross-section of the test mass, then d² is the bounding area of the test mass.
 
-Prediction: if this candidate is correct, the G disagreement should correlate with test mass geometry. Spherical masses should give systematically different values than cylindrical masses of the same total mass.
+Prediction: the G disagreement should correlate with test mass geometry. Spherical test masses should give systematically different values than cylindrical test masses of the same total mass.
 
-**Candidate 2: Interaction geometry at distance r.** The gravitational field at distance r subtends a solid angle determined by the source mass geometry. The relevant cross-section is the area of the gravitational "aperture" — the solid angle times r². This is more abstract but would produce a single β · d² for a given source-test mass configuration.
+**Candidate 2: Interaction geometry.** The gravitational field at distance r subtends a solid angle determined by the source mass geometry. The relevant cross-section is the area of the gravitational interaction region at the measurement distance. This is more abstract but would produce a single β · d² for a given source-test mass configuration regardless of individual mass shapes.
 
-Prediction: if this candidate is correct, the G disagreement should correlate with the source-test mass geometric configuration rather than with the test mass shape alone.
+Prediction: the G disagreement should correlate with the source-test mass geometric configuration rather than with test mass shape alone.
 
-### 5.4 The Test
+### 5.4 An Internal Control
 
-Reanalyze published G measurements. For each measurement, record:
+The HUST 2018 experiment produced two G values from the same laboratory, same location, same masses, using two different methods — angular acceleration feedback and time-of-swing. The values (6.67484 and 6.67349 × 10⁻¹¹) disagree. This pair is a natural internal control. The test mass geometry is identical for both methods. If Candidate 1 (test mass cross-section) fully explains the disagreement, this pair should produce identical results. It does not. Either Candidate 1 is incomplete, or the method-specific component (Z) differs between the two techniques, or both geometric and method-specific factors contribute.
 
-- Test mass geometry (sphere, cylinder, other)
-- Source mass geometry
-- Source-test mass separation r
-- Orientation
-- Measured G value and uncertainty
+The HUST pair constrains the candidates. Any viable d² identification must allow the HUST pair to disagree through Z while maintaining geometric invariance.
 
-Sort by geometric variables. Test for correlation between G value and any geometric parameter.
+### 5.5 The Test
 
-If correlation with geometry exists: the framework applies to G. The geometric variable that correlates identifies which candidate for d² is correct.
+Reanalyze published G measurements. For each measurement, record test mass geometry, source mass geometry, source-test mass separation, orientation, and measured G value. Sort by geometric variables. Test for correlation.
+
+If correlation with geometry exists: the framework applies to G. The geometric variable that correlates identifies the correct d² candidate.
 
 If no correlation with geometry exists: the framework does not explain the G disagreement through geometric cross-sections. The disagreement has a different source.
 
@@ -226,22 +226,23 @@ This test uses published data. It requires no new measurements. It is achievable
 
 ### 6.1 The Question
 
-[@HOWL-PHYS-3-2026] proposes that the G disagreement may reflect depth-dependent readings within Earth's Hill sphere boundary. If so, measurements at different effective depths within Earth's gravitational structure should show a systematic trend rather than random scatter.
+[@HOWL-PHYS-3-2026] proposes that the G disagreement may reflect depth-dependent readings within Earth's Hill sphere. If so, measurements at different effective depths within Earth's gravitational structure should show a systematic trend.
 
 ### 6.2 The Test
 
-Reanalyze published G measurements sorted by effective gravitational potential. For each measurement, record:
+Reanalyze published G measurements sorted by effective gravitational potential. For each measurement, record altitude above sea level, latitude, local gravitational acceleration, and the local gravitational potential. Plot G versus each variable. Test for systematic trend using non-parametric methods (Spearman rank correlation or equivalent).
 
-- Altitude above sea level
-- Latitude (affects local gravitational acceleration)
-- Local geological mass distribution (affects local gravitational environment)
-- Measured G value and uncertainty
+If systematic trend exists: the depth-dependent reading interpretation is supported. The direction and magnitude constrain the boundary effect.
 
-Plot G value against altitude. Plot G value against local gravitational potential. Test for systematic trend.
+If random scatter with no trend: the depth interpretation is not supported.
 
-If systematic trend with depth exists: the depth-dependent reading interpretation is supported. The direction and magnitude of the trend constrain the boundary transformation.
+### 6.3 Sensitivity Assessment
 
-If random scatter with no depth trend: the within-boundary depth interpretation is not supported. The disagreement has a different source.
+The altitude range across modern precision G experiments is approximately 10 meters to 500 meters above sea level. The corresponding gravitational potential difference is ΔΦ/c² ~ 5 × 10⁻¹⁴. The G disagreement between methods is at the ~10⁻⁴ level. If the depth effect scales linearly with gravitational potential, the expected signal from altitude variation alone is many orders of magnitude below the observed disagreement. The test is likely underpowered for altitude.
+
+Latitude provides a larger lever arm. The latitude range across modern experiments spans approximately 30°N (Wuhan) to 52°N (Wuppertal), producing local g variations of approximately 0.3%. This is still small relative to the G disagreement, but larger than the altitude variation.
+
+The test is specified despite the sensitivity concern for three reasons. First, if a positive result appears at this precision, it would indicate a boundary effect far larger than gravitational potential scaling predicts — which would itself be a significant and constraining finding. Second, a null result establishes an upper bound on the depth effect, replacing the current state of no bound at all. Third, the test costs nothing — it is a reanalysis of existing data.
 
 This test uses published data and published geodetic information. It requires no new measurements. It is achievable now.
 
@@ -251,30 +252,38 @@ This test uses published data and published geodetic information. It requires no
 
 ### 7.1 The Question
 
-The proton radius puzzle: electron spectroscopy yields ~0.877 fm, muonic spectroscopy yields ~0.842 fm. PHYS-1 identifies this as a depth-dependent reading. The proton boundary is geometric (Section III.4). Does the residual after QED corrections correlate with the probe cross-section ratio through β?
+The proton radius puzzle: electron spectroscopy historically yields ~0.877 fm, muonic spectroscopy yields ~0.842 fm. PHYS-1 identifies this as a boundary-depth effect — different probes at different interaction depths read different radii. The proton boundary is geometric (Section III.4). Does the residual after QED corrections correlate with the probe cross-section ratio?
 
 ### 7.2 The Decomposition
 
-The electron probe interacts at the Bohr radius a₀ ≈ 5.29 × 10⁻¹¹ m. The interaction cross-section is circular: β · d²_e where d_e = 2a₀.
-
-The muon probe interacts at a₀/207 ≈ 2.56 × 10⁻¹³ m. The interaction cross-section is circular: β · d²_μ where d_μ = 2a₀/207.
+The electron probe interacts at the Bohr radius a₀ ≈ 5.29 × 10⁻¹¹ m. The interaction cross-section is circular: β · d²_e where d_e = 2a₀. The muon probe interacts at a₀/207 ≈ 2.56 × 10⁻¹³ m. The interaction cross-section is circular: β · d²_μ where d_μ = 2a₀/207.
 
 Under the MATH-1 structure:
 
 - Q_e and Q_μ are the measured proton radii from each probe
-- F_e and F_μ are the electromagnetic driving terms for each probe
-- β · d²_e and β · d²_μ are the geometric cross-sections at each probe's interaction depth
+- F_e and F_μ are the electromagnetic driving terms
+- β · d²_e and β · d²_μ are the geometric cross-sections at each interaction depth
 - Z_e and Z_μ are the QED corrections specific to each probe
 
-The institution's QED calculations for both probes are published. The residual — the difference between measured radius and QED-predicted radius — is the anomaly. The question is specific: does the residual correlate with the ratio β · d²_μ / β · d²_e = d²_μ / d²_e = (1/207)² ≈ 2.33 × 10⁻⁵?
+The cross-section ratio: d²_e / d²_μ = 207² = 42,849.
 
-### 7.3 The Test
+### 7.3 Directional Prediction
 
-Take published proton radius measurements and published QED corrections for both electron and muon probes. Compute the residual for each. Test whether the ratio of residuals correlates with the ratio of probe cross-sections.
+The framework makes a directional prediction, not just a correlation test. The electron probe has a larger interaction cross-section (42,849 times larger). The electron measurement yields a larger proton radius (0.877 fm). The muon probe has a smaller cross-section. The muon measurement yields a smaller radius (0.842 fm). Larger cross-section corresponds to larger apparent radius. The direction of the puzzle is consistent with the framework's geometric structure — the probe with the larger geometric footprint reads a larger boundary.
 
-If the residual ratio correlates with the cross-section ratio: the proton radius puzzle has a geometric component that QED corrections do not capture. The geometric framework identifies a specific unmodeled element.
+This directional consistency is stated as a pre-existing feature of the data, not as a prediction made before seeing the data. The test of the framework is whether the magnitude of the discrepancy — not just its direction — correlates with the cross-section ratio through β.
 
-If the residual ratio does not correlate with the cross-section ratio: the geometric framework does not explain the proton radius puzzle. The anomaly has a different source.
+### 7.4 The Test
+
+Take published proton radius measurements and published QED corrections for both electron and muon probes. Compute the residual for each — the difference between measured radius and QED-predicted radius. Test whether the ratio of residuals correlates with the ratio of probe cross-sections (207²) or with some function of probe cross-section that β mediates.
+
+If the residual ratio correlates with the cross-section ratio: the proton radius puzzle has a geometric component that QED corrections do not capture.
+
+If the residual ratio does not correlate: the geometric framework does not explain the proton radius puzzle. The anomaly has a different source.
+
+### 7.5 Complication
+
+Recent electron-probe measurements have trended toward the muonic value, narrowing the puzzle. If the puzzle fully resolves through improved QED calculations or improved electron spectroscopy, Test 3 becomes moot — the geometric framework is not needed for this anomaly. This is a legitimate resolution and would satisfy PHYS-1's falsification criterion F2. The test must use the most current data and the most current QED corrections.
 
 This test uses published data. It requires careful numerical work with existing QED calculations. It is achievable now.
 
@@ -284,7 +293,7 @@ This test uses published data. It requires careful numerical work with existing 
 
 ### 8.1 The Question
 
-[@HOWL-PHYS-3-2026] proposes the first direct measurement of G outside Earth's Hill sphere. The geometric framework from MATH-1 adds specificity: the Hill sphere is a geometric boundary with circular cross-section. The expected boundary effect, if β mediates it, should be calculable from the boundary geometry.
+[@HOWL-PHYS-3-2026] proposes the first direct measurement of G outside Earth's Hill sphere. The geometric framework adds structure: the Hill sphere is a geometric boundary with circular cross-section. If the framework applies, the boundary-crossing measurement has geometric content.
 
 ### 8.2 The Measurement
 
@@ -292,17 +301,15 @@ A self-contained G measurement apparatus at L1 or L2 — two known masses, preci
 
 ### 8.3 What the Framework Adds
 
-Without the MATH-1 framework, the L1/L2 measurement is a test of whether G differs outside Earth's Hill sphere. The expected magnitude of any difference is unconstrained.
+Without the MATH-1 framework, the L1/L2 measurement is a test of whether G differs outside Earth's Hill sphere. The expected magnitude of any difference is unconstrained — the test is pass/fail with no quantitative prediction.
 
-With the MATH-1 framework, the measurement has geometric structure. The Hill sphere is a sphere of radius r_H ≈ 1.5 × 10⁶ km. The measurement apparatus has a characteristic size d_apparatus. The ratio of apparatus cross-section to Hill sphere cross-section — β · d²_apparatus / β · d²_Hill — provides a geometric scale factor. Whether this scale factor predicts the magnitude of any G difference is the test.
-
-This is stated as a structural possibility, not a prediction. The connection between the MATH-1 geometric ratio and the PHYS-3 boundary crossing has not been derived. The framework provides a candidate structure. The measurement provides the data. The comparison determines whether the candidate structure is correct.
+With the MATH-1 framework, the measurement has geometric structure. The Hill sphere is a sphere of known radius. The measurement apparatus has a known geometry. Whether the ratio of apparatus cross-section to Hill sphere cross-section — mediated by β — predicts the magnitude of any G difference is a testable question. This is stated as a structural possibility, not a derived prediction. The connection between MATH-1's geometric ratio and a boundary-crossing G measurement has not been derived from first principles. The framework provides a candidate structure. The measurement provides the data. The comparison determines whether the candidate is correct.
 
 ### 8.4 Status
 
-This test requires a new instrument at L1 or L2. The location is occupied by functioning spacecraft. The measurement concept exists in the institution's published literature. The boundary-crossing motivation has been provided by PHYS-3. The geometric structure has been provided by MATH-1. The measurement has not been performed.
+This test requires a new instrument at L1 or L2. The location is occupied by functioning spacecraft. The measurement concept exists in the institution's published literature, proposed for precision reasons. The boundary-crossing motivation has been provided by PHYS-3. The geometric structure has been provided by MATH-1. The measurement has not been performed.
 
-Achievable with current technology. Not yet funded or designed for this purpose.
+Achievable with current technology. Not yet designed for this purpose.
 
 ---
 
@@ -310,28 +317,33 @@ Achievable with current technology. Not yet funded or designed for this purpose.
 
 ### 9.1 The Question
 
-The Hubble tension: CMB measurements yield H₀ = 67.4 ± 0.5 km/s/Mpc, local measurements yield H₀ = 73.0 ± 1.0 km/s/Mpc. The ratio is 67.4/73.0 ≈ 0.923. PHYS-1 identifies the correlation with boundary transit count — CMB light crosses more coherent structures than local supernova light. Does the cumulative geometric effect across boundary transits produce a factor consistent with 0.923?
+The Hubble tension: CMB measurements yield H₀ = 67.4 ± 0.5 km/s/Mpc, local measurements yield H₀ = 73.0 ± 1.0 km/s/Mpc. The ratio is 0.923. PHYS-1 identifies the correlation with boundary transit count — CMB light crosses more coherent structures than local supernova light. Does the cumulative geometric effect across boundary transits produce a factor consistent with 0.923?
 
-### 9.2 What the Calculation Requires
+### 9.2 What the Calculation Would Require
 
-The calculation would require:
-
-1. An estimate of the number of coherent gravitational structures (galaxy clusters, filaments, walls, voids) between the surface of last scattering and our instruments
+1. An estimate of the number of coherent gravitational structures between the surface of last scattering and our instruments
 2. The characteristic cross-section and bounding area of each structure type
-3. The geometric ratio β for each boundary transit
+3. The per-boundary transit correction magnitude
 4. The cumulative product across all transits
+5. Comparison to the observed ratio of 0.923
 
-The inputs exist in published large-scale structure surveys — the Sloan Digital Sky Survey, the 2dF Galaxy Redshift Survey, and others catalog the distribution of structures along the line of sight. The characteristic sizes of galaxy clusters, filaments, and voids are published.
+The first two inputs are available from published large-scale structure surveys — the Sloan Digital Sky Survey, the 2dF Galaxy Redshift Survey, and others catalog the distribution of structures along the line of sight. The characteristic sizes of galaxy clusters, filaments, and voids are published.
 
-### 9.3 What the Calculation Does Not Require
+### 9.3 The Missing Piece
 
-The calculation does not require new physics. It requires applying the geometric ratio β — a known mathematical constant — to published data on the distribution of cosmic structure. The question is arithmetic: does the product of β corrections across estimated boundary transits produce a factor near 0.923?
+The third input — the per-boundary transit correction magnitude — is not provided by any paper in this series. This is the primary limitation of Test 5.
+
+MATH-1 establishes β = π/4 as the geometric ratio for cross-sectional area. But the transit correction for light crossing a gravitational boundary is not an area ratio. It is a transformation of the light's measured properties (frequency, flux, timing) as it crosses the boundary. MATH-1 does not derive this transformation. PHYS-1 identifies the boundary transit as an unmodeled element but does not quantify it.
+
+The magnitude constraint is severe. If the per-transit correction were β itself (0.785), even two boundary transits would reduce the measured quantity by a factor of 0.616 — already far below the observed 0.923 ratio. Any line of sight to the CMB crosses hundreds to thousands of coherent structures. The per-transit correction must be extraordinarily small — many orders of magnitude smaller than β — or the cumulative effect would overwhelm the observed tension rather than explaining it.
+
+Determining the per-boundary transit correction is the missing theoretical piece. It may be derivable from the boundary geometry, from the ratio of light wavelength to boundary size, or from some other structural relationship. This derivation has not been performed and is beyond the scope of this paper.
 
 ### 9.4 Status
 
-This calculation is beyond the scope of this paper. The inputs are specified. The method is specified. The comparison value is specified (0.923). The calculation is future work. Its result — consistent or inconsistent with 0.923 — determines whether the geometric framework contributes to the Hubble tension.
+Test 5 is underspecified. The question is well-posed. The observational inputs are available. The per-transit correction magnitude is unknown. Without it, the calculation cannot be performed. Test 5's viability depends on prior theoretical work that this paper identifies as needed but does not attempt.
 
-This paper does not predict the outcome. It specifies the test.
+Test 5 is reclassified from "partially achievable" to "requires prior theoretical work." It remains in the program as a target — if the per-transit correction is derived (by this research program or by others), the test becomes immediately calculable from existing data.
 
 ---
 
@@ -343,15 +355,15 @@ Galaxy rotation curves are flat at large radii where visible matter is insuffici
 
 ### 10.2 What the Test Requires
 
-A galaxy's gravitational boundary is an oblate ellipsoid. MATH-1 establishes that β = π/4 is the ratio of elliptical area to bounding rectangle at all eccentricities. The rotation curve depends on the enclosed mass as a function of radius. If the geometric framework applies, the enclosed mass calculation involves β · A_bounding at each radius, where A_bounding is the rectilinear bounding area of the galactic cross-section at that radius.
+A galaxy's gravitational boundary is approximately an oblate ellipsoid. MATH-1 establishes that β = π/4 is the ratio of elliptical area to bounding rectangle at all eccentricities. The rotation curve depends on the enclosed mass as a function of radius. If the geometric framework applies, the enclosed mass calculation at each radius involves a β-corrected cross-section that differs from the standard calculation.
 
-The question is whether the geometric correction β at the galactic boundary modifies the inferred mass profile in a way that reduces or eliminates the need for dark matter.
+The question is whether the geometric correction modifies the inferred mass profile in a way that reduces the need for dark matter.
 
 ### 10.3 Status
 
-This is calculationally the most difficult test in the program. The galactic boundary is not a clean ellipse. The rectilinear measurement frame is not obvious at galactic scales. The mass distribution is three-dimensional and complex. The test requires modeling that is beyond the scope of this paper.
+This is the most calculationally difficult test in the program. The galactic boundary is not a clean ellipse. The rectilinear measurement frame is not obvious at galactic scales. The mass distribution is three-dimensional and complex. Additionally, the same missing per-transit correction that limits Test 5 may affect this test — the rotation curve discrepancy involves measurements of stars at different depths within the galactic boundary, and the depth-dependent reading may require the same per-transit correction.
 
-The test is stated for completeness and for future work. It is not expected to be the first test performed. Its viability depends on the results of the earlier, simpler tests. If Tests 1-4 produce null results, this test is not motivated.
+The test is stated for completeness and future work. Its viability depends on the results of earlier tests. If Tests 0-4 all produce null results, this test is not motivated.
 
 ---
 
@@ -359,11 +371,11 @@ The test is stated for completeness and for future work. It is not expected to b
 
 ### 11.1 The Question
 
-If G is boundary-dependent at the Earth Hill sphere scale, it should also show a reading change at the solar system Hill sphere scale — approximately 1-2 light years from the Sun.
+If G is boundary-dependent at the Earth Hill sphere scale, it should also show a reading change at the solar system Hill sphere scale — approximately 1-2 light years from the Sun, at the inner edge of the Oort Cloud.
 
 ### 11.2 Status
 
-No instrument has been placed at or beyond the solar system's Hill sphere boundary. Voyager 1 and 2 have crossed the heliopause but not the gravitational Hill sphere. This test is not achievable with current technology. It is stated for completeness as a long-term falsification target.
+No instrument has been placed at or beyond the solar system's Hill sphere. Voyager 1 and 2 have crossed the heliopause — the boundary of the solar wind at ~120 AU — but the gravitational Hill sphere is at ~50,000-100,000 AU. These are different boundaries by three orders of magnitude. This test is not achievable with current technology. It is stated as a long-term falsification target.
 
 ---
 
@@ -371,48 +383,41 @@ No instrument has been placed at or beyond the solar system's Hill sphere bounda
 
 ### 12.1 Ordered by Achievability
 
-| Priority | Test | Data Source | New Measurement? | Achievable Now? |
+| Priority | Test | Data Source | New Measurement? | Status |
 |---|---|---|---|---|
-| 0 | Running of α calibration | Published collider data + QED calculations | No | Yes |
-| 1 | G decomposition by method | Published G measurements with apparatus geometry | No | Yes |
-| 2 | G depth trend | Published G measurements with altitude/latitude | No | Yes |
-| 3 | Proton radius residual | Published spectroscopy data + QED corrections | No | Yes |
-| 4 | G at L1/L2 | New dedicated instrument at Lagrange point | Yes | Achievable, not yet done |
-| 5 | Hubble tension cumulative transit | Published large-scale structure surveys | No (calculation only) | Partially — requires modeling |
-| 6 | Galactic rotation curves | Published rotation curve data | No (calculation only) | Difficult — requires modeling |
-| 7 | Solar system boundary | Future deep space mission | Yes | Not with current technology |
+| 0 | Running of α calibration | Published collider data + QED | No | Achievable now |
+| 1 | G decomposition by method | Published G measurements | No | Achievable now |
+| 2 | G depth trend | Published G measurements + geodetic data | No | Achievable now (likely underpowered) |
+| 3 | Proton radius residual | Published spectroscopy + QED | No | Achievable now |
+| 4 | G at L1/L2 | New instrument at Lagrange point | Yes | Achievable, not yet done |
+| 5 | Hubble tension | Published structure surveys | No (calculation) | Requires prior theoretical work |
+| 6 | Rotation curves | Published rotation curve data | No (calculation) | Difficult, requires modeling |
+| 7 | Solar system boundary | Future deep space mission | Yes | Not achievable now |
 
 ### 12.2 The Kill Switch
 
-Tests 0-2 are reanalyses of existing published data. They require no new experiments, no new instruments, no funding. They are achievable by any researcher with access to the published literature.
+Tests 0, 1, and 2 are reanalyses of existing published data. They require no new experiments, no new instruments, no funding. They are achievable by any researcher with access to the published literature.
 
-If all three produce null results — the framework does not reproduce the running of α in a structurally informative way, the G disagreement shows no correlation with geometry, and the G disagreement shows no depth trend — the program is not supported. Tests 3-7 are not motivated. The geometric framework does not extend from cross-section equations to physical boundaries. The scope of MATH-1 is confirmed as geometric cross-sections only. This is itself a finding — it establishes the boundary of the framework's applicability.
+If all three produce null results — the framework does not reproduce the running of α in a structurally meaningful way (Outcome A or C), the G disagreement shows no correlation with geometry, and the G disagreement shows no depth trend — the program is not supported. Tests 3-7 are not motivated. The geometric framework does not extend from cross-section equations to physical boundaries. MATH-1 remains valid within its proven scope. PHYS-1's anomaly correlations remain qualitative. PHYS-3's G gap remains factual but unconnected to the geometric framework.
 
-If any of Tests 0-2 produce positive results — the framework reveals geometric structure in the running of α, or the G disagreement correlates with geometry, or a depth trend exists — the program is supported for further testing. The specific positive result determines which subsequent tests are most motivated.
+This is a genuine commitment. If the easy tests fail, the hard tests are not worth pursuing. The scope boundary — where the geometric framework stops — is itself a finding.
+
+If any of Tests 0-2 produce positive results, the program is supported for further testing. The specific positive result determines which subsequent tests are most motivated.
 
 ### 12.3 Decision Tree
 
-```
-Test 0 (α calibration):
-├── Contradictory → Program killed for field-theory boundaries
-├── Redundant → Framework consistent, proceed to Tests 1-2
-└── Structurally informative → Framework adds value, proceed with confidence
+Test 0 (α calibration) has three outcomes. Contradictory kills the program for field-theory boundaries but not for gravitational boundaries — Tests 1, 2, and 4 remain valid. Redundant means the framework is consistent but uninformative — proceed with reduced expectations. Informative means the framework adds structural value — proceed with confidence.
 
-Tests 1-2 (G geometry and depth):
-├── Both null → Program not supported, stop
-├── One positive → Investigate further, proceed to Test 3
-└── Both positive → Strong support, proceed to Tests 3-4
+Tests 1 and 2 (G geometry and depth) each have two outcomes. The four combinations determine what follows:
 
-Test 3 (proton radius):
-├── Null → Geometric framework doesn't explain proton puzzle
-└── Positive → Geometric component identified in proton puzzle
+Both null: program not supported, stop.
+Test 1 positive only: geometric component in G disagreement, proceed to Test 4.
+Test 2 positive only: depth-dependent readings, proceed to Test 4.
+Both positive: strong support, proceed to Tests 3 and 4.
 
-Test 4 (G at L1/L2):
-├── Matches Earth value → No boundary effect at Earth Hill sphere
-└── Differs from Earth value → Boundary effect confirmed, measure magnitude
+Test 0 contradictory combined with Tests 1 or 2 positive: the framework may apply to gravitational boundaries but not field-theory boundaries. Proceed to Test 4 only. Skip Tests 3, 5, 6.
 
-Tests 5-7: proceed only if earlier tests support the program
-```
+After Tests 3-4, a second evaluation: if both null, the framework does not produce measurable effects at accessible boundaries. If any positive, proceed to Tests 5-6, using the positive results to constrain the per-transit correction magnitude needed for Test 5.
 
 ---
 
@@ -422,15 +427,15 @@ Tests 5-7: proceed only if earlier tests support the program
 
 **F2 — G geometry.** If reanalysis of published G measurements sorted by test mass geometry, source mass geometry, and source-test mass configuration shows no correlation between G value and any geometric parameter, the geometric framework does not explain the G disagreement.
 
-**F3 — G depth.** If reanalysis of published G measurements sorted by altitude, latitude, and local gravitational potential shows no systematic trend — only random scatter consistent with experimental noise — the depth-dependent reading interpretation is not supported.
+**F3 — G depth.** If reanalysis of published G measurements sorted by altitude, latitude, and local gravitational potential shows no systematic trend, the depth-dependent reading interpretation is not supported. A null result at the available precision establishes an upper bound on the depth effect but does not rule out effects below that bound.
 
-**F4 — Proton radius.** If the residual of the proton radius puzzle after published QED corrections does not correlate with the ratio of probe interaction cross-sections, the geometric framework does not explain the proton radius puzzle.
+**F4 — Proton radius.** If the residual of the proton radius puzzle after published QED corrections does not correlate with the ratio of probe interaction cross-sections, the geometric framework does not explain the proton radius puzzle. If the puzzle resolves through improved QED or spectroscopy without geometric correction, the framework is not needed for this anomaly.
 
 **F5 — G at L1/L2.** If a direct measurement of G at L1 or L2 produces a value consistent with the Earth-surface consensus within measurement uncertainty after all GR corrections, the boundary effect hypothesis for G at the Earth Hill sphere scale is not supported at that precision level.
 
-**F6 — Hubble tension.** If the cumulative geometric transit effect across estimated boundary transits between the CMB surface and our instruments does not produce a factor consistent with the observed H₀ ratio of 0.923, the geometric framework does not explain the Hubble tension.
+**F6 — Hubble tension.** If the per-transit correction is derived and the cumulative geometric transit effect does not produce a factor consistent with the observed H₀ ratio, the geometric framework does not explain the Hubble tension.
 
-**F7 — Overall.** If Tests 0, 1, and 2 all produce null results, the geometric framework does not extend from cross-section equations to physical boundaries. The program is not supported. MATH-1 remains valid within its proven scope (geometric cross-sections). PHYS-1's anomaly correlations remain qualitative observations without geometric explanation.
+**F7 — Overall.** If Tests 0, 1, and 2 all produce null results, the geometric framework does not extend from cross-section equations to physical boundaries. The program is not supported. The scope boundary is documented as a finding.
 
 Each criterion is specific and stated before the evidence is examined.
 
@@ -438,46 +443,48 @@ Each criterion is specific and stated before the evidence is examined.
 
 ## XIV. BOUNDARIES AND LIMITATIONS
 
-This paper is a test program, not a result. It specifies tests. It does not claim outcomes. Each test may confirm or falsify.
+This paper is a test program, not a result. It specifies tests. It does not claim outcomes.
 
-The framework may not apply to non-geometric boundaries. Section III documents which boundaries are geometric and which are not. Hadron confinement is explicitly outside scope. The paper does not force the framework onto boundaries where it does not fit.
+The framework may not apply to non-geometric boundaries. Section III classifies each boundary and excludes hadron confinement as outside scope.
 
-The quantitative predictions for Tests 3-6 require calculations this paper does not perform. The paper specifies the calculations — what data to use, what to compute, what to compare. The calculations are future work.
+The quantitative predictions for Tests 3-6 require calculations this paper does not perform. The paper specifies the calculations. The calculations are future work.
+
+Test 5 is underspecified. The per-boundary transit correction magnitude is unknown. Without it, the Hubble tension calculation cannot be performed. This is the most significant limitation of the program as currently defined.
+
+Test 2 is likely underpowered. The altitude range across existing G experiments corresponds to a gravitational potential difference far below the scale of the G disagreement. A null result constrains but does not eliminate the depth interpretation. A positive result at this precision would be surprising and highly constraining.
 
 The connection between MATH-1's geometric invariant and PHYS-1's physical boundaries has not been derived from first principles. It is proposed as a structural hypothesis. The tests determine whether the hypothesis is productive.
 
-The three foundation papers were written independently. MATH-1 is pure mathematics. PHYS-1 is qualitative physics. PHYS-3 is an experimental gap identification. This paper connects them. The connection may be productive or spurious. The tests determine which.
-
-The kill switch (Section XII.2) is genuine. If the easy tests fail, the program stops. This is stated as a commitment, not a rhetorical gesture.
+The kill switch is genuine. If the easy tests fail, the program stops.
 
 ---
 
-## APPENDIX A: BOUNDARY CLASSIFICATION
+## APPENDIX A: BOUNDARY CLASSIFICATION — COMPLETE
 
-| Boundary | Source Paper | Physical Structure | Geometry Type | Spatial? | Interior Reading | Exterior Reading | Reading Difference | MATH-1 Applies? | Test Case | Test Priority |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Electron vacuum cloud | PHYS-1 | Virtual particle cloud around bare charge | Sphere | Yes | α ≈ 1/127 (bare charge) | α ≈ 1/137 (screened) | ~8% | Yes | Running of α | 0 (calibration) |
-| Earth Hill sphere | PHYS-3 | Gravitational sphere of influence | Sphere | Yes | Earth gravity dominates | Solar field dominates | Untested for G | Yes | G measurement | 1, 2, 4 |
-| Proton | PHYS-1 | Composite quark structure | Approx. sphere | Yes | 0.842 fm (muon probe) | 0.877 fm (electron probe) | ~4% | Yes | Proton radius puzzle | 3 |
-| Observable universe / CMB | PHYS-1 | Surface of last scattering | Sphere | Yes | H₀ = 67.4 (CMB) | H₀ = 73.0 (local) | ~9% | Yes | Hubble tension | 5 |
-| Galaxy | PHYS-1 | Disk + halo gravitational structure | Oblate ellipsoid | Yes | Flat rotation curves | Keplerian decline expected | Discrepancy attributed to dark matter | Yes (ellipse generalization) | Rotation curves | 6 |
-| Solar system Hill sphere | PHYS-3 | Sun's gravitational sphere of influence | Sphere | Yes | Solar dynamics dominate | Galactic field dominates | Untested | Yes | G measurement | 7 (far future) |
-| Hadron confinement | PHYS-1 | QCD vacuum structure | Momentum-space scale | No | αs weak (asymptotic freedom) | αs strong (confinement) | Order of magnitude | No — outside scope | — | — |
+| Boundary | Source Paper | Physical Structure | Geometry Type | Interior Reading | Exterior Reading | Reading Difference | MATH-1 Applies? | Test Case | Test Priority |
+|---|---|---|---|---|---|---|---|---|---|
+| Electron vacuum cloud | PHYS-1 | Virtual particle cloud, spherically symmetric | Sphere / scattering cross-section | α ≈ 1/127 (bare charge at high E) | α ≈ 1/137 (screened at low E) | ~8% | Yes — scattering cross-sections are circular | Running of α | 0 (calibration) |
+| Earth Hill sphere | PHYS-3 | Gravitational sphere of influence, r ≈ 1.5 × 10⁶ km | Sphere | Earth gravity dominates | Solar field dominates | Untested for G | Yes — sphere with circular cross-section | G measurement | 1, 2, 4 |
+| Proton | PHYS-1 | Composite quark structure, charge radius ~0.84 fm | Measurement cross-section is circular | 0.842 fm (muon probe, deeper) | 0.877 fm (electron probe, shallower) | ~4% | Yes — scattering cross-sections are circular | Proton radius puzzle | 3 |
+| Observable universe / CMB | PHYS-1 | Surface of last scattering | Sphere | H₀ = 67.4 (CMB, all boundaries transited) | H₀ = 73.0 (local, fewer boundaries) | ~9% | Yes — spherical boundary | Hubble tension | 5 (underspecified) |
+| Galaxy | PHYS-1 | Disk + halo gravitational structure | Oblate ellipsoid | Flat rotation curves | Keplerian decline expected | Dark matter attributed | Yes — ellipse generalization | Rotation curves | 6 |
+| Solar system Hill sphere | PHYS-3 | Sun's gravitational sphere of influence, r ≈ 1-2 ly | Sphere | Solar dynamics dominate | Galactic field dominates | Untested | Yes — sphere | G measurement | 7 (far future) |
+| Hadron confinement | PHYS-1 | QCD vacuum structure | Momentum-space scale | αs weak (asymptotic freedom) | αs strong (confinement) | Order of magnitude | No — not spatial geometry | Outside scope | — |
 
 ---
 
 ## APPENDIX B: DATA REQUIREMENTS BY TEST
 
-| Test | Published Data Needed | Specific Sources | Calculation Required | Output Format | Achievable Now? |
+| Test | Published Data Needed | Specific Sources | Calculation Required | Output Format | Status |
 |---|---|---|---|---|---|
-| 0 — α calibration | α measurements at multiple probe energies | LEP electroweak working group reports; SLD measurements; PDG review of particle physics | Decompose α(E) into β · d²(E) and Z_QED(E); compare Z to published vacuum polarization corrections | Table: energy, α measured, β·d², Z extracted, Z published, residual | Yes |
-| 1 — G geometry | G values from all modern precision experiments; complete apparatus descriptions | CODATA G task group compilations; original publications (Gundlach 2000, Quinn 2001/2014, Rosi 2014, Luo 2009, Xue 2018) | Record test mass geometry (sphere/cylinder/other), source mass geometry, separation, orientation for each; sort by geometric parameters; test for correlation | Scatter plot: G vs geometric parameter; correlation coefficient; significance | Yes |
-| 2 — G depth | G values from all modern experiments; location data for each | Same sources as Test 1; USGS geodetic data; published laboratory coordinates | Record altitude, latitude, local g, gravitational potential for each measurement; sort by potential; test for monotonic trend | Plot: G vs gravitational potential; trend test (Spearman rank correlation); significance | Yes |
-| 3 — Proton radius | Electron and muon proton radius measurements with uncertainties; QED bound-state corrections for both | CODATA proton radius evaluations; Pohl et al. 2010 (muonic hydrogen); Beyer et al. 2017; Bezginov et al. 2019; published QED correction terms | Compute residual (measured - QED predicted) for each probe; compute probe cross-section ratio (a₀/207)²/(a₀)² = 1/207²; test correlation | Ratio: residual_μ/residual_e vs cross-section ratio; consistency check | Yes |
-| 4 — G at L1/L2 | New measurement — no existing data | — | Direct G measurement at Lagrange point; apply GR corrections for potential difference; compare to CODATA Earth-surface value | Single value: G(L1/L2) ± uncertainty vs G(surface) ± uncertainty; residual after GR correction | No — requires new instrument |
-| 5 — Hubble tension | Large-scale structure catalogs; cluster/filament/void size distributions along CMB line of sight | SDSS (Sloan Digital Sky Survey); 2dF Galaxy Redshift Survey; Planck lensing maps; published void catalogs | Estimate number and characteristic sizes of coherent structures along CMB and local supernova lines of sight; compute cumulative β product | Single value: cumulative product vs observed ratio 0.923 | Partially — requires modeling |
-| 6 — Rotation curves | Published galaxy rotation curves; visible mass distribution models | de Blok et al. 2008 (THINGS survey); Sofue & Rubin 2001; published mass models | Apply β correction at galactic elliptical boundary; recompute expected rotation curve; compare to observed | Rotation curve: observed vs β-corrected predicted vs standard predicted | Partially — requires modeling |
-| 7 — Solar system boundary | Future deep space mission data | — | Direct G measurement at ~1-2 light years from Sun | G(boundary) vs G(interior) | No — not achievable with current technology |
+| 0 — α calibration | α values at multiple probe energies; scattering cross-sections at each energy; QED vacuum polarization corrections | LEP electroweak working group; SLD; PDG Review of Particle Physics; published σ(e⁺e⁻) at each energy | Identify β · d² from published σ(E); extract Z(E) = Q/(F · β · d²); compare Z to published QED corrections | Table: energy, α measured, σ(E), β·d² extracted, Z extracted, Z published, residual | Achievable now |
+| 1 — G geometry | G values from all modern precision experiments; complete apparatus descriptions including mass geometries | CODATA G task group; Gundlach & Merkowitz 2000; Quinn et al. 2001, 2014; Rosi et al. 2014; Luo et al. 2009; Xue et al. 2018; original publications with apparatus diagrams | Record test mass shape, source mass shape, separation, orientation; sort by geometric parameters; compute correlation | Scatter plots: G vs each geometric variable; correlation coefficients; significance levels | Achievable now |
+| 2 — G depth | G values from all modern experiments; location metadata | Same G sources as Test 1; USGS geodetic data; published laboratory coordinates and elevations | Record altitude, latitude, local g, gravitational potential; sort by each; test for monotonic trend | Plot: G vs gravitational potential; Spearman ρ and significance; upper bound on depth effect | Achievable now |
+| 3 — Proton radius | Electron and muon proton radius measurements; QED bound-state corrections for both probes | Pohl et al. 2010; Bezginov et al. 2019; Xiong et al. 2019; Fleurbaey et al. 2018; CODATA proton radius; published QED correction terms for hydrogen and muonic hydrogen | Compute residual for each probe (measured minus QED predicted); compute ratio of residuals; compare to cross-section ratio 207² | Ratio: residual_μ/residual_e vs 207²; directional check; significance | Achievable now |
+| 4 — G at L1/L2 | New measurement — no existing data | Future instrument | Direct G measurement at Lagrange point; apply GR corrections; compare to CODATA surface value | G(L1/L2) ± uncertainty vs G(surface) ± uncertainty; residual after GR | Requires new instrument |
+| 5 — Hubble tension | Large-scale structure catalogs; cluster/filament/void distributions | SDSS; 2dF; Planck lensing maps; published void catalogs (Pan et al., Nadathur et al.) | Estimate boundary count and sizes along CMB line of sight; apply per-transit correction; compute cumulative product | Cumulative product vs 0.923 | Requires prior theoretical work (per-transit correction unknown) |
+| 6 — Rotation curves | Published galaxy rotation curves; visible mass distributions | de Blok et al. 2008 (THINGS); Sofue & Rubin 2001; published mass models | Apply β correction at galactic elliptical boundary; recompute expected rotation curve | Observed vs β-corrected predicted vs standard predicted | Difficult — requires modeling |
+| 7 — Solar system | Future deep space mission data | Future mission | Direct G measurement at ~1-2 light years | G(boundary) vs G(interior) | Not achievable now |
 
 ---
 
@@ -485,288 +492,322 @@ The kill switch (Section XII.2) is genuine. If the easy tests fail, the program 
 
 | Test | Positive Result | Positive Implies | Null Result | Null Implies | Contradictory Result | Contradictory Implies |
 |---|---|---|---|---|---|---|
-| 0 — α calibration | Decomposition reveals geometric baseline in running of α that QED captures but doesn't separate | Framework adds structural insight to known physics; calibration passed | Decomposition reproduces QED without revealing new structure | Framework consistent but redundant; proceed cautiously | Decomposition contradicts QED calculations | Framework is wrong for field-theory boundaries; do not proceed to field-theory tests |
-| 1 — G geometry | G values correlate with test mass or source mass geometric parameters | G disagreement has geometric component; d² candidate identified | No correlation with any geometric parameter | Disagreement is not geometric; framework does not explain G scatter | — | — |
-| 2 — G depth | G values show monotonic trend with altitude or gravitational potential | Depth-dependent readings confirmed; G varies within boundary | Random scatter only | Disagreement is not depth-dependent | — | — |
-| 3 — Proton radius | Residual after QED corrections correlates with probe cross-section ratio | Proton puzzle has unmodeled geometric component; β framework identifies it | Residual does not correlate with cross-section ratio | Puzzle has non-geometric source | — | — |
-| 4 — G at L1/L2 | G differs from surface value beyond GR corrections | First boundary-crossing G measurement; boundary-dependent reading confirmed | G matches surface value within uncertainty | No boundary effect at Earth Hill sphere scale at measured precision | — | — |
-| 5 — Hubble tension | Cumulative β product ≈ 0.923 | Geometric boundary transit explains H₀ discrepancy | Cumulative β product ≠ 0.923 | Tension has non-geometric source | — | — |
-| 6 — Rotation curves | β correction reduces dark matter requirement significantly | Geometric boundary effect contributes to rotation curve discrepancy | β correction has negligible effect on rotation curves | Dark matter requirement unaffected by boundary geometry | — | — |
-| 7 — Solar system | G differs at solar Hill sphere boundary | G is boundary-dependent at solar system scale | G matches | G consistent at solar system scale | — | — |
+| 0 — α calibration | Decomposition reveals geometric baseline in QED running | Framework adds structural insight to known physics; calibration passed | Decomposition reproduces QED without new structure | Framework consistent but redundant; proceed cautiously | Decomposition contradicts QED | Framework wrong for field-theory boundaries; do not proceed to Tests 3, 5, 6 |
+| 1 — G geometry | G correlates with geometric parameters | G disagreement has geometric component; d² candidate identified | No correlation with geometry | Disagreement not geometric | — | — |
+| 2 — G depth | Monotonic trend with altitude or potential | Depth-dependent readings within Earth boundary | Random scatter | Disagreement not depth-dependent; upper bound established | — | — |
+| 3 — Proton radius | Residual ratio tracks cross-section ratio | Proton puzzle has unmodeled geometric component | Residual ratio does not track | Puzzle has non-geometric source (or is resolved by QED) | — | — |
+| 4 — G at L1/L2 | G differs from surface value beyond GR corrections | First boundary-crossing G measurement; boundary-dependent reading confirmed | G matches within uncertainty | No boundary effect at Earth Hill sphere at measured precision | — | — |
+| 5 — Hubble tension | Cumulative product ≈ 0.923 | Geometric transit explains H₀ discrepancy | Product ≠ 0.923 | Tension has non-geometric source | — | — |
+| 6 — Rotation curves | β correction reduces dark matter requirement | Boundary geometry contributes to rotation discrepancy | Negligible effect | Dark matter unaffected by boundary geometry | — | — |
+| 7 — Solar system | G differs at solar Hill sphere | G boundary-dependent at solar system scale | G matches | G consistent at solar system scale | — | — |
 
 ---
 
-## APPENDIX D: CONNECTION TO SERIES PAPERS
+## APPENDIX D: G MEASUREMENT RECORD WITH GEOMETRIC PARAMETERS
 
-| Paper | Registry | Central Claim | What It Contributes to PHYS-4 | What PHYS-4 Adds to It |
-|---|---|---|---|---|
-| PHYS-1 | @HOWL-PHYS-1-2026 | Mass is inertia; particles are field vortices; three anomalies correlate with boundary structure | Boundary catalog (Appendix B); anomaly identification (Hubble tension, proton radius, muon g-2); qualitative framework | Geometric classification of each boundary; quantitative decomposition via Q = F · β · d² · Z; specific test protocols |
-| MATH-1 | @HOWL-MATH-1-2026 | β = π/4 is the geometric invariant across nine cross-section domains; Q = F · β · d² · Z | Mathematical framework; proven isomorphism across nine domains; ellipse generalization; separation of invariant from variant | Application to physical boundaries beyond cross-section equations; calibration protocol against known physics; scope determination |
-| PHYS-3 | @HOWL-PHYS-3-2026 | G has never been measured outside Earth's Hill sphere; G disagreement is unresolved | Experimental gap identification; Hill sphere as specific testable boundary; L1/L2 proposal; G disagreement data; running couplings comparison table | Geometric structure for G measurement; two candidates for d²; decomposition of G disagreement into β · d² + Z; depth trend test |
-
----
-
-## APPENDIX E: THE KILL SWITCH
-
-| Condition | Tests 0-2 All Null | Test 0 Contradictory | Any of Tests 0-2 Positive | Multiple Tests 0-2 Positive |
-|---|---|---|---|---|
-| Interpretation | Geometric framework does not extend to physical boundaries | Framework contradicts known physics | Framework extends to at least one physical boundary | Strong support for framework extension |
-| Action | Stop program | Stop program immediately | Proceed to Tests 3-4; positive result determines priority | Proceed to Tests 3-6 with confidence |
-| MATH-1 status | Unaffected — proven for cross-sections | Unaffected — cross-section proof is algebraic identity | Extended to physical boundaries | Significantly extended |
-| PHYS-1 status | Unaffected — qualitative observations stand | Unaffected | Strengthened — geometric component identified | Strongly strengthened |
-| PHYS-3 status | Unaffected — G gap factual regardless | Unaffected | Connected to geometric framework | G boundary effect supported |
-| Publication value | Scope boundary is itself a finding | Contradiction is a finding | Positive results are findings | Multiple positive results constitute a research program |
-
----
-
-## APPENDIX F: G MEASUREMENT RECORD — GEOMETRIC PARAMETERS
-
-| Experiment | Year | G (×10⁻¹¹) | Method | Test Mass Shape | Source Mass Shape | Separation Scale | Altitude (m) | Latitude | Geometric Data Available? |
+| Experiment | Year | G (×10⁻¹¹ m³kg⁻¹s⁻²) | Method | Test Mass Shape | Source Mass Shape | Separation (m) | Altitude (m) | Latitude | Local g (m/s²) |
 |---|---|---|---|---|---|---|---|---|---|
-| Cavendish | 1798 | 6.74 | Torsion balance | Sphere | Sphere | ~0.23 m | ~10 m (London) | 51.5°N | Partial — historical |
-| NIST (Luther & Towler) | 1982 | 6.6726 | Torsion balance | Cylinder | Cylinder | ~0.1 m | ~100 m (Gaithersburg) | 39.1°N | Yes |
-| Wuppertal | 1995 | 6.7154 | Torsion balance | Cylinder | Cylinder | ~0.1 m | ~200 m (Wuppertal) | 51.3°N | Yes |
-| UWash (Eöt-Wash) | 2000 | 6.67422 | Rotating torsion balance | Flat disk/ring | Sphere array | ~0.1 m | ~50 m (Seattle) | 47.7°N | Yes |
-| BIPM | 2001 | 6.67559 | Torsion balance | Cylinder | Cylinder | ~0.12 m | ~400 m (Sèvres) | 48.8°N | Yes |
-| Zurich | 2006 | 6.67425 | Beam balance | Test mass on beam | Tanks of mercury | ~0.3 m | ~500 m (Zurich) | 47.4°N | Yes |
-| HUST | 2009 | 6.67349 | Torsion pendulum | Sphere | Sphere | ~0.08 m | ~30 m (Wuhan) | 30.5°N | Yes |
-| LENS | 2014 | 6.67191 | Atom interferometry | Cold atom cloud | Tungsten masses | ~0.26 m | ~50 m (Florence) | 43.8°N | Yes |
-| BIPM | 2014 | 6.67545 | Torsion balance | Cylinder | Cylinder | ~0.12 m | ~400 m (Sèvres) | 48.8°N | Yes |
-| HUST (method 1) | 2018 | 6.67484 | Torsion balance (angular acceleration) | Sphere | Sphere | ~0.08 m | ~30 m (Wuhan) | 30.5°N | Yes |
-| HUST (method 2) | 2018 | 6.67349 | Torsion balance (time of swing) | Sphere | Sphere | ~0.08 m | ~30 m (Wuhan) | 30.5°N | Yes |
+| Cavendish | 1798 | 6.74 | Torsion balance | Sphere | Sphere | ~0.23 | ~10 | 51.5°N | ~9.812 |
+| NIST (Luther & Towler) | 1982 | 6.6726 | Torsion balance | Cylinder | Cylinder | ~0.10 | ~100 | 39.1°N | ~9.801 |
+| Wuppertal (Michaelis) | 1995 | 6.7154 | Torsion balance | Cylinder | Cylinder | ~0.10 | ~200 | 51.3°N | ~9.811 |
+| UWash/Eöt-Wash (Gundlach) | 2000 | 6.67422 | Rotating torsion balance | Flat disk/ring | Sphere array | ~0.10 | ~50 | 47.7°N | ~9.808 |
+| BIPM (Quinn) | 2001 | 6.67559 | Torsion balance | Cylinder | Cylinder | ~0.12 | ~400 | 48.8°N | ~9.809 |
+| Zurich (Schlamminger) | 2006 | 6.67425 | Beam balance | Mass on beam | Mercury tanks | ~0.30 | ~500 | 47.4°N | ~9.807 |
+| HUST (Luo) | 2009 | 6.67349 | Torsion pendulum | Sphere | Sphere | ~0.08 | ~30 | 30.5°N | ~9.793 |
+| LENS (Rosi) | 2014 | 6.67191 | Atom interferometry | Cold atom cloud | Tungsten masses | ~0.26 | ~50 | 43.8°N | ~9.804 |
+| BIPM (Quinn) | 2014 | 6.67545 | Torsion balance | Cylinder | Cylinder | ~0.12 | ~400 | 48.8°N | ~9.809 |
+| HUST (Xue) method 1 | 2018 | 6.67484 | Angular acceleration feedback | Sphere | Sphere | ~0.08 | ~30 | 30.5°N | ~9.793 |
+| HUST (Xue) method 2 | 2018 | 6.67349 | Time of swing | Sphere | Sphere | ~0.08 | ~30 | 30.5°N | ~9.793 |
 
-**Notes for Test 1 (geometry correlation):** Sort by test mass shape (sphere vs cylinder vs other). Compute mean G for each shape category. Test whether shape categories produce systematically different G values. Sort by separation scale. Sort by source-test mass geometric configuration. Test each geometric variable for correlation with measured G.
+**Notes for Test 1:** Sort by test mass shape (sphere vs cylinder vs flat disk vs atom cloud). Compute mean G for each category. Test for systematic difference. Sort by source mass shape. Sort by separation. Sort by source-test configuration (aspect ratio, relative sizes). Test each geometric variable independently.
 
-**Notes for Test 2 (depth trend):** Sort by altitude. Sort by latitude. Compute local gravitational potential for each site. Plot G vs potential. Test for monotonic trend using Spearman rank correlation or equivalent non-parametric test.
+**Notes for Test 2:** Sort by altitude (range: 10-500 m). Sort by latitude (range: 30.5°-51.5°N). Compute local gravitational potential Φ = -GM/r for each site using published geodetic models. Plot G vs Φ. Apply Spearman rank correlation. The potential range ΔΦ/c² ≈ 5 × 10⁻¹⁴ is far below G measurement precision — a positive result at this range would indicate an unexpectedly large boundary effect.
+
+**HUST internal control:** Methods 1 and 2 use same masses, same location, same separation. Only the measurement method differs. G values disagree (6.67484 vs 6.67349). This constrains d² candidates: the geometric component should be identical for both methods. The disagreement must reside entirely in Z (method-specific impedance). If the HUST pair shows the same discrepancy magnitude as the cross-method spread generally, the geometric component is not isolated by controlling mass geometry.
 
 ---
 
-## APPENDIX G: PROTON RADIUS DATA FOR TEST 3
+## APPENDIX E: PROTON RADIUS DATA
 
-| Measurement | Probe | Probe Inertia (MeV/c²) | Orbital Radius | Interaction Cross-Section β·d² | Measured Radius (fm) | QED Correction Applied | Residual After QED |
+| Measurement | Year | Probe | Probe Mass (MeV/c²) | Orbital Radius | Cross-Section β·d² | Measured Radius (fm) | Uncertainty (fm) |
 |---|---|---|---|---|---|---|---|
-| CODATA 2014 (hydrogen spectroscopy) | Electron | 0.511 | a₀ ≈ 5.29 × 10⁻¹¹ m | β · (2a₀)² ≈ 8.80 × 10⁻²¹ m² | 0.8751 ± 0.0061 | Yes — standard hydrogen QED | To be computed in Test 3 |
-| Pohl et al. 2010 (muonic hydrogen) | Muon | 105.7 | a₀/207 ≈ 2.56 × 10⁻¹³ m | β · (2a₀/207)² ≈ 2.05 × 10⁻²⁵ m² | 0.84184 ± 0.00067 | Yes — muonic hydrogen QED | To be computed in Test 3 |
-| Bezginov et al. 2019 (hydrogen 2S-2P) | Electron | 0.511 | a₀ | Same as above | 0.833 ± 0.010 | Yes | To be computed |
-| Xiong et al. 2019 (e-p scattering, PRad) | Electron | 0.511 | Varies with momentum transfer | Varies | 0.831 ± 0.012 | Yes | To be computed |
-| Fleurbaey et al. 2018 (hydrogen 1S-3S) | Electron | 0.511 | a₀ | Same as above | 0.877 ± 0.013 | Yes | To be computed |
+| CODATA 2014 (hydrogen spectroscopy consensus) | 2014 | Electron | 0.511 | a₀ ≈ 5.29 × 10⁻¹¹ m | β·(2a₀)² ≈ 8.80 × 10⁻²¹ m² | 0.8751 | ± 0.0061 |
+| Pohl et al. (muonic hydrogen) | 2010 | Muon | 105.7 | a₀/207 ≈ 2.56 × 10⁻¹³ m | β·(2a₀/207)² ≈ 2.05 × 10⁻²⁵ m² | 0.84184 | ± 0.00067 |
+| Bezginov et al. (hydrogen 2S-2P) | 2019 | Electron | 0.511 | a₀ | ≈ 8.80 × 10⁻²¹ m² | 0.833 | ± 0.010 |
+| Xiong et al. / PRad (e-p scattering) | 2019 | Electron | 0.511 | Varies with Q² | Varies | 0.831 | ± 0.012 |
+| Fleurbaey et al. (hydrogen 1S-3S) | 2018 | Electron | 0.511 | a₀ | ≈ 8.80 × 10⁻²¹ m² | 0.877 | ± 0.013 |
 
-**Cross-section ratio:** β · d²_electron / β · d²_muon = (2a₀)² / (2a₀/207)² = 207² = 42,849
+**Cross-section ratio:** d²_electron / d²_muon = (2a₀)² / (2a₀/207)² = 207² = 42,849
 
-**Test 3 protocol:** For each measurement, extract the residual (measured value minus QED predicted value). Compute the ratio of electron residual to muon residual. Compare this ratio to 207² (the cross-section ratio) or to some function of 207 that β mediates. If the residual ratio tracks the cross-section ratio, the geometric framework identifies an unmodeled component.
+**Directional check:** Larger cross-section (electron) → larger measured radius (0.877 fm). Smaller cross-section (muon) → smaller measured radius (0.842 fm). Direction is consistent with geometric framework prediction: larger geometric footprint reads larger boundary.
 
-**Complication:** Recent electron measurements have trended toward the muonic value, narrowing the puzzle. Test 3 must use the most current data and the most current QED corrections. If the puzzle fully resolves through improved QED calculations, Test 3 becomes moot — the geometric framework is not needed (PHYS-1 falsification criterion F2 and PHYS-4 falsification criterion F4 both satisfied).
-
----
-
-## APPENDIX H: HUBBLE TENSION DATA FOR TEST 5
-
-| Method | H₀ (km/s/Mpc) | Uncertainty | Estimated Boundary Transits | Transit Categories |
-|---|---|---|---|---|
-| Planck CMB | 67.4 | ± 0.5 | Maximum — all structure between surface of last scattering and instrument | Galaxy clusters, filaments, voids, galaxy groups, Milky Way, solar system, Earth |
-| SH0ES (Type Ia supernovae) | 73.0 | ± 1.0 | Moderate — local group structures only | Host galaxy, local intergalactic space, Milky Way, solar system, Earth |
-| H0LiCOW (lensing time delays) | 73.3 | ± 1.8 | Intermediate — includes lens galaxy | Source structures, lens galaxy, intergalactic space, local structures |
-| CCHP (tip of red giant branch) | 69.8 | ± 1.7 | Moderate — similar to SH0ES but different calibration | Similar to SH0ES |
-| DES + BAO + BBN | 67.4 | ± 1.2 | High — cosmological scale | Similar to CMB |
-
-**Structural observation from PHYS-1:** Measurements involving more boundary transits tend to produce lower H₀. Measurements involving fewer produce higher values. Intermediate methods produce intermediate values.
-
-**Test 5 protocol:**
-
-Step 1 — Estimate boundary count. For the CMB path: use published large-scale structure surveys to estimate the number of galaxy clusters, filaments, and voids along a typical line of sight from the CMB surface to Earth. Published estimates: ~100-200 galaxy clusters along any line of sight through the observable universe; ~1000+ filaments; ~50-100 voids of diameter >30 Mpc.
-
-Step 2 — Estimate characteristic sizes. Galaxy cluster typical diameter: ~2-5 Mpc. Filament typical width: ~5-10 Mpc. Void typical diameter: ~30-100 Mpc. These are published values from large-scale structure surveys.
-
-Step 3 — Compute cumulative β product. For each boundary transit, the geometric correction is β per circular boundary (or β_ellipse for non-circular structures). The cumulative effect across N boundaries is the product of N individual corrections. The key question: what is the per-boundary correction magnitude?
-
-If the per-boundary correction is β itself (π/4 ≈ 0.785 per transit), even a small number of transits would produce an enormous cumulative effect — far larger than the observed 0.923 ratio. This is almost certainly too large. The per-boundary correction may be much smaller than β — perhaps a function of the ratio of wavelength to boundary size, or of the boundary's compactness.
-
-Step 4 — Compare to 0.923. If the cumulative product matches 0.923, the framework explains the tension. If not, it doesn't.
-
-**Critical note:** The per-boundary correction magnitude is not specified by MATH-1. MATH-1 establishes β as the geometric ratio for cross-sectional area. The transit correction for light crossing a gravitational boundary may involve β but is not necessarily equal to β. Determining the per-boundary transit correction is the core calculation of Test 5 and may require theoretical work beyond data reanalysis.
+**Convergence note:** Bezginov 2019 and Xiong/PRad 2019 electron measurements yield values near the muonic value, narrowing the puzzle. If convergence continues, Test 3 becomes moot — the puzzle resolves without geometric correction. Test 3 must use the most current data and most current QED corrections at the time of execution.
 
 ---
 
-## APPENDIX I: RUNNING COUPLINGS — CALIBRATION DATA FOR TEST 0
+## APPENDIX F: RUNNING OF α — CALIBRATION DATA
 
-| Coupling | Energy Scale | Measured Value | Characteristic Radius r(E) | Cross-Section β·d²(E) | Z_QED Published | Residual |
-|---|---|---|---|---|---|---|
-| α (electromagnetic) | 0 (Thomson limit) | 1/137.036 | ∞ (far from electron) | — | Fully screened | Baseline |
-| α | ~1 GeV | ~1/134 | ~0.2 fm | β · (0.4 fm)² ≈ 1.26 × 10⁻³¹ m² | Published VP corrections | To be computed |
-| α | ~10 GeV | ~1/132 | ~0.02 fm | β · (0.04 fm)² ≈ 1.26 × 10⁻³³ m² | Published VP corrections | To be computed |
-| α | M_Z ≈ 91.2 GeV | 1/127.95 ± 0.016 | ~0.002 fm | β · (0.004 fm)² ≈ 1.26 × 10⁻³⁵ m² | Published VP + vertex corrections | To be computed |
+| Energy Scale | α⁻¹ Measured | Source | Scattering Cross-Section σ(E) | Published QED Correction | Z to Extract |
+|---|---|---|---|---|---|
+| 0 (Thomson limit) | 137.036 | Fundamental — static measurement | — | Fully screened | Baseline |
+| ~1 GeV (τ mass scale) | ~134 | e⁺e⁻ collider data | Published σ(e⁺e⁻→hadrons) | VP + vertex | Compare Z to published |
+| ~10 GeV (Υ mass scale) | ~132 | e⁺e⁻ collider data | Published σ(e⁺e⁻) | VP + vertex + higher order | Compare Z to published |
+| ~45 GeV (Z/2 scale) | ~129 | LEP I | Published σ at √s = 45 GeV | VP + EW corrections | Compare Z to published |
+| 91.2 GeV (Z mass) | 127.95 ± 0.016 | LEP I / SLD | Published σ at Z pole | Full EW + QCD corrections | Compare Z to published |
 
 **Test 0 protocol:**
 
-Step 1 — For each energy E, compute the characteristic interaction radius r(E) = ℏc/E.
+Step 1 — For each energy E, take the published scattering cross-section σ(E). These are measured values from collider experiments — primary observables, not derived quantities.
 
-Step 2 — Compute the interaction cross-section at that radius: β · d²(E) = β · (2r(E))².
+Step 2 — Each σ(E) is a circular cross-section. It contains β · d² by construction. Identify β · d²(E) from σ(E) by factoring out the electromagnetic coupling and kinematic factors.
 
-Step 3 — Express the measured α(E) as Q = F(E) · β · d²(E) · Z(E). Extract Z(E).
+Step 3 — Express α(E) = Q/(F · β · d²(E)). Extract Z(E) as the residual.
 
-Step 4 — Compare extracted Z(E) to published QED vacuum polarization corrections at each energy.
+Step 4 — Compare Z(E) to published QED vacuum polarization corrections at each energy. The published corrections include hadronic vacuum polarization, leptonic vacuum polarization, and vertex corrections.
 
-Step 5 — Evaluate: does the decomposition reveal geometric structure (smooth β · d² baseline) that the standard QED treatment captures but doesn't separate? Or does it simply reproduce QED in a different notation?
+Step 5 — Evaluate outcome: Does the β · d² component track a smooth geometric baseline? Does Z match published QED? Is there a residual?
 
-**Key question:** Is there a residual after separating β · d² and published QED Z? If yes, it is an unmodeled geometric component. If no, the framework is consistent but redundant for this case. If the decomposition contradicts QED, the framework fails for field-theory boundaries.
+**Key distinction from naive approach:** This protocol uses measured cross-sections, not computed geometric radii. The naive identification r(E) = ℏc/E conflates the probe wavelength with the physical screening radius. The published cross-section is the correct geometric input because it is the measured circular cross-section at each energy — exactly the quantity MATH-1 addresses.
 
 ---
 
-## APPENDIX J: CANDIDATE d² FOR G MEASUREMENTS
+## APPENDIX G: HUBBLE TENSION — STRUCTURAL DATA
 
-| Candidate | What d² Represents | Prediction | Test | Distinguishing Measurement |
+| Method | H₀ (km/s/Mpc) | Uncertainty | Estimated Major Boundary Transits | Notes |
 |---|---|---|---|---|
-| Test mass cross-section | Physical cross-sectional area of the test mass in the apparatus | G disagrees between experiments using test masses of different geometry (sphere vs cylinder vs flat) | Sort existing G measurements by test mass shape | If spherical and cylindrical test masses give systematically different G: Candidate 1 supported |
-| Source mass cross-section | Physical cross-sectional area of the source mass | G disagrees based on source mass geometry | Sort existing G measurements by source mass shape | If source mass shape correlates with G: variant of Candidate 1 |
-| Interaction geometry at r | Solid angle subtended by source mass at test mass location, times r² | G disagrees based on source-test geometric configuration | Sort by geometric configuration (aspect ratio, relative sizes, orientation) | If configuration correlates with G independent of individual mass shapes: Candidate 2 supported |
-| Gravitational aperture | Effective circular area through which gravitational field "flows" between source and test mass — analogous to Poynting vector through aperture | G depends on the effective gravitational aperture of the measurement | Compare to MATH-1 Poynting case (P = S · β · d²) by analogy | If G decomposes as G_measured = G_true · β · d²_aperture · Z_apparatus: aperture model supported |
+| Planck CMB | 67.4 | ± 0.5 | Maximum — all structure between surface of last scattering and instrument | Light has crossed every large-scale structure in observable universe |
+| SH0ES (Type Ia SNe) | 73.0 | ± 1.0 | Moderate — local group structures | Supernovae in relatively nearby galaxies |
+| H0LiCOW (lensing time delays) | 73.3 | ± 1.8 | Intermediate — includes lens galaxy | Quasar light through intervening galaxy |
+| CCHP (TRGB) | 69.8 | ± 1.7 | Moderate — similar to SH0ES | Different calibration chain |
+| DES + BAO + BBN | 67.4 | ± 1.2 | High — cosmological scale | Model-dependent, similar to CMB |
 
-**Protocol:** Run Test 1 without pre-selecting a candidate. Sort by all geometric parameters simultaneously. Let the data identify which geometric variable, if any, correlates with G. If none correlates, no candidate is supported. If one correlates, the correlated variable identifies the relevant d².
+**Observed ratio:** 67.4 / 73.0 = 0.923
+
+**Per-transit magnitude problem:** Any line of sight to the CMB crosses hundreds to thousands of coherent gravitational structures (galaxy clusters, filaments, walls, voids). Published estimates from large-scale structure surveys:
+
+| Structure Type | Estimated Count Along CMB Line of Sight | Typical Diameter | Published Source |
+|---|---|---|---|
+| Galaxy clusters | ~100-200 | 2-5 Mpc | SDSS cluster catalogs |
+| Filaments | ~1000+ | 5-10 Mpc width | Bond et al. 1996; Cautun et al. 2014 |
+| Voids | ~50-100 (major voids >30 Mpc) | 30-100 Mpc | Pan et al. 2012; Nadathur 2016 |
+| Individual galaxies (including halos) | ~10⁴-10⁵ | 0.1-1 Mpc (with halo) | Galaxy luminosity function surveys |
+
+**Constraint on per-transit correction:** If correction per transit = x, then x^N ≈ 0.923 where N is the effective number of boundaries. For N = 100: x ≈ 0.9992. For N = 1000: x ≈ 0.99992. For N = 10,000: x ≈ 0.999992. The per-transit correction must be extraordinarily close to 1. β itself (0.785) is far too large — it would predict essentially zero received signal after even a few transits.
+
+**Status:** Test 5 cannot be executed without the per-transit correction magnitude. The boundary count and structure size inputs are available from published surveys. The missing piece is theoretical: what determines the per-transit correction, and how does it relate to β, to the boundary geometry, or to the ratio of wavelength to boundary size?
 
 ---
 
-## APPENDIX K: DECISION TREE — COMPLETE
+## APPENDIX H: DECISION TREE — COMPLETE
 
 ```
 START
 │
 ├── Test 0: α calibration
-│   ├── CONTRADICTORY → Framework fails for field-theory boundaries
-│   │                    STOP for quantum boundaries
-│   │                    Tests 3, 5, 6 not motivated
-│   │                    Tests 1, 2, 4 still valid (gravitational, not field-theory)
+│   ├── CONTRADICTORY
+│   │   → Framework fails for field-theory boundaries
+│   │   → Tests 3, 5, 6 not motivated (all involve field/quantum boundaries)
+│   │   → Tests 1, 2, 4 still valid (gravitational boundaries only)
+│   │   → Proceed to Tests 1-2
 │   │
-│   ├── REDUNDANT → Framework consistent, no new structure revealed
-│   │                Proceed to Tests 1-2 with reduced expectations
+│   ├── REDUNDANT
+│   │   → Framework consistent with QED, no new structure revealed
+│   │   → Calibration neither passed nor failed — inconclusive
+│   │   → Proceed to Tests 1-2 with reduced expectations
 │   │
-│   └── INFORMATIVE → Framework reveals geometric structure in QED
-│                      Proceed to Tests 1-2 with confidence
+│   └── INFORMATIVE
+│       → Framework reveals geometric structure in QED running
+│       → Calibration passed
+│       → Proceed to Tests 1-2 with confidence
 │
-├── Test 1: G geometry correlation
-│   ├── NULL → G disagreement is not geometric
-│   └── POSITIVE → Geometric component identified
-│       └── Which d² candidate? → Determines Test 4 apparatus design
-│
-├── Test 2: G depth trend
-│   ├── NULL → G is not depth-dependent within Earth boundary
-│   └── POSITIVE → Depth-dependent readings confirmed
-│       └── Trend direction and magnitude constrain boundary effect
-│
-├── EVALUATION GATE (after Tests 0-2)
-│   ├── ALL NULL → STOP PROGRAM
-│   │              Framework does not extend to physical boundaries
-│   │              All prior papers unaffected within their scope
-│   │              Scope boundary is the finding
+├── Tests 1-2: G geometry and G depth (run in parallel)
 │   │
-│   ├── TEST 0 CONTRADICTORY + Tests 1-2 NULL → STOP PROGRAM
+│   ├── BOTH NULL
+│   │   → G disagreement is neither geometric nor depth-dependent
+│   │   → EVALUATION GATE: combined with Test 0 result
+│   │   │
+│   │   ├── Test 0 also null/redundant → ALL THREE NULL → STOP PROGRAM
+│   │   │   Framework does not extend to physical boundaries
+│   │   │   Scope boundary is the finding
+│   │   │   All prior papers unaffected within their scope
+│   │   │
+│   │   └── Test 0 informative → One positive exists
+│   │       → Framework adds value for QED but not for G
+│   │       → Proceed to Test 3 only (proton is quantum boundary)
+│   │       → Skip Test 4 (gravitational boundary tests null)
 │   │
-│   ├── TEST 0 CONTRADICTORY + Test 1 or 2 POSITIVE
-│   │   → Framework may apply to gravitational boundaries
-│   │     but not field-theory boundaries
-│   │     Proceed to Test 4 only; skip Tests 3, 5, 6
+│   ├── TEST 1 POSITIVE ONLY
+│   │   → G disagreement has geometric component
+│   │   → Which d² candidate correlates? → Informs Test 4 design
+│   │   → Proceed to Test 4 (G at L1/L2) as next priority
+│   │   → Test 3 also motivated if Test 0 was not contradictory
 │   │
-│   ├── ANY POSITIVE → PROCEED
-│   │   Priority determined by which tests were positive:
-│   │   ├── Test 0 positive → Test 3 (proton radius) is next priority
-│   │   ├── Test 1 positive → Test 4 (G at L1/L2) is next priority
-│   │   ├── Test 2 positive → Test 4 (G at L1/L2) is next priority
-│   │   └── Multiple positive → Tests 3 and 4 in parallel
+│   ├── TEST 2 POSITIVE ONLY
+│   │   → Depth-dependent readings within Earth boundary
+│   │   → Trend direction and magnitude constrain boundary effect
+│   │   → Proceed to Test 4 (G at L1/L2) as next priority
+│   │   → Test 3 also motivated if Test 0 was not contradictory
 │   │
-│   └── ALL POSITIVE → PROCEED WITH FULL PROGRAM
+│   └── BOTH POSITIVE
+│       → Strong support for geometric and depth structure in G
+│       → Proceed to Tests 3 and 4 in parallel
+│       → Tests 5-6 provisionally motivated pending Tests 3-4 results
 │
-├── Test 3: Proton radius residual
-│   ├── NULL → Proton puzzle is not geometric
-│   └── POSITIVE → Geometric component in proton puzzle
-│       └── Magnitude constrains boundary transformation law
-│
-├── Test 4: G at L1/L2
-│   ├── MATCHES → No boundary effect at Earth Hill sphere
-│   └── DIFFERS → First cross-boundary G measurement in history
-│       └── Direction and magnitude determine boundary law
-│
-├── SECOND EVALUATION (after Tests 3-4)
-│   ├── BOTH NULL → Framework does not produce measurable effects
-│   │                at accessible boundaries; Tests 5-7 not motivated
+├── SECOND STAGE: Tests 3-4
 │   │
-│   ├── ANY POSITIVE → PROCEED to Tests 5-6
-│   │   Positive results constrain boundary transformation magnitude
-│   │   Use constraints to make quantitative predictions for Tests 5-6
+│   ├── Test 3: Proton radius residual
+│   │   ├── NULL → Proton puzzle not geometric; or puzzle resolved by QED
+│   │   └── POSITIVE → Geometric component identified
+│   │       → Magnitude constrains boundary transformation law
+│   │       → Informs per-transit correction for Test 5
 │   │
-│   └── BOTH POSITIVE → Strong support; proceed to full program
+│   ├── Test 4: G at L1/L2
+│   │   ├── MATCHES → No boundary effect at Earth Hill sphere
+│   │   │   → If Test 3 also null → Framework does not produce measurable effects
+│   │   │   → Stop further tests
+│   │   └── DIFFERS → First cross-boundary G measurement in history
+│   │       → Direction and magnitude determine boundary law
+│   │       → Combined with any Test 3 result → proceed to Tests 5-6
+│   │
+│   └── SECOND EVALUATION
+│       ├── BOTH NULL → Framework does not produce measurable effects
+│       │                at accessible boundaries; Tests 5-7 not motivated
+│       ├── ANY POSITIVE → Proceed to Tests 5-6
+│       │   Use positive results to constrain per-transit correction
+│       └── BOTH POSITIVE → Strong program; full continuation
 │
-├── Test 5: Hubble tension calculation
-│   ├── INCONSISTENT → Geometric transit does not explain Hubble tension
-│   └── CONSISTENT → Cumulative boundary transit explains H₀ discrepancy
+├── THIRD STAGE: Tests 5-6 (only if second stage supports)
+│   │
+│   ├── Test 5: Hubble tension (requires per-transit correction first)
+│   │   ├── INCONSISTENT → Geometric transit does not explain Hubble tension
+│   │   └── CONSISTENT → Cumulative boundary transit explains H₀ discrepancy
+│   │
+│   └── Test 6: Rotation curves
+│       ├── NO EFFECT → Dark matter unaffected
+│       └── REDUCES REQUIREMENT → Geometric boundary contributes
 │
-├── Test 6: Rotation curves
-│   ├── NO EFFECT → Dark matter requirement unaffected
-│   └── REDUCES REQUIREMENT → Geometric boundary contributes to discrepancy
-│
-└── Test 7: Solar system boundary (far future)
-    ├── MATCHES → G consistent at solar system scale
-    └── DIFFERS → G boundary-dependent at solar system scale
+└── FOURTH STAGE: Test 7 (far future, only if program strongly supported)
+    ├── G MATCHES → Consistent at solar system scale
+    └── G DIFFERS → Boundary-dependent at solar system scale
 ```
 
 ---
 
-## APPENDIX L: FALSIFICATION MATRIX
+## APPENDIX I: FALSIFICATION MATRIX
 
-| Criterion | Test | What Is Tested | Falsifying Result | Confidence Level Required | Status |
+| Criterion | Test | What Is Tested | Falsifying Result | Confidence Required | Current Status |
 |---|---|---|---|---|---|
-| F1 | 0 | Framework consistency with QED | Decomposition contradicts published QED | Any significant contradiction | Not yet tested |
-| F2 | 1 | G disagreement geometry | No correlation with geometric parameters | p > 0.05 (no significant correlation) | Not yet tested |
-| F3 | 2 | G depth dependence | No trend with altitude/potential | Spearman ρ consistent with zero | Not yet tested |
-| F4 | 3 | Proton radius geometric component | Residual ratio does not track cross-section ratio | Ratio differs by >2σ from prediction | Not yet tested |
-| F5 | 4 | G at Hill sphere boundary | G(L1/L2) = G(surface) after GR corrections | Within measurement uncertainty | Not yet tested |
-| F6 | 5 | Hubble tension geometric transit | Cumulative product ≠ 0.923 | Differs by >10% from observed ratio | Not yet tested |
-| F7 | Overall | Framework extension to physical boundaries | Tests 0, 1, and 2 all null | All three null | Not yet tested |
+| F1 | 0 | Framework consistency with QED | Decomposition contradicts published QED calculations | Any significant inconsistency with established QED | Not yet tested |
+| F2 | 1 | G disagreement has geometric structure | No correlation between G and any geometric parameter of apparatus | p > 0.05 across all geometric variables | Not yet tested |
+| F3 | 2 | G is depth-dependent within Earth boundary | No trend with altitude, latitude, or gravitational potential | Spearman ρ consistent with zero at available precision | Not yet tested |
+| F4 | 3 | Proton puzzle has geometric component | Residual ratio does not track probe cross-section ratio; or puzzle resolves via QED | Ratio differs by >2σ from geometric prediction; or electron values converge to muonic value | Not yet tested |
+| F5 | 4 | G changes across Hill sphere boundary | G(L1/L2) equals G(surface) after GR corrections | Within measurement uncertainty of new instrument | Not yet tested |
+| F6 | 5 | Cumulative transit explains Hubble tension | Cumulative product ≠ 0.923 (once per-transit correction is known) | Differs by >10% from observed ratio | Not yet tested; test underspecified |
+| F7 | Overall | Framework extends to physical boundaries | Tests 0, 1, and 2 all null | All three produce no positive signal | Not yet tested |
 
 ---
 
-## APPENDIX M: SERIES SUMMARY
+## APPENDIX J: CONNECTION TO SERIES PAPERS
 
-| Paper | Registry | Domain | Central Claim | Status | Scope |
-|---|---|---|---|---|---|
-| PHYS-1 | @HOWL-PHYS-1-2026 | Foundational Physics | Mass is inertia; particles are field vortices; vortex boundaries produce frame-dependent readings; three anomalies correlate with boundary structure | Complete | Qualitative framework; cross-domain connection of existing findings |
-| MATH-1 | @HOWL-MATH-1-2026 | Mathematics / Structural Observation | β = π/4 is the geometric invariant across nine cross-section domains; Q = F · β · d² · Z | Complete | Proven for geometric cross-sections; algebraic identity |
-| PHYS-3 | @HOWL-PHYS-3-2026 | Foundational Physics | G has never been measured outside Earth's Hill sphere; G disagreement unresolved; L1/L2 test proposed | Complete | Experimental gap identification; hypothesis for boundary-dependent G |
-| PHYS-4 | @HOWL-PHYS-4-2026 | Foundational Physics | Test program connecting PHYS-1, MATH-1, PHYS-3; seven ordered tests with kill switch | Complete | Program specification; no results claimed |
+| Paper | Registry | Central Claim | Contributes to PHYS-4 | PHYS-4 Adds |
+|---|---|---|---|---|
+| PHYS-1 | @HOWL-PHYS-1-2026 | Mass is inertia; particles are field vortices; three anomalies correlate with boundary structure | Boundary catalog; anomaly identification; qualitative framework | Geometric classification of each boundary; quantitative decomposition; test protocols |
+| MATH-1 | @HOWL-MATH-1-2026 | β = π/4 is geometric invariant across nine cross-section domains; Q = F · β · d² · Z | Mathematical framework; proven isomorphism; ellipse generalization; invariant/variant separation | Application to physical boundaries; calibration protocol; scope determination |
+| PHYS-3 | @HOWL-PHYS-3-2026 | G never measured outside Earth's Hill sphere; G disagreement unresolved; L1/L2 test proposed | Experimental gap; Hill sphere as testable boundary; L1/L2 proposal; running couplings comparison | Geometric structure for G; two d² candidates; depth trend test; HUST internal control |
+| PHYS-4 | @HOWL-PHYS-4-2026 | Test program connecting PHYS-1, MATH-1, PHYS-3 | — | Seven ordered tests; kill switch; calibration-first structure; falsification criteria; scope boundaries |
 
 ---
 
-## APPENDIX N: WHAT EACH TEST RESULT MEANS FOR EACH PRIOR PAPER
+## APPENDIX K: KILL SWITCH DETAIL
+
+| Condition | Tests 0-2 All Null | Test 0 Contradictory + Tests 1-2 Null | Test 0 Contradictory + Test 1 or 2 Positive | Any of Tests 0-2 Positive | Multiple Positive |
+|---|---|---|---|---|---|
+| Interpretation | Framework does not extend to physical boundaries | Framework wrong for quantum boundaries and not supported for gravitational | Framework may apply to gravitational but not quantum boundaries | Framework extends to at least one boundary type | Strong support |
+| Action | STOP | STOP | Test 4 only; skip 3, 5, 6 | Proceed; positive result determines priority | Full program |
+| MATH-1 | Unaffected — cross-section proof is identity | Unaffected | Unaffected | Extended | Significantly extended |
+| PHYS-1 | Unaffected — qualitative | Unaffected | Partially strengthened (gravitational only) | Strengthened | Strongly strengthened |
+| PHYS-3 | Unaffected — G gap factual | Unaffected | Connected to geometric framework | Connected | Strongly connected |
+| Publication value | Scope boundary is a finding | Contradiction is a finding | Partial scope determination | Positive results are findings | Research program established |
+
+---
+
+## APPENDIX L: WHAT EACH TEST RESULT MEANS FOR EACH PRIOR PAPER
 
 | Test Result | Effect on PHYS-1 | Effect on MATH-1 | Effect on PHYS-3 |
 |---|---|---|---|
-| Test 0 contradictory | Boundary framework weakened for quantum boundaries | Unaffected (cross-section proof is identity) | Unaffected (G gap is factual) |
-| Test 0 informative | Boundary framework strengthened | Extended to field-theory boundaries | Unaffected |
-| Test 1 positive (G geometry) | Anomaly correlation strengthened — G joins pattern | Extended to gravitational measurements | G disagreement reinterpreted as geometric |
-| Test 1 null | Unaffected | Scope confirmed as cross-sections only for G | Disagreement remains unexplained |
-| Test 2 positive (G depth) | Depth-dependent reading confirmed for G | Extended to depth-dependent measurement | Boundary-dependent G hypothesis supported |
-| Test 2 null | Unaffected | Unaffected | Depth interpretation not supported |
-| Test 3 positive (proton radius) | Proton radius puzzle explained by geometric component | Extended to proton boundary | Unaffected |
-| Test 3 null | Proton puzzle has non-geometric source | Scope limited — not proton boundary | Unaffected |
-| Test 4 positive (G at L1/L2) | Major confirmation — boundary effects real for G | Extended to gravitational boundary crossing | Central hypothesis confirmed |
-| Test 4 null | G is consistent across Earth Hill sphere | Unaffected | Boundary-dependent G not supported at this precision |
-| Test 5 consistent (Hubble) | Hubble tension explained by cumulative boundary transit | Extended to cosmological boundaries | Unaffected |
-| Test 5 inconsistent | Hubble tension has non-geometric source | Scope limited — not cosmological scale | Unaffected |
-| Test 6 positive (rotation) | Dark matter partially reframed as boundary geometry | Extended to galactic boundaries | Unaffected |
-| Test 6 null | Dark matter requirement unaffected | Scope limited — not galactic scale | Unaffected |
-| All Tests 0-2 null | Qualitative observations stand; no geometric confirmation | Proven scope confirmed; no extension | G gap factual; interpretation unsupported |
+| Test 0 contradictory | Boundary concept weakened for quantum cases | Unaffected (cross-section proof is identity) | Unaffected (G gap factual) |
+| Test 0 informative | Boundary concept strengthened for quantum cases | Extended to field-theory scattering | Unaffected |
+| Test 0 redundant | Unaffected | Consistent but not extended | Unaffected |
+| Test 1 positive | Anomaly pattern strengthened — G joins it | Extended to gravitational measurement | G disagreement reinterpreted as geometric |
+| Test 1 null | Unaffected | Scope: not G geometry | Disagreement still unexplained |
+| Test 2 positive | Depth-dependent readings confirmed for G | Extended to depth-dependent measurement | Boundary-dependent G supported |
+| Test 2 null | Unaffected | Unaffected | Depth interpretation not supported at available precision |
+| Test 3 positive | Proton puzzle explained by geometric component | Extended to proton scattering boundary | Unaffected |
+| Test 3 null | Proton puzzle has non-geometric source (or resolves) | Scope: not proton boundary | Unaffected |
+| Test 4 positive | Major confirmation — boundary effects real for G | Extended to gravitational boundary crossing | Central hypothesis confirmed |
+| Test 4 null | G consistent across Earth Hill sphere | Unaffected | Hypothesis not supported at measured precision |
+| Test 5 consistent | Hubble tension explained by cumulative transit | Extended to cosmological boundaries | Unaffected |
+| Test 5 inconsistent | Hubble tension non-geometric | Scope: not cosmological | Unaffected |
+| Test 6 positive | Dark matter partially geometric boundary effect | Extended to galactic boundaries | Unaffected |
+| Test 6 null | Dark matter unaffected | Scope: not galactic | Unaffected |
+| All 0-2 null | Qualitative observations stand; no geometric confirmation | Proven scope confirmed; no extension | G gap factual; unconnected to β |
 
 ---
 
-## APPENDIX O: OPEN QUESTIONS NOT ADDRESSED BY THIS PROGRAM
+## APPENDIX M: SENSITIVITY ANALYSIS — TEST 2
 
-| Question | Why Not Addressed | Where It Belongs |
-|---|---|---|
-| Does confinement have a geometric analog in momentum space? | MATH-1 framework is spatial; momentum-space extension requires new mathematical work | Future MATH paper |
-| What is the n-dimensional generalization of β? | MATH-1 Appendix K poses this; not connected to physical tests | Future MATH paper |
-| Does the Gibbs overshoot relate to β? | MATH-1 open question; not testable against physical boundaries | Future MATH paper |
-| Can the directional pattern (β vs 1/β) be formalized into an independent criterion? | MATH-1 demoted this to observation; formalization is mathematical, not physical | Future MATH paper |
-| Does the muon g-2 anomaly decompose under the framework? | Muon g-2 involves vacuum interactions at a specific depth; geometric decomposition requires identifying the relevant boundary and cross-section | Future PHYS paper; depends on Test 0 result |
-| Are there boundary effects on other constants (ℏ, c, k_B)? | PHYS-3 focuses on G; extension to other constants requires independent gap analysis | Future PHYS paper |
-| What is the per-boundary transit correction for light crossing a gravitational boundary? | Required for Test 5 but not derivable from MATH-1 alone; may require new theoretical work | Critical input for Test 5; may require its own paper |
+| Variable | Range Across Experiments | Corresponding ΔΦ/c² | G Disagreement Scale | Ratio: Disagreement / ΔΦ | Implication |
+|---|---|---|---|---|---|
+| Altitude | 10 – 500 m | ~5 × 10⁻¹⁴ | ~5 × 10⁻⁴ (relative) | ~10¹⁰ | Positive result would require enormous boundary effect per unit potential |
+| Latitude | 30.5°N – 51.5°N | ~3 × 10⁻¹² (centrifugal + oblateness) | ~5 × 10⁻⁴ | ~10⁸ | Larger lever arm than altitude but still far below disagreement scale |
+| Local g variation | 9.793 – 9.812 m/s² | ~2 × 10⁻³ (relative) | ~5 × 10⁻⁴ | ~0.25 | Most promising — g variation is within an order of magnitude of G disagreement |
+| Distance to L1/L2 (Test 4) | 6,371 km vs 1,500,000 km | ~6 × 10⁻¹⁰ vs ~10⁻⁸ | ~5 × 10⁻⁴ | ~10⁴-10⁶ | L1/L2 measurement has far greater lever arm than any surface comparison |
+
+**Interpretation:** Test 2 is most likely to detect a signal if the depth effect correlates with local g rather than with gravitational potential. The variation in local g across experiment sites (~0.2%) is within an order of magnitude of the G disagreement (~0.05%). If the depth effect scales with local g, the test has marginal sensitivity. If it scales with gravitational potential (altitude), the test is underpowered by ~10 orders of magnitude.
+
+The test is specified regardless because a null result at the available precision still establishes an upper bound, and because the cost is zero — it is a reanalysis of existing data.
+
+---
+
+## APPENDIX N: CANDIDATE d² FOR G — DETAILED ANALYSIS
+
+| Candidate | Physical Basis | What d² Represents | Prediction for Test 1 | Prediction for HUST Control | Testable With Existing Data? |
+|---|---|---|---|---|---|
+| Test mass cross-section | Gravitational interaction mediated through test mass geometry | Bounding area of test mass | G differs systematically between sphere, cylinder, and flat disk test masses | HUST pair should agree (same test mass) — but they don't; Z must account for difference | Yes |
+| Source mass cross-section | Gravitational field shaped by source mass geometry | Bounding area of source mass | G differs based on source mass shape (sphere vs cylinder vs mercury tank) | HUST pair should agree (same source mass) — but they don't; Z must account | Yes |
+| Source-test configuration | Interaction depends on geometric relationship between source and test | Combined geometric factor (aspect ratio, solid angle, relative positioning) | G differs based on overall configuration | HUST pair has same configuration → should agree → don't → Z fully accounts | Yes |
+| Gravitational aperture | Analogous to Poynting vector through aperture (MATH-1 case 6) | Effective circular area through which gravitational flux passes between masses | G depends on the effective aperture area at measurement distance | Aperture same for both HUST methods → should agree → don't → Z accounts | Partially — requires modeling |
+
+**HUST constraint:** All four candidates predict that the HUST 2018 pair (same masses, same geometry, same location, two methods) should have the same β · d². They do. The disagreement (6.67484 vs 6.67349) must reside entirely in Z — the method-specific impedance. This is consistent: Z differs between angular acceleration feedback and time-of-swing because the measurement mechanism differs. The HUST pair confirms that Z is a real and significant factor, independent of geometry.
+
+**Protocol:** Do not pre-select a candidate. Sort existing G data by all geometric parameters simultaneously. Test each for correlation. Let the data identify which parameter, if any, correlates. If none correlates, no candidate is supported.
+
+---
+
+## APPENDIX O: OPEN QUESTIONS NOT ADDRESSED
+
+| Question | Why Not Addressed | Prerequisite | Where It Belongs |
+|---|---|---|---|
+| What determines the per-boundary transit correction for light? | Required for Test 5 but not derivable from MATH-1 alone | May require new theoretical work connecting β to photon-boundary interaction | Dedicated theoretical paper; critical blocker for Test 5 |
+| Does confinement have a geometric analog in momentum space? | MATH-1 framework is spatial; momentum-space extension not developed | Mathematical extension of β to non-spatial geometries | Future MATH paper |
+| What is the n-dimensional generalization of β? | MATH-1 Appendix K notes the sequence π/4, π/6, π²/32...; not connected to physical tests | Mathematical analysis of dimensional sequence | Future MATH paper |
+| Does the muon g-2 anomaly decompose under the framework? | Requires identifying the relevant boundary and cross-section for vacuum interactions | Test 0 result (α calibration); understanding of how β applies to loop-level calculations | Future PHYS paper; depends on Test 0 |
+| Are there boundary effects on ℏ, c, or k_B? | PHYS-3 focuses on G; other constants not analyzed for boundary gaps | Independent experimental gap analysis for each constant | Future PHYS papers |
+| Can the Gibbs overshoot constant relate to the per-transit correction? | Gibbs constant ≈ 0.0895; if per-transit correction is very small, Gibbs is too large; possible higher-order relationship | Mathematical analysis of Si(π)/π − 1/2 in terms of β | Future MATH paper; speculative |
+| Does the framework apply to black hole horizons? | Event horizons are geometric (spherical) but involve extreme spacetime curvature | Test 4 result; theoretical extension to strong-field regime | Future PHYS paper |
+| Can existing spacecraft at L1/L2 be repurposed for Test 4? | Engineering question beyond this paper's scope | Assessment of JWST, DSCOVR, Gaia precision capabilities | Engineering feasibility study |
+
+---
+
+## APPENDIX P: SERIES PUBLICATION RECORD
+
+| Paper | Registry | Date | Domain | Status | AI Model | Key Claim |
+|---|---|---|---|---|---|---|
+| PHYS-1 | @HOWL-PHYS-1-2026 | March 2026 | Foundational Physics | Complete | Claude Opus 4.6 | Mass is inertia; soliton boundaries; three anomaly correlations |
+| PHYS-2 | @HOWL-PHYS-2-2026 | March 2026 | Foundational Physics | Complete | Claude 4.5 Sonnet | Constants run; the word "constant" contradicts the data |
+| PHYS-3 | @HOWL-PHYS-3-2026 | March 2026 | Foundational Physics | Complete | Claude 4.5 Sonnet | G never measured outside Earth Hill sphere |
+| MATH-1 | @HOWL-MATH-1-2026 | March 2026 | Mathematics | Complete | Claude Opus 4.6 | β = π/4; nine equations are one; Q = F · β · d² · Z |
+| PHYS-4 | @HOWL-PHYS-4-2026 | March 2026 | Foundational Physics | Complete | Claude Opus 4.6 | Test program; seven tests; kill switch; calibration first |
 
 ---
 
@@ -776,8 +817,8 @@ START
 **Status:** Complete
 **Domain:** Foundational Physics / Measurement Theory
 **Central Question:** Does Q = F · β · d² · Z, proven for geometric cross-sections, apply to coherent pattern boundaries where measurement anomalies are documented?
-**Method:** Classify boundaries by geometry; specify tests ordered by achievability; calibrate against known results before applying to unknown cases
-**Key Structure:** Seven tests ordered from existing-data reanalysis (achievable now) to far-future deep space missions; kill switch at Tests 0-2; each test has specific falsification criterion
+**Method:** Classify boundaries by geometry; specify seven tests ordered by achievability; calibrate against known results before applying to unknown cases; commit to kill switch
+**Key Structure:** Three existing-data tests (achievable now), one numerical analysis test (achievable now), one new-instrument test (achievable), one requiring prior theoretical work (underspecified), one far-future; kill switch at Tests 0-2
 **Foundation:** PHYS-1 (boundaries and anomalies), MATH-1 (geometric invariant), PHYS-3 (G experimental gap)
-**Limitation:** This paper is a test program, not results; calculations are specified but not performed; the connection between geometric cross-sections and physical boundaries is a hypothesis to be tested, not an established result
-**Falsification:** Seven specific criteria plus an overall kill switch
+**Primary Limitation:** The per-boundary transit correction magnitude is unknown; Test 5 (Hubble tension) cannot be executed without it
+**Falsification:** Seven specific criteria plus overall kill switch
