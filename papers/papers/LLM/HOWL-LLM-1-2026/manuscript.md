@@ -712,6 +712,425 @@ Each criterion specifies a concrete test. The paper stands until a specific test
 
 ---
 
+## Appendix A: Architecture Component Summary
+
+### Table A.1 — Three-Layer Architecture
+
+| Layer | Component | Handles | Does Not Handle |
+|---|---|---|---|
+| 1 | Integer Neural Network | Fuzzy comprehension, creative selection, pattern recognition | Knowledge storage, constraint enforcement, state tracking, output generation |
+| 2 | Prolog Knowledge Base | Fact storage, verification, consistency, version filtering, provenance | Pattern matching, ambiguity resolution, creative choice |
+| 3 | Bidirectional Interface | Marshaling facts to LLM context, submitting Terms for verification, retry with rejection reasons | — (connects Layers 1 and 2) |
+
+### Table A.2 — Data Flow Through Layers
+
+| Stage | Direction | Data | Format |
+|---|---|---|---|
+| Training ingestion | Source → KB | Parsed source material | Terms with provenance |
+| Context marshaling | KB → LLM | Relevant facts for current query | Structured Term arrays |
+| Generation | LLM → Interface | Proposed new Terms | Typed Terms |
+| Verification | Interface → KB | Terms submitted for checking | Prolog queries |
+| Acceptance | KB → KB | Verified Terms become facts | Facts with source=llm_inference |
+| Rejection | KB → LLM | Rejection reason + violated rule | Structured explanation |
+| Emission | KB → Output | Verified Terms assembled | Deterministic text |
+
+---
+
+## Appendix B: Weight Mechanics
+
+### Table B.1 — Weight Storage Comparison
+
+| Format | Components | Bits | Bytes | Equality | Deterministic |
+|---|---|---|---|---|---|
+| BF16 | 1 float (sign + exp + mantissa) | 16 | 2 | Epsilon | No |
+| FP32 | 1 float (sign + exp + mantissa) | 32 | 4 | Epsilon | No |
+| FP64 | 1 float (sign + exp + mantissa) | 64 | 8 | Epsilon | No |
+| Integer (this architecture) | i32 value + i16 remainder | 48 | 6 | Binary exact | Yes |
+
+### Table B.2 — Model-Scale RAM Requirements
+
+| Model Size | BF16 | FP32 | Integer (6 bytes) | Training (~5× weights) |
+|---|---|---|---|---|
+| 124M (prototype) | 0.25 GB | 0.50 GB | 0.74 GB | 3.7 GB |
+| 350M | 0.70 GB | 1.40 GB | 2.10 GB | 10.5 GB |
+| 1.3B | 2.6 GB | 5.2 GB | 7.8 GB | 39 GB |
+| 7B | 14 GB | 28 GB | 42 GB | 210 GB |
+
+### Table B.3 — Shell Transition Example
+
+| Step | Gradient | r Before | r After | v Change | State |
+|---|---|---|---|---|---|
+| 1 | +7 | 0 | 7 | 0 | Pressure building |
+| 2 | +5 | 7 | 12 | 0 | Pressure building |
+| 3 | +4 | 12 | 16 | 0 | Accumulating |
+| 4 | +3 | 16 | 19 | 0 | Accumulating |
+| 5 | +8 | 19 | 27 | 0 | Near threshold |
+| 6 | +6 | 27 | 33 | +1 | **Transition** (r resets to 33-T) |
+| 7 | -4 | 33-T | 33-T-4 | 0 | Reverse pressure |
+| 8 | -9 | — | — | 0 | Pressure retreating |
+| 9 | +15 | — | — | 0 | Direction reversed |
+| 10 | +30 | — | — | +1 | **Transition** |
+
+Note: T = threshold (empirical hyperparameter). Table illustrates the mechanics with any threshold. The specific value of T is determined during development.
+
+### Table B.4 — Weight Diagnostics
+
+| v | r | Interpretation | Action |
+|---|---|---|---|
+| 0 | 0 | Dead weight — no value, no pressure | Prune without loss |
+| V | 0 | Stable — converged, no residual pressure | None needed |
+| V | small |r| | Near-converged — minimal residual | Monitor |
+| V | large |r| steady | Under pressure — evidence accumulating toward transition | Training may be incomplete |
+| V | |r| oscillating | Contested — signal direction unstable | May indicate conflicting gradients |
+| V | |r| at threshold-1 | Critical — one more gradient triggers transition | Sensitive to next batch |
+
+### Table B.5 — Convergence Diagnostics
+
+| Metric | Meaning | Converged Value | Measurement |
+|---|---|---|---|
+| Transition rate | % of weights changing v per step | 0% | Count v changes per batch |
+| Mean |r| | Average remainder pressure | < threshold/2 | Average across all weights |
+| Max |r| | Highest pressure in network | < threshold | Single weight check |
+| r variance | Spread of remainder pressure | Low, stable | Variance of r values |
+| r directional bias | Net positive vs negative r | Near zero | Sum of r across layer |
+
+---
+
+## Appendix C: Prolog Knowledge Base
+
+### Table C.1 — Term Types
+
+| TermType | Category | Purpose | Examples |
+|---|---|---|---|
+| atom | General | Literal value | "max", "allocator", "dog" |
+| variable | Logic | Unification variable | X, Target, Result |
+| number | Value | Integer value | 42, -7, 0 |
+| list | Structure | List of terms | [X, Y, Z] |
+| vector2 | Spatial | Integer point | (100, 250) |
+| rectangle | Spatial | Integer region | (0, 0, 800, 600) |
+| entity | Reference | Entity index | entity_5, entity_12 |
+| name | Code | Identifier | max, allocator, buf |
+| kind | Code | Category keyword | fn, struct, noun, verb |
+| type_ref | Code | Type reference | i32, bool, []u8 |
+| keyword | Code | Control keyword | if, while, return, try |
+| operator | Code | Arithmetic/logic | +, -, *, ==, > |
+| predicate | Logic | Predicate name | function, param, returns |
+| rule | Logic | Rule reference | valid_call, type_check |
+| fact | Logic | Fact assertion | function(max, [i32, i32], i32) |
+
+### Table C.2 — Source Types
+
+| Source | Meaning | Default Confidence | Default Verification | Trust (accuracy critical) |
+|---|---|---|---|---|
+| user_prompt | User directly stated | stated | high | high |
+| user_correction | User corrected previous fact | stated | high | high |
+| llm_inference | Neural network inferred | inferred | low | low |
+| prolog_derivation | Logically derived from other facts | derived | depends on inputs | medium |
+| training_corpus | Extracted from training data | inferred | medium | medium |
+| runtime_ingestion | Added from user-provided source | stated | medium-high | medium-high |
+
+### Table C.3 — Confidence Levels
+
+| Level | Meaning | Source Examples | Prolog Priority |
+|---|---|---|---|
+| stated | Directly asserted by authoritative source | User prompt, verified documentation | Highest |
+| inferred | Concluded by pattern matching | LLM output, statistical pattern | Low until verified |
+| derived | Logically derived from other facts | Prolog rule conclusion | Depends on input facts |
+| speculative | Uncertain, needs verification | LLM guess, weak pattern | Lowest |
+
+### Table C.4 — Verification Levels
+
+| Level | Meaning | Examples | Eviction Priority |
+|---|---|---|---|
+| high | Verifiable against source at stored offset | Stdlib function signature at known byte offset | Protected |
+| medium | Reasonable inference from verified sources | Type compatibility derived from verified signatures | Normal |
+| low | Weak evidence or single unverified source | LLM inference from sparse training data | Preferred for eviction |
+| none | No verification possible | Speculative claim with no source | First to evict |
+
+### Table C.5 — Fact Metadata Fields
+
+| Field | Type | Purpose | Example |
+|---|---|---|---|
+| predicate | Text | What this fact asserts | "function", "param", "returns" |
+| args | []Term | Structured arguments | [name("max"), type_ref("i32")] |
+| source | Source (enum i32) | Who/what produced this fact | .training_corpus |
+| timestamp | i32 | When (turn number or absolute) | 1, 2, 47 |
+| confidence | Confidence (enum i32) | How certain | .stated |
+| verification | Verification (enum i32) | Can it be checked | .high |
+| source_id | u64 | Hash of source file | hash("std/math.zig") |
+| offset | u64 | Byte position in source | 4821 |
+| length | u32 | Span of source material | 47 |
+| version | u32 | Source material version | 15 |
+| supersedes | ?u64 | Fact ID this replaces | fact_247 or null |
+| score_l | u8 | Logical validity 0-100 | 90 |
+| score_m | u8 | Mathematical coherence 0-100 | 85 |
+| score_e | u8 | Empirical anchoring 0-100 | 92 |
+| score_u | u8 | Demonstrated utility 0-100 | 99 |
+
+### Table C.6 — KB Operations
+
+| Operation | Input | Output | Side Effect |
+|---|---|---|---|
+| Assert | Fact with provenance | Fact ID | Fact enters KB |
+| Query | Predicate + args + version filter | Matching facts sorted by confidence | None (read-only) |
+| Supersede | New fact + old fact ID | New fact ID | Old fact marked superseded |
+| Contradict | (automatic) | Contradiction report | Flagged for resolution |
+| Evict | LRU threshold | Evicted fact IDs | Facts moved to disk |
+| Restore | Fact ID (on disk) | Restored fact | Fact loaded to RAM |
+
+### Table C.7 — KB vs Context Window vs RAG
+
+| Property | Context Window | RAG | Knowledge Base |
+|---|---|---|---|
+| Structure | Linear token buffer | Text chunks + vector DB | Indexed typed facts |
+| Size | Fixed (4K-128K tokens) | Limited by vector DB | Unbounded (RAM + disk) |
+| Persistence | Per-session only | Persistent store, per-query retrieval | Persistent, accumulating |
+| Metadata | None | None | Full (source, time, confidence, version) |
+| Matching | Attention (float, approximate) | Vector similarity (float, approximate) | Predicate unification (integer, exact) |
+| Consistency | None | None | Prolog contradiction detection |
+| Version filtering | None | None | Hard filter by version |
+| Degradation | Progressive with length | None (but no accumulation) | None |
+| Information loss | Permanent when truncated | None (but retrieval is approximate) | Never (eviction to disk, not deletion) |
+| Provenance | None | None | Full chain to source bytes |
+| Cross-session | Lost | Available but not accumulated | Accumulated, persistent |
+
+---
+
+## Appendix D: Execution Controllers
+
+### Table D.1 — Scales Method Severity Classification
+
+| Scope (% affected) | Severity | System Response |
+|---|---|---|
+| < 5% | Negligible | Tag only, no deep processing |
+| 5-19% | Minor | Process if resources available |
+| 20-49% | Significant | Process with normal priority |
+| 50-79% | Major | Process with high priority |
+| ≥ 80% | Critical | Process immediately |
+
+### Table D.2 — Pseudo-Socratic State Assessment
+
+| Comprehension State | Meaning | Next Action |
+|---|---|---|
+| solid | All prerequisites met, demonstrated understanding | Advance to next step |
+| gap | Missing prerequisite identified | Backfill the prerequisite |
+| confused | Contradictory signals from user | Clarify before proceeding |
+| not_introduced | Topic not yet encountered | Defer until prerequisites solid |
+
+### Table D.3 — Pseudo-Socratic Modes
+
+| Mode | Goal Status | Step Selection | Termination |
+|---|---|---|---|
+| Convergent | Known goal | Decompose into steps, verify each | All steps verified + goal met |
+| Divergent | Open-ended | Evaluate options by utility, take best | Sufficient exploration + satisfactory outcome |
+
+### Table D.4 — Information Locality Trust Hierarchy
+
+| Source | Accuracy Critical | Trust Level | Use For |
+|---|---|---|---|
+| user_prompt | Yes | High | User intent, stated requirements |
+| training_corpus (high verification) | Yes | High | Verified API signatures, documented behavior |
+| prolog_derivation | Yes | Medium | Derived conclusions from verified inputs |
+| llm_inference | Yes | Low | Do not use alone — verify first |
+| llm_inference | No | Acceptable | Fuzzy comprehension, creative selection, brainstorming |
+
+### Table D.5 — Controller Integration
+
+| Controller | Source | Implements | Operates On | Prolog Rule Pattern |
+|---|---|---|---|---|
+| Scales Method | [@HOWL-INFO-2-2026] | Materiality gate | Every claim before processing | material(Claim) :- changes_outcome, scope > 5 |
+| Pseudo-Socratic | [@HOWL-INFO-3-2026] | Sequencing + state tracking | Generation pipeline steps | next(Action, Step) :- state_assessment |
+| Information Locality | [@HOWL-INFO-4-2026] | Trust hierarchy | Every fact retrieval | trust(Fact, Level) :- source + accuracy_criticality |
+| Quadrium | [@HOWL-SOPH-2-2026] | Four-axis evaluation | Every fact in KB | evaluation(Fact, l, m, e, u) |
+
+---
+
+## Appendix E: Quadrium Evaluation
+
+### Table E.1 — Four Axes
+
+| Axis | Measures | Range | Independence |
+|---|---|---|---|
+| L — Logical validity | Internal consistency, non-contradiction, valid derivation | 0-100 (u8) | Does not compensate for M, E, or U |
+| M — Mathematical coherence | Quantities computable, types compatible, arithmetic compiles | 0-100 (u8) | Does not compensate for L, E, or U |
+| E — Empirical anchoring | Traceable to verifiable sources, independent attestation | 0-100 (u8) | Does not compensate for L, M, or U |
+| U — Demonstrated utility | Functional output, code compiles, system works | 0-100 (u8) | Does not compensate for L, M, or E |
+
+### Table E.2 — Failure Mode Taxonomy
+
+| Pattern | L | M | E | U | Name | Example |
+|---|---|---|---|---|---|---|
+| High L+M, Low E+U | High | High | Low | Low | Ivory tower | String theory |
+| High L+E+U, Low M | High | Low | High | High | Utility trap | Standard Model at 19 insertion points |
+| High E, Low L+M | Low | Low | High | Varies | Empiricist trap | Correlation without causation |
+| High L+M, Low E | High | High | Low | Varies | Rationalist trap | Unfalsifiable logical constructions |
+| Low all | Low | Low | Low | Low | Dead framework | Killed by falsification |
+| High all | High | High | High | High | Knowledge | Confirmed, compiled, anchored, working |
+
+### Table E.3 — Quadrium Storage
+
+| Field | Type | Bytes | Total for 4 axes |
+|---|---|---|---|
+| score_l | u8 | 1 | — |
+| score_m | u8 | 1 | — |
+| score_e | u8 | 1 | — |
+| score_u | u8 | 1 | — |
+| **Total** | — | — | **4 bytes per fact** |
+
+---
+
+## Appendix F: Domain Eating
+
+### Table F.1 — Domain Addition Process
+
+| Step | Input | Output | Who/What Does It |
+|---|---|---|---|
+| 1. Obtain source | Domain documentation, source code, text | Raw material | Human or automated retrieval |
+| 2. Write parser | Raw material format specification | Parser producing Terms with provenance | Human developer |
+| 3. Write rules | Domain patterns and constraints | Prolog rules for domain validation | Human domain expert or LLM-assisted |
+| 4. Parse | Raw material + parser | Facts in KB with provenance | Automated |
+| 5. Validate | Ingested facts | Consistency report | Prolog contradiction detection |
+| 6. Live | — | Domain queryable | Immediate |
+
+### Table F.2 — Parser Output by Domain
+
+| Domain | Parser Input | Term Types Used | Provenance |
+|---|---|---|---|
+| Zig source | .zig files | keyword, name, type_ref, operator | File hash + byte offset + Zig version |
+| C headers | .h files | name, type_ref, keyword | File hash + byte offset + library version |
+| English text | .txt/.md files | kind (noun/verb/adj), name, operator | Document hash + position |
+| JSON API docs | .json files | name, type_ref, number | File hash + path + API version |
+| Prolog rules | .pl files | predicate, rule, fact, variable | File hash + line number |
+
+### Table F.3 — Domain Eating vs Fine-Tuning
+
+| Property | Domain Eating (KB) | Fine-Tuning (Float LLM) |
+|---|---|---|
+| Time to add domain | Minutes to hours (parse + validate) | Hours to days (training run) |
+| Compute required | CPU (parsing) | GPU cluster (gradient updates) |
+| Neural network modified | No | Yes |
+| Provenance preserved | Yes (source, offset, version) | No (dissolved into weights) |
+| Version control | Hard filter by version tag | Mixed into weight space |
+| Reversible | Yes (remove facts from KB) | No (weights permanently changed) |
+| Cross-domain queries | Automatic via shared predicates | Requires retraining on combined data |
+| Consistency checking | Prolog contradiction detection | None |
+
+---
+
+## Appendix G: Prototype Specification
+
+### Table G.1 — Model Architecture
+
+| Parameter | Value |
+|---|---|
+| Total parameters | 124M |
+| Layers | 12 |
+| d_model | 768 |
+| Attention heads | 12 |
+| d_head | 64 |
+| d_ff | 3072 |
+| Vocabulary | Term-based (TermType enum + value index) |
+| Weight format | i32 value + i16 remainder (6 bytes) |
+| Accumulator | i64 (forward), i128 (overflow protection) |
+| Activation functions | Integer lookup tables from MATH-2 cache |
+| Normalization | Bit-shift at layer boundaries |
+| Implementation | Zig, zero external dependencies |
+
+### Table G.2 — Knowledge Base for Prototype
+
+| Property | Value |
+|---|---|
+| Source material | Zig standard library |
+| Zig version | 0.14 |
+| Estimated facts | ~50,000 |
+| Fact types | function signatures, type definitions, module structure, error sets |
+| Provenance | File hash + byte offset per fact |
+| Rules | ~200-500 Zig-specific validation rules |
+| Storage estimate | ~50 MB (facts + provenance + indices) |
+
+### Table G.3 — Comparison Baseline
+
+| Property | Integer + Prolog (this architecture) | Float BF16 (baseline) |
+|---|---|---|
+| Weight format | i32 + i16 (6 bytes) | BF16 (2 bytes) |
+| Training arithmetic | Integer only | Float |
+| Knowledge base | Prolog with provenance | None |
+| Tokenization | Term-based (typed) | BPE |
+| Verification | Prolog at every step | None |
+| Deterministic | Yes | No |
+| Context | Persistent KB | Fixed token buffer |
+
+### Table G.4 — Success Criteria Measurement
+
+| Criterion | Metric | Method | Pass Condition |
+|---|---|---|---|
+| 1. Convergence | Training loss | Compare loss curves | Integer ≤ float at same step count |
+| 2. Long-tail accuracy | Rare API completion rate | Test on low-frequency stdlib functions | Integer+Prolog > float baseline |
+| 3. Hallucination reduction | Nonexistent function call rate | Count calls to functions not in stdlib | Integer+Prolog < float baseline |
+| 4. Determinism | Output variance across runs | Run inference 10× on same input | Variance = 0 for integer |
+| 5. Session stability | Output quality at turn N | Evaluate at turn 1, 100, 1000 | No degradation |
+| 6. Domain eating | Accuracy on new library | Add library facts, test completions | Correct without retraining |
+
+### Table G.5 — Falsification Tests
+
+| ID | Claim Tested | Test | Falsified If |
+|---|---|---|---|
+| F1 | Integer training converges | Train 124M model, sweep thresholds | No threshold produces convergence |
+| F2 | Prolog overhead acceptable | Measure generation time with/without Prolog | Prolog makes generation >10× slower |
+| F3 | KB consistency holds at scale | Run 10,000+ turn session, check contradictions | Contradictions appear that wouldn't at turn 100 |
+| F4 | Domain eating faster than fine-tuning | Time both processes on same domain data | Parsing + rules slower than fine-tuning |
+| F5 | Verification reduces hallucination | Compare hallucination rates with/without Prolog | No reduction in hallucination rate |
+| F6 | Term tokenization viable | Compare perplexity: Term-based vs BPE | Term-based worse at same model size |
+
+---
+
+## Appendix H: Implementation File Map
+
+### Table H.1 — Existing Components
+
+| File | Status | Function | Modifications for Integration |
+|---|---|---|---|
+| lib.zig | Working | Weight struct, matmul, forward pass, backward pass, softmax, cross-entropy, weight init, checkpoint I/O, BPE tokenizer | Replace BPE with Term tokenizer. Replace f32 in softmax with MATH-2 lookup. Add Prolog marshaling interface. |
+| tokenize.zig | Working | BPE training on source text | Replace with Term-based parser using Zig's own tokenizer |
+| train.zig | Working | Training loop with shell transition monitoring | Add Prolog fact ingestion. Add KB update after each verified generation. |
+| infer.zig | Working | Autoregressive greedy decoding | Add Prolog verification loop. Add KB query for context. Add retry on rejection. |
+| eval.zig | Working | Generate code, attempt compilation, report pass/fail | Add hallucination detection (calls to nonexistent functions). Add provenance reporting. |
+| prolog.zig | Working (game engine) | Term, Fact, Rule, FactSet, RuleSet, KnowledgeBase | Add provenance fields to Term. Add version filtering. Add contradiction detection. Add LRU eviction. Replace f32 with i32 in number terms. |
+
+### Table H.2 — New Components Required
+
+| Component | Function | Estimated Size | Dependencies |
+|---|---|---|---|
+| term_tokenizer.zig | Parse Zig source to typed Terms with provenance | ~500 lines | Zig std tokenizer, prolog.zig |
+| kb_manager.zig | KB operations: assert, query, supersede, contradict, evict | ~800 lines | prolog.zig |
+| marshaler.zig | Convert KB facts to LLM input format and LLM output to Terms | ~400 lines | prolog.zig, lib.zig |
+| verifier.zig | Prolog verification of LLM-generated Terms against KB | ~600 lines | prolog.zig, kb_manager.zig |
+| pipeline.zig | Alternating LLM↔Prolog generation loop with retry | ~400 lines | All above |
+| scales.zig | Materiality gating (Scales Method) | ~200 lines | prolog.zig |
+| sequencer.zig | Pseudo-Socratic state tracking and step selection | ~400 lines | prolog.zig, kb_manager.zig |
+| math2_cache.zig | MATH-2 integer pair lookup tables for transcendentals | ~300 lines | None (self-contained) |
+
+### Table H.3 — Integration Dependencies
+
+```
+math2_cache.zig ──→ lib.zig (replaces float softmax/GELU)
+                         │
+term_tokenizer.zig ──→ prolog.zig (produces Terms)
+                         │
+                    kb_manager.zig (stores/queries/evicts)
+                         │
+                    marshaler.zig (KB ↔ LLM format conversion)
+                        ╱ ╲
+                  lib.zig   verifier.zig
+                    │           │
+                    └─── pipeline.zig ───┘
+                              │
+                        scales.zig (materiality gate)
+                        sequencer.zig (PS state tracking)
+```
+
+---
+
 **Status:** Architecture specification with working components
 **Implementation:** Zig, zero floats, zero external dependencies
 **Neural network:** i32 weights, i16 remainders, integer matmul, integer backprop
