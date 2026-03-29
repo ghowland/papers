@@ -107,6 +107,7 @@
 | **[[@HOWL-CULT-4-2026]](papers/papers/CULT/HOWL-CULT-4-2026/manuscript.md)** | **What Falsification Actually Requires** | The Structural Consequences of the Standard Science Claims but Does Not Practice. |
 | **[[@HOWL-CULT-5-2026]](papers/papers/CULT/HOWL-CULT-5-2026/manuscript.md)** | **Falsification as Finding** | Why the Error Is the Error and No Replacement Is Required. |
 | **[[@HOWL-CULT-6-2026]](papers/papers/CULT/HOWL-CULT-6-2026/manuscript.md)** | **Immutable and Mortal** | Publications as Timestamps and the Death of Patching. |
+| **[[@HOWL-CULT-7-2026]](papers/papers/CULT/HOWL-CULT-7-2026/manuscript.md)** | **The Five Monkeys Problem** | How Inherited Enforcement Maintains Structural Barriers in Institutional Science. |
 
 ---
 

@@ -1,4 +1,3 @@
-
 # The Five Monkeys Problem
 ## How Inherited Enforcement Maintains Structural Barriers in Institutional Science
 
