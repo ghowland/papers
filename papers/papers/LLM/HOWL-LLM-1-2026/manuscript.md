@@ -1,6 +1,6 @@
-## HOWL-LLM-1: Integer LLM with Prolog Knowledge Base
+# Integer LLM with Prolog Knowledge Base
 
-### Bidirectional Neural-Symbolic Architecture for Provenanced Generation
+## Bidirectional Neural-Symbolic Architecture for Provenanced Generation
 
 **Registry:** [@HOWL-LLM-1-2026]
 
