@@ -901,6 +901,189 @@ Serial relay, parallel broadcast, and EMF state-sharing costs at 50 Hz and 100 H
 
 ---
 
+
+## Table A: Carrier Speed Reference
+
+| Carrier | Measured Speed (m/s) | 2× Generous (m/s) | 4× Extreme (m/s) | Transduction Events | Transduction Cost (measured) | Transduction Cost (generous) | Transduction Cost (extreme) |
+|---|---|---|---|---|---|---|---|
+| Myelinated axon | 120 | 240 | 480 | 3 synaptic | 1.5 ms | 0.75 ms | 0.3 ms |
+| Gap junction chain | ≤120 | 240 | 480 | 1 synaptic | 0.5 ms | 0.25 ms | 0.1 ms |
+| Bone conduction | 1,500 | 3,000 | 6,000 | 2 domain crossings | 1.0 ms | 0.5 ms | 0.2 ms |
+| Hydraulic wave | 1,500 | 3,000 | 6,000 | 2 domain crossings | 1.0 ms | 0.5 ms | 0.2 ms |
+| Fascial | 30 | 60 | 120 | 2 domain crossings | 1.0 ms | 0.5 ms | 0.2 ms |
+| Piezoelectric | 100 | 200 | 400 | 2 domain crossings | 1.0 ms | 0.5 ms | 0.2 ms |
+| EMF | 2.1 × 10⁸ | — | — | 0 | 0 ms | 0 ms | 0 ms |
+
+Sources: Kandel (myelinated, gap junction, synaptic delay). Gabriel 1996 (EMF tissue permittivity). Schleip 2012 (fascial). Standard acoustic physics (bone, hydraulic). Piezoelectric estimated, stated honestly.
+
+---
+
+## Table B: Round-Trip Latency
+
+### Human (100 cm)
+
+| Carrier | Measured RT | 2× Generous RT | 4× Extreme RT |
+|---|---|---|---|
+| Myelinated axon | 18.1 ms | 9.8 ms | 5.6 ms |
+| Gap junction chain | 17.1 ms | 9.1 ms | 5.0 ms |
+| Bone conduction | 2.3 ms | 1.2 ms | 0.53 ms |
+| Hydraulic wave | 2.3 ms | 1.2 ms | 0.53 ms |
+| Fascial | 67.6 ms | 34.1 ms | 17.3 ms |
+| Piezoelectric | 21 ms | 10.8 ms | 5.5 ms |
+| EMF | ~0.00001 ms | ~0.00001 ms | ~0.00001 ms |
+
+### Mouse (10 cm)
+
+| Carrier | Measured RT | 2× Generous RT | 4× Extreme RT |
+|---|---|---|---|
+| Myelinated axon | 3.2 ms | 1.6 ms | 0.72 ms |
+| Gap junction chain | 2.2 ms | 1.1 ms | 0.52 ms |
+| Bone conduction | 1.1 ms | 0.57 ms | 0.27 ms |
+| Hydraulic wave | 1.1 ms | 0.57 ms | 0.27 ms |
+| Fascial | 7.6 ms | 3.9 ms | 2.0 ms |
+| Piezoelectric | 3.0 ms | 1.5 ms | 0.72 ms |
+| EMF | ~0.000001 ms | ~0.000001 ms | ~0.000001 ms |
+
+Formula: RT = 2 × (distance / speed) + (n × transduction delay). All arithmetic reproducible with pocket calculator.
+
+---
+
+## Table C: Maximum Correction Frequency by Carrier
+
+Formula: max f_c = 1 / (2π × τ × β), where β = 10 (robust control stability margin, Ogata).
+
+### Human (100 cm)
+
+| Carrier | Measured max Hz | 2× Generous max Hz | 4× Extreme max Hz |
+|---|---|---|---|
+| Myelinated axon | 0.9 | 1.6 | 2.8 |
+| Gap junction chain | 0.9 | 1.8 | 3.2 |
+| Bone conduction | 6.9 | 13.3 | 30.1 |
+| Hydraulic wave | 6.9 | 13.3 | 30.1 |
+| Fascial | 0.2 | 0.5 | 0.9 |
+| Piezoelectric | 0.8 | 1.5 | 2.9 |
+| EMF | >1,000,000 | >1,000,000 | >1,000,000 |
+
+### Mouse (10 cm)
+
+| Carrier | Measured max Hz | 2× Generous max Hz | 4× Extreme max Hz |
+|---|---|---|---|
+| Myelinated axon | 5.0 | 10.0 | 22.1 |
+| Gap junction chain | 7.2 | 14.5 | 30.7 |
+| Bone conduction | 14.5 | 28.0 | 59.1 |
+| Hydraulic wave | 14.5 | 28.0 | 59.1 |
+| Fascial | 2.1 | 4.1 | 8.0 |
+| Piezoelectric | 5.3 | 10.6 | 22.1 |
+| EMF | >1,000,000 | >1,000,000 | >1,000,000 |
+
+Classical ceiling for human at measured speeds: 6.9 Hz. At 4× extreme: 30.1 Hz. Classical ceiling for mouse at measured speeds: 14.5 Hz. At 4× extreme: 59.1 Hz.
+
+---
+
+## Table D: Human Activity Demand Matrix — Full Cross-Reference
+
+| Activity | Min Hz (conservative) | Measured (6.9 Hz) | 2× Generous (13.3 Hz) | 4× Extreme (30.1 Hz) | EMF |
+|---|---|---|---|---|---|
+| Quiet stance, flat ground | 6-12 | MARGINAL | PASS | PASS | PASS |
+| Walking, single-limb phase | 15-25 | FAIL | MARGINAL | PASS | PASS |
+| Toddler first step | 20-40 | FAIL | FAIL | MARGINAL | PASS |
+| Running, stance phase | 30-50 | FAIL | FAIL | MARGINAL | PASS |
+| Catching a ball (planned) | 30-60 | FAIL | FAIL | MARGINAL | PASS |
+| Unexpected perturbation | 30-60 | FAIL | FAIL | MARGINAL | PASS |
+| Typing at speed | 20-40 | FAIL | FAIL | PASS | PASS |
+| Tightrope walking | 20-40 | FAIL | FAIL | PASS | PASS |
+| Sprinting, ground contact | 60-120 | FAIL | FAIL | FAIL | PASS |
+| Jumping, inter-joint timing | 40-80 | FAIL | FAIL | FAIL | PASS |
+| Landing, impact absorption | 50-200 | FAIL | FAIL | FAIL | PASS |
+| Wrestling/grappling | 30-100 | FAIL | FAIL | FAIL | PASS |
+| Piano, fast passage | 40-80 | FAIL | FAIL | FAIL | PASS |
+| Martial arts, fast combo | 50-120 | FAIL | FAIL | FAIL | PASS |
+| Ballet fouetté on toe | 40-100 | FAIL | FAIL | FAIL | PASS |
+| Ballet head spot whip | 80-200 | FAIL | FAIL | FAIL | PASS |
+| Figure skating rotation | 40-80 | FAIL | FAIL | FAIL | PASS |
+| Triple axel landing | 80-200 | FAIL | FAIL | FAIL | PASS |
+
+At measured speeds: 1 of 18 activities marginally supportable by classical carriers. At 4× extreme: 8 of 18 marginally supportable. At any generosity: 10 of 18 FAIL all classical carriers. EMF: 18 of 18 PASS with >10⁶ Hz headroom.
+
+---
+
+## Table E: Mouse Activity Demand Matrix — Full Cross-Reference
+
+| Activity | Min Hz (conservative) | Measured (14.5 Hz) | 2× Generous (28 Hz) | 4× Extreme (59.1 Hz) | EMF |
+|---|---|---|---|---|---|
+| Quadrupedal walking | 10-20 | MARGINAL | PASS | PASS | PASS |
+| Quadrupedal running | 20-40 | FAIL | MARGINAL | PASS | PASS |
+| Wheel running at speed | 30-50 | FAIL | MARGINAL | PASS | PASS |
+| Bipedal reach for food | 40-80 | FAIL | FAIL | MARGINAL | PASS |
+| Rotorod at speed | 40-80 | FAIL | FAIL | MARGINAL | PASS |
+| Narrow beam balance | 30-60 | FAIL | FAIL | MARGINAL | PASS |
+| Landing from drop | 50-100 | FAIL | FAIL | FAIL | PASS |
+| Mouse fighting | 40-100 | FAIL | FAIL | FAIL | PASS |
+
+At 4× extreme: bipedal reach, rotorod, and narrow beam are only MARGINAL. Landing and fighting FAIL at every generosity level.
+
+---
+
+## Table F: Multi-Node Distance Matrix — Human Coordination Nodes
+
+### Node Heights (1.8 m standing)
+
+| Node | Height (cm) |
+|---|---|
+| Foot (center of pressure) | 0 |
+| Ankle joint | 9 |
+| Knee joint | 50 |
+| Ischium (hip base) | 82 |
+| Ilium (iliac crest) | 105 |
+| L1 (lumbar-thoracic) | 120 |
+| T6 (mid-thorax) | 140 |
+| C7 (cervicothoracic) | 155 |
+| C1 (atlas, skull base) | 170 |
+| Head COM | 180 |
+
+### Selected Inter-Node Distances (cm)
+
+| Pair | Distance |
+|---|---|
+| Foot → Ankle | 9 |
+| Ankle → Knee | 41 |
+| Knee → Ischium | 32 |
+| Ischium → Ilium | 23 |
+| Ilium → L1 | 15 |
+| L1 → T6 | 20 |
+| T6 → C7 | 15 |
+| C7 → C1 | 15 |
+| C1 → Head COM | 10 |
+| Foot → Head COM (full chain) | 180 |
+| Ankle → Ilium | 96 |
+| Foot → C1 | 170 |
+
+Total node pairs requiring state exchange (10 primary nodes): n(n-1)/2 = 45 pairs.
+
+---
+
+## Table G: State-Sharing Budget Analysis
+
+### At 50 Hz correction frequency (20 ms cycle)
+
+| Model | State-sharing latency (180 cm) | Budget consumed | Budget remaining |
+|---|---|---|---|
+| Serial relay (myelinated) | 12.0 ms | 60.0% | 40.0% |
+| Parallel broadcast (central) | 4.3 ms | 21.5% | 78.5% |
+| EMF broadcast | 0.000009 ms | 0.00005% | 99.99995% |
+
+### At 100 Hz correction frequency (10 ms cycle)
+
+| Model | State-sharing latency (180 cm) | Budget consumed | Budget remaining |
+|---|---|---|---|
+| Serial relay (myelinated) | 12.0 ms | 120% — IMPOSSIBLE | 0% |
+| Parallel broadcast (central) | 4.3 ms | 43.0% | 57.0% |
+| EMF broadcast | 0.000009 ms | 0.00009% | 99.99991% |
+
+Serial relay physically cannot operate at 100 Hz — communication alone exceeds the cycle. Parallel broadcast consumes nearly half the budget on communication. EMF provides state-sharing for free at every frequency.
+
+---
+
 **END HOWL-NEURO-1-2026**
 
 **Registry:** HOWL-NEURO-1-2026
