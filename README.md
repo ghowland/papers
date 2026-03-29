@@ -124,3 +124,10 @@
 
 ---
 
+## Music
+*Engineering music, for oneself.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-MUSIC-1-2026]](papers/papers/BODY/HOWL-MUSIC-1-2026/manuscript.md)** | **The Lyric Engine** | A Systematic Method for AI-Assisted Song Construction from Dense Source Material. |
+
