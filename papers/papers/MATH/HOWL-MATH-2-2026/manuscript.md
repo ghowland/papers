@@ -1,4 +1,4 @@
-# Canonical Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision
+# Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision
 ## A Tiered Classification
 
 **Registry:** [@HOWL-MATH-2-2026]
