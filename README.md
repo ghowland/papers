@@ -67,7 +67,7 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Universal Cross-Section Constant Between Circular and Rectilinear Measurement. |
+| **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Cross-Section Invariant Between Circular and Rectilinear Measurement. |
 
 ---
 
