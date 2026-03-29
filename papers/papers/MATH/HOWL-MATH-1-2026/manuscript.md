@@ -518,6 +518,167 @@ Each criterion is specific, testable, and stated before the evidence is examined
 
 ---
 
+## APPENDIX E: HISTORICAL INSTANCES OF β — UNRECOGNIZED BOUNDARY TRANSIT
+
+| Year | Mathematician/Physicist | Result | β Appearance | Institution's Classification | Boundary Transit Structure |
+|---|---|---|---|---|---|
+| ~250 BC | Archimedes | Circle area = πr² = πd²/4 | β · d² | Geometric formula | Exterior grid measurement d² corrected by β to interior circle area |
+| ~250 BC | Archimedes | Method of exhaustion — polygons approaching circle | Exterior approximation converges, never equals | Limiting process | Staircase approaches boundary from exterior frame, converges to β · d² |
+| 1674 | Leibniz | 1 - 1/3 + 1/5 - 1/7 + ... = π/4 | Σ = β | Infinite series identity | Discrete arithmetic converges to boundary transit constant directly |
+| 1733 | Buffon | Needle probability = 2/(πL) | P ∝ 1/β | Geometric probability | Smooth object measured by discrete grid, inverted transit |
+| 1807 | Fourier | Square wave coefficients = 4/π | 1/β | Harmonic analysis | Rectilinear signal measured by circular basis, inverted transit |
+| 1848 | Gibbs (published 1899) | ~9% overshoot at discontinuities | Boundary artifact | Convergence failure | Circular frame cannot represent rectilinear discontinuity, overshoot is transit cost at maximum frame incompatibility |
+| 1882 | Lindemann | π is transcendental | β is irreducible | Number theory | No finite algebraic operation crosses the soliton boundary — mathematical proof of boundary irreducibility |
+| 1738 | Bernoulli / Euler | Orifice flow coefficient ≈ 0.61 | β² | Empirical hydraulic constant | Two boundary transits — geometric orifice plus fluid coherence — compound to β² |
+
+---
+
+## APPENDIX F: π/4 IN PHYSICAL CONSTANTS AND STANDARD FORMULAS
+
+| Formula | Standard Form | β-Decomposed Form | Physical Substrate | Transit Description |
+|---|---|---|---|---|
+| Circle area | A = πr² | A = β · d² | Pure geometry | Grid measures circle |
+| Sphere volume | V = πd³/6 = (π/4) · (2d³/3) | V = β · V_cylinder_factor | 3D geometry | Cubic grid measures sphere |
+| Cylinder volume | V = πd²h/4 | V = β · d² · h | 3D geometry | Grid cross-section times height |
+| Circular cross-section flow | Q = vπd²/4 | Q = v · β · d² | Fluid mechanics | Flow transits circular boundary |
+| Hagen-Poiseuille | Q = πd⁴ΔP/(128μL) | Q = β · d² · (d²ΔP/32μL) | Viscous pipe flow | Flow transits circular boundary against viscous impedance |
+| Torricelli through circular orifice | Q = C_d · πd²/4 · √(2gh) | Q = C_d · β · d² · √(2gh) | Gravitational discharge | Fluid transits orifice boundary under gravity |
+| Drag force | F = C_d · ½ρv² · πd²/4 | F = C_d · ½ρv² · β · d² | External aerodynamics | Flow encounters spherical boundary |
+| Stokes drag (sphere) | F = 3πμvd = rearranges with β in derivation | Derivation contains β · d² in intermediate steps | Creeping flow | Viscous flow transits sphere boundary at low Reynolds |
+| Capacitance (circular plates) | C = ε₀πd²/(4t) | C = ε₀β · d²/t | Electrostatics | Circuit frame measures circular field region |
+| Magnetic flux through circular loop | Φ = B · πd²/4 | Φ = B · β · d² | Electromagnetism | Linear field measurement through circular geometry |
+| Circular waveguide cutoff | f_c = 1.841c/(πd) | f_c ∝ 1/(β · d) · constant | Microwave engineering | Wave transits circular waveguide boundary |
+| Antenna gain | G = η · (πD/λ)² = η · (4β · D/λ)² ... | Contains β in aperture-to-gain conversion | RF engineering | Radiation transits circular aperture |
+| Gaussian beam divergence | θ = 4λ/(πd) = (4/π) · λ/d | θ = (1/β) · λ/d | Laser optics | Beam divergence from circular aperture, inverted transit |
+| Airy disk diameter | d_Airy = 2.44λ/D with π in derivation | Derivation integrates across circular aperture with β | Wave optics | Diffraction through circular boundary |
+| Blackbody exitance | M = εσT⁴ (with π/4 in hemispheric integration) | Hemispheric → planar transit contains β | Thermal physics | Spherical emission measured by planar detector |
+| Solid angle of cone | Ω = 2π(1-cosθ), full hemisphere = 2π → flux factor π | Flux through hemisphere contains β factor | Radiometry | Spherical emission projected to planar measurement |
+
+---
+
+## APPENDIX G: FOURIER TRANSFORMS AND β DIRECTIONALITY
+
+| Transform Pair | Forward Direction | Inverse Direction | β Appearance | Transit Structure |
+|---|---|---|---|---|
+| Square wave → Fourier series | Time (rectilinear) → Frequency (circular) | Frequency → Time | Coefficients = 4/π = 1/β | Circular basis measures rectilinear signal |
+| Sinc function ↔ Rectangle | Smooth sinc → Sharp rectangle | Sharp → Smooth | Width relationships carry β | Smooth-to-discrete and discrete-to-smooth transit |
+| Gaussian ↔ Gaussian | Smooth → Smooth | Smooth → Smooth | √(2π) normalization | Both sides smooth — symmetric transit, β distributed equally |
+| Dirac comb ↔ Dirac comb | Discrete → Discrete | Discrete → Discrete | 2π/T scaling | Both sides discrete — no frame crossing, scaling only |
+| Continuous Fourier transform | f(t) → F(ω) | F(ω) → f(t) | 1/(2π) or 1/√(2π) | Full circular measure in normalization |
+| Discrete Fourier transform | x[n] → X[k] | X[k] → x[n] | 1/N | Discrete-to-discrete — no β, replaced by 1/N counting |
+
+**Structural observations:**
+
+When both domains share the same frame type (both smooth or both discrete), β does not appear as a correction. The Gaussian transforms to a Gaussian — smooth to smooth. The Dirac comb transforms to a Dirac comb — discrete to discrete. No frame boundary is crossed. No transit constant is needed.
+
+When the domains differ in frame type — rectilinear signal to circular basis, or discrete samples to continuous spectrum — the transit constant appears. The magnitude and direction correspond to the frame relationship.
+
+The Discrete Fourier Transform replaces β with 1/N because both sides are discrete. No soliton boundary is crossed. The normalization is counting, not transit correction. This is a negative confirmation: where no boundary exists, β is absent.
+
+---
+
+## APPENDIX H: THE STAIRCASE PROBLEM — COMPLETE STRUCTURAL ANALYSIS
+
+| Property | Interior Measurement | Exterior Measurement | Ratio |
+|---|---|---|---|
+| Circumference | πd ≈ 3.14159d | 4d | π/4 = β |
+| Area | πd²/4 ≈ 0.7854d² | d² | π/4 = β |
+| Measurement instrument | String conforming to curve (shares frame) | Right-angle grid (does not share frame) | — |
+| Refinement behavior | Fixed value at all resolutions | Fixed value at all resolutions | — |
+| Convergence | Not applicable — value is exact | Not applicable — value is exact | — |
+| Institution's interpretation | "True" value | Curiosity / counterexample | — |
+| Boundary interpretation | Correct interior reading | Correct exterior reading | Both correct in their respective frames |
+
+| Staircase Refinement | Number of Steps | Step Size | Total Path Length | Approaches Interior Value? |
+|---|---|---|---|---|
+| Coarse | 4 | d/4 per axis | 4d | No |
+| Medium | 40 | d/40 per axis | 4d | No |
+| Fine | 400 | d/400 per axis | 4d | No |
+| Very fine | 4000 | d/4000 per axis | 4d | No |
+| Infinite limit | ∞ | → 0 | 4d | No — converges to exterior value |
+
+The staircase path length is invariant under refinement. This is not a failure of convergence. It is the correct exterior frame measurement. The exterior measurement is 4d at every resolution because the exterior frame is self-consistent. Refining the grid does not change the frame. It refines within the frame. The boundary between frames is not crossed by refinement.
+
+---
+
+## APPENDIX I: CANDIDATE THREE-BOUNDARY SYSTEMS FOR β³ TESTING
+
+| System | Boundary 1 | Boundary 2 | Boundary 3 | Predicted Coefficient | Measurable Quantity |
+|---|---|---|---|---|---|
+| Flow through orifice in thick-walled pipe | Pipe circular cross-section | Orifice geometric contraction | Fluid vena contracta | β³ ≈ 0.485 | Discharge coefficient for thick-walled orifice should be lower than thin-walled C_d ≈ β² |
+| Radiation through circular aperture in thick conductor | Aperture geometric boundary | Waveguide attenuation in conductor thickness | Re-radiation at exit face | β³ ≈ 0.485 | Transmission coefficient for thick circular apertures |
+| Triply-nested capacitor | Outer plate boundary | Dielectric-conductor boundary | Inner plate boundary | β³ ≈ 0.485 | Effective capacitance ratio versus ideal |
+| Gaussian beam through circular aperture into circular detector | Beam cross-section | Aperture transit | Detector acceptance | β³ ≈ 0.485 | Total optical throughput efficiency |
+| Three-stage orifice cascade | Orifice 1 | Orifice 2 | Orifice 3 | β³ ≈ 0.485 for geometric component | Cascaded pressure drop coefficient |
+
+**Note:** Each candidate system involves three distinct circular soliton boundary crossings. The predicted coefficient β³ ≈ 0.485 applies to the geometric component only. Additional Z-type impedances (friction, viscosity, material effects) will modify the total coefficient. The test is whether the geometric component isolates to β³ after Z corrections are applied.
+
+---
+
+## APPENDIX J: DIRECTIONAL VERIFICATION CHECKLIST
+
+| Equation | Contains π/4 or 4/π? | Predicted Direction | What Measures | What Is Measured | Directional Match? |
+|---|---|---|---|---|---|
+| Circle area πd²/4 | π/4 = β | Grid → Circle | Rectilinear grid | Circular interior | Yes |
+| Pipe flow vπd²/4 | π/4 = β | Grid → Circle | External flow frame | Circular pipe interior | Yes |
+| Drag C_d · ½ρv² · πd²/4 | π/4 = β | Grid → Circle | Rectilinear flow | Spherical cross-section | Yes |
+| Capacitance ε₀πd²/(4t) | π/4 = β | Grid → Circle | Linear circuit | Circular field region | Yes |
+| Fourier square wave coeff 4/π | 4/π = 1/β | Circle → Grid | Circular sinusoidal basis | Rectilinear square wave | Yes |
+| Buffon P = 2/(πd) | Structure contains 1/β | Circle → Grid | Smooth needle orientation | Discrete line grid | Yes |
+| Gaussian beam divergence 4λ/(πd) | 4/π = 1/β | Circle → Grid | Circular beam aperture | Rectilinear far-field angle | Yes |
+| Leibniz series = π/4 | π/4 = β | Grid → Circle | Discrete integer arithmetic | Smooth circular value | Yes |
+
+All verified instances match the directional prediction. No counterexamples found in this survey. The checklist is extensible to any equation containing π/4 or 4/π.
+
+---
+
+## APPENDIX K: ISOMORPHISM MAP — TWELVE DOMAINS, ONE STRUCTURE
+
+| Structural Element | Geometry | Pipe Flow | Drag | Orifice | Capacitor | Poynting | Antenna | Beam Optics | Thermal | Buffon | Leibniz | Fourier |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| What transits (Q) | Area | Volume/time | Force | Volume/time | Charge/time | Power | Power | Power | Power | Probability | Sum | Coefficient |
+| What drives (F) | — | Velocity | ½ρv² | √(2ΔP/ρ) | Voltage | Flux S | Intensity | Intensity | σT⁴ | Geometry | — | — |
+| Boundary size (d²) | d² | d² | d² | d² | d² | d² | D² | d² | d² | L·d | — | — |
+| Transit constant | β | β | β | β | β | β | β | β | β | 1/β | β | 1/β |
+| Impedance (Z) | 1 | Friction | C_d | C_d ≈ β² | ε₀/t | 1 | η | 1/M² | ε | 1 | Rate | 1 |
+| Institution's name for β·d² | "Area" | "Cross-section" | "Reference area" | "Orifice area" | "Plate area" | "Aperture area" | "Effective aperture" | "Beam area" | "Surface area" | "Crossing probability" | "Series value" | "Normalization" |
+| Department | Mathematics | Mechanical Eng. | Aerospace Eng. | Chemical Eng. | Electrical Eng. | Physics | RF Engineering | Optics | Thermal Eng. | Statistics | Number Theory | Signal Processing |
+| Typical journal | — | J. Fluid Mech. | AIAA J. | AIChE J. | IEEE Trans. | Phys. Rev. | IEEE AP | Opt. Express | Int. J. Heat Mass | Ann. Prob. | Math. Ann. | IEEE SP |
+
+Twelve departments. Twelve journals. Twelve names for β · d². One operation.
+
+---
+
+## APPENDIX L: WHAT β IS AND IS NOT
+
+| β Is | β Is Not |
+|---|---|
+| The ratio between interior and exterior measurement of circular geometry | A unit conversion factor between compatible systems |
+| Transcendental — cannot be expressed by finite algebraic operations on integers | Irrational merely by coincidence — transcendence has structural meaning |
+| Irreducible — no refinement of exterior measurement changes it | An approximation error that can be corrected by better measurement |
+| Directional — β from grid to circle, 1/β from circle to grid | A scalar — direction matters and determines orientation |
+| A property of the boundary between frames | A property of either frame individually |
+| Already present in every equation involving circular cross-sections | A new mathematical quantity introduced by this paper |
+| Unrecognized as a boundary transit constant | Unmodeled — the value is exact and has been applied for millennia |
+| The geometric specific case of the general soliton boundary transit concept | The universal boundary transit constant for all soliton types |
+| Compounding — βⁿ for n boundary crossings of the same type | Additive — multiple crossings do not sum, they multiply |
+
+---
+
+## APPENDIX M: OPEN QUESTIONS FOR INVESTIGATION
+
+| Question | Method | Expected Outcome if Framework Holds | Falsification Condition |
+|---|---|---|---|
+| Does C_d ≈ β² for sharp-edged orifice hold under precise measurement? | High-precision orifice flow measurement with geometric isolation of fluid inertia effects | C_d geometric component converges to β² = 0.617 | C_d geometric component differs significantly from β² across multiple experimental configurations |
+| Do three-boundary systems produce coefficients near β³? | Measurement of candidate systems in Appendix I | Geometric coefficient component ≈ β³ = 0.485 | No three-boundary system produces a coefficient near β³ |
+| Does Gaussian beam divergence θ = (1/β)λ/d reflect directional transit? | Compare divergence from circular apertures versus rectangular apertures of equal area | Circular apertures show 1/β factor; rectangular apertures show different or no transit factor | Rectangular apertures of equal area produce identical divergence, indicating β is not aperture-geometry-dependent |
+| Are there equations with π/4 that do not involve circular-rectilinear transit? | Systematic survey of physics and engineering equations containing π/4 | All instances involve circular-rectilinear frame relationship | Multiple instances found with no circular-rectilinear frame relationship |
+| Does the Gibbs 9% overshoot relate to β? | Exact value of Gibbs constant is Si(π)/π - 1/2 ≈ 0.0895. Test whether this connects algebraically to β | Relationship between Gibbs constant and β is established | No algebraic or structural connection found |
+| Do non-circular soliton boundaries have characteristic transit constants analogous to β? | Analyze elliptical, triangular, and other cross-section equations for frame-dependent constants | Each geometry has its own characteristic transit constant determined by interior-exterior area ratio | Transit constants do not generalize beyond circular geometry |
+| Does the discrete-continuous interpretation of β produce testable mathematical predictions? | Formal analysis of where real analysis produces convergence versus identity in boundary-adjacent calculations | Specific classes of convergence theorems map to frame boundary structure | No mapping found between convergence behavior and boundary structure |
+
+---
+
 **END HOWL-MATH-1-2026**
 
 **Registry:** [@HOWL-MATH-1-2026]
