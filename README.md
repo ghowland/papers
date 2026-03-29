@@ -35,7 +35,7 @@
 ---
 
 ## Philosophy
-*The definitive test protocol.*
+*Philosophical foundations.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -45,7 +45,7 @@
 ---
 
 ## Neuro
-*The definitive test protocol.*
+*Neuroscience and motor coordination research.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -54,7 +54,7 @@
 ---
 
 ## Body
-*The definitive test protocol.*
+*Physical rehabilitation and nervous system repair.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -63,16 +63,16 @@
 ---
 
 ## Math
-*The definitive test protocol.*
+*Mathematical foundations and geometric theory.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Boundary Transit Constant** | β = π/4 as the Geometric Ratio Between Circular and Rectilinear Frames. |
+| **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Universal Cross-Section Constant Between Circular and Rectilinear Measurement. |
 
 ---
 
 ## Physics
-*The definitive test protocol.*
+*Theoretical physics.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -82,7 +82,7 @@
 ---
 
 ## Discovery
-*The definitive test protocol.*
+*Research methodology and institutional analysis.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -95,7 +95,7 @@
 ---
 
 ## Culture
-*The definitive test protocol.*
+*Scientific culture, epistemology, and institutional critique.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
