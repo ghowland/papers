@@ -6,7 +6,7 @@
 ---
 
 ## Information
-*Direct derivations of fundamental physics from the mathematical foundation.*
+*Frameworks for knowledge management and information theory.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
@@ -19,7 +19,7 @@
 ---
 
 ## Computation
-*The mathematical and physical origin points of the CKS framework. All application papers derive from these.*
+*Systems architecture and secure computing design.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
