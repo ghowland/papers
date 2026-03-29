@@ -62,6 +62,15 @@
 
 ---
 
+## Math
+*The definitive test protocol.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Boundary Transit Constant** | β = π/4 as the Soliton Boundary Signature in Circular Geometry. |
+
+---
+
 ## Physics
 *The definitive test protocol.*
 
