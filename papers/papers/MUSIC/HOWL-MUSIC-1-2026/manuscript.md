@@ -19,11 +19,13 @@
 
 ## I. ABSTRACT
 
-This paper documents a systematic method for transforming dense technical, philosophical, or investigative source material into maximally information-dense songs using LLM collaboration, targeting Suno as the production platform. The method was developed through the production of two albums — Obvious and A Rational World — comprising 24 songs built from a corpus of cross-domain research papers spanning physics, mathematics, neuroscience, epistemology, and institutional analysis.
+This paper documents a systematic method for transforming dense technical, philosophical, or investigative source material into maximally information-dense songs using LLM collaboration, targeting Suno as the production platform. The method was developed through the production of two albums — Obvious and A Rational World — comprising 24 songs built from a corpus of cross-domain research papers spanning physics, mathematics, neuroscience, epistemology, and institutional analysis. The method was subsequently validated through a third album — Culture — comprising 9 songs built from the CULT paper series on institutional analysis.
 
 The method produces songs that operate on two simultaneous layers: a surface layer that functions as a complete song for any listener with zero source context, and a depth layer that compresses the source material's structural payload for informed listeners. Neither layer degrades the other. The method is documented from practice, validated against produced work, and reproducible by any practitioner with source material, an LLM, and access to Suno.
 
-Twenty-eight rules govern the construction. Each rule was derived from a specific failure observed during production — a line that didn't sing, a metaphor that broke, a word that flattened, a pattern that repeated across songs until it became invisible. The rules are the scar tissue of two albums. They prevent the failures that produced them.
+Forty rules govern the construction. The original twenty-eight were derived from the first two albums. Six additional rules were derived from an independent external application by a different LLM instance. Six more were derived from the Culture album production. Each rule was derived from a specific failure observed during production — a line that didn't sing, a metaphor that broke, a word that flattened, a pattern that repeated across songs until it became invisible. The rules are the scar tissue of three albums. They prevent the failures that produced them.
+
+The rule set is open. Every production cycle will generate new failures the current rules don't catch. Each failure becomes a named, testable constraint. A completed song that required no new rules either had a lenient review or operated in a domain close enough to the existing corpus that the current rules already covered its failure modes.
 
 ---
 
@@ -41,11 +43,13 @@ This is not summarization. A summary reduces. A song compresses. The difference:
 
 Every line operates on two layers simultaneously.
 
-**Surface:** A scene, an image, an emotion that any listener receives. A girl watching snow fall. A farrier making a shoe. A grandmother counting bread slices. A baby letting go of a table leg. Each scene is complete and self-contained. The listener needs nothing beyond the scene to receive the song.
+**Surface:** A scene, an image, an emotion that any listener receives. A girl watching snow fall. A farrier making a shoe. A grandmother counting bread slices. A gardener whose tomatoes are refused at the harvest festival. Each scene is complete and self-contained. The listener needs nothing beyond the scene to receive the song.
 
-**Depth:** A specific reference to source material that informed listeners recognize. The snow the kingdom called black is the Fabian institutional capture project. The farrier's shoe that fits despite lacking the guild stamp is the N=1 practitioner whose results exceed institutional outcomes. The grandmother's bread division with zero remainder is VDR arithmetic. The baby's first step at coordination speeds that exceed classical carrier capacity is the NEURO-1 carrier elimination.
+**Depth:** A specific reference to source material that informed listeners recognize. The snow the kingdom called black is the Fabian institutional capture project. The farrier's shoe that fits despite lacking the guild stamp is the N=1 practitioner whose results exceed institutional outcomes. The grandmother's bread division with zero remainder is VDR arithmetic. The gardener's tomatoes refused at the festival are the BODY-1 results dismissed as anecdotal.
 
 Neither layer degrades the other. The surface works without the depth. The depth works without the surface. Both work together for listeners who hold both.
+
+Between surface and depth sits a middle listener — one who does not know the specific source material but recognizes that the song encodes something beyond its literal scene. This listener hears "the men who print have never muddied up a boot" and does not know it refers to the publication filter, but knows it refers to something. They feel weight they cannot fully decode. This middle layer is where the majority of engaged listeners sit.
 
 **The benchmark:** Snow. A fairy tale about a kingdom that told children the snow was black. Surface: a lullaby a father sings to his daughter. Depth: a specific historical account of the Fabian Society's institutional capture strategy and the five monkeys mechanism of inherited enforcement. Zero frame breaks. Zero technical vocabulary. Zero explanation of what the song is "really about." The fairy tale is complete. The institutional analysis is complete. Both occupy the same lyrics simultaneously.
 
@@ -67,109 +71,164 @@ Before writing a single lyric, build a data profile for each source document.
 
 **Key phrases:** Lines from the source that already carry maximum density. "The corpse is the map." "The shoe still fits the same." "Forty-five days and I believed it." These may survive directly into lyrics or may seed the metaphor.
 
-**Rhyme targets:** Domain-specific anchor word pairs drawn from the source material's vocabulary. Stone/alone, arch/march, grain/rain, forge/gorge. These are selected before any line is written. They constrain the song to its domain and prevent drift toward generic rhyme pairs.
+**Rhyme targets:** Domain-specific anchor word pairs drawn from the source material's vocabulary. These are selected before any line is written. They constrain the song to its domain and prevent drift toward generic rhyme pairs.
+
+**Cast:** Who lives in this metaphor. One to three human roles maximum. Name the protagonist, the antagonist or system, the consequence or witness, and any absent character whose gesture carries the inheritance.
+
+**Sensory signature:** The dominant sense that carries the thesis. The ring of the hammer. The silence of the lake. The hum of correct yarn tension. One sense per song, identified before writing.
 
 ### IV.II Metaphor Selection
 
-The metaphor is the song's world. Every word in the song belongs to this world. The metaphor must satisfy four criteria:
+The metaphor is the song's world. Every word in the song belongs to this world. The metaphor must satisfy five criteria:
 
-**Containment.** The metaphor must hold the thesis without stating it. If the thesis is "the institution's validation framework is the wrong category of tool for skill-based interventions," the metaphor must be a world where this structural mismatch is visible without the words "institution," "validation," "framework," "category," or "intervention" ever appearing.
+**Containment.** The metaphor must hold the thesis without stating it.
 
-**Completeness.** The metaphor must be a complete world with enough vocabulary to sustain a full song. A forge has iron, anvil, heat, hammer, shoe, hoof, spark, soot, coal, bellows, tongs. A kitchen has bread, knife, cloth, crust, heel, crumb, flour, palm, steam, plate, bowl. A cathedral has stone, mortar, arch, nave, glass, scaffold, plumb, lantern. If the metaphor's vocabulary runs out before the song does, the metaphor is too thin.
+**Completeness.** The metaphor must be a complete world with enough vocabulary to sustain a full song.
 
-**Sustainability.** The metaphor must hold across verses, chorus, bridge, and outro without breaking frame. If the song must leave the metaphor to make its point, the metaphor does not contain the point. Choose a different metaphor.
+**Sustainability.** The metaphor must hold across verses, chorus, bridge, and outro without breaking frame.
 
-**The test:** Can you write the entire song without ever naming the actual subject? If yes, the metaphor contains the thesis. If no, the metaphor leaks. Leaking metaphors produce songs that are half scene and half lecture. Choose a metaphor that doesn't leak.
+**Accessibility.** The character's world must be recognizable to most listeners without specialized knowledge. A gardener works — everyone has grown something. A ballet dancer doesn't work — most people don't know what a barre is. If the listener needs a glossary to enter the song, choose a different metaphor.
+
+**The test:** Can you write the entire song without ever naming the actual subject? If yes, the metaphor contains the thesis. If no, the metaphor leaks.
+
+Metaphor containment is a trust problem. The temptation to break frame is caused by the songwriter wanting to ensure the listener receives the meaning. The containment test is really a test of whether the practitioner trusts the listener to decompress the signal.
 
 ### IV.III Character Selection
 
-Every song has a character. The character is a person who lives inside the metaphor's world. The character has a vocabulary — their world, their trade, their daily life provide the song's word palette.
+Every song has a character. The character is a person who lives inside the metaphor's world. The character has a vocabulary — their world, their trade, their daily life provide the song's word palette. The character never breaks frame. The character never explains. Their actions carry the thesis.
 
-The grandmother counts with her fingers. The farrier reads the ring of iron. The girl draws snow white in the margins. The railroad man lays track by level and plumb. The builder checks the foundation with a lantern. Each character does what they actually do. Their actions carry the thesis. They never explain.
+### IV.IV Cast Planning
 
-The character's vocabulary is the song's vocabulary. If the character is a farrier, every noun comes from the forge. If the character is a grandmother, every noun comes from the kitchen. If the character is a girl in a fairy tale, every noun comes from the kingdom, the snow, the glass, the page.
+Cast the song like a film. One to three human roles maximum. Every action routes through a human. Plan the cast before writing a single line.
 
-The character never breaks frame. The farrier never says "the institution's credential system is a circular exclusion." The farrier says "the horse don't read the sign, he reads the fit." The same information. The character's language.
+**Protagonist:** The character whose actions carry the thesis.
+
+**Antagonist/System:** The collective or individual whose actions create the problem. Not villains — systems doing what systems do.
+
+**Consequence/Witness:** The person who experiences the result. Optional.
+
+**Absent Character:** The person who matters through absence. Give them one physical gesture specific enough to miss — not "he taught me" but "he held my hand across the cracked weld and smiled."
+
+If there's an animal, Zootopia rules apply: personality and motivation through behavioral choices within actual physical repertoire. A hawk can choose to dive. A hawk can't choose to forgive. The animal keeps its nature.
+
+### IV.V Anchor-First Architecture
+
+This is the single largest quality improvement in the production process. Before writing any lines, build a table for each section:
+
+| Line | Subject | Action | Object | Anchor Word |
+|---|---|---|---|---|
+| 1 | surveyor | walks | ridge | dawn |
+| 2 | father | hatched | washouts | gone |
+
+Select all anchor words from domain vocabulary. Pair them for rhyme. Test each anchor sustained aloud. Test each for multiple simultaneous meanings. Then build lines backward from anchors.
+
+The most important word in every line is pre-selected and the line serves it. This prevents low-token-choice endings where the most important word gets the worst options.
 
 ---
 
 ## V. THE RULES
 
-Twenty-eight rules, each derived from a specific production failure. Organized by scope: word, line, verse, song, agency, pattern, emotion, and structure.
+Forty rules, each derived from a specific production failure.
 
 ### V.I Word-Level
 
-**Rule 1 — Ban-list words.** The following words are banned unless doing irreplaceable domain-specific work as the literal physical object in the scene: room, floor, wall, door, key, lock, building, halls, parameters, window, shade, dispatch, architecture (for non-buildings), complete (as abstract filler).
+**Rule 1 — Ban-list words.** Room, floor, wall, door, key, lock, building, halls, parameters, window, shade, dispatch, architecture (for non-buildings), complete (as filler), bone/marrow (unless literal animal skeleton), chain (unless literal linked metal), settled/resolved. Banned unless doing irreplaceable domain-specific work as the literal physical object in the scene.
 
-The test for exception: the word is the actual physical thing in the scene — glass in Snow is the pane between the girl and the snow. Not a metaphor for transparency. The actual glass. If the word is doing metaphor work for access, barriers, containment, or institutional structure, it is banned regardless of the specific synonym used.
+**Rule 2 — Ban-list concepts.** The ban is on the semantic role, not the string. Barriers/containment, access/entry mechanisms, generic structure, generic emotional authenticity. If you can swap one banned word for another and the line means the same thing, the concept is banned and every synonym goes with it.
 
-**Rule 2 — Ban-list concepts.** The ban is on the semantic role, not the string. Barriers/containment (wall, fence, barrier, obstacle, partition, cage — the concept of "thing that separates inside from outside"). Access/entry (key, lock, gate, threshold, entrance — the concept of "mechanism that grants or denies access"). Generic structure (room, building, foundation-as-metaphor — the concept of "container for activity"). If you can swap one banned word for another and the line means the same thing, the concept is banned and every synonym goes with it.
+**Rule 3 — No generic rhyme pairs.** Night/light, day/away, heart/start, time/rhyme, love/above, fire/desire, rain/pain. Banned unless the word is the literal physical thing in the scene.
 
-**Rule 3 — No generic rhyme pairs.** Night/light, day/away, heart/start, time/rhyme, love/above, fire/desire, rain/pain. These are the default anchors of every song ever generated. They carry zero domain information. Banned unless the word is the literal physical thing in the scene doing irreplaceable work — rain in a farming song about actual rain.
+**Rule 4 — No vague antagonist.** "They" as unspecified opposition. Name the specific character or make it a character.
 
-**Rule 4 — No vague antagonist.** "They" as unspecified institutional opposition. If the song references an opposing force, make it specific (the guild, the kingdom, the neighbors with the chart) or make it a character (the suit with the heavy pen, the inspector with the book).
+**Rule 5 — Name the banana.** Never use "something," "anything," "what had happened." Name the specific thing. Specificity is what makes it real.
 
 ### V.II Line-Level
 
-**Rule 5 — Lines fit in a mouth.** One breath. Short sentences. Fragments. Single sustained words. If the singer runs out of air before the line ends, the line is too long. Read it aloud. If you gasp, rewrite.
+**Rule 6 — Lines fit in a mouth.** One breath. Word ceiling calibrated to tempo: 76 BPM eight words, 100 BPM ten words, 118 BPM twelve words. Ceilings, not targets.
 
-**Rule 6 — Line length variation is musical.** A four-line verse can run long-shorter-shorter-fragment. Or short-short-short-long. Or any pattern that breathes. Equal-length lines are prose. Varying-length lines are music. The variation creates rhythm. The rhythm is the song.
+**Rule 7 — Line length variation is musical.** The variation creates rhythm. Equal-length lines are prose.
 
-**Rule 7 — Every word load-bearing.** If removing any single word doesn't collapse the meaning, that word isn't earning its place. "The suit arrived with a heavy pen and a check that could buy the world again." Drop any word. The meaning collapses. Every word is a plank in a bridge. Pull one and it falls.
+**Rule 8 — Every word load-bearing.** If removing any single word doesn't collapse the meaning, that word isn't earning its place.
 
-**Rule 8 — Scenes not concepts.** Every image is a person doing something somewhere. Not a description of a state. Not a clever abstraction. A person in a place doing a thing, and the thing they do carries the meaning. "A hole inside a bag" is a concept. "She waited at the table while your decimals kept running" is a scene. The listener should see it happening. If they can only think it, convert it to a scene.
+**Rule 9 — Scenes not concepts.** Every image is a person doing something somewhere. This is the load-bearing rule. Check it first on every pass.
+
+**Rule 10 — Lines read as natural speech.** Syntax that happens to rhyme. If the syntax must be inverted to reach the rhyme, the anchor word is wrong. Keep conjunctions — they're how humans tell stories.
 
 ### V.III Verse-Level
 
-**Rule 9 — Four lines per verse.** Not six. Not eight. Four. If a verse needs more than four lines, the extra lines are either redundant or belong in the next verse. The compression happens at the structural level. Every line in a four-line verse is load-bearing because there is no room for anything that isn't.
+**Rule 11 — Four lines per verse.**
 
-**Rule 10 — Rhyme-last architecture.** Pick the anchor words first from the domain vocabulary. These are the rhyme targets. They come from the song's world. Build lines backward from the anchors. The anchor is fixed. The line serves the anchor. Test singability — if the anchor lands on a downbeat naturally, the line works. Test that the anchor is load-bearing — if you can swap it for another rhyme word and the line means the same thing, the anchor isn't carrying enough. AABB or ABAB pattern.
+**Rule 12 — Rhyme-last architecture.** Pick domain anchors first, build backward. Intentional rhyme breaks permitted once per song when absence of resolution mirrors content.
 
-**Rule 11 — Anchor words carry multiple meanings.** The rhyme anchor gets the most musical weight. It should detonate in multiple directions. "Again" meaning yours, meaning repetition, meaning twice — three meanings in one anchor word, all active simultaneously, none interfering. The listener receives whichever meaning their context provides. The anchor that carries one meaning wastes the most valuable position. The anchor that carries three makes that position do triple duty.
+**Rule 13 — Anchor words carry multiple meanings.** The anchor gets maximum musical weight. It should detonate in multiple directions.
+
+**Rule 14 — No furniture verses.** Every verse must contain at least one line that stops a listener on its own.
+
+**Rule 15 — Round numbers are vague.** "Nine mouths" outweighs "many mouths." "Forty-five days" outweighs "weeks and weeks."
 
 ### V.IV Song-Level
 
-**Rule 12 — Songs lie to expose truth.** The song builds an internally consistent metaphor. The metaphor is literally false. There is no kingdom where the snow is called black. There is no farrier whose guild is trying to shut him down. There is no grandmother dividing exactly ten slices for nine mouths. The lie is the vehicle. The listener's recognition of truth through the false frame is the payload. The song that explains is a lecture. The song that lies consistently is a poem. The listener does the last step themselves, and that is why it lands.
+**Rule 16 — Songs lie to expose truth.** Internally consistent false metaphor. The listener does the last step themselves.
 
-**Rule 13 — Complete metaphor containment.** The song never breaks frame. It never names the actual subject. Every word belongs to the metaphor's world. If the song is a forge, the vocabulary is iron, anvil, heat, hammer, shoe, hoof, spark, soot, bellows, tongs. Zero frame breaks. The moment the song says "this represents institutional failure," the metaphor is dead and the song became a lecture.
+**Rule 17 — Complete metaphor containment.** Never break frame. Never name the actual subject.
 
-**Rule 14 — Domain bleed is intentional or absent.** If the character thinks in technical vocabulary — a mathematician, a physicist, a programmer — the bleed characterizes. "No epsilon between us" reveals a character who experiences closeness through mathematical precision. If the character is a grandmother, a farrier, a girl at a window — zero technical vocabulary. The absence of technical language IS their characterization. The CULT songs should have zero domain bleed. Each character lives in their world. The thesis arrives through their world. The listener does the translation.
+**Rule 18 — Domain bleed is intentional or absent.** Characterizes or doesn't exist.
 
-**Rule 15 — Compression to earned length.** 2:30 to 4:00. Every line earns its place or dies. If it can be said in fewer words, say it in fewer words. If it can be cut entirely without losing structural information, cut it. The song that needs seven minutes has five minutes of scaffolding that can come down.
+**Rule 19 — Compression to earned length.** 2:30 to 4:00.
+
+**Rule 20 — Each song has a sensory signature.** One dominant sense carries the thesis. Identify before writing.
 
 ### V.V Agency
 
-**Rule 16 — Objects don't know things.** Tables don't know. Napkins don't answer. Benches don't teach. Objects produce physical signals that living things interpret. The iron rings — the farrier hears. The shaving transmits light — the boy sees. The snow falls white — the girl observes. The signal is real and physical. The interpretation is done by something alive. The test: is the object doing something it physically does (ring, vibrate, transmit, hold weight), or is the songwriter attributing cognition to furniture?
+**Rule 21 — Objects don't know things.** They produce signals, humans interpret. Cast the song like a film to prevent this structurally.
 
-**Rule 17 — Animals do what they actually do.** Horses feel the fit. They don't read it. Birds fly. They don't consult. Spiders guard eggs. They don't calculate. Babies grip and walk. They don't analyze. The verb must match the creature's actual sensory and motor repertoire. The test: would a person who works with this animal every day use this verb? A farrier says "he's moving sound." A farrier never says "the horse read the fit."
+**Rule 22 — Animals do what they actually do.** Zootopia level maximum. Personality through species-appropriate behavior.
 
-**Rule 18 — No projected cognition.** Living things can know, decide, act, feel, refuse, choose. Objects produce signals. Animals produce behaviors. Humans interpret both. Each does what it actually does. When a bird flies without consulting the physics department, the bird's ignorance of the framework IS the point.
+**Rule 23 — No projected cognition.** Each thing does what it actually does.
 
 ### V.VI Pattern
 
-**Rule 19 — No "not X, it's Y."** No "they don't X, they Y." No negation-then-correction as rhetorical device. The contrast should emerge from action and consequence, not from the songwriter announcing the contrast. "I tried to X but got Y." "I went to X but found Y." Motion produces contrast. Declaration describes contrast. Motion beats declaration.
+**Rule 24 — No "not X, it's Y."** Contrast through motion not declaration.
 
-**Rule 20 — No "same X, same Y, different Z."** The comparative structure that diagrams the contrast for the listener. The contrast should be felt through the scene, not diagrammed through parallel construction.
+**Rule 25 — No "same X, same Y, different Z."** Contrast through scene not diagram.
 
-**Rule 21 — No direct address as attack.** "Hey Dr. X, your Y doesn't Z" makes the song about the songwriter's anger rather than about the structural observation. The anger is valid — the five monkeys beat people and it hurts. But the song that observes the cage moves the listener further than the song that yells at the monkeys.
+**Rule 26 — No direct address as attack.** Observe the cage, don't yell at the monkeys.
 
 ### V.VII Emotion
 
-**Rule 22 — Anger in content, not delivery.** The song can be about monstrous things. The delivery is controlled, precise, human. Snow contains a revolution in a lullaby. The gentler the delivery, the harder the content lands. Screaming produces defensiveness. Singing a lullaby about a kingdom that taught children to call white snow black produces recognition. Recognition changes minds. Defensiveness does not.
+**Rule 27 — Anger in content, not delivery.** Gentler delivery, harder landing.
 
-**Rule 23 — The emotional register matches the position.** The songwriter's emotional position determines the song's register. A song written from inside the ToE trap sounds like rage and certainty. A song written from the hallways — post-kill, post-methodology, post-findings — sounds like calm observation, earned authority, generous understanding, and open invitation. The CULT songs are written from the hallways. Not requesting entry. Not attacking the institution. Standing in forfeited territory, describing what's visible, inviting others to come look.
+**Rule 28 — The emotional register matches the position.** Written from the hallways, not the gate.
 
-**Rule 24 — Repetition is rotation.** When a phrase repeats across a song, each instance reveals a different face of the same meaning. The words are the same. The meaning turns. The listener who hears the phrase the fourth time hears something different from the first time, not because the words changed but because the verses between them changed the listener. The repeated phrase is the axis. The song turns around it.
+**Rule 29 — Repetition is rotation.** Same words, different meaning each time.
 
 ### V.VIII Structure
 
-**Rule 25 — The withheld payoff detonates proportionally.** The longer the audience waits for the reveal, the more the reveal must deliver. A song that withholds for four verses and delivers once has underpaid. A song that withholds for four verses and delivers three times with escalating meaning has paid with interest. The wait is a debt. The payoff is repayment.
+**Rule 30 — The withheld payoff detonates proportionally.** Longer wait, bigger delivery.
 
-**Rule 26 — Misdirect then deliver something better.** The listener's brain auto-completes. Let it. The auto-completion creates an expectation. The delivery that breaks the expectation must be superior to what was expected. Not different — better. "I love you" is what they expected. "I see you" is what they needed. The gap between expected and delivered is the space where the song changes the listener.
+**Rule 31 — Misdirect then deliver something better.** Not different — superior.
 
-**Rule 27 — The final delivery breaks the pattern.** Repetition sets a pattern. The listener's ear locks in. The final instance breaks the pattern — extends, compresses, adds, sustains, silences. The break says: this one is different. This one matters. "I see you. I see you. I see you... exactly you." Two heartbeats. Then the heart that doesn't stop.
+**Rule 32 — The final delivery breaks the pattern.** One-word changes carry maximum weight.
 
-**Rule 28 — Trust the scene.** If the scene is specific and true, the meaning is self-evident. Every line that explains what the scene means is a line that doesn't trust the scene. Cut it. The coffee going cold while the family moves through the morning says everything about surviving the journey and arriving home. No line about journeys or arrivals or survival is needed. The cold coffee says it.
+**Rule 33 — Trust the scene.** If specific and true, meaning is self-evident.
+
+### V.IX Production
+
+**Rule 34 — Absent characters need a gesture.** One trade-specific physical action specific enough to miss.
+
+**Rule 35 — Cast the song like a film.** 1-3 human roles, every action through a human.
+
+**Rule 36 — Verbs match the trade.** Specialist character uses specialist verbs. Rebuild the line rather than use a generic verb.
+
+**Rule 37 — Parallel weakness needs a bridge.** Link related observations through a shared image or cut one.
+
+### V.X Craft
+
+**Rule 38 — Ugly words don't sing.** Test every anchor sustained aloud. If it thuds, replace regardless of accuracy.
+
+**Rule 39 — Alternate genders and character types across the album.**
+
+**Rule 40 — The metaphor must be accessible.** No glossary required to enter the song.
 
 ---
 
@@ -177,53 +236,19 @@ The test for exception: the word is the actual physical thing in the scene — g
 
 ### VI.I Style Tags
 
-The style tag is one line containing genre, instrumentation, mood, tempo, and vocal character. Specificity matters.
-
-Not: "Acoustic guitar song, medium tempo, male vocal."
-
-Yes: "Warm Acoustic Folk, fingerpicked nylon guitar, gentle male vocal, lullaby cadence, upright bass, 78 BPM."
-
-Specific instruments over generic descriptions. "Fingerpicked nylon guitar" not "acoustic guitar." "Dirty slide guitar" not "blues guitar." "Weeping cello" not "strings." Each descriptor constrains Suno's generation toward the specific sound the song requires.
-
-BPM is a suggestion Suno approximates. Use it for feel, not precision. 78 BPM says "unhurried, breathing." 128 BPM says "driving, physical, danceable."
-
-Vocal character changes delivery. "Gravel vocal" produces different phrasing than "high tenor energy" which produces different phrasing than "intimate male vocal." The style tag is production direction compressed to one line.
+One line containing genre, instrumentation, mood, tempo, and vocal character. Specific instruments over generic descriptions. BPM for feel, not precision. Vocal character changes delivery.
 
 ### VI.II Line Length as Dynamics Control
 
-Write short, let Suno sing. Suno interprets line length as phrasing guidance.
+Write short, let Suno sing. Short lines get sustained delivery. Long lines get rapid delivery. Emotional peaks should be the sparsest lines.
 
-A short line with few words gets sustained delivery. The singer stretches to fill the musical space. "Exactly you" on its own line becomes a held note because Suno has to fill the bar with two words.
+### VI.III Formatting for Suno
 
-A long line gets rapid delivery. The singer compresses to fit the words in the bar.
-
-One word alone on a line becomes a sustained note or a punched accent.
-
-The songwriter controls dynamics through text density. Dense lines move fast. Sparse lines move slow. Emotional peaks should be the sparsest lines — the fewest words getting the most musical space. The payoff moment should be almost empty so the voice fills what the words leave unsaid.
-
-### VI.III Section Tags
-
-Suno reads structural tags as generation guidance:
-
-- [Intro] — instrumental opening, sets mood
-- [Verse 1], [Verse 2] — narrative sections
-- [Pre-Chorus] — tension building, often shorter lines
-- [Chorus] — the hook, the repeated core
-- [Bridge] — the turn, something changes — key, energy, perspective
-- [Outro] — the exit, often sparser than the body
-- [Instrumental] — no vocals, musical development
-
-The pre-chorus builds tension the chorus releases. The bridge changes something — if the chorus is the thesis, the bridge is the complication or the inversion or the deepening that makes the final chorus hit differently from the first.
+Full sentences, one per line. Double line breaks between sections only. Commas as breath points within lines. Chorus lines are full-length complete statements. No dramatic single-word lines for payoff.
 
 ### VI.IV Take Selection
 
-Suno generates multiple takes per submission. Most are wrong. The songwriter's job shifts from writing to curating.
-
-Cull ruthlessly. Wrong vocal interpretation — the singer sounds angry when the song is tender. Wrong tempo feel — the rhythm drags when it should drive. Wrong emotional register — the delivery is theatrical when it should be intimate. Wrong emphasis — the anchor word lands on a weak beat instead of the downbeat.
-
-Keep rarely. A good take is one where the singer found the song's emotional center without being told. Where the phrasing lands naturally on the breath points the lyrics created. Where the sustained notes fall on the words that should sustain.
-
-If a song needs more than twenty takes to find a good one, the lyrics have a structural problem. The rhythm isn't in the words. The line lengths don't create natural phrasing. The sections don't flow. Go back to the lyrics. Fix the structure. Re-submit.
+Cull ruthlessly. A good take is one where the singer found the song's emotional center without being told. If a song needs more than twenty takes, the lyrics have a structural problem.
 
 ---
 
@@ -231,27 +256,15 @@ If a song needs more than twenty takes to find a good one, the lyrics have a str
 
 ### VII.I The Heartbeat Principle
 
-Energy alternates. Up, down, up, down. No two consecutive tracks at the same energy level. The listener's nervous system follows tempo and genre changes without conscious awareness. The alternation manages the listener's arousal state the way a skilled DJ manages a room — except the destination is stillness, not climax.
-
-High-energy tracks are followed by recovery tracks. Recovery tracks are not filler. They are where the emotional depth lives. The quietest song on the album may carry the heaviest content. Snow — a lullaby at 78 BPM — contains the most devastating institutional critique in the collection. The Bench — gentle fingerpicking at 74 BPM — contains a complete pedagogy. The energy is low. The payload is maximum.
+Energy alternates. No two consecutive tracks at the same energy level. Recovery tracks are where emotional depth lives.
 
 ### VII.II Genre Contrast
 
-Acoustic follows electronic. Warm follows aggressive. Simple follows complex. Every genre choice is made relative to its neighbors, not in isolation.
-
-The jump from 75 BPM gentle folk to 135 BPM aggressive synthwave is felt physically before the listener processes content. The contrast is in the body first, the mind second. The body's response to the tempo change opens the listener to the content change.
-
-Genre pairing reveals emotional function. SynthWave-Bluegrass — tradition meets technology, the genre itself embodies the cross-domain thesis. Disco Pop — the body dances before the mind engages, the thesis arrives through physical joy. Warm Acoustic Folk — nowhere to hide, voice and guitar and truth, intimacy is structural.
+Acoustic follows electronic. Warm follows aggressive. Simple follows complex. Every genre choice is made relative to its neighbors.
 
 ### VII.III Positional Function
 
-Track 1 sets the tone. Accessible, warm, inviting. The listener decides whether to stay.
-
-The center track is either peak energy or the emotional pivot. This is where the album turns — from building to resolving, from questioning to answering, from individual to communal.
-
-The penultimate track gathers. It's communal, inviting, building toward the close. It says: we're almost done, come together for this last part.
-
-The final track is the quietest. The album ends by disappearing. The last thing the listener hears is barely there — a breath, a whisper, the silence after the last note is part of the album. The listener sits in the quiet and processes everything that came before.
+Track 1 sets the tone. The center track is the emotional pivot. The final track is the culmination — quiet exit or triumphant arrival depending on the album's arc.
 
 ---
 
@@ -259,67 +272,69 @@ The final track is the quietest. The album ends by disappearing. The last thing 
 
 ### VIII.I Role Separation
 
-The human provides: source material, emotional direction, metaphor selection, character choice, domain vocabulary, quality judgment, and kill decisions.
+The human provides: source material, emotional direction, metaphor selection, character choice, domain vocabulary, quality judgment, kill decisions. The LLM provides: formalization, rhyme architecture, draft lyrics, rule violation identification, compression suggestions. The human never accepts LLM output uncritically. The LLM never writes the final version.
 
-The LLM provides: formalization, rhyme architecture, draft lyrics, rule violation identification, compression suggestions, alternative phrasings, and structural analysis.
-
-The human never accepts LLM output uncritically. Every line is evaluated against all 28 rules. The LLM's drafts are starting material, not finished product. The LLM's tendency toward ban-list words, negation-correction patterns, projected object agency, and overlong verses is structural — it is what the architecture produces. The rules catch it. The human enforces the rules.
-
-The LLM never writes the final version. It produces drafts the human edits. The last pass is always human. The human ear catches what the rules miss — the line that follows every rule but doesn't sing, the anchor that's technically loaded but emotionally flat, the verse that's compressed to four lines but lost its breath.
+The pull toward banned words is not unique to LLM generation. The banned words are high-frequency metaphor anchors in English itself. The ban list fights English's default metaphor palette, not just transformer-architecture defaults. The human final pass must enforce the ban list too.
 
 ### VIII.II The Draft Cycle
 
-1. **Profile.** Human provides data profile — thesis, concepts, emotional core, images, phrases, rhyme targets.
-
-2. **Specify.** Human specifies character, metaphor, genre, position in album sequence, and any song-specific constraints.
-
-3. **Draft.** LLM produces first draft. This draft will violate rules. That is expected.
-
-4. **Evaluate.** Human evaluates against all rules. Marks ban-list violations. Identifies weak lines. Flags overlong verses. Checks anchor words for multiple meanings. Checks scenes versus concepts. Checks agency violations. Checks pattern violations. Checks compression.
-
-5. **Revise.** LLM produces revised draft incorporating all corrections. New violations may appear as old ones are fixed. That is expected.
-
-6. **Tighten.** Human evaluates again — tighter pass. Compression. Anchor loading. Scene specificity. Line length. Singability. Every line read aloud.
-
-7. **Repeat.** Until every line is load-bearing, every anchor is loaded, every scene is specific, every verse is four lines, and the song is under four minutes.
-
-8. **Final.** Human makes final edits by hand. Adjustments the rules cannot specify — rhythm, breath, the feel of a word in the mouth, the emotional weight of a pause.
+1. **Profile.** Data profile with all fields including cast, sensory signature, anchor table.
+2. **Specify.** Character, metaphor, genre, position, constraints.
+3. **Anchor.** Build anchor-word table. Select from domain. Pair for rhyme. Test sustained. Test for multiple meanings.
+4. **Draft.** LLM produces draft built backward from anchors.
+5. **Evaluate.** Human evaluates against all 40 rules.
+6. **Revise.** LLM incorporates corrections.
+7. **Tighten.** Compression, anchor loading, scene specificity, singability.
+8. **Repeat.** Until every line is load-bearing and the song is under four minutes.
+9. **Final.** Human makes final edits by hand.
 
 ### VIII.III Kill Discipline for Songs
 
-If a song doesn't work after five draft cycles, the metaphor is wrong. Kill it. Start with a different metaphor.
+If a song doesn't work after five draft cycles, the metaphor is wrong. Kill it. Write the kill commitment into the data profile before the first draft with a named backup metaphor. The existence of an alternative makes the kill psychologically possible.
 
-The metaphor was wrong. The rules aren't wrong. A different metaphor will produce a different song. The thesis is the same. The character may change. The world may change. The anchors will change. The new metaphor may contain the thesis where the old one leaked.
-
-Do not patch a broken metaphor. Do not add verses to fix a structural problem. Do not explain what the metaphor failed to carry. Kill it. The song is a tool. When the tool breaks, put it down and pick up a better one. The same kill discipline that applies to theories, papers, and frameworks applies to songs.
+The method generates attachment to characters. By cycle three they are not encoding devices. The practitioner has spent hours with them. This is not a flaw — a practitioner who feels nothing produces a song the listener feels nothing for. But the emotional cost of kill discipline is higher than a purely technical account acknowledges.
 
 ---
 
-## IX. VALIDATION
+## IX. PROCESS LESSONS FROM CULTURE ALBUM PRODUCTION
 
-The method has been validated through production of two albums.
+**The metaphor selection phase is the most expensive and most valuable.** Track 1 went through three metaphors before finding one that worked. Spend more time here than on any other phase. Kill a metaphor at the planning stage, not at draft three.
 
-**Obvious:** Twelve tracks. Produced using early versions of this method. Contains the benchmark songs — Snow (zero ban-list violations, complete metaphor containment, dual-layer meaning, maximum compression), Flat Track (domain vocabulary from railroad engineering carrying a physics thesis about local measurement frames), Bread (kitchen vocabulary carrying a number theory thesis about remainder preservation), Crank (forge vocabulary carrying an institutional critique about credential exclusion).
+**Object agency is the LLM's strongest gravitational pull.** Every single draft introduced at least one violation. The pull is constant, automatic, and invisible. The cast rule reduces but does not eliminate it. Catch it on every pass. It never stops appearing.
 
-**A Rational World:** Twelve tracks. Produced using refined versions. Contains pre-falsification and post-falsification songs — Rational (the euphoria of the ToE trap captured in real time), Forty-Five Days (the cathedral built and killed), the love-song-to-a-number-system cycle (dual-layer love and mathematics), Closing The Book (the quietest exit, ordinary morning, coffee going cold).
+**The anchor-first method eliminates the most common failure mode.** Before anchor-first planning, drafts had lines that ran long, anchors that were generic, and endings that reached for whatever rhymed. After anchor-first planning, the most important word in every line was pre-selected. This is the single largest quality improvement.
 
-**Snow is the benchmark.** Zero ban-list violations. Complete metaphor containment — fairy tale frame never broken. Dual-layer meaning — Fabian Society historical reference invisible to general listeners, fully active for informed listeners. Maximum compression — the bridge does in six lines what a twelve-page paper does in twelve pages. Emotional inversion earned through structure — father reassures daughter, daughter reassures father. The method is measured against Snow. Every song produced should be evaluated against Snow's standard.
+**The chorus must be singable as a standalone sentence.** "He's right here and he's black." "Strike the join and listen for the ring." "Get er done, the hull is going up." The test: would a person say this to a friend while describing the song?
+
+**"Good enough" is a production standard.** Songs that reached "good enough" share: complete metaphor containment, functional dual layer, stopping lines in every verse, singable chorus hook, no structural rule violations, minor line-level issues a human can fix. The distinction between "needs a rewrite" and "needs a replan" is the most important judgment.
+
+**Each song teaches something the previous songs didn't.** The rule set grew from 28 to 40 across production. Practitioners should expect to extend the rule set with every album.
 
 ---
 
-## X. FALSIFICATION CRITERIA
+## X. VALIDATION
 
-**F1.** If songs produced by this method consistently fail to work as songs for listeners with zero source context — if the surface layer doesn't function independently — the dual-layer principle is not achieved. The method produces encoded messages, not songs.
+**Obvious:** Twelve tracks. Contains Snow (the benchmark), Flat Track, Bread, Crank.
 
-**F2.** If songs produced by this method consistently fail to carry the source material's structural payload for informed listeners — if the depth layer is absent or garbled — the compression method is failing. The method produces generic songs, not compressed references.
+**A Rational World:** Twelve tracks. Contains pre- and post-falsification songs.
 
-**F3.** If the rules produce songs that sound identical regardless of source material — if the constraints eliminate distinctiveness rather than enabling it — the rules are over-constraining. The method produces formula, not songs.
+**Culture:** Nine tracks, one per CULT paper. Rule set grew from 28 to 40.
 
-**F4.** If the method cannot be reproduced by other practitioners with different source material and different domain combinations — if it only works for this specific practitioner with these specific sources — the method is not general. It is personal craft documented as methodology.
+**Independent external application** by a different LLM instance. Bell-founding metaphor for LLM training weights. Three cycles. Six new rules. Complete containment. Partially validates F4.
 
-**F5.** If Suno consistently fails to produce acceptable takes from lyrics written by this method — if the platform cannot interpret the structural guidance — the Suno-specific guidance needs revision for the platform's actual capabilities.
+---
 
-Each criterion is specific, testable, and stated before the method is applied to new material.
+## XI. FALSIFICATION CRITERIA
+
+**F1.** If surface layer consistently fails to function independently, the method produces encoded messages, not songs.
+
+**F2.** If depth layer is consistently absent or garbled, the compression method is failing.
+
+**F3.** If rules eliminate distinctiveness, the method produces formula, not songs.
+
+**F4.** If the method cannot be reproduced by other practitioners, it is personal craft, not methodology. Partially addressed by independent external application.
+
+**F5.** If Suno consistently fails to produce acceptable takes, the platform guidance needs revision.
 
 ---
 
@@ -328,116 +343,105 @@ Each criterion is specific, testable, and stated before the method is applied to
 ### Words
 | Word | Reason | Exception |
 |---|---|---|
-| room | Generic container | Literal physical room doing irreplaceable scene work |
-| floor | Generic surface | Literal ground contact (hoof on ground, baby on carpet) |
-| wall | Barrier concept | Never — use domain-specific separation imagery |
-| door | Access concept | Literal door in a specific scene (boys leaving for school) |
-| key | Access mechanism | Never — the concept of granting/denying access is banned |
+| room | Generic container | Literal physical room in scene |
+| floor | Generic surface | Literal ground contact |
+| wall | Barrier concept | Never |
+| door | Access concept | Literal door in specific scene |
+| key | Access mechanism | Never |
 | lock | Access mechanism | Never |
-| building | Generic structure | Never — name the specific structure |
+| building | Generic structure | Never |
 | halls | Institutional space | Never |
-| parameters | Technical jargon | Only if character is a scientist and bleed is intentional |
-| window | Generic transparency | Once per cycle maximum, must be literal glass in a scene |
-| shade | Generic color substitute | Use the actual color name |
-| dispatch | Institutional process | Never — no human in a scene uses this word |
-| architecture | For non-buildings | Only for actual buildings being built |
-| complete | Abstract filler | Use specific physical state instead |
-| settled/resolved | Institutional closure | Never — show the outcome instead |
-| sign | Overuse risk | One use per song maximum |
+| parameters | Technical jargon | Intentional bleed only |
+| window | Generic transparency | Once per cycle, must be literal |
+| shade | Color substitute | Use actual color name |
+| dispatch | Institutional process | Never |
+| architecture | For non-buildings | Actual buildings only |
+| complete | Abstract filler | Use specific physical state |
+| settled/resolved | Institutional closure | Never |
+| sign | Overuse risk | One per song maximum |
+| bone/marrow | LLM "authentic" | Literal animal skeleton only |
+| chain | LLM connection | Literal linked metal only |
+| something/anything | Vague placeholder | Never — name the banana |
 
 ### Concepts
 | Concept | Includes | Alternative |
 |---|---|---|
-| Barriers/containment | wall, fence, barrier, obstacle, partition, cage | Show the consequence of separation through action |
-| Access/entry | key, lock, gate, threshold, entrance, gateway | Show the person being turned away or walking through |
-| Generic structure | room, building, foundation-as-metaphor | Name the specific place with domain vocabulary |
+| Barriers/containment | wall, fence, barrier, obstacle, partition | Show consequence through action |
+| Access/entry | key, lock, gate, threshold, entrance | Show person turned away or walking through |
+| Generic structure | room, building, foundation-as-metaphor | Name specific place with domain vocabulary |
+| Generic authenticity | "in my bones," "deep inside," "at the core" | Show feeling through physical action |
+| "Always there" abstractions | "the climbing's always there" | Name what's present — wind, yarn, forge heat |
 
 ### Patterns
 | Pattern | Example | Alternative |
 |---|---|---|
 | "Not X, it's Y" | "It's not the stamp, it's the shoe" | "I shaped the shoe, the stamp hung on a nail" |
-| "Same X, same Y, different Z" | "Same thread, same window, different light" | Show the two experiences as separate scenes |
-| "They" as vague antagonist | "They said it was complex" | Name the specific character — the guild, the kingdom, the neighbors |
-| Direct address as attack | "Hey Dr. X, your Y doesn't Z" | Observe the mechanism, don't attack the person |
-
-### Dialogue
-| Test | Action |
-|---|---|
-| Would a real person in this role say this sentence? | If no, rewrite from their actual vocabulary |
-| Does the line sound like institutional jargon in a character's mouth? | Rewrite in the character's register |
+| "Same X, same Y, different Z" | "Same thread, same window, different light" | Show two experiences as separate scenes |
+| "They" as vague antagonist | "They said it was complex" | Name specific character |
+| Direct address as attack | "Hey Dr. X, your Y doesn't Z" | Observe mechanism |
+| Triple pointing | "That's the X, that's the Y, that's the Z" | Pick strongest, cut others |
+| Repeated adjacent anchors | "apart" then "apart" next line | Unique anchor per line |
 
 ---
 
 ## APPENDIX B: COMPLETE RULES LIST
 
 1. Ban-list words
-2. Ban-list concepts — the semantic role is banned, not just the string
-3. No generic rhyme pairs — unless the word is literal and irreplaceable
-4. No vague antagonist "they" — name or characterize the opposing force
-5. Lines fit in a mouth — one breath, read aloud, if you gasp rewrite
-6. Line length variation is musical — the variation creates rhythm
-7. Every word load-bearing — removing any word collapses meaning
-8. Scenes not concepts — person doing something somewhere
-9. Four lines per verse
-10. Rhyme-last architecture — pick domain anchors first, build backward
-11. Anchor words carry multiple simultaneous meanings
-12. Songs lie to expose truth — internally consistent false metaphor
-13. Complete metaphor containment — never break frame, never name the subject
-14. Domain bleed intentional or absent — characterizes or doesn't exist
-15. Compression to earned length — 2:30 to 4:00
-16. Objects don't know things — they produce signals, humans interpret
-17. Animals do what they actually do — verbs match actual repertoire
-18. No projected cognition — each thing does what it actually does
-19. No "not X, it's Y" — contrast through motion not declaration
-20. No "same X, same Y, different Z" — contrast through scene not diagram
-21. No direct address as attack — observe the cage, don't yell at the monkeys
-22. Anger in content, not delivery — gentler delivery, harder landing
-23. Emotional register matches position — written from the hallways, not the gate
-24. Repetition is rotation — same words, different meaning each time
-25. Withheld payoff detonates proportionally — longer wait, bigger delivery
-26. Misdirect then deliver something better — not different, superior
-27. Final delivery breaks the pattern — extends, sustains, silences
-28. Trust the scene — if specific and true, meaning is self-evident
+2. Ban-list concepts — semantic role banned, synonyms carry ban
+3. No generic rhyme pairs
+4. No vague antagonist "they"
+5. Name the banana — no vague placeholders
+6. Lines fit in a mouth — tempo-calibrated ceiling
+7. Line length variation is musical
+8. Every word load-bearing
+9. Scenes not concepts (the load-bearing rule)
+10. Lines read as natural speech
+11. Four lines per verse
+12. Rhyme-last architecture — anchors first, intentional breaks once
+13. Anchor words carry multiple meanings
+14. No furniture verses — every verse has a stopping line
+15. Round numbers are vague
+16. Songs lie to expose truth
+17. Complete metaphor containment
+18. Domain bleed intentional or absent
+19. Compression to earned length (2:30-4:00)
+20. Each song has a sensory signature
+21. Objects don't know things
+22. Animals do what they actually do (Zootopia max)
+23. No projected cognition
+24. No "not X, it's Y"
+25. No "same X, same Y, different Z"
+26. No direct address as attack
+27. Anger in content, not delivery
+28. Emotional register matches position
+29. Repetition is rotation
+30. Withheld payoff detonates proportionally
+31. Misdirect then deliver something better
+32. Final delivery breaks the pattern
+33. Trust the scene
+34. Absent characters need a gesture
+35. Cast the song like a film
+36. Verbs match the trade
+37. Parallel weakness needs a bridge
+38. Ugly words don't sing
+39. Alternate genders and character types
+40. Metaphor must be accessible
 
 ---
 
-## APPENDIX C: SONG BENCHMARKS
+## APPENDIX C: SONG BENCHMARKS — CULTURE ALBUM
 
-### Snow — The Standard
-| Rule | Status | Evidence |
-|---|---|---|
-| Ban-list words | Zero violations | No room, wall, door, key, lock, building |
-| Metaphor containment | Complete | Fairy tale frame never broken, snow/kingdom vocabulary throughout |
-| Dual-layer | Full | Surface: lullaby. Depth: Fabian institutional capture |
-| Compression | Maximum | Bridge compresses twelve-page paper to six lines |
-| Agency | Clean | Girl draws, father whispers, kingdom teaches — all living actions |
-| Patterns | Clean | No negation-correction, no comparative diagrams |
-| Emotion | Anger in content | Revolution delivered as lullaby |
-| Anchors | Loaded | "back" — take back the seeing? the permission? the childhood knowing? |
-
-### Flat Track — Domain Vocabulary
-| Rule | Status | Evidence |
-|---|---|---|
-| Domain vocabulary | Railroad engineering throughout | Ballast, spike, tie, gauge, grade, cant, super-elevation, expansion joints |
-| Character voice | Railroad man | 40 years experience, speaks from practice not theory |
-| Technical accuracy | Every claim correct | Never shimmed for curvature — true. Level reads flat — true. Spec doesn't include it — true |
-| Dual-layer | Full | Surface: work song. Depth: local measurement frames, equivalence principle |
-
-### Bread — Scene Discipline
-| Rule | Status | Evidence |
-|---|---|---|
-| Scene specificity | High | Counts with fingers, tears the last slice into three, sweeps crumbs, eats standing at the sink |
-| Character | Grandmother | 67 years of dividing bread, never heard of VDR, practices it perfectly |
-| Dual-layer | Full | Surface: kitchen love story. Depth: VDR arithmetic, remainder preservation |
-| Objects | Mostly clean | "The table knew" — one violation. The table doesn't know. The grandmother knows. |
-
-### Crank — Metaphor Containment
-| Rule | Status | Evidence |
-|---|---|---|
-| Containment | Near-complete | Forge, guild, stamp, seal, iron, anvil, shoe, horse, hoof throughout |
-| Character | Farrier | Speaks from practice, doesn't attack the guild, makes shoes that fit |
-| Patterns | Some violations | "They don't bend iron anymore, they review the forms" — negation-correction |
-| Anchors | Functional | Fit/lit, dead/head — domain-appropriate |
+| Track | Title | Containment | Chorus Hook | Best Pair |
+|---|---|---|---|---|
+| 1 | Anecdotal | Complete | "Anecdotal, that's the tag they hung beside her crop" | crop/stop |
+| 2 | The Bird | Complete | "The wing never asked the wind its name" | name/became |
+| 3 | The Map | Complete | "Half his ink and none of what he saw" | sell/well |
+| 4 | The Oath | Complete | "Strike the join and listen for the ring" | damp/stamp |
+| 5 | Black Swan | Complete | "He's right here and he's black" | swan/gone |
+| 6 | Graveyard | Complete | "Every grave was haunted but the one against his back" | back/black |
+| 7 | Can't Remember | Complete | "Can't remember why we hit" | old/hold |
+| 8 | Sweater's Thread | Complete | "One thread from the collar to the cuff" | cuff/enough |
+| 9 | Get Er Done | Complete | "Get er done, the hull is going up" | steel/real |
 
 ---
 
@@ -448,115 +452,370 @@ SOURCE: [title and registry]
 CORE THESIS: [one sentence]
 
 KEY CONCEPTS:
-- [concept 1]
-- [concept 2]
-- [concept 3]
-- [up to 8 concepts maximum]
+- [up to 8]
 
 EMOTIONAL CORE: [what the human feels]
 
 KEY IMAGES:
-- [physical, sensory, specific image 1]
-- [physical, sensory, specific image 2]
-- [up to 6 images]
+- [physical, sensory, specific — up to 6]
 
 KEY PHRASES:
-- [dense phrase from source 1]
-- [dense phrase from source 2]
-- [up to 4 phrases]
+- [dense phrases from source — up to 4]
 
 RHYME TARGETS:
-- [domain word] / [domain word]
-- [domain word] / [domain word]
-- [up to 8 pairs]
+- [domain word] / [domain word] — up to 8 pairs
 
 CHARACTER: [who lives in this metaphor]
 METAPHOR: [the world the song inhabits]
+SENSORY SIGNATURE: [dominant sense]
 GENRE: [style tag for Suno]
-POSITION: [track number in sequence, what comes before and after]
-CONSTRAINT: [any song-specific rules — e.g., withhold payoff until bridge]
+POSITION: [track number, neighbors]
+
+CAST:
+- Protagonist: [role, actions]
+- Antagonist/System: [role, actions]
+- Consequence/Witness: [optional]
+- Absent Character: [one gesture]
+
+ANCHOR TABLE:
+| Section | Line | Subject | Action | Object | Anchor |
+|---|---|---|---|---|---|
+
+KILL COMMITMENT: Backup metaphor: [named]
 ```
 
 ---
 
 ## APPENDIX E: GENRE PALETTE
 
-| Genre | Emotional Function | When to Use |
+| Genre | Function | When |
 |---|---|---|
-| Warm Acoustic Folk | Intimacy, trust, nowhere to hide | Tender content, personal stories, the quiet after intensity |
-| Coffeehouse Acoustic | Nostalgic, intellectual, approachable | Opening tracks, reflective content, inviting the listener in |
-| Dark Americana | Gravity, urgency, moral weight | Institutional critique, historical content, the cost of the problem |
-| Roots-Rock Gospel | Conviction, preaching, building to collective response | The standard being stated, the call to practice what's taught |
-| Spoken-Word Blues | Confession, precision, single voice | The hardest truths, the most personal content, the thing said quietly |
-| Post-Rock with Vocals | Cathedral space, slow build, sustained weight | The publications-as-timestamps song, the mortality of ideas |
-| Indie Funk-Rock | Tight energy, call-and-response, building momentum | The mechanism paper, the five monkeys, the thing that builds and builds |
-| Synthwave-Folk Hybrid | Tradition meets future, driving anthem | The invitation, the method paper, the door opening |
-| Orchestral Indie-Rock | Strings and rock, triumphant but grounded | The finale, the specification, the institution being built |
-| Disco Pop | Physical joy, dancing, the body before the mind | The manifesto, the celebration, the party where the thesis is the dance |
-| Blues-Rock | Defiance, grit, slide guitar swagger | The outsider, the practitioner, the shoe that fits without the stamp |
-| Minimalist Folk | Almost silence, the disappearing | The final track, the exit, the breath after everything |
-| SynthWave-Jazz | Complex, dark, odd-meter | The technically dense content, the thing that rewards multiple listens |
-| Downtempo Acoustic | Serene, effortless, breathing | The morning after, the ordinary day, the arrival home |
-| Soft Chamber Folk | Piano, cello, intimate swell | The love song, the reconciliation, the thing that builds from quiet to full |
-| Indie Folk-Pop | Bright, optimistic, mandolin energy | The hopeful content, the beginning, the fresh start |
+| Warm Acoustic Folk | Intimacy, trust | Tender content, quiet after intensity |
+| Coffeehouse Acoustic | Nostalgic, approachable | Opening tracks, reflective |
+| Dark Americana | Gravity, moral weight | Critique, loss, cost |
+| Roots-Rock Gospel | Conviction, congregation | Standard being stated |
+| Sparse Piano Blues | Stillness, deadpan | Simplest thesis, quietest delivery |
+| Post-Rock with Vocals | Slow build, weight | Horror, mortality, slow reveal |
+| Indie Funk-Rock | Tight, building | Mechanisms, things that build |
+| Synthwave-Folk | Tradition meets future | Invitation, anthem |
+| Orchestral Indie-Rock | Triumphant, grounded | Finale, crew arriving |
+| Disco Pop | Physical joy | Manifesto, celebration |
+| Blues-Rock | Defiance, grit | Outsider, practitioner |
+| Minimalist Folk | Almost silence | Exit, disappearing |
 
 ---
 
 ## APPENDIX F: DRAFT CYCLE WORKSHEET
 
+### Cycle 0 — Pre-Draft
+- [ ] Data profile complete with cast, sensory signature, anchor table
+- [ ] Metaphor tested: containment, completeness, sustainability, accessibility
+- [ ] Kill commitment written with named backup
+- [ ] Anchor table built with subject/action/object per line
+- [ ] All anchors domain-sourced, rhyme-paired, sustained-tested, meaning-tested
+- [ ] Cast planned with absent character gesture
+- [ ] Gender/type checked against album
+
 ### Cycle 1 — First Draft
-- [ ] Data profile complete
-- [ ] Character selected
-- [ ] Metaphor selected and tested for containment
-- [ ] Genre and position specified
-- [ ] Rhyme anchors selected from domain vocabulary
-- [ ] LLM produces first draft
-- [ ] Human reads aloud for singability
+- [ ] Draft built backward from anchor table
+- [ ] Read aloud for singability
+- [ ] Formatting: full sentences, commas as breath, no dramatic fragments
 
 ### Cycle 2 — Rule Check
-- [ ] Ban-list words identified and marked
-- [ ] Ban-list concepts identified and marked
-- [ ] Ban-list patterns identified and marked
-- [ ] Object agency violations marked
-- [ ] Animal verb accuracy checked
-- [ ] Line lengths checked — read aloud, mark gasps
-- [ ] Verse lengths checked — four lines or justified
-- [ ] Scenes versus concepts — mark every concept line for conversion
-- [ ] Anchor words checked for multiple meanings
-- [ ] Generic rhyme pairs flagged
+- [ ] Ban-list words, concepts, patterns
+- [ ] Object agency — every action through cast member
+- [ ] Animal verbs — Zootopia maximum
+- [ ] Line length — tempo ceiling, read aloud
+- [ ] Four lines per verse
+- [ ] Scenes not concepts (check first)
+- [ ] Stopping line in every verse
+- [ ] Numbers specific and earned
+- [ ] Absent character gesture present
+- [ ] Anchors sustained aloud — any thud?
+- [ ] Trade verbs accurate
+- [ ] Parallel sections linked
+- [ ] Vague placeholders named
+- [ ] Natural speech syntax
 
 ### Cycle 3 — Compression
-- [ ] Every line tested — does removing this line lose structural information?
-- [ ] Every word tested — does removing this word collapse meaning?
-- [ ] Verses at four lines or justified for exception
-- [ ] Total length under 4:00 at estimated tempo
-- [ ] Emotional peaks on sparsest lines
-- [ ] Payoff lines short enough for Suno to sustain
+- [ ] Every line tested for structural necessity
+- [ ] Every word tested for load-bearing
+- [ ] Under 4:00 at tempo
+- [ ] Peaks on sparsest lines
 
 ### Cycle 4 — Polish
-- [ ] Metaphor containment — zero frame breaks confirmed
-- [ ] Dual-layer check — surface works for zero-context listener
-- [ ] Dual-layer check — depth references traceable by informed listener
-- [ ] Chorus rotation — each instance means something different
-- [ ] Final delivery breaks the pattern
-- [ ] Song read aloud start to finish — flows as one piece
+- [ ] Zero frame breaks
+- [ ] Surface works for zero-context listener
+- [ ] Depth traceable for informed listener
+- [ ] Chorus rotation works
+- [ ] Final delivery breaks pattern
+- [ ] Chorus singable as standalone sentence
 
 ### Cycle 5 — Final
-- [ ] Human final edit — rhythm, breath, feel
-- [ ] Style tag written for Suno
-- [ ] Section tags placed
-- [ ] Song submitted to Suno
-- [ ] Takes culled — keep only takes that found the emotional center
-- [ ] If no good take in 20 attempts — return to lyrics, structural problem exists
+- [ ] Human final edit
+- [ ] Style tag and section tags
+- [ ] Formatting verified
+- [ ] Submitted to Suno, takes culled
+
+---
+
+## APPENDIX G: CULTURE ALBUM PRODUCTION DATA
+
+### Cast Table
+| Track | Protagonist | System | Witness | Absent |
+|---|---|---|---|---|
+| 1 | Gardener (F) | Festival committee | Neighbor | Grandmother |
+| 2 | Hawk (F) | None | None | None |
+| 3 | Surveyor (M) | Men in town | Traveler | Father |
+| 4 | Blacksmith (M) | Guild | Young smith | Master |
+| 5 | Black swan (M) | White flock | Almost-looker | None |
+| 6 | Man from pub (M) | Ghosts/editors | Quiet grave | None |
+| 7 | Monkeys (collective) | Themselves | New monkey | Experimenters |
+| 8 | Knitter (F) | Patched sweater | None | Grandmother |
+| 9 | Builder (M) | Office man | Arriving crew | None |
+
+### Sensory Signature Table
+| Track | Sense | Signature |
+|---|---|---|
+| 1 | Taste/Touch | Tomatoes splitting |
+| 2 | Proprioception | Body adjusting in wind |
+| 3 | Touch | Thumb across hatch marks |
+| 4 | Sound | Ring of hammer on weld |
+| 5 | Sight | Black among white on water |
+| 6 | Fear/Cold | Ghosts rising, shirt soaked |
+| 7 | Pain | Beating, fist, banana out of reach |
+| 8 | Touch | Yarn tension humming |
+| 9 | Heat | Torch lit, hull going up |
+
+### Strongest Anchor Pairs
+| Track | Pair | Why |
+|---|---|---|
+| 1 | crop/stop | Institution stopping what grows |
+| 2 | name/became | Wind unnamed, what bird became |
+| 3 | sell/well | Triple irony — draws too well |
+| 4 | damp/stamp | Forge cooling, certification replacing test |
+| 4 | sworn/worn | Same word, forty years apart |
+| 5 | beak/seek | Fish stolen, she said it dived |
+| 5 | swan/gone | He IS a swan, they say he's gone |
+| 8 | cuff/enough | Endpoint and sufficiency |
+| 8 | snap/wrap | ToE trap and rebuild |
+| 9 | steel/real | Empty yard, first weld |
+
+### Album Sequence
+| Track | Title | Paper | BPM | Genre | Energy |
+|---|---|---|---|---|---|
+| 1 | Anecdotal | CULT-1 | 90 | Coffeehouse Folk | Warm |
+| 2 | The Bird | CULT-2 | 108 | Progressive Folk-Rock | Rising |
+| 3 | The Map | CULT-3 | 92 | Dark Americana | Dark |
+| 4 | The Oath | CULT-4 | 100 | Roots-Rock Gospel | Stomping |
+| 5 | Black Swan | CULT-5 | 76 | Sparse Piano Blues | Still |
+| 6 | Graveyard at Midnight | CULT-6 | 86 | Post-Rock | Swelling |
+| 7 | Can't Remember | CULT-7 | 114 | Indie Funk-Rock | Tight |
+| 8 | The Sweater's Thread | CULT-8 | 108 | Synthwave-Folk | Anthemic |
+| 9 | Get Er Done | CULT-9 | 118 | Orchestral Indie-Rock | Triumphant |
+
+---
+## APPENDIX H: RULE VIOLATION FREQUENCY TABLE — CULTURE PRODUCTION
+
+| Violation Type | Drafts Affected | Most Common Form | Fix |
+|---|---|---|---|
+| Object agency | 9/9 songs, every draft | "The harvest never lies," "the territory gets his ink," "the page ignores" | Route through human in cast. Ask: who is acting? |
+| Lines too long | 8/9 songs | Full paragraphs as single lines, compound clauses | Read aloud, apply tempo ceiling |
+| Verses over four lines | 7/9 songs | Six and eight line verses | Split or cut. If it needs six, two lines are scaffolding |
+| Ban-list words | 6/9 songs | Room, door, floor, chain, building | Domain-specific replacement. Never swap synonym — replace concept |
+| "Not X, it's Y" pattern | 5/9 songs | "They don't bend iron, they review forms" | Convert to motion: "I tried X but found Y" |
+| Generic rhyme anchors | 5/9 songs | Day/away, true/you, right/light | Pre-select anchors from domain vocabulary before writing |
+| Vague placeholders | 4/9 songs | "Something cold," "what had happened" | Name the banana. Drowning, cracking, flooding — the specific thing |
+| Wrong metaphor | 3/9 songs | Ballet (Track 1), committee on shore (Track 5), philosopher gravekeeper (Track 6) | Kill at planning stage. Name backup metaphor before starting |
+| Projected cognition on animals | 2/9 songs | "The horse reads the fit," "branches start to sing" | Match verb to actual repertoire. Ask: would a handler say this? |
+| Frame breaks | 2/9 songs | "Their pages never could" (Track 2), technical vocabulary leaking | Check: can every word belong to the metaphor's world? |
+
+---
+
+## APPENDIX I: METAPHOR SELECTION HISTORY — CULTURE ALBUM
+
+| Track | Attempt 1 | Why Killed | Attempt 2 | Why Killed | Final Metaphor | Why It Worked |
+|---|---|---|---|---|---|---|
+| 1 | Ballet dancer | Too specialized, nobody knows barre/plié/jeté | Common dance | Too thin vocabulary, can't sustain full song | Gardener at harvest festival | Universal (everyone's grown something), rich vocabulary, skill-time maps perfectly |
+| 2 | Bird observed by five people | Song about the observers, not the bird — boring | Bird alone in flight | — | Hawk in flight, takeoff to gone | The bird IS the thesis, single subject, maximum density |
+| 3 | Cartographer and printer | Printer in a shop is boring, cartographer is obscure | — | — | Surveyor who walked the ground vs men in town who never left | Explorer vs desk — the authority gap is visceral |
+| 4 | — | — | — | — | Blacksmith guild oath | Ring of hammer IS falsification, sensory signature built in |
+| 5 | Man finds swan, committee on shore | Static, institutional, people evaluating a finding — boring | Swan among swans, observers on shore | Still diluted by observers | Black swan among white swans | Comedy, physical, the denial IS the thesis, no observers needed |
+| 6 | Gravekeeper as philosopher | Normalized the horror, ghosts aren't a thought experiment | Gravekeeper who understands | Still too calm, the man should be terrified | Man from pub stumbles through haunted graveyard | Fear is real, discovery is accidental, understanding comes through terror |
+| 7 | — | — | — | — | Five monkeys direct | The experiment IS the scene, no metaphor layer needed |
+| 8 | — | — | — | — | Knitter with one continuous thread | Yarn is cross-domain connection, patches are departments, tension is prerequisite |
+| 9 | — | — | — | — | Shipyard crew building | The work is the party, the hull is the institution, F6 lives in the bridge |
+
+---
+
+## APPENDIX J: ANCHOR PAIR QUALITY SCORING
+
+### Scoring Criteria
+| Score | Definition |
+|---|---|
+| 3 | Triple meaning or more, all active, all domain-loaded |
+| 2 | Double meaning, both active, at least one domain-loaded |
+| 1 | Single meaning, domain-loaded |
+| 0 | Generic, no domain weight, replaceable by any rhyming word |
+
+### Culture Album Anchor Scores
+
+| Track | Pair | Score | Meanings |
+|---|---|---|---|
+| 1 | crop/stop | 2 | What she grows / institution halting entry |
+| 1 | grown/sown | 2 | Her results / their approved method |
+| 1 | seed/weed | 3 | Saved seed / unwanted plant / dismissed method |
+| 2 | name/became | 3 | Wind unnamed / what bird became / what no department named |
+| 2 | dawn/gone | 2 | Morning launch / mist gone, bird gone |
+| 3 | sell/well | 3 | Peaks for sale / draws too skillfully / the well of accumulated maps |
+| 3 | boot/resolute | 3 | Clean boots / noble word for desk work / resolute as ironic self-description |
+| 3 | mud/flood | 2 | Traveler's mud / documented spring flood |
+| 4 | ring/swing | 2 | Sound of test / action producing it |
+| 4 | weld/held | 3 | Weld tested / oath held to / join held up for inspection |
+| 4 | damp/stamp | 3 | Forge cooling / certification replacing test / dampened spirit |
+| 4 | sworn/worn | 3 | Oath sworn fresh / same word worn thin / sworn as committed, worn as eroded |
+| 5 | beak/seek | 2 | Physical proximity / excuse for not finding |
+| 5 | swan/gone | 3 | He IS a swan / they say gone / swan-song (the death they wish for his finding) |
+| 5 | black/back | 2 | The color / paddling back to denial |
+| 6 | back/black | 2 | Grave against his back / one that stayed in black earth |
+| 7 | old/hold | 2 | Banana aging / fist as the thing held onto |
+| 8 | cuff/enough | 3 | Physical garment endpoint / sufficiency / handcuff (slant — the institution's restraint) |
+| 8 | snap/wrap | 2 | Yarn breaking (ToE trap) / winding it back (morning after) |
+| 9 | steel/real | 2 | The material / the first thing that was genuine |
+
+---
+
+## APPENDIX K: DRAFT CYCLE COUNT — CULTURE ALBUM
+
+| Track | Planning Cycles | Writing Cycles | Total Cycles | Primary Failure Mode |
+|---|---|---|---|---|
+| 1 Anecdotal | 3 (ballet → dance → gardener) | 4 | 7 | Wrong metaphor, then line length, then object agency |
+| 2 The Bird | 3 (observers → bird alone → hawk flight) | 2 | 5 | Diluted subject, then frame break in outro |
+| 3 The Map | 3 (cartographer → printer → surveyor vs town) | 3 | 6 | Boring antagonist, then parallel unlinking, then line length |
+| 4 The Oath | 2 (first plan → anchor-first replan) | 2 | 4 | Pre-chorus editorializing, then anchor-first method adopted |
+| 5 Black Swan | 3 (man at lake → committee → swans) | 2 | 5 | Static concept, then line length for tempo |
+| 6 Graveyard | 2 (philosopher → terrified man) | 2 | 4 | Normalized horror, then vague placeholders |
+| 7 Can't Remember | 1 | 1 | 2 | Clean first pass — experiment IS the scene |
+| 8 Sweater's Thread | 1 | 1 | 2 | Clean first pass — metaphor held immediately |
+| 9 Get Er Done | 1 | 1 | 2 | Clean first pass — energy carried the structure |
+
+### Observations
+Songs that required the most cycles had wrong metaphors (Tracks 1, 2, 3, 5, 6). Songs that required the fewest had metaphors that contained the thesis immediately (Tracks 7, 8, 9). The correlation is direct: metaphor selection quality predicts total cycle count. Every cycle spent fixing a leaking metaphor is a cycle that could have been spent on a better metaphor. Kill early.
+
+The anchor-first method was adopted at Track 4. Tracks 4-9 averaged 3.2 total cycles. Tracks 1-3 averaged 6.0 total cycles. The method cut cycle count nearly in half. The improvement is partly method and partly learning — later tracks benefited from accumulated rule knowledge. But the anchor-first method's contribution is visible in Track 4 specifically, where the replan from scratch with anchor tables produced a working song in two writing cycles after the first plan without anchors produced an editorializing draft.
+
+---
+
+## APPENDIX L: SUNO FORMATTING REFERENCE
+
+### What Suno Reads
+
+| Element | Suno Interpretation |
+|---|---|
+| [Verse 1] | Narrative section, moderate energy |
+| [Pre-Chorus] | Building tension, slight energy increase |
+| [Chorus] | Hook section, full energy, memorable melody |
+| [Bridge] | Change — key, energy, perspective, texture |
+| [Outro] | Winding down, decreasing energy |
+| [Intro] | Instrumental opening |
+| [Instrumental] | No vocals |
+| Line break | End of sung phrase |
+| Double line break | Section boundary |
+| Comma | Micro-pause, breath point within phrase |
+| Short line (2-4 words) | Sustained delivery, held notes |
+| Long line (8-12 words) | Rapid delivery, compressed phrasing |
+| One word alone | Punched accent or sustained hold |
+
+### What Suno Does NOT Read
+
+| Element | Result |
+|---|---|
+| "Youuuuu" spelling | Unpredictable — may sing normally, may glitch |
+| Stage directions in brackets | May be sung as lyrics |
+| Emotional instructions ("sing softly here") | Ignored or sung as lyrics |
+| Dynamic markings (pp, ff) | Not interpreted |
+| Tempo changes mid-song | Not reliably interpreted |
+
+### Style Tag Construction
+
+**Template:** [Genre], [specific instruments], [vocal character], [mood/energy], [BPM]
+
+**Examples from Culture album:**
+- Coffeehouse Folk, fingerstyle acoustic guitar, light brush percussion, warm male vocal, storytelling cadence, 90 BPM
+- Progressive Folk-Rock, mandolin intro building to full band, layered vocals, ascending energy, 108 BPM
+- Dark Americana, minor key, upright bass driving, sparse fiddle, weathered vocal, revival-tent gravity, 92 BPM
+- Roots-Rock Gospel, Hammond organ, stomping rhythm, building to congregation response, preacher's conviction, 100 BPM
+- Sparse Piano Blues, single piano, long pauses, intimate vocal, confessional, 76 BPM
+- Post-Rock with Vocals, tremolo guitars, slow build from near-silence, cathedral reverb, 86 BPM
+- Indie Funk-Rock, tight rhythm section, staccato guitar, percussive, building momentum, 114 BPM
+- Synthwave-Folk, analog synth bass under acoustic guitar, driving beat, anthemic chorus, voice of invitation, 108 BPM
+- Orchestral Indie-Rock, strings building under rock, anthem structure, choir on final chorus, triumphant but grounded, 118 BPM
+
+---
+
+## APPENDIX M: COMMON LLM FAILURE MODES IN LYRIC GENERATION
+
+| Failure Mode | How It Manifests | Which Rule Catches It | How Often in Culture |
+|---|---|---|---|
+| Object agency | "The harvest never lies," "the page ignores" | Rule 21 + Rule 35 (cast) | Every draft |
+| Spatial metaphor default | Room, wall, door, building as metaphor furniture | Rules 1 + 2 | 6/9 songs |
+| Negation-correction rhetoric | "It's not X, it's Y" as thesis delivery | Rule 24 | 5/9 songs |
+| Generic rhyme pairs | Night/light, day/away, true/you | Rule 3 | 5/9 songs |
+| Paragraph-as-line | 15+ word lines that can't be sung | Rule 6 | 8/9 songs |
+| Concept instead of scene | "Building towers on a shadow" instead of someone doing something | Rule 9 | Every draft |
+| Overlong verses | Six to eight lines where four suffice | Rule 11 | 7/9 songs |
+| Projected cognition | "The horse reads the fit," "branches sing" | Rules 22 + 23 | 2/9 songs |
+| Frame breaking | Technical vocabulary leaking into contained metaphor | Rule 17 | 2/9 songs |
+| Editorializing | Pre-chorus or bridge explaining what the metaphor means | Rule 33 | 3/9 songs |
+| Vague placeholders | "Something cold," "what had happened" | Rule 5 | 4/9 songs |
+| Normalizing emotional content | "He should be afraid" instead of letting the fear be real | Rule 27 + genre awareness | 1/9 songs |
+| Round number placeholders | "A hundred years," "a thousand miles" | Rule 15 | 2/9 songs |
+| Inverted syntax for rhyme | "Upon the hill the shepherd stood" instead of natural speech | Rule 10 | 3/9 songs |
+| Repeated anchor words | Same word ending adjacent lines | Ban-list patterns | 2/9 songs |
+| Triple pointing | "That's the X, that's the Y, that's the Z" | Ban-list patterns | 1/9 songs |
+
+### Failure Mode by Draft Position
+
+| Draft | Most Common Failures |
+|---|---|
+| First draft | Object agency, overlong lines, overlong verses, generic anchors, concept lines |
+| Second draft | New agency violations introduced while fixing old ones, frame breaks at edges (outro especially) |
+| Third draft | Editorializing in bridge/pre-chorus, vague placeholders surviving from earlier drafts |
+| Fourth draft | Minor line-level issues — one ugly anchor, one inverted syntax, one borderline agency |
+| Fifth draft | Either good enough or the metaphor is wrong — replan, don't revise |
+
+---
+
+## APPENDIX N: "GOOD ENOUGH" CHECKLIST
+
+A song is good enough to ship when:
+
+- [ ] Metaphor containment is complete — zero frame breaks
+- [ ] Dual layer functions — surface works for zero-context listener, depth traceable for informed listener
+- [ ] Every verse has at least one stopping line
+- [ ] Chorus is singable as a standalone sentence
+- [ ] No structural rule violations (Rules 1-2, 11, 17, 21-23, 24-26, 35)
+- [ ] Line-level issues are minor and fixable by human in final pass
+- [ ] Emotional register matches the songwriter's position (Rule 28)
+- [ ] The song works as a song — someone would listen to it without knowing the source
+
+A song needs replanning (not rewriting) when:
+
+- [ ] The metaphor leaks — the song must break frame to make its point
+- [ ] The metaphor is inaccessible — the listener needs specialized knowledge to enter
+- [ ] The cast can't carry the thesis — actions don't route through humans
+- [ ] The chorus doesn't hook — no singable standalone sentence emerges after three drafts
+- [ ] The emotional register is wrong — anger instead of observation, attack instead of invitation
+- [ ] Five draft cycles have passed without reaching "good enough"
 
 ---
 
 **END HOWL-MUSIC-1-2026**
 
 **Registry:** [@HOWL-MUSIC-1-2026]
-**Status:** Complete
+**Status:** Complete with Production Addendum
 **Domain:** Applied Methodology / AI-Assisted Creative Production
-**Method:** Documented from practice across two albums (24 songs). Source compression through data profiles, metaphor selection, character selection. Twenty-eight construction rules derived from production failures. Suno-specific guidance for dynamics, structure, and take selection. Album sequencing through the heartbeat principle.
-**Benchmark:** Snow — zero violations, complete containment, dual-layer, maximum compression
-**Validation:** Two albums produced. Method reproducible by any practitioner with source material, an LLM, and Suno access.
-**Falsification:** Five criteria — surface layer must work independently, depth layer must carry payload, rules must not eliminate distinctiveness, method must be reproducible by others, Suno must interpret the structural guidance
+**Method:** Three albums (33 songs). Forty rules from production failures. Anchor-first architecture. Suno-specific formatting and dynamics. Album sequencing through heartbeat principle.
+**Benchmark:** Snow
+**Validation:** Three albums. One independent external application. F4 partially validated.
+**Rule Set:** Open. Forty at current count. Production failures become named constraints.
