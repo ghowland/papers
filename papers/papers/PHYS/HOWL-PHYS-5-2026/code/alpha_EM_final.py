@@ -1,7 +1,7 @@
 """
 The Fine Structure Constant from Integer Arithmetic
 
-Result: 1/alpha_EM = 137.0360025 (CODATA 2022: 137.0359992, error: 0.02 ppm)
+Result: 1/alpha_EM = 137.0360025 (CODATA 2022: 137.035999177, error: 0.02 ppm)
 
 ARCHITECTURE:
   Per-lepton contribution to alpha^{-1} running:
