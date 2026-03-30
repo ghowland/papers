@@ -79,6 +79,7 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-MATH-1-2026]](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Cross-Section Invariant Between Circular and Rectilinear Measurement. |
 | **[[@HOWL-MATH-2-2026]](papers/papers/MATH/HOWL-MATH-2-2026/manuscript.md)** | **Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision** | A Tiered Classification. |
+| **[[@HOWL-MATH-3-2026]](papers/papers/MATH/HOWL-MATH-3-2026/manuscript.md)** | **The Transcendental Hierarchy** | Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary. |
 
 ---
 
@@ -91,6 +92,8 @@
 | **[[@HOWL-PHYS-2-2026]](papers/papers/PHYS/HOWL-PHYS-2-2026/manuscript.md)** | **There Are No Constants** | The Institution's Own Evidence That Fundamental "Constants" Are Scale-Dependent Boundary Readings. |
 | **[[@HOWL-PHYS-3-2026]](papers/papers/PHYS/HOWL-PHYS-3-2026/manuscript.md)** | **G Has Never Been Tested Outside Earth's Soliton Boundary** | The Hill Sphere as the Unrecognized Constraint on Every Direct Measurement of the Gravitational Constant. |
 | **[[@HOWL-PHYS-4-2026]](papers/papers/PHYS/HOWL-PHYS-4-2026/manuscript.md)** | **The Boundary Test Program** | Applying Q = F · β · d² · Z to Coherent Pattern Boundaries Across Scales. |
+| **[[@HOWL-PHYS-5-2026]](papers/papers/PHYS/HOWL-PHYS-5-2026/manuscript.md)** | **The Running of α_EM in Integer Arithmetic** | The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm. |
+| **[[@HOWL-PHYS-6-2026]](papers/papers/PHYS/HOWL-PHYS-6-2026/manuscript.md)** | **The Confinement Boundary in Integer Arithmetic** | The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic. |
 
 ---
 
