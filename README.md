@@ -96,6 +96,7 @@
 | **[[@HOWL-PHYS-6-2026]](papers/papers/PHYS/HOWL-PHYS-6-2026/manuscript.md)** | **The Confinement Boundary in Integer Arithmetic** | The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic. |
 | **[[@HOWL-PHYS-7-2026]](papers/papers/PHYS/HOWL-PHYS-7-2026/manuscript.md)** | **The Strong CP Problem Is Not a Problem** | θ_QCD = 0 as the Ground State of an Integer-Topological System. |
 | **[[@HOWL-PHYS-8-2026]](papers/papers/PHYS/HOWL-PHYS-8-2026/manuscript.md)** | **The Koide Constant Decomposes** | Generation Count and Amplitude in the Charged Lepton Mass Relation. |
+| **[[@HOWL-PHYS-9-2026]](papers/papers/PHYS/HOWL-PHYS-9-2026/manuscript.md)** | **The Electromagnetic Chain in Integer Arithmetic** | One Measurement, Three Transformation Laws, Every Scale. |
 
 ---
 
