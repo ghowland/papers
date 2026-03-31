@@ -81,6 +81,7 @@
 | **[[@HOWL-MATH-2-2026]](papers/papers/MATH/HOWL-MATH-2-2026/manuscript.md)** | **Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision** | A Tiered Classification. |
 | **[[@HOWL-MATH-3-2026]](papers/papers/MATH/HOWL-MATH-3-2026/manuscript.md)** | **The Transcendental Hierarchy** | Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary. |
 | **[[@HOWL-MATH-4-2026]](papers/papers/MATH/HOWL-MATH-4-2026/manuscript.md)** | **The Universal Power-of-Two Basis** | Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision. |
+| **[[@HOWL-MATH-4-2026]](papers/papers/MATH/HOWL-MATH-4-2026/manuscript.md)** | **The Universal Power-of-Two Basis** | Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision. |
 
 ---
 
