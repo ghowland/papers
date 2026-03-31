@@ -1,0 +1,114 @@
+===========================================================================
+HIGH-PRECISION DOWNSTREAM DATA: COMPLETE TABLE
+===========================================================================
+
+TIER 1: MOLECULAR SPECTROSCOPY (10-15 digits)
+
+  System                              Value       Uncert   Unit        Rel
+  -------------------- -------------------- ------------ ------ ----------
+  H 1S-2S                 2.46606141319e+15           10    kHz    4.2e-15
+  H HFS 1S                    1420405751.77        0.001    kHz      7e-13
+  H 2S-2P Lamb                    1057845.0          0.9    kHz       9e-7
+  H2 D0 (N=1)                  35999.582894       2.5e-5   cm-1      7e-10
+  H2 EF-X Q1              2.97123499297e+12           73    kHz    2.5e-11
+  H2 ionization               124357.238062       2.5e-5   cm-1      2e-10
+  D2 D0                         36748.36286      0.00068   cm-1     1.9e-8
+  HD D0                         36405.78366      0.00036   cm-1       1e-8
+  He 23P0-23P2                  31908130.98         0.13    kHz       4e-9
+  He 23P1-23P2                   2291177.56         0.19    kHz       8e-8
+  H2O ortho E0                  23.79436122       2.5e-7   cm-1       1e-8
+  CO v=1 6um                     51424890.9          0.1    MHz       2e-9
+
+DIMENSIONLESS RATIOS (molecular spectroscopy):
+
+  D0(H2)/D0(D2)   = 0.9796241272 (10 digits)
+  D0(H2)/D0(HD)   = 0.9888424111 (10 digits)
+  D0(HD)/D0(D2)   = 0.9906777017 (8 digits)
+  He FS ratio      = 13.92652038 (7 digits)
+  f(1S-2S)/HFS(1S) = 1736.166874 (6 digits)
+  E_I(H2)/R_∞     = 1.1332265355 (10 digits)
+
+PSLQ ON MOLECULAR RATIOS:
+
+  D0(H2)/D0(D2)        maxcoeff=1000: null
+  D0(H2)/D0(HD)        maxcoeff=1000: null
+  E_I(H2)/R_inf        maxcoeff=1000: null
+  He FS ratio          maxcoeff=1000: null
+
+===========================================================================
+TIER 2: OPTICAL CLOCK FREQUENCY RATIOS (15-18 digits)
+
+  Clock                Frequency (Hz)
+  Sr 87             429228004229873.0
+  Yb 171            518295836590863.6
+  Al+ 27           1121015393207857.0
+  Hg+ 199          1064721609899145.0
+  In+ 115          1267402452901040.0
+  Yb+ E2            688358979309308.3
+  Yb+ E3            642121496772645.0
+
+  CLOCK FREQUENCY RATIOS (measured to 10^-17 or better):
+
+  Al+/Hg+        = 1.052871833148990
+  Sr/Yb          = 0.828152522029036
+  Yb+E3/Sr       = 1.495991618544900
+  Al+/Yb         = 2.162887127516660
+  Yb+E2/Yb+E3    = 1.072007373634206
+
+  PSLQ ON CLOCK RATIOS:
+  Al+/Hg+        maxcoeff=1000: null
+  Sr/Yb          maxcoeff=1000: null
+  Yb+E3/Sr       maxcoeff=1000: null
+  Al+/Yb         maxcoeff=1000: null
+  Yb+E2/Yb+E3    maxcoeff=1000: null
+
+===========================================================================
+TIER 3: CONDENSED MATTER PRECISION
+
+  BCS weak-coupling: Δ/(k_B T_c) = π/e^γ = 1.76387699
+
+  Material     Δ/kT_c  Deviation   from BCS
+  Al            1.764     0.0001       0.0%
+  Sn            1.831     0.0671       3.8%
+  In            1.800     0.0361       2.0%
+  Pb            2.185     0.4211      23.9%
+  Nb            1.870     0.1061       6.0%
+  V             1.890     0.1261       7.2%
+  Ta            1.800     0.0361       2.0%
+  Hg            2.180     0.4161      23.6%
+  V3Si          2.150     0.3861      21.9%
+  Nb3Sn         2.120     0.3561      20.2%
+  NbN           2.050     0.2861      16.2%
+
+  Strong-coupling deviations correlate with T_c.
+  Al (T_c=1.2K): close to BCS. Pb (T_c=7.2K): 24% above.
+  The deviations are understood from Eliashberg theory.
+  No unexplained constant here — only 3-4 digit precision.
+
+===========================================================================
+WHAT WE FOUND
+===========================================================================
+
+  HIGHEST-PRECISION DOWNSTREAM DATA:
+  1. Optical clock frequency ratios: 15-18 digits
+     PSLQ: ALL NULL at maxcoeff 1000
+
+  2. Hydrogen/deuterium isotopologue ratios: 8-10 digits
+     PSLQ: ALL NULL at maxcoeff 1000
+
+  3. Molecular transition frequencies: 11-15 digits
+     Not dimensionless — need ratios
+
+  4. BCS gap ratios: 3-4 digits (too imprecise)
+
+  The optical clock ratios are THE most precisely measured
+  dimensionless numbers in existence (~10^-17). They depend
+  on α, m_e/m_p, and nuclear structure through atomic physics.
+  They are downstream. They are precise. And they are NULL
+  against the transcendental basis.
+
+  YOUR INSTINCT WAS RIGHT: there IS high-precision downstream
+  data we hadn't tested. But the result is the same: null.
+  The transcendental basis doesn't connect to these ratios
+  any more than it connects to the SM free parameters directly.
+  
