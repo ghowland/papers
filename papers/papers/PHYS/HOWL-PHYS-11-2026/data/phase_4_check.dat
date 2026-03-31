@@ -1,0 +1,73 @@
+from mpmath import mp, mpf, pi, zeta
+mp.dps = 30
+
+alpha_s = mpf('0.1180')
+candidate = pi * zeta(3) / 32
+
+print(f'alpha_s        = {alpha_s}')
+print(f'pi*zeta(3)/32  = {candidate}')
+print(f'difference     = {alpha_s - candidate}')
+print(f'relative       = {float((alpha_s - candidate)/alpha_s)*100:.4f}%')
+print()
+
+# Also check sin2_tW = 3*pi^2/128
+sin2 = mpf('0.23122')
+cand2 = 3*pi**2/128
+print(f'sin2_tW        = {sin2}')
+print(f'3*pi^2/128     = {cand2}')
+print(f'difference     = {sin2 - cand2}')
+print(f'relative       = {float((sin2 - cand2)/sin2)*100:.4f}%')
+print()
+
+# alpha_inv mod R2*e: q=64, R/mod ~ 3/16
+# means alpha_inv ~ 64*R2*e + (3/16)*R2*e = (64 + 3/16)*R2*e
+# = (1027/16) * (pi/4) * e
+cand3 = mpf(1027)/16 * pi/4 * mp.e
+print(f'alpha_inv      = 137.035999177')
+print(f'(1027/16)*R2*e = {cand3}')
+print(f'difference     = {mpf(\"137.035999177\") - cand3}')
+print(f'relative       = {float((mpf(\"137.035999177\") - cand3)/137.036)*100:.6f}%')
+print()
+
+# Precision check: alpha_s is known to 0.1180 +/- 0.0009
+# pi*zeta(3)/32 = 0.1180034...
+# The match is within the measurement uncertainty!
+print('PRECISION CHECK:')
+print(f'  alpha_s measured:   0.1180 +/- 0.0009 (0.76%)')
+print(f'  pi*zeta(3)/32:     {float(candidate):.7f}')
+print(f'  Difference:         {float(alpha_s - candidate):.7f}')
+print(f'  Within uncertainty: {abs(float(alpha_s - candidate)) < 0.0009}')
+print()
+print(f'  sin2_tW measured:   0.23122 +/- 0.00003')
+print(f'  3*pi^2/128:        {float(cand2):.7f}')
+print(f'  Difference:         {float(sin2 - cand2):.7f}')
+print(f'  Within uncertainty: {abs(float(sin2 - cand2)) < 0.00003}')
+"
+Output
+
+alpha_s        = 0.118
+pi*zeta(3)/32  = 0.118011660505096216475108618539
+difference     = -0.0000116605050962164751086185391376
+relative       = -0.0099%
+
+sin2_tW        = 0.23122
+3*pi^2/128     = 0.23131885315053184262893338281
+difference     = -0.0000988531505318426289333828095931
+relative       = -0.0428%
+
+alpha_inv      = 137.035999177
+(1027/16)*R2*e = 137.03604760446489650361041786
+difference     = -0.0000484274648965036104178597548549
+relative       = -0.000035%
+
+PRECISION CHECK:
+  alpha_s measured:   0.1180 +/- 0.0009 (0.76%)
+  pi*zeta(3)/32:     0.1180117
+  Difference:         -0.0000117
+  Within uncertainty: True
+
+  sin2_tW measured:   0.23122 +/- 0.00003
+  3*pi^2/128:        0.2313189
+  Difference:         -0.0000989
+  Within uncertainty: False
+  
