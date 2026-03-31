@@ -95,6 +95,7 @@
 | **[[@HOWL-PHYS-5-2026]](papers/papers/PHYS/HOWL-PHYS-5-2026/manuscript.md)** | **The Running of α_EM in Integer Arithmetic** | The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm. |
 | **[[@HOWL-PHYS-6-2026]](papers/papers/PHYS/HOWL-PHYS-6-2026/manuscript.md)** | **The Confinement Boundary in Integer Arithmetic** | The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic. |
 | **[[@HOWL-PHYS-7-2026]](papers/papers/PHYS/HOWL-PHYS-7-2026/manuscript.md)** | **The Strong CP Problem Is Not a Problem** | θ_QCD = 0 as the Ground State of an Integer-Topological System. |
+| **[[@HOWL-PHYS-8-2026]](papers/papers/PHYS/HOWL-PHYS-8-2026/manuscript.md)** | **The Strong CP Problem Is Not a Problem** | θ_QCD = 0 as the Ground State of an Integer-Topological System. |
 
 ---
 
