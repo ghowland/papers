@@ -117,6 +117,7 @@
 | **[[@HOWL-DISC-6-2026]](papers/papers/DISC/HOWL-DISC-6-2026/manuscript.md)** | **The Remainder Extraction Program** | A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic. |
 | **[[@HOWL-DISC-7-2026]](papers/papers/DISC/HOWL-DISC-7-2026/manuscript.md)** | **The Remainder Extraction Program: Execution and Results** | Four Phases Delivered, Parameter Reduction Null. |
 | **[[@HOWL-DISC-8-2026]](papers/papers/DISC/HOWL-DISC-8-2026/manuscript.md)** | **The Remainder Extraction Program: Phase II Results** | Statistical Control, Koide Blockage, and Domain Extension. |
+| **[[@HOWL-DISC-9-2026]](papers/papers/DISC/HOWL-DISC-9-2026/manuscript.md)** | **The Remainder Extraction Program** | What the Framework Determines and What It Doesn't. |
 
 ---
 
