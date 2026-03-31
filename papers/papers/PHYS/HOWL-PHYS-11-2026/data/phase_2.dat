@@ -1,0 +1,274 @@
+======================================================================
+PHASE 2: CROSS-DOMAIN UNIFICATION
+Six Questions from DISC-6
+======================================================================
+
+======================================================================
+Q3: Does R₂ appear in Berry phase?
+======================================================================
+
+  ANSWERED IN PHASE 1: YES
+  γ = 4R₂(1 - cosθ)
+  Ω = 2π(1-cosθ) = 8R₂(1-cosθ)
+  Full sphere: 4π = 16R₂
+  Verify 4π = 16R₂: True (EXACT)
+
+  R₂ appears because Berry phase integrates over S²
+  (a 2D surface), and surface area is a 2D operation → R₂.
+  This is the MATH-5 rule: remainder matches operation dimension.
+
+  STATUS: CONFIRMED (from Phase 1)
+
+======================================================================
+Q4: Does R₄ appear throughout CS computation?
+======================================================================
+
+  ANSWERED IN PHASE 1: YES (in normalization)
+  Chern class: 1/(8π²) = 1/(256R₄)
+  Verify: True (EXACT)
+
+  R₄ enters because the Chern class integrates over a 4-manifold
+  (a 4D operation), and 4D volume → R₄.
+  The CS invariant on the 3D boundary inherits R₄ from
+  the 4D bulk normalization.
+
+  The CS VALUES (flat connection invariants) are pure rationals —
+  no transcendental content. R₄ lives in the normalization,
+  not in the CS values themselves.
+
+  STATUS: CONFIRMED (from Phase 1)
+
+======================================================================
+Q1: Maslov-Berry connection as exact Fraction identity
+======================================================================
+
+  Known result (Robbins 1991, Littlejohn 1992):
+  The Maslov index IS a Berry phase in the semiclassical limit.
+  For a system with Hamiltonian H(q,p,λ) where λ varies slowly:
+    Maslov correction = Berry phase / π
+    μ/4 = γ_Berry / π (for each turning point type)
+
+  Specific connection:
+    Soft turning point: Berry phase = π/2 → Maslov contribution = 1/2
+    Hard wall:          Berry phase = π   → Maslov contribution = 1
+
+  Test in Fraction arithmetic:
+
+  Harmonic oscillator:
+    μ = 2 (two soft turning points)
+    Phase per turning point = π/2
+    Total turning-point phase = μ × π/2 = π
+    Berry phase of orbit = π
+    Maslov correction μ/4 = 1/2
+    Berry_phase / (2π) = π/(2π) = 1/2
+    μ/4 = Berry/(2π) ? True (EXACT)
+
+  Infinite well:
+    μ = 4 (two hard walls, each contributes 2)
+    Phase per hard wall = π
+    Total turning-point phase = 2 × π = 2π
+    Berry phase of orbit = 2π
+    Maslov correction μ/4 = 1
+    Berry_phase / (2π) = 2π/(2π) = 1
+    μ/4 = Berry/(2π) ? True (EXACT)
+
+  General identity:
+    Total turning-point phase = μ × (π/2)
+    Berry phase of orbit = μ × (π/2)
+    Maslov correction = Berry/(2π) = [μ × π/2] / (2π) = μ/4
+
+  In R₂ notation:
+    Phase per soft TP = π/2 = 2R₂
+    Phase per hard TP = π = 4R₂
+    Modulus = 2π = 8R₂
+    Maslov = (μ × 2R₂) / (8R₂) = μ/4
+
+  Verify π/2 = 2R₂: True (EXACT)
+  Verify π = 4R₂: True (EXACT)
+  Verify 2π = 8R₂: True (EXACT)
+
+  FINDING: The Maslov-Berry connection is an IDENTITY
+  when expressed in R₂ units. The Maslov correction μ/4
+  is the Berry phase measured in units of the modulus 8R₂.
+  The connection is exact, algebraic, and tautological —
+  both are counting the same thing (phase at turning points)
+  in the same units (multiples of 2R₂ = π/2).
+
+  STATUS: CONFIRMED — exact Fraction identity, algebraically tautological
+
+======================================================================
+Q6: θ=0 minimization has BZ analog?
+======================================================================
+
+  Theta vacuum: E(θ) = E₀ - χ cos(θ), minimized at θ = 0
+  Brillouin zone: E(k) = -2t cos(ka), minimized at k = 0
+
+  Both are cosine potentials minimized at the zero of the parameter.
+
+  Structural comparison:
+
+  | Property      | Theta vacuum         | Brillouin zone       |
+  |---------------|---------------------|---------------------|
+  | Parameter     | θ                   | k                   |
+  | Energy        | E₀ - χ cos(θ)       | -2t cos(ka)         |
+  | Period        | 2π = 8R₂            | G = 2π/a = 8R₂/a   |
+  | Minimum at    | θ = 0               | k = 0               |
+  | Maximum at    | θ = π               | k = π/a = G/2       |
+  | cos argument  | θ                   | ka = 2πk/G          |
+  | Integer part  | Instanton ν         | Zone index n        |
+  | Remainder     | θ mod 2π            | k mod G             |
+  | Ground state  | R = 0 (PHYS-7)      | R = 0 (band minimum)|
+
+  Both systems minimize -cos(x) at x = 0.
+  cos(0) = 1 (exact integer, no transcendental content).
+  The ground state remainder is 0 in both cases.
+
+  The DIFFERENCE:
+    Theta: the minimum is SELECTED by energy minimization
+    (no dynamics forces θ away from 0)
+    BZ: the minimum is POPULATED by electron filling
+    (electrons fill from k=0 upward in the band)
+
+  The SAME MATH: E = A - B cos(x), period P = 8R₂ × scale,
+  minimum at x = 0 (remainder = 0).
+
+  Unified form: E(φ) = A - B cos(φ)
+  where φ = 2πx/P = 8R₂ × x/P
+  Theta: x = θ, P = 2π = 8R₂, so φ = θ
+  BZ: x = k, P = G = 8R₂/a, so φ = ka
+
+  In both cases φ ∈ [0, 8R₂) and the minimum is at φ = 0.
+  The modulus is 8R₂ in the PHASE variable φ.
+
+  STATUS: CONFIRMED — same mathematical structure.
+  Both are cosine on a periodic domain with modulus 8R₂,
+  minimized at remainder = 0.
+
+======================================================================
+Q2: BZ boundary shares structure with RG threshold?
+======================================================================
+
+  Brillouin zone: at k = ±π/a (zone boundary), band gap opens.
+    Electron undergoes Bragg reflection.
+    Below gap: conducting. Above gap: insulating (at half-filling).
+    The boundary is at k = G/2 = 4R₂/a (half the modulus).
+
+  RG running: at μ = m_f (mass threshold), new flavor activates.
+    Below threshold: flavor decoupled. Above: flavor contributes.
+    The coupling α⁻¹ jumps by ΔR = Q_f²/(3π) × R(M_Z², m_f²)
+
+  Structural comparison:
+
+  | Property          | Brillouin zone      | RG running          |
+  |-------------------|--------------------|--------------------|
+  | Continuous var     | k (momentum)       | ln(μ) (log energy) |
+  | Accumulates        | Phase ka           | Running α⁻¹        |
+  | Boundary location  | k = G/2 = 4R₂/a   | μ = m_f (measured)  |
+  | At boundary        | Band gap opens     | New flavor activates|
+  | Below boundary     | Extended state     | Flavor decoupled    |
+  | Above boundary     | Reflected/new band | Flavor contributes  |
+  | Boundary origin    | Lattice geometry   | Particle mass       |
+  | Number of bound.   | Infinite (periodic)| Finite (6 quarks + 3 leptons)|
+
+  VP coefficient: 1/(3π) = 1/(12R₂): True (EXACT)
+
+  The VP running step per flavor is proportional to 1/(12R₂).
+  The BZ modulus is 8R₂/a.
+  Both contain R₂ but in different functional roles:
+    BZ: R₂ sets the PERIOD (how far between boundaries)
+    RG: R₂ sets the STEP SIZE (how much changes at each boundary)
+
+  Functional form:
+    BZ: E(k) = E₀ - 2t cos(k × 8R₂/G)
+    RG: α⁻¹(μ) = α⁻¹(μ₀) + Σ_f [Q²/(12R₂)] × ln(μ/m_f) × Θ(μ-m_f)
+
+  BZ is PERIODIC (cosine). RG is MONOTONIC (logarithmic sum).
+  BZ has infinite identical boundaries. RG has finite distinct thresholds.
+  The parallel is structural (continuous + discrete), not formal (not same equation).
+
+  STATUS: STRUCTURAL PARALLEL, NOT FORMAL EQUIVALENCE
+  Both have remainder accumulating between discrete boundaries.
+  Both contain R₂. But the functional forms differ (cosine vs log).
+  The BZ boundary is at G/2 (geometric). The RG threshold is at m_f (measured).
+
+======================================================================
+Q5: Is VP running a specific instance of BZ band structure?
+======================================================================
+
+  This is the strongest version of Q2.
+  Question: can the VP running be FORMALLY mapped to a band structure?
+
+  For a formal map we need:
+    (a) A 'lattice' in energy/momentum space
+    (b) A 'reciprocal lattice vector' G
+    (c) The running as a 'dispersion relation' E(k)
+    (d) Thresholds as 'zone boundaries'
+
+  Attempt: define 'coupling momentum' κ = ln(μ/Λ_QCD)
+    Then α⁻¹(κ) = α⁻¹(κ₀) + (b/2π) × (κ - κ₀)
+    between thresholds, where b is the beta slope.
+
+  The running between thresholds is LINEAR in κ (not periodic).
+  A band structure requires PERIODICITY in the momentum variable.
+  The VP running is NOT periodic — α⁻¹ grows monotonically with μ.
+
+  The thresholds are at DIFFERENT intervals in κ:
+    κ(m_e) to κ(m_μ): Δκ = ln(m_μ/m_e) = ln(206.77)
+    κ(m_μ) to κ(m_τ): Δκ = ln(m_τ/m_μ) = ln(16.82)
+    These are NOT equal — no periodicity.
+
+  Threshold intervals in log(μ) space:
+    ln(m_μ/m_e) = 5.3316
+    ln(m_τ/m_μ) = 2.8224
+    Ratio: 1.8891 (NOT 1 → NOT periodic)
+
+  FINDING: The VP running is NOT a band structure.
+  The structural parallel (Q2) holds: both have continuous
+  accumulation between discrete boundaries. But the VP running
+  lacks the periodicity required for a formal BZ mapping.
+  The thresholds are at unequal intervals (determined by
+  measured masses, not by lattice geometry).
+
+  The VP running is a STAIRCASE (monotonic, unequal steps).
+  Band structure is a PERIODIC function (cosine, equal periods).
+  The parallel is an analogy, not an equivalence.
+
+  STATUS: NULL — structural parallel but no formal equivalence
+
+======================================================================
+PHASE 2 SUMMARY: CROSS-DOMAIN CONNECTION TABLE
+======================================================================
+
+| # | Question                           | Domains              | Result                         | Status          |
+|---|------------------------------------|--------------------|-------------------------------|-----------------|
+| 1 | Maslov = Berry in Fractions?       | BS ↔ Berry          | YES — tautological identity    | CONFIRMED       |
+|   |                                    |                     | μ/4 = Berry/(2π) = Berry/(8R₂)| (algebraic)     |
+| 2 | BZ boundary = RG threshold?        | BZ ↔ RG             | Structural parallel, not formal| PARTIAL         |
+|   |                                    |                     | Both have R₂, different forms  |                 |
+| 3 | R₂ in Berry phase?                 | Berry ↔ MATH-5      | YES — γ = 4R₂(1-cosθ)         | CONFIRMED       |
+|   |                                    |                     | Surface integral → R₂ (2D op) | (from Phase 1)  |
+| 4 | R₄ in CS computation?              | CS ↔ MATH-5         | YES — 1/(8π²) = 1/(256R₄)     | CONFIRMED       |
+|   |                                    |                     | 4D bulk normalization → R₄     | (from Phase 1)  |
+| 5 | VP running = BZ band structure?    | RG ↔ BZ             | NO — VP is monotonic, not      | NULL            |
+|   |                                    |                     | periodic. Thresholds unequal.  |                 |
+| 6 | θ=0 minimization = BZ k=0 minimum? | Theta ↔ BZ          | YES — same cosine on 8R₂-     | CONFIRMED       |
+|   |                                    |                     | periodic domain, min at 0      | (structural)    |
+
+  Results: 4 confirmed, 1 partial, 1 null
+
+  The null (Q5) is informative: VP running and BZ band structure
+  share the abstract pattern (continuous + discrete boundaries)
+  but differ in the fundamental property of periodicity.
+  The VP running is a staircase, not a band structure.
+
+  The strongest finding: the UNIVERSAL MODULUS 8R₂ appears
+  in five of six domains as the phase period, and R₂ is present
+  in all six. The Maslov-Berry connection (Q1) and the
+  theta-BZ connection (Q6) are both exact identities that
+  become tautological when expressed in R₂ units.
+
+  This points toward Phase 3 outcome (b): PARTIAL COLLAPSE.
+  Five 'phase-periodic' domains share modulus 8R₂.
+  Chern-Simons has modulus 1 (topological, not geometric).
+  The VP running shares R₂ but lacks periodicity.
+  
