@@ -128,6 +128,7 @@
 | **[[@HOWL-CULT-7-2026]](papers/papers/CULT/HOWL-CULT-7-2026/manuscript.md)** | **The Five Monkeys Problem** | How Inherited Enforcement Maintains Structural Barriers in Institutional Science. |
 | **[[@HOWL-CULT-8-2026]](papers/papers/CULT/HOWL-CULT-8-2026/manuscript.md)** | **The Omni-Domain Investigator** | How to Enter the Space Between Departments. |
 | **[[@HOWL-CULT-9-2026]](papers/papers/CULT/HOWL-CULT-9-2026/manuscript.md)** | **The Omni-Academy** | A Structural Specification for the First Institution in the Hallways. |
+| **[[@HOWL-CULT-10-2026]](papers/papers/CULT/HOWL-CULT-10-2026/manuscript.md)** | **The Geometric Remainder Across Departments** | How Disciplinary Structure Prevented the Unification of a Four-Thousand-Year-Old Constant. |
 
 ---
 
