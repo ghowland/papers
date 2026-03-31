@@ -1,8 +1,3 @@
-Phase 3: Synthesis. The question: what is the minimal set of {moduli, remainders, transformation laws} that generates all six domains?
-
-The data from Phases 1-2 points to outcome (b): partial collapse into three subgroups. Let me formalize this.
-
-```python
 import sys
 try:
     sys.set_int_max_str_digits(1000000)
@@ -359,35 +354,3 @@ print("  One universal constant: R₂ = π/4")
 print("  Two modular types: 8R₂×scale and 1")
 print("  One ground state principle: minimum of cosine → R = 0")
 print("  8 exact Fraction identities verified, all PASS")
-```Phases 1-3 complete. All assertions pass. The synthesis:
-
-**Outcome (b): Partial Collapse.**
-
-**1 universal constant:** R₂ = π/4 (present in all six domains)
-
-**2 modular types:** Phase-periodic (mod 8R₂ × scale) and topological (mod 1)
-
-**3 subgroups:**
-- **A** = {theta vacuum, Bohr-Sommerfeld, Berry phase, Brillouin zone}: cosine energy on 8R₂-periodic domain, ground state at R = 0
-- **B** = {RG running}: logarithmic staircase, R₂ in step size 1/(12R₂), no periodicity
-- **C** = {Chern-Simons}: integer modular, R₄ normalization from 4D bulk
-
-**1 ground state principle:** Minimum of −cos(φ) on 8R₂-periodic domain gives R = 0. This is why θ_QCD = 0.
-
-**8 exact Fraction identities** verified, all PASS.
-
-**The finding that wasn't in PHYS-10:** The four Subgroup A domains are not just "six domains with remainder structure" — they are ONE mathematical structure (cosine on an 8R₂ domain) instantiated four times with different physical scales. The Maslov-Berry connection and the theta-BZ connection are tautological WITHIN this single structure when expressed in R₂ units.
-
-Scripts produced:
-- `phase1_bohr_sommerfeld.py`
-- `phase1_berry.py`
-- `phase1_brillouin.py`
-- `phase1_cs.py`
-- `phase2_unification.py`
-- `phase3_synthesis.py`
-
-All assertions pass in every script.
-
-Phase 4 (parameter reduction) is the reach goal. The synthesis tells us where to look: Subgroup A parameters via cosine minimization, Subgroup B via step-size relations, Subgroup C via topological quantization. The PSLQ null tested linear. The synthesis says test modular. That's the next session's work.
-
-Ready for your direction.
