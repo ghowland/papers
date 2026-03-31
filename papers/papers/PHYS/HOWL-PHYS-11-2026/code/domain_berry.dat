@@ -1,0 +1,136 @@
+======================================================================
+PHASE 1, DOMAIN 4: BERRY PHASE
+Spin-1/2 in Rotating Magnetic Field
+======================================================================
+
+(a) STANDARD FORM
+
+  System: spin-1/2 particle in magnetic field B(t)
+  B rotates around z-axis, sweeping cone of half-angle θ
+
+  Berry phase for spin-s, magnetic quantum number m:
+    γ = -m × Ω
+  where Ω = 2π(1 - cosθ) is the solid angle of the cone.
+
+  For spin-1/2, m = -1/2 (ground state):
+    γ = π(1 - cosθ) = Ω/2
+
+  The solid angle Ω = 2π(1 - cosθ) is the area of the
+  spherical cap on the unit sphere swept by the B-field direction.
+
+  Established by Berry 1984, Simon 1983.
+
+(b) DECOMPOSED: INTEGER + REMAINDER
+
+  γ / (2π) = winding number + fractional phase
+
+  Modulus: 2π (full phase cycle)
+  Integer: winding number n = ⌊γ/(2π)⌋
+  Remainder: γ mod 2π (the observable geometric phase)
+
+  The remainder is gauge-invariant and physically observable.
+  The integer part is gauge-dependent (choice of branch).
+
+  For one circuit of the B-field around the cone:
+    γ = Ω/2 = π(1 - cosθ)
+    γ/(2π) = (1 - cosθ)/2
+    Since 0 ≤ θ ≤ π: 0 ≤ (1-cosθ)/2 ≤ 1
+    So the integer part is 0 for a single circuit
+    and the remainder IS the Berry phase.
+
+(c) FRACTION ARITHMETIC
+
+  We need cosθ as exact Fractions.
+  Choose rational angles where cosθ is rational:
+
+  Spin quantum number m = -1/2
+  Modulus = 2π = 8R₂
+
+  Case                             cosθ     Ω/2π      γ/π     γ/(2π)  Int     R/(2π)      R/π
+  ------------------------------ ------ -------- -------- ---------- ---- ---------- --------
+  θ=0 (no cone)                       1        0        0          0    0          0        0
+  θ=π/3 (cosθ=1/2)                  1/2      1/2      1/2        1/4    0        1/4      1/2
+  θ=π/2 (cosθ=0)                      0        1        1        1/2    0        1/2        1
+  θ=2π/3 (cosθ=-1/2)               -1/2      3/2      3/2        3/4    0        3/4      3/2
+  θ=π (cosθ=-1)                      -1        2        2          1    1          0        0
+  θ: cosθ=1/3                       1/3      2/3      2/3        1/3    0        1/3      2/3
+  θ: cosθ=3/4                       3/4      1/4      1/4        1/8    0        1/8      1/4
+  θ: cosθ=-1/4                     -1/4      5/4      5/4        5/8    0        5/8      5/4
+  θ: cosθ=7/8                       7/8      1/8      1/8       1/16    0       1/16      1/8
+
+  Key verifications (all EXACT):
+
+  θ=π/2: γ = π, γ/(2π) = 1/2. ✓
+    Integer = 0, Remainder = 1/2 of full cycle = π
+    This is the Z₂ topological phase (γ = π mod 2π)
+
+  θ=π: γ = 2π, γ/(2π) = 1. ✓
+    Integer = 1, Remainder = 0
+    Full sphere: the Berry phase is a complete cycle (trivial)
+
+  θ=π/3: γ = π/2, γ/(2π) = 1/4. ✓
+    Integer = 0, Remainder = 1/4 of full cycle
+
+  cosθ=1/3: γ = 2π/3, γ/(2π) = 1/3. ✓
+    Integer = 0, Remainder = 1/3 of full cycle
+
+  Multiple circuits (integer accumulates):
+
+    1 circuit(s): γ = 1×π/2 = 1/4 × 2π, integer=0, R/(2π)=1/4
+    2 circuit(s): γ = 2×π/2 = 2/4 × 2π, integer=0, R/(2π)=1/2
+    3 circuit(s): γ = 3×π/2 = 3/4 × 2π, integer=0, R/(2π)=3/4
+    4 circuit(s): γ = 4×π/2 = 4/4 × 2π, integer=1, R/(2π)=0
+    5 circuit(s): γ = 5×π/2 = 5/4 × 2π, integer=1, R/(2π)=1/4
+    8 circuit(s): γ = 8×π/2 = 8/4 × 2π, integer=2, R/(2π)=0
+
+  The integer part counts complete phase cycles.
+  The remainder is the accumulated geometric phase mod 2π.
+  Both are exact Fractions at every step.
+
+(d) VERIFICATION
+
+  Berry phase γ = -m·Ω where Ω = solid angle of parameter path.
+  For spin-1/2 (m = -1/2): γ = Ω/2 = π(1 - cosθ).
+
+  Known exact results:
+    θ = π/2: γ = π (Z₂ topological insulator phase)
+    θ = π:   γ = 2π (trivial, full winding)
+    θ = 0:   γ = 0 (no enclosed solid angle)
+  All reproduced exactly in Fraction arithmetic.
+
+  The Berry phase is gauge-invariant mod 2π.
+  Our integer/remainder decomposition respects this:
+  the remainder γ mod 2π is the physical observable.
+
+(e) R_n CONTENT
+
+  Modulus: 2π = 8R₂. Verify: True (EXACT)
+
+  Berry phase: γ = 4R₂(1-cosθ). Verify: True (EXACT)
+
+  Full sphere solid angle: 4π = 16R₂. Verify: True (EXACT)
+
+  Connection to MATH-5:
+    Solid angle = surface area of unit sphere = 4π = 16R₂
+    This is 4R₂·d² at d=2 (unit sphere has d=2)
+    MATH-5 rule: surface area uses R₂ (2D operation)
+    Berry phase uses Ω (surface area on S²) → R₂ appears
+
+  Two-level structure:
+    Geometric level: R₂ in the modulus 2π = 8R₂ and in Ω = 16R₂(1-cosθ)/2
+    Topological level: (1-cosθ)/2 is the fractional solid angle, the remainder
+
+(f) ALL ASSERTIONS PASSED
+
+  9 test cases × decomposition verified
+  3 special cases (θ=0, π/2, π) verified against known exact results
+  5 multi-circuit accumulations verified
+  R₂ content verified: 2π=8R₂, 4π=16R₂, γ=4R₂(1-cosθ)
+
+======================================================================
+EXTRACTION TABLE ROW
+======================================================================
+
+| Domain      | Equation              | Modulus  | Integer       | Remainder     | R_n       | Script                | Status   |
+|-------------|----------------------|----------|---------------|---------------|-----------|----------------------|----------|
+| Berry phase | γ=-m·Ω, Ω=2π(1-cosθ)| 2π=8R₂  | Winding n     | γ mod 2π      | 4R₂(1-cosθ)| phase1_berry.py      | VERIFIED |
