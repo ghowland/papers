@@ -1,0 +1,81 @@
+from mpmath import mp, mpf, pi, zeta, log, sqrt, e as me, phi
+
+mp.dps = 50
+
+print("=" * 70)
+print("PHASE 4 — STRATEGY B: SYNTHESIS-INFORMED MODULAR SEARCH")
+print("=" * 70)
+print()
+print("Phase 3 synthesis: Subgroup A has modulus 8R₂ = 2π.")
+print("Test: do any SM parameters, when divided by R₂-based moduli,")
+print("produce remainders that are simple rationals p/q with small q?")
+print()
+print("Key difference from the earlier scan: we now test PRODUCTS of")
+print("basis constants as moduli, and R₂-multiples specifically.")
+print()
+
+R2 = pi / 4
+R4 = pi**2 / 32
+
+targets = [
+    ("alpha_inv",    mpf('137.035999177')),
+    ("alpha_inv_MZ", mpf('127.906')),
+    ("sin2_tW",      mpf('0.23122')),
+    ("alpha_s",      mpf('0.1180')),
+    ("m_mu/m_e",     mpf('206.7682830')),
+    ("m_tau/m_e",    mpf('3477.1507')),
+    ("m_tau/m_mu",   mpf('16.8170')),
+    ("M_W/M_Z",      mpf('0.88147')),
+    ("M_H/M_Z",      mpf('1.37193')),
+    ("M_H/M_W",      mpf('1.55670')),
+    ("sin_t12",      mpf('0.2253')),
+    ("sin_t23",      mpf('0.0412')),
+    ("delta_CP",     mpf('1.36')),  # radians — this IS a phase
+]
+
+# Synthesis-informed moduli:
+# Subgroup A: multiples of R₂
+# Subgroup C: R₄ and multiples
+# Products of basis constants
+moduli = [
+    # R₂ multiples (Subgroup A modular structure)
+    ("R2",       R2),
+    ("2R2",      2*R2),
+    ("4R2=pi",   4*R2),
+    ("8R2=2pi",  8*R2),
+    
+    # R₄ multiples (Subgroup C structure)
+    ("R4",       R4),
+    ("32R4=pi^2", 32*R4),
+    ("256R4=8pi^2", 256*R4),
+    
+    # Products of basis constants (untested in earlier scan)
+    ("pi*ln2",   pi*log(2)),
+    ("pi*zeta3", pi*zeta(3)),
+    ("pi*e",     pi*me),
+    ("R2*zeta3", R2*zeta(3)),
+    ("R2*ln2",   R2*log(2)),
+    ("R2*e",     R2*me),
+    ("R4*pi",    R4*pi),
+    ("ln2*zeta3", log(2)*zeta(3)),
+    ("sqrt2*pi", sqrt(2)*pi),
+    
+    # The VP step size (Subgroup B)
+    ("1/(12R2)=1/(3pi)", 1/(12*R2)),
+    ("1/(3pi)",  1/(3*pi)),
+]
+
+print(f"Targets: {len(targets)}")
+print(f"Moduli: {len(moduli)} (R₂-multiples, R₄-multiples, products)")
+print()
+
+# For each target × modulus, compute quotient and remainder
+# Flag when R/mod is within 0.1% of p/q with q ≤ 20
+
+all_hits = []
+
+for tname, tval in targets:
+    target_hits = []
+    for mname, mval in moduli:
+        if mval <= 0 or mval > abs(tval) * 1000:
+            
