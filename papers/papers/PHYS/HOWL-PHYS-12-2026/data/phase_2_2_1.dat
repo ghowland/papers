@@ -1,0 +1,172 @@
+======================================================================
+DISC-8 ITEM 5: ADDITIONAL DOMAIN EXTRACTIONS
+======================================================================
+
+======================================================================
+DOMAIN 7: AHARONOV-BOHM EFFECT
+======================================================================
+
+(a) STANDARD FORM
+  Electron encircles solenoid with magnetic flux Phi.
+  Phase shift: delta_phi = e*Phi/(hbar*c) = 2*pi*Phi/Phi_0
+  where Phi_0 = h/e = 2*pi*hbar/e is the flux quantum.
+
+  Observable: interference fringe shift.
+  Periodicity: fringe pattern repeats when Phi -> Phi + Phi_0.
+  Aharonov and Bohm 1959.
+
+(b) DECOMPOSED
+  Quantity: phase shift delta_phi = 2*pi*Phi/Phi_0
+  Modulus: 2*pi = 8*R2 (one complete fringe cycle)
+  Integer: number of complete fringe shifts n = floor(Phi/Phi_0)
+  Remainder: delta_phi mod 2*pi = 2*pi*(Phi/Phi_0 mod 1)
+  The remainder is the observable fringe position.
+
+(c) FRACTION ARITHMETIC
+
+   Phi/Phi_0  Phase/(2pi)   Int    R/(2pi)          Phase
+           0            0     0          0        0*R2
+         1/4          1/4     0        1/4        2*R2
+         1/3          1/3     0        1/3      8/3*R2
+         1/2          1/2     0        1/2        4*R2
+         2/3          2/3     0        2/3     16/3*R2
+         3/4          3/4     0        3/4        6*R2
+           1            1     1          0        8*R2
+         5/4          5/4     1        1/4       10*R2
+         3/2          3/2     1        1/2       12*R2
+         7/4          7/4     1        3/4       14*R2
+           2            2     2          0       16*R2
+         9/4          9/4     2        1/4       18*R2
+           3            3     3          0       24*R2
+
+  Modulus 2pi = 8R2: True (EXACT)
+
+  Phi = Phi_0/2: phase = 4R2 = pi (destructive interference) ✓
+
+(e) R_n: Modulus = 2pi = 8R2. Phase = 8R2 * Phi/Phi_0.
+  Same structure as Berry, BS, BZ, theta. SUBGROUP A confirmed.
+
+======================================================================
+DOMAIN 8: FLUX QUANTIZATION (SUPERCONDUCTOR)
+======================================================================
+
+(a) STANDARD FORM
+  Superconducting ring: total flux is quantized.
+  Phi = n * Phi_0/2 = n * h/(2e)
+  The factor 1/2: Cooper pairs have charge 2e.
+  London 1950, Deaver-Fairbank 1961, Doll-Nabauer 1961.
+
+  The order parameter psi = |psi|*exp(i*theta)
+  Single-valuedness: oint grad(theta) . dl = 2*pi*n
+  Combined with A: oint (grad(theta) - 2eA/hbar) . dl = 0
+  Therefore: 2*pi*n = (2e/hbar) * Phi
+  Phi = n * pi*hbar/e = n * Phi_0/2
+
+(b) DECOMPOSED
+  Quantity: order parameter phase theta around the ring
+  Modulus: 2*pi = 8*R2 (single-valuedness of psi)
+  Integer: n = number of flux quanta
+  Remainder: 0 (flux is EXACTLY quantized, no fractional part)
+
+  This is like theta_QCD = 0 (PHYS-7):
+  The remainder is forced to zero by a topological constraint
+  (single-valuedness), not by energy minimization.
+
+(c) FRACTION ARITHMETIC
+
+  n=0: phase/(2pi) = 0, remainder = 0 ✓
+  n=1: phase/(2pi) = 1, remainder = 0 ✓
+  n=2: phase/(2pi) = 2, remainder = 0 ✓
+  n=3: phase/(2pi) = 3, remainder = 0 ✓
+  n=4: phase/(2pi) = 4, remainder = 0 ✓
+  n=5: phase/(2pi) = 5, remainder = 0 ✓
+
+  Modulus 2pi = 8R2: True (EXACT)
+
+  SUBGROUP A, with R = 0 (like theta_QCD).
+  The remainder vanishes by topology (single-valuedness),
+  not by dynamics (energy minimization).
+
+======================================================================
+DOMAIN 9: AC JOSEPHSON EFFECT
+======================================================================
+
+(a) STANDARD FORM
+  Josephson junction: two superconductors separated by thin barrier.
+  AC effect: constant voltage V produces oscillating current
+    I = I_c * sin(phi(t))
+    d(phi)/dt = 2eV/hbar
+  Josephson 1962.
+
+  The phase phi accumulates linearly in time:
+    phi(t) = phi_0 + (2eV/hbar)*t
+  The current oscillates with Josephson frequency:
+    f_J = 2eV/h = V/Phi_0
+  where Phi_0 = h/(2e) is the superconducting flux quantum.
+
+(b) DECOMPOSED
+  Quantity: Josephson phase phi(t)
+  Modulus: 2*pi = 8*R2 (one current oscillation cycle)
+  Integer: number of complete oscillation cycles n = floor(phi/(2pi))
+  Remainder: phi mod 2*pi = instantaneous phase of current oscillation
+  The remainder determines the instantaneous supercurrent I = I_c * sin(R).
+
+(c) FRACTION ARITHMETIC
+
+  Phase at fractions of Josephson period T_J:
+
+     t/T_J  phi/(2pi)   Int    R/(2pi)       sin(R)
+         0          0     0          0
+       1/8        1/8     0        1/8
+       1/6        1/6     0        1/6
+       1/4        1/4     0        1/4
+       1/3        1/3     0        1/3
+       3/8        3/8     0        3/8
+       1/2        1/2     0        1/2
+       5/8        5/8     0        5/8
+       2/3        2/3     0        2/3
+       3/4        3/4     0        3/4
+       5/6        5/6     0        5/6
+       7/8        7/8     0        7/8
+         1          1     1          0
+
+  Modulus 2pi = 8R2: True (EXACT)
+
+  The Josephson frequency-voltage relation f_J = 2eV/h
+  is exact (used as the international voltage standard).
+  Phase rate: d(phi)/dt = 2*pi*f_J = 8*R2*f_J
+
+  R2 sets the conversion between frequency and phase rate,
+  exactly as in all other Subgroup A domains.
+
+  SUBGROUP A confirmed. Modulus = 8R2.
+
+======================================================================
+UPDATED EXTRACTION TABLE (9 DOMAINS)
+======================================================================
+
+| # | Domain           | Modulus       | Integer       | Remainder      | R2  | Subgroup |
+|---|------------------|---------------|---------------|----------------|-----|----------|
+| 1 | Theta vacuum     | 2pi = 8R2     | Instanton v   | theta = 0      | mod | A        |
+| 2 | RG running       | Mass m_f      | Active flavors| Running        | step| B        |
+| 3 | Bohr-Sommerfeld  | 2pi*hbar=8R2h | n             | mu/4           | mod | A        |
+| 4 | Berry phase      | 2pi = 8R2     | Winding n     | gamma mod 2pi  | mod | A        |
+| 5 | Brillouin zone   | G = 8R2/a     | Zone index    | k mod G        | mod | A        |
+| 6 | Chern-Simons     | 1             | Chern number  | CS mod Z       | exp | C        |
+| 7 | Aharonov-Bohm    | 2pi = 8R2     | Fringe count  | Phase mod 2pi  | mod | A        |
+| 8 | Flux quant.      | 2pi = 8R2     | Flux quanta n | 0 (exact)      | mod | A        |
+| 9 | Josephson AC     | 2pi = 8R2     | Cycle count   | Phase mod 2pi  | mod | A        |
+
+  Subgroup A: 7 domains (theta, BS, Berry, BZ, AB, flux, Josephson)
+  Subgroup B: 1 domain  (RG running)
+  Subgroup C: 1 domain  (Chern-Simons)
+
+  R2 = pi/4 in modulus: 7/9 domains
+  R2 in other role: 2/9 (step size in B, exponential in C)
+  R2 present: 9/9 domains (100%)
+
+  The three-subgroup structure is CONFIRMED by extension.
+  All three new domains fall into Subgroup A as expected.
+  No new subgroup needed.
+
+  

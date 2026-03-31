@@ -1,0 +1,23 @@
+======================================================================
+DISC-8 ITEM 8: ALPHA_S RESIDUAL PSLQ
+======================================================================
+
+  alpha_s         = 0.118
+  pi*zeta(3)/32   = 0.1180116605050962164751086185391419631719134491499
+  residual        = -0.000011660505096216475108618539141963171913449149895665
+  residual (float)= -1.1660505096e-05
+
+Pool: 1, pi, pi^2, e, ln2, sqrt2, sqrt3, phi, zeta3, zeta5
+
+  maxcoeff=  100: null
+  maxcoeff= 1000: null
+  maxcoeff=10000: null
+
+PSLQ on alpha_s directly (confirmation):
+  maxcoeff= 1000: null
+  maxcoeff=10000: null
+
+RESULT: The residual has no structure in the transcendental basis.
+Combined with the control test: alpha_s = pi*zeta(3)/32 is both
+statistically insignificant (control test) and algebraically
+unstructured (PSLQ null on residual). The candidate is closed.
