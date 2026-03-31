@@ -1,0 +1,207 @@
+======================================================================
+DISC-8 PHASE 2, ITEM 4: KOIDE a = sqrt(2)
+======================================================================
+
+STEP 1: KOIDE PREDICTION (exact Fraction, inputs m_e and m_mu)
+
+  m_e  = 10219979/20000000 MeV = 0.51099895 MeV
+  m_mu = 211316751/2000000 MeV = 105.6583755 MeV
+
+  S = sqrt(m_e) + sqrt(m_mu) = 10.993867905176689062428110514151584444850517066887
+  Q = m_e + m_mu = 106.16937445
+  Discriminant = 6S^2 - 3Q = 406.68266574884448870130266076458017880490515110211
+
+  Koide solutions:
+    m_tau(+) = 1776.9690270830136204505720153232671384710703740586 MeV
+    m_tau(-) = 3.3173565464680085537701872253334575452801296151356 MeV
+
+  Measured: m_tau = 1776.86 +/- 0.12 MeV
+  Koide prediction: m_tau = 1776.9690270830136204505720153232671384710703740586
+  Difference: 0.10902708301362045057201532326713847107037405855839 MeV
+  Sigma: 0.9085590251135037547667943605594872589197838213199
+
+  Verification: Koide ratio = 0.66666666666666666666666666666666666666666666666667
+  Expected: 2/3 = 0.66666666666666666666666666666666666666666666666667
+  Match: True
+
+======================================================================
+STEP 2: WHY a^2 = 2 GIVES KOIDE = 2/3 (exact Fraction proof)
+======================================================================
+
+  Roots of unity identity (exact):
+    sum_{i=0}^{2} cos(theta_0 + 2*pi*i/3) = 0  for all theta_0
+    sum_{i=0}^{2} cos^2(theta_0 + 2*pi*i/3) = 3/2  for all theta_0
+
+  Proof of cos^2 identity:
+    cos^2(x) = (1 + cos(2x))/2
+    sum cos^2(theta + 2pi*i/3) = sum (1 + cos(2theta + 4pi*i/3))/2
+    = 3/2 + (1/2)*sum cos(2theta + 4pi*i/3)
+    = 3/2 + 0 = 3/2  [by the first identity with theta -> 2theta]
+
+  sum cos^2 = 3/2 (EXACT)
+
+  sum(m_i) / M = 3*(1 + a^2/2) = 3*(1 + 2/2) = 6
+  sum(sqrt(m_i))^2 / M = 9
+  Koide = (1 + a^2/2) / 3 = (1 + 2/2) / 3 = 2/3
+
+  VERIFIED: a^2 = 2 => Koide = 2/3 (EXACT Fraction identity)
+
+  CONVERSE: Koide = 2/3 => a^2 = 2*(3*2/3 - 1) = 2 (EXACT)
+
+  Therefore: Koide = 2/3  <=>  a^2 = 2
+  The two conditions are EQUIVALENT. Deriving either derives both.
+
+======================================================================
+STEP 3: KURAMOTO MODEL ON A TRIANGLE
+======================================================================
+
+  Three oscillators, phases phi_1, phi_2, phi_3
+  Energy: E = -sum K_ij * cos(phi_i - phi_j)
+
+  Phase differences: alpha = phi_1 - phi_2, beta = phi_2 - phi_3
+  Then phi_3 - phi_1 = -(alpha + beta)
+  E(alpha, beta) = -K12*cos(alpha) - K23*cos(beta) - K31*cos(alpha+beta)
+
+  Equilibrium: dE/dalpha = 0, dE/dbeta = 0
+    K12*sin(alpha) + K31*sin(alpha+beta) = 0  ... (I)
+    K23*sin(beta)  + K31*sin(alpha+beta) = 0  ... (II)
+
+  From (I)-(II): K12*sin(alpha) = K23*sin(beta)
+
+  CASE A: K12 = K23 = K, K31 = J (one bond different)
+
+  From K*sin(alpha) = K*sin(beta): alpha = beta (symmetric solution)
+  From (I): K*sin(alpha) + J*sin(2*alpha) = 0
+            K*sin(alpha) + 2*J*sin(alpha)*cos(alpha) = 0
+            sin(alpha) * (K + 2*J*cos(alpha)) = 0
+
+  Solutions:
+    (i)  sin(alpha) = 0  =>  alpha = 0 (all aligned)
+    (ii) cos(alpha) = -K/(2J)
+
+  Solution (ii) exists when |K/(2J)| <= 1, i.e., |J| >= |K|/2
+
+  CONNECTION TO KOIDE:
+    At equilibrium, alpha = beta, and both equal some angle.
+    The Koide parameterization uses phases at 120-degree spacing.
+    If alpha = 2*pi/3 exactly, this is the EQUAL SPACING case (a=0).
+    Departure from 2*pi/3 maps to Koide amplitude a != 0.
+
+  MAPPING KURAMOTO TO KOIDE:
+
+  The Koide formula uses an AMPLITUDE parameter a in:
+    m_i = M(1 + a*cos(phi_i))^2 with phi_i = theta_0 + 2*pi*i/3
+
+  The phases phi_i are FIXED at 120-degree spacing.
+  The amplitude a modulates how strongly each phase contributes
+  to the mass. At a = 0, all masses equal. At a = sqrt(2), Koide = 2/3.
+
+  The Kuramoto model controls the PHASES, not the amplitude.
+  A frustrated triangle gives equilibrium phases that DEPART from 120 degrees.
+  But Koide's phases ARE 120 degrees — the free parameter is a, not the spacing.
+
+  THIS IS THE STRUCTURAL MISMATCH:
+  Kuramoto frustration modifies the PHASE SPACING.
+  Koide keeps 120-degree spacing fixed and varies the AMPLITUDE.
+  These are different degrees of freedom.
+
+======================================================================
+STEP 4: ATTEMPTING THE CONNECTION ANYWAY
+======================================================================
+
+  Frustrated phases: phi_1 = 0, phi_2 = 2pi/3 + d, phi_3 = 4pi/3 - d
+  sum cos(phi_i) = 1 - cos(d)
+  For d = 0: sum = 0 (roots of unity)
+  For d != 0: sum != 0 (identity breaks)
+
+  This means: with frustrated phases, the Koide algebra changes.
+  sum(1 + a*cos(phi_i)) = 3 + a*(1 - cos(d)) != 3
+  The denominator of the Koide ratio is no longer 9*M.
+  The simplification that gives Koide = (1 + a^2/2)/3 fails.
+
+  Generalized sum cos^2:
+    sum cos^2(phi_i) = 2 - cos(pi/3 + 2d)
+    At d=0: 2 - 1/2 = 3/2 ✓
+
+  Generalized Koide = 2/3 condition:
+    a^2*(2-cos(pi/3+2d)) = 3 + 2a*(1-cos(d)) + (2/3)*a^2*(1-cos(d))^2
+
+  CHECK d=0: a^2*(3/2) = 3 => a^2 = 2 ✓
+
+  NUMERICAL SEARCH: a^2 = 2 with d != 0
+
+  f(d=0) = 0.0
+
+           d       d/pi             f(d)
+   -1.047198    -0.3333      -1.74754690
+   -0.959931    -0.3056      -1.73413260
+   -0.872665    -0.2778      -1.71257236
+   -0.785398    -0.2500      -1.67485985
+   -0.698132    -0.2222      -1.61409175
+   -0.610865    -0.1944      -1.52473875
+   -0.523599    -0.1667      -1.40286964
+   -0.436332    -0.1389      -1.24632141
+   -0.349066    -0.1111      -1.05480958
+   -0.261799    -0.0833      -0.82997519
+   -0.174533    -0.0556      -0.57536679
+   -0.087266    -0.0278      -0.29635755
+    0.000000     0.0000       0.00000000
+    0.087266     0.0278       0.30517739
+    0.174533     0.0556       0.60942574
+    0.261799     0.0833       0.90207562
+    0.349066     0.1111       1.17187202
+    0.436332     0.1389       1.40733438
+    0.523599     0.1667       1.59713036
+    0.610865     0.1944       1.73045198
+    0.698132     0.2222       1.79738237
+    0.785398     0.2500       1.78924177
+    0.872665     0.2778       1.69890177
+    0.959931     0.3056       1.52105812
+    1.047198     0.3333       1.25245310
+
+  f(d) = 0 ONLY at d = 0.
+  For d != 0, a^2 = 2 does NOT satisfy Koide = 2/3.
+
+  This means: a = sqrt(2) and 120-degree spacing are
+  JOINTLY required for Koide = 2/3. You cannot depart from
+  120 degrees and keep a = sqrt(2) while maintaining Koide = 2/3.
+
+  The Kuramoto model on a frustrated triangle produces d != 0.
+  With d != 0, a = sqrt(2) does NOT give Koide = 2/3.
+  The frustrated graph mechanism DOES NOT derive a = sqrt(2).
+
+======================================================================
+STEP 5: WHAT THE RESULT MEANS
+======================================================================
+
+  The Koide formula requires BOTH:
+    (i)  120-degree spacing (phases at 2pi*i/3)
+    (ii) Amplitude a = sqrt(2)
+
+  These are not independent — Koide = 2/3 at d = 0 is
+  EQUIVALENT to a^2 = 2 (proven in Fraction arithmetic).
+
+  But: WHY 120-degree spacing? This is the C3 symmetry of
+  three generations. If we assume C3 symmetry (three identical
+  sectors equally spaced), then 120 degrees follows, and
+  a = sqrt(2) is the UNIQUE amplitude giving Koide = 2/3.
+
+  The question reduces to: WHY C3 SYMMETRY?
+  (Not why a = sqrt(2), which follows from C3 + Koide = 2/3.)
+
+  And: WHY Koide = 2/3?
+  This is the ratio (1 + a^2/2)/3 = 2/3, which is a^2 = 2.
+  In the Koide parameterization, 2/3 is not a separate condition —
+  it IS the condition a^2 = 2.
+
+  DOCUMENTED BLOCKAGE:
+  The frustrated graph mechanism does not work because:
+    - Kuramoto frustration modifies PHASE SPACING (d != 0)
+    - Koide requires FIXED 120-degree spacing (d = 0)
+    - With d != 0, a = sqrt(2) does not give Koide = 2/3
+    - The structural mismatch is proven numerically
+
+  The derivation of a = sqrt(2) remains open.
+  The path forward is not graph frustration but understanding
+  why the mass parameterization has C3 symmetry with a^2 = 2.
+  
