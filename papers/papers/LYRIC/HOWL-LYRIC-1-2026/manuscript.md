@@ -1,9 +1,9 @@
 # The Lyric Engine
 ## A Systematic Method for AI-Assisted Song Construction from Dense Source Material
 
-**Registry:** [@HOWL-MUSIC-1-2026]
+**Registry:** [@HOWL-LYRIC-1-2026]
 
-**Series Path:** [@HOWL-DISC-1-2026] → [@HOWL-MUSIC-1-2026]
+**Series Path:** [@HOWL-DISC-1-2026] → [@HOWL-LYRIC-1-2026]
 
 **DOI:** 10.5281/zenodo.zzz
 
@@ -810,9 +810,9 @@ A song needs replanning (not rewriting) when:
 
 ---
 
-**END HOWL-MUSIC-1-2026**
+**END HOWL-LYRIC-1-2026**
 
-**Registry:** [@HOWL-MUSIC-1-2026]
+**Registry:** [@HOWL-LYRIC-1-2026]
 **Status:** Complete with Production Addendum
 **Domain:** Applied Methodology / AI-Assisted Creative Production
 **Method:** Three albums (33 songs). Forty rules from production failures. Anchor-first architecture. Suno-specific formatting and dynamics. Album sequencing through heartbeat principle.

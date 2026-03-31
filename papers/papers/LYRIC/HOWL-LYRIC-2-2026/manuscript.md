@@ -1,9 +1,9 @@
 # The Lyric Engine II
 ## A Systematic Method for LLM-Assisted Song Refinement from Existing Draft Material
 
-**Registry:** [@HOWL-MUSIC-2-2026]
+**Registry:** [@HOWL-LYRIC-2-2026]
 
-**Series Path:** [@HOWL-DISC-1-2026] → [@HOWL-MUSIC-1-2026] → [@HOWL-MUSIC-2-2026]
+**Series Path:** [@HOWL-DISC-1-2026] → [@HOWL-LYRIC-1-2026] → [@HOWL-LYRIC-2-2026]
 
 **DOI:** 10.5281/zenodo.zzz
 
@@ -19,7 +19,7 @@
 
 ## I. ABSTRACT
 
-This paper documents a systematic method for refining existing song drafts using LLM collaboration. MUSIC-1 documented creation from dense source material. MUSIC-2 documents refinement from existing drafts — human-written, LLM-written, or hybrid. The method was developed through the refinement of three albums: Culture (9 tracks, LLM-written from source papers), Obvious (20 tracks, LLM-written from research corpus), and Dragon's Dice (14 tracks, 6 human-written + 8 LLM-written rock opera).
+This paper documents a systematic method for refining existing song drafts using LLM collaboration. LYRIC-1 documented creation from dense source material. LYRIC-2 documents refinement from existing drafts — human-written, LLM-written, or hybrid. The method was developed through the refinement of three albums: Culture (9 tracks, LLM-written from source papers), Obvious (20 tracks, LLM-written from research corpus), and Dragon's Dice (14 tracks, 6 human-written + 8 LLM-written rock opera).
 
 The primary finding: the LLM's most valuable refinement skill is knowing what to keep. The primary failure mode: adding material that isn't in the draft. The method produces consistent results at 85-90% quality, with the remaining 10-15% requiring human final pass for embodied experience, invented language, gap-shaping, and physical plausibility that the LLM cannot provide.
 
@@ -29,9 +29,9 @@ The rule set remains open. Every refinement cycle will generate new failures the
 
 ---
 
-## II. THE PROBLEM MUSIC-2 SOLVES
+## II. THE PROBLEM LYRIC-2 SOLVES
 
-MUSIC-1 starts from source material and builds songs. But many practitioners already have songs — rough drafts, LLM first passes, half-finished lyrics, demo recordings with placeholder words. These existing drafts contain structural strengths (emotional arcs, character voices, narrative progressions) alongside consistent weaknesses (object agency, voice flattening, physical impossibility, over-articulation).
+LYRIC-1 starts from source material and builds songs. But many practitioners already have songs — rough drafts, LLM first passes, half-finished lyrics, demo recordings with placeholder words. These existing drafts contain structural strengths (emotional arcs, character voices, narrative progressions) alongside consistent weaknesses (object agency, voice flattening, physical impossibility, over-articulation).
 
 The refinement problem is different from the creation problem. Creation asks "what should this song be?" Refinement asks "what is this song already, and what's preventing it from working?"
 
@@ -43,7 +43,7 @@ The draft already contains the song. The refinement reveals it.
 
 ### III.I Assessment
 
-Before changing a single word, review the entire draft against the full rule set (MUSIC-1 Rules 1-40 plus MUSIC-2 Rules 41-52). Identify what works and what doesn't. The assessment produces four categories:
+Before changing a single word, review the entire draft against the full rule set (LYRIC-1 Rules 1-40 plus LYRIC-2 Rules 41-52). Identify what works and what doesn't. The assessment produces four categories:
 
 **Keep** — lines, verses, or sections that are already at maximum compression or carry the song's emotional payload. These are untouchable. The discipline is recognizing them and not rewriting them to prove contribution. The best lines in an LLM draft are often already there — buried under scaffolding the LLM built to reach them. The revision process is archaeological: remove what's covering the good lines.
 
@@ -68,13 +68,13 @@ The ratio tells the story: refinement is mostly preservation. The LLM's most com
 
 ### III.III The Two-Phase Boundary
 
-Same as MUSIC-1. Phase 1 is the plan — assessment, identification of keep/fix/cut/add, anchor table for any new sections, object inventory for narrative albums. Phase 2 is the rewrite. The boundary is hard. No lyrics are changed until the plan is reviewed and approved by the human practitioner.
+Same as LYRIC-1. Phase 1 is the plan — assessment, identification of keep/fix/cut/add, anchor table for any new sections, object inventory for narrative albums. Phase 2 is the rewrite. The boundary is hard. No lyrics are changed until the plan is reviewed and approved by the human practitioner.
 
 The plan catches problems the rewrite would bury. Object continuity errors, wrong character voices, scenes that don't physically make sense, structural pacing issues — all of these are visible in the plan and invisible once the LLM starts generating lyrics. The planning phase is where most of the value is created. The writing phase is execution.
 
 ### III.IV Kill Discipline in Refinement
 
-MUSIC-1's kill discipline applies to metaphors: if the metaphor doesn't work after five cycles, kill it. MUSIC-2 adds refinement-specific kill discipline: if a section can't be fixed without rewriting more than 50% of its lines, the section needs replanning, not refinement. The plan should identify this before the rewrite begins.
+LYRIC-1's kill discipline applies to metaphors: if the metaphor doesn't work after five cycles, kill it. LYRIC-2 adds refinement-specific kill discipline: if a section can't be fixed without rewriting more than 50% of its lines, the section needs replanning, not refinement. The plan should identify this before the rewrite begins.
 
 ---
 
@@ -92,7 +92,7 @@ Each rule derived from a specific failure observed during the refinement process
 
 Derived from: Dragon's Dice Tracks 1-6, where every character is an unreliable narrator who believes they're justified. The Mage describes kidnapping as romance. The Brute describes coercion as efficiency. The Elf describes incompetence as heroism. The listener receives more information than the narrator provides because the narrator's blind spots are visible in what they describe without recognizing.
 
-**Rule 43 — Listener-completed compression (provisional).** Leaving deliberate gaps the listener fills. The song provides the syntax, the listener provides the content. Distinct from metaphor compression (MUSIC-1) where the songwriter encodes the depth. In listener-completed compression, the listener encodes the depth.
+**Rule 43 — Listener-completed compression (provisional).** Leaving deliberate gaps the listener fills. The song provides the syntax, the listener provides the content. Distinct from metaphor compression (LYRIC-1) where the songwriter encodes the depth. In listener-completed compression, the listener encodes the depth.
 
 The risk for LLMs: filling gaps that should be left empty (projecting cognition — "the napkin knows"), or leaving gaps with no shape (the listener can't decompress). The test: does the gap have a specific shape that a human listener would fill with their own experience? If yes, leave it. If the shape is ambiguous or the LLM would fill it with projected cognition, name the banana instead.
 
@@ -196,7 +196,7 @@ The spell degrades from omnipotent to impotent. The impotence is where the chara
 
 ### V.IV Genre as Character Psychology
 
-In narrative albums, the style tag for each track can express the character's internal state rather than the album's energy oscillation (MUSIC-1's heartbeat principle). The genre IS the character's self-image or emotional state. The mismatch between genre and content creates dramatic irony the listener feels but can't articulate.
+In narrative albums, the style tag for each track can express the character's internal state rather than the album's energy oscillation (LYRIC-1's heartbeat principle). The genre IS the character's self-image or emotional state. The mismatch between genre and content creates dramatic irony the listener feels but can't articulate.
 
 | Character | Genre | Function |
 |---|---|---|
@@ -213,7 +213,7 @@ The BPM progression follows character psychology, not heartbeat oscillation. Eac
 
 A later track can add a depth layer to earlier tracks retroactively. The villain's song recontextualizes every previous song — the Thief's romance was engineered, the Brute's partnership was manufactured, the Knight's quest was posted by the Druid. The listener replays earlier songs and hears strings that weren't visible on first listen.
 
-This is distinct from MUSIC-1's dual layer, where both layers exist simultaneously in every line. Retroactive dual layer is sequential — the depth is added backward by a later track. The earlier songs are complete on first listen. The later track makes them more complete.
+This is distinct from LYRIC-1's dual layer, where both layers exist simultaneously in every line. Retroactive dual layer is sequential — the depth is added backward by a later track. The earlier songs are complete on first listen. The later track makes them more complete.
 
 ### V.VI Post-Climax Character Resolution
 
@@ -374,7 +374,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 
 **F3.** If human practitioners consistently reject "good enough" assessments, the quality threshold is miscalibrated.
 
-**F4.** If the new rules (41-52) eliminate distinctiveness the way MUSIC-1's F3 warns about, the rule set is over-constraining.
+**F4.** If the new rules (41-52) eliminate distinctiveness the way LYRIC-1's F3 warns about, the rule set is over-constraining.
 
 **F5.** If the narrative album rules don't transfer to other narrative albums, they're specific to Dragon's Dice rather than general.
 
@@ -384,7 +384,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 
 ## APPENDIX A: UPDATED BAN LIST
 
-### Words (MUSIC-1 + MUSIC-2 additions)
+### Words (LYRIC-1 + LYRIC-2 additions)
 
 | Word | Reason | Exception |
 |---|---|---|
@@ -409,7 +409,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 | something/anything | Vague placeholder | Never — name the banana |
 | game | Generic strategic container | Never — name the specific activity |
 
-### Concepts (MUSIC-1 unchanged)
+### Concepts (LYRIC-1 unchanged)
 
 | Concept | Includes | Alternative |
 |---|---|---|
@@ -420,7 +420,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 | "Always there" abstractions | "the climbing's always there" | Name what's present — wind, yarn, forge heat |
 | Generic strategy | "playing a different game," "changed the game" | Name the specific action, competition, stakes |
 
-### Patterns (MUSIC-1 unchanged + additions)
+### Patterns (LYRIC-1 unchanged + additions)
 
 | Pattern | Example | Alternative |
 |---|---|---|
@@ -435,7 +435,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 
 ## APPENDIX B: COMPLETE RULES LIST (1-52)
 
-### MUSIC-1 Rules (1-40)
+### LYRIC-1 Rules (1-40)
 
 1. Ban-list words
 2. Ban-list concepts — semantic role banned, synonyms carry ban
@@ -478,7 +478,7 @@ Tracks that break structural rules (free verse, no chorus, concept-heavy bridges
 39. Alternate genders and character types
 40. Metaphor must be accessible
 
-### MUSIC-2 Rules (41-52)
+### LYRIC-2 Rules (41-52)
 
 41. Ban word: "game" — generic strategic container
 42. Unreliable narrator as valid structural choice
@@ -647,9 +647,9 @@ Techniques identified from human-written songs that the LLM cannot replicate. Do
 
 ---
 
-**END HOWL-MUSIC-2-2026**
+**END HOWL-LYRIC-2-2026**
 
-**Registry:** [@HOWL-MUSIC-2-2026]
+**Registry:** [@HOWL-LYRIC-2-2026]
 **Status:** Complete
 **Domain:** Applied Methodology / AI-Assisted Creative Production
 **Method:** Three albums (43 songs) reviewed and refined. Twelve new rules from production failures. Narrative album rules for recurring cast, object tracking, voice maintenance, and refrain degradation. Refinement ratio documented: 80-85% keep, 5-10% fix, 5-10% cut, 0-5% add.
