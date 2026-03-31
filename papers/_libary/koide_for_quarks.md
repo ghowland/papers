@@ -157,3 +157,48 @@ All in /home/claude/. Not in outputs (notebook entries).
 **Blocked by:** Non-universal confinement correction is on the inside face of the confinement boundary. Same wall as hadronic VP.
 **Pickup instructions:** Load this plus PHYS-6 and PHYS-8. The amplitude ordering (leptons < down < up tracking interaction strength) is the surviving lead. If a formula for the color correction to the Koide amplitude is found, quark masses become derivable.
 
+---
+
+## ADDENDUM: M4 — Frustration Departure from 120° on z=3 Graphs
+
+### The Connection
+
+On a 3-regular graph (z = 3, each node connected to three neighbors) with Kuramoto-type phase coupling, equal 120° spacing between three sectors is a saddle point, not a minimum. The system's ground state departs from 120°. This is proven in the Kuramoto-on-graphs literature and follows from the triangular face frustration inherent to z = 3 topology.
+
+The Koide parametrization places three masses on a circle at phases θ₀ + 2πi/3 (equal 120° spacing). Our quark Koide analysis found that the reconstructed θ₀ values are:
+
+| Sector | θ₀ | Departure from 120° |
+|---|---|---|
+| Leptons | 132.7° | +12.7° |
+| Down quarks | 126.3° | +6.3° |
+| Up quarks | 124.3° | +4.3° |
+
+The θ₀ is not the spacing between masses — it's the orientation of the pattern on the circle. The spacing IS 120° by construction in the Koide parametrization. What varies is the amplitude a, not the spacing.
+
+However: if the equal-spacing assumption is RELAXED — if the three masses sit at θ₀, θ₀ + Δ₁, θ₀ + Δ₁ + Δ₂ with Δ₁ + Δ₂ + Δ₃ = 2π but Δ₁ ≠ Δ₂ ≠ Δ₃ — then the frustration departure from 120° becomes the physical content. The Koide ratio (1 + a²/2)/3 assumes equal spacing. Unequal spacing changes the ratio. The quark Koide failure (ratio ≠ 2/3) might be reinterpreted as a spacing failure rather than an amplitude failure.
+
+### The Hypothesis
+
+If quark flavors within a charge sector are modes on a frustrated z = 3 graph, the ground state spacing is NOT 120° but a specific computable departure. This departure changes the Koide ratio from 2/3 to the measured values (0.731 for down, 0.849 for up). The leptons, which don't feel the strong force, sit on an unfrustrated graph where 120° IS the minimum, giving Koide = 2/3 exactly.
+
+The frustration source for quarks would be the color interaction — the z = 3 graph is the color SU(3) structure, and the triangular frustration is confinement viewed as a topological obstruction.
+
+### What Would Be Required
+
+1. Identify the specific graph: z = 3 on what manifold? The SU(3) weight diagram is a natural candidate — it's a triangular lattice with z = 3.
+2. Define the coupling: Kuramoto-type phase coupling with what natural frequency distribution? The natural frequencies would map to quark masses.
+3. Compute the ground state: find the minimum-energy phase configuration for three modes on the frustrated graph. The departure angles are the output.
+4. Map to masses: the departure angles plus the Koide parametrization give mass ratios. Compare to measured.
+
+Each step is a separate unsolved problem. The chain is: frustrated graph → departure angles → mass ratios. If step 3 produces angles that match the quark data, the connection is established and quark masses become derivable from graph topology.
+
+### Why This Is Parked
+
+The computation requires specifying the graph, which requires a physical argument for which graph nature uses. Without that, we're searching an infinite space of z = 3 graphs. The PHYS-1 vortex picture suggests the graph is related to the field's mode structure, but this hasn't been formalized.
+
+The M4 frustration result is the one item from CKS that connects to a live open question (the Koide equal-spacing derivation from PHYS-8) through established mathematics (Kuramoto on frustrated graphs). It doesn't provide an answer but it identifies a specific mathematical structure — frustrated z = 3 phase dynamics — that produces the right qualitative behavior (departure from equal spacing for strongly-interacting modes).
+
+### Tags
+
+Kuramoto, frustration, z=3 graph, saddle point, 120° departure, SU(3) weight diagram, graph ground state, unequal spacing, Koide generalization, confinement as topological frustration
+
