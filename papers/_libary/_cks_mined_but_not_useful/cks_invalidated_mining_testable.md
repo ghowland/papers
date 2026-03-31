@@ -200,3 +200,66 @@ For the goal of SM parameter reduction using geometric/topological content:
 
 ---
 
+Reading through the CKS mining database carefully against our current framework.
+
+**The filter:** Does any item produce a computational path to deriving a free SM parameter using integer arithmetic? Not metaphors, not near-misses, not fits — actual derivable structure.
+
+Let me assess the items you flagged as most likely useful:
+
+**M1/M105/M117 — Hex shell sequence 1, 7, 19, 37, 61...**
+
+The sequence 3n² + 3n + 1 is real discrete geometry. The number 19 matching the SM parameter count is noted but not actionable — coincidence until a mechanism connects them. The number 7 matching b₃ = −7 is the same situation. These are integers that appear in both hex geometry and the SM, but without a derivation connecting the two, they're observations not paths.
+
+**M11/M34 — sin²θ_W = 1/4 from hex geometry**
+
+We just showed sin²θ_W = 3/8 at GUT scale runs to ~0.231 at M_Z. The value 1/4 = 0.250 is 8% above measured. sin²θ_W passes through 1/4 at some intermediate energy. Let me check: our linear formula gives sin²θ_W = 3/8 − (109/72)·L/α_EM⁻¹. Setting this to 1/4:
+
+1/4 = 3/8 − (109/72)·L/127.906
+
+L = (3/8 − 1/4) · 72 · 127.906 / 109 = (1/8) · 72 · 127.906 / 109 = 13.24
+
+That corresponds to ~10^36 GeV — above the Planck scale. So sin²θ_W = 1/4 is NOT a natural scale in SM running. The 1/4 from hex geometry doesn't land anywhere physical. **No path.**
+
+**M99 — 12 bonds minus 1 = 11 DOF**
+
+12 gauge bosons minus 1 photon = 11 massive/mixed bosons. This is a count match. But the SM has 12 gauge bosons (8 gluons + W⁺ + W⁻ + Z + γ), not 12 bonds on a hex node. Without a mechanism mapping hex bonds to gauge bosons, it's numerology. **No path.**
+
+**M4 — Three-sector saddle point departing from 120°**
+
+This is the most interesting item for us. We just found that quark sectors have θ₀ ≈ 124°–127° while leptons have 132.7°. The quarks DEPART from 120° equal spacing. M4 says: on a frustrated z = 3 graph, equal 120° spacing is a saddle point, not a minimum. The system moves away from 120°.
+
+The question: does the frustration on a z = 3 graph predict the DIRECTION and MAGNITUDE of the departure? If so, the quark θ₀ values might be derivable from the graph topology rather than from the masses.
+
+But this is backwards — we extract θ₀ from the masses, we don't predict masses from θ₀. And the Koide ratio depends only on the amplitude a, not on θ₀ (proven in the notebook we just wrote). So even if the frustration angle were derivable, it would determine which masses the quarks HAVE, not the Koide ratio. This could be a path to individual mass values IF we independently know a.
+
+**This is a genuine lead, but it's deep.** It requires: (1) identifying the correct graph (z = 3 on what manifold?), (2) computing the frustration departure from 120°, (3) showing it matches quark θ₀. That's a research program, not a calculation.
+
+**M122/M123 — Primes as anti-resonance**
+
+This connects to the standing wave / vortex picture from PHYS-1. A standing wave on a discrete lattice with N nodes has resonance at N and harmonics. Prime N prevents resonance with any sub-mode. This is real physics (KAM theorem). But connecting it to specific SM parameters requires knowing which lattice, which N, which modes. **No immediate path, but the logic is sound.**
+
+**M129 — Generating chain (3, 2) → all CKS integers**
+
+D = 3 (spatial dimensions), S = 2 (bilateral symmetry). These produce Loop = D·S² = 12, Matter = 12² = 144, Time = 19 (hex shell), Space = 163. The chain is compact. But 12, 144, 19, 163 don't appear as SM parameters. The gap between these integers and the SM is the entire problem. **No path without a mechanism.**
+
+**M110 — 144 = F₁₂ = 12²**
+
+The only nontrivial perfect square in the Fibonacci sequence. Real number theory (Cohn 1964). But 144 doesn't appear in any SM formula I can identify. **No path.**
+
+**M104 — 2573/19 = 135.42 as α⁻¹ base**
+
+This is 1.2% below α⁻¹ = 137.036. The "J factor" of 1.012 is fitted, not derived. Even if 2573/19 has a geometric origin (144 − 163/19), the 1.2% gap has no identified mechanism. Compare to our PHYS-5 result where the 0.02 ppm gap is fully accounted for by hadronic VP. **No path — the J factor is a fit.**
+
+**My overall assessment:**
+
+Only one item has a genuine logical connection to our current work: **M4, the frustration departure from 120° on a z = 3 graph.** It connects to:
+- PHYS-8 Koide parametrization (three objects on a circle, spacing as a parameter)
+- The quark notebook (θ₀ departs from 120° by amounts that might be computable from graph topology)
+- PHYS-1 (vortex solitons as nodes on a graph)
+
+But it's a research program, not a calculation we can execute now. The connection is: IF particles are modes on a discrete graph, AND the graph has z = 3 with frustration, THEN the equal-spacing departure angle is computable from the graph's ground state, AND that angle determines the mass ratios through the Koide parametrization.
+
+The chain has too many IFs. Each IF is a separate unsolved problem.
+
+**Bottom line: no item in the CKS database produces a computable path to a SM parameter derivation that we can execute now.** The M4 frustration angle is the one item worth keeping in mind as we develop the Koide equal-spacing derivation (the deepest open question from PHYS-8). Everything else is either numerology without mechanism, fits with free parameters, or metaphors without math.
+
