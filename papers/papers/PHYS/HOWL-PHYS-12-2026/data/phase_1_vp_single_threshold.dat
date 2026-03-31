@@ -1,0 +1,48 @@
+======================================================================
+DISC-8 PHASE 1, ITEM 2: VP SINGLE-THRESHOLD CLOSURE
+======================================================================
+
+THEOREM: The VP running between adjacent thresholds has no
+periodic structure under any smooth change of variables.
+
+PROOF:
+
+  Between two adjacent mass thresholds m_f and m_{f+1},
+  the coupling runs as:
+
+    alpha^{-1}(mu) = alpha^{-1}(m_f) + (b/2pi) * ln(mu/m_f)
+
+  Define kappa = ln(mu/m_f). Then:
+
+    alpha^{-1}(kappa) = alpha^{-1}(0) + c * kappa
+
+  where c = b/(2pi) is a positive constant (for asymptotic freedom).
+
+  This is a LINEAR function of kappa: f(kappa) = a + c*kappa.
+
+  Claim: No smooth bijection g: R -> R makes f(g(x)) periodic.
+
+  Proof: Suppose f(g(x)) = a + c*g(x) is periodic with period P.
+  Then f(g(x+P)) = f(g(x)) for all x.
+  So a + c*g(x+P) = a + c*g(x).
+  So g(x+P) = g(x) for all x.
+  But g is a bijection (invertible), and a periodic function
+  is not injective (g(0) = g(P) = g(2P) = ...).
+  Contradiction. QED.
+
+  The argument extends: ANY monotonic function composed with
+  ANY bijection remains non-periodic, because periodicity
+  requires the function to return to a previous value,
+  which a monotonic-composed-with-bijection cannot do.
+
+RESULT: The Q5 null from DISC-7 is CLOSED DEFINITIVELY.
+  Not just for the full VP running (unequal thresholds),
+  but for each single-threshold segment individually.
+  The VP running is structurally monotonic at every scale.
+  No change of variables can introduce periodicity.
+
+  Subgroup B (monotonic accumulation) is IRREDUCIBLY
+  distinct from Subgroup A (phase-periodic).
+  The separation is topological: monotonic vs periodic
+  is a property preserved under all smooth coordinate changes.
+
