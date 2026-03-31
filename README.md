@@ -99,6 +99,8 @@
 | **[[@HOWL-PHYS-7-2026]](papers/papers/PHYS/HOWL-PHYS-7-2026/manuscript.md)** | **The Strong CP Problem Is Not a Problem** | θ_QCD = 0 as the Ground State of an Integer-Topological System. |
 | **[[@HOWL-PHYS-8-2026]](papers/papers/PHYS/HOWL-PHYS-8-2026/manuscript.md)** | **The Koide Constant Decomposes** | Generation Count and Amplitude in the Charged Lepton Mass Relation. |
 | **[[@HOWL-PHYS-9-2026]](papers/papers/PHYS/HOWL-PHYS-9-2026/manuscript.md)** | **The Electromagnetic Chain in Integer Arithmetic** | One Measurement, Three Transformation Laws, Every Scale. |
+| **[[@HOWL-PHYS-10-2026]](papers/papers/PHYS/HOWL-PHYS-10-2026/manuscript.md)** | **Remainder as Observable** | Exact Quotient-Remainder Decomposition Across Six Domains of Quantum Physics. |
+| **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | . |
 
 ---
 
