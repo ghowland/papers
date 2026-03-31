@@ -1,21 +1,6 @@
 # The Inertial Vortex
 ## Mass as Pattern Resistance, Soliton Boundaries as Unmodeled Measurement Elements, and the Anomaly Correlation
 
-
-**Registry:** [@HOWL-PHYS-2-2026]
-
-**DOI:** 10.5281/zenodo.zzz
-
-**Date:** March 2026
-
-**Domain:** Foundational Physics / Measurement Theory
-
-**Status:** Complete
-
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
-
----
-
 **Registry:** [@HOWL-PHYS-1-2026]
 
 **DOI:** 10.5281/zenodo.zzz
