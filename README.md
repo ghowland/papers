@@ -113,6 +113,8 @@
 | **[[@HOWL-DISC-4-2026]](papers/papers/DISC/HOWL-DISC-4-2026/manuscript.md)** | **The Real Number High-Utility Trap** | Why the Tool That Built the Modern World Cannot Build the Next Level of Understanding. |
 | **[[@HOWL-DISC-5-2026]](papers/papers/DISC/HOWL-DISC-5-2026/manuscript.md)** | **The Institutional Coherence Gap** | Triveritas Assessment of the Three Pillars of Modern Physics. |
 | **[[@HOWL-DISC-6-2026]](papers/papers/DISC/HOWL-DISC-6-2026/manuscript.md)** | **The Remainder Extraction Program** | A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic. |
+| **[[@HOWL-DISC-7-2026]](papers/papers/DISC/HOWL-DISC-7-2026/manuscript.md)** | **The Remainder Extraction Program: Execution and Results** | Four Phases Delivered, Parameter Reduction Null. |
+| **[[@HOWL-DISC-8-2026]](papers/papers/DISC/HOWL-DISC-8-2026/manuscript.md)** | **The Remainder Extraction Program** | A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic. |
 
 ---
 
