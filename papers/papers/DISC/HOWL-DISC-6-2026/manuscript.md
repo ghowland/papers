@@ -4,8 +4,6 @@
 
 **Registry:** [@HOWL-DISC-6-2026]
 
-**Series:** Discovery
-
 **Series Path:** [@HOWL-MATH-1-2026] → [@HOWL-MATH-4-2026] → [@HOWL-PHYS-10-2026] → [@HOWL-MATH-5-2026] → [@HOWL-DISC-6-2026]
 
 **DOI:** 10.5281/zenodo.zzz
