@@ -1,81 +1,120 @@
-from mpmath import mp, mpf, pi, zeta, log, sqrt, e as me, phi
+======================================================================
+PHASE 4 — STRATEGY B: SYNTHESIS-INFORMED MODULAR SEARCH
+======================================================================
 
-mp.dps = 50
+Phase 3 synthesis: Subgroup A has modulus 8R₂ = 2π.
+Test: do any SM parameters, when divided by R₂-based moduli,
+produce remainders that are simple rationals p/q with small q?
 
-print("=" * 70)
-print("PHASE 4 — STRATEGY B: SYNTHESIS-INFORMED MODULAR SEARCH")
-print("=" * 70)
-print()
-print("Phase 3 synthesis: Subgroup A has modulus 8R₂ = 2π.")
-print("Test: do any SM parameters, when divided by R₂-based moduli,")
-print("produce remainders that are simple rationals p/q with small q?")
-print()
-print("Key difference from the earlier scan: we now test PRODUCTS of")
-print("basis constants as moduli, and R₂-multiples specifically.")
-print()
+Key difference from the earlier scan: we now test PRODUCTS of
+basis constants as moduli, and R₂-multiples specifically.
 
-R2 = pi / 4
-R4 = pi**2 / 32
+Targets: 13
+Moduli: 18 (R₂-multiples, R₄-multiples, products)
 
-targets = [
-    ("alpha_inv",    mpf('137.035999177')),
-    ("alpha_inv_MZ", mpf('127.906')),
-    ("sin2_tW",      mpf('0.23122')),
-    ("alpha_s",      mpf('0.1180')),
-    ("m_mu/m_e",     mpf('206.7682830')),
-    ("m_tau/m_e",    mpf('3477.1507')),
-    ("m_tau/m_mu",   mpf('16.8170')),
-    ("M_W/M_Z",      mpf('0.88147')),
-    ("M_H/M_Z",      mpf('1.37193')),
-    ("M_H/M_W",      mpf('1.55670')),
-    ("sin_t12",      mpf('0.2253')),
-    ("sin_t23",      mpf('0.0412')),
-    ("delta_CP",     mpf('1.36')),  # radians — this IS a phase
-]
+  alpha_inv      mod R2*e            : q=   64, R/mod ~ 3/16  (off 0.00002)
 
-# Synthesis-informed moduli:
-# Subgroup A: multiples of R₂
-# Subgroup C: R₄ and multiples
-# Products of basis constants
-moduli = [
-    # R₂ multiples (Subgroup A modular structure)
-    ("R2",       R2),
-    ("2R2",      2*R2),
-    ("4R2=pi",   4*R2),
-    ("8R2=2pi",  8*R2),
-    
-    # R₄ multiples (Subgroup C structure)
-    ("R4",       R4),
-    ("32R4=pi^2", 32*R4),
-    ("256R4=8pi^2", 256*R4),
-    
-    # Products of basis constants (untested in earlier scan)
-    ("pi*ln2",   pi*log(2)),
-    ("pi*zeta3", pi*zeta(3)),
-    ("pi*e",     pi*me),
-    ("R2*zeta3", R2*zeta(3)),
-    ("R2*ln2",   R2*log(2)),
-    ("R2*e",     R2*me),
-    ("R4*pi",    R4*pi),
-    ("ln2*zeta3", log(2)*zeta(3)),
-    ("sqrt2*pi", sqrt(2)*pi),
-    
-    # The VP step size (Subgroup B)
-    ("1/(12R2)=1/(3pi)", 1/(12*R2)),
-    ("1/(3pi)",  1/(3*pi)),
-]
+  alpha_inv_MZ   mod 8R2=2pi         : q=   20, R/mod ~ 5/14  (off 0.00027)
+  alpha_inv_MZ   mod R2*ln2          : q=  234, R/mod ~ 19/20  (off 0.00007)
 
-print(f"Targets: {len(targets)}")
-print(f"Moduli: {len(moduli)} (R₂-multiples, R₄-multiples, products)")
-print()
+  sin2_tW        mod R2              : q=    0, R/mod ~ 5/17  (off 0.00028)
+  sin2_tW        mod R4              : q=    0, R/mod ~ 3/4   (off 0.00032)
+  sin2_tW        mod R4              : q=    0, R/mod ~ 6/8   (off 0.00032)
+  sin2_tW        mod R4              : q=    0, R/mod ~ 9/12  (off 0.00032)
+  sin2_tW        mod R4              : q=    0, R/mod ~ 12/16  (off 0.00032)
+  sin2_tW        mod R4              : q=    0, R/mod ~ 15/20  (off 0.00032)
+  sin2_tW        mod ln2*zeta3       : q=    0, R/mod ~ 5/18  (off 0.00027)
 
-# For each target × modulus, compute quotient and remainder
-# Flag when R/mod is within 0.1% of p/q with q ≤ 20
+  alpha_s        mod R2              : q=    0, R/mod ~ 3/20  (off 0.00024)
+  alpha_s        mod R2*zeta3        : q=    0, R/mod ~ 1/8   (off 0.00001)
+  alpha_s        mod R2*zeta3        : q=    0, R/mod ~ 2/16  (off 0.00001)
+  alpha_s        mod R2*e            : q=    0, R/mod ~ 1/18  (off 0.00028)
 
-all_hits = []
+  m_mu/m_e       mod R4              : q=  670, R/mod ~ 2/5   (off 0.00023)
+  m_mu/m_e       mod R4              : q=  670, R/mod ~ 4/10  (off 0.00023)
+  m_mu/m_e       mod R4              : q=  670, R/mod ~ 6/15  (off 0.00023)
+  m_mu/m_e       mod R4              : q=  670, R/mod ~ 8/20  (off 0.00023)
+  m_mu/m_e       mod 32R4=pi^2       : q=   20, R/mod ~ 19/20  (off 0.00001)
+  m_mu/m_e       mod R2*e            : q=   96, R/mod ~ 17/20  (off 0.00001)
 
-for tname, tval in targets:
-    target_hits = []
-    for mname, mval in moduli:
-        if mval <= 0 or mval > abs(tval) * 1000:
-            
+  m_tau/m_e      mod R4              : q=11273, R/mod ~ 8/9   (off 0.00010)
+  m_tau/m_e      mod R4              : q=11273, R/mod ~ 16/18  (off 0.00010)
+  m_tau/m_e      mod pi*zeta3        : q=  920, R/mod ~ 13/17  (off 0.00011)
+  m_tau/m_e      mod R2*zeta3        : q= 3683, R/mod ~ 1/17  (off 0.00042)
+  m_tau/m_e      mod R2*e            : q= 1628, R/mod ~ 9/13  (off 0.00039)
+
+  m_tau/m_mu     mod R2              : q=   21, R/mod ~ 7/17  (off 0.00030)
+  m_tau/m_mu     mod 2R2             : q=   10, R/mod ~ 12/17  (off 0.00015)
+  m_tau/m_mu     mod 4R2=pi          : q=    5, R/mod ~ 6/17  (off 0.00008)
+  m_tau/m_mu     mod R2*zeta3        : q=   17, R/mod ~ 13/16  (off 0.00036)
+
+  M_W/M_Z        mod R2*zeta3        : q=    0, R/mod ~ 14/15  (off 0.00033)
+  M_W/M_Z        mod 1/(12R2)=1/(3pi): q=    8, R/mod ~ 4/13  (off 0.00003)
+  M_W/M_Z        mod 1/(3pi)         : q=    8, R/mod ~ 4/13  (off 0.00003)
+
+  M_H/M_Z        mod pi*zeta3        : q=    0, R/mod ~ 4/11  (off 0.00034)
+  M_H/M_Z        mod R2*e            : q=    0, R/mod ~ 9/14  (off 0.00025)
+  M_H/M_Z        mod ln2*zeta3       : q=    1, R/mod ~ 11/17  (off 0.00048)
+
+  M_H/M_W        mod 32R4=pi^2       : q=    0, R/mod ~ 3/19  (off 0.00017)
+  M_H/M_W        mod pi*zeta3        : q=    0, R/mod ~ 7/17  (off 0.00046)
+  M_H/M_W        mod pi*e            : q=    0, R/mod ~ 2/11  (off 0.00047)
+  M_H/M_W        mod sqrt2*pi        : q=    0, R/mod ~ 7/20  (off 0.00038)
+
+  sin_t12        mod 4R2=pi          : q=    0, R/mod ~ 1/14  (off 0.00029)
+  sin_t12        mod R2*e            : q=    0, R/mod ~ 2/19  (off 0.00027)
+
+  sin_t23        mod R2              : q=    0, R/mod ~ 1/19  (off 0.00017)
+  sin_t23        mod R4              : q=    0, R/mod ~ 2/15  (off 0.00025)
+
+  delta_CP       mod pi*ln2          : q=    0, R/mod ~ 5/8   (off 0.00046)
+  delta_CP       mod pi*ln2          : q=    0, R/mod ~ 10/16  (off 0.00046)
+  delta_CP       mod 1/(12R2)=1/(3pi): q=   12, R/mod ~ 9/11  (off 0.00048)
+  delta_CP       mod 1/(3pi)         : q=   12, R/mod ~ 9/11  (off 0.00048)
+
+======================================================================
+TOTAL: 47 hits across 234 tests
+======================================================================
+
+SPECIAL: delta_CP is a phase (in radians)
+  delta_CP = 1.36 rad
+  delta/(2π) = 0.216451
+  delta/π = 0.432901
+  delta/R₂ = 1.731606
+
+  delta/π ~ 3/7 = 0.428571 (off 0.00433)
+  delta/π ~ 6/14 = 0.428571 (off 0.00433)
+  delta/π ~ 7/16 = 0.437500 (off 0.00460)
+
+ASSESSMENT: delta_CP/π = 0.4329 is not close to any
+simple rational p/q with q ≤ 20 at 1% level.
+The CP phase does not appear to be quantized on the 8R₂ domain
+at the precision of current measurement (±0.06 rad).
+
+======================================================================
+FOCUSED: alpha_inv mod (product moduli)
+======================================================================
+
+Testing alpha_inv mod 20 product moduli:
+
+  mod pi*ln2        : q=  62, R/mod=0.930233 ~ 27/29 (off 0.00080) <--
+  mod pi*zeta3      : q=  36, R/mod=0.287727 ~ 2/7 (off 0.00201)
+  mod pi*e          : q=  16, R/mod=0.046869 ~ 1/21 (off 0.00075) <--
+  mod 2pi*ln2       : q=  31, R/mod=0.465116 ~ 13/28 (off 0.00083) <--
+  mod pi^2*ln2      : q=  20, R/mod=0.031315 ~ 1/30 (off 0.00202)
+  mod zeta3*ln2     : q= 164, R/mod=0.469050 ~ 8/17 (off 0.00154) <--
+  mod R2*zeta3      : q= 145, R/mod=0.150910 ~ 3/20 (off 0.00091) <--
+  mod R2*e          : q=  64, R/mod=0.187477 ~ 3/16 (off 0.00002) <--
+  mod R4*2pi        : q=  70, R/mod=0.713940 ~ 5/7 (off 0.00035) <--
+  mod R4*e          : q= 163, R/mod=0.452069 ~ 9/20 (off 0.00207)
+  mod pi*sqrt2      : q=  30, R/mod=0.843936 ~ 16/19 (off 0.00183) <--
+  mod pi*phi        : q=  26, R/mod=0.958589 ~ 23/24 (off 0.00026) <--
+  mod zeta3*e       : q=  41, R/mod=0.938719 ~ 15/16 (off 0.00122) <--
+  mod zeta3*sqrt2   : q=  80, R/mod=0.611063 ~ 11/18 (off 0.00005) <--
+  mod zeta3*pi^2    : q=  11, R/mod=0.550742 ~ 11/20 (off 0.00074) <--
+  mod zeta3^2       : q=  94, R/mod=0.838487 ~ 21/25 (off 0.00151) <--
+  mod ln2*e         : q=  72, R/mod=0.730191 ~ 19/26 (off 0.00058) <--
+  mod ln2*sqrt2     : q= 139, R/mod=0.795828 ~ 23/29 (off 0.00272)
+  mod ln2*phi       : q= 122, R/mod=0.186034 ~ 5/27 (off 0.00085) <--
+  mod e*sqrt2       : q=  35, R/mod=0.647181 ~ 11/17 (off 0.00012) <--
+

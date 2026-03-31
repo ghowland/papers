@@ -1,0 +1,26 @@
+======================================================================
+PHASE 4: PARAMETER REDUCTION
+Strategy A: Nonlinear PSLQ
+======================================================================
+
+The PSLQ null tested: is X a linear combination of basis constants?
+Strategy A tests: is f(X) a linear combination, where f is
+log, square, reciprocal, square root, or cube root?
+
+Targets: 8
+Transforms: 10
+Pool: 10 constants
+Total tests: 80 at maxcoeff=1000
+
+
+Results: 0 hits, 80 nulls
+
+ALL NULL. No nonlinear transcendental relation found
+for any SM parameter under any transform tested.
+
+This extends the PSLQ null from linear to nonlinear:
+  Linear (PHYS-10): 17 targets × 35 pool × maxcoeff 10000 → null
+  Nonlinear (this):  8 targets × 10 transforms × 10 pool × maxcoeff 1000 → null
+
+The SM parameters are not simple nonlinear functions
+of the transcendental basis either.
