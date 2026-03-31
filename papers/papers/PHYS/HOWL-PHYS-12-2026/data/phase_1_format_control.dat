@@ -1,0 +1,66 @@
+======================================================================
+DISC-8 PHASE 1, ITEM 1: FORMAL CONTROL TEST
+======================================================================
+
+SM TARGET HITS (DISC-7 Phase 4B protocol):
+
+  Target                  Value   Hits
+  -------------- -------------- ------
+  alpha_inv          137.035999      1
+  alpha_inv_MZ       127.906000      2
+  sin2_tW              0.231220      7
+  alpha_s              0.118000      4
+  m_mu/m_e           206.768283      6
+  m_tau/m_e         3477.150700      5
+  m_tau/m_mu          16.817000      4
+  M_W/M_Z              0.881470      3
+  M_H/M_Z              1.371930      3
+  M_H/M_W              1.556700      4
+  sin_t12              0.225300      2
+  sin_t23              0.041200      2
+  delta_CP             1.360000      4
+  TOTAL                             47
+
+CONTROL TEST: 1000 random numbers per target magnitude
+
+  Target                        Range  Mean hits      Std  SM hits  z-score  p < 0.05?
+  -------------- -------------------- ---------- -------- -------- -------- ----------
+  alpha_inv      [123.3324, 150.7396]       3.70     4.32        1    -0.62         no
+  alpha_inv_MZ   [115.1154, 140.6966]       3.65     4.79        2    -0.34         no
+  sin2_tW            [0.2081, 0.2543]       2.94     2.65        7     1.53         no
+  alpha_s            [0.1062, 0.1298]       2.28     1.79        4     0.96         no
+  m_mu/m_e       [186.0915, 227.4451]       3.63     4.29        6     0.55         no
+  m_tau/m_e      [3129.4356, 3824.8658]       3.63     5.11        5     0.27         no
+  m_tau/m_mu       [15.1353, 18.4987]       3.76     4.61        4     0.05         no
+  M_W/M_Z            [0.7933, 0.9696]       3.29     3.84        3    -0.08         no
+  M_H/M_Z            [1.2347, 1.5091]       3.52     3.49        3    -0.15         no
+  M_H/M_W            [1.4010, 1.7124]       3.79     5.47        4     0.04         no
+  sin_t12            [0.2028, 0.2478]       3.10     3.09        2    -0.36         no
+  sin_t23            [0.0371, 0.0453]       1.25     1.55        2     0.49         no
+  delta_CP           [1.2240, 1.4960]       3.73     3.79        4     0.07         no
+
+  SM total hits: 47
+  Random mean total: 42.3
+  Targets with significant excess: 0 / 13
+
+======================================================================
+VERDICT
+======================================================================
+
+  OUTCOME (a): SM hit count is comparable to random controls.
+  The DISC-7 modular search hits are consistent with noise.
+  The alpha_s = pi*zeta(3)/32 candidate is DOWNGRADED.
+  Item 3 (derivation attempt) drops in priority.
+
+======================================================================
+ALPHA_S SPECIFIC: Is the pi*zeta(3)/32 hit special?
+======================================================================
+
+  Random numbers near 0.118 tested: 10000
+  Hits with R2*zeta3 remainder ~ 1/8 (within 0.05%): 372
+  Rate: 3.72%
+  Expected by chance (0.1% window on [0,1]): ~0.1%
+
+  The hit rate 3.7% is comparable to random chance.
+  The alpha_s = pi*zeta(3)/32 candidate is NOT distinguishable
+  from a coincidence at this precision.
