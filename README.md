@@ -129,6 +129,7 @@
 | **[[@HOWL-DISC-7-2026]](papers/papers/DISC/HOWL-DISC-7-2026/manuscript.md)** | **The Remainder Extraction Program: Execution and Results** | Four Phases Delivered, Parameter Reduction Null. |
 | **[[@HOWL-DISC-8-2026]](papers/papers/DISC/HOWL-DISC-8-2026/manuscript.md)** | **The Remainder Extraction Program: Phase II Results** | Statistical Control, Koide Blockage, and Domain Extension. |
 | **[[@HOWL-DISC-9-2026]](papers/papers/DISC/HOWL-DISC-9-2026/manuscript.md)** | **The Remainder Extraction Program** | What the Framework Determines and What It Doesn't. |
+| **[[@HOWL-DISC-10-2026]](papers/papers/DISC/HOWL-DISC-10-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary** | Results of R₂ = π/4 appearring in 9 out of 9 physics domains tested. |
 
 ---
 
