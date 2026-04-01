@@ -270,3 +270,5 @@ Both computations confirm the PHYS-2 thesis: the structure of the Standard Model
 
 *PHYS-12 is the first HOWL paper in the electroweak sector. It is backed by two verified scripts: the electroweak overconstrained computation (14/14 checks pass) and the A₂ decomposition (9/9 checks pass). All numbers are sourced from DATA-3 Fractions and Q335 numerators. The scripts run to completion and produce every number cited in this paper.*
 
+---
+

@@ -247,3 +247,6 @@ The beta coefficients are integers from the gauge group. The gap ratio is a rati
 ---
 
 *PHYS-13 is backed by one verified script: the GUT running + BSM enumeration (9/9 checks pass), with an additional sin²θ_W notebook recording the linear formula and its equivalence to the gap ratio. All numbers are sourced from DATA-3 Fractions. The sin²θ_W circularity bug in the original v0 script was identified, diagnosed, and resolved by dropping the circular computation in favor of the gap ratio formulation.*
+
+---
+
