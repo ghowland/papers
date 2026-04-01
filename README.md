@@ -101,8 +101,6 @@
 | **[[@HOWL-PHYS-9-2026]](papers/papers/PHYS/HOWL-PHYS-9-2026/manuscript.md)** | **The Electromagnetic Chain in Integer Arithmetic** | One Measurement, Three Transformation Laws, Every Scale. |
 | **[[@HOWL-PHYS-10-2026]](papers/papers/PHYS/HOWL-PHYS-10-2026/manuscript.md)** | **Remainder as Observable** | Exact Quotient-Remainder Decomposition Across Six Domains of Quantum Physics. |
 | **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | Three Subgroups and a Universal Geometric Constant. |
-
-| **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | Three Subgroups and a Universal Geometric Constant. |
 | **[[@HOWL-PHYS-12-2026]](papers/papers/PHYS/HOWL-PHYS-12-2026/manuscript.md)** | **Electroweak Integer Anatomy** | The transformation laws are integers. The values are not. |
 | **[[@HOWL-PHYS-13-2026]](papers/papers/PHYS/HOWL-PHYS-13-2026/manuscript.md)** | **Gauge Coupling Unification and Minimal BSM Content** | 218/115 meets the universe. |
 | **[[@HOWL-PHYS-14-2026]](papers/papers/PHYS/HOWL-PHYS-14-2026/manuscript.md)** | **The Unified Transformation Map** | Gauge Coupling Unification and Minimal BSM Content. |
