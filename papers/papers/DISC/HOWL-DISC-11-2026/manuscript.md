@@ -1,9 +1,9 @@
 # The Remainder Extraction Program: Execution and Results
 ## Four Phases Delivered, Parameter Reduction Null
 
-**Registry:** [@HOWL-DISC-7-2026]
+**Registry:** [@HOWL-DISC-11-2026]
 
-**Series Path:** [@HOWL-DISC-6-2026] → Phase 1-4 Execution → [@HOWL-DISC-7-2026]
+**Series Path:** [@HOWL-DISC-6-2026] → [@HOWL-DISC-7-2026] → [@HOWL-DISC-8-2026] → [@HOWL-DISC-11-2026]
 
 **DOI:** 10.5281/zenodo.zzz
 
