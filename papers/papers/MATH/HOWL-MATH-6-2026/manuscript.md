@@ -1,4 +1,4 @@
-# MATH-6: The 82/82 Independence Record
+# The 82/82 Independence Record
 ## 82 tests, zero relations, derivation beats search.
 
 **Registry:** [@HOWL-MATH-6-2026]

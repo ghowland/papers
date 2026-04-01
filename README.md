@@ -82,6 +82,7 @@
 | **[[@HOWL-MATH-3-2026]](papers/papers/MATH/HOWL-MATH-3-2026/manuscript.md)** | **The Transcendental Hierarchy** | Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary. |
 | **[[@HOWL-MATH-4-2026]](papers/papers/MATH/HOWL-MATH-4-2026/manuscript.md)** | **The Universal Power-of-Two Basis** | Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision. |
 | **[[@HOWL-MATH-5-2026]](papers/papers/MATH/HOWL-MATH-5-2026/manuscript.md)** | **The n-Ball Remainder Sequence** | Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime. |
+| **[[@HOWL-MATH-6-2026]](papers/papers/MATH/HOWL-MATH-6-2026/manuscript.md)** | **The 82/82 Independence Record** | 82 tests, zero relations, derivation beats search. |
 
 ---
 
