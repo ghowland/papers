@@ -104,7 +104,7 @@
 
 ---
 
-## DAta
+## Data
 *Domain data.*
 
 | ID | Title | Description |
