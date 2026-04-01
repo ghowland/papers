@@ -17,15 +17,6 @@
 
 ---
 
-Let me read the uploaded scripts and data files to source the exact numbers.Good. I have all source numbers verified. Now writing the paper.The user said never docx, always MD in chat. I'll write PHYS-12 directly in chat as markdown.
-
-
-**Status:** Complete
-
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.
-
----
-
 ## Abstract
 
 This paper extends the HOWL Fraction arithmetic framework from QED into the electroweak sector for the first time. Two computations expose the integer structure of the Standard Model at different magnifications.
