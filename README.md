@@ -111,15 +111,11 @@
 | **[[@HOWL-PHYS-17-2026]](papers/papers/PHYS/HOWL-PHYS-17-2026/manuscript.md)** | **The Generation Democracy and the Boson Problem** | The integer 11 sets the gap ratio. Fermions cancel. The failure is in the bosons. |
 | **[[@HOWL-PHYS-18-2026]](papers/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md)** | **The Y = 1/6 Asymmetry** | Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction. |
 | **[[@HOWL-PHYS-19-2026]](papers/papers/PHYS/HOWL-PHYS-19-2026/manuscript.md)** | **Independent Anomaly Evidence for the Cabibbo Doublet** | Three experiments, two roads, one particle. The data was already there. The connection was not. |
-| **[[@HOWL-PHYS-20-2026]](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-20-2026]](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5** | M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. One experiment, one decade, one answer. |
+| **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary — From Observed Structure to Unobserved Particles** | The integers tell you WHAT. The universe tells you HOW MUCH. |
 
 
 
-# The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5
-## M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. One experiment, one decade, one answer.
-
-
-| **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 | **[[@HOWL-PHYS-22-2026]](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 | **[[@HOWL-PHYS-23-2026]](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 
