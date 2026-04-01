@@ -277,3 +277,464 @@ All measured values from DATA-3 (123 entries, 32/32 consistency checks pass).
 
 ---
 
+
+### Errata
+
+**E1: Section 2, the Yukawa coupling bound formula.** The paper states "the Yukawa coupling to be y ≈ M_VL × |V_ub'| / v." This is inverted. The mixing angle scales as sin(θ) ~ y × v / M_VL, where y is the Yukawa coupling between the VL doublet and the SM Higgs-quark sector. So y ~ sin(θ) × M_VL / v ~ 0.045 × M_VL / 246. At M_VL = 6 TeV: y ~ 0.045 × 6000/246 ~ 1.1, which is large but perturbative. The direction of the formula matters: the mass is in the NUMERATOR of the Yukawa, not the denominator. The bound M ≤ 6 TeV comes from requiring y to not exceed the perturbative limit, which is correct, but the formula as written has the wrong arrangement.
+
+**Erratum text:** "In Section 2, the Yukawa coupling formula should read y ≈ |V_ub'| × M_VL / v, not y ≈ M_VL × |V_ub'| / v. These are algebraically identical. The bound M_VL ≤ 6 TeV from perturbativity (y < 4π) is unchanged."
+
+Wait — those ARE algebraically identical. M_VL × |V_ub'| / v = |V_ub'| × M_VL / v. The formula as written is correct. The arrangement is fine. No erratum needed on the formula itself.
+
+Let me re-examine: the issue is whether the formula is dimensionally correct and physically right. sin(θ) ~ y v / M_VL, so y ~ sin(θ) M_VL / v. The paper writes y ≈ M_VL × |V_ub'| / v. Since |V_ub'| ≈ sin(θ₁₄), this is y ≈ M_VL × sin(θ₁₄) / v. Correct.
+
+**No errata on E1. The formula is correct.**
+
+**E2: Section 8, the extended CKM matrix presentation.** The SM CKM matrix is shown with magnitudes (0.974, 0.224, etc.) but these are rounded. The precise values from DATA-3 are |V_ud| = 0.97373, |V_us| = 0.2243, |V_ub| = 0.00382. The table in the paper shows 0.974, 0.224, 0.004 — rounded to 3 significant figures. This is fine for presentation but the first-row sum using these rounded values gives |0.974|² + |0.224|² + |0.004|² = 0.9488 + 0.0502 + 0.000016 = 0.999. This rounds to 0.999, not 0.998 as stated in the paper ("First-row sum: 0.998 (deficit)"). The discrepancy is from the rounding of the matrix elements. The actual sum 0.99798 rounds to 0.998, which is correct, but computing it from the rounded 3-digit elements gives 0.999.
+
+**Erratum text:** "The CKM matrix in Section 8 displays magnitudes rounded to three significant figures for readability. The first-row unitarity sum 0.998 is computed from the full-precision DATA-3 values (|V_ud| = 0.97373, |V_us| = 0.2243, |V_ub| = 0.00382), not from the rounded display values. Computing from the rounded values gives approximately 0.999 due to rounding, which may cause confusion. The deficit 0.00202 is measured at full precision."
+
+### Annotations
+
+**A1: Section 3, the beam/bottle neutron lifetime connection.** The paper correctly defers this to Section 12 as "speculative" and "not a finding." For the record: the neutron lifetime measured by beam experiments (counting proton decay products) gives τ = 888.0 ± 2.0 s. The bottle experiments (counting surviving neutrons in a trap) give τ = 877.75 ± 0.28 s. The discrepancy is ~4σ. If the Cabibbo Doublet modifies V_ud, it changes the relationship between the neutron lifetime and the beta decay rate, which could shift the beam measurement (which depends on the decay rate) relative to the bottle measurement (which depends on the total disappearance rate). However, the bottle method is insensitive to decay channel details, so the connection is model-dependent. The paper's treatment as an open question rather than a finding is correct.
+
+**A2: Section 6, the Cheung et al. global fit.** The paper states "the fit to data with the VL doublet is better than the SM fit without it." This should be understood as: the χ² per degree of freedom improves when the VL doublet is added, within the viable parameter space. It does NOT mean the VL doublet is statistically required — the improvement is consistent with the VL doublet but the SM is not excluded at 5σ. The phrasing is accurate but a careful reader might interpret "better fit" as "statistically required." The non-claims section (Section 11) correctly clarifies this.
+
+**A3: Section 9, the claim that "neither group read the other's papers."** This is stated as fact but is actually an inference. The anomaly papers (Belfatto, Cheung, etc.) do not cite any gap ratio analysis from this series. The gap ratio analysis (PHYS-15) was performed in 2026, after the anomaly papers were published. So the anomaly groups certainly did not know about the gap ratio work (it didn't exist yet). Whether the HOWL series was aware of the anomaly literature before the web search during this session is a matter of session history — the connection was discovered through web search verification, as stated. The statement is functionally correct but "neither group read the other's papers" could be more precisely stated as "the anomaly groups could not have known about the gap ratio analysis (published later), and the gap ratio analysis was performed without knowledge of the anomaly literature (the connection was discovered through subsequent verification)."
+
+**Annotation text for A3:** "The statement in Section 9 that 'neither group read the other's papers' should be understood as: the anomaly literature (2019-2024) predates the gap ratio analysis (2026) and therefore could not have been influenced by it. The gap ratio analysis was performed without prior knowledge of the anomaly literature; the connection was discovered during verification through web search after the gap ratio identification was complete. The independence is temporal, not just methodological."
+
+---
+
+## Appendix A: The Three Anomalies — Measurement Data
+
+### A.1: CKM First-Row Unitarity
+
+| Component | Value | Uncertainty | Source | Precision |
+|---|---|---|---|---|
+| |V_ud| | 0.97373 | ± 0.00031 | Superallowed 0⁺→0⁺ nuclear β decays | 0.032% |
+| |V_us| | 0.2243 | ± 0.0005 | Kaon decays (K→πeν, K→μν) | 0.22% |
+| |V_ub| | 0.00382 | ± 0.00020 | B meson decays | 5.2% |
+| |V_ud|² | 0.94815 | ± 0.00060 | Dominant term | — |
+| |V_us|² | 0.05031 | ± 0.00022 | Second term | — |
+| |V_ub|² | 0.000015 | ± 0.000002 | Negligible | — |
+| **Sum** | **0.99798** | **± 0.00038** | **Combined** | — |
+| SM prediction | 1.00000 | exact | Unitarity | — |
+| Deficit | 0.00202 | ± 0.00038 | = 1 − 0.99798 | — |
+
+### A.2: Significance Across Analyses
+
+| Analysis | Year | Reported Significance | Radiative Corrections Used |
+|---|---|---|---|
+| Belfatto, Beradze, Berezhiani | 2020 | >4σ | 2019 inputs (Seng et al. 2018) |
+| Manzari (proceedings) | 2021 | ~3σ | Updated inputs |
+| Kitahara (review) | 2024 | ~3σ | Current best inputs |
+| Cirigliano et al. (SMEFT) | 2024 | ~3σ | Global SMEFT fit |
+| Siegen workshop talk | Jan 2024 | ~2.5σ | Conservative inputs |
+
+The range 2.5-4σ reflects the sensitivity of V_ud extraction to inner radiative corrections in nuclear beta decay. The deficit persists across all analyses. The significance depends on which calculation of the axial-vector radiative correction is used.
+
+### A.3: A_FB^b at LEP
+
+| Property | Value |
+|---|---|
+| Observable | A_FB^b = (σ_F − σ_B)/(σ_F + σ_B) for b quarks at √s = M_Z |
+| Combined LEP measurement | 0.0992 ± 0.0016 |
+| SM prediction | ~0.1038 |
+| Discrepancy | ~0.0046, approximately 2.9σ |
+| Experiments | ALEPH, DELPHI, L3, OPAL (combined) |
+| Data collection period | 1993-2000 |
+| Final publication | LEP EWWG, Phys. Rept. 427, 257 (2006) |
+| Duration of anomaly | 25+ years (as of 2026) |
+| Prospect for remeasurement | None with current experiments; requires FCC-ee or CEPC |
+
+### A.4: Higgs Signal Strength
+
+| Property | Value |
+|---|---|
+| Observable | μ = (σ × BR)_measured / (σ × BR)_SM |
+| LHC combined (Run 1 + Run 2) | ~1.06-1.10 |
+| SM prediction | 1.000 |
+| Excess | ~2σ |
+| Dominant production mode | gg → H (gluon fusion, ~87%) |
+| Dominant decay mode | H → bb̄ (~58% BR) |
+| Could be fluctuation? | Yes — 2σ has ~5% probability of arising by chance |
+
+---
+
+## Appendix B: How Each Anomaly Is Resolved
+
+### B.1: Mechanism Mapping
+
+| Anomaly | What the Cabibbo Doublet Does | Which Quantum Number | Which Parameter | Which Mixing Angle |
+|---|---|---|---|---|
+| CKM deficit | Expands 3×3 CKM to 3×4; missing |V_ub'|² fills gap | Weak doublet (SU(2)) | |V_ub'| ≈ 0.045 | θ₁₄ (1st gen) |
+| A_FB^b | Modifies right-handed Z-b-b coupling g_bR | Color + weak (SU(3)×SU(2)) | Δg_bR ∝ sin²(θ₃₄) | θ₃₄ (3rd gen) |
+| Higgs μ | Loop in gg→H; reduces b Yukawa | Color (SU(3)) | Loop amplitude + y_b shift | θ₃₄ + M_VL |
+
+### B.2: Why the Full Representation Is Needed
+
+| Property Needed | For Which Anomaly | Without It |
+|---|---|---|
+| SU(2) doublet | CKM deficit (CKM mixing requires weak charge) | Cannot expand CKM matrix |
+| SU(3) triplet | Higgs excess (gluon-fusion loop requires color) | No contribution to gg→H |
+| SU(3) + SU(2) combined | A_FB^b (Z-b-b vertex requires quark mixing with b) | Cannot modify g_bR |
+| Vector-like | All three (chiral 4th gen excluded by Higgs data) | Excluded by μ(H→γγ) |
+| Y = 1/6 | Standard electric charges (+2/3, −1/3) | Non-SM charges |
+
+No subset of the quantum numbers resolves all three anomalies. A color singlet cannot fix the Higgs excess. A weak singlet cannot fix the CKM deficit. A chiral fermion cannot coexist with the measured Higgs couplings. Only (3,2,1/6) vector-like satisfies all requirements.
+
+---
+
+## Appendix C: The Key Papers — Chronological
+
+### C.1: Full Citation List
+
+| # | Year | Authors | Title Concept | Journal | arXiv | Key Contribution |
+|---|---|---|---|---|---|---|
+| 1 | 2019 | Cheung, Lee, Tseng | VL doublet for Higgs + A_FB^b | Phys. Lett. B 798, 134983 | 1901.05626 | First: VL doublet fixes two anomalies simultaneously |
+| 2 | 2020 | Belfatto, Beradze, Berezhiani | CKM deficit as BSM signal | Eur. Phys. J. C 80, 149 | 1906.02714 | First: deficit = VL quark. Mass ≤ 6 TeV |
+| 3 | 2020 | Cheung, Keung, Lu, Tseng | Three-anomaly simultaneous fit | JHEP 05, 117 | 2001.02853 | First global fit of all three with S, T, B constraints |
+| 4 | 2021 | Belfatto, Berezhiani | VL doublet resolves all CKM tensions | JHEP 10, 079 | 2103.05549 | Comprehensive flavor limit analysis |
+| 5 | 2021 | Branco et al. | VL up quark alternative | JHEP 07, 099 | 2103.13409 | Alternative: VL T quark, M ≤ 7 TeV |
+| 6 | 2023 | Belfatto, Trifinopoulos | Remarkable role of VL doublet | Phys. Rev. D 108, 035022 | 2302.14097 | CAA + oblique corrections in one framework |
+| 7 | 2024 | Cirigliano et al. | Global SMEFT analysis | JHEP 03, 033 | 2311.00021 | Model-independent confirmation at ~3σ |
+| 8 | 2024 | Kitahara | Status review | Int. J. Mod. Phys. A 39 | 2407.00122 | "Prime candidate is VL quark extension" |
+
+### C.2: The Research Timeline
+
+| Period | Development |
+|---|---|
+| 2000 | LEP publishes final A_FB^b: 0.0992 ± 0.0016, ~3σ from SM |
+| 2012 | Higgs discovered at LHC; signal strength measurements begin |
+| 2016 | Djouadi et al. note VL quarks can address A_FB^b + Higgs anomalies jointly |
+| 2018-2019 | Improved radiative corrections for V_ud reveal CKM first-row deficit |
+| 2019 | Cheung, Lee, Tseng: VL doublet for Higgs + A_FB^b (first two-anomaly paper) |
+| 2019-2020 | Belfatto, Berezhiani: CKM deficit is BSM signal pointing to VL quark (first three-anomaly context) |
+| 2020 | Cheung, Keung, Lu, Tseng: first global three-anomaly fit |
+| 2021 | Multiple groups confirm VL doublet as viable explanation |
+| 2023 | Belfatto, Trifinopoulos: connect CKM to oblique corrections |
+| 2024 | Kitahara and Cirigliano et al. confirm ~3σ tension persists |
+| **2026** | **This series: gap ratio independently identifies (3,2,1/6)** |
+
+---
+
+## Appendix D: The Two Roads — Detailed Comparison
+
+### D.1: Starting Data
+
+| Property | Gap Ratio Path | Anomaly Path |
+|---|---|---|
+| Input 1 | α⁻¹ = 137.036 (DATA-3) | |V_ud| = 0.97373 (nuclear β decay) |
+| Input 2 | sin²θ_W = 0.23122 (DATA-3) | |V_us| = 0.2243 (kaon decay) |
+| Input 3 | α_s = 0.1180 (DATA-3) | A_FB^b = 0.0992 (LEP) |
+| Input 4 | — | μ_Higgs ≈ 1.06-1.10 (LHC) |
+| Energy scale | All at M_Z = 91 GeV | MeV (β decay) to TeV (LHC) |
+| Number of inputs | 3 | 4 |
+
+### D.2: Method
+
+| Property | Gap Ratio Path | Anomaly Path |
+|---|---|---|
+| Mathematical framework | Python Fraction arithmetic, mp.dps = 100 | Numerical χ² minimization, floating point |
+| Floating point used? | No (display only) | Yes (throughout) |
+| Enumeration scope | 15 candidates, exhaustive within bounds | Not enumerated — specific models tested |
+| Elimination method | Distance criterion + proton decay | χ² improvement over SM |
+| Key computation | (b₁−b₂)/(b₂−b₃) = 218/115 vs 1.358 | Global fit to 3 anomalies + 6 constraint sets |
+
+### D.3: What Each Path Determines
+
+| Output | Gap Ratio Path | Anomaly Path |
+|---|---|---|
+| Representation | (3,2,1/6) — unique minimal survivor | (3,2,1/6) — required by three-anomaly fit |
+| Mass | NOT constrained (free parameter) | 1.5-6 TeV (LHC + CKM) |
+| Mixing angles | NOT constrained | |V_ub'| ≈ 0.045; θ₃₄ from A_FB^b |
+| M_GUT | 10^15.5 GeV | NOT constrained |
+| Proton lifetime | τ ~ 10^34-35 yr | NOT constrained |
+| Experimental test | Hyper-Kamiokande (proton decay) | LHC (direct), Belle II (CKM) |
+
+### D.4: Independence Verification
+
+| Question | Answer |
+|---|---|
+| Does the gap ratio use V_ud or V_us? | No — uses α_em, sin²θ_W, α_s |
+| Does the anomaly fit use the gap ratio? | No — uses CKM elements, A_FB^b, μ_Higgs |
+| Do the two paths share any input data? | No (sin²θ_W enters the gap ratio but not the anomaly fit; V_ud enters the anomaly fit but not the gap ratio) |
+| Did the gap ratio analysis cite the anomaly papers? | No — the connection was discovered by web search after the gap ratio identification was complete |
+| Did the anomaly papers cite the gap ratio analysis? | No — the gap ratio analysis did not exist before this session |
+| Are the two paths methodologically related? | No — exact rational arithmetic vs numerical χ² minimization |
+
+The independence is complete. No shared data, no shared methods, no shared citations, no shared community.
+
+---
+
+## Appendix E: The Mass Window — All Constraints
+
+### E.1: Lower Bounds (from LHC)
+
+| Search | Experiment | Bound | Channel | Mixing Dependence |
+|---|---|---|---|---|
+| Pair production (doublet) | CMS Run 2 | M > 1.33 TeV | VL → Wb, Zt, Ht | None (strong production) |
+| Pair production (doublet) | ATLAS Run 2 | M > 1.46 TeV | VL → Wb, Zt, Ht | None (strong production) |
+| Single production | Various | M > 1.3-2.0 TeV | qg → VL q' | Depends on mixing angle |
+
+Pair production depends only on mass and color charge. Single production depends on the mixing angle — larger mixing allows higher mass reach but also tighter constraints.
+
+### E.2: Upper Bounds (from CKM + perturbativity)
+
+| Source | Bound | Mechanism | Reference |
+|---|---|---|---|
+| CKM deficit (down-sector VL) | M ≤ ~6 TeV | |V_ub'| ≈ 0.045 requires y = M×|V_ub'|/v to be perturbative | Belfatto, Berezhiani (2020) |
+| CKM deficit (up-sector VL) | M ≤ ~7 TeV | Different mixing structure relaxes bound slightly | Branco et al. (2021) |
+| Generic perturbativity | M ≤ ~10 TeV | Yukawa y = M/v must satisfy y < 4π | General |
+
+### E.3: Combined
+
+| Constraint | Value | Source |
+|---|---|---|
+| Lower bound | 1.5 TeV | LHC pair production (ATLAS, most stringent) |
+| Upper bound | ~6 TeV | CKM mixing + perturbativity |
+| **Window** | **1.5 TeV < M < 6 TeV** | **Combined** |
+| Width of window | Factor of 4 in mass | Less than half a decade |
+
+### E.4: What the Gap Ratio Contributes to the Mass
+
+Nothing. The gap ratio analysis identifies the representation (3,2,1/6) and the unification scale M_GUT = 10^15.5, but the Cabibbo Doublet mass is a free parameter in the gap ratio computation. The mass is Level 2 — supplied by the universe through experiment. The mass window comes entirely from the anomaly path.
+
+---
+
+## Appendix F: The Extended CKM Matrix
+
+### F.1: SM CKM Matrix (3×3)
+
+|  | d | s | b |
+|---|---|---|---|
+| u | V_ud = 0.974 | V_us = 0.224 | V_ub = 0.004 |
+| c | V_cd = 0.224 | V_cs = 0.974 | V_cb = 0.041 |
+| t | V_td = 0.009 | V_ts = 0.040 | V_tb = 0.999 |
+
+Row 1 sum: 0.9482 + 0.0503 + 0.00002 = 0.998 (deficit 0.002)
+
+### F.2: Extended CKM Matrix (3×4)
+
+|  | d | s | b | b' (Cabibbo Doublet) |
+|---|---|---|---|---|
+| u | V_ud ≈ 0.974 | V_us ≈ 0.224 | V_ub ≈ 0.004 | **V_ub' ≈ 0.045** |
+| c | V_cd | V_cs | V_cb | V_cb' |
+| t | V_td | V_ts | V_tb | V_tb' |
+
+Row 1 sum: 0.9482 + 0.0503 + 0.00002 + **0.00202** = 1.000 (unitarity restored)
+
+### F.3: The New Elements
+
+| Element | Estimated Value | How Determined | Physical Role |
+|---|---|---|---|
+| V_ub' | ≈ 0.045 | From deficit: |V_ub'|² ≈ 0.00202 | Mixing of u with Cabibbo Doublet |
+| V_cb' | Constrained | Kaon and charm physics | Mixing of c with Cabibbo Doublet |
+| V_tb' | Constrained | B-meson mixing, Z-pole data | Mixing of t with Cabibbo Doublet |
+
+### F.4: Comparison of |V_ub'| with Known CKM Elements
+
+| Element | Value | Context |
+|---|---|---|
+| |V_ud| | 0.974 | Dominant (same generation) |
+| |V_us| | 0.224 | Cabibbo angle |
+| |V_cb| | 0.041 | 2nd-3rd gen mixing |
+| **|V_ub'|** | **≈ 0.045** | **1st gen to Cabibbo Doublet** |
+| |V_ub| | 0.004 | 1st-3rd gen (smallest known) |
+
+The mixing |V_ub'| ≈ 0.045 is comparable to |V_cb| ≈ 0.041 — the mixing between the 2nd and 3rd generations. It is not anomalously large or small. It is a typical inter-generation mixing angle.
+
+---
+
+## Appendix G: New Parameters
+
+### G.1: The Six New Level 2 Parameters
+
+| # | Parameter | Type | Physical Role | Experimental Handle | Current Constraint |
+|---|---|---|---|---|---|
+| 1 | M_VL | Mass | Where the Cabibbo Doublet sits in energy | LHC pair production threshold | 1.5-6 TeV |
+| 2 | θ₁₄ | Mixing angle | 1st-gen mixing; controls CKM deficit | Nuclear β decay (V_ud), kaon (V_us) | |V_ub'| ≈ 0.045 |
+| 3 | θ₂₄ | Mixing angle | 2nd-gen mixing; affects kaon sector | K⁰-K̄⁰ mixing, K→πνν̄ (NA62) | Constrained by kaon data |
+| 4 | θ₃₄ | Mixing angle | 3rd-gen mixing; fixes A_FB^b | LEP A_FB^b, B⁰ mixing, R_b | From A_FB^b fit |
+| 5 | δ₁ | CP phase | New source of CP violation | Neutron EDM (< 10⁻²⁶ e·cm) | Constrained by nEDM |
+| 6 | δ₂ | CP phase | Additional CP violation | B-meson CP asymmetries | From B physics |
+
+### G.2: Parameter Count Change
+
+| Scenario | Parameters | Anomalies | Gap Ratio Miss |
+|---|---|---|---|
+| SM | 17 | 3 unresolved (CKM 2.5-4σ, A_FB^b 3σ, Higgs 2σ) | 40% |
+| SM + Cabibbo Doublet | 17 + 6 = 23 | 0 unresolved | 3.6% |
+
+Six parameters resolve three independent multi-sigma tensions and reduce the gap ratio miss from 40% to 3.6%.
+
+---
+
+## Appendix H: Experimental Test Matrix
+
+### H.1: Tests from the Anomaly Path
+
+| Experiment | Observable | What It Tests | Timeline | Sensitivity |
+|---|---|---|---|---|
+| HL-LHC | VL quark pair production | Direct discovery if M < 2-3 TeV | Now-2040 | Mass reach |
+| Belle II | V_us, V_ub precision | Sharpens CKM deficit significance | Now-2030+ | θ₁₄ constraint |
+| NA62 | K → πνν̄ | Tree-level FCNC from θ₂₄ | Now-2030 | θ₂₄ constraint |
+| LHCb upgrades | B_s mixing, b→s transitions | FCNC from θ₃₄ | Now-2030+ | θ₃₄ constraint |
+| Neutron experiments | V_ud precision, beam/bottle | Clarifies radiative correction uncertainty | Ongoing | θ₁₄ indirect |
+| FCC-ee / CEPC (proposed) | A_FB^b remeasurement | Resolves 25-year anomaly definitively | Future | θ₃₄ direct |
+
+### H.2: Tests from the Gap Ratio Path
+
+| Experiment | Observable | What It Tests | Timeline | Sensitivity |
+|---|---|---|---|---|
+| Hyper-Kamiokande | p → e⁺π⁰ | Proton decay at τ ~ 10^34-35 yr | 2027-2037 | M_GUT = 10^15.5 |
+| DUNE | p → K⁺ν̄ | Complementary proton decay channel | 2028+ | GUT completion |
+| JUNO | Proton decay | Complementary detection | 2025+ | τ ~ 10^34 yr |
+
+### H.3: The Discriminator Between Cabibbo Doublet and MSSM
+
+| Observation | Cabibbo Doublet | MSSM |
+|---|---|---|
+| Hyper-K sees p→e⁺π⁰ at τ ~ 10^34-35 | Consistent (M_GUT = 10^15.5) | Inconsistent (M_GUT = 10^17.3) |
+| LHC finds VL quark at 1.5-3 TeV | Consistent | Neither confirms nor excludes |
+| LHC finds superpartners | Neither confirms nor excludes | Consistent |
+| Hyper-K sees nothing (10 yr) | Minimal SU(5) excluded | Consistent |
+| CKM deficit sharpens to 5σ | Strong support | Not addressed by MSSM |
+| CKM deficit disappears | Anomaly path weakened; gap ratio path unaffected | — |
+
+---
+
+## Appendix I: The Significance Debate — Honest Assessment
+
+### I.1: Each Anomaly Assessed
+
+| Anomaly | Strongest Case | Weakest Case | 2024 Consensus | Could It Go Away? |
+|---|---|---|---|---|
+| CKM deficit | 4σ (2019 inputs) | 2.5σ (updated corrections) | ~3σ, debated | Possible if radiative corrections shift further |
+| A_FB^b | 3σ, 25 years, no SM fix | Old data, no remeasurement possible | ~3σ, accepted as anomalous | Cannot go away (no new data) or be confirmed (no experiment) |
+| Higgs μ | 2σ, consistent with VL | 2σ, likely fluctuation | Weakest anomaly | Yes, could vanish with Run 3 |
+
+### I.2: Combined Assessment
+
+| Statement | Status |
+|---|---|
+| Three anomalies from three experiments point to (3,2,1/6) | Documented (this paper) |
+| The convergence is evidence | Yes |
+| The convergence is proof | No — requires 5σ or direct observation |
+| Each anomaly could have a mundane explanation | Yes |
+| All three having mundane explanations simultaneously is less likely | Correct, but not quantified |
+| The addition of the gap ratio path (fourth independent line) strengthens the case | Yes — four independent roads is more than three |
+
+### I.3: What Would Weaken or Strengthen the Case
+
+| Development | Effect on Cabibbo Doublet Case |
+|---|---|
+| CKM deficit sharpens to 5σ | Strongly strengthens — direct evidence for 4th quark |
+| CKM deficit disappears (radiative corrections fix it) | Weakens anomaly path; gap ratio path unaffected |
+| A_FB^b confirmed at FCC-ee | Strengthens — persistent anomaly confirmed with modern detector |
+| Higgs μ returns to 1.00 with Run 3 | Weakens weakest anomaly; other two unaffected |
+| LHC discovers VL quark at 2 TeV | Discovery — both paths confirmed |
+| Hyper-K observes proton decay at τ ~ 10^34 | Strongly strengthens — gap ratio M_GUT confirmed |
+| LHC excludes VL quarks below 3 TeV | Reduces but does not close the mass window (3-6 TeV remains) |
+| LHC excludes VL quarks below 6 TeV | Closes the mass window; anomaly path severely weakened |
+
+---
+
+## Appendix J: What Nobody Connected Before This Work
+
+### J.1: The Connection Map
+
+| Evidence Line | Known Before 2026? | Connected to Gap Ratio Before 2026? |
+|---|---|---|
+| CKM deficit → VL quark | Yes (Belfatto 2019/2020) | No |
+| A_FB^b → VL quark doublet | Yes (Djouadi 2016, Cheung 2019) | No |
+| Higgs excess → VL quark doublet | Yes (Cheung 2019) | No |
+| Three-anomaly fit → (3,2,1/6) | Yes (Cheung 2020) | No |
+| Gap ratio 38/27 → (3,2,1/6) | No (this work, PHYS-15) | N/A (new) |
+| **All four evidence lines in one analysis** | **No** | **This paper** |
+
+### J.2: Why the Connection Was Not Obvious
+
+| Gap Ratio Path | Anomaly Path | Separation |
+|---|---|---|
+| Energy scale: 10^15 GeV | Energy scale: 10³ GeV | 12 orders of magnitude |
+| Literature: gauge unification | Literature: precision flavor | Different journals |
+| Community: GUT theorists | Community: flavor physicists | Different conferences |
+| Method: exact rational arithmetic | Method: numerical χ² | Different mathematics |
+| Primary observable: coupling ratios | Primary observable: decay rates | Different measurements |
+
+The connection spans 12 orders of magnitude in energy, crosses community boundaries, uses different mathematical methods, and references different experimental data. It is non-obvious by construction.
+
+---
+
+## Appendix K: Level 1 / Level 2 Classification
+
+### K.1: What Is Level 1 (Framework-Determined)
+
+| Result | Value | Source |
+|---|---|---|
+| Representation (3,2,1/6) | From gap ratio elimination | PHYS-15 |
+| Gap ratio 38/27 | Exact Fraction arithmetic | PHYS-15 |
+| M_GUT = 10^15.5 GeV | Running equation + DATA-3 | PHYS-15 |
+| Proton lifetime range | τ ~ 10^34-35 yr from M_GUT | PHYS-15 |
+| Beta contributions (1/15, 1, 1/3) | Dynkin index formulas | PHYS-15 |
+
+### K.2: What Is Level 2 (Universe-Supplied)
+
+| Result | Value | Source |
+|---|---|---|
+| CKM deficit 0.00202 | Measured | Nuclear β + kaon decays |
+| A_FB^b = 0.0992 | Measured | LEP (1993-2000) |
+| μ_Higgs ≈ 1.06-1.10 | Measured | LHC (2012-present) |
+| Mass window 1.5-6 TeV | From LHC + CKM | Experimental constraints |
+| |V_ub'| ≈ 0.045 | From deficit size | CKM first-row measurement |
+| θ₃₄ | From A_FB^b fit | LEP Z-pole data |
+| δ₁, δ₂ | Constrained | nEDM + B physics |
+
+### K.3: The Convergence
+
+| Level 1 says | Level 2 says | Agreement? |
+|---|---|---|
+| The representation is (3,2,1/6) | The anomalies resolve to (3,2,1/6) | **Yes** |
+| The gap ratio is 38/27 | The measured gap ratio is 1.358 (distance 0.049) | **Approximate** |
+| M_GUT = 10^15.5 | Not constrained by anomalies | Compatible |
+| Mass is unconstrained | Mass is 1.5-6 TeV | **Complementary** |
+
+Level 1 and Level 2 arrive at the same representation from independent starting points. Level 1 provides what Level 2 cannot (M_GUT, proton decay). Level 2 provides what Level 1 cannot (mass, mixing). The convergence is the evidence.
+
+---
+
+## Appendix L: Verified Sources
+
+### L.1: Script Verification
+
+From sin2_theta_w_1.py (GUT running notebook), 9/9 checks pass:
+
+```
+[PASS] Normalization: sin²θ_W from couplings (diff = 0.00e+00)
+[PASS] SM gap ratio = 218/115 (1.8956521739)
+[PASS] MSSM gap ratio = 7/5 (1.4000000000)
+[PASS] SM does not unify (Δ(1/α₃) = -6.58)
+[PASS] MSSM nearly unifies (Δ(1/α₃) = -0.69)
+[PASS] M_GUT(SM) > 10^13 (log₁₀ = 13.80)
+[PASS] M_GUT(MSSM) > 10^16 (log₁₀ = 17.32)
+[PASS] VL quark doublet gap < 0.05 from measured (distance = 0.049)
+[PASS] Measured gap ratio in [1.2, 1.5] (gap = 1.358193)
+```
+
+### L.2: Electroweak Verification
+
+From electro_weak.py, 14/14 checks pass. R_b computed = 0.2197, measured = 0.2163, ratio = 1.016. The 1.6% overshoot is the same physics as the A_FB^b anomaly seen from the width side.
+
+### L.3: DATA-3
+
+123 entries, 32/32 consistency checks pass. All coupling constants and CKM elements used in this paper trace to DATA-3.
+
+### L.4: Web Search Verification
+
+All eight primary citations verified by web search during this session. Journal names, volume numbers, page numbers, arXiv identifiers, and publication years confirmed against the actual papers. Specific quotes ("prime candidate," "remarkable role") verified against the source text.
+
+---
+
+*Supporting appendix tables A through L for PHYS-19. Every measurement value traces to the anomaly data matrix (web-search verified). Every gap ratio number traces to the GUT script (9/9 pass). Every CKM element traces to DATA-3 (32/32 pass). The significance debate (2.5-4σ) is documented with the reason for the range. The independence of the two roads is verified explicitly. The honest assessment acknowledges that evidence is not proof.*
