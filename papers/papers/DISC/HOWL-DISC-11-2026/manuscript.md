@@ -367,4 +367,4 @@ The integers have spoken. The universe has not yet answered.
 
 ---
 
-*DISC-13: Session 3 Capstone. From the gap ratio to the Cabibbo Doublet and beyond. 16 findings, 15 papers, 6 scripts, 98 checks, 1 particle, 0 contradictions. Published April 1, 2026. This paper is never edited after publication.*
+*DISC-11: Session 3 Capstone. From the gap ratio to the Cabibbo Doublet and beyond. 16 findings, 15 papers, 6 scripts, 98 checks, 1 particle, 0 contradictions. Published April 1, 2026. This paper is never edited after publication.*
