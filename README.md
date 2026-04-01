@@ -105,7 +105,20 @@
 | **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | Three Subgroups and a Universal Geometric Constant. |
 | **[[@HOWL-PHYS-12-2026]](papers/papers/PHYS/HOWL-PHYS-12-2026/manuscript.md)** | **Electroweak Integer Anatomy** | The transformation laws are integers. The values are not. |
 | **[[@HOWL-PHYS-13-2026]](papers/papers/PHYS/HOWL-PHYS-13-2026/manuscript.md)** | **Gauge Coupling Unification and Minimal BSM Content** | 218/115 meets the universe. |
-| **[[@HOWL-PHYS-14-2026]](papers/papers/PHYS/HOWL-PHYS-14-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-14-2026]](papers/papers/PHYS/HOWL-PHYS-14-2026/manuscript.md)** | **The Unified Transformation Map** | Gauge Coupling Unification and Minimal BSM Content. |
+| **[[@HOWL-PHYS-15-2026]](papers/papers/PHYS/HOWL-PHYS-15-2026/manuscript.md)** | **Integer-Forced Identification of the Minimal Unification Extension** | We did not choose this particle. The integers chose it. |
+
+
+
+
+| **[[@HOWL-PHYS-16-2026]](papers/papers/PHYS/HOWL-PHYS-16-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-17-2026]](papers/papers/PHYS/HOWL-PHYS-17-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-18-2026]](papers/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-19-2026]](papers/papers/PHYS/HOWL-PHYS-19-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-20-2026]](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-22-2026]](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+| **[[@HOWL-PHYS-23-2026]](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 
 ---
 

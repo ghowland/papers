@@ -1,5 +1,4 @@
-# PHYS-15: Integer-Forced Identification of the Minimal Unification Extension
-
+# Integer-Forced Identification of the Minimal Unification Extension
 ## We did not choose this particle. The integers chose it.
 
 **Registry:** [@HOWL-PHYS-15-2026]
