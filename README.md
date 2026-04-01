@@ -109,10 +109,11 @@
 | **[[@HOWL-PHYS-15-2026]](papers/papers/PHYS/HOWL-PHYS-15-2026/manuscript.md)** | **Integer-Forced Identification of the Minimal Unification Extension** | We did not choose this particle. The integers chose it. |
 | **[[@HOWL-PHYS-16-2026]](papers/papers/PHYS/HOWL-PHYS-16-2026/manuscript.md)** | **The Cabibbo Doublet** | Complete Specification of the Integer-Forced Minimal Unification Extension. |
 | **[[@HOWL-PHYS-17-2026]](papers/papers/PHYS/HOWL-PHYS-17-2026/manuscript.md)** | **The Generation Democracy and the Boson Problem** | The integer 11 sets the gap ratio. Fermions cancel. The failure is in the bosons. |
+| **[[@HOWL-PHYS-18-2026]](papers/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md)** | **The Y = 1/6 Asymmetry** | Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction. |
 
 
 
-| **[[@HOWL-PHYS-18-2026]](papers/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
+
 | **[[@HOWL-PHYS-19-2026]](papers/papers/PHYS/HOWL-PHYS-19-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 | **[[@HOWL-PHYS-20-2026]](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 | **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
