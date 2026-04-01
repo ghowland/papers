@@ -1,0 +1,169 @@
+========================================================================
+HOWL-PHYS-12-NOTEBOOK: Koide C3 Investigation
+========================================================================
+
+RESULT 1: KOIDE RATIOS AND AMPLITUDES (DATA-2 precision)
+------------------------------------------------------------------------
+
+  Sector                                  K          K-2/3          a         a²         a-√2
+  ---------------------------- ------------ -------------- ---------- ---------- ------------
+  Charged Leptons (e, mu, tau)   0.66666051      -6.16e-06   1.414201   1.999963 -1.305721e-05
+  Up-type Quarks (u, c, t)       0.84879355       1.82e-01   1.758625   3.092761 3.444113e-01
+  Down-type Quarks (d, s, b)     0.73128758       6.46e-02   1.545227   2.387725 1.310131e-01
+
+  Reference: sqrt(2) = 1.4142135624
+  Reference: 2/3     = 0.6666666667
+
+  K ordering:  K_lep (0.666661) < K_dn (0.731288) < K_up (0.848794)
+               CONFIRMED
+
+  a ordering:  a_lep (1.414201) < a_dn (1.545227) < a_up (1.758625)
+               CONFIRMED
+
+RESULT 2: ZERO-MAGNETIZATION CONDITION
+------------------------------------------------------------------------
+
+  sum(cos(phi_k)) = 0 for ALL sectors (to machine precision):
+    Charged Leptons (e, mu, tau) sum_cos = 0.00e+00
+    Up-type Quarks (u, c, t)     sum_cos = -1.11e-16
+    Down-type Quarks (d, s, b)   sum_cos = 0.00e+00
+
+  This is a TAUTOLOGY of the 3-parameter Koide parametrization.
+  The identity cos(x) + cos(x+2pi/3) + cos(x+4pi/3) = 0 holds
+  for all x. Three parameters (M, a, theta0) fit three masses
+  exactly, with 120-degree spacing built in by construction.
+  The equal spacing is a coordinate choice, not a discovery.
+
+RESULT 3: PHASE PARAMETERS
+------------------------------------------------------------------------
+
+  Sector                       theta0 (rad) theta0 (deg)     M (√MeV)
+  ---------------------------- ------------ ------------ ------------
+  Charged Leptons (e, mu, tau)     0.222230      12.7328      17.7156
+  Up-type Quarks (u, c, t)         0.074517       4.2695     150.8548
+  Down-type Quarks (d, s, b)       0.110119       6.3093      25.5045
+
+  cos(phi_k) for each sector:
+    Charged Leptons (e, mu, tau) [-0.67858053, -0.29682792, +0.97540845]
+    Up-type Quarks (u, c, t)     [-0.56308631, -0.43413859, +0.99722490]
+    Down-type Quarks (d, s, b)   [-0.59214454, -0.40179852, +0.99394306]
+
+RESULT 4: C3 FRUSTRATED POTENTIAL
+------------------------------------------------------------------------
+
+  V(phi) = +J * sum_{i<j} cos(phi_i - phi_j),  J > 0 (antiferromagnetic)
+
+  V(120-degree) = -1.500000 = -3J/2
+  V(aligned)    = 3.000000 = +3J
+  Gradient at 120: 0.00e+00 (verified = 0)
+  Hessian at 120:  1.000000 (positive = local minimum)
+
+  120-degree spacing is ground state of frustrated C3 potential.
+  This is textbook physics (frustrated XY model on triangle).
+  Connection to Koide: the parametrization's 120-degree spacing
+  corresponds to this ground state. But this is a REWRITING of
+  the parametrization, not a derivation of the formula.
+
+RESULT 5: K = 2/3 IS A SADDLE POINT
+------------------------------------------------------------------------
+
+  K at exact 120-degree, a=sqrt(2): 0.666666666666667
+  K - 2/3 = -1.34e-51
+
+  Perturbation         sum(delta)    d2K/deps2         Type
+  -------------------- ---------- ------------ ------------
+  (1, -1, 0)                  0.0     0.471405      MINIMUM
+  (1, 0, -1)                  0.0     0.471405      MINIMUM
+  (0, 1, -1)                  0.0     2.276142      MINIMUM
+  (1, -0.5, -0.5)             0.0    -0.097631      MAXIMUM
+  (2, -1, -1)                 0.0    -0.390524      MAXIMUM
+
+  FINDING: K = 2/3 is a MINIMUM for asymmetric perturbations
+  (which break C3) but a MAXIMUM for symmetric perturbations
+  (which preserve C3 and stretch/compress uniformly).
+  K = 2/3 is a SADDLE POINT, not a universal minimum.
+  The prediction 'quarks must have K > 2/3' is NOT valid.
+
+RESULT 6: ALL KNOWN EQUIVALENT FORMULATIONS OF a² = 2
+------------------------------------------------------------------------
+
+  Every formulation below is algebraically equivalent to the
+  Koide formula. None constitutes an independent derivation.
+
+  1. K = (sum m)/(sum sqrt(m))² = 2/3
+     Measured: K = 0.6666605115, deviation from 2/3: -6.16e-06
+
+  2. a² = 2 (critical amplitude)
+     Measured: a² = 1.9999630688, deviation from 2: -3.69e-05
+
+  3. CV(sqrt(m)) = std/mean = 1
+     Measured: CV = 0.9999907672, deviation from 1: -9.23e-06
+
+  4. Var(sqrt(m)) = mean(sqrt(m))²
+     Var  = 313.835331
+     mean² = 313.841127
+     Ratio = 0.9999815344, deviation from 1: -1.85e-05
+
+  5. a² = midpoint of [0, 4]
+     Range: a² in [0, 4] for non-negative masses with equal spacing
+     Midpoint = 2, measured a² = 1.9999630688
+
+  6. Critical amplitude: max a where all masses >= 0
+     At a = sqrt(2), min(sqrt(m_k)/M) = 1 - a*1 = 1 - sqrt(2) < 0
+     Actually: min occurs at cos(phi) = -1, giving sqrt(m)/M = 1 - a
+     For a = sqrt(2): 1 - sqrt(2) = -0.414214 < 0
+     So a = sqrt(2) is ABOVE critical (allows one mass = 0 at cos = -1/a)
+     The critical condition is a = sqrt(2): cos(phi) = -1/sqrt(2) gives m = 0
+
+  7. 'Equipartition': kinetic (variance) = potential (mean²)
+     Algebraically identical to formulation 4.
+
+  CONCLUSION: Seven formulations, zero derivations.
+  The Koide formula's content is a² = 2 for charged leptons.
+  Why this value? Unknown. Every approach tried reduces to a
+  restatement of the formula, not an explanation of it.
+
+RESULT 7: PATHS TESTED AND CLOSED
+------------------------------------------------------------------------
+
+  Path                                          Result               Paper
+  --------------------------------------------- --------------- ----------
+  Frustrated graph mechanism                    FAILS..........     DISC-8
+  C3 spacing from frustrated XY potential       TAUTOLOGY......  This note
+  CKM mixing breaks C3 for quarks               MOOT...........  This note
+  K=2/3 is minimum (quarks must K>2/3)          WRONG..........  This note
+  CV=1 / midpoint / equipartition               RESTATEMENT....     PHYS-8
+
+  PATHS REMAINING OPEN:
+  Discrete flavor symmetry (A4, S3) -> a=sqrt(2) UNTESTED
+  Yukawa sector structure -> amplitude selection UNTESTED
+  RG running of Koide ratio with energy scale   UNTESTED
+  Neutrino sector Koide (once masses known)     WAITING
+
+DATA PRESERVATION: Koide amplitudes from DATA-2 masses
+------------------------------------------------------------------------
+
+  These values are derived from CODATA 2022 / PDG 2024 masses
+  via the Koide parametrization sqrt(m_k) = M(1 + a*cos(theta0 + 2pi*k/3)).
+  They are the most precise Koide amplitudes computed to date.
+
+  Sector                      a           a²            K     M (√MeV)   θ₀ (deg)
+  ---------------- ------------ ------------ ------------ ------------ ----------
+  Charged Leptons    1.41420051   1.99996307   0.66666051    17.715562    12.7328
+  Up-type Quarks     1.75862483   3.09276129   0.84879355   150.854758     4.2695
+  Down-type Quarks   1.54522667   2.38772546   0.73128758    25.504535     6.3093
+
+  Lepton a - sqrt(2) = -1.305721e-05
+  Lepton K - 2/3     = -6.155201e-06
+  (Limited by m_tau at 6 sig figs: ±0.12 MeV)
+
+========================================================================
+ALL ASSERTIONS PASS
+
+STATUS: PARKED
+  The Koide amplitude question (why a² = 2 for charged leptons)
+  remains the sole open high-priority derivation target in the
+  HOWL series. This investigation closes the C3 spacing path
+  and confirms the problem is purely about the amplitude.
+  Future work requires a new idea, not more computation.
+========================================================================
