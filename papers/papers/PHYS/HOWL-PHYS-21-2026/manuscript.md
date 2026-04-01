@@ -234,3 +234,323 @@ All Level 1 beta coefficients and gap ratios verified by the GUT running script 
 
 ---
 
+
+### Errata
+
+**E1: Section 6, historical identification dates for the W and Z.** The paper states the Level 1 identification was "SU(2)×U(1), 1967" (Weinberg). For precision: Glashow proposed SU(2)×U(1) in 1961 but without the Higgs mechanism and without a prediction for the W and Z masses. Weinberg (1967) and Salam (1968) independently combined the gauge structure with spontaneous symmetry breaking, giving the mass predictions M_W = gv/2 and M_Z = M_W/cos θ_W. The Level 1 identification that predicted specific masses (testable by experiment) is Weinberg-Salam 1967-1968, not Glashow 1961. The paper's "1967" is correct for the mass-predictive version. However, the appendix says "SU(2)×U(1) (Weinberg 1967, Salam 1968)" which is right. No erratum needed — the paper is consistent. But for completeness:
+
+**Erratum text:** "Section 6 states the W/Z Level 1 identification as 1967. The SU(2)×U(1) gauge structure was proposed by Glashow in 1961 without mass predictions. The mass-predictive version incorporating spontaneous symmetry breaking was independently published by Weinberg (1967) and Salam (1968). The 1967 date used in this paper refers to the mass-predictive identification — the version that produced Level 1 numbers testable by Level 2 experiment."
+
+**E2: Section 4, the Koide amplitude description.** The paper states "a² = 2 for charged leptons, measured to 6 significant figures." The Koide ratio K = 0.6666605... deviates from 2/3 by 6.2×10⁻⁶, which gives a² = 2.0000... to about 5 significant figures in the deviation, or equivalently a = 1.41420... matching √2 to 5-6 figures. The "6 significant figures" claim should be understood as: a² = 2 is consistent with the data to the precision available from the lepton masses (m_e to 9 sf, m_μ to 8 sf, m_τ to 5 sf). The limiting precision is m_τ at 5 significant figures. The statement "6 significant figures" is approximately correct but the limiting factor is m_τ precision.
+
+**Erratum text:** "The statement in Section 4 that a² = 2 is 'measured to 6 significant figures' should be understood as: a² = 2.000 with the precision limited by the tau mass measurement (5 significant figures in m_τ). The Koide ratio K = 0.666661 differs from 2/3 by 6×10⁻⁶, consistent with K = 2/3 at the available precision."
+
+### Annotations
+
+**A1: Section 3, the Level 1 registry completeness.** The registry lists results from PHYS-7 through PHYS-20 plus MATH-5. For completeness, it should be noted that PHYS-23 (Koide C₃ closure) and MATH-6 (82/82 PSLQ null) also contain Level 1 content. The Koide tautology proof (120° spacing is automatic for 3 masses) is Level 1 — it is a mathematical identity. The saddle point result (K = 2/3 is a saddle, not a minimum, of the C₃ potential) is Level 1. The PSLQ mathematical independence of Bessel zeros from the Q335 basis at 100 digits is Level 1. These papers were not yet written when PHYS-21 was planned but their Level 1 content should be acknowledged if they are published before or alongside PHYS-21.
+
+**A2: Section 7, the top quark mass uncertainty.** The paper states "The mass is the least constrained of all Level 2 quark masses — it was unknown within a factor of 100 for two decades after the b quark discovery." This is historically correct: between the b quark discovery (1977) and the top quark discovery (1995), the top mass was constrained only by indirect limits. Early bounds allowed m_t from ~25 GeV to several hundred GeV. The electroweak precision data (particularly the W mass and Δρ) progressively narrowed the range to approximately 150-200 GeV by 1994. The "factor of 100" refers to the early period (1977-late 1980s). By the time of discovery, electroweak precision had narrowed it to a factor of ~1.3. The statement is correct for the two-decade period as a whole but the constraint tightened dramatically in the final years. A future session computing Level 2 constraints on the Cabibbo Doublet mass should note this parallel: early constraints are broad (1.5-6 TeV = factor of 4), precision data may narrow them.
+
+**A3: Section 6, "the same stage."** The paper states the Cabibbo Doublet "is at the same stage" as the W/Z in 1975 or the Higgs in 2000. This framing is appropriate but should be interpreted carefully. The W/Z in 1975 had the full electroweak theory behind them — a renormalizable quantum field theory with precision predictions for neutral current cross sections (confirmed 1973). The Higgs in 2000 had the full SM machinery and was the only missing piece of a theory that had passed thousands of precision tests. The Cabibbo Doublet has the gap ratio arithmetic (one test, one-loop) and three experimental anomalies (each 2-4σ). The evidence base is narrower than the historical precedents. The paper's Section 11 correctly notes this: "Other Level 1 identifications have not been confirmed — magnetic monopoles, axions, and many supersymmetric partners remain unobserved." The "same stage" comparison is about the Level 1/Level 2 structural pattern, not about the strength of evidence.
+
+---
+
+## Appendix A: The Level 1 Registry — Complete
+
+### A.1: Geometric Identities
+
+| Result | Value | Paper | Proof |
+|---|---|---|---|
+| R₂ | π/4 = 0.7854... | PHYS-11 | Volume fraction of 2-ball in 2-cube |
+| R₄ | π²/32 = 0.3084... | MATH-5 | Volume fraction of 4-ball in 4-cube |
+| R₂ appears in 9/9 domains | 9 independent occurrences | PHYS-11 | Three irreducible subgroups generate all appearances |
+
+### A.2: SM Beta Coefficients
+
+| Coefficient | Value | Exact Fraction | Origin | Paper |
+|---|---|---|---|---|
+| b₁ | 4.100 | 41/10 | U(1)_Y, GUT normalization, SM particle content | PHYS-13 |
+| b₂ | −3.167 | −19/6 | SU(2)_L, SM particle content | PHYS-13 |
+| b₃ | −7.000 | −7 | SU(3)_c, 6-flavor | PHYS-13 |
+
+### A.3: Gap Ratio Anatomy
+
+| Component | Numerator contribution | Denominator contribution | Paper |
+|---|---|---|---|
+| Gauge self-coupling (0, −22/3, −11) | 22/3 (100.9%) | 11/3 (95.7%) | PHYS-17 |
+| Per-generation fermions (4/3, 4/3, 4/3) × N | 0 (0%) | 0 (0%) | PHYS-17 |
+| Higgs doublet (1/10, 1/6, 0) | −1/15 (−0.9%) | 1/6 (4.3%) | PHYS-17 |
+| **Total** | **109/15** | **23/6** | **Gap = 218/115** |
+
+### A.4: Generation Democracy
+
+| Property | Value | Paper | Proof |
+|---|---|---|---|
+| Per-generation (Δb₁, Δb₂, Δb₃) | (4/3, 4/3, 4/3) | PHYS-17 | SU(5) anomaly cancellation |
+| Fermion contribution to gap ratio | Exactly 0 | PHYS-17 | 4/3 − 4/3 = 0 in both numerator and denominator |
+| N-independence | Gap ratio = 218/115 for any N ≥ 0 | PHYS-17 | Algebraic proof: N cancels |
+
+### A.5: Cabibbo Doublet Level 1 Properties
+
+| Property | Value | Paper | Proof |
+|---|---|---|---|
+| Representation | (3,2,1/6) vector-like | PHYS-15 | Gap ratio elimination cascade, 15 → 2 → 1 minimal |
+| Δb₁ | 1/15 | PHYS-15 | Dynkin index formula, Y² = 1/36 |
+| Δb₂ | 1 | PHYS-15 | Dynkin index formula, T(2) × dim(3) |
+| Δb₃ | 1/3 | PHYS-15 | Dynkin index formula, T(3) × dim(2) |
+| Modified gap ratio | 38/27 = 1.40741... | PHYS-15 | Exact Fraction arithmetic on modified betas |
+| Asymmetry ratio Δb₂/Δb₁ | 15 | PHYS-18 | 1/(1/15) = 15 |
+| 1/Y² scaling | Δb₂/Δb₁ ∝ 1/Y² for (3,2,Y) | PHYS-18 | U(1) vertex structure |
+| Optimality at Y = 1/6 | Minimum distance 0.049, sharp spike | PHYS-18 | Monotonic degradation with increasing Y |
+| τ ∝ M_GUT⁴ | Proton lifetime scaling | PHYS-20 | Dimension-6 operator, amplitude ∝ 1/M_GUT² |
+
+### A.6: Electroweak Integer Anatomy
+
+| Property | Value | Paper |
+|---|---|---|
+| Inputs → outputs | 7 → 11 (overconstrained by 4) | PHYS-12 |
+| All coefficients trace to | SU(3)×SU(2)×U(1) quantum numbers: T₃, Q_f, N_c, n_gen | PHYS-12 |
+| R_b overshoot | 1.6% (diagnosed: missing t-b-W vertex correction) | PHYS-12 |
+
+### A.7: QED Perturbative Structure
+
+| Coefficient | Value | Paper | Status |
+|---|---|---|---|
+| A₁ | 1/2 (exact) | PHYS-9 | Single Feynman diagram |
+| A₂ | −0.32848... (three-piece decomposition) | PHYS-22 | 197/144 + ζ(3) term + R₄ geometric term |
+| α ↔ a_e transformation | Agreement at 4.3 ppb | PHYS-9 | Level 1 series applied to Level 2 α |
+
+---
+
+## Appendix B: The Level 2 Registry — Complete
+
+### B.1: The Three Coupling Constants (Session 3 Primary Inputs)
+
+| Constant | DATA-3 Value | Digits | Role in Gap Ratio |
+|---|---|---|---|
+| α⁻¹ | 137.035999177 | 12 | Determines 1/α₁ and 1/α₂ |
+| sin²θ_W | 0.23122 | 5 | Splits α_em into α₁ and α₂ |
+| α_s | 0.1180 | 4 | Determines 1/α₃ |
+
+### B.2: SM Parameters (Complete Count After Reductions)
+
+| Category | Parameters | Count | Status |
+|---|---|---|---|
+| Gauge couplings | α, sin²θ_W, α_s | 3 | Measured (DATA-3) |
+| Charged lepton masses | m_e, m_μ, m_τ | 3 (or 2 if Koide) | Measured; m_τ conditionally derivable |
+| Quark masses | m_u, m_d, m_s, m_c, m_b, m_t | 6 | Measured (DATA-3) |
+| CKM parameters | θ₁₂, θ₁₃, θ₂₃, δ_CKM | 4 | Measured |
+| Higgs sector | m_H, λ (or equivalently v and λ) | 1-2 | Measured (m_H); λ from m_H and v |
+| θ_QCD | 0 (derived in PHYS-7) | 0 | Was 1, now derived |
+| **Total** | | **17** | After θ_QCD derivation |
+
+### B.3: Cabibbo Doublet Level 2 Parameters
+
+| Parameter | Value/Constraint | Source | Status |
+|---|---|---|---|
+| M_VL | 1.5-6 TeV | LHC pair production + CKM perturbativity | Constrained, not measured |
+| θ₁₄ | |V_ub'| ≈ 0.045 | CKM first-row deficit | Estimated from deficit size |
+| θ₂₄ | Constrained | Kaon physics (K⁰-K̄⁰ mixing, NA62) | Bounded |
+| θ₃₄ | From A_FB^b fit | LEP Z-pole data | Estimated from anomaly fit |
+| δ₁ | Constrained | Neutron EDM < 10⁻²⁶ e·cm | Bounded |
+| δ₂ | Constrained | B-meson CP asymmetries | Bounded |
+| **Existence** | **Conditional** | **LHC, Hyper-K, Belle II** | **Not confirmed** |
+
+### B.4: Total Parameter Count
+
+| Scenario | Parameters | Change | Source |
+|---|---|---|---|
+| SM (original) | 18 | — | Standard count |
+| SM (after θ_QCD derivation) | 17 | −1 | PHYS-7 |
+| SM + Cabibbo Doublet | 17 + 6 = 23 | +6 | PHYS-16, 19 |
+| SM + Cabibbo Doublet (after Koide conditional) | 16 + 6 = 22 | +5 net | If a² = 2 holds |
+
+Six new parameters resolve three independent multi-sigma anomalies and reduce the gap ratio miss from 40% to 3.6%.
+
+---
+
+## Appendix C: The Derived Category — Complete
+
+### C.1: All Derived Results
+
+| Result | Level 1 Input | Level 2 Input | Output | Paper |
+|---|---|---|---|---|
+| θ_QCD = 0 | Energy minimization of QCD vacuum | Quark mass matrix (DATA-3) | θ_QCD derived; parameter count 18 → 17 | PHYS-7 |
+| m_τ (conditional) | Koide formula K = (1+a²/2)/3 | a² = 2 + m_e, m_μ (DATA-3) | m_τ = 1776.97 MeV (if a² = 2 exact) | PHYS-8 |
+| a_e from α | QED series A₁=1/2, A₂, A₃, A₄ | α = 1/137.036 (DATA-3) | a_e to 4.3 ppb | PHYS-9 |
+| 11 EW observables | SU(3)×SU(2)×U(1) integer anatomy | 7 inputs (DATA-3) | M_W, Γ_Z, R_b, etc. (11 outputs) | PHYS-12 |
+| Measured gap ratio 1.358 | GUT normalization formula | α, sin²θ_W, α_s (DATA-3) | 1/α₁, 1/α₂, 1/α₃ → ratio | PHYS-13 |
+| M_GUT = 10^15.5 | Modified betas (SM + Cabibbo Doublet) | Three couplings at M_Z (DATA-3) | One-loop running to crossing | PHYS-15 |
+| τ_p ~ 10^34-35 yr | τ ∝ M_GUT⁴ scaling | M_GUT + hadronic matrix elements | Proton lifetime range | PHYS-20 |
+| CKM deficit 0.00202 | Unitarity requirement (sum = 1) | |V_ud|, |V_us|, |V_ub| | 1 − 0.99798 = 0.00202 | PHYS-19 |
+
+### C.2: The Confrontation Table
+
+| Level 1 | Level 2 | Confrontation | Finding | Paper |
+|---|---|---|---|---|
+| Gap ratio 218/115 = 1.896 | Measured 1.358 | 40% miss | SM does not unify | PHYS-13 |
+| Gap ratio 38/27 = 1.407 | Measured 1.358 | 3.6% miss | Cabibbo Doublet nearly fixes it | PHYS-15 |
+| Gap ratio 7/5 = 1.400 | Measured 1.358 | 3.1% miss | MSSM nearly fixes it (known) | PHYS-15 |
+| Row unitarity = 1.000 | Measured 0.998 | 0.2% deficit | 4th quark mixing suspected | PHYS-19 |
+| R_b from tree + Δρ | Measured R_b = 0.2163 | 1.6% overshoot | Missing vertex correction | PHYS-12 |
+| τ ~ 10^34-35 yr | Super-K bound > 2.4×10^34 | At boundary | Testable by Hyper-K | PHYS-20 |
+
+Every row in this table is a meeting between mathematics and measurement. The physics is in the meeting.
+
+---
+
+## Appendix D: The Boundary Before and After Session 3
+
+### D.1: State Change
+
+| Property | Before Session 3 | After Session 3 |
+|---|---|---|
+| Level 1 scope | SM particles (observed) | SM + Cabibbo Doublet (unobserved) |
+| Level 1 results (count) | ~12 (R₂, R₄, betas, QED coefficients, EW anatomy) | ~20 (all prior + gap ratio anatomy, democracy, boson problem, Y=1/6, 1/Y² scaling, τ∝M⁴) |
+| Level 2 parameters | 17 SM (after θ_QCD) | 17 SM + 6 Cabibbo Doublet = 23 |
+| Derived results | θ_QCD, α↔a_e, EW observables | All prior + M_GUT, τ_p, CKM deficit |
+| Predictive reach | Consistency checks on known physics | Identification of unknown physics + testable predictions |
+| Experimental tests generated | None specific | Hyper-K (proton decay), LHC (direct production), Belle II (CKM) |
+
+### D.2: What Changed Conceptually
+
+Before Session 3, Level 1 confirmed. After Session 3, Level 1 identifies. The arithmetic is the same — exact Fraction computation on gauge group integers. The conceptual step is that the integers now point beyond the known particle content to a specific new representation.
+
+---
+
+## Appendix E: Historical Precedents
+
+### E.1: Level 1 Identification → Level 2 Confirmation
+
+| Particle | Level 1 Identification | Year | Level 2 Confirmation | Year | Gap | Mass Predicted? |
+|---|---|---|---|---|---|---|
+| Charm quark | GIM mechanism: 4th quark cancels K⁰→μμ | 1970 | J/ψ discovery at BNL + SLAC | 1974 | 4 yr | No (mass unknown, estimated < 2 GeV) |
+| Bottom quark | KM matrix: 3rd generation for CP violation | 1973 | Υ discovery at Fermilab | 1977 | 4 yr | No (mass unknown) |
+| Top quark | b-quark isospin partner + Δρ constraint | 1977-1990 | Tevatron discovery at 176 GeV | 1995 | 5-18 yr | Yes (~170 GeV from EW precision) |
+| W boson | SU(2)×U(1) gauge invariance | 1967 | UA1 discovery at ~80 GeV | 1983 | 16 yr | Yes (from sin²θ_W, G_F) |
+| Z boson | SU(2)×U(1) neutral current | 1967 | UA1 discovery at ~91 GeV | 1983 | 16 yr | Yes (from sin²θ_W, G_F) |
+| Higgs boson | EW symmetry breaking mechanism | 1964 | ATLAS/CMS discovery at 125 GeV | 2012 | 48 yr | No (mass was free parameter until ~2000) |
+| **Cabibbo Doublet** | **Gap ratio + anomaly convergence** | **2019-2026** | **Awaiting** | **?** | **?** | **No (mass 1.5-6 TeV from anomalies)** |
+
+### E.2: Level 1 Identifications Not Yet Confirmed
+
+| Particle/Object | Level 1 Identification | Year | Current Status |
+|---|---|---|---|
+| Magnetic monopole | Dirac quantization condition | 1931 | Not observed (95 years) |
+| Axion | Peccei-Quinn solution to strong CP | 1977 | Not observed (49 years); active experimental program |
+| SUSY partners | Hierarchy problem + coupling unification | 1970s-1980s | Not observed; LHC exclusions to ~1-2 TeV |
+| Proton decay | GUT prediction (SU(5)) | 1974 | Not observed; τ > 2.4×10^34 yr |
+| Gravitino | Local SUSY requires spin-3/2 partner | 1973 | Not observed |
+
+Level 1 identification is necessary for motivated searches but does not guarantee discovery. The historical success rate is approximately 6/11 (charm, bottom, top, W, Z, Higgs found; monopole, axion, SUSY partners, gravitino, proton decay not yet found). The Cabibbo Doublet has stronger experimental motivation than most unconfirmed entries because of the three independent anomalies.
+
+---
+
+## Appendix F: What Level 1 Cannot Do — Expanded
+
+### F.1: Six False Claims
+
+| # | Claim | Status | Why It Is False | Correct Statement |
+|---|---|---|---|---|
+| 1 | "Level 1 determines M_VL" | FALSE | Mass is free in gap ratio analysis | "Level 2 constrains M_VL to 1.5-6 TeV from LHC + CKM" |
+| 2 | "Level 1 determines θ₁₄, θ₂₄, θ₃₄" | FALSE | Mixing angles are measured from anomaly fits | "Level 2 estimates θ₁₄ ≈ 0.045 from CKM deficit" |
+| 3 | "Level 1 proves the Cabibbo Doublet exists" | FALSE | Existence is empirical | "Level 1 identifies which representation fixes the gap ratio" |
+| 4 | "Level 1 proves unification" | FALSE | Unification is a hypothesis | "Level 1 tests unification: 218/115 ≠ 1.358 means SM fails; 38/27 ≈ 1.358 means the Cabibbo Doublet nearly passes" |
+| 5 | "Level 1 determines the GUT group" | FALSE | SU(5), SO(10), E₆ all possible | "Level 1 identifies the SM extension; the UV completion is a separate question" |
+| 6 | "Level 1 predicts τ_p precisely" | FALSE | τ depends on Level 2 inputs and GUT completion | "Level 1 provides τ ∝ M_GUT⁴ scaling; the prediction τ ~ 10^34-35 yr is an order-of-magnitude range" |
+
+### F.2: The Correct Verbs
+
+| Incorrect | Correct | Why |
+|---|---|---|
+| "Level 1 predicts..." | "Level 1 identifies..." | Prediction implies certainty about the outcome; identification states what the mathematics points to |
+| "Level 1 proves..." | "Level 1 establishes..." | Proof is for theorems; physical claims require experimental confirmation |
+| "The gap ratio shows..." | "The gap ratio is consistent with..." or "The gap ratio arithmetic identifies..." | "Shows" can imply demonstration of a physical fact; the arithmetic identifies a mathematical possibility |
+| "The Cabibbo Doublet will be found at..." | "The Cabibbo Doublet, if it exists, has mass..." | "Will be found" is a prediction; "if it exists, has mass" is a conditional statement |
+
+---
+
+## Appendix G: The Boundary in Each Paper — Detailed
+
+### G.1: Papers with Pure Level 1 Findings
+
+| Paper | Finding | Why Pure Level 1 |
+|---|---|---|
+| PHYS-17 | Generation democracy (4/3, 4/3, 4/3); fermions contribute 0% to gap ratio; gap ratio is a boson problem | The decomposition of 218/115 into gauge + fermion + Higgs components uses only the beta coefficient formulas. No measurement enters the decomposition (the target 1.358 motivates the question but doesn't enter the arithmetic). |
+| PHYS-18 | Y = 1/6 gives Δb₂/Δb₁ = 15; 1/Y² scaling; five requirements for optimality | Pure representation theory. The Dynkin index dependence on Y is a mathematical fact about the U(1) vertex. |
+| MATH-5 | R₄ = π²/32 | Mathematical identity about 4-dimensional volumes. |
+| MATH-6 | 82/82 PSLQ null at 100 digits | The mathematical independence of the basis elements is Level 1. The absence of relations for physical constants is Level 2. (Mixed paper.) |
+
+### G.2: Papers with Level 1 + Level 2 Confrontation
+
+| Paper | Level 1 | Level 2 | Confrontation Result |
+|---|---|---|---|
+| PHYS-12 | EW integer anatomy (all coefficients from gauge group) | 7 inputs from DATA-3 | 11/11 computed; R_b overshoots 1.6% |
+| PHYS-13 | Gap ratio 218/115 | Measured 1.358 | 40% miss — SM does not unify |
+| PHYS-15 | Elimination cascade → (3,2,1/6) | Measured gap ratio selects from 15 candidates | Cabibbo Doublet survives |
+| PHYS-20 | τ ∝ M_GUT⁴ | M_GUT = 10^15.5 + hadronic matrix elements | τ ~ 10^34-35 yr, Hyper-K tests |
+
+### G.3: Papers with Primarily Level 2 Content
+
+| Paper | Level 2 Content | Level 1 Context |
+|---|---|---|
+| PHYS-19 | Three anomalies (CKM deficit 2.5-4σ, A_FB^b ~3σ, Higgs ~2σ) | Each anomaly resolves to (3,2,1/6) — the same representation Level 1 identifies from the gap ratio |
+| DATA-3 | 123 entries, 32/32 consistency checks | The Q335 basis and the verification protocol are Level 1 (mathematical). The stored values are Level 2 (measured). |
+
+---
+
+## Appendix H: The Principle — Formal Statement
+
+### H.1: Definitions
+
+**Level 1 (Framework-Determined):** A quantity Q is Level 1 if Q can be computed from the gauge group G = SU(3)×SU(2)×U(1), its representations, and mathematical theorems, without any measurement as input. Q is the same in every universe with gauge group G, regardless of the values of coupling constants, masses, or mixing angles.
+
+**Level 2 (Universe-Supplied):** A quantity V is Level 2 if V requires measurement for its determination. V could have been different in a universe with the same gauge group G. V is stored in DATA-3 with finite precision.
+
+**Derived:** A quantity D is Derived if D = f(Q, V) — a Level 1 function applied to Level 2 inputs. D inherits Level 2 uncertainty from V but Level 1 structure from f. The confrontation between a Level 1 prediction and a Derived result from Level 2 data is where physics happens.
+
+### H.2: The Principle
+
+The integers tell you WHAT exists. The universe tells you HOW MUCH.
+
+Level 1 determines representations, quantum numbers, beta coefficients, gap ratios, scaling laws, and elimination cascades. Level 2 determines masses, coupling constants, mixing angles, and whether identified particles actually exist.
+
+Level 1 can identify unobserved particles. Level 2 confirms or refutes the identification.
+
+The confrontation between Level 1 and Level 2 is the physics.
+
+### H.3: Scope
+
+This principle applies to the HOWL series. It is not claimed to be a universal epistemological framework. It is a working classification that maintains honesty about what is mathematics and what is experiment, preventing the confusion between identification and discovery.
+
+---
+
+## Appendix I: Verified Sources
+
+### I.1: Script Verification
+
+From sin2_theta_w_1.py (GUT running notebook), 9/9 checks pass:
+
+```
+[PASS] Normalization: sin²θ_W from couplings (diff = 0.00e+00)
+[PASS] SM gap ratio = 218/115 (1.8956521739)
+[PASS] MSSM gap ratio = 7/5 (1.4000000000)
+[PASS] SM does not unify (Δ(1/α₃) = -6.58)
+[PASS] MSSM nearly unifies (Δ(1/α₃) = -0.69)
+[PASS] M_GUT(SM) > 10^13 (log₁₀ = 13.80)
+[PASS] M_GUT(MSSM) > 10^16 (log₁₀ = 17.32)
+[PASS] VL quark doublet gap < 0.05 from measured (distance = 0.049)
+[PASS] Measured gap ratio in [1.2, 1.5] (gap = 1.358193)
+```
+
+### I.2: DATA-3
+
+123 entries, 32/32 consistency checks pass. All Level 2 values in the registry trace to DATA-3.
+
+### I.3: Cross-References to Prior Papers
+
+Every Level 1 and Level 2 classification in this paper traces to the specific appendix of the originating paper where the classification was first made. The unified registry assembles these individual classifications — it does not create new ones.
+
+---
+
+*Supporting appendix tables A through I for PHYS-21. The unified boundary map classifies every result in the series as Level 1 (framework-determined), Level 2 (universe-supplied), or Derived (Level 1 applied to Level 2). The Cabibbo Doublet is the first entity where Level 1 identification precedes Level 2 confirmation. The principle — the integers tell you WHAT, the universe tells you HOW MUCH — is stated formally. The limits of Level 1 are documented explicitly: six false claims, each marked FALSE with the correct alternative. Every entry traces to the originating paper and verified computation.*
