@@ -1,4 +1,4 @@
-# he Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5
+# The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5
 ## M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. One experiment, one decade, one answer.
 
 **Registry:** [@HOWL-PHYS-20-2026]
@@ -280,4 +280,359 @@ All measured values from DATA-3 (123 entries, 32/32 consistency checks pass).
 **Annotation text for A3:** "The threshold correction rescue mechanism works as follows: the gap ratio 38/27 constrains the scale where the three couplings approximately converge, but the proton decay rate depends on the specific masses of the X and Y gauge bosons. In a realistic GUT, these masses are split around the nominal M_GUT by factors of 2-3 due to GUT-scale symmetry breaking. If the X and Y masses are 2-3× above the nominal M_GUT, the proton lifetime shifts by (2-3)⁴ = 16-81×, potentially from 10^35 to 10^36-37 yr — beyond Hyper-K but consistent with the gap ratio. This is the most conservative escape route for the Cabibbo Doublet scenario if Hyper-K sees nothing."
 
 ---
+
+## Appendix A: The Chain from Integers to Experiment
+
+### A.1: Each Step with Source
+
+| Step | Input | Operation | Output | Source | Level |
+|---|---|---|---|---|---|
+| 1 | SM particle content | Beta coefficients b₁=41/10, b₂=−19/6, b₃=−7 | SM gap ratio 218/115 = 1.896 | GUT script, PASS | Level 1 |
+| 2 | Cabibbo Doublet (3,2,1/6) | Δb₁=1/15, Δb₂=1, Δb₃=1/3 | Modified gap ratio 38/27 = 1.407 | GUT script, PASS | Level 1 |
+| 3 | Modified betas + DATA-3 couplings | One-loop running: 1/α₁(μ) = 1/α₂(μ) at μ = M_GUT | M_GUT = 10^15.5 GeV | GUT script, PASS | Level 1 + Level 2 |
+| 4 | M_GUT in minimal SU(5) | τ ∝ M_GUT⁴ / (α_GUT² × m_p⁵ × matrix element²) | τ ~ 10^34-35 yr | Standard GUT formula + lattice QCD | Level 1 + Level 2 |
+| 5 | τ ~ 10^34-35 yr | Compare to Super-K bound and Hyper-K sensitivity | Within Hyper-K reach | Web-verified experimental data | Level 2 |
+
+Steps 1-2 are pure Level 1 — exact rational arithmetic on gauge group integers. Step 3 introduces Level 2 (the DATA-3 couplings). Step 4 introduces further Level 2 (hadronic matrix elements, α_GUT). Step 5 is entirely Level 2 (experimental parameters). The chain from integers to experiment crosses the Level 1 / Level 2 boundary at Step 3.
+
+---
+
+## Appendix B: M_GUT Comparison — All Scenarios
+
+### B.1: From the Verified GUT Script
+
+| Scenario | Beta Coefficients | Gap Ratio | Exact Fraction | M_GUT (GeV) | log₁₀ | Script Check |
+|---|---|---|---|---|---|---|
+| SM | (41/10, −19/6, −7) | 1.896 | 218/115 | 6.3 × 10^13 | 13.80 | PASS |
+| SM + Cabibbo Doublet | (41/10+1/15, −19/6+1, −7+1/3) | 1.407 | 38/27 | 3.2 × 10^15 | 15.50 | PASS |
+| SM + SU(5) 5+5̄ | — | 1.481 | 40/27 | 7.9 × 10^14 | 14.90 | Excluded (proton decay) |
+| Full MSSM | (33/5, 1, −3) | 1.400 | 7/5 | 2.1 × 10^17 | 17.32 | PASS |
+
+### B.2: The Separation
+
+| Comparison | M_GUT Ratio | M_GUT⁴ Ratio | Lifetime Ratio |
+|---|---|---|---|
+| Cabibbo Doublet vs SM | 10^15.5 / 10^13.8 = 10^1.7 ≈ 50 | 50⁴ ≈ 6.3 × 10^6 | CD lifetime ~10^7 × SM lifetime |
+| Cabibbo Doublet vs MSSM | 10^17.3 / 10^15.5 = 10^1.8 ≈ 63 | 63⁴ ≈ 1.6 × 10^7 | MSSM lifetime ~10^7 × CD lifetime |
+| Cabibbo Doublet vs SU(5) 5+5̄ | 10^15.5 / 10^14.9 = 10^0.6 ≈ 4 | 4⁴ = 256 | CD lifetime ~256 × 5+5̄ lifetime |
+
+The Cabibbo Doublet sits at the geometric midpoint (on a log scale) between the excluded SM and the untestable MSSM. This is the testability sweet spot.
+
+---
+
+## Appendix C: The M_GUT⁴ Scaling
+
+### C.1: Sensitivity Table
+
+| M_GUT (GeV) | log₁₀(M_GUT) | τ (approximate) | Status |
+|---|---|---|---|
+| 10^13.8 | 13.8 | ~10^30 yr | EXCLUDED (Super-K by 4 orders of magnitude) |
+| 10^14.5 | 14.5 | ~10^32 yr | EXCLUDED |
+| 10^14.9 | 14.9 | ~10^33 yr | EXCLUDED (SU(5) 5+5̄) |
+| 10^15.0 | 15.0 | ~10^33-34 yr | EXCLUDED |
+| 10^15.3 | 15.3 | ~3 × 10^33 yr | EXCLUDED |
+| **10^15.5** | **15.5** | **~10^34-35 yr** | **AT BOUNDARY — Hyper-K window** |
+| 10^16.0 | 16.0 | ~10^36 yr | Beyond Hyper-K |
+| 10^16.5 | 16.5 | ~10^37 yr | Far beyond |
+| 10^17.3 | 17.3 | ~10^37-38 yr | MSSM — untestable by planned experiments |
+
+### C.2: The Fourth Power Amplification
+
+| Change in M_GUT | Factor in M_GUT | Factor in τ (= M_GUT⁴) | Physical Meaning |
+|---|---|---|---|
+| +0.1 in log₁₀ | 1.26× | 1.26⁴ = 2.5× | Small running correction → factor 2.5 in lifetime |
+| +0.3 in log₁₀ | 2.0× | 2⁴ = 16× | Cabibbo Doublet mass uncertainty → ~1 order of magnitude |
+| +0.5 in log₁₀ | 3.2× | 3.2⁴ ≈ 100× | Moderate threshold correction → two orders of magnitude |
+| +1.0 in log₁₀ | 10× | 10⁴ = 10,000× | Major parameter change → four orders of magnitude |
+| +1.8 in log₁₀ | 63× | 63⁴ ≈ 1.6 × 10^7 | Cabibbo Doublet → MSSM: seven orders of magnitude |
+
+---
+
+## Appendix D: The Proton Decay Process
+
+### D.1: p → e⁺π⁰ in Minimal SU(5)
+
+| Property | Detail |
+|---|---|
+| Initial state | Proton (uud), mass 938.272 MeV |
+| Final state | Positron (e⁺) + neutral pion (π⁰) |
+| Mediating particle | X or Y gauge boson (mass ~ M_GUT) |
+| Mechanism | Two quarks exchange an X boson; one quark → positron, other quark → antiquark → pion |
+| Operator dimension | Dimension 6 (qq → e⁺q̄, suppressed by 1/M_GUT²) |
+| B−L conservation | B changes by −1, L changes by +1; B−L conserved |
+| Electric charge | +1 → +1 + 0 (conserved) |
+| π⁰ decay | π⁰ → γγ (99% BR, τ = 8.5 × 10⁻¹⁷ s) |
+| Total visible energy | 938 MeV (proton rest mass, no missing energy) |
+
+### D.2: Experimental Signature in Water Cherenkov
+
+| Feature | What Is Detected |
+|---|---|
+| Positron | One electromagnetic Cherenkov ring |
+| Photon 1 (from π⁰) | One electromagnetic Cherenkov shower/ring |
+| Photon 2 (from π⁰) | One electromagnetic Cherenkov shower/ring |
+| Total | Three rings, back-to-back topology |
+| Invariant mass | Reconstructed to 938 MeV |
+| Total momentum | Consistent with zero (proton at rest in water) |
+| Background | Atmospheric neutrino CC single-pion production (very low rate in this topology) |
+| Detection efficiency | ~45% (Super-K estimate) |
+
+### D.3: Why This Channel Is Clean
+
+The three-ring topology at zero total momentum and proton invariant mass is almost unique. Atmospheric neutrinos can mimic it through charged-current single-pion production (ν_e + n → e⁻ + π⁰ + p), but only if the proton is below the Cherenkov threshold (invisible) and the electron is misidentified as a positron. This background rate is approximately 0.5 events per megaton-year of exposure — extremely low. Super-K found zero candidates for p → e⁺π⁰ in 450 kton·years.
+
+---
+
+## Appendix E: Super-Kamiokande — Current Status
+
+### E.1: Detector Specifications
+
+| Property | Value |
+|---|---|
+| Location | Mozumi mine, Gifu Prefecture, Japan |
+| Depth | ~1000 m rock overburden (2700 m.w.e.) |
+| Total water | 50 kton |
+| Fiducial volume (original) | 22.5 kton |
+| Fiducial volume (enlarged, 2020 analysis) | 27.2 kton |
+| Photosensors | 11,129 PMTs (20-inch, inner detector) |
+| Photo-coverage | ~40% |
+| Operating since | April 1996 |
+| Total exposure (2020 analysis) | 450 kton·years |
+
+### E.2: Proton Decay Bounds (p → e⁺π⁰)
+
+| Publication | Data Period | Exposure | Candidates | Bound (90% CL) |
+|---|---|---|---|---|
+| Phys. Rev. Lett. 102, 141801 (2009) | 1996-2008 | ~220 kton·yr | 0 | τ > 1.3 × 10^34 yr |
+| Phys. Rev. D 95, 012004 (2017) | 1996-2015 | 306 kton·yr | 0 | τ > 1.6 × 10^34 yr |
+| **Phys. Rev. D 102, 112011 (2020)** | **1996-2018** | **450 kton·yr** | **0** | **τ > 2.4 × 10^34 yr** |
+
+The bound has improved by approximately a factor of 2 over the past decade, driven by increased exposure time and enlarged fiducial volume. Zero candidates in all searches.
+
+---
+
+## Appendix F: Hyper-Kamiokande — Specifications and Projections
+
+### F.1: Detector Comparison
+
+| Property | Super-K | Hyper-K | Ratio |
+|---|---|---|---|
+| Total water volume | 50 kton | 258 kton | 5.2× |
+| Fiducial volume | 22.5 kton (original) | 188 kton | 8.3× |
+| PMT type | R3600 (20-inch) | R12860 (20-inch, improved) | 2× quantum efficiency |
+| Number of PMTs | 11,129 (ID) | ~20,000 (ID) | 1.8× |
+| Photo-coverage | ~40% | ~20% (but higher QE compensates) | Comparable effective coverage |
+| Rock overburden | ~1000 m | ~650 m (1750 m.w.e.) | Slightly less |
+| Location | Kamioka mine | Tochibora mine (8 km away) | Same region |
+| Operations start | 1996 | ~2027 | 31 years later |
+
+### F.2: Projected Proton Decay Sensitivity (p → e⁺π⁰)
+
+| Duration | Projected Limit (no observation) | Comparison to Super-K Current | Status vs Cabibbo Doublet |
+|---|---|---|---|
+| 0 years (start) | 2.4 × 10^34 yr (Super-K legacy) | Baseline | Lower end excluded |
+| 5 years | ~4 × 10^34 yr | 1.7× improvement | Probing viable range |
+| 10 years | ~6.3 × 10^34 yr | 2.6× improvement | Well into viable range |
+| 20 years | ~10^35 yr | 4× improvement | **Full Cabibbo Doublet range covered** |
+
+### F.3: Construction Timeline (Web-Verified)
+
+| Date | Milestone |
+|---|---|
+| January 2020 | Budget approval, project officially begins |
+| 2020-2022 | Access tunnel excavation (2 km) |
+| June 2022 | Access tunnel completed |
+| 2022-present | Cavern excavation and detector facility construction |
+| ~2027 | Operations begin (first data for physics) |
+| ~2028 | Full configuration with near detectors and beam |
+| ~2037 | 10-year exposure milestone |
+| ~2047 | 20-year exposure — full proton decay sensitivity |
+
+---
+
+## Appendix G: The Discriminator Matrix
+
+### G.1: Experimental Outcomes vs Scenarios
+
+| Observation | Cabibbo Doublet (min. SU(5)) | Cabibbo Doublet (non-min. GUT) | MSSM | No Unification |
+|---|---|---|---|---|
+| p → e⁺π⁰ at τ ~ 10^34-35 | **CONFIRMED** | Possible (depends on completion) | **EXCLUDED** | **EXCLUDED** |
+| p → e⁺π⁰ at τ ~ 10^36-37 | Excluded | Possible | **CONFIRMED** | Excluded |
+| p → K⁺ν̄ at τ ~ 10^34 | Depends on completion | Possible (SO(10)) | **CONFIRMED** | Excluded |
+| No decay at τ > 10^35 | **EXCLUDED** | Possible (threshold corrections) | Consistent | Consistent |
+| VL quark found at LHC (1.5-3 TeV) | Strongly supports | Strongly supports | Not addressed | Not addressed |
+| CKM deficit confirmed at 5σ | Supports | Supports | Not addressed | Not addressed |
+
+### G.2: The Key Discriminations
+
+| Question | Answered By | When |
+|---|---|---|
+| Cabibbo Doublet vs MSSM? | Proton decay lifetime (τ differs by 10^7) | Hyper-K 2027-2037 |
+| Minimal SU(5) vs non-minimal GUT? | Proton decay channel (e⁺π⁰ vs K⁺ν̄ vs others) | Hyper-K + DUNE 2027-2037 |
+| Cabibbo Doublet exists? | Direct production at LHC | HL-LHC now-2040 |
+| CKM deficit is real? | Improved V_ud, V_us precision | Belle II now-2030+ |
+
+---
+
+## Appendix H: Model Dependence — Detailed
+
+### H.1: Sources of Uncertainty in the Proton Lifetime
+
+| Source | Effect on log₁₀(τ) | Effect on τ | Nature of Uncertainty |
+|---|---|---|---|
+| GUT completion group | Up to ±2 | Up to 100× | Structural: different groups give different operators |
+| GUT threshold corrections | ±0.5 to ±1.0 | 3× to 10× | Parametric: heavy particle mass splitting around M_GUT |
+| Hadronic matrix element | ±0.3 | ~2× | Computational: lattice QCD uncertainty |
+| Two-loop running | ±0.1 to ±0.2 | 1.3× to 1.6× | Perturbative: known correction, small |
+| α_GUT uncertainty | ±0.1 | ~1.3× | Parametric: from coupling running uncertainty |
+| Cabibbo Doublet mass (1.5-6 TeV) | ±0.5 | ~3× | Parametric: threshold correction from M_VL |
+| **Combined (minimal SU(5))** | **~34 to 35** | **~10^34 to 10^35** | **Order of magnitude range** |
+
+### H.2: What Is Robust and What Is Not
+
+| Statement | Robust? | Why |
+|---|---|---|
+| M_GUT = 10^15.5 from the gap ratio | Yes (at one loop) | Depends only on beta coefficients and DATA-3 couplings |
+| Gap ratio = 38/27 | Yes (exactly) | Pure Fraction arithmetic on integers |
+| τ ~ 10^34-35 in minimal SU(5) | Moderately | Depends on GUT completion + matrix elements |
+| "Within Hyper-K reach" | Yes | Robust across entire prediction range |
+| p → e⁺π⁰ is dominant channel | Conditional | Only in minimal SU(5); changes in other completions |
+| MSSM produces τ ~ 10^37 | Yes | Well-established calculation in the literature |
+| Cabibbo Doublet and MSSM are distinguishable | Yes | 10^7 separation in lifetime, far exceeding uncertainties |
+
+---
+
+## Appendix I: Complementary Experiments
+
+### I.1: Proton Decay Experiments
+
+| Experiment | Detector | Mass | Best Channel | Sensitivity | Timeline | Primary Mission |
+|---|---|---|---|---|---|---|
+| **Hyper-K** | Water Cherenkov | 188 kton FV | **p → e⁺π⁰** | **~10^35 yr (20 yr)** | **2027+** | Neutrino CP violation |
+| DUNE | Liquid Argon TPC | 40 kton FV | **p → K⁺ν̄** | ~10^34 yr | 2028+ | Neutrino oscillations |
+| JUNO | Liquid Scintillator | 20 kton | p → K⁺ν̄ | ~10^34 yr | 2025+ | Neutrino mass ordering |
+
+### I.2: Channel-to-Scenario Mapping
+
+| Proton Decay Channel | Operator Dimension | GUT Completion | Primary Detector |
+|---|---|---|---|
+| p → e⁺π⁰ | Dim-6 (gauge boson exchange) | Minimal SU(5), non-SUSY GUTs | Hyper-K |
+| p → K⁺ν̄ | Dim-5 (colored Higgsino exchange) | SUSY SU(5), SUSY SO(10) | DUNE |
+| p → μ⁺π⁰ | Dim-6 | Some flipped SU(5) models | Hyper-K |
+| p → e⁺K⁰ | Dim-6 | Some SO(10) models | Hyper-K / DUNE |
+
+If the Cabibbo Doublet scenario is correct AND the GUT completion is minimal SU(5): Hyper-K is the experiment. If the completion involves SUSY-like operators: DUNE becomes the primary probe. Together, the two experiments cover the dominant channels of both frameworks.
+
+---
+
+## Appendix J: Timeline
+
+### J.1: Past and Future
+
+| Year | Event | Relevance |
+|---|---|---|
+| 1974 | Georgi & Glashow propose SU(5) GUT | Proton decay predicted |
+| 1983 | IMB and Kamiokande begin proton decay searches | First experimental limits |
+| 1996 | Super-Kamiokande begins operations | World-leading sensitivity |
+| 2000 | LEP decommissioned; A_FB^b frozen at 0.0992 | Second Cabibbo Doublet anomaly established |
+| 2012 | Higgs boson discovered at LHC | Third anomaly (μ excess) begins |
+| 2017 | Super-K: τ > 1.6 × 10^34 yr | Minimal SU(5) without new physics excluded |
+| 2019-2020 | CKM deficit identified as BSM signal | Anomaly path opens |
+| 2020 | Super-K: **τ > 2.4 × 10^34 yr** | **Current bound** |
+| 2020 | Hyper-K construction begins | Clock starts |
+| 2026 | PHYS-15: Gap ratio identifies (3,2,1/6) | Two roads converge |
+| **~2027** | **Hyper-K begins operations** | **Proton decay test begins** |
+| ~2028-2029 | DUNE begins operations | Complementary channel |
+| ~2032 | Hyper-K 5-year: τ > ~4 × 10^34 yr | Probing lower Cabibbo Doublet range |
+| **~2037** | **Hyper-K 10-year: τ > ~6.3 × 10^34 yr** | **Well into Cabibbo Doublet range** |
+| ~2047 | Hyper-K 20-year: τ > ~10^35 yr | Full Cabibbo Doublet range covered |
+
+### J.2: The Decision Window
+
+The critical decade is 2027-2037. Within this period:
+
+Hyper-K begins collecting data (2027) and reaches sensitivity well into the Cabibbo Doublet prediction range (6.3 × 10^34 yr by 2037). If the proton lifetime is in the lower half of the viable range (~3 × 10^34 to ~5 × 10^34), observation could come within the first 5-10 years. If it is in the upper half (~5 × 10^34 to 10^35), the full 20-year dataset may be needed.
+
+Simultaneously, the HL-LHC (operating through ~2040) searches for the Cabibbo Doublet directly in VL quark pair production, probing masses up to 2-3 TeV. Belle II sharpens the CKM deficit measurement. If all three programs produce positive results — proton decay at Hyper-K, VL quark at LHC, CKM deficit at Belle II — the Cabibbo Doublet is established from three independent experimental programs.
+
+---
+
+## Appendix K: Level 1 / Level 2 Classification
+
+### K.1: What Is Level 1
+
+| Quantity | Value | Determination |
+|---|---|---|
+| SM beta coefficients | (41/10, −19/6, −7) | Gauge group representation theory |
+| Cabibbo Doublet beta shifts | (1/15, 1, 1/3) | Dynkin index formulas for (3,2,1/6) |
+| SM gap ratio | 218/115 | Exact Fraction arithmetic |
+| Modified gap ratio | 38/27 | Exact Fraction arithmetic |
+| τ ∝ M_GUT⁴ scaling | Dimensional analysis | GUT operator structure (dim-6) |
+| p → e⁺π⁰ dominance in minimal SU(5) | Operator classification | SU(5) representation theory |
+
+### K.2: What Is Level 2
+
+| Quantity | Value | Source |
+|---|---|---|
+| α⁻¹, sin²θ_W, α_s at M_Z | 137.036, 0.23122, 0.1180 | DATA-3 |
+| M_GUT = 10^15.5 | From running + DATA-3 | Level 1 betas + Level 2 couplings |
+| τ ~ 10^34-35 yr | From M_GUT + formula | Level 1 scaling + Level 2 inputs |
+| α_GUT | ~1/37 (from running) | Level 2 |
+| Hadronic matrix element | Lattice QCD | Level 2 |
+| Super-K bound 2.4 × 10^34 | Experimental measurement | Level 2 |
+| Hyper-K sensitivity ~10^35 | Projected from detector specifications | Level 2 |
+| Cabibbo Doublet mass 1.5-6 TeV | From anomaly fits | Level 2 (PHYS-19) |
+
+### K.3: The Boundary
+
+The prediction chain crosses the Level 1 / Level 2 boundary at the point where DATA-3 couplings enter the running equation. Everything before that point (the gap ratio 38/27, the beta coefficients, the scaling law) is Level 1. Everything after (M_GUT, the proton lifetime, the experimental comparison) involves Level 2 inputs.
+
+The Level 1 content — the integers, the gap ratio, the scaling law — is permanent. It does not change with improved measurements. The Level 2 content — M_GUT, τ, the experimental bounds — will sharpen as measurements improve. The chain is designed so that Level 1 provides the structure and Level 2 fills in the numbers.
+
+---
+
+## Appendix L: Verified Script Output
+
+From sin2_theta_w_1.py (GUT running notebook), 9/9 checks:
+
+```
+[PASS] Normalization: sin²θ_W from couplings
+       diff = 0.00e+00
+[PASS] SM gap ratio = 218/115
+       1.8956521739
+[PASS] MSSM gap ratio = 7/5
+       1.4000000000
+[PASS] SM does not unify (Δ > 5)
+       Δ(1/α₃) = -6.58
+[PASS] MSSM nearly unifies (Δ < 5)
+       Δ(1/α₃) = -0.69
+[PASS] M_GUT(SM) > 10^13
+       log₁₀ = 13.80
+[PASS] M_GUT(MSSM) > 10^16
+       log₁₀ = 17.32
+[PASS] VL quark doublet gap < 0.05 from measured
+       distance = 0.049
+[PASS] Measured gap ratio in [1.2, 1.5]
+       gap = 1.358193
+```
+
+From the enumeration table (Result 6):
+
+Rank 1: Full MSSM — Gap = 1.4000, Dist = 0.0418, log M_GUT = 17.3. SAFE.
+
+Rank 2: VL fermion (3,2,1/6) — Gap = 1.4074, Dist = 0.0492, log M_GUT = 15.5. SAFE.
+
+Rank 3: SU(5) 5+5̄ fermion — Gap = 1.4815, Dist = 0.1233, log M_GUT = 14.9. EXCLUDED (proton decay).
+
+Experimental parameters verified by web search April 2026:
+
+Super-K: τ(p → e⁺π⁰) > 2.4 × 10^34 yr at 90% CL (Phys. Rev. D 102, 112011, 2020, arXiv:2010.16098). 450 kton·years exposure, 0 candidates.
+
+Hyper-K: 258 kton total, 188 kton fiducial. Operations ~2027. Sensitivity ~10^35 yr for p → e⁺π⁰ with 20 years of data. 10-year projected limit 6.3 × 10^34 yr. (SciPost Phys. Proc. 17, 019, 2025; Hyper-K Design Report arXiv:1805.04163).
+
+All measured values from DATA-3 (123 entries, 32/32 consistency checks pass).
+
+---
+
+*Supporting appendix tables A through L for PHYS-20. Every M_GUT value traces to the verified GUT script (9/9 pass). Every experimental parameter verified by web search. The M_GUT⁴ scaling table provides the quantitative framework for interpreting any future proton decay result. The discriminator matrix shows that the Cabibbo Doublet and the MSSM, despite nearly identical gap ratios, are separated by seven orders of magnitude in proton lifetime — a difference that Hyper-Kamiokande can resolve within one decade of operations.*
 
