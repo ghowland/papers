@@ -1,0 +1,162 @@
+===========================================================================
+PRECISION DIMENSIONLESS CONSTANTS: THE HARD SCIENCES
+===========================================================================
+
+CATEGORY 1: TURBULENCE / FLUID MECHANICS
+
+| Constant                  | Value         | Precision | Derived? |
+|---------------------------|---------------|-----------|----------|
+| von Kármán κ              | 0.40 ± 0.02   | 5%        | NO       |
+| Kolmogorov C_K            | 1.5 ± 0.1     | 7%        | NO       |
+| Smagorinsky C_S           | 0.1-0.2       | ~50%      | NO       |
+| Re_crit (pipe)            | ~2300         | ~10%      | NO       |
+| Re_crit (flat plate)      | ~5×10⁵        | ~20%      | NO       |
+| Drag coeff sphere Re=0    | 24/Re (exact) | exact     | YES      |
+| Stokes drag               | 6π (exact)    | exact     | YES      |
+
+  VERDICT: Too imprecise for PSLQ (need 10+ digits).
+  The unexplained constants (κ, C_K, Re_crit) are known
+  to only 2-3 significant figures. Can't test meaningfully.
+
+CATEGORY 2: CHEMISTRY / MOLECULAR SPECTROSCOPY
+
+| Constant                        | Value              | Precision | Derived from   |
+|---------------------------------|--------------------|-----------|----------------|
+| H₂ dissociation energy          | 36118.0696(4) cm⁻¹| 1.1e-8    | α, m_e/m_p     |
+| H₂ vibration freq ν₁            | 4161.166 cm⁻¹     | 1e-6      | α, m_e/m_p     |
+| CO rotation const B₀            | 57635.968 MHz      | 1e-7      | α, m_e/m_p,m_C |
+| N₂ dissociation                 | 78714 cm⁻¹         | ~0.01%    | α, nuclear     |
+
+  VERDICT: High precision available but all DERIVED from α and
+  nuclear masses. These don't contain new free parameters.
+  Testing them tests many-body quantum chemistry, not SM constants.
+
+CATEGORY 3: CRYSTALLOGRAPHY / MATERIALS
+
+| Constant                  | Value            | Precision | Derived? |
+|---------------------------|------------------|-----------|----------|
+| Si lattice constant       | 5.43102064(14) Å | 2.6e-8    | Yes (α)  |
+| Ge lattice constant       | 5.65735 Å        | ~1e-5     | Yes (α)  |
+| c/a ratio hcp metals      | ~1.633           | varies    | geometry |
+| ideal c/a (hcp)           | √(8/3)=1.6330..  | exact     | YES      |
+| Au c/a actual             | 1.0000 (fcc)     | exact     | symmetry |
+
+  Ideal hcp c/a = √(8/3) = 1.6329931619
+  = 2√(2/3) = 2×0.8164965809
+
+  Metal       c/a  c/a - ideal Ratio to ideal
+  Be        1.568      -0.0650       0.960200
+  Mg        1.624      -0.0090       0.994493
+  Ti        1.588      -0.0450       0.972447
+  Co        1.623      -0.0100       0.993880
+  Zn        1.856       0.2230       1.136563
+  Zr        1.593      -0.0400       0.975509
+  Cd        1.886       0.2530       1.154934
+  Hf        1.581      -0.0520       0.968161
+
+  VERDICT: The deviations from ideal are determined by
+  electronic structure (d-orbital filling, spin-orbit coupling)
+  which depends on α and nuclear charges. Material-specific,
+  not SM free parameters.
+
+CATEGORY 4: MATHEMATICAL CONSTANTS
+
+  These are not measured — they are computed to arbitrary precision.
+  But some ratios between them are unexplained.
+
+  Feigenbaum δ = 4.669201609102990671853203820466
+  Feigenbaum α = 2.502907875095892822283902873218
+
+  PSLQ: Feigenbaum δ against 10-constant basis
+    maxcoeff=100: null
+    maxcoeff=1000: null
+
+  PSLQ: Feigenbaum α against 10-constant basis
+    maxcoeff=100: null
+    maxcoeff=1000: null
+
+CATEGORY 5: COSMOLOGY
+
+| Constant                  | Value           | Precision | Free param? |
+|---------------------------|-----------------|-----------|-------------|
+| Hubble H₀                | 67.4 ± 0.5 km/s/Mpc| 0.7%   | YES         |
+| CMB temperature T₀       | 2.72548 ± 0.00057 K| 0.02%   | YES         |
+| Baryon density Ω_b h²    | 0.02237 ± 0.00015 | 0.7%    | YES         |
+| DM density Ω_c h²        | 0.1200 ± 0.0012   | 1%      | YES         |
+| Spectral index n_s       | 0.9649 ± 0.0042   | 0.4%    | YES         |
+| Amplitude ln(10¹⁰A_s)   | 3.044 ± 0.014     | 0.5%    | YES         |
+
+  VERDICT: These ARE free parameters (cosmological, not SM).
+  Precision: 2-4 significant figures. Marginal for PSLQ.
+  But Ω_c h² = 0.1200 ± 0.0012 is suspiciously close to α_s!
+
+  Ω_c h² = 0.12
+  α_s    = 0.118
+  Ratio: 1.016949
+  Difference: 0.0020
+  Both ~0.12. Coincidence at 2% level. Not meaningful
+  without a physical mechanism linking DM density to QCD.
+
+CATEGORY 6: NUCLEAR PHYSICS / ASTROPHYSICS
+
+| Constant                   | Value          | Precision | Status    |
+|----------------------------|----------------|-----------|-----------|
+| Proton-to-electron mass    | 1836.15267343  | 1.7e-11   | CODATA    |
+| Neutron-proton mass diff   | 1.29333236(46) MeV| 3.6e-7  | CODATA    |
+| Deuteron binding energy    | 2.22456614(42) MeV| 1.9e-7  | CODATA    |
+| Helium-4 binding/nucleon   | 7.07392 MeV    | 1e-5      | Nuclear   |
+| Triple-alpha resonance     | 7.6542(12) MeV | 1.6e-4    | Nuclear   |
+
+  m_p/m_e = 1836.15267343 (11 significant figures)
+
+  PSLQ: m_p/m_e against 10-constant basis
+    maxcoeff=1000: null
+    maxcoeff=10000: null
+
+  (m_n - m_p)/m_p = 1.3784193041e-03
+  This determines: beta decay, nucleosynthesis, existence of atoms
+  It depends on: m_d - m_u (quark mass difference) + QED + QCD
+
+===========================================================================
+SUMMARY: WHAT THE HARD SCIENCES OFFER
+===========================================================================
+
+| Category          | Precision  | New free params? | Testable? |
+|-------------------|------------|------------------|-----------|
+| Turbulence        | 2-3 digits | No (emergent)    | NO        |
+| Molecular spectra | 6-8 digits | No (from α)      | Redundant |
+| Crystallography   | 5-8 digits | No (from α, Z)   | Redundant |
+| Math constants    | arbitrary  | N/A (not physics) | YES *     |
+| Cosmology         | 2-4 digits | YES (6 params)   | Marginal  |
+| Nuclear physics   | 7-11 digits| Partially (m_q)  | YES       |
+
+* Feigenbaum constants: PSLQ null against our basis
+
+THREE GENUINELY NEW THINGS TO TEST:
+
+  1. m_p/m_e = 1836.153 (11 digits, PSLQ null at maxcoeff 10000)
+     This is the most precise mass ratio in physics.
+     It depends on QCD (proton mass) and QED (electron mass).
+     It's NOT a simple function of transcendentals.
+
+  2. Cosmological parameters (Ω_b, Ω_c, n_s, H₀, T₀)
+     These ARE free parameters, different from SM's 18.
+     Precision is marginal (2-4 digits) but improving.
+     The CMB temperature T₀ = 2.72548 K is the most precise.
+
+  3. Nuclear binding energies (deuteron: 2.224566 MeV)
+     These depend on quark masses and α_s through QCD.
+     They're derived quantities but the derivation is
+     from lattice QCD — a different path than perturbative QED.
+
+BOTTOM LINE:
+  The hard sciences outside physics offer mostly DERIVED quantities
+  (from α and nuclear charges) at insufficient precision.
+  The exceptions are cosmological parameters (new free params,
+  low precision) and nuclear masses (high precision, but
+  derived from QCD which we already tested through α_s).
+
+  The von Kármán constant and other turbulence parameters
+  are intriguing UNKNOWNS but at 2-3 digit precision,
+  PSLQ and modular search cannot operate.
+  

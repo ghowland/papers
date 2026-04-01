@@ -1,0 +1,271 @@
+===========================================================================
+CODATA 2022 CONSTANTS MAPPED TO NINE REMAINDER DOMAINS
+===========================================================================
+
+TIER 1: EXACT SI-DEFINED CONSTANTS
+
+  c     = 299792458 m/s (exact)
+  h     = 6.62607015e-34 J·Hz⁻¹ (exact)
+  hbar  = 1.054571817...e-34 J·s (exact = h/(2π))
+  e     = 1.602176634e-19 C (exact)
+
+TIER 2: CODATA 2022 MEASURED CONSTANTS
+
+  Constant                            Value         Uncert  Rel (ppb)
+  ---------------- ------------------------ -------------- ----------
+  alpha_inv                   137.035999177         2.1e-8    1.6e-10
+  m_e                      9.1093837139e-31        2.8e-40    3.1e-10
+  m_e_MeV                     0.51099895069        1.6e-10    3.1e-10
+  m_mu_MeV                      105.6583755         2.3e-6     2.2e-8
+  m_tau_MeV                         1776.86           0.12     6.8e-5
+  m_p                     1.67262192595e-27        5.2e-37    3.1e-10
+  m_p_m_e                     1836.15267343         3.2e-7    1.7e-11
+  R_inf                       10973731.5682         1.2e-5    1.1e-12
+  a_0                     5.29177210544e-11        8.2e-21    1.6e-10
+  K_J                       4.835978484e+14            0.0      exact
+  R_K                           25812.80745            0.0      exact
+  mu_0                     1.25663706127e-6        2.0e-16    1.6e-10
+  eps_0                    8.8541878188e-12        1.4e-21    1.6e-10
+
+===========================================================================
+DOMAIN 1: THETA VACUUM
+===========================================================================
+
+  E(θ) = E₀ - χ_top cos(θ)
+  CODATA constants involved: NONE directly.
+  θ_QCD = 0 is derived from topology, not from measured constants.
+  The topological susceptibility χ_top ~ (180 MeV)⁴ is from lattice QCD,
+  not a CODATA constant.
+
+  Dimensionless ratios: none. This domain is parameter-free.
+
+===========================================================================
+DOMAIN 2: RG RUNNING
+===========================================================================
+
+  α⁻¹(μ) = α⁻¹(m_e) + (1/3π) Σ Q_f² ln(μ²/m_f²)
+
+  CODATA constants:
+    α⁻¹         = 137.035999177 ± 0.000000021
+    m_e          = 0.51099895069 MeV ± 0.00000000016
+    m_μ          = 105.6583755 MeV ± 0.0000023
+    m_τ          = 1776.86 MeV ± 0.12
+
+  Dimensionless ratios (from CODATA):
+    m_μ/m_e  = 206.76828270846717969020806405523227748685144760879
+    m_τ/m_e  = 3477.2282753236821524323275318309245117561632697841
+    m_τ/m_μ  = 16.817029332426183289179947689049979762371038914942
+
+  VP running steps (leptonic, Q=1):
+    m_e → m_μ:  Δα⁻¹ = (1/3π)ln(m_μ²/m_e²) = 1.13140040
+    m_μ → m_τ:  Δα⁻¹ = (1/3π)ln(m_τ²/m_μ²) = 0.59893019
+    Total leptonic:                              1.73033059
+
+  α⁻¹ at m_τ (leptonic only): 135.305669
+  (This is NOT α⁻¹(m_τ) — hadronic VP not included)
+
+===========================================================================
+DOMAIN 3: BOHR-SOMMERFELD
+===========================================================================
+
+  E_n = ℏω(n + 1/2) for harmonic oscillator
+  E_n = n²π²ℏ²/(2mL²) for particle in box
+
+  CODATA constants for HYDROGEN (the real BS system):
+    R_∞     = 10973731.568157 m⁻¹ ± 0.000012
+    a_0     = 0.0000000000529177210544 m ± 8.2e-21
+    α⁻¹     = 137.035999177
+    m_p/m_e = 1836.15267343
+
+    E_1/(m_e c²) = -α²/(2×1²) = -0.000026625677
+    E_2/(m_e c²) = -α²/(2×2²) = -0.000006656419
+    E_3/(m_e c²) = -α²/(2×3²) = -0.000002958409
+    E_4/(m_e c²) = -α²/(2×4²) = -0.000001664105
+
+  The hydrogen energies depend on exactly ONE free parameter: α.
+  The BS decomposition: E_n = modulus × (n + remainder)
+  gives modulus = α² m_e c² / 2 = R_∞ hc (depends on α)
+  and remainder = 0 (for hydrogen, the BS correction is in n).
+
+===========================================================================
+DOMAIN 4: BERRY PHASE
+===========================================================================
+
+  γ = 4R₂(1 - cosθ) for spin-1/2 in rotating B field
+
+  CODATA constants: NONE for the geometric phase itself.
+  Berry phase depends on the geometry of parameter space,
+  not on any measured constant.
+
+  However: the QUANTUM HALL EFFECT connects Berry phase to α.
+  Hall conductance σ_xy = (e²/h) × C where C is the Chern number.
+  e²/h = 1/R_K = 3.8740458663e-05 S
+  R_K = h/e² = 25812.80745 Ω (exact in SI)
+
+  The quantized Hall conductance is e²/h per Landau level.
+  This is exact — it depends on NO free parameters (e and h are defined).
+
+===========================================================================
+DOMAIN 5: BRILLOUIN ZONE
+===========================================================================
+
+  E(k) = -2t cos(ka), G = 2π/a
+
+  CODATA constants for REAL MATERIALS:
+    Silicon lattice: a = 5.43102064 Å (from CODATA d₂₂₀)
+    a_0 = 0.0000000000529177210544 m (Bohr radius, sets atomic scale)
+
+  The lattice constant a is material-specific, not a fundamental constant.
+  The hopping parameter t depends on the material's electronic structure.
+  No SM free parameter enters the BZ structure directly.
+
+  However: the lattice constant in terms of Bohr radii
+    a_Si / a_0 = 10.263142
+  This ratio depends on α (through a_0) and on silicon's atomic physics.
+
+===========================================================================
+DOMAIN 6: CHERN-SIMONS
+===========================================================================
+
+  CS(A) mod Z, normalization 1/(8π²) = 1/(256R₄)
+
+  CODATA constants: NONE for the CS invariant itself.
+  CS values for flat connections are pure rationals.
+
+  The CONNECTION to SM: the QCD coupling g enters the instanton action
+  S = 8π²/g² = 256R₄/g² where g² = 4πα_s.
+    α_s(M_Z) = 0.1180 ± 0.0009 (from PDG, not CODATA)
+    g² = 4πα_s = 1.482832
+    S = 256R₄/g² = 53.2473
+
+===========================================================================
+DOMAIN 7: AHARONOV-BOHM
+===========================================================================
+
+  δφ = 2πΦ/Φ₀ where Φ₀ = h/e
+
+  CODATA constants:
+    Φ₀ = h/e = 4.1356676969e-15 Wb
+    (This is EXACT in SI — both h and e are defined.)
+
+  The AB phase depends on the enclosed flux Φ,
+  which is an experimental parameter, not a free SM constant.
+  No SM free parameter enters.
+
+===========================================================================
+DOMAIN 8: FLUX QUANTIZATION
+===========================================================================
+
+  Φ = nΦ₀/2 where Φ₀/2 = h/(2e)
+
+  CODATA constants:
+    Φ₀/2 = h/(2e) = 2.0678338485e-15 Wb
+    (EXACT in SI)
+
+  No SM free parameter. The flux quantum is a ratio of defined constants.
+
+===========================================================================
+DOMAIN 9: AC JOSEPHSON
+===========================================================================
+
+  f_J = 2eV/h, K_J = 2e/h
+
+  CODATA constants:
+    K_J = 2e/h = 483597848416983.6250 Hz/V
+    (EXACT in SI)
+
+  The Josephson constant is a ratio of defined constants.
+  The frequency depends on the applied voltage V (experimental, not SM).
+  No SM free parameter enters.
+
+===========================================================================
+SUMMARY: SM FREE PARAMETERS BY DOMAIN
+===========================================================================
+
+| Domain          | SM free params accessed | CODATA precision | New ratios? |
+|-----------------|----------------------|------------------|-------------|
+| 1. Theta vacuum | None (topological)    | N/A              | No          |
+| 2. RG running   | α, m_e, m_μ, m_τ     | 0.16-68 ppm      | YES (steps) |
+| 3. Bohr-Sommer. | α (through R_∞, a_0)  | 0.16 ppb         | YES (E_n/m_ec²)|
+| 4. Berry phase  | None (geometric)      | N/A              | No          |
+| 5. Brillouin    | None (material-spec.)  | N/A              | No          |
+| 6. Chern-Simons | α_s (through g²)      | 0.76%            | YES (S_inst)|
+| 7. Aharonov-Bohm| None (Φ experimental) | N/A              | No          |
+| 8. Flux quant.  | None (exact SI)       | N/A              | No          |
+| 9. AC Josephson | None (exact SI)       | N/A              | No          |
+
+FINDING: Only 3 of 9 domains access SM free parameters:
+  Domain 2 (RG): α and lepton masses
+  Domain 3 (BS): α alone (through hydrogen)
+  Domain 6 (CS): α_s (through instanton action)
+
+The other 6 domains are either topological (theta vacuum),
+geometric (Berry phase), material-specific (BZ), or exact SI
+(AB, flux, Josephson). They contain NO SM free parameters.
+
+This explains why the domain extractions didn't help with
+parameter reduction: most domains don't contain the parameters.
+The parameters live in Domain 2 (RG running) and Domain 6 (CS),
+which is where PHYS-5, PHYS-9, and the search program already looked.
+
+===========================================================================
+DIMENSIONLESS RATIOS FROM CODATA (by domain)
+===========================================================================
+
+DOMAIN 2 (RG running):
+
+  Lepton mass ratios (CODATA 2022):
+    m_μ/m_e   = 206.7682827085  (± 0.000005)
+    m_τ/m_e   = 3477.228275  (± 0.2348)
+    m_τ/m_μ   = 16.81702933  (± 0.001136)
+
+  VP running steps (dimensionless):
+    Δα⁻¹(m_e→m_μ)  = 1.1314003961
+    Δα⁻¹(m_μ→m_τ)  = 0.5989301892
+    Ratio of steps  = 1.88903551
+
+  Log mass ratios (appear in VP steps):
+    ln(m_μ/m_e)  = 5.3315987591
+    ln(m_τ/m_μ)  = 2.8223920238
+    ln(m_τ/m_e)  = 8.1539907828
+
+DOMAIN 3 (Bohr-Sommerfeld / Hydrogen):
+
+    α           = 7.297352564331e-03
+    α²          = 5.325135444815e-05
+    α²/2        = 2.662567722408e-05 (E_1/m_ec²)
+    m_p/m_e     = 1836.1526734300
+    Reduced mass correction: m_e/(m_e+m_p) = 1/(1+m_e/m_p)
+                = 0.999455679425
+
+DOMAIN 6 (Chern-Simons / Instanton):
+
+    α_s         = 0.118 ± 0.0009
+    g²=4πα_s    = 1.48283173
+    S=8π²/g²    = 53.247333
+    S/(2π)      = 8.474576
+    S/256       = 0.20799739 (= R₄/g²)
+
+===========================================================================
+ASSESSMENT
+===========================================================================
+
+We ALREADY used the high-precision CODATA data where it matters:
+  - PHYS-5/9: α from a_e using CODATA m_e, m_μ, m_τ
+  - PHYS-10: α⁻¹ = 137.035999177 (CODATA 2022)
+  - Modular search: all 17 SM targets at CODATA precision
+
+What we DIDN'T do: extract real physical quantities from
+each domain using CODATA inputs. But the table above shows
+WHY we didn't: 6 of 9 domains have NO SM free parameters.
+They use exact SI constants or material-specific quantities.
+
+The SM parameters concentrate in Domain 2 (RG running)
+and Domain 6 (CS/instanton). These are exactly the domains
+where we already did the most work (PHYS-5, PHYS-9, PHYS-10).
+
+CONCLUSION: Populating the domains with CODATA values confirms
+what DISC-9 argues — the framework structure is independent of
+parameter values. Most domains don't even CONTAIN the parameters.
+The parameters live in the running (Domain 2) and the coupling
+(Domain 6), which is where the search already looked and returned null.

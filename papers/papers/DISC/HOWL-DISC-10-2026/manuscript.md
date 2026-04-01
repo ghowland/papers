@@ -1,7 +1,5 @@
 
-**Registry:** [@HOWL-DISC-7-2026]
-
-**Series:** Discovery
+**Registry:** [@HOWL-DISC-10-2026]
 
 **Series Path:** [@HOWL-DISC-6-2026] → Phase 1-4 Execution → [@HOWL-DISC-7-2026]
 
