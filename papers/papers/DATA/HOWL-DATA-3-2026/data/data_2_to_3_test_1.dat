@@ -1,0 +1,260 @@
+==============================================================================
+HOWL-DATA-3: DATABASE CONSISTENCY VERIFICATION
+==============================================================================
+
+GROUP A: MASS RATIO IDENTITIES
+------------------------------------------------------------------------------
+
+  [PASS] A1: m_p/m_e direct vs m_p / m_e
+      Computed: 1.836152673431236e+03
+      Stored: 1.836152673430000e+03
+      Relative diff: 6.73e-13  (12.2 digits, need 11)
+
+  [PASS] A2: m_μ/m_e direct vs m_μ / m_e
+      Computed: 2.067682827084672e+02
+      Stored: 2.067682827084672e+02
+      Relative diff: 1.01e-21  (21.0 digits, need 10)
+
+  [PASS] A3: m_τ/m_e direct vs m_τ / m_e
+      Computed: 3.477228275323682e+03
+      Stored: 3.477230000000000e+03
+      Relative diff: 4.96e-07  (6.3 digits, need 6)
+
+  [PASS] A4: m_τ/m_μ direct vs m_τ / m_μ
+      Computed: 1.681702933242618e+01
+      Stored: 1.681700000000000e+01
+      Relative diff: 1.74e-06  (5.8 digits, need 5)
+
+  [PASS] A5: m_n/m_p direct vs m_n / m_p
+      Computed: 1.001378419463362e+00
+      Stored: 1.001378419463362e+00
+      Relative diff: 9.40e-21  (20.0 digits, need 11)
+
+  [PASS] A6: M_W/M_Z direct vs M_W / M_Z
+      Computed: 8.813610622496918e-01
+      Stored: 8.813610000000000e-01
+      Relative diff: 7.06e-08  (7.2 digits, need 6)
+
+  [PASS] A7: m_n − m_p direct vs stored difference
+      Computed: 1.293332510000000e+00
+      Stored: 1.293332510000000e+00
+      Agreement: EXACT
+
+  [PASS] A8: m_H/M_Z direct vs stored ratio
+      Computed: 1.372993696511368e+00
+      Stored: 1.372990000000000e+00
+      Relative diff: 2.69e-06  (5.6 digits, need 5)
+
+  [PASS] A9: m_t/M_Z direct vs stored ratio
+      Computed: 1.892472222100373e+00
+      Stored: 1.892470000000000e+00
+      Relative diff: 1.17e-06  (5.9 digits, need 5)
+
+GROUP B: ANALYTICAL CONSTANT IDENTITIES (Q335 basis)
+------------------------------------------------------------------------------
+
+  [PASS] B1: R₂ = π/4 (Q335 vs mpmath@120)
+      Q335: 7.853981633974483e-01
+      mpmath: 7.853981633974483e-01
+      Relative diff: 9.13e-103  (102.0 digits, need 100)
+
+  [PASS] B2: R₄ = π²/32 (Q335 vs mpmath@120)
+      Q335: 3.084251375340424e-01
+      mpmath: 3.084251375340424e-01
+      Relative diff: 3.79e-103  (102.4 digits, need 100)
+
+  [PASS] B3: 2π = 8R₂ (exact within Q335)
+      Computed: 6.283185307179586e+00
+      Stored: 6.283185307179586e+00
+      Agreement: EXACT
+
+  [PASS] B4: ζ(2) = π²/6 (Q335 numerators)
+      Computed: 1.644934066848226e+00
+      Stored: 1.644934066848226e+00
+      Relative diff: 2.90e-102  (101.5 digits, need 99)
+
+  [PASS] B5: α/π stored vs 1/(α⁻¹ × π)
+      Computed: 2.322819464195329e-03
+      Stored: 2.322819464195300e-03
+      Relative diff: 1.24e-14  (13.9 digits, need 12)
+
+  [PASS] B6: φ = (1 + √5)/2 (Q335)
+      Computed: 1.618033988749895e+00
+      Stored: 1.618033988749895e+00
+      Relative diff: 4.42e-102  (101.4 digits, need 100)
+
+  [PASS] B7: π² stored vs π × π (Q335)
+      Computed: 9.869604401089358e+00
+      Stored: 9.869604401089358e+00
+      Relative diff: 2.21e-102  (101.7 digits, need 99)
+
+  [PASS] B8: 2π stored vs 2 × π (exact)
+      Computed: 6.283185307179586e+00
+      Stored: 6.283185307179586e+00
+      Agreement: EXACT
+
+GROUP C: PHYSICAL RELATIONS (SI 2019)
+------------------------------------------------------------------------------
+
+  [PASS] C1: R∞ = α²m_ec/(2h)
+      From α, m_e, c, h: 1.097373156809536e+07
+      Stored R∞: 1.097373156815700e+07
+      Relative diff: 5.62e-12  (11.3 digits, need 11)
+
+  [PASS] C2: a₀ = ℏ/(m_e c α)
+      From ℏ, m_e, c, α: 5.291772105462769e-11
+      Stored a₀: 5.291772105440000e-11
+      Relative diff: 4.30e-12  (11.4 digits, need 11)
+
+  [PASS] C3: μ₀ = 2αh/(ce²)
+      From α, h, c, e: 1.256637061268226e-06
+      Stored μ₀: 1.256637061270000e-06
+      Relative diff: 1.41e-12  (11.9 digits, need 11)
+
+  [PASS] C4: m_D = m_p + m_n − E_D
+      From m_p + m_n − E_D: 1.875612945230000e+03
+      Stored m_D: 1.875612945000000e+03
+      Relative diff: 1.23e-10  (9.9 digits, need 8)
+
+  [INFO] C5: H 1S-2S leading order (soft check)
+      Measured:    2466061413187018 Hz
+      (3/4)cR∞:   2467381470187486 Hz
+      Rel diff:    5.35e-04 (3.3 digits)
+      Note: ~5 digit agreement expected (Lamb shift, QED, recoil)
+
+GROUP D: KOIDE DERIVED ENTRIES (K1-K16)
+------------------------------------------------------------------------------
+
+  [PASS] D1: Koide K(e,μ,τ) from masses
+      From m_e, m_μ, m_τ: 6.666605114655210e-01
+      Stored K1: 6.666605115000001e-01
+      Relative diff: 5.17e-11  (10.3 digits, need 6)
+
+  [PASS] D2: a(leptons) from K
+      Computed: 1.414200505100000e+00
+      Stored K4: 1.414200505200000e+00
+      Relative diff: 7.07e-11  (10.2 digits, need 6)
+
+  [PASS] D3: M(leptons) = (Σ√m)/3
+      Computed: 1.771556100000000e+01
+      Stored K14: 1.771600000000000e+01
+      Relative diff: 2.48e-05  (4.6 digits, need 4)
+
+  [PASS] D4: Koide K(u,c,t) from masses
+      Computed: 8.487935475760000e-01
+      Stored K2: 8.487935476000000e-01
+      Relative diff: 2.83e-11  (10.5 digits, need 3)
+
+  [PASS] D5: Koide K(d,s,b) from masses
+      Computed: 7.312875768270000e-01
+      Stored K3: 7.312875768000000e-01
+      Relative diff: 3.69e-11  (10.4 digits, need 3)
+
+GROUP E: EXACT SI CONSTANTS
+------------------------------------------------------------------------------
+
+  [PASS] E1: h × Δν_Cs product consistency
+      Computed: 6.091102297113866e-24
+      Stored: 6.091102297113866e-24
+      Agreement: EXACT
+
+  [PASS] E2: c is exact integer 299792458
+      Computed: 2.997924580000000e+08
+      Stored: 2.997924580000000e+08
+      Agreement: EXACT
+
+  [PASS] E3: h exact SI 2019 value
+      Computed: 6.626070150000000e-34
+      Stored: 6.626070150000000e-34
+      Agreement: EXACT
+
+  [PASS] E4: e exact SI 2019 value
+      Computed: 1.602176634000000e-19
+      Stored: 1.602176634000000e-19
+      Agreement: EXACT
+
+  [PASS] E5: k_B exact SI 2019 value
+      Computed: 1.380649000000000e-23
+      Stored: 1.380649000000000e-23
+      Agreement: EXACT
+
+  [PASS] E6: N_A exact SI 2019 value
+      Computed: 6.022140760000000e+23
+      Stored: 6.022140760000000e+23
+      Agreement: EXACT
+
+GROUP F: LATTICE RATIO ANNOTATION
+------------------------------------------------------------------------------
+
+  [NOTE] Lattice ratios (m_c/m_s, m_b/m_c, m_u/m_d) are evaluated
+  at a COMMON renormalization scale by lattice QCD collaborations.
+  The individual PDG masses (m_u, m_d, m_s at 2 GeV MS-bar;
+  m_c at m_c; m_b at m_b) are at DIFFERENT scales.
+  Simple division of PDG masses does NOT reproduce lattice ratios.
+  This is not a database error — it is a renormalization scale mismatch.
+
+  Entries 41 (m_c/m_s = 11.783), 42 (m_b/m_c = 4.578),
+  43 (m_u/m_d = 0.485) are INDEPENDENT data from lattice QCD
+  and are NOT derivable from entries 33-37.
+
+  Discrepancies if naively compared:
+    m_c/m_s: PDG gives 13.615, lattice = 11.783
+    m_b/m_c: PDG gives 3.286, lattice = 4.578
+    m_u/m_d: PDG gives 0.460, lattice = 0.485
+
+==============================================================================
+RESULTS
+==============================================================================
+
+  ID     Test                                                  Digits   Need   Result
+  ------ ---------------------------------------------------- ------- ------ --------
+  A1     m_p/m_e direct vs m_p / m_e                             12.2     11     PASS
+  A2     m_μ/m_e direct vs m_μ / m_e                             21.0     10     PASS
+  A3     m_τ/m_e direct vs m_τ / m_e                              6.3      6     PASS
+  A4     m_τ/m_μ direct vs m_τ / m_μ                              5.8      5     PASS
+  A5     m_n/m_p direct vs m_n / m_p                             20.0     11     PASS
+  A6     M_W/M_Z direct vs M_W / M_Z                              7.2      6     PASS
+  A7     m_n − m_p direct vs stored difference                  exact      8     PASS
+  A8     m_H/M_Z direct vs stored ratio                           5.6      5     PASS
+  A9     m_t/M_Z direct vs stored ratio                           5.9      5     PASS
+  B1     R₂ = π/4 (Q335 vs mpmath@120)                          102.0    100     PASS
+  B2     R₄ = π²/32 (Q335 vs mpmath@120)                        102.4    100     PASS
+  B3     2π = 8R₂ (exact within Q335)                           exact    100     PASS
+  B4     ζ(2) = π²/6 (Q335 numerators)                          101.5     99     PASS
+  B5     α/π stored vs 1/(α⁻¹ × π)                               13.9     12     PASS
+  B6     φ = (1 + √5)/2 (Q335)                                  101.4    100     PASS
+  B7     π² stored vs π × π (Q335)                              101.7     99     PASS
+  B8     2π stored vs 2 × π (exact)                             exact    100     PASS
+  C1     R∞ = α²m_ec/(2h)                                        11.3     11     PASS
+  C2     a₀ = ℏ/(m_e c α)                                        11.4     11     PASS
+  C3     μ₀ = 2αh/(ce²)                                          11.9     11     PASS
+  C4     m_D = m_p + m_n − E_D                                    9.9      8     PASS
+  D1     Koide K(e,μ,τ) from masses                              10.3      6     PASS
+  D2     a(leptons) from K                                       10.2      6     PASS
+  D3     M(leptons) = (Σ√m)/3                                     4.6      4     PASS
+  D4     Koide K(u,c,t) from masses                              10.5      3     PASS
+  D5     Koide K(d,s,b) from masses                              10.4      3     PASS
+  E1     h × Δν_Cs product consistency                          exact     15     PASS
+  E2     c is exact integer 299792458                           exact     15     PASS
+  E3     h exact SI 2019 value                                  exact      9     PASS
+  E4     e exact SI 2019 value                                  exact     10     PASS
+  E5     k_B exact SI 2019 value                                exact      7     PASS
+  E6     N_A exact SI 2019 value                                exact      9     PASS
+
+  Total: 32 tests,  32 PASS,  0 FAIL
+
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  ALL TESTS PASS                                            ║
+  ║                                                            ║
+  ║  DATA-3 DECLARATION: The DATA-2 database (107 original +   ║
+  ║  16 Koide-derived = 123 entries) is internally consistent  ║
+  ║  to the precision of all source measurements.              ║
+  ║                                                            ║
+  ║  DATA-2 is promoted to DATA-3.                            ║
+  ║  DATA-2 is retired.                                       ║
+  ║  All future HOWL computation references DATA-3.           ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+==============================================================================
+DATA-3 VERIFICATION COMPLETE
+==============================================================================
