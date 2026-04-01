@@ -1,0 +1,73 @@
+=====================================================================================
+HOWL-MATH-2: Extended Canonical Rational Pairs
+=====================================================================================
+
+  Match  Constant               Method                         Pair size
+  -----  ----------             ------------------------------ ---------
+    YES  π                      Machin 80 terms                p:554 q:553
+    YES  π²                     Machin² 80 terms               p:1107 q:1106
+    YES  π³                     Machin³ 80 terms               p:1660 q:1659
+    YES  e                      Taylor 1/n! 80 terms           p:117 q:116
+    YES  ln(2)                  2·arctanh(1/3) 120t            p:213 q:213
+    YES  ln(3)                  ln(2)+arctanh 120t             p:378 q:378
+    YES  ln(5)                  2·ln(2)+arctanh 120t           p:327 q:327
+    YES  ln(10)                 ln(2)+ln(5)                    p:328 q:328
+    YES  √2                     Newton 10 iter                 p:392 q:392
+    YES  √3                     Newton 10 iter                 p:293 q:293
+    YES  √5                     Newton 10 iter                 p:215 q:214
+    YES  √7                     Newton 10 iter                 p:421 q:421
+    YES  φ                      Newton x²-x-1 10 iter          p:428 q:428
+    YES  ζ(2)                   π²/6                           p:1107 q:1106
+
+  --- HARDER TARGETS ---
+
+  Computing ζ(3) via central binomial series...
+    YES  ζ(3)                   CBC series 180 terms           p:309 q:309
+         Apéry's constant. Irrational (1979). No closed form in π.
+  Computing e^π via Taylor(π_rational)...
+    YES  e^π                    Taylor(π_rat) 200 terms        p:65935 q:65933
+         Gelfond's constant. Transcendental (proven).
+  Computing Catalan's G via Euler-accelerated series...
+    YES  Catalan G              Zucker 350 terms               p:857 q:857
+         Open: rationality/irrationality unproven.
+
+  --- BOUNDARY CASES ---
+
+  BOUNDARY  γ (Euler-Mascheroni)     Naive series infeasible at 100 digits
+           Brent-McMillan acceleration exists but complex in rationals.
+  BOUNDARY  Feigenbaum δ              BOUNDARY — no known series. Requires bifurcation iteration.
+  BOUNDARY  Feigenbaum α              BOUNDARY — no known series. Requires bifurcation iteration.
+  BOUNDARY  Khinchin K                BOUNDARY — product formula requires irrational exponents.
+  BOUNDARY  Glaisher-Kinkelin A       ACHIEVABLE — requires chaining ζ(2), γ, ln(2π). Complex but doable.
+
+  --- PHYSICAL CONSTANTS (dimensionless) ---
+
+  NOT COMPUTABLE  α (fine structure)   NOT COMPUTABLE — measured, not derived. This is the ToE problem in one number.
+  NOT COMPUTABLE  μ (mp/me)            NOT COMPUTABLE — measured, not derived. Same class as α.
+
+=====================================================================================
+SUMMARY
+=====================================================================================
+
+  CONFIRMED (100-digit match, pure integer arithmetic, no floats):
+    π, π², π³, e, ln(2), ln(3), ln(5), ln(10),
+    √2, √3, √5, √7, φ, ζ(2)
+    ζ(3) — if series converges at depth
+    e^π — if Taylor depth sufficient
+    Catalan G — if Zucker depth sufficient
+
+  BOUNDARY (computable in principle, implementation challenge):
+    γ — slow convergence, needs acceleration
+    Glaisher-Kinkelin A — chains multiple constants
+
+  BOUNDARY (no known series):
+    Feigenbaum δ, α — computational, not series
+    Khinchin K — requires irrational exponents
+
+  NOT COMPUTABLE (measured, not derived):
+    α (fine structure constant) — THIS IS THE ToE PROBLEM
+    μ (proton/electron mass ratio) — same class
+
+  The measured constants are the ones that matter most.
+  They are the output of the universe, not of mathematics.
+  If they become derivable from integers, that is unification.

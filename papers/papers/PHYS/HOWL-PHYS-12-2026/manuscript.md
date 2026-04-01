@@ -1,5 +1,5 @@
 
-**Registry:** [@HOWL-PHYS-9-2026]
+**Registry:** [@HOWL-PHYS-12-2026]
 
 **Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026]
 
