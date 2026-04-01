@@ -104,6 +104,15 @@
 
 ---
 
+## DAta
+*Domain data.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-DATA-1-2026]](papers/papers/DATA/HOWL-DATA-1-2026/manuscript.md)** | **The Inertial Vortex** | Mass as Pattern Resistance, Soliton Boundaries as Unmodeled Measurement Elements, and the Anomaly Correlation. |
+
+---
+
 ## Discovery
 *Research methodology and institutional analysis.*
 
