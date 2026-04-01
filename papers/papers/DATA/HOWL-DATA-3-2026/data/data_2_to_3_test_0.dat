@@ -1,0 +1,296 @@
+==============================================================================
+HOWL-DATA-3: DATABASE CONSISTENCY VERIFICATION
+==============================================================================
+
+------------------------------------------------------------------------------
+GROUP A: MASS RATIO IDENTITIES
+------------------------------------------------------------------------------
+
+  [PASS] A1: m_p/m_e (direct) vs m_p / m_e
+        Computed: 1.836152673431236e+03
+        Stored: 1.836152673430000e+03
+        Relative diff: 6.733e-13  (12.2 digits agree, need 11)
+
+  [FAIL] A2: m_μ/m_e (direct) vs m_μ / m_e
+        Computed: 2.067682827084672e+02
+        Stored: 2.067682827084672e+00
+        Relative diff: 9.900e+01  (-2.0 digits agree, need 10)
+        *** FAILURE: -2.0 < 10 digits ***
+
+  [PASS] A3: m_τ/m_e (direct) vs m_τ / m_e
+        Computed: 3.477228275323682e+03
+        Stored: 3.477230000000000e+03
+        Relative diff: 4.960e-07  (6.3 digits agree, need 6)
+
+  [PASS] A4: m_τ/m_μ (direct) vs m_τ / m_μ
+        Computed: 1.681702933242618e+01
+        Stored: 1.681700000000000e+01
+        Relative diff: 1.744e-06  (5.8 digits agree, need 5)
+
+  [PASS] A5: m_n/m_p (direct) vs m_n / m_p
+        Computed: 1.001378419463362e+00
+        Stored: 1.001378419463362e+00
+        Relative diff: 9.402e-21  (20.0 digits agree, need 11)
+
+  [PASS] A6: M_W/M_Z (direct) vs M_W / M_Z
+        Computed: 8.813610622496918e-01
+        Stored: 8.813610000000000e-01
+        Relative diff: 7.063e-08  (7.2 digits agree, need 6)
+
+  [PASS] A7: m_n − m_p (direct) vs m_n − m_p
+        Computed: 1.293332510000000e+00
+        Stored: 1.293332510000000e+00
+        Relative diff: 0.000e+00  (999.0 digits agree, need 8)
+
+  [PASS] A8: m_H/M_Z (direct) vs m_H / M_Z
+        Computed: 1.372993696511368e+00
+        Stored: 1.372990000000000e+00
+        Relative diff: 2.692e-06  (5.6 digits agree, need 5)
+
+  [PASS] A9: m_t/M_Z (direct) vs m_t / M_Z
+        Computed: 1.892472222100373e+00
+        Stored: 1.892470000000000e+00
+        Relative diff: 1.174e-06  (5.9 digits agree, need 5)
+
+  [FAIL] A10: m_c/m_s (lattice) vs m_c / m_s
+        Computed: 1.361497326203209e+01
+        Stored: 1.178300000000000e+01
+        Relative diff: 1.555e-01  (0.8 digits agree, need 3)
+        *** FAILURE: 0.8 < 3 digits ***
+
+  [FAIL] A11: m_b/m_c (lattice) vs m_b / m_c
+        Computed: 3.285938727415554e+00
+        Stored: 4.578000000000000e+00
+        Relative diff: 2.822e-01  (0.5 digits agree, need 3)
+        *** FAILURE: 0.5 < 3 digits ***
+
+  [FAIL] A12: m_u/m_d (lattice) vs m_u / m_d
+        Computed: 4.595744680851064e-01
+        Stored: 4.850000000000000e-01
+        Relative diff: 5.242e-02  (1.3 digits agree, need 2)
+        *** FAILURE: 1.3 < 2 digits ***
+
+------------------------------------------------------------------------------
+GROUP B: ANALYTICAL CONSTANT IDENTITIES
+------------------------------------------------------------------------------
+
+  [FAIL] B1: R₂ = π/4 (Q335 vs mpmath)
+        Q335: 7.853981633974483e-01
+        mpmath: 7.853981633974483e-01
+        Relative diff: 4.041e-62  (61.4 digits agree, need 100)
+        *** FAILURE: 61.4 < 100 digits ***
+
+  [FAIL] B2: R₄ = π²/32 (Q335 vs mpmath)
+        Q335: 3.084251375340424e-01
+        mpmath: 3.084251375340424e-01
+        Relative diff: 1.830e-61  (60.7 digits agree, need 100)
+        *** FAILURE: 60.7 < 100 digits ***
+
+  [PASS] B3: 2π = 8R₂ (exact numerator test)
+        Computed: 6.283185307179586e+00
+        Stored: 6.283185307179586e+00
+        Relative diff: 0.000e+00  (999.0 digits agree, need 100)
+
+  [PASS] B4: ζ(2) = π²/6 (Q335 numerators)
+        Computed: 1.644934066848226e+00
+        Stored: 1.644934066848226e+00
+        Relative diff: 2.895e-102  (101.5 digits agree, need 99)
+
+  [PASS] B5: α/π (stored) vs 1/(α⁻¹ × π_Q335)
+        Computed: 2.322819464195329e-03
+        Stored: 2.322819464195300e-03
+        Relative diff: 1.244e-14  (13.9 digits agree, need 12)
+
+  [PASS] B6: φ = (1 + √5)/2 (Q335 numerators)
+        Computed: 1.618033988749895e+00
+        Stored: 1.618033988749895e+00
+        Relative diff: 4.415e-102  (101.4 digits agree, need 100)
+
+  [PASS] B7: π² stored vs π × π (Q335)
+        Computed: 9.869604401089358e+00
+        Stored: 9.869604401089358e+00
+        Relative diff: 2.205e-102  (101.7 digits agree, need 99)
+
+  [PASS] B8: 2π stored vs 2 × π (exact)
+        Computed: 6.283185307179586e+00
+        Stored: 6.283185307179586e+00
+        Relative diff: 0.000e+00  (999.0 digits agree, need 100)
+
+------------------------------------------------------------------------------
+GROUP C: PHYSICAL RELATIONS
+------------------------------------------------------------------------------
+
+  [PASS] C1: R∞ = α² m_e c / (2h)
+        Computed from α, m_e, c, h: 1.097373156809536e+07
+        Stored R∞: 1.097373156815700e+07
+        Relative diff: 5.617e-12  (11.3 digits agree, need 11)
+
+  [PASS] C2: a₀ = ℏ/(m_e c α)
+        Computed from h, π, m_e, c, α: 5.291772105462769e-11
+        Stored a₀: 5.291772105440000e-11
+        Relative diff: 4.303e-12  (11.4 digits agree, need 11)
+
+  [FAIL] C3: μ₀ = 2αh/(ce²)
+        Computed from α, h, c, e: 1.256637061268226e-06
+        Stored μ₀: 1.256637061270000e-06
+        Relative diff: 1.411e-12  (11.9 digits agree, need 12)
+        *** FAILURE: 11.9 < 12 digits ***
+
+  [PASS] C4: m_D = m_p + m_n − E_D
+        Computed from m_p, m_n, E_D: 1.875612945230000e+03
+        Stored m_D: 1.875612945000000e+03
+        Relative diff: 1.226e-10  (9.9 digits agree, need 8)
+
+------------------------------------------------------------------------------
+GROUP D: KOIDE DERIVED ENTRIES (K1-K16)
+------------------------------------------------------------------------------
+
+  [PASS] D1: Koide K(e,μ,τ) from masses
+        Computed from m_e, m_μ, m_τ: 6.666605114655210e-01
+        Stored K1: 6.666605115000001e-01
+        Relative diff: 5.172e-11  (10.3 digits agree, need 6)
+
+  [PASS] D2: a(leptons) from K
+        Computed: 1.414200505100000e+00
+        Stored K4: 1.414200505200000e+00
+        Relative diff: 7.071e-11  (10.2 digits agree, need 6)
+
+  [PASS] D3: M(leptons) = (Σ√m)/3
+        Computed: 1.771556100000000e+01
+        Stored K14: 1.771600000000000e+01
+        Relative diff: 2.478e-05  (4.6 digits agree, need 4)
+
+  [PASS] D4: Koide K(u,c,t) from masses
+        Computed: 8.487935475760000e-01
+        Stored K2: 8.487935476000000e-01
+        Relative diff: 2.828e-11  (10.5 digits agree, need 3)
+
+  [PASS] D5: Koide K(d,s,b) from masses
+        Computed: 7.312875768270000e-01
+        Stored K3: 7.312875768000000e-01
+        Relative diff: 3.692e-11  (10.4 digits agree, need 3)
+
+------------------------------------------------------------------------------
+GROUP E: EXACT DEFINED CROSS-CHECKS
+------------------------------------------------------------------------------
+
+  [PASS] E1: h × Δν_Cs product
+        h × Δν_Cs: 6.091102297113866e-24
+        Direct multiplication: 6.091102297113866e-24
+        Relative diff: 0.000e+00  (999.0 digits agree, need 15)
+
+  [PASS] E2: c is exact integer
+        Stored c: 2.997924580000000e+08
+        Expected 299792458: 2.997924580000000e+08
+        Relative diff: 0.000e+00  (999.0 digits agree, need 15)
+
+  [PASS] E3: h exact SI value
+        Stored h: 6.626070150000000e-34
+        SI 2019 definition: 6.626070150000000e-34
+        Relative diff: 0.000e+00  (999.0 digits agree, need 9)
+
+------------------------------------------------------------------------------
+GROUP F: CROSS-SECTION CHECKS
+------------------------------------------------------------------------------
+
+  [FAIL] F1: m_c/m_s: lattice vs individual masses
+        From m_c/m_s: 1.361497326203209e+01
+        Lattice value: 1.178300000000000e+01
+        Relative diff: 1.555e-01  (0.8 digits agree, need 3)
+        *** FAILURE: 0.8 < 3 digits ***
+
+  [FAIL] F2: m_b/m_c: lattice vs individual masses
+        From m_b/m_c: 3.285938727415554e+00
+        Lattice value: 4.578000000000000e+00
+        Relative diff: 2.822e-01  (0.5 digits agree, need 3)
+        *** FAILURE: 0.5 < 3 digits ***
+
+  [FAIL] F3: m_u/m_d: lattice vs individual masses
+        From m_u/m_d: 4.595744680851064e-01
+        Lattice value: 4.850000000000000e-01
+        Relative diff: 5.242e-02  (1.3 digits agree, need 2)
+        *** FAILURE: 1.3 < 2 digits ***
+
+  [INFO] F4: H 1S-2S leading order check (soft, ~ppm level)
+        Measured:     2466061413187018 Hz
+        (3/2)·c·R∞:  4934762940374972 Hz
+        Relative diff: 1.001e+00 (-0.0 digits)
+        Expected: ~ppm level (Lamb shift, QED corrections)
+
+==============================================================================
+SUMMARY
+==============================================================================
+
+  Total tests: 35
+  PASS: 25
+  FAIL: 10
+
+  FAILURES:
+    A2: m_μ/m_e (direct) vs m_μ / m_e
+      Got -2.0 digits, needed 10
+    A10: m_c/m_s (lattice) vs m_c / m_s
+      Got 0.8 digits, needed 3
+    A11: m_b/m_c (lattice) vs m_b / m_c
+      Got 0.5 digits, needed 3
+    A12: m_u/m_d (lattice) vs m_u / m_d
+      Got 1.3 digits, needed 2
+    B1: R₂ = π/4 (Q335 vs mpmath)
+      Got 61.4 digits, needed 100
+    B2: R₄ = π²/32 (Q335 vs mpmath)
+      Got 60.7 digits, needed 100
+    C3: μ₀ = 2αh/(ce²)
+      Got 11.9 digits, needed 12
+    F1: m_c/m_s: lattice vs individual masses
+      Got 0.8 digits, needed 3
+    F2: m_b/m_c: lattice vs individual masses
+      Got 0.5 digits, needed 3
+    F3: m_u/m_d: lattice vs individual masses
+      Got 1.3 digits, needed 2
+
+  DATABASE HAS INCONSISTENCIES. Investigate before declaring DATA-3.
+
+------------------------------------------------------------------------------
+FULL RESULTS TABLE
+------------------------------------------------------------------------------
+
+  ID     Test..............................................  Digits   Need   Status
+  ------ -------------------------------------------------- ------- ------ --------
+  A1     m_p/m_e (direct) vs m_p / m_e.....................    12.2     11     PASS
+  A2     m_μ/m_e (direct) vs m_μ / m_e.....................    -2.0     10     FAIL
+  A3     m_τ/m_e (direct) vs m_τ / m_e.....................     6.3      6     PASS
+  A4     m_τ/m_μ (direct) vs m_τ / m_μ.....................     5.8      5     PASS
+  A5     m_n/m_p (direct) vs m_n / m_p.....................    20.0     11     PASS
+  A6     M_W/M_Z (direct) vs M_W / M_Z.....................     7.2      6     PASS
+  A7     m_n − m_p (direct) vs m_n − m_p...................   exact      8     PASS
+  A8     m_H/M_Z (direct) vs m_H / M_Z.....................     5.6      5     PASS
+  A9     m_t/M_Z (direct) vs m_t / M_Z.....................     5.9      5     PASS
+  A10    m_c/m_s (lattice) vs m_c / m_s....................     0.8      3     FAIL
+  A11    m_b/m_c (lattice) vs m_b / m_c....................     0.5      3     FAIL
+  A12    m_u/m_d (lattice) vs m_u / m_d....................     1.3      2     FAIL
+  B1     R₂ = π/4 (Q335 vs mpmath).........................    61.4    100     FAIL
+  B2     R₄ = π²/32 (Q335 vs mpmath).......................    60.7    100     FAIL
+  B3     2π = 8R₂ (exact numerator test)...................   exact    100     PASS
+  B4     ζ(2) = π²/6 (Q335 numerators).....................   101.5     99     PASS
+  B5     α/π (stored) vs 1/(α⁻¹ × π_Q335)..................    13.9     12     PASS
+  B6     φ = (1 + √5)/2 (Q335 numerators)..................   101.4    100     PASS
+  B7     π² stored vs π × π (Q335).........................   101.7     99     PASS
+  B8     2π stored vs 2 × π (exact)........................   exact    100     PASS
+  C1     R∞ = α² m_e c / (2h)..............................    11.3     11     PASS
+  C2     a₀ = ℏ/(m_e c α)..................................    11.4     11     PASS
+  C3     μ₀ = 2αh/(ce²)....................................    11.9     12     FAIL
+  C4     m_D = m_p + m_n − E_D.............................     9.9      8     PASS
+  D1     Koide K(e,μ,τ) from masses........................    10.3      6     PASS
+  D2     a(leptons) from K.................................    10.2      6     PASS
+  D3     M(leptons) = (Σ√m)/3..............................     4.6      4     PASS
+  D4     Koide K(u,c,t) from masses........................    10.5      3     PASS
+  D5     Koide K(d,s,b) from masses........................    10.4      3     PASS
+  E1     h × Δν_Cs product.................................   exact     15     PASS
+  E2     c is exact integer................................   exact     15     PASS
+  E3     h exact SI value..................................   exact      9     PASS
+  F1     m_c/m_s: lattice vs individual masses.............     0.8      3     FAIL
+  F2     m_b/m_c: lattice vs individual masses.............     0.5      3     FAIL
+  F3     m_u/m_d: lattice vs individual masses.............     1.3      2     FAIL
+
+==============================================================================
+DATA-3 VERIFICATION COMPLETE
+==============================================================================
