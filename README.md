@@ -125,7 +125,7 @@
 | **[[@HOWL-DATA-1-2026]](papers/papers/DATA/HOWL-DATA-1-2026/manuscript.md)** | **Cross-Domain Precision Data Inventory** | Raw Database. |
 | **[[@HOWL-DATA-2-2026]](papers/papers/DATA/HOWL-DATA-2-2026/manuscript.md)** | **Integer Rational Representations in Q335** | Integer Rational Database. |
 | **[[@HOWL-DATA-3-2026]](papers/papers/DATA/HOWL-DATA-3-2026/manuscript.md)** | **Verified Integer Rational Database** | Round Three. |
-| **[[@HOWL-DATA-4-2026]](papers/papers/DATA/HOWL-DATA-4-2026/manuscript.md)** | **Verified Integer Rational Database** | Round Three. |
+| **[[@HOWL-DATA-4-2026]](papers/papers/DATA/HOWL-DATA-4-2026/manuscript.md)** | **Verified Integer Rational Database with Cabibbo Doublet Extension** | The Cabibbo Doublet is staged. The integers are verified. The foundation extends. |
 
 ---
 

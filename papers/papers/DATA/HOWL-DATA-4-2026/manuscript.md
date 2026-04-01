@@ -1,4 +1,5 @@
 # Verified Integer Rational Database with Cabibbo Doublet Extension
+# The Cabibbo Doublet is staged. The integers are verified. The foundation extends.
 
 **Registry:** [@HOWL-DATA-4-2026]
 
