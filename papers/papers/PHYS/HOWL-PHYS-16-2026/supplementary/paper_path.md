@@ -36,7 +36,7 @@ Each finding needs to be in a MATH or PHYS paper to survive into future sessions
 | PHYS-22 | 12 | The A₂ Geometric Cancellation |
 | PHYS-23 | 13 | The Koide C₃ Closure |
 | MATH-6 | 14 | The 82/82 Independence Record |
-| DATA-3 addendum | 15 | Lattice Ratio Independence Annotation |
+| DATA-3 addendum | 15 | Lattice Ratio Independence Annotation | NOTE: No, this is DATA-4 with everything included, not an update to DATA-3 which is already published
 
 That's 8 new PHYS papers, 1 new MATH paper, and 1 DATA addendum. Plus DATA-3, PHYS-12, PHYS-13, PHYS-14, PHYS-15, and DISC-9 which are already written or outlined.
 
