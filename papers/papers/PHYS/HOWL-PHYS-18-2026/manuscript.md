@@ -230,6 +230,33 @@ The mechanism is Level 1 — it depends on no measured value. The dependence Δb
 
 ---
 
+
+### Errata
+
+**E1: Section 7, VL lepton doublet gap ratio.** The paper states the VL lepton doublet (1,2,−1/2) has gap ratio 1.712, distance 0.354. Let me verify. Δb₁ = 1/5, Δb₂ = 1/3, Δb₃ = 0 (from the GUT script enumeration). Modified: b₁ = 41/10 + 1/5 = 43/10. b₂ = −19/6 + 1/3 = −17/6. b₃ = −7. Numerator: 43/10 + 17/6 = 129/30 + 85/30 = 214/30 = 107/15. Denominator: −17/6 + 7 = 25/6. Gap: (107/15)/(25/6) = 642/375 = 214/125 = 1.712. Distance: 0.354. Confirmed. No erratum needed.
+
+**E2: Section 7, VL down singlet gap ratio.** The paper states (3,1,−1/3) has gap ratio 2.114. Δb₁ = 2/15, Δb₂ = 0, Δb₃ = 1/3. b₁ = 41/10 + 2/15 = 123/30 + 4/30 = 127/30. b₂ = −19/6. b₃ = −7 + 1/3 = −20/3. Numerator: 127/30 + 19/6 = 127/30 + 95/30 = 222/30 = 37/5. Denominator: −19/6 + 20/3 = −19/6 + 40/6 = 21/6 = 7/2. Gap: (37/5)/(7/2) = 74/35 = 2.114. Confirmed. No erratum needed.
+
+**E3: Section 7, VL up singlet gap ratio.** The paper states (3,1,2/3) has gap ratio 2.229. Δb₁ = 8/15, Δb₂ = 0, Δb₃ = 1/3. b₁ = 41/10 + 8/15 = 123/30 + 16/30 = 139/30. b₂ = −19/6. b₃ = −20/3. Numerator: 139/30 + 19/6 = 139/30 + 95/30 = 234/30 = 39/5. Denominator: −19/6 + 20/3 = 21/6 = 7/2. Gap: (39/5)/(7/2) = 78/35 = 2.229. Confirmed. No erratum needed.
+
+**E4: Section 10, MSSM numerator change.** The paper states the MSSM numerator change is "−5/3 = −1.667." Let me verify. MSSM Δb₁ = 5/2, Δb₂ = 25/6. Δ(b₁ − b₂) = 5/2 − 25/6 = 15/6 − 25/6 = −10/6 = −5/3. Correct. No erratum needed.
+
+**E5: Section 7, the SU(5) 5+5̄ asymmetry ratio.** The paper states Δb₂/Δb₁ = 1/(2/5) = 5/2 for the SU(5) 5+5̄. From the GUT script: Δb₁ = 2/5, Δb₂ = 1. So Δb₂/Δb₁ = 1/(2/5) = 5/2 = 2.5. The paper says "much less asymmetric than 15" — correct, 2.5 vs 15. No erratum needed.
+
+**All numbers check out. No errata required.**
+
+### Annotations
+
+**A1: Section 3, the claim that Y = 1/6 is "the smallest nonzero value for any color triplet weak doublet that produces standard electric charges."** This is correct but deserves clarification. The statement means: given Q = T₃ + Y and requiring Q_upper = +2/3 and Q_lower = −1/3 (the standard quark charges), the only solution for a weak doublet (T₃ = ±1/2) is Y = Q − T₃ = 2/3 − 1/2 = 1/6 (from the upper component) or Y = −1/3 − (−1/2) = 1/6 (from the lower component). Both give Y = 1/6. There is no smaller nonzero Y that produces integer-third electric charges from a weak doublet. A (3,2,Y) with Y = 0 would give charges +1/2 and −1/2 — not observed. Y = 1/6 is not just "the smallest" in some arbitrary sense — it is the UNIQUE hypercharge that reproduces the observed quark charges from a weak doublet. The paper could state this more sharply: Y = 1/6 is not merely the smallest, it is the only value consistent with observed charges.
+
+**A2: Section 4, the single-action counterfactuals.** The paper computes what happens if you shrink the numerator alone (gap = 38/23 = 1.652) or grow the denominator alone (gap = 218/135 = 1.615). These are useful pedagogically but should be understood as thought experiments, not physical scenarios. No single particle contributes to b₂ without also contributing to at least b₁ (through hypercharge) or b₃ (through color). The double action is not a choice the Cabibbo Doublet "makes" — it is a consequence of having all three charges simultaneously. The counterfactuals isolate the two effects for understanding, but both always occur together for any particle with color, weak charge, and hypercharge.
+
+**A3: Section 9, the claim about other hypercharges producing "non-standard charges."** This is slightly too strong. A (3,2,7/6) doublet would give charges +5/3 and +2/3 — the +2/3 is standard but the +5/3 is not. A (3,2,−5/6) would give charges −1/3 and −4/3 — the −1/3 is standard but the −4/3 is not. These representations do appear in the literature as "exotic" vector-like quarks and are searched for at the LHC. The paper's statement that "any other hypercharge would produce non-standard charges not observed in nature" is correct for one component of the doublet but not necessarily both. A more precise statement: Y = 1/6 is the unique hypercharge where BOTH components of the doublet have standard quark charges (+2/3 and −1/3), allowing mixing with all three SM generations without requiring new charge sectors.
+
+**Annotation text for A3:** "The statement in Section 9 that other hypercharges produce 'non-standard charges not observed in nature' applies to at least one component of the doublet. Representations like (3,2,7/6) produce one standard charge (+2/3) and one exotic charge (+5/3). These exotic VL quarks are studied in the literature and searched for at the LHC. The precise statement is: Y = 1/6 is the unique hypercharge where both components have standard quark charges, enabling mixing with all three SM generations through the same CKM structure. This is what connects the gap ratio mechanism to the Cabibbo Angle Anomaly — both require mixing with standard-charge quarks."
+
+---
+
 ## Appendix: Verification
 
 All Cabibbo Doublet beta contributions and gap ratios verified by the GUT running script (sin2_theta_w_1.py), 9/9 checks pass:
