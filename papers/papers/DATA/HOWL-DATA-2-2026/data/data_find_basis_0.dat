@@ -1,0 +1,737 @@
+==========================================================================================
+PART 1: MULTI-BASE COFACTOR SCAN
+For each value, test cofactor size in each base B^k
+A value 'native' to base B will have a SMALL cofactor in B^k
+==========================================================================================
+
+Value                            2^335   3^211   5^144   6^129   7^119  10^100   11^96   12^93   13^90   17^81   19^78   23^72   29^65   30^65   31^63   37^58   42^55   60^50  210^38  BEST_BASE
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+alpha^-1                           99      99     102     101     102       7*     97     101      99     100      96      92      94       7*     94      86      90       7*      7*  10^100 (7d)
+m_e (MeV)                          96     100      98      97      96      11*     98      96      96     100      96      96      94      11*     89      87      89      11*     11*  10^100 (11d)
+m_mu (MeV)                         98      98     102      97      99       8*     91      99      98      99      93      93      97       8*     96      84      90       8*      8*  10^100 (8d)
+m_tau (MeV)                       100     103      99     104     104       5*    103     101      99      96      98     100      94       5*     93      92      92       5*      5*  10^100 (5d)
+m_p (MeV)                         103     101     103      99     102       9*    100      96     100     103     100     100      94       9*     93      94      92       9*      9*  10^100 (9d)
+m_p/m_e                           104     104     101     104     101      11*    103     104     103      99     104     102      95      11*     95      93      89      11*     11*  10^100 (11d)
+R_inf (m^-1)                      106     108     108     106     105      11*    107     105     107     104     101     101      97      11*    101      97      95      11*     11*  10^100 (11d)
+a_0 (m)                            89      88      86      88      91      11*     89      91      87      90      88      88      78      11*     84      80      75      11*     11*  10^100 (11d)
+a_e (g-2 anomaly)                  93      96      93      98      98      12*     94      96      96      95      95      95      89      12*     91      84      82      12*     12*  10^100 (12d)
+a_mu (g-2 anomaly)                 97      98      97      97      96       4*     98      98      92      93      96      92      93       4*     88      83      81       4*      4*  10^100 (4d)
+sin2_theta_W                       98      98      98      99      99       4*     95      97      97      98     100      93      91       4*     94      85      87       4*      4*  10^100 (4d)
+alpha_s(M_Z)                       97      97      98      95      99       0*     99      97      99      97      97      91      90       0*     92      87      87       0*      0*  10^100 (0d)
+mu_0 (N/A^2)                       91      93      93      92      94       7*     95      92      91      90      93      92      87       7*     87      80      80       7*      7*  10^100 (7d)
+M_Z (MeV)                         104     102       4*    101     106       4*    102     100     101     105     103     101      99       4*     97      91      90       4*      4*  5^144 (4d)
+Gamma_Z (MeV)                      99     102       4*    104     102       4*    104     102     103     103     101     102      98       4*     98      90      93       4*      4*  5^144 (4d)
+M_W (MeV)                         105     101       0*    106     103       0*    103     104     105     104      99     103     100       0*     99      94      92       0*      0*  5^144 (0d)
+m_t (MeV)                           5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*      5*  2^335 (5d)
+m_H (MeV)                           0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*      0*  2^335 (0d)
+G_F (GeV^-2)                       95      91      96      95      93       5*     93      95      91      88      92      93      85       5*     89      84      84       5*      5*  10^100 (5d)
+m_mu/m_e                          104     101     101      99     102       8*    101     103     102     100      97     101      95       8*     95      93      90       8*      8*  10^100 (8d)
+m_tau/m_e                         104     105     104     101     104       4*    100      99      96     104     100     102      97       4*     98      93      87       4*      4*  10^100 (4d)
+m_tau/m_mu                        102      97     102      98     101       0*    101     101     100      99      97      97      94       0*     94      89      86       0*      0*  10^100 (0d)
+m_n/m_p                            98     100     100      98     100       5*     96      99      97      99      96      97      93       5*     93      91      88       5*      5*  10^100 (5d)
+M_W/M_Z                            96      98      96      94      97       0*     98      97     100      93      98      98      94       0*     91      86      88       0*      0*  10^100 (0d)
+sin_theta12                        96      98     100      99      96       5*     97      99      97      97      99      93      92       5*     93      87      87       5*      5*  10^100 (5d)
+sin_theta23                        95      92      97      97      94       0*     92      98      97      96      99      90      88       0*     89      88      87       0*      0*  10^100 (0d)
+sin_theta13                        95      97      99      98      96       0*     94      95      98      93      96      95      89       0*     89      85      81       0*      0*  10^100 (0d)
+m_c/m_s                           101     102     100     102      99       5*     98     102      96      98     100      99      94       5*     91      90      86       5*      5*  10^100 (5d)
+m_b/m_c                           102     102     102      98     102       0*    101      99     101      98      92      97      96       0*     94      91      83       0*      0*  10^100 (0d)
+m_u/m_d                            96     100     100     101      97       0*     96     100      95      97      94      94      92       0*     94      90      87       0*      0*  10^100 (0d)
+m_n (MeV)                         101     103     103      91     100       4*    102     101      97     102     100      96      98       4*     97      94      92       4*      4*  10^100 (4d)
+m_pi+ (MeV)                       103      98      97     100     100       4*    102     101     102     102     100      99      93       4*     95      88      91       4*      4*  10^100 (4d)
+m_pi0 (MeV)                        98     101     100      96     103       0*    101     100      90     101     100      97      94       0*     95      91      88       0*      0*  10^100 (0d)
+m_K+ (MeV)                        102     103     104      97     100       4*    102     102     100     100     101      94      96       4*     95      93      92       4*      4*  10^100 (4d)
+m_D (MeV)                         105     103     102     104     100       9*    102     101      99      97      96      97      96       9*     94      92      90       9*      9*  10^100 (9d)
+E_D binding (MeV)                  99     102      97      96      98       9*     98      98     101      97     100      94      94       9*     90      85      85       9*      9*  10^100 (9d)
+H 1S-2S (Hz)                       14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*  2^335 (14d)
+H hyperfine (Hz)                  109     107      10*    110     108      10*    108     108     108     109     108     105      96      10*    100      91      99      10*     10*  5^144 (10d)
+Sr-87 clock (Hz)                   14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*     14*  2^335 (14d)
+r_p (fm)                          101      96      98      99      97       0*     93      99     100      95      98      97      94       0*     86      89      88       0*      0*  10^100 (0d)
+pi                                102     101     101      95     101      99      98      98     101     101     100      99      91      94      94      92      90      89      81*  210^38 (81d)
+e (Euler)                         100      97     101     101      99      98      99     100      96      98     100      94      94      96      92      92      90      90      87*  210^38 (87d)
+ln(2)                              99      98      96      99      94      98      98      98      99      99      95      94      94      91      91      91      88      84*     86   60^50 (84d)
+R2 = pi/4                          99     101     101      99     101      99      97      98      98      97     100      96      91      92      94      90      88      76*     87   60^50 (76d)
+R4 = pi^2/32                       98      94      99      98     100      94      97     100     100      99      94      93      90      94      91      90      88      88      83*  210^38 (83d)
+zeta(3)                            98      96      94      99      95     101      99      97      91      97      96      93      90      93      94      90      88      85      81*  210^38 (81d)
+zeta(5)                           101      98      99      96     100      97      94      99     101      95     100      99      94      91      92      85      88      83      82*  210^38 (82d)
+sqrt(2)                           100      99      98      96      96      94     100      98      97      97      98      96      94      95      94      88      90      89      83*  210^38 (83d)
+gamma (E-M)                       100     100      95     100     101      93      98     100      99      92     100      92      91      87      92      90      89      79*     87   60^50 (79d)
+pi/(pi+2) vena                     99     100     100     100      99      98      94      99     100      94      93      96      95      88      93      89      88      87*     87*  60^50 (87d)
+pi/exp(gamma) BCS                 101      97     101     101      96      99      99      97      95      98      95      96      93      96      89      90      90      83*     86   60^50 (83d)
+j11 (Bessel)                      102     101      95      99      99      99     100      97     101      98      97      99      92      97      91      92      87*     88      88   42^55 (87d)
+j01 (Bessel)                      100      97     101     101     101      98      95      98     100     100      98      95      93      95      91      92      87      84*     84*  60^50 (84d)
+Koide K(e,mu,tau)                  99      99     100     100      98      10*     96      97      97      95      95      98      94      10*     94      91      85      10*     10*  10^100 (10d)
+
+==========================================================================================
+BASE WINS SUMMARY (which base gives smallest cofactor most often)
+==========================================================================================
+  10^100      :  33 wins
+  210^38      :   6 wins
+  60^50       :   6 wins
+  5^144       :   4 wins
+  2^335       :   4 wins
+  42^55       :   1 wins
+
+==========================================================================================
+VALUES WHERE A NON-POWER-OF-2 BASE WINS
+(potential signal of non-binary structure)
+==========================================================================================
+  alpha^-1                       best=10^100 (7d) vs 2^335 (99d)  improvement: 92 digits
+  m_e (MeV)                      best=10^100 (11d) vs 2^335 (96d)  improvement: 85 digits
+  m_mu (MeV)                     best=10^100 (8d) vs 2^335 (98d)  improvement: 90 digits
+  m_tau (MeV)                    best=10^100 (5d) vs 2^335 (100d)  improvement: 95 digits
+  m_p (MeV)                      best=10^100 (9d) vs 2^335 (103d)  improvement: 94 digits
+  m_p/m_e                        best=10^100 (11d) vs 2^335 (104d)  improvement: 93 digits
+  R_inf (m^-1)                   best=10^100 (11d) vs 2^335 (106d)  improvement: 95 digits
+  a_0 (m)                        best=10^100 (11d) vs 2^335 (89d)  improvement: 78 digits
+  a_e (g-2 anomaly)              best=10^100 (12d) vs 2^335 (93d)  improvement: 81 digits
+  a_mu (g-2 anomaly)             best=10^100 (4d) vs 2^335 (97d)  improvement: 93 digits
+  sin2_theta_W                   best=10^100 (4d) vs 2^335 (98d)  improvement: 94 digits
+  alpha_s(M_Z)                   best=10^100 (0d) vs 2^335 (97d)  improvement: 97 digits
+  mu_0 (N/A^2)                   best=10^100 (7d) vs 2^335 (91d)  improvement: 84 digits
+  M_Z (MeV)                      best=5^144 (4d) vs 2^335 (104d)  improvement: 100 digits
+  Gamma_Z (MeV)                  best=5^144 (4d) vs 2^335 (99d)  improvement: 95 digits
+  M_W (MeV)                      best=5^144 (0d) vs 2^335 (105d)  improvement: 105 digits
+  G_F (GeV^-2)                   best=10^100 (5d) vs 2^335 (95d)  improvement: 90 digits
+  m_mu/m_e                       best=10^100 (8d) vs 2^335 (104d)  improvement: 96 digits
+  m_tau/m_e                      best=10^100 (4d) vs 2^335 (104d)  improvement: 100 digits
+  m_tau/m_mu                     best=10^100 (0d) vs 2^335 (102d)  improvement: 102 digits
+  m_n/m_p                        best=10^100 (5d) vs 2^335 (98d)  improvement: 93 digits
+  M_W/M_Z                        best=10^100 (0d) vs 2^335 (96d)  improvement: 96 digits
+  sin_theta12                    best=10^100 (5d) vs 2^335 (96d)  improvement: 91 digits
+  sin_theta23                    best=10^100 (0d) vs 2^335 (95d)  improvement: 95 digits
+  sin_theta13                    best=10^100 (0d) vs 2^335 (95d)  improvement: 95 digits
+  m_c/m_s                        best=10^100 (5d) vs 2^335 (101d)  improvement: 96 digits
+  m_b/m_c                        best=10^100 (0d) vs 2^335 (102d)  improvement: 102 digits
+  m_u/m_d                        best=10^100 (0d) vs 2^335 (96d)  improvement: 96 digits
+  m_n (MeV)                      best=10^100 (4d) vs 2^335 (101d)  improvement: 97 digits
+  m_pi+ (MeV)                    best=10^100 (4d) vs 2^335 (103d)  improvement: 99 digits
+  m_pi0 (MeV)                    best=10^100 (0d) vs 2^335 (98d)  improvement: 98 digits
+  m_K+ (MeV)                     best=10^100 (4d) vs 2^335 (102d)  improvement: 98 digits
+  m_D (MeV)                      best=10^100 (9d) vs 2^335 (105d)  improvement: 96 digits
+  E_D binding (MeV)              best=10^100 (9d) vs 2^335 (99d)  improvement: 90 digits
+  H hyperfine (Hz)               best=5^144 (10d) vs 2^335 (109d)  improvement: 99 digits
+  r_p (fm)                       best=10^100 (0d) vs 2^335 (101d)  improvement: 101 digits
+  pi                             best=210^38 (81d) vs 2^335 (102d)  improvement: 21 digits
+  e (Euler)                      best=210^38 (87d) vs 2^335 (100d)  improvement: 13 digits
+  ln(2)                          best=60^50 (84d) vs 2^335 (99d)  improvement: 15 digits
+  R2 = pi/4                      best=60^50 (76d) vs 2^335 (99d)  improvement: 23 digits
+  R4 = pi^2/32                   best=210^38 (83d) vs 2^335 (98d)  improvement: 15 digits
+  zeta(3)                        best=210^38 (81d) vs 2^335 (98d)  improvement: 17 digits
+  zeta(5)                        best=210^38 (82d) vs 2^335 (101d)  improvement: 19 digits
+  sqrt(2)                        best=210^38 (83d) vs 2^335 (100d)  improvement: 17 digits
+  gamma (E-M)                    best=60^50 (79d) vs 2^335 (100d)  improvement: 21 digits
+  pi/(pi+2) vena                 best=60^50 (87d) vs 2^335 (99d)  improvement: 12 digits
+  pi/exp(gamma) BCS              best=60^50 (83d) vs 2^335 (101d)  improvement: 18 digits
+  j11 (Bessel)                   best=42^55 (87d) vs 2^335 (102d)  improvement: 15 digits
+  j01 (Bessel)                   best=60^50 (84d) vs 2^335 (100d)  improvement: 16 digits
+  Koide K(e,mu,tau)              best=10^100 (10d) vs 2^335 (99d)  improvement: 89 digits
+
+
+==========================================================================================
+PART 2: CONTINUED FRACTION ANALYSIS
+Looking for anomalously large partial quotients
+A large a_n means the previous convergent p/q is an unusually good approximation
+==========================================================================================
+
+  alpha^-1 (value=137.035999177, 12 digits)
+    CF = [137; 27, 1, 3, 1, 1, 18, 1, 7, 1, 2, 2, 1, 10, 1, 1, 34, 1, 1, 1]
+    Largest partial quotient: a_16 = 34
+    Best small-denominator approximations (q < 10^7):
+      137/1 (q=1)  rel_err=2.627e-04  matches 3 digits
+      3700/27 (q=3^3)  rel_err=7.574e-06  matches 5 digits
+      3837/28 (q=2^2 × 7)  rel_err=2.079e-06  matches 5 digits
+      15211/111 (q=3 × 37)  rel_err=2.690e-07  matches 6 digits
+      19048/139 (q=139)  rel_err=2.040e-07  matches 6 digits
+    *** MATCH TO FULL PRECISION: 17316417/126364 matches all 12 source digits! ***
+    *** MATCH TO FULL PRECISION: 40628296/296479 matches all 12 source digits! ***
+    *** MATCH TO FULL PRECISION: 57944713/422843 matches all 12 source digits! ***
+
+  m_e (MeV) (value=0.51099895069, 11 digits)
+    CF = [0; 1, 1, 22, 4, 2, 1, 3, 1, 3, 4, 1, 4, 280, 3, 1, 29, 1, 2, 1...]
+    Largest partial quotient: a_21 = 55931609667676853916265547025350840151242042053398456465545804459710295194436601308535172573026501633040381890
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=9.570e-01  matches 0 digits
+      1/2 (q=2)  rel_err=2.152e-02  matches 1 digits
+      23/45 (q=3^2 × 5)  rel_err=2.195e-04  matches 3 digits
+      93/182 (q=2 × 7 × 13)  rel_err=1.945e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 135869/265889 matches all 11 source digits! ***
+
+  m_mu (MeV) (value=105.6583755, 10 digits)
+    CF = [105; 1, 1, 1, 12, 1, 2, 1, 3, 3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 3...]
+    Largest partial quotient: a_4 = 12
+    Best small-denominator approximations (q < 10^7):
+      105/1 (q=1)  rel_err=6.231e-03  matches 2 digits
+      106/1 (q=1)  rel_err=3.233e-03  matches 2 digits
+      211/2 (q=2)  rel_err=1.499e-03  matches 2 digits
+      317/3 (q=3)  rel_err=7.847e-05  matches 4 digits
+      4015/38 (q=2 × 19)  rel_err=4.550e-06  matches 5 digits
+    *** MATCH TO FULL PRECISION: 751865/7116 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 1231871/11659 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 1983736/18775 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 7183079/67984 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 9166815/86759 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 16349894/154743 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 25516709/241502 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 92900021/879249 matches all 10 source digits! ***
+
+  m_tau (MeV) (value=1776.86, 6 digits)
+    CF = [1776; 1, 6, 6, 1]
+    Largest partial quotient: a_2 = 6
+    Best small-denominator approximations (q < 10^7):
+      1776/1 (q=1)  rel_err=4.840e-04  matches 3 digits
+      1777/1 (q=1)  rel_err=7.879e-05  matches 4 digits
+      12438/7 (q=7)  rel_err=1.608e-06  matches 5 digits
+      76405/43 (q=43)  rel_err=2.618e-07  matches 6 digits
+      88843/50 (q=2 × 5^2)  rel_err=0.000e+00  matches 999 digits
+    *** MATCH TO FULL PRECISION: 76405/43 matches all 6 source digits! ***
+
+  m_p (MeV) (value=938.27208943, 11 digits)
+    CF = [938; 3, 1, 2, 12, 1, 1, 2, 5, 1, 1, 6, 1, 1, 36, 5, 1, 2, 1]
+    Largest partial quotient: a_14 = 36
+    Best small-denominator approximations (q < 10^7):
+      938/1 (q=1)  rel_err=2.900e-04  matches 3 digits
+      2815/3 (q=3)  rel_err=6.527e-05  matches 4 digits
+      3753/4 (q=2^2)  rel_err=2.354e-05  matches 4 digits
+      10321/11 (q=11)  rel_err=6.798e-07  matches 6 digits
+      127605/136 (q=2^3 × 17)  rel_err=3.262e-08  matches 7 digits
+    *** MATCH TO FULL PRECISION: 7889930/8409 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 51619039/55015 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 59508969/63424 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 111128008/118439 matches all 11 source digits! ***
+
+  m_p/m_e (value=1836.15267343, 13 digits)
+    CF = [1836; 6, 1, 1, 4, 1, 1, 34, 3, 1, 13, 7, 1, 1, 2, 10]
+    Largest partial quotient: a_7 = 34
+    Best small-denominator approximations (q < 10^7):
+      1836/1 (q=1)  rel_err=8.315e-05  matches 4 digits
+      11017/6 (q=2 × 3)  rel_err=7.621e-06  matches 5 digits
+      12853/7 (q=7)  rel_err=5.346e-06  matches 5 digits
+      23870/13 (q=13)  rel_err=6.387e-07  matches 6 digits
+      108333/59 (q=59)  rel_err=7.138e-08  matches 7 digits
+    *** MATCH TO FULL PRECISION: 460440989/250764 matches all 13 source digits! ***
+
+  R_inf (m^-1) (value=10973731.568157, 13 digits)
+    CF = [10973731; 1, 1, 3, 5, 1, 19, 1, 34, 4, 2, 3]
+    Largest partial quotient: a_8 = 34
+    Best small-denominator approximations (q < 10^7):
+      10973731/1 (q=1)  rel_err=5.177e-08  matches 7 digits
+      10973732/1 (q=1)  rel_err=3.935e-08  matches 7 digits
+      21947463/2 (q=2)  rel_err=6.211e-09  matches 8 digits
+      76816121/7 (q=7)  rel_err=2.981e-10  matches 9 digits
+      406028068/37 (q=37)  rel_err=5.371e-11  matches 10 digits
+    *** MATCH TO FULL PRECISION: 10062911848/917 matches all 13 source digits! ***
+    *** MATCH TO FULL PRECISION: 351719070491/32051 matches all 13 source digits! ***
+    *** MATCH TO FULL PRECISION: 1416939193812/129121 matches all 13 source digits! ***
+    *** MATCH TO FULL PRECISION: 3185597458115/290293 matches all 13 source digits! ***
+
+  a_0 (m) (value=0.0000000000529177210544, 12 digits)
+    CF = [0; 18897261259, 12, 1, 5, 1, 1, 1, 5, 6, 3, 1, 1, 5, 1, 3, 22, 3, 3, 3...]
+    Largest partial quotient: a_23 = 6711492108361101364520911787741217667267618308730175837657510084918008808208453257505484114028767614
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+
+  a_e (g-2 anomaly) (value=0.00115965218059, 12 digits)
+    CF = [0; 862, 3, 18, 1, 4, 3, 2, 1, 2, 8, 2, 1, 2, 1, 28, 1, 1, 2, 2...]
+    Largest partial quotient: a_26 = 27976982311068524126254227125121729889078783924019384584444991195938347232506524783092895829458441433180243
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/862 (q=2 × 431)  rel_err=3.800e-04  matches 3 digits
+      3/2587 (q=13 × 199)  rel_err=6.730e-06  matches 5 digits
+      55/47428 (q=2^2 × 71 × 167)  rel_err=2.978e-07  matches 6 digits
+      58/50015 (q=5 × 7)  rel_err=6.573e-08  matches 7 digits
+
+  a_mu (g-2 anomaly) (value=0.00116592059, 9 digits)
+    CF = [0; 857, 1, 2, 4, 5, 1, 11, 1, 2, 5, 13, 1, 1, 2, 12, 1, 1, 1, 1...]
+    Largest partial quotient: a_1 = 857
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/857 (q=857)  rel_err=8.067e-04  matches 3 digits
+      1/858 (q=2 × 3 × 11 × 13)  rel_err=3.597e-04  matches 3 digits
+      3/2573 (q=31 × 83)  rel_err=2.877e-05  matches 4 digits
+      13/11150 (q=2 × 5^2 × 223)  rel_err=1.121e-06  matches 5 digits
+    *** MATCH TO FULL PRECISION: 959/822526 matches all 9 source digits! ***
+    *** MATCH TO FULL PRECISION: 1040/891999 matches all 9 source digits! ***
+
+  sin2_theta_W (value=0.23122, 5 digits)
+    CF = [0; 4, 3, 12, 1, 4, 1, 1, 8, 3]
+    Largest partial quotient: a_3 = 12
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/4 (q=2^2)  rel_err=8.122e-02  matches 1 digits
+      3/13 (q=13)  rel_err=1.950e-03  matches 2 digits
+      37/160 (q=2^5 × 5)  rel_err=1.297e-04  matches 3 digits
+      40/173 (q=173)  rel_err=2.650e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 197/852 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 237/1025 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 434/1877 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 3709/16041 matches all 5 source digits! ***
+
+  alpha_s(M_Z) (value=0.1180, 4 digits)
+    CF = [0; 8, 2, 9, 3]
+    Largest partial quotient: a_3 = 9
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/8 (q=2^3)  rel_err=5.932e-02  matches 1 digits
+      2/17 (q=17)  rel_err=2.991e-03  matches 2 digits
+      19/161 (q=7 × 23)  rel_err=1.053e-04  matches 3 digits
+      59/500 (q=2^2 × 5^3)  rel_err=0.000e+00  matches 999 digits
+
+  mu_0 (N/A^2) (value=0.00000125663706127, 12 digits)
+    CF = [0; 795774, 1, 2, 1, 1, 15, 2, 1, 1, 2, 2, 14, 2, 2, 1, 8, 1, 1, 8...]
+    Largest partial quotient: a_28 = 10062800844618460165672628637082830881826373842796812045865153146549069179704327668378088623022746011849
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/795774 (q=2 × 3 × 7)  rel_err=8.992e-07  matches 6 digits
+      1/795775 (q=5^2 × 139 × 229)  rel_err=3.574e-07  matches 6 digits
+      3/2387324 (q=2^2)  rel_err=6.145e-08  matches 7 digits
+      4/3183099 (q=3)  rel_err=4.327e-08  matches 7 digits
+
+  M_Z (MeV) (value=91187.6, 6 digits)
+    CF = [91187; 1, 1, 2]
+    Largest partial quotient: a_3 = 2
+    Best small-denominator approximations (q < 10^7):
+      91187/1 (q=1)  rel_err=6.580e-06  matches 5 digits
+      91188/1 (q=1)  rel_err=4.387e-06  matches 5 digits
+      182375/2 (q=2)  rel_err=1.097e-06  matches 5 digits
+      455938/5 (q=5)  rel_err=0.000e+00  matches 999 digits
+
+  Gamma_Z (MeV) (value=2495.2, 5 digits)
+    CF = [2495; 4, 1]
+    Largest partial quotient: a_1 = 4
+    Best small-denominator approximations (q < 10^7):
+      2495/1 (q=1)  rel_err=8.015e-05  matches 4 digits
+      9981/4 (q=2^2)  rel_err=2.004e-05  matches 4 digits
+      12476/5 (q=5)  rel_err=0.000e+00  matches 999 digits
+
+  M_W (MeV) (value=80369.2, 6 digits)
+    CF = [80369; 4, 1]
+    Largest partial quotient: a_1 = 4
+    Best small-denominator approximations (q < 10^7):
+      80369/1 (q=1)  rel_err=2.489e-06  matches 5 digits
+      321477/4 (q=2^2)  rel_err=6.221e-07  matches 6 digits
+      401846/5 (q=5)  rel_err=0.000e+00  matches 999 digits
+    *** MATCH TO FULL PRECISION: 321477/4 matches all 6 source digits! ***
+
+  G_F (GeV^-2) (value=0.000011663788, 8 digits)
+    CF = [0; 85735, 2, 3, 1, 2, 4, 1, 1, 1, 1, 2, 1, 2, 9, 51]
+    Largest partial quotient: a_1 = 85735
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/85735 (q=5 × 13)  rel_err=5.136e-06  matches 5 digits
+      2/171471 (q=3 × 61 × 937)  rel_err=6.961e-07  matches 6 digits
+      7/600148 (q=2^2 × 59)  rel_err=1.371e-07  matches 6 digits
+      9/771619 (q=771619)  rel_err=4.809e-08  matches 7 digits
+
+  m_mu/m_e (value=206.768282708, 10 digits)
+    CF = [206; 1, 3, 3, 5, 1, 14, 14, 1, 2, 2, 1, 5, 5, 1, 12, 2, 1]
+    Largest partial quotient: a_6 = 14
+    Best small-denominator approximations (q < 10^7):
+      206/1 (q=1)  rel_err=3.716e-03  matches 2 digits
+      207/1 (q=1)  rel_err=1.121e-03  matches 2 digits
+      827/4 (q=2^2)  rel_err=8.842e-05  matches 4 digits
+      2688/13 (q=13)  rel_err=4.585e-06  matches 5 digits
+      14267/69 (q=3 × 23)  rel_err=8.065e-07  matches 6 digits
+    *** MATCH TO FULL PRECISION: 3539873/17120 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 3791510/18337 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 11122893/53794 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 26037296/125925 matches all 10 source digits! ***
+    *** MATCH TO FULL PRECISION: 37160189/179719 matches all 10 source digits! ***
+
+  m_tau/m_e (value=3477.23, 6 digits)
+    CF = [3477; 4, 2, 1, 7]
+    Largest partial quotient: a_4 = 7
+    Best small-denominator approximations (q < 10^7):
+      3477/1 (q=1)  rel_err=6.614e-05  matches 4 digits
+      13909/4 (q=2^2)  rel_err=5.752e-06  matches 5 digits
+      31295/9 (q=3^2)  rel_err=2.237e-06  matches 5 digits
+      45204/13 (q=13)  rel_err=2.212e-07  matches 6 digits
+      347723/100 (q=2^2 × 5^2)  rel_err=0.000e+00  matches 999 digits
+    *** MATCH TO FULL PRECISION: 45204/13 matches all 6 source digits! ***
+
+  m_tau/m_mu (value=16.8170, 6 digits)
+    CF = [16; 1, 4, 2, 6, 1, 1, 6]
+    Largest partial quotient: a_4 = 6
+    Best small-denominator approximations (q < 10^7):
+      16/1 (q=1)  rel_err=4.858e-02  matches 1 digits
+      17/1 (q=1)  rel_err=1.088e-02  matches 1 digits
+      84/5 (q=5)  rel_err=1.011e-03  matches 2 digits
+      185/11 (q=11)  rel_err=7.028e-05  matches 4 digits
+      1194/71 (q=71)  rel_err=5.863e-06  matches 5 digits
+    *** MATCH TO FULL PRECISION: 2573/153 matches all 6 source digits! ***
+
+  m_n/m_p (value=1.00137841946, 11 digits)
+    CF = [1; 725, 2, 7, 2, 5, 12, 1, 1, 2, 2, 1, 7, 6, 1, 3, 1, 5, 1, 60701820902272657057407782308764407101541449306714149584640550893032844061651941067356319673317677113863105966...]
+    Largest partial quotient: a_19 = 60701820902272657057407782308764407101541449306714149584640550893032844061651941067356319673317677113863105966
+    Best small-denominator approximations (q < 10^7):
+      1/1 (q=1)  rel_err=1.377e-03  matches 2 digits
+      726/725 (q=5^2 × 29)  rel_err=8.897e-07  matches 6 digits
+      1453/1451 (q=1451)  rel_err=5.963e-08  matches 7 digits
+      10897/10882 (q=2)  rel_err=3.619e-09  matches 8 digits
+      23247/23215 (q=5)  rel_err=3.340e-10  matches 9 digits
+    *** MATCH TO FULL PRECISION: 127132/126957 matches all 11 source digits! ***
+
+  M_W/M_Z (value=0.881361, 6 digits)
+    CF = [0; 1, 7, 2, 3, 56, 2, 1, 1, 19, 2, 1]
+    Largest partial quotient: a_5 = 56
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=1.346e-01  matches 0 digits
+      7/8 (q=2^3)  rel_err=7.217e-03  matches 2 digits
+      15/17 (q=17)  rel_err=1.125e-03  matches 2 digits
+      52/59 (q=59)  rel_err=5.750e-06  matches 5 digits
+    *** MATCH TO FULL PRECISION: 2927/3321 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 5906/6701 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 8833/10022 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 14739/16723 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 288874/327759 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 592487/672241 matches all 6 source digits! ***
+
+  sin_theta12 (value=0.22501, 5 digits)
+    CF = [0; 4, 2, 3, 1, 61, 1, 2, 1, 1, 1, 3]
+    Largest partial quotient: a_5 = 61
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/4 (q=2^2)  rel_err=1.111e-01  matches 0 digits
+      2/9 (q=3^2)  rel_err=1.239e-02  matches 1 digits
+      7/31 (q=31)  rel_err=3.540e-03  matches 2 digits
+      9/40 (q=2^3 × 5)  rel_err=4.444e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 556/2471 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 565/2511 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 1686/7493 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 2251/10004 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 3937/17497 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 6188/27501 matches all 5 source digits! ***
+
+  sin_theta23 (value=0.04182, 4 digits)
+    CF = [0; 23, 1, 10, 2, 1, 2, 1, 15, 1]
+    Largest partial quotient: a_1 = 23
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/23 (q=23)  rel_err=3.965e-02  matches 1 digits
+      1/24 (q=2^3 × 3)  rel_err=3.667e-03  matches 2 digits
+      11/263 (q=263)  rel_err=1.218e-04  matches 3 digits
+      23/550 (q=2 × 5^2 × 11)  rel_err=4.348e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 23/550 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 34/813 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 91/2176 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 125/2989 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 1966/47011 matches all 4 source digits! ***
+
+  sin_theta13 (value=0.003685, 4 digits)
+    CF = [0; 271, 2, 1, 2, 3, 27]
+    Largest partial quotient: a_1 = 271
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/271 (q=271)  rel_err=1.367e-03  matches 2 digits
+      2/543 (q=3 × 181)  rel_err=4.773e-04  matches 3 digits
+      3/814 (q=2 × 11 × 37)  rel_err=1.367e-04  matches 3 digits
+      8/2171 (q=13 × 167)  rel_err=1.687e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 8/2171 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 27/7327 matches all 4 source digits! ***
+
+  m_c/m_s (value=11.783, 5 digits)
+    CF = [11; 1, 3, 1, 1, 1, 1, 4, 4, 2]
+    Largest partial quotient: a_7 = 4
+    Best small-denominator approximations (q < 10^7):
+      11/1 (q=1)  rel_err=6.645e-02  matches 1 digits
+      12/1 (q=1)  rel_err=1.842e-02  matches 1 digits
+      47/4 (q=2^2)  rel_err=2.801e-03  matches 2 digits
+      59/5 (q=5)  rel_err=1.443e-03  matches 2 digits
+      106/9 (q=3^2)  rel_err=4.432e-04  matches 3 digits
+    *** MATCH TO FULL PRECISION: 1249/106 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 5267/447 matches all 5 source digits! ***
+
+  m_b/m_c (value=4.578, 4 digits)
+    CF = [4; 1, 1, 2, 1, 2, 2, 1, 1, 4]
+    Largest partial quotient: a_9 = 4
+    Best small-denominator approximations (q < 10^7):
+      4/1 (q=1)  rel_err=1.263e-01  matches 0 digits
+      5/1 (q=1)  rel_err=9.218e-02  matches 1 digits
+      9/2 (q=2)  rel_err=1.704e-02  matches 1 digits
+      23/5 (q=5)  rel_err=4.806e-03  matches 2 digits
+      32/7 (q=7)  rel_err=1.435e-03  matches 2 digits
+    *** MATCH TO FULL PRECISION: 206/45 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 293/64 matches all 4 source digits! ***
+    *** MATCH TO FULL PRECISION: 499/109 matches all 4 source digits! ***
+
+  m_u/m_d (value=0.485, 3 digits)
+    CF = [0; 2, 16, 5, 1]
+    Largest partial quotient: a_2 = 16
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/2 (q=2)  rel_err=3.093e-02  matches 1 digits
+      16/33 (q=3 × 11)  rel_err=3.124e-04  matches 3 digits
+      81/167 (q=167)  rel_err=6.173e-05  matches 4 digits
+      97/200 (q=2^3 × 5^2)  rel_err=0.000e+00  matches 999 digits
+    *** MATCH TO FULL PRECISION: 16/33 matches all 3 source digits! ***
+    *** MATCH TO FULL PRECISION: 81/167 matches all 3 source digits! ***
+
+  m_n (MeV) (value=939.56542194, 11 digits)
+    CF = [939; 1, 1, 3, 3, 8, 1, 14, 1, 15, 2, 4, 1, 3, 2, 9]
+    Largest partial quotient: a_9 = 15
+    Best small-denominator approximations (q < 10^7):
+      939/1 (q=1)  rel_err=6.018e-04  matches 3 digits
+      940/1 (q=1)  rel_err=4.625e-04  matches 3 digits
+      1879/2 (q=2)  rel_err=6.963e-05  matches 4 digits
+      6577/7 (q=7)  rel_err=6.393e-06  matches 5 digits
+      21610/23 (q=23)  rel_err=2.177e-07  matches 6 digits
+    *** MATCH TO FULL PRECISION: 3195462/3401 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 50926325/54202 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 105048112/111805 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 471118773/501422 matches all 11 source digits! ***
+    *** MATCH TO FULL PRECISION: 576166885/613227 matches all 11 source digits! ***
+
+  m_pi+ (MeV) (value=139.57039, 8 digits)
+    CF = [139; 1, 1, 3, 19, 2, 1, 2, 1, 8, 1, 2, 1, 1]
+    Largest partial quotient: a_4 = 19
+    Best small-denominator approximations (q < 10^7):
+      139/1 (q=1)  rel_err=4.087e-03  matches 2 digits
+      140/1 (q=1)  rel_err=3.078e-03  matches 2 digits
+      279/2 (q=2)  rel_err=5.043e-04  matches 3 digits
+      977/7 (q=7)  rel_err=7.441e-06  matches 5 digits
+      18842/135 (q=3^3 × 5)  rel_err=1.406e-07  matches 6 digits
+    *** MATCH TO FULL PRECISION: 153667/1101 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 211170/1513 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 1843027/13205 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 2054197/14718 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 5951421/42641 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 8005618/57359 matches all 8 source digits! ***
+
+  m_pi0 (MeV) (value=134.9770, 7 digits)
+    CF = [134; 1, 42, 2, 10, 1]
+    Largest partial quotient: a_2 = 42
+    Best small-denominator approximations (q < 10^7):
+      134/1 (q=1)  rel_err=7.238e-03  matches 2 digits
+      135/1 (q=1)  rel_err=1.704e-04  matches 3 digits
+      5804/43 (q=43)  rel_err=1.895e-06  matches 5 digits
+      11743/87 (q=3 × 29)  rel_err=8.516e-08  matches 7 digits
+      123234/913 (q=11 × 83)  rel_err=8.115e-09  matches 8 digits
+    *** MATCH TO FULL PRECISION: 11743/87 matches all 7 source digits! ***
+    *** MATCH TO FULL PRECISION: 123234/913 matches all 7 source digits! ***
+
+  m_K+ (MeV) (value=493.677, 6 digits)
+    CF = [493; 1, 2, 10, 2, 2, 1, 1, 2]
+    Largest partial quotient: a_3 = 10
+    Best small-denominator approximations (q < 10^7):
+      493/1 (q=1)  rel_err=1.371e-03  matches 2 digits
+      494/1 (q=1)  rel_err=6.543e-04  matches 3 digits
+      1481/3 (q=3)  rel_err=2.093e-05  matches 4 digits
+      15304/31 (q=31)  rel_err=8.495e-07  matches 6 digits
+      32089/65 (q=5 × 13)  rel_err=1.558e-07  matches 6 digits
+    *** MATCH TO FULL PRECISION: 15304/31 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 32089/65 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 79482/161 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 111571/226 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 191053/387 matches all 6 source digits! ***
+
+  m_D (MeV) (value=1875.61294500, 12 digits)
+    CF = [1875; 1, 1, 1, 1, 2, 2, 24, 2, 25, 2, 1, 1]
+    Largest partial quotient: a_9 = 25
+    Best small-denominator approximations (q < 10^7):
+      1875/1 (q=1)  rel_err=3.268e-04  matches 3 digits
+      1876/1 (q=1)  rel_err=2.064e-04  matches 3 digits
+      3751/2 (q=2)  rel_err=6.022e-05  matches 4 digits
+      5627/3 (q=3)  rel_err=2.864e-05  matches 4 digits
+      9378/5 (q=5)  rel_err=6.902e-06  matches 5 digits
+    *** MATCH TO FULL PRECISION: 73865389/39382 matches all 12 source digits! ***
+    *** MATCH TO FULL PRECISION: 150628600/80309 matches all 12 source digits! ***
+    *** MATCH TO FULL PRECISION: 224493989/119691 matches all 12 source digits! ***
+
+  E_D binding (MeV) (value=2.22456614, 8 digits)
+    CF = [2; 4, 2, 4, 1, 4, 1, 1, 1, 3, 2, 1, 2, 3, 2, 2, 3, 1, 2, 8]
+    Largest partial quotient: a_19 = 8
+    Best small-denominator approximations (q < 10^7):
+      2/1 (q=1)  rel_err=1.009e-01  matches 0 digits
+      9/4 (q=2^2)  rel_err=1.143e-02  matches 1 digits
+      20/9 (q=3^2)  rel_err=1.054e-03  matches 2 digits
+      89/40 (q=2^3 × 5)  rel_err=1.950e-04  matches 3 digits
+      109/49 (q=7^2)  rel_err=3.432e-05  matches 4 digits
+    *** MATCH TO FULL PRECISION: 14869/6684 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 21407/9623 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 57683/25930 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 194456/87413 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 446595/200756 matches all 8 source digits! ***
+    *** MATCH TO FULL PRECISION: 1087646/488925 matches all 8 source digits! ***
+
+  H hyperfine (Hz) (value=1420405751.768, 13 digits)
+    CF = [1420405751; 1, 3, 3, 4, 2]
+    Largest partial quotient: a_4 = 4
+    Best small-denominator approximations (q < 10^7):
+      1420405751/1 (q=1)  rel_err=5.407e-10  matches 9 digits
+      1420405752/1 (q=1)  rel_err=1.633e-10  matches 9 digits
+      5681623007/4 (q=2^2)  rel_err=1.267e-11  matches 10 digits
+      18465274773/13 (q=13)  rel_err=8.665e-13  matches 12 digits
+      79542722099/56 (q=2^3 × 7)  rel_err=1.006e-13  matches 12 digits
+
+  r_p (fm) (value=0.84075, 5 digits)
+    CF = [0; 1, 5, 3, 1, 1, 2, 1, 2, 8, 1]
+    Largest partial quotient: a_9 = 8
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=1.894e-01  matches 0 digits
+      5/6 (q=2 × 3)  rel_err=8.821e-03  matches 2 digits
+      16/19 (q=19)  rel_err=1.612e-03  matches 2 digits
+      21/25 (q=5^2)  rel_err=8.921e-04  matches 3 digits
+    *** MATCH TO FULL PRECISION: 359/427 matches all 5 source digits! ***
+    *** MATCH TO FULL PRECISION: 3004/3573 matches all 5 source digits! ***
+
+  pi (value=3.1415926535897932384626433832..., 105 digits)
+    CF = [3; 7, 15, 1, 292, 1, 1, 1, 2, 1, 3, 1, 14, 2, 1, 1, 2, 2, 2, 2...]
+    Largest partial quotient: a_4 = 292
+    Best small-denominator approximations (q < 10^7):
+      3/1 (q=1)  rel_err=4.507e-02  matches 1 digits
+      22/7 (q=7)  rel_err=4.025e-04  matches 3 digits
+      333/106 (q=2 × 53)  rel_err=2.649e-05  matches 4 digits
+      355/113 (q=113)  rel_err=8.491e-08  matches 7 digits
+      103993/33102 (q=2 × 3^3 × 613)  rel_err=1.839e-10  matches 9 digits
+
+  e (Euler) (value=2.7182818284590452353602874713..., 105 digits)
+    CF = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, 1, 1, 10, 1, 1, 12, 1, 1...]
+    Largest partial quotient: a_38 = 26
+    Best small-denominator approximations (q < 10^7):
+      2/1 (q=1)  rel_err=2.642e-01  matches 0 digits
+      3/1 (q=1)  rel_err=1.036e-01  matches 0 digits
+      8/3 (q=3)  rel_err=1.899e-02  matches 1 digits
+      11/4 (q=2^2)  rel_err=1.167e-02  matches 1 digits
+      19/7 (q=7)  rel_err=1.470e-03  matches 2 digits
+
+  ln(2) (value=0.6931471805599453094172321214..., 105 digits)
+    CF = [0; 1, 2, 3, 1, 6, 3, 1, 1, 2, 1, 1, 1, 1, 3, 10, 1, 1, 1, 2...]
+    Largest partial quotient: a_28 = 13
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=4.427e-01  matches 0 digits
+      2/3 (q=3)  rel_err=3.820e-02  matches 1 digits
+      7/10 (q=2 × 5)  rel_err=9.887e-03  matches 2 digits
+      9/13 (q=13)  rel_err=1.211e-03  matches 2 digits
+
+  R2 = pi/4 (value=0.7853981633974483096156608458..., 105 digits)
+    CF = [0; 1, 3, 1, 1, 1, 15, 2, 72, 1, 9, 1, 17, 1, 2, 1, 5, 1, 1, 10...]
+    Largest partial quotient: a_8 = 72
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=2.732e-01  matches 0 digits
+      3/4 (q=2^2)  rel_err=4.507e-02  matches 1 digits
+      4/5 (q=5)  rel_err=1.859e-02  matches 1 digits
+      7/9 (q=3^2)  rel_err=9.703e-03  matches 2 digits
+
+  R4 = pi^2/32 (value=0.3084251375340424568385778437..., 105 digits)
+    CF = [0; 3, 4, 7, 1, 5, 2, 1, 1, 7, 2, 5, 2, 1, 1, 3, 1, 3, 1, 1...]
+    Largest partial quotient: a_33 = 30
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/3 (q=3)  rel_err=8.076e-02  matches 1 digits
+      4/13 (q=13)  rel_err=2.376e-03  matches 2 digits
+      29/94 (q=2 × 47)  rel_err=2.772e-04  matches 3 digits
+      33/107 (q=107)  rel_err=4.514e-05  matches 4 digits
+
+  zeta(3) (value=1.2020569031595942853997381615..., 105 digits)
+    CF = [1; 4, 1, 18, 1, 1, 1, 4, 1, 9, 9, 2, 1, 1, 1, 2, 7, 1, 1, 7...]
+    Largest partial quotient: a_28 = 30
+    Best small-denominator approximations (q < 10^7):
+      1/1 (q=1)  rel_err=1.681e-01  matches 0 digits
+      5/4 (q=2^2)  rel_err=3.988e-02  matches 1 digits
+      6/5 (q=5)  rel_err=1.711e-03  matches 2 digits
+      113/94 (q=2 × 47)  rel_err=5.886e-05  matches 4 digits
+      119/99 (q=3^2 × 11)  rel_err=3.053e-05  matches 4 digits
+
+  zeta(5) (value=1.0369277551433699263313654864..., 105 digits)
+    CF = [1; 27, 12, 1, 1, 15, 1, 5, 1, 2, 19, 1, 1, 32, 1, 13, 1, 1, 1, 3...]
+    Largest partial quotient: a_13 = 32
+    Best small-denominator approximations (q < 10^7):
+      1/1 (q=1)  rel_err=3.561e-02  matches 1 digits
+      28/27 (q=3^3)  rel_err=1.054e-04  matches 3 digits
+      337/325 (q=5^2 × 13)  rel_err=4.512e-06  matches 5 digits
+      365/352 (q=2^5 × 11)  rel_err=3.918e-06  matches 5 digits
+      702/677 (q=677)  rel_err=1.285e-07  matches 6 digits
+
+  sqrt(2) (value=1.4142135623730950488016887242..., 105 digits)
+    CF = [1; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2...]
+    Largest partial quotient: a_1 = 2
+    Best small-denominator approximations (q < 10^7):
+      1/1 (q=1)  rel_err=2.929e-01  matches 0 digits
+      3/2 (q=2)  rel_err=6.066e-02  matches 1 digits
+      7/5 (q=5)  rel_err=1.005e-02  matches 1 digits
+      17/12 (q=2^2 × 3)  rel_err=1.735e-03  matches 2 digits
+      41/29 (q=29)  rel_err=2.973e-04  matches 3 digits
+
+  gamma (E-M) (value=0.5772156649015328606065120900..., 105 digits)
+    CF = [0; 1, 1, 2, 1, 2, 1, 4, 3, 13, 5, 1, 1, 8, 1, 2, 4, 1, 1, 40...]
+    Largest partial quotient: a_39 = 399
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=7.325e-01  matches 0 digits
+      1/2 (q=2)  rel_err=1.338e-01  matches 0 digits
+      3/5 (q=5)  rel_err=3.947e-02  matches 1 digits
+      4/7 (q=7)  rel_err=1.003e-02  matches 1 digits
+
+  pi/(pi+2) vena (value=0.6110154703516572893805953879..., 105 digits)
+    CF = [0; 1, 1, 1, 1, 3, 31, 1, 145, 1, 4, 2, 8, 1, 6, 1, 2, 3, 1, 4...]
+    Largest partial quotient: a_8 = 145
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=6.366e-01  matches 0 digits
+      1/2 (q=2)  rel_err=1.817e-01  matches 0 digits
+      2/3 (q=3)  rel_err=9.108e-02  matches 1 digits
+      3/5 (q=5)  rel_err=1.803e-02  matches 1 digits
+
+  pi/exp(gamma) BCS (value=1.7638769888620456906926621345..., 105 digits)
+    CF = [1; 1, 3, 4, 3, 1, 15, 2, 4, 6, 1, 1, 3, 8, 4, 1, 1, 10, 1, 5...]
+    Largest partial quotient: a_20 = 27
+    Best small-denominator approximations (q < 10^7):
+      1/1 (q=1)  rel_err=4.331e-01  matches 0 digits
+      2/1 (q=1)  rel_err=1.339e-01  matches 0 digits
+      7/4 (q=2^2)  rel_err=7.867e-03  matches 2 digits
+      30/17 (q=17)  rel_err=4.699e-04  matches 3 digits
+      97/55 (q=5 × 11)  rel_err=1.364e-04  matches 3 digits
+
+  j11 (Bessel) (value=3.8317059702075123156144358863..., 105 digits)
+    CF = [3; 1, 4, 1, 16, 4, 4, 5, 1, 6, 2, 18, 1, 1, 1, 1, 1, 4, 1, 20...]
+    Largest partial quotient: a_19 = 20
+    Best small-denominator approximations (q < 10^7):
+      3/1 (q=1)  rel_err=2.171e-01  matches 0 digits
+      4/1 (q=1)  rel_err=4.392e-02  matches 1 digits
+      19/5 (q=5)  rel_err=8.275e-03  matches 2 digits
+      23/6 (q=2 × 3)  rel_err=4.247e-04  matches 3 digits
+      387/101 (q=101)  rel_err=5.951e-06  matches 5 digits
+
+  j01 (Bessel) (value=2.4048255576957727686216318793..., 105 digits)
+    CF = [2; 2, 2, 7, 1, 8, 39, 1, 10, 1, 1, 1, 3, 20, 14, 6, 2, 24, 2, 12...]
+    Largest partial quotient: a_6 = 39
+    Best small-denominator approximations (q < 10^7):
+      2/1 (q=1)  rel_err=1.683e-01  matches 0 digits
+      5/2 (q=2)  rel_err=3.958e-02  matches 1 digits
+      12/5 (q=5)  rel_err=2.007e-03  matches 2 digits
+      89/37 (q=37)  rel_err=2.411e-04  matches 3 digits
+      101/42 (q=2 × 3 × 7)  rel_err=2.647e-05  matches 4 digits
+
+  Koide K(e,mu,tau) (value=0.666660511466, 6 digits)
+    CF = [0; 1, 1, 1, 18050, 1, 10, 1, 5, 1, 1, 52, 1, 5, 1, 1, 3, 4, 1, 1...]
+    Largest partial quotient: a_22 = 537478907838596441668037118523006406127941139663649147243182078731397806834295507800657170579375021799912100
+    Best small-denominator approximations (q < 10^7):
+      0/1 (q=1)  rel_err=1.000e+00  matches 0 digits
+      1/1 (q=1)  rel_err=5.000e-01  matches 0 digits
+      1/2 (q=2)  rel_err=2.500e-01  matches 0 digits
+      2/3 (q=3)  rel_err=9.233e-06  matches 5 digits
+      36101/54152 (q=2^3 × 7 × 967)  rel_err=4.683e-10  matches 9 digits
+    *** MATCH TO FULL PRECISION: 36101/54152 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 36103/54155 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 397131/595702 matches all 6 source digits! ***
+    *** MATCH TO FULL PRECISION: 433234/649857 matches all 6 source digits! ***
+
+
+==========================================================================================
+PART 3: COMPLETE FACTORIZATION OF SMALL COFACTORS
+Factoring all cofactors with <= 20 digits using extended trial division
+==========================================================================================
+
+From Q335 = 2^335:
+  m_t (MeV)                      cofactor=               17257 ( 5 digits)  = 17257  [COMPLETE]
+  m_H (MeV)                      cofactor=                 313 ( 3 digits)  = 313  [COMPLETE]
+  H 1S-2S (Hz)                   cofactor=      33325154232257 (14 digits)  = 33325154232257  [PARTIAL]
+  Sr-87 clock (Hz)               cofactor=      25248706131169 (14 digits)  = 25248706131169  [PARTIAL]
+
+==========================================================================================
+SEARCH COMPLETE
+==========================================================================================
