@@ -111,10 +111,7 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-DATA-1-2026]](papers/papers/DATA/HOWL-DATA-1-2026/manuscript.md)** | **Cross-Domain Precision Data Inventory** | Raw Database. |
 | **[[@HOWL-DATA-2-2026]](papers/papers/DATA/HOWL-DATA-2-2026/manuscript.md)** | **Integer Rational Representations in Q335** | Integer Rational Database. |
-| **[[@HOWL-DATA-3-2026]](papers/papers/DATA/HOWL-DATA-3-2026/manuscript.md)** | **Integer Rational Representations in Q335** | Integer Rational Database. |
-
-
-
+| **[[@HOWL-DATA-3-2026]](papers/papers/DATA/HOWL-DATA-3-2026/manuscript.md)** | **Verified Integer Rational Database** | Round Three. |
 
 ---
 
