@@ -114,8 +114,6 @@
 | **[[@HOWL-PHYS-20-2026]](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5** | M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. One experiment, one decade, one answer. |
 | **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary — From Observed Structure to Unobserved Particles** | The integers tell you WHAT. The universe tells you HOW MUCH. |
 | **[[@HOWL-PHYS-22-2026]](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **The A₂ Geometric Cancellation — Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient** | Three pieces, 87% cancellation, the smallness is an accident. |
-
-
 | **[[@HOWL-PHYS-23-2026]](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **Content** | 218/115 meets the universe. |
 
 

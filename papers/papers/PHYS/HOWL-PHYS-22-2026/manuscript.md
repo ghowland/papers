@@ -226,6 +226,30 @@ Q335 basis constants verified at 30+ digits against mpmath (DATA-3, entries B1-B
 
 ---
 
+### Errata
+
+**E1: Section 2, the solid angle Ω₄.** The paper states "the four-dimensional solid angle Ω₄ = 2π²." This is the surface area of the unit 3-sphere S³ (the boundary of the unit 4-ball), which is indeed 2π². The statement "This π² is not related to circles — it is the surface area of the unit three-sphere" is correct. However, the loop momentum integral in d dimensions produces factors of Ω_d / (2π)^d, not Ω_d alone. The π² that appears in A₂ comes from Ω₄/(2π)⁴ = 2π²/(16π⁴) = 1/(8π²), or from related combinations after the Feynman parameter integration is performed. The direct statement "Ω₄ = 2π² produces π² in the coefficient" is schematic — the actual path from the loop integral to the π² in the final formula involves cancellations between the solid angle numerator and the (2π)⁴ denominator, with the surviving π² coming from the Feynman parameter integration rather than directly from Ω₄. This is consistent with the paper's own caveat in Section 3 about schematic attributions, but the Section 2 statement is more definitive than the caveat allows.
+
+**Erratum text:** "The statement in Section 2 that 'every π² in the A₂ formula originates from the integration measure of four-dimensional momentum space' is schematic. The loop integral measure d⁴k/(2π)⁴ contains both π² (from the solid angle Ω₄ = 2π²) and π⁴ (from the (2π)⁴ denominator). The π² that survives in the final A₂ formula emerges from the interplay between these factors and the Feynman parameter integration, not directly as Ω₄. The association of π² with '4D spacetime geometry' is correct at the level of dimensional analysis — π² enters because the calculation is in 4 dimensions — but the precise path from the integral measure to the coefficient involves intermediate cancellations."
+
+**E2: Appendix D, Table D.1 — Ω₄ value.** The appendix states "R₄ from Ω₄ = 2π² = 64R₄." Let me verify: Ω₄ = 2π² = 2 × 32R₄ = 64R₄. This is correct. No erratum needed.
+
+**E3: The script is cited as "a_2_decomposition_0.py" with 7/7 checks, but the supporting tables (Table 22.12) list 9/9 checks.** The supporting tables were written before the script was run and anticipated 9 checks (including Q335 verification as separate checks). The actual script runs 7 checks. The paper correctly states 7/7 from the actual script output. The supporting tables' 9/9 is from the pre-computed plan and should not be treated as authoritative — the script output is the source of truth.
+
+**Erratum text:** "The supporting tables prepared before the script was written anticipated 9/9 checks. The actual script (a_2_decomposition_0.py) runs 7 checks, all passing. The two 'missing' checks (Q335 basis verification at 30 digits, and A₂ matching the known value) are subsumed by checks 1 and 2 in the script (decomposition equals original form, and Fraction matches mpmath). The 7/7 from the script output is the authoritative verification count."
+
+### Annotations
+
+**A1: Section 4, the cancellation as "accidental."** The paper states the cancellation is "not required by any known symmetry, conservation law, or physical principle." This is the current state of knowledge. However, it is worth noting that large cancellations between different mathematical types in Feynman integrals are not uncommon — they are a generic feature of perturbative calculations in quantum field theory, especially at two loops and beyond. The A₂ cancellation (87%) is notable for its size but not unique in character. Whether a deeper structural principle (perhaps related to the coaction itself, or to analytic properties of the S-matrix) constrains these cancellations is an active research question in the amplitudes community. The paper's conservative stance — "accidental until proven otherwise" — is correct.
+
+**A2: Appendix F, A₅ precision.** The paper states "A₅ is known only numerically to limited precision." For the record: A₅ has been computed numerically by Aoyama, Kinoshita, and Nio, with the most recent published value from their systematic computation of all 12,672 five-loop diagrams. The numerical precision is approximately 1-2 significant digits in the overall coefficient. No analytic result exists for A₅. The paper's statement is correct.
+
+**A3: Section 7, the R₄ power counting "R₄^(n-1) at n loops."** This should be understood as the MAXIMUM power of R₄ at n loops, not the only power. At three loops, both R₄¹ and R₄² terms appear. At four loops, R₄¹, R₄², and R₄³ can all appear. The statement is about the highest power, which grows as n-1. Lower powers are also present. This is analogous to saying "an n-loop integral can produce up to ζ(2n-3)" — the maximum weight grows with loop order, but lower weights are also present.
+
+**Annotation text for A3:** "The R₄ power counting 'R₄^(n-1) at n loops' refers to the maximum power of R₄ (equivalently, the maximum power of π²) appearing at n-loop order. Lower powers are also present at each order. At three loops, both R₄¹ and R₄² terms appear. The counting reflects the maximum transcendental weight from the geometric sector, not the only contribution."
+
+---
+
 ## Appendix A: The Standard Formula and the R₄ Rewriting
 
 ### A.1: The Standard Analytic Result (Petermann 1957, Sommerfield 1957)
