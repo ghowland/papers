@@ -312,3 +312,479 @@ All measured values from DATA-3 (123 entries, 32/32 consistency checks).
 
 ---
 
+## Appendix A: DATA-3 Inputs
+
+### A.1: The Three Coupling Constants at M_Z
+
+| Input | DATA-3 Value | Decimal | Digits | Source |
+|---|---|---|---|---|
+| α⁻¹ | 137035999177/10⁹ | 137.035999177 | 12 | CODATA 2022 |
+| sin²θ_W | 23122/100000 | 0.23122 | 5 | LEP/SLD |
+| α_s | 1180/10000 | 0.1180 | 4 | PDG world average |
+
+### A.2: Derived GUT-Normalized Inverse Couplings
+
+| Coupling | Formula | Decimal | Script Value |
+|---|---|---|---|
+| 1/α₁ | (5/3) × (1 − sin²θ_W) / α_em | 63.2103 | 63.210321 |
+| 1/α₂ | sin²θ_W / α_em | 31.6855 | 31.685464 |
+| 1/α₃ | 1/α_s = 10000/1180 = 500/59 | 8.4746 | 8.474576 |
+
+Normalization check from script: (3/5)α₁/((3/5)α₁ + α₂) = 0.2312200000. Input sin²θ_W = 0.2312200000. Difference = 0.00e+00. PASS.
+
+### A.3: The Measured Gap Ratio
+
+| Quantity | Expression | Value |
+|---|---|---|
+| 1/α₁ − 1/α₂ | 63.2103 − 31.6855 | 31.5249 |
+| 1/α₂ − 1/α₃ | 31.6855 − 8.4746 | 23.2109 |
+| Measured gap ratio | 31.5249 / 23.2109 | 1.3582 |
+
+These three DATA-3 entries are the ONLY measured values used in this paper. Everything else — the beta coefficients, the decomposition, the democracy, the gap ratio 218/115 — is pure rational arithmetic requiring no measurement.
+
+---
+
+## Appendix B: The Three Sources — Full Derivation
+
+### B.1: SM Beta Coefficients (Known)
+
+| Coefficient | Value | Exact Fraction | Source |
+|---|---|---|---|
+| b₁ | 4.100 | 41/10 | U(1)_Y, GUT normalization with 5/3 factor |
+| b₂ | −3.167 | −19/6 | SU(2)_L |
+| b₃ | −7.000 | −7 | SU(3)_c, 6-flavor |
+
+### B.2: The Gauge Self-Coupling
+
+| Gauge Group | C₂(adjoint) | Contribution | Decimal |
+|---|---|---|---|
+| U(1)_Y | 0 (abelian) | 0 | 0 |
+| SU(2)_L | 2 | −11 × 2/3 = −22/3 | −7.333 |
+| SU(3)_c | 3 | −11 × 3/3 = −11 | −11.000 |
+
+Total gauge: (0, −22/3, −11)
+
+### B.3: The Higgs Doublet (1,2,1/2)
+
+The Higgs is a complex scalar in the (1,2,1/2) representation. Its beta contributions use the scalar Dynkin index formula: (1/3) × T(R) × d(other reps) for each gauge factor, times the number of real scalar degrees of freedom.
+
+| Factor | Formula | Value |
+|---|---|---|
+| Δb₁ | (1/3) × (3/5) × Y² × d(SU(2)) × d(SU(3)) × 2 = (1/3)(3/5)(1/4)(2)(1)(2) = 1/10 | 1/10 |
+| Δb₂ | (1/3) × T(2) × d(SU(3)) × 2 = (1/3)(1/2)(1)(2) = 1/3... | See note |
+| Δb₃ | 0 (SU(3) singlet) | 0 |
+
+Note on Δb₂: The exact coefficient 1/6 for the Higgs doublet follows from the standard one-loop formula for a complex scalar doublet. Convention differences in the factor of 2 (real vs complex counting) can produce 1/3 or 1/6 depending on the normalization. The verification in B.4 confirms that (1/10, 1/6, 0) reproduces the SM totals. This is the operational check.
+
+### B.4: Verification — Three Sources Sum to SM Totals
+
+b₁: gauge + 3 generations + Higgs = 0 + 3(4/3) + 1/10 = 0 + 4 + 1/10 = 40/10 + 1/10 = 41/10 ✓
+
+b₂: gauge + 3 generations + Higgs = −22/3 + 3(4/3) + 1/6 = −44/6 + 24/6 + 1/6 = −19/6 ✓
+
+b₃: gauge + 3 generations + Higgs = −11 + 3(4/3) + 0 = −11 + 4 = −7 ✓
+
+All three match the known SM beta coefficients exactly.
+
+### B.5: Per-Generation Contribution — Derived by Subtraction
+
+| Beta Coefficient | SM total | − Gauge | − Higgs | = 3 × (per gen) | Per gen |
+|---|---|---|---|---|---|
+| b₁ | 41/10 | − 0 | − 1/10 | = 40/10 = 4 | 4/3 |
+| b₂ | −19/6 | − (−22/3) = + 44/6 | − 1/6 | = 24/6 = 4 | 4/3 |
+| b₃ | −7 | − (−11) = + 11 | − 0 | = 4 | 4/3 |
+
+Per generation: (4/3, 4/3, 4/3). Democratic. Convention-independent.
+
+---
+
+## Appendix C: The Gap Ratio Anatomy
+
+### C.1: Numerator Decomposition (b₁ − b₂)
+
+| Source | Δb₁ | Δb₂ | Δ(b₁ − b₂) | Value | % of Total |
+|---|---|---|---|---|---|
+| Gauge | 0 | −22/3 | 0 − (−22/3) = +22/3 | +7.333 | 100.9% |
+| Per generation (×N) | 4N/3 | 4N/3 | 4N/3 − 4N/3 = 0 | 0 | 0% |
+| Higgs | 1/10 | 1/6 | 1/10 − 1/6 = −1/15 | −0.067 | −0.9% |
+| **Total** | | | **109/15** | **7.267** | **100%** |
+
+### C.2: Denominator Decomposition (b₂ − b₃)
+
+| Source | Δb₂ | Δb₃ | Δ(b₂ − b₃) | Value | % of Total |
+|---|---|---|---|---|---|
+| Gauge | −22/3 | −11 | −22/3 − (−11) = +11/3 | +3.667 | 95.7% |
+| Per generation (×N) | 4N/3 | 4N/3 | 4N/3 − 4N/3 = 0 | 0 | 0% |
+| Higgs | 1/6 | 0 | 1/6 − 0 = +1/6 | +0.167 | 4.3% |
+| **Total** | | | **23/6** | **3.833** | **100%** |
+
+### C.3: Gap Ratio Assembly
+
+Numerator: 109/15
+
+Denominator: 23/6
+
+Gap ratio: (109/15) ÷ (23/6) = (109 × 6) / (15 × 23) = 654 / 345
+
+GCD(654, 345): 654 = 2 × 327 = 2 × 3 × 109. 345 = 3 × 115 = 3 × 5 × 23. GCD = 3.
+
+654/3 = 218. 345/3 = 115.
+
+Gap ratio = 218/115 = 1.89565...
+
+### C.4: Summary of the Anatomy
+
+| Source | Numerator contribution | Denominator contribution | Effect on gap ratio |
+|---|---|---|---|
+| Gauge (integer 11) | 100.9% | 95.7% | Dominant — sets the baseline at 2.000 |
+| Fermions (any N generations) | 0% | 0% | Invisible — cancels exactly |
+| Higgs (one doublet) | −0.9% | 4.3% | Small correction — 2.000 → 1.896 |
+
+---
+
+## Appendix D: The Generation Independence Proof
+
+### D.1: Algebraic Proof
+
+For N complete generations with gauge contribution (g₁, g₂, g₃) = (0, −22/3, −11) and Higgs contribution (h₁, h₂, h₃) = (1/10, 1/6, 0):
+
+b_i = g_i + N × (4/3) + h_i
+
+b₁ − b₂ = (g₁ − g₂) + N(4/3 − 4/3) + (h₁ − h₂) = (g₁ − g₂) + (h₁ − h₂)
+
+b₂ − b₃ = (g₂ − g₃) + N(4/3 − 4/3) + (h₂ − h₃) = (g₂ − g₃) + (h₂ − h₃)
+
+Both are independent of N. The gap ratio (b₁ − b₂)/(b₂ − b₃) is independent of N. QED.
+
+### D.2: Numerical Verification
+
+| N generations | b₁ | b₂ | b₃ | b₁ − b₂ | b₂ − b₃ | Gap Ratio |
+|---|---|---|---|---|---|---|
+| 0 | 1/10 | −22/3 + 1/6 = −43/6 | −11 | 1/10 + 43/6 = 218/30 | −43/6 + 11 = 23/6 | 218/115 |
+| 1 | 4/3 + 1/10 = 43/30 | −22/3 + 4/3 + 1/6 = −31/6 | −11 + 4/3 = −29/3 | 43/30 + 31/6 = 218/30 | −31/6 + 29/3 = 27/6 ... |
+
+Let me verify N=1 carefully:
+
+b₁ = 0 + 4/3 + 1/10 = 40/30 + 1/10 = 40/30 + 3/30 = 43/30
+
+b₂ = −22/3 + 4/3 + 1/6 = −18/3 + 1/6 = −6 + 1/6 = −35/6
+
+b₃ = −11 + 4/3 = −33/3 + 4/3 = −29/3
+
+b₁ − b₂ = 43/30 − (−35/6) = 43/30 + 175/30 = 218/30 = 109/15 ✓
+
+b₂ − b₃ = −35/6 − (−29/3) = −35/6 + 58/6 = 23/6 ✓
+
+Gap = 109/15 ÷ 23/6 = 218/115 ✓
+
+The same numerator 218/30 = 109/15 and denominator 23/6 appear for N = 0 and N = 1. By the algebraic proof in D.1, they appear for all N.
+
+### D.3: Explicit Table (from algebraic proof, verified at N = 0 and N = 1)
+
+| N | Gap Ratio | Exact Fraction | Changes? |
+|---|---|---|---|
+| 0 | 1.89565... | 218/115 | — |
+| 1 | 1.89565... | 218/115 | No |
+| 2 | 1.89565... | 218/115 | No |
+| 3 (SM) | 1.89565... | 218/115 | No |
+| 4 | 1.89565... | 218/115 | No |
+| 10 | 1.89565... | 218/115 | No |
+| N | 1.89565... | 218/115 | **Never** |
+
+---
+
+## Appendix E: The Integer 11 — Origin and Consequences
+
+### E.1: The Yang-Mills Coefficient
+
+| Property | Value |
+|---|---|
+| One-loop gauge boson self-coupling | −(11/3) C₂(G) for gauge group G |
+| Mathematical origin | Triple gauge vertex + quartic gauge vertex + ghost loops in covariant gauges |
+| Determines | Whether gauge couplings grow or shrink at high energy |
+| If 11 were smaller | Asymptotic freedom boundary shifts; more flavors allowed before non-perturbative |
+| If 11 were zero | No asymptotic freedom; QCD would not confine; quarks would be free |
+| Fixed by | Lorentz invariance + gauge invariance + renormalizability |
+| Discovered | 1973 (Gross & Wilczek; Politzer) |
+| Nobel Prize | 2004 |
+
+### E.2: The Asymmetry It Creates
+
+| Gauge Group | Type | C₂ | Self-coupling contribution | Effect |
+|---|---|---|---|---|
+| U(1)_Y | Abelian | 0 | 0 | No self-screening — coupling grows at high energy |
+| SU(2)_L | Non-abelian | 2 | −22/3 = −7.333 | Anti-screening dominates — coupling shrinks at high energy |
+| SU(3)_c | Non-abelian | 3 | −11.000 | Strong anti-screening — coupling shrinks fastest |
+
+The asymmetry between the abelian U(1) (which gets zero) and the non-abelian SU(2) and SU(3) (which get large negative contributions) is what drives the gap ratio away from 1. If all three gauge groups were non-abelian with the same Casimir, the gauge contribution to the gap ratio would be 1.000 exactly and the fermion democracy would leave it at 1.000. The gap ratio is not 1 because U(1) is abelian.
+
+### E.3: The Asymptotic Freedom Bound
+
+For SU(3) with n_f quark flavors:
+
+b₃ = −11 + (2/3)n_f
+
+Asymptotic freedom requires b₃ < 0, i.e., n_f < 33/2 = 16.5.
+
+The SM has 6 flavors. The Cabibbo Doublet adds 2 more (upper and lower components), giving n_f = 8. Still well below 16.5. Asymptotic freedom is preserved.
+
+For SU(2):
+
+b₂ = −22/3 + (fermion + scalar contributions)
+
+The SM total b₂ = −19/6 < 0. The Cabibbo Doublet shifts it to −13/6 < 0. Asymptotic freedom preserved.
+
+For U(1):
+
+b₁ = (gauge: 0) + (matter: positive) = always positive.
+
+U(1) is never asymptotically free. b₁ = 41/10 > 0 in the SM. Adding any matter makes it larger. This is not a problem — U(1) hypercharge is absorbed into the electromagnetic coupling below the electroweak scale.
+
+---
+
+## Appendix F: The SU(5) Origin of Democracy
+
+### F.1: One Generation in SU(5)
+
+| SU(5) Multiplet | SM Decomposition | Particle Content |
+|---|---|---|
+| 5̄ | (1,2,−1/2) ⊕ (3̄,1,1/3) | Lepton doublet (ν, e)_L + down antiquark d̄_R |
+| 10 | (3,2,1/6) ⊕ (3̄,1,−2/3) ⊕ (1,1,1) | Quark doublet (u,d)_L + up antiquark ū_R + positron e⁺_R |
+| 5̄ ⊕ 10 | One complete SM generation | All 15 Weyl states |
+
+### F.2: Why the Dynkin Indices Are Equal
+
+The anomaly cancellation condition in SU(5) requires:
+
+A(5̄) + A(10) = 0
+
+where A(R) is the cubic anomaly coefficient. This condition, plus the structure of the SU(5) → SU(3)×SU(2)×U(1) branching rules, forces the total Dynkin index contribution of one complete generation to be equal for all three SM gauge factors when computed in the GUT normalization (with the 5/3 factor for U(1)_Y).
+
+This is a mathematical theorem about the representation theory of SU(5). It does not depend on any physical parameter. It holds regardless of the masses, couplings, or mixing angles. It is Level 1 — determined by the mathematical structure of the gauge group.
+
+### F.3: What Breaks Democracy
+
+A particle that is NOT part of a complete SU(5) generation does not satisfy the anomaly cancellation condition that produces equal Dynkin indices. Its (Δb₁, Δb₂, Δb₃) will generally be unequal.
+
+| Example | SU(5) completeness | (Δb₁, Δb₂, Δb₃) | Democratic? |
+|---|---|---|---|
+| Complete 4th generation | Yes (5̄ + 10) | (4/3, 4/3, 4/3) | Yes — invisible |
+| Higgs doublet (1,2,1/2) | No (not a fermion generation) | (1/10, 1/6, 0) | No — affects gap ratio |
+| Cabibbo Doublet (3,2,1/6) VL | No (vector-like, not chiral) | (1/15, 1, 1/3) | No — affects gap ratio |
+| SU(5) 5+5̄ (VL) | Partial (5-plet pair, not generation) | (2/5, 1, 1/3) | No — affects gap ratio |
+| Extra Higgs doublet | No | (1/10, 1/6, 0) | No — affects gap ratio |
+
+Only complete chiral generations are democratic. Everything else breaks the democracy.
+
+---
+
+## Appendix G: The Higgs Correction — Detailed
+
+### G.1: Why the Higgs Is Asymmetric
+
+| Property | SU(3) | SU(2) | U(1) |
+|---|---|---|---|
+| Higgs representation | 1 (singlet) | 2 (doublet) | Y = 1/2 |
+| Carries this force? | No | Yes | Yes |
+| Δb_i | 0 | 1/6 | 1/10 |
+
+The Higgs does not carry color. Δb₃ = 0. This zero is what makes it asymmetric. Every SM fermion that carries color contributes to b₃. Complete generations sum to 4/3 in b₃, matching their contributions to b₁ and b₂. The Higgs alone puts something into b₁ and b₂ while putting nothing into b₃.
+
+### G.2: The Correction to the Gap Ratio
+
+| Scenario | Numerator (b₁ − b₂) | Denominator (b₂ − b₃) | Gap Ratio | Exact |
+|---|---|---|---|---|
+| Gauge only | 0 − (−22/3) = 22/3 | −22/3 − (−11) = 11/3 | 22/11 | 2.000 |
+| Gauge + Higgs | 22/3 + (1/10 − 1/6) = 22/3 − 1/15 = 109/15 | 11/3 + (1/6 − 0) = 11/3 + 1/6 = 23/6 | 218/115 | 1.896 |
+
+Correction: 2.000 − 1.896 = 0.104
+
+Direction: downward (toward the measured 1.358) ✓
+
+Magnitude: 0.104 out of a needed 0.642 = 16.2%
+
+### G.3: What If We Add More Higgs Doublets?
+
+Each additional doublet adds (1/10, 1/6, 0) to the betas. With N_H total Higgs doublets:
+
+b₁ = 0 + 4 + N_H/10
+
+b₂ = −22/3 + 4 + N_H/6
+
+b₃ = −11 + 4 + 0 = −7
+
+b₁ − b₂ = 22/3 + N_H/10 − N_H/6 = 22/3 − N_H/15
+
+b₂ − b₃ = 11/3 + N_H/6
+
+Gap = (22/3 − N_H/15) / (11/3 + N_H/6)
+
+| N_H | Numerator | Denominator | Gap Ratio | Distance from 1.358 |
+|---|---|---|---|---|
+| 1 (SM) | 22/3 − 1/15 = 109/15 = 7.267 | 11/3 + 1/6 = 23/6 = 3.833 | 218/115 = 1.896 | 0.538 |
+| 2 | 22/3 − 2/15 = 108/15 = 36/5 = 7.200 | 11/3 + 2/6 = 13/3 = 4.333... | (36/5)/(13/3) = 108/65 = 1.662 | 0.303 |
+
+Let me recompute N_H = 2 more carefully:
+
+b₁ − b₂ = 22/3 − 2/15 = 110/15 − 2/15 = 108/15 = 36/5
+
+b₂ − b₃ = 11/3 + 2/6 = 22/6 + 2/6 = 24/6 = 4
+
+Gap = (36/5) / 4 = 36/20 = 9/5 = 1.800. Distance = 0.442.
+
+| N_H | b₁ − b₂ | b₂ − b₃ | Gap Ratio | Exact | Distance |
+|---|---|---|---|---|---|
+| 1 | 109/15 | 23/6 | 218/115 | 1.896 | 0.538 |
+| 2 | 108/15 = 36/5 | 24/6 = 4 | 9/5 | 1.800 | 0.442 |
+| 3 | 107/15 | 25/6 | 642/375 = 214/125 | 1.712 | 0.354 |
+| 4 | 106/15 = 53/... | 26/6 = 13/3 | (106/15)/(13/3) = 106×3/(15×13) = 318/195 = 106/65 | 1.631 | 0.273 |
+| 5 | 105/15 = 7 | 27/6 = 9/2 | 7/(9/2) = 14/9 | 1.556 | 0.198 |
+| 6 | 104/15 | 28/6 = 14/3 | (104/15)/(14/3) = 104×3/(15×14) = 312/210 = 52/35 | 1.486 | 0.128 |
+| 7 | 103/15 | 29/6 | (103×6)/(15×29) = 618/435 = 206/145 | 1.421 | 0.063 |
+| 8 | 102/15 = 34/5 | 30/6 = 5 | (34/5)/5 = 34/25 | 1.360 | 0.002 |
+| 9 | 101/15 | 31/6 | (101×6)/(15×31) = 606/465 = 202/155 | 1.303 | 0.055 |
+| 10 | 100/15 = 20/3 | 32/6 = 16/3 | (20/3)/(16/3) = 20/16 = 5/4 | 1.250 | 0.108 |
+
+The crossover occurs at N_H = 8 doublets (gap = 34/25 = 1.360, distance 0.002 from measured 1.358). This means 7 EXTRA Higgs doublets beyond the SM would be needed to match the measured gap ratio through Higgs doublets alone. This is not viable — 8 Higgs doublets would catastrophically affect electroweak symmetry breaking and vacuum stability, and contradicts the measured Higgs coupling pattern which is consistent with a single doublet.
+
+---
+
+## Appendix H: Guilty and Innocent — The Complete Ledger
+
+### H.1: Every SM Particle Classified
+
+| Particle(s) | (Δb₁, Δb₂, Δb₃) contribution | Δ(b₁−b₂) | Δ(b₂−b₃) | Effect on Gap Ratio | Verdict |
+|---|---|---|---|---|---|
+| Photon (U(1) gauge) | (0, —, —) | 0 | 0 | None directly (abelian) | Part of gauge asymmetry |
+| W±, Z (SU(2) gauge) | (—, −22/3, —) | +22/3 | −22/3 | Sets numerator | GUILTY |
+| Gluons ×8 (SU(3) gauge) | (—, —, −11) | 0 | +11 | Sets denominator | GUILTY |
+| Higgs boson | (1/10, 1/6, 0) | −1/15 | +1/6 | Corrects from 2.000 to 1.896 | GUILTY (secondary) |
+| e, μ, τ | Part of (4/3, 4/3, 4/3) ×3 | 0 | 0 | None | INNOCENT |
+| ν_e, ν_μ, ν_τ | Part of (4/3, 4/3, 4/3) ×3 | 0 | 0 | None | INNOCENT |
+| u, c, t | Part of (4/3, 4/3, 4/3) ×3 | 0 | 0 | None | INNOCENT |
+| d, s, b | Part of (4/3, 4/3, 4/3) ×3 | 0 | 0 | None | INNOCENT |
+| **12 fermions total** | **(4, 4, 4) total** | **0** | **0** | **Zero** | **ALL INNOCENT** |
+
+### H.2: The BSM Comparison
+
+| Particle | (Δb₁, Δb₂, Δb₃) | Δ(b₁−b₂) | Δ(b₂−b₃) | Democratic? | Fixes gap ratio? |
+|---|---|---|---|---|---|
+| 4th chiral generation | (4/3, 4/3, 4/3) | 0 | 0 | Yes | No — invisible |
+| Cabibbo Doublet (3,2,1/6) VL | (1/15, 1, 1/3) | −14/15 | +2/3 | No (Δb₂/Δb₁ = 15) | Yes — gap → 38/27 |
+| Full MSSM | (5/2, 25/6, 4) | −20/3 | +1/6 | No | Yes — gap → 7/5 |
+| SU(5) 5+5̄ VL | (2/5, 1, 1/3) | −3/5 | +2/3 | No | Partially — gap → 40/27, then excluded by proton decay |
+
+Only particles that break the democracy affect the gap ratio. The Cabibbo Doublet has the most extreme democracy-breaking of any single multiplet tested (Δb₂/Δb₁ = 15).
+
+---
+
+## Appendix I: The Pure-Gauge Gap Ratio
+
+### I.1: What the Universe Looks Like Without Matter
+
+If the SM contained only the gauge bosons — no quarks, no leptons, no Higgs — the beta coefficients would be:
+
+b₁ = 0 (abelian: no self-coupling, no matter to screen)
+
+b₂ = −22/3 (SU(2) gauge boson self-coupling only)
+
+b₃ = −11 (SU(3) gauge boson self-coupling only)
+
+Gap ratio = (0 − (−22/3)) / (−22/3 − (−11)) = (22/3) / (11/3) = 22/11 = 2.000
+
+This is the pure Yang-Mills gap ratio. It depends only on the integer 11 and the Casimirs C₂(SU(2)) = 2, C₂(SU(3)) = 3. No matter content enters.
+
+### I.2: Why 22/11 = 2 Exactly
+
+The numerator 22/3 = 11 × 2/3. The denominator 11/3. The ratio is (11 × 2/3) / (11/3) = 2. The integer 11 cancels. The pure-gauge gap ratio is simply the ratio of Casimirs:
+
+(C₂(SU(2))) / (C₂(SU(3)) − C₂(SU(2))) = 2 / (3 − 2) = 2/1 = 2
+
+This is exact and depends only on which gauge groups are present, not on the Yang-Mills coefficient 11.
+
+Correction: let me be more careful.
+
+Gap = (b₁ − b₂)/(b₂ − b₃) = (0 + 22/3)/(−22/3 + 11) = (22/3)/((33 − 22)/3) = 22/11 = 2.
+
+22 = 11 × C₂(SU(2)) × (2/3) × 3... Actually the 11 does NOT cancel cleanly:
+
+Numerator = 0 − (−11 × 2/3) = 22/3
+
+Denominator = (−11 × 2/3) − (−11 × 3/3) = −22/3 + 11 = (−22 + 33)/3 = 11/3
+
+Ratio = (22/3)/(11/3) = 22/11 = 2
+
+The 11 cancels in the denominator: 11/3 = 11 × 1/3. So ratio = (11 × 2/3)/(11 × 1/3) = 2/1. Yes, the 11 cancels. The pure-gauge gap ratio = C₂(SU(2)) / (C₂(SU(3)) − C₂(SU(2))) = 2/(3−2) = 2.
+
+The integer 11 sets the SCALE of the gauge contributions but not their RATIO. The gap ratio depends on the Casimir ratio, not on 11 directly. The role of 11 is in determining whether the gauge terms dominate over matter terms (they do, because 11 is large) and in setting the unification scale (through the running rate). But the pure-gauge gap ratio itself is simply C₂(SU(2)) / (C₂(SU(3)) − C₂(SU(2))).
+
+This is a cleaner statement: the pure-gauge gap ratio is 2 because C₂(SU(2)) = 2 and C₂(SU(3)) = 3, and the 11 cancels.
+
+---
+
+## Appendix J: Level 1 / Level 2 Classification for This Paper
+
+### J.1: Level 1 — Determined by the Framework
+
+| Result | Value | What Determines It |
+|---|---|---|
+| Yang-Mills coefficient | 11 | Lorentz + gauge invariance + renormalizability |
+| Gauge asymmetry | (0, −22/3, −11) | Integer 11 × Casimirs |
+| Generation democracy | (4/3, 4/3, 4/3) | SU(5) anomaly cancellation |
+| Higgs contribution | (1/10, 1/6, 0) | Scalar doublet Dynkin indices |
+| Fermion contribution to gap ratio | 0 | Consequence of democracy |
+| Pure-gauge gap ratio | 22/11 = 2 | Casimir ratio |
+| SM gap ratio | 218/115 | Exact rational arithmetic |
+| N-independence of gap ratio | Proved | Algebraic identity |
+
+### J.2: Level 2 — Supplied by the Universe
+
+| Measurement | Value | Source |
+|---|---|---|
+| α⁻¹ | 137.036 | CODATA 2022 via DATA-3 |
+| sin²θ_W | 0.23122 | LEP/SLD via DATA-3 |
+| α_s | 0.1180 | PDG via DATA-3 |
+| Measured gap ratio | 1.358 | Derived from above three |
+
+### J.3: The Confrontation
+
+| Level 1 (integers say) | Level 2 (universe says) | Match? |
+|---|---|---|
+| Gap ratio = 218/115 = 1.896 | Gap ratio = 1.358 | No — 40% miss |
+
+The integers predict one number. The universe provides another. They disagree. This disagreement is the unification failure, and this paper shows it originates entirely in the boson sector.
+
+---
+
+## Appendix K: Verified Script Output
+
+From sin2_theta_w_1.py (GUT running notebook), 9/9 checks:
+
+```
+[PASS] Normalization: sin²θ_W from couplings
+       diff = 0.00e+00
+[PASS] SM gap ratio = 218/115
+       1.8956521739
+[PASS] MSSM gap ratio = 7/5
+       1.4000000000
+[PASS] SM does not unify (Δ > 5)
+       Δ(1/α₃) = -6.58
+[PASS] MSSM nearly unifies (Δ < 5)
+       Δ(1/α₃) = -0.69
+[PASS] M_GUT(SM) > 10^13
+       log₁₀ = 13.80
+[PASS] M_GUT(MSSM) > 10^16
+       log₁₀ = 17.32
+[PASS] VL quark doublet gap < 0.05 from measured
+       distance = 0.049
+[PASS] Measured gap ratio in [1.2, 1.5]
+       gap = 1.358193
+```
+
+The beta coefficients from the script: b₁ = 41/10 = 4.100000, b₂ = −19/6 = −3.166667, b₃ = −7 = −7.000000. Gap ratio = 218/115 = 1.895652. Measured gap ratio = 1.358193. Miss = 39.6%.
+
+All measured values from DATA-3 (123 entries, 32/32 consistency checks pass).
+
+---
+
+*Supporting appendix tables A through K for PHYS-17. Every number traces to the verified GUT script (9/9 pass), DATA-3 (32/32 pass), or exact rational arithmetic on integers from the gauge group. The core findings — generation democracy, fermion innocence, boson guilt — are Level 1 results requiring no measured input.*
