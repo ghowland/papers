@@ -330,6 +330,34 @@ The identification is not a model choice. It is the result of comparing exact ra
 
 ---
 
+## Errata
+
+**E1: Section 2, per-generation fermion contribution.** The paper states "each complete generation contributes Δb₁ = Δb₂ = Δb₃ = 4/3 — equal contributions to all three, a consequence of SU(5) anomaly cancellation." This is wrong for b₁. A complete generation contributes Δb₁ = 2/5 × (sum of Y² × dim(R₃) × dim(R₂) × 2/3 over all Weyl fermions in the generation). This does NOT equal 4/3. The verification line "0 + 3(4/3) + 1/10 = 41/10" gives 4 + 1/10 = 41/10, which works numerically. But 3 × 4/3 = 4 for b₁ would require each generation to contribute 4/3 to b₁. Let me check: b₁ = 0 (gauge) + 3 × (per gen) + 1/10 (Higgs) = 41/10. So per gen = (41/10 − 1/10)/3 = 40/30 = 4/3. Similarly b₂ = −22/3 + 3 × (per gen) + 1/6 = −19/6. So per gen = (−19/6 − 1/6 + 22/3)/3 = (−20/6 + 44/6)/3 = (24/6)/3 = 4/3. And b₃ = −11 + 3 × (per gen) = −7. So per gen = 4/3.
+
+Actually it IS correct — each complete generation contributes exactly 4/3 to ALL THREE beta coefficients. This is indeed a consequence of the anomaly cancellation condition in SU(5): a complete generation forms a 5̄ + 10 of SU(5), and the equal contribution to all three betas is what makes the generation "invisible" to the gap ratio (it shifts both numerator and denominator by the same relative amount). This is a known result. No erratum needed — I was wrong to question it.
+
+**E2: Section 3, the gap ratio numerical value.** The paper writes 218/115 = 1.8957 in Section 3 but 1.896 elsewhere (abstract, Section 6). Use one consistent decimal approximation throughout. The exact rational 218/115 = 1.895652... so 1.896 rounded to 3 decimal places. Use 1.896 everywhere or 1.8957 everywhere.
+
+**Erratum text:** "Section 3 states 218/115 = 1.8957. All other sections use 1.896. The exact value is 1.895652... The consistent rounded form 1.896 (three decimal places) should be used throughout."
+
+**E3: Section 5, candidate #11 gap ratio.** The table shows candidate #11 (Scalar color triplet, (3,1,−1/3)) with gap ratio 2.000. Let me verify: Δb₁ = 1/15, Δb₂ = 0, Δb₃ = 1/6. Modified: b₁ + 1/15 = 41/10 + 1/15 = 123/30 + 2/30 = 125/30 = 25/6. b₂ + 0 = −19/6. b₃ + 1/6 = −7 + 1/6 = −41/6. Numerator: 25/6 + 19/6 = 44/6 = 22/3. Denominator: −19/6 + 41/6 = 22/6 = 11/3. Gap: (22/3)/(11/3) = 2. Confirmed, 2.000 is exact. No erratum.
+
+Also check candidate #12 (VL charged singlet, (1,1,−1)), gap = 2.000: Δb₁ = 2/5, Δb₂ = 0, Δb₃ = 0. b₁ + 2/5 = 41/10 + 4/10 = 45/10 = 9/2. b₂ = −19/6. b₃ = −7. Numerator: 9/2 + 19/6 = 27/6 + 19/6 = 46/6 = 23/3. Denominator: −19/6 + 7 = 23/6. Gap: (23/3)/(23/6) = 6/3 = 2. Confirmed. No erratum.
+
+**E4: The last paragraph (after Section 15) mentions "the sin²θ_W circularity bug."** This is internal development history that doesn't belong in a published paper. A reader doesn't need to know about a bug in a script they haven't seen. Remove or reword to: "The gap ratio formulation is adopted because it tests the overconstrained system directly as a comparison of exact rationals, without dependence on the input sin²θ_W."
+
+**Erratum text:** "The final paragraph references an internal scripting issue. Replace the sentence about the 'sin²θ_W circularity bug' with: 'The gap ratio formulation tests the overconstrained system directly as a comparison of exact rationals to a measured coupling ratio, independent of the input sin²θ_W.'"
+
+## Annotations
+
+**A1: Section 2, the integer 11.** The paper says b₂^gauge = −22/3 comes from "the universal integer 11 times the Casimir C₂(SU(2)) = 2 divided by 3." This could be clearer. The one-loop gauge beta function is b^gauge = −11C₂(G)/3 for any simple gauge group G. The 11 is universal — it appears in every non-abelian gauge theory. It comes from the combinatorics of the Yang-Mills triple and quartic vertices in dimensional regularization. For SU(2): C₂ = 2, giving −22/3. For SU(3): C₂ = 3, giving −33/3 = −11. The 11 is arguably the most important integer in quantum field theory — it determines asymptotic freedom.
+
+**A2: Section 7, the Δb₂/Δb₁ = 15 ratio.** This asymmetry ratio deserves a physical explanation. The VL quark doublet is a COLOR TRIPLET (contributes to b₃) and a WEAK DOUBLET (contributes strongly to b₂) but has small hypercharge Y = 1/6 (contributes weakly to b₁, since Δb₁ ∝ Y²). The small hypercharge is what creates the asymmetry. Among all candidates with color (dim(R₃) ≥ 3) and weak charge (dim(R₂) ≥ 2), the (3,2,1/6) has the SMALLEST hypercharge, hence the largest Δb₂/Δb₁ ratio. This is not a coincidence — it's the mathematical reason the left-handed quark doublet quantum numbers are special for unification.
+
+**A3: Section 9, MSSM gap ratio simplification.** The paper notes that 7/5 is "strikingly simpler" than 218/115. Worth adding: the SM gap ratio 218/115 has digit sum 218+115 = 333. The MSSM gap ratio 7/5 has digit sum 12. The VL doublet's 38/27 has digit sum 65. The algebraic complexity (as measured by the size of the numerator and denominator) decreases from SM → VL doublet → MSSM. This correlates with how close each is to unification. Not a deep result but a visible pattern.
+
+---
+
 ## Appendix A: DATA-3 Inputs
 
 ### A.1: The Three Measured Couplings
