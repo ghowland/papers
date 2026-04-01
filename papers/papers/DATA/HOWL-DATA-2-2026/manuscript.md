@@ -346,6 +346,72 @@ The next step is computation: the overconstrained electroweak system, where the 
 
 ---
 
+# HOWL-DATA-2 Addendum: Koide Sector Amplitudes
+
+**Computed from DATA-2 masses using the Koide parametrization √m_k = M(1 + a cos(θ₀ + 2πk/3))**
+
+---
+
+## Derived Quantities
+
+The three-parameter fit (M, a, θ₀) to three masses is a bijection — it always succeeds for any three positive masses. The 120° spacing is a coordinate choice (tautology of the parametrization), not a physical constraint. The sum cos(φ₁) + cos(φ₂) + cos(φ₃) = 0 is the trigonometric identity for 120°-spaced arguments, verified to machine precision in all three sectors. The physical content of the Koide formula lives entirely in the amplitude a, not in the spacing.
+
+| ID | Quantity | Value | Precision | Source Masses |
+|---|---|---|---|---|
+| K1 | K(e,μ,τ) Koide ratio | 0.6666605115 | 6 sf (limited by m_τ) | m_e(11), m_μ(10), m_τ(6) |
+| K2 | K(u,c,t) Koide ratio | 0.8487935476 | 3 sf (limited by m_u) | m_u(3), m_c(4), m_t(5) |
+| K3 | K(d,s,b) Koide ratio | 0.7312875768 | 3 sf (limited by m_d) | m_d(3), m_s(3), m_b(4) |
+| K4 | a(leptons) amplitude | 1.4142005052 | 6 sf | from K1 |
+| K5 | a(up quarks) amplitude | 1.7586248279 | 3 sf | from K2 |
+| K6 | a(down quarks) amplitude | 1.5452266698 | 3 sf | from K3 |
+| K7 | a²(leptons) | 1.9999630688 | 6 sf | from K4 |
+| K8 | a²(up quarks) | 3.0927612855 | 3 sf | from K5 |
+| K9 | a²(down quarks) | 2.3877254610 | 3 sf | from K6 |
+| K10 | a(leptons) − √2 | −1.306 × 10⁻⁵ | limited by m_τ | deviation from critical |
+| K11 | θ₀(leptons) | 0.22223 rad (12.73°) | 5 sf | phase offset |
+| K12 | θ₀(up quarks) | 0.07452 rad (4.27°) | 3 sf | phase offset |
+| K13 | θ₀(down quarks) | 0.11012 rad (6.31°) | 3 sf | phase offset |
+| K14 | M(leptons) | 17.716 √MeV | 6 sf | scale parameter |
+| K15 | M(up quarks) | 150.855 √MeV | 3 sf | scale parameter |
+| K16 | M(down quarks) | 25.505 √MeV | 3 sf | scale parameter |
+
+## Confirmed Orderings
+
+| Ordering | Values | Status |
+|---|---|---|
+| K_lep < K_down < K_up | 0.667 < 0.731 < 0.849 | **Confirmed** |
+| a_lep < a_down < a_up | 1.414 < 1.545 < 1.759 | **Confirmed** |
+| a²_lep < a²_down < a²_up | 2.000 < 2.388 < 3.093 | **Confirmed** |
+| K_lep < 2/3 | 0.66666 < 0.66667 | **Confirmed** (by 6.2 × 10⁻⁶) |
+| K_quarks > 2/3 | both sectors | **Confirmed** |
+
+## Structural Finding: K = 2/3 Is a Saddle Point
+
+Under phase perturbation φ_k = 2πk/3 + εδ_k at a = √2:
+
+| Perturbation δ | Σδ | d²K/dε² | K = 2/3 is |
+|---|---|---|---|
+| (1, −1, 0) | 0 | +0.471 | local minimum |
+| (1, 0, −1) | 0 | +0.471 | local minimum |
+| (0, 1, −1) | 0 | +2.276 | local minimum |
+| (2, −1, −1) | 0 | −0.391 | local MAXIMUM |
+
+K = 2/3 is a saddle point in phase-perturbation space. The direction of quark deviation from 2/3 is not predicted by the C₃ framework — it depends on the perturbation direction. The observation that both quark sectors have K > 2/3 is data, not a prediction.
+
+## What This Closes
+
+The C₃ frustrated potential path (proposed as PHYS-12) is closed by Phase 1 results. The 120° spacing is a tautology of the three-parameter Koide fit, not a physical constraint derivable from a potential. The amplitude a = √2 for charged leptons remains the sole content of the Koide formula and remains underived. All equivalent reformulations (midpoint of [0,4], CV = 1, critical amplitude, Var = Mean², simplex midpoint in a²) are restatements, not derivations. The conditional status of the Koide parameter reduction (18 → 17) from PHYS-8 is unchanged.
+
+## What This Opens
+
+The amplitude ordering a_lep < a_down < a_up correlates with the mass hierarchy extremity but anti-correlates with the mass ratio spread: up quarks have the most extreme hierarchy (m_t/m_u = 79,894) AND the largest amplitude. Down quarks are intermediate on both. Leptons have moderate hierarchy (m_τ/m_e = 3,477) at the critical amplitude. Any future theory of the Koide amplitude must explain this ordering.
+
+---
+
+*16 new derived entries (K1–K16) added to DATA-2. Total entries: 123.*
+
+---
+
 ========================================================================
 SECTION A: SI FUNDAMENTAL CONSTANTS (exact by definition)
 ========================================================================
