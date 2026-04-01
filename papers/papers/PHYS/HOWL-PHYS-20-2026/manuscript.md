@@ -1,5 +1,6 @@
 # The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5
-## M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. One experiment, one decade, one answer.
+## M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. 
+### One experiment, one decade, one answer.
 
 **Registry:** [@HOWL-PHYS-20-2026]
 
