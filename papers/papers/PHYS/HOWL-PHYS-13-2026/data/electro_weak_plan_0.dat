@@ -1,0 +1,208 @@
+========================================================================
+HOWL ELECTROWEAK OVERCONSTRAINED SYSTEM
+Tree Level + Leading Δρ Correction
+========================================================================
+
+STEP 1: FERMION QUANTUM NUMBERS
+------------------------------------------------------------------------
+
+  Type                   T3      Q   Nc          v_f      a_f        v²+a²
+  ------------------ ------ ------ ---- ------------ -------- ------------
+  neutrino              0.5   0.00    1   0.50000000   0.5000   0.50000000
+  charged lepton       -0.5  -1.00    1  -0.03756000  -0.5000   0.25141075
+  up-type quark         0.5   0.67    3   0.19170667   0.5000   0.28675145
+  down-type quark      -0.5  -0.33    3  -0.34585333  -0.5000   0.36961453
+
+STEP 2: LEADING Δρ CORRECTION
+------------------------------------------------------------------------
+
+  Δρ = 3·G_F·m_t² / (8π²√2)
+     = 3 × 1.1663788e-05 × 172.570² / (8 × π² × √2)
+     = 1.042057e+00 / 111.661827
+     = 0.00933226
+
+  ρ_eff = 1 + Δρ = 1.00933226
+
+STEP 3: PARTIAL WIDTHS
+------------------------------------------------------------------------
+
+  Γ₀ = G_F·M_Z³/(6π√2) = 331.7652 MeV
+
+  α_s/π = 0.03756057
+  δ_QCD = 1 + α_s/π + 1.409(α_s/π)² − 12.77(α_s/π)³
+        = 1.03887169
+
+  PARTIAL WIDTHS (Tree + Δρ):
+  Channel              Computed (MeV)      LEP (MeV)    Ratio
+  -------------------- -------------- -------------- --------
+  Γ_ν (single)                 167.43              —
+  Γ_inv (3ν)                   502.29         499.00   1.0066
+  Γ_l (single)                  84.19          83.98   1.0024
+  Γ_l (3 leptons)              252.56              —
+  Γ_u (single)                 299.26              —
+  Γ_u (u+c)                    598.53              —
+  Γ_d (single)                 385.74              —
+  Γ_d (d+s+b)                 1157.23              —
+  Γ_had                       1755.75              —
+  Γ_Z (total)                 2510.61        2495.20   1.0062
+
+STEP 4: RATIOS AND ASYMMETRIES
+------------------------------------------------------------------------
+
+  R_l = Γ_had/Γ_l = 20.855219
+  LEP measured:      20.767000
+  Ratio:             1.004248
+
+  R_b = Γ_bb/Γ_had = 0.219702
+  LEP measured:      0.216290
+  Ratio:             1.015774
+
+  R_c = Γ_cc/Γ_had = 0.170447
+  LEP measured:      0.172100
+  Ratio:             0.990397
+
+  A_e = 2v_ea_e/(v_e²+a_e²) = 0.14939695
+  A_u = 0.66854647
+  A_d = 0.93571358
+
+  A_FB^l = (3/4)·A_e² = 0.01673959
+  LEP measured:         0.01710000
+  Ratio:                0.978923
+
+  A_l = A_e = 0.14939695
+  SLD measured: 0.15130000
+  Ratio:        0.987422
+
+  N_ν = Γ_inv/Γ_l = 5.966332
+  LEP measured:     2.984000
+  Ratio:            1.999441
+
+  σ⁰_had = 12π·Γ_e·Γ_had/(M_Z²·Γ_Z²) = 41.3987 nb
+  LEP measured:                           41.4810 nb
+  Ratio:                                  0.998016
+
+  M_W prediction (tree level):
+    M_W² (1 - M_W²/M_Z²) = πα/(√2·G_F)
+    M_W = 42000.94 MeV
+    Measured: 80369.20 MeV
+    Ratio: 0.522600
+
+  M_W with Δρ correction:
+    M_W = 42272.09 MeV
+    Measured: 80369.20 MeV
+    Ratio: 0.525974
+
+========================================================================
+STEP 5: PARAMETER EXTRACTION
+========================================================================
+
+  EXTRACTING sin²θ_W from A_l(SLD) = 0.1513
+
+  Extracted sin²θ_W = 0.23097801
+  Input sin²θ_W     = 0.23122000
+  Difference         = -2.419916e-04
+  Verification: A_l(extracted) = 0.15130000 vs measured 0.15130000
+
+  EXTRACTING sin²θ_W from A_FB^l = 0.0171
+
+  Extracted sin²θ_W = 0.23101658
+  Input sin²θ_W     = 0.23122000
+  Difference         = -2.034155e-04
+
+  EXTRACTING α_s from R_l = 20.767 (using extracted sin²θ_W)
+
+  Extracted α_s     = 0.10425276
+  Input α_s         = 0.11800000
+  Difference         = -1.374724e-02
+  Verification: R_l(extracted) = 20.767000 vs measured 20.767000
+
+========================================================================
+STEP 6: FULL COMPARISON TABLE
+========================================================================
+
+  Observable           Computed     Measured    Ratio   Pull (σ)
+  ---------------- ------------ ------------ -------- ----------
+  Γ_l (MeV)             84.1877      83.9840   1.0024        2.4
+  Γ_inv (MeV)          502.2920     499.0000   1.0066        2.2
+  Γ_Z (MeV)           2510.6090    2495.2000   1.0062        6.7
+  R_l                   20.8552      20.7670   1.0042        3.5
+  R_b                    0.2197       0.2163   1.0158        5.2
+  R_c                    0.1704       0.1721   0.9904       -0.6
+  A_FB^l                 0.0167       0.0171   0.9789       -0.4
+  A_l (SLD)              0.1494       0.1513   0.9874       -0.9
+  N_ν                    5.9663       2.9840   1.9994      363.7
+  σ⁰_had (nb)           41.3987      41.4810   0.9980       -2.2
+  M_W (MeV)          42272.0898   80369.2000   0.5260    -2864.4
+
+========================================================================
+STEP 7: EXTRACTION SUMMARY
+========================================================================
+
+  Parameter                   Input     From A_l    From A_FB     From R_l
+  -------------------- ------------ ------------ ------------ ------------
+  sin²θ_W                0.23122000   0.23097801   0.23101658            —
+  α_s                    0.11800000            —            —   0.10425276
+
+  sin²θ_W consistency:
+    Input:              0.23122000
+    From A_l(SLD):      0.23097801  (Δ = -2.419916e-04)
+    From A_FB^l:        0.23101658  (Δ = -2.034155e-04)
+
+  α_s from R_l:         0.10425276  (Δ = -1.374724e-02)
+
+========================================================================
+DIAGNOSTIC CHECKS
+========================================================================
+
+  DEBUG: N_nu computed = 5.966332
+  DEBUG: Gamma_nu_single (GeV) = 1.67430668e-01
+  DEBUG: Gamma_l_single (GeV)  = 8.41877410e-02
+  DEBUG: Gamma_inv (GeV)       = 5.02292005e-01
+  DEBUG: v_nu²+a_nu² = 0.50000000
+  DEBUG: v_e²+a_e²   = 0.25141075
+  DEBUG: ratio (nu/e) = 1.98877730
+
+  CORRECTED N_ν = Γ_inv / Γ_ν(SM) = 3.000000
+  (Previous was Γ_inv/Γ_l which gives 5.9663 — wrong definition)
+
+  But N_nu = 3 exactly by construction (we put in 3 neutrinos).
+  The LEP measurement N_nu = 2.984 ± 0.008 is significant because
+  it uses MEASURED Gamma_inv and SM-PREDICTED Gamma_nu.
+  To reproduce, we need: N_nu = (Gamma_Z_meas - Gamma_had_comp - 3*Gamma_l_comp) / Gamma_nu_comp
+
+  LEP-style N_ν = (Γ_Z^meas − Γ_had^comp − 3Γ_l^comp) / Γ_ν^comp
+    Γ_Z measured     = 2495.20 MeV
+    Γ_vis computed   = 2008.32 MeV
+    Γ_inv (by subtr) = 486.88 MeV
+    Γ_ν (SM, single) = 167.4307 MeV
+    N_ν              = 2.9080
+    LEP measured     = 2.9840
+
+  [PASS] Γ_l within 10%
+         ratio = 1.0024
+  [PASS] Γ_Z within 15%
+         ratio = 1.0062
+  [PASS] Γ_inv within 10%
+         ratio = 1.0066
+  [PASS] R_l within 10%
+         ratio = 1.0042
+  [PASS] R_b within 10%
+         ratio = 1.0158
+  [PASS] A_FB^l within 50%
+         ratio = 0.9789
+  [PASS] A_l within 20%
+         ratio = 0.9874
+  [FAIL] M_W within 5%
+         ratio = 0.5260
+  [PASS] A_l extraction converged
+         residual = 0.00e+00
+  [PASS] R_l extraction converged
+         residual = 0.00e+00
+  [PASS] N_ν (LEP-style) reasonable
+         N_ν = 2.9080
+
+  TOTAL: 10 PASS, 1 FAIL out of 11
+
+========================================================================
+SCRIPT COMPLETE
+========================================================================

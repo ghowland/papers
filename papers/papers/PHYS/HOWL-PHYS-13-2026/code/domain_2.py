@@ -1,0 +1,404 @@
+#!/usr/bin/env python3
+"""
+CROSS-DISCIPLINE R₂ AUDIT
+==========================
+
+Every field where R₂ = π/4 or R₄ = π²/32 appears in a precision
+equation, with the best available measured data.
+
+This is the table we never built.
+"""
+
+from fractions import Fraction
+
+# R₂ and R₄ as exact Fractions would need pi_frac, but for this
+# audit we just need to identify WHERE they appear and what
+# precision data exists. The actual Fraction verification is
+# the next step.
+
+print("=" * 80)
+print("CROSS-DISCIPLINE R₂ = π/4 AUDIT")
+print("Where does the circle-to-square ratio appear with precision data?")
+print("=" * 80)
+
+# ================================================================
+# CATEGORY 1: SIGNAL PROCESSING & TELECOMMUNICATIONS
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 1: SIGNAL PROCESSING & TELECOMMUNICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1.1 π/4-DQPSK MODULATION (directly named after R₂!)
+    Constellation: 4 points rotated by π/4 = R₂ each symbol
+    Used in: IS-136 (US digital cellular), TETRA, PDC (Japan)
+    BER = (1/2)erfc(√(E_b/N₀) × sin(π/4)) = (1/2)erfc(√(E_b/N₀) × sin(R₂))
+    sin(π/4) = sin(R₂) = 1/√2 = √2/2
+    Precision: BER measured to ~10⁻⁶ in lab, matches theory exactly
+
+1.2 QAM BIT ERROR RATE
+    M-QAM BER ≈ (4/k)(1 - 1/√M) × (1/2)erfc(√(3kE_b/((M-1)N₀)))
+    The erfc function contains the Gaussian integral which has √π = 2√R₂
+    erfc(x) = (2/√π)∫_x^∞ e^{-t²}dt = (1/√R₂)∫_x^∞ e^{-t²}dt × (1/2)
+    Actually: 2/√π = 2/(2√R₂) = 1/√R₂
+    Every digital communication BER formula contains R₂ through √π
+
+1.3 SHANNON CHANNEL CAPACITY
+    C = B log₂(1 + S/N)  [bits/s]
+    No explicit π — BUT the Nyquist bandwidth B = 1/(2T) and the
+    noise power N = N₀B = N₀/(2T) both implicitly use the sampling
+    theorem which comes from the Fourier transform (2π = 8R₂ core)
+
+1.4 FOURIER TRANSFORM (the mother of all signal processing)
+    F(ω) = ∫ f(t) e^{-iωt} dt
+    Inverse: f(t) = (1/2π) ∫ F(ω) e^{iωt} dω = (1/8R₂) ∫ F(ω) e^{iωt} dω
+    The 1/(2π) = 1/(8R₂) normalization appears in EVERY inverse FT
+    Parseval: ∫|f|²dt = (1/2π)∫|F|²dω = (1/8R₂)∫|F|²dω
+
+1.5 DIGITAL AUDIO
+    CD sample rate: 44100 Hz (chosen as 2 × 22050, slightly above 2×20kHz)
+    Professional: 48000 Hz, 96000 Hz, 192000 Hz
+    Reconstruction filter: sinc(t) = sin(πt)/(πt) = sin(4R₂t)/(4R₂t)
+    The sinc function IS R₂: sinc(t) = sin(4R₂t)/(4R₂t)
+""")
+
+# ================================================================
+# CATEGORY 2: ELECTRONICS & RF ENGINEERING
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 2: ELECTRONICS & RF ENGINEERING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2.1 LC RESONANCE
+    f₀ = 1/(2π√(LC)) = 1/(8R₂√(LC))
+    Precision: crystal oscillators stable to 10⁻¹² (1 ppt)
+    Quartz crystal: f = 32768 Hz (2¹⁵, for watches) or MHz range
+    The 2π = 8R₂ converts angular frequency to cycles
+
+2.2 IMPEDANCE
+    Z_C = 1/(2πfC) = 1/(8R₂fC)        [capacitor]
+    Z_L = 2πfL = 8R₂fL                  [inductor]
+    Free-space impedance: Z₀ = μ₀c = 376.730... Ω
+    Z₀ = 4π/c × c = 4π × 10⁻⁷ × c = 16R₂ × 10⁻⁷ × c
+    In SI 2019: Z₀ = μ₀c where μ₀ = 1.25663706127(20)×10⁻⁶ (MEASURED)
+    Z₀ = 376.730 313 412(59) Ω  (CODATA 2022, 1.6×10⁻¹⁰)
+    Z₀ = 16R₂ × 10⁻⁷ × c (where c exact, R₂ exact → μ₀ is what's measured)
+
+2.3 ANTENNA EFFECTIVE APERTURE
+    A_e = λ²G/(4π) = λ²G/(16R₂)
+    Isotropic: A_e = λ²/(4π) = λ²/(16R₂)
+    Precision: antenna gain measured to ~0.1 dB (2.3%)
+    This is MATH-1 Domain 7 — the antenna cross-section
+
+2.4 FRIIS TRANSMISSION (free-space path loss)
+    P_r/P_t = G_t G_r (λ/(4πd))² = G_t G_r (λ/(16R₂d))²
+    The (4π)² = (16R₂)² = 256R₂² in the denominator
+    Used in: every RF link budget calculation
+    Precision: satellite link budgets to ~0.5 dB
+
+2.5 SKIN DEPTH
+    δ = √(2/(ωμσ)) = √(2/(8R₂fμσ)) = √(1/(4R₂fμσ))
+    For copper at 1 GHz: δ ≈ 2.1 μm
+    Precision: conductivity σ of pure Cu known to ~0.1%
+
+2.6 THERMAL NOISE (Johnson-Nyquist)
+    V_rms = √(4k_BTR·Δf)
+    No explicit π — but k_B is exact (SI 2019), R is measured
+    Noise power: P_n = k_BT·Δf (Nyquist theorem)
+    The bandwidth Δf comes from the Fourier transform (8R₂ core)
+""")
+
+# ================================================================
+# CATEGORY 3: OPTICS & PHOTONICS
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 3: OPTICS & PHOTONICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3.1 DIFFRACTION LIMIT (Rayleigh criterion)
+    θ = 1.22 λ/D where 1.22 ≈ first zero of J₁(x)/x at x = 3.8317
+    3.8317/(π) = 3.8317/(4R₂) = 1.2197
+    Airy disk area = π(1.22λf/D)² = 4R₂(1.22λf/D)²
+    Precision: diffraction-limited optics verified to λ/20 wavefront
+
+3.2 GAUSSIAN BEAM
+    Beam area: A = πw² = 4R₂w²     (w = beam waist radius)
+    Rayleigh range: z_R = πw²/λ = 4R₂w²/λ
+    Divergence: θ = λ/(πw) = λ/(4R₂w)
+    Precision: beam profilers measure w to ~1%
+
+3.3 OPTICAL FIBER
+    V-number: V = πd·NA/λ = 4R₂·d·NA/λ
+    Single-mode cutoff: V < 2.405
+    Mode field area: A_eff ≈ π(MFD/2)² = R₂·MFD²  (THIS IS β!)
+    Typical MFD: 10.4 μm for SMF-28 at 1550 nm
+    Precision: MFD measured to ~0.5%
+
+3.4 PLANCK RADIATION (Stefan-Boltzmann)
+    σ = π²k_B⁴/(60ℏ³c²) = 32R₄ × k_B⁴/(60ℏ³c²)
+    σ = 5.670374419... × 10⁻⁸ W m⁻² K⁻⁴  (EXACT in SI 2019!)
+    R₄ appears because the Planck function integrates over 4π solid angle
+    and involves ∫x³/(eˣ-1)dx = π⁴/15 = (32R₄)²/15
+
+3.5 LASER LINEWIDTH (Schawlow-Townes)
+    Δν = πhν(Δν_c)²/P = 4R₂ × hν(Δν_c)²/P
+    Best lasers: Δν < 1 Hz (relative to ~10¹⁴ Hz carrier = 10⁻¹⁴)
+    h is exact (SI 2019), so the R₂ content is exact
+""")
+
+# ================================================================
+# CATEGORY 4: SEMICONDUCTOR & MATERIALS
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 4: SEMICONDUCTOR FABRICATION & MATERIALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4.1 DIFFUSION (Fick's law solution)
+    C(x,t) = C₀ erfc(x/(2√(Dt)))
+    erfc contains √π: erfc(x) = 1 - (2/√π)∫₀ˣ e^{-t²}dt
+    2/√π = 1/√R₂ (since √π = 2√R₂)
+    Boron in Si: D ≈ 3×10⁻¹⁴ cm²/s at 1000°C
+    Junction depths controlled to ~nm precision in modern fabs
+
+4.2 OXIDE GROWTH (Deal-Grove model)
+    x² + Ax = B(t + τ)
+    Parabolic rate B = 2D_eff C*/N₁
+    Linear rate B/A = k_s C*/N₁ × (1 + k_s/h)⁻¹
+    SiO₂ on Si: growth rates known to ~5%
+    No explicit π in Deal-Grove, but the diffusion underneath has √π
+
+4.3 CARRIER CONCENTRATION
+    n = N_c exp(-(E_c - E_F)/(k_BT))
+    N_c = 2(2πm*k_BT/h²)^{3/2} = 2(8R₂ × m*k_BT/(h × 2π))... 
+    Actually: N_c = 2(2πm*k_BT/h²)^{3/2} = 2(m*k_BT/(2πℏ²))^{3/2}
+    = 2(m*k_BT/(8R₂ℏ² × 2π/(2π)))...
+    Cleaner: (2π)^{3/2} = (8R₂)^{3/2} in the density of states
+    For Si at 300K: N_c = 2.86 × 10¹⁹ cm⁻³
+    Precision: intrinsic carrier concentration n_i known to ~5%
+
+4.4 DOPING PROFILES (ion implantation)
+    Gaussian: N(x) = (Φ/(√(2π)σ)) exp(-(x-R_p)²/(2σ²))
+    The 1/√(2π) = 1/√(8R₂) = 1/(2√(2R₂))
+    Dose Φ measured by Faraday cup to ~1%
+    Range R_p and straggle σ from SRIM tables (~5% accuracy)
+
+4.5 PHOTOLITHOGRAPHY RESOLUTION
+    R = k₁λ/NA where k₁ ≥ 0.25 (theoretical limit)
+    Rayleigh: k₁ = 0.61 = 1.22/2 (from Airy disk)
+    EUV lithography: λ = 13.5 nm, NA = 0.33, R ≈ 25 nm
+    Overlay precision: < 2 nm in modern fabs
+""")
+
+# ================================================================
+# CATEGORY 5: ACOUSTICS & MECHANICAL ENGINEERING
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 5: ACOUSTICS & MECHANICAL ENGINEERING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5.1 SOUND INTENSITY (point source)
+    I = P/(4πr²) = P/(16R₂r²)
+    Inverse square law with 4π = 16R₂ solid angle
+    Sound level meters: precision ±0.5 dB (12% in intensity)
+
+5.2 HELMHOLTZ RESONANCE
+    f = (c/(2π))√(A/(lV)) = (c/(8R₂))√(A/(lV))
+    Guitar body, port-tuned speakers, car exhaust
+    Precision: measured to ~1 Hz
+
+5.3 SPEAKER CONE AREA
+    A = πr² = 4R₂r²   ← THIS IS MATH-1 β = R₂ directly
+    Standard sizes: 4" (10cm), 6.5" (16.5cm), 8" (20cm), 12" (30cm)
+    Sd (effective piston area) specified to ~5%
+
+5.4 PIPE FLOW (MATH-1 Domain 1!)
+    Q = (π/4)d²v = R₂d²v
+    Precision: flow meters to ~0.5% (Coriolis), ~1% (orifice)
+    Orifice plate: Q = Cd × R₂ × d² × √(2ΔP/ρ)
+    Cd (discharge coefficient) measured to ~0.5%
+
+5.5 TORSIONAL VIBRATION
+    J = πd⁴/32 = R₂d⁴/8 (polar moment of inertia)
+    Actually: π/32 = R₂/8 (exact)
+    f = (1/(2π))√(GJ/(ρIL⁴)) where J contains R₂/8
+    Shaft diameters measured to ~0.01 mm
+""")
+
+# ================================================================
+# CATEGORY 6: CHEMISTRY & THERMODYNAMICS
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 6: CHEMISTRY & THERMODYNAMICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6.1 IDEAL GAS LAW
+    PV = nRT where R = N_A k_B = 8.314462618... J/(mol·K) (EXACT)
+    No explicit π — but the derivation from kinetic theory uses
+    ∫e^{-v²}dv = √π = 2√R₂ for Maxwell-Boltzmann distribution
+
+6.2 MAXWELL-BOLTZMANN SPEED DISTRIBUTION
+    f(v) = 4πn(m/(2πk_BT))^{3/2} v² exp(-mv²/(2k_BT))
+    = 16R₂ × n × (m/(8R₂k_BT))^{3/2} × v² × exp(...)
+    The 4π = 16R₂ comes from integrating over the velocity sphere
+    The (2π)^{3/2} = (8R₂)^{3/2} from the 3D Gaussian normalization
+    Molecular beam experiments: speed ratios measured to ~1%
+
+6.3 ARRHENIUS EQUATION
+    k = A exp(-E_a/(RT))
+    The prefactor A contains 2π from transition state theory:
+    A = (k_BT/h) × exp(ΔS‡/R) where h = 8R₂ℏ
+    So A = k_BT/(8R₂ℏ) × exp(ΔS‡/R)
+    Reaction rates measured to ~5-10% typically
+
+6.4 DEBYE MODEL (heat capacity)
+    C_v = 9nk_B(T/Θ_D)³ ∫₀^{Θ_D/T} x⁴eˣ/(eˣ-1)² dx
+    At high T: C_v → 3nk_B (Dulong-Petit, no π)
+    At low T: C_v = (12/5)π⁴nk_B(T/Θ_D)³ = (12/5)(32R₄)²nk_B(T/Θ_D)³
+    Θ_D for Si: 645 K. For Cu: 343 K. Measured to ~1%
+
+6.5 BOLTZMANN ENTROPY
+    S = k_B ln(Ω)
+    Sackur-Tetrode (ideal gas entropy):
+    S/nR = 5/2 + ln[(2πmk_BT/h²)^{3/2} × V/N]
+    = 5/2 + ln[(mk_BT/(2πℏ²))^{3/2} × V/N]
+    The (2π)^{3/2} = (8R₂)^{3/2} again — thermal wavelength
+""")
+
+# ================================================================
+# CATEGORY 7: GEOPHYSICS, ASTRONOMY, METROLOGY
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 7: GEOPHYSICS, ASTRONOMY, PRECISION METROLOGY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7.1 GRAVITATIONAL ACCELERATION (pendulum)
+    T = 2π√(L/g) = 8R₂√(L/g)
+    Best pendulum clocks: ~10⁻⁸ precision
+    Used to measure g to 6 digits historically
+    Modern: g = 9.80665 m/s² (standard, exact by definition)
+    Local g measured by falling-corner-cube to ~10⁻⁹
+
+7.2 KEPLERIAN ORBITS
+    T² = (4π²/GM)a³ = (16R₂)²/(GM) × a³ = 256R₂²a³/(GM)
+    Planetary periods known to ~10⁻⁸ (radar ranging)
+    GM_sun = 1.32712440018(8) × 10²⁰ m³/s² (10⁻¹⁰ precision)
+
+7.3 GRAVITATIONAL WAVES
+    h = (4G/c⁴)(d²Q/dt²) (quadrupole formula)
+    Strain h measured by LIGO to ~10⁻²¹
+    GW frequency for binary: f_GW = 2f_orbital = 2/(2π)√(GM/r³)
+    = 1/(4R₂) × √(GM/r³)
+
+7.4 EARTH'S CIRCUMFERENCE
+    C = 2πR = 8R₂ × R
+    R_earth = 6371 km (mean), known to ~1 m (from satellite geodesy)
+    C = 40075 km ≈ 8 × 0.7854 × 6371 = 40030 km (close!)
+
+7.5 DIMENSIONAL METROLOGY (CMM, interferometry)
+    Circularity: deviation of measured points from best-fit circle
+    Best CMMs: ~50 nm uncertainty over 1 m range
+    Laser interferometry: λ/1000 ≈ 0.6 pm resolution
+    Every circular measurement involves πd = 8R₂(d/2) × 2 = 4R₂d
+""")
+
+# ================================================================
+# CATEGORY 8: PROBABILITY & STATISTICS
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 8: PROBABILITY & STATISTICS (used everywhere)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8.1 GAUSSIAN (NORMAL) DISTRIBUTION
+    f(x) = (1/√(2π))exp(-x²/2) = (1/√(8R₂))exp(-x²/2)
+    = (1/(2√(2R₂)))exp(-x²/2)
+    The 1/√(2π) = 1/√(8R₂) normalization constant
+    This appears in EVERY statistical test, EVERY measurement uncertainty
+
+8.2 STIRLING'S APPROXIMATION
+    n! ≈ √(2πn)(n/e)ⁿ = √(8R₂n)(n/e)ⁿ
+    Used in: combinatorics, statistical mechanics, information theory
+    Precision: error < 1/(12n) for n ≥ 1
+
+8.3 CENTRAL LIMIT THEOREM
+    Sample mean distribution: σ_mean = σ/√n
+    The Gaussian that appears is normalized by √(2π) = √(8R₂)
+    Every measurement uncertainty in science uses this
+
+8.4 GAMMA FUNCTION
+    Γ(1/2) = √π = 2√R₂
+    Γ(n+1/2) = (2n)!/(4ⁿn!) × √π = (2n)!/(4ⁿn!) × 2√R₂
+    Appears in: every integral involving half-integer powers
+""")
+
+# ================================================================
+# SUMMARY TABLE: PRECISION BY FIELD
+# ================================================================
+
+print("""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SUMMARY: WHERE R₂ MEETS PRECISION DATA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Field                    R₂ appears in          Best precision    Source
+─────────────────────── ──────────────────────── ────────────── ────────────
+Atomic spectroscopy      R∞ = α²m_ec/(16R₂ℏ)    1.1×10⁻¹²     CODATA
+Electron g-factor        a_e series: α/(4R₂)     1.8×10⁻¹³     Hanneke 2008
+Quantum Hall             R_K = 8R₂ℏ/e²           0.2 ppb        Graphene QHA
+Josephson voltage        K_J = 2e/(8R₂ℏ)         10⁻¹⁰          NIST standard
+Fine structure const     α = e²/(16R₂ε₀ℏc)      0.16 ppb       CODATA
+Crystal oscillator       f = 1/(8R₂√(LC))        10⁻¹²          Quartz
+Pendulum/gravity         T = 8R₂√(L/g)           10⁻⁹           Corner cube
+Free-space impedance     Z₀ = 16R₂×10⁻⁷×c       0.16 ppb       CODATA (μ₀)
+Stefan-Boltzmann         σ = 32R₄k⁴/(60ℏ³c²)    EXACT          SI 2019
+Kepler orbits            T² = 256R₂²a³/(GM)      10⁻¹⁰          Radar ranging
+Semiconductor bands      E_ZB = 32R₄ℏ²/(2ma²)   ~1 meV         ARPES
+Silicon lattice          a(Si) via G = 8R₂/a     16 ppb         X-ray diffract
+Pipe flow (MATH-1)       Q = R₂d²v               0.5%           Coriolis meter
+Antenna aperture         A_e = λ²/(16R₂)         ~0.1 dB        Pattern meas.
+RF path loss             L = (16R₂d/λ)²          ~0.5 dB        Link budget
+Gaussian beam            z_R = 4R₂w²/λ           ~1%            Beam profiler
+Fiber optic V-number     V = 4R₂d·NA/λ           ~0.5%          Mode analysis
+Digital comms BER        erfc contains √R₂        10⁻⁶           Lab BER test
+Diffraction limit        θ = 1.22λ/D (via R₂)    λ/20           Wavefront test
+Maxwell-Boltzmann        f(v) has (8R₂)^{3/2}    ~1%            Mol. beam
+Debye heat capacity      C_v ∝ (32R₄)² at low T  ~1%            Calorimetry
+Gravitational waves      f_GW involves 4R₂        10⁻²¹ strain  LIGO
+Every Gaussian           1/√(8R₂) normalization   universal      Statistics
+─────────────────────────────────────────────────────────────────────────────
+
+R₂ = π/4 appears in every field that uses:
+  - Circular geometry (cross-sections, apertures, pipes, speakers)
+  - Phase periodicity (oscillators, waves, signals, quantum mechanics)
+  - Fourier transforms (signal processing, spectroscopy, imaging)
+  - Gaussian distributions (all of statistics and measurement)
+  - Solid angles (radiation, scattering, acoustics)
+
+R₄ = π²/32 appears specifically when:
+  - 4D integrals are computed (QFT loop integrals)
+  - π² arises from series (ζ(2) = π²/6, Planck radiation)
+  - Standing wave quantization (box energy, zone boundary)
+  - Stefan-Boltzmann law (thermal radiation)
+
+The HIGHEST precision data involving R₂:
+  1. Electron g-factor:     0.18 ppt    (a_e series uses α/(4R₂))
+  2. Rydberg constant:      1.1×10⁻¹²  (R∞ = α²m_ec/(16R₂ℏ))
+  3. Josephson voltage:     ~10⁻¹⁰     (K_J = 2e/(8R₂ℏ))
+  4. Quantum Hall:          0.2 ppb     (R_K = 8R₂ℏ/e²)
+  5. Fine structure:        0.16 ppb    (α contains R₂ through 4πε₀)
+""")
+

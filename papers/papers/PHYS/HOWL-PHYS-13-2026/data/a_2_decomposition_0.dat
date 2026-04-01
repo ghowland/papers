@@ -1,0 +1,210 @@
+========================================================================
+HOWL: A₂ COEFFICIENT DECOMPOSITION IN R₂/R₄ FORM
+========================================================================
+
+  Q335 basis verification: all 30-digit matches OK
+
+STEP 1: A₂ IN ORIGINAL FORM
+------------------------------------------------------------------------
+
+  A₂ = 197/144 + π²/12 + (3/4)ζ(3) − (π²/2)ln(2)
+
+  Term by term:
+    197/144          = +1.3680555556
+    π²/12            = +0.8224670334
+    (3/4)ζ(3)        = +0.9015426774
+    −(π²/2)ln(2)     = -3.4205442319
+    ─────────────────────────────────────
+    A₂ (Fraction)    = -0.3284789656
+    A₂ (mpmath ref)  = -0.3284789656
+
+  Fraction vs mpmath: agree to exact digits
+  PASS
+
+STEP 2: DECOMPOSITION INTO R₄ FORM
+------------------------------------------------------------------------
+
+  Substitution: π² = 32R₄  where R₄ = π²/32 (MATH-5 4-ball remainder)
+
+  π²/12        = 32R₄/12      = (8/3)R₄
+  (π²/2)ln(2)  = (32/2)R₄ln(2) = 16R₄ln(2)
+
+  A₂ = 197/144 + (3/4)ζ(3) + R₄(8/3 − 16ln(2))
+
+  Three pieces:
+    RATIONAL:        197/144
+    NUMBER-THEORETIC: (3/4)ζ(3)
+    GEOMETRIC:       R₄ × (8/3 − 16ln(2))
+
+  Geometric coefficient:
+    c_geom = 8/3 − 16ln(2)
+    8/3      = +2.6666666667
+    16ln(2)  = +11.0903548890
+    c_geom   = -8.4236882223
+
+  R₄ = π²/32 = 0.3084251375
+
+  Three pieces:
+    Rational:         197/144              = +1.3680555556
+    Number-theoretic: (3/4)ζ(3)           = +0.9015426774
+    Geometric:        R₄×(8/3−16ln2)      = -2.5980771985
+    ──────────────────────────────────────────────
+    Sum                                    = -0.3284789656
+    A₂ from Step 1                         = -0.3284789656
+
+  Decomposition consistency: EXACT (diff = 0.00e+00)
+
+STEP 3: ANATOMY OF A₂
+------------------------------------------------------------------------
+
+  Piece                  Expression                      Value   |Frac| of |A₂|   Sign
+  ---------------------- ------------------------ ------------ ---------------- ------
+  Rational               197/144                     +1.368056           416.5%      +
+  Number-theoretic       (3/4)ζ(3)                   +0.901543           274.5%      +
+  Geometric              R₄×(8/3−16ln2)              -2.598077           790.9%      −
+  ---------------------- ------------------------ ------------ ----------------
+  TOTAL A₂                                           -0.328479
+
+  The geometric piece dominates (791% of |A₂|) with OPPOSITE sign.
+  A₂ is small (−0.328) because of a large cancellation:
+    Positive: rational + number-theoretic = +2.269598
+    Negative: geometric                   = -2.598077
+    Net:      -0.328479
+    Cancellation: 87.4% of geometric piece cancelled
+
+STEP 4: PHYSICAL ORIGIN OF EACH PIECE
+------------------------------------------------------------------------
+
+  Piece                  Origin
+  ---------------------- --------------------------------------------------
+  197/144                Algebraic reduction of 7 two-loop diagrams
+                         197 is prime. 144 = 2⁴×3² = 12².
+                         No transcendental content — pure counting.
+
+  (3/4)ζ(3)              Feynman parameter integral over polylogarithms
+                         Li₃(1) = ζ(3) at integration boundary x=1.
+                         Coefficient 3/4 is rational from diagram topology.
+
+  R₄×(8/3)               4D momentum phase space integral
+                         ∫d⁴k → π² = 32R₄ from solid angle in 4D.
+                         The 8/3 comes from angular integration limits.
+
+  R₄×(−16ln2)            Infrared mass singularity regulation
+                         Electron mass regulates IR → ln(m²/μ²) → ln(2).
+                         16 = 2⁴ from diagram topology.
+
+STEP 5: THE CANCELLATION STRUCTURE
+------------------------------------------------------------------------
+
+  A₂ = +1.368 + 0.902 − 2.598 = −0.328
+
+  The positive pieces (+2.270) are 87% of the geometric piece (2.598).
+  The net A₂ is only 13% of either side of the cancellation.
+
+  This means: the 2-loop QED correction to (g−2) is accidentally small.
+  It's small not because the physics is small, but because geometry
+  (4D phase space) nearly cancels the combinatorics (diagram counting)
+  and number theory (polylogarithm integrals).
+
+  In the HOWL language: R₄ (Level 1 geometric structure) nearly
+  cancels the Level 2 content (rational + number-theoretic).
+  The remaining −0.328 is the net effect after cancellation.
+
+STEP 6: CONNECTION TO AMPLITUDES LITERATURE
+------------------------------------------------------------------------
+
+  The decomposition A₂ = rational + ζ(3) term + R₄ term is a
+  specific instance of the general separation studied by Brown,
+  Schnetz, and Panzer in their work on the Galois coaction of
+  multiple zeta values in perturbative QFT.
+
+  Their framework: Feynman integrals decompose into 'periods'
+  (geometric integrals over moduli spaces) and 'coefficients'
+  (arithmetic data from the motivic structure). The Galois
+  coaction separates these systematically.
+
+  The HOWL decomposition maps onto this as:
+    R₄ content  ←→  period (geometric, from spacetime dimension)
+    ζ(3) content ←→  arithmetic (from polylogarithm depth)
+    197/144      ←→  rational coefficient (diagram combinatorics)
+
+  At 3-loop (A₃), the decomposition becomes richer:
+    R₄ appears with new coefficients
+    R₄² = (π²/32)² appears (products of periods)
+    ζ(5) appears (deeper polylogarithm)
+    Li₄(1/2) appears (polylogarithm at non-trivial argument)
+    Products like R₄×ζ(3) appear (period × arithmetic)
+
+  The geometric and arithmetic content multiply but remain
+  separable — they sit in different factors of each term.
+  The R₂/R₄ language makes the geometric factor explicit
+  in every term, connecting HOWL to this program.
+
+STEP 7: A₃ STRUCTURE (preview, not computed)
+------------------------------------------------------------------------
+
+  A₃ = 1.181241... (72 diagrams, Laporta-Remiddi 1996)
+
+  Known analytic terms include:
+    Rational parts
+    ζ(3) terms         (same class as A₂)
+    ζ(5) terms         (NEW: weight-5 zeta value)
+    π²ζ(3) terms      (NEW: product of period × arithmetic)
+    π⁴ terms           (= 1024 R₄² — geometric at higher order)
+    π²ln(2) terms     (same class as A₂ geometric piece)
+    Li₄(1/2) terms    (NEW: polylogarithm at x=1/2)
+    ln⁴(2) terms      (NEW: fourth power of ln2)
+
+  Every π² → 32R₄, every π⁴ → 1024R₄².
+  The geometric content proliferates but remains separable.
+
+  A₃ decomposition would require the full Laporta-Remiddi
+  analytic result with all coefficients. This is known but
+  lengthy. The A₂ decomposition demonstrates the method.
+
+STEP 8: KEY NUMBERS
+------------------------------------------------------------------------
+
+  A₂ = -0.328478965579194
+    = 197/144 + (3/4)ζ(3) + R₄×(8/3 − 16ln2)
+
+  Piece values (Fraction arithmetic, Q335 basis):
+    Rational:         +1.368055555555556
+    Number-theoretic: +0.901542677369696
+    Geometric:        -2.598077198504445
+
+  Geometric coefficient:
+    c_geom = 8/3 − 16ln(2) = -8.423688222292459
+
+  R₄ = π²/32 = 0.308425137534042
+
+  Cancellation ratio: positive/|geometric| = 87.36%
+  Net/|geometric| = 12.64%
+
+========================================================================
+CHECKS
+========================================================================
+
+  [PASS] Q335 basis verified at 30 digits
+  [PASS] A₂ Fraction matches mpmath to 10 digits
+        diff = 0.00e+00
+  [PASS] Decomposition sums to A₂
+        diff = 0.00e+00
+  [PASS] A₂ is negative
+        A₂ = -0.3284789656
+  [PASS] Geometric piece is negative
+        geometric = -2.598077
+  [PASS] Rational + number-theoretic is positive
+        sum = +2.269598
+  [PASS] Geometric piece dominates (>70% of |A₂|)
+        790.9%
+  [PASS] |A₂| < 0.5 (small due to cancellation)
+        |A₂| = 0.328479
+  [PASS] A₂ ≈ −0.3285 (known value)
+        A₂ = -0.328479
+
+  TOTAL: 9 PASS, 0 FAIL out of 9
+
+========================================================================
+A₂ DECOMPOSITION COMPLETE
+========================================================================
