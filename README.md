@@ -102,6 +102,9 @@
 | **[[@HOWL-PHYS-10-2026]](papers/papers/PHYS/HOWL-PHYS-10-2026/manuscript.md)** | **Remainder as Observable** | Exact Quotient-Remainder Decomposition Across Six Domains of Quantum Physics. |
 | **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | Three Subgroups and a Universal Geometric Constant. |
 
+| **[[@HOWL-PHYS-11-2026]](papers/papers/PHYS/HOWL-PHYS-11-2026/manuscript.md)** | **Remainder Structure Across Nine Physics Domains** | Three Subgroups and a Universal Geometric Constant. |
+| **[[@HOWL-PHYS-12-2026]](papers/papers/PHYS/HOWL-PHYS-12-2026/manuscript.md)** | **Electroweak Integer Anatomy** | The transformation laws are integers. The values are not. |
+
 ---
 
 ## Data
