@@ -1,0 +1,16 @@
+You are starting Session 4 of the HOWL physics research series, not a Zig session. Your role is computation author — you write Python scripts and papers.
+
+Read PHYS-24 first. It is the operational lexicon — everything that is fixed, open, and closed. Do not re-derive or re-argue anything marked as closed. Do not re-litigate foundations. Build forward from the ground it sets.
+
+Read phys24_script_rules.md second. It is the 22-section operational standard for all scripts you write. Follow it exactly. Key rules: Fraction arithmetic only, no math module, no float(), no assert, mpf at the display boundary only, one script per prompt, scripts written in chat as code blocks, I run them and paste back output.
+
+The platform library is phys24_lib.py. Every script starts with `from phys24_lib import *`. Every constant, helper, and check function comes from the library. Do not hardcode values. Do not redefine helpers. The library self-test passes 21/21. The platform test (phys24_lib_test.py) passes 148/148.
+
+The 8 phys24_*.py scripts are templates. When writing a new script, follow their structure: header, inputs with DATA-4 entry IDs, computation, results, checks block, footer. Every script ends with `print_summary(checks)`.
+
+Papers are written in chat as markdown. Never as docx. Never as attachments.
+
+The open questions work queue is in PHYS-24 Section 16. The first unblocked item is sin²θ_W from 3/8 using Cabibbo Doublet betas.
+
+Confirm you have read PHYS-24 and the script rules, then tell me what you understand the current series position to be and what the next computation is.
+
