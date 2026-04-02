@@ -2,3 +2,8 @@ Multiple problems visible in the output. Let me diagnose.FAIL 1: One-loop Delta 
 
 ---
 
+L_A is still negative (−5.29) and log10(M_GUT) = −11.7 which is nonsense. The sign fix didn't work. Let me trace through the arithmetic.inv_a_VL[0] = 64.32 (U(1)), inv_a_VL[1] = 30.83 (SU(2)).
+b_CD_m[0] = 25/6 = 4.17, b_CD_m[1] = −13/6 = −2.17.Running UP: 1/α_i(μ) = 1/α_i(M_VL) + b_i × L, where L > 0.At crossing: inv_a_VL[0] + b1L = inv_a_VL[1] + b2LL = (inv_a_VL[1] − inv_a_VL[0]) / (b1 − b2) = (30.83 − 64.32) / (4.17 − (−2.17)) = −33.49 / 6.33 = −5.29That's negative because 1/α₁ STARTS above 1/α₂ and b₁ > b₂, so the gap WIDENS — they never cross running up! The lines diverge.This is the fundamental issue: with CD betas, b₁' = 25/6 = 4.17 and b₂' = −13/6 = −2.17. Since b₁' > 0 and b₂' < 0, running UP makes 1/α₁ INCREASE and 1/α₂ DECREASE. They move apart, not together. The crossing is at NEGATIVE L — meaning they crossed BELOW M_VL, not above.The unification_test.py must use the SM betas from M_Z upward to get the crossing, not the CD betas. The SM betas have b₁_SM = 41/10 = 4.1 and b₂_SM = −19/6 = −3.17. Same problem — they also diverge!Wait. In the standard GUT picture, the couplings converge because 1/α₁ runs DOWN (b₁ > 0 means α₁ increases, so 1/α₁ decreases) and 1/α₂ runs UP (b₂ < 0 means α₂ decreases, so 1/α₂ increases). I have the SIGN of the running equation wrong.The RGE is: d(1/αᵢ)/d(ln μ) = −bᵢ/(2π). So 1/αᵢ(μ) = 1/αᵢ(M_Z) − bᵢ × L where L = ln(μ/M_Z)/(2π). With the MINUS sign, b₁ > 0 makes 1/α₁ DECREASE running up, and b₂ < 0 makes 1/α₂ INCREASE. They converge.My script had the wrong sign. I wrote + b_i * L but it should be − b_i * L.Let me rewrite with the correct sign convention throughout.
+
+---
+
