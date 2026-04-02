@@ -118,10 +118,9 @@
 | **[[@HOWL-PHYS-25-2026]](papers/papers/PHYS/HOWL-PHYS-25-2026/manuscript.md)** | **The Session 4 Operational Map — From Gauge Integers to Cosmological Predictions** | The beta coefficients run further than expected. Here is where they go.  |
 | **[[@HOWL-PHYS-26-2026]](papers/papers/PHYS/HOWL-PHYS-26-2026/manuscript.md)** | **The Integer Traceability Chain** | From SU(5) embedding to cosmological predictions in seven exact links.  |
 | **[[@HOWL-PHYS-27-2026]](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-28-2026]](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **The VL Two-Loop Beta Matrix — Fermion Corrections to Gauge Coupling Unification** | One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.  |
 
 
-
-| **[[@HOWL-PHYS-28-2026]](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-29-2026]](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-30-2026]](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-31-2026]](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
