@@ -114,6 +114,7 @@
 | **[[@HOWL-PHYS-21-2026]](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary — From Observed Structure to Unobserved Particles** | The integers tell you WHAT. The universe tells you HOW MUCH. |
 | **[[@HOWL-PHYS-22-2026]](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **The A₂ Geometric Cancellation — Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient** | Three pieces, 87% cancellation, the smallness is an accident. |
 | **[[@HOWL-PHYS-23-2026]](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **The Koide C₃ Closure — Tautology, Saddle Point, and the Real Problem** | The spacing is automatic. The potential is a saddle. The amplitude is the question.  |
+| **[[@HOWL-PHYS-24-2026]](papers/papers/PHYS/HOWL-PHYS-24-2026/manuscript.md)** | **The Session 3 Operational Lexicon** | You are here. The ground is set until falsified.  |
 
 ---
 
