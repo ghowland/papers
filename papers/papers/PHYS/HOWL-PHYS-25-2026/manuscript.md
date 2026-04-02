@@ -1,20 +1,3 @@
-
-**Registry:** [@HOWL-PHYS-25-2026]
-
-**Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026]
-
-**Date:** April 1 2026
-
-**Domain:** Lepton Mass Structure, Path Closure
-
-**DOI:** 10.5281/zenodo.zzz
-
-**Status:** Complete
-
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
-
----
-
 # The Session 4 Operational Map — From Gauge Integers to Cosmological Predictions
 ## The beta coefficients run further than expected. Here is where they go.
 
@@ -35,6 +18,7 @@
 **Backed by:** phys25_platform.py (47/47 checks), phys24_lib.py (21/21 self-test, 148/148 platform test), beta_unification_test.py (15/15 checks), qed_predicts_gr.py (10/10), qed_gr_scan_2.py (10/10)
 
 ---
+
 
 ## Abstract
 
