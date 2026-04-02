@@ -63,3 +63,18 @@ I need to rewrite the checks to reflect what this script actually tests:
 
 Shall I rewrite the script with corrected checks, or do you want to proceed to writing the paper with these results as they are? The physics is clear: one-loop gives 0.22845, misses measured by 1.2%, misses 3/13 by 1.0%, and two-loop corrections are the expected resolution.
 
+---
+
+The FAIL is a genuine discrepancy that I can diagnose right now.
+S3: Delta(1/α₃) at one loop — expected −1.17, got −0.812
+The −1.17 from PHYS-24 (unification_test.py) used M_VL = 500 GeV as the threshold — SM betas below 500 GeV, CD betas above. My three-input section uses CD betas ALL THE WAY from M_Z to M_GUT with no threshold. The CD betas are softer than SM betas (Δb₃ = +1/3 makes b₃' less negative), so running with CD betas the whole way produces less separation at M_GUT → smaller |Delta|.
+The −1.17 was at M_VL = 500 GeV (SM below, CD above). The −0.812 is at M_VL = M_Z (CD everywhere). At M_VL = 500 GeV from the unification_test.py scan output, Delta = −0.40 at TWO loops and about −1.17 at ONE loop. But that scan used a step-function threshold.
+My script runs CD betas from M_Z — no threshold at all. This is a different physical assumption. The check comparing to −1.17 is testing the WRONG reference value.
+The fix: either add the M_VL threshold (which makes the script significantly more complex), or change the check to compare against what THIS computation actually produces (no threshold, CD betas from M_Z). The simplest correct approach: note that the Delta depends on M_VL and document the value at M_VL = M_Z vs M_VL = 500 GeV.
+
+---
+
+Yes. The FAIL is telling us something physical about the boundary crossing.The Delta = −0.812 (no threshold) vs −1.17 (with M_VL = 500 GeV threshold) is a threshold crossing effect. When you run CD betas from M_Z all the way up, the CD is "active" for the full range including the low-energy regime where it shouldn't be (the CD hasn't been produced yet below M_VL). When you put the threshold at 500 GeV, the SM betas run from M_Z to 500 GeV, THEN the CD betas take over.The difference: 1.17 − 0.812 = 0.36. That 0.36 is the contribution of the SM-only running between M_Z and M_VL. By running CD betas in that region, we're overcounting the CD's effect — making unification look BETTER than it should be (smaller |Delta|).This connects directly to the sin²θ_W prediction. The two-input prediction uses CD betas from M_Z, which means it also overcounts the CD's effect in the low-energy region. The predicted sin²θ_W = 0.22845 is likely MORE overcorrected than it should be. With a proper M_VL threshold, the prediction would be CLOSER to the measured value — reducing the 1.2% miss.The script should compute both: with and without the threshold. Let me fix it properly — add the threshold computation so we can see the actual effect.
+
+---
+
