@@ -14,31 +14,32 @@ SECTION 1: GROUP THEORY DATA
 SECTION 2: VL TWO-LOOP b_ij CONTRIBUTIONS
 ----------------------------------------------------------------------
 
-  For a Dirac fermion (VL pair) in (3,2,1/6):
-  Using Machacek-Vaughn (1983-84) general formulas.
+  Fermion-only contribution (no gauge self-coupling term).
+  Diagonal: (10/3)*S_a*d_other*C_a(R)
+  Off-diag: (4/3)*S_a*d_other*C_b(R)
 
   VL two-loop db_ij matrix (exact Fractions):
-    [14/75, 1/15, 16/135]
-    [1/30, 39/4, 8/3]
-    [1/45, 1, 94/9]
+    [7/15, 1/15, 16/135]
+    [1/30, 15/4, 8/3]
+    [1/45, 1, 40/9]
 
   Decimal values:
-    [0.186667, 0.0666667, 0.118519]
-    [0.0333333, 9.75, 2.66667]
-    [0.0222222, 1.0, 10.4444]
+    [0.466667, 0.0666667, 0.118519]
+    [0.0333333, 3.75, 2.66667]
+    [0.0222222, 1.0, 4.44444]
 
 SECTION 3: MAGNITUDE COMPARISON TO SM b_ij
 ----------------------------------------------------------------------
 
-    b_11: SM=3.98, VL=0.186667, VL/SM=4.69%
+    b_11: SM=3.98, VL=0.466667, VL/SM=11.73%
     b_12: SM=2.7, VL=0.0666667, VL/SM=2.469%
     b_13: SM=8.8, VL=0.118519, VL/SM=1.347%
     b_21: SM=0.9, VL=0.0333333, VL/SM=3.704%
-    b_22: SM=5.83333, VL=9.75, VL/SM=167.1%
+    b_22: SM=5.83333, VL=3.75, VL/SM=64.29%
     b_23: SM=12.0, VL=2.66667, VL/SM=22.22%
     b_31: SM=1.1, VL=0.0222222, VL/SM=2.02%
     b_32: SM=4.5, VL=1.0, VL/SM=22.22%
-    b_33: SM=-26.0, VL=10.4444, VL/SM=-40.17%
+    b_33: SM=-26.0, VL=4.44444, VL/SM=-17.09%
 
 SECTION 4: TWO-LOOP RUNNING AT M_VL = 500 GeV
 ----------------------------------------------------------------------
@@ -48,17 +49,20 @@ SECTION 4: TWO-LOOP RUNNING AT M_VL = 500 GeV
     1/alpha_3(M_VL) (dimensionless)        6.578750564
 
     SCENARIO A (one-loop only):            0.0
+      L_GUT (dimensionless)                -5.2883534491
+      1/alpha_GUT (dimensionless)          42.28592743
       Delta(1/alpha_3) (dimensionless)     -0.45148720584
+      log10(M_GUT/GeV)                     -11.731638789
 
     SCENARIO B (two-loop, SM b_ij):        0.0
-      L_GUT (dimensionless)                -7.9325301736
-      1/alpha_GUT (dimensionless)          40.021972024
-      Delta(1/alpha_3) (dimensionless)     18.833713155
+      L_GUT (dimensionless)                -5.2751996107
+      1/alpha_GUT (dimensionless)          42.600695737
+      Delta(1/alpha_3) (dimensionless)     -1.3759256261
 
     SCENARIO C (two-loop, SM+VL b_ij):     0.0
-      L_GUT (dimensionless)                -7.9325301736
-      1/alpha_GUT (dimensionless)          40.137775211
-      Delta(1/alpha_3) (dimensionless)     19.015564989
+      L_GUT (dimensionless)                -5.2601411829
+      1/alpha_GUT (dimensionless)          42.669523885
+      Delta(1/alpha_3) (dimensionless)     -1.4322113458
 
 SECTION 5: COMPARISON
 ----------------------------------------------------------------------
@@ -66,14 +70,14 @@ SECTION 5: COMPARISON
   Scenario                                   Delta
   ----------------------------------- ------------
   A: One-loop only                        -0.45149
-  B: Two-loop, SM b_ij                      18.834
-  C: Two-loop, SM+VL b_ij                   19.016
-  PHYS-24 reference (SM b_ij)                -0.40
+  B: Two-loop, SM b_ij                     -1.3759
+  C: Two-loop, SM+VL b_ij                  -1.4322
+  PHYS-24 ref (SM b_ij, M_VL=500)            -0.40
 
-    Improvement B over A (%%)              -4071.4832473
-    Improvement C over A (%%)              -4111.7616498
-    VL shift: Delta_C - Delta_B (dimensionless) 0.18185183396
-    VL shift as %% of one-loop Delta (%%)  40.27840249
+    Improvement B over A (%%)              -204.75406795
+    Improvement C over A (%%)              -217.22080432
+    VL shift: Delta_C - Delta_B (dimensionless) -0.056285719703
+    VL shift as %% of one-loop Delta (%%)  12.466736372
 
 ======================================================================
 CHECKS
@@ -93,22 +97,24 @@ CHECKS
         match:    EXACT
   [PASS] S2: All VL b_ij are exact Fractions
         all Fraction
-  [PASS] S2: VL b_33 positive (adds to fermion running)
-        db_33 = 94/9
+  [PASS] S2: VL b_33 positive
+        db_33 = 40/9
   [PASS] S2: VL b_22 positive
-        db_22 = 39/4
-  [FAIL] S4: One-loop Delta ~ -1.17 at M_VL=500
-        expected: -1.17
-        got:      -0.45148720584
-        digits:   0.2118 (need 1)
+        db_22 = 15/4
+  [PASS] S2: VL b_ij magnitudes < SM b_ij for all entries
+        all |VL| < |SM|
+  [FAIL] S4: L_A positive (running UP to M_GUT)
+        L_A = -5.2884
+  [PASS] S4: One-loop Delta negative
+        Delta_A = -0.4515
   [FAIL] S4: Two-loop SM b_ij improves Delta (|B| < |A|)
-        |B|=18.83 < |A|=0.4515
-  [FAIL] S4: Full b_ij also improves Delta (|C| < |A|)
-        |C|=19.02 < |A|=0.4515
+        |B|=1.376 < |A|=0.4515
+  [FAIL] S4: Full b_ij improves Delta (|C| < |A|)
+        |C|=1.432 < |A|=0.4515
   [FAIL] S5: VL two-loop effect < 10%% of one-loop Delta
-        VL effect = 40.3%
+        VL effect = 12.5%
 
-  TOTAL: 6 PASS, 4 FAIL out of 10
+  TOTAL: 8 PASS, 4 FAIL out of 12
 
 ======================================================================
 PHYS-28 VL TWO-LOOP BETA CONTRIBUTIONS COMPLETE
