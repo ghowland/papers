@@ -1,0 +1,118 @@
+======================================================================
+HOWL PHYS-27: sin²θ_W FROM 3/8
+The GUT tree-level prediction + one-loop running.
+======================================================================
+
+SECTION 1: THE TREE-LEVEL VALUE
+----------------------------------------------------------------------
+
+  In SU(5), all three gauge couplings unify at M_GUT:
+    alpha_1 = alpha_2 = alpha_3 = alpha_GUT
+
+  At the unification point:
+    sin²θ_W = 1/(1 + (5/3)) = 3/8 = 0.375
+
+    sin²θ_W(tree) = 3/8 (dimensionless)    0.375
+    sin²θ_W(measured) (dimensionless)      0.23122
+    Tree - measured (dimensionless)        0.14378
+
+  The running from M_GUT to M_Z must produce a correction
+  of −0.144 to bring 0.375 down to 0.231.
+
+SECTION 2: ONE-LOOP RUNNING PREDICTION
+----------------------------------------------------------------------
+
+  Inputs: alpha_EM and alpha_s only.
+  Output: predicted sin²θ_W.
+
+    B_EM = (5/3)*b1' + b2' = 43/9 (dimensionless) 4.7777777778
+    L numerator = 1/alpha_EM - (8/3)/alpha_s (dimensionless) 114.43712912
+    L denominator = B_EM - (8/3)*b3' (dimensionless) 22.555555556
+    L = ln(M_GUT/M_Z)/(2*pi) (dimensionless) 5.0735673009
+
+    1/alpha_GUT (dimensionless)            42.298358277
+
+    Predicted 1/alpha_1(M_Z) (dimensionless) 63.438222031
+    Predicted 1/alpha_2(M_Z) (dimensionless) 31.305629125
+
+    Predicted sin²θ_W (dimensionless)      0.22844821298
+    Measured sin²θ_W (dimensionless)       0.23122
+    Difference (dimensionless)             -0.0027717870247
+    Relative miss (%%)                     1.1987661209
+
+SECTION 3: COMPARISON TO 3/13
+----------------------------------------------------------------------
+
+    3/13 (dimensionless)                   0.23076923077
+    Predicted sin²θ_W (dimensionless)      0.22844821298
+    Measured sin²θ_W (dimensionless)       0.23122
+
+    Predicted miss from 3/13 (%%)          1.0057743773
+    Measured miss from 3/13 (%%)           0.19533333333
+
+    sin²θ_W predicted (Fraction) (dimensionless) 0.22844821298
+  sin²θ_W predicted as Fraction = 749895040066883/3282560324285858
+  3/13 = 3/13
+  Are they equal? NO
+
+    Required correction for 3/13: 3/8 - 3/13 = 15/104 (dimensionless) 0.14423076923
+    Actual correction from running = 1924260326161255/13130241297143432 (dimensionless) 0.14655178702
+
+SECTION 4: M_GUT AND CONSISTENCY
+----------------------------------------------------------------------
+
+    M_GUT (GeV)                            6.3745024955e+15
+    log10(M_GUT/GeV)                       15.804446295
+
+    1/alpha_3(M_GUT) (dimensionless)       42.298358277
+    1/alpha_GUT (dimensionless)            42.298358277
+    Delta(1/alpha_3) at M_GUT (dimensionless) -4.5719495651e-100
+
+SECTION 5: THE PHYSICAL CONTENT
+----------------------------------------------------------------------
+
+  This computation uses TWO measured inputs:
+    alpha_EM = 1/137.03599918 (DATA-4 B1)
+    alpha_s  = 0.118 (DATA-4 B12)
+
+  And ONE Level 1 input:
+    sin²θ_W(M_GUT) = 3/8 (SU(5) tree level)
+
+  It PREDICTS sin²θ_W(M_Z) = 0.22844821298
+  The measured value is 0.23122
+
+  If the prediction matches, sin²θ_W is DERIVED from
+  alpha_EM, alpha_s, and the gauge group — reducing the
+  SM parameter count by 1.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] Tree level sin²θ_W = 3/8
+        expected: 3/8 = 0.375
+        got:      3/8 = 0.375
+        match:    EXACT
+  [PASS] B_EM = (5/3)*b1' + b2'
+        expected: 43/9 = 4.7777777778
+        got:      43/9 = 4.7777777778
+        match:    EXACT
+  [PASS] Predicted sin²θ_W within 5%% of measured
+        miss = 1.19877%
+  [FAIL] Predicted sin²θ_W matches measured
+        expected: 0.23122
+        got:      0.22844821298
+        digits:   1.921 (need 4)
+  [PASS] M_GUT in [10^15, 10^16]
+        log10(M_GUT) = 15.8
+  [FAIL] Delta(1/alpha_3) ~ -1.17
+        expected: -1.17
+        got:      -4.5719495651e-100
+        digits:   1.706e-100 (need 2)
+  [FAIL] Predicted sin²θ_W within 0.5%% of 3/13
+        miss from 3/13 = 1.006%
+  [PASS] Measured sin²θ_W within 0.3%% of 3/13
+        miss from 3/13 = 0.1953%
+
+  TOTAL: 5 PASS, 3 FAIL out of 8
+
