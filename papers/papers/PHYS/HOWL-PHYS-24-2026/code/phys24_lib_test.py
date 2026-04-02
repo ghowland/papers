@@ -55,63 +55,53 @@ def note_check():
 # ================================================================
 # PART 1: Q335 ANALYTICAL BASIS — 100-DIGIT PRECISION
 # Every Q335 numerator vs mpmath native computation.
-#
-# Three constants (Li4(1/2), K(k2=3/4), E(k2=3/4)) were computed
-# with insufficient series terms for 100 digits. Their actual
-# precision is documented and the threshold is set accordingly.
-# These can be recomputed with more terms when needed.
+# All constants now at 100+ digits after recomputation of
+# Li4(1/2), K(k2=3/4), E(k2=3/4) with sufficient series terms.
 # ================================================================
 
-section("PART 1: Q335 ANALYTICAL CONSTANTS vs MPMATH")
+section("PART 1: Q335 ANALYTICAL CONSTANTS vs MPMATH (need 100 digits)")
 
 q335_tests = [
-    # (tag, library Fraction, mpmath reference, required digits, note)
-    ("G1:  pi",           pi_f,         mpi,                    100, ""),
-    ("G2:  e",            e_f,          me,                     100, ""),
-    ("G3:  ln(2)",        ln2_f,        mlog(2),                100, ""),
-    ("G4:  sqrt(2)",      sqrt2_f,      msqrt(2),               100, ""),
-    ("G5:  sqrt(3)",      sqrt3_f,      msqrt(3),               100, ""),
-    ("G6:  sqrt(5)",      sqrt5_f,      msqrt(5),               100, ""),
-    ("G7:  sqrt(7)",      sqrt7_f,      msqrt(7),               100, ""),
-    ("G8:  phi",          phi_f,        mphi,                   100, ""),
-    ("G9:  zeta(3)",      zeta3_f,      mzeta(3),               100, ""),
-    ("G10: zeta(5)",      zeta5_f,      mzeta(5),               100, ""),
-    ("G11: pi^2",         pi2_f,        mpi**2,                 100, ""),
-    ("G12: zeta(2)",      zeta2_f,      mpi**2 / 6,             100, ""),
-    ("G13: R2 = pi/4",    R2_f,         mpi / 4,                100, ""),
-    ("G14: R4 = pi^2/32", R4_f,         mpi**2 / 32,            100, ""),
-    ("G15: 2*pi",         twopi_f,      2 * mpi,                100, ""),
-    ("G16: zeta(7)",      zeta7_f,      mzeta(7),               100, ""),
-    ("G17: zeta(9)",      zeta9_f,      mzeta(9),               100, ""),
-    ("G18: Li4(1/2)",     li4_f,        polylog(4, mpf(1)/2),    99,
-     "99 digits: series convergence limit at 300 terms"),
-    ("G19: Li5(1/2)",     li5_f,        polylog(5, mpf(1)/2),   100, ""),
-    ("G20: Li6(1/2)",     li6_f,        polylog(6, mpf(1)/2),   100, ""),
-    ("G21: Li7(1/2)",     li7_f,        polylog(7, mpf(1)/2),   100, ""),
-    ("G22: Catalan",      cat_f,        mcat,                   100, ""),
-    ("G23: e^pi",         epi_f,        mexp(mpi),              100, ""),
-    ("G24: ln(3)",        ln3_f,        mlog(3),                100, ""),
-    ("G25: ln(5)",        ln5_f,        mlog(5),                100, ""),
-    ("G26: K(k2=1/4)",    K_quarter_f,  ellipk(mpf(1)/4),       100, ""),
-    ("G27: K(k2=1/2)",    K_half_f,     ellipk(mpf(1)/2),       100, ""),
-    ("G28: K(k2=3/4)",    K_3qtr_f,     ellipk(mpf(3)/4),        64,
-     "64 digits: hypergeometric at k2=3/4 converges slowly, 500 terms"),
-    ("G29: E(k2=1/4)",    E_quarter_f,  ellipe(mpf(1)/4),       100, ""),
-    ("G30: E(k2=1/2)",    E_half_f,     ellipe(mpf(1)/2),       100, ""),
-    ("G31: E(k2=3/4)",    E_3qtr_f,     ellipe(mpf(3)/4),        67,
-     "67 digits: hypergeometric at k2=3/4 converges slowly, 500 terms"),
+    ("G1:  pi",           pi_f,         mpi,                    100),
+    ("G2:  e",            e_f,          me,                     100),
+    ("G3:  ln(2)",        ln2_f,        mlog(2),                100),
+    ("G4:  sqrt(2)",      sqrt2_f,      msqrt(2),               100),
+    ("G5:  sqrt(3)",      sqrt3_f,      msqrt(3),               100),
+    ("G6:  sqrt(5)",      sqrt5_f,      msqrt(5),               100),
+    ("G7:  sqrt(7)",      sqrt7_f,      msqrt(7),               100),
+    ("G8:  phi",          phi_f,        mphi,                   100),
+    ("G9:  zeta(3)",      zeta3_f,      mzeta(3),               100),
+    ("G10: zeta(5)",      zeta5_f,      mzeta(5),               100),
+    ("G11: pi^2",         pi2_f,        mpi**2,                 100),
+    ("G12: zeta(2)",      zeta2_f,      mpi**2 / 6,             100),
+    ("G13: R2 = pi/4",    R2_f,         mpi / 4,                100),
+    ("G14: R4 = pi^2/32", R4_f,         mpi**2 / 32,            100),
+    ("G15: 2*pi",         twopi_f,      2 * mpi,                100),
+    ("G16: zeta(7)",      zeta7_f,      mzeta(7),               100),
+    ("G17: zeta(9)",      zeta9_f,      mzeta(9),               100),
+    ("G18: Li4(1/2)",     li4_f,        polylog(4, mpf(1)/2),   100),
+    ("G19: Li5(1/2)",     li5_f,        polylog(5, mpf(1)/2),   100),
+    ("G20: Li6(1/2)",     li6_f,        polylog(6, mpf(1)/2),   100),
+    ("G21: Li7(1/2)",     li7_f,        polylog(7, mpf(1)/2),   100),
+    ("G22: Catalan",      cat_f,        mcat,                   100),
+    ("G23: e^pi",         epi_f,        mexp(mpi),              100),
+    ("G24: ln(3)",        ln3_f,        mlog(3),                100),
+    ("G25: ln(5)",        ln5_f,        mlog(5),                100),
+    ("G26: K(k2=1/4)",    K_quarter_f,  ellipk(mpf(1)/4),       100),
+    ("G27: K(k2=1/2)",    K_half_f,     ellipk(mpf(1)/2),       100),
+    ("G28: K(k2=3/4)",    K_3qtr_f,     ellipk(mpf(3)/4),       100),
+    ("G29: E(k2=1/4)",    E_quarter_f,  ellipe(mpf(1)/4),       100),
+    ("G30: E(k2=1/2)",    E_half_f,     ellipe(mpf(1)/2),       100),
+    ("G31: E(k2=3/4)",    E_3qtr_f,     ellipe(mpf(3)/4),       100),
 ]
 
-for tag, frac_val, ref_val, need, note in q335_tests:
+for tag, frac_val, ref_val, need in q335_tests:
     chk(tag, f2m(frac_val), ref_val, need, checks)
-    if note:
-        print("        note: %s" % note)
     note_check()
 
 
 # ================================================================
 # PART 2: Q335 ALGEBRAIC IDENTITIES — EXACT OR NEAR-EXACT
-# These test internal consistency of the Q335 numerators
 # ================================================================
 
 section("PART 2: Q335 ALGEBRAIC IDENTITIES")
@@ -143,21 +133,12 @@ note_check()
 
 # ================================================================
 # PART 3: MEASURED CONSTANTS — DECIMAL RECONSTRUCTION
-# Verify each Fraction reconstructs to the correct published value.
-# Expected values use the FULL Fraction from the library — the test
-# confirms the Fraction matches the published decimal at all source
-# digits. No scientific notation. No digit truncation.
-#
-# For measured constants, f2m(Fraction) == mpf("published_string")
-# to all source digits is the test. EXACT means the Fraction IS
-# the published value expressed as integer/power-of-10.
+# Every Fraction reconstructs to the correct published value
+# at all source digits. No scientific notation. Full decimal strings.
 # ================================================================
 
 section("PART 3: MEASURED CONSTANTS — FULL PRECISION RECONSTRUCTION")
 
-# Each entry: (tag, library Fraction, published value as mpf string, source digits needed)
-# ALL values written with full decimal digits — no scientific notation.
-# Where value has leading zeros, they are written explicitly.
 measured_tests = [
     ("B1:  alpha^-1",           alpha_inv,  "137.035999177",                              9),
     ("B2:  m_e (MeV)",          m_e,        "0.51099895069",                              9),
@@ -171,14 +152,12 @@ measured_tests = [
     ("B10: a_mu",               a_mu,       "0.00116592059",                              7),
     ("B11: sin2_tW",            sin2_tW,    "0.23122",                                    4),
     ("B12: alpha_s",            alpha_s,    "0.1180",                                     3),
-    # B13: mu_0 — full precision, 12 source digits from CODATA 2022
     ("B13: mu_0 (N/A^2)",       mu_0,       "0.00000125663706127",                        9),
     ("C1:  M_Z (MeV)",          M_Z,        "91187.6",                                    5),
     ("C2:  Gamma_Z (MeV)",      Gamma_Z,    "2495.2",                                     4),
     ("C3:  M_W (MeV)",          M_W,        "80369.2",                                    5),
     ("C4:  m_t (MeV)",          m_t,        "172570",                                     5),
     ("C5:  m_H (MeV)",          m_H,        "125200",                                     5),
-    # C6: G_F — full precision, 8 source digits
     ("C6:  G_F (GeV^-2)",       G_F,        "0.000011663788",                             6),
     ("D1:  m_u (MeV)",          m_u,        "2.16",                                       2),
     ("D2:  m_d (MeV)",          m_d,        "4.70",                                       2),
@@ -200,7 +179,6 @@ measured_tests = [
     ("E7:  m_He4 (MeV)",        m_He4,      "3727.3794118",                               8),
     ("E8:  E_D (MeV)",          E_D,        "2.22456614",                                 7),
     ("F1:  H 1S-2S (Hz)",       H_1S2S,     "2466061413187018",                          15),
-    # Dimensionless ratios
     ("K1:  m_mu/m_e",           mmu_me,     "206.76828270846717969",                     10),
     ("K2:  m_tau/m_e",          mtau_me,    "3477.23",                                    5),
     ("K3:  m_tau/m_mu",         mtau_mmu,   "16.8170",                                    4),
@@ -266,7 +244,6 @@ chk_exact("N10: gap_SM = 218/115",  gap_SM,   Fraction(218, 115), checks); note_
 chk_exact("N11: gap_VL = 38/27",    gap_VL,   Fraction(38, 27),   checks); note_check()
 chk_exact("N12: gap_MSSM = 7/5",    gap_MSSM, Fraction(7, 5),     checks); note_check()
 
-# Two-loop b_ij matrix — spot checks on corners and dominant entry
 chk_exact("N14: b_ij[0][0] = 199/50", b_ij_SM[0][0], Fraction(199, 50), checks); note_check()
 chk_exact("N14: b_ij[1][2] = 12",     b_ij_SM[1][2], Fraction(12, 1),   checks); note_check()
 chk_exact("N14: b_ij[2][2] = -26",    b_ij_SM[2][2], Fraction(-26, 1),  checks); note_check()
@@ -288,13 +265,10 @@ chk("A7: m_n - m_p vs mn_mp_diff", f2m(m_n - m_p), f2m(mn_mp_diff),   8, checks)
 
 # ================================================================
 # PART 7: PHYSICAL RELATIONS (DATA-4 Group C)
-# Derived from SI constants, must agree at 11+ digits
 # ================================================================
 
 section("PART 7: PHYSICAL RELATIONS")
 
-# R_inf = alpha^2 * m_e_kg * c / (2 * h)
-# m_e_kg = m_e(MeV) * 10^6 * e_charge / c^2
 m_e_kg = m_e * Fraction(10**6, 1) * e_charge / (c * c)
 R_inf_comp = alpha_frac * alpha_frac * m_e_kg * c / (2 * h_planck)
 
@@ -302,7 +276,6 @@ chk("C1: R_inf = alpha^2 m_e c/(2h)",
     f2m(R_inf_comp), f2m(R_inf), 11, checks)
 note_check()
 
-# a_0 = hbar / (m_e_kg * c * alpha)
 hbar_comp = h_planck / (2 * pi_f)
 a_0_comp = hbar_comp / (m_e_kg * c * alpha_frac)
 
@@ -310,7 +283,6 @@ chk("C2: a_0 = hbar/(m_e c alpha)",
     f2m(a_0_comp), f2m(a_0), 11, checks)
 note_check()
 
-# mu_0 = 2 * alpha * h / (c * e^2)
 mu_0_comp = 2 * alpha_frac * h_planck / (c * e_charge * e_charge)
 
 chk("C3: mu_0 = 2*alpha*h/(c*e^2)",
@@ -341,7 +313,6 @@ chk("K8: Koide K(e,mu,tau)",
     K_lep_comp, f2m(K_koide), 6, checks)
 note_check()
 
-# a^2 = 2*(3*K - 1)
 a2_lep_comp = 2 * (3 * K_lep_comp - 1)
 a2_down_comp = 2 * (3 * K_down_comp - 1)
 a2_up_comp = 2 * (3 * K_up_comp - 1)
@@ -405,7 +376,6 @@ chk_bool("1/alpha_3 in [7, 10]",
          "1/a3 = %s" % mp.nstr(f2m(inv_a3), 7), checks)
 note_check()
 
-# GUT normalization: (5/3)/a1 + 1/a2 = 1/alpha_em
 alpha_em_check = Fraction(5, 3) * inv_a1 + inv_a2
 chk("GUT normalization: (5/3)/a1 + 1/a2 = 1/alpha_em",
     f2m(alpha_em_check), f2m(alpha_inv), 11, checks)
