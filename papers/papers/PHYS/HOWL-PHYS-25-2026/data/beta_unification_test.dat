@@ -1,0 +1,303 @@
+======================================================================
+BETA UNIFICATION TEST
+The gauge group integers predict cosmology?
+======================================================================
+
+SECTION 1: THE INTEGER INVENTORY
+----------------------------------------------------------------------
+
+  Every integer below is extracted from phys24_lib beta
+  coefficients. No cosmological input. Pure Level 1.
+
+  FROM b2_SM = -19/6:
+      |numerator| = 19 (dimensionless)     19.0
+
+  FROM b2_mod = -13/6:
+      |numerator| = 13 (dimensionless)     13.0
+
+  FROM b3_mod = -20/3:
+      |numerator| = 20 (dimensionless)     20.0
+
+  FROM b1_SM = 41/10:
+      |numerator| = 41 (dimensionless)     41.0
+
+  YANG-MILLS INTEGER:
+      11 (dimensionless)                   11.0
+
+  DERIVED INTEGERS:
+      N_gen = 3 (dimensionless)            3.0
+      3 * 19 = 57 (dimensionless)          57.0
+      3 * 13 = 39 (dimensionless)          39.0
+      2 * 11 = 22 (dimensionless)          22.0
+      Asymmetry db2/db1 = 15 (dimensionless) 15.0
+      Pure-gauge gap = 2 (dimensionless)   2.0
+
+SECTION 2: THE FORMULA FRAMEWORK
+----------------------------------------------------------------------
+
+  All formulas use ONLY:
+    alpha_em (from library, Level 2)
+    beta integers (from library, Level 1)
+    R2, R4, pi (from library, Level 1)
+  No cosmological constants as input.
+
+  alpha_em (dimensionless)                 0.0072973525643
+  VP step = 1/(12*R2) = 1/(3*pi) (dimensionless) 0.10610329539
+  base = alpha/(3*pi) (dimensionless)      0.00077427315473
+
+SECTION 3: FORMULA 1 — COSMOLOGICAL CONSTANT SCALE
+----------------------------------------------------------------------
+
+  Formula: log10(Lambda_Pl) = N_gen * |b2_num| * log10(coupling)
+
+  Version A (SM, bare alpha):
+      exponent = 3 * 19 = 57 (dimensionless) 57.0
+      prediction: log10(Lambda) (dimensionless) -121.79957623
+      measured: log10(Lambda) (dimensionless) -121.54
+      miss (decades) (dimensionless)       0.25957623187
+
+  Version B (VL, alpha/(3*pi)):
+      exponent = 3 * 13 = 39 (dimensionless) 39.0
+      prediction: log10(Lambda) (dimensionless) -121.33312613
+      measured: log10(Lambda) (dimensionless) -121.54
+      miss (decades) (dimensionless)       0.20687387222
+
+  NOTE: Version A overshoots by -0.26, Version B undershoots by 0.21
+  The measured value sits BETWEEN the SM and VL predictions.
+
+    Interpolation fraction f (dimensionless) 0.44350696978
+  (f=1 is pure SM, f=0 is pure VL)
+
+SECTION 4: FORMULA 2 — DARK MATTER RATIO
+----------------------------------------------------------------------
+
+  Formula: DM/baryon = (2 * 11 / |b2_mod_num|) * pi
+         = (2 * YM / 13) * pi
+         = (22/13) * pi
+
+    2 * YM = 22 (dimensionless)            22.0
+    |b2_mod_num| = 13 (dimensionless)      13.0
+    prediction (dimensionless)             5.3165414138
+    measured (dimensionless)               5.3204
+    miss (dimensionless)                   0.0038585862327
+    relative miss (percent)                0.072524363444
+
+SECTION 5: FORMULA 3 — H0 PER-TRANSIT CORRECTION
+----------------------------------------------------------------------
+
+  Formula: (1-r) = alpha^2 * pi^2 * |3*b3_mod| / |b2_mod_num|
+         = alpha^2 * pi^2 * 20/13
+
+    |3 * b3_mod| = 20 (dimensionless)      20.0
+    |b2_mod_num| = 13 (dimensionless)      13.0
+    ratio = 20/13 (dimensionless)          1.5384615385
+    prediction (dimensionless)             0.0008085689265
+    target from H0 ratio (dimensionless)   0.00080923
+    miss (dimensionless)                   6.6107349927e-7
+    relative miss (percent)                0.081691669769
+
+  DERIVED: H0 prediction at N=100 boundary transits:
+      r per transit (dimensionless)        0.99919143107
+      r^100 (dimensionless)                0.92229550774
+      H0 predicted (km/s/Mpc)              67.364463885
+      H0 measured CMB (km/s/Mpc)           67.36
+      miss (km/s/Mpc)                      0.0044638853067
+      relative miss (percent)              0.0066269081156
+
+SECTION 6: FORMULA 4 — THE EXACT IDENTITY
+----------------------------------------------------------------------
+
+  57/39 = 19/13
+  19/13 = 19/13
+  |b2_SM_num|/|b2_mod_num| = 19/13
+
+  All three are identical: YES
+
+SECTION 7: COMBINATORIC PREDICTIONS FROM BETA INTEGERS
+----------------------------------------------------------------------
+
+  Generate predictions from alpha^a * pi^b * (p/q)
+  where p and q are drawn from beta integers.
+  Compare each to known measured quantities.
+
+  Testing (p/q) * pi^b for beta-derived p, q and b in {-1, 0, 1}:
+
+  HITS within 2%% of measured values:
+                Target |                                    Expression |    Predicted |     Measured |    Rel%%
+  -------------------- | --------------------------------------------- | ------------ | ------------ | --------
+          Omega_baryon |          C2_SU2 (2) / b2_mod_num (13) * pi^-1 |  0.048970752 |        0.049 | 0.05969%
+               sin2_tW |            N_gen (3) / b2_mod_num (13) * pi^0 |   0.23076923 |      0.23122 |   0.195%
+          Omega_baryon |            C2_SU2 (2) / b1_SM_num (41) * pi^0 |  0.048780488 |        0.049 |   0.448%
+               sin2_tW |             N_gen (3) / b1_SM_num (41) * pi^1 |   0.22987263 |      0.23122 |  0.5827%
+               sin2_tW |                   YM (11) / asym (15) * pi^-1 |   0.23342725 |      0.23122 |  0.9546%
+               alpha_s |            asym (15) / b1_SM_num (41) * pi^-1 |   0.11645484 |        0.118 |   1.309%
+    Omega_DM + Omega_b |           C2_SU2 (2) / b3_mod_num (20) * pi^1 |   0.31415927 |       0.3097 |    1.44%
+             DM/baryon |            b1_mod_num (25) / asym (15) * pi^1 |    5.2359878 |       5.3204 |   1.587%
+               alpha_s |            N_gen (3) / b1_mod_num (25) * pi^0 |         0.12 |        0.118 |   1.695%
+             DM/baryon |               b2_SM_num (19) / YM (11) * pi^1 |    5.4263873 |       5.3204 |   1.992%
+
+SECTION 8: ALPHA POWER SCAN — WHAT DO alpha^(3*b_num) PREDICT?
+----------------------------------------------------------------------
+
+  For each beta numerator, compute alpha^(3*|num|) and
+  (alpha/(3pi))^(3*|num|) and check what scale they correspond to.
+
+                Source  3*|n|    log10(a^3n) log10((a/3p)^3n)                Physical scale?
+  -------------------- ------ -------------- -------------- ------------------------------
+      |b2_SM_num| = 19   57.0         -121.8       -177.333
+                              ~ Lambda_Planc ~ Lambda_Planc
+     |b2_mod_num| = 13   39.0       -83.3366       -121.333
+                              ~ Lambda_Planc ~ Lambda_Planc
+           |b3_SM| = 7   21.0       -44.8735       -65.3332
+                              ~ G_Newton in  ~ G_Newton in
+     |b3_mod_num| = 20   60.0        -128.21       -186.666
+                              ~ Lambda_Planc ~ Lambda_Planc
+      |b1_SM_num| = 41  123.0       -262.831       -382.666
+                              ~ Lambda_Planc ~ Lambda_Planc
+     |b1_mod_num| = 25   75.0       -160.263       -233.333
+                              ~ Lambda_Planc ~ Lambda_Planc
+               YM = 11   33.0       -70.5155       -102.666
+                              ~ G_Newton in  ~ Lambda_Planc
+             asym = 15   45.0       -96.1576         -140.0
+                              ~ Lambda_Planc ~ Lambda_Planc
+
+SECTION 9: CAN WE PREDICT OMEGA_DM AND OMEGA_B?
+----------------------------------------------------------------------
+
+  Test: Omega_b = R4 * alpha * 2*YM = R4 * alpha * 22
+      R4 (dimensionless)                   0.30842513753
+      alpha (dimensionless)                0.0072973525643
+      2 * YM = 22 (dimensionless)          22.0
+      prediction (dimensionless)           0.049515113302
+      measured (dimensionless)             0.049
+      miss (dimensionless)                 0.00051511330234
+      relative miss (percent)              1.0512516374
+
+  Derived: Omega_DM = Omega_b * (22/13)*pi
+      prediction (dimensionless)           0.26324915048
+      measured (dimensionless)             0.2607
+      miss (dimensionless)                 0.0025491504793
+      relative miss (percent)              0.97780992685
+
+  Derived: Omega_matter = Omega_b + Omega_DM
+      prediction (dimensionless)           0.31276426378
+      measured (dimensionless)             0.3097
+      miss (percent)                       0.98942970024
+
+  Derived: Omega_DE = 1 - Omega_matter (flat universe)
+      prediction (dimensionless)           0.68723573622
+      measured (dimensionless)             0.6903
+      miss (percent)                       0.44390319885
+
+SECTION 10: VP STEP FORMULA — INTERNAL CONSISTENCY
+----------------------------------------------------------------------
+
+  Formula A: (1-r) = alpha/(3*pi)
+      = 0.00077427315473 (dimensionless)   0.00077427315473
+
+  Formula B: (1-r) = alpha^2 * pi^2 * 20/13
+      = 0.0008085689265 (dimensionless)    0.0008085689265
+
+    ratio B/A (dimensionless)              1.0442941507
+
+    = alpha * 60*pi^3/13 (dimensionless)   1.0442941507
+  The two formulas differ by alpha * 60*pi^3/13 ~ 1.044
+  This is close to 1 (ratio = 1.04429), meaning both formulas
+  predict nearly the same (1-r) despite different structure.
+
+  Target (1-r) at N=100 from H0 data:
+      (1-r) target (dimensionless)         0.00080923105932
+      miss A (percent)                     4.3198916043
+      miss B (percent)                     0.081822467652
+
+SECTION 11: COMPLETE PREDICTION TABLE
+----------------------------------------------------------------------
+
+  All predictions from beta integers + alpha + R2/R4 + pi.
+  No cosmological input. Compared to measured values.
+
+                             Quantity      Predicted       Measured       Miss    Rel%%
+  ----------------------------------- -------------- -------------- ---------- --------
+                log10(Lambda_Pl) [SM]     -121.79958        -121.54     0.2596  0.2136%
+                log10(Lambda_Pl) [VL]     -121.33313        -121.54     0.2069  0.1702%
+                            DM/baryon      5.3165414         5.3204   0.003859 0.07252%
+             (1-r) at N=100 [product]  0.00080856893  0.00080923106   6.621e-7 0.08182%
+             (1-r) at N=100 [VP step]  0.00077427315  0.00080923106   3.496e-5    4.32%
+          H0_CMB predicted (km/s/Mpc)      67.364464          67.36   0.004464 0.006627%
+                              Omega_b    0.049515113          0.049  0.0005151   1.051%
+                             Omega_DM     0.26324915         0.2607   0.002549  0.9778%
+                         Omega_matter     0.31276426         0.3097   0.003064  0.9894%
+                             Omega_DE     0.68723574         0.6903   0.003064  0.4439%
+
+SECTION 12: FORMULA INVENTORY
+----------------------------------------------------------------------
+
+                         Formula |                       Integers Used |                  Predicts
+  ------------------------------ | ----------------------------------- | -------------------------
+            Lambda_Pl ~ alpha^57 |           alpha, 3, 19 (from b2_SM) |     Cosmo. constant scale
+      Lambda_Pl ~ (alpha/3pi)^39 |      alpha, pi, 3, 13 (from b2_mod) | Cosmo. constant scale (VL)
+          DM/baryon = (22/13)*pi |            11 (YM), 13 (b2_mod), pi |      Dark matter fraction
+      (1-r) = alpha^2*pi^2*20/13 | alpha, pi, 20 (b3_mod), 13 (b2_mod) | Per-transit H0 correction
+           Omega_b = R4*alpha*22 |                  R4, alpha, 11 (YM) |            Baryon density
+                   57/39 = 19/13 |             19 (b2_SM), 13 (b2_mod) |            Exact identity
+
+  COMMON INTEGERS across all formulas:
+    13 (|b2_mod_num|): in 4 of 6 formulas
+    11 (Yang-Mills): in 3 of 6 formulas
+    pi (R2 = pi/4): in 4 of 6 formulas
+    alpha: in 4 of 6 formulas
+    3 (N_gen): in 2 of 6 formulas
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] b2_SM_num = 19
+        expected: 19 = 19.0
+        got:      19 = 19.0
+        match:    EXACT
+  [PASS] b2_mod_num = 13
+        expected: 13 = 13.0
+        got:      13 = 13.0
+        match:    EXACT
+  [PASS] b3_mod_num = 20
+        expected: 20 = 20.0
+        got:      20 = 20.0
+        match:    EXACT
+  [PASS] 57/39 = 19/13 (exact identity)
+        expected: 19/13 = 1.4615384615
+        got:      19/13 = 1.4615384615
+        match:    EXACT
+  [PASS] 20/13 = |3*b3_mod|/|b2_mod_num|
+        expected: 20/13 = 1.5384615385
+        got:      20/13 = 1.5384615385
+        match:    EXACT
+  [PASS] DM formula integer = 2*YM/b2_mod = 22/13
+        expected: 22/13 = 1.6923076923
+        got:      22/13 = 1.6923076923
+        match:    EXACT
+  [PASS] Lambda SM prediction within 0.5 decades
+        miss = 0.2596 decades
+  [PASS] Lambda VL prediction within 0.5 decades
+        miss = 0.2069 decades
+  [PASS] DM/baryon within 0.1%%
+        rel miss = 0.07252%
+  [PASS] H0 CMB prediction within 1%%
+        rel miss = 0.006627%
+  [PASS] Omega_b prediction within 2%%
+        rel miss = 1.051%
+  [PASS] Omega_DM prediction within 2%%
+        rel miss = 0.9778%
+  [PASS] Omega_DE prediction within 2%%
+        rel miss = 0.4439%
+  [PASS] Lambda predictions BRACKET the measured value
+        SM: -121.8, VL: -121.333, meas: -121.54
+  [PASS] Product form (1-r) within 0.1%% of target
+        rel miss = 0.08182%
+
+
+  TOTAL: 15 PASS, 0 FAIL out of 15
+
+======================================================================
+BETA UNIFICATION TEST COMPLETE
+======================================================================
