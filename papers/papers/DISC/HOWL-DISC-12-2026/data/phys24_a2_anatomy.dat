@@ -1,0 +1,82 @@
+======================================================================
+HOWL PHYS-24: THE A2 ANATOMY
+======================================================================
+
+A2 IN ORIGINAL FORM
+----------------------------------------------------------------------
+
+  A2 = 197/144 + pi^2/12 + (3/4)*zeta(3) - (pi^2/2)*ln(2)
+
+  197/144 (dimensionless)                  1.3680555556
+  pi^2/12 (dimensionless)                  0.82246703342
+  (3/4)*zeta(3) (dimensionless)            0.90154267737
+  -(pi^2/2)*ln(2) (dimensionless)          -3.4205442319
+  A2 total (dimensionless)                 -0.32847896558
+
+DECOMPOSITION INTO R4 FORM
+----------------------------------------------------------------------
+
+  Substitution: pi^2 = 32*R4
+
+  A2 = 197/144 + (3/4)*zeta(3) + R4*(8/3 - 16*ln(2))
+
+  Rational: 197/144 (dimensionless)        1.3680555556
+  Number-theoretic: (3/4)*zeta(3) (dimensionless) 0.90154267737
+  Geometric coeff: 8/3 - 16*ln(2) (dimensionless) -8.4236882223
+  Geometric: R4*(8/3 - 16*ln2) (dimensionless) -2.5980771985
+
+  Sum of three pieces (dimensionless)      -0.32847896558
+  A2 from original form (dimensionless)    -0.32847896558
+
+THE CANCELLATION
+----------------------------------------------------------------------
+
+  Piece                           Value  Sign
+  ------------------------ ------------  ----
+  Rational (197/144)            1.36806  +
+  Number-theoretic             0.901543  +
+  Geometric (R4*c)             -2.59808  -
+  ------------------------ ------------
+  A2 total                    -0.328479
+
+  Positive content (rational + number) (dimensionless) 2.2695982329
+  Geometric content (dimensionless)        -2.5980771985
+  Cancellation: positive/|geometric| (%%)  87.356843524
+  |geometric| / |A2| (%%)                  790.94172558
+
+  The positive pieces (2.2696) are 87.36% of the
+  geometric piece (-2.5981).
+  The net A2 = -0.32848 is only 12.64% of either side.
+
+  A2 is small because geometry nearly cancels arithmetic.
+  The smallness is accidental — no known symmetry requires
+  the 87%% cancellation.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] Decomposition sums to A2
+        expected: -0.32847896558
+        got:      -0.32847896558
+        digits:   EXACT (need 30)
+  [PASS] A2 ~ -0.32848
+        expected: -0.32847896558
+        got:      -0.32847896558
+        digits:   12.23 (need 10)
+  [PASS] A2 is negative
+        A2 = -0.328479
+  [PASS] Geometric piece is negative
+        geometric = -2.59808
+  [PASS] Rational + number-theoretic is positive
+        sum = 2.2696
+  [PASS] Cancellation exceeds 80%%
+        cancellation = 87.36%
+  [PASS] |A2| < 0.5
+        |A2| = 0.328479
+
+  TOTAL: 7 PASS, 0 FAIL out of 7
+
+======================================================================
+PHYS-24 A2 ANATOMY DEMONSTRATION COMPLETE
+======================================================================

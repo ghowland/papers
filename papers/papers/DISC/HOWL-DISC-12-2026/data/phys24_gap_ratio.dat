@@ -1,0 +1,81 @@
+======================================================================
+HOWL PHYS-24: THE GAP RATIO
+======================================================================
+
+INPUTS
+----------------------------------------------------------------------
+
+  alpha_EM^-1 (dimensionless)              137.03599918
+  sin^2(theta_W) (dimensionless)           0.23122
+  alpha_s(M_Z) (dimensionless)             0.118
+
+GUT-NORMALIZED INVERSE COUPLINGS AT M_Z
+----------------------------------------------------------------------
+
+  1/alpha_1(M_Z) (dimensionless)           63.210321268
+  1/alpha_2(M_Z) (dimensionless)           31.68546373
+  1/alpha_3(M_Z) (dimensionless)           8.4745762712
+
+  (5/3)/alpha_1 + 1/alpha_2 (dimensionless) 137.03599918
+  1/alpha_EM input (dimensionless)         137.03599918
+
+SM ONE-LOOP BETA COEFFICIENTS (Level 1, exact)
+----------------------------------------------------------------------
+
+  b_1 = 41/10                              4.1
+  b_2 = -19/6                              -3.1666666667
+  b_3 = -7                                 -7.0
+
+THE GAP RATIO
+----------------------------------------------------------------------
+
+  b_1 - b_2 = 109/15                       7.2666666667
+  b_2 - b_3 = 23/6                         3.8333333333
+
+  SM gap ratio (Level 1) = 218/115         1.8956521739
+
+  Measured gap ratio (Derived)             1.3581926841
+
+THE CONFRONTATION
+----------------------------------------------------------------------
+
+  SM prediction (Level 1)                  1.8956521739
+  Measured (Derived)                       1.3581926841
+  Absolute miss (dimensionless)            0.53745948977
+  Relative miss (%%)                       39.571667264
+
+  THE SM DOES NOT UNIFY.
+
+  The gap ratio is a ratio of exact rationals (218/115)
+  compared to a number derived from three measurements.
+  The 40%% miss is not a rounding error or an approximation.
+  It means the three coupling lines do not meet at a point.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] SM gap ratio = 218/115
+        expected: 218/115 = 1.8956521739
+        got:      218/115 = 1.8956521739
+        match:    EXACT
+  [PASS] Gap from betas matches library
+        expected: 218/115 = 1.8956521739
+        got:      218/115 = 1.8956521739
+        match:    EXACT
+  [PASS] Measured gap ratio vs Session 3
+        expected: 1.358193
+        got:      1.3581926841
+        digits:   6.633 (need 4)
+  [PASS] SM miss exceeds 30%%
+        miss = 39.57%
+  [PASS] GUT normalization: (5/3)/a1 + 1/a2 = 1/alpha_EM
+        expected: 137.03599918
+        got:      137.03599918
+        digits:   EXACT (need 11)
+
+  TOTAL: 5 PASS, 0 FAIL out of 5
+
+======================================================================
+PHYS-24 GAP RATIO DEMONSTRATION COMPLETE
+======================================================================

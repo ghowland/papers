@@ -1,0 +1,160 @@
+======================================================================
+HOWL PHYS-24: THE KOIDE STATUS
+======================================================================
+
+THE KOIDE FORMULA
+----------------------------------------------------------------------
+
+  For three masses m_1, m_2, m_3:
+
+    K = (m_1 + m_2 + m_3) / (sqrt(m_1) + sqrt(m_2) + sqrt(m_3))^2
+
+  For charged leptons: K = 0.666661 ~ 2/3 to 6 significant figures.
+  For quarks: K deviates from 2/3 by 10-27%%.
+
+THREE-SECTOR KOIDE RATIOS (Level 2, from DATA-4 masses)
+----------------------------------------------------------------------
+
+  K(e, mu, tau) (dimensionless)            0.66666051147
+  K(d, s, b) (dimensionless)               0.73128757683
+  K(u, c, t) (dimensionless)               0.84879354758
+  2/3 (dimensionless)                      0.66666666667
+
+  a^2(leptons) (dimensionless)             1.9999630688
+  a^2(down quarks) (dimensionless)         2.387725461
+  a^2(up quarks) (dimensionless)           3.0927612855
+  Koide hypothesis: a^2 = 2                2.0
+
+  Amplitude ordering: a^2_lep < a^2_down < a^2_up
+  This correlates with interaction strength:
+    leptons (no color) -> a^2 ~ 2.000
+    down quarks (color, Q=-1/3) -> a^2 ~ 2.388
+    up quarks (color, Q=+2/3) -> a^2 ~ 3.093
+
+THE TAUTOLOGY (Level 1, mathematical proof)
+----------------------------------------------------------------------
+
+  The Koide parametrization writes:
+    sqrt(m_k) = M * (1 + a * cos(theta_0 + 2*pi*k/3))
+
+  for k = 0, 1, 2. This has three free parameters:
+    M (overall scale), a (amplitude), theta_0 (phase offset).
+
+  Three parameters fitting three data points (m_1, m_2, m_3)
+  is an exactly determined system. It ALWAYS succeeds for
+  any three positive masses. The 120-degree spacing is a
+  property of the PARAMETRIZATION, not of the PHYSICS.
+
+  Proof by construction: given any m_1, m_2, m_3 > 0,
+  set M = (sqrt(m_1) + sqrt(m_2) + sqrt(m_3)) / 3,
+  compute residuals r_k = sqrt(m_k) - M,
+  extract a and theta_0 from the residuals.
+  This always works. No constraint on the masses is needed.
+
+    M(leptons) (sqrt(MeV))                 17.71556171
+    a^2 from fit (dimensionless)           1.9999630688
+
+    sum of residuals (should be ~0)        -4.5719495651e-100
+
+THE PHYS-8 IDENTITY (Level 1)
+----------------------------------------------------------------------
+
+  From the parametrization, the Koide ratio simplifies to:
+
+    K = (1 + a^2/2) / 3
+
+  This is INDEPENDENT of M and theta_0.
+  At a^2 = 2: K = (1 + 1) / 3 = 2/3 exactly.
+  No phase adjustment can change K. Only a can.
+
+    K from identity (1+a^2/2)/3            0.66666051147
+    K from masses directly                 0.66666051147
+
+  Verification: K at a = sqrt(2) for various theta_0:
+    theta_0 =   0 deg: K = 0.66666666667
+    theta_0 =  30 deg: negative sqrt(m), skip
+    theta_0 =  60 deg: negative sqrt(m), skip
+    theta_0 =  90 deg: negative sqrt(m), skip
+    theta_0 = 120 deg: K = 0.66666666667
+
+  ALL give 2/3 exactly. The phase determines WHICH masses,
+  but the ratio is always 2/3 at a = sqrt(2).
+
+K = 2/3 IS A SADDLE POINT (Level 1)
+----------------------------------------------------------------------
+
+  Perturb the 120-degree spacing: phi_k = 2*pi*k/3 + eps*delta_k
+  with sum(delta_k) = 0, at a = sqrt(2).
+  Compute d^2K/d(eps)^2 at eps = 0 for two directions.
+
+  Direction (1, -1, 0):
+      d^2K/d(eps)^2 (dimensionless)        0.47140443231
+    K = 2/3 is a local MINIMUM in this direction.
+
+  Direction (2, -1, -1):
+      d^2K/d(eps)^2 (dimensionless)        -0.39052368132
+    K = 2/3 is a local MAXIMUM in this direction.
+
+  One direction gives d^2K > 0 (minimum).
+  Another gives d^2K < 0 (maximum).
+  K = 2/3 is a SADDLE POINT, not a minimum.
+  The C3 potential does not select K = 2/3.
+
+THE OPEN PROBLEM
+----------------------------------------------------------------------
+
+  CLOSED: Why 120-degree spacing?
+    Answer: tautology. 3 parameters, 3 data points.
+
+  CLOSED: Does C3 symmetry select K = 2/3?
+    Answer: no. K = 2/3 is a saddle point.
+
+  OPEN: Why a^2 = 2 for charged leptons?
+    Requirements for any viable derivation:
+    1. Must produce a^2 = 2 specifically
+    2. Must explain the ordering a^2_lep < a^2_down < a^2_up
+    3. Must not reduce to a reformulation of K = 2/3
+
+  Any future Koide paper that does not attack the
+  amplitude directly is off-target.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] K(e,mu,tau) matches DATA-4 K8
+        expected: 0.6666605115
+        got:      0.66666051147
+        digits:   10.29 (need 6)
+  [PASS] a^2(leptons) matches library
+        expected: 1.9999630688
+        got:      1.9999630688
+        digits:   11.46 (need 4)
+  [PASS] a^2(down quarks) matches library
+        expected: 2.387725461
+        got:      2.387725461
+        digits:   10.81 (need 3)
+  [PASS] a^2(up quarks) matches library
+        expected: 3.0927612855
+        got:      3.0927612855
+        digits:   10.85 (need 3)
+  [PASS] Ordering: a^2_lep < a^2_down < a^2_up
+        a^2 = 2.0, 2.3877, 3.0928
+  [PASS] PHYS-8 identity: K = (1+a^2/2)/3
+        expected: 0.66666051147
+        got:      0.66666051147
+        digits:   EXACT (need 6)
+  [PASS] Residuals sum to ~0 (tautology)
+        sum = -4.572e-100
+  [PASS] Saddle: d^2K > 0 in direction (1,-1,0)
+        d^2K = 0.4714
+  [PASS] Saddle: d^2K < 0 in direction (2,-1,-1)
+        d^2K = -0.39052
+  [PASS] a^2(leptons) is NOT exactly 2
+        a^2 - 2 = -3.693e-5
+
+  TOTAL: 10 PASS, 0 FAIL out of 10
+
+======================================================================
+PHYS-24 KOIDE STATUS DEMONSTRATION COMPLETE
+======================================================================
