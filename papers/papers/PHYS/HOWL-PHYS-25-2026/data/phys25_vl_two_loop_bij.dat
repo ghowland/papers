@@ -1,0 +1,175 @@
+======================================================================
+HOWL PHYS-25: VL TWO-LOOP b_ij DERIVATION
+======================================================================
+
+THE GENERAL FORMULA (Level 1)
+----------------------------------------------------------------------
+
+  For one Dirac fermion in (R_3, R_2, Y):
+  Db_ij = 4*S_i^eff*C_j + delta_ij*(20/3)*C_2(G_i)*S_i^eff
+
+  One-loop: Db_i = (4/3)*S_i^eff
+
+CROSS-CHECK 1: ONE SM GENERATION (one-loop)
+----------------------------------------------------------------------
+
+  Per-generation one-loop shifts (should be 4/3, 4/3, 4/3):
+      Db_1 = 4/3 (dimensionless)           1.3333333333
+      Db_2 = 4/3 (dimensionless)           1.3333333333
+      Db_3 = 4/3 (dimensionless)           1.3333333333
+
+CROSS-CHECK 2: SM FERMION TWO-LOOP b_ij (3 generations)
+----------------------------------------------------------------------
+
+  Computed SM fermion b_ij (3 generations):
+                 U(1)      SU(2)      SU(3)
+    U(1)         19/5        9/5       44/5
+   SU(2)          3/5         49         12
+   SU(3)        11/10        9/2         76
+
+  Expected (from source):
+                 U(1)      SU(2)      SU(3)
+    U(1)         19/5        9/5       44/5
+   SU(2)          3/5         49         12
+   SU(3)        11/10        9/2         76
+
+CROSS-CHECK 3: FULL SM b_ij RECONSTRUCTION
+----------------------------------------------------------------------
+
+  Reconstructed SM b_ij:
+                 U(1)      SU(2)      SU(3)
+    U(1)       199/50      27/10       44/5
+   SU(2)         9/10       35/6         12
+   SU(3)        11/10        9/2        -26
+
+  Library SM b_ij (DATA-4 N14):
+                 U(1)      SU(2)      SU(3)
+    U(1)       199/50      27/10       44/5
+   SU(2)         9/10       35/6         12
+   SU(3)        11/10        9/2        -26
+
+NORMALIZATION ANALYSIS
+----------------------------------------------------------------------
+
+  SM fermion two-loop b_ij: ALL ENTRIES MATCH
+  The source formula is verified for SM fermions.
+
+  Full SM b_ij reconstruction: ALL ENTRIES MATCH
+  gauge + Higgs + fermion = DATA-4 N14.
+
+CABIBBO DOUBLET TWO-LOOP SHIFT
+----------------------------------------------------------------------
+
+  One-loop (Dirac formula):
+      Db_1 = 2/15 (dimensionless)          0.13333333333
+      Db_2 = 2 (dimensionless)             2.0
+      Db_3 = 4/3 (dimensionless)           1.3333333333
+
+  One-loop (library, operational):
+      Db_1 = 1/15 (dimensionless)          0.066666666667
+      Db_2 = 1 (dimensionless)             1.0
+      Db_3 = 1/3 (dimensionless)           0.33333333333
+
+  Ratio lib/Dirac for component 1: 1/2
+  Ratio lib/Dirac for component 2: 1/2
+  Ratio lib/Dirac for component 3: 1/4
+
+  VL two-loop b_ij shift (Dirac, source convention):
+                 U(1)      SU(2)      SU(3)
+    U(1)        1/150       3/10       8/15
+   SU(2)         1/10       49/2          8
+   SU(3)         1/15          3       76/3
+
+  Expected (from source worked example):
+                 U(1)      SU(2)      SU(3)
+    U(1)        1/150       3/10       8/15
+   SU(2)         1/10       49/2          8
+   SU(3)         1/15          3       76/3
+
+  VL two-loop b_ij: ALL ENTRIES MATCH source
+
+THE ONE-LOOP NORMALIZATION ISSUE
+----------------------------------------------------------------------
+
+  The source Dirac formula gives Db_VL = (2/15, 2, 4/3).
+  The library operational values are   (1/15, 1, 1/3).
+  The ratio is (1/2, 1/2, 1/4) — NOT uniform.
+
+  However, the source formula reproduces the SM b_ij exactly
+  when applied to the SM fermions (Weyl = 1/2 Dirac).
+  And the library SM b_ij is verified at 148/148.
+
+  The issue: the library's VL one-loop shifts use a different
+  normalization than the standard Machacek-Vaughn convention.
+  The gap ratio is unaffected (ratios cancel), but the
+  absolute beta values used in RGE integration must be
+  consistent with the b_ij matrix convention.
+
+  For the two-loop RGE integration, the VL one-loop betas
+  must use the DIRAC convention to be consistent with the
+  b_ij matrix. The modified betas should be:
+
+    b_1' (corrected) = 127/30 (dimensionless) 4.2333333333
+    b_2' (corrected) = -7/6 (dimensionless) -1.1666666667
+    b_3' (corrected) = -17/3 (dimensionless) -5.6666666667
+
+    Gap ratio (corrected) = 6/5 (dimensionless) 1.2
+    Gap ratio (library) = 38/27 (dimensionless) 1.4074074074
+
+  The corrected gap ratio is 6/5, NOT 38/27.
+  This means the Dirac convention gives DIFFERENT one-loop
+  betas than the library convention.
+
+  CRITICAL FINDING: The library one-loop VL shifts and the
+  source two-loop formula use DIFFERENT normalizations.
+  The two-loop RGE integration in unification_test.py used
+  the library one-loop shifts with the SM two-loop matrix.
+  To add the VL two-loop contribution consistently, we must
+  resolve which convention is correct for the absolute betas.
+
+  This is the normalization issue flagged in the Session 4
+  goals document as a prerequisite for Stage 3.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] Per-gen b_1 = 4/3 (source formula)
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Per-gen b_2 = 4/3 (source formula)
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Per-gen b_3 = 4/3 (source formula)
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] SM fermion b_ij matches source (all 9 entries)
+        all entries compared
+  [PASS] SM b_ij = gauge + Higgs + fermion (all 9 entries)
+        all entries compared
+  [PASS] VL b_ij matches source worked example (all 9 entries)
+        all entries compared
+  [PASS] VL Dirac Db_1 = 2/15
+        expected: 2/15 = 0.13333333333
+        got:      2/15 = 0.13333333333
+        match:    EXACT
+  [PASS] VL Dirac Db_2 = 2
+        expected: 2 = 2.0
+        got:      2 = 2.0
+        match:    EXACT
+  [PASS] VL Dirac Db_3 = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Library/Dirac ratio is NOT uniform (normalization issue)
+        ratio_1 = 1/2, ratio_3 = 1/4
+
+  TOTAL: 10 PASS, 0 FAIL out of 10
+
+======================================================================
+PHYS-25 VL TWO-LOOP b_ij DERIVATION COMPLETE
+======================================================================
+
