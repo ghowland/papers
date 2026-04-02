@@ -6,3 +6,68 @@ The physics is clear now. The one-loop threshold correction from the triplet alo
 
 ---
 
+## PHYS-29 Script Output — Processing Report
+
+**Script:** phys29_gut_thresholds.py
+**Result:** 10 PASS, 1 FAIL out of 11
+**Status:** The FAIL is a genuine physics result, not a bug. The abort test fires.
+
+---
+
+### The FAIL: Abort Test Fires
+
+**S4: Abort test — best case M_X/M < 100. Got M_X/M = 23,228.**
+
+Even in the best case (triplet AND Sigma remnants both at the same mass below M_X), exact unification in minimal SU(5) requires a mass splitting of factor 23,000. This is extreme fine-tuning. The abort condition was M_X/M > 100.
+
+This is a genuine physics result. The threshold coefficients are too small (C_T = −1/12, C_Sigma = −1/6, C_total = −1/4) to close the two-loop residual Delta = −0.40 with a natural mass splitting. The formula delta_Delta = C_total × ln(M/M_X)/(2π) = −(1/4) × ln(M/M_X)/(2π) needs ln(M/M_X) = −10.05, which gives M_X/M = 23,228.
+
+The conclusion: **minimal SU(5) with only the colored Higgs triplet and Sigma remnants cannot achieve exact unification naturally.** The Cabibbo Doublet representation (3,2,1/6) survives — it is Level 1 arithmetic, independent of the GUT completion — but the specific minimal SU(5) completion pathway is disfavored.
+
+---
+
+### What This Means
+
+This is EXACTLY the outcome the paper plan predicted as possible: "If exact unification requires M_T/M_X > 100, the minimal SU(5) completion is disfavored. The CD representation survives, but the specific minimal SU(5) pathway is weakened. Alternative completions (SO(10), Pati-Salam) would need investigation."
+
+The hierarchy of corrections:
+
+| Correction | Delta | Improvement |
+|---|---|---|
+| One-loop | −1.17 | — |
+| Two-loop (SM b_ij) | −0.40 | 66% |
+| Two-loop (SM+VL b_ij) | −0.436 | 63% |
+| + GUT threshold (best case) | 0.00 | 100% but M_X/M = 23,000 |
+
+The two-loop correction does the heavy lifting (66%). The threshold correction CAN close the rest, but only with an unnatural mass splitting. This suggests either:
+
+1. **Minimal SU(5) is not the right GUT completion.** SO(10) or Pati-Salam have different heavy particle spectra with larger threshold coefficients.
+2. **Three-loop corrections close part of the gap,** reducing the threshold requirement.
+3. **The residual Delta = −0.40 is too large** — a more precise two-loop calculation (higher-order integrator, Yukawa corrections) might give a smaller residual.
+
+---
+
+### Concept Connections
+
+**Track A status:** The unification program has reached a decision point. The CD fixes the gap ratio (38/27 vs 218/115). The two-loop correction gets 63-66% of the way. But closing the last 34-37% naturally requires a GUT completion beyond minimal SU(5). This is not a failure of the CD — it's a finding about the GUT completion.
+
+**PHYS-30 (α_s prediction):** Still proceeds. The α_s prediction from the unification condition uses the two-loop running, which is well-established. The GUT threshold uncertainty enters as a systematic.
+
+**Beta Unification Notebook:** The threshold coefficients C_T = −1/12, C_Sigma = −1/6, C_total = −1/4 are all exact Fractions from the representation theory. They add to the integer inventory. The finding that C_total = −1/4 = −1/(2²) may connect to the (3,2,1/6) quantum numbers but no such connection is apparent.
+
+**The proton lifetime is unaffected.** M_X = M_GUT is unchanged by the threshold correction. The prediction τ ~ 10^34.5 yr remains above Super-K and within Hyper-K reach.
+
+---
+
+### Updated Verification Totals
+
+| Component | Checks | Status |
+|---|---|---|
+| phys29_gut_thresholds.py | **10/11** | **1 FAIL (abort fires)** |
+| Prior scripts | 455/455 | PASS |
+| **Grand total** | **465/466** | **1 FAIL (physics, not bug)** |
+
+The FAIL is a legitimate abort test firing. It is the first intentional FAIL in the series — a design feature of the abort test system. The script works correctly. The physics result is: minimal SU(5) thresholds are insufficient for natural unification.
+
+PHYS-29 is ready for paper planning. The paper documents a null result — which per series writing rules (W4.1) is published with the same prominence as a positive result.
+
