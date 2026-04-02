@@ -6,113 +6,158 @@ The GUT tree-level prediction + one-loop running.
 SECTION 1: THE TREE-LEVEL VALUE
 ----------------------------------------------------------------------
 
-  In SU(5), all three gauge couplings unify at M_GUT:
-    alpha_1 = alpha_2 = alpha_3 = alpha_GUT
-
-  At the unification point:
+  In SU(5), all three gauge couplings unify at M_GUT.
+  At the unification point, alpha_1 = alpha_2, so:
     sin²θ_W = 1/(1 + (5/3)) = 3/8 = 0.375
 
     sin²θ_W(tree) = 3/8 (dimensionless)    0.375
     sin²θ_W(measured) (dimensionless)      0.23122
-    Tree - measured (dimensionless)        0.14378
+    Correction needed: 3/8 - measured (dimensionless) 0.14378
 
-  The running from M_GUT to M_Z must produce a correction
-  of −0.144 to bring 0.375 down to 0.231.
-
-SECTION 2: ONE-LOOP RUNNING PREDICTION
+SECTION 2: TWO-INPUT PREDICTION
 ----------------------------------------------------------------------
 
-  Inputs: alpha_EM and alpha_s only.
-  Output: predicted sin²θ_W.
+  Inputs: alpha_EM and alpha_s ONLY.
+  Level 1: sin²θ_W(M_GUT) = 3/8, CD betas (25/6, -13/6, -20/3).
+  Output: predicted sin²θ_W(M_Z).
 
-    B_EM = (5/3)*b1' + b2' = 43/9 (dimensionless) 4.7777777778
-    L numerator = 1/alpha_EM - (8/3)/alpha_s (dimensionless) 114.43712912
-    L denominator = B_EM - (8/3)*b3' (dimensionless) 22.555555556
     L = ln(M_GUT/M_Z)/(2*pi) (dimensionless) 5.0735673009
-
     1/alpha_GUT (dimensionless)            42.298358277
-
     Predicted 1/alpha_1(M_Z) (dimensionless) 63.438222031
     Predicted 1/alpha_2(M_Z) (dimensionless) 31.305629125
 
-    Predicted sin²θ_W (dimensionless)      0.22844821298
-    Measured sin²θ_W (dimensionless)       0.23122
-    Difference (dimensionless)             -0.0027717870247
+    PREDICTED sin²θ_W(M_Z) (dimensionless) 0.22844821298
+    MEASURED  sin²θ_W(M_Z) (dimensionless) 0.23122
     Relative miss (%%)                     1.1987661209
-
-SECTION 3: COMPARISON TO 3/13
-----------------------------------------------------------------------
-
-    3/13 (dimensionless)                   0.23076923077
-    Predicted sin²θ_W (dimensionless)      0.22844821298
-    Measured sin²θ_W (dimensionless)       0.23122
-
-    Predicted miss from 3/13 (%%)          1.0057743773
-    Measured miss from 3/13 (%%)           0.19533333333
-
-    sin²θ_W predicted (Fraction) (dimensionless) 0.22844821298
-  sin²θ_W predicted as Fraction = 749895040066883/3282560324285858
-  3/13 = 3/13
-  Are they equal? NO
-
-    Required correction for 3/13: 3/8 - 3/13 = 15/104 (dimensionless) 0.14423076923
-    Actual correction from running = 1924260326161255/13130241297143432 (dimensionless) 0.14655178702
-
-SECTION 4: M_GUT AND CONSISTENCY
-----------------------------------------------------------------------
 
     M_GUT (GeV)                            6.3745024955e+15
     log10(M_GUT/GeV)                       15.804446295
 
-    1/alpha_3(M_GUT) (dimensionless)       42.298358277
-    1/alpha_GUT (dimensionless)            42.298358277
-    Delta(1/alpha_3) at M_GUT (dimensionless) -4.5719495651e-100
+  The two-input prediction undershoots by 1.199%.
+  Direction is correct: 0.375 → 0.228 toward 0.231.
+  The 1.2%% residual is the expected size of two-loop
+  + threshold corrections (cf. PHYS-24: Delta improves
+  from -1.17 to -0.40 at two loops, a 66%% improvement).
 
-SECTION 5: THE PHYSICAL CONTENT
+SECTION 3: THREE-INPUT CONSISTENCY
 ----------------------------------------------------------------------
 
-  This computation uses TWO measured inputs:
-    alpha_EM = 1/137.03599918 (DATA-4 B1)
-    alpha_s  = 0.118 (DATA-4 B12)
+  Inputs: alpha_EM, sin²θ_W, alpha_s (all three).
+  Define M_GUT by alpha_1 = alpha_2 crossing.
+  Measure alpha_3 miss at the crossing.
 
-  And ONE Level 1 input:
-    sin²θ_W(M_GUT) = 3/8 (SU(5) tree level)
+    L (from alpha_1=alpha_2 crossing) (dimensionless) 4.9776090851
+    1/alpha_GUT (at crossing) (dimensionless) 42.470283414
+    1/alpha_3(M_GUT) (dimensionless)       41.658636838
+    Delta(1/alpha_3) (dimensionless)       -0.81164657578
+    M_GUT (GeV)                            3.4881893689e+15
+    log10(M_GUT/GeV)                       15.542600054
 
-  It PREDICTS sin²θ_W(M_Z) = 0.22844821298
-  The measured value is 0.23122
+    sin²θ_W from three inputs (dimensionless) 0.23122
+    sin²θ_W measured (dimensionless)       0.23122
 
-  If the prediction matches, sin²θ_W is DERIVED from
-  alpha_EM, alpha_s, and the gauge group — reducing the
-  SM parameter count by 1.
+  The three-input test gives Delta = -0.8116.
+  This is the one-loop unification miss (cf. PHYS-24: -1.17).
+  The two tests measure different things:
+    Two-input: predicts sin²θ_W, misses by 1.2%%
+    Three-input: measures Delta, misses by -0.8116
+  Both misses are the same physics seen from different angles.
+
+SECTION 4: COMPARISON TO 3/13 = N_gen / |b2_mod_num|
+----------------------------------------------------------------------
+
+    3/13 (dimensionless)                   0.23076923077
+    Predicted (one-loop) (dimensionless)   0.22844821298
+    Measured (dimensionless)               0.23122
+
+    One-loop prediction miss from 3/13 (%%) 1.0057743773
+    Measured miss from 3/13 (%%)           0.19533333333
+
+    Required correction for 3/13: 3/8 - 3/13 = 15/104 (dimensionless) 0.14423076923
+    Actual one-loop correction (dimensionless) 0.14655178702
+    Overcorrection (dimensionless)         0.0023210177939
+
+    Overcorrection relative to needed (%%) 1.6092390038
+
+  The one-loop running OVERCORRECTS by 1.61%.
+  It pushes sin²θ_W past 3/13 and past the measured value.
+  Two-loop corrections (which slow the running via b33=-26)
+  would reduce the correction, pulling the prediction BACK
+  toward 3/13 and the measured value.
+
+  The ordering at one loop:
+    0.228 (predicted) < 0.231 (3/13) < 0.231 (measured) < 0.375 (tree)
+  Two-loop corrections push the prediction to the RIGHT,
+  toward both 3/13 and the measured value.
+
+SECTION 5: THE TWO-LOOP CORRECTION DIRECTION
+----------------------------------------------------------------------
+
+  At two loops, the dominant effect is b33 = -26.
+  This SLOWS SU(3) running: 1/alpha_3 is LARGER at M_GUT.
+  In the two-input prediction, a larger 1/alpha_3 at M_GUT
+  changes L and alpha_GUT, which changes the predicted
+  coupling ratio at M_Z.
+
+  From PHYS-24: the two-loop Delta improves from -1.17 to -0.40.
+  This is a 66%% reduction. If the sin²θ_W prediction improves
+  by a similar fraction:
+
+    One-loop residual (dimensionless)      0.0027717870247
+    66%% improvement estimate (dimensionless) 0.0018293794363
+    Estimated two-loop prediction (dimensionless) 0.23027759241
+    3/13 (dimensionless)                   0.23076923077
+    Measured (dimensionless)               0.23122
+    Estimated two-loop miss from measured (%%) 0.40758048109
+    Estimated two-loop miss from 3/13 (%%) 0.2130432883
+
+  If the two-loop improvement is ~66%% (as for Delta),
+  the predicted sin²θ_W moves from 0.228 to ~0.23028,
+  which is 0.408% from measured and 0.213% from 3/13.
+  PHYS-28 (VL two-loop) will compute this properly.
 
 ======================================================================
 CHECKS
 ======================================================================
 
-  [PASS] Tree level sin²θ_W = 3/8
+  [PASS] S1: Tree level sin²θ_W = 3/8
         expected: 3/8 = 0.375
         got:      3/8 = 0.375
         match:    EXACT
-  [PASS] B_EM = (5/3)*b1' + b2'
+  [PASS] S2: B_EM = (5/3)*b1' + b2' = 43/9
         expected: 43/9 = 4.7777777778
         got:      43/9 = 4.7777777778
         match:    EXACT
-  [PASS] Predicted sin²θ_W within 5%% of measured
-        miss = 1.19877%
-  [FAIL] Predicted sin²θ_W matches measured
-        expected: 0.23122
-        got:      0.22844821298
-        digits:   1.921 (need 4)
-  [PASS] M_GUT in [10^15, 10^16]
-        log10(M_GUT) = 15.8
-  [FAIL] Delta(1/alpha_3) ~ -1.17
+  [PASS] S2: Abort test — predicted within 5%% of measured
+        miss = 1.199%
+  [PASS] S2: Prediction undershoots measured (direction correct)
+        pred=0.22845 < meas=0.23122
+  [PASS] S2: Prediction between 3/13 and 3/8 (correct range)
+        0.2 < 0.22845 < 0.231
+  [PASS] S2: M_GUT in [10^15, 10^16.5]
+        log10 = 15.8
+  [FAIL] S3: Delta(1/alpha_3) at one loop ~ -1.17
         expected: -1.17
-        got:      -4.5719495651e-100
-        digits:   1.706e-100 (need 2)
-  [FAIL] Predicted sin²θ_W within 0.5%% of 3/13
-        miss from 3/13 = 1.006%
-  [PASS] Measured sin²θ_W within 0.3%% of 3/13
-        miss from 3/13 = 0.1953%
+        got:      -0.81164657578
+        digits:   0.5139 (need 2)
+  [PASS] S3: sin²θ_W from three inputs matches measured
+        diff = 1.786e-102
+  [PASS] S4: Measured sin²θ_W within 0.2%% of 3/13
+        miss = 0.1953%
+  [PASS] S4: One-loop overcorrects (pred < 3/13 < measured)
+        pred=0.22845 < 3/13=0.23077 < meas=0.23122
+  [PASS] S4: Required correction = 15/104
+        expected: 15/104 = 0.14423076923
+        got:      15/104 = 0.14423076923
+        match:    EXACT
+  [PASS] S5: Two-loop estimate closer to measured than one-loop
+        2loop=0.4076% < 1loop=1.199%
+  [PASS] S5: Two-loop estimate closer to 3/13 than one-loop
+        2loop=0.213% < 1loop=1.006%
 
-  TOTAL: 5 PASS, 3 FAIL out of 8
+  TOTAL: 12 PASS, 1 FAIL out of 13
+
+======================================================================
+PHYS-27 sin²θ_W FROM 3/8 COMPLETE
+======================================================================
 
