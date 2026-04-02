@@ -119,6 +119,19 @@
 | **[[@HOWL-PHYS-26-2026]](papers/papers/PHYS/HOWL-PHYS-26-2026/manuscript.md)** | **The Integer Traceability Chain** | From SU(5) embedding to cosmological predictions in seven exact links.  |
 | **[[@HOWL-PHYS-27-2026]](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 
+
+
+| **[[@HOWL-PHYS-28-2026]](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-29-2026]](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-30-2026]](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-31-2026]](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-32-2026]](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-33-2026]](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+
 ---
 
 ## Data
