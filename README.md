@@ -115,6 +115,9 @@
 | **[[@HOWL-PHYS-22-2026]](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **The A₂ Geometric Cancellation — Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient** | Three pieces, 87% cancellation, the smallness is an accident. |
 | **[[@HOWL-PHYS-23-2026]](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **The Koide C₃ Closure — Tautology, Saddle Point, and the Real Problem** | The spacing is automatic. The potential is a saddle. The amplitude is the question.  |
 | **[[@HOWL-PHYS-24-2026]](papers/papers/PHYS/HOWL-PHYS-24-2026/manuscript.md)** | **The Session 3 Operational Lexicon** | You are here. The ground is set until falsified.  |
+| **[[@HOWL-PHYS-25-2026]](papers/papers/PHYS/HOWL-PHYS-25-2026/manuscript.md)** | **The Session 4 Operational Map — From Gauge Integers to Cosmological Predictions** | The beta coefficients run further than expected. Here is where they go.  |
+| **[[@HOWL-PHYS-26-2026]](papers/papers/PHYS/HOWL-PHYS-26-2026/manuscript.md)** | **The Integer Traceability Chain** | From SU(5) embedding to cosmological predictions in seven exact links.  |
+| **[[@HOWL-PHYS-27-2026]](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 
 ---
 
