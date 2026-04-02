@@ -1,0 +1,126 @@
+========================================================================
+HOWL UNIFICATION: TWO-LOOP RUNNING + THRESHOLD
+========================================================================
+
+  1/a1(M_Z) = 63.210321
+  1/a2(M_Z) = 31.685464
+  1/a3(M_Z) = 8.474576
+
+========================================================================
+STAGE 1: BETA COEFFICIENTS (exact rationals)
+========================================================================
+
+  One-loop SM:
+    b1 = 41/10 = 4.100000
+    b2 = -19/6 = -3.166667
+    b3 = -7 = -7.000000
+
+  Two-loop SM b_ij matrix:
+    [   3.9800   2.7000   8.8000 ]
+    [   0.9000   5.8333  12.0000 ]
+    [   1.1000   4.5000 -26.0000 ]
+
+  Cabibbo Doublet one-loop shifts:
+    db1 = 1/15 = 0.066667
+    db2 = 1 = 1.000000
+    db3 = 1/3 = 0.333333
+
+  Modified betas (SM + Cabibbo Doublet):
+    b1' = 25/6 = 4.166667
+    b2' = -13/6 = -2.166667
+    b3' = -20/3 = -6.666667
+    Gap ratio = 38/27 = 1.407407
+
+========================================================================
+STAGE 2: TWO-LOOP RGE INTEGRATION
+========================================================================
+
+  Sanity: one-loop SM running...
+    At 10^14 GeV: 1/a1=45.1199, 1/a2=45.6577, 1/a3=39.3606
+    SM a1=a2 crossing at ~10^12.0 GeV (one-loop)
+
+  Two-loop SM running (no VL)...
+    At 10^14 GeV (2-loop): 1/a1=44.9167, 1/a2=45.3905, 1/a3=39.7617
+
+========================================================================
+STAGE 3: SCAN M_VL FOR EXACT UNIFICATION
+========================================================================
+
+  M_VL (GeV)     log10 M_GUT    Delta(1/a3)    1/a_GUT    Unifies?
+  -------------- -------------- -------------- ---------- ----------
+  500            15.46          -0.3996        42.39      YES
+  750            15.44          -0.4868        42.43      YES
+  1000           15.42          -0.5489        42.46      near
+  1500           15.39          -0.6361        42.51      near
+  2000           15.37          -0.6981        42.54      near
+  3000           15.35          -0.7853        42.58      near
+  4000           15.33          -0.8471        42.61      near
+  5000           15.32          -0.8952        42.64      near
+  6000           15.30          -0.9344        42.66      near
+  8000           15.29          -0.9961        42.69      near
+  10000          15.27          -1.0442        42.71      near
+
+
+  All deltas negative: a3 too strong at GUT scale for all M_VL
+  Closest approach: M_VL = 500 GeV, Delta = -0.3996
+    M_GUT = 10^15.46 GeV, 1/a_GUT = 42.39
+
+========================================================================
+STAGE 4: CONSISTENCY CHECKS
+========================================================================
+
+  Check 1: sin2_tW prediction from 3/8
+    L_X = ln(M_GUT/M_Z)/(2pi) = 4.9487
+    sin2_tW(predicted) = 0.32033
+    sin2_tW(measured)  = 0.23122
+    Difference = +0.08911 (38.54%)
+
+  Check 2: Gap ratio
+    One-loop (SM+VL) = 1.407407 (= 38/27)
+    Measured          = 1.358193
+    One-loop distance = 0.049215
+
+  Check 3: Proton decay
+    M_GUT = 10^15.46 GeV
+    MARGINAL: near Super-K limit
+    Estimated tau_p ~ 10^33.9 years
+    Super-K bound: > 2.4e34 years
+    Hyper-K sensitivity: ~1e35 years
+
+  Check 4: One-loop vs two-loop at M_VL = 500 GeV
+    One-loop:  M_GUT = 10^15.43, Delta = -1.1721, 1/a_GUT = 42.65
+    Two-loop:  M_GUT = 10^15.46, Delta = -0.3996, 1/a_GUT = 42.39
+    Shift in M_GUT: +0.03 decades
+    Shift in Delta: +0.7725
+
+========================================================================
+SUMMARY
+========================================================================
+
+  NO EXACT UNIFICATION at two loops (within scan range)
+  Closest: M_VL = 500 GeV, Delta = -0.3996
+  Residual requires GUT threshold corrections or
+  two-loop VL contribution (neglected, ~0.1%% effect)
+
+========================================================================
+CHECKS
+========================================================================
+
+  [PASS] One-loop gap ratio = 38/27
+        1.4074074074
+  [PASS] sin2_tW normalization
+        diff = 0.00e+00
+  [PASS] SM crossing at 10^13-15 (one-loop)
+        log10 = 15.43
+  [PASS] Two-loop shift < 2 decades
+        shift = 0.03
+  [PASS] M_GUT > 10^14
+        log10 = 15.46
+  [PASS] 1/a_GUT in [20, 60]
+        1/a_GUT = 42.39
+
+  TOTAL: 6 PASS, 0 FAIL out of 6
+
+========================================================================
+UNIFICATION SCRIPT COMPLETE
+========================================================================
