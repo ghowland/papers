@@ -1,0 +1,58 @@
+======================================================================
+HOWL PHYS-25: alpha_s FROM UNIFICATION
+======================================================================
+
+INPUTS (Level 2, from DATA-4)
+----------------------------------------------------------------------
+
+  alpha_EM^-1 (dimensionless)              137.03599918
+  sin^2(theta_W) (dimensionless)           0.23122
+
+  1/alpha_1(M_Z) GUT-normalized (dimensionless) 63.210321268
+  1/alpha_2(M_Z) (dimensionless)           31.68546373
+
+  alpha_s(M_Z) measured (dimensionless)    0.118
+  1/alpha_3(M_Z) measured (dimensionless)  8.4745762712
+
+BETAS (Level 1, CD modified)
+----------------------------------------------------------------------
+
+  b_1' = 25/6 (dimensionless)              4.1666666667
+  b_2' = -13/6 (dimensionless)             -2.1666666667
+  b_3' = -20/3 (dimensionless)             -6.6666666667
+
+THE PREDICTION: alpha_EM + sin^2 -> alpha_s
+----------------------------------------------------------------------
+
+  b_1' - b_2' = 19/3 (dimensionless)       6.3333333333
+  inv_a1 - inv_a2 (dimensionless)          31.524857539
+  L = ln(M_GUT/M_Z)/(2*pi) (dimensionless) 4.9776090851
+
+  1/alpha_GUT (dimensionless)              42.470283414
+
+  1/alpha_GUT from alpha_2 (dimensionless) 42.470283414
+
+  1/alpha_3 predicted (dimensionless)      9.286222847
+  alpha_s predicted (dimensionless)        0.10768640991
+
+  1/alpha_3 measured (dimensionless)       8.4745762712
+  alpha_s measured (dimensionless)         0.118
+
+  Absolute miss (dimensionless)            -0.010313590092
+  Relative miss (%%)                       -8.740330586
+
+COUPLING CONVERGENCE AT M_GUT
+----------------------------------------------------------------------
+
+  1/alpha_1(M_GUT) (dimensionless)         42.470283414
+  1/alpha_2(M_GUT) (dimensionless)         42.470283414
+  1/alpha_3(M_GUT) (dimensionless)         41.658636838
+
+  Delta = 1/a3(M_GUT) - 1/a_GUT (dimensionless) -0.81164657578
+
+  alpha_1 and alpha_2 unify by construction (L from 1-2 crossing).
+  alpha_3 misses by Delta = -0.8116.
+  This is the one-loop unification deficit. The dominant
+  two-loop correction (b_33 = -26) slows SU(3) running,
+  pulling 1/alpha_3(M_GUT) upward toward the crossing point.
+  
