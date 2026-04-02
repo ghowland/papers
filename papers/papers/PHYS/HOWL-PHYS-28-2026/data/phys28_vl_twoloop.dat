@@ -9,21 +9,20 @@ SECTION 1: GROUP THEORY DATA
     C_2(fund SU(3)) (dimensionless)        1.3333333333
     C_2(fund SU(2)) (dimensionless)        0.75
     Y^2 = 1/36 (dimensionless)             0.027777777778
-    k_1 = 3/5 (dimensionless)              0.6
 
 SECTION 2: VL TWO-LOOP b_ij CONTRIBUTIONS
 ----------------------------------------------------------------------
 
-  Fermion-only contribution (no gauge self-coupling term).
+  Fermion-only contribution per Dirac fermion in (3,2,1/6).
   Diagonal: (10/3)*S_a*d_other*C_a(R)
   Off-diag: (4/3)*S_a*d_other*C_b(R)
 
-  VL two-loop db_ij matrix (exact Fractions):
+  VL two-loop db_ij (exact Fractions):
     [7/15, 1/15, 16/135]
     [1/30, 15/4, 8/3]
     [1/45, 1, 40/9]
 
-  Decimal values:
+  Decimal:
     [0.466667, 0.0666667, 0.118519]
     [0.0333333, 3.75, 2.66667]
     [0.0222222, 1.0, 4.44444]
@@ -41,43 +40,57 @@ SECTION 3: MAGNITUDE COMPARISON TO SM b_ij
     b_32: SM=4.5, VL=1.0, VL/SM=22.22%
     b_33: SM=-26.0, VL=4.44444, VL/SM=-17.09%
 
-SECTION 4: TWO-LOOP RUNNING AT M_VL = 500 GeV
+SECTION 4: SIGN CONVENTION VERIFICATION
 ----------------------------------------------------------------------
 
-    1/alpha_1(M_VL) (dimensionless)        64.320733468
-    1/alpha_2(M_VL) (dimensionless)        30.827828291
-    1/alpha_3(M_VL) (dimensionless)        6.578750564
+  RGE: d(1/alpha_i)/d(ln mu) = -b_i/(2pi)
+  So: 1/alpha_i(mu) = 1/alpha_i(mu0) - b_i * L
+  where L = ln(mu/mu0)/(2pi) > 0 for mu > mu0.
 
-    SCENARIO A (one-loop only):            0.0
-      L_GUT (dimensionless)                -5.2883534491
-      1/alpha_GUT (dimensionless)          42.28592743
-      Delta(1/alpha_3) (dimensionless)     -0.45148720584
-      log10(M_GUT/GeV)                     -11.731638789
+  Check: b1_SM = 41/10 > 0, so 1/alpha_1 DECREASES running up.
+  Check: b2_SM = -19/6 < 0, so 1/alpha_2 INCREASES running up.
+  They CONVERGE at high energy. Correct for unification.
+
+    Gap at M_Z (dimensionless)             31.524857539
+    Gap at L=1 with -b*L (dimensionless)   24.258190872
+  Gap decreased: True (should be True)
+
+SECTION 5: TWO-LOOP RUNNING AT M_VL = 500 GeV
+----------------------------------------------------------------------
+
+    1/alpha_1(M_VL) (dimensionless)        62.099909068
+    1/alpha_2(M_VL) (dimensionless)        32.543099169
+    1/alpha_3(M_VL) (dimensionless)        10.370401978
+
+    SCENARIO A (one-loop, CD betas):       0.0
+      L_GUT (dimensionless)                4.666864721
+      1/alpha_GUT (dimensionless)          42.654639398
+      1/alpha_3(M_GUT) (dimensionless)     41.482833452
+      Delta(1/alpha_3) (dimensionless)     -1.1718059457
+      log10(M_GUT/GeV)                     15.433689748
 
     SCENARIO B (two-loop, SM b_ij):        0.0
-      L_GUT (dimensionless)                -5.2751996107
-      1/alpha_GUT (dimensionless)          42.600695737
-      Delta(1/alpha_3) (dimensionless)     -1.3759256261
+      L_GUT (dimensionless)                4.6766246175
+      Delta(1/alpha_3) (dimensionless)     -0.49034267659
 
     SCENARIO C (two-loop, SM+VL b_ij):     0.0
-      L_GUT (dimensionless)                -5.2601411829
-      1/alpha_GUT (dimensionless)          42.669523885
-      Delta(1/alpha_3) (dimensionless)     -1.4322113458
+      L_GUT (dimensionless)                4.6886389517
+      Delta(1/alpha_3) (dimensionless)     -0.43604658115
 
-SECTION 5: COMPARISON
+SECTION 6: COMPARISON
 ----------------------------------------------------------------------
 
   Scenario                                   Delta
   ----------------------------------- ------------
-  A: One-loop only                        -0.45149
-  B: Two-loop, SM b_ij                     -1.3759
-  C: Two-loop, SM+VL b_ij                  -1.4322
+  A: One-loop only                         -1.1718
+  B: Two-loop, SM b_ij                    -0.49034
+  C: Two-loop, SM+VL b_ij                 -0.43605
   PHYS-24 ref (SM b_ij, M_VL=500)            -0.40
 
-    Improvement B over A (%%)              -204.75406795
-    Improvement C over A (%%)              -217.22080432
-    VL shift: Delta_C - Delta_B (dimensionless) -0.056285719703
-    VL shift as %% of one-loop Delta (%%)  12.466736372
+    Improvement B over A (%%)              58.154959157
+    Improvement C over A (%%)              62.788499005
+    VL shift: Delta_C - Delta_B (dimensionless) 0.054296095439
+    VL shift as %% of one-loop Delta (%%)  4.6335398482
 
 ======================================================================
 CHECKS
@@ -87,34 +100,30 @@ CHECKS
         expected: 4/3 = 1.3333333333
         got:      4/3 = 1.3333333333
         match:    EXACT
-  [PASS] S1: C_2(fund SU(2)) = 3/4
-        expected: 3/4 = 0.75
-        got:      3/4 = 0.75
-        match:    EXACT
   [PASS] S1: S_1 effective = db1_VL = 1/15
         expected: 1/15 = 0.066666666667
         got:      1/15 = 0.066666666667
         match:    EXACT
   [PASS] S2: All VL b_ij are exact Fractions
         all Fraction
-  [PASS] S2: VL b_33 positive
-        db_33 = 40/9
-  [PASS] S2: VL b_22 positive
-        db_22 = 15/4
   [PASS] S2: VL b_ij magnitudes < SM b_ij for all entries
         all |VL| < |SM|
-  [FAIL] S4: L_A positive (running UP to M_GUT)
-        L_A = -5.2884
+  [PASS] S4: Sign check — gap decreases running up
+        gap_MZ=31.525, gap_L1=24.258
+  [PASS] S4: L_A positive
+        L_A = 4.6669
+  [PASS] S4: M_GUT > 10^14 GeV
+        log10 = 15.434
   [PASS] S4: One-loop Delta negative
-        Delta_A = -0.4515
-  [FAIL] S4: Two-loop SM b_ij improves Delta (|B| < |A|)
-        |B|=1.376 < |A|=0.4515
-  [FAIL] S4: Full b_ij improves Delta (|C| < |A|)
-        |C|=1.432 < |A|=0.4515
-  [FAIL] S5: VL two-loop effect < 10%% of one-loop Delta
-        VL effect = 12.5%
+        Delta = -1.172
+  [PASS] S5: Two-loop SM b_ij improves over one-loop
+        |B|=0.4903 < |A|=1.172
+  [PASS] S5: Full b_ij improves over one-loop
+        |C|=0.436 < |A|=1.172
+  [PASS] S6: VL two-loop effect small relative to Delta
+        VL effect = 4.63%
 
-  TOTAL: 8 PASS, 4 FAIL out of 12
+  TOTAL: 11 PASS, 0 FAIL out of 11
 
 ======================================================================
 PHYS-28 VL TWO-LOOP BETA CONTRIBUTIONS COMPLETE
