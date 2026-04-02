@@ -365,3 +365,108 @@ Each outcome is informative. None is wasted. The series learns something from ev
 ---
 
 **End of paper program. 13 papers (PHYS-25 through PHYS-37), 12 scripts, ~98 checks, three tracks, one gate (PHYS-31), one bridge (PHYS-34), and three possible outcomes. The ground is PHYS-24. The map is PHYS-25. The work starts with PHYS-26, PHYS-31, and PHYS-36 in parallel.**
+
+---
+
+Yes. Three new papers emerge from the phys25_platform.py output that are not covered by PHYS-26 through PHYS-37.
+
+---
+
+### NEW PAPER 1: PHYS-38 — The Loop Expansion of the Per-Transit Correction
+
+**Why it's new:** The S9.3 EXACT result reveals that Formula B = Formula A × α×60π³/13. This is not a coincidence — it is an algebraic identity showing the per-transit correction has a loop expansion structure. The one-loop formula α/(3π) and the two-loop formula α²π²(20/13) are the first two terms of a series. PHYS-34 (per-transit mechanism) was planned to investigate WHY the formula works. PHYS-38 investigates the STRUCTURE of the formula itself — whether a three-loop term exists, what its form would be, and whether the loop expansion converges.
+
+**What it does:** Writes the per-transit correction as a perturbative series in α:
+- Zero-loop: (1−r)₀ = 0 (no correction)
+- One-loop: (1−r)₁ = α/(3π) = α/(12R₂)
+- Two-loop: (1−r)₂ = α²π²(20/13) = (1−r)₁ × α×60π³/13
+
+Determines the pattern. The ratio (1−r)₂/(1−r)₁ = α×60π³/13. Is there a three-loop term (1−r)₃ = (1−r)₂ × α×(something)? The "something" should involve the next beta-integer combination. Tests whether the three-loop coefficient can be predicted from the b_ij two-loop matrix entries.
+
+**Script:** phys38_loop_expansion.py (~80 lines)
+
+**Checks:** ~8. Verify the one-loop and two-loop formulas, verify the ratio is exact, compute the predicted three-loop term, compare to any available constraint.
+
+**Abort test:** If the ratio (1−r)₂/(1−r)₁ does not factor cleanly into α × (integer/integer) × π^n, the loop expansion picture is wrong and the two formulas are unrelated coincidences sharing similar magnitudes. Also: if the three-loop prediction gives (1−r)₃ that is larger than (1−r)₂, the series diverges and the expansion picture fails.
+
+**Dependencies:** None. Can run immediately. Uses only library values.
+
+**Relationship to existing papers:** PHYS-34 asks "why does the per-transit correction exist?" PHYS-38 asks "what is its perturbative structure?" They are complementary. PHYS-38 can run before PHYS-34 because it requires no physical mechanism — just algebraic analysis of the formula structure.
+
+---
+
+### NEW PAPER 2: PHYS-39 — The Omega Chain as Remainder Domain 10
+
+**Why it's new:** The phys25_platform.py output reveals that the Set B Omega chain has the same two-level structure as every domain in the remainder framework (PHYS-11): geometric content (π) sets the form, integers (13, 11) set the values, and the ~0.1% miss is the remainder. This is a new domain for the framework — potentially the tenth, extending the nine documented in PHYS-11. No existing planned paper covers this. PHYS-32 (Set B Omegas) tests which formula set is better. PHYS-39 tests whether the Omega chain fits the formal remainder structure.
+
+**What it does:** Maps the Set B Omega chain onto the remainder framework formalism from PHYS-10/11. Identifies: what is the modulus? (Candidates: 1 for the flat universe constraint Σ Ω = 1, or 1/13 for the denominator structure.) What is the integer part? (The rationals 2/13, 44/169, etc.) What is the remainder? (The ~0.1% miss from measured values.) Is R₂ present? (Yes: π = 4R₂ appears in Ω_b = 2/(13π) = 2/(52R₂) = 1/(26R₂).) Tests whether the Omega chain belongs to Subgroup A (periodic), Subgroup B (monotonic), or constitutes a new Subgroup D.
+
+**Script:** phys39_omega_remainder.py (~60 lines)
+
+**Checks:** ~6. R₂ presence verified, modulus identified, integer part extracted, remainder computed, subgroup classification tested.
+
+**Abort test:** If the Omega chain does not map onto the formal remainder structure — if R₂ does not appear naturally, if no clean modulus exists, if the remainder has no systematic structure — then the Omega chain is a numerical pattern but not a remainder domain. The nine-domain framework stays at nine.
+
+**Dependencies:** PHYS-31 (statistical control) should pass first, otherwise the Omega chain formulas themselves are in question. But the formal analysis can be done regardless — it's Level 1 structure analysis on proposed formulas.
+
+---
+
+### NEW PAPER 3: PHYS-40 — sin²θ_W = 3/13: Running Meets Combinatorics
+
+**Why it's new:** The S10.1 result (sin²θ_W ≈ 3/13 at 0.195%) combined with the PHYS-27 plan (sin²θ_W from 3/8 via running) creates a specific testable prediction that neither paper alone addresses. PHYS-27 computes sin²θ_W from 3/8 by running with CD betas. If the result of that running is exactly 3/13 (not just approximately 0.231), then the GUT prediction and the combinatoric scan have converged on the same formula from independent directions — the same "two roads" pattern as the Cabibbo Doublet itself. This convergence test is not in PHYS-27's scope (which just computes the running) or in any Track B paper (which tests the cosmological formulas).
+
+**What it does:** Takes the PHYS-27 running result for sin²θ_W and computes its deviation from 3/13 specifically. If sin²θ_W(running) = 3/13 + ε, determines whether ε is zero (exact match), small (≈ 0.001, the measurement uncertainty level), or large (the running gives ~0.231 but not specifically 3/13).
+
+Tests the algebraic question: does the one-loop running formula sin²θ_W = 3/8 − f(b_i, M_GUT) simplify to 3/13 when the CD modified betas are used? If so, this is a Level 1 derivation of sin²θ_W = N_gen/|b₂_mod_num| from the gauge group — the weak mixing angle determined entirely by the generation count and the Cabibbo Doublet's SU(2) beta numerator.
+
+Computes the required condition: for sin²θ_W = 3/13, the running correction must be 3/8 − 3/13 = (39 − 24)/104 = 15/104. Tests whether the one-loop formula with CD betas produces exactly 15/104.
+
+**Script:** phys40_sin2tw_exact.py (~50 lines)
+
+**Checks:** ~6. Running correction computed, compared to 15/104, deviation from 3/13 quantified, Level 1 status determined.
+
+**Abort test:** If the running gives sin²θ_W that differs from 3/13 by more than 1% (i.e., the running gives ~0.234 or ~0.228 rather than ~0.231), the 3/13 combinatoric hit was coincidence and sin²θ_W is not N_gen/|b₂_mod_num|. PHYS-27's running result still stands on its own — this paper only tests whether it happens to equal the specific rational 3/13.
+
+**Dependencies:** PHYS-27 (sin²θ_W from running) must be computed first. PHYS-40 is a post-processing paper that takes PHYS-27's numerical result and tests it against 3/13.
+
+---
+
+### SUMMARY OF ADDITIONS
+
+| Paper | Track | Title | Key Question | Depends On | Can Start |
+|---|---|---|---|---|---|
+| PHYS-38 | B | Loop expansion of (1−r) | Is the per-transit correction a perturbative series? | None | **Immediately** |
+| PHYS-39 | C | Omega chain as Domain 10 | Does the Ω chain fit the remainder framework? | PHYS-31 (soft) | **Immediately** |
+| PHYS-40 | A+B | sin²θ_W = 3/13 exact test | Does GUT running produce exactly N_gen/\|b₂_mod\|? | PHYS-27 | After PHYS-27 |
+
+PHYS-38 and PHYS-39 can start in parallel with Phase 1 (PHYS-26, PHYS-31, PHYS-36). PHYS-40 requires PHYS-27 to complete first.
+
+### UPDATED EXECUTION ORDER
+
+**Phase 1 — Immediate (no dependencies):**
+- PHYS-26 (normalization — documentation)
+- PHYS-31 (statistical control — Track B gate)
+- PHYS-36 (A₃ decomposition)
+- **PHYS-38 (loop expansion — new)**
+- **PHYS-39 (Omega remainder domain — new)**
+
+**Phase 2 — After Phase 1:**
+- PHYS-27 (sin²θ_W from 3/8)
+- PHYS-28 (VL two-loop)
+- PHYS-32 (Set B Omegas)
+- PHYS-33 (Λ interpolation)
+
+**Phase 3 — After Phase 2:**
+- PHYS-29 (GUT thresholds)
+- PHYS-34 (per-transit mechanism)
+- PHYS-37 (Koide amplitude)
+- **PHYS-40 (sin²θ_W = 3/13 test — new, after PHYS-27)**
+
+**Phase 4 — After Phase 3:**
+- PHYS-30 (α_s prediction)
+- PHYS-35 (boundary count)
+
+Total program: 16 papers (PHYS-25 through PHYS-40), 15 scripts, ~550 estimated checks.
+
+---
+

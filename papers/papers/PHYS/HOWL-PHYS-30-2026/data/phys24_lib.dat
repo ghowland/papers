@@ -1,0 +1,90 @@
+======================================================================
+PHYS24_LIB SELF-TEST
+======================================================================
+
+  [PASS] SM gap ratio = 218/115
+        expected: 218/115 = 1.8956521739
+        got:      218/115 = 1.8956521739
+        match:    EXACT
+  [PASS] CD gap ratio = 38/27
+        expected: 38/27 = 1.4074074074
+        got:      38/27 = 1.4074074074
+        match:    EXACT
+  [PASS] MSSM gap ratio = 7/5
+        expected: 7/5 = 1.4
+        got:      7/5 = 1.4
+        match:    EXACT
+  [PASS] b1_mod = 25/6
+        expected: 25/6 = 4.1666666667
+        got:      25/6 = 4.1666666667
+        match:    EXACT
+  [PASS] b2_mod = -13/6
+        expected: -13/6 = -2.1666666667
+        got:      -13/6 = -2.1666666667
+        match:    EXACT
+  [PASS] b3_mod = -20/3
+        expected: -20/3 = -6.6666666667
+        got:      -20/3 = -6.6666666667
+        match:    EXACT
+  [PASS] Q335 pi matches mpmath
+        expected: 3.1415926536
+        got:      3.1415926536
+        digits:   102.0 (need 100)
+  [PASS] R2 = pi/4
+        expected: 0.7853981634
+        got:      0.7853981634
+        digits:   EXACT (need 100)
+  [PASS] R4 = pi^2/32
+        expected: 0.30842513753
+        got:      0.30842513753
+        digits:   EXACT (need 100)
+  [PASS] zeta(2) ~ pi^2/6
+        expected: 1.6449340668
+        got:      1.6449340668
+        digits:   EXACT (need 99)
+  [PASS] Koide K(e,mu,tau) from masses
+        expected: 0.6666605115
+        got:      0.66666051147
+        digits:   10.29 (need 6)
+  [PASS] Pure-gauge Casimir gap = 2
+        expected: 2 = 2.0
+        got:      2 = 2.0
+        match:    EXACT
+  [PASS] Per-gen db1 = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Per-gen db2 = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Per-gen db3 = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Measured gap ratio in [1.2, 1.5]
+        gap = 1.358193
+  [PASS] Li4(1/2) full precision
+        expected: 0.51747906167
+        got:      0.51747906167
+        digits:   101.2 (need 100)
+  [PASS] K(k2=3/4) full precision
+        expected: 2.1565156475
+        got:      2.1565156475
+        digits:   102.7 (need 100)
+  [PASS] E(k2=3/4) full precision
+        expected: 1.2110560276
+        got:      1.2110560276
+        digits:   101.4 (need 100)
+  [PASS] N_A = 602214076 * 10^15
+        expected: 602214076000000000000000 = 6.02214076e+23
+        got:      602214076000000000000000 = 6.02214076e+23
+        match:    EXACT
+  [PASS] a^2(leptons) is NOT exactly 2
+        a2_lep = 1.9999630688 (Level 2 measurement, not Level 1 hypothesis)
+
+  TOTAL: 21 PASS, 0 FAIL out of 21
+
+======================================================================
+PHYS24_LIB SELF-TEST COMPLETE
+======================================================================
