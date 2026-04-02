@@ -638,6 +638,3 @@ The integer 13 appears in 10 of 11 formulas. π appears in 7. α appears in 4. R
 ---
 
 **End of supporting appendix tables for PHYS-25. 15 tables. Every number traces to phys25_platform.py (47/47 PASS) or to prior verified scripts. Every integer traces to the gauge group through the beta coefficients. The tables document the discovery, the formulas, the program, the abort conditions, and the verification chain. Grand total: 411/411 checks across 20 scripts in 2 sessions. Zero failures.**
-
----
-

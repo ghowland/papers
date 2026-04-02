@@ -1,9 +1,9 @@
 
-**Registry:** [@HOWL-PHYS-25-2026]
+**Registry:** [@HOWL-PHYS-28-2026]
 
-**Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026]
+**Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026]
 
-**Date:** April 1 2026
+**Date:** April 2 2026
 
 **Domain:** Lepton Mass Structure, Path Closure
 
