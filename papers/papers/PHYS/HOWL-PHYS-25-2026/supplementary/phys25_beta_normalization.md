@@ -1,3 +1,32 @@
+---
+
+The 4 FAILs reveal a critical bug in the script. The gap ratio computation is wrong because I'm adding the VL shifts to b1_SM for all three components instead of to each respective b_i_SM. Let me trace the error:
+
+```python
+b_mod_weyl = [b1_SM + vl_weyl[i] for i in range(3)]
+```
+
+This adds vl_weyl[0], vl_weyl[1], vl_weyl[2] all to **b1_SM**. It should be:
+
+```python
+b_sm = [b1_SM, b2_SM, b3_SM]
+b_mod_weyl = [b_sm[i] + vl_weyl[i] for i in range(3)]
+```
+
+That's a straightforward indexing bug. The SM betas are three different values but the list comprehension uses b1_SM for all three.
+
+With this fix:
+- Library: (41/10 + 1/15, −19/6 + 1, −7 + 1/3) = (25/6, −13/6, −20/3) → gap = 38/27 ✓
+- Weyl: (41/10 + 1/15, −19/6 + 1, −7 + 2/3) = (25/6, −13/6, −19/3) → gap = (25/6+13/6)/(−13/6+19/3) = (38/6)/((−13+38)/6) = 38/25. Hmm, not 19/12. Let me recompute: (−13/6+19/3) = (−13+38)/6 = 25/6. So gap = (38/6)/(25/6) = 38/25 = 1.52. Not 19/12.
+- Dirac: (41/10 + 2/15, −19/6 + 2, −7 + 4/3) = (127/30, −7/6, −17/3) → numerator = 127/30 + 7/6 = (127+35)/30 = 162/30 = 27/5. Denominator = −7/6 + 17/3 = (−7+34)/6 = 27/6 = 9/2. Gap = (27/5)/(9/2) = 54/45 = 6/5. ✓
+
+So the Weyl gap ratio is 38/25 = 1.52, not 19/12. My supporting tables had an error too. Let me also verify: for Weyl convention the VL pair is one Weyl in (3,2,1/6), so the shifts are (1/15, 1, 2/3). But a VL pair is NOT one Weyl — it's one Dirac = two Weyl. Convention A (one Weyl) doesn't correspond to the physical VL pair. Only Convention B (Dirac) does.
+
+The table with "Convention A applied to the VL" is physically meaningless — you'd never add just one Weyl fermion without its partner. The real question is between Convention B (Dirac, standard) and Convention C (library). Convention A is only useful for summing over chiral SM fermions.
+
+Here is the corrected script:
+
+```python
 #!/usr/bin/env python3
 """
 HOWL PHYS-25 DEMONSTRATION: Beta Normalization Diagnostic
@@ -460,3 +489,35 @@ print()
 print("=" * 70)
 print("PHYS-25 BETA NORMALIZATION DIAGNOSTIC COMPLETE")
 print("=" * 70)
+```
+
+The key fixes: the SM beta list `b_sm_lib = [b1_SM, b2_SM, b3_SM]` is now used correctly for indexing in the gap ratio computation, the physically meaningless "one Weyl VL" gap ratio is dropped (only Library vs Dirac matters), and the checks now test the right values.
+
+---
+
+14/14 PASS. The diagnostic is clean and definitive.
+
+Here is what the script establishes:
+
+**Findings:**
+
+1. **Convention A (standard Weyl) reproduces b₃_SM = −7. Convention C (library Dynkin) gives b₃_SM = −9.** The library's SU(3) coefficient 1/3 is half the standard 2/3. This is the only divergence — b₁ and b₂ match exactly.
+
+2. **The library's VL shifts (1/15, 1, 1/3) match neither Weyl nor Dirac.** They match Weyl for components 1 and 2, but are half Weyl for component 3. The ratios library/Dirac are (1/2, 1/2, 1/4) — non-uniform.
+
+3. **The gap ratio depends critically on the convention.** Library gives 38/27 = 1.407 (distance 0.049 from measured). Dirac gives 6/5 = 1.200 (distance 0.158). Both improve on the SM (distance 0.538), but the library value is 3× closer.
+
+4. **Generation democracy breaks in Convention C.** Per-gen b₃ = 2/3 instead of 4/3. This means Convention C is internally inconsistent with the SM betas it's combined with — the SM betas assume democracy (4/3 per gen), but the VL formula uses a coefficient that would give 2/3 per gen.
+
+**The situation right now:**
+
+The normalization issue is fully characterized but **not yet resolved**. We have two candidate gap ratios (38/27 and 6/5), both exact Fractions, both improving on the SM. The library value 38/27 was the basis for all Session 3 and PHYS-24 results. If the correct value turns out to be 6/5, the CD is still viable (closer to measured than SM) but the distance from measured triples from 0.049 to 0.158 — comparable to the MSSM's 0.042, but on the opposite side.
+
+**The resolution requires an external reference** with explicit beta shifts for a VL (3,2,1/6) in GUT normalization. The web search found the right papers but not the specific table entries. The most likely place to find this is Kowalska & Kumar (2019) Table 1 or Bhattacherjee et al. (2018), which enumerate VL representations with their beta shifts.
+
+The stakes: if Δb₃ = 4/3 (Dirac), the gap ratio 38/27 is wrong and needs correction throughout the series — PHYS-13, PHYS-15, PHYS-16, PHYS-24 Section 7, all affected. If Δb₃ = 1/3 (library), the standard Weyl formula has a subtlety I'm missing and the library is correct.
+
+Want me to do another targeted web search for the explicit table, or do you have access to one of those papers?
+
+---
+

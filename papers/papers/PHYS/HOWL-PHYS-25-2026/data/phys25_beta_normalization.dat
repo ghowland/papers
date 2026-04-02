@@ -2,15 +2,16 @@
 HOWL PHYS-25: BETA NORMALIZATION DIAGNOSTIC
 ======================================================================
 
-THE THREE CONVENTIONS
+THE CONVENTIONS
 ----------------------------------------------------------------------
 
   A (Standard Weyl):  (2/5, 2/3, 2/3) per Weyl fermion
-  B (Standard Dirac): (4/5, 4/3, 4/3) per Dirac fermion
+  B (Standard Dirac): (4/5, 4/3, 4/3) = 2*A, per Dirac
   C (Library Dynkin):  (2/5, 2/3, 1/3) per VL pair
 
-  A and B differ by factor 2 uniformly (Weyl vs Dirac).
-  C matches A for b_1 and b_2 but has HALF A for b_3.
+  A is for chiral SM fermions (Weyl).
+  B is for the VL pair (one Dirac = L + R).
+  C is what the library uses for the VL pair.
 
 SM FERMION b_i: FIELD BY FIELD (one generation)
 ----------------------------------------------------------------------
@@ -46,8 +47,8 @@ SM BETA RECONSTRUCTION
   Convention C reproduces SM betas: False
 
   Convention C gives b_3 = -9, library has -7.
-  The fermion contribution is 2 (Conv C) vs 4 (Conv A).
-  Convention C is WRONG for SM b_3 by a factor of 2.
+  Fermion contribution: 2 (C) vs 4 (A).
+  Convention C is WRONG for SM b_3 by factor 2.
 
 VL (3,2,1/6) ONE-LOOP SHIFTS
 ----------------------------------------------------------------------
@@ -55,51 +56,55 @@ VL (3,2,1/6) ONE-LOOP SHIFTS
   Convention                        Db_1         Db_2         Db_3
   ------------------------  ------------ ------------ ------------
   A: Weyl (one Weyl)                1/15            1          2/3
-  B: Dirac (one Dirac)              2/15            2          4/3
-  C: Library formula                1/15            1          1/3
-  Library actual (N4-N6)            1/15            1          1/3
+  B: Dirac (VL pair)                2/15            2          4/3
+  C: Library (N4-N6)                1/15            1          1/3
 
-  Ratios library_actual / convention:
+  Ratios library / convention:
     vs Weyl      1, 1, 1/2
     vs Dirac     1/2, 1/2, 1/4
 
   Library formula matches library actual: True
-  Library actual matches Weyl: False
+  Library matches Weyl: False
     Component 3: library = 1/3, Weyl = 2/3
+  Library matches Dirac: False
+    Component 1: library = 1/15, Dirac = 2/15
+    Component 2: library = 1, Dirac = 2
+    Component 3: library = 1/3, Dirac = 4/3
 
 THE DIVERGENCE: SU(3) COEFFICIENT
 ----------------------------------------------------------------------
 
-  Standard Weyl formula for b_3:
-    Db_3 = (2/3) * T(R_3) * dim(R_2)
+  Standard Weyl:  Db_3 = (2/3) * T(R_3) * dim(R_2)
+  Library Dynkin:  Db_3 = (1/3) * dim(R_2) * S_2(R_3)
+  Coefficient ratio: 1/3 vs 2/3 = factor of 2.
 
-  Library Dynkin formula for b_3:
-    Db_3 = (1/3) * dim(R_2) * S_2(R_3)
+  For b_1 and b_2 the library matches Weyl exactly.
+  The divergence is ONLY in the SU(3) coefficient.
 
-  T(R_3) = S_2(R_3) in all cases, so the ONLY
-  difference is the coefficient: 2/3 vs 1/3.
+  Applied to SM fermions:
+    Conv A: b_3 fermion per gen = 4/3, total = 4
+    Conv C: b_3 fermion per gen = 2/3, total = 2
+    Correct value: 4 (gives b_3_SM = -7)
+    Conv C gives: 2 (gives b_3_SM = -9)
 
-  For SM fermions (Convention A, Weyl):
-    b_3 fermion = 3 * sum_gen = 3 * 4/3 = 4
-    b_3_SM = -11 + 0 + 4 = -7  CORRECT
-
-  For SM fermions (Convention C, library):
-    b_3 fermion = 3 * sum_gen = 3 * 2/3 = 2
-    b_3_SM = -11 + 0 + 2 = -9  WRONG (should be -7)
-
-  The library's b_3 Dynkin coefficient 1/3 is HALF the
-  standard Weyl coefficient 2/3. It does not reproduce
-  b_3_SM = -7 when applied to SM fermion fields.
-
-GAP RATIO IN ALL CONVENTIONS
+GAP RATIO: LIBRARY vs DIRAC
 ----------------------------------------------------------------------
 
-  Convention                      Gap ratio      Decimal Dist from 1.358
+  b_1_mod (library) = 25/6 (dimensionless) 4.1666666667
+  b_2_mod (library) = -13/6 (dimensionless) -2.1666666667
+  b_3_mod (library) = -20/3 (dimensionless) -6.6666666667
+  Gap ratio (library) = 38/27 (dimensionless) 1.4074074074
+
+  b_1_mod (Dirac) = 127/30 (dimensionless) 4.2333333333
+  b_2_mod (Dirac) = -7/6 (dimensionless)   -1.1666666667
+  b_3_mod (Dirac) = -17/3 (dimensionless)  -5.6666666667
+  Gap ratio (Dirac) = 6/5 (dimensionless)  1.2
+
+  Model                           Gap ratio      Decimal     Distance
   ---------------------------- ------------ ------------ ------------
   SM (no VL)                        218/115      1.89565       0.5375
-  A: Weyl (one Weyl)                  -14/5         -2.8        4.158
-  B: Dirac (one Dirac)                -14/5         -2.8        4.158
-  C: Library (operational)             -7/5         -1.4        2.758
+  CD library (Db_3=1/3)               38/27      1.40741      0.04921
+  CD Dirac (Db_3=4/3)                   6/5          1.2       0.1582
   MSSM                                  7/5          1.4      0.04181
 
   Measured gap ratio (dimensionless)       1.3581926841
@@ -110,57 +115,46 @@ WHAT IS THE VL PAIR?
   A vector-like pair (3,2,1/6) consists of:
     L component: one Weyl in (3,2,1/6)
     R component: one Weyl in (3*,2*,-1/6)
-  Together they form one Dirac fermion.
+  Together = one Dirac fermion.
 
-  The SM generation has 5 Weyl fermions per generation.
-  The VL pair has 2 Weyl fermions (= 1 Dirac).
+  SM chiral fermions are summed as Weyl (Conv A).
+  The VL pair should use the Dirac formula (Conv B = 2*A).
 
-  The correct shift for the VL pair is Convention B
-  (Dirac), which is 2x Convention A (Weyl).
-
-  The library uses Convention C, which matches Weyl
-  for b_1 and b_2 but gives HALF Weyl for b_3.
-  This is neither Weyl nor Dirac — it is a hybrid.
+  The library uses Conv C which has a non-standard
+  SU(3) coefficient. This is neither Weyl nor Dirac.
 
 THE SESSION 3 QUESTION
 ----------------------------------------------------------------------
 
-  The gap ratio 38/27 was verified in sin2_theta_w_1.py
-  (9/9 checks). That script used the library values
-  (1/15, 1, 1/3) to compute modified betas and the
-  gap ratio. It then compared against the MEASURED
-  coupling ratio from alpha_EM, sin2_tW, alpha_s.
+  The library's SM betas (41/10, -19/6, -7) are correct
+  and standard. They were NOT computed from Convention C —
+  they are hardcoded from the literature.
 
-  The gap ratio is a LEVEL 1 quantity: it depends only
-  on the betas. The measured gap ratio is DERIVED from
-  Level 2 couplings. They are compared, not equated.
-  The 9/9 checks verified that the computation is
-  internally consistent, not that Db_3 = 1/3 is the
-  physically correct shift for a VL (3,2,1/6) pair.
+  The VL shifts (1/15, 1, 1/3) were computed from the
+  library's Dynkin formulas (Convention C). The gap ratio
+  38/27 combines correct SM betas with Convention C shifts.
 
-  The unification_test.py (6/6) used the library betas
-  for one-loop running above M_VL and SM betas below.
-  If Db_3 should be 2/3 or 4/3 instead of 1/3, the
-  unification scan results change significantly.
+  If the VL shifts should be (2/15, 2, 4/3) (Dirac),
+  the gap ratio becomes 6/5 = 1.2, not 38/27.
+
+  The Session 3 checks verified internal consistency
+  (the arithmetic is correct given the library values),
+  not that the library values are physically correct.
 
 RESOLUTION PATH
 ----------------------------------------------------------------------
 
-  The normalization must be resolved by an external
-  reference that explicitly lists the one-loop beta
-  shift for a VL (3,2,1/6) doublet in GUT normalization.
+  An external reference must settle whether the VL
+  (3,2,1/6) one-loop shift for SU(3) is 1/3 or 4/3.
 
   Candidates:
-    - Kowalska & Kumar, JHEP 12 (2019) 094
-    - Bhattacherjee et al., JHEP 05 (2018) 090
-    - Dermisek, Phys. Rev. D 87 (2013) 055008
-  These papers enumerate VL representations and their
-  beta shifts. A table entry for (3,2,1/6) settles it.
+    Kowalska & Kumar, JHEP 12 (2019) 094
+    Bhattacherjee et al., JHEP 05 (2018) 090
+    Dermisek, Phys. Rev. D 87 (2013) 055008
 
-  Until resolved, all three gap ratios should be tracked:
-    38/27 (library, Db_3=1/3)
-    19/12 (Weyl, Db_3=2/3)
-    6/5   (Dirac, Db_3=4/3)
+  Until resolved, both gap ratios must be tracked:
+    38/27 = 1.407 (library, Db_3=1/3)
+    6/5 = 1.2 (Dirac, Db_3=4/3)
 
 ======================================================================
 CHECKS
@@ -194,22 +188,20 @@ CHECKS
         match:    EXACT
   [PASS] Per-gen (Conv C): b_3 != 4/3 (democracy broken)
         b_3 per gen (C) = 2/3
-  [FAIL] Gap ratio (library) = 38/27
+  [PASS] Gap ratio (library) = 38/27
         expected: 38/27 = 1.4074074074
-        got:      -7/5 = -1.4
-        match:    MISMATCH
-  [FAIL] Gap ratio (Weyl) = 19/12
-        expected: 19/12 = 1.5833333333
-        got:      -14/5 = -2.8
-        match:    MISMATCH
-  [FAIL] Gap ratio (Dirac) = 6/5
+        got:      38/27 = 1.4074074074
+        match:    EXACT
+  [PASS] Gap ratio (Dirac) = 6/5
         expected: 6/5 = 1.2
-        got:      -14/5 = -2.8
-        match:    MISMATCH
-  [FAIL] All CD conventions closer to measured than SM
-        SM: 0.5375, lib: 2.758, Weyl: 4.158, Dirac: 4.158
+        got:      6/5 = 1.2
+        match:    EXACT
+  [PASS] Both CD conventions closer to measured than SM
+        SM: 0.5375, lib: 0.04921, Dirac: 0.1582
+  [PASS] Library and Dirac gap ratios differ
+        library = 38/27, Dirac = 6/5
 
-  TOTAL: 10 PASS, 4 FAIL out of 14
+  TOTAL: 14 PASS, 0 FAIL out of 14
 
 ======================================================================
 PHYS-25 BETA NORMALIZATION DIAGNOSTIC COMPLETE
