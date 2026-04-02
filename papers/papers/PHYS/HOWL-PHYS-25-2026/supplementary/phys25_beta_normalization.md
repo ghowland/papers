@@ -521,3 +521,140 @@ Want me to do another targeted web search for the explicit table, or do you have
 
 ---
 
+The search results don't contain the explicit table I need. Let me try to get the Bhattacherjee et al. paper directly — it's open access on JHEP.Let me try a different approach — search for a lecture or review that explicitly lists the beta coefficient contributions for common VL representations in the standard GUT convention.I can't find the explicit table through web search snippets. Let me try to resolve this from first principles using the one reference I **do** have — the QCD beta function, which is universally agreed upon.
+
+The QCD one-loop beta function is β(g₃) = −(11 − 2n_f/3) · g₃³/(16π²), where n_f counts **Dirac** quark flavors. This gives b₃ = −11 + (2/3)n_f in the convention d(1/α₃)/d(ln μ) = −b₃/(2π).
+
+With 6 SM Dirac flavors: b₃ = −11 + 4 = −7. ✓
+
+Now: a VL quark doublet (3,2,1/6) adds **2 new Dirac quark flavors** to QCD (the up-type and down-type components). Each is a color triplet Dirac fermion. So:
+
+Δb₃ = (2/3) × 2 = **4/3**
+
+This is the Dirac (Convention B) answer. It's derived directly from the universally-agreed QCD beta function formula. There is no convention ambiguity here — the QCD formula with n_f counting Dirac flavors and coefficient 2/3 is textbook standard.
+
+The library value Δb₃ = 1/3 is **wrong by a factor of 4**.
+
+**Resolution achieved.** The standard result is Δb₃ = 4/3 for a VL (3,2,1/6) doublet. The gap ratio with corrected betas is 6/5 = 1.200, not 38/27 = 1.407.
+
+The diagnostic script is validated: Convention B (Dirac) is correct, giving gap ratio 6/5. The library has an error in the VL SU(3) shift. This affects all downstream results that used the gap ratio 38/27.
+
+The CD still improves on the SM (distance 0.158 vs 0.538), but the improvement is less dramatic than previously reported, and the CD gap ratio 1.200 is now on the **opposite side** of the measured 1.358 from the SM's 1.896.
+
+This is a significant finding. The series needs a correction paper.
+
+---
+
+**The Finding**
+
+The library's one-loop beta shift for the Cabibbo Doublet has an error in the SU(3) component. The error is a factor of 4: the library has Δb₃ = 1/3, the correct value is Δb₃ = 4/3. This changes the gap ratio from 38/27 = 1.407 to 6/5 = 1.200.
+
+---
+
+**How I know the correct value**
+
+The QCD one-loop beta function is one of the most verified results in particle physics. In the standard convention d(1/α₃)/d(ln μ) = −b₃/(2π), the formula is:
+
+b₃ = −11 + (2/3) × n_f
+
+where n_f counts Dirac quark flavors. With 6 SM flavors (u, d, c, s, t, b): b₃ = −11 + 4 = −7. This is the library value. No dispute.
+
+A VL quark doublet (3,2,1/6) adds two new Dirac quark flavors to QCD — the upper component (charge +2/3) and the lower component (charge −1/3). Each is a color triplet, each is a full Dirac fermion (the VL pair provides both left and right chiralities). So:
+
+Δb₃ = (2/3) × 2 = 4/3
+
+This follows from the same formula that gives b₃ = −7 for the SM. No new convention, no new formula, no ambiguity. The coefficient 2/3 per Dirac flavor is the same coefficient that produces the correct SM answer when multiplied by 6.
+
+---
+
+**Where the library error is**
+
+The library's Dynkin formulas in phys24_cabibbo_doublet.py use three coefficients for the VL pair:
+
+- Δb₁ = **(2/5)** × d₃ × d₂ × Y²
+- Δb₂ = **(2/3)** × d₃ × S₂(R₂)
+- Δb₃ = **(1/3)** × d₂ × S₂(R₃)
+
+The standard Weyl formula (one left-handed fermion) uses:
+
+- Δb₁ = **(2/5)** × Y² × d₂ × d₃
+- Δb₂ = **(2/3)** × T₂ × d₃
+- Δb₃ = **(2/3)** × T₃ × d₂
+
+The SU(3) coefficient is 1/3 in the library vs 2/3 in the standard formula. The SU(1) and SU(2) coefficients match. This is not a uniform Dirac/Weyl factor — it's a mistake specifically in the SU(3) coefficient.
+
+The diagnostic script proves this is an error and not an alternative convention: when you apply the library's coefficient 1/3 to all five SM chiral fermion fields in one generation, you get b₃ fermion = 2/3 per generation, times 3 generations = 2. That gives b₃_SM = −11 + 2 = −9. The correct value is −7. The library's SU(3) Dynkin coefficient does not reproduce the SM beta that the library itself stores.
+
+---
+
+**Why it wasn't caught**
+
+The gap ratio only uses **differences** of betas: (b₁ − b₂)/(b₂ − b₃). But the error in Δb₃ does NOT cancel in differences — it changes b₂ − b₃ and therefore changes the gap ratio. So the gap ratio 38/27 is itself wrong.
+
+The reason it wasn't caught is that the gap ratio was never checked against an independent calculation of the VL beta shifts. The Session 3 checks verified:
+
+1. That the arithmetic 38/27 = (b₁' − b₂')/(b₂' − b₃') is correct given the library betas — yes, the arithmetic is correct
+2. That the SM betas (41/10, −19/6, −7) are correct — yes, they are hardcoded from the literature
+3. That the measured gap ratio from couplings is ~1.358 — yes, correctly derived
+
+But nobody checked that (1/15, 1, 1/3) is the correct VL shift. The Dynkin formula was written with the wrong SU(3) coefficient, the resulting shifts were stored in the library, and every downstream computation used them. The gap ratio 38/27 is internally consistent arithmetic on wrong inputs.
+
+The cabibbo_doublet.py script even has a long comment acknowledging the non-uniform coefficients (2/5, 2/3, 1/3) and attributing the difference to "Casimir normalization conventions differ between the two groups." That comment was wrong — there is no standard convention where the SU(3) coefficient is 1/3 for a VL pair. The comment rationalized the error instead of flagging it.
+
+---
+
+**What changes**
+
+With the corrected Δb₃ = 4/3, the full Dirac shifts for the VL (3,2,1/6) pair are:
+
+Δb₁ = 2/15, Δb₂ = 2, Δb₃ = 4/3
+
+The modified betas become:
+
+b₁' = 41/10 + 2/15 = 127/30, b₂' = −19/6 + 2 = −7/6, b₃' = −7 + 4/3 = −17/3
+
+The gap ratio becomes:
+
+(127/30 + 7/6) / (−7/6 + 17/3) = (27/5) / (9/2) = 6/5 = 1.200
+
+Comparison:
+
+| Model | Gap ratio | Distance from measured 1.358 |
+|---|---|---|
+| SM | 218/115 = 1.896 | 0.538 |
+| CD corrected | 6/5 = 1.200 | 0.158 |
+| MSSM | 7/5 = 1.400 | 0.042 |
+| CD library (wrong) | 38/27 = 1.407 | 0.049 |
+
+The CD still improves on the SM — the distance drops from 0.538 to 0.158, a factor of 3.4 improvement. But it's no longer comparable to the MSSM. The MSSM at 0.042 is now 4× closer to measured than the CD at 0.158. And the CD gap ratio 1.200 undershoots the measured 1.358, while the SM overshoots at 1.896 — the CD overcorrects.
+
+---
+
+**What this means for the series**
+
+The physics case for the CD is weakened but not killed. The gap ratio improvement is real (factor 3.4 over SM), just less impressive than the factor 11 previously claimed. The anomaly evidence (CKM deficit, A_FB^b, Higgs signal strength) is completely unaffected — those use different quantum numbers and don't depend on the beta shifts at all. The proton decay prediction changes because M_GUT changes. The sin²θ_W and α_s predictions from PHYS-25 used the library betas and need to be rerun with the corrected values.
+
+The affected results across the series:
+
+- Gap ratio: 38/27 → 6/5 (PHYS-13, PHYS-15, PHYS-16, PHYS-24)
+- Modified betas: (25/6, −13/6, −20/3) → (127/30, −7/6, −17/3) (all unification scripts)
+- Asymmetry ratio Δb₂/Δb₁: 15 → still 15 (both components doubled, ratio preserved)
+- M_GUT: changes (needs recomputation)
+- Two-loop Delta: changes (needs rerun of unification_test.py)
+- sin²θ_W prediction: changes (needs rerun)
+- α_s prediction: changes (needs rerun)
+
+The kill switch K3 from the goals document says: "If two-loop + threshold + basic phenomenology leaves no viable CD parameter region, downgrade from primary candidate to conditional candidate." We're not there yet — the gap ratio still improves on the SM — but the margin is thinner.
+
+---
+
+**What to do next**
+
+The immediate priority is a correction script that establishes the corrected values, reruns the key results (gap ratio, M_GUT, sin²θ_W, α_s), and determines whether the CD remains viable at the corrected betas. This is one script, maybe 80 lines, with the corrected library values and all the confrontations redone.
+
+Then the library needs to be updated: db3_VL = 1/3 → 4/3, and all derived quantities (b3_mod, gap_VL, etc.) recomputed.
+
+Then PHYS-24 needs an erratum or a correction paper.
+
+---
+
