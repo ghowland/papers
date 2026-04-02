@@ -14,7 +14,7 @@ If a name becomes an alias, the mapping goes at the end of this file.
 Registry: [@HOWL-PHYS24-LIB-2026]
 Date: April 2 2026
 Status: Operational platform
-Test: phys24_lib_test.py (146/146 PASS)
+Test: phys24_lib_test.py (147/147 PASS)
 
 Backed by: DATA-4 (146 entries, 38/38 checks), all Session 3 scripts (98/98 checks)
 
@@ -47,7 +47,7 @@ mp.dps = 100
 
 
 # ================================================================
-# STANDARD HELPERS — identical in every script that imports this
+# STANDARD HELPERS
 # ================================================================
 
 def f2m(f):
@@ -69,8 +69,14 @@ def digits_of(got, expected):
     return -mlog10(rel)
 
 def show(label, value):
-    """Print a labeled value at standard precision (11 sf minimum)."""
+    """Print a labeled value at standard precision (11 sf minimum).
+    value must be mpf (use f2m to convert Fraction first)."""
     print("  %-40s %s" % (label, mp.nstr(value, 11)))
+
+
+# ================================================================
+# CHECK FUNCTIONS
+# ================================================================
 
 def chk(tag, got, expected, need, checks):
     """Standard numerical check. got and expected are mpf.
@@ -105,6 +111,146 @@ def chk_bool(tag, condition, detail, checks):
     checks.append((tag, status))
     print("  [%s] %s" % (status, tag))
     print("        %s" % detail)
+
+
+# ================================================================
+# PRECISION REPORT SYSTEM
+# ================================================================
+
+def count_sig_digits(s):
+    """Count significant digits in a decimal string.
+    Handles integers, decimals, leading zeros, trailing zeros after decimal.
+    Does NOT handle scientific notation — all values must be plain decimal."""
+    s = s.strip()
+    if s.startswith("-"):
+        s = s[1:]
+    # Remove decimal point for counting
+    if "." in s:
+        integer_part, frac_part = s.split(".", 1)
+        # Leading zeros in integer part don't count
+        # But leading zeros in frac part DO count if integer part is 0
+        if integer_part.lstrip("0") == "":
+            # Value < 1: sig digits = digits after leading zeros in frac part
+            stripped = frac_part.lstrip("0")
+            return len(stripped)
+        else:
+            # Value >= 1: all digits except leading zeros
+            combined = integer_part.lstrip("0") + frac_part
+            return len(combined)
+    else:
+        # Integer: strip trailing zeros? No — we keep them as significant.
+        # In physics, 172570 has 5 sf (trailing zero ambiguous), but we
+        # count all digits of the stored integer. The source digit count
+        # in DATA-4 comments is the authority, not this function.
+        return len(s.lstrip("0"))
+
+def precision_report(computed_frac, published_str):
+    """Complete precision comparison between a Fraction and a published string.
+
+    Returns a dict with:
+      numeric_digits : mpf — digits of numeric agreement via digits_of
+      source_digits  : int — significant digits in the published string
+      string_match   : bool — True if rendered string matches published
+                               over all source characters
+      diverge_pos    : int — character position of first divergence (-1 if match)
+      diverge_pub    : str — character at divergence in published ('' if match)
+      diverge_got    : str — character at divergence in rendered ('' if match)
+      rendered       : str — the Fraction rendered to enough digits
+      published      : str — the input string, stripped
+      exceeds_source : bool — True if numeric agreement > source digits
+    """
+    pub = published_str.strip()
+    src_digits = count_sig_digits(pub)
+
+    # Render to more digits than the published string has
+    render_digits = src_digits + 10
+    got_mpf = f2m(computed_frac)
+    ref_mpf = mpf(pub)
+
+    # Numeric agreement
+    num_digits = digits_of(got_mpf, ref_mpf)
+
+    # String comparison: render at exactly the length of the published string
+    # We need to match the format: if published has a decimal point, render with one
+    # Use mp.nstr at enough precision, then truncate to published length
+    old_dps = mp.dps
+    mp.dps = max(120, render_digits + 20)
+    rendered_full = mp.nstr(got_mpf, render_digits)
+    mp.dps = old_dps
+
+    # Character-by-character comparison over the published string length
+    string_match = True
+    diverge_pos = -1
+    diverge_pub = ""
+    diverge_got = ""
+
+    pub_len = len(pub)
+    rendered_trimmed = rendered_full[:pub_len + 5]  # a bit extra for display
+
+    for i in range(min(pub_len, len(rendered_full))):
+        if pub[i] != rendered_full[i]:
+            string_match = False
+            diverge_pos = i
+            diverge_pub = pub[i]
+            diverge_got = rendered_full[i]
+            break
+
+    exceeds = False
+    if num_digits != mp.inf:
+        exceeds = (num_digits > src_digits)
+    else:
+        exceeds = True  # EXACT always exceeds
+
+    return {
+        "numeric_digits": num_digits,
+        "source_digits": src_digits,
+        "string_match": string_match,
+        "diverge_pos": diverge_pos,
+        "diverge_pub": diverge_pub,
+        "diverge_got": diverge_got,
+        "rendered": rendered_trimmed,
+        "published": pub,
+        "exceeds_source": exceeds,
+    }
+
+def chk_precision(tag, computed_frac, published_str, need, checks):
+    """Full precision check: numeric + string + source digit accounting.
+
+    tag:            check name (must be unique within script)
+    computed_frac:  Fraction from the library
+    published_str:  the published decimal value as a string, ALL digits
+    need:           minimum significant digits of agreement required
+    checks:         list to append (tag, status) to
+    """
+    r = precision_report(computed_frac, published_str)
+
+    if r["numeric_digits"] == mp.inf:
+        ok = True
+        digit_str = "EXACT"
+    else:
+        ok = (r["numeric_digits"] >= need)
+        digit_str = mp.nstr(r["numeric_digits"], 4)
+
+    status = "PASS" if ok else "FAIL"
+    checks.append((tag, status))
+
+    print("  [%s] %s" % (status, tag))
+    print("        published:  %s" % r["published"])
+    print("        rendered:   %s" % r["rendered"])
+    print("        source:     %d significant digits" % r["source_digits"])
+
+    if r["string_match"]:
+        print("        string:     MATCH over %d characters" % len(r["published"]))
+    else:
+        print("        string:     DIVERGES at position %d" % r["diverge_pos"])
+        print("                    published[%d] = '%s'" % (r["diverge_pos"], r["diverge_pub"]))
+        print("                    rendered[%d]  = '%s'" % (r["diverge_pos"], r["diverge_got"]))
+
+    print("        numeric:    %s digits (need %d)" % (digit_str, need))
+
+    if r["exceeds_source"]:
+        print("        status:     agreement meets or exceeds source precision")
+
 
 def print_summary(checks):
     """Print the standard summary line. Call at end of every script."""
@@ -413,7 +559,7 @@ twopi_f = 2 * pi_f                         # G15: 2*pi
 # Extended basis
 zeta7_f = Fraction(p_zeta7_full, Q335)     # G16
 zeta9_f = Fraction(p_zeta9_full, Q335)     # G17
-li4_f   = Fraction(p_li4_full, Q335)       # G18: uses FULL numerator (101+ digits)
+li4_f   = Fraction(p_li4_full, Q335)       # G18
 li5_f   = Fraction(p_li5_full, Q335)       # G19
 li6_f   = Fraction(p_li6_full, Q335)       # G20
 li7_f   = Fraction(p_li7_full, Q335)       # G21
@@ -424,10 +570,10 @@ ln5_f   = Fraction(p_ln5_full, Q335)       # G25
 
 K_quarter_f = Fraction(p_K_quarter_full, Q335)  # G26
 K_half_f    = Fraction(p_K_half_full, Q335)     # G27
-K_3qtr_f    = Fraction(p_K_3qtr_full, Q335)    # G28: uses FULL numerator (102+ digits)
+K_3qtr_f    = Fraction(p_K_3qtr_full, Q335)    # G28
 E_quarter_f = Fraction(p_E_quarter_full, Q335)  # G29
 E_half_f    = Fraction(p_E_half_full, Q335)     # G30
-E_3qtr_f    = Fraction(p_E_3qtr_full, Q335)    # G31: uses FULL numerator (101+ digits)
+E_3qtr_f    = Fraction(p_E_3qtr_full, Q335)    # G31
 
 # _full aliases for Fraction variables (all already use full numerators)
 pi_f_full    = pi_f
@@ -570,12 +716,15 @@ alpha_em_full = alpha_em
 
 
 # ================================================================
-# KOIDE DERIVED (from DATA-2 Addendum, Type K)
+# KOIDE DERIVED (from DATA-2 Addendum / DATA-4, Type K)
+# These are MEASURED values, not the hypothesis.
+# a^2 = 2 is the Level 1 hypothesis. a^2 = 1.9999630688 is the
+# Level 2 measurement. The library stores the measurement.
 # ================================================================
 
-a2_lep  = Fraction(20000, 10000)      # a^2(leptons) ~ 2.0000 (6 sf)
-a2_down = Fraction(23877, 10000)      # a^2(down quarks) ~ 2.3877 (3 sf)
-a2_up   = Fraction(30928, 10000)      # a^2(up quarks) ~ 3.0928 (3 sf)
+a2_lep  = Fraction(19999630688, 10**10)   # K7: a^2(leptons), 6 sf — NOT exactly 2
+a2_down = Fraction(23877254610, 10**10)   # K9: a^2(down quarks), 3 sf
+a2_up   = Fraction(30927612855, 10**10)   # K8: a^2(up quarks), 3 sf
 
 a2_lep_full  = a2_lep
 a2_down_full = a2_down
@@ -673,10 +822,11 @@ if __name__ == "__main__":
               db_per_gen[2], Fraction(4, 3), checks)
 
     chk_bool("Measured gap ratio in [1.2, 1.5]",
-             1.2 < float(f2m(gap_measured)) < 1.5,
+             mpf("1.2") < f2m(gap_measured) < mpf("1.5"),
              "gap = %s" % mp.nstr(f2m(gap_measured), 7), checks)
 
     # Verify the three recomputed constants at 100 digits
+    old_dps = mp.dps
     mp.dps = 120
     from mpmath import polylog, ellipk, ellipe
     chk("Li4(1/2) full precision",
@@ -685,7 +835,17 @@ if __name__ == "__main__":
         f2m(K_3qtr_f), ellipk(mpf(3)/4), 100, checks)
     chk("E(k2=3/4) full precision",
         f2m(E_3qtr_f), ellipe(mpf(3)/4), 100, checks)
-    mp.dps = 100
+    mp.dps = old_dps
+
+    # N_A exact check
+    chk_exact("N_A = 602214076 * 10^15",
+              N_A, Fraction(602214076, 1) * Fraction(10**15, 1), checks)
+
+    # Koide amplitude is measurement, not hypothesis
+    chk_bool("a^2(leptons) is NOT exactly 2",
+             a2_lep != Fraction(2, 1),
+             "a2_lep = %s (Level 2 measurement, not Level 1 hypothesis)" %
+             mp.nstr(f2m(a2_lep), 11), checks)
 
     print_summary(checks)
 
