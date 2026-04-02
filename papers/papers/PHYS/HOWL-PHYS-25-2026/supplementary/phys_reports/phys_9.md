@@ -130,3 +130,21 @@ The specific parallel: the QED series coefficients A₁–A₃ are integers that
 
 ---
 
+The scripts confirm and extend the PHYS-8 paper. Key new information from reading the code:
+
+**derive_two_thirds.py overclaims relative to the paper.** The script's final summary says "The Koide constant 2/3 is derived, not measured" and "No free parameters." But the paper (Section IV.5) is more careful: a = √2 is equivalent to the formula, not independently derived. The script hardcodes √2 in the parametrization and then "derives" 2/3 from it, which is circular. The paper acknowledges this; the script does not. The paper is the authority.
+
+However — the script does something the paper doesn't emphasize enough: it shows the generalized ratio is 2/N for ALL N ≥ 2 when a = √2. The script prints N = 2 giving ratio = 1, which contradicts PHYS-8 Section III.4's claim that N = 2 is excluded. The script computes Σcos² = N/2 and uses it for N = 2, getting the right numerical answer. But the paper proves the cos² identity fails for N = 2 because the double-angle cosines don't cancel for general θ₀ — they give 2cos²(θ₀) which equals 1 only at θ₀ = π/4. The script sidesteps this by not checking θ₀-dependence. The paper's exclusion of N = 2 is correct and more careful than the script.
+
+**koide_1.py reveals the controlled-precision arithmetic distinction.** The script explicitly documents that it uses CONTROLLED-PRECISION rational arithmetic, not exact integer arithmetic. The simplify() function truncates to ~40 significant digits by bit-shifting. This is NOT the same as the Fraction arithmetic in alpha_EM_final.py, which is genuinely exact (no simplification, no truncation). The distinction matters: the Koide prediction is exact algebra (m_τ is the root of a quadratic with rational coefficients), but the NUMERICAL EVALUATION of that root uses truncation. The truncation error is bounded (< 10⁻³⁷ in Koide ratio), but the arithmetic is not exact in the MATH-2 sense.
+
+For the normalization question: this distinction between exact and controlled-precision may be relevant. If the library's beta shift computation uses controlled-precision somewhere, the stored values (1/15, 1, 1/3) might be exact rationals that were CHOSEN to match a controlled-precision computation, or they might be the exact results of an exact computation. The derivation chain will tell.
+
+**The exploratory non-findings are properly fenced.** M² ≈ m_proton/3 at 0.35%: "suggestive, not exact. NO FINDING." θ₀ mod 120° ≈ θ_Cabibbo at 0.29°: "inconclusive." The 2/3 VP connection: "OPEN." The second root at 3.32 MeV: no known particle. The script labels each explicitly. This is the operational standard for PHYS-25's exploratory comparisons.
+
+**New geometry connection from the scripts.** The derive_two_thirds.py script traces the chain: three equally-spaced points on a circle → cos² identity → 3/2 → ratio 6/9 = 2/3. The cos² identity uses cos²(x) = (1 + cos(2x))/2. The "2x" in the double angle is what creates the R₄ connection: the cos² identity maps a function on S¹ (period 2π = 8R₂) to a function on S¹ with doubled frequency (period π = 4R₂). The doubling of the angle is a 2:1 covering map S¹ → S¹. The product of the original circle and the doubled circle is T² — a torus. The cos² identity IS the algebraic expression of the S¹ × S¹ = T² factorization. The 3/2 comes from N/2, where the 2 in the denominator is from the cos² → (1 + cos(2x))/2 decomposition — the SAME 2 that makes R₂² = 2R₄. The Koide 2/3 has R₄ content through this route: 2/3 = 2/N where the 2 comes from the toroidal factorization of cos².
+
+This is a new connection to track in the geometry catalog: the Koide formula's 2/3, through the cos² identity, has toroidal (T² = S¹ × S¹) algebraic structure. The 2 in the numerator of 2/N is the dimension of the torus (two independent circles). This would predict that for a formula involving TOROIDAL standing waves (two independent periodicities), the analog of the Koide constant would involve R₄ explicitly rather than just the integer 2.
+
+---
+
