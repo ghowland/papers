@@ -342,6 +342,7 @@ Every script begins with a docstring that includes:
 #!/usr/bin/env python3
 """
 HOWL PHYS-NN DEMONSTRATION: [Title]
+Filename: [script_name.py]
 ====================================
 [One-line description of what this script demonstrates.]
 
