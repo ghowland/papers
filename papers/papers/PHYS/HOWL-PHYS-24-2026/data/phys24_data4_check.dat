@@ -1,0 +1,147 @@
+======================================================================
+HOWL PHYS-24: THE DATABASE
+======================================================================
+
+  DATA-4: 146 entries, 38/38 checks, 0 failures.
+  Sole data reference for all HOWL computation.
+  DATA-3 is retired.
+
+  Entry types:
+    E = exact by definition (SI 2019)
+    M = measured (CODATA, PDG, FLAG)
+    A = analytical (computed to arbitrary precision)
+    D = derived (Level 1 arithmetic on Level 2 inputs)
+    G = staged (identified by theory, not yet measured)
+    K = Koide derived (from mass fits)
+
+  Sections:
+    A (SI fundamental):        7 entries
+    B (CODATA measured):      13 entries
+    C (Electroweak):           6 entries
+    D (Quarks + CKM):         11 entries
+    E (Nuclear/hadron):        8 entries
+    F (Spectroscopy):          1 entry
+    G (Q335 analytical):      14 entries + extended basis
+    K (Mass ratios + Koide):   8 entries
+    L (Cabibbo Doublet):       6 entries (STAGED)
+    N (GUT parameters):       17 entries
+    Total:                    146 entries
+
+GROUP A: MASS RATIO IDENTITY
+----------------------------------------------------------------------
+
+  m_p / m_e computed (dimensionless)       1836.1526734
+  m_p/m_e stored (dimensionless)           1836.1526734
+
+GROUP B: Q335 ANALYTICAL IDENTITY
+----------------------------------------------------------------------
+
+  R2 from library (dimensionless)          0.7853981634
+  pi/4 from mpmath (dimensionless)         0.7853981634
+
+GROUP C: PHYSICAL RELATION (SI 2019)
+----------------------------------------------------------------------
+
+  R_inf computed (m^-1)                    10973731.568
+  R_inf stored (m^-1)                      10973731.568
+
+GROUP D: KOIDE DERIVED
+----------------------------------------------------------------------
+
+  K(e,mu,tau) computed (dimensionless)     0.66666051147
+  K(e,mu,tau) stored (dimensionless)       0.6666605115
+
+GROUP E: SI EXACT CONSTANT
+----------------------------------------------------------------------
+
+  c stored (m/s)                           299792458.0
+  c = 299792458 m/s exactly (SI 2019 definition).
+
+GROUP G: GUT PARAMETER
+----------------------------------------------------------------------
+
+  Gap ratio computed = 218/115 (dimensionless) 1.8956521739
+  Gap ratio stored = 218/115 (dimensionless) 1.8956521739
+
+FINDING 15: LATTICE RATIO INDEPENDENCE
+----------------------------------------------------------------------
+
+  m_c/m_s from PDG masses (dimensionless)  13.614973262
+  m_c/m_s from FLAG lattice (dimensionless) 11.783
+  Discrepancy (%%)                         15.547596215
+
+  This 15.5%% discrepancy is a renormalization scale mismatch.
+  PDG: m_c at mu=m_c, m_s at mu=2 GeV. Different scales.
+  FLAG: m_c/m_s evaluated at a common scale.
+  The database is NOT corrupted. The measurements are independent.
+
+STAGED ENTRIES: CABIBBO DOUBLET (Type G)
+----------------------------------------------------------------------
+
+  The Cabibbo Doublet parameters are the first staged entries.
+  Staged means: identified by theory, bounded by experiment,
+  not yet measured with precision for a definitive value.
+
+    M_VL lower bound (MeV)                 1500000.0
+    M_VL upper bound (MeV)                 6000000.0
+    Hypercharge Y = 1/6 (dimensionless)    0.16666666667
+
+  When any parameter is measured, the entry transitions
+  from Type G to Type M. Entry numbers are preserved.
+
+COMPUTATION TRACEABILITY (Group T)
+----------------------------------------------------------------------
+
+  DATA-4 links entries to papers:
+    PHYS-9:  B1, G1, G8        -> alpha to a_e via QED
+    PHYS-13: B1, B11, B12      -> gap ratio 218/115 vs 1.358
+    PHYS-15: B1, B11, B12      -> elimination cascade -> (3,2,1/6)
+    PHYS-17: N1-N3             -> generation democracy
+    PHYS-22: G10, G8, G3       -> A2 decomposition
+    PHYS-23: B2-B4, D1-D5      -> Koide all three sectors
+    MATH-6:  G1-G14            -> PSLQ 82/82 null
+
+  When a future PDG update changes any entry, this map
+  identifies every computation that must be re-verified.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] A1: m_p/m_e computed vs stored
+        expected: 1836.1526734
+        got:      1836.1526734
+        digits:   12.17 (need 11)
+  [PASS] B1: R2 = pi/4 (Q335 vs mpmath)
+        expected: 0.7853981634
+        got:      0.7853981634
+        digits:   102.0 (need 100)
+  [PASS] C1: R_inf = alpha^2 * m_e * c / (2h)
+        expected: 10973731.568
+        got:      10973731.568
+        digits:   11.25 (need 11)
+  [PASS] D1: K(e,mu,tau) from masses vs stored
+        expected: 0.6666605115
+        got:      0.66666051147
+        digits:   10.29 (need 6)
+  [PASS] E2: c = 299792458 m/s
+        expected: 299792458 = 299792458.0
+        got:      299792458 = 299792458.0
+        match:    EXACT
+  [PASS] G1: SM gap ratio = 218/115
+        expected: 218/115 = 1.8956521739
+        got:      218/115 = 1.8956521739
+        match:    EXACT
+  [PASS] F15: m_c/m_s PDG vs FLAG > 10%% discrepancy
+        discrepancy = 15.55%
+  [PASS] L1: Cabibbo Doublet mass window staged
+        window: 1500000.0 - 6000000.0 MeV
+
+  TOTAL: 8 PASS, 0 FAIL out of 8
+
+  Full verification: data_4.py (38/38 checks)
+  Platform verification: phys24_lib_test.py (147/147 checks)
+
+======================================================================
+PHYS-24 DATABASE DEMONSTRATION COMPLETE
+======================================================================

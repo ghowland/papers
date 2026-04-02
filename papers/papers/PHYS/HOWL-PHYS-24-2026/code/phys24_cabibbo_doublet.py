@@ -248,8 +248,8 @@ print("  Proton lifetime scales as M_GUT^4.")
 show("  log10(tau_MSSM/tau_CD)", log10_tau_ratio)
 print("  The MSSM predicts tau ~ 10^37 yr (beyond any experiment).")
 print("  The CD predicts tau ~ 10^34-35 yr (within Hyper-K reach).")
-print("  This 10^%.0f ratio is the decisive discriminator." %
-      float(log10_tau_ratio))
+print("  This 10^%s ratio is the decisive discriminator." %
+      mp.nstr(log10_tau_ratio, 1))
 print()
 
 # ================================================================
