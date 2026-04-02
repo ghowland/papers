@@ -2,3 +2,7 @@ Three FAILs. Let me diagnose.FAIL 1: Delta = 0 solution not found. The binary se
 
 ---
 
+The physics is clear now. The one-loop threshold correction from the triplet alone is far too weak. The coefficient C = −1/12 is tiny, so compensating Delta = −1.17 requires ln(M_T/M_X) = −88, giving M_T = 10^−23 GeV — absurd.The scan table tells the real story: even M_X/M_T = 500 only shifts Delta by 0.082, leaving −1.09. The triplet one-loop threshold cannot close the gap alone. This is why PHYS-24 needed the TWO-LOOP correction (which brought Delta from −1.17 to −0.40). The threshold correction is meant to close the RESIDUAL −0.40, not the full −1.17.I need to use the two-loop Delta (−0.40 from PHYS-24, or −0.436 from PHYS-28) as the starting point, not the one-loop Delta. The threshold closes the TWO-LOOP residual, not the one-loop miss. Let me rewrite.
+
+---
+

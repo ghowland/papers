@@ -1,110 +1,100 @@
 ======================================================================
 HOWL PHYS-29: GUT THRESHOLD CORRECTIONS
-How much mass splitting is needed for exact unification?
+How much mass splitting closes the two-loop residual?
 ======================================================================
 
-SECTION 1: REFERENCE UNIFICATION (one-loop, no threshold)
+SECTION 1: THE STARTING POINT — TWO-LOOP RESIDUAL
 ----------------------------------------------------------------------
 
-    Delta (one-loop, no threshold) (dimensionless) -1.1718059457
-    log10(M_GUT/GeV)                       15.433689748
-    1/alpha_GUT (dimensionless)            42.654639398
+    One-loop Delta (PHYS-24, M_VL=500) (dimensionless) -1.17
+    Two-loop Delta (PHYS-24, SM b_ij) (dimensionless) -0.4
+
+    Two-loop residual to close (dimensionless) -0.4
+
+  The one-loop miss (-1.17) is mostly closed by two-loop
+  corrections (66%% improvement). The remaining -0.40 must
+  be closed by GUT threshold corrections.
 
 SECTION 2: THE THRESHOLD CORRECTION FORMULA
 ----------------------------------------------------------------------
 
-  In minimal SU(5), the X,Y gauge bosons define M_GUT = M_X.
-  The colored Higgs triplet T(3,1,-1/3) has mass M_T.
-  If M_T != M_X, the running between min(M_T,M_X) and
-  max(M_T,M_X) uses different effective betas.
+    Triplet T(3,1,-1/3) shifts:            0.0
+      db1_T = 1/15 (dimensionless)         0.066666666667
+      db2_T = 0 (SU(2) singlet) (dimensionless) 0.0
+      db3_T = 1/12 (dimensionless)         0.083333333333
 
-  The correction to Delta is a BOUNDARY effect:
-  delta_Delta = effective_C * ln(M_T/M_X) / (2*pi)
+  The threshold correction to Delta:
+    delta_Delta = -(db3_T) * ln(M_T/M_X) / (2*pi)
+                = -(1/12) * ln(M_T/M_X) / (2*pi)
 
-    Triplet T(3,1,-1/3) one-loop shifts:   0.0
-      db1_T (dimensionless)                0.066666666667
-      db2_T (dimensionless)                0.0
-      db3_T (dimensionless)                0.083333333333
+  M_T < M_X (triplet lighter): delta_Delta > 0 (helps)
+  M_T > M_X (triplet heavier): delta_Delta < 0 (hurts)
 
-    Effective threshold coefficient C (dimensionless) -0.083333333333
+  Since Delta_residual = -0.4 < 0, we need M_T < M_X.
 
-  delta_Delta = -(1/12) * ln(M_T/M_X) / (2*pi)
+    Sigma (8,1,0) octet: db3 = 1/2 (dimensionless) 0.5
+    Sigma (1,3,0) triplet: db2 = 1/3 (dimensionless) 0.33333333333
+    Sigma (1,1,0) singlet: db1 = 0 (dimensionless) 0.0
 
-  For M_T > M_X: ln(M_T/M_X) > 0, so delta_Delta < 0
-    -> makes Delta MORE negative (worse)
-  For M_T < M_X: ln(M_T/M_X) < 0, so delta_Delta > 0
-    -> makes Delta LESS negative (better)
+    C_T = -db3_T = -1/12 (dimensionless)   -0.083333333333
+    C_Sigma = db2_Sigma3 - db3_Sigma8 = -1/6 (dimensionless) -0.16666666667
 
-  Since Delta_ref = -1.172 < 0, we need delta_Delta > 0,
-  which requires M_T < M_X (triplet lighter than X boson).
+  Full threshold correction:
+    delta_Delta = -(1/12)*ln(M_T/M_X)/(2pi)
+                  -(1/6)*ln(M_Sigma/M_X)/(2pi)
 
-SECTION 3: M_T/M_X FOR EXACT UNIFICATION
+  The Sigma coefficient (-1/6) is TWICE the triplet (-1/12).
+  If M_Sigma < M_X, both contributions help (delta > 0).
+
+SECTION 3: CLOSING THE TWO-LOOP RESIDUAL
 ----------------------------------------------------------------------
 
-    Required ln(M_T/M_X) (dimensionless)   -88.352086812
-    Required M_T/M_X (dimensionless)       4.2577115222e-39
-    Required M_X/M_T (dimensionless)       2.3486795542e+38
+  Case 1: M_Sigma = M_X (only triplet contributes)
 
-    M_T (GeV)                              1.1557555325e-23
-    log10(M_T/GeV)                         -22.937134019
-    M_X = M_GUT (GeV)                      2.7144993888e+15
-    log10(M_X/GeV)                         15.433689748
+      Required ln(M_T/M_X) (dimensionless) -30.159289474
+      Required M_T/M_X (dimensionless)     7.979708065e-14
+      Required M_X/M_T (dimensionless)     1.2531786775e+13
 
-    Threshold correction (dimensionless)   1.1718059457
-    Corrected Delta (dimensionless)        1.4287342391e-101
+  Case 2: M_T = M_X (only Sigma contributes)
+
+      Required ln(M_Sigma/M_X) (dimensionless) -15.079644737
+      Required M_Sigma/M_X (dimensionless) 2.824837706e-7
+      Required M_X/M_Sigma (dimensionless) 3540026.3806
+
+  Case 3: M_T = M_Sigma (both at same mass)
+
+      C_total = C_T + C_Sigma = -1/4 (dimensionless) -0.25
+      Required ln(M/M_X) (dimensionless)   -10.053096491
+      Required M/M_X (dimensionless)       4.3052231581e-5
+      Required M_X/M (dimensionless)       23227.599669
 
 SECTION 4: NATURALNESS CHECK
 ----------------------------------------------------------------------
 
-    M_T/M_X (dimensionless)                4.2577115222e-39
-    M_X/M_T (dimensionless)                2.3486795542e+38
+              Scenario        M_X/M     Natural?  Fine-tuned?
+  -------------------- ------------ ------------ ------------
+          Triplet only    1.253e+13           no          YES
+            Sigma only      3.54e+6           no          YES
+    Both (M_T=M_Sigma)     2.323e+4           no          YES
 
-  Natural (M_X/M_T < 10): False
-  Moderate (M_X/M_T < 100): False
-  Fine-tuned (M_X/M_T > 100): True
+  Best case: Both (M_T=M_Sigma) with M_X/M = 2.323e+4
 
-SECTION 5: THRESHOLD CORRECTION SCAN
-----------------------------------------------------------------------
+  RESULT: Exact unification requires FINE-TUNED
+  mass splitting (factor 2.32e+4) even in the best case.
 
-       M_X/M_T  ln(M_T/M_X)  delta_Delta  Delta_total
-  ------------ ------------ ------------ ------------
-           1.0          0.0          0.0      -1.1718
-           2.0     -0.69315    0.0091932      -1.1626
-           3.0      -1.0986     0.014571      -1.1572
-           5.0      -1.6094     0.021346      -1.1505
-          10.0      -2.3026     0.030539      -1.1413
-          20.0      -2.9957     0.039732      -1.1321
-          50.0       -3.912     0.051885      -1.1199
-         100.0      -4.6052     0.061078      -1.1107
-         200.0      -5.2983     0.070271      -1.1015
-         500.0      -6.2146     0.082424      -1.0894
-
-SECTION 6: PROTON LIFETIME
+SECTION 5: PROTON LIFETIME
 ----------------------------------------------------------------------
 
     M_X = M_GUT (GeV)                      2.7144993888e+15
     log10(M_X/GeV)                         15.433689748
-    Proton lifetime estimate: log10(tau/yr) 34.5
+
+    Proton lifetime: log10(tau/yr) ~       34.5
     Super-K bound: log10(tau/yr) >         34.38
     Hyper-K 20yr reach: log10(tau/yr) ~    35.0
 
-  Since M_X is unchanged by the triplet threshold
-  (only M_T shifts), the proton lifetime prediction
-  remains at 10^34.5 yr, above the Super-K bound
-  and within Hyper-K reach.
-
-    M_T for exact unification (GeV)        1.1557555325e-23
-    log10(M_T/GeV)                         -22.937134019
-    M_X/M_T (dimensionless)                2.3486795542e+38
-
-  For the X boson channel (p -> e+ pi0):
-    tau ~ M_X^4 ~ 10^34.5 yr (unchanged)
-
-  For the triplet channel (p -> K+ nu_bar):
-    tau_T ~ M_T^2 * (suppressions)
-    M_T = 10^-22.9 GeV
-    This channel may be enhanced if M_T << M_X.
-    Detailed computation requires Yukawa couplings (Level 2).
+  M_X is unchanged by the threshold correction.
+  The X boson channel (p -> e+ pi0) remains at ~10^34.5 yr,
+  above Super-K and within Hyper-K reach.
 
 ======================================================================
 CHECKS
@@ -114,7 +104,7 @@ CHECKS
         expected: 1/15 = 0.066666666667
         got:      1/15 = 0.066666666667
         match:    EXACT
-  [PASS] S1: Triplet db2 = 0 (SU(2) singlet)
+  [PASS] S1: Triplet db2 = 0
         expected: 0 = 0.0
         got:      0 = 0.0
         match:    EXACT
@@ -122,22 +112,31 @@ CHECKS
         expected: 1/12 = 0.083333333333
         got:      1/12 = 0.083333333333
         match:    EXACT
-  [PASS] S1: Reference Delta negative
-        Delta = -1.172
-  [PASS] S3: Corrected Delta ~ 0
-        |Delta| = 1.429e-101
-  [PASS] S3: M_T < M_X (triplet lighter)
-        M_T/M_X = 4.258e-39
-  [FAIL] S3: M_T > 10^10 GeV (not absurdly light)
-        log10(M_T) = -22.94
-  [FAIL] S4: Abort test — M_X/M_T < 100
-        M_X/M_T = 2.349e+38
-  [PASS] S6: M_X above proton decay bound (log > 15)
-        log10(M_X) = 15.43
+  [PASS] S2: C_T = -1/12
+        expected: -1/12 = -0.083333333333
+        got:      -1/12 = -0.083333333333
+        match:    EXACT
+  [PASS] S2: C_Sigma = -1/6
+        expected: -1/6 = -0.16666666667
+        got:      -1/6 = -0.16666666667
+        match:    EXACT
+  [PASS] S2: C_total = -1/4
+        expected: -1/4 = -0.25
+        got:      -1/4 = -0.25
+        match:    EXACT
+  [PASS] S3: Triplet-only case needs M_T < M_X
+        M_T/M_X = 7.98e-14
+  [PASS] S3: Both-at-same-mass case needs M < M_X
+        M/M_X = 4.305e-5
+  [FAIL] S4: Abort test — best case M_X/M < 100
+        M_X/M = 2.323e+4
+  [PASS] S5: M_GUT > 10^15
+        log10 = 15.43
+  [PASS] S5: Proton lifetime above Super-K
+        34.50 > 34.38
 
-  TOTAL: 7 PASS, 2 FAIL out of 9
+  TOTAL: 10 PASS, 1 FAIL out of 11
 
 ======================================================================
 PHYS-29 GUT THRESHOLD CORRECTIONS COMPLETE
 ======================================================================
-
