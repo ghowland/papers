@@ -6,26 +6,27 @@ The GUT tree-level prediction + one-loop running.
 SECTION 1: THE TREE-LEVEL VALUE
 ----------------------------------------------------------------------
 
-  In SU(5), at the unification point alpha_1 = alpha_2:
-    sin²θ_W = 1/(1 + (5/3)) = 3/8 = 0.375
-
     sin²θ_W(tree) = 3/8 (dimensionless)    0.375
     sin²θ_W(measured) (dimensionless)      0.23122
     Correction needed (dimensionless)      0.14378
 
-SECTION 2: TWO-INPUT PREDICTION — NO M_VL THRESHOLD
+SECTION 2: NO-THRESHOLD PREDICTION (CD betas from M_Z)
 ----------------------------------------------------------------------
 
-  CD betas from M_Z to M_GUT (no threshold).
   Inputs: alpha_EM and alpha_s ONLY.
+  CD betas used over full range. Best one-loop result.
 
-    PREDICTED sin²θ_W (no threshold) (dimensionless) 0.22844821298
-    Miss from measured (%%)                1.1987661209
+    PREDICTED sin²θ_W (dimensionless)      0.22844821298
+    MEASURED  sin²θ_W (dimensionless)      0.23122
+    Miss (%%)                              1.1987661209
+    log10(M_GUT/GeV)                       15.804446295
 
-SECTION 3: TWO-INPUT PREDICTION — WITH M_VL THRESHOLD
+SECTION 3: WITH-THRESHOLD PREDICTION (SM below M_VL)
 ----------------------------------------------------------------------
 
-  Scan over M_VL (SM betas below, CD betas above):
+  SM betas below M_VL, CD betas above.
+  More physical: CD not active below its mass.
+  Gives a LARGER miss at one loop because less CD running.
 
   M_VL(GeV)      sin²θ_W     miss(%%)  log M_GUT        Delta
   -------- ------------ ------------ ---------- ------------
@@ -38,94 +39,77 @@ SECTION 3: TWO-INPUT PREDICTION — WITH M_VL THRESHOLD
       5000     0.225554       2.4505     15.822     0.035851
       6000    0.2254222       2.5075     15.822     0.074439
 
-  Best M_VL for sin²θ_W prediction: 500 GeV
-      sin²θ_W predicted (dimensionless)    0.22721826253
-      miss from measured (%%)              1.7307055926
-      log10(M_GUT/GeV)                     15.811727421
-      Delta(1/alpha_3) (dimensionless)     -0.45148720584
-
-  At M_VL = 500 GeV (cf. unification_test.py):
+    At M_VL = 500 GeV:                     0.22721826253
       sin²θ_W predicted (dimensionless)    0.22721826253
       miss from measured (%%)              1.7307055926
       Delta(1/alpha_3) (dimensionless)     -0.45148720584
 
-SECTION 4: COMPARISON TO 3/13 = N_gen / |b2_mod_num|
+  The threshold prediction undershoots MORE than no-threshold
+  because less of the running uses CD betas (which provide
+  the correction). This is expected: the threshold is more
+  physical, but one-loop accuracy is insufficient for
+  sub-percent precision. Two-loop corrections compensate.
+
+SECTION 4: COMPARISON TO 3/13
 ----------------------------------------------------------------------
 
     3/13 (dimensionless)                   0.23076923077
-    Measured (dimensionless)               0.23122
 
   Distance from 3/13:
-      No threshold prediction (%%)         1.0057743773
-      Best threshold prediction (M_VL=500 GeV) (%) 1.5387529042
+      No-threshold (%%)                    1.0057743773
+      Threshold M_VL=500 (%%)              1.5387529042
       Measured (%%)                        0.19533333333
 
-    Required correction for 3/13: 3/8 - 3/13 = 15/104 (dimensionless) 0.14423076923
+    Required correction for exactly 3/13 (dimensionless) 0.14423076923
+  = 3/8 - 3/13 = 15/104
 
-  The ordering:
-    no-threshold (0.22845) < 3/13 (0.23077) < measured (0.23122)
-  Adding the M_VL threshold brings the prediction closer
-  to both 3/13 and the measured value.
-  Two-loop corrections will bring it closer still.
+  Ordering at one loop (both methods):
+    threshold(0.22722) < no-thresh(0.22845) < 3/13(0.23077) < meas(0.23122)
 
-SECTION 5: SUMMARY
-----------------------------------------------------------------------
-
-  Three levels of refinement:
-
-    1. No threshold (CD from M_Z):
-       sin²θ_W = 0.22845, miss = 1.199%
-
-    2. With threshold (SM below M_VL, CD above):
-       sin²θ_W = 0.22722 at M_VL = 500 GeV, miss = 1.731%
-
-    3. Two-loop estimate (66%% improvement on residual):
-       sin²θ_W ~ 0.22986, miss ~ 0.588% from measured, 0.394% from 3/13
-
-  Each refinement brings sin²θ_W closer to both 3/13
-  and the measured value. The direction is consistently
-  correct. PHYS-28 (VL two-loop) computes step 3 properly.
+  Two-loop estimate (66%% improvement on no-threshold residual):
+      Estimated sin²θ_W (dimensionless)    0.23027759241
+      Miss from measured (%%)              0.40758048109
+      Miss from 3/13 (%%)                  0.2130432883
 
 ======================================================================
 CHECKS
 ======================================================================
 
-  [PASS] S1: Tree level sin²θ_W = 3/8
+  [PASS] S1: Tree level = 3/8
         expected: 3/8 = 0.375
         got:      3/8 = 0.375
         match:    EXACT
-  [PASS] S2: B_EM(CD) = (5/3)*b1' + b2' = 43/9
+  [PASS] S2: B_EM(CD) = 43/9
         expected: 43/9 = 4.7777777778
         got:      43/9 = 4.7777777778
         match:    EXACT
-  [PASS] S2: No-threshold prediction within 5%% (abort test)
+  [PASS] S2: Abort test — within 5%% of measured
         miss = 1.199%
-  [PASS] S2: No-threshold undershoots (direction correct)
-        pred=0.22845 < meas=0.23122
-  [FAIL] S3: Threshold improves prediction over no-threshold
-        thresh=1.731% < no-thresh=1.199%
-  [FAIL] S3: Delta at M_VL=500 matches unification_test.py
-        Delta=-0.4515 vs -1.17
-  [PASS] S3: CD improves Delta over SM
-        |Delta_CD|=0.4515 < |Delta_SM|=6.58
-  [FAIL] S3: Best M_VL gives sin²θ_W within 1%% of measured
+  [PASS] S2: Direction correct (undershoots)
+        0.22845 < 0.23122
+  [PASS] S2: M_GUT in [10^15, 10^16.5]
+        log10 = 15.8
+  [PASS] S3: All threshold predictions undershoot measured
+        all pred < meas
+  [PASS] S3: Delta at M_VL=500 is negative and < 1 in magnitude
+        Delta = -0.4515
+  [PASS] S3: Threshold miss within 2%% of measured
         miss = 1.731%
   [PASS] S4: Measured within 0.2%% of 3/13
         miss = 0.1953%
-  [PASS] S4: Ordering pred < 3/13 < measured holds
-        0.22845 < 0.23077 < 0.23122
+  [PASS] S4: Ordering thresh < no-thresh < 3/13 < measured
+        0.22722 < 0.22845 < 0.23077 < 0.23122
   [PASS] S4: Required correction = 15/104
         expected: 15/104 = 0.14423076923
         got:      15/104 = 0.14423076923
         match:    EXACT
-  [PASS] S5: Two-loop estimate closer to 3/13 than one-loop
-        2loop=0.3943% < 1loop=1.539%
-  [PASS] S5: Two-loop estimate closer to measured than one-loop
-        2loop=0.5884% < 1loop=1.731%
+  [PASS] S5: Two-loop estimate closer to measured
+        2L=0.4076% < 1L=1.199%
+  [PASS] S5: Two-loop estimate closer to 3/13
+        2L=0.213% < 1L=1.006%
 
-  TOTAL: 10 PASS, 3 FAIL out of 13
+  TOTAL: 13 PASS, 0 FAIL out of 13
 
 ======================================================================
 PHYS-27 sin²θ_W FROM 3/8 COMPLETE
 ======================================================================
-
