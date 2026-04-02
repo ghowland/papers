@@ -22,7 +22,7 @@ except Exception:
     pass
 
 from phys24_lib import *
-from mpmath import (pi as mpi, e as me, euler as mgamma,
+from mpmath import (pi as mpi, e as me,
                     log as mlog, sqrt as msqrt, zeta as mzeta,
                     phi as mphi, polylog, catalan as mcat,
                     ellipk, ellipe, exp as mexp)

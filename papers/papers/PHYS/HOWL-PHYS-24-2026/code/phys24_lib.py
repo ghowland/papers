@@ -14,7 +14,7 @@ If a name becomes an alias, the mapping goes at the end of this file.
 Registry: [@HOWL-PHYS24-LIB-2026]
 Date: April 2 2026
 Status: Operational platform
-Test: phys24_lib_test.py (147/147 PASS)
+Test: phys24_lib_test.py (148/148 PASS)
 
 Backed by: DATA-4 (146 entries, 38/38 checks), all Session 3 scripts (98/98 checks)
 
@@ -200,6 +200,13 @@ def precision_report(computed_frac, published_str):
         exceeds = (num_digits > src_digits)
     else:
         exceeds = True  # EXACT always exceeds
+
+    # Guard
+    if string_match and pub_len > len(rendered_full):
+        string_match = False
+        diverge_pos = len(rendered_full)
+        diverge_pub = pub[diverge_pos] if diverge_pos < pub_len else ""
+        diverge_got = "(rendered too short)"
 
     return {
         "numeric_digits": num_digits,
@@ -854,4 +861,3 @@ if __name__ == "__main__":
     print("PHYS24_LIB SELF-TEST COMPLETE")
     print("=" * 70)
 
-    
