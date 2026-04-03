@@ -1,55 +1,20 @@
 #!/usr/bin/env python3
 """
-HOWL DATA-5 HELPERS — CHUNK 3: BOUNDARY, HUBBLE & GRAVITY
-============================================================
-Physics-aware helpers wrapping phys24_boundary_map_lib.py,
-phys24_hubble_lib.py, nested_soliton_gravity.py, and
-time_process_rate_test.py through the DATA5 object system.
+DATA-5 CHUNK 3 TEST: BOUNDARY, HUBBLE & GRAVITY vs PLATFORM
+================================================================
+Tests every chunk 3 helper against phys24_boundary_map_lib.py,
+phys24_hubble_lib.py, and the physics in nested_soliton_gravity.py
+and time_process_rate_test.py.
 
-All R2 from Q335 basis via db. All mpf from string.
-Conforms to chunk 1/2 API pattern.
+For each computation: chunk 3 produces a result, we verify against
+the platform library or against known physics values computed
+independently with mpmath.
 
-Categories:
-  BOUNDARY TRAVERSAL    — walk the stack, find by scale, show forces
-  SCALE CONVERSION      — energy <-> distance via hbar*c from db
-  HUBBLE RUNNING        — H0(N), required r, tension, falsification
-  GRAVITY COUPLING      — GM/(rc^2), binding fraction, escape velocity
-  HILL SPHERES          — soliton dominance boundaries
-  KEPLER VIA R2         — T^2 = 64*R2^2*a^3/(GM) orbital periods
-  PROCESS RATE          — gravitational dilation, GPS correction
-  MUON & TWINS          — velocity boundary reading, twin paradox
-  MOND a0               — cH0/(8R2) transition radius
-  HIERARCHY DISPLAY     — nesting levels, coupling table
-
-Usage:
-    from data_5_populate import init_data5
-    from data_5_helpers_boundary import *
-
-    db = init_data5()
-    show_boundary_stack(db)
-    show_gps_correction(db)
-    show_hubble_data(db)
-    show_kepler(db)
-
-Platform: HOWL-PLATFORM-v1
-Depends on: data_5_objects.py, data_5_populate.py, phys24_lib.py
-
-~45 functions across 10 categories:
-
-| Category | Count | Key functions |
-|---|---|---|
-| Boundary traversal | 6 | `find_boundary`, `boundary_at_scale`, `boundaries_between`, `traverse_boundaries`, `show_boundary_stack`, `show_open_questions` |
-| Scale conversion | 3 | `energy_to_distance_fm`, `distance_fm_to_energy`, `show_scale_conversion` |
-| Hubble running | 9 | `hubble_local`, `hubble_far`, `hubble_cumulative_ratio`, `hubble_tension_sigma`, `hubble_required_r`, `hubble_one_minus_r`, `hubble_running`, `hubble_vp_step_size`, `show_hubble_data` |
-| Hubble falsification | 2 | `test_F1_strict`, `test_F1_soft` |
-| Gravity coupling | 4 | `grav_coupling`, `binding_fraction`, `escape_velocity`, `show_coupling_hierarchy` |
-| Hill spheres | 2 | `hill_sphere`, `show_hill_spheres` |
-| Kepler via R2 | 2 | `kepler_period`, `show_kepler` |
-| Process rate | 4 | `process_rate_ratio`, `gps_correction`, `show_gps_correction`, `show_process_rates` |
-| Muon & twins | 5 | `muon_observed_lifetime`, `twin_paradox`, `ds_squared`, `show_muon_table`, `show_twin_paradox` |
-| MOND a0 | 3 | `mond_a0`, `mond_transition_radius`, `show_mond_a0` |
-| Hierarchy | 1 | `show_soliton_hierarchy` |
-
+Run:  python data_5_chunk3_test.py
+Requires: phys24_lib.py, phys24_boundary_map_lib.py,
+          phys24_hubble_lib.py, data_5_objects.py,
+          data_5_populate.py, data_5_helpers_boundary.py
+          all in same directory.
 """
 
 import sys
@@ -59,725 +24,597 @@ except Exception:
     pass
 
 from fractions import Fraction
-from mpmath import mp, mpf, log as mlog, exp as mexp, sqrt as msqrt
-from mpmath import pi as mpi
+from mpmath import mp, mpf, pi as mpi, sqrt as msqrt, log as mlog, exp as mexp
 
-try:
-    from phys24_lib import f2m
-except ImportError:
-    def f2m(f):
-        return mpf(f.numerator) / mpf(f.denominator)
-
-
-_LIB_VERSION = "1"
-_LIB_VERSION_1 = ("Session 4, April 3 2026. Chunk 3: Boundary, Hubble "
-                   "& gravity. Conforms to chunk 1/2 API pattern.")
+mp.dps = 50
 
 
 # ================================================================
-# INTERNAL: shared with chunks 1 and 2
+# PLATFORM LIBRARIES (ground truth)
 # ================================================================
 
-def _val(db, obj_id):
-    """Get value from db. Returns Fraction, mpf, or None."""
-    obj = db.get(obj_id)
-    if obj is None:
-        return None
-    if hasattr(obj, 'value'):
-        return obj.value
-    return None
-
-def _mpf(db, obj_id):
-    """Get value as mpf."""
-    v = _val(db, obj_id)
-    if v is None:
-        return None
-    if isinstance(v, Fraction):
-        return f2m(v)
-    return mpf(str(v)) if not isinstance(v, mpf) else v
-
-def _R2(db):
-    """R2 = pi/4 from Q335."""
-    return f2m(db.get("const.R2").value)
-
-def _four_R2(db):
-    return mpf("4") * _R2(db)
-
-def _eight_R2(db):
-    return mpf("8") * _R2(db)
-
-def _sixteen_R2(db):
-    return mpf("16") * _R2(db)
+from phys24_lib import *
+from phys24_boundary_map_lib import (
+    energy_to_distance_fm as lib_e2d,
+    distance_fm_to_energy as lib_d2e,
+    get_boundary_by_name as lib_get_boundary,
+    boundaries_between_scales as lib_between,
+)
+from phys24_hubble_lib import (
+    H0_MEASUREMENTS, H0_ORDERED,
+    H0_local as lib_H0_local, H0_far as lib_H0_far,
+    required_r as lib_required_r,
+    one_minus_r as lib_one_minus_r,
+    H0_running as lib_H0_running,
+    test_F1_strict as lib_test_F1_strict,
+    test_F1_soft as lib_test_F1_soft,
+    alpha_running_step as lib_alpha_step,
+)
 
 
 # ================================================================
-# GRAVITATIONAL CONSTANTS — mpf from string
-# Not in phys24_lib (Level 2 astrophysical values)
+# DATA-5 SYSTEM (what we are testing)
 # ================================================================
 
-_G      = mpf("6.674e-11")          # m^3/(kg s^2)
-_M_sun  = mpf("1.989e30")           # kg
-_M_earth = mpf("5.972e24")          # kg
-_M_moon = mpf("7.342e22")           # kg
-_R_earth = mpf("6.371e6")           # m
-_R_sun  = mpf("6.957e8")            # m
-_AU     = mpf("1.496e11")           # m
-_pc_m   = mpf("3.086e16")           # m
-_kpc_m  = _pc_m * mpf("1000")
-_R_GPS  = mpf("2.6556e7")           # m (GPS orbit radius)
-_v_GPS  = mpf("3874")               # m/s (GPS satellite velocity)
-_c      = mpf("299792458")          # m/s exact
-_tau_mu = mpf("2.1969811e-6")       # s (muon rest lifetime, PDG)
+from data_5_objects import *
+from data_5_populate import init_data5
+from data_5_helpers_boundary import *
 
-# hbar*c in MeV*fm for scale conversions
-_hbar_c_MeV_fm = mpf("197.3269804") # MeV*fm
+db = init_data5()
 
 
 # ================================================================
-# BOUNDARY TRAVERSAL
+# TEST INFRASTRUCTURE
 # ================================================================
 
-def find_boundary(db, name_substring):
-    """Find boundary objects by name substring (case-insensitive)."""
-    q = name_substring.lower()
-    return [b for b in db.find(obj_type="boundary")
-            if q in b.name.lower()]
+checks = []
 
 
-def boundary_at_scale(db, scale_MeV):
-    """Find the nearest boundary to a given energy scale (MeV)."""
-    target = float(mpf(str(scale_MeV)))
-    best = None
-    best_dist = float("inf")
-
-    for b in db.find(obj_type="boundary"):
-        scale = None
-        if hasattr(b, 'scale_MeV') and b.scale_MeV is not None:
-            scale = float(f2m(b.scale_MeV) if isinstance(b.scale_MeV, Fraction) else b.scale_MeV)
-        elif hasattr(b, 'scale_MeV_estimate') and b.scale_MeV_estimate is not None:
-            scale = float(f2m(b.scale_MeV_estimate) if isinstance(b.scale_MeV_estimate, Fraction) else b.scale_MeV_estimate)
-        if scale is not None:
-            dist = abs(scale - target)
-            if dist < best_dist:
-                best_dist = dist
-                best = b
-    return best
+def chk_exact(tag, got, expected):
+    if got == expected:
+        print("  [PASS] %s" % tag)
+        checks.append((tag, "PASS"))
+    else:
+        print("  [FAIL] %s" % tag)
+        print("         got:      %s" % got)
+        print("         expected: %s" % expected)
+        checks.append((tag, "FAIL"))
 
 
-def boundaries_between(db, lo_MeV, hi_MeV):
-    """All boundaries with energy scale between lo and hi (MeV).
-    Returns list sorted by energy.
-    """
-    lo = float(mpf(str(lo_MeV)))
-    hi = float(mpf(str(hi_MeV)))
-    if lo > hi:
-        lo, hi = hi, lo
-
-    result = []
-    for b in db.find(obj_type="boundary"):
-        scale = None
-        if hasattr(b, 'scale_MeV') and b.scale_MeV is not None:
-            scale = float(f2m(b.scale_MeV) if isinstance(b.scale_MeV, Fraction) else b.scale_MeV)
-        elif hasattr(b, 'scale_MeV_estimate') and b.scale_MeV_estimate is not None:
-            scale = float(f2m(b.scale_MeV_estimate) if isinstance(b.scale_MeV_estimate, Fraction) else b.scale_MeV_estimate)
-        if scale is not None and lo <= scale <= hi:
-            result.append((scale, b))
-
-    result.sort(key=lambda x: x[0])
-    return [b for _, b in result]
+def chk_close(tag, got, expected, digits):
+    got_s = mp.nstr(got, digits)
+    exp_s = mp.nstr(expected, digits)
+    if got_s == exp_s:
+        print("  [PASS] %s" % tag)
+        checks.append((tag, "PASS"))
+    else:
+        print("  [FAIL] %s" % tag)
+        print("         got:      %s" % mp.nstr(got, digits + 4))
+        print("         expected: %s" % mp.nstr(expected, digits + 4))
+        checks.append((tag, "FAIL"))
 
 
-def traverse_boundaries(db, from_id, to_id):
-    """Walk the boundary stack between two boundary objects.
-    Prints traversal and returns list of boundaries crossed.
-    """
-    b_from = db.get(from_id)
-    b_to = db.get(to_id)
-    if b_from is None or b_to is None:
-        print("  ERROR: boundary not found (%s or %s)" % (from_id, to_id))
-        return []
+def chk_bool(tag, condition, detail=""):
+    if condition:
+        print("  [PASS] %s" % tag)
+        if detail:
+            print("         %s" % detail)
+        checks.append((tag, "PASS"))
+    else:
+        print("  [FAIL] %s" % tag)
+        if detail:
+            print("         %s" % detail)
+        checks.append((tag, "FAIL"))
 
-    all_with_scale = []
-    for b in db.find(obj_type="boundary"):
-        scale = None
-        if hasattr(b, 'scale_MeV') and b.scale_MeV is not None:
-            scale = float(f2m(b.scale_MeV) if isinstance(b.scale_MeV, Fraction) else b.scale_MeV)
-        elif hasattr(b, 'scale_MeV_estimate') and b.scale_MeV_estimate is not None:
-            scale = float(f2m(b.scale_MeV_estimate) if isinstance(b.scale_MeV_estimate, Fraction) else b.scale_MeV_estimate)
-        if scale is not None:
-            all_with_scale.append((scale, b))
 
-    all_with_scale.sort(key=lambda x: x[0])
-
-    scale_from = None
-    scale_to = None
-    for s, b in all_with_scale:
-        if b.obj_id == from_id:
-            scale_from = s
-        if b.obj_id == to_id:
-            scale_to = s
-
-    if scale_from is None or scale_to is None:
-        print("  ERROR: boundary has no energy scale")
-        return []
-
-    lo, hi = min(scale_from, scale_to), max(scale_from, scale_to)
-    between = [(s, b) for s, b in all_with_scale if lo <= s <= hi]
-
-    print("  TRAVERSAL: %s -> %s" % (b_from.name, b_to.name))
-    print("  Boundaries crossed: %d" % len(between))
+def section(title):
+    print()
+    print("=" * 70)
+    print(title)
+    print("=" * 70)
     print()
 
-    questions = 0
-    for s, b in between:
-        b.show()
-        if hasattr(b, 'open_questions'):
-            questions += len(b.open_questions)
 
-    print()
-    print("  Open questions along path: %d" % questions)
-    return [b for _, b in between]
-
-
-def show_boundary_stack(db):
-    """Print the complete boundary stack from db."""
-    bounds = db.find(obj_type="boundary")
-    with_scale = []
-    without_scale = []
-    for b in bounds:
-        scale = None
-        if hasattr(b, 'scale_MeV') and b.scale_MeV is not None:
-            scale = float(f2m(b.scale_MeV) if isinstance(b.scale_MeV, Fraction) else b.scale_MeV)
-        elif hasattr(b, 'scale_MeV_estimate') and b.scale_MeV_estimate is not None:
-            scale = float(f2m(b.scale_MeV_estimate) if isinstance(b.scale_MeV_estimate, Fraction) else b.scale_MeV_estimate)
-        if scale is not None:
-            with_scale.append((scale, b))
-        else:
-            without_scale.append(b)
-
-    with_scale.sort(key=lambda x: x[0], reverse=True)
-
-    print("  BOUNDARY STACK (high energy -> low energy):")
-    print("  %-35s %15s %8s %s" % ("Boundary", "Scale (MeV)", "Known", "Forces"))
-    print("  %-35s %15s %8s %s" % ("-" * 35, "-" * 15, "-" * 8, "-" * 20))
-
-    for s, b in with_scale:
-        print("  %-35s %15s %8s %s" % (
-            b.name[:35], mp.nstr(mpf(str(s)), 4),
-            "YES" if b.known else "no",
-            ",".join(b.forces_affected[:3]) if b.forces_affected else "—"))
-
-    if without_scale:
-        for b in without_scale:
-            print("  %-35s %15s %8s %s" % (
-                b.name[:35], "—",
-                "YES" if b.known else "no",
-                ",".join(b.forces_affected[:3]) if b.forces_affected else "—"))
-
-
-def show_open_questions(db):
-    """Print all open questions from boundary objects."""
-    print("  OPEN QUESTIONS:")
-    count = 0
-    for b in db.find(obj_type="boundary"):
-        if hasattr(b, 'open_questions') and b.open_questions:
-            for q in b.open_questions:
-                print("    [%s] %s" % (b.name[:25], q))
-                count += 1
-    print("  --- %d open questions ---" % count)
+# ================================================================
+print("=" * 70)
+print("DATA-5 CHUNK 3 TEST: BOUNDARY, HUBBLE & GRAVITY vs PLATFORM")
+print("=" * 70)
+print()
+print("  db loaded: %d objects" % db.count())
+print("  boundaries: %d" % db.count("boundary"))
+print()
 
 
 # ================================================================
-# SCALE CONVERSION
+section("SCALE CONVERSION: CHUNK 3 vs BOUNDARY MAP LIB")
 # ================================================================
 
-def energy_to_distance_fm(E_MeV):
-    """lambda = hbar*c / E. E in MeV, returns fm."""
-    E = mpf(str(E_MeV))
-    return _hbar_c_MeV_fm / E
+# E -> distance
+for E in ["91187.6", "1000", "0.511", "173000"]:
+    got = energy_to_distance_fm(E)
+    expected = lib_e2d(mpf(E))
+    chk_close("energy_to_distance(%s MeV) matches lib" % E,
+              got, expected, 8)
 
+# distance -> E (inverse)
+for d in ["1.0", "0.001", "197.3"]:
+    got = distance_fm_to_energy(d)
+    expected = lib_d2e(mpf(d))
+    chk_close("distance_to_energy(%s fm) matches lib" % d,
+              got, expected, 8)
 
-def distance_fm_to_energy(d_fm):
-    """E = hbar*c / lambda. d in fm, returns MeV."""
-    d = mpf(str(d_fm))
-    return _hbar_c_MeV_fm / d
-
-
-def show_scale_conversion(db, E_MeV):
-    """Print energy and distance for a given scale."""
-    E = mpf(str(E_MeV))
-    d = energy_to_distance_fm(E)
-    print("  SCALE: %s MeV = %s fm = %s m" % (
-        mp.nstr(E, 4), mp.nstr(d, 4), mp.nstr(d * mpf("1e-15"), 4)))
-
-
-# ================================================================
-# HUBBLE RUNNING (HYPOTHESIS)
-# ================================================================
-
-# H0 data — exact Fractions from phys24_hubble_lib.py
-_H0_DATA = {
-    "SH0ES":      {"H0": Fraction(730, 10), "unc": Fraction(10, 10), "class": "local"},
-    "H0LiCOW":    {"H0": Fraction(733, 10), "unc": Fraction(18, 10), "class": "local-medium"},
-    "CCHP":       {"H0": Fraction(698, 10), "unc": Fraction(17, 10), "class": "medium"},
-    "DES_BAO_BBN": {"H0": Fraction(674, 10), "unc": Fraction(12, 10), "class": "high"},
-    "Planck":     {"H0": Fraction(674, 10), "unc": Fraction(5, 10),  "class": "maximum"},
-}
-_H0_ORDER = ["SH0ES", "H0LiCOW", "CCHP", "DES_BAO_BBN", "Planck"]
-
-
-def hubble_local(db):
-    """H0 local (SH0ES) = 73.0 km/s/Mpc."""
-    return _H0_DATA["SH0ES"]["H0"]
-
-
-def hubble_far(db):
-    """H0 far (Planck) = 67.4 km/s/Mpc."""
-    return _H0_DATA["Planck"]["H0"]
-
-
-def hubble_cumulative_ratio(db):
-    """H0_far / H0_local = 337/365."""
-    return hubble_far(db) / hubble_local(db)
-
-
-def hubble_tension_sigma(db):
-    """Tension in sigma: (H0_local - H0_far) / sqrt(unc1^2 + unc2^2)."""
-    local = f2m(_H0_DATA["SH0ES"]["H0"])
-    far = f2m(_H0_DATA["Planck"]["H0"])
-    u1 = f2m(_H0_DATA["SH0ES"]["unc"])
-    u2 = f2m(_H0_DATA["Planck"]["unc"])
-    return (local - far) / msqrt(u1 ** 2 + u2 ** 2)
-
-
-def hubble_required_r(db, N):
-    """r = (H0_far/H0_local)^(1/N) for a given boundary count N."""
-    ratio = f2m(hubble_cumulative_ratio(db))
-    return ratio ** (mpf("1") / mpf(str(N)))
-
-
-def hubble_one_minus_r(db, N):
-    """1 - r, the per-transit correction magnitude."""
-    return mpf("1") - hubble_required_r(db, N)
-
-
-def hubble_running(db, H0_0, r, N):
-    """H0(N) = H0_0 * r^N."""
-    h0 = f2m(H0_0) if isinstance(H0_0, Fraction) else mpf(str(H0_0))
-    r_val = mpf(str(r))
-    return h0 * r_val ** mpf(str(N))
-
-
-def hubble_vp_step_size(db):
-    """VP step = 1/(3*pi) = 1/(12*R2). The alpha running per-threshold step."""
-    return mpf("1") / (mpf("12") * _R2(db))
-
-
-def show_hubble_data(db):
-    """Print H0 measurements and running curve constraints."""
-    print("  HUBBLE MEASUREMENTS (from phys24_hubble_lib):")
-    print("  %-15s %8s %6s %s" % ("Method", "H0", "±", "Class"))
-    print("  %-15s %8s %6s %s" % ("-" * 15, "-" * 8, "-" * 6, "-" * 15))
-    for key in _H0_ORDER:
-        d = _H0_DATA[key]
-        print("  %-15s %8s %6s %s" % (
-            key, f2m(d["H0"]), f2m(d["unc"]), d["class"]))
-
-    print()
-    print("  Cumulative ratio: %s = %s" % (
-        hubble_cumulative_ratio(db),
-        mp.nstr(f2m(hubble_cumulative_ratio(db)), 6)))
-    print("  Tension: %s sigma" % mp.nstr(hubble_tension_sigma(db), 3))
-    print()
-    print("  RUNNING CURVE r(N) = (67.4/73.0)^(1/N):")
-    for N in [10, 100, 1000, 10000]:
-        r = hubble_required_r(db, N)
-        omr = hubble_one_minus_r(db, N)
-        print("    N=%5d: r = %s, 1-r = %s" % (
-            N, mp.nstr(r, 8), mp.nstr(omr, 4)))
-
-    print()
-    print("  VP step = 1/(12*R2) = %s" % mp.nstr(hubble_vp_step_size(db), 6))
-    print("  STATUS: HYPOTHESIS. All effective_N = None.")
-
-
-def test_F1_strict(db):
-    """F1 strict: Are raw H0 values monotonically decreasing?
-    Returns (passed, detail_string).
-    """
-    vals = [f2m(_H0_DATA[k]["H0"]) for k in _H0_ORDER]
-    for i in range(len(vals) - 1):
-        if vals[i + 1] > vals[i]:
-            return (False, "H0 increases from %s to %s: %s > %s" % (
-                _H0_ORDER[i], _H0_ORDER[i + 1],
-                mp.nstr(vals[i + 1], 4), mp.nstr(vals[i], 4)))
-    return (True, "Monotonically decreasing across %d points" % len(vals))
-
-
-def test_F1_soft(db):
-    """F1 soft: Monotonic within 1-sigma? Only fails if hard inversion."""
-    violations = []
-    for i in range(len(_H0_ORDER) - 1):
-        near = _H0_DATA[_H0_ORDER[i]]
-        far = _H0_DATA[_H0_ORDER[i + 1]]
-        nv = f2m(near["H0"])
-        fv = f2m(far["H0"])
-        if fv > nv:
-            f_lower = fv - f2m(far["unc"])
-            n_upper = nv + f2m(near["unc"])
-            if f_lower > n_upper:
-                violations.append("%s > %s at 1-sigma" % (
-                    _H0_ORDER[i + 1], _H0_ORDER[i]))
-    return (len(violations) == 0, violations)
+# Round-trip: E -> d -> E
+E_rt = mpf("91187.6")
+d_rt = energy_to_distance_fm(E_rt)
+E_back = distance_fm_to_energy(d_rt)
+chk_close("round-trip E->d->E at M_Z", E_back, E_rt, 10)
 
 
 # ================================================================
-# GRAVITY COUPLING
+section("BOUNDARY SEARCH AND TRAVERSAL")
 # ================================================================
 
-def grav_coupling(M_kg, r_m):
-    """GM/(rc^2) — the gravitational soliton coupling strength.
-    Dimensionless. Determines well depth, GR corrections, process rate.
-    """
-    M = mpf(str(M_kg))
-    r = mpf(str(r_m))
-    return _G * M / (r * _c ** 2)
+# find_boundary by name
+mz_bounds = find_boundary(db, "Z boson")
+chk_bool("find_boundary('Z boson') returns result",
+         len(mz_bounds) > 0,
+         "found %d" % len(mz_bounds))
 
+# boundary_at_scale near M_Z
+b_near_mz = boundary_at_scale(db, "91187.6")
+chk_bool("boundary_at_scale(91187.6) finds something",
+         b_near_mz is not None,
+         "found: %s" % (b_near_mz.name if b_near_mz else "None"))
 
-def binding_fraction(M_kg, R_m):
-    """Self-gravitational binding: |U|/Mc^2 = 3GM/(5Rc^2).
-    What fraction of rest mass is gravitational pattern energy.
-    """
-    M = mpf(str(M_kg))
-    R = mpf(str(R_m))
-    return mpf("3") * _G * M / (mpf("5") * R * _c ** 2)
+# boundaries_between
+between = boundaries_between(db, "100", "200000")
+chk_bool("boundaries_between(100, 200000 MeV) finds boundaries",
+         len(between) > 0,
+         "found %d" % len(between))
 
-
-def escape_velocity(M_kg, r_m):
-    """v_esc = sqrt(2GM/r). Minimum speed to leave the soliton."""
-    M = mpf(str(M_kg))
-    r = mpf(str(r_m))
-    return msqrt(mpf("2") * _G * M / r)
-
-
-def show_coupling_hierarchy(db):
-    """Print GM/(rc^2) at every level of the soliton hierarchy."""
-    systems = [
-        ("Earth-Moon orbit",  _M_earth, mpf("3.844e8")),
-        ("Earth surface",     _M_earth, _R_earth),
-        ("Sun-Earth orbit",   _M_sun,   _AU),
-        ("Sun surface",       _M_sun,   _R_sun),
-        ("Neutron star",      mpf("2.8") * _M_sun, mpf("1.1e4")),
-    ]
-    print("  GRAVITATIONAL COUPLING HIERARCHY  GM/(rc^2):")
-    print("  %-25s %15s %15s" % ("System", "GM/(rc^2)", "v_esc/c"))
-    print("  %-25s %15s %15s" % ("-" * 25, "-" * 15, "-" * 15))
-    for name, M, r in systems:
-        gc = grav_coupling(M, r)
-        ve = escape_velocity(M, r)
-        print("  %-25s %15s %15s" % (
-            name, mp.nstr(gc, 4), mp.nstr(ve / _c, 4)))
+# All 19 boundaries present
+total_bounds = db.find(obj_type="boundary")
+chk_bool("19 boundaries in db", len(total_bounds) == 19,
+         "count = %d" % len(total_bounds))
 
 
 # ================================================================
-# HILL SPHERES — SOLITON DOMINANCE BOUNDARIES
+section("HUBBLE DATA: CHUNK 3 vs HUBBLE LIB")
 # ================================================================
 
-def hill_sphere(m_kg, M_kg, a_m):
-    """R_Hill = a * (m/(3M))^(1/3).
-    The soliton dominance boundary (R5).
-    Inside: body's gravity dominates. Outside: container's.
-    """
-    m = mpf(str(m_kg))
-    M = mpf(str(M_kg))
-    a = mpf(str(a_m))
-    return a * (m / (mpf("3") * M)) ** (mpf("1") / mpf("3"))
+# H0 values match library Fractions exactly
+chk_exact("H0 local (SH0ES) = 73.0",
+          hubble_local(db), Fraction(730, 10))
+chk_exact("H0 far (Planck) = 67.4",
+          hubble_far(db), Fraction(674, 10))
 
+# Match library values
+chk_exact("H0 local matches lib",
+          hubble_local(db), lib_H0_local)
+chk_exact("H0 far matches lib",
+          hubble_far(db), lib_H0_far)
 
-def show_hill_spheres(db):
-    """Print Hill sphere table for key systems."""
-    systems = [
-        ("Earth in Solar",  _M_earth, _M_sun, _AU),
-        ("Moon in Earth",   _M_moon, _M_earth, mpf("3.844e8")),
-        ("Sun in Galaxy",   _M_sun, mpf("3.6e11") * _M_sun, mpf("8.2") * _kpc_m),
-        ("Jupiter in Solar", mpf("1.898e27"), _M_sun, mpf("7.785e11")),
-    ]
-    print("  HILL SPHERES  R_Hill = a*(m/(3M))^(1/3):")
-    print("  %-25s %15s %15s" % ("System", "R_Hill (km)", "R_Hill (AU)"))
-    print("  %-25s %15s %15s" % ("-" * 25, "-" * 15, "-" * 15))
-    for name, m, M, a in systems:
-        rh = hill_sphere(m, M, a)
-        print("  %-25s %15s %15s" % (
-            name,
-            mp.nstr(rh / mpf("1000"), 4),
-            mp.nstr(rh / _AU, 4)))
+# Cumulative ratio
+cum_ratio = hubble_cumulative_ratio(db)
+expected_ratio = Fraction(674, 730)
+chk_exact("cumulative ratio = 674/730 = 337/365",
+          cum_ratio, expected_ratio)
 
+# Tension in sigma
+tension = hubble_tension_sigma(db)
+chk_bool("Hubble tension > 4 sigma",
+         tension > mpf("4"),
+         "tension = %s sigma" % mp.nstr(tension, 3))
 
-# ================================================================
-# KEPLER VIA R2
-# ================================================================
+# Required r at several N
+for N in [10, 100, 1000]:
+    got_r = hubble_required_r(db, N)
+    expected_r = lib_required_r(N)
+    chk_close("required_r(N=%d) matches lib" % N,
+              got_r, expected_r, 8)
 
-def kepler_period(db, a_m, M_kg):
-    """T = sqrt(64*R2^2 * a^3 / (GM)).
-    Kepler's third law in R2 form: 4*pi^2 = (8R2)^2 = 64*R2^2.
-    """
-    a = mpf(str(a_m))
-    M = mpf(str(M_kg))
-    R2 = _R2(db)
-    return msqrt(mpf("64") * R2 ** 2 * a ** 3 / (_G * M))
+    got_omr = hubble_one_minus_r(db, N)
+    expected_omr = lib_one_minus_r(N)
+    chk_close("one_minus_r(N=%d) matches lib" % N,
+              got_omr, expected_omr, 8)
 
+# Running curve: H0(0)*r^N should give H0(N)
+r_100 = hubble_required_r(db, 100)
+H0_at_100 = hubble_running(db, hubble_local(db), r_100, 100)
+chk_close("H0_running(73.0, r, 100) = 67.4",
+          H0_at_100, f2m(hubble_far(db)), 4)
 
-def show_kepler(db):
-    """Print Kepler's law verification for solar system planets."""
-    planets = [
-        ("Mercury", mpf("5.791e10"), mpf("0.2408") * mpf("365.25") * mpf("86400")),
-        ("Venus",   mpf("1.082e11"), mpf("0.6152") * mpf("365.25") * mpf("86400")),
-        ("Earth",   _AU,             mpf("365.25") * mpf("86400")),
-        ("Mars",    mpf("2.279e11"), mpf("1.8808") * mpf("365.25") * mpf("86400")),
-        ("Jupiter", mpf("7.785e11"), mpf("11.862") * mpf("365.25") * mpf("86400")),
-        ("Saturn",  mpf("1.434e12"), mpf("29.457") * mpf("365.25") * mpf("86400")),
-    ]
-    print("  KEPLER VIA R2  T^2 = 64*R2^2 * a^3 / (GM):")
-    print("  %-10s %12s %14s %14s %10s" % (
-        "Planet", "a (m)", "T_obs (s)", "T_R2 (s)", "Ratio"))
-    print("  %-10s %12s %14s %14s %10s" % (
-        "-" * 10, "-" * 12, "-" * 14, "-" * 14, "-" * 10))
-    for name, a, T_obs in planets:
-        T_r2 = kepler_period(db, a, _M_sun)
-        ratio = T_r2 / T_obs
-        print("  %-10s %12s %14s %14s %10s" % (
-            name, mp.nstr(a, 4), mp.nstr(T_obs, 5),
-            mp.nstr(T_r2, 5), mp.nstr(ratio, 6)))
-    print("  4*pi^2 = (8R2)^2 = 64R2^2. Same R2 as pipes, wires, discs.")
+# VP step size
+vp = hubble_vp_step_size(db)
+expected_vp = lib_alpha_step()
+chk_close("VP step 1/(12*R2) matches lib alpha_running_step",
+          vp, expected_vp, 10)
 
 
 # ================================================================
-# PROCESS RATE (gravitational time dilation)
+section("HUBBLE FALSIFICATION TESTS")
 # ================================================================
 
-def process_rate_ratio(M_kg, r_m):
-    """sqrt(1 - 2GM/(rc^2)). Process rate relative to infinity.
-    = 1 for infinity, < 1 deeper in the well.
-    """
-    coupling = grav_coupling(M_kg, r_m)
-    exact = msqrt(mpf("1") - mpf("2") * coupling)
-    return {
-        "coupling": coupling,
-        "exact_ratio": exact,
-        "fractional_shift": mpf("1") - exact,
-    }
+f1_strict_pass, f1_strict_detail = test_F1_strict(db)
+lib_f1_pass, lib_f1_vals = lib_test_F1_strict(
+    [f2m(H0_MEASUREMENTS[k]["H0"]) for k in H0_ORDERED])
 
+# F1 strict may fail due to H0LiCOW > SH0ES
+# Both chunk 3 and lib should give same answer
+chk_bool("F1 strict: chunk 3 agrees with lib",
+         f1_strict_pass == lib_f1_pass,
+         "chunk3=%s, lib=%s" % (f1_strict_pass, lib_f1_pass))
 
-def gps_correction(db):
-    """Compute GPS clock correction: gravitational + velocity effects.
-    Returns dict with components in ns/day and us/day.
-    """
-    # Gravitational: df/f = GM/c^2 * (1/R_earth - 1/R_GPS)
-    grav_shift = _G * _M_earth / _c ** 2 * (
-        mpf("1") / _R_earth - mpf("1") / _R_GPS)
-
-    # Velocity: df/f = -v^2/(2c^2)
-    vel_shift = -_v_GPS ** 2 / (mpf("2") * _c ** 2)
-
-    total_shift = grav_shift + vel_shift
-
-    ns_per_day_grav = grav_shift * mpf("86400") * mpf("1e9")
-    ns_per_day_vel = vel_shift * mpf("86400") * mpf("1e9")
-    ns_per_day_total = total_shift * mpf("86400") * mpf("1e9")
-
-    return {
-        "grav_shift": grav_shift,
-        "vel_shift": vel_shift,
-        "total_shift": total_shift,
-        "grav_ns_day": ns_per_day_grav,
-        "vel_ns_day": ns_per_day_vel,
-        "total_ns_day": ns_per_day_total,
-        "total_us_day": ns_per_day_total / mpf("1000"),
-    }
-
-
-def show_gps_correction(db):
-    """Print GPS clock correction breakdown."""
-    g = gps_correction(db)
-    print("  GPS CLOCK CORRECTION (soliton reading difference):")
-    print("    Gravitational (higher = faster): +%s us/day" % mp.nstr(
-        g["grav_ns_day"] / mpf("1000"), 4))
-    print("    Velocity (moving = slower):      %s us/day" % mp.nstr(
-        g["vel_ns_day"] / mpf("1000"), 4))
-    print("    NET correction:                  +%s us/day" % mp.nstr(
-        g["total_us_day"], 4))
-    print("    Without correction: GPS drifts ~10 km/day.")
-    print("    The correction = GM/(rc^2), the soliton coupling strength.")
-
-
-def show_process_rates(db):
-    """Print process rate at key locations."""
-    locations = [
-        ("Earth surface",           _M_earth, _R_earth),
-        ("GPS orbit",               _M_earth, _R_GPS),
-        ("Sun surface",             _M_sun,   _R_sun),
-        ("Neutron star",            mpf("2.8") * _M_sun, mpf("1.1e4")),
-        ("Earth orbit (Sun field)", _M_sun,   _AU),
-    ]
-    print("  PROCESS RATE = sqrt(1 - 2GM/(rc^2)):")
-    print("  %-30s %15s %15s" % ("Location", "GM/(rc^2)", "Shift from inf"))
-    print("  %-30s %15s %15s" % ("-" * 30, "-" * 15, "-" * 15))
-    for name, M, r in locations:
-        pr = process_rate_ratio(M, r)
-        print("  %-30s %15s %15s" % (
-            name, mp.nstr(pr["coupling"], 4),
-            mp.nstr(pr["fractional_shift"], 4)))
+f1_soft_pass, f1_soft_violations = test_F1_soft(db)
+chk_bool("F1 soft: no hard inversions at 1-sigma",
+         f1_soft_pass,
+         "violations: %s" % (f1_soft_violations if not f1_soft_pass else "none"))
 
 
 # ================================================================
-# MUON LIFETIME & TWIN PARADOX
+section("GRAVITY COUPLING: PHYSICS VERIFICATION")
 # ================================================================
 
-def muon_observed_lifetime(v_over_c):
-    """Muon lifetime as observed across velocity boundary.
-    tau_obs = tau_rest * gamma. Internal rate is FIXED.
-    gamma = 1/sqrt(1 - v^2/c^2).
-    """
-    v = mpf(str(v_over_c))
-    gamma = mpf("1") / msqrt(mpf("1") - v ** 2)
-    return {
-        "v_over_c": v,
-        "gamma": gamma,
-        "tau_rest_us": _tau_mu * mpf("1e6"),
-        "tau_observed_us": _tau_mu * gamma * mpf("1e6"),
-    }
+# Earth surface: GM/(Rc^2)
+G = mpf("6.674e-11")
+M_e = mpf("5.972e24")
+R_e = mpf("6.371e6")
+c = mpf("299792458")
 
+gc_earth = grav_coupling(M_e, R_e)
+expected_gc = G * M_e / (R_e * c ** 2)
+chk_close("grav_coupling(Earth surface) matches direct",
+          gc_earth, expected_gc, 10)
 
-def twin_paradox(db, v_over_c, years_A):
-    """Twin A stays home, Twin B travels at v/c for years_A (A's clock).
-    Returns cycle counts using dv_Cs from db.
-    """
-    v = mpf(str(v_over_c))
-    yA = mpf(str(years_A))
-    gamma = mpf("1") / msqrt(mpf("1") - v ** 2)
-    yB = yA / gamma
+chk_bool("Earth coupling << 1 (non-relativistic)",
+         gc_earth < mpf("1e-8"),
+         "GM/(Rc^2) = %s" % mp.nstr(gc_earth, 4))
 
-    dv = _mpf(db, "const.dv_Cs")
-    sec_per_year = mpf("365.25") * mpf("86400")
-    cycles_A = yA * sec_per_year * dv
-    cycles_B = yB * sec_per_year * dv
+# Sun surface
+M_s = mpf("1.989e30")
+R_s = mpf("6.957e8")
+gc_sun = grav_coupling(M_s, R_s)
+expected_gc_sun = G * M_s / (R_s * c ** 2)
+chk_close("grav_coupling(Sun surface) matches direct",
+          gc_sun, expected_gc_sun, 10)
 
-    return {
-        "v_over_c": v,
-        "gamma": gamma,
-        "years_A": yA,
-        "years_B": yB,
-        "cycles_A": cycles_A,
-        "cycles_B": cycles_B,
-        "cycle_difference": cycles_A - cycles_B,
-    }
+# Binding fraction: 3GM/(5Rc^2)
+bf_earth = binding_fraction(M_e, R_e)
+expected_bf = mpf("3") * G * M_e / (mpf("5") * R_e * c ** 2)
+chk_close("binding_fraction(Earth) matches 3GM/(5Rc^2)",
+          bf_earth, expected_bf, 10)
 
+chk_bool("Earth binding << rest mass",
+         bf_earth < mpf("1e-8"),
+         "fraction = %s" % mp.nstr(bf_earth, 4))
 
-def ds_squared(dt, dx, dy="0", dz="0"):
-    """Minkowski interval: ds^2 = -c^2*dt^2 + dx^2 + dy^2 + dz^2.
-    Negative = timelike. Positive = spacelike. Zero = lightlike.
-    """
-    t = mpf(str(dt))
-    x = mpf(str(dx))
-    y = mpf(str(dy))
-    z = mpf(str(dz))
-    return -_c ** 2 * t ** 2 + x ** 2 + y ** 2 + z ** 2
+# Escape velocity: v_esc = sqrt(2GM/R)
+v_esc = escape_velocity(M_e, R_e)
+expected_vesc = msqrt(mpf("2") * G * M_e / R_e)
+chk_close("escape_velocity(Earth) matches sqrt(2GM/R)",
+          v_esc, expected_vesc, 10)
 
-
-def show_muon_table(db):
-    """Print muon lifetime at several velocities."""
-    print("  MUON LIFETIME (reading across velocity boundary):")
-    print("  %-8s %10s %12s %12s" % ("v/c", "gamma", "tau_rest(us)", "tau_obs(us)"))
-    print("  %-8s %10s %12s %12s" % ("-" * 8, "-" * 10, "-" * 12, "-" * 12))
-    for v in ["0", "0.5", "0.9", "0.99", "0.999"]:
-        m = muon_observed_lifetime(v)
-        print("  %-8s %10s %12s %12s" % (
-            v, mp.nstr(m["gamma"], 5),
-            mp.nstr(m["tau_rest_us"], 5),
-            mp.nstr(m["tau_observed_us"], 5)))
-    print("  Muon process rate is FIXED. Observer reads across boundary.")
-
-
-def show_twin_paradox(db, v_over_c="0.9", years="10"):
-    """Print twin paradox analysis."""
-    t = twin_paradox(db, v_over_c, years)
-    print("  TWIN PARADOX (different cycle counts, not different time):")
-    print("    Twin B velocity: %sc" % t["v_over_c"])
-    print("    gamma: %s" % mp.nstr(t["gamma"], 5))
-    print("    Twin A: %s years, %s cesium cycles" % (
-        mp.nstr(t["years_A"], 4), mp.nstr(t["cycles_A"], 4)))
-    print("    Twin B: %s years, %s cesium cycles" % (
-        mp.nstr(t["years_B"], 4), mp.nstr(t["cycles_B"], 4)))
-    print("    Difference: %s cycles" % mp.nstr(t["cycle_difference"], 4))
-    print("    Two vortexes, different paths, different oscillation counts.")
+chk_bool("Earth escape velocity ~ 11.2 km/s",
+         mpf("11000") < v_esc < mpf("11300"),
+         "v_esc = %s m/s" % mp.nstr(v_esc, 5))
 
 
 # ================================================================
-# MOND a0 CONNECTION
+section("HILL SPHERES: PHYSICS VERIFICATION")
 # ================================================================
 
-def mond_a0(db):
-    """a0 = c*H0/(8*R2) = c*H0/(2*pi).
-    The MOND acceleration scale from R2 and Hubble.
-    Uses H0 = 67.4 km/s/Mpc (Planck) in SI units.
-    """
-    H0_SI = mpf("67.4") * mpf("1000") / mpf("3.086e22")
-    return _c * H0_SI / (_eight_R2(db))
+# Earth Hill sphere: a * (M_e/(3*M_s))^(1/3)
+AU = mpf("1.496e11")
+rh_earth = hill_sphere(M_e, M_s, AU)
+expected_rh = AU * (M_e / (mpf("3") * M_s)) ** (mpf("1") / mpf("3"))
+chk_close("hill_sphere(Earth) matches a*(m/3M)^(1/3)",
+          rh_earth, expected_rh, 10)
+
+rh_earth_km = rh_earth / mpf("1000")
+chk_bool("Earth Hill sphere ~ 1.5 million km",
+         mpf("1.4e6") < rh_earth_km < mpf("1.6e6"),
+         "R_Hill = %s km" % mp.nstr(rh_earth_km, 4))
+
+# Moon Hill sphere
+M_moon = mpf("7.342e22")
+d_em = mpf("3.844e8")
+rh_moon = hill_sphere(M_moon, M_e, d_em)
+chk_bool("Moon Hill sphere > 0 and < Earth-Moon distance",
+         mpf("0") < rh_moon < d_em,
+         "R_Hill = %s km" % mp.nstr(rh_moon / mpf("1000"), 4))
 
 
-def mond_transition_radius(db, M_kg):
-    """Radius where g(r) = GM/r^2 = a0. Below: Newtonian. Above: MOND.
-    r = sqrt(GM/a0).
-    """
-    M = mpf(str(M_kg))
-    a0 = mond_a0(db)
-    return msqrt(_G * M / a0)
+# ================================================================
+section("KEPLER VIA R2: VERIFICATION AGAINST 4*pi^2 FORMULA")
+# ================================================================
+
+# Earth: T = sqrt(4*pi^2 * a^3 / (GM))
+# In R2: T = sqrt(64*R2^2 * a^3 / (GM))
+# These are identical because 64*R2^2 = 64*(pi/4)^2 = 64*pi^2/16 = 4*pi^2
+
+# Verify the identity first
+R2_val = _R2(db)
+identity_lhs = mpf("64") * R2_val ** 2
+identity_rhs = mpf("4") * mpi ** 2
+chk_close("64*R2^2 = 4*pi^2 (Kepler identity)", identity_lhs, identity_rhs, 20)
+
+# Earth orbital period
+T_earth = kepler_period(db, AU, M_s)
+T_expected = msqrt(mpf("4") * mpi ** 2 * AU ** 3 / (G * M_s))
+chk_close("kepler_period(Earth) matches 4pi^2 formula",
+          T_earth, T_expected, 8)
+
+# Compare to 365.25 days
+T_year = mpf("365.25") * mpf("86400")
+ratio_earth = T_earth / T_year
+chk_bool("Earth Kepler period ~ 1 year",
+         abs(ratio_earth - mpf("1")) < mpf("0.005"),
+         "T_kepler/T_year = %s" % mp.nstr(ratio_earth, 6))
+
+# Jupiter
+a_jup = mpf("7.785e11")
+T_jup = kepler_period(db, a_jup, M_s)
+T_jup_obs = mpf("11.862") * T_year
+ratio_jup = T_jup / T_jup_obs
+chk_bool("Jupiter Kepler period within 0.5%",
+         abs(ratio_jup - mpf("1")) < mpf("0.005"),
+         "T_kepler/T_obs = %s" % mp.nstr(ratio_jup, 6))
 
 
-def show_mond_a0(db):
-    """Print MOND a0 and transition radii."""
-    a0 = mond_a0(db)
-    print("  MOND a0 = c*H0/(8*R2) = c*H0/(2*pi):")
-    print("    a0 = %s m/s^2" % mp.nstr(a0, 4))
-    print("    a0 (published MOND) ~ 1.2e-10 m/s^2")
-    print("    Match: %s%%" % mp.nstr(
-        abs(a0 - mpf("1.2e-10")) / mpf("1.2e-10") * mpf("100"), 3))
+# ================================================================
+section("PROCESS RATE: PHYSICS VERIFICATION")
+# ================================================================
+
+# Earth surface: sqrt(1 - 2GM/(Rc^2))
+pr_earth = process_rate_ratio(M_e, R_e)
+expected_pr = msqrt(mpf("1") - mpf("2") * G * M_e / (R_e * c ** 2))
+chk_close("process_rate(Earth) matches sqrt(1-2GM/Rc^2)",
+          pr_earth["exact_ratio"], expected_pr, 12)
+
+chk_bool("Earth process rate < 1 (slower than infinity)",
+         pr_earth["exact_ratio"] < mpf("1"),
+         "ratio = %s" % mp.nstr(pr_earth["exact_ratio"], 12))
+
+chk_bool("Earth fractional shift ~ 7e-10",
+         mpf("5e-10") < pr_earth["fractional_shift"] < mpf("1e-9"),
+         "shift = %s" % mp.nstr(pr_earth["fractional_shift"], 4))
+
+# GPS orbit: should be closer to 1 than Earth surface
+pr_gps = process_rate_ratio(M_e, mpf("2.6556e7"))
+chk_bool("GPS orbit rate > Earth surface rate",
+         pr_gps["exact_ratio"] > pr_earth["exact_ratio"],
+         "GPS=%s > Earth=%s" % (
+             mp.nstr(pr_gps["exact_ratio"], 11),
+             mp.nstr(pr_earth["exact_ratio"], 11)))
+
+
+# ================================================================
+section("GPS CORRECTION: PHYSICS VERIFICATION")
+# ================================================================
+
+gps = gps_correction(db)
+
+# Gravitational shift must be positive (higher = faster)
+chk_bool("GPS gravitational shift > 0",
+         gps["grav_shift"] > mpf("0"),
+         "grav = %s" % mp.nstr(gps["grav_shift"], 4))
+
+# Velocity shift must be negative (moving = slower)
+chk_bool("GPS velocity shift < 0",
+         gps["vel_shift"] < mpf("0"),
+         "vel = %s" % mp.nstr(gps["vel_shift"], 4))
+
+# Net shift must be positive (gravity wins)
+chk_bool("GPS net shift > 0 (gravity dominates)",
+         gps["total_shift"] > mpf("0"),
+         "total = %s" % mp.nstr(gps["total_shift"], 4))
+
+# Total correction ~ 38.5 us/day (well-known value)
+chk_bool("GPS total correction ~ 38 us/day",
+         mpf("35") < gps["total_us_day"] < mpf("42"),
+         "total = %s us/day" % mp.nstr(gps["total_us_day"], 4))
+
+# Gravitational component ~ +45 us/day
+chk_bool("GPS gravitational component ~ +45 us/day",
+         mpf("40") < gps["grav_ns_day"] / mpf("1000") < mpf("50"),
+         "grav = %s us/day" % mp.nstr(gps["grav_ns_day"] / mpf("1000"), 4))
+
+# Velocity component ~ -7 us/day
+chk_bool("GPS velocity component ~ -7 us/day",
+         mpf("-10") < gps["vel_ns_day"] / mpf("1000") < mpf("-5"),
+         "vel = %s us/day" % mp.nstr(gps["vel_ns_day"] / mpf("1000"), 4))
+
+
+# ================================================================
+section("MUON LIFETIME: PHYSICS VERIFICATION")
+# ================================================================
+
+# At rest: gamma = 1, tau = tau_rest
+m0 = muon_observed_lifetime("0")
+chk_close("muon at rest: gamma = 1", m0["gamma"], mpf("1"), 10)
+chk_close("muon at rest: tau_obs = tau_rest",
+          m0["tau_observed_us"], m0["tau_rest_us"], 10)
+
+# At v = 0.99c: gamma = 1/sqrt(1-0.99^2) = 1/sqrt(0.0199) ~ 7.09
+m99 = muon_observed_lifetime("0.99")
+expected_gamma = mpf("1") / msqrt(mpf("1") - mpf("0.99") ** 2)
+chk_close("muon at 0.99c: gamma matches", m99["gamma"], expected_gamma, 6)
+chk_bool("muon at 0.99c: observed lifetime > rest",
+         m99["tau_observed_us"] > m99["tau_rest_us"],
+         "obs=%s > rest=%s" % (
+             mp.nstr(m99["tau_observed_us"], 4),
+             mp.nstr(m99["tau_rest_us"], 4)))
+
+# Gamma monotonically increasing
+gammas = []
+for v in ["0", "0.5", "0.9", "0.99", "0.999"]:
+    m = muon_observed_lifetime(v)
+    gammas.append(m["gamma"])
+monotonic = all(gammas[i] < gammas[i + 1] for i in range(len(gammas) - 1))
+chk_bool("gamma monotonically increasing with v", monotonic)
+
+
+# ================================================================
+section("TWIN PARADOX: PHYSICS VERIFICATION")
+# ================================================================
+
+# At v = 0.9c, 10 years
+tp = twin_paradox(db, "0.9", "10")
+expected_gamma_tp = mpf("1") / msqrt(mpf("1") - mpf("0.9") ** 2)
+chk_close("twin gamma at 0.9c", tp["gamma"], expected_gamma_tp, 6)
+
+chk_bool("twin B ages less than A",
+         tp["years_B"] < tp["years_A"],
+         "A=%s, B=%s" % (mp.nstr(tp["years_A"], 4), mp.nstr(tp["years_B"], 4)))
+
+chk_bool("twin cycle difference > 0",
+         tp["cycle_difference"] > mpf("0"),
+         "diff = %s cycles" % mp.nstr(tp["cycle_difference"], 4))
+
+# Cesium cycles from db
+dv_db = f2m(db.get("const.dv_Cs").value)
+chk_bool("twin uses dv_Cs from db (9192631770)",
+         dv_db == mpf("9192631770"),
+         "dv_Cs = %s" % mp.nstr(dv_db, 11))
+
+# At v=0: both twins should agree
+tp0 = twin_paradox(db, "0", "10")
+chk_close("twin at v=0: years_B = years_A",
+          tp0["years_B"], tp0["years_A"], 10)
+chk_close("twin at v=0: cycle difference = 0",
+          tp0["cycle_difference"], mpf("0"), 10)
+
+
+# ================================================================
+section("ds^2 MINKOWSKI INTERVAL")
+# ================================================================
+
+# Lightlike: ds^2 = 0 for dt=1, dx=c
+ds_light = ds_squared("1", str(c))
+chk_close("ds^2 = 0 for light (dt=1, dx=c)", ds_light, mpf("0"), 10)
+
+# Timelike: ds^2 < 0 for stationary particle (dt=1, dx=0)
+ds_time = ds_squared("1", "0")
+chk_bool("ds^2 < 0 for stationary (timelike)",
+         ds_time < mpf("0"),
+         "ds^2 = %s" % mp.nstr(ds_time, 6))
+
+# Spacelike: ds^2 > 0 for simultaneous separation (dt=0, dx=1)
+ds_space = ds_squared("0", "1")
+chk_bool("ds^2 > 0 for simultaneous separation (spacelike)",
+         ds_space > mpf("0"),
+         "ds^2 = %s" % mp.nstr(ds_space, 6))
+
+
+# ================================================================
+section("MOND a0: PHYSICS VERIFICATION")
+# ================================================================
+
+a0 = mond_a0(db)
+
+# a0 should be ~ 1.2e-10 m/s^2 (published MOND)
+chk_bool("a0 ~ 1.2e-10 m/s^2 (within factor 2)",
+         mpf("0.5e-10") < a0 < mpf("2.5e-10"),
+         "a0 = %s m/s^2" % mp.nstr(a0, 4))
+
+# a0 = c*H0/(8*R2) should equal c*H0/(2*pi)
+H0_SI = mpf("67.4") * mpf("1000") / mpf("3.086e22")
+a0_twopi = c * H0_SI / (mpf("2") * mpi)
+chk_close("a0 via 8*R2 = a0 via 2*pi (identity)",
+          a0, a0_twopi, 12)
+
+# Transition radius for Earth
+r_a0_earth = mond_transition_radius(db, M_e)
+expected_r_a0 = msqrt(G * M_e / a0)
+chk_close("mond_transition_radius(Earth) matches sqrt(GM/a0)",
+          r_a0_earth, expected_r_a0, 8)
+
+chk_bool("Earth a0 radius > Hill sphere",
+         r_a0_earth > rh_earth,
+         "r_a0=%s > R_Hill=%s" % (
+             mp.nstr(r_a0_earth, 4), mp.nstr(rh_earth, 4)))
+
+# Sun transition
+r_a0_sun = mond_transition_radius(db, M_s)
+chk_bool("Sun a0 radius > 100 AU",
+         r_a0_sun > mpf("100") * AU,
+         "r_a0_sun = %s AU" % mp.nstr(r_a0_sun / AU, 3))
+
+
+# ================================================================
+section("INTERNAL CONSISTENCY CHECKS")
+# ================================================================
+
+# R2 family from db
+R2_db = _R2(db)
+chk_close("_R2(db) = pi/4", R2_db, mpi / 4, 30)
+chk_close("_eight_R2(db) = 2*pi", _eight_R2(db), mpf("2") * mpi, 30)
+
+# grav_coupling = v_esc^2 / (2c^2)
+gc = grav_coupling(M_e, R_e)
+ve = escape_velocity(M_e, R_e)
+chk_close("GM/(Rc^2) = v_esc^2/(2c^2)",
+          gc, (ve / c) ** 2 / mpf("2"), 8)
+
+# Process rate shift ~ GM/(Rc^2) for weak fields
+pr = process_rate_ratio(M_e, R_e)
+chk_bool("fractional_shift ~ coupling (weak field)",
+         abs(pr["fractional_shift"] - pr["coupling"]) / pr["coupling"] < mpf("0.001"),
+         "shift=%s, coupling=%s" % (
+             mp.nstr(pr["fractional_shift"], 6),
+             mp.nstr(pr["coupling"], 6)))
+
+
+# ================================================================
+# SUMMARY
+# ================================================================
+
+print()
+print("=" * 70)
+print("DATA-5 CHUNK 3 TEST SUMMARY")
+print("=" * 70)
+print()
+
+n_pass = sum(1 for _, s in checks if s == "PASS")
+n_fail = sum(1 for _, s in checks if s == "FAIL")
+n_total = len(checks)
+
+print("  TOTAL: %d PASS, %d FAIL out of %d" % (n_pass, n_fail, n_total))
+print()
+
+if n_fail > 0:
+    print("  FAILURES:")
+    for tag, status in checks:
+        if status == "FAIL":
+            print("    - %s" % tag)
     print()
 
-    for name, M in [("Earth", _M_earth), ("Sun", _M_sun)]:
-        r = mond_transition_radius(db, M)
-        print("    %s: g = a0 at r = %s AU = %s pc" % (
-            name, mp.nstr(r / _AU, 3),
-            mp.nstr(r / _pc_m, 3)))
+print("  SECTIONS TESTED:")
+print("    Scale conversion:      E <-> distance round-trip")
+print("    Boundary search:       find, nearest, between, count")
+print("    Hubble data:           H0 values, ratio, tension, r(N), running")
+print("    Hubble falsification:  F1 strict/soft agree with lib")
+print("    Gravity coupling:      GM/(rc^2), binding, escape velocity")
+print("    Hill spheres:          Earth, Moon size ranges")
+print("    Kepler via R2:         64R2^2=4pi^2, Earth and Jupiter periods")
+print("    Process rate:          Earth, GPS, shift ~ coupling")
+print("    GPS correction:        grav/vel/total, ~38 us/day")
+print("    Muon lifetime:         rest, 0.99c, monotonic gamma")
+print("    Twin paradox:          aging, cycle counts, v=0 identity")
+print("    ds^2 interval:         lightlike, timelike, spacelike")
+print("    MOND a0:               value, 8R2=2pi, transition radii")
+print("    Internal consistency:  coupling identities, weak-field")
+print()
 
+if n_fail == 0:
+    print("  CHUNK 3 HELPERS: OPERATIONAL")
+    print("  All boundary, Hubble, gravity, process rate, muon, Kepler,")
+    print("  and MOND computations verified against platform and physics.")
+else:
+    print("  CHUNK 3 HELPERS: %d FAILURES — INVESTIGATE" % n_fail)
 
-# ================================================================
-# HIERARCHY DISPLAY
-# ================================================================
+print()
+print("=" * 70)
+print("DATA-5 CHUNK 3 TEST COMPLETE")
+print("=" * 70)
 
-def show_soliton_hierarchy(db):
-    """Print the complete 11-level nesting hierarchy."""
-    hierarchy = [
-        ("Proton (QCD)",       "~1 fm",       "99%%",      "b3 = -7",          "Confinement"),
-        ("Atom (EM)",          "~0.1 nm",     "~10^-8",    "alpha = 1/137",   "Ionization"),
-        ("Crystal lattice",    "~1 nm-km",    "~10^-10",   "Band structure",  "Melting"),
-        ("Geological",         "~m-km",       "~10^-10",   "Material strength", "Phase boundary"),
-        ("Human on surface",   "~1.7 m",      "~10^-9",    "GM_E/(R_E*c^2)",  "Jump height"),
-        ("Earth Hill sphere",  "~1.5e6 km",   "~10^-9",    "M_E/M_Sun ratio", "L1 Lagrange"),
-        ("Earth orbit",        "1 AU",        "~10^-8",    "Kepler T^2~a^3",  "v_escape"),
-        ("Solar Hill sphere",  "~120 AU",     "~10^-6",    "M_Sun/M_gal",     "Voyager"),
-        ("Galactic disk",      "~15 kpc",     "~10^-6",    "DM/bar=(22/13)pi", "Virial radius"),
-        ("Galaxy cluster",     "~3 Mpc",      "~10^-5",    "DM ~ 85%%",       "Virial radius"),
-        ("BAO/cosmological",   "~150 Mpc",    "—",         "N~100 boundaries", "H0 running"),
-    ]
-    print("  SOLITON NESTING HIERARCHY (11 levels):")
-    print("  %-22s %12s %10s %-20s %s" % (
-        "Level", "Size", "|U|/Mc^2", "Integer Rule", "Boundary"))
-    print("  %-22s %12s %10s %-20s %s" % (
-        "-" * 22, "-" * 12, "-" * 10, "-" * 20, "-" * 12))
-    for name, size, coupling, rule, boundary in hierarchy:
-        print("  %-22s %12s %10s %-20s %s" % (
-            name, size, coupling, rule, boundary))
-    print()
-    print("  Same principle at every level: ground state within container.")
-    print("  GM/(rc^2) determines well depth. R2 in every orbital area.")
