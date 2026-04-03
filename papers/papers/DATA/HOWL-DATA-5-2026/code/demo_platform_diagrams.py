@@ -553,7 +553,8 @@ a2_comp = koide_amplitude_sq(K_lep)
 mtau_result = koide_predict_m_tau(m_e, m_mu)
 mtau_pred = float(mtau_result["m_tau_pred"])
 mtau_meas = float(f2m(m_tau))
-mtau_unc = 0.12  # MeV from PDG
+mtau_unc = 0.12
+other_root = float(mtau_result["m_tau_other"])
 
 log_prov(8, "K_leptons", K_lep, "koide_ratio(m_e, m_mu, m_tau)")
 log_prov(8, "a2_leptons", a2_comp, "koide_amplitude_sq(K_lep)")
@@ -565,50 +566,40 @@ fig.patch.set_facecolor(BG)
 style_ax(ax, title="Koide m$_\\tau$ Prediction (from koide_predict_m_tau() API)",
          xlabel="", ylabel="m$_\\tau$ (MeV)")
 
-# Measurement band
 ax.axhspan(mtau_meas - mtau_unc, mtau_meas + mtau_unc, color=MAG, alpha=0.15)
 ax.axhspan(mtau_meas - 3 * mtau_unc, mtau_meas + 3 * mtau_unc, color=MAG, alpha=0.06)
 ax.axhline(mtau_meas, color=MAG, linewidth=2, alpha=0.8)
 
-# Prediction
 ax.scatter([1], [mtau_pred], s=300, c=GREEN, edgecolors=WHITE, linewidth=2, zorder=10)
 ax.text(1.3, mtau_pred, "Predicted: %.3f MeV\n(K = 2/3 assumed)" % mtau_pred,
         color=GREEN, fontsize=11, va='center')
 
-# Measured
 ax.scatter([2], [mtau_meas], s=300, c=MAG, marker='D', edgecolors=WHITE, linewidth=2, zorder=10)
 ax.text(2.3, mtau_meas, "Measured: %.2f $\\pm$ %.2f MeV\n(DATA-4 B4)" % (mtau_meas, mtau_unc),
         color=MAG, fontsize=11, va='center')
 
-# Miss
 miss_pct = abs(mtau_pred - mtau_meas) / mtau_meas * 100
 miss_sigma = abs(mtau_pred - mtau_meas) / mtau_unc
-ax.text(1.5, 1776.5, "Miss: %.4f%% (%.1f$\\sigma$)" % (miss_pct, miss_sigma),
-        color=GOLD, fontsize=12, ha='center',
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
 
-# Other root
-other_root = float(mtau_result["m_tau_other"])
-ax.scatter([3], [other_root], s=200, c=DIM, marker='x', linewidth=2, zorder=10)
-ax.text(3.3, other_root + 20, "Other root: %.2f MeV\n(unphysical)" % other_root,
-        color=DIM, fontsize=9, va='bottom')
+ax.text(1.5, 1776.45, "Miss: %.4f%% (%.1f$\\sigma$)\nOther root: %.2f MeV (unphysical)" % (
+    miss_pct, miss_sigma, other_root),
+    color=GOLD, fontsize=11, ha='center',
+    bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
 
-# Key parameters
-ax.text(0.5, 1777.5, "K = %s\na$^2$ = %s\nM = %s $\\sqrt{\\mathrm{MeV}}$" % (
+ax.text(0.3, 1777.65, "K = %s\na$^2$ = %s\nM = %s $\\sqrt{\\mathrm{MeV}}$" % (
     mp.nstr(K_lep, 8), mp.nstr(a2_comp, 10),
     mp.nstr(mtau_result["M_koide"], 6)),
     color=SILVER, fontsize=9, va='top',
     bbox=dict(boxstyle='round,pad=0.3', facecolor=PAN, edgecolor=DIM))
 
-ax.set_xlim(0, 4)
+ax.set_xlim(0, 3.5)
 ax.set_ylim(1776.2, 1777.8)
-ax.set_xticks([1, 2, 3])
-ax.set_xticklabels(["Prediction\n(K=2/3)", "Measurement\n(PDG)", "Other root"],
+ax.set_xticks([1, 2])
+ax.set_xticklabels(["Prediction\n(K=2/3)", "Measurement\n(PDG)"],
                     color=SILVER, fontsize=9)
 ax.grid(True, axis='y', alpha=0.1, color=DIM)
 
 save(fig, "platform_08_koide_prediction.png")
-
 
 # ================================================================
 # PROVENANCE REPORT
