@@ -151,6 +151,7 @@
 | **[[@HOWL-DATA-2-2026]](papers/papers/DATA/HOWL-DATA-2-2026/manuscript.md)** | **Integer Rational Representations in Q335** | Integer Rational Database. |
 | **[[@HOWL-DATA-3-2026]](papers/papers/DATA/HOWL-DATA-3-2026/manuscript.md)** | **Verified Integer Rational Database** | Round Three. |
 | **[[@HOWL-DATA-4-2026]](papers/papers/DATA/HOWL-DATA-4-2026/manuscript.md)** | **Verified Integer Rational Database with Cabibbo Doublet Extension** | The Cabibbo Doublet is staged. The integers are verified. The foundation extends. |
+| **[[@HOWL-DATA-5-2026]](papers/papers/DATA/HOWL-DATA-5-2026/manuscript.md)** | **Extension** | The Cabibbo Doublet is staged. The integers are verified. The foundation extends. |
 
 ---
 
