@@ -31,12 +31,12 @@ TRAVERSAL: PROTON TO ORANGE
 TRAVERSAL: M_Z TO GUT
 ----------------------------------------------------------------------
 
-  [FAIL] M_Z to GUT: crosses CD threshold
-        boundaries: ['Electroweak scale (M_Z)', 'Higgs boson threshold', 'Top quark threshold', 'GUT unification scale']
+  [PASS] M_Z to GUT: crosses CD threshold
+        boundaries: ['Electroweak scale (M_Z)', 'Higgs boson threshold', 'Top quark threshold', 'Cabibbo Doublet threshold', 'GUT unification scale']
   [PASS] M_Z to GUT: has unknown couplings
-        unknowns: 5
+        unknowns: 8
   [PASS] M_Z to GUT: has open questions
-        questions: 5
+        questions: 8
 
 FORCES REGISTRY
 ----------------------------------------------------------------------
@@ -63,7 +63,7 @@ DEMO: FULL TRAVERSAL e -> GUT
 BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
 ======================================================================
 
-  Boundaries crossed: 14
+  Boundaries crossed: 15
 
   --- Electron threshold ---
       Scale: 0.510999 MeV
@@ -161,6 +161,17 @@ BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
       Changes: Top quark becomes active. Last SM fermion threshold. Full SM particle content ab
       Forces: strong
       alpha_s: UNKNOWN
+
+  --- Cabibbo Doublet threshold ---
+      Scale: ~3.0e+6 MeV (estimated)
+      Changes: Cabibbo Doublet (3,2,1/6) VL pair becomes active. Beta coefficients change: b_i
+      Forces: electromagnetic, weak, strong
+      1/alpha_1: UNKNOWN
+      1/alpha_2: UNKNOWN
+      1/alpha_3: UNKNOWN
+      ? What is M_VL exactly?
+      ? Is there a sharp threshold or smooth transition?
+      ? What are the mixing angles?
 
   --- GUT unification scale ---
       Scale: ~3.5e+15 MeV (estimated)
@@ -179,6 +190,9 @@ BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
     - alpha_s at Confinement wall (lower face)
     - alpha_s at Confinement wall (upper face)
     - alpha_s at Top quark threshold
+    - 1/alpha_1 at Cabibbo Doublet threshold
+    - 1/alpha_2 at Cabibbo Doublet threshold
+    - 1/alpha_3 at Cabibbo Doublet threshold
     - 1/alpha_GUT at GUT unification scale
     - 1/alpha_1 at GUT unification scale
     - 1/alpha_2 at GUT unification scale
@@ -192,6 +206,9 @@ BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
     [Confinement wall (upper face)] Is there a precise definition of the confinement boundary?
     [Confinement wall (upper face)] What is alpha_s at the transition?
     [Higgs boson threshold] Is lambda (Higgs self-coupling) derivable? (parked, PHYS-24 Appendix J)
+    [Cabibbo Doublet threshold] What is M_VL exactly?
+    [Cabibbo Doublet threshold] Is there a sharp threshold or smooth transition?
+    [Cabibbo Doublet threshold] What are the mixing angles?
     [GUT unification scale] What is the GUT group? SU(5)? SO(10)?
     [GUT unification scale] What are the threshold corrections?
     [GUT unification scale] Does exact unification occur?
@@ -199,220 +216,9 @@ BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
 
 
 
-  TOTAL: 13 PASS, 1 FAIL out of 14
+  TOTAL: 14 PASS, 0 FAIL out of 14
 
-  BOUNDARIES LIBRARY: 1 FAILURES
-    - M_Z to GUT: crosses CD threshold
-
-======================================================================
-PHYS24_BOUNDARIES SELF-TEST COMPLETE
-======================================================================
-geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-5-2026/code$ python3 phys24_boundary_map_lib.py
-======================================================================
-PHYS24_BOUNDARIES SELF-TEST
-======================================================================
-
-BOUNDARY STACK
-----------------------------------------------------------------------
-
-  [PASS] Boundary stack has 15+ entries
-        count = 19
-  [PASS] Electroweak boundary found
-        matches = 1
-  [PASS] M_Z boundary: alpha_inv stored
-        expected: 137035999177/1000000000 = 137.03599918
-        got:      137035999177/1000000000 = 137.03599918
-        match:    EXACT
-  [PASS] M_Z boundary: sin2_tW stored
-        expected: 11561/50000 = 0.23122
-        got:      11561/50000 = 0.23122
-        match:    EXACT
-  [PASS] M_Z boundary: alpha_s stored
-        expected: 59/500 = 0.118
-        got:      59/500 = 0.118
-        match:    EXACT
-
-TRAVERSAL: PROTON TO ORANGE
-----------------------------------------------------------------------
-
-  [PASS] e to p: crosses confinement wall
-        boundaries: ['Electron threshold', 'Nuclear binding scale', 'Strange quark threshold', 'Muon threshold', 'Confinement wall (lower face)']
-
-TRAVERSAL: M_Z TO GUT
-----------------------------------------------------------------------
-
-  [FAIL] M_Z to GUT: crosses CD threshold
-        boundaries: ['Electroweak scale (M_Z)', 'Higgs boson threshold', 'Top quark threshold', 'GUT unification scale']
-  [PASS] M_Z to GUT: has unknown couplings
-        unknowns: 5
-  [PASS] M_Z to GUT: has open questions
-        questions: 5
-
-FORCES REGISTRY
-----------------------------------------------------------------------
-
-  [PASS] 5 forces registered
-        count = 5
-  [PASS] Gravity has no gauge group
-        gauge_group = None
-  [PASS] Strong force is SU(3)
-        gauge_group = SU(3)_c
-
-SCALE CONVERSIONS
-----------------------------------------------------------------------
-
-  [PASS] Proton Compton wavelength ~ 0.2 fm
-        lambda = 0.2103 fm
-  [PASS] M_Z distance ~ 0.002 fm
-        lambda = 0.002164 fm
-
-DEMO: FULL TRAVERSAL e -> GUT
-----------------------------------------------------------------------
-
-======================================================================
-BOUNDARY TRAVERSAL: 0.511 MeV -> 1.0e+19 MeV
-======================================================================
-
-  Boundaries crossed: 14
-
-  --- Electron threshold ---
-      Scale: 0.510999 MeV
-      Distance: 386.2 fm
-      Changes: Electron-positron pairs can no longer be created. Below this, only photons propa
-      Forces: electromagnetic
-      alpha_EM: 0.007297353
-
-  --- Nuclear binding scale ---
-      Scale: 8.0 MeV
-      Distance: 24.67 fm
-      Changes: Nuclear force (residual strong) binds nucleons. Deuteron binding energy E_D = 2.
-      Forces: strong
-      E_D: 2.224566
-
-  --- Strange quark threshold ---
-      Scale: 93.5 MeV
-      Distance: 2.11 fm
-      Changes: Strange quark decouples. 3-flavor to 2-flavor. Note: this is INSIDE the confinem
-      Forces: strong
-      ? What is the correct treatment of flavor thresholds inside confinement?
-
-  --- Muon threshold ---
-      Scale: 105.658 MeV
-      Distance: 1.868 fm
-      Changes: Muon decouples from vacuum polarization.
-      Forces: electromagnetic
-
-  --- Confinement wall (lower face) ---
-      Scale: 300.0 MeV
-      Distance: 0.6578 fm
-      Changes: Hadronic resonances resolve into individual hadrons. Below this scale, quarks ar
-      Forces: strong
-      alpha_s: UNKNOWN
-      f_pi: 130.41
-      ? What is the non-perturbative structure of the confinement transition?
-      ? Is there a soliton interpretation of confinement?
-
-  --- Charm quark threshold ---
-      Scale: 1273.0 MeV
-      Distance: 0.155 fm
-      Changes: Charm decouples. 4-flavor to 3-flavor.
-      Forces: strong
-
-  --- Tau lepton threshold ---
-      Scale: 1776.86 MeV
-      Distance: 0.1111 fm
-      Changes: Tau lepton decouples. Koide prediction: m_tau = 1776.97 MeV (0.006%% miss).
-      Forces: electromagnetic
-      ? Is m_tau derivable from Koide? (conditional, a^2=2 unresolved)
-
-  --- Confinement wall (upper face) ---
-      Scale: 2000.0 MeV
-      Distance: 0.09866 fm
-      Changes: Perturbative QCD breaks down. alpha_s approaches O(1). Integer beta function rul
-      Forces: strong
-      alpha_s: UNKNOWN
-      ? Is there a precise definition of the confinement boundary?
-      ? What is alpha_s at the transition?
-
-  --- Bottom quark threshold ---
-      Scale: 4183.0 MeV
-      Distance: 0.04717 fm
-      Changes: Bottom quark decouples below this scale. Effective theory changes from 5-flavor
-      Forces: strong
-
-  --- W boson threshold ---
-      Scale: 80369.2 MeV
-      Distance: 0.002455 fm
-      Changes: W boson pair production threshold.
-      Forces: weak
-
-  --- Electroweak scale (M_Z) ---
-      Scale: 91187.6 MeV
-      Distance: 0.002164 fm
-      Changes: Reference scale for all coupling measurements. Electroweak symmetry is broken be
-      Forces: electromagnetic, weak, strong
-      1/alpha_EM: 137.036
-      sin2_tW: 0.23122
-      alpha_s: 0.118
-      1/alpha_1: 63.21032
-      1/alpha_2: 31.68546
-      1/alpha_3: 8.474576
-
-  --- Higgs boson threshold ---
-      Scale: 125200.0 MeV
-      Distance: 0.001576 fm
-      Changes: Higgs field excitation becomes resolvable. Higgs contribution to beta functions
-      Forces: electromagnetic, weak
-      ? Is lambda (Higgs self-coupling) derivable? (parked, PHYS-24 Appendix J)
-
-  --- Top quark threshold ---
-      Scale: 172570.0 MeV
-      Distance: 0.001143 fm
-      Changes: Top quark becomes active. Last SM fermion threshold. Full SM particle content ab
-      Forces: strong
-      alpha_s: UNKNOWN
-
-  --- GUT unification scale ---
-      Scale: ~3.0e+6 MeV (estimated)
-      Changes: Three gauge couplings merge into one. SU(3)xSU(2)xU(1) -> SU(5) or larger. X, Y
-      Forces: electromagnetic, weak, strong, unified
-      1/alpha_GUT: UNKNOWN
-      1/alpha_1: UNKNOWN
-      1/alpha_2: UNKNOWN
-      1/alpha_3: UNKNOWN
-      ? What is the GUT group? SU(5)? SO(10)?
-      ? What are the threshold corrections?
-      ? Does exact unification occur?
-      ? What is the proton lifetime precisely?
-
-  UNKNOWN COUPLINGS:
-    - alpha_s at Confinement wall (lower face)
-    - alpha_s at Confinement wall (upper face)
-    - alpha_s at Top quark threshold
-    - 1/alpha_GUT at GUT unification scale
-    - 1/alpha_1 at GUT unification scale
-    - 1/alpha_2 at GUT unification scale
-    - 1/alpha_3 at GUT unification scale
-
-  OPEN QUESTIONS:
-    [Strange quark threshold] What is the correct treatment of flavor thresholds inside confinement?
-    [Confinement wall (lower face)] What is the non-perturbative structure of the confinement transition?
-    [Confinement wall (lower face)] Is there a soliton interpretation of confinement?
-    [Tau lepton threshold] Is m_tau derivable from Koide? (conditional, a^2=2 unresolved)
-    [Confinement wall (upper face)] Is there a precise definition of the confinement boundary?
-    [Confinement wall (upper face)] What is alpha_s at the transition?
-    [Higgs boson threshold] Is lambda (Higgs self-coupling) derivable? (parked, PHYS-24 Appendix J)
-    [GUT unification scale] What is the GUT group? SU(5)? SO(10)?
-    [GUT unification scale] What are the threshold corrections?
-    [GUT unification scale] Does exact unification occur?
-    [GUT unification scale] What is the proton lifetime precisely?
-
-
-
-  TOTAL: 13 PASS, 1 FAIL out of 14
-
-  BOUNDARIES LIBRARY: 1 FAILURES
-    - M_Z to GUT: crosses CD threshold
+  BOUNDARIES LIBRARY: OPERATIONAL
 
 ======================================================================
 PHYS24_BOUNDARIES SELF-TEST COMPLETE

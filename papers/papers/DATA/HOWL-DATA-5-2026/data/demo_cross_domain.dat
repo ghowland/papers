@@ -1,0 +1,278 @@
+
+========================================================================
+  TRANSLATION 1: OPTICAL DISC <-> FIBER OPTICS
+========================================================================
+
+  Both domains resolve spatial features using diffraction.
+  The Airy pattern gives resolution = j11/(pi) * lambda/NA
+  = j11/(4*R2) * lambda/NA = 1.22 * lambda/NA
+  The mode field area = R2 * MFD^2
+  The disc spot area = R2 * spot^2
+
+  DISC SPOT SIZES (1.22 * lambda / NA):
+    CD:      2.115 um
+    DVD:     1.322 um
+    Blu-ray: 0.5813 um
+
+  FIBER MODE FIELD AREAS (R2 * MFD^2):
+    SMF-28 @1550: 84.95 um^2
+    Blu-ray spot: 0.2654 um^2
+
+  RATIO: fiber mode / BD spot = 320.1
+  The fiber carries 320.0x more area than the BD reads.
+
+  If disc had CD NA=0.45: lambda needed = 3.836 um (to match SMF-28 MFD)
+  If disc had DVD NA=0.6: lambda needed = 5.115 um (to match SMF-28 MFD)
+  If disc had BD NA=0.85: lambda needed = 7.246 um (to match SMF-28 MFD)
+
+  All values >>1 um: no disc technology matches fiber mode size.
+  The fiber is a waveguide (confines by total internal reflection),
+  the disc is a free-space system (limited by diffraction).
+  Same R2, different Z (coordinator).
+
+========================================================================
+  TRANSLATION 2: SPEAKER CONE <-> PIPE FLOW
+========================================================================
+
+  Speaker: volume velocity = Sd * x_dot = R2 * d^2 * piston_velocity
+  Pipe:    volume flow rate = R2 * d^2 * mean_velocity
+  Same R2*d^2, different Z (acoustic impedance vs fluid viscosity)
+
+  12-inch speaker: d = 0.305 m, Sd = R2*d^2 = 730.6 cm^2
+  8-inch speaker: d = 0.203 m, Sd = R2*d^2 = 323.7 cm^2
+  6-inch speaker: d = 0.152 m, Sd = R2*d^2 = 181.5 cm^2
+
+  PIPE EQUIVALENTS (same R2*d^2):
+    12-inch speaker area = 730.6 cm^2 = pipe with d = 0.305 m
+    8-inch speaker area = 323.7 cm^2 = pipe with d = 0.203 m
+
+  HELMHOLTZ RESONANCE:
+    f = (c_sound / (8*R2)) * sqrt(R2*d_port^2 / (l_eff * V_box))
+    = (c_sound / (2*pi)) * sqrt(pi*d^2/(4*l*V))
+    Port: d = 0.076 m, l = 0.15 m, V = 0.05 m^3
+    f_Helmholtz = 42.46 Hz
+
+  PIPE FLOW through same diameter (0.076 m) at 1 m/s:
+    Q = R2 * d^2 * v = 0.004536 m^3/s = 272.2 liters/min
+
+  VENA CONTRACTA: C_c = pi/(pi+2) = 4*R2/(4*R2+2) = 0.611015
+  Jet area after sharp orifice = C_c * R2 * d^2
+  For 3-inch orifice: A_jet = 27.72 cm^2 (vs orifice 45.36 cm^2)
+
+========================================================================
+  TRANSLATION 3: WIRE GAUGE <-> CAPACITOR PLATE
+========================================================================
+
+  Wire: R_wire = rho * L / (R2 * d^2)
+  Capacitor: C = epsilon_0 * R2 * d^2 / t
+  Same R2*d^2, different Z (resistivity vs permittivity)
+
+  AWG 12: d = 2.053 mm, area = R2*d^2 = 3.31 mm^2
+    Resistance: rho/(R2*d^2) = 0.005208 ohm/m
+    If capacitor (1mm gap): C = eps0*R2*d^2/t = 0.02931 pF
+
+  AWG 14: d = 1.628 mm, area = R2*d^2 = 2.082 mm^2
+    Resistance: rho/(R2*d^2) = 0.008283 ohm/m
+    If capacitor (1mm gap): C = eps0*R2*d^2/t = 0.01843 pF
+
+  R*C PRODUCT for AWG 12 wire + same-area capacitor:
+    R = 0.005208 ohm (1m), C = 0.02931 pF (1mm gap)
+    RC = 1.527e-16 seconds
+    Note: R2 CANCELS in R*C = (rho*L)/(R2*d^2) * eps0*R2*d^2/t = rho*eps0*L/t
+    RC is R2-independent. Like K_J * R_K = 2/e.
+
+========================================================================
+  TRANSLATION 4: ANTENNA <-> TELESCOPE <-> LITHOGRAPHY
+========================================================================
+
+  All three resolve features via diffraction through a circular aperture.
+  Resolution = j11/pi * lambda/D = 1.22 * lambda/D
+  Effective area = R2 * D^2 * efficiency
+
+  GPS L1 ANTENNA:
+    f = 1575.42 MHz, lambda = 0.1903 m
+    1m dish: resolution = 0.2322 rad = 13.0 deg
+    Geometric area = R2 * D^2 = 0.7854 m^2
+    Isotropic Aeff = lambda^2/(16*R2) = 0.002882 m^2
+
+  HUBBLE SPACE TELESCOPE:
+    D = 2.4 m, lambda = 550.0 nm
+    Resolution = 0.05767 arcsec
+    Collecting area = R2 * D^2 = 4.524 m^2
+
+  EUV LITHOGRAPHY:
+    lambda = 13.5 nm, NA = 0.33
+    Half-pitch ~ 1.22*lambda/(2*NA) = 25.0 nm
+    Wafer area = R2 * D^2 = R2 * (0.3)^2 = 706.9 cm^2
+
+  ALL THREE USE: resolution = j11/(4*R2) * lambda/D
+  j11 = 3.8317, j11/(4*R2) = 1.2197
+  Same Bessel zero, same R2, different Z (RF vs photon vs EUV).
+
+========================================================================
+  TRANSLATION 5: DWDM CHANNELS <-> RAYLEIGH SCATTERING
+========================================================================
+
+  DWDM uses lambda ~ 1550 nm in the Rayleigh scattering minimum.
+  Rayleigh loss = A/lambda^4 where A contains (8*R2)^4.
+  The scattering cross section: sigma ~ (8*R2/lambda)^4 * r^6 * (n^2-1)^2/(n^2+2)^2
+
+  C-band center (lambda = 1550.0 nm): Rayleigh loss = 0.1386 dB/km
+  C-band edge (lambda = 1530.0 nm): Rayleigh loss = 0.146 dB/km
+  L-band center (lambda = 1590.0 nm): Rayleigh loss = 0.1252 dB/km
+  O-band (lambda = 1310.0 nm): Rayleigh loss = 0.2716 dB/km
+
+  The (8*R2/lambda)^4 factor at 1550 nm vs 1310 nm:
+    (1310/1550)^4 = 0.5102
+    1550 nm has 49.0% lower Rayleigh loss than 1310 nm
+
+========================================================================
+  TRANSLATION 6: QED EXPANSION PARAMETER <-> INFORMATION DENSITY
+========================================================================
+
+  The QED perturbation series expands in alpha/(4*R2) = alpha/pi.
+  Each power adds one more loop integral, each loop carries R4 = pi^2/32.
+
+  Disc information density is set by spot area = R2 * (1.22*lambda/NA)^2.
+  The connection: both are bounded by how finely R2-scale geometry can resolve.
+
+  alpha/(4*R2) = alpha/pi = 0.0023228195
+  This is the QED expansion parameter: each loop costs this factor.
+
+  CD: spot = 2115.0 nm, spot_area = R2*spot^2 = 3.512 um^2, ~28.5 Mbit/cm^2
+  DVD: spot = 1322.0 nm, spot_area = R2*spot^2 = 1.372 um^2, ~72.9 Mbit/cm^2
+  Blu-ray: spot = 581.3 nm, spot_area = R2*spot^2 = 0.2654 um^2, ~377.0 Mbit/cm^2
+
+========================================================================
+  TRANSLATION 7: ION IMPLANT DOPING <-> GAUSSIAN BEAM PROFILE
+========================================================================
+
+  Ion implant profile: N(x) = (dose/sqrt(8*R2*sigma^2)) * exp(-x^2/(2*sigma^2))
+  Gaussian beam:       I(r) = (P/sqrt(8*R2*w^2)) * exp(-r^2/(2*w^2))
+  Same R2 normalization, different Z (dose vs power, depth vs radius).
+
+  ION IMPLANT (50nm straggle, 10^15/cm^2 dose):
+    Peak concentration = dose/sqrt(8*R2*sigma^2) = 7.979e+19 /cm^3
+
+  GAUSSIAN BEAM (5um waist, 1mW):
+    Peak intensity = P/(R2*w^2*4) = P/(pi*w^2) = 5.093e+4 kW/m^2
+
+  TRANSLATION: both peaked distributions normalized by 1/sqrt(8*R2*sigma^2)
+  or R2*w^2. The shape is Gaussian. The R2 factor is the circular integration.
+
+========================================================================
+  TRANSLATION 8: THE R2 CANCELLATION MAP
+========================================================================
+
+  R2 appears in every circular-to-rectilinear conversion.
+  R2 CANCELS in the highest-precision measurements.
+  This is the structural theorem from DATA-1 Section 22.
+
+  Observable           Formula                        R2 Status    Precision
+  -------------------- ------------------------------ ------------ ------------
+  K_J * R_K            2e/h * h/e^2 = 2/e             CANCELS      verified to 10^-8
+  G_0 * R_K            2e^2/h * h/e^2 = 2             CANCELS      exact by construction
+  R_inf formula        alpha^2*m_e*c/(2h)             CANCELS      13 digits
+  a_0 * alpha          hbar/(m_e*c)                   CANCELS      12 digits
+  E_Hartree            m_e*c^2*alpha^2                R2-FREE      10 digits
+  Phi_0^2/R_K          h^2/e^2 * e^2/h = h            REAPPEARS    exact
+
+  PATTERN: R2-free observables are measurable to 10^-10 or better.
+  R2-dependent observables (engineering) are limited to ~10^-6.
+  Level 1 (R2 structure) is confirmed by universality.
+  Level 2 (parameters) lives in the R2-free quantities.
+
+========================================================================
+  TRANSLATION 9: ALL R2*d^2 EQUATIONS — ONE TABLE
+========================================================================
+
+  Every engineering equation where area = R2 * d^2 appears.
+  Same R2, different Z (domain coordinator).
+
+  Domain               R2 Equation                      Coordinator Z        Precision
+  -------------------- -------------------------------- -------------------- ------------
+  Pipe flow            Q = R2*d^2 * v                   velocity v           Coriolis: 0.05%
+  Drag force           F = 0.5*rho*v^2*R2*d^2*Cd        drag coeff Cd        Wind tunnel: 1%
+  Orifice flow         q = Cd*R2*d^2*sqrt(2dP/rho)      discharge Cd         ISO 5167: 0.5%
+  Capacitor            C = eps0*R2*d^2/t                permittivity eps     pF precision
+  Poynting flux        P = S*R2*d^2                     irradiance S         Antenna: 0.1 dB
+  Antenna aperture     A = eta*R2*D^2                   efficiency eta       Calibrated
+  Beam cross-sec       A = R2*d^2                       none (pure geom)     Laser: um
+  Thermal radiation    Q = eps*sig*T^4*R2*d^2           emissivity eps       Pyrometer: 1%
+  Sound intensity      I = P/(16*R2*r^2)                1/r^2 spreading      SPL: 0.5 dB
+  Wire resistance      R = rho*L/(R2*d^2)               resistivity rho      Handbook: 0.1%
+  Speaker cone         Sd = R2*d_eff^2                  none (pure geom)     Measured: 5%
+  Fiber mode           A = R2*MFD^2                     mode confinement     Corning: 5%
+  Disc spot            A = R2*(1.22*lam/NA)^2           diffraction          Standard
+  Wafer area           A = R2*D^2                       none (pure geom)     SEMI: exact
+  Gaussian beam        A = R2*w0^2 (at waist)           beam parameter       Laser: um
+
+  15 domains. Same R2. Different Z.
+  The Z (coordinator) is what makes each department different.
+  R2 is what makes them the same.
+
+========================================================================
+  TRANSLATION 10: NULL CONNECTIONS (future work)
+========================================================================
+
+  These are translations where one or both sides lack data.
+  Each is a future measurement or computation target.
+
+  Chip doping profile <-> Gravitational field
+    Bridge: Both involve 1/r^2 in spherical geometry
+    Status: G at chip scale: UNTESTED (PHYS-3)
+    Data: NULL
+
+  DWDM signal <-> Neutrino oscillation
+    Bridge: Both involve phase accumulation over distance
+    Status: Neutrino mass-squared differences: not in DATA-4
+    Data: NULL
+
+  Speaker resonance <-> Nuclear resonance (Breit-Wigner)
+    Bridge: Both are Q-factor limited resonances with Lorentzian lineshapes
+    Status: Need: mapping of Q_speaker to Gamma_Z
+    Data: NULL
+
+  AWG wire <-> Quark confinement string
+    Bridge: Both carry current through a 1D channel
+    Status: Confinement string tension: not in DATA-4
+    Data: NULL
+
+  Fiber V-number cutoff (j01=2.405) <-> QCD confinement (Lambda_QCD)
+    Bridge: Both involve a critical threshold where behavior changes qualitatively
+    Status: Fiber: V=2.405 -> single mode. QCD: alpha_s ~ O(1) -> confinement.
+    Data: NULL
+
+  GPS timing <-> Gravitational redshift
+    Bridge: GPS corrects for GR time dilation
+    Status: GR correction: +45 us/day. Need G at GPS altitude.
+    Data: NULL
+
+
+========================================================================
+  CROSS-DOMAIN TRANSLATION SUMMARY
+========================================================================
+
+  Translations demonstrated:            10
+  With full data on both sides:          8
+  With null data (future work):          6
+
+  R2 appearances confirmed:             15 domains
+  R2 cancellations confirmed:            5 identities
+  Bessel zero connections:               3 (Airy, fiber cutoff, sinc)
+
+  Key finding: R2 is the SAME in every domain.
+  What differs is Z — the domain coordinator.
+  Q = F * R2 * d^2 * Z
+
+  Where Z = velocity (flow), resistivity (wire), permittivity (capacitor),
+  efficiency (antenna), emissivity (thermal), drag coefficient (aero),
+  numerical aperture (optics), discharge coefficient (orifice), etc.
+
+  The translations are real because R2 is real.
+  The departments are different because Z is different.
+  Both facts are simultaneously true.
+
+========================================================================
+  CROSS-DOMAIN DEMO COMPLETE
+========================================================================
