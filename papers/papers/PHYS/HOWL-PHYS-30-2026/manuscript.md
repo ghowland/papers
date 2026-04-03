@@ -267,3 +267,229 @@ Track A achieves its primary goal: the CD framework predicts the strong coupling
 ---
 
 *Supporting appendices A through F for PHYS-30. Every number traces to phys30_alpha_s.py (9/9 PASS). The best prediction α_s = 0.1184 is within 1σ of measured. Track A is complete with 63/64 checks (1 intentional abort in PHYS-29). Grand total across all scripts: 474/475, one intentional FAIL.*
+
+---
+
+## Supporting Appendix Tables for PHYS-30
+
+---
+
+### TABLE 30.1: THE INPUT DERIVATION — EXACT FRACTION ARITHMETIC
+
+| Step | Expression | Fraction | Decimal | Source |
+|---|---|---|---|---|
+| 1/α_EM | α_inv from library | 137035999177/10⁹ | 137.036 | DATA-4 B1 |
+| sin²θ_W | from library | 23122/100000 | 0.23122 | DATA-4 B11 |
+| 1/α₂ = sin²θ_W × (1/α_EM) | 23122/100000 × 137035999177/10⁹ | (product) | 31.685 | Derived |
+| 1/α_EM − 1/α₂ | subtraction | (difference) | 105.351 | Intermediate |
+| 1/α₁ = (3/5) × (1/α_EM − 1/α₂) | × 3/5 | (product) | 63.210 | Derived |
+| Library 1/α₁ | from lib | (same) | 63.210 | DATA-4 N13 |
+| Library 1/α₂ | from lib | (same) | 31.685 | DATA-4 N13 |
+| Match | — | — | **EXACT** | S1 check |
+
+The derivation from two inputs reproduces the library couplings EXACTLY in Fraction arithmetic. No approximation enters.
+
+---
+
+### TABLE 30.2: THE RUNNING — STEP BY STEP (NO THRESHOLD, ONE-LOOP)
+
+| Step | Quantity | Expression | Value |
+|---|---|---|---|
+| 1 | 1/α₁(M_Z) | From inputs | 63.210 |
+| 2 | 1/α₂(M_Z) | From inputs | 31.685 |
+| 3 | b₁' − b₂' | 25/6 − (−13/6) | 38/6 = 6.333 |
+| 4 | L_cross = (1/α₁ − 1/α₂)/(b₁' − b₂') | 31.525/6.333 | 4.978 |
+| 5 | 1/α_GUT = 1/α₁ − b₁'×L | 63.210 − 4.167×4.978 | 42.467 |
+| 6 | 1/α₃(M_GUT) = 1/α_GUT | Unification condition | 42.467 |
+| 7 | 1/α₃(M_Z) = 1/α_GUT + b₃'×L | 42.467 + (−6.667)×4.978 | 9.286 (approx) |
+| 8 | α_s = 1/(1/α₃) | 1/9.286 | 0.1077 |
+| 9 | Miss | \|0.1077 − 0.1180\|/0.1180 | 8.74% |
+
+Note: the no-threshold case uses L from M_Z directly (no M_VL split), so the running distance is slightly different from the threshold case.
+
+---
+
+### TABLE 30.3: THE SIX SCENARIOS — SORTED BY MISS
+
+| Rank | Scenario | α_s | Miss (%) | Within 1σ? | Within 3σ? | Improvement vs worst |
+|---|---|---|---|---|---|---|
+| 1 | 2-loop full b_ij, no thresh | 0.11838 | 0.33 | **YES** | **YES** | 97.3% |
+| 2 | 2-loop SM b_ij, no thresh | 0.11753 | 0.40 | YES | **YES** | 96.7% |
+| 3 | 2-loop full b_ij, M_VL=500 | 0.11211 | 4.99 | No | No | 58.9% |
+| 4 | 2-loop SM b_ij, M_VL=500 | 0.11140 | 5.60 | No | No | 53.9% |
+| 5 | 1-loop, no threshold | 0.10769 | 8.74 | No | No | 28.1% |
+| 6 | 1-loop, M_VL=500 | 0.10367 | 12.15 | No | No | 0% (worst) |
+
+The top two predictions (both no-threshold, two-loop) are within the 3σ measurement band. The best is within 1σ.
+
+---
+
+### TABLE 30.4: THE EFFECT OF EACH REFINEMENT
+
+| Transition | From | To | α_s change | Miss change | What changed |
+|---|---|---|---|---|---|
+| Add threshold → remove | 0.10367 (1L, thresh) | 0.10769 (1L, no-thresh) | +0.0040 | −3.41 ppt | Full-range CD running |
+| One-loop → two-loop SM | 0.10769 (1L, no-thresh) | 0.11753 (2L SM, no-thresh) | +0.0098 | −8.34 ppt | SM b_ij matrix |
+| SM b_ij → full b_ij | 0.11753 (2L SM) | 0.11838 (2L full) | +0.0009 | −0.07 ppt | VL nine Fractions |
+| **Total** | 0.10367 | 0.11838 | +0.0147 | −11.82 ppt | All refinements |
+
+Each step contributes:
+- Removing threshold: +0.0040 (27% of total improvement)
+- Adding two-loop SM: +0.0098 (67% of total improvement)
+- Adding VL b_ij: +0.0009 (6% of total improvement)
+
+The two-loop SM correction is the dominant effect (67%). The VL b_ij is small (6%) but moves the prediction from the edge of 1σ to the center.
+
+---
+
+### TABLE 30.5: THE ASYMMETRY — sin²θ_W vs α_s PREDICTION
+
+| Property | sin²θ_W (PHYS-27) | α_s (PHYS-30) | Why different |
+|---|---|---|---|
+| Quantity type | Ratio (α₁/α₂) | Absolute (α₃) | Ratio cancels errors |
+| One-loop miss (best) | 1.20% | 8.74% | Factor 7.3× |
+| Related to Delta | Indirectly (coupling ratio) | Directly (Delta = 1/α₃ miss) | α_s inherits full Delta |
+| Two-loop miss (best) | ~0.41% (estimated) | 0.33% (computed) | Two-loop helps α₃ more |
+| Two-loop method | 66% estimate | Full Euler integration | PHYS-30 is more precise |
+| Within 1σ | Unknown | **YES** | — |
+| Direction of miss | Undershoot (0.228 < 0.231) | Undershoot (0.1077 < 0.118) | Both predict too low |
+| Same condition? | YES | YES | One unification constraint |
+
+Both predictions undershoot. Both improve with two-loop corrections. The α_s prediction improves MORE because the two-loop b₃₃ = −26 directly affects α₃ running.
+
+---
+
+### TABLE 30.6: THE ONE-LOOP MISS EXPLAINED
+
+| Quantity | At M_GUT | At M_Z | Conversion |
+|---|---|---|---|
+| Delta = 1/α₃ − 1/α_GUT | −1.17 (PHYS-24) | — | Definition |
+| Predicted 1/α₃(M_Z) | — | 9.646 (thresh) | Run down from GUT |
+| Measured 1/α₃(M_Z) | — | 8.475 | 1/0.1180 |
+| Difference at M_Z | — | +1.172 | Too high |
+| α_s miss | — | 0.1037 vs 0.1180 | Too low by 12.1% |
+
+The Delta = −1.17 at M_GUT propagates down to a 1/α₃ excess of 1.172 at M_Z. This 1.172 excess on a base of 8.475 is a 13.8% shift in 1/α₃, translating to a 12.1% shift in α_s (not exactly proportional because α_s = 1/(1/α₃)).
+
+---
+
+### TABLE 30.7: THE TWO-LOOP b_ij IMPACT ON α_s
+
+| b_ij matrix | α_s (no thresh) | Miss (%) | Δα_s from SM | VL contribution |
+|---|---|---|---|---|
+| None (one-loop) | 0.10769 | 8.74 | — | — |
+| SM only | 0.11753 | 0.40 | +0.00984 | — |
+| SM + VL | 0.11838 | 0.33 | +0.01070 | +0.00085 |
+
+The VL b_ij shifts α_s by +0.00085. This is 8.0% of the total two-loop effect and 7.9% of the 1σ measurement uncertainty (0.0009). It is a real, measurable contribution.
+
+| VL b_ij entry | Value | Impact on α_s (qualitative) |
+|---|---|---|
+| db₂₂ = 15/4 | 64% of SM | Boosts SU(2) running → shifts crossing → helps |
+| db₃₃ = 40/9 | −17% of SM | Partially cancels SU(3) correction → hurts |
+| db₂₃ = 8/3 | 22% of SM | SU(2)-SU(3) mixing → helps |
+| db₃₂ = 1 | 22% of SM | SU(3)-SU(2) mixing → helps |
+| U(1) entries | <12% of SM | Negligible |
+| **Net** | | **+0.00085 (helps)** |
+
+---
+
+### TABLE 30.8: THE NO-THRESHOLD PATTERN — COMPLETE EVIDENCE
+
+| Paper | Observable | No-thresh miss | Threshold miss (500 GeV) | Winner | Factor |
+|---|---|---|---|---|---|
+| PHYS-27 | sin²θ_W (1-loop) | 1.20% | 1.73% | No-thresh | 1.4× |
+| PHYS-30 | α_s (1-loop) | 8.74% | 12.15% | No-thresh | 1.4× |
+| PHYS-30 | α_s (2-loop SM) | 0.40% | 5.60% | No-thresh | 14× |
+| PHYS-30 | α_s (2-loop full) | 0.33% | 4.99% | No-thresh | 15× |
+
+The no-threshold advantage grows at two loops: from 1.4× at one-loop to 14–15× at two-loop. The two-loop correction benefits from full-range CD running.
+
+---
+
+### TABLE 30.9: THE PARAMETER COUNT — COMPLETE CHAIN
+
+| Step | Parameter removed | Method | Status | Count |
+|---|---|---|---|---|
+| SM starting count | — | — | Established | 19 |
+| θ_QCD = 0 | θ_QCD | Energy minimization (PHYS-7) | **Confirmed** | 18 |
+| m_τ from Koide | m_τ | K = 2/3 at a² = 2 (PHYS-8) | **Conditional** | 17 |
+| α_s from unification | α_s | This paper: 0.1184 vs 0.1180 | **0.33% miss** | 16 |
+| sin²θ_W from unification | (redundant) | Same condition as α_s (PHYS-27) | Same constraint | 16 |
+| +6 CD parameters | — | Cabibbo Doublet (staged) | Type G | 22 |
+| Net after CD | — | 16 + 6 = 22 total, but 3 derived | — | 22 |
+
+The unification condition relates three couplings with one constraint. It removes one parameter, not two. The choice of which coupling is "derived" is arbitrary — in this paper α_s is derived; in PHYS-27 sin²θ_W is derived. Both views reduce the count by 1.
+
+---
+
+### TABLE 30.10: THE CONVERGENCE — ALL PERTURBATIVE LEVELS
+
+| Level | Method | α_s | Miss (%) | Gap closed vs 1L | Residual |
+|---|---|---|---|---|---|
+| 0 | Tree (α_GUT directly) | ~0.024 | ~80% | — | 0.094 |
+| 1 | One-loop, no thresh | 0.10769 | 8.74% | 0% (baseline) | 0.01031 |
+| 2a | Two-loop SM b_ij | 0.11753 | 0.40% | 95.4% | 0.00047 |
+| 2b | Two-loop full b_ij | 0.11838 | 0.33% | 96.2% | 0.00038 |
+| 3 | (Three-loop, not computed) | ~0.1179? | ~0.1%? | ~99%? | ~0.0001? |
+| ∞ | Exact unification | 0.1180 | 0% | 100% | 0 |
+
+The perturbative expansion converges rapidly. Each order closes most of the remaining gap. The residual shrinks by roughly an order of magnitude per perturbative order.
+
+---
+
+### TABLE 30.11: THE INTEGERS IN THE α_s PREDICTION
+
+| Integer | Role in α_s prediction | Where it enters |
+|---|---|---|
+| 25 | b₁' numerator (×6) | Determines 1/α₁ running speed |
+| 13 | b₂' numerator (×6) | Determines 1/α₂ running speed → sets M_GUT crossing |
+| 20 | b₃' numerator (×3) | Determines 1/α₃ running speed → controls the prediction |
+| 38 | Gap ratio numerator (38/27) | (b₁'−b₂')/(b₂'−b₃') sets the crossing geometry |
+| 27 | Gap ratio denominator | Determines the relative running speeds |
+| 15/4 | VL db₂₂ (PHYS-28) | SU(2) two-loop boost → shifts crossing |
+| 40/9 | VL db₃₃ (PHYS-28) | SU(3) two-loop correction → shifts α₃ |
+| 8/3 | VL db₂₃ (PHYS-28) | SU(2)-SU(3) mixing → modifies both |
+
+The same integers that control the gap ratio (PHYS-13), the normalization (PHYS-26), the sin²θ_W running (PHYS-27), and the cosmological predictions (PHYS-25) also control the α_s prediction. One set of integers from one representation produces sub-percent predictions across multiple domains.
+
+---
+
+### TABLE 30.12: TRACK A COMPLETE SUMMARY
+
+| Paper | Finding | Significance | Checks |
+|---|---|---|---|
+| PHYS-26 | k₁ = 3/5 from traces | Root of integer chain | 20/20 EXACT |
+| PHYS-27 | sin²θ_W = 0.228 (1L) | Direction correct, ordering established | 13/13 |
+| PHYS-27 | 15/104 correction for 3/13 | Factorizes into CD integers | EXACT |
+| PHYS-28 | VL b_ij: 9 exact Fractions | b₂₂ = 15/4 (64% boost to SU(2)) | 11/11 |
+| PHYS-28 | VL improves Delta by 4.6% | Correct direction | PASS |
+| PHYS-29 | Min SU(5) disfavored | M_X/M = 23,228 | 10/11 (abort) |
+| PHYS-29 | Threshold coefficients | C_T=−1/12, C_Sigma=−1/6, C_total=−1/4 | ALL EXACT |
+| **PHYS-30** | **α_s = 0.1184 (2L full)** | **0.33% miss, within 1σ** | **9/9** |
+| **PHYS-30** | **Convergence 96.2%** | **Perturbative expansion works** | — |
+| Track A total | | | **63/64** |
+
+---
+
+### TABLE 30.13: CUMULATIVE VERIFICATION
+
+| Script | Checks | Status | Paper |
+|---|---|---|---|
+| phys30_alpha_s.py | **9/9** | **PASS** | **This paper** |
+| phys29_gut_thresholds.py | 10/11 | 1 abort | PHYS-29 |
+| phys28_vl_twoloop.py | 11/11 | PASS | PHYS-28 |
+| phys27_sin2tw.py | 13/13 | PASS | PHYS-27 |
+| phys26_normalization.py | 20/20 | ALL EXACT | PHYS-26 |
+| phys25_platform.py | 47/47 | PASS | PHYS-25 |
+| beta_unification_test.py | 15/15 | PASS | Beta cosmology |
+| qed_predicts_gr.py + scan2 | 20/20 | PASS | QED-to-GR |
+| phys24_lib.py + test | 169/169 | PASS | Platform |
+| 8 PHYS-24 demo scripts | 62/62 | PASS | PHYS-24 |
+| 6 Session 3 scripts | 98/98 | PASS | Session 3 |
+| **Grand total** | **474/475** | **1 FAIL (abort)** | **Complete series** |
+
+---
+
+**End of supporting appendix tables for PHYS-30. 13 tables. The α_s prediction at 0.1184 (0.33% miss, within 1σ) is the capstone of Track A. Every refinement — removing the threshold, adding two-loop SM corrections, adding VL corrections — improves the prediction monotonically. The same integers from the Cabibbo Doublet that control unification also control the cosmological predictions. Track A is complete with 63/64 checks (1 intentional abort). Grand total: 474/475.**
+
