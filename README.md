@@ -129,8 +129,11 @@
 | **[[@HOWL-PHYS-33-2026]](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-36-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-38-2026]](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-39-2026]](papers/papers/PHYS/HOWL-PHYS-39-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-40-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 
 ---
 
