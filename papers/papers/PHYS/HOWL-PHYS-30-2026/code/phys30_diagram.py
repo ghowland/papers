@@ -430,12 +430,10 @@ ax2.set_xlim(log_MZ - 0.3, 16.2)
 ax2.set_ylim(-2, 68)
 
 # Result annotations at bottom
-ax1.text(8, -7, r'$\alpha_s$ = 0.1077  (miss 8.7%, 1-loop)',
-         fontsize=11, color=GREEN, ha='center', fontweight='bold',
-         transform=ax1.get_xaxis_transform(), clip_on=False)
-ax2.text(8, -7, r'$\alpha_s$ = 0.1037  (miss 12.1%, 1-loop)',
-         fontsize=11, color=ORANGE, ha='center', fontweight='bold',
-         transform=ax2.get_xaxis_transform(), clip_on=False)
+ax1.text(8, 1, r'$\alpha_s$ = 0.1077  (miss 8.7%, 1-loop)',
+         fontsize=11, color=GREEN, ha='center', fontweight='bold')
+ax2.text(8, 1, r'$\alpha_s$ = 0.1037  (miss 12.1%, 1-loop)',
+         fontsize=11, color=ORANGE, ha='center', fontweight='bold')
 
 save(fig, 'phys30_04_threshold_comparison.png')
 
@@ -755,4 +753,3 @@ filenames = [
 
 for i, name in enumerate(filenames, 1):
     print("  Fig %d: %s" % (i, name))
-    

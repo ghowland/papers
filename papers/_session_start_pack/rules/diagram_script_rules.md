@@ -328,3 +328,15 @@ D15.6. Figures are placed AFTER the first paragraph that references them in each
 
 *End of addendum D15. Every diagram has a home in the paper and a one-line paste command to put it there.*
 
+---
+
+### D16. BOUNDING BOX SAFETY
+
+D16.1. Never place text or annotations outside the axis limits. The `bbox_inches='tight'` option expands the figure to include ALL drawn elements, including those beyond the axis range. Text at negative y-values or with `clip_on=False` and `transform=ax.get_xaxis_transform()` will balloon the output PNG to thousands of pixels of blank space.
+
+D16.2. All annotations, labels, and result text must be placed INSIDE the axis limits using data coordinates. If a label needs to go below a chart, place it at the bottom of the y-range (e.g., `y = ylim_min + 0.05 * range`), not below the axis.
+
+D16.3. Never use `transform=ax.get_xaxis_transform()` with negative y-values. This places elements in figure-fraction coordinates below the axis, which `tight` layout interprets as content requiring space.
+
+---
+
