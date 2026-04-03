@@ -492,3 +492,386 @@ Every null result gets documented. The F1 strict FAIL is already documented in t
 
 ---
 
+# Hubble Tension Research Program — Supporting Tables
+
+**Companion to:** Hubble Tension Running Curve Research Program
+
+**Date:** April 3, 2026
+
+---
+
+## Table 1: The Five H₀ Measurements
+
+All values from phys24_hubble_lib.py H0_MEASUREMENTS dict.
+
+| Key | Method | H₀ (km/s/Mpc) | σ | Year | Distance Class | effective_N | Fraction |
+|---|---|---|---|---|---|---|---|
+| SH0ES | Cepheid-calibrated SNe Ia | 73.0 | ±1.0 | 2022 | local | None | 730/10 |
+| H0LiCOW | Gravitational lensing time delays | 73.3 | ±1.8 | 2020 | local-medium | None | 733/10 |
+| CCHP | Tip of Red Giant Branch | 69.8 | ±1.7 | 2021 | medium | None | 698/10 |
+| DES_BAO_BBN | BAO + BBN combined | 67.4 | ±1.2 | 2022 | high | None | 674/10 |
+| Planck | CMB power spectrum | 67.4 | ±0.5 | 2020 | maximum | None | 674/10 |
+
+**5 of 5 effective_N values are None.** This is the primary data gap.
+
+---
+
+## Table 2: Derived Quantities
+
+| Quantity | Value | Source | Library Variable |
+|---|---|---|---|
+| H₀_local | 73.0 km/s/Mpc | SH0ES | H0_local |
+| H₀_far | 67.4 km/s/Mpc | Planck | H0_far |
+| Cumulative ratio | 337/365 = 0.92329 | H0_far / H0_local | cumulative_ratio |
+| ln(73.0/67.4) | 0.07981 | Natural log of inverse ratio | ln_cumulative |
+| Tension | 5.01σ | Combined uncertainty | H0_tension_sigma |
+| VP step size | 1/(3π) = 0.1061 | Known per-threshold VP correction | VP_STEP_SIZE |
+
+---
+
+## Table 3: The Magnitude Constraint
+
+Required per-transit correction r for each assumed N, from phys24_hubble_lib.py MAGNITUDE_TABLE.
+
+| N_eff | r | 1 − r | ~1/x | H₀ step / VP step | Character |
+|---|---|---|---|---|---|
+| 10 | 0.99205 | 0.00795 | ~1/126 | 0.0749 | Large correction, few boundaries |
+| 50 | 0.99840 | 0.00160 | ~1/626 | 0.0151 | Moderate |
+| 100 | 0.99920 | 0.000798 | ~1/1253 | 0.00752 | Standard benchmark |
+| 500 | 0.99984 | 0.000160 | ~1/6264 | 0.00151 | Many boundaries |
+| 1000 | 0.99992 | 0.0000798 | ~1/12530 | 0.000752 | Very many |
+| 5000 | 0.999984 | 0.0000160 | ~1/62634 | 0.000151 | Cosmological depth |
+| 10000 | 0.999992 | 0.00000798 | ~1/125291 | 0.0000752 | Full CMB path |
+
+**Pattern:** 1 − r ≈ 0.0798/N exactly. The 0.0798 = ln(73.0/67.4).
+
+---
+
+## Table 4: Effective Distance Classes
+
+| Class | Methods | H₀ Range | Combined σ | Typical Distance | Estimated N Range | Distinct? |
+|---|---|---|---|---|---|---|
+| Local | SH0ES + H0LiCOW | 73.0 − 73.3 | overlap at 1σ | 20-400 Mpc | 5-30 | Merged (F1 soft) |
+| Intermediate | CCHP | 69.8 | standalone | 10-30 Mpc (calibrators) | 20-80 | Yes (F4 PASS) |
+| Cosmological | DES + Planck | 67.4 | agree exactly | >1 Gpc | 500-10000 | Merged (identical H₀) |
+
+**Effective independent points:** 3 (local, intermediate, cosmological). A two-parameter model through three points has 1 degree of freedom. The running curve is a fit, not an overdetermination.
+
+---
+
+## Table 5: Falsification Test Status
+
+| Test | Description | Current Result | Data Required | What FAIL Means |
+|---|---|---|---|---|
+| F1 strict | Raw H₀ monotonically decreasing | FAIL | None (uses current data) | H0LiCOW > SH0ES: same distance class |
+| F1 soft | Monotonic within 1σ uncertainties | PASS | None | Consistent with monotonic decrease |
+| F2 | Is best-fit r a recognizable rational? | UNTESTABLE | N values needed | If FAIL: curve exists but no integer origin |
+| F3 | Is χ²/dof < 3 for two-parameter model? | UNTESTABLE | N values needed | If FAIL: model too simple |
+| F4 | Intermediate values distinct from endpoints | PASS (CCHP) | None | If FAIL: curve collapses to step function |
+| F5 | Has tension been resolved by systematics? | Not resolved | Literature check | If PASS: running curve unnecessary |
+
+---
+
+## Table 6: The Running Curve Model
+
+| Component | Formula | Inputs | Status |
+|---|---|---|---|
+| Model | H₀(N) = H₀(0) × r^N | H₀(0), r, N | Defined |
+| H₀(0) | 73.0 km/s/Mpc (SH0ES) | Measured | Fixed |
+| r (empirical) | (337/365)^(1/N) | N, cumulative ratio | Depends on N |
+| r (theoretical) | 1 − α²π²(20/13) = 0.99919 | α, gauge integers | From beta unification |
+| N (all methods) | None | Structure catalogs | Unknown |
+| 1 − r (empirical) | 0.0798/N | N | Depends on N |
+| 1 − r (theoretical) | 0.0008086 | α, gauge integers | Fixed |
+| N implied by theory | ln(365/337) / α²π²(20/13) = 98.7 ≈ 100 | All above | Prediction |
+
+**The theoretical r implies N ≈ 100.** This is a prediction: the CMB light crosses approximately 100 soliton boundaries between the last scattering surface and us. This is testable against structure catalogs.
+
+---
+
+## Table 7: Theoretical r Derivation (from Beta Unification)
+
+| Factor | Value | Origin | Library Source |
+|---|---|---|---|
+| α² | 5.325 × 10⁻⁵ | Electromagnetic coupling squared | alpha_inv (DATA-4 B1) |
+| π² | 9.870 | 4D spacetime geometry = 32R₄ | pi_f (DATA-4 G1) |
+| 20/13 | 1.5385 | \|3b₃_mod\| / \|b₂_mod_num\| | b3_mod, b2_mod (DATA-4 N8, N9) |
+| (1−r) | 0.0008086 | α² × π² × (20/13) | Computed |
+| r | 0.9991914 | 1 − (1−r) | Computed |
+| N for CMB | 98.7 | ln(365/337) / (1−r) | Computed |
+| H₀(CMB) | 67.364 km/s/Mpc | 73.04 × r^100 | Computed |
+| Miss | 0.007% | vs Planck 67.36 | Verified (28/28 script) |
+
+---
+
+## Table 8: Structural Parallel — α Running vs H₀ Running
+
+| Property | α Running (PHYS-5) | H₀ Running (hypothesis) |
+|---|---|---|
+| Variable that runs | Coupling strength α(μ) | Apparent expansion rate H₀(N) |
+| Independent variable | Energy scale μ (measured by accelerator) | Boundary transit count N (unknown) |
+| Boundary type | Quark mass threshold | Galaxy cluster / filament / void wall |
+| Per-boundary correction | 1/(3π) = 1/(12R₂) = 0.1061 per Q²N_c | α²π²(20/13) = 0.000809 (theoretical) |
+| Correction mechanism | Vacuum polarization screening | VP change at density boundary (proposed) |
+| Direction | α increases with energy | H₀ decreases with distance |
+| Subgroup (PHYS-11) | B (monotonic accumulation) | B (predicted) |
+| Arithmetic | Fraction, verified to 0.02 ppm | Fraction (if r is rational) |
+| Integer content | Q², N_c from gauge group | 20/13 from beta coefficients |
+| Derivation status | Derived from first principles | Not derived |
+| Experimental status | Verified to 0.02 ppm | Not testable (N unknown) |
+
+---
+
+## Table 9: N Estimation Sources
+
+Published papers and catalogs that could provide effective boundary transit counts.
+
+| Source | What It Measures | Coverage | N Estimate Type | Relevant For |
+|---|---|---|---|---|
+| SDSS DR17 galaxy catalog | Galaxy positions, redshifts | 14,555 deg² | Cluster count along LOS | All methods |
+| 2dF Galaxy Redshift Survey | Galaxy positions | 2000 deg² (south) | Complementary to SDSS | SH0ES, CCHP |
+| Planck 2018 lensing map | Integrated mass along LOS | Full sky | Total boundary count | Planck, DES |
+| Sutter et al. 2012 void catalog | Void positions, sizes | SDSS footprint | Void count per LOS | All methods |
+| Cautun et al. 2014 Cosmic Web | Filament classification | N-body simulation | Filament crossings per Mpc | Model input |
+| Keenan et al. 2013 KBC void | Local underdensity to ~300 Mpc | Local universe | Reduced N at low distance | SH0ES, H0LiCOW |
+| Hoscheit & Barger 2018 | Local void profile | 0-300 Mpc | N gradient near us | All local methods |
+| Whitbourn & Shanks 2014 | Local galaxy density field | 0-200 Mpc | Density → boundary count | SH0ES |
+| Tully et al. 2014 Laniakea | Supercluster structure | Local supercluster | Boundary topology | Model input |
+| Migkas et al. 2020 | H₀ anisotropy in X-ray clusters | Full sky | Directional N variation | Script 11 |
+
+---
+
+## Table 10: Directional Structure for Anisotropy Predictions
+
+| Sky Direction | Known Structure | Expected N Effect | Expected H₀ Effect |
+|---|---|---|---|
+| Toward Shapley Supercluster (l=307, b=30) | Major overdensity at ~200 Mpc | Higher N (more boundaries) | Lower apparent H₀ |
+| Toward Great Attractor (l=320, b=0) | Overdensity at ~65 Mpc | Moderately higher N | Moderately lower H₀ |
+| Toward Dipole Repeller (l=210, b=-30) | Underdensity | Lower N (fewer boundaries) | Higher apparent H₀ |
+| Toward KBC Void center (l=170, b=−10) | Local underdensity to ~300 Mpc | Lower N locally | Higher H₀ for nearby sources |
+| Toward CMB cold spot (l=209, b=−57) | Known underdensity | Lower N along this LOS | Higher H₀ along this LOS |
+| Perpendicular to supergalactic plane | Average density | Average N | Average H₀ |
+
+**Key prediction:** H₀ dipole should align with the matter density dipole, not with the CMB kinematic dipole. Migkas et al. 2020 found suggestive evidence for this in X-ray cluster data. The running curve model predicts the dipole direction and amplitude from the structure maps.
+
+---
+
+## Table 11: Future H₀ Measurements
+
+Measurements that could test the running curve within the next 5 years.
+
+| Experiment | Method | Expected H₀ precision | Distance Class | Expected Date | N Sensitivity |
+|---|---|---|---|---|---|
+| JWST TRGB | TRGB with JWST calibration | ±0.8 km/s/Mpc | medium | 2024-2025 | Tests intermediate curve |
+| DESI BAO | Baryon acoustic oscillations | ±0.5 km/s/Mpc | high | 2024-2026 | Tests cosmological end |
+| CMB-S4 | CMB power spectrum, ground-based | ±0.3 km/s/Mpc | maximum | 2027-2030 | Most precise CMB H₀ |
+| Euclid | Weak lensing + BAO | ±0.7 km/s/Mpc | high | 2025-2028 | Independent high-N |
+| SPT-3G | CMB from South Pole | ±0.6 km/s/Mpc | maximum | 2024-2026 | Cross-check Planck |
+| ACT DR6 | CMB from Atacama | ±0.5 km/s/Mpc | maximum | 2024-2025 | Cross-check Planck |
+| SH0ES + JWST | Combined Cepheid + JWST | ±0.7 km/s/Mpc | local | 2024-2025 | Sharpens local anchor |
+| Megamaser Cosmology | H₂O maser distances | ±1.5 km/s/Mpc | low-medium | ongoing | Independent local method |
+| Gravitational wave sirens | Binary neutron star mergers | ±2 km/s/Mpc | varies | 2025-2030 | Distance-independent |
+
+**The most discriminating measurement:** Any method that provides H₀ at a specific, well-characterized intermediate distance (z = 0.1-0.5) with σ < 1.5 km/s/Mpc. The running curve predicts a specific H₀ at every distance — not a single value.
+
+---
+
+## Table 12: Script Dependency Map
+
+Which scripts require which prior scripts to have run.
+
+| Script | Requires | Provides To |
+|---|---|---|
+| 1 (structure_catalog_N) | None | 3, 4, 5, 6, 11, 12, 13 |
+| 2 (literature_N) | None | 3, 4, 5, 6 (fallback for 1) |
+| 3 (curve_fit) | 1 or 2 | 4, 5, 10, 16 |
+| 4 (N_sensitivity) | 1 or 2 | 5, 13 |
+| 5 (r_extraction) | 3 | 8, 10, 14, 16 |
+| 6 (falsification_full) | 1 or 2 | 16 |
+| 7 (new_measurements) | None | 6 (rerun), 16 |
+| 8 (vp_boundary) | None (parallel) | 9, 10 |
+| 9 (photon_redshift) | 8 | 10 |
+| 10 (cumulative_redshift) | 5, 9 | 16 |
+| 11 (directional) | 1 | 17 |
+| 12 (redshift_dependence) | 3 | 13, 17 |
+| 13 (intermediate_prediction) | 4, 12 | 17 |
+| 14 (alpha_parallel) | 5 | 16 |
+| 15 (standard_cosmology) | 3 | 16 |
+| 16 (consolidated) | 3-15 | 17 |
+| 17 (diagrams) | 16 | Publication |
+
+---
+
+## Table 13: Library Usage Map
+
+Which platform library each script imports.
+
+| Script | phys24_lib | derivation_lib | structure_lib | boundary_lib | domain_lib | hubble_lib | diagram_lib |
+|---|---|---|---|---|---|---|---|
+| 1 | × | | | | | × | |
+| 2 | × | | | | | × | |
+| 3 | × | | | | | × | |
+| 4 | × | | | | | × | |
+| 5 | × | | | | | × | |
+| 6 | | | | | | × | |
+| 7 | | | | | | × | |
+| 8 | × | × | | | | | |
+| 9 | × | × | | × | | | |
+| 10 | × | × | | | | × | |
+| 11 | | | | | | × | |
+| 12 | × | | | | | × | × |
+| 13 | | | | | | × | |
+| 14 | × | | | | | × | |
+| 15 | × | | | | | × | |
+| 16 | × | × | × | × | × | × | |
+| 17 | × | × | × | × | × | × | × |
+
+**phys24_hubble_lib is used in 15 of 17 scripts.** It is the central library for this program, as phys24_lib is the central library for all programs.
+
+---
+
+## Table 14: Running Curve Predictions at Reference N Values
+
+What the theoretical curve predicts for H₀ at specific N values.
+
+| N | r^N | H₀(N) km/s/Mpc | Distance Class | Measurement Available? |
+|---|---|---|---|---|
+| 0 | 1.00000 | 73.040 | Local (definition) | SH0ES: 73.0 ± 1.0 |
+| 5 | 0.99597 | 72.746 | Very local | No dedicated measurement |
+| 10 | 0.99195 | 72.453 | Local galaxies | H0LiCOW: 73.3 ± 1.8 (within 1σ) |
+| 25 | 0.97995 | 71.576 | Local-medium | No dedicated measurement |
+| 50 | 0.96031 | 70.141 | Medium | CCHP: 69.8 ± 1.7 (within 1σ) |
+| 75 | 0.94107 | 68.735 | Medium-high | No dedicated measurement |
+| 100 | 0.92222 | 67.362 | Cosmological | Planck: 67.4 ± 0.5 (within 1σ) |
+| 200 | 0.85049 | 62.122 | Deep cosmological | No measurement |
+| 500 | 0.66627 | 48.669 | Theoretical | No measurement possible |
+| 1000 | 0.44391 | 32.424 | Theoretical | Unphysical regime |
+
+**Note:** N > ~150 produces H₀ values that conflict with standard cosmology (the expansion rate cannot be less than ~60 km/s/Mpc without violating BAO constraints). This means either N_Planck < 150, or the model breaks down at large N, or the theoretical r is slightly too large. This is a self-consistency check that Script 15 must address.
+
+---
+
+## Table 15: Comparison of r Values
+
+Different ways to determine r, and whether they agree.
+
+| Method | r Value | 1 − r | Source | Status |
+|---|---|---|---|---|
+| Theoretical (beta unification) | 0.9991914 | 0.0008086 | α²π²(20/13) | Computed, 28/28 |
+| Empirical at N=100 | 0.9991978 | 0.0008022 | (67.4/73.0)^(1/100) | From data |
+| Empirical at N=50 | 0.9983997 | 0.0016003 | (67.4/73.0)^(1/50) | From data |
+| Empirical at N=200 | 0.9995998 | 0.0004002 | (67.4/73.0)^(1/200) | From data |
+| Target for CCHP (N=50) | 0.99907 | 0.00093 | (69.8/73.0)^(1/50) | If N_CCHP = 50 |
+| Best VP model (not computed) | unknown | unknown | Scripts 8-9 | UNTESTED |
+
+**The theoretical r matches the empirical r at N=100 to 0.08%.** This is the convergence point between the two research programs. If N_Planck turns out to be ~100 from structure catalogs, the theoretical and empirical values of r agree to better than 0.1%.
+
+---
+
+## Table 16: The π Budget
+
+Where π appears and cancels in the Hubble running framework.
+
+| Formula | π Appears As | Role | Cancels? |
+|---|---|---|---|
+| DM/baryon = (22/13)π | ×π | Toroidal boundary geometry | Cancels in Ω_DM |
+| Ω_b = 2/(13π) | ÷π | Circular normalization | Cancels in Ω_DM |
+| Ω_DM = 44/169 | absent | Pure rational | π already cancelled |
+| (1−r) = α²π²(20/13) | ×π² | 4D spacetime geometry = 32R₄ | Does not cancel |
+| Λ_VL = 39 × log₁₀(α/3π) | ÷3π inside log | VP loop factor α/(2π) × 3/2 | Absorbed in log |
+| VP step = 1/(3π) | ÷3π | VP integral normalization | Structural parallel only |
+
+**Key finding:** π enters the Ω chain through two doors (DM/baryon and Ω_b) and exits through exact cancellation. The dark matter density Ω_DM = 44/169 contains no π. This cancellation is algebraic, not numerical — verified exact in Fraction arithmetic.
+
+**Contrast:** π does NOT cancel in the H₀ correction formula. The π² in (1−r) = α²π²(20/13) is structural — it represents the 4D spacetime geometry through which the photon-boundary interaction occurs. If R₄ = π²/32 is the geometric origin, then π² = 32R₄ and the formula becomes (1−r) = 32α²R₄(20/13). The R₄ connects to the two-loop phase space geometry documented in PHYS-9 and PHYS-22.
+
+---
+
+## Table 17: Connection to Other HOWL Papers
+
+| Paper | Connection to Hubble Program | Used In Script(s) |
+|---|---|---|
+| PHYS-1 | Soliton boundary concept: different readings at different depths | 1, 2, 8, 9, 11 |
+| PHYS-2 | Transformation law priority: H₀(N) is the law, not 67.4 or 73.0 | Thesis framing |
+| PHYS-3 | Reproducibility ≠ universality: local H₀ clustering explained | 3, 11 |
+| PHYS-4 | Per-transit correction magnitude constraint | 5, 8, 10 |
+| PHYS-5 | VP running template: 1/(3π) step derivation, computational model | 8, 9, 14 |
+| PHYS-6 | QCD running, confinement wall | 8 (b₃ terms) |
+| PHYS-9 | R₄ in two-loop QED coefficients | 8 (π² = 32R₄) |
+| PHYS-11 | Subgroup B classification: monotonic accumulation | 3, 12 |
+| PHYS-12 | Electroweak observables, gauge coupling extraction | 8, 15 |
+| PHYS-13 | Unification, beta structure, gap ratio | All (integers from betas) |
+| PHYS-22 | Two-loop QED coefficients, R₄ phase space | 8, 9 |
+| MATH-1 | R₂ across 17 domains | 9 (boundary geometry) |
+| DATA-1 | 268 entries across 17 domains | 9, 11 (domain structure) |
+| DATA-4 | All measured constants | All scripts (via phys24_lib) |
+
+---
+
+## Table 18: Kill Switch Decision Matrix
+
+| Kill Switch | Trigger Condition | Detection Script | Impact | Recovery Path |
+|---|---|---|---|---|
+| K1 | No N estimates obtainable | 1, 2 | Pause Stages 1-4 | Wait for future catalogs |
+| K2 | χ²/dof > 5 with all N attempts | 3 | Park running curve model | Try non-exponential models |
+| K3 | Empirical r ≠ theoretical r by >10% | 5 | VP mechanism not confirmed | Continue empirical path without VP link |
+| K4 | New intermediate H₀ matches endpoint | 7 | Running curve weakened | Reduce to two-class model |
+| K5 | Tension resolved by systematics | 7 (literature) | Program unnecessary | Write closure report |
+| K6 | No H₀ anisotropy found | 11 | Boundary-dependent running excluded | Running may be isotropic (different model) |
+
+**Kill switches are permanent for their scope but not for the entire program.** K3 kills Stage 3 (VP derivation) but not Stages 1-2 (empirical fitting). K6 kills Stage 4 (directional predictions) but not Stage 1 (curve fitting). Only K2 (bad fit) and K5 (tension resolved) kill the entire thesis.
+
+---
+
+## Table 19: Null Result Registry
+
+| Potential Null | Script | Impact | Documentation |
+|---|---|---|---|
+| N estimates not available in literature | 1, 2 | Program paused | Null report: "blocked by N problem" |
+| χ²/dof > 5 for all N assignments | 3 | Model rejected | Null report: "two-parameter model insufficient" |
+| Empirical r irrational (no integer content) | 5 | VP link severed | Running exists but has no gauge group connection |
+| VP model gives wrong (1−r) by >10× | 8 | VP mechanism excluded | H₀ correction not from vacuum polarization |
+| No H₀ anisotropy in eROSITA data | 11 | Directional predictions falsified | Running not boundary-dependent |
+| JWST TRGB agrees with Planck (67.4) | 7 | Intermediate class collapses | Three → two distance classes |
+| DESI H₀ disagrees with both endpoints | 7 | New tension, model needs revision | Expand measurement table |
+| F1 strict continues to FAIL with new data | 6 | Local ordering remains ambiguous | Document: same distance class |
+| H₀(N) curve is linear not exponential | 12 | Exponential model wrong | Test power-law and logarithmic models |
+| Standard cosmology inconsistent with corrected H₀ | 15 | Running curve creates new problems | Model is measurement correction, not new physics |
+
+Every null result is documented. Every FAIL is data, not a bug. The phys24_hubble_lib pattern (F1 strict FAIL kept in self-test) applies to every future result.
+
+---
+
+## Table 20: Paper Outcomes by Program Result
+
+| Stage 0 | Stage 1 | Stage 3 | Stage 4 | Paper |
+|---|---|---|---|---|
+| N obtained | Good fit | VP works | Anisotropy found | "Hubble Running from VP at Cosmological Boundaries" — full derivation + predictions |
+| N obtained | Good fit | VP works | No anisotropy | "Hubble Running from VP: Isotropic Correction" — derivation without directionality |
+| N obtained | Good fit | VP fails | Any | "The Hubble Running Curve: Empirical Extraction" — data paper, no mechanism |
+| N obtained | Bad fit | Any | Any | "The Hubble Running Curve: A Null Result" — two-parameter model insufficient |
+| N not obtained | — | VP works | — | "The H₀ Per-Transit Correction from Gauge Group Integers" — theory paper without empirical calibration |
+| N not obtained | — | VP fails | — | "The Hubble Running Curve: Blocked by the N Problem" — status report |
+| Any | Any | Any | Tension resolved | "The Hubble Running Curve Hypothesis: Closure Report" — null result document |
+
+**Seven outcomes, seven papers.** Every combination of results produces a publishable document. No work is wasted.
+
+---
+
+## Table 21: Timeline and Resource Estimate
+
+| Stage | Scripts | Estimated Lines | Sessions | External Data Needed | Blocking |
+|---|---|---|---|---|---|
+| 0: N Problem | 1, 2 | 250 | 1 | Yes (catalogs or literature) | Gate for Stages 1-2, 4-5 |
+| 1: Curve Fitting | 3, 4, 5 | 260 | 1 | No (uses Stage 0 output) | Needs Stage 0 |
+| 2: Falsification | 6, 7 | 180 | 1 | No (uses current + new data) | Needs Stage 0 for F2, F3 |
+| 3: VP Derivation | 8, 9, 10 | 240 | 1-2 | No (theoretical computation) | Independent of Stage 0 |
+| 4: Predictions | 11, 12, 13 | 260 | 1 | Structure maps | Needs Stages 1 + 3 |
+| 5: Cross-Validation | 14, 15 | 200 | 1 | No | Needs Stages 1-4 |
+| 6: Integration | 16, 17 | 450 | 1-2 | No | Partial results OK |
+| **Total** | **17 scripts** | **~1,840** | **5-9** | **Stage 0 only** | **Stage 0 is the gate** |
+
+---
+
+*Supporting Tables for the Hubble Tension Research Program. 21 tables covering measurements, derived quantities, magnitude constraints, distance classes, falsification tests, model components, r comparisons, π budget, paper connections, kill switches, null results, paper outcomes, and timeline. Every entry traceable to phys24_hubble_lib.py or phys24_lib.py. April 3, 2026.*
+
