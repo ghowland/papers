@@ -1,0 +1,285 @@
+======================================================================
+BETA UNIFICATION EXPERIMENT
+All integers from gauge group beta coefficients.
+All constants from phys24_lib.py. No cosmological input.
+======================================================================
+
+SECTION 1: INPUT SET
+----------------------------------------------------------------------
+
+  alpha (EM coupling)                      0.0072973525643
+  b2_SM                                    -3.1666666667
+  b2_mod                                   -2.1666666667
+  b3_mod                                   -6.6666666667
+  R2 = pi/4                                0.7853981634
+  R4 = pi^2/32                             0.30842513753
+
+  Derived integers (all from library betas):
+    YM = 11 (Yang-Mills)
+    |b2_SM * 6| = 19
+    |b2_mod * 6| = 13
+    |b3_mod * 3| = 20
+    2 * YM = 22
+    3 * |b2_SM_num| = 57
+    3 * |b2_mod_num| = 39
+  [PASS] |b2_SM * 6| = 19
+        expected: 19 = 19.0
+        got:      19 = 19.0
+        match:    EXACT
+  [PASS] |b2_mod * 6| = 13
+        expected: 13 = 13.0
+        got:      13 = 13.0
+        match:    EXACT
+  [PASS] |b3_mod * 3| = 20
+        expected: 20 = 20.0
+        got:      20 = 20.0
+        match:    EXACT
+
+SECTION 2: COSMOLOGICAL TARGETS (not inputs)
+----------------------------------------------------------------------
+
+  Lambda log10:     -121.54
+  DM/baryon:        5.3204
+  H0 (CMB):         67.36 km/s/Mpc
+  H0 (local):       73.04 km/s/Mpc
+  Omega_b:          0.049
+  Omega_DM:         0.2607
+  Omega_matter:     0.3097
+  Omega_DE:         0.6903
+
+SECTION 3: FORMULA 1a — COSMOLOGICAL CONSTANT (SM)
+----------------------------------------------------------------------
+
+  Exponent 3*19                            57.0
+  log10(alpha)                             -2.1368346707
+  Lambda_SM = 57 * log10(alpha)            -121.79957623
+  Measured                                 -121.54
+  Miss (decades)                           0.25957623187
+  [PASS] Formula 1a: Lambda SM within 0.3 decades
+        miss = 0.2596 decades (0.214%)
+
+SECTION 4: FORMULA 1b — COSMOLOGICAL CONSTANT (VL)
+----------------------------------------------------------------------
+
+  Exponent 3*13                            39.0
+  alpha/(3*pi)                             0.00077427315473
+  log10(alpha/(3*pi))                      -3.1111057981
+  Lambda_VL = 39 * log10(alpha/(3*pi))     -121.33312613
+  [PASS] Formula 1b: Lambda VL within 0.25 decades
+        miss = 0.2069 decades
+  [PASS] Lambda SM < measured < Lambda VL (bracketing)
+        SM=-121.8 < meas=-121.54 < VL=-121.33
+  Interpolation fraction f                 0.55649303022
+  (midpoint would be 0.50)                 0.5
+
+SECTION 5: FORMULA 6 — EXACT ALGEBRAIC IDENTITY
+----------------------------------------------------------------------
+
+  [PASS] 57/39 = 19/13 (exact Fraction)
+        expected: 19/13 = 1.4615384615
+        got:      19/13 = 1.4615384615
+        match:    EXACT
+  [PASS] 57/39 = b2_SM_num/b2_mod_num
+        expected: 19/13 = 1.4615384615
+        got:      19/13 = 1.4615384615
+        match:    EXACT
+  57/39 = 19/13 (exact)
+  19/13 = 19/13 (exact)
+  Ratio of SM and VL Lambda exponents = ratio of b2 numerators
+
+SECTION 6: FORMULA 2 — DARK MATTER RATIO
+----------------------------------------------------------------------
+
+  [PASS] 22/13 = (2*YM)/b2_mod_num
+        expected: 22/13 = 1.6923076923
+        got:      22/13 = 1.6923076923
+        match:    EXACT
+  DM/baryon predicted = (22/13)*pi         5.3165414138
+  DM/baryon measured                       5.3204
+  [PASS] Formula 2: DM/baryon within 0.1%
+        miss = 0.003859 (0.0725%)
+
+SECTION 7: FORMULA 3 — H0 PER-TRANSIT CORRECTION
+----------------------------------------------------------------------
+
+  [PASS] 20/13 = |3*b3_mod|/|b2_mod_num|
+        expected: 20/13 = 1.5384615385
+        got:      20/13 = 1.5384615385
+        match:    EXACT
+  alpha^2                                  5.3251354448e-5
+  pi^2                                     9.8696044011
+  20/13                                    1.5384615385
+  (1-r) = alpha^2 * pi^2 * (20/13)         0.0008085689265
+  r = 1 - (1-r)                            0.99919143107
+  H0(CMB) at N=100                         67.364463885
+  H0(CMB) measured                         67.36
+  [PASS] Formula 3: H0(CMB) within 0.1%
+        miss = 0.004464 km/s/Mpc (0.00663%)
+  Target (1-r) from H0 data                0.00080923105932
+  Formula (1-r)                            0.0008085689265
+  [PASS] Formula 3a: (1-r) within 0.1%
+        miss = 0.0818%
+
+SECTION 8: FORMULA 4 — BARYON DENSITY (Set A)
+----------------------------------------------------------------------
+
+  R4 = pi^2/32                             0.30842513753
+  alpha                                    0.0072973525643
+  22 = 2*YM                                22.0
+  Omega_b (Set A) = R4 * alpha * 22        0.049515113302
+  Omega_b measured                         0.049
+  [PASS] Formula 4 (Set A): Omega_b within 1.5%
+        miss = 1.05%
+
+SECTION 9: FORMULA 4 — BARYON DENSITY (Set B)
+----------------------------------------------------------------------
+
+  2/(13*pi)                                0.048970751721
+  Omega_b measured                         0.049
+  [PASS] Formula 4 (Set B): Omega_b within 0.2%
+        miss = 0.0597%
+  [PASS] Set B closer than Set A for Omega_b
+        B: 0.0597% vs A: 1.05%
+
+SECTION 10: FORMULA 5 — OMEGA CHAIN (Set B)
+----------------------------------------------------------------------
+
+  [PASS] Omega_DM (Set B) = 44/169
+        expected: 44/169 = 0.26035502959
+        got:      44/169 = 0.26035502959
+        match:    EXACT
+  Omega_DM (Set B) = 44/169                0.26035502959
+  Omega_DM measured                        0.2607
+  [PASS] Formula 5: Omega_DM within 0.2%
+        miss = 0.132%
+  [PASS] Pi cancels: 2*22/(13^2) = 44/169
+        expected: 44/169 = 0.26035502959
+        got:      44/169 = 0.26035502959
+        match:    EXACT
+  Key finding: pi from DM/baryon cancels pi from Omega_b
+  Omega_DM = 44/169 is a PURE RATIONAL — no transcendentals
+  Omega_matter (Set B)                     0.30932578131
+  Omega_matter measured                    0.3097
+  Omega_DE (Set B)                         0.69067421869
+  Omega_DE measured                        0.6903
+  [PASS] Omega_matter (Set B) within 0.2%
+        miss = 0.121%
+  [PASS] Omega_DE (Set B) within 0.1%
+        miss = 0.0542%
+
+SECTION 11: SET A vs SET B COMPARISON
+----------------------------------------------------------------------
+
+  Observable           Set A        Set B        Measured   Winner
+  -------------------- ------------ ------------ ---------- ----------
+  Omega_b              0.049515     0.048971     0.049      B (0.06% vs 1.05%)
+  Omega_DM             0.26325      0.26036      0.2607     B (0.13% vs 0.98%)
+  Omega_matter         0.31276      0.30933      0.3097     B (0.12% vs 0.99%)
+  Omega_DE             0.68724      0.69067      0.6903     B (0.05% vs 0.44%)
+
+  [PASS] Set B wins on all 4 Omega observables
+        Set B wins 4 of 4
+
+SECTION 12: COMBINATORIC — sin2_tW approximation
+----------------------------------------------------------------------
+
+  3/13 = N_gen / |b2_mod_num|              0.23076923077
+  sin2_tW measured                         0.2312
+  [PASS] sin2_tW ~ 3/13 within 0.3%
+        miss = 0.186%
+
+SECTION 13: CONSOLIDATED PREDICTION TABLE
+----------------------------------------------------------------------
+
+  Observable                Predicted      Measured       Miss
+  ------------------------- -------------- -------------- ----------
+  log10(Lambda) SM          -121.8         -121.54        0.214%
+  log10(Lambda) VL          -121.333       -121.54        0.17%
+  log10(Lambda) avg         -121.566       -121.54        0.0217%
+  DM/baryon                 5.31654        5.3204         0.0725%
+  (1-r) at N=100            0.000808569    0.000809231    0.0818%
+  H0(CMB)                   67.3645        67.36          0.00663%
+  Omega_b (B)               0.0489708      0.049          0.0597%
+  Omega_DM (B)              0.260355       0.2607         0.132%
+  Omega_matter (B)          0.309326       0.3097         0.121%
+  Omega_DE (B)              0.690674       0.6903         0.0542%
+  sin2_tW ~ 3/13            0.230769       0.2312         0.186%
+
+SECTION 14: INTEGER TRACEABILITY
+----------------------------------------------------------------------
+
+  Every integer used traces to the gauge group:
+
+  11  = Yang-Mills coefficient from Lorentz + gauge + renormalizability
+  19  = |numerator(b2_SM * 6)| = |(-19/6) * 6| = 19
+  13  = |numerator(b2_mod * 6)| = |(-13/6) * 6| = 13
+  20  = |b3_mod * 3| = |(-20/3) * 3| = 20
+  22  = 2 * YM = 2 * 11 = 22
+  57  = 3 * 19 = N_gen * |b2_SM_num| = 57
+  39  = 3 * 13 = N_gen * |b2_mod_num| = 39
+  44  = 4 * 11 = 4 * YM = 44
+  169 = 13^2 = |b2_mod_num|^2 = 169
+
+  [PASS] 19 = |b2_SM| * 6
+        expected: 19 = 19.0
+        got:      19 = 19.0
+        match:    EXACT
+  [PASS] 13 = |b2_mod| * 6
+        expected: 13 = 13.0
+        got:      13 = 13.0
+        match:    EXACT
+  [PASS] 20/13 exact
+        expected: 20/13 = 1.5384615385
+        got:      20/13 = 1.5384615385
+        match:    EXACT
+  [PASS] 22/13 exact
+        expected: 22/13 = 1.6923076923
+        got:      22/13 = 1.6923076923
+        match:    EXACT
+  [PASS] 44/169 exact
+        expected: 44/169 = 0.26035502959
+        got:      44/169 = 0.26035502959
+        match:    EXACT
+
+SECTION 15: LAMBDA INTERPOLATION FRACTION
+----------------------------------------------------------------------
+
+  Interpolation f                          0.55649303022
+  Candidate beta-integer ratios for f = 0.5565:
+
+    13/(13+19) = 13/32             = 0.40625  miss = 0.15
+    19/(19+22) = 19/41             = 0.46341  miss = 0.0931
+    13/(13+20) = 13/33             = 0.39394  miss = 0.163
+    11/(11+13) = 11/24             = 0.45833  miss = 0.0982
+    20/(20+22) = 20/42 = 10/21     = 0.47619  miss = 0.0803
+    13/(2*13+6) = 13/32            = 0.40625  miss = 0.15
+
+  Best match: 20/(20+22) = 20/42 = 10/21 (miss = 0.0803)
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+  INPUT: alpha (1 measured value) + {11,13,19,20,22,pi} from beta structure
+  OUTPUT: 11 predictions of cosmological observables
+  ALL within 1.1%% of measured (Set B chain within 0.15%%)
+
+  Key algebraic identities (exact in Fraction):
+    57/39 = 19/13             (Lambda exponent ratio)
+    22/13 = (2*YM)/|b2_mod|   (DM/baryon coefficient)
+    20/13 = |3*b3_mod|/|b2_mod| (H0 correction coefficient)
+    44/169 = (4*YM)/|b2_mod|^2 (Omega_DM, rational)
+
+  Set B (2/(13*pi)) uniformly better than Set A (R4*alpha*22)
+  Dark matter density 44/169 is a pure rational — no transcendentals
+
+  STATUS: Pattern exists. Statistical significance NOT YET TESTED.
+  NEXT: Random integer pool comparison (phys25_dm_ratio_test.py)
+
+
+  TOTAL: 28 PASS, 0 FAIL out of 28
+  BETA UNIFICATION EXPERIMENT: ALL PASS
+
+======================================================================
+BETA UNIFICATION EXPERIMENT COMPLETE
+======================================================================
