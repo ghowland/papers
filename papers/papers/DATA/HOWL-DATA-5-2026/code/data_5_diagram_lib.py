@@ -165,7 +165,15 @@ def dark_canvas(title="", size=(16, 14)):
 
 
 def save_fig(fig, filename):
-    """Save and close figure."""
+    """Save and close figure. Clips all artists to axes bounds first."""
+    # Force all text/annotations inside axes to prevent bbox explosion
+    for ax in fig.get_axes():
+        ax.set_clip_on(True)
+        for artist in ax.get_children():
+            try:
+                artist.set_clip_on(True)
+            except Exception:
+                pass
     path = os.path.join(get_outdir(), filename)
     fig.savefig(path, dpi=180, facecolor=BG, bbox_inches='tight', pad_inches=0.3)
     plt.close(fig)
