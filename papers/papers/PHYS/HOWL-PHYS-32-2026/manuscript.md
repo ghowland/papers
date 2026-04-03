@@ -57,6 +57,8 @@ This term dominates the SU(3) beta. It makes b₃ strongly negative, ensuring th
 
 ## 3. The SM Fermion Contribution: +4
 
+![Fig. 4: One SM generation showing which multiplets contribute to b₃ (colored quarks, green/cyan) and which don't (colorless leptons, grey). Four Weyl triplets per generation.](./figures/phys32_04_weyl_census.png)
+
 Each Standard Model generation contains four types of SU(3)-charged Weyl fermions:
 
 The left-handed quark doublet Q_L in the (3,2,1/6) representation. This is an SU(2) doublet of color triplets — two Weyl fermions (one up-type, one down-type), each carrying color charge. Each Weyl triplet contributes (2/3) × S₂(fund) = (2/3) × (1/2) = 1/3 to b₃. Two Weyl fermions give 2/3 per generation.
@@ -89,6 +91,8 @@ This is why b₃ has the simplest structure among the three gauge betas. The U(1
 
 ## 5. The SM Total: b₃ = −7
 
+![Fig. 5: The asymptotic freedom balance on a number line — gauge (−11) partially cancelled by matter (+4 SM, +1/3 CD), leaving b₃' = −20/3 safely in the AF region.](./figures/phys32_05_af_balance.png)
+
 Summing the three contributions:
 
 b₃_SM = −11 + 4 + 0 = −7
@@ -98,6 +102,8 @@ The integer 7 is the balance between the gauge self-coupling (−11) and the qua
 The script verifies this against the library value b₃_SM = −7 (DATA-4, entry N7). The match is exact.
 
 (Backed by phys32_a3_decomposition.py S5: b₃_SM computed = library EXACT.)
+
+![Fig. 6: b₃ vs number of Dirac quarks. Asymptotic freedom breaks at n_f = 33/4 = 8.25. The SM (6 quarks) and CD (~6.25 effective) are safely below the threshold.](./figures/phys32_06_critical_nf.png)
 
 ---
 
@@ -119,6 +125,8 @@ A subtlety: naive Weyl counting for the vector-like pair gives 4 Weyl triplets �
 
 ## 7. The Complete Decomposition: b₃' = −20/3
 
+![Fig. 2: Waterfall chart showing how the numerator −20 accumulates: gauge (−33) + fermion (+12) + Higgs (0) + CD (+1) = −20.](./figures/phys32_02_waterfall.png)
+
 With all four pieces:
 
 b₃' = b₃_gauge + b₃_fermion + b₃_Higgs + Δb₃_CD = −11 + 4 + 0 + 1/3 = −20/3
@@ -139,6 +147,8 @@ The match to the library value b₃' = −20/3 is exact.
 
 ## 8. Cross-Checks
 
+![Fig. 7: The gap ratio as a function of b₃, showing how the CD shifts b₃ from −7 to −20/3, moving the gap from 218/115 (40% miss) to 38/27 (3.6% miss) toward the measured 1.358.](./figures/phys32_07_gap_shift.png)
+
 Four cross-checks verify the decomposition connects to the rest of the computation chain.
 
 **The SM alone.** Gauge + Fermion = −11 + 4 = −7 = b₃_SM. The library value is recovered without the CD or Higgs contributions.
@@ -151,9 +161,13 @@ Four cross-checks verify the decomposition connects to the rest of the computati
 
 (Backed by phys32_a3_decomposition.py S8: all four cross-checks EXACT.)
 
+![Fig. 8: The Dynkin index S₂(fund) = 1/2 is the shared group theory constant connecting the one-loop beta shift (Δb₃ = 1/3) to the two-loop matrix entry (db₃₃ = 40/9).](./figures/phys32_08_oneloop_twoloop.png)
+
 ---
 
 ## 9. The Integer Anatomy
+
+![Fig. 1: All three modified betas decomposed into gauge (red), fermion (green), Higgs (blue), and CD (gold) contributions. The fermion term is exactly +4 for both SU(2) and SU(3).](./figures/phys32_01_three_betas.png)
 
 The three modified betas now have complete decompositions:
 
@@ -172,6 +186,8 @@ The 13 in b₂' = −13/6: from the balance −22/3 + 4 + 1/6 + 1 = −13/6. The
 The 20 in b₃' = −20/3: from the balance −11 + 4 + 0 + 1/3 = −20/3. The gauge contribution dominates. Over denominator 3: −33 + 12 + 0 + 1 = −20.
 
 The SU(3) decomposition is the simplest of the three because the Higgs is a color singlet. The integer 20 has only three non-zero contributors (gauge, fermion, CD), compared to four for the integer 13 (gauge, fermion, Higgs, CD).
+
+![Fig. 3: The integer 20 traced from b₃' = −20/3 through its four constituents to the fundamental group theory constants C₂(G) = 3 and S₂(fund) = 1/2.](./figures/phys32_03_integer_genealogy.png)
 
 ---
 
