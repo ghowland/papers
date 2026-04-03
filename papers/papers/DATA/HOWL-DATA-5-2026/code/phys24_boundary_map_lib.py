@@ -184,7 +184,7 @@ BOUNDARY_STACK = [
     {
         "name": "GUT unification scale",
         "scale_MeV": None,          # computed, not measured
-        "scale_MeV_estimate": Fraction(35, 10) * Fraction(10**15, 1),  # ~3.5e15 GeV from CD
+        "scale_MeV_estimate": Fraction(3000000, 1),  # 3 TeV midpoint of [1.5, 6] TeV window
         "scale_fm": None,           # computed from energy
         "what_changes": "Three gauge couplings merge into one. "
                         "SU(3)xSU(2)xU(1) -> SU(5) or larger. "
@@ -908,4 +908,3 @@ if __name__ == "__main__":
     print("=" * 70)
     print("PHYS24_BOUNDARIES SELF-TEST COMPLETE")
     print("=" * 70)
-    
