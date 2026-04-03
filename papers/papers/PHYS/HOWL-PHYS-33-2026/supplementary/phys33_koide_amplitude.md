@@ -2,3 +2,11 @@ Two problems visible.Problem 1: K convention is wrong. My K = (sum_sqrt)² / (3 
 
 ---
 
+8/8 ALL PASS. Clean run.
+
+**The key result:** m_tau predicted from (m_e, m_mu) + K = 2/3: **1776.969 MeV** vs measured **1776.86 MeV**. Miss: **0.006%** (0.109 MeV). Within the measurement uncertainty of m_tau (~0.12 MeV from PDG).
+
+The Koide conditional works. K = 2/3 to 0.0009%. a² = 2 to 0.0018%. The predicted m_tau is within 0.1 MeV of measured. The other quadratic root (3.317 MeV) is not a known particle.
+
+PHYS-33 is ready for paper writing. Want me to plan it, or move to the next script (PHYS-34: sin²θ_W two-loop test)?
+
