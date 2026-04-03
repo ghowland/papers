@@ -31,6 +31,19 @@ Usage:
 
 Platform: HOWL-PLATFORM-v1
 Depends on: data_5_objects.py, data_5_populate.py, phys24_lib.py
+
+33 helper functions across 7 categories:
+
+| Category | Functions | Purpose |
+|---|---|---|
+| Search (5) | search, search_show, constants_at_level, constants_by_source, constants_by_data4 | Find objects by any criterion |
+| Display (10) | show_constants, show_boundaries, show_betas, show_representations, show_R2, show_cancellations, show_moduli, show_results, show_programs, show_open_questions | Print formatted object lists |
+| Compare (3) | compare_betas, compare_gap_ratios, compare_representations | Side-by-side tables |
+| Traverse (2) | traverse_db, boundary_at_scale | Walk the boundary stack |
+| Cross-ref (3) | integer_pool, show_integer_pool, level_summary, data4_coverage | Analyze connections |
+| Export (3) | export_json, export_constants_table, export_summary_report | JSON, markdown, reports |
+| Version (3) | show_versions, versioned_constants, show_versioned | Version chain inspection |
+| Quick (4) | val, val_mpf, tags_of, info | One-liner accessors |
 """
 
 import sys
@@ -744,4 +757,3 @@ def info(db, obj_id):
 
     if obj.children:
         print("  Children: %d" % len(obj.children))
-        
