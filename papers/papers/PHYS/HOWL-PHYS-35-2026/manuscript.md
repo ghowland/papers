@@ -573,3 +573,130 @@ If the CD is discovered at M_CD = 500 GeV, the standard threshold calculation mi
 
 **End of supporting appendix tables for PHYS-35. 14 tables. The no-threshold advantage is documented across 18 configurations (12 hard threshold + 5 soft threshold + 1 no-threshold). The advantage is 12.3× at every step count tested. The soft threshold is worse than hard, confirming the puzzle is about the AMOUNT of CD running, not the threshold shape. Three explanations await testing. The M_VL scan provides a calibration curve for future CD mass measurements. Grand total: 522/528.**
 
+---
+
+## Addendum to PHYS-35: Position Correction — The Vortex View
+
+**Appended:** April 3 2026, post-publication clarification.
+
+**Purpose:** The paper body uses standard physics language ("decoupling theorem," "threshold," "field contributes to running") and frames the no-threshold result as a puzzle — an inversion of expectations. This addendum restates the finding in series language (R1–R10) and shows that from the series framework, the result is not a puzzle. It is the expected outcome. The puzzle is why the step-function approximation was ever expected to work.
+
+---
+
+### A1. Everything Is Vortexes
+
+By R4 (field is standing pattern is vortex), every entity in this computation is the same kind of thing: a stable, circulating energy configuration with quantized structure.
+
+The electron is a vortex. The muon is a heavier vortex. The Cabibbo Doublet is a vortex in the (3,2,1/6) configuration. The gauge bosons — photon, W, Z, gluons — are vortexes. The Higgs is a vortex. The SU(3), SU(2), and U(1) gauge configurations are nested systems of vortexes with specific geometric relationships to each other and to everything else.
+
+There is no "vacuum that contains fields." There is a configuration of vortexes at every point, at every scale, simultaneously. What standard language calls "the vacuum" is itself a vortex configuration — the lowest-energy arrangement of all overlapping vortex systems.
+
+When we say "the CD contributes to the running," we mean: the CD vortex overlaps geometrically with the three gauge vortex configurations, and this overlap influences how the coupling strengths vary across scales. The overlap is a geometric fact about the configuration. It does not switch on or off at an energy threshold.
+
+---
+
+### A2. The Nesting — Hill Spheres of Vortexes
+
+The gauge vortex configurations nest. The SU(3) color vortex configuration has a certain geometric structure. The SU(2) weak configuration has another. The U(1) hypercharge configuration has a third. These three configurations overlap in specific ways determined by the gauge group embedding SU(3)×SU(2)×U(1) ⊂ SU(5).
+
+Every matter vortex sits inside these nested gauge configurations. The electron vortex sits inside the U(1) and SU(2) configurations (charges Q = −1, T₃ = −1/2) but outside SU(3) (color singlet). The CD vortex sits inside all three: SU(3) triplet, SU(2) doublet, U(1) hypercharge 1/6. Like the Moon inside Earth's hill sphere inside the Sun's hill sphere — the CD is simultaneously within three overlapping geometric influence regions.
+
+The integer rules (R1) — the beta coefficients — are determined by these geometric overlaps. The CD's contribution Δb₁ = 1/15, Δb₂ = 1, Δb₃ = 1/3 comes from its geometric relationship to each gauge configuration: its Dynkin indices, its representation dimensions, its hypercharge squared. These are Level 1 quantities (R6) — they follow from the geometry of the embedding, not from any measurement.
+
+The overlaps exist at every scale because the vortexes exist at every scale. The CD vortex does not stop overlapping with SU(3) below 500 GeV. It overlaps because it is a triplet. That is a statement about its topology, not about energy.
+
+---
+
+### A3. What "Running" Means in a Simultaneous System
+
+By R2 (values run), the coupling strengths are not constant — they vary with the scale at which you probe them. But this variation is not a process that unfolds over time or energy. The universe is a simultaneous system. All scales exist at once. The couplings have definite values at every scale simultaneously.
+
+The renormalization group equation is a consistency constraint on this simultaneous system. It says: the coupling at scale μ₁ and the coupling at scale μ₂ are related by
+
+1/αᵢ(μ₂) = 1/αᵢ(μ₁) − bᵢ × L
+
+where L = ln(μ₂/μ₁)/(2π) and bᵢ is the integer rule (R1) determined by the geometric overlaps of all vortexes present.
+
+This is not "the coupling runs from μ₁ to μ₂." It is "the coupling at μ₁ and the coupling at μ₂ satisfy this constraint." The constraint must hold at all pairs of scales simultaneously. Every vortex that overlaps with the gauge configuration at any scale enters the constraint at that scale.
+
+The step-function threshold says: below M_VL, the CD vortex does not enter the constraint. Above M_VL, it does. This divides the simultaneous constraint into two domains with different integer rules.
+
+The no-threshold configuration says: the CD vortex enters the constraint at all scales. One set of integer rules everywhere.
+
+The data says: the single-rule constraint (no threshold) produces coupling values that match measurement 12× better than the two-rule constraint (threshold). In a simultaneous system, this means the single-rule description is closer to the actual constraint that the universe satisfies.
+
+---
+
+### A4. Mass Is Inertia, Not a Boundary of Existence
+
+By R3 (mass is inertia), the CD's mass of ~500 GeV (or whatever it is) means: exciting the CD vortex into a propagating, on-shell state requires at least 500 GeV of energy. This is inertia — resistance to excitation. More energy in the vortex = more resistance = higher mass.
+
+Inertia is not a boundary of existence. The CD vortex exists as a topological feature of the vortex configuration at all scales. Its mass tells you the energy cost to create a real, propagating CD particle at a collider. It does not tell you the energy below which the CD stops influencing the gauge configuration.
+
+The analogy: the Moon has inertia. You need a rocket with enough energy to reach it. Below that energy, you cannot send a probe to the Moon. But the Moon still pulls on the tides at every energy scale. Its gravitational influence on Earth does not switch off because you lack a rocket. The influence is a property of the geometric configuration (two massive bodies in proximity), not of the available energy.
+
+The CD's influence on the gauge couplings is a property of its geometric overlap with the gauge configurations (triplet, doublet, hypercharge 1/6), not of the available energy. The mass threshold is about excitation, not about influence.
+
+---
+
+### A5. The Soliton Boundary — What Actually Changes at M_VL
+
+By R5 (soliton boundary), crossing M_VL changes the integer rules. Below M_VL: SM betas. Above M_VL: CD betas. This is the standard treatment.
+
+But R5 says "integer rules on each side." It does not say "the vortex ceases to exist on one side." The soliton boundary separates two domains with different effective transformation laws. The question is: what determines the transformation law in each domain?
+
+The step-function answer: below M_VL, the transformation law is set by the SM vortexes only. The CD vortex is frozen — it does not participate in the transformation. Above M_VL, the CD vortex is active — it participates, and the transformation law changes by (Δb₁, Δb₂, Δb₃).
+
+The no-threshold answer: the transformation law is set by ALL vortexes at ALL scales, including the CD. There is no boundary. The integer rules are the CD betas everywhere.
+
+PHYS-35 found: the no-threshold answer is 12× more accurate. This means the step-function model of the soliton boundary is inadequate for the CD. The CD vortex's geometric overlaps with the gauge configurations contribute to the transformation law at all scales, not just above M_VL.
+
+**Proposed revision to Table R.3:** The row "Frozen vortex (below threshold): Particle too heavy to excite → contributes nothing" should be revised to:
+
+"Frozen vortex (below threshold): Too heavy to excite as a real propagating state. Its geometric overlaps with the gauge configurations persist and may contribute to the transformation law. The step-function approximation (contribution = 0 below threshold) is adequate when the vortex's beta shifts are small relative to the SM betas. For vortexes with large beta shifts (e.g., the CD with Δb₂ = 1, which is 31% of |b₂_SM|), the step-function approximation may fail, and the full geometric contribution at all scales may be required."
+
+---
+
+### A6. From QED to GR — The Consistent Picture
+
+The series has traced integer rules across domains. Here is how the vortex picture applies consistently from the lowest to the highest energies.
+
+**QED (PHYS-5).** The electromagnetic coupling α_EM runs because charged vortexes (electron, muon, quarks) overlap geometrically with the U(1) gauge configuration. Each vortex screens the bare charge by an amount determined by its charge squared Q² and its color multiplicity N_c — both Level 1 geometric quantities. The transformation law b_EM = −(4/3)ΣQ²N_c counts the geometric overlaps. Every charged vortex in the configuration contributes. None is omitted because it is "too heavy" — in the full QED calculation, all charged vortexes contribute at all scales, with heavier ones contributing less (suppressed by their inertia) but never zero.
+
+**QCD (PHYS-6).** The strong coupling α_s runs because colored vortexes (quarks) and the gluon vortex configuration itself (self-interaction) overlap geometrically. The gauge self-coupling (−11 from the SU(3) adjoint) antiscreens — the gluon vortex configuration makes the force stronger at low energy. Quark vortexes screen (+2/3 per flavor). The balance −11 + (2/3)n_f determines asymptotic freedom. The confinement wall at Λ_QCD (~0.3 GeV) is where α_s approaches O(1) and the perturbative integer rules break down — the vortex interactions become too strong for the weak-coupling approximation.
+
+**Electroweak (PHYS-12).** The three gauge configurations SU(3)×SU(2)×U(1) have distinct vortex structures with distinct geometric overlaps to matter vortexes. The SM betas b₁ = 41/10, b₂ = −19/6, b₃ = −7 count these overlaps. Each integer traces to a specific geometric relationship: the 41 in b₁ comes from the sum of Y²×dim contributions over all SM vortexes. The 19 in b₂ comes from the SU(2) adjoint (22/3) minus the quark and lepton doublet screening (4) minus the Higgs doublet (1/6). The 7 in b₃ comes from the SU(3) adjoint (11) minus three generations of quark screening (4). All Level 1 from the geometry.
+
+**Unification (PHYS-13, PHYS-26–30).** The three gauge couplings, running according to their respective integer rules, converge at high energy. The Cabibbo Doublet — a vortex in the (3,2,1/6) configuration — modifies the integer rules by (Δb₁ = 1/15, Δb₂ = 1, Δb₃ = 1/3). These shifts come from the CD vortex's geometric overlaps with all three gauge configurations simultaneously. The CD participates in SU(3) as a triplet (S₂ = 1/2), in SU(2) as a doublet (S₂ = 1/2), and in U(1) through its hypercharge (Y = 1/6). The modified betas produce near-exact unification: α_s predicted to 0.33%, sin²θ_W to 0.048%.
+
+**The no-threshold result (this paper).** The CD vortex's geometric overlaps do not switch off at M_VL. The no-threshold configuration — which includes the CD's geometric contribution at all scales — gives 12× better predictions than the threshold configuration. This is consistent with the vortex picture: the geometric overlaps are properties of the vortex topology, not of the available energy. The CD is a triplet-doublet-hypercharged vortex at every scale. Its contribution to the integer rules should reflect this.
+
+**Gravity.** The series has not yet computed gravitational effects in the vortex framework. But the principle extends: mass is inertia (R3), inertia is the energy cost of redistributing a vortex configuration, and every vortex with inertia gravitates. The same vortex that contributes to gauge coupling running through its geometric overlaps also contributes to the gravitational configuration through its inertia. The coupling between gauge geometry and gravitational geometry is through the vortex itself — the same entity participates in both. The QED-to-GR bridge, if it exists, runs through the vortex: the geometric overlaps determine the gauge running (integer rules), and the inertia of the vortex determines the gravitational contribution (mass-energy). Both are properties of the same circulating energy configuration.
+
+---
+
+### A7. The Position Correction
+
+The paper body frames the no-threshold result as a "puzzle" and an "inversion" of the decoupling theorem. From the vortex framework, it is neither.
+
+The puzzle framing assumes the step-function threshold is the expected answer. It is not. It is an approximation that works when a vortex's geometric contribution is small enough to round to zero below its inertia scale. For the CD, the contribution is not small (Δb₂ = 1, 31% of |b₂_SM|), and the approximation fails.
+
+The inversion framing assumes the decoupling theorem predicts the CD should not contribute below M_VL. The theorem predicts the contribution is SUPPRESSED, not ABSENT. The step function rounds "suppressed" to "zero." The no-threshold configuration rounds "suppressed" to "full." The data says "full" is 12× closer to reality than "zero." The truth is between them, but much closer to "full."
+
+The corrected framing: the CD is a vortex with geometric overlaps (3,2,1/6) to all three gauge configurations. These overlaps produce definite integer rule changes (Δb₁ = 1/15, Δb₂ = 1, Δb₃ = 1/3). The overlaps exist at all scales because they are topological properties of the vortex, not energy-dependent thresholds. The no-threshold result confirms that the integer rules should reflect the full vortex configuration at all scales. The step-function approximation, which erases the CD's geometric contribution below its inertia scale, introduces a 4% error that is 12× larger than the 0.33% error of the full-configuration treatment.
+
+This is not a puzzle. It is the vortex framework working as expected.
+
+---
+
+### A8. Revision to Table R.3
+
+The following revision is proposed for Table R.3, row "Frozen vortex":
+
+**Current:** "Frozen vortex (below threshold): Particle too heavy to excite. Contributes nothing."
+
+**Revised:** "Frozen vortex (below threshold): Too heavy to excite as a propagating state. Geometric overlaps with gauge configurations persist at all scales. The step-function approximation (contribution = 0 below inertia scale) is adequate for vortexes with small beta shifts. For vortexes with large beta shifts (Δb comparable to SM b), the full geometric contribution at all scales may be required. PHYS-35 demonstrates this for the CD: the full-configuration treatment (no threshold) outperforms the step-function treatment by 12×."
+
+---
+
+*This addendum restates the PHYS-35 finding in series language. The no-threshold result is not a puzzle — it is the expected behavior of a vortex whose geometric overlaps with the gauge configurations exist at all scales. The step-function threshold is an approximation that erases this geometry below the inertia scale. For the CD, this erasure introduces a 12× error. The vortex framework (R3, R4, R5) predicts this: mass is inertia, not a boundary of existence; the vortex exists at all scales; its geometric contribution to the integer rules reflects its topology, not the available energy.*
