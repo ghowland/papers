@@ -37,6 +37,8 @@ This paper tests: given only α_EM and sin²θ_W as inputs, does the Cabibbo Dou
 
 ## 2. The Method
 
+![Fig. 1: The α_s prediction path — run couplings up to M_GUT crossing, then run α₃ back down to M_Z.](./figures/phys30_01_prediction_path.png)
+
 The electromagnetic coupling and the weak mixing angle determine the individual gauge couplings 1/α₁ and 1/α₂ at the Z mass through the standard relations. The weak mixing angle is the ratio sin²θ_W = α_EM/α₂, giving 1/α₂ = sin²θ_W × (1/α_EM) = 0.23122 × 137.036 = 31.685. The GUT-normalized U(1) coupling follows from (5/3)/α₁ = 1/α_EM − 1/α₂, giving 1/α₁ = (3/5)(137.036 − 31.685) = 63.210. These match the library values exactly (script check S1: EXACT for both).
 
 The prediction proceeds in three steps. First, run 1/α₁ and 1/α₂ from M_Z upward using the beta coefficients. Second, find M_GUT where 1/α₁ = 1/α₂ (the crossing point). Third, set 1/α₃(M_GUT) = 1/α_GUT (the unification condition) and run 1/α₃ back down to M_Z. The value at M_Z is the predicted α_s.
