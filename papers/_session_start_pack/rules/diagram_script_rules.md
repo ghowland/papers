@@ -340,3 +340,57 @@ D16.3. Never use `transform=ax.get_xaxis_transform()` with negative y-values. Th
 
 ---
 
+## Addendum D17: Lessons Learned from Practice
+
+**Added to:** diagram_script_rules.md
+**Section:** D17
+**Source:** Operational experience from PHYS-30 and PHYS-31 diagram scripts
+
+---
+
+### D17.1 SELECTION LESSONS
+
+D17.1.1. **The "could I get this from a table?" test is the most important filter.** Before scoring a candidate, ask: if I deleted the diagram and replaced it with two sentences, would the reader lose anything? If no, it's not a diagram. Score distributions, convergence curves, and geometric cross-sections pass this test. Survival lists, program flowcharts, and verification ledgers fail it.
+
+D17.1.2. **The best diagrams show a CURVE that carries meaning in its SHAPE.** A coupling running and crossing tells the reader "these converge here and diverge there" from the shape alone. A bar chart where every bar is the same height tells nothing that the numbers don't. Prioritize candidates where the shape IS the finding.
+
+D17.1.3. **Comparison diagrams earn their slot when the comparison is VISUAL, not just numerical.** The score distribution histogram (PHYS-31 Fig 3) works because the reader SEES the beta pool sitting in the middle of the distribution. A table saying "beta = 6, mean = 6.2" is less immediate. The bar chart of six α_s scenarios (PHYS-30 Fig 8) works because the reader SEES which bars reach the measurement band. Comparisons where all items are close together (requiring reading the numbers anyway) are weak diagram candidates.
+
+D17.1.4. **Connection maps work when they carry FORMULAS AND NUMBERS, not just labels.** The integer map (PHYS-30 Fig 5) works because each box contains a specific Fraction (22/13, 15/4, etc.) and the arrows mean "this number flows into this computation." A connection map where the boxes say "Unification" → "Cosmology" with no numbers is a program flowchart in disguise.
+
+D17.1.5. **Cross-paper comparisons make strong diagrams when the comparison reveals a pattern.** The sin²θ_W two-paths diagram (PHYS-31 Fig 7) works because it shows the SAME number arising from two DIFFERENT mechanisms — one validated, one parked. The visual makes the distinction immediate.
+
+D17.1.6. **When in doubt between two candidates of the same type, pick the one with more data on it.** A convergence chart with 4 data points and a measurement band and error bars is better than one with 2 data points and a line.
+
+---
+
+### D17.2 DESIGN LESSONS
+
+D17.2.1. **Never use `transform=ax.get_xaxis_transform()` with negative y-values or `clip_on=False` for annotations outside the axis limits.** The `bbox_inches='tight'` option will expand the PNG to include all drawn elements, producing images thousands of pixels tall with blank space. All text and annotations must be placed INSIDE the axis limits using data coordinates.
+
+D17.2.2. **When indexing in a loop over dictionary keys, use the loop index variable `i`, not the key value `s`.** A common bug: `for i, s in enumerate(scores): ... counts[s]` fails when `s` is a score value (3,4,5,6,7) but `counts` is a list indexed from 0. Use `counts[i]` not `counts[s]`.
+
+D17.2.3. **Side-by-side panels (`fig, (ax1, ax2) = plt.subplots(1, 2)`) need explicit `figsize` width control.** Use `figsize=(18, 9)` not `(18, 10)` for side-by-side — slightly shorter prevents the tight bounding box from growing vertically. Use `gridspec_kw={'wspace': 0.30}` minimum for breathing room between panels.
+
+D17.2.4. **Measurement bands work best as two nested `axhspan` or `axvspan` calls** — one for 1σ (alpha 0.12–0.15) and one for 3σ (alpha 0.05–0.08). Label them at the edge. The reader immediately sees which predictions fall inside which band.
+
+D17.2.5. **Log scales need labeled landmarks, not just tick numbers.** On an energy axis: mark M_Z, M_VL, M_GUT with vertical lines and text labels. On a magnitude axis: mark key thresholds. The landmarks turn a number line into a map.
+
+D17.2.6. **Annotation arrows should point FROM the text TO the data point, not the reverse.** Use `xytext` for the label position, `xy` for the data point. Arrow goes from text to point. This keeps labels in clear space and arrows pointing inward.
+
+D17.2.7. **For scatter plots on dark backgrounds, always use `edgecolors=WHITE` with `linewidth=1.5–2`.** Without the white edge, colored dots disappear against the dark panel. The white ring makes every point visible regardless of its fill color.
+
+D17.2.8. **Text boxes for key results use `bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD)`.** The facecolor matching the background makes the box appear as a floating label. The edgecolor draws attention. Never use a light facecolor on a dark background — it creates a glaring white rectangle.
+
+D17.2.9. **Shaded regions (threshold bands, excluded zones, natural windows) should use alpha 0.03–0.08 for large regions and 0.10–0.15 for narrow bands.** Too dark obscures the data. Too light is invisible. Test: if you can still read curve labels through the shading, the alpha is right.
+
+D17.2.10. **When a figure has both computed data (curves, points) and reference data (measured values, bounds), use distinct marker styles.** Convention: computed predictions are circles with white edges, measured values are diamonds (marker='D') with white edges, bounds and thresholds are dashed/dotted lines. The reader instantly distinguishes "what we computed" from "what nature provides."
+
+D17.2.11. **The candidate density histogram (PHYS-31 Fig 6) is a powerful diagram type for any "is this coincidence?" question.** Whenever the paper claims something is or isn't special, showing the density of alternatives makes the argument visual. Mark the targets on the histogram. If targets sit in dense regions, hits are expected. If targets sit in sparse regions, hits are meaningful.
+
+D17.2.12. **For dual-panel "before vs after" or "method A vs method B" figures, use identical axis limits on both panels.** The reader compares by looking left-right. If the scales differ, the comparison is misleading. Set `ax1.set_xlim()` and `ax2.set_xlim()` to the same values explicitly.
+
+---
+
+*End of addendum D17. These lessons are from building and debugging the PHYS-30 and PHYS-31 diagram scripts. Each rule addresses a specific failure or success observed in practice.*
+
