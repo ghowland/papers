@@ -120,16 +120,17 @@
 | **[[@HOWL-PHYS-27-2026]](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-28-2026]](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **The VL Two-Loop Beta Matrix — Fermion Corrections to Gauge Coupling Unification** | One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.  |
 | **[[@HOWL-PHYS-29-2026]](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **GUT Threshold Corrections — The Minimal SU(5) Limit** | The threshold coefficients are too small. Minimal SU(5) is disfavored.  |
+| **[[@HOWL-PHYS-30-2026]](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **α_s from Unification — The Strong Coupling as a Derived Quantity** | Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.  |
 
 
-| **[[@HOWL-PHYS-30-2026]](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-31-2026]](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-32-2026]](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-33-2026]](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+
+| **[[@HOWL-PHYS-31-2026]](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-32-2026]](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-33-2026]](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 
 ---
 
