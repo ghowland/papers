@@ -1,0 +1,120 @@
+======================================================================
+HOWL PHYS-34: sin2_tW TWO-LOOP TEST
+Does two-loop running converge toward 3/13?
+======================================================================
+
+SECTION 1: INPUTS AND TARGETS
+----------------------------------------------------------------------
+
+    alpha_inv = 1/alpha_EM (dimensionless) 137.03599918
+    alpha_s = 1/alpha_3 -> 1/alpha_3 (dimensionless) 8.4745762712
+    b_EM = (5/3)*b1' + b2' (dimensionless) 4.7777777778
+    b_EM exact = 43/9 (dimensionless)      4.7777777778
+    b3' (dimensionless)                    -6.6666666667
+
+    sin²θ_W measured (dimensionless)       0.23122
+    3/13 (dimensionless)                   0.23076923077
+    Measured miss from 3/13 (%%)           0.19533333333
+
+SECTION 2: ONE-LOOP PREDICTION (no threshold)
+----------------------------------------------------------------------
+
+    L_GUT (dimensionless)                  5.0735673009
+    1/alpha_GUT (dimensionless)            42.298358277
+    1/alpha_2 at M_Z predicted (dimensionless) 31.305629125
+    sin²θ_W predicted (dimensionless)      0.22844821298
+    Miss from measured (%%)                1.1987661209
+    Miss from 3/13 (%%)                    1.0057743773
+
+SECTION 3: TWO-LOOP PREDICTION (no threshold)
+----------------------------------------------------------------------
+
+    TWO-LOOP (SM b_ij, 500 steps):         0.0
+      sin²θ_W predicted (dimensionless)    0.23108234414
+      Miss from measured (%%)              0.059534581723
+      Miss from 3/13 (%%)                  0.13568246073
+
+    TWO-LOOP (SM+VL b_ij, 500 steps):      0.0
+      sin²θ_W predicted (dimensionless)    0.23133128671
+      Miss from measured (%%)              0.048130225125
+      Miss from 3/13 (%%)                  0.24355757283
+
+SECTION 4: EULER STEP SENSITIVITY
+----------------------------------------------------------------------
+
+     Steps        sin²θ_W miss meas%% miss 3/13%%
+  -------- -------------- ---------- ----------
+       200     0.23132830     0.0468     0.2423
+       500     0.23133129     0.0481     0.2436
+      1000     0.23133229     0.0486     0.2440
+      2000     0.23133280     0.0488     0.2442
+
+SECTION 5: COMPLETE COMPARISON
+----------------------------------------------------------------------
+
+  Scenario                    sin²θ_W miss meas%% miss 3/13%%
+  ---------------------- ------------ ---------- ----------
+  Tree level (3/8)           0.375000    62.1832    62.5000
+  1-loop no-thresh           0.228448     1.1988     1.0058
+  2-loop SM b_ij             0.231082     0.0595     0.1357
+  2-loop full b_ij           0.231331     0.0481     0.2436
+  3/13                       0.230769          —          0
+  Measured                   0.231220          0      0.195
+
+  Convergence toward 3/13: YES
+    1-loop miss from 3/13: 1.0058%
+    2-loop miss from 3/13: 0.2436%
+
+  Convergence toward measured: YES
+    1-loop miss from meas: 1.1988%
+    2-loop miss from meas: 0.0481%
+
+  Does 2-loop overshoot 3/13? YES
+    2-loop: 0.231331, 3/13: 0.230769
+
+  Ordering: 0.22845(1-loop) < 0.23077(3/13) < 0.23122(measured) < 0.23133(2-loop full)
+
+SECTION 6: THE 3/13 TEST
+----------------------------------------------------------------------
+
+  One-loop distance from 3/13: 1.0058%
+  Two-loop distance from 3/13: 0.2436%
+  Gap closed: 75.8%
+
+  RESULT: Two-loop moves TOWARD 3/13.
+  The perturbative series converges in the direction of
+  3/13 = N_gen / |b₂' numerator|.
+  3/13 is a plausible limit of the perturbative expansion.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] S2: 1-loop reproduces PHYS-27 (0.22845)
+        expected: 0.22845
+        got:      0.22844821298
+        digits:   5.107 (need 3)
+  [PASS] S2: 1-loop undershoots measured
+        0.22845 < 0.23122
+  [PASS] S3: 2-loop closer to measured than 1-loop
+        2L=0.048% < 1L=1.199%
+  [PASS] S3: 2-loop closer to 3/13 than 1-loop
+        2L=0.244% < 1L=1.006%
+  [PASS] S3: Full b_ij improves over SM b_ij
+        full=0.048% < SM=0.060%
+  [PASS] S4: Step sensitivity < 0.1%% (500 vs 2000)
+        |diff| = 0.000002
+  [FAIL] S5: Ordering: 1L < 2L < 3/13 < measured
+        0.22845(1-loop) < 0.23077(3/13) < 0.23122(measured) < 0.23133(2-loop full)
+  [FAIL] S5: 2-loop does not overshoot 3/13
+        0.231331 < 0.230769
+  [PASS] S6: Gap toward 3/13 closed > 30%%
+        closed = 75.8%
+  [PASS] S6: 2-loop miss from measured < 1%%
+        miss = 0.048%
+
+  TOTAL: 8 PASS, 2 FAIL out of 10
+
+======================================================================
+PHYS-34 sin²θ_W TWO-LOOP TEST COMPLETE
+======================================================================
