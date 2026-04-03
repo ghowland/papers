@@ -122,10 +122,11 @@
 | **[[@HOWL-PHYS-29-2026]](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **GUT Threshold Corrections — The Minimal SU(5) Limit** | The threshold coefficients are too small. Minimal SU(5) is disfavored.  |
 | **[[@HOWL-PHYS-30-2026]](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **α_s from Unification — The Strong Coupling as a Derived Quantity** | Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.  |
 | **[[@HOWL-PHYS-31-2026]](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **Statistical Control — The Beta Integers and Combinatorial Coincidence** | p = 0.81. Random integers do equally well. Track B is parked.  |
+| **[[@HOWL-PHYS-32-2026]](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **The A₃ Decomposition — Tracing the Integer 20 in the SU(3) Beta** | Four pieces, one sum. −33 + 12 + 0 + 1 = −20. Every piece exact.  |
 
 
 
-| **[[@HOWL-PHYS-32-2026]](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
+
 | **[[@HOWL-PHYS-33-2026]](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
 | **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
