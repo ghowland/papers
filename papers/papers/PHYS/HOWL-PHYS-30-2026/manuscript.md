@@ -27,6 +27,8 @@ The Standard Model has three independent gauge couplings: the electromagnetic co
 
 ## 1. The Question
 
+![Fig. 2: Energy landscape showing SM running (solid, non-convergent) vs CD running (dashed, convergent).](./figures/phys30_02_energy_landscape.png)
+
 The strong coupling constant α_s governs the strength of the strong nuclear force. Its measured value at the Z boson mass scale is α_s(M_Z) = 0.1180 ± 0.0009 (DATA-4 entry B12, 4 significant digits). It is one of the 19 parameters of the Standard Model, determined by experiment, not by theory.
 
 In grand unified theories, the three gauge couplings — electromagnetic, weak, and strong — converge to a single value α_GUT at the unification scale M_GUT. If this convergence is exact, the three couplings at M_Z satisfy one relation: given any two, the third is determined by the renormalization group equations and the unification condition. The strong coupling becomes a derived quantity.
@@ -50,6 +52,8 @@ Two threshold treatments are compared. No threshold: CD betas from M_Z to M_GUT 
 ---
 
 ## 3. The Six Scenarios
+
+![Fig. 8: Six α_s predictions compared against the measured value with 1σ and 3σ bands. The two-loop no-threshold predictions enter the measurement window.](./figures/phys30_08_six_scenarios.png)
 
 | Scenario | α_s predicted | Miss (%) | Within 3σ? |
 |---|---|---|---|
@@ -75,6 +79,8 @@ Full b_ij is always better than SM-only b_ij. The VL two-loop corrections (PHYS-
 
 ## 4. The Best Prediction
 
+![Fig. 4: Threshold vs no-threshold running — full-range CD running (left) outperforms threshold at M_VL (right).](./figures/phys30_04_threshold_comparison.png)
+
 Two-loop with the full SM+VL b_ij matrix, no threshold: α_s = 0.11838. Measured: 0.1180 ± 0.0009 (1σ range: 0.1171 to 0.1189).
 
 The predicted value 0.11838 is within the 1σ measurement band. The miss of 0.0004 in absolute terms is less than half the experimental uncertainty. No parameters are tuned — M_GUT is determined by the coupling crossing, and all beta coefficients are Level 1 quantities from the gauge group representation theory.
@@ -83,9 +89,13 @@ The inputs: α_EM = 1/137.036 (12 digits, DATA-4 B1) and sin²θ_W = 0.23122 (5 
 
 The VL b_ij contribution improves the prediction from 0.40% miss (SM-only two-loop) to 0.33% miss (full two-loop). The nine exact Fractions from PHYS-28 have measurable impact on a physical observable: the strong coupling shifts by 0.0009 (from 0.1175 to 0.1184), which is exactly the size of the 1σ experimental uncertainty. The VL two-loop contribution moves the prediction from the edge of 1σ to the center.
 
+![Fig. 7: Crossing zoom — the gap between predicted 1/α₃ (gold) and measured 1/α₃ (red) at M_GUT. Two-loop reduces the gap from 1.17 to ~0.40.](./figures/phys30_07_crossing_zoom.png)
+
 ---
 
 ## 5. Why the One-Loop Miss Is 12%
+
+![Fig. 3: Delta propagation — the 1.17 miss at M_GUT translates to a 12% α_s miss at M_Z.](./figures/phys30_03_delta_propagation.png)
 
 The PHYS-27 sin²θ_W prediction missed by 1.2% at one loop. The α_s prediction misses by 12.1% at one loop (threshold case). The factor-of-10 difference has a structural explanation.
 
@@ -111,6 +121,8 @@ Either way, the pattern is consistent: no-threshold gives the best one-loop and 
 
 ## 7. The Convergence
 
+![Fig. 5: Integer connection map — 13, 20, 25 from the CD representation flow into both the α_s prediction (0.33% miss) and the DM/baryon ratio (0.07% miss).](./figures/phys30_05_integer_map.png)
+
 Every refinement moves the prediction toward the measured value:
 
 | Level | α_s | Miss | Gap closed |
@@ -124,6 +136,8 @@ Every refinement moves the prediction toward the measured value:
 The two-loop correction closes 96% of the one-loop gap. This is better than the 66% improvement seen for Delta at M_GUT (PHYS-24). The α_s prediction at M_Z benefits more from two-loop corrections because the running from M_GUT back to M_Z accumulates two-loop effects over the full 30 orders of magnitude in energy.
 
 The convergence is monotonic. No refinement makes the prediction worse. This is the signature of a perturbative expansion that is converging.
+
+![Fig. 6: Perturbative convergence — α_s prediction improves monotonically from tree level to two-loop, closing 96.2% of the gap.](./figures/phys30_06_convergence.png)
 
 ---
 
