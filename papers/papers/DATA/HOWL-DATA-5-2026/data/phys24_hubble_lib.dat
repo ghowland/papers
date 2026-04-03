@@ -1,0 +1,144 @@
+======================================================================
+PHYS24_HUBBLE_LIB SELF-TEST
+======================================================================
+
+  STATUS: ACTIVE_INVESTIGATION
+  This library tests a HYPOTHESIS. It is not verified physics.
+
+MEASURED VALUES
+----------------------------------------------------------------------
+
+  [PASS] 5 H0 measurements loaded
+        count = 5
+  [PASS] SH0ES H0 = 73.0
+        expected: 73 = 73.0
+        got:      73 = 73.0
+        match:    EXACT
+  [PASS] Planck H0 = 67.4
+        expected: 337/5 = 67.4
+        got:      337/5 = 67.4
+        match:    EXACT
+  [PASS] Cumulative ratio = 337/365
+        expected: 337/365 = 0.92328767123
+        got:      337/365 = 0.92328767123
+        match:    EXACT
+  [PASS] Tension > 4 sigma
+        tension = 5.01 sigma
+
+RUNNING CURVE MODEL
+----------------------------------------------------------------------
+
+  [PASS] H0_running(73.0, 0.99, 10)
+        expected: 66.019891476
+        got:      66.019891476
+        digits:   EXACT (need 10)
+  [PASS] extract_r recovers required_r(100)
+        expected: 0.9992021742
+        got:      0.9992021742
+        digits:   EXACT (need 10)
+  [PASS] Roundtrip at N=10: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   100.6 (need 6)
+  [PASS] Roundtrip at N=100: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   99.96 (need 6)
+  [PASS] Roundtrip at N=1000: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   98.56 (need 6)
+
+MAGNITUDE CONSTRAINTS
+----------------------------------------------------------------------
+
+  N =    10:  r = 0.99205032,  1-r = 0.00795  (~1/125)
+  N =   100:  r = 0.99920217,  1-r = 0.0007978  (~1/1250)
+  N =  1000:  r = 0.99992019,  1-r = 7.981e-5  (~1/12500)
+  N = 10000:  r = 0.99999202,  1-r = 7.981e-6  (~1/125000)
+  [PASS] 1-r decreases with N
+        1-r(10) = 0.00795 > 1-r(1000) = 7.981e-5
+
+FALSIFICATION TEST F1: MONOTONICITY
+----------------------------------------------------------------------
+
+  [FAIL] F1: H0 monotonically decreasing with distance
+        H0 increases from point 0 to 1: 73.3 > 73.0
+
+FALSIFICATION TEST F4: INTERMEDIATE VALUES DISTINCT
+----------------------------------------------------------------------
+
+  H0=69.8: 1.9 sigma from local, 1.4 sigma from far, DISTINCT
+  [PASS] F4: CCHP (69.8) distinct from endpoints
+        see details above
+
+STRUCTURAL PARALLEL: ALPHA RUNNING
+----------------------------------------------------------------------
+
+  VP step size 1/(3*pi)                    0.10610329539
+  ln(73.0/67.4)                            0.07981442323
+  At N=10: H0 step / alpha step = 0.07492
+  At N=100: H0 step / alpha step = 0.007519
+  At N=1000: H0 step / alpha step = 0.0007522
+  [PASS] H0 step < alpha step for all reasonable N
+        1-r(N=10) = 0.00795 < VP = 0.1061
+
+EXAMPLE: FIT WITH ASSUMED N VALUES
+----------------------------------------------------------------------
+
+  Assumed N assignments: [0, 5, 50, 500, 5000]
+  H0(0) = 73.0 km/s/Mpc
+  r = 0.9999840372
+  1 - r = 1.59628e-5
+  chi2 = 20.94 (dof = 3)
+  chi2/dof = 6.981
+
+  Predictions from this fit:
+    N =     1: H0 = 72.999 km/s/Mpc
+    N =    10: H0 = 72.988 km/s/Mpc
+    N =   100: H0 = 72.884 km/s/Mpc
+    N =  1000: H0 = 71.844 km/s/Mpc
+    N = 10000: H0 = 62.23 km/s/Mpc
+
+  WARNING: N assignments are GUESSES. This fit is illustrative only.
+  Real N values require published large-scale structure catalogs.
+
+UNKNOWN QUANTITIES (None values)
+----------------------------------------------------------------------
+
+  SH0ES: effective_N = None
+  H0LiCOW: effective_N = None
+  CCHP: effective_N = None
+  DES_BAO_BBN: effective_N = None
+  Planck: effective_N = None
+
+  5 of 5 measurements have unknown effective N.
+  This is the primary data gap blocking the analysis.
+  [PASS] All effective_N are None (honest unknowns)
+        all None
+
+SERIES CONNECTIONS
+----------------------------------------------------------------------
+
+  PHYS-1: Soliton boundaries produce different readings at different depths
+  PHYS-2: Transformation law is more fundamental than any single value
+  PHYS-3: Reproducibility within one depth != universality across depths
+  PHYS-4: Per-transit correction must be ~0.9992 to ~0.99992 depending on N
+  PHYS-5: VP running through discrete boundaries matches CODATA to 0.02 ppm
+  PHYS-11: H0 running would be Subgroup B (monotonic accumulation)
+  [PASS] 6 series connections mapped
+        count = 6
+
+
+  TOTAL: 15 PASS, 1 FAIL out of 16
+
+  HUBBLE LIBRARY: 1 FAILURES
+    - F1: H0 monotonically decreasing with distance
+
+  REMINDER: This library encodes a HYPOTHESIS, not verified physics.
+  Every effective_N is None. The per-transit correction r is unknown.
+  The curve fit is illustrative. Real N values require structure catalogs.
+
+======================================================================
+PHYS24_HUBBLE_LIB SELF-TEST COMPLETE
+======================================================================
