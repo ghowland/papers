@@ -1,0 +1,156 @@
+======================================================================
+HOWL PHYS-35: THE NO-THRESHOLD PUZZLE
+Why does no-threshold beat physical threshold?
+======================================================================
+
+SECTION 1: REPRODUCE PHYS-30 REFERENCE
+----------------------------------------------------------------------
+
+  No-threshold (full b_ij, 500 steps):
+    alpha_s = 0.11838365, miss = 0.3251%
+  Threshold M_VL=500 (full b_ij, 500 steps):
+    alpha_s = 0.11327407, miss = 4.0050%
+  Advantage ratio: 12.3x
+
+SECTION 2: M_VL SCAN (200 GeV to 6000 GeV)
+----------------------------------------------------------------------
+
+  M_VL(GeV)      alpha_s   miss(%%)      Delta
+  -------- ------------ ---------- ----------
+       200   0.11596750     1.7225    -0.1436
+       300   0.11475945     2.7462    -0.2323
+       400   0.11391800     3.4593    -0.2951
+       500   0.11327407     4.0050    -0.3438
+       750   0.11212308     4.9804    -0.4323
+      1000   0.11132100     5.6602    -0.4950
+      1500   0.11021048     6.6013    -0.5833
+      2000   0.10943634     7.2573    -0.6460
+      3000   0.10836427     8.1659    -0.7342
+      4000   0.10761673     8.7994    -0.7969
+      5000   0.10704417     9.2846    -0.8454
+      6000   0.10658101     9.6771    -0.8851
+
+  No-threshold: alpha_s = 0.11838365, miss = 0.3251%
+
+  Optimal M_VL: 200 GeV (miss = 1.7225%)
+  No-threshold miss: 0.3251%
+  No-threshold BEATS optimal threshold
+
+SECTION 3: STEP SENSITIVITY — IS THE ADVANTAGE AN ARTIFACT?
+----------------------------------------------------------------------
+
+  NO-THRESHOLD:
+     Steps      alpha_s   miss(%%)
+  -------- ------------ ----------
+       200   0.11838298     0.3246
+       500   0.11838365     0.3251
+      1000   0.11838391     0.3253
+      2000   0.11838405     0.3255
+
+  WITH THRESHOLD (M_VL = 500 GeV):
+     Steps      alpha_s   miss(%%)
+  -------- ------------ ----------
+       200   0.11327427     4.0049
+       500   0.11327407     4.0050
+      1000   0.11327407     4.0050
+      2000   0.11327431     4.0048
+
+  At 2000 steps: no-thresh miss = 0.3255%, threshold miss = 4.0048%
+  Advantage ratio at 2000 steps: 12.3x
+  ADVANTAGE PERSISTS with better integration: YES
+
+SECTION 4: SOFT THRESHOLD — SMOOTH DECOUPLING
+----------------------------------------------------------------------
+
+  Physical decoupling: a heavy particle of mass M_VL
+  contributes to the running as a smooth function of mu/M_VL.
+  The step function is an approximation.
+
+  Smooth threshold function:
+    f(mu) = ln(1 + mu^2/M_VL^2) / ln(1 + mu_GUT^2/M_VL^2)
+  This gives f -> 0 for mu << M_VL and f -> 1 for mu >> M_VL.
+  The effective betas are: b_i(mu) = b_SM + f(mu)*db_VL
+  and bij(mu) = bij_SM + f(mu)*dbij_VL
+
+  Soft threshold results (M_GUT ~ 4.1e+15 GeV):
+
+  M_VL(GeV)      alpha_s   miss(%%)
+  -------- ------------ ----------
+       200   0.10957027     7.1438
+       500   0.10749754     8.9004
+      1000   0.10588295    10.2687
+      2000   0.10430004    11.6101
+      4000   0.10276177    12.9138
+
+  No-threshold: miss = 0.3251%
+
+  Best soft threshold: M_VL = 200 GeV, miss = 7.1438%
+
+SECTION 5: COMPLETE COMPARISON
+----------------------------------------------------------------------
+
+  Method                              alpha_s   miss(%%)
+  ------------------------------ ------------ ----------
+  No threshold (2L full)           0.11838365     0.3251
+  Hard threshold M_VL=500          0.11327407     4.0050
+  Hard threshold optimal M_VL=200   0.11596750     1.7225
+  Soft threshold M_VL=500          0.10749754     8.9004
+  Soft threshold optimal M_VL=200   0.10957027     7.1438
+  MEASURED                         0.11800000          0
+
+  Ranking (best to worst):
+    1. No threshold: 0.3251%
+    2. Hard thresh optimal: 1.7225%
+    3. Hard thresh M_VL=500: 4.0050%
+    4. Soft thresh optimal: 7.1438%
+
+SECTION 6: INTERPRETATION
+----------------------------------------------------------------------
+
+  Does no-threshold beat the BEST hard threshold? YES
+  Does no-threshold beat the BEST soft threshold? YES
+  Does the advantage persist at 2000 steps? YES
+
+  CONCLUSION: The no-threshold advantage is PHYSICAL, not numerical.
+  It persists with better integration (2000 steps) and beats
+  every threshold configuration tested.
+
+  Possible explanations:
+    1. The CD running propagates below M_VL through loop effects
+       (virtual CD contributions to SM running).
+    2. The threshold correction cancels against a missing
+       higher-order effect at the same scale.
+    3. The 'no threshold' configuration is effectively a
+       resummation that captures physics the step function misses.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [PASS] S1: No-thresh alpha_s reproduces PHYS-30 (miss < 0.5%%)
+        miss = 0.3251%
+  [PASS] S1: Threshold M_VL=500 reproduces PHYS-30 (miss 4-6%%)
+        miss = 4.0050%
+  [PASS] S2: M_VL scan covers range (at least 10 points)
+        12 points
+  [PASS] S2: No-threshold beats hard threshold at M_VL=500
+        0.3251% < 4.0050%
+  [PASS] S3: Step sensitivity test completed (4 step counts)
+        4 + 4 counts
+  [PASS] S3: No-thresh advantage persists at 2000 steps
+        NT=0.3255% < TH=4.0048%
+  [PASS] S4: Soft threshold computed (at least 4 M_VL values)
+        5 values
+  [FAIL] S4: Soft threshold improves over hard threshold at same M_VL
+        soft=8.9004% < hard=4.0050%
+  [PASS] S5: All alpha_s predictions physical (> 0.09)
+        all > 0.09
+  [PASS] S6: Conclusion determined
+        conclusion = PHYSICAL
+
+  TOTAL: 9 PASS, 1 FAIL out of 10
+
+======================================================================
+PHYS-35 NO-THRESHOLD PUZZLE COMPLETE
+Conclusion: PHYSICAL
+======================================================================
