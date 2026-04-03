@@ -1,315 +1,146 @@
-
 ======================================================================
-  DEMO 1: SCALE JOURNEYS
-======================================================================
-
-
-  --- Journey: Orange to Proton ---
-
-  An orange is ~0.1 m. A proton is ~0.84 fm = 8.4e-16 m.
-  Energy at orange scale: 1.973e-12 MeV
-  Energy at proton scale: 234.9 MeV
-
-  Boundaries crossed: 4
-    Electron threshold (0.511 MeV, 386.2 fm)
-    Nuclear binding scale (8.0 MeV, 24.67 fm)
-    Strange quark threshold (93.5 MeV, 2.11 fm)
-    Muon threshold (105.7 MeV, 1.868 fm)
-
-  Forces encountered: ['electromagnetic', 'strong']
-  Unknown couplings: 0
-  Open questions: 1
-
-  --- Journey: Atom to Nucleus ---
-
-  Bohr radius: 5.29e+4 fm
-  Nuclear radius: 1.2 fm
-  Boundaries crossed: 4
-    Electron threshold (0.511 MeV)
-    Nuclear binding scale (8.0 MeV)
-    Strange quark threshold (93.5 MeV)
-    Muon threshold (105.7 MeV)
-
-  This journey crosses from chemistry (EM binding)
-  through nuclear physics (residual strong) to QCD.
-
-  --- Journey: M_Z to Planck (the full high-energy stack) ---
-
-  Boundaries crossed: 6
-    Electroweak scale (M_Z) (9.119e+4 MeV)
-    Higgs boson threshold (1.252e+5 MeV)
-    Top quark threshold (1.726e+5 MeV)
-    Cabibbo Doublet threshold (3.0e+6 MeV)
-    GUT unification scale (3.5e+15 MeV)
-    Planck scale (1.221e+19 MeV)
-
-  Unknown couplings on this journey:
-    alpha_s at Top quark threshold
-    1/alpha_1 at Cabibbo Doublet threshold
-    1/alpha_2 at Cabibbo Doublet threshold
-    1/alpha_3 at Cabibbo Doublet threshold
-    1/alpha_GUT at GUT unification scale
-    1/alpha_1 at GUT unification scale
-    1/alpha_2 at GUT unification scale
-    1/alpha_3 at GUT unification scale
-    G_N at Planck scale
-    alpha_GUT at Planck scale
-
-  --- Journey: Bottom to Charm (crossing confinement interior) ---
-
-  Boundaries crossed: 4
-    Charm quark threshold (1273.0 MeV, 0.155 fm)
-    Tau lepton threshold (1777.0 MeV, 0.1111 fm)
-    Confinement wall (upper face) (2000.0 MeV, 0.09866 fm)
-    Bottom quark threshold (4183.0 MeV, 0.04717 fm)
-
-  Note: both confinement wall faces appear between c and b.
-  Perturbative running is NOT valid inside this region.
-
-======================================================================
-  DEMO 2: REPRESENTATION QUERIES
+PHYS24_HUBBLE_LIB SELF-TEST
 ======================================================================
 
+  STATUS: ACTIVE_INVESTIGATION
+  This library tests a HYPOTHESIS. It is not verified physics.
 
-  --- The Cabibbo Doublet (from structures library) ---
+MEASURED VALUES
+----------------------------------------------------------------------
 
-  Name:           Cabibbo Doublet
-  Representation: (3, 2, 1/6)
-  Type:           vector-like
-  Y^2:            1/36
-  Charges:        upper = 2/3, lower = -1/3
-  Beta shifts:    Db1 = 1/15, Db2 = 1, Db3 = 1/3
-  Papers:         ['PHYS-15', 'PHYS-16', 'PHYS-19']
+  [PASS] 5 H0 measurements loaded
+        count = 5
+  [PASS] SH0ES H0 = 73.0
+        expected: 73 = 73.0
+        got:      73 = 73.0
+        match:    EXACT
+  [PASS] Planck H0 = 67.4
+        expected: 337/5 = 67.4
+        got:      337/5 = 67.4
+        match:    EXACT
+  [PASS] Cumulative ratio = 337/365
+        expected: 337/365 = 0.92328767123
+        got:      337/365 = 0.92328767123
+        match:    EXACT
+  [PASS] Tension > 4 sigma
+        tension = 5.01 sigma
 
-  --- What-if: (3,1,2/3) VL pair instead of (3,2,1/6)? ---
+RUNNING CURVE MODEL
+----------------------------------------------------------------------
 
-  Name:           Alt candidate
-  Representation: (3, 1, 2/3)
-  Beta shifts:    Db1 = 8/15, Db2 = 0, Db3 = 1/6
-  Modified betas:  (139/30, -19/6, -41/6)
-  Gap ratio:       117/55 = 2.12727
-  CD gap ratio:    38/27 = 1.40741
-  Measured gap:    1.35819
+  [PASS] H0_running(73.0, 0.99, 10)
+        expected: 66.019891476
+        got:      66.019891476
+        digits:   EXACT (need 10)
+  [PASS] extract_r recovers required_r(100)
+        expected: 0.9992021742
+        got:      0.9992021742
+        digits:   EXACT (need 10)
+  [PASS] Roundtrip at N=10: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   100.6 (need 6)
+  [PASS] Roundtrip at N=100: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   99.96 (need 6)
+  [PASS] Roundtrip at N=1000: H0(N) = 67.4
+        expected: 67.4
+        got:      67.4
+        digits:   98.56 (need 6)
 
-  Distance from measured: alt = 0.7691, CD = 0.04921
-  CD is MUCH closer to measured.
+MAGNITUDE CONSTRAINTS
+----------------------------------------------------------------------
 
-  --- Generation Democracy (from census) ---
+  N =    10:  r = 0.99205032,  1-r = 0.00795  (~1/126)
+  N =   100:  r = 0.99920217,  1-r = 0.0007978  (~1/1253)
+  N =  1000:  r = 0.99992019,  1-r = 7.981e-5  (~1/12530)
+  N = 10000:  r = 0.99999202,  1-r = 7.981e-6  (~1/125291)
+  [PASS] 1-r decreases with N
+        1-r(10) = 0.00795 > 1-r(1000) = 7.981e-5
 
-  Per-generation beta shifts: (4/3, 4/3, 4/3)
-  All equal? True
-  This is WHY fermions are invisible to the gap ratio.
+FALSIFICATION TEST F1: MONOTONICITY
+----------------------------------------------------------------------
 
-  SM betas from census: (41/10, -19/6, -7)
-  SM betas from library: (41/10, -19/6, -7)
-  Match? True
+  [FAIL] F1 strict: raw H0 monotonically decreasing
+        H0 increases from point 0 to 1: 73.3 > 73.0
+  [PASS] F1 soft: monotonic within 1-sigma uncertainties
+        violations: none (bands overlap)
 
-======================================================================
-  DEMO 3: PREDICTIONS FROM THE DERIVATION LIBRARY
-======================================================================
+FALSIFICATION TEST F4: INTERMEDIATE VALUES DISTINCT
+----------------------------------------------------------------------
 
+  H0=69.8: 1.9 sigma from local, 1.4 sigma from far, DISTINCT
+  [PASS] F4: CCHP (69.8) distinct from endpoints
+        see details above
 
-  --- Coupling Extraction at M_Z ---
+STRUCTURAL PARALLEL: ALPHA RUNNING
+----------------------------------------------------------------------
 
-  1/alpha_1 = 63.21032
-  1/alpha_2 = 31.68546
-  1/alpha_3 = 8.474576
+  VP step size 1/(3*pi)                    0.10610329539
+  ln(73.0/67.4)                            0.07981442323
+  At N=10: H0 step / alpha step = 0.07492
+  At N=100: H0 step / alpha step = 0.007519
+  At N=1000: H0 step / alpha step = 0.0007522
+  [PASS] H0 step < alpha step for all reasonable N
+        1-r(N=10) = 0.00795 < VP = 0.1061
 
-  --- One-Loop Predictions (from unification) ---
+EXAMPLE: FIT WITH ASSUMED N VALUES
+----------------------------------------------------------------------
 
-  alpha_s predicted:  0.107686 (miss 8.74%)
-  sin2_tW predicted:  0.228448 (miss 1.199%)
-  alpha_s measured:   0.118
-  sin2_tW measured:   0.23122
+  Assumed N assignments: [0, 5, 50, 500, 5000]
+  H0(0) = 73.0 km/s/Mpc
+  r = 0.9999840372
+  1 - r = 1.59628e-5
+  chi2 = 20.94 (dof = 3)
+  chi2/dof = 6.981
 
-  --- Two-Loop alpha_s (binary search + Euler) ---
+  Predictions from this fit:
+    N =     1: H0 = 72.999 km/s/Mpc
+    N =    10: H0 = 72.988 km/s/Mpc
+    N =   100: H0 = 72.884 km/s/Mpc
+    N =  1000: H0 = 71.844 km/s/Mpc
+    N = 10000: H0 = 62.23 km/s/Mpc
 
-  Running two-loop with SM b_ij...
-  alpha_s (SM b_ij):  0.117532 (miss 0.397%)
-  Running two-loop with full b_ij (SM + VL)...
-  alpha_s (full b_ij): 0.118384 (miss 0.3251%)
+  WARNING: N assignments are GUESSES. This fit is illustrative only.
+  Real N values require published large-scale structure catalogs.
 
-  Progression: 1-loop 8.74% -> 2-loop SM 0.397% -> 2-loop full 0.3251%
+UNKNOWN QUANTITIES (None values)
+----------------------------------------------------------------------
 
-  --- Koide m_tau Prediction ---
+  SH0ES: effective_N = None
+  H0LiCOW: effective_N = None
+  CCHP: effective_N = None
+  DES_BAO_BBN: effective_N = None
+  Planck: effective_N = None
 
-  K(e, mu, tau) = 0.66666051
-  a^2(leptons) = 1.999963069 (hypothesis: 2, miss: 3.693e-5)
-  m_tau predicted = 1776.969 MeV (miss 0.006136%)
-  m_tau measured  = 1776.86 MeV
-  Other root      = 3.317 MeV (unphysical)
+  5 of 5 measurements have unknown effective N.
+  This is the primary data gap blocking the analysis.
+  [PASS] All effective_N are None (honest unknowns)
+        all None
 
-======================================================================
-  DEMO 4: CROSS-REFERENCE QUERIES
-======================================================================
+SERIES CONNECTIONS
+----------------------------------------------------------------------
 
-
-  --- DATA-4 Lookups ---
-
-  B1: alpha_inv = 137.036 dimensionless (Type M)
-  B12: alpha_s = 0.118 dimensionless (Type M)
-  C1: M_Z = 91187.6 MeV (Type M)
-  D4: m_c = 1273.0 MeV (Type M)
-  N10: gap_SM = 1.895652 dimensionless (Type D)
-
-  --- Paper Searches ---
-
-  'gap ratio': ['PHYS-13']
-  'Koide': ['DATA-2', 'PHYS-8', 'PHYS-23']
-  'proton decay': ['PHYS-20']
-  'PSLQ': ['MATH-6']
-  'confinement': ['PHYS-6']
-
-  --- Particle Catalog (sorted by mass) ---
-
-  Particle          Mass (MeV)   Scale (fm)  Type
-  --------------- ------------ ------------  --------
-  electron            0.510999        386.2  lepton
-  up quark                2.16        91.36  quark
-  down quark               4.7        41.98  quark
-  strange                 93.5         2.11  quark
-  muon                 105.658        1.868  lepton
-  charm                 1273.0        0.155  quark
-  tau                  1776.86       0.1111  lepton
-  bottom                4183.0      0.04717  quark
-  W boson              80369.2     0.002455  gauge
-  Z boson              91187.6     0.002164  gauge
-  Higgs               125200.0     0.001576  scalar
-  top                 172570.0     0.001143  quark
-
-  --- Active Quark Flavors at Different Scales ---
-
-  At 1 GeV: n_f = 3 quarks active
-  At 5 GeV: n_f = 5 quarks active
-  At 100 GeV: n_f = 5 quarks active
-  At 1 TeV: n_f = 6 quarks active
-
-======================================================================
-  DEMO 5: THE COMPLETE UNKNOWN MAP
-======================================================================
-
-  Every unknown coupling and open question in the boundary stack,
-  from electron to Planck:
-
-  UNKNOWN COUPLINGS (12):
-    [Confinement wall (lower face)] alpha_s
-    [Confinement wall (upper face)] alpha_s
-    [Top quark threshold] alpha_s
-    [Cabibbo Doublet threshold] 1/alpha_1
-    [Cabibbo Doublet threshold] 1/alpha_2
-    [Cabibbo Doublet threshold] 1/alpha_3
-    [GUT unification scale] 1/alpha_GUT
-    [GUT unification scale] 1/alpha_1
-    [GUT unification scale] 1/alpha_2
-    [GUT unification scale] 1/alpha_3
-    [Planck scale] G_N
-    [Planck scale] alpha_GUT
-
-  OPEN QUESTIONS (17):
-    [Strange quark threshold] What is the correct treatment of flavor thresholds inside confinement?
-    [Confinement wall (lower face)] What is the non-perturbative structure of the confinement transition?
-    [Confinement wall (lower face)] Is there a soliton interpretation of confinement?
-    [Tau lepton threshold] Is m_tau derivable from Koide? (conditional, a^2=2 unresolved)
-    [Confinement wall (upper face)] Is there a precise definition of the confinement boundary?
-    [Confinement wall (upper face)] What is alpha_s at the transition?
-    [Higgs boson threshold] Is lambda (Higgs self-coupling) derivable? (parked, PHYS-24 Appendix J)
-    [Cabibbo Doublet threshold] What is M_VL exactly?
-    [Cabibbo Doublet threshold] Is there a sharp threshold or smooth transition?
-    [Cabibbo Doublet threshold] What are the mixing angles?
-    [GUT unification scale] What is the GUT group? SU(5)? SO(10)?
-    [GUT unification scale] What are the threshold corrections?
-    [GUT unification scale] Does exact unification occur?
-    [GUT unification scale] What is the proton lifetime precisely?
-    [Planck scale] Does G run?
-    [Planck scale] What is the quantum theory of gravity?
-    [Planck scale] Is there a desert between M_GUT and M_Planck?
+  PHYS-1: Soliton boundaries produce different readings at different depths
+  PHYS-2: Transformation law is more fundamental than any single value
+  PHYS-3: Reproducibility within one depth != universality across depths
+  PHYS-4: Per-transit correction must be ~0.9992 to ~0.99992 depending on N
+  PHYS-5: VP running through discrete boundaries matches CODATA to 0.02 ppm
+  PHYS-11: H0 running would be Subgroup B (monotonic accumulation)
+  [PASS] 6 series connections mapped
+        count = 6
 
 
-  --- Closed Paths (do not reopen) ---
+  TOTAL: 16 PASS, 1 FAIL out of 17
 
-  SM_unification: Gap ratio 218/115 != 1.358 (40% miss) [PHYS-13]
-  C3_Koide: Tautology (3 params, 3 data) + saddle point [PHYS-23]
-  broad_PSLQ: 82/82 null, derivation beats search [MATH-6]
-  fermion_gap_fix: Generation democracy: fermion contribution = 0 [PHYS-17]
-  lambda_one_eighth: Corrections go wrong direction [Parked notebook]
-  Koide_phase_adjust: K depends on a only, not theta_0 (PHYS-8 identity) [PHYS-8]
-  Koide_scale_choice: K is exactly scale-invariant under m_i -> c*m_i [Parked notebook]
+  HUBBLE LIBRARY: 16 PASS, 1 FAIL (hypothesis status: ACTIVE_INVESTIGATION)
+    - F1 strict: raw H0 monotonically decreasing
 
-  --- Anomaly Evidence for the Cabibbo Doublet ---
-
-  CKM first-row unitarity deficit (2.5-4 sigma)
-    Quantum number: weak doublet (SU(2))
-    Resolution: |V_ub'|^2 absorbs deficit in 3x4 CKM
-
-  LEP A_FB^b anomaly (~3 sigma)
-    Quantum number: color + weak (SU(3) x SU(2))
-    Resolution: Z-b-b vertex modification from VL-b mixing
-
-  Higgs signal strength excess (~2 sigma)
-    Quantum number: color triplet (SU(3))
-    Resolution: VL quark in gg->H loop + reduced b Yukawa
-
-
-  --- Experimental Timeline ---
-
-  Hyper-K: p -> e+ pi0
-    CD prediction: tau ~ 10^34-35 yr (detectable)
-    Status: Operations ~2027
-
-  HL-LHC: VL quark pair production
-    CD prediction: Observable if M_VL < 2-3 TeV
-    Status: Running now through ~2040
-
-  Belle_II: CKM precision, m_tau
-    CD prediction: Modified first-row unitarity
-    Status: Running now through ~2030+
-
+  REMINDER: This library encodes a HYPOTHESIS, not verified physics.
+  Every effective_N is None. The per-transit correction r is unknown.
+  The curve fit is illustrative. Real N values require structure catalogs.
 
 ======================================================================
-  DEMO 6: WHAT-IF — TESTING ALTERNATIVE BSM CANDIDATES
+PHYS24_HUBBLE_LIB SELF-TEST COMPLETE
 ======================================================================
-
-  Candidate                      Db1      Db2      Db3        Gap     Dist
-  ------------------------- -------- -------- -------- ---------- --------
-  (3,2,1/6) CD                  1/15        1      1/3    1.40741  0.04921
-  (3,1,2/3) u'-type             8/15        0      1/6    2.12727   0.7691
-  (3,1,-1/3) d'-type            2/15        0      1/6    2.01818     0.66
-  (1,2,1/2) L'-type              1/5      1/3        0      1.712   0.3538
-  (3,2,7/6) exotic             49/15        1      1/3    2.11852   0.7603
-  (3,3,1/3) triplet              2/5        1      1/2    1.53846   0.1803
-
-  Measured gap ratio: 1.35819
-  CD (3,2,1/6) wins by gap distance.
-
-======================================================================
-  PLATFORM SUMMARY
-======================================================================
-
-  Libraries loaded:
-    phys24_lib.py          — 146 constants, 11 helpers, 5 check functions
-    data_4_derivation_lib  — 9 derivation functions, group theory, two-loop
-    phys24_structure_lib   — 5 SM reps, 12 particles, 47 DATA-4 entries mapped
-    phys24_boundary_map    — 19 boundaries, 5 forces, traversal functions
-
-  Verified checks:
-    phys24_lib self-test:    21/21
-    phys24_lib platform:     148/148
-    derivation self-test:    37/37
-    structures self-test:    46/46
-    boundaries self-test:    14/14
-    TOTAL:                   266/266
-
-  Predictions from this platform:
-    alpha_s (one-loop):      0.107686 (miss 8.74%)
-    alpha_s (two-loop full): 0.118384 (miss 0.3251%)
-    sin2_tW (one-loop):      0.228448 (miss 1.199%)
-    m_tau (Koide K=2/3):     1776.969 MeV (miss 0.006136%)
-
-  Unknown couplings (full stack): 12
-  Open questions (full stack):    17
-  Closed paths:                   7
-
-======================================================================
-  PLATFORM DEMO COMPLETE
-======================================================================
-

@@ -52,18 +52,20 @@ RUNNING CURVE MODEL
 MAGNITUDE CONSTRAINTS
 ----------------------------------------------------------------------
 
-  N =    10:  r = 0.99205032,  1-r = 0.00795  (~1/125)
-  N =   100:  r = 0.99920217,  1-r = 0.0007978  (~1/1250)
-  N =  1000:  r = 0.99992019,  1-r = 7.981e-5  (~1/12500)
-  N = 10000:  r = 0.99999202,  1-r = 7.981e-6  (~1/125000)
+  N =    10:  r = 0.99205032,  1-r = 0.00795  (~1/126)
+  N =   100:  r = 0.99920217,  1-r = 0.0007978  (~1/1253)
+  N =  1000:  r = 0.99992019,  1-r = 7.981e-5  (~1/12530)
+  N = 10000:  r = 0.99999202,  1-r = 7.981e-6  (~1/125291)
   [PASS] 1-r decreases with N
         1-r(10) = 0.00795 > 1-r(1000) = 7.981e-5
 
 FALSIFICATION TEST F1: MONOTONICITY
 ----------------------------------------------------------------------
 
-  [FAIL] F1: H0 monotonically decreasing with distance
+  [FAIL] F1 strict: raw H0 monotonically decreasing
         H0 increases from point 0 to 1: 73.3 > 73.0
+  [PASS] F1 soft: monotonic within 1-sigma uncertainties
+        violations: none (bands overlap)
 
 FALSIFICATION TEST F4: INTERMEDIATE VALUES DISTINCT
 ----------------------------------------------------------------------
@@ -130,10 +132,10 @@ SERIES CONNECTIONS
         count = 6
 
 
-  TOTAL: 15 PASS, 1 FAIL out of 16
+  TOTAL: 16 PASS, 1 FAIL out of 17
 
-  HUBBLE LIBRARY: 1 FAILURES
-    - F1: H0 monotonically decreasing with distance
+  HUBBLE LIBRARY: 16 PASS, 1 FAIL (hypothesis status: ACTIVE_INVESTIGATION)
+    - F1 strict: raw H0 monotonically decreasing
 
   REMINDER: This library encodes a HYPOTHESIS, not verified physics.
   Every effective_N is None. The per-transit correction r is unknown.

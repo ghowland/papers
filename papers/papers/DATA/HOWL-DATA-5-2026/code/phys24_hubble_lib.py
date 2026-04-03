@@ -55,19 +55,19 @@ PARKED = False
 H0_MEASUREMENTS = {
     "SH0ES": {
         "name": "SH0ES (Type Ia supernovae + Cepheids)",
-        "H0": Fraction(730, 10),           # 73.0 km/s/Mpc
-        "uncertainty": Fraction(10, 10),    # +/- 1.0
+        "H0": Fraction(730, 10),
+        "uncertainty": Fraction(10, 10),
         "year": 2022,
         "source": "Riess et al. 2022, ApJ 934, L7",
         "distance_class": "local",
-        "effective_N": None,                # UNKNOWN — needs structure catalog
+        "effective_N": None,
         "effective_N_estimate": "low",
         "method": "distance ladder: Cepheids -> SNe Ia",
     },
     "H0LiCOW": {
         "name": "H0LiCOW (gravitational lensing time delays)",
-        "H0": Fraction(733, 10),            # 73.3 km/s/Mpc
-        "uncertainty": Fraction(18, 10),     # +/- 1.8
+        "H0": Fraction(733, 10),
+        "uncertainty": Fraction(18, 10),
         "year": 2020,
         "source": "Wong et al. 2020, MNRAS 498, 1420",
         "distance_class": "local-medium",
@@ -77,8 +77,8 @@ H0_MEASUREMENTS = {
     },
     "CCHP": {
         "name": "CCHP (Tip of Red Giant Branch)",
-        "H0": Fraction(698, 10),            # 69.8 km/s/Mpc
-        "uncertainty": Fraction(17, 10),     # +/- 1.7
+        "H0": Fraction(698, 10),
+        "uncertainty": Fraction(17, 10),
         "year": 2021,
         "source": "Freedman 2021, ApJ 919, 16",
         "distance_class": "medium",
@@ -88,8 +88,8 @@ H0_MEASUREMENTS = {
     },
     "DES_BAO_BBN": {
         "name": "DES + BAO + BBN (combined cosmological)",
-        "H0": Fraction(674, 10),            # 67.4 km/s/Mpc
-        "uncertainty": Fraction(12, 10),     # +/- 1.2
+        "H0": Fraction(674, 10),
+        "uncertainty": Fraction(12, 10),
         "year": 2022,
         "source": "DES Collaboration 2022",
         "distance_class": "high",
@@ -99,8 +99,8 @@ H0_MEASUREMENTS = {
     },
     "Planck": {
         "name": "Planck CMB (cosmic microwave background)",
-        "H0": Fraction(674, 10),            # 67.4 km/s/Mpc
-        "uncertainty": Fraction(5, 10),      # +/- 0.5
+        "H0": Fraction(674, 10),
+        "uncertainty": Fraction(5, 10),
         "year": 2020,
         "source": "Planck Collaboration 2020, A&A 641, A6",
         "distance_class": "maximum",
@@ -110,24 +110,19 @@ H0_MEASUREMENTS = {
     },
 }
 
-# Ordered by distance class for running curve analysis
 H0_ORDERED = ["SH0ES", "H0LiCOW", "CCHP", "DES_BAO_BBN", "Planck"]
 
 
 # ================================================================
-# DERIVED QUANTITIES (from measured values)
+# DERIVED QUANTITIES
 # ================================================================
 
-# The cumulative factor: ratio of far to near H0
-H0_local = H0_MEASUREMENTS["SH0ES"]["H0"]      # 73.0
-H0_far = H0_MEASUREMENTS["Planck"]["H0"]         # 67.4
-cumulative_ratio = H0_far / H0_local              # 67.4/73.0 = 674/730 = 337/365
+H0_local = H0_MEASUREMENTS["SH0ES"]["H0"]
+H0_far = H0_MEASUREMENTS["Planck"]["H0"]
+cumulative_ratio = H0_far / H0_local
 
-# Natural log of the cumulative factor
-# ln(73.0/67.4) = ln(365/337)
-ln_cumulative = mlog(f2m(H0_local) / f2m(H0_far))  # ~0.0798
+ln_cumulative = mlog(f2m(H0_local) / f2m(H0_far))
 
-# The tension in sigma
 H0_tension_sigma = (f2m(H0_local) - f2m(H0_far)) / msqrt(
     f2m(H0_MEASUREMENTS["SH0ES"]["uncertainty"]) ** 2 +
     f2m(H0_MEASUREMENTS["Planck"]["uncertainty"]) ** 2)
@@ -136,143 +131,90 @@ H0_tension_sigma = (f2m(H0_local) - f2m(H0_far)) / msqrt(
 # ================================================================
 # THE RUNNING CURVE MODEL
 # ================================================================
-# H0(N) = H0(0) * r^N
-# where:
-#   H0(0) = H0 at zero boundary transits (local, unscreened)
-#   r = per-transit correction factor (< 1 if H0 decreases with N)
-#   N = effective boundary transit count
 
 def H0_running(H0_0, r, N):
-    """Compute H0 at boundary transit count N.
-    H0(N) = H0(0) * r^N
-
-    Args:
-      H0_0: mpf or Fraction, H0 at N=0 (local value)
-      r: mpf or Fraction, per-transit correction factor
-      N: mpf or int, boundary transit count
-    Returns: H0(N) as mpf
-    """
+    """H0(N) = H0(0) * r^N"""
     h0 = f2m(H0_0) if isinstance(H0_0, Fraction) else mpf(H0_0)
     r_val = f2m(r) if isinstance(r, Fraction) else mpf(r)
     return h0 * r_val ** mpf(N)
 
 
-def extract_r(H0_near, H0_far, N_eff):
-    """Extract per-transit correction factor from two measurements.
-    r = (H0_far / H0_near)^(1/N)
-
-    Args:
-      H0_near, H0_far: mpf or Fraction
-      N_eff: mpf or int, effective transit count between the two
-    Returns: r as mpf
-    """
+def extract_r(H0_near, H0_far_val, N_eff):
+    """r = (H0_far / H0_near)^(1/N)"""
     near = f2m(H0_near) if isinstance(H0_near, Fraction) else mpf(H0_near)
-    far = f2m(H0_far) if isinstance(H0_far, Fraction) else mpf(H0_far)
+    far = f2m(H0_far_val) if isinstance(H0_far_val, Fraction) else mpf(H0_far_val)
     return (far / near) ** (mpf("1") / mpf(N_eff))
 
 
 def required_r(N_eff):
-    """Given effective N, what r is required to produce the observed ratio?
-    r = (67.4/73.0)^(1/N) = (337/365)^(1/N)
-
-    Args: N_eff as int or mpf
-    Returns: r as mpf
-    """
+    """r = (67.4/73.0)^(1/N) = (337/365)^(1/N)"""
     return f2m(cumulative_ratio) ** (mpf("1") / mpf(N_eff))
 
 
 def one_minus_r(N_eff):
-    """The correction per transit: 1 - r.
-    Approximately ln(73.0/67.4) / N = 0.0798 / N.
-
-    Args: N_eff as int or mpf
-    Returns: 1 - r as mpf
-    """
+    """1 - r, the correction per transit."""
     return mpf("1") - required_r(N_eff)
 
 
 # ================================================================
-# MAGNITUDE CONSTRAINTS (from notebook Section 6)
+# MAGNITUDE CONSTRAINTS
 # ================================================================
 
-MAGNITUDE_TABLE = {
-    10:    {"r": None, "one_minus_r": None, "character": "~1/125"},
-    100:   {"r": None, "one_minus_r": None, "character": "~1/1250"},
-    1000:  {"r": None, "one_minus_r": None, "character": "~1/12500"},
-    10000: {"r": None, "one_minus_r": None, "character": "~1/125000"},
-}
-
-# Compute r for each N
-for N in MAGNITUDE_TABLE:
-    r_val = required_r(N)
-    MAGNITUDE_TABLE[N]["r"] = r_val
-    MAGNITUDE_TABLE[N]["one_minus_r"] = mpf("1") - r_val
+MAGNITUDE_TABLE = {}
+for _N in [10, 100, 1000, 10000]:
+    _r = required_r(_N)
+    MAGNITUDE_TABLE[_N] = {
+        "r": _r,
+        "one_minus_r": mpf("1") - _r,
+        "character": "~1/%d" % int(round(1.0 / float(mpf("1") - _r))),
+    }
 
 
 # ================================================================
-# STRUCTURAL PARALLELS (from notebook Section 5)
+# STRUCTURAL PARALLELS
 # ================================================================
 
-# VP running step size for comparison
-VP_STEP_SIZE = mpf("1") / (mpf("3") * mpi)   # 1/(3*pi) = 1/(12*R2) ~ 0.1061
+VP_STEP_SIZE = mpf("1") / (mpf("3") * mpi)
 
 STRUCTURAL_PARALLELS = {
     "alpha_running": {
         "variable": "probe energy",
         "boundaries": "flavor thresholds (quark masses)",
-        "direction": "alpha increases with energy (screening weakens)",
-        "per_boundary": "1/(3*pi) = 1/(12*R2) per unit charge^2",
+        "direction": "alpha increases with energy",
         "per_boundary_value": VP_STEP_SIZE,
-        "subgroup": "B (monotonic accumulation)",
-        "arithmetic": "Fraction, verified to 0.02 ppm",
         "derived_from": "group theory counting (Dynkin indices)",
     },
     "H0_running": {
         "variable": "effective distance / boundary count N",
         "boundaries": "soliton boundaries (galaxy clusters, filaments, voids)",
-        "direction": "H0 decreases with N (cumulative correction reduces)",
-        "per_boundary": "UNKNOWN — to be extracted",
+        "direction": "H0 decreases with N",
         "per_boundary_value": None,
-        "subgroup": "B (monotonic accumulation, predicted)",
-        "arithmetic": "Fraction, to be verified",
         "derived_from": "boundary geometry (unknown)",
     },
 }
 
 
 # ================================================================
-# CANDIDATE RATIONAL CORRECTIONS
+# CANDIDATE RATIONAL SCANNING
 # ================================================================
-# For each plausible N, compute r and check if 1-r has integer structure
 
-def scan_rational_candidates(N_min=5, N_max=10000, interesting_denoms=None):
-    """Scan N values and check if 1-r approximates a simple fraction.
+def scan_rational_candidates(N_min=5, N_max=10000):
+    """For each plausible N, check if 1-r approximates a simple fraction."""
+    interesting_denoms = [
+        3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 16, 20, 24, 25, 30,
+        32, 36, 40, 48, 50, 60, 64, 72, 75, 80, 96, 100, 120,
+        125, 128, 144, 150, 160, 192, 200, 240, 250, 256, 300,
+        360, 375, 400, 480, 500, 600, 625, 720, 750, 800, 1000,
+        1250, 1500, 2000, 2500, 5000, 10000, 12500, 125000,
+    ]
 
-    For each N, compute r = (337/365)^(1/N) and check if 1-r is close
-    to any p/q with q in interesting_denoms.
-
-    Args:
-      N_min, N_max: range of N to scan
-      interesting_denoms: list of denominators to test (default: powers of R2-related integers)
-    Returns: list of (N, r, 1-r, best_match_frac, match_quality) tuples
-    """
-    if interesting_denoms is None:
-        interesting_denoms = [
-            3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 16, 20, 24, 25, 30,
-            32, 36, 40, 48, 50, 60, 64, 72, 75, 80, 96, 100, 120,
-            125, 128, 144, 150, 160, 192, 200, 240, 250, 256, 300,
-            360, 375, 400, 480, 500, 600, 625, 720, 750, 800, 1000,
-            1024, 1250, 1500, 2000, 2500, 3000, 4000, 5000, 10000,
-            12500, 125000,
-        ]
-
-    results = []
     N_values = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]
     N_values = [n for n in N_values if N_min <= n <= N_max]
 
+    results = []
     for N in N_values:
         r_val = required_r(N)
-        omr = mpf("1") - r_val  # 1 - r
+        omr = mpf("1") - r_val
 
         best_frac = None
         best_quality = mpf("1")
@@ -302,17 +244,16 @@ def scan_rational_candidates(N_min=5, N_max=10000, interesting_denoms=None):
 # ================================================================
 
 def fit_running_curve(measurements, N_assignments):
-    """Fit H0(N) = H0(0) * r^N to a set of measurements with assigned N values.
+    """Fit H0(N) = H0(0) * r^N to measurements with assigned N values.
 
     Args:
       measurements: list of (H0_value, H0_uncertainty) as Fractions
       N_assignments: list of N values (int or mpf), same length
-    Returns: dict with H0_0, r, residuals, chi2
+    Returns: dict with H0_0, r, residuals, chi2, dof
     """
     if len(measurements) < 2:
         return None
 
-    # Use first and last points to get initial H0_0 and r
     H0_first = f2m(measurements[0][0])
     H0_last = f2m(measurements[-1][0])
     N_first = mpf(N_assignments[0])
@@ -324,7 +265,6 @@ def fit_running_curve(measurements, N_assignments):
     r_init = (H0_last / H0_first) ** (mpf("1") / (N_last - N_first))
     H0_0_init = H0_first / r_init ** N_first
 
-    # Compute residuals for all points
     residuals = []
     chi2 = mpf("0")
     for i in range(len(measurements)):
@@ -349,72 +289,47 @@ def fit_running_curve(measurements, N_assignments):
 
 
 def predict_H0(H0_0, r, N):
-    """Predict H0 at a specific boundary transit count.
-    This is a PREDICTION — it can be falsified by measurement.
-
-    Args: H0_0 (mpf), r (mpf), N (int or mpf)
-    Returns: H0 prediction as mpf
-    """
+    """Predict H0 at a specific boundary transit count."""
     return H0_0 * r ** mpf(N)
 
 
 # ================================================================
-# FALSIFICATION TESTS (from notebook Section 7)
+# FALSIFICATION TESTS
 # ================================================================
 
-def test_F1_monotonic(H0_values_ordered):
-    """F1: Are the H0 values monotonically decreasing with distance?
-    If not, the running curve thesis is not supported.
+def test_F1_strict(H0_values_ordered):
+    """F1 strict: Are raw H0 values monotonically decreasing?"""
+    for i in range(len(H0_values_ordered) - 1):
+        v_near = f2m(H0_values_ordered[i]) if isinstance(H0_values_ordered[i], Fraction) else H0_values_ordered[i]
+        v_far = f2m(H0_values_ordered[i+1]) if isinstance(H0_values_ordered[i+1], Fraction) else H0_values_ordered[i+1]
+        if v_far > v_near:
+            return (False, "H0 increases from point %d to %d: %s > %s" % (
+                i, i+1, mp.nstr(v_far, 4), mp.nstr(v_near, 4)))
+    return (True, "H0 monotonically decreasing across %d points" % len(H0_values_ordered))
 
-    Args: list of H0 values ordered by increasing distance
-    Returns: (passed, details) tuple
+
+def test_F1_soft(ordered_keys, measurements):
+    """F1 soft: Is ordering consistent with monotonic within 1-sigma?
+    Only fails if far_lower > near_upper for an adjacent pair where
+    the far central value exceeds the near central value.
     """
-    # F1 strict: raw values
-    H0_ordered_values = [H0_MEASUREMENTS[k]["H0"] for k in H0_ORDERED]
-    f1_strict, f1_strict_detail = test_F1_monotonic(H0_ordered_values)
-    chk_bool("F1 strict: raw H0 monotonically decreasing",
-             f1_strict, f1_strict_detail, checks)
-
-    # F1 soft: within 1-sigma bands, consistent with monotonic?
-    # SH0ES and H0LiCOW overlap at 1 sigma (73.0±1.0 vs 73.3±1.8)
-    bands_consistent = True
-    for i in range(len(H0_ORDERED) - 1):
-        m_near = H0_MEASUREMENTS[H0_ORDERED[i]]
-        m_far = H0_MEASUREMENTS[H0_ORDERED[i + 1]]
-        upper_far = f2m(m_far["H0"] + m_far["uncertainty"])
-        lower_near = f2m(m_near["H0"] - m_near["uncertainty"])
-        if upper_far > lower_near:
-            pass  # bands overlap or far < near — consistent
-        # only fails if far is ABOVE near even at 1 sigma
-    # Real test: is far+1sigma > near-1sigma for any adjacent pair
-    # where far > near in central value?
-    soft_violations = []
-    for i in range(len(H0_ORDERED) - 1):
-        m_near = H0_MEASUREMENTS[H0_ORDERED[i]]
-        m_far = H0_MEASUREMENTS[H0_ORDERED[i + 1]]
-        if f2m(m_far["H0"]) > f2m(m_near["H0"]):
-            lower_far = f2m(m_far["H0"] - m_far["uncertainty"])
-            upper_near = f2m(m_near["H0"] + m_near["uncertainty"])
-            if lower_far > upper_near:
-                soft_violations.append("%s > %s even at 1 sigma" % (
-                    H0_ORDERED[i+1], H0_ORDERED[i]))
-    f1_soft = len(soft_violations) == 0
-    chk_bool("F1 soft: monotonic within 1-sigma uncertainties",
-             f1_soft,
-             "violations: %s" % (soft_violations if soft_violations else "none — bands overlap"),
-             checks)
+    violations = []
+    for i in range(len(ordered_keys) - 1):
+        m_near = measurements[ordered_keys[i]]
+        m_far = measurements[ordered_keys[i + 1]]
+        near_val = f2m(m_near["H0"])
+        far_val = f2m(m_far["H0"])
+        if far_val > near_val:
+            far_lower = far_val - f2m(m_far["uncertainty"])
+            near_upper = near_val + f2m(m_near["uncertainty"])
+            if far_lower > near_upper:
+                violations.append("%s > %s even at 1-sigma" % (
+                    ordered_keys[i + 1], ordered_keys[i]))
+    return (len(violations) == 0, violations)
 
 
 def test_F2_rational_r(r_val, max_denom=10000, threshold=0.001):
-    """F2: Is r a recognizable exact rational?
-    Tests if 1-r is close to p/q with small q.
-
-    Args:
-      r_val: mpf, the per-transit correction
-      max_denom: maximum denominator to test
-      threshold: maximum relative error for a "match"
-    Returns: (passed, best_fraction, match_quality)
-    """
+    """F2: Is r a recognizable exact rational?"""
     omr = mpf("1") - r_val
     best_frac = None
     best_quality = mpf("1")
@@ -433,15 +348,7 @@ def test_F2_rational_r(r_val, max_denom=10000, threshold=0.001):
 
 
 def test_F3_two_param(residuals, uncertainties, threshold_chi2_per_dof=3.0):
-    """F3: Is the two-parameter fit sufficient?
-    If chi2/dof > threshold, the simple model is insufficient.
-
-    Args:
-      residuals: list of mpf residuals
-      uncertainties: list of mpf uncertainties
-      threshold_chi2_per_dof: maximum acceptable chi2/dof
-    Returns: (passed, chi2, dof, chi2_per_dof)
-    """
+    """F3: Is the two-parameter fit sufficient?"""
     chi2 = mpf("0")
     for i in range(len(residuals)):
         if uncertainties[i] > mpf("0"):
@@ -452,17 +359,9 @@ def test_F3_two_param(residuals, uncertainties, threshold_chi2_per_dof=3.0):
     return (passed, chi2, dof, chi2_dof)
 
 
-def test_F4_intermediate_distinct(H0_local_val, H0_far_val, H0_intermediate_vals,
-                                    sigma_threshold=1.5):
-    """F4: Do intermediate values remain distinct from endpoints?
-    If intermediate H0 converges to an endpoint, the curve collapses.
-
-    Args:
-      H0_local_val, H0_far_val: mpf
-      H0_intermediate_vals: list of (value, uncertainty) as mpf pairs
-      sigma_threshold: minimum sigma separation from both endpoints
-    Returns: (passed, details)
-    """
+def test_F4_intermediate_distinct(H0_local_val, H0_far_val,
+                                    H0_intermediate_vals, sigma_threshold=1.5):
+    """F4: Do intermediate values remain distinct from endpoints?"""
     local = f2m(H0_local_val) if isinstance(H0_local_val, Fraction) else H0_local_val
     far = f2m(H0_far_val) if isinstance(H0_far_val, Fraction) else H0_far_val
 
@@ -484,22 +383,17 @@ def test_F4_intermediate_distinct(H0_local_val, H0_far_val, H0_intermediate_vals
 
 
 # ================================================================
-# COMPARISON TO ALPHA RUNNING (structural parallel)
+# HELPERS
 # ================================================================
 
 def alpha_running_step():
-    """The known per-threshold step for alpha running.
-    Returns 1/(3*pi) = 1/(12*R2) as mpf.
-    """
+    """1/(3*pi) = 1/(12*R2)"""
     return VP_STEP_SIZE
 
 
 def H0_to_alpha_ratio(N_eff):
-    """Ratio of H0 per-transit correction to alpha per-threshold correction.
-    Returns (1-r_H0) / (1/(3*pi)) for given N.
-    """
-    omr = one_minus_r(N_eff)
-    return omr / VP_STEP_SIZE
+    """Ratio of H0 per-transit correction to alpha per-threshold correction."""
+    return one_minus_r(N_eff) / VP_STEP_SIZE
 
 
 # ================================================================
@@ -559,18 +453,15 @@ if __name__ == "__main__":
     print("-" * 70)
     print()
 
-    # Test H0_running function
     test_H0 = H0_running(Fraction(730, 10), mpf("0.99"), 10)
     expected_H0 = f2m(Fraction(730, 10)) * mpf("0.99") ** 10
     chk("H0_running(73.0, 0.99, 10)",
         test_H0, expected_H0, 10, checks)
 
-    # Test extract_r
     r_test = extract_r(Fraction(730, 10), Fraction(674, 10), 100)
     chk("extract_r recovers required_r(100)",
         r_test, required_r(100), 10, checks)
 
-    # Test roundtrip: H0(0) * r^N = H0_far
     for N_test in [10, 100, 1000]:
         r_N = required_r(N_test)
         H0_pred = H0_running(H0_local, r_N, N_test)
@@ -603,9 +494,16 @@ if __name__ == "__main__":
     print()
 
     H0_ordered_values = [H0_MEASUREMENTS[k]["H0"] for k in H0_ORDERED]
-    f1_passed, f1_detail = test_F1_monotonic(H0_ordered_values)
-    chk_bool("F1: H0 monotonically decreasing with distance",
-             f1_passed, f1_detail, checks)
+
+    f1_strict_passed, f1_strict_detail = test_F1_strict(H0_ordered_values)
+    chk_bool("F1 strict: raw H0 monotonically decreasing",
+             f1_strict_passed, f1_strict_detail, checks)
+
+    f1_soft_passed, f1_soft_violations = test_F1_soft(H0_ORDERED, H0_MEASUREMENTS)
+    chk_bool("F1 soft: monotonic within 1-sigma uncertainties",
+             f1_soft_passed,
+             "violations: %s" % (f1_soft_violations if f1_soft_violations else "none (bands overlap)"),
+             checks)
 
     # --------------------------------------------------------
     print()
@@ -647,7 +545,6 @@ if __name__ == "__main__":
     print("-" * 70)
     print()
 
-    # Hypothetical N assignments (THESE ARE GUESSES — not derived)
     example_N = [0, 5, 50, 500, 5000]
     example_meas = [
         (H0_MEASUREMENTS["SH0ES"]["H0"], H0_MEASUREMENTS["SH0ES"]["uncertainty"]),
@@ -716,9 +613,11 @@ if __name__ == "__main__":
     n_fail = sum(1 for _, s in checks if s == "FAIL")
     print()
     if n_fail == 0:
-        print("  HUBBLE LIBRARY: OPERATIONAL (hypothesis status: %s)" % HYPOTHESIS_STATUS)
+        print("  HUBBLE LIBRARY: ALL PASS (hypothesis status: %s)" % HYPOTHESIS_STATUS)
     else:
-        print("  HUBBLE LIBRARY: %d FAILURES" % n_fail)
+        n_pass = sum(1 for _, s in checks if s == "PASS")
+        print("  HUBBLE LIBRARY: %d PASS, %d FAIL (hypothesis status: %s)" % (
+            n_pass, n_fail, HYPOTHESIS_STATUS))
         for tag, status in checks:
             if status == "FAIL":
                 print("    - %s" % tag)
@@ -731,3 +630,153 @@ if __name__ == "__main__":
     print("=" * 70)
     print("PHYS24_HUBBLE_LIB SELF-TEST COMPLETE")
     print("=" * 70)
+
+
+# Report on the Null value in output: TOTAL: 16 PASS, 1 FAIL out of 17
+"""
+# The F1 Strict Null: What the Monotonicity Failure Means
+
+**Library:** phys24_hubble_lib.py
+
+**Test:** F1 strict — raw H0 monotonically decreasing with distance
+
+**Result:** FAIL
+
+**Date:** April 3, 2026
+
+---
+
+## 1. The Observation
+
+The five H₀ measurements, ordered by increasing effective distance:
+
+| Rank | Method | H₀ (km/s/Mpc) | Uncertainty | Distance Class |
+|---|---|---|---|---|
+| 1 | SH0ES | 73.0 | ±1.0 | local |
+| 2 | H0LiCOW | 73.3 | ±1.8 | local-medium |
+| 3 | CCHP | 69.8 | ±1.7 | medium |
+| 4 | DES+BAO+BBN | 67.4 | ±1.2 | high |
+| 5 | Planck | 67.4 | ±0.5 | maximum |
+
+The F1 strict test checks whether each value is less than or equal to the one before it. It fails at the first pair: H0LiCOW (73.3) > SH0ES (73.0). The sequence is not monotonically decreasing.
+
+The F1 soft test checks whether this violation survives within 1-sigma uncertainties. SH0ES has 73.0 ± 1.0, so its upper bound is 74.0. H0LiCOW has 73.3 ± 1.8, so its lower bound is 71.5. The bands overlap by 2.5 km/s/Mpc. The soft test passes — the violation is within measurement noise.
+
+---
+
+## 2. What the FAIL Does NOT Mean
+
+The FAIL does not mean the running curve hypothesis is dead. Here is why.
+
+The running curve hypothesis says: H₀(N) = H₀(0) × r^N, where N is the effective boundary transit count. For this curve to be monotonically decreasing, every measurement at higher N must give a lower H₀. But the test assumes the ordering SH0ES → H0LiCOW → CCHP → DES → Planck corresponds to strictly increasing N. That assumption is the weak link, not the data.
+
+SH0ES measures H₀ using Cepheid-calibrated Type Ia supernovae in local galaxies (distances ~20-40 Mpc). H0LiCOW measures H₀ using gravitational lensing time delays through a lens galaxy (distances ~hundreds of Mpc to the source, but the light passes through ONE specific foreground galaxy). The effective boundary transit count for H0LiCOW depends on the specific line of sight — it could be lower, equal to, or higher than SH0ES depending on the large-scale structure along that particular path.
+
+The 0.3 km/s/Mpc difference (73.3 vs 73.0) is 0.4% — well within the combined 2.1 km/s/Mpc uncertainty. These two measurements are statistically indistinguishable. Assigning them to different distance classes with a strict ordering is the error, not the data.
+
+---
+
+## 3. What the FAIL DOES Mean
+
+The FAIL tells us three concrete things.
+
+**First:** SH0ES and H0LiCOW are in the same distance class. They should not be treated as distinct points on a running curve. They are two measurements of the same effective quantity — H₀ at low boundary transit count — made with different methods. Their agreement (73.0 vs 73.3, 0.4% apart) is a consistency check, not two points on a curve.
+
+**Second:** the running curve hypothesis has at most three independent distance classes in the current data, not five:
+
+| Class | Methods | H₀ range | Status |
+|---|---|---|---|
+| Local (low N) | SH0ES + H0LiCOW | 73.0 - 73.3 | Two methods agree |
+| Intermediate (medium N) | CCHP | 69.8 | Single method |
+| Cosmological (high N) | DES + Planck | 67.4 | Two methods agree |
+
+Three classes, three H₀ values, strictly decreasing: 73.2 (average of local) > 69.8 > 67.4. A two-parameter model (H₀(0) and r) through three points has one degree of freedom. This is a fit, not an overdetermination. The curve thesis requires at least four independent distance classes to be testable.
+
+**Third:** the effective boundary transit count N is the primary unknown, not r. The magnitude constraint table shows that r is fully determined once N is known. The question is not "what is r?" but "what is N for each measurement method?" This requires published large-scale structure catalogs along the specific lines of sight used by each measurement team. Without N, the curve cannot be fit.
+
+---
+
+## 4. What the Two Tests Together Mean
+
+| Test | Result | Interpretation |
+|---|---|---|
+| F1 strict | FAIL | Raw ordering has a 0.3 km/s/Mpc inversion at rank 1-2 |
+| F1 soft | PASS | The inversion is within 1-sigma measurement noise |
+
+Together: the data is consistent with monotonic decrease but does not prove it. The inversion at rank 1-2 is noise, not signal. The real structure is three distance classes with strictly decreasing H₀.
+
+This is the correct state for an active investigation with limited data. The hypothesis survives but is not confirmed. The falsification test did its job — it identified the weakest point in the data ordering and showed that it is not a hard violation.
+
+---
+
+## 5. What Would Change the Assessment
+
+**Upgrade to FAIL (hypothesis weakened):** A future measurement at an unambiguously intermediate distance (100-500 Mpc, well-determined line of sight) that gives H₀ > 73 km/s/Mpc. This would be a genuine non-monotonic value that cannot be explained by distance class overlap.
+
+**Upgrade to PASS (hypothesis strengthened):** Multiple measurements at different well-characterized distances that all fall on a smooth curve when plotted against estimated N. The curve would need to pass through 73.2 at low N, 69.8 at medium N, and 67.4 at high N, with intermediate values falling on the same curve.
+
+**Kill (hypothesis dead):** Discovery of a systematic error in either the local or cosmological measurement chain that resolves the Hubble tension without any distance-dependent running. If the tension disappears, the running curve is unnecessary.
+
+**Unlock (hypothesis testable):** Published estimates of effective boundary transit count N for each measurement method, derived from SDSS, 2dF, or Planck lensing maps of large-scale structure along the specific lines of sight. This is the blocking dependency. Without N, the curve fit is illustrative only.
+
+---
+
+## 6. The Data Gap
+
+The self-test output shows:
+
+```
+UNKNOWN QUANTITIES (None values)
+  SH0ES: effective_N = None
+  H0LiCOW: effective_N = None
+  CCHP: effective_N = None
+  DES_BAO_BBN: effective_N = None
+  Planck: effective_N = None
+
+  5 of 5 measurements have unknown effective N.
+  This is the primary data gap blocking the analysis.
+```
+
+Every effective_N is None. This is the honest state of the library. The running curve model H₀(N) = H₀(0) × r^N has two parameters (H₀(0) and r) and five data points, but zero of those data points have a known N coordinate. The model is underdetermined in its independent variable.
+
+The example fit uses guessed N values [0, 5, 50, 500, 5000] and produces chi²/dof = 6.98 — a poor fit, confirming the guesses are wrong. Different N assignments would give different r values and different chi² values. Without real N values, the fit is meaningless.
+
+The per-transit correction r is not independently unknown — it is fully determined by N through the constraint r^N = 67.4/73.0 = 337/365. Knowing N for any one measurement (other than the endpoints) would determine r and enable prediction at all other distances. This is a one-parameter problem disguised as a two-parameter problem.
+
+---
+
+## 7. The Structural Parallel
+
+The alpha running computation in PHYS-5 faces none of these ambiguities because the independent variable (energy scale μ) is directly measured at every point. The effective boundary transit count for alpha running is known exactly — it is the number of quark flavor thresholds between the two energy scales. The per-threshold correction 1/(3π) = 1/(12R₂) is derived from group theory.
+
+The Hubble running hypothesis has the same mathematical structure but none of the same certainty in the independent variable. Energy scales are measured by accelerators. Boundary transit counts for cosmological light paths are estimated from galaxy surveys with large systematic uncertainties.
+
+This asymmetry is the fundamental difference between the two cases:
+
+| Property | α running | H₀ running (hypothesis) |
+|---|---|---|
+| Independent variable known? | Yes (energy μ from accelerator) | No (N from structure catalogs, not measured) |
+| Per-boundary correction derived? | Yes (Dynkin indices, group theory) | No (unknown) |
+| Data points | Continuous (any μ above confinement) | 3-5 discrete distance classes |
+| Model tested to | 0.02 ppm (PHYS-5) | Not tested (no N values) |
+
+The hypothesis borrows the structure of alpha running but cannot borrow its certainty until N is known.
+
+---
+
+## 8. Recommendation
+
+Keep the F1 strict FAIL in the self-test. Do not relax it. It is informative.
+
+The FAIL tells every future session: "the raw data ordering has an inversion at rank 1-2, SH0ES and H0LiCOW are in the same distance class, and the running curve hypothesis has three effective data points, not five."
+
+The soft PASS tells them: "the inversion is within noise and the data is consistent with monotonic decrease."
+
+Both facts together give the correct picture: a hypothesis that survives its first contact with data but is not yet testable due to the N gap.
+
+The next step is not more modeling. It is data: published estimates of effective boundary transit count for at least one intermediate measurement method (CCHP is the best candidate because its distance class is most distinct from both endpoints). With one N value, r is determined and the curve makes predictions at every other distance.
+
+---
+
+*F1 Strict Null Report. 1 FAIL out of 17 checks. The FAIL is data, not a bug. The hypothesis survives within uncertainties but cannot be tested until effective boundary transit counts are known. April 3, 2026.*
+"""
