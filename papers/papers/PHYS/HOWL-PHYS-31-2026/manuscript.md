@@ -85,6 +85,8 @@ A "hit" on target T occurs when |value − T| / |T| < tolerance. The score for a
 
 ## 4. The Beta Pool Score
 
+![Fig. 5: The six beta pool hits with formula values (colored dots) vs measured values (magenta diamonds) and tolerance bands.](./figures/phys31_05_six_hits.png)
+
 The beta pool [1, 3, 5, 6, 7, 10, 13, 15, 19, 20, 22, 25, 27, 38, 41] hits 6 of 8 targets.
 
 DM/baryon ratio: (22/13) × π = 5.317 vs 5.320. Miss: 0.065%. The formula uses the CD-derived integer 22 and the b₂' numerator 13. This was the original motivation for investigating beta-integer cosmological formulas.
@@ -109,6 +111,8 @@ The formulas are algebraically neat and the misses are small. The question is wh
 
 ## 5. The Monte Carlo Result
 
+![Fig. 3: Score distribution of 10,000 random pools. The beta pool's score of 6 (orange) is below the mean of 6.2. The modal random score is 7.](./figures/phys31_03_score_distribution.png)
+
 Ten thousand random pools were generated, each containing 15 distinct integers drawn uniformly from [1, 50]. Each pool was scanned against all eight targets using the same formula template and tolerances. The range [1, 50] is slightly larger than the beta pool's range [1, 41], making the random pools more capable, not less — a conservative choice.
 
 The result: 8,128 of 10,000 random pools scored 6 or more hits. The p-value is 0.8128.
@@ -125,9 +129,13 @@ The p-value was stable throughout the run: 0.806 at 2,000 trials, 0.808 at 4,000
 
 (Backed by phys31_statistical_control.py Section 5: all 10,000 trials, Section 6: p = 0.8128.)
 
+![Fig. 3: Score distribution of 10,000 random pools. The beta pool's score of 6 (orange) is below the mean of 6.2. The modal random score is 7.](./figures/phys31_03_score_distribution.png)
+
 ---
 
 ## 6. Why Random Pools Do So Well
+
+![Fig. 1: Formula space tiling — ~2,250 candidates from 15 integers densely cover the number line, making hits on any target expected.](./figures/phys31_01_formula_space.png)
 
 The explanation is combinatorial. Fifteen integers generate approximately 2,250 candidate values through the (p/q)×π^b template with the α option. These values span six orders of magnitude, from ~0.001 to ~2,000. Against 8 targets with tolerances of 0.3–1%, the expected number of hits is high simply from the density of candidates.
 
@@ -137,9 +145,15 @@ The same logic applies to each target. The formula space is dense enough that ac
 
 The structural lesson: any test of "do these integers produce good formulas?" must account for the combinatorial explosion of candidates. With 15 integers, 5 π powers, and an α multiplier, the search space is too large relative to 8 targets. A meaningful test would either need far more targets (making accidental hits rare), far tighter tolerances (excluding most candidates), or a much more restrictive formula template.
 
+![Fig. 6: Histogram of all ~2,250 candidate formula values. Green lines mark targets that are hit, red lines mark misses. Every target sits in a dense region of candidates.](./figures/phys31_06_candidate_density.png)
+
+![Fig. 8: Estimated hit rates for random pools on each target. The beta pool misses the two hardest targets (n_s and log Λ) — the same ones most random pools miss.](./figures/phys31_08_per_target_rates.png)
+
 ---
 
 ## 7. What Survives
+
+![Fig. 2: Track A (left) makes one unique prediction per observable from coupling running. Track B (right) selects best matches from thousands of candidates. Only Track A survives statistical testing.](./figures/phys31_02_dynamics_vs_numerology.png)
 
 The null result draws a clean line between two types of findings in the HOWL series.
 
@@ -154,6 +168,8 @@ The cosmological formulas are parked. The expressions DM/baryon = (22/13)π, Ω_
 ---
 
 ## 8. The sin²θ_W Distinction
+
+![Fig. 7: The weak mixing angle from two different mechanisms — Track A running (green curve, unique prediction) vs Track B formula 3/13 (orange line, selected from scan). Same approximate value, different evidence quality.](./figures/phys31_07_sin2tw_two_paths.png)
 
 The weak mixing angle sin²θ_W = 0.23122 appears as a hit in both Track A and Track B, but through different mechanisms.
 
