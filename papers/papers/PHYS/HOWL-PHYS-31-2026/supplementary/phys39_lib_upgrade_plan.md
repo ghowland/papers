@@ -188,6 +188,8 @@ As each paper is written, add new values and methods to this list:
 | PHYS-38 | (three-loop estimate, TBD) | (TBD) | (TBD) |
 | PHYS-39 | Compilation — triggers lib upgrade | All above compiled | All above compiled |
 
+- DATA-5 paper written with phys39_lib as the source of truth of everything.  DATA series now uses the Python libs as the source of truth to explain things, because that is how we work
+
 ---
 
 ### THE UPGRADE PROCESS
