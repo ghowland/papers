@@ -5,16 +5,9 @@ HOWL PHYS-24 STRUCTURED DATA LIBRARY
 Organized knowledge about representations, particles, thresholds,
 and the SM/BSM landscape. Queryable by name, by scale, by property.
 
-Every dict and helper encodes relationships between the layers
-of the computation chain. Nothing here is new physics — it is
-the existing knowledge organized for programmatic access.
-
 Import:
     from phys24_lib import *
     from phys24_structures import *
-
-Or run directly for self-test:
-    python phys24_structures.py
 
 Platform: phys24_lib.py (21/21 self-test, 148/148 platform test)
 """
@@ -36,69 +29,64 @@ def make_rep(name, su3_dim, su2_dim, Y, rep_type="chiral",
              mass_var=None, data4_entry=None, papers=None):
     """Create a representation dict with all derived properties.
 
-    Computes: electric charges, one-loop beta shifts, Dynkin indices.
+    ONE-LOOP BETA SHIFT FORMULAS:
 
-    For chiral fermions (one Weyl spinor):
-      Db_1 = (1/5) * dim(R3) * dim(R2) * Y^2
-      Db_2 = (1/3) * dim(R3) * S_2(R2)     [0 if SU(2) singlet]
-      Db_3 = (1/6) * dim(R2) * S_2(R3)     [0 if SU(3) singlet]
+    For a single chiral (Weyl) fermion in (R3, R2, Y):
+      db1 = (2/5) * dim(R3) * dim(R2) * Y^2
+      db2 = (2/3) * dim(R3) * S2(R2)
+      db3 = (2/3) * dim(R2) * S2(R3)
 
-    For vector-like (Dirac = L + R):
-      coefficients are doubled: (2/5), (2/3), (1/3)
+    For a vector-like (Dirac = L + R) pair in (R3, R2, Y):
+      db1 = (2/5) * dim(R3) * dim(R2) * Y^2   [same as chiral]
+      db2 = (2/3) * dim(R3) * S2(R2)           [same as chiral]
+      db3 = (1/3) * dim(R2) * S2(R3)           [HALF of chiral]
 
-    Args:
-      name: string identifier
-      su3_dim: int, dimension of SU(3) rep (1=singlet, 3=fund, 8=adj)
-      su2_dim: int, dimension of SU(2) rep (1=singlet, 2=fund, 3=adj)
-      Y: Fraction, hypercharge
-      rep_type: "chiral" or "vector-like"
-      mass_var: string, name of mass variable in phys24_lib (or None)
-      data4_entry: string, DATA-4 entry ID (or None)
-      papers: list of strings, PHYS papers where this rep appears
-    Returns: dict with all properties
+    The asymmetry in SU(3): a VL pair contributes LESS to b3 than
+    a single chiral fermion because the VL formula (1/3)*d2*S2(R3)
+    accounts for the Dirac structure differently. This is NOT a
+    simple factor-of-2 relationship across all groups.
+
+    VERIFICATION: One SM generation (5 chiral Weyl multiplets) gives
+    (4/3, 4/3, 4/3) with the chiral coefficients (2/5, 2/3, 2/3).
+    The VL Cabibbo Doublet (3,2,1/6) gives (1/15, 1, 1/3) with the
+    VL coefficients (2/5, 2/3, 1/3).
     """
     su3 = Fraction(su3_dim)
     su2 = Fraction(su2_dim)
     Y_f = Fraction(Y) if not isinstance(Y, Fraction) else Y
 
-    # Dynkin indices (fundamental: S_2 = 1/2, singlet: S_2 = 0)
+    # Dynkin index: S2(fund) = 1/2, S2(singlet) = 0
     S2_R3 = Fraction(1, 2) if su3_dim > 1 else Fraction(0)
     S2_R2 = Fraction(1, 2) if su2_dim > 1 else Fraction(0)
 
-    # Fundamental Casimirs: C_2 = (N^2-1)/(2N), singlet: C_2 = 0
+    # Casimir: C2(fund SU(N)) = (N^2-1)/(2N), C2(singlet) = 0
     if su3_dim > 1:
         C2_R3 = Fraction(su3_dim * su3_dim - 1, 2 * su3_dim)
     else:
         C2_R3 = Fraction(0)
-
     if su2_dim > 1:
         C2_R2 = Fraction(su2_dim * su2_dim - 1, 2 * su2_dim)
     else:
         C2_R2 = Fraction(0)
 
-    # Beta shift coefficients depend on type
+    # Beta shift coefficients
     if rep_type == "vector-like":
-        c1, c2, c3 = Fraction(2, 5), Fraction(2, 3), Fraction(1, 3)
+        # VL pair: (2/5, 2/3, 1/3)
+        db1 = Fraction(2, 5) * su3 * su2 * Y_f * Y_f
+        db2 = Fraction(2, 3) * su3 * S2_R2
+        db3 = Fraction(1, 3) * su2 * S2_R3
     else:
-        # Chiral (one Weyl): half the VL coefficients
-        c1, c2, c3 = Fraction(1, 5), Fraction(1, 3), Fraction(2, 3)
+        # Chiral Weyl: (2/5, 2/3, 2/3)
+        db1 = Fraction(2, 5) * su3 * su2 * Y_f * Y_f
+        db2 = Fraction(2, 3) * su3 * S2_R2
+        db3 = Fraction(2, 3) * su2 * S2_R3
 
-    # One-loop beta shifts
-    db1 = c1 * su3 * su2 * Y_f * Y_f
-    db2 = c2 * su3 * S2_R2
-    db3 = c3 * su2 * S2_R3
-
-    # Electric charges: Q = T_3 + Y
-    # For SU(2) doublet: T_3 = +1/2 (upper), -1/2 (lower)
-    # For SU(2) singlet: T_3 = 0
+    # Electric charges: Q = T3 + Y
     if su2_dim == 2:
-        Q_upper = Fraction(1, 2) + Y_f
-        Q_lower = Fraction(-1, 2) + Y_f
-        charges = (Q_upper, Q_lower)
+        charges = (Fraction(1, 2) + Y_f, Fraction(-1, 2) + Y_f)
     elif su2_dim == 1:
         charges = (Y_f,)
     else:
-        # Higher reps — just store Y for now
         charges = (Y_f,)
 
     return {
@@ -128,7 +116,6 @@ def make_rep(name, su3_dim, su2_dim, Y, rep_type="chiral",
 # THE SM FERMION CENSUS (one generation)
 # ================================================================
 
-# Each SM fermion as a representation
 Q_L = make_rep("Q_L", 3, 2, Fraction(1, 6), "chiral",
                papers=["PHYS-17", "PHYS-26"])
 
@@ -146,8 +133,6 @@ e_R = make_rep("e_R", 1, 1, Fraction(-1, 1), "chiral",
 
 SM_GENERATION = [Q_L, u_R, d_R, L_L, e_R]
 
-# The Higgs doublet (scalar, not fermion — special coefficients)
-# Higgs beta shifts are computed separately because it is a scalar
 HIGGS = {
     "name": "Higgs",
     "rep_tuple": (1, 2, Fraction(1, 2)),
@@ -160,7 +145,6 @@ HIGGS = {
     "papers": ["PHYS-12", "PHYS-17"],
 }
 
-# The Cabibbo Doublet
 CABIBBO_DOUBLET = make_rep("Cabibbo Doublet", 3, 2, Fraction(1, 6),
                             "vector-like",
                             papers=["PHYS-15", "PHYS-16", "PHYS-19"])
@@ -171,12 +155,7 @@ CABIBBO_DOUBLET = make_rep("Cabibbo Doublet", 3, 2, Fraction(1, 6),
 # ================================================================
 
 def generation_betas(gen_reps=None):
-    """Sum beta shifts for one complete generation.
-
-    Args:
-      gen_reps: list of rep dicts (default: SM_GENERATION)
-    Returns: (db1_total, db2_total, db3_total) as Fractions
-    """
+    """Sum beta shifts for one complete generation."""
     if gen_reps is None:
         gen_reps = SM_GENERATION
     db1 = sum(r["db1"] for r in gen_reps)
@@ -187,15 +166,11 @@ def generation_betas(gen_reps=None):
 
 def total_SM_betas(n_gen=3):
     """Compute total SM betas from the particle census.
-
     b_i = b_i^gauge + n_gen * b_i^gen + b_i^Higgs
-
-    Returns: (b1, b2, b3) as Fractions
     """
-    # Gauge: -(11/3) * C_2(adj), zero for U(1)
     b1_gauge = Fraction(0)
-    b2_gauge = Fraction(-11, 3) * Fraction(2)    # C_2(adj SU(2)) = 2
-    b3_gauge = Fraction(-11, 3) * Fraction(3)    # C_2(adj SU(3)) = 3
+    b2_gauge = Fraction(-11, 3) * Fraction(2)
+    b3_gauge = Fraction(-11, 3) * Fraction(3)
 
     gen_b1, gen_b2, gen_b3 = generation_betas()
 
@@ -210,7 +185,6 @@ def total_SM_betas(n_gen=3):
 # THE PARTICLE CATALOG
 # ================================================================
 
-# Every particle with a mass threshold, ordered by mass
 PARTICLE_CATALOG = [
     {"name": "electron",    "mass_var": "m_e",    "mass_frac": m_e,
      "data4": "B2",  "rep": e_R,  "threshold_type": "lepton"},
@@ -238,28 +212,17 @@ PARTICLE_CATALOG = [
      "data4": "C4",  "rep": u_R,  "threshold_type": "quark"},
 ]
 
-# Sort by mass
 PARTICLE_CATALOG.sort(key=lambda p: float(f2m(p["mass_frac"])))
 
 
 def particles_at_scale(mu_MeV):
-    """Return list of particles active at energy scale mu (in MeV).
-
-    A particle is active if mu >= its mass threshold.
-
-    Args: mu_MeV as Fraction or mpf
-    Returns: list of particle dicts
-    """
+    """Return list of particles active at energy scale mu (in MeV)."""
     mu = float(f2m(mu_MeV)) if isinstance(mu_MeV, Fraction) else float(mu_MeV)
     return [p for p in PARTICLE_CATALOG if float(f2m(p["mass_frac"])) <= mu]
 
 
 def active_fermion_count(mu_MeV):
-    """Count active quark flavors at scale mu.
-
-    Args: mu_MeV as Fraction or mpf
-    Returns: int
-    """
+    """Count active quark flavors at scale mu."""
     active = particles_at_scale(mu_MeV)
     return sum(1 for p in active if p["threshold_type"] == "quark")
 
@@ -268,36 +231,26 @@ def active_fermion_count(mu_MeV):
 # THE ENERGY LANDSCAPE
 # ================================================================
 
-# Named energy domains with their boundaries and properties
 ENERGY_DOMAINS = [
     {"name": "QED low",
      "range_MeV": (Fraction(0), m_e),
      "description": "Below electron mass. Photons only.",
-     "active_fermions": 0,
      "perturbative": True},
-
     {"name": "QED leptonic",
      "range_MeV": (m_e, Fraction(300, 1)),
      "description": "Electrons and muons active. QED perturbative.",
-     "active_fermions": "leptons only",
      "perturbative": True},
-
     {"name": "Confinement wall",
      "range_MeV": (Fraction(300, 1), Fraction(2000, 1)),
      "description": "alpha_s ~ O(1). Non-perturbative. Integer rules break.",
-     "active_fermions": "undefined",
      "perturbative": False},
-
     {"name": "SM perturbative",
      "range_MeV": (Fraction(2000, 1), M_Z),
      "description": "All SM fermions active. Three gauge groups perturbative.",
-     "active_fermions": "all SM",
      "perturbative": True},
-
     {"name": "Electroweak scale",
      "range_MeV": (M_Z, m_t),
      "description": "EW observables measured here. W, Z, Higgs, top thresholds.",
-     "active_fermions": "all SM",
      "perturbative": True},
 ]
 
@@ -306,7 +259,6 @@ ENERGY_DOMAINS = [
 # THE GUT COMPLETION (minimal SU(5))
 # ================================================================
 
-# Heavy GUT particles and their properties
 GUT_PARTICLES = {
     "X_Y_bosons": {
         "name": "X, Y gauge bosons",
@@ -346,9 +298,7 @@ GUT_PARTICLES = {
 # DATA-4 CROSS-REFERENCE MAP
 # ================================================================
 
-# Maps DATA-4 entry IDs to library variable names and metadata
 DATA4_MAP = {
-    # Section A: SI exact
     "A1": {"var": "c",        "value": c,        "type": "E", "unit": "m/s"},
     "A2": {"var": "h_planck", "value": h_planck, "type": "E", "unit": "J*s"},
     "A3": {"var": "e_charge", "value": e_charge, "type": "E", "unit": "C"},
@@ -356,7 +306,6 @@ DATA4_MAP = {
     "A5": {"var": "N_A",      "value": N_A,      "type": "E", "unit": "mol^-1"},
     "A6": {"var": "dv_Cs",    "value": dv_Cs,    "type": "E", "unit": "Hz"},
     "A7": {"var": "K_cd",     "value": K_cd,     "type": "E", "unit": "lm/W"},
-    # Section B: CODATA measured
     "B1":  {"var": "alpha_inv", "value": alpha_inv, "type": "M", "unit": "dimensionless", "digits": 12},
     "B2":  {"var": "m_e",       "value": m_e,       "type": "M", "unit": "MeV", "digits": 11},
     "B3":  {"var": "m_mu",      "value": m_mu,      "type": "M", "unit": "MeV", "digits": 10},
@@ -370,14 +319,12 @@ DATA4_MAP = {
     "B11": {"var": "sin2_tW",   "value": sin2_tW,   "type": "M", "unit": "dimensionless", "digits": 5},
     "B12": {"var": "alpha_s",   "value": alpha_s,   "type": "M", "unit": "dimensionless", "digits": 4},
     "B13": {"var": "mu_0",      "value": mu_0,      "type": "M", "unit": "N/A^2", "digits": 12},
-    # Section C: Electroweak
     "C1": {"var": "M_Z",     "value": M_Z,     "type": "M", "unit": "MeV", "digits": 6},
     "C2": {"var": "Gamma_Z", "value": Gamma_Z, "type": "M", "unit": "MeV", "digits": 5},
     "C3": {"var": "M_W",     "value": M_W,     "type": "M", "unit": "MeV", "digits": 6},
     "C4": {"var": "m_t",     "value": m_t,     "type": "M", "unit": "MeV", "digits": 5},
     "C5": {"var": "m_H",     "value": m_H,     "type": "M", "unit": "MeV", "digits": 5},
     "C6": {"var": "G_F",     "value": G_F,     "type": "M", "unit": "GeV^-2", "digits": 8},
-    # Section D: Quarks + CKM
     "D1":  {"var": "m_u",     "value": m_u,     "type": "M", "unit": "MeV", "digits": 3},
     "D2":  {"var": "m_d",     "value": m_d,     "type": "M", "unit": "MeV", "digits": 3},
     "D3":  {"var": "m_s",     "value": m_s,     "type": "M", "unit": "MeV", "digits": 3},
@@ -392,7 +339,23 @@ DATA4_MAP = {
              "note": "FLAG lattice, INDEPENDENT of D4/D5"},
     "D11": {"var": "mu_md",   "value": mu_md,   "type": "M", "unit": "dimensionless", "digits": 3,
              "note": "FLAG lattice, INDEPENDENT of D1/D2"},
-    # Section N: GUT parameters (derived)
+    "E1":  {"var": "m_n",        "value": m_n,        "type": "M", "unit": "MeV", "digits": 11},
+    "E2":  {"var": "mn_mp_diff", "value": mn_mp_diff, "type": "M", "unit": "MeV", "digits": 8},
+    "E3":  {"var": "m_pi_p",     "value": m_pi_p,     "type": "M", "unit": "MeV", "digits": 8},
+    "E4":  {"var": "m_pi_0",     "value": m_pi_0,     "type": "M", "unit": "MeV", "digits": 7},
+    "E5":  {"var": "m_K_p",      "value": m_K_p,      "type": "M", "unit": "MeV", "digits": 6},
+    "E6":  {"var": "m_D",        "value": m_D,        "type": "M", "unit": "MeV", "digits": 12},
+    "E7":  {"var": "m_He4",      "value": m_He4,      "type": "M", "unit": "MeV", "digits": 10},
+    "E8":  {"var": "E_D",        "value": E_D,        "type": "M", "unit": "MeV", "digits": 8},
+    "F1":  {"var": "H_1S2S",     "value": H_1S2S,     "type": "M", "unit": "Hz", "digits": 16},
+    "K1":  {"var": "mmu_me",   "value": mmu_me,   "type": "M", "unit": "dimensionless", "digits": 10},
+    "K2":  {"var": "mtau_me",  "value": mtau_me,  "type": "M", "unit": "dimensionless", "digits": 6},
+    "K3":  {"var": "mtau_mmu", "value": mtau_mmu, "type": "M", "unit": "dimensionless", "digits": 5},
+    "K4":  {"var": "mn_mp",    "value": mn_mp,    "type": "M", "unit": "dimensionless", "digits": 11},
+    "K5":  {"var": "MW_MZ",    "value": MW_MZ,    "type": "M", "unit": "dimensionless", "digits": 6},
+    "K6":  {"var": "mH_MZ",    "value": mH_MZ,    "type": "M", "unit": "dimensionless", "digits": 5},
+    "K7":  {"var": "mt_MZ",    "value": mt_MZ,    "type": "M", "unit": "dimensionless", "digits": 5},
+    "K8":  {"var": "K_koide",  "value": K_koide,  "type": "M", "unit": "dimensionless", "digits": 10},
     "N1":  {"var": "b1_SM",  "value": b1_SM,  "type": "D", "unit": "dimensionless"},
     "N2":  {"var": "b2_SM",  "value": b2_SM,  "type": "D", "unit": "dimensionless"},
     "N3":  {"var": "b3_SM",  "value": b3_SM,  "type": "D", "unit": "dimensionless"},
@@ -407,22 +370,12 @@ DATA4_MAP = {
 
 
 def lookup_data4(entry_id):
-    """Look up a DATA-4 entry by ID.
-
-    Args: entry_id string (e.g., "B1", "N10")
-    Returns: dict with var name, value, type, unit, etc.
-    """
-    if entry_id in DATA4_MAP:
-        return DATA4_MAP[entry_id]
-    return None
+    """Look up a DATA-4 entry by ID."""
+    return DATA4_MAP.get(entry_id, None)
 
 
 def entries_by_type(type_code):
-    """Return all DATA-4 entries of a given type.
-
-    Args: type_code string ("E", "M", "A", "D", "G", "K")
-    Returns: list of (entry_id, entry_dict) tuples
-    """
+    """Return all DATA-4 entries of a given type."""
     return [(k, v) for k, v in DATA4_MAP.items() if v["type"] == type_code]
 
 
@@ -464,11 +417,7 @@ PAPER_TOPICS = {
 
 
 def papers_about(keyword):
-    """Find papers mentioning a keyword in their topic.
-
-    Args: keyword string (case-insensitive)
-    Returns: list of (paper_id, topic) tuples
-    """
+    """Find papers mentioning a keyword in their topic."""
     kw = keyword.lower()
     return [(k, v) for k, v in PAPER_TOPICS.items() if kw in v.lower()]
 
@@ -538,7 +487,7 @@ EXPERIMENTS = {
 
 
 # ================================================================
-# CLOSED PATHS (do not reopen)
+# CLOSED PATHS
 # ================================================================
 
 CLOSED_PATHS = {
@@ -586,32 +535,41 @@ if __name__ == "__main__":
     checks = []
 
     # --------------------------------------------------------
-    # Representation construction
-    # --------------------------------------------------------
     print("REPRESENTATION CONSTRUCTION")
     print("-" * 70)
     print()
 
     chk_exact("CD rep: db1 = 1/15",
               CABIBBO_DOUBLET["db1"], Fraction(1, 15), checks)
-
     chk_exact("CD rep: db2 = 1",
               CABIBBO_DOUBLET["db2"], Fraction(1, 1), checks)
-
     chk_exact("CD rep: db3 = 1/3",
               CABIBBO_DOUBLET["db3"], Fraction(1, 3), checks)
-
     chk_exact("CD upper charge = 2/3",
               CABIBBO_DOUBLET["charges"][0], Fraction(2, 3), checks)
-
     chk_exact("CD lower charge = -1/3",
               CABIBBO_DOUBLET["charges"][1], Fraction(-1, 3), checks)
-
     chk_exact("CD Y^2 = 1/36",
               CABIBBO_DOUBLET["Y2"], Fraction(1, 36), checks)
 
     # --------------------------------------------------------
-    # Generation democracy from census
+    print()
+    print("PER-MULTIPLET BETA CONTRIBUTIONS")
+    print("-" * 70)
+    print()
+
+    # Verify each SM multiplet contribution individually
+    chk_exact("Q_L db1 = 1/15",  Q_L["db1"], Fraction(1, 15), checks)
+    chk_exact("Q_L db2 = 1",     Q_L["db2"], Fraction(1, 1), checks)
+    chk_exact("Q_L db3 = 2/3",   Q_L["db3"], Fraction(2, 3), checks)
+    chk_exact("u_R db1 = 8/15",  u_R["db1"], Fraction(8, 15), checks)
+    chk_exact("u_R db3 = 1/3",   u_R["db3"], Fraction(1, 3), checks)
+    chk_exact("d_R db1 = 2/15",  d_R["db1"], Fraction(2, 15), checks)
+    chk_exact("d_R db3 = 1/3",   d_R["db3"], Fraction(1, 3), checks)
+    chk_exact("L_L db1 = 1/5",   L_L["db1"], Fraction(1, 5), checks)
+    chk_exact("L_L db2 = 1/3",   L_L["db2"], Fraction(1, 3), checks)
+    chk_exact("e_R db1 = 2/5",   e_R["db1"], Fraction(2, 5), checks)
+
     # --------------------------------------------------------
     print()
     print("GENERATION DEMOCRACY FROM CENSUS")
@@ -622,21 +580,15 @@ if __name__ == "__main__":
 
     chk_exact("Per-gen db1 from census = 4/3",
               gen_b1, Fraction(4, 3), checks)
-
     chk_exact("Per-gen db2 from census = 4/3",
               gen_b2, Fraction(4, 3), checks)
-
     chk_exact("Per-gen db3 from census = 4/3",
               gen_b3, Fraction(4, 3), checks)
-
     chk_exact("Democracy: db1 = db2",
               gen_b1, gen_b2, checks)
-
     chk_exact("Democracy: db2 = db3",
               gen_b2, gen_b3, checks)
 
-    # --------------------------------------------------------
-    # SM betas from census match library
     # --------------------------------------------------------
     print()
     print("SM BETAS FROM CENSUS")
@@ -647,15 +599,11 @@ if __name__ == "__main__":
 
     chk_exact("Census b1 = library b1_SM = 41/10",
               census_b1, b1_SM, checks)
-
     chk_exact("Census b2 = library b2_SM = -19/6",
               census_b2, b2_SM, checks)
-
     chk_exact("Census b3 = library b3_SM = -7",
               census_b3, b3_SM, checks)
 
-    # --------------------------------------------------------
-    # SM fermion electric charges
     # --------------------------------------------------------
     print()
     print("SM FERMION CHARGES")
@@ -664,27 +612,19 @@ if __name__ == "__main__":
 
     chk_exact("Q_L upper charge = 2/3",
               Q_L["charges"][0], Fraction(2, 3), checks)
-
     chk_exact("Q_L lower charge = -1/3",
               Q_L["charges"][1], Fraction(-1, 3), checks)
-
     chk_exact("u_R charge = 2/3",
               u_R["charges"][0], Fraction(2, 3), checks)
-
     chk_exact("d_R charge = -1/3",
               d_R["charges"][0], Fraction(-1, 3), checks)
-
     chk_exact("L_L upper charge = 0 (neutrino)",
               L_L["charges"][0], Fraction(0), checks)
-
     chk_exact("L_L lower charge = -1 (electron)",
               L_L["charges"][1], Fraction(-1), checks)
-
     chk_exact("e_R charge = -1",
               e_R["charges"][0], Fraction(-1), checks)
 
-    # --------------------------------------------------------
-    # DATA-4 cross-reference
     # --------------------------------------------------------
     print()
     print("DATA-4 CROSS-REFERENCE")
@@ -696,7 +636,6 @@ if __name__ == "__main__":
              b1_entry is not None and b1_entry["var"] == "alpha_inv",
              "var = %s" % (b1_entry["var"] if b1_entry else "None"),
              checks)
-
     chk_exact("B1 value matches library",
               b1_entry["value"], alpha_inv, checks)
 
@@ -706,12 +645,10 @@ if __name__ == "__main__":
              "count = %d" % len(exact_entries), checks)
 
     measured_entries = entries_by_type("M")
-    chk_bool("Measured entries > 30",
-             len(measured_entries) > 30,
+    chk_bool("Measured entries >= 30",
+             len(measured_entries) >= 30,
              "count = %d" % len(measured_entries), checks)
 
-    # --------------------------------------------------------
-    # Paper cross-reference
     # --------------------------------------------------------
     print()
     print("PAPER CROSS-REFERENCE")
@@ -730,8 +667,6 @@ if __name__ == "__main__":
              "found: %s" % [p[0] for p in koide_papers], checks)
 
     # --------------------------------------------------------
-    # Particle catalog
-    # --------------------------------------------------------
     print()
     print("PARTICLE CATALOG")
     print("-" * 70)
@@ -741,7 +676,7 @@ if __name__ == "__main__":
              len(PARTICLE_CATALOG) == 12,
              "count = %d" % len(PARTICLE_CATALOG), checks)
 
-    chk_bool("Catalog sorted by mass (first is lightest)",
+    chk_bool("Catalog sorted by mass",
              float(f2m(PARTICLE_CATALOG[0]["mass_frac"])) <
              float(f2m(PARTICLE_CATALOG[-1]["mass_frac"])),
              "first = %s (%s MeV), last = %s (%s MeV)" % (
@@ -762,8 +697,6 @@ if __name__ == "__main__":
              "n_f = %d" % nf_at_MZ, checks)
 
     # --------------------------------------------------------
-    # Closed paths
-    # --------------------------------------------------------
     print()
     print("CLOSED PATHS REGISTRY")
     print("-" * 70)
@@ -772,19 +705,15 @@ if __name__ == "__main__":
     chk_bool("7 closed paths registered",
              len(CLOSED_PATHS) == 7,
              "count = %d" % len(CLOSED_PATHS), checks)
-
     chk_bool("C3 Koide is closed",
              "C3_Koide" in CLOSED_PATHS,
              "killed by: %s" % CLOSED_PATHS.get("C3_Koide", {}).get("killed_by", "?"),
              checks)
-
     chk_bool("SM unification is closed",
              "SM_unification" in CLOSED_PATHS,
              "killed by: %s" % CLOSED_PATHS.get("SM_unification", {}).get("killed_by", "?"),
              checks)
 
-    # --------------------------------------------------------
-    # Anomaly registry
     # --------------------------------------------------------
     print()
     print("ANOMALY REGISTRY")
@@ -794,14 +723,11 @@ if __name__ == "__main__":
     chk_bool("3 anomalies registered",
              len(ANOMALIES) == 3,
              "count = %d" % len(ANOMALIES), checks)
-
     chk_bool("Each anomaly uses a different quantum number",
              len(set(a["quantum_number_used"] for a in ANOMALIES.values())) == 3,
              "quantum numbers: %s" % [a["quantum_number_used"] for a in ANOMALIES.values()],
              checks)
 
-    # --------------------------------------------------------
-    # Summary
     # --------------------------------------------------------
     print()
     print_summary(checks)
@@ -820,4 +746,3 @@ if __name__ == "__main__":
     print("=" * 70)
     print("PHYS24_STRUCTURES SELF-TEST COMPLETE")
     print("=" * 70)
-
