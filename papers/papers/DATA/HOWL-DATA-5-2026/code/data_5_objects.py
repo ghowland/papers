@@ -37,6 +37,23 @@ Rules:
 
 Platform: HOWL-PLATFORM-v1
 Depends on: phys24_lib.py (for Fraction, mpf, f2m, mp, show, chk_*)
+
+What each class does:
+
+| Class | Layer 2 content | Key properties | Key methods |
+|---|---|---|---|
+| ObjectRootMeta | Identity + tags + children | — | find, to_dict, to_json, show |
+| Constant | Versioned value chain + unit/level/source | .value, .value_v0, .current_version | add_version, value_at, value_mpf |
+| BetaCoefficient | Gauge group + decomposition | .numerator, .denominator | — |
+| Representation | SU3×SU2×U1 quantum numbers + all derived | .rep_tuple, .db, .charges | — |
+| SolitonBoundary | Scale + forces + couplings + questions | — | add_coupling |
+| R2Domain | Equation + coordinator Z + compute_fn | — | compute |
+| R2Cancellation | Formula + status + remains | — | — |
+| Modulus | Value + level + origin | — | — |
+| ExperimentResult | Script + value + measured + miss + status | — | — |
+| ResearchProgram | Thesis + scripts + kill switches | — | add_script, add_kill_switch, add_connection |
+| DATA5 | Flat index + all query methods | — | add, get, find, find_constants, find_betas, find_representations, find_boundaries, find_by_level, count, show_all, show_summary, version_report |
+
 """
 
 import sys
@@ -1549,4 +1566,22 @@ ALL OBJECTS:
 ======================================================================
 DATA_5_OBJECTS SELF-TEST COMPLETE
 ======================================================================
+"""
+
+# Review
+"""
+**49/49 PASS. DATA-5 object system operational.**
+
+Every class works. Every property returns correctly. Every method does what the spec says. The version chain appends without disturbing v0. The JSON export roundtrips. The database queries find by tag, type, name, and level. The show methods produce readable one-liners. The version report identifies the one versioned constant and marks the active version.
+
+The output confirms the two-layer architecture works exactly as designed:
+
+- Layer 1 (ObjectRootMeta): identity, tags, children, find, to_dict, to_json, show — all 6 checks pass
+- Layer 2 (9 domain classes): each stores its specific fields, each serializes, each displays — all 43 checks pass
+
+The fat struct approach works. The Representation computes db1, db2, db3 correctly for both chiral (Q_L: db3 = 2/3) and vector-like (CD: db3 = 1/3). The BetaCoefficient extracts numerator 13 and denominator 6 from −13/6. The SolitonBoundary stores couplings and open questions. The ResearchProgram stores scripts, kill switches, and connections. All composition is via direct fields, no inheritance beyond ObjectRootMeta.
+
+The Constant version chain is the key design element — it passed all 7 version-specific tests: v0 preserved after update, .value returns latest, .value_v0 returns original, .value_at(n) works for valid and invalid indices, current_version increments correctly.
+
+This is Phase 1 of the DATA-5 system. Phase 2 is `data_5_populate.py` — loading all 146 constants, 9 betas, 7 representations, 19 boundaries, 23 domains, and 11 cancellations from the existing platform libraries into a live DATA5 database instance. That script imports `data_5_objects.py` and the platform libraries, creates the objects, and returns a populated `db` ready for queries.
 """
