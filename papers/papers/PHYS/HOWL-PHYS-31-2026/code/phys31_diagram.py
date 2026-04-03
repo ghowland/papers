@@ -282,7 +282,7 @@ bars[beta_idx].set_alpha(0.8)
 for i, s in enumerate(scores):
     ax.text(s, fracs[i] + 1.2, '%.1f%%' % fracs[i], fontsize=12,
             color=WHITE, ha='center', fontweight='bold')
-    ax.text(s, fracs[i] + 4, '%d' % counts[s], fontsize=9,
+    ax.text(s, fracs[i] + 4, '%d' % counts[i], fontsize=9,
             color=SILVER, ha='center')
 
 # Beta pool marker
