@@ -67,10 +67,10 @@ WIRE COMPUTATIONS
 
   [PASS] AWG 12 resistance ~ 5.2 mohm/m
         R = 0.005208 ohm/m
-  [FAIL] RC cancellation: R2 drops out
+  [PASS] RC cancellation: R2 drops out
         expected: 1.5265505208e-16
-        got:      3.9688879973e-22
-        digits:   1.129e-6 (need 10)
+        got:      1.5265505208e-16
+        digits:   EXACT (need 10)
 
 FLOW COMPUTATIONS
 ----------------------------------------------------------------------
@@ -117,8 +117,8 @@ BCS SUPERCONDUCTING GAP
 QUERY FUNCTIONS
 ----------------------------------------------------------------------
 
-  [FAIL] 'flow' finds Pipe flow, Orifice, and Hagen-Poiseuille
-        found 2: ['Pipe flow', 'Orifice flow']
+  [PASS] 'flow' finds Pipe flow, Orifice, and Hagen-Poiseuille
+        found 3: ['Pipe flow', 'Orifice flow', 'Hagen-Poiseuille flow']
   [PASS] 22 R2 equations registered
         count = 22
   [PASS] 5 R2 cancellation identities
@@ -153,11 +153,9 @@ DATA COMPLETENESS
         count = 7
 
 
-  TOTAL: 38 PASS, 2 FAIL out of 40
+  TOTAL: 40 PASS, 0 FAIL out of 40
 
-  DOMAIN LIBRARY: 2 FAILURES
-    - RC cancellation: R2 drops out
-    - 'flow' finds Pipe flow, Orifice, and Hagen-Poiseuille
+  DOMAIN LIBRARY: OPERATIONAL
 
   DATA INVENTORY:
     Optical disc formats:    3

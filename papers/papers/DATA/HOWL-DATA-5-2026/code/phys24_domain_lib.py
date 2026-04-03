@@ -736,7 +736,7 @@ R2_EQUATIONS = [
     {"domain": "Gaussian beam",     "equation": "A_waist = R2*w0^2",
      "Z": "beam parameter",         "precision": "Laser: um",
      "data1_section": 16,           "data1_id": "K3"},
-    {"domain": "Hagen-Poiseuille",  "equation": "Q = R2*d^4*dP/(32*mu*L)",
+    {"domain": "Hagen-Poiseuille flow",  "equation": "Q = R2*d^4*dP/(32*mu*L)",
      "Z": "viscosity mu",           "precision": "Lab: 1%",
      "data1_section": 17,           "data1_id": "L15"},
     {"domain": "Ion implant",       "equation": "N = dose/sqrt(8*R2*sig^2)*exp(..)",
@@ -962,13 +962,17 @@ if __name__ == "__main__":
              mpf("0.005") < R12 < mpf("0.006"),
              "R = %s ohm/m" % mp.nstr(R12, 4), checks)
 
-    # RC cancellation
-    C12 = circular_capacitance(awg12_A, mpf("1e-3"))
-    RC = R12 * C12
-    RC_direct = CU_RESISTIVITY * EPSILON_0 * mpf("1") / mpf("1e-3")  # rho*eps0*L/t
+    # RC cancellation: R in R2*d^2 and C in R2*d^2 cancel
+    # R = rho*L / (R2*d^2),  C = eps0*R2*d^2 / t
+    # R*C = rho*eps0*L/t  (R2 cancels exactly)
+    d12 = AWG_DATA["12"]["diameter_m"]
+    R12_wire = wire_resistance(CU_RESISTIVITY, mpf("1"), d12)    # 1 meter
+    C12_cap = circular_capacitance(d12, mpf("1e-3"))              # 1mm gap
+    RC_from_functions = R12_wire * C12_cap
+    RC_direct = CU_RESISTIVITY * EPSILON_0 * mpf("1") / mpf("1e-3")  # rho*eps0*L/t, no R2
     chk("RC cancellation: R2 drops out",
-        RC, RC_direct, 10, checks)
-
+        RC_from_functions, RC_direct, 10, checks)
+    
     # --------------------------------------------------------
     print()
     print("FLOW COMPUTATIONS")
