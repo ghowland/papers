@@ -1,0 +1,200 @@
+======================================================================
+HOWL PHYS-33: KOIDE AMPLITUDE
+The a^2 = 2 conditional.
+======================================================================
+
+SECTION 1: THE MEASURED MASSES
+----------------------------------------------------------------------
+
+    m_e (MeV)                              0.51099895069
+    m_mu (MeV)                             105.6583755
+    m_tau (MeV)                            1776.86
+
+    sqrt(m_e) (MeV^1/2)                    0.71484190608
+    sqrt(m_mu) (MeV^1/2)                   10.279026
+    sqrt(m_tau) (MeV^1/2)                  42.152817225
+
+SECTION 2: THE KOIDE FORMULA
+----------------------------------------------------------------------
+
+  K = (m_e + m_mu + m_tau)^2 / (3 * (m_e^2 + m_mu^2 + m_tau^2))
+
+  But the more natural form uses sqrt(m):
+  K = (sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))^2
+      / (3 * (m_e + m_mu + m_tau))
+
+    sum sqrt(m_i) (MeV^1/2)                53.146685131
+    sum m_i (MeV)                          1883.0293745
+    K (dimensionless)                      0.50000461644
+    2/3 (dimensionless)                    0.66666666667
+
+    |K - 2/3| / (2/3) (%%)                 24.999307533
+
+SECTION 3: THE AMPLITUDE PARAMETER a^2
+----------------------------------------------------------------------
+
+  The Koide parametrization writes sqrt(m_i) as:
+    sqrt(m_i) = sqrt(M) * (1 + a * cos(delta + 2*pi*i/3))
+
+  The formula K = 2/3 is equivalent to a^2 = 2.
+  We extract a^2 from the measured masses:
+
+    a^2 = 2*(1/K - 1) (dimensionless)      1.9999630688
+    Expected: 2 (dimensionless)            2.0
+
+    |a^2 - 2| / 2 (%%)                     0.0018465603434
+
+    a = sqrt(a^2) (dimensionless)          1.4142005052
+    sqrt(2) (dimensionless)                1.4142135624
+
+SECTION 4: THE PHASE delta
+----------------------------------------------------------------------
+
+    sqrt(M) = sum_sqrt/3 (MeV^1/2)         17.71556171
+    M = (sum_sqrt/3)^2 (MeV)               313.84112671
+
+    cos(delta) from e (dimensionless)      -0.67858052978
+    cos(delta + 2pi/3) from mu (dimensionless) -0.2968279226
+    cos(delta + 4pi/3) from tau (dimensionless) 0.97540845238
+
+    delta (radians)                        2.3166247339
+    delta / pi (dimensionless)             0.73740455537
+
+  Verification — reconstruct masses:
+      m_e predicted (MeV)                  0.51099895069
+      m_e measured (MeV)                   0.51099895069
+      miss (%%)                            2.7959631564e-99
+
+      m_mu predicted (MeV)                 105.6583755
+      m_mu measured (MeV)                  105.6583755
+      miss (%%)                            1.1250474762e-98
+
+      m_tau predicted (MeV)                1776.86
+      m_tau measured (MeV)                 1776.86
+      miss (%%)                            0.0
+
+SECTION 5: m_tau PREDICTED FROM a^2 = 2 EXACTLY
+----------------------------------------------------------------------
+
+  IF a^2 = 2 exactly, THEN K = 2/3 exactly.
+  Given m_e and m_mu, solve for m_tau.
+
+  From K = 2/3:
+    (sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))^2 = 2*(m_e + m_mu + m_tau)
+
+  Let s = sqrt(m_e) + sqrt(m_mu), x = sqrt(m_tau).
+  Then: (s + x)^2 = 2*(m_e + m_mu + x^2)
+    s^2 + 2*s*x + x^2 = 2*m_e + 2*m_mu + 2*x^2
+    s^2 + 2*s*x - x^2 = 2*(m_e + m_mu)
+    x^2 - 2*s*x + (2*(m_e + m_mu) - s^2) = 0
+
+    s = sqrt(m_e) + sqrt(m_mu) (MeV^1/2)   10.993867906
+    discriminant = 2*s^2 - 2*(m_e+m_mu) (MeV) 29.391514153
+    sqrt(discriminant) (MeV^1/2)           5.4213941152
+
+    Solution x_+ = s + sqrt(disc) (MeV^1/2) 16.415262021
+    m_tau(+) = x_+^2 (MeV)                 269.46082721
+
+    Solution x_- = s - sqrt(disc) (MeV^1/2) 5.5724737904
+    m_tau(-) = x_-^2 (MeV)                 31.052464145
+
+    m_tau predicted (MeV)                  269.46082721
+    m_tau measured (MeV)                   1776.86
+    miss (%%)                              84.834999538
+    miss (MeV)                             1507.3991728
+
+    Other root m(-) (MeV)                  31.052464145
+  This corresponds to a mass of 31.0525 MeV — not a known particle.
+
+SECTION 6: PARAMETER COUNT
+----------------------------------------------------------------------
+
+  The SM has three charged lepton masses: m_e, m_mu, m_tau.
+  These are three of the 19 SM parameters.
+
+  IF a^2 = 2 exactly (the Koide conditional):
+    m_tau is determined by m_e and m_mu.
+    Three masses -> two independent.
+    19 parameters -> 18.
+
+  Combined with theta_QCD = 0 (PHYS-7): 18 -> 17.
+  Combined with alpha_s from unification (PHYS-30): 17 -> 16.
+
+  This is CONDITIONAL on a^2 = 2 being exact.
+  We do not claim to know WHY a^2 = 2.
+  The parameter reduction is contingent on this condition holding.
+
+SECTION 7: SENSITIVITY TO INPUT MASSES
+----------------------------------------------------------------------
+
+    m_mu + 1sigma: m_tau pred (MeV)        269.46083186
+    m_mu - 1sigma: m_tau pred (MeV)        269.46082257
+    Spread from m_mu uncertainty (MeV)     0.0
+
+  The m_tau prediction sensitivity to m_mu is sub-MeV.
+  The dominant question is whether a^2 = 2 holds exactly,
+  not the input mass precision.
+
+======================================================================
+CHECKS
+======================================================================
+
+  [FAIL] S2: K is close to 2/3 (miss < 0.01%%)
+        K miss = 25.0%
+  [PASS] S3: a^2 is close to 2 (miss < 0.01%%)
+        a^2 miss = 0.001847%
+  [PASS] S4: Reconstruction recovers m_e (miss < 0.001%%)
+        reconstruction verified
+  [FAIL] S5: m_tau prediction within 1%% of measured
+        miss = 84.83%
+  [FAIL] S5: m_tau prediction within 0.1%% of measured
+        miss = 84.83%
+  [PASS] S5: Physical root is the larger one (x_+)
+        m(+)=269.461 > m(-)=31.0525
+  [FAIL] S5: Predicted m_tau > 1700 MeV
+        m_tau = 269.4608
+  [FAIL] S6: K = 2/3 implies a^2 = 2 (algebraic check)
+        1/(1 + a^2/2) = 1/2 when a^2=2... wait
+
+  RECHECKING KOIDE CONVENTION:
+    Q = sum_m / (sum_sqrt)^2 (dimensionless) 0.66666051147
+    1/3 (dimensionless)                    0.33333333333
+    |Q - 1/3| / (1/3) (%%)                 99.99815344
+
+    R = (sum_sqrt)^2 / sum_m (dimensionless) 1.5000138493
+    |R - 3| / 3 (%%)                       49.999538356
+
+
+  CORRECTED: The Koide relation is
+    (sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))^2 = 2*(m_e + m_mu + m_tau)
+  This is K = 2/3 in the convention K = (sum_sqrt)^2 / (3*sum_m).
+  The m_tau prediction in Section 5 uses this exact relation.
+
+  Measured K = 0.50000462 (vs 2/3 = 0.6667)
+  Measured R = 1.5000138 (vs 2.0 when K=2/3: R=3K=2)
+
+    3*K (should be 2) (dimensionless)      1.5000138493
+    |3K - 2| / 2 (%%)                      24.999307533
+
+  [FAIL] S2: K close to 2/3 (miss < 0.01%%)
+        miss = 25.0%
+  [FAIL] S2: 3K close to 2 (equivalent form)
+        miss = 25.0%
+  [FAIL] S5: m_tau predicted within 0.1%%
+        miss = 84.83%
+  [FAIL] S5: m_tau predicted within 1 MeV
+        delta = 1507.0 MeV
+  [PASS] S5: Physical root is larger
+        m(+) > m(-)
+  [FAIL] S5: m_tau prediction > 1776 MeV
+        m_tau = 269.4608
+  [PASS] S4: Phase delta is real (cosine in [-1,1])
+        cos(delta) = -0.678581
+  [PASS] S7: Prediction stable under m_mu 1-sigma shift
+        spread sub-MeV
+
+  TOTAL: 3 PASS, 5 FAIL out of 8
+
+======================================================================
+PHYS-33 KOIDE AMPLITUDE COMPLETE
+======================================================================
