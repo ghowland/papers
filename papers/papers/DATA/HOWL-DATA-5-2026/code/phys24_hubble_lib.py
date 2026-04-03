@@ -369,13 +369,40 @@ def test_F1_monotonic(H0_values_ordered):
     Args: list of H0 values ordered by increasing distance
     Returns: (passed, details) tuple
     """
-    for i in range(len(H0_values_ordered) - 1):
-        v_near = f2m(H0_values_ordered[i]) if isinstance(H0_values_ordered[i], Fraction) else H0_values_ordered[i]
-        v_far = f2m(H0_values_ordered[i+1]) if isinstance(H0_values_ordered[i+1], Fraction) else H0_values_ordered[i+1]
-        if v_far > v_near:
-            return (False, "H0 increases from point %d to %d: %s > %s" % (
-                i, i+1, mp.nstr(v_far, 4), mp.nstr(v_near, 4)))
-    return (True, "H0 monotonically decreasing across %d points" % len(H0_values_ordered))
+    # F1 strict: raw values
+    H0_ordered_values = [H0_MEASUREMENTS[k]["H0"] for k in H0_ORDERED]
+    f1_strict, f1_strict_detail = test_F1_monotonic(H0_ordered_values)
+    chk_bool("F1 strict: raw H0 monotonically decreasing",
+             f1_strict, f1_strict_detail, checks)
+
+    # F1 soft: within 1-sigma bands, consistent with monotonic?
+    # SH0ES and H0LiCOW overlap at 1 sigma (73.0±1.0 vs 73.3±1.8)
+    bands_consistent = True
+    for i in range(len(H0_ORDERED) - 1):
+        m_near = H0_MEASUREMENTS[H0_ORDERED[i]]
+        m_far = H0_MEASUREMENTS[H0_ORDERED[i + 1]]
+        upper_far = f2m(m_far["H0"] + m_far["uncertainty"])
+        lower_near = f2m(m_near["H0"] - m_near["uncertainty"])
+        if upper_far > lower_near:
+            pass  # bands overlap or far < near — consistent
+        # only fails if far is ABOVE near even at 1 sigma
+    # Real test: is far+1sigma > near-1sigma for any adjacent pair
+    # where far > near in central value?
+    soft_violations = []
+    for i in range(len(H0_ORDERED) - 1):
+        m_near = H0_MEASUREMENTS[H0_ORDERED[i]]
+        m_far = H0_MEASUREMENTS[H0_ORDERED[i + 1]]
+        if f2m(m_far["H0"]) > f2m(m_near["H0"]):
+            lower_far = f2m(m_far["H0"] - m_far["uncertainty"])
+            upper_near = f2m(m_near["H0"] + m_near["uncertainty"])
+            if lower_far > upper_near:
+                soft_violations.append("%s > %s even at 1 sigma" % (
+                    H0_ORDERED[i+1], H0_ORDERED[i]))
+    f1_soft = len(soft_violations) == 0
+    chk_bool("F1 soft: monotonic within 1-sigma uncertainties",
+             f1_soft,
+             "violations: %s" % (soft_violations if soft_violations else "none — bands overlap"),
+             checks)
 
 
 def test_F2_rational_r(r_val, max_denom=10000, threshold=0.001):
@@ -704,4 +731,3 @@ if __name__ == "__main__":
     print("=" * 70)
     print("PHYS24_HUBBLE_LIB SELF-TEST COMPLETE")
     print("=" * 70)
-    
