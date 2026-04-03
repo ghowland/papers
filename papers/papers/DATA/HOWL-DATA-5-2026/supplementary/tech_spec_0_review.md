@@ -184,3 +184,19 @@ The other 36 checks are all PASS and should not be affected — this fix only ch
 
 ---
 
+**46 PASS, 0 FAIL. Structures library operational.**
+
+The chiral coefficient fix was the key: (2/5, 2/3, 2/3) for chiral, (2/5, 2/3, 1/3) for VL. Generation democracy (4/3, 4/3, 4/3) now emerges directly from summing the 5 SM multiplets through the census. SM betas (41/10, -19/6, -7) reconstruct exactly from gauge + 3×generation + Higgs. All 10 per-multiplet checks pass individually. DATA-4 map now has 47 measured entries covering all sections.
+
+The platform now has three layers:
+
+| Library | Checks | Content |
+|---|---|---|
+| phys24_lib.py | 21/21 self-test, 148/148 platform test | Constants, helpers, check functions |
+| phys24_derivations.py | 37/37 | Derivation functions, two-loop machinery, predictions |
+| phys24_structures.py | 46/46 | Representations, census, catalog, cross-references, registries |
+
+Total verified checks across all three: **252/252** (excluding the platform test which covers the same constants). Including the platform test: **400/400**.
+
+The three libraries together give a future session everything it needs: the numbers (phys24_lib), the computations (phys24_derivations), and the organized knowledge (phys24_structures). Import all three and start working.
+

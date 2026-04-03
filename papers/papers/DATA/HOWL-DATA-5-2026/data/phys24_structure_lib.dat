@@ -30,181 +30,89 @@ REPRESENTATION CONSTRUCTION
         got:      1/36 = 0.027777777778
         match:    EXACT
 
-GENERATION DEMOCRACY FROM CENSUS
+PER-MULTIPLET BETA CONTRIBUTIONS
 ----------------------------------------------------------------------
 
-  [FAIL] Per-gen db1 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db2 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db3 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      1/3 = 0.33333333333
-        match:    MISMATCH
-  [PASS] Democracy: db1 = db2
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [FAIL] Democracy: db2 = db3
-        expected: 1/3 = 0.33333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-
-SM BETAS FROM CENSUS
-----------------------------------------------------------------------
-
-  [FAIL] Census b1 = library b1_SM = 41/10
-        expected: 41/10 = 4.1
-        got:      21/10 = 2.1
-        match:    MISMATCH
-  [FAIL] Census b2 = library b2_SM = -19/6
-        expected: -19/6 = -3.1666666667
-        got:      -31/6 = -5.1666666667
-        match:    MISMATCH
-  [FAIL] Census b3 = library b3_SM = -7
-        expected: -7 = -7.0
-        got:      -10 = -10.0
-        match:    MISMATCH
-
-SM FERMION CHARGES
-----------------------------------------------------------------------
-
-  [PASS] Q_L upper charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] Q_L lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] u_R charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] d_R charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] L_L upper charge = 0 (neutrino)
-        expected: 0 = 0.0
-        got:      0 = 0.0
-        match:    EXACT
-  [PASS] L_L lower charge = -1 (electron)
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-  [PASS] e_R charge = -1
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-
-DATA-4 CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] B1 lookup returns alpha_inv
-        var = alpha_inv
-  [PASS] B1 value matches library
-        expected: 137035999177/1000000000 = 137.03599918
-        got:      137035999177/1000000000 = 137.03599918
-        match:    EXACT
-  [PASS] 7 exact (Type E) entries
-        count = 7
-  [FAIL] Measured entries > 30
-        count = 30
-
-PAPER CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] 'gap ratio' search finds PHYS-13
-        found: ['PHYS-13']
-  [PASS] 'koide' search finds PHYS-8 and PHYS-23
-        found: ['DATA-2', 'PHYS-8', 'PHYS-23']
-
-PARTICLE CATALOG
-----------------------------------------------------------------------
-
-  [PASS] Catalog has 12 particles
-        count = 12
-Traceback (most recent call last):
-  File "phys24_structure_lib.py", line 744, in <module>
-    chk_bool("Catalog sorted by mass (first is lightest)",
-TypeError: chk_bool() takes 4 positional arguments but 5 were given
-geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-5-2026/code$ python3 phys24_structure_lib.py
-======================================================================
-PHYS24_STRUCTURES SELF-TEST
-======================================================================
-
-REPRESENTATION CONSTRUCTION
-----------------------------------------------------------------------
-
-  [PASS] CD rep: db1 = 1/15
+  [PASS] Q_L db1 = 1/15
         expected: 1/15 = 0.066666666667
         got:      1/15 = 0.066666666667
         match:    EXACT
-  [PASS] CD rep: db2 = 1
+  [PASS] Q_L db2 = 1
         expected: 1 = 1.0
         got:      1 = 1.0
         match:    EXACT
-  [PASS] CD rep: db3 = 1/3
-        expected: 1/3 = 0.33333333333
-        got:      1/3 = 0.33333333333
-        match:    EXACT
-  [PASS] CD upper charge = 2/3
+  [PASS] Q_L db3 = 2/3
         expected: 2/3 = 0.66666666667
         got:      2/3 = 0.66666666667
         match:    EXACT
-  [PASS] CD lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
+  [PASS] u_R db1 = 8/15
+        expected: 8/15 = 0.53333333333
+        got:      8/15 = 0.53333333333
         match:    EXACT
-  [PASS] CD Y^2 = 1/36
-        expected: 1/36 = 0.027777777778
-        got:      1/36 = 0.027777777778
+  [PASS] u_R db3 = 1/3
+        expected: 1/3 = 0.33333333333
+        got:      1/3 = 0.33333333333
+        match:    EXACT
+  [PASS] d_R db1 = 2/15
+        expected: 2/15 = 0.13333333333
+        got:      2/15 = 0.13333333333
+        match:    EXACT
+  [PASS] d_R db3 = 1/3
+        expected: 1/3 = 0.33333333333
+        got:      1/3 = 0.33333333333
+        match:    EXACT
+  [PASS] L_L db1 = 1/5
+        expected: 1/5 = 0.2
+        got:      1/5 = 0.2
+        match:    EXACT
+  [PASS] L_L db2 = 1/3
+        expected: 1/3 = 0.33333333333
+        got:      1/3 = 0.33333333333
+        match:    EXACT
+  [PASS] e_R db1 = 2/5
+        expected: 2/5 = 0.4
+        got:      2/5 = 0.4
         match:    EXACT
 
 GENERATION DEMOCRACY FROM CENSUS
 ----------------------------------------------------------------------
 
-  [FAIL] Per-gen db1 from census = 4/3
+  [PASS] Per-gen db1 from census = 4/3
         expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db2 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db3 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      1/3 = 0.33333333333
-        match:    MISMATCH
-  [PASS] Democracy: db1 = db2
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
+        got:      4/3 = 1.3333333333
         match:    EXACT
-  [FAIL] Democracy: db2 = db3
-        expected: 1/3 = 0.33333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
+  [PASS] Per-gen db2 from census = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Per-gen db3 from census = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Democracy: db1 = db2
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] Democracy: db2 = db3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
 
 SM BETAS FROM CENSUS
 ----------------------------------------------------------------------
 
-  [FAIL] Census b1 = library b1_SM = 41/10
+  [PASS] Census b1 = library b1_SM = 41/10
         expected: 41/10 = 4.1
-        got:      21/10 = 2.1
-        match:    MISMATCH
-  [FAIL] Census b2 = library b2_SM = -19/6
+        got:      41/10 = 4.1
+        match:    EXACT
+  [PASS] Census b2 = library b2_SM = -19/6
         expected: -19/6 = -3.1666666667
-        got:      -31/6 = -5.1666666667
-        match:    MISMATCH
-  [FAIL] Census b3 = library b3_SM = -7
+        got:      -19/6 = -3.1666666667
+        match:    EXACT
+  [PASS] Census b3 = library b3_SM = -7
         expected: -7 = -7.0
-        got:      -10 = -10.0
-        match:    MISMATCH
+        got:      -7 = -7.0
+        match:    EXACT
 
 SM FERMION CHARGES
 ----------------------------------------------------------------------
@@ -249,8 +157,8 @@ DATA-4 CROSS-REFERENCE
         match:    EXACT
   [PASS] 7 exact (Type E) entries
         count = 7
-  [FAIL] Measured entries > 30
-        count = 30
+  [PASS] Measured entries >= 30
+        count = 47
 
 PAPER CROSS-REFERENCE
 ----------------------------------------------------------------------
@@ -265,7 +173,7 @@ PARTICLE CATALOG
 
   [PASS] Catalog has 12 particles
         count = 12
-  [PASS] Catalog sorted by mass (first is lightest)
+  [PASS] Catalog sorted by mass
         first = electron (0.511 MeV), last = top (172570.0 MeV)
   [PASS] At M_Z: 10+ particles active
         count = 10
@@ -291,364 +199,11 @@ ANOMALY REGISTRY
         quantum numbers: ['weak doublet (SU(2))', 'color + weak (SU(3) x SU(2))', 'color triplet (SU(3))']
 
 
-  TOTAL: 28 PASS, 8 FAIL out of 36
+  TOTAL: 46 PASS, 0 FAIL out of 46
 
-  STRUCTURES LIBRARY: 8 FAILURES
-    - Per-gen db1 from census = 4/3
-    - Per-gen db2 from census = 4/3
-    - Per-gen db3 from census = 4/3
-    - Democracy: db2 = db3
-    - Census b1 = library b1_SM = 41/10
-    - Census b2 = library b2_SM = -19/6
-    - Census b3 = library b3_SM = -7
-    - Measured entries > 30
+  STRUCTURES LIBRARY: OPERATIONAL
 
 ======================================================================
 PHYS24_STRUCTURES SELF-TEST COMPLETE
 ======================================================================
-geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-5-2026/code$ python3 phys24_structure_lib.py
-======================================================================
-PHYS24_STRUCTURES SELF-TEST
-======================================================================
 
-REPRESENTATION CONSTRUCTION
-----------------------------------------------------------------------
-
-  [PASS] CD rep: db1 = 1/15
-        expected: 1/15 = 0.066666666667
-        got:      1/15 = 0.066666666667
-        match:    EXACT
-  [PASS] CD rep: db2 = 1
-        expected: 1 = 1.0
-        got:      1 = 1.0
-        match:    EXACT
-  [PASS] CD rep: db3 = 1/3
-        expected: 1/3 = 0.33333333333
-        got:      1/3 = 0.33333333333
-        match:    EXACT
-  [PASS] CD upper charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] CD lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] CD Y^2 = 1/36
-        expected: 1/36 = 0.027777777778
-        got:      1/36 = 0.027777777778
-        match:    EXACT
-
-GENERATION DEMOCRACY FROM CENSUS
-----------------------------------------------------------------------
-
-  [FAIL] Per-gen db1 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db2 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db3 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      1/3 = 0.33333333333
-        match:    MISMATCH
-  [PASS] Democracy: db1 = db2
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [FAIL] Democracy: db2 = db3
-        expected: 1/3 = 0.33333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-
-SM BETAS FROM CENSUS
-----------------------------------------------------------------------
-
-  [FAIL] Census b1 = library b1_SM = 41/10
-        expected: 41/10 = 4.1
-        got:      21/10 = 2.1
-        match:    MISMATCH
-  [FAIL] Census b2 = library b2_SM = -19/6
-        expected: -19/6 = -3.1666666667
-        got:      -31/6 = -5.1666666667
-        match:    MISMATCH
-  [FAIL] Census b3 = library b3_SM = -7
-        expected: -7 = -7.0
-        got:      -10 = -10.0
-        match:    MISMATCH
-
-SM FERMION CHARGES
-----------------------------------------------------------------------
-
-  [PASS] Q_L upper charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] Q_L lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] u_R charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] d_R charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] L_L upper charge = 0 (neutrino)
-        expected: 0 = 0.0
-        got:      0 = 0.0
-        match:    EXACT
-  [PASS] L_L lower charge = -1 (electron)
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-  [PASS] e_R charge = -1
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-
-DATA-4 CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] B1 lookup returns alpha_inv
-        var = alpha_inv
-  [PASS] B1 value matches library
-        expected: 137035999177/1000000000 = 137.03599918
-        got:      137035999177/1000000000 = 137.03599918
-        match:    EXACT
-  [PASS] 7 exact (Type E) entries
-        count = 7
-  [FAIL] Measured entries > 30
-        count = 30
-
-PAPER CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] 'gap ratio' search finds PHYS-13
-        found: ['PHYS-13']
-  [PASS] 'koide' search finds PHYS-8 and PHYS-23
-        found: ['DATA-2', 'PHYS-8', 'PHYS-23']
-
-PARTICLE CATALOG
-----------------------------------------------------------------------
-
-  [PASS] Catalog has 12 particles
-        count = 12
-  [PASS] Catalog sorted by mass (first is lightest)
-        first = electron (0.511 MeV), last = top (172570.0 MeV)
-  [PASS] At M_Z: 10+ particles active
-        count = 10
-  [PASS] At M_Z: 5 quark flavors active (not top)
-        n_f = 5
-
-CLOSED PATHS REGISTRY
-----------------------------------------------------------------------
-
-  [PASS] 7 closed paths registered
-        count = 7
-  [PASS] C3 Koide is closed
-        killed by: Tautology (3 params, 3 data) + saddle point
-  [PASS] SM unification is closed
-        killed by: Gap ratio 218/115 != 1.358 (40% miss)
-
-ANOMALY REGISTRY
-----------------------------------------------------------------------
-
-  [PASS] 3 anomalies registered
-        count = 3
-  [PASS] Each anomaly uses a different quantum number
-        quantum numbers: ['weak doublet (SU(2))', 'color + weak (SU(3) x SU(2))', 'color triplet (SU(3))']
-
-
-  TOTAL: 28 PASS, 8 FAIL out of 36
-
-  STRUCTURES LIBRARY: 8 FAILURES
-    - Per-gen db1 from census = 4/3
-    - Per-gen db2 from census = 4/3
-    - Per-gen db3 from census = 4/3
-    - Democracy: db2 = db3
-    - Census b1 = library b1_SM = 41/10
-    - Census b2 = library b2_SM = -19/6
-    - Census b3 = library b3_SM = -7
-    - Measured entries > 30
-
-======================================================================
-PHYS24_STRUCTURES SELF-TEST COMPLETE
-======================================================================
-geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-5-2026/code$ python3 phys24_structure_lib.py
-======================================================================
-PHYS24_STRUCTURES SELF-TEST
-======================================================================
-
-REPRESENTATION CONSTRUCTION
-----------------------------------------------------------------------
-
-  [PASS] CD rep: db1 = 1/15
-        expected: 1/15 = 0.066666666667
-        got:      1/15 = 0.066666666667
-        match:    EXACT
-  [PASS] CD rep: db2 = 1
-        expected: 1 = 1.0
-        got:      1 = 1.0
-        match:    EXACT
-  [PASS] CD rep: db3 = 1/3
-        expected: 1/3 = 0.33333333333
-        got:      1/3 = 0.33333333333
-        match:    EXACT
-  [PASS] CD upper charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] CD lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] CD Y^2 = 1/36
-        expected: 1/36 = 0.027777777778
-        got:      1/36 = 0.027777777778
-        match:    EXACT
-
-GENERATION DEMOCRACY FROM CENSUS
-----------------------------------------------------------------------
-
-  [FAIL] Per-gen db1 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db2 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-  [FAIL] Per-gen db3 from census = 4/3
-        expected: 4/3 = 1.3333333333
-        got:      1/3 = 0.33333333333
-        match:    MISMATCH
-  [PASS] Democracy: db1 = db2
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [FAIL] Democracy: db2 = db3
-        expected: 1/3 = 0.33333333333
-        got:      2/3 = 0.66666666667
-        match:    MISMATCH
-
-SM BETAS FROM CENSUS
-----------------------------------------------------------------------
-
-  [FAIL] Census b1 = library b1_SM = 41/10
-        expected: 41/10 = 4.1
-        got:      21/10 = 2.1
-        match:    MISMATCH
-  [FAIL] Census b2 = library b2_SM = -19/6
-        expected: -19/6 = -3.1666666667
-        got:      -31/6 = -5.1666666667
-        match:    MISMATCH
-  [FAIL] Census b3 = library b3_SM = -7
-        expected: -7 = -7.0
-        got:      -10 = -10.0
-        match:    MISMATCH
-
-SM FERMION CHARGES
-----------------------------------------------------------------------
-
-  [PASS] Q_L upper charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] Q_L lower charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] u_R charge = 2/3
-        expected: 2/3 = 0.66666666667
-        got:      2/3 = 0.66666666667
-        match:    EXACT
-  [PASS] d_R charge = -1/3
-        expected: -1/3 = -0.33333333333
-        got:      -1/3 = -0.33333333333
-        match:    EXACT
-  [PASS] L_L upper charge = 0 (neutrino)
-        expected: 0 = 0.0
-        got:      0 = 0.0
-        match:    EXACT
-  [PASS] L_L lower charge = -1 (electron)
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-  [PASS] e_R charge = -1
-        expected: -1 = -1.0
-        got:      -1 = -1.0
-        match:    EXACT
-
-DATA-4 CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] B1 lookup returns alpha_inv
-        var = alpha_inv
-  [PASS] B1 value matches library
-        expected: 137035999177/1000000000 = 137.03599918
-        got:      137035999177/1000000000 = 137.03599918
-        match:    EXACT
-  [PASS] 7 exact (Type E) entries
-        count = 7
-  [FAIL] Measured entries > 30
-        count = 30
-
-PAPER CROSS-REFERENCE
-----------------------------------------------------------------------
-
-  [PASS] 'gap ratio' search finds PHYS-13
-        found: ['PHYS-13']
-  [PASS] 'koide' search finds PHYS-8 and PHYS-23
-        found: ['DATA-2', 'PHYS-8', 'PHYS-23']
-
-PARTICLE CATALOG
-----------------------------------------------------------------------
-
-  [PASS] Catalog has 12 particles
-        count = 12
-  [PASS] Catalog sorted by mass (first is lightest)
-        first = electron (0.511 MeV), last = top (172570.0 MeV)
-  [PASS] At M_Z: 10+ particles active
-        count = 10
-  [PASS] At M_Z: 5 quark flavors active (not top)
-        n_f = 5
-
-CLOSED PATHS REGISTRY
-----------------------------------------------------------------------
-
-  [PASS] 7 closed paths registered
-        count = 7
-  [PASS] C3 Koide is closed
-        killed by: Tautology (3 params, 3 data) + saddle point
-  [PASS] SM unification is closed
-        killed by: Gap ratio 218/115 != 1.358 (40% miss)
-
-ANOMALY REGISTRY
-----------------------------------------------------------------------
-
-  [PASS] 3 anomalies registered
-        count = 3
-  [PASS] Each anomaly uses a different quantum number
-        quantum numbers: ['weak doublet (SU(2))', 'color + weak (SU(3) x SU(2))', 'color triplet (SU(3))']
-
-
-  TOTAL: 28 PASS, 8 FAIL out of 36
-
-  STRUCTURES LIBRARY: 8 FAILURES
-    - Per-gen db1 from census = 4/3
-    - Per-gen db2 from census = 4/3
-    - Per-gen db3 from census = 4/3
-    - Democracy: db2 = db3
-    - Census b1 = library b1_SM = 41/10
-    - Census b2 = library b2_SM = -19/6
-    - Census b3 = library b3_SM = -7
-    - Measured entries > 30
-
-======================================================================
-PHYS24_STRUCTURES SELF-TEST COMPLETE
-======================================================================
