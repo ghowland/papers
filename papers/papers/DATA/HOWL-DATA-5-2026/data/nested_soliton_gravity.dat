@@ -1,0 +1,349 @@
+======================================================================
+NESTED SOLITON GRAVITY EXPERIMENT
+Gravity as ground state in a soliton hierarchy.
+All constants from phys24_lib.py.
+======================================================================
+
+  Constants loaded from phys24_lib and standard values.
+
+SECTION 1: THE NESTING HIERARCHY
+----------------------------------------------------------------------
+
+  Level                             Mass (kg)    Container      |U|/Mc²
+  ------------------------------ ------------ ------------ ------------
+  Human on Earth surface                 70.0     5.97e+24     6.96e-10
+  Rock in Earth crust                  1.0e+3     5.97e+24     6.96e-10
+  Moon orbiting Earth                7.34e+22     5.97e+24     1.15e-11
+  Earth orbiting Sun                 5.97e+24     1.99e+30      9.87e-9
+  Sun orbiting Galaxy                1.99e+30     7.16e+41       2.1e-6
+
+  |U|/Mc² = GM/(rc²) is the gravitational 'coupling strength'
+  at each level. It measures how deeply the soliton sits in
+  the container's potential well. All values << 1 (non-relativistic).
+  [PASS] All couplings << 1 (non-relativistic)
+        max = 2.1e-6
+
+SECTION 2: BINDING ENERGY AS PATTERN FRACTION
+----------------------------------------------------------------------
+
+  For each self-gravitating body: what fraction of its total
+  energy is gravitational binding (pattern energy)?
+
+  Body                   M (kg)        R (m)      |U|/Mc² Pattern %
+  ---------------- ------------ ------------ ------------ ----------
+  Earth                5.97e+24      6.37e+6     4.18e-10 4.18e-8%
+  Sun                  1.99e+30      6.96e+8      1.27e-6 0.000127%
+  Moon                 7.34e+22      1.74e+6     1.88e-11 1.88e-9%
+  Neutron star         5.57e+30       1.1e+4        0.226 22.6%
+  MW visible           1.19e+41     4.63e+20      1.15e-7 1.15e-5%
+  Proton               1.67e-27      8.4e-16         0.99 99.0%
+
+  PATTERN: gravitational binding is negligible for ALL
+  non-relativistic bodies (10⁻¹⁰ to 10⁻⁴).
+  Only the neutron star (~0.16) and proton (~99%) have
+  significant pattern energy fractions.
+
+  The proton is a SOLITON where pattern dominates.
+  A neutron star is APPROACHING that regime gravitationally.
+  Everything else: gravity is a tiny perturbation on rest mass.
+  [PASS] Earth binding energy negligible
+        Earth pattern fraction < 10⁻⁸
+
+SECTION 3: HILL SPHERES AS SOLITON BOUNDARIES
+----------------------------------------------------------------------
+
+  System                           R_Hill (m) R_Hill (AU/km) R_body/R_Hill
+  ------------------------------ ------------ ------------ ------------
+  Earth in Solar system              1.496e+9    1.5e+6 km      0.00426
+  Moon in Earth system               6.151e+7   6.15e+4 km       0.0282
+  Sun in Galaxy                     2.466e+16   1.65e+5 AU      2.82e-8
+  Jupiter in Solar                  5.314e+10     0.355 AU      0.00132
+
+  The Hill sphere IS the soliton boundary (R5).
+  Inside: the body's gravity dominates. You fall toward it.
+  Outside: the container's gravity dominates. You fall toward that.
+  The boundary is where the integer rules CHANGE —
+  the 'which soliton am I falling into?' rule switches.
+    Earth Hill sphere (km)                 1496417.7371
+    L1 distance from Earth (km)            1496417.7371
+  This is where JWST and Sun-Earth L2 missions orbit:
+  at the soliton boundary between Earth and Sun dominance.
+  [PASS] Earth Hill sphere ~ 1.5 million km
+        R_Hill = 1.496e+6 km
+
+SECTION 4: ESCAPE VELOCITY AS SOLITON EXCITATION ENERGY
+----------------------------------------------------------------------
+
+  To leave a soliton's ground state permanently, you need
+  kinetic energy ≥ |binding energy|. The escape velocity
+  is the minimum speed for this excitation.
+
+  Soliton                       v_escape        v²/c²      v_esc/c
+  ------------------------- ------------ ------------ ------------
+  Earth surface             1.119e+4 m/s      1.39e-9     3.731e-5
+  Moon surface                2375.0 m/s     6.28e-11     7.923e-6
+  Sun surface               6.178e+5 m/s      4.25e-6     0.002061
+  Sun at Earth orbit        4.213e+4 m/s      1.97e-8    0.0001405
+  Galaxy at Sun             6.146e+5 m/s       4.2e-6      0.00205
+
+  INTERPRETATION: v_escape is the energy needed to leave
+  the soliton's potential well. v²/c² is the coupling strength.
+
+  Your jump (~1 m/s) vs Earth escape (11,186 m/s):
+  you are in a DEEPLY BOUND ground state. Your jump barely
+  perturbs the ground state. You return immediately.
+    Jump energy / escape energy            7.192715448e-8
+  A jump uses 7.2e-08 of the energy needed to escape.
+  You are 10⁷× too slow to leave this soliton.
+  [PASS] Jump energy << escape energy
+        ratio = 7.19e-8
+
+SECTION 5: CIRCULAR ORBITS AND R₂
+----------------------------------------------------------------------
+
+  A circular orbit is the ground state of a two-body soliton.
+  The orbital cross-section is R₂ × d² where d = 2r (diameter).
+  Angular momentum conservation gives the orbit: L = mvr.
+  The orbit IS the minimum-energy bound state for given L.
+
+  Orbit                       Radius (m) Area R₂×(2r)² (m²)
+  ------------------------- ------------ ----------------
+  Moon orbit                     3.84e+8        4.642e+17
+  Earth orbit                    1.5e+11        7.031e+22
+  Jupiter orbit                 7.79e+11        1.904e+24
+  Neptune orbit                  4.5e+12        6.348e+25
+  Sun galactic orbit            2.53e+20        2.012e+41
+
+  Every orbital area = 4R₂ × r² = π × r².
+  R₂ is the same geometric conversion in orbits as in
+  pipes (Q = R₂d²v), wires (R = ρL/(R₂d²)), and discs.
+  The orbit is another R₂ domain — the same geometry
+  documented in phys24_domain_lib.py across 15+ domains.
+  [PASS] Orbital area via domain_area matches 4R₂r²
+        expected: 7.0309346242e+22
+        got:      7.0309346242e+22
+        digits:   EXACT (need 10)
+
+SECTION 6: COUPLING STRENGTH AT EVERY LEVEL
+----------------------------------------------------------------------
+
+  The gravitational coupling GM/(rc²) is the analog of
+  alpha = e²/(4πε₀ℏc) = 1/137 for electromagnetism.
+
+  Level                            GM/(rc²)  = v²_esc/(2c²)
+  ------------------------- --------------- ---------------
+  Earth surface                   6.961e-10       6.961e-10
+  Earth-Moon orbit                1.154e-11       1.154e-11
+  Sun-Earth orbit                  9.873e-9        9.873e-9
+  Sun surface                      2.123e-6        2.123e-6
+  Neutron star                        0.376           0.376
+  Sun-Galaxy                       2.101e-6        2.101e-6
+  Galaxy edge                      1.149e-6        1.149e-6
+
+  PATTERN: GM/(rc²) is the soliton's coupling strength.
+  It determines:
+    - How deep the ground state is
+    - How much energy to escape (v_esc² = 2GM/r)
+    - How much spacetime curvature (GR correction ~ GM/(rc²))
+    - How relativistic the soliton is
+
+    α_EM                                   0.0072973525643
+    α_grav (Earth surface)                 6.9607652964e-10
+    α_EM / α_grav                          10483549.227
+
+  The electromagnetic coupling is 1.05e+7× stronger than
+  Earth's gravitational coupling. This ratio is why
+  the EM soliton boundary (your shoes on the ground)
+  holds you up against the gravitational ground state.
+
+SECTION 7: THE NORMAL FORCE — EM SOLITON BOUNDARY
+----------------------------------------------------------------------
+
+  You do not fall through the floor because the
+  electromagnetic soliton boundary between your atoms
+  and the ground's atoms provides the normal force.
+
+  This is a SOLITON BOUNDARY EFFECT (R5):
+    Inside your shoe atoms: electron cloud in ground state
+    Inside floor atoms: electron cloud in ground state
+    At the boundary: Pauli exclusion + EM repulsion
+    The boundary force = the normal force
+
+    g (Earth surface, m/s²)                9.8195320328
+    F_gravity on human (N)                 687.3672423
+    F_normal (= F_gravity at ground state) 687.3672423
+    F_EM (single atom pair at 1Å)          2.3066178144e-8
+    Atom pairs needed for normal force     29799789025.0
+    Contact atoms (shoe, ~200 cm²)         2.0e+17
+    Needed / available                     1.4899894512e-7
+
+  Each contact atom contributes ~2.31e-8 N.
+  Only ~1.49e-7 of the contact atoms are needed.
+  The EM boundary is VASTLY stronger than needed —
+  the floor supports you with negligible effort.
+  This is because α_EM / α_grav ~ 1.05e+7.
+  [PASS] EM force >> gravitational at atomic scale
+        EM per atom = 2.31e-8 N vs gravity per atom = 3.44e-15 N
+
+SECTION 8: JUMP AS SOLITON EXCITATION
+----------------------------------------------------------------------
+
+    Jump velocity (m/s)                    3.0
+    Maximum height (m)                     0.45827031115
+    Flight time (s)                        0.61102708153
+    Jump energy (J)                        315.0
+    Jump energy / rest mass energy         5.0069252522e-17
+    Jump height / Earth radius             7.1930671974e-8
+    Jump height / Hill sphere              3.0624490728e-10
+
+  A jump takes you 3.06e-10 of the way to the soliton boundary.
+  You are in the DEEP interior of the Earth soliton.
+  The ground state is a local minimum of the effective
+  potential at the Earth's surface, maintained by the
+  EM boundary (the floor).
+
+  Without the floor: you would fall toward the Earth's
+  center — the GLOBAL minimum of the Earth soliton's
+  gravitational potential well.
+
+  Energy ladder to leave each soliton level:
+      Jump (return immediately)            315.0
+      Low orbit (bound excited state)      2189715430.0
+      Escape Earth (leave soliton)         4379430860.0
+      Escape Sun at 1 AU                   62034350000.0
+  [PASS] Jump energy << orbit energy << escape energy
+        ladder verified
+
+SECTION 9: GEOLOGICAL NESTING
+----------------------------------------------------------------------
+
+  Every layer under your feet is a soliton at its ground
+  state within the containing layer.
+
+  Layer                 Top (m) Bottom (m)  ρ (kg/m³)  P (GPa) State
+  ------------------ ---------- ---------- ---------- -------- ---------------
+  Topsoil                   0.0        1.0     1500.0  7.36e-6 granular, EM-bonded
+  Sedimentary rock          1.0     5000.0     2500.0   0.0614 compacted, cemented
+  Upper crust            5000.0     2.0e+4     2700.0    0.331 granite/gneiss
+  Lower crust            2.0e+4     3.5e+4     3000.0     0.81 basalt/granulite
+  Upper mantle           3.5e+4     6.7e+5     3400.0     11.8 olivine, solid
+  Lower mantle           6.7e+5    2.89e+6     4500.0     78.7 perovskite, solid
+  Outer core            2.89e+6    5.15e+6     1.0e+4    395.0 liquid iron
+  Inner core            5.15e+6   6.371e+6     1.3e+4    735.0 solid iron, HCP
+
+  Each layer is at its ground state:
+    - Density increases with depth (heavier sinks)
+    - Pressure increases with depth (weight of above layers)
+    - Phase transitions at boundaries (solid → liquid at outer core)
+    - Each boundary is a soliton boundary where the state changes
+
+  The inner core crystallized from the liquid outer core
+  as the Earth cooled. It found its ground state: solid HCP iron
+  at 330 GPa. This is a PHASE TRANSITION soliton boundary —
+  the same structural element as the confinement wall in QCD
+  or the electroweak symmetry breaking threshold.
+  [PASS] 8 geological layers cataloged
+        count = 8
+
+SECTION 10: THE a₀ CONNECTION
+----------------------------------------------------------------------
+
+    a₀ = cH₀/(8R₂) (m/s²)                  1.0420889946e-10
+    g_earth (m/s²)                         9.8195320328
+    g_earth / a₀                           94229303675.0
+    Radius where g_earth = a₀              1.9556926159e+12
+    In AU                                  13.072811604
+
+  Earth's gravity reaches a₀ at 13.1 AU — well inside
+  the solar Hill sphere but far beyond the Earth's Hill sphere.
+  At this radius, Earth's gravitational soliton transitions
+  from Newtonian (g >> a₀) to MOND-like (g ~ a₀) behavior.
+
+    Radius where g_sun = a₀ (AU)           7544.4310624
+    In parsec                              0.036573133083
+
+  The Sun's gravity reaches a₀ at 7.54e+3 AU = 0.0366 pc.
+  This is about 62.9× the solar Hill sphere.
+  Beyond this radius: the Sun's soliton enters the MOND regime.
+  Inside: Newtonian ground states (all our planets).
+  Outside: the galactic soliton takes over.
+  [PASS] Earth a0 radius > Hill sphere
+        r_a0 = 1.96e+12 m > R_Hill = 1.5e+9 m
+
+SECTION 11: KEPLER'S LAWS AS SOLITON MODES
+----------------------------------------------------------------------
+
+  Kepler's third law: T² = (4π²/GM) × a³
+  In R₂ language: T² = (64R₂²/GM) × a³
+  since 4π² = (8R₂)² = 64R₂².
+
+  Planet            a (m)      T_obs (s)   T_Kepler (s)      Match
+  ---------- ------------ -------------- -------------- ----------
+  Mercury       5.791e+10      7.5991e+6      7.5998e+6    1.00009
+  Venus         1.082e+11      1.9414e+7      1.9409e+7   0.999747
+  Earth         1.496e+11      3.1558e+7      3.1555e+7   0.999914
+  Mars          2.279e+11      5.9354e+7      5.9332e+7    0.99963
+  Jupiter       7.785e+11      3.7434e+8      3.7459e+8    1.00068
+  Saturn        1.434e+12      9.2959e+8      9.3647e+8     1.0074
+
+  Kepler's law uses R₂ through 4π² = 64R₂².
+  Each planet's orbit is a ground state MODE of the
+  Sun-planet two-body soliton. The mode frequencies
+  follow the R₂-geometry: T ∝ a^(3/2).
+
+  These are the same R₂ modes that appear in:
+    - Speaker Helmholtz resonance: f ∝ √(R₂d²/(lV))
+    - Fiber V-number cutoff: V = 8R₂·a·NA/λ
+    - Pipe flow: Q = R₂d²v
+  The orbital mode spectrum is another R₂ domain.
+  [FAIL] Kepler's law matches all 6 planets within 0.1%
+        max miss = 0.0074
+
+SECTION 12: THE COMPLETE NESTED SOLITON HIERARCHY
+----------------------------------------------------------------------
+
+  Level                            Size  |U|/Mc² Integer Rule         Boundary
+  ---------------------- -------------- -------- -------------------- ---------------
+  Proton (QCD)                    ~1 fm      99% b₃ = -7              Confinement
+  Atom (EM)                     ~0.1 nm    ~10⁻⁸ α = 1/137            Ionization
+  Crystal lattice              ~1 nm-km   ~10⁻¹⁰ Band structure       Melting/fracture
+  Rock/geological                 ~m-km   ~10⁻¹⁰ Material strength    Phase boundaries
+  Human on surface               ~1.7 m    ~10⁻⁹ GM⊕/(R⊕c²)           Jump height
+  Earth Hill sphere         ~1.5×10⁶ km    ~10⁻⁹ M⊕/M☉ ratio          L1 Lagrange
+  Earth orbit                      1 AU    ~10⁻⁸ Kepler T²∝a³         Escape velocity
+  Solar Hill sphere             ~120 AU    ~10⁻⁶ M☉/M_gal ratio       Voyager crossing
+  Galactic disk                 ~15 kpc    ~10⁻⁶ DM/bar = (22/13)π    Virial radius
+  Galaxy cluster                 ~3 Mpc    ~10⁻⁵ DM ~ 85%             Virial radius
+  BAO / cosmological           ~150 Mpc        — N ~ 100 boundaries   H₀ running
+
+  11 levels. Same principle at every level:
+  The soliton sits at ground state within the containing soliton.
+  The coupling strength |U|/Mc² determines how deep the well is.
+  The integer rules (Fractions) determine the soliton's structure.
+  The boundary defines where one soliton's dominance ends
+  and the next begins.
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+
+  TOTAL: 9 PASS, 1 FAIL out of 10
+  NESTED SOLITON GRAVITY: 1 FAILURES
+    - Kepler's law matches all 6 planets within 0.1%
+
+  THE HIERARCHY:
+    11 nesting levels from proton to cosmological
+    Same principle at every level: ground state within container
+    Coupling strength GM/(rc²) determines well depth
+    EM boundary (α = 1/137) holds you above gravitational ground state
+    R₂ = π/4 appears in every orbital cross-section (Kepler)
+    Hill spheres are soliton dominance boundaries (R5)
+
+  GRAVITY IS NOT A FORCE PULLING YOU DOWN.
+  IT IS THE ABSENCE OF ANY REASON TO BE UP.
+  THE GROUND STATE IS WHERE YOU ARE WHEN NOTHING PUSHES YOU AWAY.
+
+======================================================================
+NESTED SOLITON GRAVITY EXPERIMENT COMPLETE
+======================================================================
