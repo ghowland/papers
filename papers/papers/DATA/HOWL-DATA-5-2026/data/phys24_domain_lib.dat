@@ -1,0 +1,179 @@
+======================================================================
+PHYS24_DOMAIN_LIB SELF-TEST
+======================================================================
+
+CORE GEOMETRIC CONSTANTS
+----------------------------------------------------------------------
+
+  [PASS] R2 = pi/4
+        expected: 0.7853981634
+        got:      0.7853981634
+        digits:   EXACT (need 30)
+  [PASS] R4 = pi^2/32
+        expected: 0.30842513753
+        got:      0.30842513753
+        digits:   EXACT (need 30)
+  [PASS] AIRY_CONST = j11/pi
+        expected: 1.2196698913
+        got:      1.2196698913
+        digits:   EXACT (need 10)
+  [PASS] Vena contracta = pi/(pi+2)
+        expected: 0.61101547035
+        got:      0.61101547035
+        digits:   EXACT (need 30)
+
+AREA COMPUTATIONS (R2 * d^2)
+----------------------------------------------------------------------
+
+  [PASS] Disc area (120mm)
+        expected: 0.011309733553
+        got:      0.011309733553
+        digits:   EXACT (need 10)
+  [PASS] Wafer area ~ 707 cm^2
+        area = 706.9 cm^2
+  [PASS] AWG 12 area ~ 3.31 mm^2
+        area = 3.31 mm^2
+
+OPTICAL DISC COMPUTATIONS
+----------------------------------------------------------------------
+
+  [PASS] CD spot ~ 2.1 um
+        spot = 2.114 um
+  [PASS] BD spot ~ 0.58 um
+        spot = 0.5811 um
+  [PASS] BD spot < DVD spot < CD spot
+        ordering confirmed
+
+FIBER OPTIC COMPUTATIONS
+----------------------------------------------------------------------
+
+  [PASS] SMF-28 mode area ~ 85 um^2
+        area = 84.95 um^2
+  [PASS] V at cutoff ~ 2.4
+        V = 2.862
+
+RAYLEIGH SCATTERING
+----------------------------------------------------------------------
+
+  [PASS] Rayleigh at 1550nm ~ 0.14 dB/km
+        loss = 0.1386 dB/km
+  [PASS] Rayleigh at 1310nm ~ 0.27 dB/km
+        loss = 0.2716 dB/km
+  [PASS] 1550nm has lower loss than 1310nm
+        1550: 0.1386 < 1310: 0.2716
+
+WIRE COMPUTATIONS
+----------------------------------------------------------------------
+
+  [PASS] AWG 12 resistance ~ 5.2 mohm/m
+        R = 0.005208 ohm/m
+  [FAIL] RC cancellation: R2 drops out
+        expected: 1.5265505208e-16
+        got:      3.9688879973e-22
+        digits:   1.129e-6 (need 10)
+
+FLOW COMPUTATIONS
+----------------------------------------------------------------------
+
+  [PASS] 100mm pipe at 1 m/s ~ 7.85 L/s
+        Q = 7.854 L/s
+  [PASS] Helmholtz resonance ~ 42 Hz
+        f = 42.46 Hz
+
+RF COMPUTATIONS
+----------------------------------------------------------------------
+
+  [PASS] GPS L1 wavelength ~ 0.19 m
+        lambda = 0.1903 m
+  [PASS] GPS L1 FSPL at 1km ~ 96 dB
+        FSPL = 96.4 dB
+
+SEMICONDUCTOR
+----------------------------------------------------------------------
+
+  [PASS] EUV resolution (NA=0.33) ~ 25 nm
+        CD = 24.9 nm
+  [PASS] EUV high-NA (0.55) ~ 15 nm
+        CD = 15.0 nm
+
+GAUSSIAN BEAM
+----------------------------------------------------------------------
+
+  [PASS] Rayleigh range (5um, 1064nm) ~ 74 um
+        z_R = 73.82 um
+  [PASS] Beam divergence ~ 68 mrad
+        theta = 67.74 mrad
+
+BCS SUPERCONDUCTING GAP
+----------------------------------------------------------------------
+
+  [PASS] BCS gap = pi/e^gamma
+        expected: 1.76388
+        got:      1.7638769889
+        digits:   5.768 (need 4)
+  [PASS] Al measured matches BCS
+        Al = 1.764, BCS = 1.7639
+
+QUERY FUNCTIONS
+----------------------------------------------------------------------
+
+  [FAIL] 'flow' finds Pipe flow, Orifice, and Hagen-Poiseuille
+        found 2: ['Pipe flow', 'Orifice flow']
+  [PASS] 22 R2 equations registered
+        count = 22
+  [PASS] 5 R2 cancellation identities
+        count = 5
+
+CROSS-DOMAIN AREA TRANSLATION
+----------------------------------------------------------------------
+
+  [PASS] 1cm cross-domain: area ~ 0.785 cm^2
+        area = 0.7854 cm^2
+
+DATA COMPLETENESS
+----------------------------------------------------------------------
+
+  [PASS] 3 optical disc formats
+        count = 3
+  [PASS] 12+ AWG gauges
+        count = 12
+  [PASS] 6 speaker sizes
+        count = 6
+  [PASS] 7 just intonation ratios
+        count = 7
+  [PASS] 6 DDR standards
+        count = 6
+  [PASS] 6 storage interfaces
+        count = 6
+  [PASS] 4 BCS materials
+        count = 4
+  [PASS] 7 R2 cancellations registered
+        count = 7
+  [PASS] 7 RF standards
+        count = 7
+
+
+  TOTAL: 38 PASS, 2 FAIL out of 40
+
+  DOMAIN LIBRARY: 2 FAILURES
+    - RC cancellation: R2 drops out
+    - 'flow' finds Pipe flow, Orifice, and Hagen-Poiseuille
+
+  DATA INVENTORY:
+    Optical disc formats:    3
+    Fiber types:             1
+    Speaker sizes:           6
+    AWG gauges:              12
+    RF standards:            7
+    Memory standards:        6
+    Storage interfaces:      6
+    BCS materials:           4
+    R2 equations:            22
+    R2 cancellations:        7
+    Just intonation ratios:  7
+    DWDM bands:              3
+    IEC conductor sizes:     8
+
+======================================================================
+PHYS24_DOMAIN_LIB SELF-TEST COMPLETE
+======================================================================
