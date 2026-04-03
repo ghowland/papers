@@ -67,6 +67,8 @@ For comparison: the ratio K has a theoretical range of [1/3, 1]. At K = 1/3, all
 
 ## 3. The Parametrization and the Tautology
 
+![Fig. 1: The Koide identity K = (1+a²/2)/3 with all three fermion sectors marked. Leptons sit at a² = 2, quarks deviate progressively.](./figures/phys33_01_K_vs_a2.png)
+
 Any three positive numbers m₁, m₂, m₃ can be written in the Koide parametrization:
 
 √m_k = M × (1 + a × cos(θ + 2πk/3))
@@ -85,9 +87,15 @@ At a² = 2: K = (1 + 1)/3 = 2/3 exactly. No other value of a² gives K = 2/3. Th
 
 (Backed by phys33_koide_amplitude.py Section 3: identity verified, reconstruction to 10⁻⁹⁸.)
 
+![Fig. 2: The Koide parametrization visualized as projections of three vectors at 120° separation on a circle of radius a ≈ √2.](./figures/phys33_02_koide_circle.png)
+
+![Fig. 8: The three √m vectors on a polar plot at 120° separation. The tau vector dominates, the electron vector is near the origin, and the M = 17.7 circle marks the equal-mass reference.](./figures/phys33_08_polar_vectors.png)
+
 ---
 
 ## 4. The Amplitude: a² = 1.9999631
+
+![Fig. 5: The allowed range a² ∈ [0,4] showing the lepton value at the geometric midpoint a² = 2, with quark sectors displaced toward stronger interaction.](./figures/phys33_05_a2_range.png)
 
 From the measured K = 0.66666051, the amplitude is extracted:
 
@@ -119,6 +127,8 @@ The pattern suggests that whatever mechanism produces a² = 2 is disrupted by st
 
 ## 6. The Prediction: m_tau from m_e and m_mu
 
+![Fig. 3: The quadratic x² − 4sx + c = 0 with both roots visible. The physical root (gold, x = 42.15) gives m_tau = 1777 MeV. The other root (red, x = 1.82) gives 3.3 MeV.](./figures/phys33_03_quadratic.png)
+
 If a² = 2 exactly — equivalently K = 2/3 — the three lepton masses satisfy one constraint: (∑√m)² = (3/2) × ∑m. Given two masses (m_e and m_mu), the third (m_tau) is determined.
 
 Let s = √m_e + √m_mu = 0.715 + 10.279 = 10.994 MeV^(1/2). Let S = m_e + m_mu = 106.169 MeV. Then x = √m_tau satisfies the quadratic:
@@ -143,9 +153,15 @@ The other root (3.317 MeV) lies between m_e and m_mu. No charged lepton exists a
 
 (Backed by phys33_koide_amplitude.py Section 5: m_tau = 1776.969, miss 0.006%, K_pred = 2/3 to 10⁻⁹⁹.)
 
+![Fig. 4: The charged lepton masses on a log scale with the Koide prediction (gold) at the measured tau position and the other quadratic root (red) between electron and muon.](./figures/phys33_04_mass_hierarchy.png)
+
+![Fig. 6: Zoomed view of the m_tau prediction (1776.97 MeV) vs measurement (1776.86 ± 0.12 MeV). The prediction falls inside the 1σ measurement band.](./figures/phys33_06_mtau_zoom.png)
+
 ---
 
 ## 7. The Tautology Boundary
+
+![Fig. 7: The predicted m_tau as a function of a², showing that small changes in a² shift the prediction. The a² = 2 point lands within the measured band.](./figures/phys33_07_mtau_vs_a2.png)
 
 This paper must be precise about what is derived and what is assumed.
 
