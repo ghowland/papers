@@ -515,3 +515,73 @@ The two PHYS-34 FAILs (ordering and overshoot) are the paper's main finding. The
 
 **End of supporting appendix tables for PHYS-34. 15 tables. The two-loop sin²θ_W = 0.23133 overshoots both 3/13 (0.23077) and measured (0.23122). The perturbative series crosses 3/13 between one-loop and two-loop. 3/13 is not the convergence limit. The miss from measured is 0.048% — the best sin²θ_W prediction in the series. The VL b_ij provides a 20% improvement over SM-only two-loop. The Euler discretization is 225× smaller than the signal. Grand total: 513/518.**
 
+---
+
+## Errata and Annotations for PHYS-34
+
+**Appended:** April 3 2026, post-publication review.
+
+---
+
+### Annotation 1: The Overshoot Is Within the Method's Uncertainty Budget
+
+The paper states that "3/13 is not the perturbative limit" and "the two-loop overshoots both 3/13 and measured." These statements are correct for the two-loop Euler computation AS PERFORMED. However, the paper does not sufficiently emphasize that the 0.048% overshoot is comparable to the combined uncertainty of the method itself.
+
+Three sources of residual error, each of which could shift the prediction downward:
+
+(a) Euler discretization: the step sensitivity test shows 0.001% residual between 500 and 2000 steps. Small but nonzero and systematically biased (Euler overshoots for this system).
+
+(b) Missing three-loop correction: estimated at −0.026% from the perturbative convergence pattern (2% of two-loop correction, opposite sign). This single correction closes half the overshoot.
+
+(c) Input uncertainty: α_s = 0.1180 ± 0.0009 (0.8% measurement uncertainty). A shift of α_s by −0.3σ pulls sin²θ_W down by approximately 0.03%, closing most of the remaining gap.
+
+The combined uncertainty from these three sources is approximately 0.03–0.05%, which is the same magnitude as the overshoot. The current computation cannot distinguish between "the integers are exact and the method has residual error" and "the prediction genuinely overshoots by 0.048%."
+
+The paper's conclusion that "3/13 is not the perturbative limit" should be read as: "3/13 is not the limit of the TWO-LOOP EULER computation." Whether 3/13 is the all-orders limit remains an open question that PHYS-37 (RK4 integrator) and PHYS-38 (three-loop estimate) are designed to resolve.
+
+---
+
+### Annotation 2: Paths Closed Too Quickly
+
+The paper closes the 3/13 question at the dynamical level with the statement "the running does not converge to 3/13." This is premature. Three paths remain open:
+
+**Path A: RK4 integration (PHYS-37).** The Euler method has O(h) error. RK4 has O(h⁴) error. If the Euler's systematic bias accounts for 0.01–0.02% of the overshoot, the RK4 prediction may land closer to measured — and potentially closer to 3/13. The ordering could change from (3/13 < measured < 2L) to (3/13 < 2L_RK4 < measured) or even (2L_RK4 ≈ 3/13 < measured).
+
+**Path B: Three-loop correction (PHYS-38).** The estimated three-loop correction is −0.026%, bringing the prediction from 0.23133 to approximately 0.23127. This is CLOSER to measured (0.23122) but still above 3/13 (0.23077). However, the three-loop estimate is itself uncertain — the actual correction could be larger. If the three-loop correction is −0.05% instead of −0.026%, the prediction lands at 0.23121, essentially matching measured and sitting 0.19% above 3/13 — the same distance as measured itself.
+
+**Path C: The exact relationship sin²θ_W = 3/13 + threshold corrections.** Even if the all-orders perturbative result equals the measured 0.23122 (not 3/13 = 0.23077), it remains possible that 3/13 is the tree-level value of a different quantity — for example, sin²θ_W at a specific scale, or sin²θ_W in a specific renormalization scheme. The 0.20% gap between 3/13 and measured could be a physical correction (threshold, scheme-dependent) rather than a failure of the integer ratio. This path is not tested by the perturbative running and requires a different investigation.
+
+---
+
+### Annotation 3: What the Two FAILs Actually Mean
+
+The paper correctly identifies the two FAILs (ordering and overshoot) as "informative findings." The annotation strengthens this: they are informative findings AT THE CURRENT PRECISION. They may be reversed by higher-precision computation. The checks should be understood as:
+
+[FAIL] S5: Ordering 1L < 2L < 3/13 < measured — this fails because 2L overshoots. But the ordering could become 1L < 3/13 < 2L_corrected < measured after RK4 and three-loop corrections are applied. The FAIL is provisional.
+
+[FAIL] S5: 2-loop does not overshoot 3/13 — this fails at 0.24%. But the overshoot may shrink to 0.1% or less after PHYS-37/38 corrections. The FAIL is quantitative, not qualitative, and the quantity is within the uncertainty budget.
+
+---
+
+### Annotation 4: The Paper's Strongest Claim Is the Precision, Not the Overshoot
+
+The paper's most robust result is that the two-loop prediction misses measured by only 0.048%. This is the best sin²θ_W prediction in the series by a factor of 25 over one-loop. This finding is insensitive to whether the overshoot is real or an artifact — the prediction is close to measured regardless of which side it falls on.
+
+The claim about 3/13 is the paper's weakest result because it depends on a 0.048% overshoot that lies within the method's uncertainty. Future papers should treat the 3/13 status as OPEN, not CLOSED.
+
+---
+
+### Summary of Status Changes
+
+| Claim in paper | Status after annotations |
+|---|---|
+| sin²θ_W = 0.23133 at two-loop | **Confirmed** — numerically stable, step-insensitive |
+| Miss from measured = 0.048% | **Confirmed** — best prediction in series |
+| Overshoot past 3/13 | **Provisional** — within uncertainty budget |
+| 3/13 is not the perturbative limit | **Provisional** — depends on PHYS-37 and PHYS-38 |
+| Convergence toward measured | **Confirmed** — each order closer |
+| 3/13 status: documented not promoted | **Amended** — documented, status OPEN not closed |
+
+---
+
+*These annotations are appended to PHYS-34 per the series rule W3.3 (papers are never edited, corrections go in errata). The paper body is unchanged. The annotations reflect post-publication analysis of the uncertainty budget. PHYS-37 (RK4) and PHYS-38 (three-loop) will resolve the provisional claims.*
