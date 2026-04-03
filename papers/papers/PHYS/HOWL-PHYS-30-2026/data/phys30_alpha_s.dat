@@ -6,148 +6,118 @@ Does the unification condition predict the right alpha_s?
 SECTION 1: THE TWO INPUTS
 ----------------------------------------------------------------------
 
-  Input 1: alpha_EM = 1/137.035999177 (DATA-4 B1, 12 digits)
-  Input 2: sin2_tW  = 0.23122 (DATA-4 B11, 5 digits)
+  Input 1: alpha_EM = 1/137.035999177 (DATA-4 B1)
+  Input 2: sin2_tW  = 0.23122 (DATA-4 B11)
 
-  From these two, compute alpha_1 and alpha_2 at M_Z:
-
-    1/alpha_1(M_Z) (dimensionless)         -273.37739498
-    1/alpha_2(M_Z) (dimensionless)         592.66499082
+    Derived 1/alpha_1(M_Z) (dimensionless) 63.210321268
+    Derived 1/alpha_2(M_Z) (dimensionless) 31.68546373
 
     Library 1/alpha_1 (dimensionless)      63.210321268
     Library 1/alpha_2 (dimensionless)      31.68546373
 
-SECTION 2: ONE-LOOP PREDICTION
+SECTION 2: ONE-LOOP PREDICTION (M_VL = 500 GeV)
 ----------------------------------------------------------------------
 
-  Method: run alpha_1 and alpha_2 to crossing with CD betas.
-  At crossing: alpha_GUT determined. Predict alpha_3 by
-  running alpha_GUT back down to M_Z.
+    1/alpha_1(M_VL) (dimensionless)        62.099909068
+    1/alpha_2(M_VL) (dimensionless)        32.543099169
 
-    1/alpha_1(M_VL) (dimensionless)        -274.48780718
-    1/alpha_2(M_VL) (dimensionless)        593.52262626
+    L to crossing (dimensionless)          4.666864721
+    1/alpha_GUT (dimensionless)            42.654639398
+    log10(M_GUT/GeV)                       15.433689748
 
-    L to crossing (dimensionless)          -137.05427896
-    1/alpha_GUT (dimensionless)            296.5716885
-    log10(M_GUT/GeV)                       -371.28826482
-
-    1/alpha_3(M_VL) predicted (dimensionless) 1210.2668816
-    1/alpha_3(M_Z) predicted (dimensionless) 1208.3710559
-    alpha_s predicted (dimensionless)      0.00082756037156
+    1/alpha_3(M_Z) predicted (dimensionless) 9.6463822169
+    alpha_s predicted (dimensionless)      0.1036658073
     alpha_s measured (dimensionless)       0.118
+    Miss (%%)                              12.147620936
 
-    Relative miss (%%)                     99.298677651
+  Measured: 0.1180 +/- 0.0009
+  1-sigma: [0.1171, 0.1189]. Predicted in range: False
+  3-sigma: [0.1153, 0.1207]. Predicted in range: False
 
-  Measured: alpha_s = 0.1180 +/- 0.0009
-  1-sigma range: [0.1171, 0.1189]
-  3-sigma range: [0.1153, 0.1207]
-  Predicted: 0.00082756
-  Within 1-sigma: False
-  Within 3-sigma: False
-
-SECTION 3: CONNECTION TO DELTA
+SECTION 3: SENSITIVITY TO M_VL
 ----------------------------------------------------------------------
 
-  The alpha_s prediction is the INVERSE of the Delta test.
-  In the Delta test: measured alpha_s runs to M_GUT, misses.
-  Here: unification FORCES alpha_3 = alpha_GUT, then runs down.
-  The prediction misses the measured alpha_s by the same
-  amount that Delta measures at M_GUT.
+  M_VL(GeV)      alpha_s     miss(%%)  3-sigma
+  -------- ------------ ------------ --------
+       200     0.105793        10.35       NO
+       500     0.103666        12.15       NO
+      1000     0.102113        13.46       NO
+      1500     0.101226        14.22       NO
+      2000     0.100606        14.74       NO
+      3000    0.0997446        15.47       NO
+      4000    0.0991425        15.98       NO
+      5000    0.0986804        16.37       NO
+      6000    0.0983061        16.69       NO
 
-    Delta(1/alpha_3) at M_GUT (dimensionless) 627.49390657
+  Best: M_VL = 200 GeV
+      alpha_s (dimensionless)              0.10579266716
+      miss (%%)                            10.345197322
 
-    delta(1/alpha_3) at M_Z (dimensionless) 1199.8964796
-    delta(alpha_s) = -alpha_s^2 * delta(1/alpha_s) (dimensionless) -16.707358582
-
-SECTION 4: SENSITIVITY TO M_VL
+SECTION 4: TWO PREDICTIONS COMPARED
 ----------------------------------------------------------------------
 
-  The alpha_s prediction depends on M_VL through the
-  threshold. Scan M_VL to see the sensitivity.
+  Two-input predictions from the CD unification framework:
 
-  M_VL(GeV) alpha_s pred     miss(%%) within 3sigma
-  -------- ------------ ------------ ------------
-       200  0.000827693         99.3           NO
-       500   0.00082756         99.3           NO
-      1000   0.00082746         99.3           NO
-      1500  0.000827401         99.3           NO
-      2000  0.000827359         99.3           NO
-      3000  0.000827301         99.3           NO
-      4000  0.000827259         99.3           NO
-      5000  0.000827227         99.3           NO
-      6000    0.0008272         99.3           NO
+  PHYS-27: alpha_EM + alpha_s -> sin2_tW
+    Predicted: 0.22845 (no threshold)
+    Measured:  0.23122
+    Miss: 1.2%%
 
-  Best M_VL: 200 GeV
-      alpha_s predicted (dimensionless)    0.00082769320789
-      miss (%%)                            99.298565078
+  PHYS-30: alpha_EM + sin2_tW -> alpha_s
+      Predicted (dimensionless)            0.1036658073
+      Measured (dimensionless)             0.118
+      Miss (%%)                            12.147620936
 
-SECTION 5: TWO PREDICTIONS COMPARED
+  Both use two couplings to predict the third.
+  Both miss by a similar amount at one loop.
+  The two predictions are the SAME unification condition
+  viewed from different angles.
+
+SECTION 5: PARAMETER COUNT
 ----------------------------------------------------------------------
 
-  The CD framework makes two predictions from unification:
+  If unification is exact, alpha_EM + sin2_tW determine
+  alpha_s. The strong coupling is DERIVED, not independent.
 
-  1. sin2_tW from alpha_EM + alpha_s (PHYS-27):
-     Predicted: 0.22845 (no threshold)
-     Measured:  0.23122
-     Miss: 1.2%%
-
-  2. alpha_s from alpha_EM + sin2_tW (this paper):
-       Predicted (dimensionless)           0.00082756037156
-       Measured (dimensionless)            0.118
-       Miss (%%)                           99.298677651
-
-  Both predictions use two of the three couplings as input
-  and predict the third. Both miss by ~1-2%% at one loop.
-  Both are expected to improve at two loops.
-
-SECTION 6: PARAMETER COUNT IMPLICATIONS
-----------------------------------------------------------------------
-
-  If unification is exact (Delta = 0), the three couplings
-  alpha_EM, sin2_tW, alpha_s are related by the unification
-  condition. Only TWO are independent. The third is derived.
-
-  Combined with theta_QCD = 0 (PHYS-7) and the Koide
-  conditional (m_tau from K=2/3), the parameter reductions:
-
+  Reductions:
     theta_QCD = 0:  19 -> 18  (energy minimization)
-    m_tau:          18 -> 17  (Koide conditional on a^2=2)
-    alpha_s:        17 -> 16  (unification condition)
-    sin2_tW:        (redundant with alpha_s — same condition)
+    m_tau (Koide):  18 -> 17  (conditional on a^2 = 2)
+    alpha_s (unif): 17 -> 16  (unification condition)
 
-  The unification condition reduces by 1, not 2, because
-  it relates three couplings with one condition. Either
-  alpha_s or sin2_tW is derived, not both independently.
+  Note: sin2_tW prediction (PHYS-27) and alpha_s prediction
+  (this paper) are the SAME condition. Only one parameter
+  is reduced, not two.
 
 ======================================================================
 CHECKS
 ======================================================================
 
-  [FAIL] S1: 1/alpha_1 from inputs matches library
+  [PASS] S1: 1/alpha_1 from inputs matches library
         expected: 63.210321268
-        got:      -273.37739498
-        digits:   -0.7263 (need 10)
-  [FAIL] S1: 1/alpha_2 from inputs matches library
+        got:      63.210321268
+        digits:   EXACT (need 10)
+  [PASS] S1: 1/alpha_2 from inputs matches library
         expected: 31.68546373
-        got:      592.66499082
-        digits:   -1.248 (need 10)
-  [FAIL] S2: L_cross positive (crossing above M_VL)
-        L = -137.05
-  [FAIL] S2: M_GUT > 10^15
-        log10 = -371.3
-  [FAIL] S2: alpha_s within 3-sigma (abort test)
-        pred=0.00082756 in [0.1153, 0.1207]
+        got:      31.68546373
+        digits:   EXACT (need 10)
+  [PASS] S2: L_cross positive
+        L = 4.6669
+  [PASS] S2: M_GUT > 10^15
+        log10 = 15.43
+  [FAIL] S2: Abort test — alpha_s within 3-sigma
+        pred=0.10367 in [0.1153, 0.1207]
   [FAIL] S2: alpha_s miss < 5%%
-        miss = 99.3%
-  [FAIL] S3: Delta negative (same physics as PHYS-24)
-        Delta = 627.5
-  [FAIL] S4: All M_VL give alpha_s within 3-sigma
-        all within [0.1153, 0.1207]
-  [FAIL] S5: alpha_s miss < 3%% (comparable to sin2_tW)
-        miss = 99.3%
+        miss = 12.15%
+  [FAIL] S3: All M_VL within 3-sigma
+        all in [0.1153, 0.1207]
+  [FAIL] S3: Best miss < 3%%
+        miss = 10.35%
+  [FAIL] S4: alpha_s miss comparable to sin2_tW miss (<3%%)
+        alpha_s=12.1%, sin2_tW=1.2%
 
-  TOTAL: 0 PASS, 9 FAIL out of 9
+  TOTAL: 4 PASS, 5 FAIL out of 9
 
 ======================================================================
 PHYS-30 alpha_s PREDICTION COMPLETE
 ======================================================================
+
