@@ -55,7 +55,7 @@ write up the new paper plan
 
 ---
 
-**PHYS-36: A₃ Decomposition — The SU(3) Beta Structure**
+**PHYS-32: A₃ Decomposition — The SU(3) Beta Structure**
 
 Goal: Decompose the SU(3) modified beta b₃' = −20/3 into its constituent parts — gauge, fermion (SM), fermion (CD), and Higgs — and verify each piece traces to exact Fractions from the representation theory. The SU(3) sector is the least explored of the three gauge groups in our computation chain.
 
@@ -71,7 +71,7 @@ Checks: ~12. Each constituent piece exact, sum recovers library value, cross-che
 
 ---
 
-**PHYS-37: Koide Amplitude — The a² = 2 Conditional**
+**PHYS-33: Koide Amplitude — The a² = 2 Conditional**
 
 Goal: The Koide formula K = (m_e + m_μ + m_τ)² / (3(m_e² + m_μ² + m_τ²)) = 2/3 holds to 0.001% for the charged leptons. When parametrized as K = (1 + a cos δ)² with a² = 2, the three masses are determined by two parameters (a, δ) instead of three. This paper computes a² from the measured masses, verifies a² = 2 to the available precision, and derives m_τ as a function of m_e and m_μ conditional on a² = 2 exactly.
 
@@ -87,7 +87,7 @@ Checks: ~8. K = 2/3 verification, a² = 2 precision, m_τ prediction vs measured
 
 ---
 
-**PHYS-40: sin²θ_W = 3/13 — The Exact Two-Loop Test**
+**PHYS-34: sin²θ_W = 3/13 — The Exact Two-Loop Test**
 
 Goal: PHYS-27 showed that the one-loop sin²θ_W prediction (0.22845) is 1.2% below measured (0.23122), and the ordering suggests convergence toward 3/13 = 0.23077. PHYS-31 parked the FORMULA 3/13 as a numerological hit. But the QUESTION remains: does the two-loop running produce a sin²θ_W that converges toward 3/13 = N_gen/|b₂' numerator|? This is a Track A question about the dynamics.
 
@@ -107,7 +107,7 @@ Checks: ~10. One-loop reproduces PHYS-27 value, two-loop closer to measured than
 
 ---
 
-**PHYS-41: The No-Threshold Puzzle**
+**PHYS-35: The No-Threshold Puzzle**
 
 Goal: Both PHYS-27 (sin²θ_W) and PHYS-30 (α_s) give their best predictions when the CD betas are used from M_Z to M_GUT WITHOUT a physical threshold at M_VL. The no-threshold advantage is 1.4× at one-loop and 14–15× at two-loop. This is puzzling — the CD has a physical mass and SHOULD have a threshold. Why does ignoring the threshold give BETTER predictions?
 
@@ -123,7 +123,7 @@ Checks: ~10. M_VL scan reproduces PHYS-30 values, step sensitivity test, soft vs
 
 ---
 
-**PHYS-42: Non-Minimal GUT Completion — SO(10) Threshold Coefficients**
+**PHYS-36: Non-Minimal GUT Completion — SO(10) Threshold Coefficients**
 
 Goal: PHYS-29 showed minimal SU(5) requires M_X/M = 23,228 for exact unification — unnatural. The next question: does SO(10) do better? In SO(10), the breaking can proceed through intermediate scales (Pati-Salam SU(4)×SU(2)×SU(2), or flipped SU(5)×U(1)), introducing additional heavy particles with larger Dynkin indices and more threshold corrections.
 
@@ -139,7 +139,7 @@ Checks: ~12. Each heavy particle's beta shifts verified, SM limit recovery, comp
 
 ---
 
-**PHYS-43: Higher-Order Integration — Precise Two-Loop Running**
+**PHYS-37: Higher-Order Integration — Precise Two-Loop Running**
 
 Goal: The PHYS-28 Euler integrator with 500 steps gives Delta = −0.49, while the PHYS-24 reference gives −0.40. The 0.09 difference is Euler discretization error. This paper replaces Euler with 4th-order Runge-Kutta (RK4), which has O(h⁴) error instead of O(h), giving precise Delta and α_s values.
 
@@ -159,7 +159,7 @@ Checks: ~10. RK4 vs Euler convergence, step-count independence test (500 vs 1000
 
 ---
 
-**PHYS-44: Three-Loop α_s Estimate**
+**PHYS-38: Three-Loop α_s Estimate**
 
 Goal: The two-loop correction closes 96% of the one-loop α_s gap. How much does three-loop close? The three-loop beta coefficients are known for the SM (Chetyrkin, Tarasov, etc.) but not computed for the CD. This paper estimates the three-loop effect by computing the SM three-loop running and extrapolating the CD contribution.
 
@@ -175,7 +175,7 @@ Checks: ~8. SM three-loop coefficients verified against literature, RK4 converge
 
 ---
 
-**PHYS-45: The Complete Unification Summary**
+**PHYS-39: The Complete Unification Summary**
 
 Goal: Compile all Track A results into a single self-contained paper. This is the capstone paper that a reader can pick up without having seen PHYS-26 through PHYS-44 and understand the full unification picture: the CD, its betas, the gap ratio, the two-loop correction, the GUT threshold problem, the α_s prediction, the sin²θ_W prediction, the no-threshold puzzle, and the precision results from RK4.
 
@@ -204,4 +204,39 @@ Phases 5 and 6 can run in parallel. Phase 7 waits for PHYS-43.
 **Dropped:** PHYS-32, 33, 34, 35 (Track B, parked by PHYS-31). PHYS-38, 39 (Track B adjacent, motivation gone).
 
 **Total remaining:** 8 papers (PHYS-36, 37, 40, 41, 42, 43, 44, 45).
+
+---
+
+You're right. Sequential numbering, no gaps. Here's the corrected plan:
+
+## Corrected Paper Program — PHYS-32 onward
+
+| Old # | New # | Title |
+|---|---|---|
+| PHYS-36 | **PHYS-32** | A₃ Decomposition (already written as script, rename only) |
+| PHYS-37 | **PHYS-33** | Koide Amplitude |
+| PHYS-40 | **PHYS-34** | sin²θ_W = 3/13 Exact Two-Loop Test |
+| PHYS-41 | **PHYS-35** | The No-Threshold Puzzle |
+| PHYS-42 | **PHYS-36** | Non-Minimal GUT Completion (SO(10)) |
+| PHYS-43 | **PHYS-37** | Higher-Order Integration (RK4) |
+| PHYS-44 | **PHYS-38** | Three-Loop α_s Estimate |
+| PHYS-45 | **PHYS-39** | Complete Unification Summary |
+
+### Execution Order
+
+**Phase 5 — Immediate:**
+- PHYS-32: A₃ Decomposition
+- PHYS-33: Koide Amplitude
+- PHYS-34: sin²θ_W = 3/13 Exact Two-Loop Test
+
+**Phase 6 — New entry points:**
+- PHYS-35: The No-Threshold Puzzle
+- PHYS-36: Non-Minimal GUT Completion
+- PHYS-37: Higher-Order Integration (RK4)
+
+**Phase 7 — Dependent on Phase 6:**
+- PHYS-38: Three-Loop α_s Estimate (needs PHYS-37)
+- PHYS-39: Complete Unification Summary (needs all prior)
+
+All descriptions, dependencies, goals, and script plans from the previous writeup apply — only the numbers changed. Sequential from here. Never again.
 
