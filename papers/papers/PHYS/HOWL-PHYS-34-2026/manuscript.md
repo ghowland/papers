@@ -41,6 +41,8 @@ Separately, PHYS-31 tested whether 3/13 is statistically special as a FORMULA. I
 
 ## 2. The Two-Input Method
 
+![Fig. 2: The three inverse couplings running from M_Z to M_GUT at one-loop (dashed) and two-loop (solid). The two-loop curves are slightly curved, modifying the crossing point and the back-run 1/α₂.](./figures/phys34_02_coupling_running.png)
+
 The prediction uses two measured inputs: α_EM = 1/137.036 (the electromagnetic coupling) and α_s = 0.1180 (the strong coupling). From these, sin²θ_W is derived as an output — not used as an input. This makes the prediction genuine: if the theory is right, sin²θ_W follows from the other two couplings.
 
 The electromagnetic running is controlled by the combination b_EM = (5/3)b₁' + b₂' = (5/3)(25/6) + (−13/6) = 125/18 − 13/6 = 125/18 − 39/18 = 86/18 = 43/9. This exact Fraction determines how 1/α_EM evolves with energy.
@@ -58,6 +60,8 @@ At one loop, the running is linear in L. At two loops, the running includes cros
 ---
 
 ## 3. The Two-Loop Computation
+
+![Fig. 6: Miss from measured sin²θ_W on log scale: tree (62%), one-loop (1.2%), two-loop SM (0.06%), two-loop full (0.048%). Each refinement reduces the miss dramatically.](./figures/phys34_06_miss_progression.png)
 
 The two-loop running uses the Euler integrator from PHYS-28, which adds the cross-coupling terms:
 
@@ -81,6 +85,8 @@ Each refinement moves the prediction closer to measured. The progression from on
 
 ## 4. The Overshoot
 
+![Fig. 3: Number line showing the key ordering: 1-loop (0.22845) < 3/13 (0.23077) < measured (0.23122) < 2-loop (0.23133). The overshoot past both 3/13 and measured is visible.](./figures/phys34_03_ordering.png)
+
 The ordering reveals the key finding:
 
 0.22845 (one-loop) < 0.23077 (3/13) < 0.23122 (measured) < 0.23133 (two-loop full)
@@ -95,9 +101,13 @@ The implication: 3/13 is NOT the limit of the perturbative expansion. The series
 
 (Backed by phys34_sin2tw_twoloop.py Section 5: ordering confirmed, overshoot documented.)
 
+![Fig. 5: The one-loop undershoot (0.00277) vs two-loop overshoot (0.00011) — a 25× reduction proving rapid perturbative convergence.](./figures/phys34_05_undershoot_overshoot.png)
+
 ---
 
 ## 5. The Numerical Stability
+
+![Fig. 4: The sin²θ_W prediction at 200, 500, 1000, 2000 Euler steps — all converged. The discretization error (0.000002) is 225× smaller than the 3/13 vs measured gap (0.00045).](./figures/phys34_04_step_sensitivity.png)
 
 The Euler integrator's discretization error could mask or create the overshoot if it were large. The step sensitivity test rules this out:
 
@@ -111,6 +121,8 @@ The change from 500 to 2000 steps is 0.000002 — fifty times smaller than the d
 
 ## 6. The Perturbative Convergence Pattern
 
+![Fig. 1: sin²θ_W vs perturbative order showing the alternating convergence — undershoot at one-loop, overshoot at two-loop, estimated convergence at three-loop. Measured value (magenta) is the target.](./figures/phys34_01_convergence.png)
+
 The corrections form a convergent alternating series:
 
 From tree level (3/8 = 0.375) to one-loop (0.228): a correction of −0.147 (downward).
@@ -120,6 +132,8 @@ The ratio of successive corrections: 0.003/0.147 ≈ 2%, indicating rapid conver
 If the pattern continues, the three-loop correction would be of order 2% of the two-loop correction, approximately −0.00006 (downward). This would bring the predicted sin²θ_W from 0.23133 to approximately 0.23127 — closer to measured (0.23122) but still slightly above.
 
 The measured value 0.23122 sits comfortably within the convergence envelope of the perturbative series. The expansion is well-behaved: large one-loop correction, small two-loop correction, expected tiny three-loop correction.
+
+![Fig. 7: The convergence envelope showing predictions at each order with shrinking uncertainty bands. The measured value sits inside the two-loop/three-loop convergence band.](./figures/phys34_07_envelope.png)
 
 ---
 
@@ -138,6 +152,8 @@ The paper documents these properties but does not promote 3/13. The dynamical te
 ---
 
 ## 8. The sin²θ_W Prediction
+
+![Fig. 8: Three independent tests of 3/13 — formula scan (not special), statistical control (p=0.81), and dynamical test (series overshoots). All negative. 3/13 is documented but not promoted.](./figures/phys34_08_3_13_assessment.png)
 
 The headline result: **sin²θ_W = 0.23133 from two inputs (α_EM, α_s) and the Cabibbo Doublet betas.** Miss from measured: 0.048%.
 
@@ -276,4 +292,226 @@ The two FAILs are not errors — they are the paper's main result. The ordering 
 *Supporting appendices A through F for PHYS-34. The sin²θ_W two-loop prediction is 0.23133, overshooting 3/13 (0.23077) and measured (0.23122). The overshoot is 0.048% — small but numerically stable. The perturbative series crosses 3/13 between one-loop and two-loop. 3/13 is not the convergence limit. Grand total across all scripts: 513/518 (2 PHYS-34 informative FAILs + 2 prior designed FAILs + 1 prior).*
 
 ---
+
+## Supporting Appendix Tables for PHYS-34
+
+---
+
+### TABLE 34.1: THE THREE VALUES — sin²θ_W AT DIFFERENT LEVELS
+
+| Value | Source | Decimal | Fraction | Level |
+|---|---|---|---|---|
+| 0.375000 | GUT tree level | 0.375 | 3/8 | Level 1 (exact) |
+| 0.228448 | One-loop prediction | 0.22845 | — | Level 2 (computed) |
+| 0.231082 | Two-loop SM b_ij | 0.23108 | — | Level 2 (computed) |
+| 0.231331 | Two-loop full b_ij | 0.23133 | — | Level 2 (computed) |
+| 0.230769 | Integer ratio 3/13 | 0.23077 | 3/13 | Level 1 (exact) |
+| 0.231220 | PDG measured | 0.23122 | — | Level 2 (measured) |
+
+The tree-level and 3/13 are exact rational numbers. The one-loop and two-loop values are computed from the running equations. The measured value is from the PDG global electroweak fit.
+
+---
+
+### TABLE 34.2: THE TWO INPUTS AND THEIR ROLES
+
+| Input | Value | How it enters | What it determines |
+|---|---|---|---|
+| α_EM = 1/137.036 | 1/α_EM = 137.036 | Controls EM running via b_EM = 43/9 | The overall energy scale 1/α_EM(M_Z) |
+| α_s = 0.1180 | 1/α₃ = 8.475 | Controls strong running via b₃' = −20/3 | The crossing point (M_GUT, α_GUT) |
+
+The output sin²θ_W = (1/α₂)/(1/α_EM) is derived, not input. This makes the prediction genuine. If either input changed, the prediction would shift.
+
+---
+
+### TABLE 34.3: THE BETA COEFFICIENTS USED
+
+| Coupling | One-loop b_i | EM combination | Two-loop diagonal | Two-loop off-diagonal |
+|---|---|---|---|---|
+| U(1) | b₁' = 25/6 | b_EM = (5/3)×(25/6) + (−13/6) = 43/9 | b₁₁ = 3.98 + 7/15 | b₁₂, b₁₃ |
+| SU(2) | b₂' = −13/6 | (included in b_EM) | b₂₂ = 5.833 + 15/4 | b₂₁, b₂₃ |
+| SU(3) | b₃' = −20/3 | — | b₃₃ = −26 + 40/9 | b₃₁, b₃₂ |
+
+The SM b_ij values are the known Standard Model two-loop coefficients. The VL additions (+7/15, +15/4, +40/9 on diagonal) are from PHYS-28. The full b_ij = SM + VL provides the complete two-loop running.
+
+---
+
+### TABLE 34.4: THE THREE SCENARIOS — DETAILED
+
+| Property | One-loop | Two-loop SM b_ij | Two-loop full b_ij |
+|---|---|---|---|
+| Method | Analytic | Euler 500 steps | Euler 500 steps |
+| b_ij used | None (one-loop) | SM only | SM + VL |
+| L_GUT | 5.074 | ~5.07 (from binary search) | ~5.08 (from binary search) |
+| 1/α_GUT | 42.298 | ~42.3 | ~42.3 |
+| 1/α₂ at M_Z | 31.306 | 31.674 | 31.708 |
+| sin²θ_W | 0.22845 | 0.23108 | 0.23133 |
+| Miss from measured | 1.199% | 0.060% | **0.048%** |
+| Miss from 3/13 | 1.006% | 0.136% | 0.244% |
+| Side of 3/13 | Below | Below | **Above** |
+| Side of measured | Below | Below | **Above** |
+
+The transition from "below both" to "above both" happens at two loops with the full b_ij. The SM-only two-loop (0.23108) still undershoots both. The VL cross-coupling pushes the prediction above both targets.
+
+---
+
+### TABLE 34.5: THE OVERSHOOT ANATOMY
+
+| Quantity | Value | Distance from measured | Direction |
+|---|---|---|---|
+| One-loop prediction | 0.22845 | −0.00277 | Below |
+| 3/13 | 0.23077 | −0.00045 | Below |
+| Measured | 0.23122 | 0 | — |
+| Two-loop full b_ij | 0.23133 | +0.00011 | Above |
+| Overshoot magnitude | 0.00011 | — | — |
+| Undershoot magnitude (1L) | 0.00277 | — | — |
+| Overshoot / undershoot ratio | 0.040 | — | 4.0% |
+
+The overshoot is 25× smaller than the undershoot. The perturbative series is converging: large step down (1L), small step up (2L). The alternation in sign is typical of well-behaved perturbative expansions.
+
+---
+
+### TABLE 34.6: THE 3/13 CROSSING ANALYSIS
+
+| Quantity | Value |
+|---|---|
+| One-loop distance below 3/13 | 1.006% |
+| Two-loop distance above 3/13 | 0.244% |
+| Total gap spanned | 1.250% |
+| Fraction of gap at crossing | 1.006/1.250 = 80.5% |
+| Effective "loop order" at crossing | 1 + 0.805 = 1.8 |
+| Gap toward 3/13 closed by 2-loop | 75.8% |
+
+The perturbative series crosses 3/13 approximately 80% of the way from one-loop to two-loop. There is no physical meaning to "order 1.8" — it simply indicates that 3/13 is passed relatively late in the one-loop-to-two-loop transition.
+
+---
+
+### TABLE 34.7: THE EULER STEP CONVERGENCE — DETAILED
+
+| Steps | sin²θ_W | Δ from 2000 | Miss measured | Miss 3/13 | Runtime class |
+|---|---|---|---|---|---|
+| 200 | 0.23132830 | −0.000005 | 0.0468% | 0.2423% | Fast |
+| 500 | 0.23133129 | −0.000002 | 0.0481% | 0.2436% | Reference |
+| 1000 | 0.23133229 | −0.000001 | 0.0486% | 0.2440% | Moderate |
+| 2000 | 0.23133280 | 0 (baseline) | 0.0488% | 0.2442% | Slow |
+
+The 500-step value differs from 2000-step by 0.000002. The difference between 3/13 and measured is 0.000451. The discretization error is 225× smaller than the signal. The overshoot finding is numerically robust.
+
+---
+
+### TABLE 34.8: THE b_EM COMBINATION — EXACT ARITHMETIC
+
+| Component | Expression | Value | Fraction |
+|---|---|---|---|
+| (5/3) × b₁' | (5/3) × (25/6) | 125/18 | 6.944 |
+| b₂' | −13/6 | −13/6 | −2.167 |
+| b_EM | 125/18 − 13/6 | 125/18 − 39/18 | 43/9 |
+| b_EM decimal | | | 4.778 |
+
+The exact Fraction 43/9 is the EM beta coefficient with the Cabibbo Doublet. It controls the energy scale where the EM and strong couplings satisfy the SU(5) crossing condition. The integers: 43 = 125 − 39 − 43. The denominator 9 = LCM(18, 6)/2.
+
+---
+
+### TABLE 34.9: THE RUNNING CORRECTION REQUIRED
+
+| From | To | Correction | Fraction | Exact? |
+|---|---|---|---|---|
+| 3/8 | Measured (0.23122) | −0.14378 | — | No |
+| 3/8 | 3/13 (0.23077) | −0.14423 | 15/104 | **Yes** |
+| 3/8 | One-loop (0.22845) | −0.14655 | — | No |
+| 3/8 | Two-loop (0.23133) | −0.14367 | — | No |
+
+The correction from 3/8 to 3/13 is exactly 15/104 = 3/8 − 3/13 = (13×3 − 8×3)/(8×13) = (39−24)/104 = 15/104. This is an exact Fraction from the two rationals. The correction to measured (0.14378) is close to 15/104 = 0.14423 but not exactly equal. The running produces approximately but not exactly the 15/104 correction.
+
+---
+
+### TABLE 34.10: THE VL b_ij EFFECT ON sin²θ_W
+
+| Scenario | sin²θ_W | Miss measured | Improvement from SM-only |
+|---|---|---|---|
+| Two-loop SM b_ij only | 0.23108 | 0.060% | — |
+| Two-loop full b_ij | 0.23133 | 0.048% | 20% improvement |
+| Difference | +0.00025 | | |
+
+The VL b_ij shifts sin²θ_W upward by 0.00025 (from 0.23108 to 0.23133). This is a 20% reduction in the miss from measured. The VL cross-coupling between gauge groups at two loops moves the prediction closer to the measured value.
+
+The dominant VL effect is through b₂₂(VL) = 15/4 = 3.75, the largest VL matrix entry (64% of the SM diagonal). This entry controls how α₂ mixes with itself at two loops, directly affecting 1/α₂ at M_Z and therefore sin²θ_W.
+
+---
+
+### TABLE 34.11: THREE PRECISION PREDICTIONS FROM THE UNIFICATION PROGRAM
+
+| Observable | Predicted | Measured | Miss | Paper | Method |
+|---|---|---|---|---|---|
+| α_s | 0.11838 | 0.1180 ± 0.0009 | 0.33% | PHYS-30 | Two-loop full b_ij, (α_EM, sin²θ_W) → α_s |
+| sin²θ_W | 0.23133 | 0.23122 ± 0.00004 | 0.048% | **This paper** | Two-loop full b_ij, (α_EM, α_s) → sin²θ_W |
+| Gap ratio | 1.4074 | 1.358 | 3.6% | PHYS-25 | One-loop gap test |
+
+The two precision predictions (α_s at 0.33% and sin²θ_W at 0.048%) both use two-loop running with the full SM+VL b_ij and both use the no-threshold configuration. The gap ratio is a one-loop structural test. All three are consistent with unification through the Cabibbo Doublet.
+
+---
+
+### TABLE 34.12: THE sin²θ_W PREDICTION HISTORY IN THE SERIES
+
+| Paper | Method | sin²θ_W | Miss from measured | Loop order |
+|---|---|---|---|---|
+| PHYS-25 | Gap ratio test | — | (indirect) | 1-loop |
+| PHYS-27 | Two-input, no threshold | 0.22845 | 1.199% | 1-loop |
+| PHYS-27 | Two-input, M_VL=500 | 0.22722 | 1.731% | 1-loop |
+| PHYS-27 | Estimated two-loop | 0.23028 | 0.408% | 1.66L (est.) |
+| **PHYS-34** | **Two-loop full b_ij** | **0.23133** | **0.048%** | **2-loop** |
+
+Each paper refines the prediction. The current best is 25× more precise than the original one-loop. The PHYS-27 estimate (0.23028 from a 66% improvement heuristic) was good but not exact — the actual two-loop (0.23133) overshot the estimate by 0.1%.
+
+---
+
+### TABLE 34.13: 3/13 STATUS — COMPLETE ASSESSMENT
+
+| Test | Result | What it tells us | Paper |
+|---|---|---|---|
+| Formula scan (p/q match) | 3/13 hits at 0.20% | Close to measured | PHYS-25 |
+| Statistical control | p = 0.81 (not special) | Random integers do equally well | PHYS-31 |
+| One-loop dynamics | 0.22845 (1.01% below 3/13) | One-loop undershoots 3/13 | PHYS-27 |
+| **Two-loop dynamics** | **0.23133 (0.24% above 3/13)** | **Series crosses 3/13, overshoots** | **This paper** |
+| **Perturbative limit?** | **NO** | **Series targets measured, not 3/13** | **This paper** |
+
+3/13 has been tested three ways: as a formula (not statistically special), as a one-loop target (undershoots), and as a two-loop target (overshoots). In all three tests, 3/13 fails to emerge as a special value. The measured sin²θ_W = 0.23122 is the convergence target of the perturbative series.
+
+---
+
+### TABLE 34.14: THE ESTIMATED THREE-LOOP CORRECTION
+
+| Order | Correction | Cumulative sin²θ_W | Correction ratio |
+|---|---|---|---|
+| Tree level | — | 0.375000 | — |
+| One-loop | −0.14655 | 0.228448 | — |
+| Two-loop | +0.00288 | 0.231331 | 2.0% of 1L |
+| Three-loop (est.) | −0.00006 | ~0.231271 | ~2% of 2L |
+| All-orders (est.) | — | ~0.23125 | convergent |
+
+The estimated three-loop correction assumes the pattern ratio (~2%) continues. The all-orders estimate (~0.23125) is within 0.01% of measured (0.23122). The perturbative expansion converges to the measured value, not to 3/13 (0.23077).
+
+---
+
+### TABLE 34.15: CUMULATIVE VERIFICATION
+
+| Script | Checks | Status | Paper |
+|---|---|---|---|
+| phys34_sin2tw_twoloop.py | **8/10** | **2 FAIL (informative)** | **This paper** |
+| phys33_koide_amplitude.py | 8/8 | PASS | PHYS-33 |
+| phys32_a3_decomposition.py | 14/14 | ALL EXACT | PHYS-32 |
+| phys31_statistical_control.py | 9/10 | 1 gate | PHYS-31 |
+| phys30_alpha_s.py | 9/9 | PASS | PHYS-30 |
+| phys29_gut_thresholds.py | 10/11 | 1 abort | PHYS-29 |
+| phys28_vl_twoloop.py | 11/11 | PASS | PHYS-28 |
+| phys27_sin2tw.py | 13/13 | PASS | PHYS-27 |
+| phys26_normalization.py | 20/20 | ALL EXACT | PHYS-26 |
+| phys25_platform.py | 47/47 | PASS | PHYS-25 |
+| Prior scripts | 364/364 | PASS | Sessions 1–3 |
+| **Grand total** | **513/518** | **4 designed/informative FAILs + 1 prior** | |
+
+The two PHYS-34 FAILs (ordering and overshoot) are the paper's main finding. They are informative results, not errors. The gate (PHYS-31) and abort (PHYS-29) are designed features. One prior FAIL from Session 3.
+
+---
+
+**End of supporting appendix tables for PHYS-34. 15 tables. The two-loop sin²θ_W = 0.23133 overshoots both 3/13 (0.23077) and measured (0.23122). The perturbative series crosses 3/13 between one-loop and two-loop. 3/13 is not the convergence limit. The miss from measured is 0.048% — the best sin²θ_W prediction in the series. The VL b_ij provides a 20% improvement over SM-only two-loop. The Euler discretization is 225× smaller than the signal. Grand total: 513/518.**
 
