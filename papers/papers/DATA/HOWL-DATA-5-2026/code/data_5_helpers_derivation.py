@@ -2,14 +2,20 @@
 """
 HOWL DATA-5 HELPERS — CHUNK 1: DERIVATION & GROUP THEORY
 ==========================================================
-Physics-aware helper functions that wrap data_4_derivation_lib.py
+Physics-aware helper functions wrapping data_4_derivation_lib.py
 and phys24_structure_lib.py through the DATA5 object system.
 
-Every function takes a db (DATA5 instance) as first argument and
-pulls constants from the database objects — not from flat imports.
-This ensures all computations trace through the version chain.
+All R2 from Q335 basis via db ("const.R2"). No decimal literals.
+All mpf from string. All constants from db objects.
 
-Categories in this chunk:
+Conforms to chunk 2 API pattern:
+  - First argument is always db (DATA5 instance)
+  - R2 family via _R2(db), _four_R2(db), _eight_R2(db), _sixteen_R2(db)
+  - Engineering/physics constants via _val(db, obj_id) or _mpf(db, obj_id)
+  - Pure-math utilities (no geometry, no db) marked explicitly
+  - All mpf inputs via mpf(str(...))
+
+Categories:
   COUPLING EXTRACTION  — derive GUT couplings from db constants
   GAP RATIO            — compute and compare gap ratios from any betas
   ONE-LOOP RUNNING     — predict alpha_s and sin2_tW at one loop
@@ -18,33 +24,19 @@ Categories in this chunk:
   BETA DECOMPOSITION   — break down betas into gauge/fermion/higgs/BSM
   GROUP THEORY         — Casimirs, Dynkin indices, representation tests
   WHAT-IF              — test arbitrary BSM representations against data
+  PREDICTION DISPLAY   — formatted output for all predictions
 
 Usage:
     from data_5_populate import init_data5
     from data_5_helpers_derivation import *
 
     db = init_data5()
-    couplings = extract_couplings(db)
-    pred = predict_alpha_s_1L(db)
-    show_prediction("alpha_s 1L", pred)
+    show_couplings(db)
+    show_all_predictions(db)
+    whatif_scan(db)
 
 Platform: HOWL-PLATFORM-v1
-Depends on: data_5_objects.py, data_5_populate.py, phys24_lib.py,
-            data_4_derivation_lib.py
-
-~40 functions across 8 categories:
-
-| Category | Count | Key functions |
-|---|---|---|
-| Coupling extraction | 2 | `extract_couplings`, `show_couplings` |
-| Gap ratio | 6 | `gap_ratio`, `gap_ratio_SM`, `gap_ratio_CD`, `gap_ratio_measured`, `gap_distance`, `show_gap_ratios` |
-| One-loop | 5 | `find_crossing_L`, `L_to_scale_MeV`, `run_one_loop`, `predict_alpha_s_1L`, `predict_sin2_1L` |
-| Two-loop | 6 | `_get_bij_SM`, `_get_dbij_VL`, `_get_bij_full`, `_euler_two_loop`, `predict_alpha_s_2L`, `predict_sin2_2L` |
-| Display | 2 | `show_prediction`, `show_all_predictions` |
-| Koide | 5 | `koide_ratio_db`, `koide_amplitude_sq`, `koide_predict`, `show_koide` |
-| Beta decomposition | 2 | `decompose_beta`, `show_beta_decomposition` |
-| Group theory | 6 | `casimir_adj`, `casimir_fund`, `dynkin_fund`, `yang_mills_coefficient`, `gauge_beta`, `generation_democracy_check` |
-| What-if | 3 | `whatif_rep`, `whatif_scan`, `whatif_custom_betas` |
+Depends on: data_5_objects.py, data_5_populate.py, phys24_lib.py
 """
 
 import sys
@@ -66,15 +58,15 @@ except ImportError:
 
 _LIB_VERSION = "1"
 _LIB_VERSION_1 = ("Session 4, April 3 2026. Chunk 1: Derivation & "
-                   "group theory helpers. ~40 functions.")
+                   "group theory. Conforms to chunk 2 API pattern.")
 
 
 # ================================================================
-# INTERNAL: Pull values from db with fallback
+# INTERNAL: pull values from db — shared pattern with chunk 2
 # ================================================================
 
 def _val(db, obj_id):
-    """Get value from db. Returns Fraction or None."""
+    """Get value from db. Returns Fraction, mpf, or None."""
     obj = db.get(obj_id)
     if obj is None:
         return None
@@ -90,11 +82,13 @@ def _mpf(db, obj_id):
         return None
     if isinstance(v, Fraction):
         return f2m(v)
+    if isinstance(v, mpf):
+        return v
     return mpf(str(v))
 
 
 def _beta_val(db, beta_id):
-    """Get beta coefficient value from db."""
+    """Get beta coefficient Fraction value from db."""
     obj = db.get(beta_id)
     if obj is None:
         return None
@@ -102,19 +96,45 @@ def _beta_val(db, beta_id):
 
 
 # ================================================================
+# INTERNAL: R2 family from db — identical to chunk 2
+# ================================================================
+
+def _R2(db):
+    """R2 = pi/4 from Q335 basis via db."""
+    return f2m(db.get("const.R2").value)
+
+def _R4(db):
+    """R4 = pi^2/32 from Q335 basis via db."""
+    return f2m(db.get("const.R4").value)
+
+def _four_R2(db):
+    """4*R2 = pi."""
+    return mpf("4") * _R2(db)
+
+def _eight_R2(db):
+    """8*R2 = 2*pi."""
+    return mpf("8") * _R2(db)
+
+def _sixteen_R2(db):
+    """16*R2 = 4*pi."""
+    return mpf("16") * _R2(db)
+
+
+# ================================================================
 # COUPLING EXTRACTION
 # ================================================================
 
 def extract_couplings(db):
-    """Extract GUT-normalized inverse couplings at M_Z from db constants.
+    """Extract GUT-normalized inverse couplings at M_Z from db.
 
     Uses: const.alpha_inv, const.sin2_tW, const.alpha_s
-    Returns: dict with inv_a1, inv_a2, inv_a3 as Fractions
 
     Derivation (PHYS-30):
       1/alpha_2 = sin2_tW * alpha_inv  (NOT alpha_inv / sin2_tW)
       1/alpha_1 = (3/5) * (alpha_inv - 1/alpha_2)
       1/alpha_3 = 1/alpha_s
+
+    Returns: dict with inv_a1, inv_a2, inv_a3 as Fractions + mpf versions
     """
     alpha_inv_f = _val(db, "const.alpha_inv")
     sin2_f = _val(db, "const.sin2_tW")
@@ -149,12 +169,8 @@ def show_couplings(db):
 
 def gap_ratio(db, b1_id, b2_id, b3_id):
     """Compute gap ratio from three beta coefficient db objects.
-
-    gap = (b1 - b2) / (b2 - b3)
-
-    Usage:
-        gap_ratio(db, "beta.b1_SM", "beta.b2_SM", "beta.b3_SM")  -> 218/115
-        gap_ratio(db, "beta.b1_mod", "beta.b2_mod", "beta.b3_mod")  -> 38/27
+    gap = (b1 - b2) / (b2 - b3). Returns Fraction (exact).
+    R2 cancels — gap ratio is R2-free.
     """
     b1 = _beta_val(db, b1_id)
     b2 = _beta_val(db, b2_id)
@@ -163,12 +179,12 @@ def gap_ratio(db, b1_id, b2_id, b3_id):
 
 
 def gap_ratio_SM(db):
-    """SM gap ratio from db beta objects. Should be 218/115."""
+    """SM gap ratio. Should be 218/115."""
     return gap_ratio(db, "beta.b1_SM", "beta.b2_SM", "beta.b3_SM")
 
 
 def gap_ratio_CD(db):
-    """CD (modified) gap ratio from db. Should be 38/27."""
+    """CD (modified) gap ratio. Should be 38/27."""
     return gap_ratio(db, "beta.b1_mod", "beta.b2_mod", "beta.b3_mod")
 
 
@@ -178,10 +194,7 @@ def gap_ratio_measured(db):
 
 
 def gap_distance(db, b1_id, b2_id, b3_id):
-    """Distance between a model's gap ratio and the measured value.
-
-    Usage: gap_distance(db, "beta.b1_mod", "beta.b2_mod", "beta.b3_mod")
-    """
+    """Distance between a model's gap ratio and the measured value."""
     model_gap = gap_ratio(db, b1_id, b2_id, b3_id)
     meas_gap = gap_ratio_measured(db)
     return abs(f2m(model_gap) - f2m(meas_gap))
@@ -190,8 +203,8 @@ def gap_distance(db, b1_id, b2_id, b3_id):
 def show_gap_ratios(db):
     """Print all gap ratios with distance from measured."""
     meas = f2m(gap_ratio_measured(db))
-    print("  GAP RATIO COMPARISON:")
-    print("  %-15s %-15s %-12s %s" % ("Model", "Fraction", "Decimal", "Distance"))
+    print("  GAP RATIO COMPARISON (R2 cancels in every ratio):")
+    print("  %-15s %-15s %-12s %s" % ("Model", "Fraction", "Decimal", "Distance%%"))
     print("  %-15s %-15s %-12s %s" % ("-" * 15, "-" * 15, "-" * 12, "-" * 12))
 
     for name, b1, b2, b3 in [
@@ -200,16 +213,14 @@ def show_gap_ratios(db):
     ]:
         g = gap_ratio(db, b1, b2, b3)
         gv = f2m(g)
-        dist = abs(gv - meas)
-        pct = dist / meas * mpf("100")
+        pct = abs(gv - meas) / meas * mpf("100")
         print("  %-15s %-15s %-12s %s%%" % (
             name, g, mp.nstr(gv, 6), mp.nstr(pct, 4)))
 
     mssm = _val(db, "const.gap_MSSM")
     if mssm is not None:
         gv = f2m(mssm)
-        dist = abs(gv - meas)
-        pct = dist / meas * mpf("100")
+        pct = abs(gv - meas) / meas * mpf("100")
         print("  %-15s %-15s %-12s %s%%" % (
             "MSSM", mssm, mp.nstr(gv, 6), mp.nstr(pct, 4)))
 
@@ -223,10 +234,7 @@ def show_gap_ratios(db):
 
 def find_crossing_L(db, b1_id="beta.b1_mod", b2_id="beta.b2_mod"):
     """Find L_GUT where 1/alpha_1 = 1/alpha_2 at one loop.
-
-    L = (1/a1 - 1/a2) / (b1 - b2)
-
-    Returns: L as Fraction (exact)
+    L = (1/a1 - 1/a2) / (b1 - b2). Returns Fraction (exact).
     """
     c = extract_couplings(db)
     b1 = _beta_val(db, b1_id)
@@ -235,44 +243,40 @@ def find_crossing_L(db, b1_id="beta.b1_mod", b2_id="beta.b2_mod"):
 
 
 def L_to_scale_MeV(db, L_val):
-    """Convert L = ln(mu/M_Z)/(2*pi) to energy scale in MeV.
-
-    Returns: (mu_MeV, log10_mu_GeV) as mpf tuple
+    """Convert L = ln(mu/M_Z)/(2*pi) to energy scale.
+    Uses 8*R2 = 2*pi from Q335 basis.
+    Returns: (mu_MeV, log10_mu_GeV) as mpf tuple.
     """
     M_Z_mpf = _mpf(db, "const.M_Z")
-    L = f2m(L_val) if isinstance(L_val, Fraction) else L_val
-    mu = M_Z_mpf * mexp(mpf("2") * mpi * L)
+    L = f2m(L_val) if isinstance(L_val, Fraction) else mpf(str(L_val))
+    mu = M_Z_mpf * mexp(_eight_R2(db) * L)
     log10_mu_GeV = mlog(mu / mpf("1000"), 10)
     return mu, log10_mu_GeV
 
 
 def run_one_loop(db, betas_ids, L):
-    """Run three couplings at one loop over L steps.
-
-    Args:
-        betas_ids: list of 3 beta obj_ids
-        L: mpf or Fraction, dimensionless running parameter
-    Returns: list of 3 mpf [1/a1, 1/a2, 1/a3] at mu
+    """Run three couplings at one loop over L.
+    1/alpha_i(mu) = 1/alpha_i(M_Z) - b_i * L
+    Returns: list of 3 mpf [1/a1, 1/a2, 1/a3] at mu.
     """
     c = extract_couplings(db)
     inv_a = [c["inv_a1_mpf"], c["inv_a2_mpf"], c["inv_a3_mpf"]]
     betas = [f2m(_beta_val(db, bid)) for bid in betas_ids]
-    L_mpf = f2m(L) if isinstance(L, Fraction) else L
+    L_mpf = f2m(L) if isinstance(L, Fraction) else mpf(str(L))
     return [inv_a[i] - betas[i] * L_mpf for i in range(3)]
 
 
 def predict_alpha_s_1L(db):
     """Predict alpha_s from one-loop CD unification.
-
-    Uses db constants and modified betas.
-    Returns: dict with alpha_s_pred, miss_pct, Delta, L_GUT, M_GUT_GeV
+    Returns: dict with alpha_s_pred, miss_pct, Delta, L_GUT, M_GUT_log10_GeV.
     """
     c = extract_couplings(db)
     b1 = _beta_val(db, "beta.b1_mod")
     b2 = _beta_val(db, "beta.b2_mod")
     b3 = _beta_val(db, "beta.b3_mod")
 
-    L_GUT = f2m((c["inv_a1"] - c["inv_a2"]) / (b1 - b2))
+    L_GUT_frac = (c["inv_a1"] - c["inv_a2"]) / (b1 - b2)
+    L_GUT = f2m(L_GUT_frac)
     inv_a_GUT = c["inv_a1_mpf"] - f2m(b1) * L_GUT
     inv_a3_at_GUT = c["inv_a3_mpf"] - f2m(b3) * L_GUT
     Delta = inv_a3_at_GUT - inv_a_GUT
@@ -296,9 +300,8 @@ def predict_alpha_s_1L(db):
 
 def predict_sin2_1L(db):
     """Predict sin2_tW from one-loop CD unification.
-
-    Uses alpha_EM and alpha_s (NOT sin2_tW — that's the prediction).
-    Returns: dict with sin2_pred, miss_pct, b_EM
+    Uses alpha_EM and alpha_s only (sin2_tW is the prediction).
+    Returns: dict with sin2_pred, miss_pct, L_GUT, b_EM.
     """
     alpha_inv_f = _val(db, "const.alpha_inv")
     alpha_s_f = _val(db, "const.alpha_s")
@@ -306,6 +309,7 @@ def predict_sin2_1L(db):
     b2 = _beta_val(db, "beta.b2_mod")
     b3 = _beta_val(db, "beta.b3_mod")
 
+    # b_EM = (5/3)*b1 + b2
     b_EM = Fraction(5, 3) * b1 + b2
 
     inv_a_EM = f2m(alpha_inv_f)
@@ -339,27 +343,25 @@ def predict_sin2_1L(db):
 # ================================================================
 
 def _get_bij_SM(db):
-    """Reconstruct the 3x3 SM b_ij matrix from db constants."""
+    """Reconstruct 3x3 SM b_ij matrix from db constants."""
     bij = [[None] * 3 for _ in range(3)]
     for i in range(3):
         for j in range(3):
-            oid = "const.bij_SM_%d%d" % (i, j)
-            bij[i][j] = _val(db, oid)
+            bij[i][j] = _val(db, "const.bij_SM_%d%d" % (i, j))
     return bij
 
 
 def _get_dbij_VL(db):
-    """Reconstruct the 3x3 VL db_ij matrix from db constants."""
+    """Reconstruct 3x3 VL db_ij matrix from db constants."""
     dbij = [[None] * 3 for _ in range(3)]
     for i in range(3):
         for j in range(3):
-            oid = "const.dbij_VL_%d%d" % (i, j)
-            dbij[i][j] = _val(db, oid)
+            dbij[i][j] = _val(db, "const.dbij_VL_%d%d" % (i, j))
     return dbij
 
 
 def _get_bij_full(db):
-    """Reconstruct the full b_ij = SM + VL from db constants."""
+    """Full b_ij = SM + VL from db constants."""
     sm = _get_bij_SM(db)
     vl = _get_dbij_VL(db)
     return [[sm[i][j] + vl[i][j] for j in range(3)] for i in range(3)]
@@ -367,14 +369,17 @@ def _get_bij_full(db):
 
 def _euler_two_loop(inv_a_start, b1loop, bij, L_total, n_steps):
     """Euler integration of two-loop RGEs.
-
     d(1/alpha_i)/dL = -b_i - sum_j b_ij * alpha_j / (4*pi)
 
-    Both terms have MINUS signs. The b_ij term uses alpha_j at each step.
+    NOTE: Uses mpi from mpmath for 4*pi in the inner loop.
+    This is a numerical engine — the 4*pi here is the loop integral
+    normalization, same value as 16*R2. We use mpi for speed in the
+    tight loop rather than pulling R2 from db on every step.
+    The value is identical: 4*mpi = 16*R2 to 100 digits.
     """
     fourpi = mpf("4") * mpi
-    inv_a = [mpf(x) for x in inv_a_start]
-    dL = L_total / mpf(n_steps)
+    inv_a = [mpf(str(x)) if not isinstance(x, mpf) else x for x in inv_a_start]
+    dL = L_total / mpf(str(n_steps))
 
     for _ in range(n_steps):
         alphas = [mpf("1") / inv_a[k] for k in range(3)]
@@ -397,14 +402,11 @@ def predict_alpha_s_2L(db, bij_tag="full", n_steps=500):
         bij_tag: "SM" for SM b_ij only, "full" for SM+VL
         n_steps: Euler integration steps
 
-    Returns: dict with alpha_s_pred, miss_pct, Delta, L_GUT
+    Returns: dict with alpha_s_pred, miss_pct, Delta, L_GUT, bij_tag
     """
     c = extract_couplings(db)
     inv_a_start = [c["inv_a1_mpf"], c["inv_a2_mpf"], c["inv_a3_mpf"]]
 
-    b1loop = [f2m(_beta_val(db, "beta.b%d_mod" % (i+1) if i < 3 else "beta.b3_mod"))
-              for i in range(3)]
-    # Fix: use the correct beta IDs
     b1loop = [f2m(_beta_val(db, bid)) for bid in
               ["beta.b1_mod", "beta.b2_mod", "beta.b3_mod"]]
 
@@ -415,10 +417,8 @@ def predict_alpha_s_2L(db, bij_tag="full", n_steps=500):
 
     bij_mpf = [[f2m(bij_frac[i][j]) for j in range(3)] for i in range(3)]
 
-    # One-loop L estimate
     L_est = f2m(find_crossing_L(db))
 
-    # Binary search for two-loop crossing
     L_lo = L_est * mpf("0.8")
     L_hi = L_est * mpf("1.2")
 
@@ -456,11 +456,9 @@ def predict_alpha_s_2L(db, bij_tag="full", n_steps=500):
 
 def predict_sin2_2L(db, n_steps=500):
     """Predict sin2_tW from two-loop unification.
-
     Uses alpha_EM and alpha_s only (sin2_tW is the prediction).
-    Returns: dict with sin2_pred, miss_pct, L_GUT
+    Returns: dict with sin2_pred, miss_pct, L_GUT.
     """
-    # One-loop estimate for starting point
     result_1L = predict_sin2_1L(db)
     sin2_est = result_1L["sin2_pred"]
 
@@ -510,80 +508,11 @@ def predict_sin2_2L(db, n_steps=500):
 
 
 # ================================================================
-# PREDICTION DISPLAY
-# ================================================================
-
-def show_prediction(name, pred_dict):
-    """Print a prediction result dict in standard format.
-
-    Usage: show_prediction("alpha_s 2L full", predict_alpha_s_2L(db))
-    """
-    print("  PREDICTION: %s" % name)
-    for k, v in pred_dict.items():
-        if isinstance(v, mpf):
-            print("    %-20s = %s" % (k, mp.nstr(v, 7)))
-        elif isinstance(v, Fraction):
-            print("    %-20s = %s = %s" % (k, v, mp.nstr(f2m(v), 7)))
-        else:
-            print("    %-20s = %s" % (k, v))
-
-
-def show_all_predictions(db, n_steps=500):
-    """Run and display all predictions: alpha_s (1L, 2L SM, 2L full),
-    sin2_tW (1L, 2L), Koide m_tau.
-
-    This is the derivation summary table.
-    """
-    print("  PREDICTION SUMMARY (from db constants):")
-    print("  %-35s %12s %12s" % ("Prediction", "Value", "Miss"))
-    print("  %-35s %12s %12s" % ("-" * 35, "-" * 12, "-" * 12))
-
-    as_1L = predict_alpha_s_1L(db)
-    print("  %-35s %12s %12s" % ("alpha_s (one-loop CD)",
-        mp.nstr(as_1L["alpha_s_pred"], 6),
-        "%s%%" % mp.nstr(as_1L["miss_pct"], 4)))
-
-    as_2L_SM = predict_alpha_s_2L(db, bij_tag="SM", n_steps=n_steps)
-    print("  %-35s %12s %12s" % ("alpha_s (two-loop SM b_ij)",
-        mp.nstr(as_2L_SM["alpha_s_pred"], 6),
-        "%s%%" % mp.nstr(as_2L_SM["miss_pct"], 4)))
-
-    as_2L_full = predict_alpha_s_2L(db, bij_tag="full", n_steps=n_steps)
-    print("  %-35s %12s %12s" % ("alpha_s (two-loop full b_ij)",
-        mp.nstr(as_2L_full["alpha_s_pred"], 6),
-        "%s%%" % mp.nstr(as_2L_full["miss_pct"], 4)))
-
-    sin2_1L = predict_sin2_1L(db)
-    print("  %-35s %12s %12s" % ("sin2_tW (one-loop CD)",
-        mp.nstr(sin2_1L["sin2_pred"], 6),
-        "%s%%" % mp.nstr(sin2_1L["miss_pct"], 4)))
-
-    sin2_2L = predict_sin2_2L(db, n_steps=n_steps)
-    print("  %-35s %12s %12s" % ("sin2_tW (two-loop full)",
-        mp.nstr(sin2_2L["sin2_pred"], 6),
-        "%s%%" % mp.nstr(sin2_2L["miss_pct"], 4)))
-
-    k = koide_predict(db)
-    print("  %-35s %12s %12s" % ("m_tau (Koide K=2/3)",
-        mp.nstr(k["m_tau_pred"], 7),
-        "%s%%" % mp.nstr(k["miss_pct"], 4)))
-
-    print()
-    print("  %-35s %12s" % ("Measured alpha_s",
-        mp.nstr(_mpf(db, "const.alpha_s"), 6)))
-    print("  %-35s %12s" % ("Measured sin2_tW",
-        mp.nstr(_mpf(db, "const.sin2_tW"), 6)))
-    print("  %-35s %12s" % ("Measured m_tau (MeV)",
-        mp.nstr(_mpf(db, "const.m_tau"), 7)))
-
-
-# ================================================================
 # KOIDE
 # ================================================================
 
 def koide_ratio_db(db, m1_id="const.m_e", m2_id="const.m_mu", m3_id="const.m_tau"):
-    """Compute Koide ratio K = sum(m) / (sum(sqrt(m)))^2 from db masses.
-
+    """Koide ratio K = sum(m) / (sum(sqrt(m)))^2 from db masses.
     K = 2/3 for leptons (hypothesis).
     K = sum_m / (sum_sqrt)^2  (NOT (sum_sqrt)^2 / (3*sum_m)).
     """
@@ -594,13 +523,14 @@ def koide_ratio_db(db, m1_id="const.m_e", m2_id="const.m_mu", m3_id="const.m_tau
     return (m1 + m2 + m3) / (s1 + s2 + s3) ** 2
 
 
+# Pure math — no db needed
 def koide_amplitude_sq(K_val):
     """From K, compute a^2 = 2*(3*K - 1).
-
-    At K = 2/3: a^2 = 2. The hypothesis.
-    At measured K = 0.66666051: a^2 = 1.9999630688.
+    At K = 2/3: a^2 = 2 exactly. The hypothesis.
+    Pure arithmetic — no geometry, no db dependency.
     """
-    return mpf("2") * (mpf("3") * K_val - mpf("1"))
+    K = mpf(str(K_val)) if not isinstance(K_val, mpf) else K_val
+    return mpf("2") * (mpf("3") * K - mpf("1"))
 
 
 def koide_predict(db):
@@ -610,7 +540,7 @@ def koide_predict(db):
       K = 2/3 => x^2 - 4sx + (3S - 2s^2) = 0
       where s = sqrt(m_e) + sqrt(m_mu), S = m_e + m_mu, x = sqrt(m_tau).
 
-    Returns: dict with m_tau_pred, miss_pct, other_root, K_computed, a_sq
+    Returns: dict with m_tau_pred, miss_pct, m_tau_other, K_computed, a_sq
     """
     m_e_f = _val(db, "const.m_e")
     m_mu_f = _val(db, "const.m_mu")
@@ -653,13 +583,14 @@ def show_koide(db):
 
     for name, ids in [
         ("Leptons (e, mu, tau)", ("const.m_e", "const.m_mu", "const.m_tau")),
-        ("Up quarks (u, c, t)", ("const.m_u", "const.m_c", "const.m_t")),
+        ("Up quarks (u, c, t)",  ("const.m_u", "const.m_c", "const.m_t")),
         ("Down quarks (d, s, b)", ("const.m_d", "const.m_s", "const.m_b")),
     ]:
         K = koide_ratio_db(db, ids[0], ids[1], ids[2])
         a2 = koide_amplitude_sq(K)
         print("    %s:" % name)
-        print("      K = %s (2/3 = %s)" % (mp.nstr(K, 8), mp.nstr(mpf("2")/mpf("3"), 8)))
+        print("      K = %s (2/3 = %s)" % (
+            mp.nstr(K, 8), mp.nstr(mpf("2") / mpf("3"), 8)))
         print("      a^2 = %s (hypothesis: 2)" % mp.nstr(a2, 6))
         print()
 
@@ -674,13 +605,11 @@ def show_koide(db):
 # ================================================================
 
 def decompose_beta(db, beta_id):
-    """Show the full decomposition of a beta coefficient from db.
-
-    Usage: decompose_beta(db, "beta.b2_mod")
+    """Return full decomposition of a beta coefficient from db.
+    Returns: dict with total, gauge, fermion, higgs, bsm parts.
     """
     obj = db.get(beta_id)
     if obj is None:
-        print("  Beta '%s' not found." % beta_id)
         return None
 
     result = {
@@ -693,9 +622,8 @@ def decompose_beta(db, beta_id):
         "bsm": obj.bsm_part,
     }
 
-    # Verify sum
-    parts = [p for p in [obj.gauge_part, obj.fermion_part, obj.higgs_part, obj.bsm_part]
-             if p is not None]
+    parts = [p for p in [obj.gauge_part, obj.fermion_part,
+                          obj.higgs_part, obj.bsm_part] if p is not None]
     if parts:
         result["sum_parts"] = sum(parts)
         result["sum_matches"] = (sum(parts) == obj.value)
@@ -729,29 +657,34 @@ def show_beta_decomposition(db):
 
 
 # ================================================================
-# GROUP THEORY
+# GROUP THEORY — Pure math, no db needed
 # ================================================================
 
+# Pure math — no db needed
 def casimir_adj(N):
     """C_2(adjoint SU(N)) = N. Exact Fraction."""
     return Fraction(N, 1)
 
 
+# Pure math — no db needed
 def casimir_fund(N):
     """C_2(fundamental SU(N)) = (N^2-1)/(2N). Exact Fraction."""
     return Fraction(N * N - 1, 2 * N)
 
 
+# Pure math — no db needed
 def dynkin_fund():
     """S_2(fundamental) = 1/2 for any SU(N). Exact."""
     return Fraction(1, 2)
 
 
+# Pure math — no db needed
 def yang_mills_coefficient():
     """The 11/3 from one-loop gauge self-coupling."""
     return Fraction(11, 3)
 
 
+# Pure math — no db needed
 def gauge_beta(N):
     """Pure gauge one-loop beta for SU(N): -(11/3)*N."""
     return Fraction(-11, 3) * Fraction(N, 1)
@@ -759,7 +692,6 @@ def gauge_beta(N):
 
 def generation_democracy_check(db):
     """Verify generation democracy: per-gen = (4/3, 4/3, 4/3) from reps.
-
     Sums the 5 SM chiral reps in the db.
     """
     sm_reps = ["rep.Q_L", "rep.u_R", "rep.d_R", "rep.L_L", "rep.e_R"]
@@ -777,10 +709,11 @@ def generation_democracy_check(db):
 
     democracy = (db1 == db2 == db3 == Fraction(4, 3))
 
-    print("  GENERATION DEMOCRACY CHECK:")
+    print("  GENERATION DEMOCRACY CHECK (from db representations):")
     print("    Per-gen db: (%s, %s, %s)" % (db1, db2, db3))
-    print("    Equal? %s" % democracy)
-    print("    Value? %s" % ("4/3 = YES" if db1 == Fraction(4, 3) else "NOT 4/3"))
+    print("    All equal? %s" % democracy)
+    print("    Value = 4/3? %s" % (db1 == Fraction(4, 3)))
+    print("    Fermion gap = 0/0 in gap ratio (boson problem)")
     return democracy
 
 
@@ -790,15 +723,12 @@ def generation_democracy_check(db):
 
 def whatif_rep(db, name, su3_dim, su2_dim, Y, rep_type="vector-like"):
     """Test a hypothetical BSM representation against the measured gap ratio.
-
-    Computes: modified betas, gap ratio, distance from measured.
-    Does NOT add anything to the database.
-
-    Usage: whatif_rep(db, "test (3,1,2/3)", 3, 1, Fraction(2,3))
+    Does NOT modify the database.
     """
     from data_5_objects import Representation
 
-    r = Representation("whatif.test", name, su3_dim, su2_dim, Y, rep_type)
+    Y_f = Fraction(Y) if not isinstance(Y, Fraction) else Y
+    r = Representation("whatif.test", name, su3_dim, su2_dim, Y_f, rep_type)
 
     b1_new = _beta_val(db, "beta.b1_SM") + r.db1
     b2_new = _beta_val(db, "beta.b2_SM") + r.db2
@@ -815,7 +745,7 @@ def whatif_rep(db, name, su3_dim, su2_dim, Y, rep_type="vector-like"):
 
     return {
         "name": name,
-        "rep": (su3_dim, su2_dim, Y),
+        "rep": (su3_dim, su2_dim, Y_f),
         "rep_type": rep_type,
         "db": (r.db1, r.db2, r.db3),
         "betas_new": (b1_new, b2_new, b3_new),
@@ -828,20 +758,17 @@ def whatif_rep(db, name, su3_dim, su2_dim, Y, rep_type="vector-like"):
 
 
 def whatif_scan(db, candidates=None):
-    """Scan multiple BSM candidates and rank by gap ratio distance.
-
-    Default candidates: the PHYS-14 enumeration.
-
-    Usage: whatif_scan(db)
+    """Scan BSM candidates ranked by gap ratio distance.
+    Default: PHYS-14 enumeration.
     """
     if candidates is None:
         candidates = [
-            ("(3,2,1/6) CD",      3, 2, Fraction(1, 6)),
-            ("(3,1,2/3) u'-type", 3, 1, Fraction(2, 3)),
+            ("(3,2,1/6) CD",       3, 2, Fraction(1, 6)),
+            ("(3,1,2/3) u'-type",  3, 1, Fraction(2, 3)),
             ("(3,1,-1/3) d'-type", 3, 1, Fraction(-1, 3)),
-            ("(1,2,1/2) L'-type", 1, 2, Fraction(1, 2)),
-            ("(3,2,7/6) exotic",  3, 2, Fraction(7, 6)),
-            ("(3,3,1/3) triplet", 3, 3, Fraction(1, 3)),
+            ("(1,2,1/2) L'-type",  1, 2, Fraction(1, 2)),
+            ("(3,2,7/6) exotic",   3, 2, Fraction(7, 6)),
+            ("(3,3,1/3) triplet",  3, 3, Fraction(1, 3)),
         ]
 
     results = []
@@ -852,13 +779,13 @@ def whatif_scan(db, candidates=None):
     results.sort(key=lambda x: float(x["distance"]))
 
     print("  BSM CANDIDATE SCAN (ranked by gap ratio distance):")
-    print("  %-25s %-10s %-15s %-10s %s" % (
+    print("  %-25s %-12s %-15s %-10s %s" % (
         "Candidate", "Gap", "Fraction", "Dist%%", "Beats CD?"))
-    print("  %-25s %-10s %-15s %-10s %s" % (
-        "-" * 25, "-" * 10, "-" * 15, "-" * 10, "-" * 9))
+    print("  %-25s %-12s %-15s %-10s %s" % (
+        "-" * 25, "-" * 12, "-" * 15, "-" * 10, "-" * 9))
 
     for r in results:
-        print("  %-25s %-10s %-15s %-10s %s" % (
+        print("  %-25s %-12s %-15s %-10s %s" % (
             r["name"],
             mp.nstr(r["gap_decimal"], 6),
             r["gap"],
@@ -873,15 +800,13 @@ def whatif_scan(db, candidates=None):
 
 
 def whatif_custom_betas(db, b1_new, b2_new, b3_new, name="custom"):
-    """Test arbitrary beta coefficients against unification.
-
-    Returns gap ratio, alpha_s prediction (1L), distance from measured.
+    """Test arbitrary beta coefficients: gap ratio + one-loop alpha_s.
+    All arguments as Fraction.
     """
     gap_new = (b1_new - b2_new) / (b2_new - b3_new)
     gap_meas = gap_ratio_measured(db)
     dist = abs(f2m(gap_new) - f2m(gap_meas))
 
-    # One-loop alpha_s prediction with these betas
     c = extract_couplings(db)
     L_GUT = f2m((c["inv_a1"] - c["inv_a2"]) / (b1_new - b2_new))
     inv_a_GUT = c["inv_a1_mpf"] - f2m(b1_new) * L_GUT
@@ -901,3 +826,66 @@ def whatif_custom_betas(db, b1_new, b2_new, b3_new, name="custom"):
         "L_GUT": L_GUT,
     }
 
+
+# ================================================================
+# PREDICTION DISPLAY
+# ================================================================
+
+def show_prediction(name, pred_dict):
+    """Print a prediction result dict in standard format."""
+    print("  PREDICTION: %s" % name)
+    for k, v in pred_dict.items():
+        if isinstance(v, mpf):
+            print("    %-20s = %s" % (k, mp.nstr(v, 7)))
+        elif isinstance(v, Fraction):
+            print("    %-20s = %s = %s" % (k, v, mp.nstr(f2m(v), 7)))
+        else:
+            print("    %-20s = %s" % (k, v))
+
+
+def show_all_predictions(db, n_steps=500):
+    """Run and display all predictions from db constants.
+    This is the master prediction summary table.
+    """
+    print("  PREDICTION SUMMARY (all from db constants):")
+    print("  %-35s %12s %12s" % ("Prediction", "Value", "Miss"))
+    print("  %-35s %12s %12s" % ("-" * 35, "-" * 12, "-" * 12))
+
+    as_1L = predict_alpha_s_1L(db)
+    print("  %-35s %12s %12s" % ("alpha_s (one-loop CD)",
+        mp.nstr(as_1L["alpha_s_pred"], 6),
+        "%s%%" % mp.nstr(as_1L["miss_pct"], 4)))
+
+    as_2L_SM = predict_alpha_s_2L(db, bij_tag="SM", n_steps=n_steps)
+    print("  %-35s %12s %12s" % ("alpha_s (two-loop SM b_ij)",
+        mp.nstr(as_2L_SM["alpha_s_pred"], 6),
+        "%s%%" % mp.nstr(as_2L_SM["miss_pct"], 4)))
+
+    as_2L_full = predict_alpha_s_2L(db, bij_tag="full", n_steps=n_steps)
+    print("  %-35s %12s %12s" % ("alpha_s (two-loop full b_ij)",
+        mp.nstr(as_2L_full["alpha_s_pred"], 6),
+        "%s%%" % mp.nstr(as_2L_full["miss_pct"], 4)))
+
+    sin2_1L = predict_sin2_1L(db)
+    print("  %-35s %12s %12s" % ("sin2_tW (one-loop CD)",
+        mp.nstr(sin2_1L["sin2_pred"], 6),
+        "%s%%" % mp.nstr(sin2_1L["miss_pct"], 4)))
+
+    sin2_2L = predict_sin2_2L(db, n_steps=n_steps)
+    print("  %-35s %12s %12s" % ("sin2_tW (two-loop full)",
+        mp.nstr(sin2_2L["sin2_pred"], 6),
+        "%s%%" % mp.nstr(sin2_2L["miss_pct"], 4)))
+
+    k = koide_predict(db)
+    print("  %-35s %12s %12s" % ("m_tau (Koide K=2/3)",
+        mp.nstr(k["m_tau_pred"], 7),
+        "%s%%" % mp.nstr(k["miss_pct"], 4)))
+
+    print()
+    print("  %-35s %12s" % ("Measured alpha_s",
+        mp.nstr(_mpf(db, "const.alpha_s"), 6)))
+    print("  %-35s %12s" % ("Measured sin2_tW",
+        mp.nstr(_mpf(db, "const.sin2_tW"), 6)))
+    print("  %-35s %12s" % ("Measured m_tau (MeV)",
+        mp.nstr(_mpf(db, "const.m_tau"), 7)))
+    
