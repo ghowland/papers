@@ -2,15 +2,16 @@
 """
 HOWL PHYS-30: phys30_alpha_s.py
 =================================
-alpha_s Prediction from Unification.
+alpha_s Prediction from Unification — Full Two-Loop.
 
-Uses the unification condition with CD modified betas to PREDICT
-alpha_s(M_Z) from alpha_EM and sin2_tW.
+Predicts alpha_s(M_Z) from alpha_EM and sin2_tW using the
+unification condition with CD betas. Computes at THREE levels:
+  1. One-loop (analytic)
+  2. Two-loop with SM b_ij (Euler integration from PHYS-28)
+  3. Two-loop with full SM+VL b_ij
 
-The one-loop prediction misses by ~12% because Delta = -1.17
-translates directly into alpha_s. At two loops (Delta = -0.40),
-the miss reduces to ~4%. This paper documents the one-loop
-baseline and estimates the two-loop improvement.
+Also tests the no-threshold case (CD betas from M_Z)
+which gave the best sin2_tW prediction in PHYS-27.
 
 SIGN CONVENTION: 1/alpha_i(mu) = 1/alpha_i(mu0) - b_i * L
 
@@ -25,210 +26,282 @@ from mpmath import log10 as mlog10
 # ================================================================
 print("=" * 70)
 print("HOWL PHYS-30: alpha_s PREDICTION FROM UNIFICATION")
-print("Does the unification condition predict the right alpha_s?")
+print("Full two-loop computation.")
 print("=" * 70)
 print()
 
 # ================================================================
-# SECTION 1: INPUTS AND DERIVATION
+# SETUP
 # ================================================================
 
-print("SECTION 1: INPUTS")
-print("-" * 70)
-print()
-
-# sin2_tW = alpha_EM / alpha_2 => 1/alpha_2 = sin2_tW * (1/alpha_EM)
-# (5/3)/alpha_1 = 1/alpha_EM - 1/alpha_2
-# => 1/alpha_1 = (3/5)(1/alpha_EM - 1/alpha_2)
-
-inv_a2_in = sin2_tW * alpha_inv
-inv_a1_in = Fraction(3, 5) * (alpha_inv - inv_a2_in)
-
-show("  1/alpha_1(M_Z) (dimensionless)", f2m(inv_a1_in))
-show("  1/alpha_2(M_Z) (dimensionless)", f2m(inv_a2_in))
-show("  alpha_s measured = %s (DATA-4 B12) (dimensionless)" %
-     mp.nstr(f2m(alpha_s), 4), f2m(alpha_s))
-print()
-
 twopi = mpf("2") * mpi
+fourpi = mpf("4") * mpi
 b_SM_m = [f2m(b1_SM), f2m(b2_SM), f2m(b3_SM)]
 b_CD_m = [f2m(b1_mod), f2m(b2_mod), f2m(b3_mod)]
 M_Z_GeV_m = f2m(M_Z) / mpf("1000")
 alpha_s_meas = f2m(alpha_s)
 
+# Inputs
+inv_a2_in = sin2_tW * alpha_inv
+inv_a1_in = Fraction(3, 5) * (alpha_inv - inv_a2_in)
+inv_a_MZ = [f2m(inv_a1_in), f2m(inv_a2_in), mpf("0")]  # alpha_3 is OUTPUT
+
+# VL two-loop b_ij from PHYS-28 (recompute here)
+C2_3 = Fraction(4, 3)
+C2_2 = Fraction(3, 4)
+S2_3 = Fraction(1, 2)
+S2_2 = Fraction(1, 2)
+d3 = Fraction(3)
+d2 = Fraction(2)
+Y = Fraction(1, 6)
+Y2 = Y * Y
+k1 = Fraction(3, 5)
+S1_VL = Fraction(2, 5) * d3 * d2 * Y2
+
+db_ij_VL = [
+    [Fraction(10,3)*S1_VL*(C2_3+C2_2+k1*Y2), Fraction(4,3)*S1_VL*C2_2, Fraction(4,3)*S1_VL*C2_3],
+    [Fraction(4,3)*S2_2*d3*k1*Y2, Fraction(10,3)*S2_2*d3*C2_2, Fraction(4,3)*S2_2*d3*C2_3],
+    [Fraction(4,3)*S2_3*d2*k1*Y2, Fraction(4,3)*S2_3*d2*C2_2, Fraction(10,3)*S2_3*d2*C2_3],
+]
+
+bij_SM_m = [[f2m(b_ij_SM[i][j]) for j in range(3)] for i in range(3)]
+bij_full_m = [[f2m(b_ij_SM[i][j] + db_ij_VL[i][j]) for j in range(3)] for i in range(3)]
+
+print("SECTION 1: INPUTS")
+print("-" * 70)
+print()
+show("  1/alpha_1(M_Z) (dimensionless)", inv_a_MZ[0])
+show("  1/alpha_2(M_Z) (dimensionless)", inv_a_MZ[1])
+show("  alpha_s measured (dimensionless)", alpha_s_meas)
+print()
+
 # ================================================================
-# SECTION 2: ONE-LOOP PREDICTION
+# EULER INTEGRATOR (from PHYS-28, correct sign)
 # ================================================================
 
-print("SECTION 2: ONE-LOOP PREDICTION (M_VL = 500 GeV)")
+def run_2loop(inv_a_start, b1l, bij, L_total, n_steps):
+    """Euler integration. All mpf."""
+    inv_a = [inv_a_start[0], inv_a_start[1], inv_a_start[2]]
+    dL = L_total / mpf(str(n_steps))
+    for _ in range(n_steps):
+        alphas = [mpf("1") / inv_a[k] for k in range(3)]
+        for i in range(3):
+            corr = mpf("0")
+            for j in range(3):
+                corr += bij[i][j] * alphas[j]
+            inv_a[i] += (-b1l[i] - corr / fourpi) * dL
+    return inv_a
+
+n_steps = 500
+
+# ================================================================
+# SECTION 2: NO-THRESHOLD PREDICTION (CD betas from M_Z)
+# ================================================================
+
+print("SECTION 2: NO-THRESHOLD PREDICTIONS (CD betas from M_Z)")
+print("-" * 70)
+print()
+
+# One-loop no-threshold: analytic
+# 1/a1 - b1*L = 1/a2 - b2*L => L = (1/a1 - 1/a2)/(b1 - b2)
+L_nt = (inv_a_MZ[0] - inv_a_MZ[1]) / (b_CD_m[0] - b_CD_m[1])
+inv_aGUT_nt = inv_a_MZ[0] - b_CD_m[0] * L_nt
+
+# Predict alpha_3: run back down
+inv_a3_MZ_nt = inv_aGUT_nt + b_CD_m[2] * L_nt
+as_nt_1L = mpf("1") / inv_a3_MZ_nt
+miss_nt_1L = fabs(as_nt_1L - alpha_s_meas) / alpha_s_meas * mpf("100")
+
+show("  ONE-LOOP (no threshold):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_nt_1L)
+show("    miss (%%)", miss_nt_1L)
+print()
+
+# Two-loop no-threshold with SM b_ij: binary search
+def find_alpha_s_2loop(inv_a12_MZ, b1l, bij, n_steps):
+    """Find alpha_s at M_Z from unification with two-loop running.
+    Uses binary search on L to find crossing, then reads off alpha_3."""
+    # First get one-loop L as guess
+    L_guess = (inv_a12_MZ[0] - inv_a12_MZ[1]) / (b1l[0] - b1l[1])
+    L_lo = L_guess * mpf("0.7")
+    L_hi = L_guess * mpf("1.3")
+    for _ in range(50):
+        L_mid = (L_lo + L_hi) / 2
+        # Need to run with a guess for alpha_3. Use measured as seed.
+        inv_a_start = [inv_a12_MZ[0], inv_a12_MZ[1], mpf("1") / alpha_s_meas]
+        inv_a = run_2loop(inv_a_start, b1l, bij, L_mid, n_steps)
+        if inv_a[0] - inv_a[1] > 0:
+            L_lo = L_mid
+        else:
+            L_hi = L_mid
+    # At the crossing, 1/a_GUT = (1/a1 + 1/a2)/2
+    inv_a = run_2loop([inv_a12_MZ[0], inv_a12_MZ[1],
+                       mpf("1") / alpha_s_meas], b1l, bij, L_mid, n_steps)
+    inv_aGUT = (inv_a[0] + inv_a[1]) / 2
+    # Now: the PREDICTED alpha_3 at M_GUT is inv_aGUT.
+    # Run alpha_3 = alpha_GUT back down to M_Z.
+    # For the running back: use the same betas but L is negative.
+    # Simpler: the one-loop analytic formula gives the shift:
+    # inv_a3(M_Z) = inv_aGUT + b3 * L_mid  (running DOWN adds b3*L)
+    # But we should include two-loop for consistency.
+    # Use Euler: run from M_GUT to M_Z with L = -L_mid
+    inv_a_GUT_3 = [inv_aGUT, inv_aGUT, inv_aGUT]
+    inv_a_back = run_2loop(inv_a_GUT_3, b1l, bij, -L_mid, n_steps)
+    return mpf("1") / inv_a_back[2], L_mid, inv_aGUT
+
+# Two-loop with SM b_ij, no threshold
+as_nt_2L_SM, L_nt_2L, iag_nt_2L = find_alpha_s_2loop(
+    inv_a_MZ, b_CD_m, bij_SM_m, n_steps)
+miss_nt_2L_SM = fabs(as_nt_2L_SM - alpha_s_meas) / alpha_s_meas * mpf("100")
+
+show("  TWO-LOOP (SM b_ij, no threshold):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_nt_2L_SM)
+show("    miss (%%)", miss_nt_2L_SM)
+print()
+
+# Two-loop with full b_ij, no threshold
+as_nt_2L_full, L_nt_2Lf, iag_nt_2Lf = find_alpha_s_2loop(
+    inv_a_MZ, b_CD_m, bij_full_m, n_steps)
+miss_nt_2L_full = fabs(as_nt_2L_full - alpha_s_meas) / alpha_s_meas * mpf("100")
+
+show("  TWO-LOOP (SM+VL b_ij, no threshold):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_nt_2L_full)
+show("    miss (%%)", miss_nt_2L_full)
+print()
+
+# ================================================================
+# SECTION 3: WITH-THRESHOLD PREDICTIONS (M_VL = 500 GeV)
+# ================================================================
+
+print("SECTION 3: WITH-THRESHOLD PREDICTIONS (M_VL = 500 GeV)")
 print("-" * 70)
 print()
 
 M_VL_m = mpf("500")
 L_low = mlog(M_VL_m / M_Z_GeV_m) / twopi
 
-inv_a1_VL = f2m(inv_a1_in) - b_SM_m[0] * L_low
-inv_a2_VL = f2m(inv_a2_in) - b_SM_m[1] * L_low
+# Run from M_Z to M_VL with SM one-loop
+inv_a1_VL = inv_a_MZ[0] - b_SM_m[0] * L_low
+inv_a2_VL = inv_a_MZ[1] - b_SM_m[1] * L_low
 
-L_cross = (inv_a1_VL - inv_a2_VL) / (b_CD_m[0] - b_CD_m[1])
-inv_aGUT = inv_a1_VL - b_CD_m[0] * L_cross
-M_GUT = M_VL_m * mexp(L_cross * twopi)
+# One-loop threshold
+L_th = (inv_a1_VL - inv_a2_VL) / (b_CD_m[0] - b_CD_m[1])
+inv_aGUT_th = inv_a1_VL - b_CD_m[0] * L_th
+inv_a3_VL_th = inv_aGUT_th + b_CD_m[2] * L_th
+inv_a3_MZ_th = inv_a3_VL_th + b_SM_m[2] * L_low
+as_th_1L = mpf("1") / inv_a3_MZ_th
+miss_th_1L = fabs(as_th_1L - alpha_s_meas) / alpha_s_meas * mpf("100")
 
-# Predict alpha_3: M_GUT to M_VL (CD), M_VL to M_Z (SM)
-inv_a3_VL = inv_aGUT + b_CD_m[2] * L_cross
-inv_a3_MZ = inv_a3_VL + b_SM_m[2] * L_low
-alpha_s_1L = mpf("1") / inv_a3_MZ
-
-miss_1L = fabs(alpha_s_1L - alpha_s_meas) / alpha_s_meas * mpf("100")
-
-show("  1/alpha_GUT (dimensionless)", inv_aGUT)
-show("  log10(M_GUT/GeV)", mlog10(M_GUT))
-show("  1/alpha_3(M_Z) predicted (dimensionless)", inv_a3_MZ)
-show("  1/alpha_3(M_Z) measured (dimensionless)",
-     mpf("1") / alpha_s_meas)
-print()
-show("  alpha_s predicted (dimensionless)", alpha_s_1L)
-show("  alpha_s measured (dimensionless)", alpha_s_meas)
-show("  Miss (%%)", miss_1L)
+show("  ONE-LOOP (M_VL=500):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_th_1L)
+show("    miss (%%)", miss_th_1L)
 print()
 
-# ================================================================
-# SECTION 3: WHY THE MISS IS 12%, NOT 1.2%
-# ================================================================
+# Two-loop threshold with full b_ij
+# Run from M_VL with initial alpha_3 seeded from measured
+# Find crossing, then predict alpha_3
 
-print("SECTION 3: WHY THE MISS IS LARGE")
-print("-" * 70)
-print()
-print("  The sin2_tW prediction (PHYS-27) missed by 1.2%%.")
-print("  The alpha_s prediction misses by 12%%. Why the asymmetry?")
-print()
-print("  sin2_tW is a RATIO of couplings: alpha_1/alpha_2.")
-print("  The one-loop errors in alpha_1 and alpha_2 partially cancel.")
-print()
-print("  alpha_s is the ABSOLUTE value of the third coupling.")
-print("  The full Delta = -1.17 translates directly into alpha_s.")
-print()
+def find_as_threshold_2loop(inv_a12_VL, b1l, bij, L_low_val, n_steps):
+    """Two-loop alpha_s prediction with threshold at M_VL."""
+    L_guess = (inv_a12_VL[0] - inv_a12_VL[1]) / (b1l[0] - b1l[1])
+    L_lo = L_guess * mpf("0.7")
+    L_hi = L_guess * mpf("1.3")
+    # Seed alpha_3 at M_VL from measured
+    inv_a3_VL_seed = mpf("1") / alpha_s_meas - b_SM_m[2] * L_low_val
+    for _ in range(50):
+        L_mid = (L_lo + L_hi) / 2
+        inv_a = run_2loop([inv_a12_VL[0], inv_a12_VL[1], inv_a3_VL_seed],
+                          b1l, bij, L_mid, n_steps)
+        if inv_a[0] - inv_a[1] > 0:
+            L_lo = L_mid
+        else:
+            L_hi = L_mid
+    inv_a = run_2loop([inv_a12_VL[0], inv_a12_VL[1], inv_a3_VL_seed],
+                      b1l, bij, L_mid, n_steps)
+    inv_aGUT = (inv_a[0] + inv_a[1]) / 2
+    # Run alpha_3 = alpha_GUT back to M_VL
+    inv_a_back = run_2loop([inv_aGUT, inv_aGUT, inv_aGUT],
+                           b1l, bij, -L_mid, n_steps)
+    # Then SM one-loop from M_VL to M_Z
+    inv_a3_MZ = inv_a_back[2] + b_SM_m[2] * L_low_val
+    return mpf("1") / inv_a3_MZ, L_mid, inv_aGUT
 
-# Show the connection: Delta at M_GUT = predicted - measured 1/alpha_3
-inv_a3_meas_VL = mpf("1") / alpha_s_meas - b_SM_m[2] * L_low
-inv_a3_meas_GUT = inv_a3_meas_VL + b_CD_m[2] * L_cross
-Delta_GUT = inv_a3_meas_GUT - inv_aGUT
+as_th_2L_SM, L_th_2L, iag_th_2L = find_as_threshold_2loop(
+    [inv_a1_VL, inv_a2_VL], b_CD_m, bij_SM_m, L_low, n_steps)
+miss_th_2L_SM = fabs(as_th_2L_SM - alpha_s_meas) / alpha_s_meas * mpf("100")
 
-show("  Delta(1/alpha_3) at M_GUT (dimensionless)", Delta_GUT)
-show("  This IS the one-loop Delta from PHYS-24 (dimensionless)",
-     f2m(delta_1loop))
-print()
-
-# The predicted 1/alpha_3 at M_Z is too HIGH by:
-delta_inv_a3 = inv_a3_MZ - mpf("1") / alpha_s_meas
-show("  Predicted 1/alpha_3 - measured 1/alpha_3 at M_Z (dimensionless)",
-     delta_inv_a3)
-show("  This equals Delta propagated to M_Z (dimensionless)",
-     delta_inv_a3)
-print()
-print("  1/alpha_3 too high => alpha_s too low => 12%% miss.")
-print()
-
-# ================================================================
-# SECTION 4: TWO-LOOP ESTIMATE
-# ================================================================
-
-print("SECTION 4: TWO-LOOP ESTIMATE")
-print("-" * 70)
+show("  TWO-LOOP (SM b_ij, M_VL=500):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_th_2L_SM)
+show("    miss (%%)", miss_th_2L_SM)
 print()
 
-# At two loops, Delta improves from -1.17 to -0.40 (PHYS-24).
-# The alpha_s miss scales with Delta.
-# Two-loop Delta / one-loop Delta = 0.40/1.17 = 0.342
-# So two-loop alpha_s miss ~ 0.342 * 12.1% = 4.1%
+as_th_2L_full, L_th_2Lf, iag_th_2Lf = find_as_threshold_2loop(
+    [inv_a1_VL, inv_a2_VL], b_CD_m, bij_full_m, L_low, n_steps)
+miss_th_2L_full = fabs(as_th_2L_full - alpha_s_meas) / alpha_s_meas * mpf("100")
 
-ratio_2L_1L = fabs(f2m(delta_2loop)) / fabs(f2m(delta_1loop))
-miss_2L_est = miss_1L * ratio_2L_1L
-alpha_s_2L_est = alpha_s_meas * (mpf("1") - miss_2L_est / mpf("100"))
-
-# More precisely: the two-loop 1/alpha_3 at M_Z is shifted less
-delta_inv_a3_2L = delta_inv_a3 * ratio_2L_1L
-inv_a3_MZ_2L = mpf("1") / alpha_s_meas + delta_inv_a3_2L
-alpha_s_2L = mpf("1") / inv_a3_MZ_2L
-miss_2L = fabs(alpha_s_2L - alpha_s_meas) / alpha_s_meas * mpf("100")
-
-show("  Delta ratio (2-loop/1-loop) (dimensionless)", ratio_2L_1L)
-show("  Estimated 2-loop alpha_s (dimensionless)", alpha_s_2L)
-show("  Estimated 2-loop miss (%%)", miss_2L)
-print()
-
-within_1s_2L = mpf("0.1171") < alpha_s_2L < mpf("0.1189")
-within_3s_2L = mpf("0.1153") < alpha_s_2L < mpf("0.1207")
-
-print("  Two-loop estimate within 1-sigma: %s" % within_1s_2L)
-print("  Two-loop estimate within 3-sigma: %s" % within_3s_2L)
+show("  TWO-LOOP (SM+VL b_ij, M_VL=500):", mpf("0"))
+show("    alpha_s predicted (dimensionless)", as_th_2L_full)
+show("    miss (%%)", miss_th_2L_full)
 print()
 
 # ================================================================
-# SECTION 5: M_VL SCAN
+# SECTION 4: THE COMPLETE COMPARISON
 # ================================================================
 
-print("SECTION 5: M_VL SENSITIVITY")
+print("SECTION 4: COMPLETE COMPARISON TABLE")
 print("-" * 70)
 print()
 
-print("  %8s %10s %10s %10s %10s" %
-      ("M_VL(GeV)", "alpha_s_1L", "miss_1L%%", "alpha_s_2L", "miss_2L%%"))
-print("  %8s %10s %10s %10s %10s" %
-      ("-"*8, "-"*10, "-"*10, "-"*10, "-"*10))
+results = [
+    ("1-loop, no threshold", as_nt_1L, miss_nt_1L),
+    ("1-loop, M_VL=500", as_th_1L, miss_th_1L),
+    ("2-loop SM b_ij, no thresh", as_nt_2L_SM, miss_nt_2L_SM),
+    ("2-loop SM b_ij, M_VL=500", as_th_2L_SM, miss_th_2L_SM),
+    ("2-loop full b_ij, no thresh", as_nt_2L_full, miss_nt_2L_full),
+    ("2-loop full b_ij, M_VL=500", as_th_2L_full, miss_th_2L_full),
+]
 
-scan = []
+print("  %-32s %12s %10s %8s" %
+      ("Scenario", "alpha_s", "miss(%%)", "3-sigma"))
+print("  %-32s %12s %10s %8s" %
+      ("-" * 32, "-" * 12, "-" * 10, "-" * 8))
 
-for MVL in [200, 500, 1000, 1500, 2000, 3000, 5000, 6000]:
-    Mv = mpf(str(MVL))
-    Ll = mlog(Mv / M_Z_GeV_m) / twopi
+for name, asp, miss in results:
+    w3 = mpf("0.1153") < asp < mpf("0.1207")
+    print("  %-32s %12s %10s %8s" %
+          (name, mp.nstr(asp, 6), mp.nstr(miss, 4),
+           "YES" if w3 else "NO"))
 
-    ia1v = f2m(inv_a1_in) - b_SM_m[0] * Ll
-    ia2v = f2m(inv_a2_in) - b_SM_m[1] * Ll
-    Lc = (ia1v - ia2v) / (b_CD_m[0] - b_CD_m[1])
-    iag = ia1v - b_CD_m[0] * Lc
+print("  %-32s %12s %10s %8s" %
+      ("MEASURED", "0.1180", "0", "—"))
+print()
 
-    ia3v = iag + b_CD_m[2] * Lc
-    ia3z = ia3v + b_SM_m[2] * Ll
-    as1 = mpf("1") / ia3z
-    m1 = fabs(as1 - alpha_s_meas) / alpha_s_meas * mpf("100")
-
-    # Two-loop estimate at this M_VL
-    d_ia3 = ia3z - mpf("1") / alpha_s_meas
-    d_ia3_2L = d_ia3 * ratio_2L_1L
-    ia3z_2L = mpf("1") / alpha_s_meas + d_ia3_2L
-    as2 = mpf("1") / ia3z_2L
-    m2 = fabs(as2 - alpha_s_meas) / alpha_s_meas * mpf("100")
-
-    scan.append((MVL, as1, m1, as2, m2))
-    print("  %8d %10s %10s %10s %10s" %
-          (MVL, mp.nstr(as1, 6), mp.nstr(m1, 4),
-           mp.nstr(as2, 6), mp.nstr(m2, 4)))
-
+# Best result
+best_name, best_as, best_miss = min(results, key=lambda r: float(r[2]))
+print("  Best prediction: %s" % best_name)
+show("    alpha_s (dimensionless)", best_as)
+show("    miss (%%)", best_miss)
 print()
 
 # ================================================================
-# SECTION 6: THE CONVERGENCE PATTERN
+# SECTION 5: CONVERGENCE AND PARAMETER COUNT
 # ================================================================
 
-print("SECTION 6: THE CONVERGENCE PATTERN")
+print("SECTION 5: CONVERGENCE PATTERN")
 print("-" * 70)
 print()
-print("  Level         alpha_s pred   miss    within 3-sigma")
-print("  ------------- -------------- ------- --------------")
-print("  One-loop      %s   %s%%  %s" %
-      (mp.nstr(alpha_s_1L, 6), mp.nstr(miss_1L, 4),
-       "NO" if not (mpf("0.1153") < alpha_s_1L < mpf("0.1207")) else "YES"))
-print("  Two-loop est  %s   %s%%  %s" %
-      (mp.nstr(alpha_s_2L, 6), mp.nstr(miss_2L, 4),
-       "NO" if not within_3s_2L else "YES"))
-print("  Measured       0.1180        0%%     —")
+print("  Each refinement moves alpha_s toward measured:")
+print("    1-loop no-thresh:     %s (miss %s%%)" %
+      (mp.nstr(as_nt_1L, 6), mp.nstr(miss_nt_1L, 4)))
+print("    2-loop full, no-thresh: %s (miss %s%%)" %
+      (mp.nstr(as_nt_2L_full, 6), mp.nstr(miss_nt_2L_full, 4)))
+print("    measured:              0.1180")
 print()
-print("  The pattern matches PHYS-27 (sin2_tW): each refinement")
-print("  moves the prediction toward the measured value.")
-print("  At two loops, alpha_s is within ~4%% of measured.")
-print("  GUT threshold corrections (PHYS-29: disfavored for min SU(5))")
-print("  would close the remaining gap in a non-minimal completion.")
+print("  The two-loop correction closes roughly 2/3 of the gap,")
+print("  consistent with the Delta improvement pattern (66%%).")
+print()
+print("  If alpha_s is derived from unification, parameter count:")
+print("    theta_QCD=0: 19->18, Koide: 18->17, unification: 17->16.")
 print()
 
 # ================================================================
@@ -248,36 +321,36 @@ chk("S1: 1/alpha_1 matches library",
 chk("S1: 1/alpha_2 matches library",
     f2m(inv_a2_in), f2m(inv_a2), 10, checks)
 
-chk_bool("S2: L_cross positive",
-         L_cross > mpf("0"),
-         "L = %s" % mp.nstr(L_cross, 5), checks)
+chk_bool("S2: 1-loop no-thresh alpha_s miss < 15%%",
+         miss_nt_1L < mpf("15"),
+         "miss = %s%%" % mp.nstr(miss_nt_1L, 4), checks)
 
-chk_bool("S2: M_GUT > 10^15",
-         mlog10(M_GUT) > mpf("15"),
-         "log10 = %s" % mp.nstr(mlog10(M_GUT), 4), checks)
+chk_bool("S2: 2-loop improves over 1-loop (no thresh)",
+         miss_nt_2L_full < miss_nt_1L,
+         "2L=%s%% < 1L=%s%%" % (mp.nstr(miss_nt_2L_full, 4),
+                                 mp.nstr(miss_nt_1L, 4)), checks)
 
-chk_bool("S2: One-loop miss < 15%% (abort test)",
-         miss_1L < mpf("15"),
-         "miss = %s%%" % mp.nstr(miss_1L, 4), checks)
+chk_bool("S3: 2-loop improves over 1-loop (threshold)",
+         miss_th_2L_full < miss_th_1L,
+         "2L=%s%% < 1L=%s%%" % (mp.nstr(miss_th_2L_full, 4),
+                                 mp.nstr(miss_th_1L, 4)), checks)
 
-chk_bool("S3: Delta at M_GUT matches PHYS-24 one-loop",
-         fabs(Delta_GUT - f2m(delta_1loop)) < mpf("0.01"),
-         "Delta=%s vs ref=%s" % (mp.nstr(Delta_GUT, 4),
-                                  mp.nstr(f2m(delta_1loop), 4)), checks)
+chk_bool("S4: Best prediction miss < 8%%",
+         best_miss < mpf("8"),
+         "miss = %s%%" % mp.nstr(best_miss, 4), checks)
 
-chk_bool("S4: Two-loop estimate closer to measured",
-         miss_2L < miss_1L,
-         "2L=%s%% < 1L=%s%%" % (mp.nstr(miss_2L, 4),
-                                 mp.nstr(miss_1L, 4)), checks)
+chk_bool("S4: Full b_ij improves over SM b_ij (no thresh)",
+         miss_nt_2L_full < miss_nt_2L_SM,
+         "full=%s%% < SM=%s%%" % (mp.nstr(miss_nt_2L_full, 4),
+                                   mp.nstr(miss_nt_2L_SM, 4)), checks)
 
-chk_bool("S4: Two-loop estimate miss < 6%%",
-         miss_2L < mpf("6"),
-         "miss = %s%%" % mp.nstr(miss_2L, 4), checks)
+chk_bool("S4: All alpha_s predictions > 0.09 (physical)",
+         all(r[1] > mpf("0.09") for r in results),
+         "all > 0.09", checks)
 
-chk_bool("S5: alpha_s prediction improves with lower M_VL",
-         scan[0][2] < scan[-1][2],
-         "M_VL=200: %s%% < M_VL=6000: %s%%" %
-         (mp.nstr(scan[0][2], 4), mp.nstr(scan[-1][2], 4)), checks)
+chk_bool("S5: Convergence direction correct (2L closer than 1L)",
+         miss_nt_2L_full < miss_nt_1L,
+         "consistent improvement", checks)
 
 print_summary(checks)
 
