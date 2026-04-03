@@ -1,0 +1,226 @@
+======================================================================
+PHYS24_DERIVATIONS SELF-TEST
+======================================================================
+
+GROUP THEORY
+----------------------------------------------------------------------
+
+  [PASS] C2(adj SU(3)) = 3
+        expected: 3 = 3.0
+        got:      3 = 3.0
+        match:    EXACT
+  [PASS] C2(fund SU(3)) = 4/3
+        expected: 4/3 = 1.3333333333
+        got:      4/3 = 1.3333333333
+        match:    EXACT
+  [PASS] C2(fund SU(2)) = 3/4
+        expected: 3/4 = 0.75
+        got:      3/4 = 0.75
+        match:    EXACT
+  [PASS] k1_GUT = 3/5
+        expected: 3/5 = 0.6
+        got:      3/5 = 0.6
+        match:    EXACT
+
+COUPLING EXTRACTION
+----------------------------------------------------------------------
+
+  [PASS] 1/a1 from derive_couplings matches library
+        expected: 15802580317094109/250000000000000 = 63.210321268
+        got:      15802580317094109/250000000000000 = 63.210321268
+        match:    EXACT
+  [PASS] 1/a2 from derive_couplings matches library
+        expected: 1584273186485297/50000000000000 = 31.68546373
+        got:      1584273186485297/50000000000000 = 31.68546373
+        match:    EXACT
+  [PASS] 1/a3 from derive_couplings matches library
+        expected: 500/59 = 8.4745762712
+        got:      500/59 = 8.4745762712
+        match:    EXACT
+  [PASS] 1/a2 ~ 31.7 (not 593)
+        1/a2 = 31.68546
+
+VL ONE-LOOP SHIFTS (Dynkin)
+----------------------------------------------------------------------
+
+  [PASS] Db1 from Dynkin = 1/15
+        expected: 1/15 = 0.066666666667
+        got:      1/15 = 0.066666666667
+        match:    EXACT
+  [PASS] Db2 from Dynkin = 1
+        expected: 1 = 1.0
+        got:      1 = 1.0
+        match:    EXACT
+  [PASS] Db3 from Dynkin = 1/3
+        expected: 1/3 = 0.33333333333
+        got:      1/3 = 0.33333333333
+        match:    EXACT
+
+VL TWO-LOOP b_ij MATRIX
+----------------------------------------------------------------------
+
+  [PASS] db_ij_VL[0][0] = 7/15
+        expected: 7/15 = 0.46666666667
+        got:      7/15 = 0.46666666667
+        match:    EXACT
+  [PASS] db_ij_VL[0][1] = 1/15
+        expected: 1/15 = 0.066666666667
+        got:      1/15 = 0.066666666667
+        match:    EXACT
+  [PASS] db_ij_VL[0][2] = 16/135
+        expected: 16/135 = 0.11851851852
+        got:      16/135 = 0.11851851852
+        match:    EXACT
+  [PASS] db_ij_VL[1][0] = 1/30
+        expected: 1/30 = 0.033333333333
+        got:      1/30 = 0.033333333333
+        match:    EXACT
+  [PASS] db_ij_VL[1][1] = 15/4
+        expected: 15/4 = 3.75
+        got:      15/4 = 3.75
+        match:    EXACT
+  [PASS] db_ij_VL[1][2] = 8/3
+        expected: 8/3 = 2.6666666667
+        got:      8/3 = 2.6666666667
+        match:    EXACT
+  [PASS] db_ij_VL[2][0] = 1/45
+        expected: 1/45 = 0.022222222222
+        got:      1/45 = 0.022222222222
+        match:    EXACT
+  [PASS] db_ij_VL[2][1] = 1
+        expected: 1 = 1.0
+        got:      1 = 1.0
+        match:    EXACT
+  [PASS] db_ij_VL[2][2] = 40/9
+        expected: 40/9 = 4.4444444444
+        got:      40/9 = 4.4444444444
+        match:    EXACT
+  [PASS] db_22 is 15/4 (fermion only), NOT 39/4 (with gauge)
+        db_22 = 15/4
+
+GAP RATIOS
+----------------------------------------------------------------------
+
+  [PASS] SM gap from function = 218/115
+        expected: 218/115 = 1.8956521739
+        got:      218/115 = 1.8956521739
+        match:    EXACT
+  [PASS] CD gap from function = 38/27
+        expected: 38/27 = 1.4074074074
+        got:      38/27 = 1.4074074074
+        match:    EXACT
+
+BETA DECOMPOSITION
+----------------------------------------------------------------------
+
+  [PASS] b1 decomposition sums to 41/10
+        expected: 41/10 = 4.1
+        got:      41/10 = 4.1
+        match:    EXACT
+  [PASS] b2 decomposition sums to -19/6
+        expected: -19/6 = -3.1666666667
+        got:      -19/6 = -3.1666666667
+        match:    EXACT
+  [PASS] b3 decomposition sums to -7
+        expected: -7 = -7.0
+        got:      -7 = -7.0
+        match:    EXACT
+  [PASS] Fermion gap numerator = 0
+        expected: 0 = 0.0
+        got:      0 = 0.0
+        match:    EXACT
+  [PASS] Fermion gap denominator = 0
+        expected: 0 = 0.0
+        got:      0 = 0.0
+        match:    EXACT
+
+ONE-LOOP CROSSING
+----------------------------------------------------------------------
+
+  L_GUT (SM betas, dimensionless)          4.3382831475
+  L_GUT (CD betas, dimensionless)          4.9776090851
+  log10(M_GUT/GeV) for CD                  15.542600054
+  [PASS] CD M_GUT in [10^15, 10^16]
+        log10(M_GUT) = 15.54
+
+ONE-LOOP ALPHA_S PREDICTION
+----------------------------------------------------------------------
+
+  alpha_s predicted (one-loop, dimensionless) 0.10768640991
+  Delta (dimensionless)                    -0.81164657578
+  Miss from measured (%%)                  8.740330586
+  [PASS] One-loop alpha_s miss < 15%%
+        miss = 8.74%
+
+ONE-LOOP SIN2_THETA_W PREDICTION
+----------------------------------------------------------------------
+
+  sin2_tW predicted (one-loop, dimensionless) 0.22844821298
+  b_EM = 43/9                              4.7777777778
+  Miss from measured (%%)                  1.1987661209
+  [PASS] One-loop sin2_tW miss < 2%%
+        miss = 1.199%
+
+TWO-LOOP ALPHA_S PREDICTION (SM b_ij)
+----------------------------------------------------------------------
+
+  alpha_s predicted (two-loop SM b_ij, dimensionless) 0.1175315391
+  Delta (dimensionless)                    -0.030931677501
+  Miss from measured (%%)                  0.39700076
+  [PASS] Two-loop SM alpha_s miss < 1%%
+        miss = 0.397%
+
+TWO-LOOP ALPHA_S PREDICTION (full b_ij = SM + VL)
+----------------------------------------------------------------------
+
+  alpha_s predicted (two-loop full b_ij, dimensionless) 0.11838365166
+  Delta (dimensionless)                    0.028389950501
+  Miss from measured (%%)                  0.32512852609
+  [PASS] Two-loop full alpha_s miss < 1%%
+        miss = 0.3251%
+  [PASS] Full b_ij improves over SM b_ij
+        full=0.3251% < SM=0.397%
+
+KOIDE COMPUTATIONS
+----------------------------------------------------------------------
+
+  K(e, mu, tau) (dimensionless)            0.66666051147
+  a^2(leptons) (dimensionless)             1.9999630688
+  [PASS] Koide K(leptons) matches library
+        expected: 0.6666605115
+        got:      0.66666051147
+        digits:   10.29 (need 6)
+  [PASS] a^2(leptons) matches library
+        expected: 1.9999630688
+        got:      1.9999630688
+        digits:   11.46 (need 4)
+  m_tau predicted (MeV)                    1776.9690273
+  m_tau measured (MeV)                     1776.86
+  Miss (%%)                                0.0061359529258
+  [PASS] Koide m_tau miss < 0.01%%
+        miss = 0.006136%
+  Other quadratic root (MeV)               3.3173565444
+
+======================================================================
+DERIVATION RESULTS SUMMARY
+======================================================================
+
+  Prediction                                           Value       Miss
+  --------------------------------------------- ------------ ----------
+  alpha_s (one-loop, CD betas)                      0.107686      8.74%
+  alpha_s (two-loop, SM b_ij)                       0.117532     0.397%
+  alpha_s (two-loop, full b_ij)                     0.118384    0.3251%
+  sin2_tW (one-loop, CD betas)                      0.228448     1.199%
+  m_tau (Koide K=2/3)                               1776.969  0.006136%
+  Measured alpha_s                                     0.118          —
+  Measured sin2_tW                                   0.23122          —
+  Measured m_tau (MeV)                               1776.86          —
+
+
+  TOTAL: 37 PASS, 0 FAIL out of 37
+
+  DERIVATION LIBRARY: OPERATIONAL
+
+======================================================================
+PHYS24_DERIVATIONS SELF-TEST COMPLETE
+======================================================================
