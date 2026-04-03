@@ -69,6 +69,8 @@ The pattern: every GeV of energy range where the CD betas are replaced by SM bet
 
 ## 3. Investigation 2: Step Sensitivity
 
+![Fig. 1: Miss vs M_VL showing monotonic degradation. No-threshold (gold line at 0.33%) beats every hard threshold (cyan curve) and every soft threshold (red curve).](./figures/phys35_01_mvl_scan.png)
+
 The Euler integrator has O(h) discretization error, where h is the step size. If the Euler error happened to cancel the threshold effect in the no-threshold case, the advantage could be numerical rather than physical. The test: run both configurations at 200, 500, 1000, and 2000 Euler steps and check whether the advantage ratio changes.
 
 No-threshold step sensitivity:
@@ -85,9 +87,13 @@ The advantage ratio: 12.3× at 500 steps. 12.3× at 2000 steps. Unchanged. The n
 
 (Backed by phys35_no_threshold_puzzle.py Section 3: 8 data points, advantage constant at 12.3×.)
 
+![Fig. 3: Predicted α_s vs M_VL with the measured band (magenta). The no-threshold value (gold) sits inside the band. All threshold values fall below it.](./figures/phys35_03_alpha_s_vs_mvl.png)
+
 ---
 
 ## 4. Investigation 3: Soft Threshold
+
+![Fig. 4: Left: miss vs Euler steps for both configurations — both converged. Right: advantage ratio constant at 12.3× across all step counts. The advantage is not numerical.](./figures/phys35_04_step_sensitivity.png)
 
 The hard threshold is an idealization — a step function at M_VL where the betas change instantaneously. Real decoupling is smoother: the heavy particle's contribution turns on gradually as the energy increases through its mass. The test: replace the step function with a sigmoid.
 
@@ -119,6 +125,8 @@ The ranking correlates perfectly with the integrated CD contribution. The puzzle
 
 ## 5. The Pattern: More CD Running = Better Predictions
 
+![Fig. 2: Energy range diagram showing where the CD contributes for each configuration. No-threshold (gold) uses CD from M_Z to M_GUT. Higher thresholds (shorter bars) give worse predictions.](./figures/phys35_02_energy_ranges.png)
+
 The three investigations converge on one observation. Define the "effective CD fraction" as the fraction of the M_Z-to-M_GUT energy range where the CD betas are active:
 
 No-threshold: effective fraction = 100%. Miss = 0.33%.
@@ -130,9 +138,13 @@ The correlation is near-perfect. Even a small reduction in CD running (from 100%
 
 Why the low-energy range matters more: the coupling values at M_Z are the inputs. The running from M_Z to the first few hundred GeV sets the initial trajectory that propagates to M_GUT. A small change in the betas at low energy compounds over the 14 decades of running to M_GUT. The CD's low-energy contribution is amplified by the lever arm of the running.
 
+![Fig. 5: The three threshold functions compared. No-threshold (gold, f=1). Hard step (cyan, 0→1 at M_VL). Sigmoid (red, gradual). Shaded areas show lost CD contribution.](./figures/phys35_05_threshold_functions.png)
+
 ---
 
 ## 6. Three Possible Explanations
+
+![Fig. 7: The near-perfect correlation between CD running fraction and prediction quality. 100% CD (no-threshold) gives 0.33% miss. Less CD = monotonically worse.](./figures/phys35_07_cd_fraction.png)
 
 The no-threshold advantage is established as physical (not numerical). Three explanations could account for it.
 
@@ -154,6 +166,8 @@ Explanation C predicts the advantage vanishes when either the threshold matching
 
 ## 7. The Decoupling Theorem — What It Actually Says
 
+![Fig. 6: Five predictions of the decoupling theorem vs five observations. Every expectation is inverted. The leading-order threshold is a poor approximation for the CD.](./figures/phys35_06_decoupling_inversion.png)
+
 The Appelquist-Carazzone theorem applies to the FULL theory — it states that low-energy observables can be computed using the effective theory WITHOUT the heavy particle, up to corrections suppressed by powers of (E/M). It does NOT say the effective theory gives the SAME coupling evolution as the full theory. The difference between the full-theory running and the effective-theory running is absorbed into matching conditions at the threshold.
 
 The standard implementation (step-function threshold) is a leading-order approximation to the matching. The exact matching includes logarithmic corrections (ln(μ/M) terms) and finite corrections that are typically small but nonzero. In the CD case, these corrections may be numerically important because the CD's beta shifts (Δb₂ = 1, Δb₃ = 1/3) are large relative to the SM betas — the CD is not a small perturbation.
@@ -163,6 +177,8 @@ The no-threshold configuration can be viewed as a specific (if unorthodox) match
 ---
 
 ## 8. What This Paper Does Not Claim
+
+![Fig. 8: Decision tree showing three explanations and which future tests (PHYS-37 RK4, PHYS-38 three-loop) distinguish them.](./figures/phys35_08_three_explanations.png)
 
 This paper does not claim the CD has no physical mass. If the CD exists, it has a mass, and decoupling applies. The paper documents that the standard threshold implementation worsens predictions at the current level of computation.
 
