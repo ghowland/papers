@@ -42,6 +42,8 @@ The distinction is absolute, not approximate. A quantity is either forced by the
 
 ## 2. The Confrontation
 
+![Fig. 3: Six confrontations between Level 1 (integer arithmetic) and Level 2 (measurement) — gap ratio 40% miss, CD 3.6% miss, CKM 0.2% deficit, R_b 1.6% over, proton decay at boundary.](./figures/phys21_03_confrontation.png)
+
 The physics lives in the meeting between Level 1 and Level 2. Level 1 alone is mathematics — theorems about groups and representations with no contact with experiment. Level 2 alone is cataloguing — measurements without structural interpretation. The HOWL series exists at the boundary: exact rational arithmetic (Level 1) applied to precision measurements (Level 2), testing whether the integers are consistent with the data.
 
 The central confrontation of Session 3: the SM gap ratio is 218/115 = 1.896 (Level 1). The measured gap ratio is 1.358 (derived from Level 2 inputs). They disagree by 40%. This is the finding that the Standard Model does not unify. The disagreement is not approximate or marginal — it is a 40% miss, far beyond any plausible correction. Something is missing from the SM particle content.
@@ -51,6 +53,8 @@ The Cabibbo Doublet emerges from this confrontation. The modified gap ratio 38/2
 ---
 
 ## 3. The Level 1 Registry
+
+![Fig. 4: The chain from integer 11 through gauge asymmetry, SM betas, gap ratio 218/115, elimination cascade, Cabibbo Doublet (38/27), to M_GUT and τ_p — crossing the L1/L2 boundary when DATA-3 couplings enter.](./figures/phys21_04_level1_chain.png)
 
 Every Level 1 result in the series, compiled from individual papers:
 
@@ -88,6 +92,8 @@ Every Level 2 quantity in the series:
 
 ## 5. The Derived Category
 
+![Fig. 5: Gap ratio (Level 1) → M_GUT (Derived, +L2 couplings) → τ_p (Derived, +L2 matrix elements) → Hyper-K (Level 2 experiment). The chain crosses the L1/L2 boundary twice.](./figures/phys21_05_amplification_chain.png)
+
 Some results are neither purely Level 1 nor purely Level 2. They emerge when Level 1 structure is applied to Level 2 inputs.
 
 θ_QCD = 0 is derived: Level 1 energy minimization applied to the Level 2 quark mass matrix determines the CP-violating vacuum angle (PHYS-7). This was a free parameter (Level 2) and became a derived quantity — the first parameter reduction in the series.
@@ -106,6 +112,8 @@ The Derived category is where Level 1 and Level 2 meet. It is where predictions 
 
 ## 6. The Extension: What Is New About the Cabibbo Doublet
 
+![Fig. 2: The Cabibbo Doublet split — left half shows all Level 1 properties (representation, betas, gap ratio, mechanism, all known), right half shows all Level 2 properties (mass, mixing, existence, all pending).](./figures/phys21_02_cd_boundary_split.png)
+
 Before Session 3, every Level 1 result in the HOWL series confirmed properties of observed particles. The beta coefficients describe the running of couplings between known particles. The electroweak anatomy computes observables from known inputs. The QED perturbative series maps one measured quantity (α) to another (a_e). The geometric identity R₂ = π/4 appears in known physics domains. Level 1 confirmed. Level 2 was already there.
 
 The Cabibbo Doublet changes this. The gap ratio elimination cascade is Level 1 arithmetic that identifies a particle not yet observed. The representation (3,2,1/6), the beta contributions (1/15, 1, 1/3), the gap ratio 38/27, the asymmetry ratio 15, the 1/Y² scaling — all are Level 1 results about a particle whose Level 2 properties (mass, mixing, existence) are not yet confirmed.
@@ -115,6 +123,10 @@ This is not unprecedented in physics. It is how every major particle was found s
 The Cabibbo Doublet is at the same stage. The Level 1 arithmetic is complete: the representation is identified, the mechanism is understood (Y = 1/6 asymmetry), the gap ratio is computed (38/27), the unification scale is derived (10^15.5), and the experimental consequences are documented (proton decay τ ~ 10^34-35 yr, testable by Hyper-K 2027-2037). The Level 2 confirmation is pending: LHC searches for direct production, Belle II for CKM precision, Hyper-K for proton decay.
 
 The historical gap between Level 1 identification and Level 2 confirmation ranges from 4 years (charm) to 48 years (Higgs). The Cabibbo Doublet's Level 1 identification by the anomaly literature dates to 2019-2020 (Belfatto, Berezhiani; Cheung, Keung, Lu, Tseng). Its Level 1 identification by the gap ratio dates to this session (2026). The experimental window (Hyper-K 2027-2037, HL-LHC through 2040) opens within a decade. Whether this follows the historical pattern is not for this paper to claim. It is for the universe to decide.
+
+![Fig. 6: Six Level 1 identifications confirmed (charm, bottom, top, W, Z, Higgs) and five not yet (monopole, axion, SUSY, gravitino, proton decay) — 55% success rate. CD has stronger anomaly motivation than most unconfirmed entries.](./figures/phys21_06_success_rate.png)
+
+![Fig. 7: Time gap between Level 1 identification and Level 2 confirmation — charm (4 yr), W/Z (16 yr), top (18 yr), Higgs (48 yr). The Cabibbo Doublet gap is open-ended, with Hyper-K 2027–2037.](./figures/phys21_07_historical_timeline.png)
 
 ---
 
@@ -215,6 +227,8 @@ The historical precedent table provides context for interpreting future experime
 ---
 
 ## 13. Summary
+
+![Fig. 8: The integers tell you WHAT, the universe tells you HOW MUCH. Level 1 determines representations and scaling laws. Level 2 determines masses and existence. The Cabibbo Doublet is the first entity where L1 precedes L2.](./figures/phys21_08_identity_card.png)
 
 The Level 1 / Level 2 boundary runs through every result in the HOWL series. Level 1: the integers from the gauge group — beta coefficients, gap ratios, Dynkin indices, geometric identities, scaling laws. Level 2: the values from the universe — coupling constants, masses, mixing angles, experimental bounds. The confrontation between them — 218/115 versus 1.358, the 40% miss — is the physics.
 
