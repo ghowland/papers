@@ -59,6 +59,8 @@ where (2m+1)!! = 1 · 3 · 5 · ... · (2m+1) is the double factorial.
 
 ### 2.2 The Sequence
 
+![Fig. 1: R_n decays toward zero as dimension increases — n=2 and n=4 are the only doubly-native values (highlighted).](./figures/math5_01_rn_sequence_decay.png)
+
 Computed as exact rational fractions (π as a 554-digit rational from Machin's formula at 160 terms) and verified against mpmath at 100+ digits. From `math_5_verify.py` output:
 
 | n | R_n | Denominator | Odd factors | Decimal | Pure 2-power? |
@@ -74,6 +76,8 @@ Computed as exact rational fractions (π as a 554-digit rational from Machin's f
 | 9 | π⁴/15120 | 15120 | 945 | 0.0064424002 | no |
 | 10 | π⁵/122880 | 122880 | 15 | 0.0024903946 | no |
 
+![Fig. 4: Circle in square (78.5%), sphere in cube (52.4%), 4-ball in 4-cube (30.8%) — the shrinking fill fraction across dimensions.](./figures/math5_04_nball_in_ncube.png)
+
 ### 2.3 Connection to Previous Work
 
 R₂ = π/4 is β from [@HOWL-MATH-1-2026]. The MATH-1 result — that β separates as a geometric factor in every equation involving circular cross-sections across nine physical domains — is the n = 2 case of the general pattern investigated here.
@@ -85,6 +89,8 @@ R_n is a geometric remainder in the sense of [@HOWL-PHYS-10-2026]: the fractiona
 ## III. THE UNIQUENESS OF n = 2 AND n = 4
 
 ### 3.1 The Proof
+
+![Fig. 2: m! on log scale — m=0,1,2 are powers of 2, m≥3 all have odd factor 3. The boundary IS the proof.](./figures/math5_02_factorial_proof.png)
 
 **Theorem.** Among all n ≥ 2, the n-ball remainder R_n has a denominator that is a pure power of 2 only for n = 2 and n = 4.
 
@@ -182,7 +188,11 @@ This is the PHYS-10 remainder framework made concrete. In PHYS-10, the remainder
 
 ## V. THE 4D DECOMPOSITION
 
+![Fig. 5: The single identity π²=32R₄ branches into Ω₄, instanton action, loop factor, Coulomb law, and normalization.](./figures/math5_05_pi2_propagation_tree.png)
+
 ### 5.1 The Identity
+
+![Fig. 3: From R₄ to 512R₄ — each rung is a QFT expression with its physical meaning. R₄ is the atomic unit.](./figures/math5_03_r4_ladder.png)
 
 π² = 32 R₄
 
@@ -234,6 +244,8 @@ Match: True (EXACT)
 
 ### 5.3 The Fourier Convention
 
+![Fig. 7: 1/(16π²) mixes geometric content (Ω₄=64R₄) with Fourier convention ((2π)⁴). Separating them reveals R₄.](./figures/math5_07_fourier_mixing.png)
+
 Textbooks write the loop integration measure as ∫d⁴k/(2π)⁴. This divides by (2π)⁴ = 16π⁴:
 
 32R₄ / (16π⁴) = 32(π²/32) / (16π⁴) = π² / (16π⁴) = 1/(16π²)
@@ -277,6 +289,8 @@ The factor 256 decomposes as 8 × 32:
 The numerical coincidence 256 = 4⁴ is noted but the meaningful decomposition is 8 × 32 — topological times dimensional. The paper does not attribute independent geometric significance to 4⁴.
 
 ### 6.2 The Instanton Action
+
+![Fig. 6: S = 256·R₄·c₂/g² — the MATH-1 skeleton Q=F·R·Z generalized to four dimensions with each component labeled.](./figures/math5_06_instanton_skeleton.png)
 
 For a gauge field with instanton number c₂ ∈ ℤ and coupling g:
 
@@ -362,6 +376,8 @@ The Q335 basis from [@HOWL-MATH-4-2026] was designed for exact arithmetic on tra
 ---
 
 ## VIII. LIMITATIONS
+
+![Fig. 8: The n-ball remainder sequence — R_n values, four claims, key identities, and the physical coincidence at n=2,4.](./figures/math5_08_identity_card.png)
 
 The 3D survey covers ten equations. A comprehensive survey of every sphere-volume equation in physics would cover more. The pattern is clear across the ten tested — eight volume equations with R₃, two area equations with R₂ — but the survey is not exhaustive.
 
