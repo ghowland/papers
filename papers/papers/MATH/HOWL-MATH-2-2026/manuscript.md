@@ -47,6 +47,8 @@ We test 17 constants that have known mathematical definitions. We identify 5 bou
 
 ## III. PRECISION THRESHOLD ARGUMENT
 
+![Fig. 2: 65 orders of magnitude separate the Planck length from the first disagreement digit — no physics accesses this gap.](./figures/math2_02_precision_threshold.png)
+
 Before presenting results, we establish the basis on which rational pairs are described as "operationally identical" to transcendentals rather than as "approximations." This distinction is central to the paper's claims and must be earned before it is used.
 
 The Planck length, lₚ ≈ 1.616 × 10⁻³⁵ m, represents the scale at which quantum gravitational effects are expected to dominate and below which the concept of measurable distance loses operational meaning. It is the resolution floor of the physical universe as currently understood.
@@ -61,6 +63,8 @@ We do not claim the rational equals the transcendental mathematically. The trans
 
 A pure mathematician may reject "operationally identical" as a meaningful category. We acknowledge this and note that the claims in this paper are directed at computational and physical applications, not at pure number theory. Within computation, the category is precise: if two values print the same string at 100 digits, they are interchangeable in every calculation whose final result is reported to fewer than 100 digits. All of physics operates well within this bound.
 
+![Fig. 4: From IEEE 754 (16 digits) through the Planck floor (35 digits) to the first disagreement (digit 101) — all of physics fits in the first third.](./figures/math2_04_precision_numberline.png)
+
 ---
 
 ## IV. METHOD
@@ -72,6 +76,8 @@ All computations in this paper are performed using Python's `fractions.Fraction`
 The only floating point values in the entire pipeline are the mpmath extended-precision reference values used for verification. These are not inputs to the computation. They are the standard against which the output is checked.
 
 ### IV.II Series Selection
+
+![Fig. 1: Six convergence classes from supergeometric to unaccelerated — the curve shapes show why γ is Tier 2.](./figures/math2_01_convergence_comparison.png)
 
 For each constant, a convergent series or iterative formula is selected. The selection criteria are:
 
@@ -98,6 +104,8 @@ The following table summarizes the series or method used for each constant:
 | e^π | Taylor: Σ π^k/k! with rational π | Factorial | 120 terms |
 | Catalan G | Euler-accelerated: Σ (−1)^n Δⁿ(a₀)/2^(n+1) | Geometric (accelerated) | 350 terms |
 
+![Fig. 5: arctan(1/5) and arctan(1/239) as angles — the geometric construction behind 80 terms producing 100 digits of π.](./figures/math2_05_machin_geometry.png)
+
 ### IV.III Verification Protocol
 
 Each computed rational pair is verified against mpmath at 100 decimal digits using the following procedure:
@@ -113,6 +121,8 @@ The complete source code is provided in Appendix A. It is a single Python file o
 ---
 
 ## V. RESULTS — TIER 1: DERIVED CONSTANTS
+
+![Fig. 3: Raw alternating series (left) crawls; Euler-accelerated (right) reaches 100 digits in 350 terms.](./figures/math2_03_euler_acceleration.png)
 
 Seventeen constants were tested. All seventeen produced integer pairs matching the mpmath reference at 100 decimal digits. No floating point arithmetic was used at any stage of computation for any constant.
 
@@ -138,6 +148,8 @@ Seventeen constants were tested. All seventeen produced integer pairs matching t
 | 16 | e^π | Taylor(π_rat) | 120 terms | YES | 65935 | 65933 |
 | 17 | Catalan G | Euler-accelerated | 350 terms | YES | 857 | 857 |
 
+![Fig. 6: Each constant plotted by terms needed vs digits per term — clusters reveal convergence classes, γ is off the chart.](./figures/math2_06_convergence_scatter.png)
+
 Several observations merit comment.
 
 **Convergence efficiency varies by orders of magnitude.** The Taylor series for e requires only 80 terms because factorial growth in the denominator produces supergeometric convergence — each term is smaller than the previous by a factor that itself grows without bound. Newton's method for square roots doubles the number of correct digits at each iteration, so 10 iterations from a starting guess of x₀ = 1 produces 2¹⁰ > 1000 correct digits, far exceeding the 100-digit target. By contrast, the Euler-accelerated series for Catalan's constant requires 350 terms because the underlying alternating series converges only as O(1/n²) before acceleration.
@@ -151,6 +163,8 @@ Several observations merit comment.
 **Catalan's constant required algorithmic care.** The direct series Σ (−1)^k / (2k+1)² converges too slowly for 100 digits. The Euler series transformation converts the alternating series into a geometrically converging sum by computing forward differences of the unsigned terms. The correct formula is S = Σ (−1)^n · Δⁿ(a₀) / 2^(n+1), where Δⁿ denotes the n-th forward difference of the sequence aₖ = 1/(2k+1)². This accelerated series reaches 100 digits in 350 terms. The sign factor (−1)^n in the Euler formula is essential and its omission produces incorrect results — a subtlety that may account for failures of the Euler transform reported in some computational literature.
 
 **The method is uniform.** Every constant in Tier 1 follows the same pattern: select a convergent series expressible in rational operations, evaluate it in Python's Fraction class, verify against mpmath. No constant required special mathematical treatment beyond series selection and term count adjustment. The method is mechanical once the series is identified.
+
+![Fig. 7: Numerator sizes from 117 digits (e) to 65,935 digits (e^π) — pair size reflects the algorithm, not the constant.](./figures/math2_07_pair_sizes.png)
 
 ---
 
@@ -261,6 +275,8 @@ The integer pairs produced are not unique. Different series, different term coun
 ---
 
 ## X. CONCLUSION
+
+![Fig. 8: The integer pair concept — p/q at 100 digits, three tiers, the line between mathematics and the universe.](./figures/math2_08_identity_card.png)
 
 We tested whether transcendental and irrational constants appearing in physics can be replaced by exact integer pairs at sub-Planck precision. The answer, for every computable constant tested, is yes.
 
