@@ -45,6 +45,8 @@ Quantum chromodynamics lattice calculations establish that approximately 99% of 
 
 ### 2.2 The Connection
 
+![Fig. 5: A century of experiments confirming identity — no deviation at any precision.](./figures/phys1_05_equivalence_precision.png)
+
 Each premise is established independently in its own domain. Connected, they produce a conclusion that follows by the institution's own deductive standards.
 
 Premise 1: Inertial mass is resistance to acceleration. This is Newton's operational definition, taught in every introductory physics course.
@@ -95,6 +97,8 @@ A self-sustaining disturbance in a medium is a soliton — a coherent pattern th
 
 ### 3.2 The Three-Dimensional Case
 
+![Fig. 7: A particle as coherent field vortex — interior, boundary, exterior.](./figures/phys1_07_vortex_cross_section.png)
+
 A self-sustaining field excitation in three spatial dimensions without gravitational bias has no preferred axis. A vortex in water is flattened into a disc by gravity's directional pull. Remove the gravitational constraint — place the pattern in a field in three-dimensional space with no directional bias — and the self-sustaining pattern has no reason to prefer any axis of rotation. The result is a spherical standing wave pattern. Energy circulating in a closed three-dimensional configuration, maintaining itself against disruption.
 
 The properties of such a pattern follow from its structure.
@@ -120,6 +124,8 @@ This section does not propose a new particle model. It observes that the institu
 ## IV. THE SOLITON BOUNDARY
 
 ### 4.1 The Structural Principle
+
+![Fig. 2: Every measurement crosses all nesting layers from particle to observable universe.](./figures/phys1_02_soliton_nesting.png)
 
 Every coherent self-sustaining structure has an interior where its own coherence dominates and an exterior where the ambient environment dominates. The transition between these regimes is the soliton boundary.
 
@@ -147,11 +153,15 @@ This section does not claim that constants vary with position or nesting depth. 
 
 ### 5.1 Established Physics
 
+![Fig. 1: H₀ vs boundary transit count — more crossings, lower measured value.](./figures/phys1_01_h0_transit_correlation.png)
+
 Light passing through curved spacetime is transformed. This is established, confirmed, and quantitatively modeled. Gravitational lensing bends light paths around massive objects. Gravitational redshift shifts the frequency of light climbing out of a gravitational well. The Shapiro delay slows light passing near a massive object. Each of these is a transformation produced by light transiting a region where a coherent mass concentration — a gravitational vortex — curves the spacetime the light passes through.
 
 Interstellar and intergalactic media also transform light. Dust scatters and absorbs. Gas emits and absorbs at specific frequencies. Plasma disperses. The institution models these as corrections applied to astronomical measurements to recover the source signal.
 
 ### 5.2 The Structural Observation
+
+![Fig. 6: CMB photons cross all boundaries; local photons cross few. The unmodeled difference.](./figures/phys1_06_transit_light_path.png)
 
 Every astronomical measurement is a measurement through multiple nested vortex boundaries. Light from a distant source transits the source's local gravitational field, the source's host galaxy's field, intergalactic space, our galaxy's field, our solar system's field, our planet's gravitational well, and the atmosphere before reaching the instrument. Each transit is a boundary crossing — a transition between one coherent pattern's interior and either the ambient environment or another pattern's interior.
 
@@ -185,6 +195,8 @@ This correlation is stated as a correlation. It does not constitute proof that b
 
 ### 6.2 The Proton Radius Puzzle
 
+![Fig. 3: Higher inertia probe → deeper interaction → smaller measured radius. Tau prediction shown.](./figures/phys1_03_proton_radius_depth.png)
+
 The charge radius of the proton has been measured using two different probes that produce incompatible results.
 
 Regular hydrogen spectroscopy uses the electron as a probe. The electron, with relatively low inertia, interacts with the proton's electromagnetic structure at a characteristic depth determined by the electron's orbital parameters. Measurements from multiple groups yield a proton charge radius of approximately 0.877 femtometers.
@@ -196,6 +208,8 @@ The discrepancy exceeded 5σ when first reported and sparked extensive investiga
 The structural observation: the two probes have different inertia — different resistance to disruption — and therefore interact at different depths within the proton's vortex boundary. The higher-inertia probe penetrates deeper and reads a smaller radius. The lower-inertia probe interacts at a shallower depth and reads a larger radius. The readings differ because they measure from different depths within the same coherent structure.
 
 If the proton is a 3D vortex with depth-dependent structure — which is consistent with the institution's own description of the proton as a composite system with internal structure characterized by form factors that vary with momentum transfer — then different probes at different interaction depths should produce different readings. The discrepancy is not a puzzle. It is the expected result of probing a structured vortex at two different depths.
+
+![Fig. 4: Electron orbits shallow, muon orbits deep — same proton, different readings.](./figures/phys1_04_proton_probe_depth.png)
 
 ### 6.3 The Muon g-2 Anomaly
 
@@ -326,6 +340,8 @@ If the investigation finds no correlation, no depth-dependent readings, and no t
 ---
 
 ## XI. CONCLUSION
+
+![Fig. 8: The Inertial Vortex — mass is inertia, boundaries produce frame-dependent readings, three anomalies correlate.](./figures/phys1_08_identity_card.png)
 
 Mass is inertia. The institution's own operational definitions, experimental confirmations, and lattice calculations establish this when connected across departments. The equivalence principle becomes a tautology — one property verified to equal itself. The equations do not change. The predictions do not change. The interpretation simplifies. The questions that follow from the simpler interpretation are different questions that may lead to different investigations.
 
