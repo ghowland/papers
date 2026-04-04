@@ -103,6 +103,8 @@ Cheung, Lee, and Tseng first identified the VL doublet as a candidate for the Hi
 
 ## 5. Each Anomaly Uses a Different Property
 
+![Fig. 1: CKM deficit needs SU(2) (weak doublet for CKM mixing), A_FB^b needs SU(3)×SU(2) (color+weak for Z-b vertex), Higgs μ needs SU(3) (color for gg→H loop). Only (3,2,1/6) has all three.](./figures/phys19_01_quantum_number_map.png)
+
 A critical observation: each anomaly is resolved by a different quantum number of the Cabibbo Doublet.
 
 The CKM unitarity deficit is resolved by the weak doublet structure — the SU(2) quantum number. A weak doublet can mix with SM quarks through the CKM mechanism, expanding the 3×3 matrix to 4×3. A color singlet without weak charge could not do this.
@@ -128,6 +130,8 @@ Belfatto and Berezhiani (JHEP 10, 079, 2021, arXiv:2103.05549) comprehensively e
 ---
 
 ## 7. The Mass Window
+
+![Fig. 2: The 1.5–6 TeV window narrows as the HL-LHC extends pair-production reach to 2–3 TeV and Belle II sharpens the CKM constraint. The window has less than half a decade in energy.](./figures/phys19_02_mass_window_timeline.png)
 
 The Cabibbo Doublet mass is not determined by the gap ratio analysis (PHYS-15). The gap ratio identifies the representation (3,2,1/6) and the unification scale M_GUT = 10^15.5 GeV, but the mass is a free parameter — it is Level 2, supplied by the universe through measurement. The mass window comes entirely from independent experimental constraints.
 
@@ -185,6 +189,8 @@ What this means operationally: in every nuclear beta decay measured since the 19
 
 ## 9. The Two Roads
 
+![Fig. 4: The gap ratio operates at 10¹⁵ GeV (GUT scale). The anomalies operate at 10³ GeV (TeV scale). 12 orders of magnitude, different communities, different mathematics — same particle.](./figures/phys19_04_twelve_orders.png)
+
 The gap ratio path and the anomaly path arrive at the same (3,2,1/6) representation through completely independent methods from completely independent data.
 
 The gap ratio path begins with three numbers measured at one energy scale: α_em = 1/137.036, sin²θ_W = 0.23122, and α_s = 0.1180, all at M_Z = 91 GeV (DATA-3). It computes the SM beta coefficients b₁ = 41/10, b₂ = −19/6, b₃ = −7 from the gauge group, constructs the gap ratio 218/115 = 1.896, compares it to the measured 1.358, and enumerates 15 single-multiplet extensions in exact Fraction arithmetic. The elimination cascade — gap ratio distance plus proton decay — leaves two survivors: the MSSM (gap 7/5 = 1.400) and the Cabibbo Doublet (gap 38/27 = 1.407). The entire computation uses no floating point. The output is a representation and a unification scale.
@@ -195,9 +201,13 @@ The gap ratio path determines the representation and M_GUT but says nothing abou
 
 The connection was discovered during this session through a web search to verify whether the Cabibbo Doublet identified by the gap ratio had any independent experimental support. It does. The anomaly literature has been pointing at (3,2,1/6) since 2019.
 
+![Fig. 5: Gap ratio (exact arithmetic), CKM deficit (nuclear β), A_FB^b (LEP), Higgs μ (LHC) — four independent arrows from four independent datasets, all converging on (3,2,1/6).](./figures/phys19_05_four_evidence_lines.png)
+
 ---
 
 ## 10. Historical Context
+
+![Fig. 7: Charm, W/Z, and top quarks were each predicted by multiple independent arguments before discovery. The Cabibbo Doublet has four independent evidence lines — matching or exceeding the historical pattern.](./figures/phys19_07_historical_parallel.png)
 
 The pattern of multiple independent lines of evidence converging on a single particle before its discovery has occurred repeatedly in particle physics.
 
@@ -229,6 +239,8 @@ This paper does not claim the gap ratio and anomaly communities should have conn
 
 ## 12. What This Paper Seeds
 
+![Fig. 3: Hyper-K tests M_GUT (gap ratio path), HL-LHC tests mass (anomaly path), Belle II tests mixing (anomaly path). Each experiment probes a different aspect of the Cabibbo Doublet.](./figures/phys19_03_test_matrix.png)
+
 The mapping between mixing angles and anomalies — θ₁₄ for the CKM deficit, θ₃₄ for A_FB^b — enables a future cross-check computation. Using the PHYS-12 electroweak infrastructure, compute the Z-b-b vertex correction from VL-b mixing as a function of θ₃₄. Determine for what θ₃₄ the computed A_FB^b matches the LEP measurement 0.0992. Then check: is this θ₃₄ consistent with the B-meson mixing constraints? Is the simultaneously required θ₁₄ ≈ 0.045 consistent with the CKM deficit? If all constraints are simultaneously satisfiable, the Cabibbo Doublet passes a cross-check between the Z-pole sector, the flavor sector, and the unitarity sector.
 
 The extended CKM matrix structure enables analysis of rare processes. The tree-level FCNC from the extended mixing predicts specific rates for K → πνν̄ (testable at NA62) and B → K*μμ (testable at LHCb). These rates depend on the mixing angles θ₂₄ and θ₃₄, which are not yet measured but are constrained by existing data.
@@ -240,6 +252,8 @@ The connection between the beam and bottle neutron lifetime measurements (~2.3σ
 ---
 
 ## 13. Summary
+
+![Fig. 8: Three experiments (LEP, LHC, nuclear/kaon) across three decades produced three anomalies resolved by one particle identified independently by gap ratio arithmetic. The data was there. The connection was not.](./figures/phys19_08_identity_card.png)
 
 Three experiments across three decades produced three anomalies that each point to a vector-like quark doublet in the (3,2,1/6) representation at the TeV scale. The CKM first-row unitarity deficit (2.5-4σ, identified 2019-2020 by Belfatto, Berezhiani, and independently fitted by Cheung, Keung, Lu, Tseng) uses the weak doublet structure to expand the CKM matrix. The forward-backward b-quark asymmetry at LEP (~3σ, persistent since 2000) uses the Z-b-b vertex modification from VL-b mixing. The Higgs signal strength excess (~2σ, the weakest anomaly) uses the color triplet in the gluon-fusion loop. No single quantum number resolves all three. The full (3,2,1/6) is required.
 
