@@ -86,6 +86,8 @@ Since π/2 is a MATH-2 integer pair and the hypergeometric sum is a convergent r
 
 ### 3.2 Convergence Rate
 
+![Fig. 4: K(k) convergence rate tracks k² — faster at k²=1/4 (~300 digits/500 terms), slower at k²=3/4 (~60 digits/500 terms).](./figures/math3_04_elliptic_convergence.png)
+
 The n-th coefficient of the hypergeometric series is asymptotically [C(2n,n)]² / 4^n ~ 1/(πn). The ratio of successive terms is:
 
 a_{n+1}/a_n = [(2n+1)/(2n+2)]² × k² → k² as n → ∞
@@ -139,6 +141,8 @@ The AGM remains valuable for verification: compute K(k) to high precision in flo
 ## IV. ACCELERATED SERIES FOR ODD ZETA VALUES
 
 ### 4.1 The ζ(5) Bottleneck
+
+![Fig. 2: Direct eta needs 10²⁰ terms for 100 digits. Borwein acceleration needs 210. The bottleneck is fixed.](./figures/math3_02_borwein_vs_direct.png)
 
 Among the five transcendentals used in PHYS-5/6, ζ(5) has the slowest convergence in Fraction arithmetic. The MATH-2 computation uses the alternating eta function:
 
@@ -198,6 +202,8 @@ The Borwein acceleration solves the practical problem (100+ digits in Fraction a
 
 ### 5.1 Loop Order and Transcendental Weight
 
+![Fig. 1: Maximum transcendental weight grows as 2L−1 with loop order — the pattern predicts weight 9 at 5-loop.](./figures/math3_01_transcendental_hierarchy.png)
+
 Define the transcendental weight w of a constant:
 
 | Constant | Weight |
@@ -222,6 +228,8 @@ The pattern suggests: at L-loop order, the maximum transcendental weight is 2L -
 
 ### 5.2 Topology and Transcendental Class
 
+![Fig. 5: Factorizable diagrams produce ζ/ln/Li (MATH-2). Irreducible sunrise topologies force elliptic integrals (MATH-3).](./figures/math3_05_topology_transcendental.png)
+
 The transcendental content of a Feynman integral is determined by its topology — the graph structure of propagators and vertices, independent of the specific masses and momenta.
 
 **Factorizable topologies.** A diagram that can be cut into two disconnected pieces by cutting a single propagator has a Feynman integral that factors into a product of lower-loop integrals. The transcendentals in the product are products of transcendentals from the factors. Through 3-loop QED, all diagrams either factorize or reduce to integrals over the ζ/ln/Li family by integration-by-parts identities.
@@ -232,7 +240,11 @@ At 3-loop, the analogous diagram (double sunrise, or banana diagram) produces ζ
 
 At 4-loop, the sunrise diagram with four propagators and specific mass configurations produces complete elliptic integrals. This is the point where the topology forces a genuinely new transcendental class.
 
+![Fig. 6: 2-loop sunrise (ζ values) → 3-loop banana (ζ(5)) → 4-loop (elliptic integrals) — increasing topological complexity forces new transcendental classes.](./figures/math3_06_sunrise_family.png)
+
 ### 5.3 The Factorization Boundary
+
+![Fig. 7: If one cut separates the graph, integrals factorize into ζ/ln/Li. If no cut exists, elliptic integrals appear.](./figures/math3_07_factorization_boundary.png)
 
 The boundary between "MATH-2 sufficient" and "extended basis needed" can be characterized graph-theoretically.
 
@@ -270,6 +282,8 @@ The partial fit published by Laporta expresses A₄ as a sum of:
 The first three classes are within the MATH-2 framework. The fourth class requires the elliptic extension from Section III. The fifth class is the target for PSLQ identification.
 
 ### 6.2 The Extended Basis for PSLQ
+
+![Fig. 3: ~80 candidate constants organized by weight from 0 (rational) to 7 (ζ(7), products) — the pool for identifying Laporta's master integrals.](./figures/math3_03_pslq_weight_pyramid.png)
 
 The candidate constant pool for PSLQ identification:
 
@@ -389,6 +403,8 @@ Extended basis: approximately 29 constants, all computable in Fraction arithmeti
 ---
 
 ## IX. LIMITATIONS
+
+![Fig. 8: The extended basis — elliptic integrals as integer pairs, Borwein acceleration for all odd ζ values, the 2L−1 hierarchy, and the 4-loop wall status.](./figures/math3_08_identity_card.png)
 
 The PSLQ identification of Laporta's master integrals has not been performed. This paper establishes the method and the extended basis but does not report the outcome. The computation is deferred to a follow-up.
 
