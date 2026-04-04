@@ -489,3 +489,164 @@ Note: This correlation is stated as a pattern in the data. Four data points with
 **Key Finding:** The coherent vortex boundary is an unmodeled element in the observational measurement pipeline that correlates with persistent anomalies the institution has not resolved
 **Limitation:** The anomaly correlation identifies a pattern for investigation, not a proven explanation; quantitative modeling of the boundary transit effect has not been performed
 **Conclusion:** Current physics is incomplete at a specific identifiable point; the incompleteness correlates with documented anomalies; the investigation is proposed with explicit falsification criteria
+
+---
+
+## APPENDIX H: THE MASS-IS-INERTIA SUBSTITUTION TABLE
+
+Every equation below is standard, published, and unchanged. The only operation is replacing the symbol m (mass) with the symbol I (inertia) and verifying that the equation reads identically.
+
+| # | Domain | Standard Form | Inertia Form | What Changes | What Doesn't Change |
+|---|---|---|---|---|---|
+| 1 | Newtonian mechanics | F = ma | F = Ia | Label | Prediction |
+| 2 | Kinetic energy | KE = ½mv² | KE = ½Iv² | Label | Prediction |
+| 3 | Momentum | p = mv | p = Iv | Label | Prediction |
+| 4 | Gravitational force | F = GmM/r² | F = GI₁I₂/r² | Label, interpretation: inertia shapes geometry | Prediction |
+| 5 | Einstein mass-energy | E = mc² | E = Ic² | Label, interpretation: energy is inertia times c² | Prediction |
+| 6 | Schwarzschild radius | r_s = 2Gm/c² | r_s = 2GI/c² | Label | Prediction |
+| 7 | de Broglie wavelength | λ = h/(mv) | λ = h/(Iv) | Label | Prediction |
+| 8 | Compton wavelength | λ_C = h/(mc) | λ_C = h/(Ic) | Label | Prediction |
+| 9 | Gravitational potential | Φ = -Gm/r | Φ = -GI/r | Label | Prediction |
+| 10 | Orbital velocity | v = √(Gm/r) | v = √(GI/r) | Label | Prediction |
+| 11 | Escape velocity | v_esc = √(2Gm/r) | v_esc = √(2GI/r) | Label | Prediction |
+| 12 | Einstein field equations | G_μν = 8πGT_μν/c⁴ | G_μν = 8πGT_μν/c⁴ | Nothing — T_μν already encodes energy-momentum, not substance | Prediction |
+| 13 | Higgs coupling | m_f = y_f v/√2 | I_f = y_f v/√2 | Label, interpretation: Yukawa coupling determines inertia | Prediction |
+| 14 | QCD nucleon mass | m_N ≈ E_binding/c² | I_N ≈ E_binding/c² | Label, interpretation: pattern coherence energy IS the inertia | Prediction |
+| 15 | Relativistic energy | E² = (pc)² + (mc²)² | E² = (pc)² + (Ic²)² | Label | Prediction |
+| 16 | Photon (massless) | m = 0 | I = 0 | Label, interpretation: zero inertia, still follows geometry | Prediction |
+| 17 | Gravitational redshift | Δf/f = gΔh/c² | Δf/f = gΔh/c² | Nothing — frequency shift is geometric, inertia-independent | Prediction |
+| 18 | Chandrasekhar limit | M_Ch = 1.4 M_☉ | I_Ch = 1.4 I_☉ | Label | Prediction |
+| 19 | Jeans mass | M_J ∝ T^(3/2) ρ^(-1/2) | I_J ∝ T^(3/2) ρ^(-1/2) | Label | Prediction |
+| 20 | Planck mass | m_P = √(ℏc/G) | I_P = √(ℏc/G) | Label, interpretation: the natural unit of pattern resistance | Prediction |
+
+20 equations. Zero prediction changes. The substitution is exact because the two words always meant the same thing.
+
+---
+
+## APPENDIX I: THE EQUIVALENCE PRINCIPLE TEST HISTORY
+
+Every experiment below tested whether gravitational mass equals inertial mass. Every result is consistent with identity. The column "Required if two properties" states what would be needed to explain the agreement if mass and inertia were genuinely distinct. The column "Required if one property" states what is needed under the identity interpretation.
+
+| Year | Experiment | Precision | Result | Required if Two Properties | Required if One Property |
+|---|---|---|---|---|---|
+| 1585 | Galileo (apocryphal, Pisa) | ~1% | Equal | Unknown mechanism enforcing equality at 1% | Tautology |
+| 1687 | Newton (pendulum) | ~10⁻³ | Equal | Unknown mechanism at 10⁻³ | Tautology |
+| 1889 | Eötvös (torsion balance) | 10⁻⁸ | Equal | Unknown mechanism at 10⁻⁸ | Tautology |
+| 1964 | Roll-Krotkov-Dicke | 10⁻¹¹ | Equal | Unknown mechanism at 10⁻¹¹ | Tautology |
+| 1994 | Adelberger et al. | 10⁻¹² | Equal | Unknown mechanism at 10⁻¹² | Tautology |
+| 2008 | Schlamminger et al. | 10⁻¹³ | Equal | Unknown mechanism at 10⁻¹³ | Tautology |
+| 2017 | MICROSCOPE (Phase 1) | 10⁻¹⁴ | Equal | Unknown mechanism at 10⁻¹⁴ | Tautology |
+| 2022 | MICROSCOPE (Final) | 10⁻¹⁵ | Equal | Unknown mechanism at 10⁻¹⁵ | Tautology |
+
+Under the two-property interpretation, eight independent experiments across 437 years require an unexplained mechanism that enforces exact equality between two supposedly distinct properties across 12 orders of magnitude of improving precision, in every material, at every scale, with zero deviation. Under the one-property interpretation, a thing equals itself. No mechanism required.
+
+---
+
+## APPENDIX J: THE BOUNDARY NESTING HIERARCHY
+
+Every observation in physics is performed from inside a stack of nested coherent boundaries. This table enumerates the nesting for a ground-based terrestrial measurement, from innermost to outermost, with the institution's established evidence that interior and exterior readings differ at each level.
+
+| Nesting Level | Boundary | Interior Regime | Exterior Regime | Established Reading Difference | Institution's Framework |
+|---|---|---|---|---|---|
+| 1 | Instrument (detector crystal, CCD, mirror) | Solid-state band structure dominates | Ambient EM field | Detector response function, quantum efficiency curves | Condensed matter physics |
+| 2 | Atmosphere | Refractive index n > 1, turbulence | Vacuum n = 1 | Atmospheric seeing, extinction, refraction correction | Atmospheric optics |
+| 3 | Earth's gravitational well | Local g = 9.81 m/s², surface reads flat | Earth is sphere in orbit | Gravitational redshift Δf/f = gΔh/c² ≈ 10⁻¹⁶ per meter | General relativity |
+| 4 | Earth's magnetosphere | Trapped charged particles, shielded cosmic rays | Interplanetary medium | Geomagnetic cutoff rigidity | Space physics |
+| 5 | Solar gravitational well | Solar system dynamics dominate | Interstellar medium | Shapiro delay, solar gravitational redshift | GR, solar physics |
+| 6 | Heliosphere | Solar wind, reduced cosmic ray flux | Local interstellar medium | Voyager 1/2 measured transition 2012/2018 | Heliophysics |
+| 7 | Local Bubble | Hot, low-density ISM | Denser ISM outside | Reduced extinction within ~300 ly | ISM studies |
+| 8 | Galactic disk | Stellar dynamics, dust lanes, spiral structure | Galactic halo | Differential rotation, extinction correction | Galactic astronomy |
+| 9 | Milky Way gravitational well | Galactic rotation curve dominates | Local Group dynamics | Rotation curve requires dark matter or unmodeled inertia | Galactic dynamics |
+| 10 | Local Group | Local Group dynamics dominate | Hubble flow | Peculiar velocity corrections required | Extragalactic astronomy |
+| 11 | Virgo Supercluster (Laniakea) | Supercluster infall dominates | Large-scale Hubble flow | Bulk flow corrections | Large-scale structure |
+| 12 | Observable universe | CMB-calibrated measurements | Beyond observable horizon | CMB dipole correction, frame definition | Cosmology |
+
+Twelve nesting levels. Every astronomical measurement passes through all twelve. The institution models some individually (atmospheric correction, gravitational redshift, extinction). The institution does not model the cumulative effect of transiting twelve coherent boundaries as a category. The structural question: does the cumulative nesting produce a systematic that survives individual corrections?
+
+---
+
+## APPENDIX K: THE RUNNING COUPLINGS AS BOUNDARY READINGS
+
+The institution treats the running of coupling constants as a feature of renormalization group flow — a computed, confirmed, celebrated result. Translated to boundary language, running couplings are measurements of the same coupling at different depths within a coherent boundary. The table shows the correspondence.
+
+| Coupling | Low-Energy Reading | High-Energy Reading | Boundary | Depth Variable | Direction | Magnitude |
+|---|---|---|---|---|---|---|
+| α_EM (QED) | 1/137.036 (at q² → 0) | 1/127.9 (at q² = M_Z²) | Electron virtual cloud (vacuum polarization) | Momentum transfer q² | Deeper probe → larger α | ~8% over 5 orders of magnitude in q² |
+| α_s (QCD) | ~O(1) (at q² ~ Λ_QCD²) | 0.1180 (at q² = M_Z²) | Hadron confinement boundary | Momentum transfer q² | Deeper probe → smaller α_s | Order of magnitude over 3 orders in q² |
+| sin²θ_W (weak mixing) | 0.2387 (at q² → 0) | 0.2312 (at q² = M_Z²) | Electroweak unification boundary | Momentum transfer q² | Scale-dependent | ~3% |
+| GUT couplings | Three distinct values at M_Z | Converge near ~10¹⁶ GeV (MSSM) | Grand unification boundary | Energy scale | Convergence at depth | Three → one |
+
+The institution computes these as RG flow. The boundary language says the same thing differently: the coupling you measure depends on how deep inside the boundary you probe. Both descriptions produce the same numbers. The boundary language connects QED's running α to GR's equivalence principle (interior vs exterior readings) as instances of the same structural phenomenon. The RG language does not make this connection because it is domain-specific.
+
+---
+
+## APPENDIX L: THE DARK MATTER EVIDENCE REFRAMED
+
+Each line of dark matter evidence is stated first in the institution's substance interpretation, then in the inertia interpretation. The observational data is identical in both columns. Only the interpretation differs.
+
+| Evidence | Observation | Substance Interpretation | Inertia Interpretation | What the Data Actually Requires |
+|---|---|---|---|---|
+| Galaxy rotation curves | Orbital velocities flat at large radii | Invisible massive particles in halo | Additional pattern resistance (inertia) in galactic field structure | Additional gravitational influence beyond visible matter |
+| Gravitational lensing | Light bent more than visible matter accounts for | Invisible mass bending light | Field structure with inertia bending light | Additional spacetime curvature beyond visible matter |
+| CMB power spectrum | Acoustic peak ratios require non-baryonic component | Non-baryonic massive particles | Non-baryonic coherent field inertia | Non-baryonic gravitational influence at recombination |
+| Large-scale structure | Filamentary structure requires early gravitational seeding | Dark matter halos seed structure | Coherent field inertia concentrations seed structure | Early gravitational influence concentrations |
+| Bullet Cluster | Gravitational lensing center offset from gas center | Dark matter particles passed through, gas didn't | Coherent field inertia decoupled from baryonic gas | Gravitational influence center offset from baryonic center |
+| BBN constraints | Light element ratios constrain baryon density | Remaining matter must be non-baryonic particles | Remaining inertia must be non-baryonic field structure | Non-baryonic gravitational influence |
+| Direct detection (40 years) | No confirmed signal | Particles exist but interact too weakly | No particles to detect — inertia is field structure, not substance | Null result |
+| Collider production | No missing energy beyond SM | Particles too heavy for current colliders | No particles to produce | Null result |
+| Annihilation signals | No confirmed gamma-ray excess | Particles don't annihilate at detectable rates | No particles to annihilate | Null result |
+
+The first six rows are explained by both interpretations. The last three rows — the 40-year null in direct detection, collider production, and annihilation signals — are naturally explained by the inertia interpretation (nothing to detect) and require auxiliary assumptions under the substance interpretation (too weakly interacting, too heavy, too low annihilation rate).
+
+---
+
+## APPENDIX M: THE ANOMALY DIRECTION TABLE
+
+For each anomaly, the direction of the discrepancy is recorded: does deeper probing or more boundary transits produce a larger or smaller measured value? If boundary transit is a real systematic, the direction should be consistent across anomalies within each category.
+
+| Anomaly | Variable | More Boundaries / Deeper Probe → | Less Boundaries / Shallower Probe → | Direction Consistent? |
+|---|---|---|---|---|
+| Hubble tension | H₀ | Lower (67.4) | Higher (73.0) | — |
+| Proton radius (e vs μ) | r_p | Smaller (0.842 fm, muon) | Larger (0.877 fm, electron) | Yes — deeper → smaller |
+| Deuteron radius (e vs μ) | r_d | Smaller (muonic) | Larger (electronic) | Yes — matches proton pattern |
+| α_EM running | α | Larger (1/127.9 at high q²) | Smaller (1/137 at low q²) | Opposite — but this is a screening effect, not a transit |
+| α_s running | α_s | Smaller (0.118 at high q²) | Larger (~O(1) at low q²) | Opposite to α_EM — but same boundary mechanism (asymptotic freedom) |
+
+The radius anomalies show a consistent direction: deeper probe → smaller reading. The Hubble tension shows: more transits → lower H₀. The running couplings show depth-dependent readings but in directions determined by the specific screening/anti-screening physics of each force. The couplings are not anomalies — they are modeled and confirmed. They are included to show that depth-dependent readings are already accepted physics; the radius anomalies and Hubble tension are the unmodeled cases.
+
+---
+
+## APPENDIX N: THE PHOTON PATH — WHAT LIGHT ACTUALLY TRAVERSES
+
+For each major cosmological measurement method, this table enumerates the coherent structures whose boundaries the measured light crosses between source and detector. The count is approximate — exact enumeration requires knowing the specific line of sight.
+
+| Method | Source | Typical Boundary Crossings (source → detector) | Estimated Count | Measured H₀ |
+|---|---|---|---|---|
+| CMB (Planck) | Surface of last scattering, z ≈ 1100 | Source plasma → void → filament → void → cluster → void → (repeat ~100×) → Local Supercluster → Milky Way halo → disk → Local Bubble → heliosphere → Earth well → atmosphere → detector | ~200+ major crossings | 67.4 ± 0.5 |
+| Lensing time delays (H0LiCOW) | Quasar, z ≈ 1-2 | Source galaxy → intergalactic → lens galaxy → intergalactic → (fewer large-scale structures than CMB) → local structures → detector | ~50-100 | 73.3 ± 1.8 |
+| TRGB (CCHP) | Red giants, z < 0.01 | Host galaxy → intergalactic → Local Group → Milky Way → local structures → detector | ~10-20 | 69.8 ± 1.7 |
+| Cepheids + SNIa (SH0ES) | Supernovae, z < 0.15 | Host galaxy → intergalactic → (few large-scale structures) → local structures → detector | ~15-30 | 73.0 ± 1.0 |
+| Megamasers | AGN masers, z < 0.05 | Host galaxy → intergalactic → local structures → detector | ~10-15 | 73.9 ± 3.0 |
+
+The trend: more boundary crossings → lower measured H₀. The four methods with the fewest crossings (SH0ES, TRGB, H0LiCOW, megamasers) cluster around 70-74. The method with the most crossings (CMB) sits at 67.4. The gap between the high-transit and low-transit measurements is the Hubble tension.
+
+---
+
+## APPENDIX O: WHAT THE VORTEX LANGUAGE DOES AND DOES NOT REPLACE
+
+| Item | Replaced? | Explanation |
+|---|---|---|
+| F = ma | No | Equation unchanged. m relabeled I. |
+| Schrödinger equation | No | Equation unchanged. m relabeled I. |
+| Einstein field equations | No | Equation unchanged. T_μν already encodes energy-momentum. |
+| QCD Lagrangian | No | Equation unchanged. |
+| Standard Model Lagrangian | No | Equation unchanged. |
+| Feynman diagram calculations | No | Calculations unchanged. |
+| Renormalization group equations | No | Equations unchanged. Running reinterpreted as depth-dependent reading. |
+| Equivalence principle | Yes — from postulate to tautology | Logical status changes. Content unchanged. GR loses one axiom. |
+| "Mass" as conceptual category | Yes — from substance to pattern resistance | Interpretation changes. Equations unchanged. |
+| "Dark matter" as particle search | Partially — reframed as one interpretation, not the only one | Search continues but is recognized as assuming substance where data requires only inertia |
+| Department-specific boundary names | Yes — unified under "soliton boundary" | 19+ names become one structural concept with domain-specific parameters |
+| Measurement pipeline modeling | Extended — boundary transit added as unmodeled category | Existing corrections unchanged. New category added for investigation. |
+
+Nothing computational changes. The Lagrangians stay. The Feynman rules stay. The predictions stay. What changes: one axiom becomes a tautology, one conceptual category shifts from substance to pattern resistance, 19 boundary names become one, and an unmodeled measurement element is identified for investigation.
