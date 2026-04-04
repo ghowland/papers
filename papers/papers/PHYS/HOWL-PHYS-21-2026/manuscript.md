@@ -28,6 +28,8 @@ Every HOWL paper from PHYS-7 through PHYS-20 classifies its results as Level 1 (
 
 ## 1. What Level 1 and Level 2 Mean
 
+![Fig. 1: Three categories — Level 1 (framework-determined, no measurement), Level 2 (universe-supplied, requires experiment), Derived (Level 1 applied to Level 2). Specific results from the series placed in each region.](./figures/phys21_01_three_regions.png)
+
 The distinction is between what mathematics forces and what nature chooses.
 
 Level 1 quantities are determined by the mathematical framework — the gauge group, representation theory, geometry, and the logical consequences of these structures. They cannot be different in any universe with the same gauge group. The number of gluons is 8 because SU(3) has 3² − 1 = 8 generators. This is not a measurement — it is a theorem. The beta coefficient b₃ = −7 for the strong coupling with six quark flavors follows from the Dynkin indices of the SM representations applied to the SU(3) gauge group. This is exact rational arithmetic on integers from the gauge group. The gap ratio 218/115 follows from dividing two such exact rationals. No measurement enters.
@@ -554,3 +556,6 @@ Every Level 1 and Level 2 classification in this paper traces to the specific ap
 ---
 
 *Supporting appendix tables A through I for PHYS-21. The unified boundary map classifies every result in the series as Level 1 (framework-determined), Level 2 (universe-supplied), or Derived (Level 1 applied to Level 2). The Cabibbo Doublet is the first entity where Level 1 identification precedes Level 2 confirmation. The principle — the integers tell you WHAT, the universe tells you HOW MUCH — is stated formally. The limits of Level 1 are documented explicitly: six false claims, each marked FALSE with the correct alternative. Every entry traces to the originating paper and verified computation.*
+
+---
+
