@@ -822,3 +822,238 @@ The test is specified regardless because a null result at the available precisio
 **Foundation:** PHYS-1 (boundaries and anomalies), MATH-1 (geometric invariant), PHYS-3 (G experimental gap)
 **Primary Limitation:** The per-boundary transit correction magnitude is unknown; Test 5 (Hubble tension) cannot be executed without it
 **Falsification:** Seven specific criteria plus overall kill switch
+
+---
+
+## APPENDIX Q: THE CALIBRATION CASE — α RUNNING AS FRAMEWORK VALIDATION
+
+The running of α is the only case where both the boundary (vacuum polarization cloud) and the readings at multiple depths (collider measurements at multiple energies) are fully characterized by the institution. This table specifies what the Q = F·β·d²·Z decomposition must reproduce to pass calibration.
+
+| Energy √s (GeV) | α⁻¹ Measured | Measurement Source | Published σ_total (nb) | Dominant Process | QED VP Correction Δα | QED Vertex Correction | Higher-Order QED | Total Published Z | Framework Must Reproduce Z To |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 (atomic limit) | 137.036 | Static measurements, QHE | N/A — no scattering | N/A | 0 (definition) | 0 | 0 | 1 (baseline) | Exact — this is the calibration anchor |
+| 1.02 (φ mass) | ~136.8 | CMD-2, SND (Novosibirsk) | ~1500 (hadronic) | e⁺e⁻ → hadrons | ~0.002 | Small | Negligible | ~1.002 | Within published QED uncertainty |
+| 3.097 (J/ψ) | ~135.5 | BES (Beijing) | ~3000 (resonance) | e⁺e⁻ → J/ψ → hadrons | ~0.011 | Small | Small | ~1.011 | Within published QED uncertainty |
+| 10.58 (Υ(4S)) | ~133.0 | BaBar, Belle | ~1.1 (continuum) | e⁺e⁻ → bb̄ | ~0.028 | Moderate | Small | ~1.030 | Within published QED uncertainty |
+| 29.0 (PEP) | ~131.0 | MARK II (SLAC) | ~0.22 | e⁺e⁻ → μ⁺μ⁻ | ~0.034 | Moderate | Small | ~1.046 | Within published QED uncertainty |
+| 34.0 (PETRA) | ~130.5 | TASSO, JADE (DESY) | ~0.15 | e⁺e⁻ → μ⁺μ⁻ | ~0.039 | Moderate | Small | ~1.048 | Within published QED uncertainty |
+| 57.8 (TRISTAN) | ~129.0 | AMY, TOPAZ, VENUS | ~0.08 | e⁺e⁻ → f f̄ | ~0.052 | Significant | Moderate | ~1.062 | Within published QED uncertainty |
+| 91.19 (Z pole) | 127.95 ± 0.02 | LEP I (ALEPH, DELPHI, L3, OPAL), SLD | ~30 (Z resonance) | e⁺e⁻ → Z → f f̄ | ~0.059 | Significant | Significant; EW corrections dominate | ~1.071 (QED only) | ±0.02 in α⁻¹ — tightest constraint |
+| 130-207 (LEP II) | ~127.0 | LEP II | ~0.01-0.05 | e⁺e⁻ → W⁺W⁻, f f̄ | ~0.063 | Significant | EW + QCD | ~1.079 | Within published EW fit uncertainty |
+
+**Calibration protocol:** At each energy, extract β·d²(E) from the published total cross-section. Compute Z(E) = α(E) / [F(E)·β·d²(E)]. Compare Z(E) to the published total QED correction at that energy. Agreement confirms the decomposition is consistent. Disagreement kills the field-theory branch of the program.
+
+**What "informative" means specifically:** If the separation into β·d²(E) and Z(E) reveals that the geometric component tracks a smooth monotonic function of energy while the QED corrections produce localized deviations at threshold crossings (charm, bottom, Z pole), the decomposition has identified structure that the total running curve obscures. This would be Outcome B — structurally informative.
+
+---
+
+## APPENDIX R: G MEASUREMENT GEOMETRIC PARAMETERS — EXTENDED
+
+This table extends Appendix D with the detailed geometric parameters needed for Test 1. Every parameter is from published apparatus descriptions.
+
+| Experiment | Test Mass Shape | Test Mass Dimensions | Test Mass Bounding Area d² (m²) | β·d² (m²) | Source Mass Shape | Source Mass Dimensions | Separation r (m) | Configuration Geometry | Solid Angle Subtended |
+|---|---|---|---|---|---|---|---|---|---|
+| Cavendish 1798 | Sphere | d ≈ 5 cm | 2.5 × 10⁻³ | 2.0 × 10⁻³ | Sphere | d ≈ 30 cm | ~0.23 | Sphere–sphere, horizontal | ~0.13 sr |
+| NIST 1982 | Cylinder | d ≈ 2.5 cm, h ≈ 2.5 cm | 6.25 × 10⁻⁴ | 4.9 × 10⁻⁴ | Cylinder | d ≈ 10 cm | ~0.10 | Cylinder–cylinder, horizontal | ~0.79 sr |
+| UWash 2000 | Flat pendulum | ~8 cm × 8 cm | 6.4 × 10⁻³ | 5.0 × 10⁻³ (rectangular) | Sphere array | 8 spheres, d ≈ 6 cm each | ~0.10 | Flat–sphere array, rotating | Complex — multi-source |
+| BIPM 2001 | Cylinder | d ≈ 11 cm, h ≈ 11 cm | 1.21 × 10⁻² | 9.5 × 10⁻³ | Cylinder | d ≈ 11 cm | ~0.12 | Cylinder–cylinder | ~0.66 sr |
+| Zurich 2006 | Mass on beam | ~5 cm equivalent | ~2.5 × 10⁻³ | ~2.0 × 10⁻³ | Mercury tanks | ~50 cm cylindrical | ~0.30 | Point–extended source | ~0.22 sr |
+| HUST 2009 | Sphere | d ≈ 3 cm | 9.0 × 10⁻⁴ | 7.1 × 10⁻⁴ | Sphere | d ≈ 15 cm | ~0.08 | Sphere–sphere | ~2.76 sr |
+| LENS 2014 | Cold Rb atom cloud | ~1 mm effective diameter | ~10⁻⁶ | ~8 × 10⁻⁷ | Tungsten cylinders | 150 kg each, ~25 cm | ~0.26 | Point-like–extended | ~0.73 sr |
+| BIPM 2014 | Cylinder | d ≈ 11 cm, h ≈ 11 cm | 1.21 × 10⁻² | 9.5 × 10⁻³ | Cylinder | d ≈ 11 cm | ~0.12 | Cylinder–cylinder | ~0.66 sr |
+| HUST 2018 | Sphere | d ≈ 3 cm | 9.0 × 10⁻⁴ | 7.1 × 10⁻⁴ | Sphere | d ≈ 15 cm | ~0.08 | Sphere–sphere | ~2.76 sr |
+
+**Test 1 protocol:** Sort by test mass bounding area β·d². Sort by source mass bounding area. Sort by solid angle subtended (the ratio of source mass cross-section to 4πr²). Sort by configuration type (sphere-sphere vs cylinder-cylinder vs point-extended). Compute Spearman rank correlation between G value and each geometric variable. Test for systematic offset between shape categories.
+
+**Key observations from the raw data:**
+
+The LENS experiment has a test mass cross-section ~10,000× smaller than other experiments (atom cloud vs macroscopic mass). It also produces the lowest G value in the modern record (6.67191). If test mass cross-section correlates with G, LENS is the extreme case.
+
+The UWash experiment has a flat (non-cylindrical, non-spherical) test mass geometry and uses a rotating configuration. It produces G = 6.67422, the most precisely measured single value. The unique geometry makes it a natural outlier test — if geometry matters, the non-standard shape should produce a distinctive result.
+
+---
+
+## APPENDIX S: PROTON RADIUS — QED CORRECTION BREAKDOWN
+
+For Test 3, the residual after QED corrections is the signal. This table itemizes the QED corrections for both electron and muon probes so the residual can be isolated.
+
+| Correction Type | Hydrogen (electron probe) | Muonic Hydrogen (muon probe) | Ratio μ/e | Physical Origin |
+|---|---|---|---|---|
+| One-loop VP (electron) | ~27.13 meV (2S-2P splitting contribution) | ~205.007 meV | ~7.6 | Virtual e⁺e⁻ pairs; dominant in both |
+| One-loop VP (muon) | ~0.017 meV | ~0.017 meV | ~1 | Virtual μ⁺μ⁻ pairs; small in both |
+| One-loop VP (hadron) | ~0.044 meV | ~11.36 meV | ~258 | Virtual quark loops; much larger for muonic due to deeper penetration |
+| Two-loop VP | ~1.51 meV | ~1.51 meV (scaled) | ~1 | Higher-order vacuum polarization |
+| Self-energy | ~−26.90 meV | ~−26.90 meV (scaled by mass ratio) | Mass-dependent | Electron/muon self-energy |
+| Recoil corrections | ~0.059 meV | ~0.059 meV (scaled) | ~1 | Finite nuclear mass effects |
+| Nuclear polarizability | ~0.015 meV | ~0.015 meV | ~1 | Nuclear structure beyond charge radius |
+| Proton size (the target) | ~−1.28 meV × r²_p (fm²) | ~−5.23 meV × r²_p (fm²) | ~4.1 | Finite proton charge radius — this is what is being measured |
+| Total theoretical (excluding r_p) | ~1.92 meV | ~180.5 meV | ~94 | All QED corrections sum |
+
+**Test 3 procedure:**
+
+Step 1 — Take the measured 2S-2P transition energy for hydrogen and muonic hydrogen from the most recent published values.
+
+Step 2 — Subtract all published QED corrections except the proton size term. What remains is the proton size contribution.
+
+Step 3 — Extract r_p from the proton size contribution for each probe independently.
+
+Step 4 — Compute the residual: Δr_p = r_p(electron) − r_p(muon).
+
+Step 5 — Compute the probe cross-section ratio: β·d²_e / β·d²_μ = 207² = 42,849.
+
+Step 6 — Test whether Δr_p / r_p correlates with the cross-section ratio through a function involving β.
+
+**The hadronic VP correction is the key.** It is 258× larger for muonic hydrogen because the muon probes 207× deeper, where hadronic vacuum polarization contributes more strongly. This correction is the largest source of theoretical uncertainty in the muonic measurement. If the geometric framework identifies a systematic component in the hadronic VP that current QED calculations do not capture, it would appear as a structured residual correlating with the cross-section ratio.
+
+---
+
+## APPENDIX T: THE PER-TRANSIT CORRECTION — CONSTRAINTS FROM OBSERVATIONAL DATA
+
+Test 5 requires the per-boundary transit correction magnitude. This appendix derives constraints from the observational data, even though the theoretical derivation is missing.
+
+| Constraint Source | Constraint | Derivation |
+|---|---|---|
+| Hubble tension ratio | x^N_eff = 0.923 where x is per-transit correction and N_eff is effective boundary count | Direct from H₀(CMB)/H₀(local) |
+| CMB photon survival | x^N_eff > 0 — CMB photons arrive; correction cannot be absorptive | Photons are detected; correction is a shift, not an attenuation |
+| CMB blackbody spectrum | Correction must preserve blackbody shape to <10⁻⁵ (COBE/FIRAS) | CMB spectrum is the most perfect blackbody measured; any frequency-dependent correction is tightly constrained |
+| Spectral line integrity | Correction must preserve atomic transition frequencies (lines are identified at cosmological distances) | Spectral lines from z > 6 quasars are identified at correct frequency ratios |
+| Gravitational lensing consistency | Correction must be consistent with lensing predictions from known mass distributions | Lensing magnifications match GR predictions for clusters with independently measured masses |
+
+| N_eff Estimate | Per-Transit x | ln(x) | ppm per transit |
+|---|---|---|---|
+| 50 (major structures only) | 0.99839 | −1.61 × 10⁻³ | 1,610 |
+| 100 | 0.99920 | −8.01 × 10⁻⁴ | 801 |
+| 500 | 0.99984 | −1.60 × 10⁻⁴ | 160 |
+| 1,000 | 0.99992 | −8.01 × 10⁻⁵ | 80 |
+| 5,000 | 0.999984 | −1.60 × 10⁻⁵ | 16 |
+| 10,000 | 0.999992 | −8.01 × 10⁻⁶ | 8 |
+| 50,000 | 0.9999984 | −1.60 × 10⁻⁶ | 1.6 |
+| 100,000 | 0.9999992 | −8.01 × 10⁻⁷ | 0.8 |
+
+**The correction is small but nonzero.** For any reasonable N_eff (50 to 100,000), the per-transit correction is between 0.8 ppm and 1,610 ppm — far smaller than β itself (which is ~0.785 or a 21.5% reduction) but far larger than zero.
+
+**Structural question:** What determines x? Candidates:
+
+| Candidate Expression | Value | Matches Any N_eff? |
+|---|---|---|
+| β itself | 0.785 | No — far too large; two transits would reduce signal by 38% |
+| 1 − β | 0.215 | No — still too large |
+| β/N for some N | Varies | Possible — but what determines N? |
+| (1 − 1/β^k) for some k | Varies | Parameter fitting, not derivation |
+| Ratio of wavelength to boundary size | ~10⁻²⁰ to 10⁻⁶ depending on wavelength and structure | Plausible range — submillimeter CMB photon vs Mpc-scale structure |
+| R₄ = π²/32 (from MATH-5) | 0.308 | No — still too large as direct correction |
+| Gravitational potential at boundary | Φ/c² ~ 10⁻⁵ to 10⁻⁶ per structure | Consistent with N_eff ~ 1,000-10,000 range |
+
+**The gravitational potential candidate is the most physically motivated.** If the per-transit correction is x ≈ 1 − Φ/c² where Φ is the gravitational potential at the boundary of each coherent structure, then for typical structures with Φ/c² ~ 10⁻⁵, N_eff ~ 8,000 structures would produce the observed 0.923 ratio. This is within the plausible range from large-scale structure surveys. The derivation of this candidate from first principles is the missing theoretical piece.
+
+---
+
+## APPENDIX U: HUST INTERNAL CONTROL — DETAILED ANALYSIS
+
+The HUST 2018 two-method result is the most constraining single data point for the framework. This appendix analyzes it in detail.
+
+| Parameter | Method 1 (Angular Acceleration) | Method 2 (Time of Swing) | Same or Different? |
+|---|---|---|---|
+| Test mass | Same spheres | Same spheres | Same |
+| Source mass | Same spheres | Same spheres | Same |
+| Separation | Same | Same | Same |
+| Location | Same laboratory, Wuhan | Same laboratory | Same |
+| Altitude | ~30 m | ~30 m | Same |
+| Latitude | 30.5°N | 30.5°N | Same |
+| Local g | 9.7934 m/s² | 9.7934 m/s² | Same |
+| Temperature | Controlled, similar | Controlled, similar | Approximately same |
+| Measurement principle | Servo loop maintains angular position; measures restoring torque | Free oscillation; measures period change when source masses repositioned | Different |
+| G result (×10⁻¹¹) | 6.67484 ± 0.00012 | 6.67349 ± 0.00018 | Different by 135 ppm |
+| β·d² | Identical (same masses) | Identical | Same |
+| Z (method impedance) | Servo feedback loop, control electronics, calibration of restoring torque | Pendulum fiber properties, air damping, frequency measurement precision | Different |
+
+**Framework interpretation:** β·d² is identical for both methods. The disagreement resides entirely in Z — the method-specific impedance. This confirms that Z is a real and significant factor. The magnitude of the Z-induced disagreement (135 ppm) is comparable to the total spread across all modern experiments (~500 ppm from lowest to highest). This means Z accounts for a significant fraction of the total disagreement even when geometry is held constant.
+
+**Implication for Test 1:** If the HUST pair shows ~135 ppm disagreement from Z alone (geometry identical), then the total ~500 ppm spread across all experiments is the sum of geometric variation plus Z variation. The geometric component can be at most ~365 ppm (500 − 135). If Test 1 finds a geometric correlation at this level, it is consistent. If the geometric correlation accounts for more than ~365 ppm, something is wrong with the decomposition.
+
+**Implication for Test 4:** The L1/L2 measurement must use a single method to control Z. If both angular acceleration and time-of-swing methods are deployed at L1/L2, the within-method comparison (L1/L2 vs Earth surface, same method) isolates the boundary effect from method-specific Z. The between-method comparison at L1/L2 provides a Z calibration at the boundary.
+
+---
+
+## APPENDIX V: COMPLETE BOUNDARY TRANSIT TABLE — EARTH SURFACE TO CMB
+
+Every boundary a CMB photon crosses between the surface of last scattering and a ground-based detector, ordered from outermost to innermost.
+
+| Transit # | Boundary | Type | Approximate Scale | Gravitational Potential Φ/c² | Known Corrections Applied | Boundary Effect Modeled? |
+|---|---|---|---|---|---|---|
+| 1 | Surface of last scattering | Plasma → neutral transition | ~46 Gly comoving | — | Yes — recombination physics, Saha equation | Yes (CMB physics) |
+| 2-100 | Void-filament boundaries (large-scale structure) | Density contrast transitions | 30-100 Mpc each | ~10⁻⁵ each | Partially — ISW effect, lensing | Not as coherent boundaries |
+| 101-300 | Galaxy cluster halos | Dark matter + gas boundary | 2-5 Mpc each | ~10⁻⁵ each | Partially — SZ effect, lensing | Not as coherent boundaries |
+| 301-1000+ | Individual galaxy halos | Dark matter + stellar boundary | 0.1-1 Mpc each | ~10⁻⁶ each | Not individually | No |
+| ~N-10 | Milky Way halo | Galaxy dark matter halo | ~300 kpc | ~10⁻⁶ | Partially — foreground subtraction | Not as boundary transit |
+| ~N-9 | Milky Way disk | Stellar + gas disk | ~30 kpc | ~10⁻⁶ | Yes — foreground emission subtraction | Yes (foreground) |
+| ~N-8 | Local Bubble wall | ISM density transition | ~100 pc | ~10⁻⁸ | Partially — extinction correction | Not as boundary |
+| ~N-7 | Heliosphere | Solar wind boundary | ~120 AU | ~10⁻⁸ | Not for CMB | No |
+| ~N-6 | Earth Hill sphere | Gravitational dominance boundary | ~1.5 × 10⁶ km | ~10⁻⁸ | Not for CMB | No |
+| ~N-5 | Earth magnetosphere | Magnetic field boundary | ~60,000 km | N/A (magnetic) | Charged particle only | No (CMB is photons) |
+| ~N-4 | Earth gravitational well | Gravitational potential well | ~6,400 km depth | ~7 × 10⁻¹⁰ | Yes — gravitational redshift for precision timing | Yes (GR correction) |
+| ~N-3 | Ionosphere | Plasma boundary | ~300-1000 km | N/A (plasma) | Yes — frequency-dependent | Yes (radio/microwave correction) |
+| ~N-2 | Troposphere/stratosphere | Atmospheric boundary | ~10-50 km | N/A (refractive) | Yes — atmospheric emission and absorption | Yes (atmospheric model) |
+| ~N-1 | Telescope aperture | Instrument boundary | ~meters | N/A | Yes — beam pattern, sidelobe correction | Yes (instrument model) |
+| N | Detector | Measurement boundary | ~mm | N/A | Yes — detector response calibration | Yes (detector model) |
+
+**Modeled vs unmodeled:** The institution models many individual transits — foreground subtraction, atmospheric correction, detector calibration, gravitational redshift, ISW effect, SZ effect, lensing. It does not model the cumulative effect of crossing hundreds of coherent gravitational boundaries as a distinct systematic category. Each transit is handled by its own correction pipeline. The structural question: after all individual corrections, is there a cumulative residual from the boundary crossings themselves?
+
+---
+
+## APPENDIX W: ROTATION CURVE — FRAMEWORK APPLICATION SKETCH
+
+For Test 6. This is a sketch, not a calculation. The calculation is identified as difficult and dependent on earlier test results.
+
+| Component | Standard Model (with dark matter) | Framework Application (sketch) | Difference |
+|---|---|---|---|
+| Visible mass M_vis(r) | Measured from luminosity + mass-to-light ratio | Same | None |
+| Expected v(r) from visible mass | v² = GM_vis(r)/r → Keplerian decline at large r | Same Newtonian calculation | None |
+| Observed v(r) | Flat at large r | Same observational data | None |
+| Discrepancy | v²_obs − v²_vis = v²_DM → attribute to dark matter halo M_DM(r) | v²_obs − v²_vis = Δv² → ask whether geometric boundary correction accounts for any fraction | The question |
+| Dark matter halo | NFW profile M_DM(r) fitted to match flat curve | Reduced by whatever fraction the geometric correction accounts for | Potentially reduced |
+| G used | Single value from Earth surface | Single value — but question whether G at galactic boundary depth differs | If G differs, M_vis(r) changes too |
+
+**The circular problem:** If G is boundary-dependent (Test 4), then M_vis(r) itself changes because M is derived from luminosity using stellar models that assume Earth-surface G. The dark matter inference and the G universality assumption are entangled. Test 6 cannot be cleanly separated from Test 4. A positive Test 4 result changes the input to Test 6.
+
+**The geometric correction:** At each radius r, the enclosed mass is measured through a gravitational interaction that crosses the galactic boundary structure. The boundary is approximately elliptical. β applies to ellipses at all eccentricities (MATH-1). The question is whether β modifies the effective gravitational coupling at the boundary in a way that changes the inferred enclosed mass.
+
+**What would "positive" look like:** If the geometric correction reduces the dark matter requirement by a specific, calculable fraction — say 10-30% — that is consistent across multiple galaxies with different mass distributions and eccentricities, the framework has explanatory power. If the correction is negligible (<1%) or inconsistent across galaxies, it does not.
+
+**Honest assessment:** This is the weakest test in the program. The galactic boundary is not a clean geometric object. The rectilinear frame is ambiguous at galactic scales. The connection between β and a gravitational coupling correction has not been derived. This test is included for completeness but should not be the basis for any claim until Tests 0-4 have produced results.
+
+---
+
+## APPENDIX X: COMPLETE TEST DEPENDENCY GRAPH
+
+| Test | Depends On | Provides Input To | Can Run In Parallel With | Kill Switch Role |
+|---|---|---|---|---|
+| 0 (α calibration) | None — uses published data only | Tests 3, 5, 6 (field-theory branch viability) | Tests 1, 2 | Part of kill switch triad |
+| 1 (G geometry) | None — uses published data only | Test 4 (identifies d² candidate for L1/L2 design) | Tests 0, 2 | Part of kill switch triad |
+| 2 (G depth) | None — uses published data only | Test 4 (depth trend constrains expected L1/L2 result) | Tests 0, 1 | Part of kill switch triad |
+| 3 (proton radius) | Test 0 not contradictory | Test 5 (constrains per-transit correction) | Test 4 | Second stage |
+| 4 (G at L1/L2) | Tests 1 or 2 positive (motivates the experiment) | Tests 5, 6 (if G differs, changes all mass calculations) | Test 3 | Second stage |
+| 5 (Hubble tension) | Per-transit correction derived; Test 3 or 4 positive | Test 6 (validated transit correction) | Test 6 (if per-transit correction available) | Third stage |
+| 6 (rotation curves) | Test 4 result (G boundary dependence); Test 5 viability | Test 7 (if galactic boundary confirmed) | Test 5 | Third stage |
+| 7 (solar system boundary) | Strong program support from Tests 0-6 | None — final test | None | Fourth stage (far future) |
+
+**Critical path:** Tests 0+1+2 (parallel) → Gate → Tests 3+4 (parallel) → Gate → Tests 5+6 (parallel, if supported) → Test 7 (far future). Minimum time to kill switch: however long it takes to reanalyze existing published data for Tests 0, 1, and 2. Estimated: weeks to months, not years.
+
+---
+
+## APPENDIX Y: WHAT EACH NULL RESULT SPECIFICALLY ESTABLISHES
+
+A null result is not a failure. It is a measurement of zero with an uncertainty bound. This table specifies what each null establishes.
+
+| Test | Null Result Statement | Upper Bound Established | Value of the Null |
+|---|---|---|---|
+| 0 (α calibration) | The Q = F·β·d²·Z decomposition does not reveal structure in QED running beyond what RG already captures | The geometric and QED components are not separable at the level of published α(E) measurements | Confirms QED is complete at this level; framework adds no value for quantum boundaries |
+| 1 (G geometry) | G does not correlate with apparatus geometry across published experiments | Geometric contribution to G disagreement is < X ppm where X depends on statistical power | The G disagreement is not geometric in origin — narrows the search for its source |
+| 2 (G depth) | G does not trend with gravitational potential across published experiments | Depth effect is < Y ppm per unit of ΔΦ/c² | Either no depth effect exists, or it is below the sensitivity of surface measurements (~400m altitude range) |
+| 3 (proton radius) | Proton radius residual does not correlate with probe cross-section ratio | Geometric component of proton radius puzzle is < Z fm | Puzzle has non-geometric origin; or puzzle resolves through QED improvements |
+| 4 (G at L1/L2) | G at Hill sphere boundary matches Earth surface value within measurement precision | Boundary effect on G is < measurement uncertainty of the L1/L2 apparatus | First positive evidence that G is consistent across Earth's Hill sphere — replaces assumption with measurement |
+| 5 (Hubble tension) | Cumulative transit correction does not match H₀ ratio | Geometric transit does not explain the Hubble tension at the per-transit correction used | Tension has non-geometric source — or per-transit correction model is wrong |
+| 6 (rotation curves) | β correction does not meaningfully reduce dark matter requirement | Boundary geometry contributes < W% to rotation curve discrepancy | Dark matter problem unaffected by boundary geometry |
+| All 0-2 null | The geometric framework does not extend from cross-section equations to physical boundaries | MATH-1 scope confirmed: geometric cross-sections only; not physical boundaries | **The scope boundary is the finding.** MATH-1 remains valid within proven scope. The program stops with a documented result. |
+
+**The all-null outcome is publishable.** It establishes that a specific, well-defined extension of a proven mathematical framework to physical boundaries does not produce measurable effects at the precision of available data. This negative result has value — it prevents future researchers from pursuing the same extension without new data or new theoretical motivation.
