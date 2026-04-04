@@ -43,6 +43,8 @@ The word is not a minor labeling issue. The word shapes thinking. When a quantit
 
 ## III. THE ELECTROMAGNETIC COUPLING
 
+![Fig. 6: The electron's virtual pair cloud is a boundary — low-energy probes read α=1/137 from outside, high-energy probes read α=1/127 from inside.](./figures/phys2_06_vacuum_polarization.png)
+
 The fine structure constant α governs the strength of the electromagnetic interaction. It is among the most precisely measured quantities in physics. Its low-energy value is known to 11 decimal places: α = 1/137.035999206 with an uncertainty of 81 parts per trillion. At low energy — at atomic scales, in the regime of chemistry and biology and everyday electromagnetic phenomena — this is the measured value.
 
 At higher energies, the value is different.
@@ -89,6 +91,8 @@ Three fundamental couplings. All three run. All three produce different values a
 
 ## VI. THE THRESHOLD STRUCTURE
 
+![Fig. 2: α_s running with visible kinks at charm, bottom, and top quark thresholds — each kink is a boundary crossing that changes the running rate.](./figures/phys2_02_flavor_thresholds.png)
+
 The running of coupling constants is not smooth. It has discontinuities — points where the rate of running changes abruptly. These occur at quark mass thresholds.
 
 When the measurement energy is below the mass of a quark species, that species does not contribute virtual pairs to the vacuum polarization. It is outside the measurement's reach. When the energy crosses the quark's mass threshold, the species becomes "active" — it begins contributing virtual pairs and changes the vacuum polarization environment. The running equations change at each threshold. The beta function coefficients depend on the number of active flavors.
@@ -104,6 +108,8 @@ The institution calls these "flavor thresholds." The institution models the tran
 ---
 
 ## VII. THE SCREENING MECHANISM AS BOUNDARY
+
+![Fig. 4: QED virtual pairs screen the charge (α increases inward). QCD gluon self-interaction anti-screens (α_s decreases inward). Opposite mechanisms, opposite running.](./figures/phys2_04_screening_mechanisms.png)
 
 The institution's own explanation for why couplings run provides the boundary interpretation directly.
 
@@ -121,6 +127,8 @@ The institution does not organize these elements as "boundary readings of cohere
 
 ## VIII. THE CATALOGUE
 
+![Fig. 5: α and α_s values at six energy scales — the same quantities produce different readings at every rung of the energy ladder.](./figures/phys2_05_energy_ladder.png)
+
 Every fundamental coupling that the institution measures is scale-dependent. The following catalogue summarizes the institution's own data.
 
 The electromagnetic coupling α. Low-energy value: 1/137.036. Z-mass value: approximately 1/127. Variation: approximately 8%. Direction: increases with energy. Mechanism: vacuum polarization screening by virtual lepton pairs. Status in the institution: running coupling, modeled by QED beta function, confirmed by LEP and subsequent colliders.
@@ -135,9 +143,13 @@ The gravitational coupling. The gravitational "constant" G is the least precisel
 
 Every entry in this catalogue is the institution's own measurement. Every variation is confirmed. Every model is published. Every mechanism is established. None of these quantities is constant. All of them are called "constants."
 
+![Fig. 7: Five independent G measurements disagree beyond their stated uncertainties — systematic errors, or scale-dependent readings from different boundary depths?](./figures/phys2_07_g_disagreements.png)
+
 ---
 
 ## IX. GRAND UNIFICATION AS BOUNDARY CONVERGENCE
+
+![Fig. 1: Three gauge couplings running from M_Z toward 10¹⁶ GeV — they converge, revealing three readings of one value at three boundary depths.](./figures/phys2_01_gut_running.png)
 
 The grand unification hypothesis predicts that the three gauge couplings — electromagnetic, strong, and weak — converge to a single value at extremely high energy, approximately 10¹⁶ GeV. The institution models this by running all three couplings from their measured low-energy values toward higher scales using the renormalization group equations and checking whether the three trajectories meet.
 
@@ -152,6 +164,8 @@ If this interpretation is correct, the three couplings are not three constants. 
 ---
 
 ## X. THE COSMOLOGICAL CONSTANT
+
+![Fig. 3: From Planck scale to cosmological scale — the 10¹²⁰ discrepancy spans the entire boundary hierarchy, every coherent structure layer between the two measurements.](./figures/phys2_03_cosmological_scale.png)
 
 The cosmological constant problem is the most extreme example of scale-dependent readings in all of physics.
 
@@ -212,6 +226,8 @@ The paper does not claim that the running coupling framework is wrong. The frame
 ---
 
 ## XIV. CONCLUSION
+
+![Fig. 8: There are no constants — every coupling varies with scale, three boundary types produce the variation, the transformation law is the deeper object.](./figures/phys2_08_identity_card.png)
 
 The institution's own measurements demonstrate that no fundamental coupling is constant.
 
@@ -385,3 +401,203 @@ In every row, the word claims one thing and the data shows another. The institut
 **Structural Finding:** The institution's vacuum polarization mechanism, confinement boundary, and flavor thresholds are coherent structure boundaries where readings change; the beta functions are transformation laws between boundary-depth readings
 **Implication:** The "constants" are projections from specific measurement depths; the transformation laws between projections are the deeper objects; the theory of everything may be the complete set of transformation laws, not a set of fixed values
 **Conclusion:** The data demands that "constant" be replaced by language that matches the measurements; the data is the institution's own; the contradiction is the institution's own
+
+---
+
+## APPENDIX I: THE COMPLETE RUNNING COUPLING DATA TABLE
+
+Every entry is from the institution's published measurements or established RG calculations. The "boundary depth" column translates the energy scale into the boundary language.
+
+| Energy (GeV) | α_EM⁻¹ | α_s | sin²θ_W (MS-bar) | Active Flavors n_f | Boundaries Crossed (cumulative from atomic scale) | Source |
+|---|---|---|---|---|---|---|
+| ~10⁻⁶ (atomic) | 137.036 | N/A (confined) | 0.2387 | 3 (u, d, s) | 0 — baseline | Atomic spectroscopy |
+| 0.002 (up threshold) | 137.036 | N/A | 0.2387 | 3 → active | 0 — below all heavy thresholds | RG extrapolation |
+| 0.005 (down threshold) | 137.036 | N/A | 0.2387 | 3 → active | 0 — light quarks always active at hadronic scale | RG extrapolation |
+| 0.095 (strange threshold) | 137.036 | N/A | 0.2387 | 3 → active | 0 — strange active at hadronic scale | RG extrapolation |
+| 1.0 (hadronic) | ~137.0 | ~0.50 (non-perturbative) | ~0.238 | 3 | 0 | τ decay, lattice QCD |
+| 1.27 (charm threshold) | ~136.9 | ~0.39 | ~0.237 | 3 → 4 | 1 — charm boundary crossed | Charmonium, lattice QCD |
+| 4.18 (bottom threshold) | ~136.3 | ~0.22 | ~0.234 | 4 → 5 | 2 — bottom boundary crossed | Υ spectroscopy, lattice QCD |
+| 10.0 | ~135.8 | ~0.18 | ~0.233 | 5 | 2 | RG evolution, e⁺e⁻ data |
+| 30.0 | ~134.5 | ~0.15 | ~0.232 | 5 | 2 | RG evolution |
+| 80.4 (W mass) | ~128.0 | ~0.120 | ~0.2315 | 5 | 3 — electroweak boundary approached | LEP, Tevatron |
+| 91.2 (Z mass) | 127.9 ± 0.02 | 0.1179 ± 0.0010 | 0.2312 ± 0.0002 | 5 | 3 | LEP precision, world average |
+| 173 (top threshold) | ~127.1 | ~0.108 | ~0.231 | 5 → 6 | 4 — top boundary crossed | LHC top measurements |
+| 246 (EW unification) | ~126.5 | ~0.10 | ~0.231 | 6 | 4 — electroweak boundary crossed | Theoretical matching |
+| 1,000 (TeV) | ~125 | ~0.088 | ~0.229 | 6 | 4 | RG extrapolation |
+| 10⁴ | ~122 | ~0.075 | ~0.226 | 6 | 4 | RG extrapolation |
+| 10⁸ | ~112 | ~0.055 | ~0.218 | 6 | 4 | RG extrapolation (SM) |
+| 10¹² | ~103 | ~0.042 | ~0.210 | 6 | 4 | RG extrapolation (SM) |
+| 10¹⁶ (GUT scale) | ~40 (model-dep.) | ~0.03 (model-dep.) | ~1/3 (model-dep.) | 6 (SM) or more (MSSM) | All — convergence point | GUT extrapolation |
+
+α_EM varies by a factor of 3.4 from atomic to GUT scale. α_s varies by a factor of ~17 from Z mass to 1 GeV alone. Neither is constant. Both are called constants.
+
+---
+
+## APPENDIX J: BETA FUNCTION COEFFICIENTS AND BOUNDARY SENSITIVITY
+
+The beta function governs how a coupling runs with energy. Its coefficients change at each flavor threshold — each boundary crossing. This table shows the one-loop QCD beta function coefficient b₀ as a function of active flavors, demonstrating that the transformation law itself changes at each boundary.
+
+| Active Flavors n_f | b₀ = (33 − 2n_f)/12π | Sign | Running Direction | Physical Regime | What Changed at This Boundary |
+|---|---|---|---|---|---|
+| 0 (pure gauge, no quarks) | 33/(12π) ≈ 0.875 | Positive | α_s decreases with energy | Pure gluodynamics — theoretical | No quarks active |
+| 1 | 31/(12π) ≈ 0.822 | Positive | α_s decreases with energy | Hypothetical | One quark species screens |
+| 2 | 29/(12π) ≈ 0.769 | Positive | α_s decreases with energy | Hypothetical | Two species screen |
+| 3 (u, d, s) | 27/(12π) ≈ 0.716 | Positive | α_s decreases with energy | Below charm threshold | Light quarks screen, gluons anti-screen, gluons win |
+| 4 (+ charm) | 25/(12π) ≈ 0.663 | Positive | α_s decreases with energy | Charm to bottom | Charm virtual pairs add screening |
+| 5 (+ bottom) | 23/(12π) ≈ 0.610 | Positive | α_s decreases with energy | Bottom to top | Bottom pairs add more screening |
+| 6 (+ top) | 21/(12π) ≈ 0.557 | Positive | α_s decreases with energy | Above top | All quarks active, gluons still dominate |
+| 16.5 (critical) | 0/(12π) = 0 | Zero | No running | Hypothetical | Screening exactly balances anti-screening |
+| 17+ | Negative | Negative | α_s would increase with energy | Hypothetical — QCD loses asymptotic freedom | Screening overwhelms anti-screening |
+
+The critical number n_f = 16.5 is where quark screening would exactly balance gluon anti-screening. The Standard Model has 6 flavors, safely in the asymptotically free regime. Each row transition is a boundary crossing that changes the transformation law itself. The beta function is not a single equation — it is a piecewise function that changes at each coherent structure boundary.
+
+---
+
+## APPENDIX K: THE MATCHING CONDITIONS AS BOUNDARY PHYSICS
+
+At each flavor threshold, the institution applies a "matching condition" — a specific procedure for connecting the effective theory below the threshold to the effective theory above it. This table documents what the matching does and what it means structurally.
+
+| Threshold | Below | Above | Matching Procedure | What It Does Physically | Boundary Translation |
+|---|---|---|---|---|---|
+| Charm (1.27 GeV) | 3-flavor QCD: α_s^(3)(μ) | 4-flavor QCD: α_s^(4)(μ) | α_s^(4)(m_c) = α_s^(3)(m_c) + O(α_s²) corrections | Ensures physical observables are continuous across threshold | Reading is continuous at the boundary; transformation law changes on each side |
+| Bottom (4.18 GeV) | 4-flavor QCD: α_s^(4)(μ) | 5-flavor QCD: α_s^(5)(μ) | α_s^(5)(m_b) = α_s^(4)(m_b) + O(α_s²) corrections | Same — continuity of observables | Same — boundary reading matched, law changes |
+| Top (173 GeV) | 5-flavor QCD: α_s^(5)(μ) | 6-flavor QCD: α_s^(6)(μ) | α_s^(6)(m_t) = α_s^(5)(m_t) + O(α_s²) corrections | Same — continuity of observables | Same — boundary reading matched, law changes |
+| W/Z mass (80-91 GeV) | Low-energy effective theory (Fermi theory) | Full electroweak theory (SU(2)×U(1)) | Fermi constant G_F matched to electroweak parameters | Connects suppressed low-energy description to unified high-energy description | Crossing the electroweak boundary reveals suppressed force at full strength |
+| GUT scale (~10¹⁶ GeV) | Standard Model (3 gauge groups) | GUT theory (1 gauge group) | Three couplings matched to one | Three readings converge to one | All boundaries crossed; single underlying reading exposed |
+
+The institution already performs boundary matching at every threshold. It calls the procedure "matching conditions in effective field theory." The boundary language calls it the same thing with structural context: matching the reading on one side of a coherent structure boundary to the reading on the other side, while allowing the transformation law to change.
+
+---
+
+## APPENDIX L: THE SCREENING AND ANTI-SCREENING MECHANISMS
+
+Detailed accounting of what produces the boundary in each force sector.
+
+| Force | Screening Agent | Anti-Screening Agent | Net Effect | Why the Boundary Exists |
+|---|---|---|---|---|
+| Electromagnetic | Virtual e⁺e⁻ pairs surround bare charge | None in QED | Net screening: apparent charge weaker at distance | Virtual pairs orient with opposite charge inward, creating a dielectric cloud; this cloud IS the boundary |
+| Electromagnetic (above μ threshold) | Virtual e⁺e⁻ + μ⁺μ⁻ pairs | None | Enhanced screening: α runs faster above muon mass | Additional charged species means thicker boundary cloud |
+| Strong (QCD) | Virtual qq̄ pairs | Gluon self-interaction (triple and quartic gluon vertices) | Net anti-screening: apparent coupling weaker at short distance | Gluons carry color charge; their self-coupling creates anti-screening that overwhelms quark screening. The confinement boundary is where anti-screening dominates |
+| Weak | Virtual W⁺W⁻ (non-abelian self-coupling) | Virtual fermion pairs | Complex: non-abelian structure dominates | W bosons carry weak charge; similar to gluon anti-screening but at electroweak scale |
+| Gravity (projected) | Virtual graviton self-coupling (hypothetical) | Matter loops | Unknown — quantum gravity not established | If gravity is quantized, graviton self-coupling should produce running; the nature of the boundary is unknown |
+
+The boundary in each case is created by virtual particle clouds. The cloud IS the boundary. Inside the cloud (high energy probe), one reading. Outside the cloud (low energy probe), a different reading. The institution computes these clouds via Feynman diagrams. Each diagram is a boundary contribution. The sum of diagrams is the boundary structure. The running is the consequence of the boundary.
+
+---
+
+## APPENDIX M: HISTORICAL TIMELINE — WHEN "CONSTANTS" WERE SHOWN NOT TO BE CONSTANT
+
+| Year | Discovery | Who | Impact on "Constant" Label | What Actually Happened |
+|---|---|---|---|---|
+| 1947 | Lamb shift — first evidence of vacuum polarization | Lamb, Retherford | Implied α is not simply 1/137 at all scales | First experimental evidence that QED modifies the bare coupling |
+| 1949 | Renormalization of QED | Tomonaga, Schwinger, Feynman | Systematized the running; Nobel 1965 | Showed that α at different scales requires renormalization |
+| 1954 | Yang-Mills theory | Yang, Mills | Extended gauge structure implies running for non-abelian couplings | Foundation for QCD and electroweak running |
+| 1967-68 | Electroweak unification | Glashow, Weinberg, Salam | Weak coupling varies and unifies with electromagnetic; Nobel 1979 | "Constant" shown to depend on energy relative to W/Z mass |
+| 1973 | Asymptotic freedom | Gross, Wilczek, Politzer | α_s runs by orders of magnitude; Nobel 2004 | The most dramatic demonstration that a "constant" is not constant |
+| 1974 | Running verified at SLAC | Multiple groups | α_s variation confirmed experimentally | Experimental data matched RG predictions |
+| 1989-2000 | LEP precision measurements | LEP collaborations | α_EM(M_Z) = 1/127.9 measured directly; sin²θ_W running confirmed | 8% variation of α directly measured at collider |
+| 1999 | Three-loop QCD beta function | van Ritbergen, Vermaseren, Larin | Precision running of α_s established | Transformation law known to high precision |
+| 2004 | Nobel Prize for asymptotic freedom | Gross, Wilczek, Politzer | Institution's highest honor for demonstrating a "constant" isn't constant | Nobel committee description explicitly discusses running |
+| 2012 | Higgs boson discovery | ATLAS, CMS | Confirmed electroweak symmetry breaking mechanism; coupling structure validated | Mass generation mechanism confirmed; Yukawa couplings scale-dependent |
+| 2019 | Five-loop QCD beta function | Baikov, Chetyrkin, Kühn | Highest precision transformation law for α_s | The law connecting readings at different depths known to extraordinary precision |
+
+77 years from first evidence (1947) to five-loop precision (2019). The institution has known for three quarters of a century that couplings run. The word "constant" has survived all of it.
+
+---
+
+## APPENDIX N: WHAT EACH "CONSTANT" ACTUALLY IS
+
+A translation table from the institution's label to what the measurement data supports.
+
+| Institution's Label | What the Data Shows It Is | Better Label | Why It Matters |
+|---|---|---|---|
+| Fine structure constant α | Electromagnetic coupling strength at a specific energy scale, varying from 1/137 to 1/127 across measured range | Electromagnetic coupling reading at scale μ: α(μ) | "Constant" implies the value 1/137 is fundamental; "reading at scale μ" implies the beta function is fundamental |
+| Strong coupling constant α_s | Strong interaction coupling at a specific energy scale, varying by >10× across measured range | Strong coupling reading at scale μ: α_s(μ) | "Constant" obscures the fact that confinement and asymptotic freedom are two readings of one coupling |
+| Fermi constant G_F | Effective weak interaction strength at low energy, derived from W boson mass and weak coupling | Low-energy projection of electroweak coupling through W mass boundary | "Constant" hides that G_F is already a derived quantity — a boundary-projected reading |
+| Weinberg angle sin²θ_W | Electroweak mixing parameter that varies from 0.2387 at low energy to 0.2312 at M_Z | Electroweak mixing reading at scale μ | "Constant" implies a fixed mixing; data shows scale-dependent mixing |
+| Gravitational constant G | Gravitational coupling measured at laboratory scales with persistent inter-experiment disagreement | Gravitational coupling reading at laboratory boundary depth | "Constant" implies disagreement is error; "reading" implies disagreement may be data |
+| Cosmological constant Λ | Vacuum energy density whose QFT prediction disagrees with observation by 10¹²⁰ | Vacuum energy reading at cosmological boundary depth | "Constant" makes the 10¹²⁰ discrepancy a prediction failure; "reading at depth" makes it a boundary-separation effect |
+| Electron mass m_e | Rest energy of the electron, 0.511 MeV | Electron pattern inertia (PHYS-1) | "Mass" implies substance; "inertia" implies pattern resistance |
+| Planck's constant ℏ | Quantum of action | Minimum action quantum — genuinely scale-independent as far as measured | May actually be constant; no running observed or predicted at accessible scales |
+| Speed of light c | Maximum signal propagation speed | Geometric property of spacetime — genuinely scale-independent as far as measured | May actually be constant; no running observed at accessible scales |
+
+Note: ℏ and c are the two quantities in the table that may genuinely be constants. No measurement or theory predicts their running. If all other "constants" are boundary readings but ℏ and c are not, then ℏ and c have a different structural status — they are properties of the measurement framework itself rather than readings within it. This distinction is noted but not developed in this paper.
+
+---
+
+## APPENDIX O: THE SCALE-DEPENDENCE SPECTRUM
+
+Not all "constants" vary by the same amount. This table ranks them by the magnitude of their observed or predicted scale dependence, from most dramatic to least.
+
+| Rank | Quantity | Scale Variation | Range of Measurement | Status |
+|---|---|---|---|---|
+| 1 | Cosmological constant Λ | 10¹²⁰ between QFT prediction and observation | Planck scale to cosmological scale | Unresolved — largest discrepancy in science |
+| 2 | Strong coupling α_s | >10× (from ~O(1) to 0.118) | 1 GeV to 91 GeV | Confirmed, modeled, Nobel Prize |
+| 3 | Weak coupling (apparent) | From suppressed to full strength | Below W mass to above W mass | Confirmed, modeled, Nobel Prize |
+| 4 | Electromagnetic coupling α | ~8% (from 1/137 to 1/127) | Atomic to 91 GeV | Confirmed, measured at LEP |
+| 5 | Weak mixing angle sin²θ_W | ~3% (from 0.2387 to 0.2312) | Low energy to M_Z | Confirmed, precision electroweak |
+| 6 | Quark masses (MS-bar) | ~6% between schemes; continuous running | Scheme-dependent + scale-dependent | Confirmed, lattice QCD |
+| 7 | Gravitational constant G | ~40 ppm spread between experiments | Laboratory scale only | Unresolved — attributed to systematics |
+| 8 | Speed of light c | 0 — no observed variation | All accessible scales | Genuinely constant as far as measured |
+| 9 | Planck's constant ℏ | 0 — no observed variation | All accessible scales | Genuinely constant as far as measured |
+
+The quantities most confidently called "constants" by the institution (α, α_s) are the ones with the most dramatic measured variation. The quantities least discussed as "constants" in popular physics (ℏ, c) are the ones that actually appear to be constant.
+
+---
+
+## APPENDIX P: THE TRANSFORMATION LAW HIERARCHY
+
+If the transformation laws (beta functions) are the fundamental objects rather than the values they connect, then there is a hierarchy of laws. This table organizes what is known.
+
+| Level | Object | What It Determines | Known To | Status |
+|---|---|---|---|---|
+| 0 | Gauge group structure (SU(3)×SU(2)×U(1)) | Which couplings exist | Exact | Established by experiment |
+| 1 | One-loop beta function coefficients | Leading-order running rate for each coupling | Exact (b₀) | Known since 1970s |
+| 2 | Two-loop beta function coefficients | Next-to-leading running corrections | Exact (b₁) | Known since 1970s-80s |
+| 3 | Three-loop beta function | NNLO running | Exact | Known since 1990s |
+| 4 | Four-loop beta function | N³LO running | Exact for QCD | Known since 2000s |
+| 5 | Five-loop beta function | N⁴LO running | Exact for QCD | Computed 2017-2019 |
+| 6 | Threshold matching conditions | How the law changes at each boundary | Known to 3-4 loops | Precision electroweak, QCD |
+| 7 | Non-perturbative running | Running below ΛQCD where perturbation theory fails | Lattice QCD | Numerically established, no closed-form law |
+| 8 | Full RG flow across all boundaries | Complete transformation from bare to dressed values | Partially known | Known piecewise; full integration is the precision SM calculation |
+| 9 | Unification constraint | Whether all transformation laws derive from a single law | Unknown | The GUT question — does one law produce all three? |
+| 10 | Origin of the gauge group | Why SU(3)×SU(2)×U(1) and not some other structure | Unknown | The deepest open question — what determines which transformation laws exist? |
+
+The institution knows levels 0 through 8 with extraordinary precision. Level 9 is the grand unification question. Level 10 is the theory of everything. The boundary reading interpretation says: the values (couplings at specific scales) are outputs of the transformation laws applied from specific depths. The transformation laws are the physics. The values are the projections.
+
+---
+
+## APPENDIX Q: COMPARISON — WHAT "CONSTANT" AND "READING" EACH PREDICT FOR OPEN PROBLEMS
+
+| Open Problem | "Constant" Framing Predicts | "Reading" Framing Predicts | Distinguishing Test |
+|---|---|---|---|
+| Dark energy / Λ | The cosmological constant has a specific fixed value that a theory must derive | The vacuum energy reading depends on boundary depth; the QFT and cosmological values are readings at different depths, not a prediction failure | Does a boundary-integrated calculation from QFT to cosmological scale reproduce observed Λ? |
+| Dark matter | Missing mass = missing substance = particles to find | Missing inertia = unaccounted boundary-depth effects in gravitational readings | Does modeling galactic boundary structure reproduce rotation curves without particles? |
+| G disagreements | Experimental systematics will eventually be identified and resolved | Different experiments may genuinely probe different depths, producing genuinely different readings | Do experiments with controlled boundary-depth differences produce systematically different G values? |
+| Hubble tension | One measurement is wrong, or new physics between CMB and local scales | Both measurements are correct at their boundary depths; the tension is the boundary effect | Does the discrepancy correlate quantitatively with boundary transit count? |
+| Hierarchy problem | Why is the Higgs mass so much smaller than the Planck mass? Fine-tuning or symmetry. | The Higgs "mass" is a reading at the electroweak depth; the Planck "mass" is at the Planck depth; the hierarchy is a boundary-depth separation | Does the ratio m_H/m_P correspond to the number of boundaries between electroweak and Planck scales? |
+| Strong CP problem | Why is θ_QCD ≈ 0? Axion or other mechanism. | θ_QCD = 0 from energy minimization (PHYS-7); no boundary question | Already addressed in PHYS-7 via derivation |
+| Proton radius puzzle | Measurement error, QED corrections, or new physics | Depth-dependent reading — muon probes deeper, reads smaller | Does tau probe (if measurable) continue the depth trend? |
+
+The "constant" framing generates searches for fixed values, particles, and fine-tuning mechanisms. The "reading" framing generates searches for transformation laws, boundary structures, and depth-dependent systematics. Both framings use the same data. They generate different research programs.
+
+---
+
+## APPENDIX R: THE TWO GENUINE CANDIDATES FOR CONSTANCY
+
+ℏ and c stand apart from all other "constants" in the table. This appendix examines why.
+
+| Property | ℏ (Planck's constant) | c (speed of light) | All other "constants" |
+|---|---|---|---|
+| Observed running | None | None | Yes, for every coupling |
+| Predicted running | None in any established theory | None in any established theory | Yes, by RG equations |
+| Role in physics | Defines the quantum of action; sets the scale of quantum mechanics | Defines the causal structure of spacetime; sets the conversion between space and time | Coupling strengths, mass values, mixing parameters |
+| What it relates | Energy and frequency (E = ℏω) | Space and time (ds² = −c²dt² + dx²) | Fields to each other; particles to fields |
+| Structural status | Property of the measurement framework itself | Property of the measurement framework itself | Properties of structures measured within the framework |
+| Boundary behavior | No boundary dependence observed or theorized | No boundary dependence observed or theorized | Boundary-dependent readings throughout |
+| If framework, not content | ℏ defines what "measurement" means in quantum mechanics | c defines what "distance" and "duration" mean in spacetime | Couplings describe what happens within the framework ℏ and c define |
+
+ℏ and c may be genuinely constant because they are not readings of structures within physics — they are properties of the framework within which all readings are taken. A ruler does not change when you measure different objects with it. If ℏ and c are the rulers, they are constant by construction. Everything measured with them — the couplings, the masses, the mixing angles — can vary because they are the measured, not the measure.
+
+This distinction is not proven. It is offered as structurally consistent with the data: the two quantities with no observed or predicted running are the two that define the measurement framework, while every quantity that describes content within the framework runs.
+
