@@ -63,6 +63,8 @@ MATH-1 provides a framework proven for geometric cross-sections. PHYS-1 catalogs
 
 ## III. WHICH BOUNDARIES ARE GEOMETRIC?
 
+![Fig. 1: Six boundaries classified as geometric (sphere, ellipse, scattering cross-section) and one excluded (confinement — not spatial). The framework's scope is visible.](./figures/phys4_01_boundary_gallery.png)
+
 ### 3.1 The Criterion
 
 MATH-1's framework applies to boundaries that are spatial geometries — circles, spheres, or ellipses — interfacing with a rectilinear measurement frame. Not all boundaries cataloged in PHYS-1 meet this criterion. Each boundary is evaluated individually below.
@@ -135,6 +137,8 @@ Six of seven boundaries are geometric. One is not. The framework's scope covers 
 
 ## IV. CALIBRATION: THE RUNNING OF α
 
+![Fig. 5: The running of α separated into geometric baseline β·d²(E) and QED correction Z(E) — three outcomes determine whether the framework extends to field-theory boundaries.](./figures/phys4_05_alpha_decomposition.png)
+
 ### 4.1 Why Calibrate
 
 The framework must reproduce something known before it is applied to something unknown. The running of α is the calibration case. The electron's vacuum polarization boundary is geometric (Section III.5). The interior and exterior readings are measured. The QED corrections that produce the running are published and precise. If Q = F · β · d² · Z cannot engage with the known running of α in a structurally meaningful way, it has no business being applied to unknown cases.
@@ -177,6 +181,8 @@ This calculation uses published data and published QED results. It requires no n
 ---
 
 ## V. TEST 1: G DECOMPOSITION BY METHOD
+
+![Fig. 6: Four candidate d² identifications on a Cavendish apparatus — test mass, source mass, interaction geometry, gravitational aperture — constrained by the HUST internal control.](./figures/phys4_06_g_geometry_candidates.png)
 
 ### 5.1 The Question
 
@@ -238,6 +244,8 @@ If random scatter with no trend: the depth interpretation is not supported.
 
 ### 6.3 Sensitivity Assessment
 
+![Fig. 7: Altitude variation is 10¹⁰× too small. Local g variation is within one order of magnitude of the G disagreement — the most promising variable for Test 2.](./figures/phys4_07_sensitivity_analysis.png)
+
 The altitude range across modern precision G experiments is approximately 10 meters to 500 meters above sea level. The corresponding gravitational potential difference is ΔΦ/c² ~ 5 × 10⁻¹⁴. The G disagreement between methods is at the ~10⁻⁴ level. If the depth effect scales linearly with gravitational potential, the expected signal from altitude variation alone is many orders of magnitude below the observed disagreement. The test is likely underpowered for altitude.
 
 Latitude provides a larger lever arm. The latitude range across modern experiments spans approximately 30°N (Wuhan) to 52°N (Wuppertal), producing local g variations of approximately 0.3%. This is still small relative to the G disagreement, but larger than the altitude variation.
@@ -249,6 +257,8 @@ This test uses published data and published geodetic information. It requires no
 ---
 
 ## VII. TEST 3: PROTON RADIUS RESIDUAL
+
+![Fig. 2: Electron probes at Bohr radius (large cross-section, reads 0.877 fm) vs muon at a₀/207 (42,849× smaller cross-section, reads 0.842 fm).](./figures/phys4_02_proton_probe_depth.png)
 
 ### 7.1 The Question
 
@@ -331,6 +341,8 @@ The first two inputs are available from published large-scale structure surveys 
 
 ### 9.3 The Missing Piece
 
+![Fig. 4: β=0.785 would destroy the signal after two transits. The required per-transit correction is ~0.9999 for 100 boundaries — the gap between β and the required value is the missing theoretical piece.](./figures/phys4_04_per_transit_magnitude.png)
+
 The third input — the per-boundary transit correction magnitude — is not provided by any paper in this series. This is the primary limitation of Test 5.
 
 MATH-1 establishes β = π/4 as the geometric ratio for cross-sectional area. But the transit correction for light crossing a gravitational boundary is not an area ratio. It is a transformation of the light's measured properties (frequency, flux, timing) as it crosses the boundary. MATH-1 does not derive this transformation. PHYS-1 identifies the boundary transit as an unmodeled element but does not quantify it.
@@ -380,6 +392,8 @@ No instrument has been placed at or beyond the solar system's Hill sphere. Voyag
 ---
 
 ## XII. THE TEST PROGRAM
+
+![Fig. 3: Seven tests from existing-data reanalysis (now) through new instruments to far-future missions, with the kill switch gate after Tests 0-2.](./figures/phys4_03_test_timeline.png)
 
 ### 12.1 Ordered by Achievability
 
@@ -442,6 +456,8 @@ Each criterion is specific and stated before the evidence is examined.
 ---
 
 ## XIV. BOUNDARIES AND LIMITATIONS
+
+![Fig. 8: Seven tests ordered by achievability, kill switch at the gate, six geometric boundaries, one missing piece — calibrate before applying.](./figures/phys4_08_identity_card.png)
 
 This paper is a test program, not a result. It specifies tests. It does not claim outcomes.
 
