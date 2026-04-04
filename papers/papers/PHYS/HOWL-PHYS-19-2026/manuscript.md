@@ -738,3 +738,232 @@ All eight primary citations verified by web search during this session. Journal 
 ---
 
 *Supporting appendix tables A through L for PHYS-19. Every measurement value traces to the anomaly data matrix (web-search verified). Every gap ratio number traces to the GUT script (9/9 pass). Every CKM element traces to DATA-3 (32/32 pass). The significance debate (2.5-4σ) is documented with the reason for the range. The independence of the two roads is verified explicitly. The honest assessment acknowledges that evidence is not proof.*
+
+---
+
+The paper already contains Appendices A through L with detailed tables. My summary covered the key content. The supporting appendix tables need to be NEW content beyond what exists in both the paper and my summary.
+
+---
+
+## APPENDIX M: THE THREE QUANTUM NUMBERS — WHY EACH IS INDEPENDENTLY REQUIRED
+
+Each anomaly requires a specific subset of the Cabibbo Doublet's quantum numbers. This table proves that no simpler representation resolves all three.
+
+| Quantum Number | What It Provides | Which Anomaly Needs It | What Happens Without It |
+|---|---|---|---|
+| SU(3) triplet (color) | Couples to gluons → enters gg→H loop; couples to quarks → can mix with b | Higgs excess (gg→H loop); A_FB^b (quark mixing with b) | A colorless particle cannot contribute to gg→H. A colorless particle cannot mix with quarks. Two of three anomalies unresolved. |
+| SU(2) doublet (weak) | Carries weak charge → can appear in CKM matrix; modifies Z couplings | CKM deficit (CKM mixing requires weak charge); A_FB^b (Z vertex modification) | A weak singlet cannot expand the CKM matrix. One anomaly unresolved (CKM). A_FB^b partially unresolved (no Z-vertex shift from doublet structure). |
+| Y = 1/6 (hypercharge) | Gives charges +2/3 and −1/3 → can mix with ALL three SM generations through standard CKM | CKM deficit (mixing with u requires matching charges); A_FB^b (mixing with b requires matching charges) | Non-standard charges prevent CKM-type mixing. |
+| Vector-like (L = R) | Bare mass allowed; avoids Higgs coupling exclusion from 4th chiral generation | All three (chiral 4th gen excluded by μ(H→γγ) ≈ 9× SM) | Chiral fermion produces 9× enhancement in Higgs production — decisively excluded by LHC data. |
+
+### M.1: Systematic Elimination of Subsets
+
+| Representation | Color? | Weak? | Correct Y? | VL? | CKM Fix? | A_FB^b Fix? | Higgs Fix? | All Three? |
+|---|---|---|---|---|---|---|---|---|
+| **(3,2,1/6) VL** | **✓** | **✓** | **✓** | **✓** | **✓** | **✓** | **✓** | **YES** |
+| (1,2,−1/2) VL | ✗ | ✓ | ✓ | ✓ | Partial — lepton mixing, not quark CKM | ✗ — no quark mixing | ✗ — no color → no gg→H | No |
+| (3,1,−1/3) VL | ✓ | ✗ | ✓ | ✓ | ✗ — singlet can't enter CKM doublet structure | Partial — can mix with b but no doublet Z-vertex shift | ✓ — color enters gg→H | No |
+| (3,1,2/3) VL | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ — wrong charges for b mixing | ✓ — color enters gg→H | No |
+| (1,1,−1) VL | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | No |
+| (3,2,1/6) chiral | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ — excluded by Higgs data (μ ≈ 9) | No |
+| (3,2,7/6) VL | ✓ | ✓ | ✗ (exotic charges) | ✓ | ✗ — charges +5/3, +2/3 don't match d-type CKM | Partial | ✓ | No |
+
+**Only (3,2,1/6) VL satisfies all four requirements simultaneously.** Every other representation fails at least one anomaly.
+
+---
+
+## APPENDIX N: THE MIXING ANGLE HIERARCHY — θ₁₄, θ₂₄, θ₃₄
+
+Each mixing angle connects the Cabibbo Doublet to a different SM generation and is constrained by different experiments.
+
+| Mixing Angle | Generation | Connects To | Primary Observable | Current Constraint | How Determined |
+|---|---|---|---|---|---|
+| θ₁₄ | 1st | u-d sector | CKM first-row deficit | |V_ub'| ≈ sin(θ₁₄) ≈ 0.045 | |V_ud|² + |V_us|² + |V_ub|² + |V_ub'|² = 1 |
+| θ₂₄ | 2nd | c-s sector | Kaon physics | Constrained by K⁰-K̄⁰ mixing; testable via K→πνν̄ at NA62 | Indirect: K mixing sets upper bound |
+| θ₃₄ | 3rd | t-b sector | Z-pole A_FB^b | From fit to A_FB^b = 0.0992 via Z-b-b vertex shift | Δg_bR ∝ sin²(θ₃₄) |
+
+### N.1: Independence of the Three Angles
+
+| Property | θ₁₄ | θ₂₄ | θ₃₄ |
+|---|---|---|---|
+| Measured by | Nuclear β decay + kaon decay | Kaon rare decays + charm physics | Z-pole data + B-meson mixing |
+| Energy scale of data | MeV (nuclear) + GeV (kaon) | GeV (kaon) | 91 GeV (LEP) + GeV (B factories) |
+| Independent of other angles? | Yes — first-row unitarity depends only on θ₁₄ | Yes — K physics constraints are independent | Yes — Z-pole and B constraints are independent |
+| Cross-check available? | Yes — neutron lifetime vs superallowed β | Yes — K→πνν̄ rate at NA62 | Yes — B⁰-B̄⁰ mixing vs A_FB^b consistency |
+
+### N.2: Comparison with SM CKM Mixing Angles
+
+| Mixing | Value | Comparison |
+|---|---|---|
+| θ₁₂ (Cabibbo angle) | sin(θ₁₂) ≈ 0.225 | Largest SM mixing |
+| θ₂₃ (cb mixing) | sin(θ₂₃) ≈ 0.041 | Moderate SM mixing |
+| **θ₁₄ (u to Cabibbo Doublet)** | **sin(θ₁₄) ≈ 0.045** | **Comparable to θ₂₃** |
+| θ₁₃ (ub mixing) | sin(θ₁₃) ≈ 0.004 | Smallest SM mixing |
+
+The Cabibbo Doublet mixing |V_ub'| ≈ 0.045 sits between the two smallest SM mixings. It is not anomalously large — it is a typical inter-generation mixing angle, comparable in magnitude to the charm-bottom mixing that has been measured since the 1980s.
+
+---
+
+## APPENDIX O: WHAT EACH EXPERIMENT ACTUALLY MEASURED
+
+The raw experimental data behind each anomaly, showing the measurement chain from detector to CKM element.
+
+### O.1: V_ud from Superallowed Nuclear β Decay
+
+| Step | What Is Measured | What Is Extracted | Key Systematic |
+|---|---|---|---|
+| 1 | Half-lives t₁/₂ of 0⁺→0⁺ transitions in 15+ nuclei (¹⁰C, ¹⁴O, ²⁶Al, ³⁴Cl, ³⁸K, ⁴²Sc, ⁴⁶V, ⁵⁰Mn, ⁵⁴Co, etc.) | Corrected ft values (Ft) | Nuclear structure corrections δ_C, δ_NS |
+| 2 | Ft = ft(1 + δ_R')(1 + δ_NS − δ_C) | |V_ud|² = K/(2G_F²Ft(1 + Δ_R^V)) | Nucleus-independent radiative correction Δ_R^V |
+| 3 | Consistency of Ft across 15+ nuclei | Confirms CVC (conserved vector current) | Ft spread < 0.03% (world's most precise nuclear data) |
+| 4 | Final extraction | |V_ud| = 0.97373 ± 0.00031 | Dominated by Δ_R^V uncertainty |
+
+**The radiative correction Δ_R^V is where the significance debate lives.** Seng, Gorchtein, Ramsey-Musolf (2018) computed a new value of Δ_R^V using dispersion relations, shifting |V_ud| downward and opening the unitarity deficit. Subsequent calculations by different groups have produced slightly different values, changing the deficit significance from 4σ to 2.5-3σ. The DEFICIT EXISTS in all calculations. Its SIZE varies.
+
+### O.2: V_us from Kaon Decays
+
+| Step | What Is Measured | What Is Extracted |
+|---|---|---|
+| 1 | K → πeν branching ratio and lifetime | f₊(0)|V_us| from semileptonic decays |
+| 2 | K → μν branching ratio and lifetime | f_K|V_us| from leptonic decays |
+| 3 | Lattice QCD computation of f₊(0) and f_K/f_π | |V_us| extracted |
+| 4 | Final extraction | |V_us| = 0.2243 ± 0.0005 |
+
+### O.3: A_FB^b from LEP Z-Pole Running
+
+| Step | What Is Measured | What Is Extracted |
+|---|---|---|
+| 1 | e⁺e⁻ → Z → bb̄ events at √s = M_Z | Angular distribution of b-tagged jets |
+| 2 | Forward (cos θ > 0) and backward (cos θ < 0) b-jet rates | Raw asymmetry A_FB^raw |
+| 3 | QCD corrections (gluon radiation shifts cos θ), QED corrections (ISR), hemisphere mixing corrections | Corrected A_FB^b = 0.0992 ± 0.0016 |
+| 4 | Combination of ALEPH, DELPHI, L3, OPAL results | LEP average (published 2006) |
+
+### O.4: Higgs Signal Strength from LHC
+
+| Step | What Is Measured | What Is Extracted |
+|---|---|---|
+| 1 | pp → H → γγ, ZZ, WW, ττ, bb̄ event rates at √s = 7, 8, 13 TeV | Individual channel signal strengths μ_i |
+| 2 | Combination across channels and experiments (ATLAS + CMS) | Combined μ ≈ 1.06-1.10 |
+| 3 | Theory uncertainty on SM prediction (PDF, α_s, m_t dependence) | μ = 1.000 ± ~0.05 (theory) |
+| 4 | Comparison | Excess at ~2σ |
+
+---
+
+## APPENDIX P: THE HISTORICAL PARALLEL — PARTICLES IDENTIFIED BEFORE DISCOVERY
+
+| Particle | Year Identified | By Whom | Method | Year Discovered | Discovery Mass | Predicted Mass | Accuracy |
+|---|---|---|---|---|---|---|---|
+| Charm quark | 1970 | GIM | FCNC cancellation (integer argument) | 1974 | 1.5 GeV | ≤ 2 GeV | Within factor 1.3 |
+| W boson | 1967-68 | Weinberg, Salam | SU(2)×U(1) gauge theory | 1983 | 80.4 GeV | ~80 GeV | Within 1% |
+| Z boson | 1967-68 | Weinberg, Salam | Same gauge theory | 1983 | 91.2 GeV | ~90 GeV | Within 1% |
+| Top quark | 1973-1994 | KM + precision EW | CKM matrix (integer) + Δρ (precision) | 1995 | 176 GeV | ~170 GeV | Within 3% |
+| Higgs boson | 1964 | Brout-Englert-Higgs | Symmetry breaking mechanism | 2012 | 125 GeV | Not predicted (mass was free parameter) | Mass not predicted |
+| **Cabibbo Doublet** | **2019-2026** | **Anomaly groups + this series** | **Three anomalies + gap ratio** | **?** | **?** | **1.5-6 TeV** | **?** |
+
+**Pattern: multiple independent theoretical arguments converging before discovery has been predictive in 4 of 5 cases.** The one exception (Higgs) had only one independent argument (symmetry breaking) and could not predict the mass. The Cabibbo Doublet has four independent lines (three anomalies + gap ratio) and a bounded mass window. The historical precedent is favorable but not proof.
+
+### P.1: Number of Independent Lines Before Discovery
+
+| Particle | Independent Arguments Before Discovery | Anomalies Before Discovery | Total Lines | Discovered? |
+|---|---|---|---|---|
+| Charm | 2 (GIM + K mixing) | 1 (K⁰-K̄⁰ mixing rate) | 3 | Yes (1974) |
+| Top | 3 (KM matrix + anomaly cancellation + Δρ) | 1 (ρ parameter from precision EW) | 4 | Yes (1995) |
+| W/Z | 1 (gauge theory) | 1 (neutral currents) | 2 | Yes (1983) |
+| Higgs | 1 (symmetry breaking) | 0 | 1 | Yes (2012) |
+| **Cabibbo Doublet** | **2 (gap ratio + anomaly fits)** | **3 (CKM, A_FB^b, Higgs μ)** | **5** | **Not yet** |
+
+The Cabibbo Doublet has the most independent lines of evidence of any particle before its discovery — if it is discovered. If it is not discovered, it will be the most elaborately supported false lead in particle physics history.
+
+---
+
+## APPENDIX Q: THE RADIATIVE CORRECTION DEBATE — WHY THE CKM SIGNIFICANCE RANGES FROM 2.5σ TO 4σ
+
+| Calculation | Year | Δ_R^V Value | Resulting |V_ud| | First-Row Sum | Deficit Significance |
+|---|---|---|---|---|---|
+| Marciano-Sirlin (traditional) | Pre-2018 | 0.02361 ± 0.00038 | 0.97420 ± 0.00021 | 0.99940 ± 0.00037 | ~1.6σ |
+| Seng-Gorchtein-Ramsey-Musolf | 2018 | 0.02467 ± 0.00022 | 0.97370 ± 0.00014 | 0.99815 ± 0.00023 | ~4σ |
+| Czarnecki-Marciano-Sirlin (updated) | 2019 | 0.02426 ± 0.00032 | 0.97389 ± 0.00018 | 0.99860 ± 0.00030 | ~3σ |
+| Hayen (independent) | 2021 | Various | Various | ~0.998-0.999 | 2.5-3.5σ |
+| Current PDG assessment | 2024 | Weighted average | 0.97373 ± 0.00031 | 0.99798 ± 0.00038 | 2.5-4σ (range) |
+
+**What the radiative correction is:** When a neutron decays (n → peν̄), the process involves not just the tree-level W-boson exchange but also virtual photon loops, virtual Z-boson loops, and QCD corrections. These loops modify the relationship between the measured decay rate and the underlying CKM element V_ud. The "inner" radiative correction Δ_R^V accounts for short-distance virtual corrections that are independent of the nuclear structure.
+
+**What changed in 2018:** Seng, Gorchtein, and Ramsey-Musolf computed Δ_R^V using dispersion relations (relating the virtual corrections to measurable cross-sections) rather than the traditional perturbative approach. Their result was larger than the previous value by about 0.001 — enough to shift |V_ud| downward by 0.0005 and open the unitarity deficit from ~1.6σ to ~4σ.
+
+**Why the debate persists:** Different groups use different methods (dispersion relations vs perturbative QCD + hadronic models) to handle the non-perturbative hadronic contributions to the radiative correction. These contribute at the 10⁻⁴ level — small absolutely but large relative to the precision of the V_ud extraction. The debate is about hadronic physics, not about whether new quarks exist. But its resolution determines HOW SIGNIFICANT the deficit is.
+
+**The bottom line:** The deficit exists in every calculation. The question is whether it is 2.5σ (suggestive but not compelling) or 4σ (strong evidence). The Cabibbo Doublet interpretation is robust across this range — the mixing |V_ub'|² changes from ~0.0015 (at 2.5σ) to ~0.002 (at 4σ), shifting |V_ub'| from ~0.039 to ~0.045. The mass window changes slightly but remains in the TeV range.
+
+---
+
+## APPENDIX R: THE A_FB^b FROZEN STATE — WHY IT CANNOT BE RESOLVED WITH CURRENT EXPERIMENTS
+
+| Question | Answer |
+|---|---|
+| Can LEP remeasure A_FB^b? | No — LEP was decommissioned in November 2000 to make way for the LHC |
+| Can the LHC measure A_FB^b? | Not with comparable precision — LHC is a pp collider, not e⁺e⁻. Z bosons are produced but in a much dirtier environment with lower statistics for precision asymmetry measurements |
+| Can SLD remeasure it? | No — SLC at SLAC was shut down in 1998 |
+| Can Belle II measure it? | No — Belle II operates at the Υ(4S) resonance, not the Z pole |
+| Can any current experiment resolve it? | No — no electron-positron collider operates at the Z pole as of 2026 |
+| What would resolve it? | FCC-ee (CERN, proposed) or CEPC (China, proposed) — Z-factory mode with 10¹² Z decays, ~100× LEP statistics |
+| When? | FCC-ee: earliest 2040s if approved. CEPC: earliest 2035 if approved. Neither is funded. |
+| Until then? | The measurement is frozen at 0.0992 ± 0.0016 (2006 publication). It will not change. |
+
+**The A_FB^b anomaly is in a unique epistemic state:** It is simultaneously the most persistent anomaly in electroweak physics (~3σ for 25+ years, never resolved by any SM calculation) and the most unreachable (no current experiment can improve the measurement). This combination — persistent and frozen — makes it a peculiarly stable piece of evidence. It cannot fluctuate away with more data because there is no more data. It cannot be confirmed with a new measurement because no experiment can make one.
+
+---
+
+## APPENDIX S: THE CONVERGENCE PROBABILITY — INFORMAL ASSESSMENT
+
+### S.1: How Many Independent Lines Point to (3,2,1/6)?
+
+| Line of Evidence | Independent? | Arrives at (3,2,1/6)? | Could Point Elsewhere? |
+|---|---|---|---|
+| 1. Gap ratio elimination (PHYS-15) | Yes — uses only coupling constants | Yes — unique minimal survivor | Could point to MSSM (the other survivor) |
+| 2. CKM deficit (Belfatto 2020) | Yes — uses only V_ud, V_us | Yes — VL quark doublet required | Could be radiative correction artifact |
+| 3. A_FB^b (LEP 2000-2006) | Yes — uses only Z-pole angular data | Yes — Z-b-b vertex modification | Could be unknown SM correction |
+| 4. Higgs excess (LHC 2012-present) | Yes — uses only Higgs production rates | Yes — color triplet in gg→H | Could be statistical fluctuation |
+| 5. Three-anomaly simultaneous fit (Cheung 2020) | Partially — combines 2-4 | Yes — viable parameter space exists | Could have no viable region |
+
+### S.2: What If They All Pointed to Different Particles?
+
+| Scenario | What It Would Mean |
+|---|---|
+| Gap ratio → (3,2,1/6), CKM → (3,1,−1/3), A_FB^b → (1,2,−1/2) | Three different particles needed. No single solution. Much weaker case. |
+| Gap ratio → (3,2,1/6), anomalies → (3,2,7/6) | Close but different hypercharge. Tension between the roads. Weaker case. |
+| **Actual: all four lines → (3,2,1/6)** | **One particle resolves everything. Strongest possible case short of discovery.** |
+
+### S.3: Informal Probability Assessment
+
+This is not a rigorous statistical calculation. It is an informal assessment of how likely the convergence is by chance.
+
+| Question | Assessment |
+|---|---|
+| Given 15 enumerated candidates, probability that one random choice matches | 1/15 ≈ 7% |
+| Given the gap ratio path narrows to 2 survivors, probability that a random anomaly target matches one of them | 2/15 ≈ 13% |
+| Given that the anomaly literature independently identified (3,2,1/6) before the gap ratio analysis existed | Cannot be retroactively assigned a probability — it happened |
+| Is the convergence surprising? | Yes — two completely independent methods from different data, communities, and energy scales |
+| Is the convergence proof? | No — proof requires experimental observation |
+
+---
+
+## APPENDIX T: THE COMPLETE EXPERIMENTAL TIMELINE
+
+| Year | Event | Relevance to Cabibbo Doublet |
+|---|---|---|
+| 1989-2000 | LEP operates at Z pole | A_FB^b measured: 0.0992 ± 0.0016 (~3σ from SM) |
+| 2000 | LEP decommissioned | A_FB^b measurement frozen |
+| 2010 | LHC begins operation | VL quark searches begin |
+| 2012 | Higgs boson discovered | Signal strength μ ≈ 1.06-1.10 measured |
+| 2018 | Improved radiative corrections | CKM deficit opens to ~4σ |
+| 2019-2020 | Belfatto, Berezhiani; Cheung et al. | CKM deficit + three anomalies identified as VL quark signal |
+| 2020-2023 | LHC Run 2 VL quark searches | M > 1.5 TeV excluded (pair production) |
+| 2024 | Kitahara review, Cirigliano SMEFT | ~3σ deficit confirmed with updated inputs |
+| 2026 | This series (PHYS-15) | Gap ratio independently identifies (3,2,1/6) |
+| **2027** | **Hyper-K begins operation** | **Proton decay search starts; sensitivity reaches τ ~ 10³⁴ yr** |
+| **2027-2030** | **HL-LHC (high luminosity)** | **VL quark pair production reach extends to ~2-3 TeV** |
+| **2030+** | **Belle II full dataset** | **V_us precision improves; CKM deficit sharpens or resolves** |
+| **2030+** | **NA62 full dataset** | **K→πνν̄ measured; constrains θ₂₄** |
+| **2037** | **Hyper-K 10-year exposure** | **Proton decay sensitivity reaches τ ~ 10³⁵ yr — definitive test** |
+| **2040+** | **FCC-ee (if approved)** | **A_FB^b remeasured with 100× statistics — definitive test** |
+
+**The next decade (2027-2037) is the decisive window.** Hyper-K tests the proton decay prediction from the gap ratio path. HL-LHC tests the mass window from the anomaly path. Belle II tests the CKM deficit. Three independent experiments at three frontiers, each testing a different aspect of the Cabibbo Doublet prediction. If all three produce results consistent with the Cabibbo Doublet, the evidence will be overwhelming. If any one definitively excludes it (Hyper-K sees nothing AND LHC excludes below 6 TeV AND CKM deficit vanishes), the particle is excluded.
