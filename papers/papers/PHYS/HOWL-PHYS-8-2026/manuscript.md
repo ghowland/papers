@@ -427,7 +427,7 @@ Note on precision asymmetry: m_τ is known to 6 significant figures because the 
 
 ## APPENDIX E: CAUCHY-SCHWARZ CONTEXT
 
-![Fig. 7: The Koide ratio 2/3 sits at the exact midpoint of the Cauchy-Schwarz allowed range [1/3, 1) — corresponding to the critical amplitude a=√2.](./figures/phys8_07_cauchy_schwarz.png)
+![Fig. 7: The Koide ratio 2/3 sits at the exact midpoint of the Cauchy-Schwarz allowed range 1/3, 1) — corresponding to the critical amplitude a=√2.](./figures/phys8_07_cauchy_schwarz.png)
 
 For any N positive numbers x_i, the Cauchy-Schwarz inequality gives (Σx_i²)/(Σx_i)² ≥ 1/N, with equality iff all x_i are equal. Setting x_i = √m_i:
 
