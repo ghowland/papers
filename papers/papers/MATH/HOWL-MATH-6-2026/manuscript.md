@@ -69,6 +69,8 @@ All 20 constants are available in the Q335 = 2³³⁵ integer rational basis (DA
 
 ## 3. The Prior Record: 72/72 Null
 
+![Fig. 7: Most SM parameters have 4-8 digits of precision — PSLQ power is limited by what experiments provide, not by what the algorithm can search.](./figures/math6_07_sm_precision_histogram.png)
+
 Sessions 1 and 2 of the HOWL series applied PSLQ to 72 constants from four categories. The results were documented in DISC-6, DISC-7, and DISC-8 (papers for human readers, not fed to future sessions). This section transfers the record into a MATH paper that persists.
 
 **SM parameters (51 tests, 4-12 digit precision).** Every measured Standard Model parameter available at sufficient precision was tested: the fine structure constant α⁻¹ = 137.036 (12 digits), the weak mixing angle sin²θ_W = 0.23122 (5 digits), the strong coupling α_s = 0.1180 (4 digits), the muon-to-electron mass ratio m_μ/m_e = 206.768 (8 digits), quark mass ratios, lepton mass ratios, CKM mixing angles, and derived quantities. All NULL. No SM parameter is a simple linear combination of the 20 basis constants at the available measurement precision.
@@ -89,6 +91,8 @@ Prior record: 72/72 null. Best prior precision: 30 digits (Feigenbaum).
 
 ### 4.1 What Bessel Zeros Are
 
+![Fig. 2: The oscillating Bessel functions J₀ and J₁ with the three tested zeros marked — each confirmed independent of the transcendental basis at 100 digits.](./figures/math6_02_bessel_functions.png)
+
 The Bessel functions J_ν(x) are solutions of the Bessel differential equation:
 
 x²y'' + xy' + (x² − ν²)y = 0
@@ -106,6 +110,8 @@ j₁₂ = 7.01558666981561875354... — the second zero of J₁. This determines
 These constants enter engineering at 3-5 significant figures. They are transcendental — Siegel proved in 1929 that j_νk is transcendental for any integer ν. Algebraic independence from π is conjectured but not proven.
 
 ### 4.2 The 10 Tests
+
+![Fig. 5: Target constants vs basis subsets — one green cell (sanity check π²=6ζ(2)) in a sea of red nulls. The algorithm works; the constants are independent.](./figures/math6_05_pslq_matrix.png)
 
 All tests at 100-digit precision with maxcoeff 10,000, from the verified Bessel PSLQ script (bessel_pslq_0.py, 6/6 gate checks pass):
 
@@ -133,11 +139,15 @@ Ten tests. Zero relations. The Bessel zeros and their ratios are completely inde
 
 ### 4.3 The Significance of 100 Digits
 
+![Fig. 1: Excluded relation-space volume grows exponentially with precision — Bessel zero tests are 10⁷⁰ more discriminating than SM parameter tests.](./figures/math6_01_pslq_excluded_volume.png)
+
 The SM parameter tests in the prior record operate at 4-12 digit precision because that is the measurement precision available from experiment. The Feigenbaum constants were tested at 30 digits. The Bessel zeros, being analytically computable to arbitrary precision, were tested at 100 digits.
 
 The difference is enormous. At d digits with maxcoeff M, PSLQ excludes all integer relations with |coefficients| ≤ M that hold to d-digit precision. At 12 digits and maxcoeff 10,000, the excluded relation space has roughly 10^(12 × n) volume (where n is the basis size). At 100 digits and maxcoeff 10,000, the excluded space is 10^(100 × n) — 88 orders of magnitude larger for each basis element.
 
 The Bessel zero nulls are the strongest independence results in the series by a factor of 10^70. If a relation between j₁₁ and π exists with coefficients below 10,000, it must fail at the 100th decimal digit or beyond. For practical purposes, no such relation exists.
+
+![Fig. 4: From 4-digit SM parameters to 100-digit Bessel zeros — each step up in precision excludes exponentially more possible relations.](./figures/math6_04_precision_power.png)
 
 ---
 
@@ -176,6 +186,8 @@ This does not mean these constants have no structure. It means their structure, 
 The Feigenbaum constants δ and α, and the BCS gap ratio, are independent of the standard basis. These constants arise from nonlinear dynamics (chaos theory) and condensed matter physics (superconductivity) — domains far from the number theory that produces π and ζ values. Their independence is expected but worth confirming: the onset of chaos and the superconducting condensation involve genuinely new mathematical constants not reducible to the classical transcendentals.
 
 ### 6.3 For Analytical Constants (10 tests)
+
+![Fig. 6: j₀₁, j₁₁, j₁₂ on a number line alongside π, 2π, 3π — the Bessel zeros sit between π multiples, not on them. PSLQ confirms no relation.](./figures/math6_06_bessel_vs_pi.png)
 
 The Bessel zeros j₁₁, j₀₁, j₁₂ and their ratios and differences are independent of the standard basis at 100-digit precision. These are solutions of a specific ordinary differential equation (the Bessel ODE). Their independence from π, e, and ζ values means: you cannot replace j₁₁ with a formula involving π. Every diffraction pattern, waveguide cutoff, and drum mode requires computing j₁₁ fresh from the Bessel equation. Each Bessel zero is a genuinely irreducible number.
 
@@ -255,6 +267,8 @@ The "derivation beats search" conclusion as an operational guideline. Future ses
 
 ## 11. Summary
 
+![Fig. 3: All 82 constants plotted by precision and category — every one returns NULL against the 20-constant basis.](./figures/math6_03_82_scatter.png)
+
 82 constants tested. Zero relations found. Three categories: physical constants from the universe (59 tests, 4-15 digits), dynamical constants from nonlinear mathematics (3 tests, 10-30 digits), analytical constants from differential equations (10 tests, 100 digits). Twenty basis constants from geometry, analysis, and number theory. Sanity check passes: PSLQ finds π² = 6ζ(2) as [1, 0, −6].
 
 The Bessel zeros j₁₁, j₀₁, j₁₂ and their ratios are independent of the entire basis at 100-digit precision — the strongest independence statement in the series by 70 orders of magnitude over the SM parameter tests.
@@ -262,6 +276,8 @@ The Bessel zeros j₁₁, j₀₁, j₁₂ and their ratios are independent of t
 Every parameter reduction in the HOWL series came from physical derivation: θ_QCD from energy minimization, α ↔ a_e from QED, Koide from trigonometric identity. Every PSLQ search returned noise. Derivation beats search: 3 successes from physics, 0 from pattern matching, across 82 tests.
 
 The transcendental basis is minimal. No tested constant simplifies. The record is established. Future sessions extend it.
+
+![Fig. 8: 82/82 null — three categories, sanity check passes, derivation beats search 3-to-0 across 82 tests.](./figures/math6_08_identity_card.png)
 
 ---
 
