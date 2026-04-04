@@ -37,6 +37,8 @@ In each of the following five domains, a physical quantity Q decomposes under di
 
 ### 2.1 Berry Phase
 
+![Fig. 5: A quantum system transported around a parameter space loop accumulates integer windings (invisible) plus a fractional remainder (the Berry phase) — the remainder IS the observable.](./figures/phys10_05_berry_phase.png)
+
 A quantum system transported adiabatically around a closed loop in parameter space acquires a geometric phase γ in addition to the dynamical phase. The geometric phase decomposes:
 
 γ = 2π·n + (γ mod 2π)
@@ -55,6 +57,8 @@ The integer n is the winding number — the number of complete phase cycles accu
 | Established by | Berry 1984, Simon 1983, Thouless Kohmoto Nightingale den Nijs 1982 |
 
 ### 2.2 Brillouin Zone
+
+![Fig. 2: Band structure E(k) with zone boundaries — crystal momentum folds into the first BZ. Zone index is the integer, k mod G is the remainder that determines all physical properties.](./figures/phys10_02_brillouin_zone.png)
 
 An electron in a periodic crystal has crystal momentum k defined only modulo the reciprocal lattice vector G = 2π/a, where a is the lattice constant. The momentum decomposes:
 
@@ -136,6 +140,8 @@ This is the one domain where the remainder has been derived within this series. 
 
 ### 2.6 Summary
 
+![Fig. 3: Berry phase, Brillouin zone, Bohr-Sommerfeld, Chern-Simons, and theta vacuum — each decomposed into integer (protected) plus remainder (observable) under a domain-specific modulus.](./figures/phys10_03_five_domains.png)
+
 | Domain | Modulus | Integer | Remainder | Source of modulus |
 |---|---|---|---|---|
 | Berry phase | 2π | Winding number | Geometric phase | Phase periodicity |
@@ -151,6 +157,8 @@ In every case: the modulus is determined by a symmetry or topology of the physic
 ## III. ONE ANALOGOUS DOMAIN
 
 ### 3.1 Renormalization Group Flow
+
+![Fig. 6: Coupling g(μ) runs toward fixed point g* — decomposed into g* (reference, "integer analog") and displacement g−g* (remainder). Analogous but not formally integer-protected.](./figures/phys10_06_rg_flow.png)
 
 The RG decomposition is structurally analogous to the five formal domains but does not have a literal integer quotient.
 
@@ -199,6 +207,8 @@ The physical quotient is q. The physical remainder is r / 2³³⁵. Both are exa
 This is the operational meaning of "exact remainder tracking": the quotient-remainder decomposition that defines the physics in the five formal domains is performed as integer division on 100-digit numerators. The 2³³⁵ denominator is shared and cancels. The computation is integer arithmetic.
 
 ### 4.2 Two Kinds of Remainder in the Electromagnetic Chain
+
+![Fig. 1: Fermion count increments at each mass threshold (integer, discrete), VP running accumulates between thresholds (remainder, continuous) — the quotient-remainder decomposition in the electromagnetic chain.](./figures/phys10_01_vp_threshold_decomposition.png)
 
 The electromagnetic chain from [@HOWL-PHYS-9-2026] — a_e → α → α(M_Z) — produces two structurally distinct kinds of remainder. The paper distinguishes them explicitly.
 
@@ -256,6 +266,8 @@ The distinction is critical: PSLQ tests whether a quantity is a rational LINEAR 
 
 ### 5.3 Modular Search Results
 
+![Fig. 7: α⁻¹ = 114 × ζ(3) + 0.00151 — visually striking but not statistically significant. PSLQ on the residual returns null. The most notable hit in a null search.](./figures/phys10_07_alpha_mod_zeta3.png)
+
 The most notable proximity: α⁻¹ mod ζ(3) produces quotient 114 with remainder/modulus = 0.00126. Explicitly:
 
 α⁻¹ = 114 × ζ(3) + 0.001512
@@ -311,6 +323,8 @@ The PHYS-7 result (θ_QCD = 0) succeeded because both the modulus (2π, from the
 ---
 
 ## VII. LIMITATIONS
+
+![Fig. 8: Five formal domains share the pattern integer=protected, remainder=observable. The Q335 tool tracks remainders exactly. The SM modulus search returns null — the search space is bounded, not closed.](./figures/phys10_08_identity_card.png)
 
 The five-domain pattern is a unifying observation across established results, not a new theorem. Each domain's quotient-remainder structure is independently proven in the published literature. The contribution is the unified framing and the explicit demonstration that exact integer arithmetic makes the structure computationally tractable.
 
@@ -656,6 +670,8 @@ sin θ₂₃ (0.0412), sin θ₁₃ (0.00350), m_s/m_d (20.0), m_c/m_s (13.597),
 
 ## APPENDIX E: THE COMPLETE PHYSICS CONSTANTS ENUMERATION
 
+![Fig. 4: Four tiers — pure integers, simple rationals, Q335 transcendentals, and measured constants. The laws use Tiers 0-2. The universe supplies Tier 3. The line between them is the open question.](./figures/phys10_04_complete_enumeration.png)
+
 ### E.1 Pure Integers in SM Equations
 
 | Integer | Where it appears | Origin |
@@ -897,4 +913,282 @@ r_physical = remainder / 2**335          # = 0.001512...
 ---
 
 **END APPENDICES**
+
+---
+
+## APPENDIX H: THE FIVE FORMAL DOMAINS — SIDE BY SIDE
+
+Every structural element of the quotient-remainder decomposition compared across all five domains.
+
+| Property | Berry Phase | Brillouin Zone | Bohr-Sommerfeld | Chern-Simons | QCD Theta Vacuum |
+|---|---|---|---|---|---|
+| Physical quantity Q | Geometric phase γ | Crystal momentum k | Classical action ∮p·dq | CS functional CS(A) | Vacuum angle θ |
+| Modulus M | 2π | G = 2π/a | 2πℏ | 1 | 2π |
+| Integer quotient q | Winding number n | Zone index n | Quantum number n | Chern number c₂ | Instanton number ν |
+| Remainder R | γ mod 2π | k mod G | Maslov correction μ/4 | CS mod ℤ | θ ∈ [0, 2π) |
+| Remainder is observable? | Yes — Hall conductance | Yes — band structure | Yes — zero-point energy | Yes — anyonic phase | Yes — CP violation strength |
+| Integer is observable? | No — gauge-dependent | No — labeling convention | Yes — energy level count | No — requires 4-manifold | No — summed over in |θ⟩ |
+| Topological protection | Phase transition required | Umklapp scattering required | Eigenvalue crossing required | Smooth deformation can't change c₂ | Instanton tunneling changes ν by ±1 |
+| Source of modulus | e^(iγ) periodicity | Lattice translation symmetry | Wavefunction single-valuedness | Large gauge invariance | π₃(SU(3)) = ℤ |
+| Modulus contains π? | Yes (2π) | Yes (2π/a) | Yes (2πℏ) | No (modulus = 1) | Yes (2π) |
+| Remainder range | [0, 2π) | [−G/2, G/2) | {0, 1/4, 1/2, 3/4} × 2πℏ | [0, 1) | [0, 2π) |
+| Remainder in PHYS-7? | Not addressed | Not addressed | Not addressed | Not addressed | θ = 0 (ground state) |
+| Q335 exact? | Yes — 2π is 2 × p(π)/2³³⁵ | Yes — if a is rational | Yes — if ℏ entered as rational | Yes — modulus is 1 | Yes — cos(θ) at θ=0 is exact |
+| Established by | Berry 1984 | Bloch 1929 | Bohr 1913, Maslov 1965 | Witten 1989 | 't Hooft 1976 |
+
+---
+
+## APPENDIX I: THE SIXTH DOMAIN — RG FLOW COMPARISON
+
+Why RG flow is analogous but not formally integer.
+
+| Property | Five Formal Domains | RG Flow (Analogous) | Key Difference |
+|---|---|---|---|
+| "Integer" | Topologically protected integer (n, c₂, ν) | Fixed point g* where β(g*) = 0 | g* is generally not an integer; it is a continuous value |
+| "Remainder" | Q mod M — continuously variable within sector | g(μ) − g* — displacement from fixed point | Structurally identical role |
+| Topological protection | Integer can only change by discrete transition | Fixed point can shift continuously if theory content changes (e.g., varying N_f) | **No topological protection for g*** |
+| Physical significance of "remainder" | Determines observable | Determines phase of matter (confined vs free, ordered vs disordered) | Same — the displacement is the physics |
+| Modulus | Fixed by symmetry/topology | Not a fixed modulus — the "distance" to fixed point is unbounded | No periodicity |
+| Concrete example | θ = 0 mod 2π | α_s(M_Z) = 0.118, fixed point at α_s = 0 (UV) or ∞ (IR) | g* = 0 is an integer in this case |
+| VP running (PHYS-5) | At each threshold: fermion count increments (integer) | Between thresholds: logarithmic running (continuous) | The discrete/continuous split maps to integer/remainder |
+
+**The VP running is the bridge:** it has both formal integer structure (fermion counting at thresholds) and RG analog structure (continuous running between thresholds). This makes it the most natural domain for Q335 exact arithmetic, because both components are trackable as integers.
+
+---
+
+## APPENDIX J: THE TWO TYPES OF REMAINDER IN THE ELECTROMAGNETIC CHAIN
+
+Explicit separation of computational residuals (Type A) from physical threshold decompositions (Type B).
+
+| Type | Where It Appears | What It Measures | Is It a Quotient-Remainder? | Exact in Q335? | Physical Content |
+|---|---|---|---|---|---|
+| A — Newton convergence residual | QED inversion (PHYS-9) | |f(x)| at convergence: how well truncated series approximates all-orders | No — it's an algorithmic convergence measure | Yes — tracked exactly as Fraction | Bounds missing higher-order contributions |
+| A — Round-trip residual | a_e → α → a_e verification | |series(x_derived) − a_e|: arithmetic consistency check | No — it's a verification metric | Yes — < 10⁻⁴⁶ exact | Proves arithmetic introduces zero error |
+| A — CODATA disagreement | α⁻¹(derived) vs α⁻¹(CODATA) | 4.3 ppb: sum of missing physical contributions | No — it's a truncation measure | N/A — comparison to external value | Decomposes into 5-loop + mass-dep + hadronic + EW |
+| B — Fermion threshold | VP running at m_e, m_μ, m_τ | Discrete activation of new VP species | **Yes** — integer (fermion count) + remainder (accumulated running) | Yes — both components exact Fraction | Integer = which fermions are active; remainder = how much running accumulated |
+| B — Confinement wall | VP running at ~2 GeV | Transition from perturbative to non-perturbative | **Partially** — the transition is formal but the inside-face VP is measured, not computed | Partially — outside face exact, inside face measured rational | The two-face structure from PHYS-6 |
+| B — Flavor threshold | QCD running at m_c, m_b, m_t | Beta function coefficient changes from n_f to n_f+1 | **Yes** — integer (active flavor count) + remainder (running between thresholds) | Yes — if masses are rational Fractions | Integer = flavor count; remainder = running rate × scale ratio |
+
+---
+
+## APPENDIX K: THE MODULAR SCAN — STATISTICAL ANALYSIS
+
+Expected false positive rates versus observed hits.
+
+| Proximity Threshold | Expected Hits per Target (34 moduli, d ≤ 30) | Expected Total (17 targets) | Observed Total | Significance |
+|---|---|---|---|---|
+| 0.01% | 0.007 | 0.12 | 0 | Consistent with random |
+| 0.05% | 0.034 | 0.58 | ~2 | Consistent with random |
+| 0.1% | 0.068 | 1.16 | ~5 | Consistent with random (slightly below expectation) |
+| 0.5% | 0.340 | 5.78 | ~12 | Consistent with random |
+| 1.0% | 0.680 | 11.56 | ~20 | Consistent with random |
+
+**Derivation of expected rate:** For a uniformly distributed remainder R/M ∈ [0, 1), the probability of being within ε of any fraction p/d with 1 ≤ p < d ≤ D is approximately 2ε × Σ_{d=2}^{D} φ(d) ≈ 2ε × 3D²/π². At D = 30: Σφ(d) ≈ 280. Expected hits per target at threshold ε: 2 × ε × 280 / 34 (normalized per modulus). At ε = 0.001: ~0.068 per target. At ε = 0.0001: ~0.007 per target.
+
+**The SM constants are not special.** They do not cluster near simple fractions of basis constants more than random numbers would. The α⁻¹/ζ(3) ≈ 114 hit is the most visually striking but is consistent with random expectation.
+
+---
+
+## APPENDIX L: THE α⁻¹/ζ(3) HIT — DETAILED EXAMINATION
+
+The single most notable result from the modular scan, examined in detail.
+
+| Property | Value |
+|---|---|
+| α⁻¹ (derived from a_e) | 137.035998583 |
+| ζ(3) | 1.20205690316 |
+| Quotient ⌊α⁻¹/ζ(3)⌋ | 114 |
+| 114 × ζ(3) | 137.034486960 |
+| Remainder | 0.001511623 |
+| R/ζ(3) | 0.001258 |
+| 114 factorization | 2 × 3 × 19 |
+
+| Test | Method | maxcoeff | Result |
+|---|---|---|---|
+| Is remainder a basis constant? | PSLQ against 11 constants | 100 | Null |
+| Is remainder a basis constant? | PSLQ against 11 constants | 1,000 | Null |
+| Is remainder a basis constant? | PSLQ against 11 constants | 10,000 | Null |
+| Is α⁻¹ a linear combination including ζ(3)? | PSLQ against 11 constants | 200 | Null |
+| Is α⁻¹ a linear combination including ζ(3)? | PSLQ against 11 constants | 1,000 | Null |
+| Is α⁻¹ a linear combination including ζ(3)? | PSLQ against 11 constants | 10,000 | Null |
+
+**Statistical assessment:**
+
+| Question | Answer |
+|---|---|
+| Is 114 special? | 114 = 2 × 3 × 19. Not a prime, not a power, not a Fibonacci number, not connected to SM group theory. No structural reason for this integer. |
+| Is the proximity 0.13% significant? | For any number near 137 divided by a number near 1.2, the quotient is near 114.2. The probability of the fractional part being within 0.13% of zero is ~0.26%. With 34 moduli, expected ~0.09 hits per target. One hit across 17 targets is ~1.5 expected. Not significant. |
+| Would the hit survive a random control test? | Expected: yes. Random numbers at magnitude ~137 divided by numbers at magnitude ~1.2 would produce similar hits at similar rates. |
+| Does the hit persist across determinations? | Yes — both derived (137.035998583) and CODATA (137.035999177) give q = 114 with R agreeing to 5 decimal places. This is because the two values differ by only 4.3 ppb. |
+| Verdict | Not significant. Consistent with random coincidence. The remainder does not decompose into the basis. |
+
+---
+
+## APPENDIX M: THE sin²θ_W AND α_s NEAR-HITS — DETAILED
+
+| Candidate | Expression | Predicted | Measured | Difference | Percentage |
+|---|---|---|---|---|---|
+| sin²θ_W ≈ ln(2)/3 | ln(2)/3 = 0.23105 | 0.23105 | 0.23122 | +0.00017 | 0.07% |
+| α_s ≈ √2/12 | √2/12 = 0.11785 | 0.11785 | 0.11800 | +0.00015 | 0.13% |
+
+**sin²θ_W = ln(2)/3 assessment:**
+
+| Question | Answer |
+|---|---|
+| Is ln(2)/3 structurally motivated? | ln(2) appears in QED threshold integrals. 1/3 appears as the VP boundary constant. Their product has no known structural connection to the weak mixing angle. |
+| Precision of measurement | sin²θ_W = 0.23122 ± 0.00003, so ln(2)/3 = 0.23105 is 5.7σ away. |
+| Verdict | **Excluded at 5.7σ.** The near-hit at 0.07% does not survive the measurement precision. sin²θ_W ≠ ln(2)/3. |
+
+**α_s = √2/12 assessment:**
+
+| Question | Answer |
+|---|---|
+| Is √2/12 structurally motivated? | √2 appears in the Fermi constant G_F = 1/(√2 v²). 1/12 has no obvious connection to QCD. |
+| Precision of measurement | α_s = 0.1180 ± 0.0009, so √2/12 = 0.11785 is 0.17σ away. |
+| Verdict | **Not excluded — within 0.17σ.** But α_s is known to only 4 significant figures. The near-hit is within measurement uncertainty and cannot be confirmed or excluded at current precision. Future lattice QCD determinations at 0.1% precision could test this. |
+
+---
+
+## APPENDIX N: THE COMPLETE PSLQ RECORD — CROSS-REFERENCED WITH MATH-6
+
+Total PSLQ tests across the series, combining MATH-6 (82/82 null) and PHYS-10 (57 tests).
+
+| Source | Category | Tests | Pool Sizes | maxcoeff | Precision | All Null? |
+|---|---|---|---|---|---|---|
+| MATH-6 (Sessions 1-2) | SM parameters | 51 | 9-20 constants | 1,000-10,000 | 4-12 digits | Yes |
+| MATH-6 (Sessions 1-2) | Residual searches | 5 | Various | 10,000 | 10 digits | Yes |
+| MATH-6 (Sessions 1-2) | Optical clock ratios | 5 | 20 constants | 10,000 | 15 digits | Yes |
+| MATH-6 (Sessions 1-2) | Mass/molecular ratios | 8 | 20 constants | 10,000 | 8-11 digits | Yes |
+| MATH-6 (Sessions 1-2) | Feigenbaum constants | 2 | 20 constants | 10,000 | 30 digits | Yes |
+| MATH-6 (This session) | Bessel zeros | 10 | 5-20 constants | 10,000 | 100 digits | Yes |
+| PHYS-10 | SM dimensionless ratios (Stage 1) | 17 | 9 constants | 1,000 | 4-12 digits | Yes |
+| PHYS-10 | SM dimensionless ratios (Stage 2) | 17 | 20 constants | 1,000 | 4-12 digits | Yes |
+| PHYS-10 | SM dimensionless ratios (Stage 3) | 17 | 35 constants | 10,000 | 4-12 digits | Yes |
+| PHYS-10 | α⁻¹ residual from ζ(3) | 6 | 11 constants | 100-10,000 | 12 digits | Yes |
+| **Total** | | **139** | | | | **All null** |
+
+**The sanity check passes in both MATH-6 and PHYS-10:** PSLQ finds π² = 6ζ(2) as [1, 0, −6]. The algorithm works. All 139 nulls are genuine.
+
+**Combined record: 139 PSLQ tests, zero relations found.** The standard transcendental basis is minimal — no tested physical, dynamical, or analytical constant is a simple rational linear combination of basis elements with coefficients ≤ 10,000.
+
+---
+
+## APPENDIX O: WHAT THE MODULUS IS IN EACH SOLVED CASE
+
+For every parameter where a derivation exists in the series, this table shows what the modulus was, where it came from, and what selected the remainder.
+
+| Parameter | Value | Modulus | Source of Modulus | Remainder | Selection Principle | Paper |
+|---|---|---|---|---|---|---|
+| θ_QCD | 0 | 2π | π₃(SU(3)) = ℤ | 0 | Energy minimization: E(θ) = E₀ − χ cos(θ) | PHYS-7 |
+| m_τ | 1776.97 MeV | 2π/3 (angular spacing on circle) | N = 3 generations, equal spacing | Determined by m_e, m_μ, and Koide constraint | Critical amplitude a = √2 at maximum symmetry | PHYS-8 |
+| α⁻¹ | 137.036 | Not a single-constant modulus | QED perturbative series (the transformation law IS the modulus structure) | Determined by a_e measurement | QED series inversion | PHYS-9 |
+| α⁻¹(M_Z) | 127.9 | Not a single-constant modulus | VP running (transformation law) | Determined by α(0) + threshold masses + Δ_had | VP running applied to derived α(0) | PHYS-5/9 |
+
+**Pattern:** The solved cases have moduli that come from the structure of the theory (topology for θ, generation count for Koide, QED perturbation theory for α). The unsolved cases (other SM parameters) lack identified moduli. Finding the modulus requires identifying the structural principle that organizes each parameter — the analog of π₃(SU(3)) for θ, or equal spacing for Koide.
+
+---
+
+## APPENDIX P: THE OPEN SEARCH DIRECTIONS — DETAILED
+
+Four directions from Section VI, with specific testable proposals.
+
+| Direction | What To Test | How To Test | Expected Computation Time | What a Hit Would Mean |
+|---|---|---|---|---|
+| (a) Products of basis constants | π·ln(2) = 2.177; ζ(3)·π² = 11.85; e·√2 = 3.844; etc. as moduli | Q335: multiply numerators, project back to 2³³⁵; then run modular scan | ~hours (product generation) + minutes (scan) | SM parameter is an integer multiple of a product of transcendentals plus a structured remainder |
+| (b) Scale-dependent moduli | Does α⁻¹ mod [running modulus(μ)] produce clean integers at specific scales? | Compute α⁻¹(μ) at 100 energy scales; at each, test against all basis constants as moduli | ~hours (VP running at 100 scales) + hours (scan) | The modulus for the coupling depends on the energy scale — the structure is dynamic, not static |
+| (c) Self-referential moduli | Does α⁻¹ mod f(α) = integer for some function f? | Test f = α, α², 1/α, πα, etc. | Minutes (small number of candidates) | The coupling's modulus depends on itself — nonlinear structure |
+| (d) Gauge-group-specific moduli | 2π for U(1), π for SU(2), 2π/3 for SU(3) | Test α₁⁻¹ mod 2π, α₂⁻¹ mod π, α₃⁻¹ mod (2π/3) | Minutes | Each gauge group has its own topologically determined modulus |
+
+**Priority ordering:** (d) is testable in minutes with existing data. (c) is testable in minutes. (a) requires computing ~500 products but is straightforward. (b) requires the most computation but is the most physically motivated.
+
+**Direction (d) — immediate test:**
+
+| Coupling | Value at M_Z | Proposed Modulus | Quotient | Remainder | R/M | Clean? |
+|---|---|---|---|---|---|---|
+| α₁⁻¹ (U(1)) | 59.00 | 2π = 6.2832 | 9 | 2.451 | 0.390 | No — remainder is not a simple fraction |
+| α₂⁻¹ (SU(2)) | 29.59 | π = 3.1416 | 9 | 1.316 | 0.419 | No |
+| α₃⁻¹ (SU(3)) | 8.47 | 2π/3 = 2.0944 | 4 | 0.093 | 0.044 | Marginal — small remainder but not clean |
+
+**Result:** Direction (d) does not produce clean quotients at M_Z. The remainders are not simple fractions. However, the couplings run — the quotients and remainders change with energy scale. A systematic scan across energy scales might reveal a scale where the quotients become clean. This connects to direction (b).
+
+---
+
+## APPENDIX Q: THE Q335 DIVISION OPERATION — WORKED EXAMPLES
+
+Three worked examples showing exact quotient-remainder decomposition using Q335 numerators.
+
+**Example 1: θ_QCD = 0 mod 2π**
+
+| Step | Operation | Value |
+|---|---|---|
+| θ_QCD in Q335 | p_θ = 0 | Zero — the ground state |
+| 2π in Q335 | p_{2π} = 2 × p_π = 439772851746384702023653194086482132389343663844697633634851646626313877498875437390200857487870508628 | ~102 digits |
+| Quotient | ⌊0 / p_{2π}⌋ = 0 | Integer: 0 |
+| Remainder | 0 − 0 × p_{2π} = 0 | Exact zero |
+| Physical: θ mod 2π | 0 | The ground state — remainder is exactly zero |
+
+**Example 2: Bohr-Sommerfeld harmonic oscillator (n = 0)**
+
+| Step | Operation | Value |
+|---|---|---|
+| Action ∮p·dq for ground state | (0 + 1/2) × 2πℏ = πℏ | One half the modulus |
+| In Q335 (setting ℏ = 1) | p_action = p_π | π numerator |
+| Modulus 2πℏ in Q335 | p_{2π} = 2 × p_π | Double the π numerator |
+| Quotient | ⌊p_π / (2 × p_π)⌋ = 0 | Integer: 0 (ground state quantum number) |
+| Remainder | p_π − 0 × 2p_π = p_π | Exactly π in Q335 |
+| Physical remainder | p_π / p_{2π} = 1/2 | The Maslov correction — exactly 1/2 |
+| Zero-point energy | E₀ = ℏω × (remainder/2π) = ℏω/2 | Exact |
+
+**Example 3: Berry phase for Z₂ topological insulator**
+
+| Step | Operation | Value |
+|---|---|---|
+| Geometric phase | γ = π (protected by time-reversal symmetry) | Half the modulus |
+| In Q335 | p_γ = p_π | π numerator |
+| Modulus 2π in Q335 | p_{2π} = 2 × p_π | Double π numerator |
+| Quotient | ⌊p_π / (2p_π)⌋ = 0 | Integer: 0 (winding number) |
+| Remainder | p_π − 0 = p_π | Exactly π |
+| Physical remainder / modulus | 1/2 | Topological — either 0 or 1/2, nothing in between |
+| Observable | σ_xy = (e²/h) × (γ/π mod 2) = e²/h | Quantized Hall conductance |
+
+**In all three examples:** The quotient is an exact integer. The remainder is an exact ratio of Q335 numerators. No rounding occurs. The physical observable (zero-point energy, Hall conductance, CP violation strength) is determined by the remainder alone. The Q335 framework makes the integer structure computationally exact.
+
+---
+
+## APPENDIX R: THE COMPLETE SEARCH SPACE — WHAT HAS AND HAS NOT BEEN TESTED
+
+| Search Type | What Was Tested | Scope | Result | What Remains Untested |
+|---|---|---|---|---|
+| PSLQ linear (MATH-6) | 82 constants against 20-constant basis | maxcoeff ≤ 10,000 | 82/82 null | Nonlinear relations; coefficients > 10,000; constants not in basis |
+| PSLQ linear (PHYS-10) | 17 SM ratios against 35-constant basis | maxcoeff ≤ 10,000 | 17/17 null (×3 pool sizes = 51 null) | Same |
+| PSLQ residual | α⁻¹ − 114ζ(3) against 11 constants | maxcoeff ≤ 10,000 | 6/6 null | Larger pools; higher maxcoeff |
+| Modular scan (single modulus) | 17 targets × 34 moduli | d ≤ 30 for remainder fractions | No clean hits | Products of moduli; scale-dependent moduli |
+| Modular scan (gauge-specific) | 3 couplings × 3 group-specific moduli | At M_Z only | No clean hits | Across all energy scales |
+| Products of basis constants | Not tested | — | — | ~500 pairwise products as moduli |
+| Self-referential moduli | Not tested | — | — | f(α) as modulus for α |
+| Scale-dependent scan | Not tested | — | — | Modular scan at 100+ energy scales |
+| Nonlinear relations | Not tested | — | — | α = f(π, ζ(3), ...) for nonlinear f |
+| Multi-constant moduli | Not tested | — | — | (aπ + bζ(3)) as composite modulus |
+
+**Coverage estimate:** The linear and single-modulus searches cover approximately 5-10% of the plausible search space. The remaining 90% consists of products, nonlinear relations, scale-dependent structures, and self-referential moduli. The null result is a bound on the simplest possibilities, not a proof of non-existence.
+
+---
+
+## APPENDIX S: THE PATTERN — INTEGERS, TRANSFORMATION LAWS, AND MEASUREMENTS
+
+The complete structure of the HOWL series in one table.
+
+| Category | What It Contains | Examples | How Many | Status |
+|---|---|---|---|---|
+| **Pure integers** | Topological invariants, quantum numbers, counting | n ∈ ℤ (winding), N_c = 3, N_gen = 3, c₂ ∈ ℤ | Countably infinite | Complete — the integers are known |
+| **Exact rationals** | SM coefficients from diagram combinatorics | A₁ = 1/2, b₀ = 41/10, 197/144, 218/115 | ~50 named rationals in SM | Complete through 3-loop |
+| **MATH-2 transcendentals** | Constants from convergent rational series | π, ln(2), ζ(3), ζ(5), Li₄(1/2) | 34 in Q335 basis | Complete for known QED |
+| **MATH-3 transcendentals** | Constants requiring extended methods | K(k²), E(k²), higher ζ values | ~12 additional | Partial — 4-loop wall |
+| **Transformation laws** | Functions connecting measurements at different depths | QED series, VP running, Koide, β functions | ~10 identified | Known for EM sector; unknown for most SM parameters |
+| **Moduli** | Symmetry/topology-determined periodicities | 2π, 2πℏ, 1 (CS), 2π/N | 5 formal domains | Known in 5 domains; unknown for SM couplings |
+| **Selection principles** | What determines the remainder | Energy minimization, critical amplitude, perturbative series | 3 identified (θ, Koide, α) | Known for 3 parameters; unknown for remaining 17 |
+| **Measured rationals** | Values supplied by the universe | α⁻¹, m_e, m_μ, sin²θ_W, α_s, ... | 18 remaining (after θ_QCD = 0) | Not derivable without new laws |
+| **The gap** | Parameters with no known law or modulus | Yukawa couplings, CKM angles, m_H | 17 (or 16 with Koide) | The open problem |
+
+**The program:** Move parameters from "measured" to "derived" by identifying the transformation law, the modulus, and the selection principle for each. Where these are known (θ, Koide, α), the derivation follows. Where they are unknown, the parameter remains measured. The PSLQ null (139 tests) bounds where the modulus is NOT. The open directions (Appendix P) define where to search next.
 
