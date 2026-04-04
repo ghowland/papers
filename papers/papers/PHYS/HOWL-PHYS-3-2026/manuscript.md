@@ -53,6 +53,8 @@ The institution uses the Hill sphere routinely in orbital mechanics, mission pla
 
 ### 2.2 The Unasked Question
 
+![Fig. 7: Surface measurements reach 0.42% of the Hill sphere. ISS reaches 0.45%. L1/L2 reach 99-100% — but no G measurement has been performed there.](./figures/phys3_07_fraction_reached.png)
+
 The institution has never asked: are our measurements of G performed inside or outside Earth's Hill sphere?
 
 The answer is immediate. Every laboratory that has ever measured G is on Earth's surface. Earth's surface is at one Earth radius — approximately 6,400 km — from Earth's center. The Hill sphere boundary is at 1.5 million km. Every G measurement ever performed by direct experiment is at 0.4% of the boundary distance or less. Every measurement is deep inside Earth's coherent gravitational structure.
@@ -62,6 +64,8 @@ The institution defines the boundary. The institution measures G. The institutio
 ---
 
 ## III. THE COMPLETE EXPERIMENTAL RECORD
+
+![Fig. 1: Every G measurement location on a log scale — all cluster at <1% of the Hill sphere boundary distance. The gap to the boundary is enormous.](./figures/phys3_01_hill_sphere_scale.png)
 
 ### 3.1 Direct Measurements
 
@@ -74,6 +78,8 @@ The atom interferometry measurements — a newer technique that uses quantum int
 The ISS has been cited as an orbital environment for precision physics. The ISS orbits at approximately 400 km altitude. The Hill sphere is at 1,500,000 km. The ISS is at 0.027% of the boundary distance. The ISS is not near the boundary. It is not outside the boundary. It is deep inside Earth's coherent gravitational structure, at an altitude that represents a negligible fraction of the Hill sphere scale.
 
 No spacecraft beyond low Earth orbit has ever carried instrumentation designed to measure G by direct experiment.
+
+![Fig. 6: G values from Cavendish 1798 to HUST 2018 — precision improves dramatically but the spread between methods does not close.](./figures/phys3_06_g_timeline.png)
 
 ### 3.2 The Disagreement
 
@@ -131,6 +137,8 @@ The precision of celestial mechanics confirms that G is consistent within the so
 
 ## V. REPRODUCIBILITY IS NOT UNIVERSALITY
 
+![Fig. 3: The claim of G universality spans from Earth to the observable universe. The evidence covers Earth's surface only. The gap is the largest in physics.](./figures/phys3_03_claim_vs_evidence.png)
+
 ### 5.1 The Confusion
 
 The institution's confidence in G's universality rests substantially on reproducibility. G measurements are reproducible. Different labs, different methods, different continents, different decades produce values that cluster around a consistent central value. This reproducibility feels like universality. It is not.
@@ -152,6 +160,8 @@ The G disagreement has persisted for two centuries. Two centuries of assuming sy
 ---
 
 ## VI. THE BOUNDARY CROSSING EXPERIMENT
+
+![Fig. 4: Earth at center, Hill sphere as boundary circle, L1 and L2 sitting exactly on the boundary — spacecraft exist there, none measures G.](./figures/phys3_04_l1_l2_experiment.png)
 
 ### 6.1 The Location
 
@@ -190,6 +200,8 @@ These are separable in principle. A measurement at L1/L2 would compare the infer
 ---
 
 ## VII. THE NESTED BOUNDARY HIERARCHY
+
+![Fig. 2: Earth's Hill sphere inside the solar system's Hill sphere inside the galactic boundary — every measurement ever made is inside all three shells.](./figures/phys3_02_nested_boundaries.png)
 
 ### 7.1 Earth Inside Solar System Inside Galaxy
 
@@ -241,6 +253,8 @@ The gravitational wave argument is addressed conservatively. This paper does not
 
 ## X. TESTABLE PREDICTIONS
 
+![Fig. 5: All G measurements cluster at sea-level altitude. The void above extends to the Hill sphere boundary — the entire untested space is visible.](./figures/phys3_05_g_vs_altitude.png)
+
 **P1. The L1/L2 Measurement**
 
 A direct measurement of G at L1 or L2 — at Earth's Hill sphere boundary — will produce a value that either matches or differs from the Earth-surface value after GR corrections.
@@ -290,6 +304,8 @@ Each criterion is specific, testable, and stated before the evidence is examined
 ---
 
 ## XII. CONCLUSION
+
+![Fig. 8: G has never been tested outside Earth's Hill sphere — the gap, the experiment, the disagreement, and the pattern across all couplings.](./figures/phys3_08_identity_card.png)
 
 The gravitational constant G has never been measured outside Earth's Hill sphere by direct experiment.
 
