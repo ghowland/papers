@@ -33,6 +33,8 @@ Every equation examined is from the institution's published literature. No new m
 
 ### 2.1 The Fundamental Ratio
 
+![Fig. 1: The definition of β — circle area as a fraction of its bounding square.](./figures/math1_01_beta_definition.png)
+
 A circle of diameter d has area πd²/4. The smallest axis-aligned square containing that circle has side d and area d². The circle occupies a fraction of the bounding square:
 
 (πd²/4) / d² = π/4
@@ -53,11 +55,15 @@ The ratio L2 area / L1 bounding area = π/4 = β. The circumference ratio is the
 
 ### 2.3 The Staircase as L1 Illustration
 
+![Fig. 2: Staircase at every refinement measures L1 = 4d, not L2 = πd. No paradox — two metrics.](./figures/math1_02_staircase_l1_l2.png)
+
 The staircase construction illustrates the L1 circumference. Approximate the circle with horizontal and vertical segments. At every level of refinement, the total L1 path length is 4d.
 
 This invariance follows from the bounding square. The circle is inscribed in a square of side d. Any L1 path tracing the circle must traverse the full width d and return (horizontal total: 2d) and the full height d and return (vertical total: 2d). Total: 4d. Refinement redistributes the steps without changing the totals.
 
 The invariance of the staircase path length is sometimes presented as a paradox — the staircase curves converge pointwise to the circle, but the path lengths do not converge to πd. Under the L1/L2 framework, there is no paradox. The staircase measures L1 distance. It converges correctly to the L1 circumference, which is 4d. It was never measuring L2 distance. The expectation that it should converge to πd confuses the two metrics.
+
+![Fig. 6: L1 path = 4d at every refinement. L2 circumference = πd. The persistent gap is β.](./figures/math1_06_staircase_convergence.png)
 
 ### 2.4 Irreducibility
 
@@ -70,6 +76,8 @@ This is the content of the impossibility of squaring the circle. Converting d² 
 ## III. THE ELLIPSE GENERALIZATION
 
 ### 3.1 Beyond Circles
+
+![Fig. 4: From circle to high eccentricity — the area ratio πab/4ab = π/4 = β is preserved exactly.](./figures/math1_04_ellipse_generalization.png)
 
 The area of an ellipse with semi-axes a and b is πab. The bounding rectangle has dimensions 2a × 2b and area 4ab. The ratio is:
 
@@ -180,6 +188,8 @@ Every equation in Section IV follows a single structure:
 
 ### 5.2 The Nine Instances
 
+![Fig. 3: The β·d² row is identical across all nine domains. F and Z vary. The invariant is one object under nine names.](./figures/math1_03_isomorphism_grid.png)
+
 | # | Domain | Q | F | Z | Institution's name for β · d² |
 |---|---|---|---|---|---|
 | 1 | Geometry | Area | 1 | 1 | "Area of a circle" |
@@ -232,6 +242,8 @@ The nine equations in Sections IV–V all compute physical cross-sectional areas
 
 ### 7.2 Buffon's Needle — Probability
 
+![Fig. 5: The needle's orientation spans a semicircle. The π in the crossing probability comes from integrating over this circular domain.](./figures/math1_05_buffon_needle.png)
+
 **Standard:** P(crossing) = 2L/(πd) for needle length L, line spacing d
 
 The probability depends on the needle's orientation, uniformly distributed over a semicircle. The π arises from integrating over this circular orientation space — a circular domain, not a physical cross-section. The ratio 2/π is structurally related to β: it involves conversion between circular (angular) and rectilinear (grid) geometry. The mechanism is distinct from the nine cross-section cases.
@@ -271,6 +283,8 @@ The mechanism is distinct from both the cross-section cases and the circular dom
 ## IX. THE DIRECTIONAL PATTERN
 
 ### 9.1 Observation
+
+![Fig. 7: β mediates rectilinear→circular. 1/β mediates circular→rectilinear. Consistent across all instances.](./figures/math1_07_directional_pattern.png)
 
 In the nine cross-section equations and three extensions, the factor appears as either π/4 or 4/π. A consistent pattern is observed:
 
@@ -344,6 +358,8 @@ In every instance, β was computed or applied without being named as a distinct 
 ---
 
 ## XII. BOUNDARIES AND LIMITATIONS
+
+![Fig. 8: The Geometric Ratio β — one invariant, nine domains, directional pattern, three extensions.](./figures/math1_08_identity_card.png)
 
 This paper makes one specific claim: nine equations from nine domains share a common geometric structure Q = F · β · d² · Z, where β = π/4 is the ratio of circular cross-sectional area to rectilinear bounding area. This claim is demonstrated by algebraic decomposition. The decomposition is identity. No new mathematics is introduced.
 
