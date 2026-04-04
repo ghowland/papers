@@ -1,0 +1,10 @@
+{
+  "id": 5015,
+  "type": "evidence",
+  "subtype": "result",
+  "name": "sin2_1L",
+  "display_name": "sin2_tW one-loop CD",
+  "status": "PASS",
+  "miss_pct": "1.0",
+  "version": 0
+}

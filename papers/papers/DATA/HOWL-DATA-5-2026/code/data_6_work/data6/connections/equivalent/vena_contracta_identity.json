@@ -1,0 +1,8 @@
+{
+  "id": 3025,
+  "type": "connection",
+  "subtype": "equivalent",
+  "name": "vena_contracta_identity",
+  "identity": "4R2/(4R2+2) = pi/(pi+2)",
+  "version": 0
+}

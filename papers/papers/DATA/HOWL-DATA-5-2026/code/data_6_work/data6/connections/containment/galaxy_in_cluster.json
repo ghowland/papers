@@ -1,0 +1,9 @@
+{
+  "id": 3011,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "galaxy_in_cluster",
+  "display_name": "Galaxy in cluster",
+  "mechanism": "Virial equilibrium",
+  "version": 0
+}

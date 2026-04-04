@@ -1,0 +1,9 @@
+{
+  "id": 3005,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "crystal_in_geological",
+  "display_name": "Crystal in geological layer",
+  "mechanism": "Pressure/gravity",
+  "version": 0
+}

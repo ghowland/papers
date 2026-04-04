@@ -1,0 +1,11 @@
+{
+  "id": 3039,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Cabibbo_Doublet_thre_to_GUT_unification_scal",
+  "from_boundary": "Cabibbo Doublet threshold",
+  "to_boundary": "GUT unification scale",
+  "from_id": 1202,
+  "to_id": 1201,
+  "version": 0
+}

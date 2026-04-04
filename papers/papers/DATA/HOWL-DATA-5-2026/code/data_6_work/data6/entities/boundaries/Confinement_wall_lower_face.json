@@ -1,0 +1,42 @@
+{
+  "id": 1211,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Confinement wall (lower face)",
+  "value": {
+    "fraction": {
+      "numerator": "300",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Hadronic resonances resolve into individual hadrons. Below this scale, quarks are confined inside hadrons. This is the INSIDE face of the confinement wall.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [
+    "What is the non-perturbative structure of the confinement transition?",
+    "Is there a soliton interpretation of confinement?"
+  ],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "alpha_s": null,
+    "f_pi": {
+      "numerator": "13041",
+      "denominator": "100"
+    }
+  }
+}

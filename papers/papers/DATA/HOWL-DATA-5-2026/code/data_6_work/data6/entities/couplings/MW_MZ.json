@@ -1,0 +1,25 @@
+{
+  "id": 566,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "M_W/M_Z",
+  "value": {
+    "fraction": {
+      "numerator": "881361",
+      "denominator": "1000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "K5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

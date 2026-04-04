@@ -1,0 +1,27 @@
+{
+  "id": 1033,
+  "type": "entity",
+  "subtype": "two_loop_coefficient",
+  "name": "dbij_VL_11",
+  "value": {
+    "fraction": {
+      "numerator": "15",
+      "denominator": "4"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "two_loop",
+    "VL"
+  ],
+  "source": "Fermion formula",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "pitfall": "[1][1]=15/4 NOT 39/4"
+}

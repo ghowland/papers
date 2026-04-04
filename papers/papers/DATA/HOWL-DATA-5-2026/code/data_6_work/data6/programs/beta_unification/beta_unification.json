@@ -1,0 +1,16 @@
+{
+  "name": "Beta Unification",
+  "thesis": "CD modifies SM betas to produce unification with measured couplings",
+  "status": "ACTIVE",
+  "scripts": [
+    "beta_unification_test.py"
+  ],
+  "kill_switches": [
+    "DM particles detected inconsistent with soliton model",
+    "alpha_s prediction fails at higher loop order"
+  ],
+  "blocking": "statistical control script",
+  "id": 6000,
+  "type": "program",
+  "version": 0
+}

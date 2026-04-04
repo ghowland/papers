@@ -1,0 +1,22 @@
+{
+  "id": 1806,
+  "type": "entity",
+  "subtype": "astrophysical",
+  "name": "Astronomical unit",
+  "value": {
+    "mpf": "149600000000.0"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical"
+  ],
+  "source": "Standard values",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

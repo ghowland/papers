@@ -1,0 +1,45 @@
+{
+  "id": 1202,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Cabibbo Doublet threshold",
+  "value": null,
+  "scale_MeV_estimate": {
+    "fraction": {
+      "numerator": "3000000",
+      "denominator": "1"
+    }
+  },
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "electromagnetic",
+    "weak",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Cabibbo Doublet (3,2,1/6) VL pair becomes active. Beta coefficients change: b_i -> b_i + Db_i. Gap ratio changes from 218/115 to 38/27.",
+  "forces_affected": [
+    "electromagnetic",
+    "weak",
+    "strong"
+  ],
+  "open_questions": [
+    "What is M_VL exactly?",
+    "Is there a sharp threshold or smooth transition?",
+    "What are the mixing angles?"
+  ],
+  "data4_entry": "L1",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "1/alpha_1": null,
+    "1/alpha_2": null,
+    "1/alpha_3": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": 552,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Bohr radius",
+  "value": {
+    "fraction": {
+      "numerator": "33073575659",
+      "denominator": "625000000000000000000"
+    }
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B8",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": 1601,
+  "type": "entity",
+  "subtype": "optical_disc",
+  "name": "Compact Disc",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "optics",
+    "disc"
+  ],
+  "source": "DATA-1 Section 9",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "name": "Compact Disc",
+    "standard": "ECMA-130 / Red Book",
+    "laser_wavelength_m": {
+      "mpf": "0.00000078"
+    },
+    "NA": {
+      "mpf": "0.45"
+    },
+    "track_pitch_m": {
+      "mpf": "0.0000016"
+    },
+    "pit_width_m": {
+      "mpf": "0.0000005"
+    },
+    "pit_depth_m": {
+      "mpf": "0.000000125"
+    },
+    "min_pit_length_m": {
+      "mpf": "0.00000083"
+    },
+    "disc_diameter_m": {
+      "mpf": "0.12"
+    },
+    "disc_thickness_m": {
+      "mpf": "0.0012"
+    },
+    "sampling_rate_Hz": {
+      "fraction": {
+        "numerator": "44100",
+        "denominator": "1"
+      }
+    },
+    "sector_raw_bytes": {
+      "integer": 2352
+    },
+    "sector_data_bytes": {
+      "integer": 2048
+    },
+    "capacity_bytes": {
+      "integer": 700000000
+    },
+    "data1_ids": [
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D6",
+      "D7",
+      "D8",
+      "D9",
+      "D10",
+      "D11",
+      "D12",
+      "D13"
+    ]
+  }
+}

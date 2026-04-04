@@ -1,0 +1,22 @@
+{
+  "id": 1317,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Helmholtz resonance",
+  "equation": "f = (c/(8*R2))*sqrt(R2*d^2/(l*V))",
+  "coordinator_Z": "port geometry",
+  "precision": "Measured: 2 Hz",
+  "data1_section": 13,
+  "data1_id": "H22",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

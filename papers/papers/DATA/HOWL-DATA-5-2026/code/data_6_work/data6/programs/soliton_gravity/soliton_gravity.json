@@ -1,0 +1,18 @@
+{
+  "name": "Soliton Gravity",
+  "thesis": "Gravity is ground state in soliton hierarchy",
+  "status": "ACTIVE",
+  "scripts": [
+    "nested_soliton_gravity.py",
+    "time_process_rate_test.py",
+    "dwarf_soliton_ground_state.py"
+  ],
+  "kill_switches": [
+    "Measurement contradicts process rate prediction",
+    "Dwarf dynamics incompatible with soliton model"
+  ],
+  "blocking": null,
+  "id": 6002,
+  "type": "program",
+  "version": 0
+}

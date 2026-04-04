@@ -1,0 +1,36 @@
+{
+  "id": 1100,
+  "type": "entity",
+  "subtype": "representation",
+  "name": "Left quark doublet",
+  "su3_dim": 3,
+  "su2_dim": 2,
+  "Y": {
+    "numerator": "1",
+    "denominator": "6"
+  },
+  "rep_type": "chiral",
+  "db1": {
+    "numerator": "1",
+    "denominator": "30"
+  },
+  "db2": {
+    "numerator": "1",
+    "denominator": "1"
+  },
+  "db3": {
+    "numerator": "1",
+    "denominator": "3"
+  },
+  "level": 1,
+  "tags": [
+    "Level1",
+    "representation",
+    "chiral"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

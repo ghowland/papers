@@ -1,0 +1,22 @@
+{
+  "id": 1803,
+  "type": "entity",
+  "subtype": "astrophysical",
+  "name": "Lunar mass",
+  "value": {
+    "mpf": "73420000000000000000000.0"
+  },
+  "unit": "kg",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical"
+  ],
+  "source": "Standard values",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

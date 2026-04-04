@@ -1,0 +1,8 @@
+{
+  "id": 3022,
+  "type": "connection",
+  "subtype": "equivalent",
+  "name": "8R2_equals_2pi",
+  "identity": "8*R2 = 2*pi",
+  "version": 0
+}

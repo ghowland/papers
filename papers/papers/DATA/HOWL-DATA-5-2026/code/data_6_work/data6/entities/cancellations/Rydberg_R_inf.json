@@ -1,0 +1,22 @@
+{
+  "id": 1402,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "Rydberg R_inf",
+  "formula": "alpha^2*m_e*c/(2h) -- 2h = 16*R2*hbar folds out",
+  "status": "CANCELS",
+  "precision": "13 digits",
+  "data1_id": "R3",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "CANCELS"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

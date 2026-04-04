@@ -1,0 +1,22 @@
+{
+  "id": 1610,
+  "type": "entity",
+  "subtype": "speaker",
+  "name": "1-inch tweeter",
+  "value": {
+    "mpf": "0.025"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "acoustics"
+  ],
+  "source": "DATA-1 Section 13",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": 51,
+  "type": "entity",
+  "subtype": "geometric_constant",
+  "name": "R4",
+  "value": {
+    "fraction": {
+      "numerator": "86349197518417215850534705935543346292365169267374313500359044054441174219474549995586922953208571997",
+      "denominator": "279968092772225526319680285071055534765205687154331191862498637620473983897520118172609686658950889472"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "geometric",
+    "Level0",
+    "Q335"
+  ],
+  "source": "Derived from Q335 pi",
+  "data4_id": "G14",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

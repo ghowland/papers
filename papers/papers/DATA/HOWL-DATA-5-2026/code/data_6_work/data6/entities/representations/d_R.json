@@ -1,0 +1,36 @@
+{
+  "id": 1102,
+  "type": "entity",
+  "subtype": "representation",
+  "name": "Right down quark",
+  "su3_dim": 3,
+  "su2_dim": 1,
+  "Y": {
+    "numerator": "-1",
+    "denominator": "3"
+  },
+  "rep_type": "chiral",
+  "db1": {
+    "numerator": "2",
+    "denominator": "15"
+  },
+  "db2": {
+    "numerator": "0",
+    "denominator": "1"
+  },
+  "db3": {
+    "numerator": "1",
+    "denominator": "3"
+  },
+  "level": 1,
+  "tags": [
+    "Level1",
+    "representation",
+    "chiral"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

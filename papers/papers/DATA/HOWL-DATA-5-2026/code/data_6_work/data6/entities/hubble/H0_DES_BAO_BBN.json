@@ -1,0 +1,32 @@
+{
+  "id": 1703,
+  "type": "entity",
+  "subtype": "hubble_measurement",
+  "name": "DES + BAO + BBN (combined cosmological)",
+  "value": {
+    "fraction": {
+      "numerator": "337",
+      "denominator": "5"
+    }
+  },
+  "unit": "km/s/Mpc",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "hubble",
+    "cosmological"
+  ],
+  "source": "DES Collaboration 2022",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "uncertainty": {
+    "numerator": "6",
+    "denominator": "5"
+  },
+  "distance_class": "high",
+  "method": "baryon acoustic oscillations + big bang nucleosynthesis"
+}

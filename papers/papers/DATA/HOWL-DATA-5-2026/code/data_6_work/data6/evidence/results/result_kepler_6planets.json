@@ -1,0 +1,10 @@
+{
+  "id": 5018,
+  "type": "evidence",
+  "subtype": "result",
+  "name": "kepler_6planets",
+  "display_name": "Kepler 6 planets via R2",
+  "status": "PASS",
+  "miss_pct": "0.1",
+  "version": 0
+}

@@ -1,0 +1,26 @@
+{
+  "id": 52,
+  "type": "entity",
+  "subtype": "geometric_constant",
+  "name": "twopi",
+  "value": {
+    "fraction": {
+      "numerator": "109943212936596175505913298521620533097335915961174408408712911656578469374718859347550214371967627157",
+      "denominator": "17498005798264095394980017816940970922825355447145699491406164851279623993595007385788105416184430592"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "geometric",
+    "Level0",
+    "Q335"
+  ],
+  "source": "Derived from Q335 pi",
+  "data4_id": "G15",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

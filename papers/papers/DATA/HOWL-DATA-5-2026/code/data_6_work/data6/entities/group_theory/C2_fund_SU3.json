@@ -1,0 +1,25 @@
+{
+  "id": 102,
+  "type": "entity",
+  "subtype": "group_theory",
+  "name": "C2(fund SU(3)) = 4/3",
+  "value": {
+    "fraction": {
+      "numerator": "4",
+      "denominator": "3"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "group_theory"
+  ],
+  "source": "Representation theory",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

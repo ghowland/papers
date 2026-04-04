@@ -1,0 +1,40 @@
+{
+  "id": 1854,
+  "type": "entity",
+  "subtype": "dwarf_spheroidal",
+  "name": "Carina",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical",
+    "dwarf"
+  ],
+  "source": "Walker+2009, McConnachie 2012",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "M_vis": {
+      "mpf": "3.8e5"
+    },
+    "sigma": {
+      "mpf": "6.6"
+    },
+    "r_h": {
+      "mpf": "250"
+    },
+    "M_dyn": {
+      "mpf": "3.2e7"
+    },
+    "r_core": {
+      "mpf": "200"
+    }
+  }
+}

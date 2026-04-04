@@ -1,0 +1,28 @@
+{
+  "id": 1217,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Molecular scale",
+  "value": null,
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "electromagnetic"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Electromagnetic interactions between atoms form molecules. Chemistry. Biology begins at larger scales.",
+  "forces_affected": [
+    "electromagnetic"
+  ],
+  "open_questions": [],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {}
+}

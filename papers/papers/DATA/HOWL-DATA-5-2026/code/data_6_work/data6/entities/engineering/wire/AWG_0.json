@@ -1,0 +1,26 @@
+{
+  "id": 1612,
+  "type": "entity",
+  "subtype": "wire_gauge",
+  "name": "AWG 0",
+  "value": {
+    "mpf": "0.008251"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "wire",
+    "AWG"
+  ],
+  "source": "DATA-1 Section 12",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "diameter_in": {
+    "mpf": "0.3249"
+  }
+}

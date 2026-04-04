@@ -1,0 +1,26 @@
+{
+  "id": 510,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "W boson mass",
+  "value": {
+    "fraction": {
+      "numerator": "401846",
+      "denominator": "5"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "C3",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": 1704,
+  "type": "entity",
+  "subtype": "hubble_measurement",
+  "name": "Planck CMB (cosmic microwave background)",
+  "value": {
+    "fraction": {
+      "numerator": "337",
+      "denominator": "5"
+    }
+  },
+  "unit": "km/s/Mpc",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "hubble",
+    "cosmological"
+  ],
+  "source": "Planck Collaboration 2020, A&A 641, A6",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "uncertainty": {
+    "numerator": "1",
+    "denominator": "2"
+  },
+  "distance_class": "maximum",
+  "method": "CMB power spectrum fit assuming Lambda-CDM"
+}

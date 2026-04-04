@@ -1,0 +1,26 @@
+{
+  "id": 50,
+  "type": "entity",
+  "subtype": "geometric_constant",
+  "name": "R2",
+  "value": {
+    "fraction": {
+      "numerator": "109943212936596175505913298521620533097335915961174408408712911656578469374718859347550214371967627157",
+      "denominator": "139984046386112763159840142535527767382602843577165595931249318810236991948760059086304843329475444736"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "geometric",
+    "Level0",
+    "Q335"
+  ],
+  "source": "Derived from Q335 pi",
+  "data4_id": "G13",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

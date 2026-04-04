@@ -1,0 +1,32 @@
+{
+  "id": 1701,
+  "type": "entity",
+  "subtype": "hubble_measurement",
+  "name": "H0LiCOW (gravitational lensing time delays)",
+  "value": {
+    "fraction": {
+      "numerator": "733",
+      "denominator": "10"
+    }
+  },
+  "unit": "km/s/Mpc",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "hubble",
+    "cosmological"
+  ],
+  "source": "Wong et al. 2020, MNRAS 498, 1420",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "uncertainty": {
+    "numerator": "9",
+    "denominator": "5"
+  },
+  "distance_class": "local-medium",
+  "method": "strong lensing time delays through lens galaxy"
+}

@@ -1,0 +1,24 @@
+{
+  "id": 1051,
+  "type": "entity",
+  "subtype": "gap_ratio",
+  "name": "CD gap ratio 38/27",
+  "value": {
+    "fraction": {
+      "numerator": "38",
+      "denominator": "27"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "gap_ratio"
+  ],
+  "source": "phys24_lib",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

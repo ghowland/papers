@@ -1,0 +1,27 @@
+{
+  "id": 1032,
+  "type": "entity",
+  "subtype": "two_loop_coefficient",
+  "name": "dbij_VL_10",
+  "value": {
+    "fraction": {
+      "numerator": "1",
+      "denominator": "30"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "two_loop",
+    "VL"
+  ],
+  "source": "Fermion formula",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "pitfall": null
+}

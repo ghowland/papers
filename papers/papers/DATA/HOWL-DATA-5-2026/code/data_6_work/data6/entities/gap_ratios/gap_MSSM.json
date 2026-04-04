@@ -1,0 +1,24 @@
+{
+  "id": 1052,
+  "type": "entity",
+  "subtype": "gap_ratio",
+  "name": "MSSM gap ratio 7/5",
+  "value": {
+    "fraction": {
+      "numerator": "7",
+      "denominator": "5"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "gap_ratio"
+  ],
+  "source": "phys24_lib",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

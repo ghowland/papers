@@ -1,0 +1,39 @@
+{
+  "id": 109,
+  "type": "entity",
+  "subtype": "group_theory",
+  "name": "Per-generation beta shift (4/3, 4/3, 4/3)",
+  "value": {
+    "fraction": {
+      "numerator": "4",
+      "denominator": "3"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "generation_democracy"
+  ],
+  "source": "SU(5) anomaly cancellation",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "per_gen": {
+    "b1": {
+      "numerator": "4",
+      "denominator": "3"
+    },
+    "b2": {
+      "numerator": "4",
+      "denominator": "3"
+    },
+    "b3": {
+      "numerator": "4",
+      "denominator": "3"
+    }
+  }
+}

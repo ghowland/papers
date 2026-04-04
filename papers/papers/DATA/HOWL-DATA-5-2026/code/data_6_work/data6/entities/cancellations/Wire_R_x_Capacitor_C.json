@@ -1,0 +1,22 @@
+{
+  "id": 1406,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "Wire R * Capacitor C",
+  "formula": "rho*L/(R2*d^2) * eps0*R2*d^2/t = rho*eps0*L/t",
+  "status": "CANCELS",
+  "precision": "derived (new, from cross-domain demo)",
+  "data1_id": null,
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "CANCELS"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

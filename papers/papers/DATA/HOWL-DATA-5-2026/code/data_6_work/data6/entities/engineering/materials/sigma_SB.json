@@ -1,0 +1,22 @@
+{
+  "id": 1625,
+  "type": "entity",
+  "subtype": "material_constant",
+  "name": "Stefan-Boltzmann",
+  "value": {
+    "mpf": "0.00000005670374419"
+  },
+  "unit": "W/(m^2*K^4)",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "material"
+  ],
+  "source": "CODATA/handbook",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

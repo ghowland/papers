@@ -1,0 +1,22 @@
+{
+  "id": 1309,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Wire resistance",
+  "equation": "R = rho*L/(R2*d^2)",
+  "coordinator_Z": "resistivity rho",
+  "precision": "Handbook: 0.1%",
+  "data1_section": 12,
+  "data1_id": "G10",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

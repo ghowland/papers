@@ -1,0 +1,22 @@
+{
+  "id": 1606,
+  "type": "entity",
+  "subtype": "speaker",
+  "name": "10-inch woofer",
+  "value": {
+    "mpf": "0.254"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "acoustics"
+  ],
+  "source": "DATA-1 Section 13",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

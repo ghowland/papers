@@ -1,0 +1,22 @@
+{
+  "id": 1623,
+  "type": "entity",
+  "subtype": "material_constant",
+  "name": "Copper resistivity",
+  "value": {
+    "mpf": "0.000000017241"
+  },
+  "unit": "ohm*m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "material"
+  ],
+  "source": "CODATA/handbook",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

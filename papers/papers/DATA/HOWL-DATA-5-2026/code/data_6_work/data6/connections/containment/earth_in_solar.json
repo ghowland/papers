@@ -1,0 +1,9 @@
+{
+  "id": 3009,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "earth_in_solar",
+  "display_name": "Earth in solar system",
+  "mechanism": "Kepler orbit",
+  "version": 0
+}

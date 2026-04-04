@@ -1,0 +1,10 @@
+{
+  "id": 3017,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "b2mod_13_to_DM",
+  "integer": 13,
+  "target": "DM_baryon_ratio",
+  "note": "|b2_mod num| = 13 in denominator",
+  "version": 0
+}

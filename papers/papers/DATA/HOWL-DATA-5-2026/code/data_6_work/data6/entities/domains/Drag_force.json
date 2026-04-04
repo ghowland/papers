@@ -1,0 +1,22 @@
+{
+  "id": 1301,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Drag force",
+  "equation": "F = 0.5*rho*v^2*R2*d^2*Cd",
+  "coordinator_Z": "drag coeff Cd",
+  "precision": "Wind tunnel: 1%",
+  "data1_section": 17,
+  "data1_id": "L2",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

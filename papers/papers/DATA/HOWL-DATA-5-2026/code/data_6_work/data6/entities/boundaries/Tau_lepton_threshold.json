@@ -1,0 +1,35 @@
+{
+  "id": 1208,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Tau lepton threshold",
+  "value": {
+    "fraction": {
+      "numerator": "88843",
+      "denominator": "50"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "electromagnetic"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Tau lepton decouples. Koide prediction: m_tau = 1776.97 MeV (0.006%% miss).",
+  "forces_affected": [
+    "electromagnetic"
+  ],
+  "open_questions": [
+    "Is m_tau derivable from Koide? (conditional, a^2=2 unresolved)"
+  ],
+  "data4_entry": "B4",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {}
+}

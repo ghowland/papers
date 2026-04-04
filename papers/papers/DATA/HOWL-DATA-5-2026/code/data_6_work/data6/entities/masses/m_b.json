@@ -1,0 +1,26 @@
+{
+  "id": 507,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Bottom quark mass",
+  "value": {
+    "fraction": {
+      "numerator": "4183",
+      "denominator": "1"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "D5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

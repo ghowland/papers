@@ -1,0 +1,11 @@
+{
+  "id": 3028,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Strange_quark_thresh_to_Muon_threshold",
+  "from_boundary": "Strange quark threshold",
+  "to_boundary": "Muon threshold",
+  "from_id": 1212,
+  "to_id": 1213,
+  "version": 0
+}

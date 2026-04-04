@@ -1,0 +1,10 @@
+{
+  "id": 5016,
+  "type": "evidence",
+  "subtype": "result",
+  "name": "koide_mtau",
+  "display_name": "m_tau Koide prediction",
+  "status": "PASS",
+  "miss_pct": "0.006",
+  "version": 0
+}

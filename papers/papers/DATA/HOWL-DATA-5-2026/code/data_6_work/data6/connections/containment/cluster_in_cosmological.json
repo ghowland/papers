@@ -1,0 +1,9 @@
+{
+  "id": 3012,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "cluster_in_cosmological",
+  "display_name": "Cluster in cosmological",
+  "mechanism": "Hubble flow",
+  "version": 0
+}

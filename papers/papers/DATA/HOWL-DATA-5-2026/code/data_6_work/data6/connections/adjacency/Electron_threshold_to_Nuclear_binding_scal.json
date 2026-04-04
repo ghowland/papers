@@ -1,0 +1,11 @@
+{
+  "id": 3026,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Electron_threshold_to_Nuclear_binding_scal",
+  "from_boundary": "Electron threshold",
+  "to_boundary": "Nuclear binding scale",
+  "from_id": 1215,
+  "to_id": 1214,
+  "version": 0
+}

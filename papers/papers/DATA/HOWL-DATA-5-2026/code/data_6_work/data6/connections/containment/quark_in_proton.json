@@ -1,0 +1,9 @@
+{
+  "id": 3000,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "quark_in_proton",
+  "display_name": "Quark confined in proton",
+  "mechanism": "QCD confinement",
+  "version": 0
+}

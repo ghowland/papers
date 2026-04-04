@@ -1,0 +1,11 @@
+{
+  "id": 3037,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Higgs_boson_threshol_to_Top_quark_threshold",
+  "from_boundary": "Higgs boson threshold",
+  "to_boundary": "Top quark threshold",
+  "from_id": 1204,
+  "to_id": 1203,
+  "version": 0
+}

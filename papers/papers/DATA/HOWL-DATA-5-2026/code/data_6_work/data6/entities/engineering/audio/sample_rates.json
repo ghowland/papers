@@ -1,0 +1,40 @@
+{
+  "id": 1633,
+  "type": "entity",
+  "subtype": "audio_standard",
+  "name": "Sample rates",
+  "value": {
+    "string": "None"
+  },
+  "unit": "Hz",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "audio"
+  ],
+  "source": "DATA-1 H5-H8",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "rates": {
+    "CD": {
+      "numerator": "44100",
+      "denominator": "1"
+    },
+    "studio": {
+      "numerator": "48000",
+      "denominator": "1"
+    },
+    "high_res": {
+      "numerator": "96000",
+      "denominator": "1"
+    },
+    "ultra": {
+      "numerator": "192000",
+      "denominator": "1"
+    }
+  }
+}

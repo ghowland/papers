@@ -1,0 +1,11 @@
+{
+  "id": 3040,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "GUT_unification_scal_to_Planck_scale",
+  "from_boundary": "GUT unification scale",
+  "to_boundary": "Planck scale",
+  "from_id": 1201,
+  "to_id": 1200,
+  "version": 0
+}

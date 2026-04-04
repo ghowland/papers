@@ -1,0 +1,22 @@
+{
+  "id": 54,
+  "type": "entity",
+  "subtype": "bessel_zero",
+  "name": "j01",
+  "value": {
+    "mpf": "2.40482555769577"
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "bessel",
+    "Level0"
+  ],
+  "source": "DATA-1/MATH-3",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

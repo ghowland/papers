@@ -1,0 +1,25 @@
+{
+  "id": 550,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "m_p/m_e ratio",
+  "value": {
+    "fraction": {
+      "numerator": "183615267343",
+      "denominator": "100000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B6",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

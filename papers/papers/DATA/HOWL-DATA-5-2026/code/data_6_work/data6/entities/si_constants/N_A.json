@@ -1,0 +1,26 @@
+{
+  "id": 5,
+  "type": "entity",
+  "subtype": "si_constant",
+  "name": "Avogadro number",
+  "value": {
+    "fraction": {
+      "numerator": "602214076000000000000000",
+      "denominator": "1"
+    }
+  },
+  "unit": "1/mol",
+  "level": 0,
+  "tags": [
+    "SI",
+    "exact",
+    "Level0"
+  ],
+  "source": "SI 2019 (exact)",
+  "data4_id": "A5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

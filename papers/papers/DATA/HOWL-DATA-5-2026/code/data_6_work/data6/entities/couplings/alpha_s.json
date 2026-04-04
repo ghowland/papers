@@ -1,0 +1,26 @@
+{
+  "id": 22,
+  "type": "entity",
+  "subtype": "coupling",
+  "name": "alpha_s(M_Z)",
+  "value": {
+    "fraction": {
+      "numerator": "59",
+      "denominator": "500"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "coupling",
+    "Level2",
+    "CODATA"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B12",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

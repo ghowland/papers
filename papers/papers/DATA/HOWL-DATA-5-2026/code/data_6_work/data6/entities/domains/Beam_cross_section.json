@@ -1,0 +1,22 @@
+{
+  "id": 1306,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Beam cross-section",
+  "equation": "A = R2*d^2",
+  "coordinator_Z": "none (pure geometry)",
+  "precision": "Laser: um",
+  "data1_section": 17,
+  "data1_id": "L7",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

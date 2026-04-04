@@ -1,0 +1,36 @@
+{
+  "id": 1003,
+  "type": "entity",
+  "subtype": "beta_coefficient",
+  "name": "db1_VL",
+  "value": {
+    "fraction": {
+      "numerator": "1",
+      "denominator": "15"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "beta",
+    "U1"
+  ],
+  "source": "phys24_lib",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "gauge_group": "U1",
+  "decomposition": {
+    "gauge": null,
+    "fermion": null,
+    "higgs": null,
+    "bsm": {
+      "numerator": "1",
+      "denominator": "15"
+    }
+  }
+}

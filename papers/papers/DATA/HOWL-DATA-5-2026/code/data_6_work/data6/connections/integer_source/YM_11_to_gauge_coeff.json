@@ -1,0 +1,10 @@
+{
+  "id": 3013,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "YM_11_to_gauge_coeff",
+  "integer": 11,
+  "target": "gauge_coeff",
+  "note": "-(11/3)*C2(adj)",
+  "version": 0
+}

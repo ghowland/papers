@@ -1,0 +1,38 @@
+{
+  "id": 1214,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Nuclear binding scale",
+  "value": {
+    "fraction": {
+      "numerator": "8",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Nuclear force (residual strong) binds nucleons. Deuteron binding energy E_D = 2.225 MeV.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [],
+  "data4_entry": "E8",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "E_D": {
+      "numerator": "111228307",
+      "denominator": "50000000"
+    }
+  }
+}

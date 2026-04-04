@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "type": "entity",
+  "subtype": "si_constant",
+  "name": "Speed of light",
+  "value": {
+    "fraction": {
+      "numerator": "299792458",
+      "denominator": "1"
+    }
+  },
+  "unit": "m/s",
+  "level": 0,
+  "tags": [
+    "SI",
+    "exact",
+    "Level0"
+  ],
+  "source": "SI 2019 (exact)",
+  "data4_id": "A1",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

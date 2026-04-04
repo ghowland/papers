@@ -1,0 +1,26 @@
+{
+  "id": 20,
+  "type": "entity",
+  "subtype": "coupling",
+  "name": "1/alpha_EM",
+  "value": {
+    "fraction": {
+      "numerator": "137035999177",
+      "denominator": "1000000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "coupling",
+    "Level2",
+    "CODATA"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B1",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

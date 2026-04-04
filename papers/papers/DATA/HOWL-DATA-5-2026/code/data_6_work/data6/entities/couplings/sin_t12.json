@@ -1,0 +1,25 @@
+{
+  "id": 556,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "sin theta_12",
+  "value": {
+    "fraction": {
+      "numerator": "22501",
+      "denominator": "100000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "D6",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

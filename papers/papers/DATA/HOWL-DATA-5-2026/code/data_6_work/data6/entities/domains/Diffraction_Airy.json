@@ -1,0 +1,22 @@
+{
+  "id": 1318,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Diffraction (Airy)",
+  "equation": "theta = j11/(4*R2)*lam/D",
+  "coordinator_Z": "Bessel zero j11",
+  "precision": "Fundamental limit",
+  "data1_section": 16,
+  "data1_id": "K14",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": 5006,
+  "type": "evidence",
+  "subtype": "script",
+  "name": "phys24_hubble_lib_test",
+  "checks_total": 17,
+  "checks_pass": 16,
+  "checks_fail": 1,
+  "status": "PARTIAL",
+  "version": 0
+}

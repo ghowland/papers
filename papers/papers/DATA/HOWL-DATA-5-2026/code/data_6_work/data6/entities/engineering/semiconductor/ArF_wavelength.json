@@ -1,0 +1,22 @@
+{
+  "id": 1631,
+  "type": "entity",
+  "subtype": "semiconductor",
+  "name": "ArF_wavelength",
+  "value": {
+    "mpf": "0.000000193"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "semiconductor"
+  ],
+  "source": "DATA-1 Section 15",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

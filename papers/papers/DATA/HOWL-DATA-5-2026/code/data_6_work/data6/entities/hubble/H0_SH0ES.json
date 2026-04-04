@@ -1,0 +1,32 @@
+{
+  "id": 1700,
+  "type": "entity",
+  "subtype": "hubble_measurement",
+  "name": "SH0ES (Type Ia supernovae + Cepheids)",
+  "value": {
+    "fraction": {
+      "numerator": "73",
+      "denominator": "1"
+    }
+  },
+  "unit": "km/s/Mpc",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "hubble",
+    "cosmological"
+  ],
+  "source": "Riess et al. 2022, ApJ 934, L7",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "uncertainty": {
+    "numerator": "1",
+    "denominator": "1"
+  },
+  "distance_class": "local",
+  "method": "distance ladder: Cepheids -> SNe Ia"
+}

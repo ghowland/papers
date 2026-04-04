@@ -1,0 +1,25 @@
+{
+  "id": 555,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Vacuum permeability",
+  "value": {
+    "fraction": {
+      "numerator": "125663706127",
+      "denominator": "100000000000000000"
+    }
+  },
+  "unit": "N/A^2",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B13",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

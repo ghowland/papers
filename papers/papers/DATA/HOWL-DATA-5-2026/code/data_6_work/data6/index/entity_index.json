@@ -1,0 +1,2042 @@
+{
+  "1053": {
+    "type": "entity",
+    "subtype": "gap_ratio",
+    "name": "Measured gap ratio ~1.358",
+    "version": 0,
+    "status": "active",
+    "path": "entities/gap_ratios/gap_measured.json"
+  },
+  "1052": {
+    "type": "entity",
+    "subtype": "gap_ratio",
+    "name": "MSSM gap ratio 7/5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/gap_ratios/gap_MSSM.json"
+  },
+  "1050": {
+    "type": "entity",
+    "subtype": "gap_ratio",
+    "name": "SM gap ratio 218/115",
+    "version": 0,
+    "status": "active",
+    "path": "entities/gap_ratios/gap_SM.json"
+  },
+  "1051": {
+    "type": "entity",
+    "subtype": "gap_ratio",
+    "name": "CD gap ratio 38/27",
+    "version": 0,
+    "status": "active",
+    "path": "entities/gap_ratios/gap_VL.json"
+  },
+  "108": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "Yang-Mills -(11/3)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/gauge_coeff.json"
+  },
+  "101": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "C2(adj SU(2)) = 2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/C2_adj_SU2.json"
+  },
+  "102": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "C2(fund SU(3)) = 4/3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/C2_fund_SU3.json"
+  },
+  "100": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "C2(adj SU(3)) = 3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/C2_adj_SU3.json"
+  },
+  "106": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "1/k1 = 5/3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/k1_inv.json"
+  },
+  "110": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "Pure-gauge gap ratio = 2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/casimir_gap.json"
+  },
+  "109": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "Per-generation beta shift (4/3, 4/3, 4/3)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/per_gen_shift.json"
+  },
+  "104": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "S2(fundamental) = 1/2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/S2_fund.json"
+  },
+  "107": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "Number of generations = 3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/N_gen.json"
+  },
+  "103": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "C2(fund SU(2)) = 3/4",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/C2_fund_SU2.json"
+  },
+  "111": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "Reduced Planck constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/hbar.json"
+  },
+  "105": {
+    "type": "entity",
+    "subtype": "group_theory",
+    "name": "GUT normalization 3/5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/group_theory/k1_GUT.json"
+  },
+  "1701": {
+    "type": "entity",
+    "subtype": "hubble_measurement",
+    "name": "H0LiCOW (gravitational lensing time delays)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/hubble/H0_H0LiCOW.json"
+  },
+  "1702": {
+    "type": "entity",
+    "subtype": "hubble_measurement",
+    "name": "CCHP (Tip of Red Giant Branch)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/hubble/H0_CCHP.json"
+  },
+  "1704": {
+    "type": "entity",
+    "subtype": "hubble_measurement",
+    "name": "Planck CMB (cosmic microwave background)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/hubble/H0_Planck.json"
+  },
+  "1703": {
+    "type": "entity",
+    "subtype": "hubble_measurement",
+    "name": "DES + BAO + BBN (combined cosmological)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/hubble/H0_DES_BAO_BBN.json"
+  },
+  "1700": {
+    "type": "entity",
+    "subtype": "hubble_measurement",
+    "name": "SH0ES (Type Ia supernovae + Cepheids)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/hubble/H0_SH0ES.json"
+  },
+  "1805": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Solar radius",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/R_sun.json"
+  },
+  "1800": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Newton gravitational constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/G_newton.json"
+  },
+  "1810": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Muon rest lifetime",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/tau_mu.json"
+  },
+  "1809": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "GPS satellite velocity",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/v_GPS.json"
+  },
+  "1803": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Lunar mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/M_moon.json"
+  },
+  "1806": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Astronomical unit",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/AU.json"
+  },
+  "1801": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Solar mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/M_sun.json"
+  },
+  "1811": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "hbar*c conversion",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/hbar_c_MeV_fm.json"
+  },
+  "1808": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "GPS orbit radius",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/R_GPS.json"
+  },
+  "1804": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Earth radius",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/R_earth.json"
+  },
+  "1802": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Earth mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/M_earth.json"
+  },
+  "1807": {
+    "type": "entity",
+    "subtype": "astrophysical",
+    "name": "Parsec",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/pc.json"
+  },
+  "1853": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "UrsaMinor",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/UrsaMinor.json"
+  },
+  "1852": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Draco",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Draco.json"
+  },
+  "1851": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Sculptor",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Sculptor.json"
+  },
+  "1859": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "ReticulumII",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/ReticulumII.json"
+  },
+  "1850": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Fornax",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Fornax.json"
+  },
+  "1856": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "LeoI",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/LeoI.json"
+  },
+  "1857": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "LeoII",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/LeoII.json"
+  },
+  "1858": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Segue1",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Segue1.json"
+  },
+  "1855": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Sextans",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Sextans.json"
+  },
+  "1860": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "TucanaII",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/TucanaII.json"
+  },
+  "1854": {
+    "type": "entity",
+    "subtype": "dwarf_spheroidal",
+    "name": "Carina",
+    "version": 0,
+    "status": "active",
+    "path": "entities/astrophysical/dwarfs/Carina.json"
+  },
+  "1071": {
+    "type": "entity",
+    "subtype": "cosmological_parameter",
+    "name": "Omega_DM = (44/169)*R2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cosmological/Omega_DM.json"
+  },
+  "1070": {
+    "type": "entity",
+    "subtype": "cosmological_parameter",
+    "name": "DM/baryon = (22/13)*pi",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cosmological/DM_baryon_ratio.json"
+  },
+  "512": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Proton mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_p.json"
+  },
+  "514": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Charged pion mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_pi_p.json"
+  },
+  "506": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Charm quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_c.json"
+  },
+  "504": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Down quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_d.json"
+  },
+  "501": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Muon mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_mu.json"
+  },
+  "511": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Higgs boson mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_H.json"
+  },
+  "509": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Z boson mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/M_Z.json"
+  },
+  "507": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Bottom quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_b.json"
+  },
+  "516": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Charged kaon mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_K_p.json"
+  },
+  "513": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Neutron mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_n.json"
+  },
+  "515": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Neutral pion mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_pi_0.json"
+  },
+  "500": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Electron mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_e.json"
+  },
+  "505": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Strange quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_s.json"
+  },
+  "510": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "W boson mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/M_W.json"
+  },
+  "503": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Up quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_u.json"
+  },
+  "508": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Top quark mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_t.json"
+  },
+  "502": {
+    "type": "entity",
+    "subtype": "mass",
+    "name": "Tau mass",
+    "version": 0,
+    "status": "active",
+    "path": "entities/masses/m_tau.json"
+  },
+  "1210": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Confinement wall (upper face)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Confinement_wall_upper_face.json"
+  },
+  "1208": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Tau lepton threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Tau_lepton_threshold.json"
+  },
+  "1212": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Strange quark threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Strange_quark_threshold.json"
+  },
+  "1209": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Charm quark threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Charm_quark_threshold.json"
+  },
+  "1218": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Gravitational dominance scale",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Gravitational_dominance_scale.json"
+  },
+  "1207": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Bottom quark threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Bottom_quark_threshold.json"
+  },
+  "1217": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Molecular scale",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Molecular_scale.json"
+  },
+  "1213": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Muon threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Muon_threshold.json"
+  },
+  "1214": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Nuclear binding scale",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Nuclear_binding_scale.json"
+  },
+  "1206": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "W boson threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/W_boson_threshold.json"
+  },
+  "1200": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Planck scale",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Planck_scale.json"
+  },
+  "1203": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Top quark threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Top_quark_threshold.json"
+  },
+  "1204": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Higgs boson threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Higgs_boson_threshold.json"
+  },
+  "1205": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Electroweak scale (M_Z)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Electroweak_scale_M_Z.json"
+  },
+  "1215": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Electron threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Electron_threshold.json"
+  },
+  "1201": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "GUT unification scale",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/GUT_unification_scale.json"
+  },
+  "1216": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Atomic scale (Bohr radius)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Atomic_scale_Bohr_radius.json"
+  },
+  "1211": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Confinement wall (lower face)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Confinement_wall_lower_face.json"
+  },
+  "1202": {
+    "type": "entity",
+    "subtype": "boundary",
+    "name": "Cabibbo Doublet threshold",
+    "version": 0,
+    "status": "active",
+    "path": "entities/boundaries/Cabibbo_Doublet_threshold.json"
+  },
+  "1005": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "db3_VL",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/db3_VL.json"
+  },
+  "1000": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b1_SM",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b1_SM.json"
+  },
+  "1003": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "db1_VL",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/db1_VL.json"
+  },
+  "1002": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b3_SM",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b3_SM.json"
+  },
+  "1008": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b3_mod",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b3_mod.json"
+  },
+  "1007": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b2_mod",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b2_mod.json"
+  },
+  "1001": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b2_SM",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b2_SM.json"
+  },
+  "1004": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "db2_VL",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/db2_VL.json"
+  },
+  "1006": {
+    "type": "entity",
+    "subtype": "beta_coefficient",
+    "name": "b1_mod",
+    "version": 0,
+    "status": "active",
+    "path": "entities/betas/b1_mod.json"
+  },
+  "1404": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "Hartree energy",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/Hartree_energy.json"
+  },
+  "1402": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "Rydberg R_inf",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/Rydberg_R_inf.json"
+  },
+  "1405": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "Phi_0^2 / R_K",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/Phi_0^2___R_K.json"
+  },
+  "1400": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "K_J * R_K",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/K_J_x_R_K.json"
+  },
+  "1403": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "a_0 * alpha",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/a_0_x_alpha.json"
+  },
+  "1406": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "Wire R * Capacitor C",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/Wire_R_x_Capacitor_C.json"
+  },
+  "1401": {
+    "type": "entity",
+    "subtype": "r2_cancellation",
+    "name": "G_0 * R_K",
+    "version": 0,
+    "status": "active",
+    "path": "entities/cancellations/G_0_x_R_K.json"
+  },
+  "555": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Vacuum permeability",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mu_0.json"
+  },
+  "557": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "sin theta_23",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/sin_t23.json"
+  },
+  "563": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_tau/m_e",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mtau_me.json"
+  },
+  "553": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Electron g-2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/a_e.json"
+  },
+  "568": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_t/M_Z",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mt_MZ.json"
+  },
+  "562": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_mu/m_e",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mmu_me.json"
+  },
+  "550": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_p/m_e ratio",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mp_me.json"
+  },
+  "10": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "1/alpha_1 GUT",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/inv_a1.json"
+  },
+  "22": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "alpha_s(M_Z)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/alpha_s.json"
+  },
+  "564": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_tau/m_mu",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mtau_mmu.json"
+  },
+  "21": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "sin^2(theta_W)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/sin2_tW.json"
+  },
+  "559": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_c/m_s",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mc_ms.json"
+  },
+  "560": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_b/m_c",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mb_mc.json"
+  },
+  "561": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_u/m_d",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mu_md.json"
+  },
+  "12": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "1/alpha_3 GUT",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/inv_a3.json"
+  },
+  "20": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "1/alpha_EM",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/alpha_inv.json"
+  },
+  "552": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Bohr radius",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/a_0.json"
+  },
+  "569": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Fermi constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/G_F.json"
+  },
+  "556": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "sin theta_12",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/sin_t12.json"
+  },
+  "567": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_H/M_Z",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mH_MZ.json"
+  },
+  "570": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Z width",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/Gamma_Z.json"
+  },
+  "571": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "H 1S-2S frequency",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/H_1S2S.json"
+  },
+  "554": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Muon g-2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/a_mu.json"
+  },
+  "558": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "sin theta_13",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/sin_t13.json"
+  },
+  "566": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "M_W/M_Z",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/MW_MZ.json"
+  },
+  "551": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "Rydberg constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/R_inf.json"
+  },
+  "565": {
+    "type": "entity",
+    "subtype": "measured_ratio",
+    "name": "m_n/m_p",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/mn_mp.json"
+  },
+  "11": {
+    "type": "entity",
+    "subtype": "coupling",
+    "name": "1/alpha_2 GUT",
+    "version": 0,
+    "status": "active",
+    "path": "entities/couplings/inv_a2.json"
+  },
+  "218": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "zeta2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/zeta2.json"
+  },
+  "231": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "E_quarter",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/E_quarter.json"
+  },
+  "232": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "E_half",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/E_half.json"
+  },
+  "222": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "zeta9",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/zeta9.json"
+  },
+  "224": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "li5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/li5.json"
+  },
+  "233": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "E_3qtr",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/E_3qtr.json"
+  },
+  "225": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "li6",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/li6.json"
+  },
+  "227": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "catalan",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/catalan.json"
+  },
+  "228": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "K_quarter",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/K_quarter.json"
+  },
+  "204": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "e",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/e.json"
+  },
+  "215": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "sqrt5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/sqrt5.json"
+  },
+  "221": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "zeta7",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/zeta7.json"
+  },
+  "213": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "sqrt2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/sqrt2.json"
+  },
+  "205": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "epi",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/epi.json"
+  },
+  "230": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "K_3qtr",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/K_3qtr.json"
+  },
+  "216": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "sqrt7",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/sqrt7.json"
+  },
+  "212": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln2_4",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln2_4.json"
+  },
+  "206": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln2.json"
+  },
+  "223": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "li4",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/li4.json"
+  },
+  "229": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "K_half",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/K_half.json"
+  },
+  "217": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "phi",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/phi.json"
+  },
+  "207": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln3.json"
+  },
+  "202": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "pi3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/pi3.json"
+  },
+  "201": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "pi2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/pi2.json"
+  },
+  "200": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "pi",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/pi.json"
+  },
+  "214": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "sqrt3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/sqrt3.json"
+  },
+  "226": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "li7",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/li7.json"
+  },
+  "208": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln5.json"
+  },
+  "211": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln2_2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln2_2.json"
+  },
+  "210": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "ln10",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/ln10.json"
+  },
+  "220": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "zeta5",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/zeta5.json"
+  },
+  "219": {
+    "type": "entity",
+    "subtype": "q335_constant",
+    "name": "zeta3",
+    "version": 0,
+    "status": "active",
+    "path": "entities/q335/zeta3.json"
+  },
+  "1055": {
+    "type": "entity",
+    "subtype": "koide_parameter",
+    "name": "Koide a^2 leptons",
+    "version": 0,
+    "status": "active",
+    "path": "entities/koide/a2_lep.json"
+  },
+  "1057": {
+    "type": "entity",
+    "subtype": "koide_parameter",
+    "name": "Koide a^2 up quarks",
+    "version": 0,
+    "status": "active",
+    "path": "entities/koide/a2_up.json"
+  },
+  "1054": {
+    "type": "entity",
+    "subtype": "koide_parameter",
+    "name": "Koide ratio K(e,mu,tau)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/koide/K_koide.json"
+  },
+  "1056": {
+    "type": "entity",
+    "subtype": "koide_parameter",
+    "name": "Koide a^2 down quarks",
+    "version": 0,
+    "status": "active",
+    "path": "entities/koide/a2_down.json"
+  },
+  "1020": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_00",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_00.json"
+  },
+  "1031": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_02",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_02.json"
+  },
+  "1024": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_11",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_11.json"
+  },
+  "1029": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_00",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_00.json"
+  },
+  "1021": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_01",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_01.json"
+  },
+  "1037": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_22",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_22.json"
+  },
+  "1033": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_11",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_11.json"
+  },
+  "1023": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_10",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_10.json"
+  },
+  "1034": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_12",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_12.json"
+  },
+  "1022": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_02",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_02.json"
+  },
+  "1025": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_12",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_12.json"
+  },
+  "1032": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_10",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_10.json"
+  },
+  "1027": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_21",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_21.json"
+  },
+  "1036": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_21",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_21.json"
+  },
+  "1028": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_22",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_22.json"
+  },
+  "1026": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "bij_SM_20",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/bij_SM_20.json"
+  },
+  "1035": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_20",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_20.json"
+  },
+  "1030": {
+    "type": "entity",
+    "subtype": "two_loop_coefficient",
+    "name": "dbij_VL_01",
+    "version": 0,
+    "status": "active",
+    "path": "entities/two_loop/dbij_VL_01.json"
+  },
+  "1": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Speed of light",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/c.json"
+  },
+  "3": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Elementary charge",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/e_charge.json"
+  },
+  "5": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Avogadro number",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/N_A.json"
+  },
+  "2": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Planck constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/h_planck.json"
+  },
+  "7": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Luminous efficacy",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/K_cd.json"
+  },
+  "4": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Boltzmann constant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/k_B.json"
+  },
+  "6": {
+    "type": "entity",
+    "subtype": "si_constant",
+    "name": "Cesium hyperfine frequency",
+    "version": 0,
+    "status": "active",
+    "path": "entities/si_constants/dv_Cs.json"
+  },
+  "1312": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Disc spot",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Disc_spot.json"
+  },
+  "1320": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Free-space path loss",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Free_space_path_loss.json"
+  },
+  "1301": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Drag force",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Drag_force.json"
+  },
+  "1321": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Radar cross-section",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Radar_cross_section.json"
+  },
+  "1302": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Orifice flow",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Orifice_flow.json"
+  },
+  "1319": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Rayleigh scattering",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Rayleigh_scattering.json"
+  },
+  "1317": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Helmholtz resonance",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Helmholtz_resonance.json"
+  },
+  "1313": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Wafer area",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Wafer_area.json"
+  },
+  "1304": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Poynting flux",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Poynting_flux.json"
+  },
+  "1309": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Wire resistance",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Wire_resistance.json"
+  },
+  "1305": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Antenna aperture",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Antenna_aperture.json"
+  },
+  "1316": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Ion implant",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Ion_implant.json"
+  },
+  "1314": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Gaussian beam",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Gaussian_beam.json"
+  },
+  "1303": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Capacitor",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Capacitor.json"
+  },
+  "1318": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Diffraction (Airy)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Diffraction_Airy.json"
+  },
+  "1315": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Hagen-Poiseuille flow",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Hagen_Poiseuille_flow.json"
+  },
+  "1308": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Sound intensity",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Sound_intensity.json"
+  },
+  "1310": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Speaker cone",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Speaker_cone.json"
+  },
+  "1311": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Fiber mode",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Fiber_mode.json"
+  },
+  "1307": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Thermal radiation",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Thermal_radiation.json"
+  },
+  "1300": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Pipe flow",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Pipe_flow.json"
+  },
+  "1306": {
+    "type": "entity",
+    "subtype": "r2_domain",
+    "name": "Beam cross-section",
+    "version": 0,
+    "status": "active",
+    "path": "entities/domains/Beam_cross_section.json"
+  },
+  "1105": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Cabibbo Doublet",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/CD.json"
+  },
+  "1100": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Left quark doublet",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/Q_L.json"
+  },
+  "1103": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Left lepton doublet",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/L_L.json"
+  },
+  "1101": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Right up quark",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/u_R.json"
+  },
+  "1104": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Right electron",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/e_R.json"
+  },
+  "1102": {
+    "type": "entity",
+    "subtype": "representation",
+    "name": "Right down quark",
+    "version": 0,
+    "status": "active",
+    "path": "entities/representations/d_R.json"
+  },
+  "52": {
+    "type": "entity",
+    "subtype": "geometric_constant",
+    "name": "twopi",
+    "version": 0,
+    "status": "active",
+    "path": "entities/geometric/twopi.json"
+  },
+  "50": {
+    "type": "entity",
+    "subtype": "geometric_constant",
+    "name": "R2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/geometric/R2.json"
+  },
+  "51": {
+    "type": "entity",
+    "subtype": "geometric_constant",
+    "name": "R4",
+    "version": 0,
+    "status": "active",
+    "path": "entities/geometric/R4.json"
+  },
+  "54": {
+    "type": "entity",
+    "subtype": "bessel_zero",
+    "name": "j01",
+    "version": 0,
+    "status": "active",
+    "path": "entities/geometric/bessel/j01.json"
+  },
+  "55": {
+    "type": "entity",
+    "subtype": "bessel_zero",
+    "name": "j11",
+    "version": 0,
+    "status": "active",
+    "path": "entities/geometric/bessel/j11.json"
+  },
+  "1610": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "1-inch tweeter",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/1inch.json"
+  },
+  "1607": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "8-inch midrange",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/8inch.json"
+  },
+  "1605": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "12-inch woofer",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/12inch.json"
+  },
+  "1609": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "5-inch mid",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/5inch.json"
+  },
+  "1606": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "10-inch woofer",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/10inch.json"
+  },
+  "1608": {
+    "type": "entity",
+    "subtype": "speaker",
+    "name": "6.5-inch mid",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/speakers/6inch.json"
+  },
+  "1601": {
+    "type": "entity",
+    "subtype": "optical_disc",
+    "name": "Compact Disc",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/discs/CD.json"
+  },
+  "1602": {
+    "type": "entity",
+    "subtype": "optical_disc",
+    "name": "Digital Versatile Disc",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/discs/DVD.json"
+  },
+  "1603": {
+    "type": "entity",
+    "subtype": "optical_disc",
+    "name": "Blu-ray Disc",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/discs/Blu_ray.json"
+  },
+  "1629": {
+    "type": "entity",
+    "subtype": "rf_frequency",
+    "name": "GPS_base",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/rf/GPS_base.json"
+  },
+  "1628": {
+    "type": "entity",
+    "subtype": "rf_frequency",
+    "name": "GPS_L2",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/rf/GPS_L2.json"
+  },
+  "1627": {
+    "type": "entity",
+    "subtype": "rf_frequency",
+    "name": "GPS_L1",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/rf/GPS_L1.json"
+  },
+  "1604": {
+    "type": "entity",
+    "subtype": "optical_fiber",
+    "name": "Corning SMF-28",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/fiber/SMF_28.json"
+  },
+  "1630": {
+    "type": "entity",
+    "subtype": "semiconductor",
+    "name": "EUV_wavelength",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/semiconductor/EUV_wavelength.json"
+  },
+  "1631": {
+    "type": "entity",
+    "subtype": "semiconductor",
+    "name": "ArF_wavelength",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/semiconductor/ArF_wavelength.json"
+  },
+  "1625": {
+    "type": "entity",
+    "subtype": "material_constant",
+    "name": "Stefan-Boltzmann",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/materials/sigma_SB.json"
+  },
+  "1624": {
+    "type": "entity",
+    "subtype": "material_constant",
+    "name": "Vacuum permittivity",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/materials/epsilon_0.json"
+  },
+  "1623": {
+    "type": "entity",
+    "subtype": "material_constant",
+    "name": "Copper resistivity",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/materials/Cu_resistivity.json"
+  },
+  "1626": {
+    "type": "entity",
+    "subtype": "material_constant",
+    "name": "Euler-Mascheroni",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/materials/gamma_EM.json"
+  },
+  "1634": {
+    "type": "entity",
+    "subtype": "audio_standard",
+    "name": "Just intonation ratios",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/audio/just_intonation.json"
+  },
+  "1633": {
+    "type": "entity",
+    "subtype": "audio_standard",
+    "name": "Sample rates",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/audio/sample_rates.json"
+  },
+  "1611": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 0000",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_0000.json"
+  },
+  "1620": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 24",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_24.json"
+  },
+  "1616": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 12",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_12.json"
+  },
+  "1614": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 8",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_8.json"
+  },
+  "1622": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 36",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_36.json"
+  },
+  "1621": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 30",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_30.json"
+  },
+  "1619": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 22",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_22.json"
+  },
+  "1612": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 0",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_0.json"
+  },
+  "1615": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 10",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_10.json"
+  },
+  "1613": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 4",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_4.json"
+  },
+  "1617": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 14",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_14.json"
+  },
+  "1618": {
+    "type": "entity",
+    "subtype": "wire_gauge",
+    "name": "AWG 18",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/wire/AWG_18.json"
+  },
+  "1636": {
+    "type": "entity",
+    "subtype": "flow_constant",
+    "name": "Vena contracta Cc = pi/(pi+2)",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/flow/vena_contracta.json"
+  },
+  "1635": {
+    "type": "entity",
+    "subtype": "flow_constant",
+    "name": "Speed of sound in air",
+    "version": 0,
+    "status": "active",
+    "path": "entities/engineering/flow/c_sound.json"
+  }
+}

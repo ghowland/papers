@@ -1,0 +1,170 @@
+{
+  "5001": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_lib_platform_test",
+    "status": "PASS",
+    "path": "evidence/scripts/phys24_lib_platform_test.json"
+  },
+  "5010": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "dwarf_soliton_test",
+    "status": "PASS",
+    "path": "evidence/scripts/dwarf_soliton_test.json"
+  },
+  "5002": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "data_4_derivation_lib_test",
+    "status": "PASS",
+    "path": "evidence/scripts/data_4_derivation_lib_test.json"
+  },
+  "5006": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_hubble_lib_test",
+    "status": "PARTIAL",
+    "path": "evidence/scripts/phys24_hubble_lib_test.json"
+  },
+  "5003": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_structure_lib_test",
+    "status": "PASS",
+    "path": "evidence/scripts/phys24_structure_lib_test.json"
+  },
+  "5008": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "beta_unification_test",
+    "status": "PARTIAL",
+    "path": "evidence/scripts/beta_unification_test.json"
+  },
+  "5000": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_lib_test",
+    "status": "PASS",
+    "path": "evidence/scripts/phys24_lib_test.json"
+  },
+  "5009": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "toroidal_dm_test",
+    "status": "PASS",
+    "path": "evidence/scripts/toroidal_dm_test.json"
+  },
+  "5012": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "time_process_rate_test",
+    "status": "PARTIAL",
+    "path": "evidence/scripts/time_process_rate_test.json"
+  },
+  "5007": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "data_5_populate_test",
+    "status": "PARTIAL",
+    "path": "evidence/scripts/data_5_populate_test.json"
+  },
+  "5005": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_domain_lib_test",
+    "status": "PASS",
+    "path": "evidence/scripts/phys24_domain_lib_test.json"
+  },
+  "5011": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "nested_soliton_gravity_test",
+    "status": "PASS",
+    "path": "evidence/scripts/nested_soliton_gravity_test.json"
+  },
+  "5004": {
+    "type": "evidence",
+    "subtype": "script",
+    "name": "phys24_boundary_map_lib_test",
+    "status": "PASS",
+    "path": "evidence/scripts/phys24_boundary_map_lib_test.json"
+  },
+  "5022": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "amplification",
+    "status": "PASS",
+    "path": "evidence/results/result_amplification.json"
+  },
+  "5019": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "mond_a0",
+    "status": "PASS",
+    "path": "evidence/results/result_mond_a0.json"
+  },
+  "5023": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "draco_purity",
+    "status": "PASS",
+    "path": "evidence/results/result_draco_purity.json"
+  },
+  "5017": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "gps_correction",
+    "status": "PASS",
+    "path": "evidence/results/result_gps_correction.json"
+  },
+  "5016": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "koide_mtau",
+    "status": "PASS",
+    "path": "evidence/results/result_koide_mtau.json"
+  },
+  "5014": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "alpha_s_2L_full",
+    "status": "PASS",
+    "path": "evidence/results/result_alpha_s_2L_full.json"
+  },
+  "5018": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "kepler_6planets",
+    "status": "PASS",
+    "path": "evidence/results/result_kepler_6planets.json"
+  },
+  "5013": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "dm_baryon",
+    "status": "PASS",
+    "path": "evidence/results/result_dm_baryon.json"
+  },
+  "5021": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "muon_gamma",
+    "status": "PASS",
+    "path": "evidence/results/result_muon_gamma.json"
+  },
+  "5015": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "sin2_1L",
+    "status": "PASS",
+    "path": "evidence/results/result_sin2_1L.json"
+  },
+  "5020": {
+    "type": "evidence",
+    "subtype": "result",
+    "name": "earth_hill",
+    "status": "PASS",
+    "path": "evidence/results/result_earth_hill.json"
+  }
+}

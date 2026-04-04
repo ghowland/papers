@@ -1,0 +1,22 @@
+{
+  "id": 1300,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Pipe flow",
+  "equation": "Q = R2*d^2*v",
+  "coordinator_Z": "velocity v",
+  "precision": "Coriolis: 0.05%",
+  "data1_section": 17,
+  "data1_id": "L1",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

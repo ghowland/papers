@@ -1,0 +1,25 @@
+{
+  "id": 560,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "m_b/m_c",
+  "value": {
+    "fraction": {
+      "numerator": "2289",
+      "denominator": "500"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "D10",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

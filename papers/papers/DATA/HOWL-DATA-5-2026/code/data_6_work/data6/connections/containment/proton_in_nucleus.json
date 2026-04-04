@@ -1,0 +1,9 @@
+{
+  "id": 3001,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "proton_in_nucleus",
+  "display_name": "Proton bound in nucleus",
+  "mechanism": "Nuclear force",
+  "version": 0
+}

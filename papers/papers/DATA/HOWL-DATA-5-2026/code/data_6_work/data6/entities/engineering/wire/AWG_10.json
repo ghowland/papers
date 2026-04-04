@@ -1,0 +1,26 @@
+{
+  "id": 1615,
+  "type": "entity",
+  "subtype": "wire_gauge",
+  "name": "AWG 10",
+  "value": {
+    "mpf": "0.002588"
+  },
+  "unit": "m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "wire",
+    "AWG"
+  ],
+  "source": "DATA-1 Section 12",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "diameter_in": {
+    "mpf": "0.1019"
+  }
+}

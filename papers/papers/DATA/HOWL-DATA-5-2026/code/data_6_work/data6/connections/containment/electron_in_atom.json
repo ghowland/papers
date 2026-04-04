@@ -1,0 +1,9 @@
+{
+  "id": 3003,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "electron_in_atom",
+  "display_name": "Electron in atom",
+  "mechanism": "EM binding",
+  "version": 0
+}

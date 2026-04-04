@@ -1,0 +1,22 @@
+{
+  "id": 1305,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Antenna aperture",
+  "equation": "A = eta*R2*D^2",
+  "coordinator_Z": "efficiency eta",
+  "precision": "Calibrated",
+  "data1_section": 14,
+  "data1_id": "I11",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

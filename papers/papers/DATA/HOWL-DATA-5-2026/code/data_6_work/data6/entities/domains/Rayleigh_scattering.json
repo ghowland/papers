@@ -1,0 +1,22 @@
+{
+  "id": 1319,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Rayleigh scattering",
+  "equation": "sigma ~ (8*R2/lam)^4*r^6",
+  "coordinator_Z": "polarizability",
+  "precision": "Silica: 0.8 dB/km/um^4",
+  "data1_section": 16,
+  "data1_id": "K18",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

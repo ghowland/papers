@@ -1,0 +1,22 @@
+{
+  "id": 1302,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Orifice flow",
+  "equation": "q = Cd*R2*d^2*sqrt(2*dP/rho)",
+  "coordinator_Z": "discharge Cd",
+  "precision": "ISO 5167: 0.5%",
+  "data1_section": 17,
+  "data1_id": "L3",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

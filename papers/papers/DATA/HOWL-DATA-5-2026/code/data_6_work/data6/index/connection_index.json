@@ -1,0 +1,248 @@
+{
+  "3017": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "b2mod_13_to_DM",
+    "path": "connections/integer_source/b2mod_13_to_DM.json"
+  },
+  "3020": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "b2SM_19_to_dwarf",
+    "path": "connections/integer_source/b2SM_19_to_dwarf.json"
+  },
+  "3019": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "b2SM_19_to_gap_SM",
+    "path": "connections/integer_source/b2SM_19_to_gap_SM.json"
+  },
+  "3013": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "YM_11_to_gauge_coeff",
+    "path": "connections/integer_source/YM_11_to_gauge_coeff.json"
+  },
+  "3015": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "YM_11_to_DM_22",
+    "path": "connections/integer_source/YM_11_to_DM_22.json"
+  },
+  "3018": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "b2mod_13_to_Omega_169",
+    "path": "connections/integer_source/b2mod_13_to_Omega_169.json"
+  },
+  "3014": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "YM_11_to_b3_SM",
+    "path": "connections/integer_source/YM_11_to_b3_SM.json"
+  },
+  "3016": {
+    "type": "connection",
+    "subtype": "integer_source",
+    "name": "YM_11_to_Omega_44",
+    "path": "connections/integer_source/YM_11_to_Omega_44.json"
+  },
+  "3012": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "cluster_in_cosmological",
+    "path": "connections/containment/cluster_in_cosmological.json"
+  },
+  "3007": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "human_on_earth",
+    "path": "connections/containment/human_on_earth.json"
+  },
+  "3008": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "moon_in_earth_hill",
+    "path": "connections/containment/moon_in_earth_hill.json"
+  },
+  "3004": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "atom_in_crystal",
+    "path": "connections/containment/atom_in_crystal.json"
+  },
+  "3000": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "quark_in_proton",
+    "path": "connections/containment/quark_in_proton.json"
+  },
+  "3010": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "solar_in_galaxy",
+    "path": "connections/containment/solar_in_galaxy.json"
+  },
+  "3005": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "crystal_in_geological",
+    "path": "connections/containment/crystal_in_geological.json"
+  },
+  "3003": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "electron_in_atom",
+    "path": "connections/containment/electron_in_atom.json"
+  },
+  "3009": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "earth_in_solar",
+    "path": "connections/containment/earth_in_solar.json"
+  },
+  "3002": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "nucleus_in_atom",
+    "path": "connections/containment/nucleus_in_atom.json"
+  },
+  "3001": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "proton_in_nucleus",
+    "path": "connections/containment/proton_in_nucleus.json"
+  },
+  "3006": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "geological_in_earth",
+    "path": "connections/containment/geological_in_earth.json"
+  },
+  "3011": {
+    "type": "connection",
+    "subtype": "containment",
+    "name": "galaxy_in_cluster",
+    "path": "connections/containment/galaxy_in_cluster.json"
+  },
+  "3030": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Confinement_wall_(lo_to_Charm_quark_threshol",
+    "path": "connections/adjacency/Confinement_wall_(lo_to_Charm_quark_threshol.json"
+  },
+  "3039": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Cabibbo_Doublet_thre_to_GUT_unification_scal",
+    "path": "connections/adjacency/Cabibbo_Doublet_thre_to_GUT_unification_scal.json"
+  },
+  "3031": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Charm_quark_threshol_to_Tau_lepton_threshold",
+    "path": "connections/adjacency/Charm_quark_threshol_to_Tau_lepton_threshold.json"
+  },
+  "3027": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Nuclear_binding_scal_to_Strange_quark_thresh",
+    "path": "connections/adjacency/Nuclear_binding_scal_to_Strange_quark_thresh.json"
+  },
+  "3033": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Confinement_wall_(up_to_Bottom_quark_thresho",
+    "path": "connections/adjacency/Confinement_wall_(up_to_Bottom_quark_thresho.json"
+  },
+  "3036": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Electroweak_scale_(M_to_Higgs_boson_threshol",
+    "path": "connections/adjacency/Electroweak_scale_(M_to_Higgs_boson_threshol.json"
+  },
+  "3038": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Top_quark_threshold_to_Cabibbo_Doublet_thre",
+    "path": "connections/adjacency/Top_quark_threshold_to_Cabibbo_Doublet_thre.json"
+  },
+  "3028": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Strange_quark_thresh_to_Muon_threshold",
+    "path": "connections/adjacency/Strange_quark_thresh_to_Muon_threshold.json"
+  },
+  "3037": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Higgs_boson_threshol_to_Top_quark_threshold",
+    "path": "connections/adjacency/Higgs_boson_threshol_to_Top_quark_threshold.json"
+  },
+  "3034": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Bottom_quark_thresho_to_W_boson_threshold",
+    "path": "connections/adjacency/Bottom_quark_thresho_to_W_boson_threshold.json"
+  },
+  "3026": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Electron_threshold_to_Nuclear_binding_scal",
+    "path": "connections/adjacency/Electron_threshold_to_Nuclear_binding_scal.json"
+  },
+  "3032": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Tau_lepton_threshold_to_Confinement_wall_(up",
+    "path": "connections/adjacency/Tau_lepton_threshold_to_Confinement_wall_(up.json"
+  },
+  "3040": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "GUT_unification_scal_to_Planck_scale",
+    "path": "connections/adjacency/GUT_unification_scal_to_Planck_scale.json"
+  },
+  "3035": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "W_boson_threshold_to_Electroweak_scale_(M",
+    "path": "connections/adjacency/W_boson_threshold_to_Electroweak_scale_(M.json"
+  },
+  "3029": {
+    "type": "connection",
+    "subtype": "adjacency",
+    "name": "Muon_threshold_to_Confinement_wall_(lo",
+    "path": "connections/adjacency/Muon_threshold_to_Confinement_wall_(lo.json"
+  },
+  "3021": {
+    "type": "connection",
+    "subtype": "equivalent",
+    "name": "4R2_equals_pi",
+    "path": "connections/equivalent/4R2_equals_pi.json"
+  },
+  "3024": {
+    "type": "connection",
+    "subtype": "equivalent",
+    "name": "64R2sq_equals_4pi_sq",
+    "path": "connections/equivalent/64R2sq_equals_4pi_sq.json"
+  },
+  "3023": {
+    "type": "connection",
+    "subtype": "equivalent",
+    "name": "16R2_equals_4pi",
+    "path": "connections/equivalent/16R2_equals_4pi.json"
+  },
+  "3025": {
+    "type": "connection",
+    "subtype": "equivalent",
+    "name": "vena_contracta_identity",
+    "path": "connections/equivalent/vena_contracta_identity.json"
+  },
+  "3022": {
+    "type": "connection",
+    "subtype": "equivalent",
+    "name": "8R2_equals_2pi",
+    "path": "connections/equivalent/8R2_equals_2pi.json"
+  }
+}

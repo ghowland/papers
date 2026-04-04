@@ -1,0 +1,9 @@
+{
+  "id": 3004,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "atom_in_crystal",
+  "display_name": "Atom in crystal lattice",
+  "mechanism": "EM/covalent",
+  "version": 0
+}

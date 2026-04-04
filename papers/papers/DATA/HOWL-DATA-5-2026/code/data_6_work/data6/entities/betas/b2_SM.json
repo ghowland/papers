@@ -1,0 +1,42 @@
+{
+  "id": 1001,
+  "type": "entity",
+  "subtype": "beta_coefficient",
+  "name": "b2_SM",
+  "value": {
+    "fraction": {
+      "numerator": "-19",
+      "denominator": "6"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "beta",
+    "SU2"
+  ],
+  "source": "phys24_lib",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "gauge_group": "SU2",
+  "decomposition": {
+    "gauge": {
+      "numerator": "-22",
+      "denominator": "3"
+    },
+    "fermion": {
+      "numerator": "4",
+      "denominator": "1"
+    },
+    "higgs": {
+      "numerator": "1",
+      "denominator": "6"
+    },
+    "bsm": null
+  }
+}

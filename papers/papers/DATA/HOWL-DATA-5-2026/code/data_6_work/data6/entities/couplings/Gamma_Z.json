@@ -1,0 +1,25 @@
+{
+  "id": 570,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Z width",
+  "value": {
+    "fraction": {
+      "numerator": "12476",
+      "denominator": "5"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "C2",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

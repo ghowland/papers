@@ -1,0 +1,26 @@
+{
+  "id": 501,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Muon mass",
+  "value": {
+    "fraction": {
+      "numerator": "211316751",
+      "denominator": "2000000"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "B3",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

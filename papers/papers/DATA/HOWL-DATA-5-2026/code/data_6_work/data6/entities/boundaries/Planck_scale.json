@@ -1,0 +1,42 @@
+{
+  "id": 1200,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Planck scale",
+  "value": {
+    "fraction": {
+      "numerator": "12209000000000000000",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "gravity",
+    "unified"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Quantum gravity effects become order 1. Spacetime geometry itself may be quantized.",
+  "forces_affected": [
+    "gravity",
+    "unified"
+  ],
+  "open_questions": [
+    "Does G run?",
+    "What is the quantum theory of gravity?",
+    "Is there a desert between M_GUT and M_Planck?"
+  ],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "G_N": null,
+    "alpha_GUT": null
+  }
+}

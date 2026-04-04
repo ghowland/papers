@@ -1,0 +1,10 @@
+{
+  "id": 5023,
+  "type": "evidence",
+  "subtype": "result",
+  "name": "draco_purity",
+  "display_name": "Draco DM/vis > 100",
+  "status": "PASS",
+  "miss_pct": "verified",
+  "version": 0
+}

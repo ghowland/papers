@@ -1,0 +1,11 @@
+{
+  "id": 5011,
+  "type": "evidence",
+  "subtype": "script",
+  "name": "nested_soliton_gravity_test",
+  "checks_total": 15,
+  "checks_pass": 15,
+  "checks_fail": 0,
+  "status": "PASS",
+  "version": 0
+}

@@ -1,0 +1,26 @@
+{
+  "id": 227,
+  "type": "entity",
+  "subtype": "q335_constant",
+  "name": "catalan",
+  "value": {
+    "fraction": {
+      "numerator": "64110285111693582641294563817927086726382757371148180987419195376360958765615024299223500526530512841",
+      "denominator": "69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "Q335",
+    "Level0",
+    "mathematical"
+  ],
+  "source": "Q335 basis",
+  "data4_id": "G22",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1403,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "a_0 * alpha",
+  "formula": "hbar/(m_e*c) -- R2 cancels in the ratio",
+  "status": "CANCELS",
+  "precision": "12 digits",
+  "data1_id": "R4",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "CANCELS"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

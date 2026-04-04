@@ -1,0 +1,16 @@
+{
+  "name": "Cosmological Parameters",
+  "thesis": "DM/baryon = (22/13)*pi and Omega_DM = (44/169)*R2 from gauge integers",
+  "status": "ACTIVE",
+  "scripts": [
+    "beta_unification_test.py"
+  ],
+  "kill_switches": [
+    "Planck values revised beyond tolerance",
+    "Better rational fit found with different integers"
+  ],
+  "blocking": null,
+  "id": 6001,
+  "type": "program",
+  "version": 0
+}

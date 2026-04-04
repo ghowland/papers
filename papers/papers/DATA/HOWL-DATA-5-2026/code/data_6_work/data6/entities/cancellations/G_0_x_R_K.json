@@ -1,0 +1,22 @@
+{
+  "id": 1401,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "G_0 * R_K",
+  "formula": "2e^2/h * h/e^2 = 2",
+  "status": "CANCELS",
+  "precision": "exact",
+  "data1_id": "R2",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "CANCELS"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

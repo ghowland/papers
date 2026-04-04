@@ -1,0 +1,26 @@
+{
+  "id": 502,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Tau mass",
+  "value": {
+    "fraction": {
+      "numerator": "88843",
+      "denominator": "50"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "B4",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

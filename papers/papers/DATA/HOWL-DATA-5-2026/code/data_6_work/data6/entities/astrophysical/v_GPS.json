@@ -1,0 +1,22 @@
+{
+  "id": 1809,
+  "type": "entity",
+  "subtype": "astrophysical",
+  "name": "GPS satellite velocity",
+  "value": {
+    "mpf": "3874.0"
+  },
+  "unit": "m/s",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical"
+  ],
+  "source": "Standard values",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

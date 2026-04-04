@@ -1,0 +1,22 @@
+{
+  "id": 1315,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Hagen-Poiseuille flow",
+  "equation": "Q = R2*d^4*dP/(32*mu*L)",
+  "coordinator_Z": "viscosity mu",
+  "precision": "Lab: 1%",
+  "data1_section": 17,
+  "data1_id": "L15",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": 1215,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Electron threshold",
+  "value": {
+    "fraction": {
+      "numerator": "51099895069",
+      "denominator": "100000000000"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "electromagnetic"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Electron-positron pairs can no longer be created. Below this, only photons propagate freely.",
+  "forces_affected": [
+    "electromagnetic"
+  ],
+  "open_questions": [],
+  "data4_entry": "B2",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "alpha_EM": {
+      "numerator": "1000000000",
+      "denominator": "137035999177"
+    }
+  }
+}

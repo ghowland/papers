@@ -1,0 +1,62 @@
+{
+  "id": 1205,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Electroweak scale (M_Z)",
+  "value": {
+    "fraction": {
+      "numerator": "455938",
+      "denominator": "5"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "electromagnetic",
+    "weak",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Reference scale for all coupling measurements. Electroweak symmetry is broken below this scale. W and Z acquire mass.",
+  "forces_affected": [
+    "electromagnetic",
+    "weak",
+    "strong"
+  ],
+  "open_questions": [],
+  "data4_entry": "C1",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "1/alpha_EM": {
+      "numerator": "137035999177",
+      "denominator": "1000000000"
+    },
+    "sin2_tW": {
+      "numerator": "11561",
+      "denominator": "50000"
+    },
+    "alpha_s": {
+      "numerator": "59",
+      "denominator": "500"
+    },
+    "1/alpha_1": {
+      "numerator": "15802580317094109",
+      "denominator": "250000000000000"
+    },
+    "1/alpha_2": {
+      "numerator": "1584273186485297",
+      "denominator": "50000000000000"
+    },
+    "1/alpha_3": {
+      "numerator": "500",
+      "denominator": "59"
+    }
+  }
+}

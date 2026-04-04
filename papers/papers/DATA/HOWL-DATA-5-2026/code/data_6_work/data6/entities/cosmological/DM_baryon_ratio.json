@@ -1,0 +1,30 @@
+{
+  "id": 1070,
+  "type": "entity",
+  "subtype": "cosmological_parameter",
+  "name": "DM/baryon = (22/13)*pi",
+  "value": {
+    "fraction": {
+      "numerator": "22",
+      "denominator": "13"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "cosmological",
+    "beta_integers"
+  ],
+  "source": "Beta unification formulas",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "formula": "(2*YM / |b2_mod_num|) * pi = (22/13) * pi",
+  "computed_value": {
+    "mpf": "5.3165414137673424036"
+  }
+}

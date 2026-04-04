@@ -1,0 +1,10 @@
+{
+  "id": 3020,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "b2SM_19_to_dwarf",
+  "integer": 19,
+  "target": "dwarfs",
+  "note": "Dwarf cosmic ratio ~ 19",
+  "version": 0
+}

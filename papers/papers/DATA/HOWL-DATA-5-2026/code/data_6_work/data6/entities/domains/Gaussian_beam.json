@@ -1,0 +1,22 @@
+{
+  "id": 1314,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Gaussian beam",
+  "equation": "A_waist = R2*w0^2",
+  "coordinator_Z": "beam parameter",
+  "precision": "Laser: um",
+  "data1_section": 16,
+  "data1_id": "K3",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

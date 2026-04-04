@@ -1,0 +1,9 @@
+{
+  "id": 3006,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "geological_in_earth",
+  "display_name": "Geological layer in Earth",
+  "mechanism": "Self-gravity",
+  "version": 0
+}

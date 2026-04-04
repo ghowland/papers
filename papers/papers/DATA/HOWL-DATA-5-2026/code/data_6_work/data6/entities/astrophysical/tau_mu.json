@@ -1,0 +1,22 @@
+{
+  "id": 1810,
+  "type": "entity",
+  "subtype": "astrophysical",
+  "name": "Muon rest lifetime",
+  "value": {
+    "mpf": "0.0000021969811"
+  },
+  "unit": "s",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical"
+  ],
+  "source": "Standard values",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

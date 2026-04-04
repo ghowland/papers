@@ -1,0 +1,37 @@
+{
+  "id": 1204,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Higgs boson threshold",
+  "value": {
+    "fraction": {
+      "numerator": "125200",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "electromagnetic",
+    "weak"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Higgs field excitation becomes resolvable. Higgs contribution to beta functions active.",
+  "forces_affected": [
+    "electromagnetic",
+    "weak"
+  ],
+  "open_questions": [
+    "Is lambda (Higgs self-coupling) derivable? (parked, PHYS-24 Appendix J)"
+  ],
+  "data4_entry": "C5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {}
+}

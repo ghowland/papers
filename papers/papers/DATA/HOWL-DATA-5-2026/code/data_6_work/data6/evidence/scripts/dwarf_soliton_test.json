@@ -1,0 +1,11 @@
+{
+  "id": 5010,
+  "type": "evidence",
+  "subtype": "script",
+  "name": "dwarf_soliton_test",
+  "checks_total": 12,
+  "checks_pass": 12,
+  "checks_fail": 0,
+  "status": "PASS",
+  "version": 0
+}

@@ -1,0 +1,10 @@
+{
+  "id": 3014,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "YM_11_to_b3_SM",
+  "integer": 11,
+  "target": "b3_SM",
+  "note": "b3 gauge part = -11",
+  "version": 0
+}

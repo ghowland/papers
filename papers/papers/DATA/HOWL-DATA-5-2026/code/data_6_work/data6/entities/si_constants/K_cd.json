@@ -1,0 +1,26 @@
+{
+  "id": 7,
+  "type": "entity",
+  "subtype": "si_constant",
+  "name": "Luminous efficacy",
+  "value": {
+    "fraction": {
+      "numerator": "683",
+      "denominator": "1"
+    }
+  },
+  "unit": "lm/W",
+  "level": 0,
+  "tags": [
+    "SI",
+    "exact",
+    "Level0"
+  ],
+  "source": "SI 2019 (exact)",
+  "data4_id": "A7",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

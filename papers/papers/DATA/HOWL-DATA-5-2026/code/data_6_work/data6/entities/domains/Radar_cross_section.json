@@ -1,0 +1,22 @@
+{
+  "id": 1321,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Radar cross-section",
+  "equation": "sigma = 16*R2*A^2/lam^2",
+  "coordinator_Z": "plate area A",
+  "precision": "RCS measurement",
+  "data1_section": 14,
+  "data1_id": "I15",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

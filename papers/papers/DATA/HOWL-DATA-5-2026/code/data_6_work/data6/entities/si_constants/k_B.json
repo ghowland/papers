@@ -1,0 +1,26 @@
+{
+  "id": 4,
+  "type": "entity",
+  "subtype": "si_constant",
+  "name": "Boltzmann constant",
+  "value": {
+    "fraction": {
+      "numerator": "1380649",
+      "denominator": "100000000000000000000000000000"
+    }
+  },
+  "unit": "J/K",
+  "level": 0,
+  "tags": [
+    "SI",
+    "exact",
+    "Level0"
+  ],
+  "source": "SI 2019 (exact)",
+  "data4_id": "A4",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

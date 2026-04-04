@@ -1,0 +1,25 @@
+{
+  "id": 563,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "m_tau/m_e",
+  "value": {
+    "fraction": {
+      "numerator": "347723",
+      "denominator": "100"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "K2",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

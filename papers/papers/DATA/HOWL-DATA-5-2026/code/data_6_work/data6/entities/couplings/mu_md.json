@@ -1,0 +1,25 @@
+{
+  "id": 561,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "m_u/m_d",
+  "value": {
+    "fraction": {
+      "numerator": "97",
+      "denominator": "200"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "D11",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

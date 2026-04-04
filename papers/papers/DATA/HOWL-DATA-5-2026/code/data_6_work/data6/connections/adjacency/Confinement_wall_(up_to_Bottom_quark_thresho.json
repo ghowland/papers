@@ -1,0 +1,11 @@
+{
+  "id": 3033,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Confinement_wall_(up_to_Bottom_quark_thresho",
+  "from_boundary": "Confinement wall (upper face)",
+  "to_boundary": "Bottom quark threshold",
+  "from_id": 1210,
+  "to_id": 1207,
+  "version": 0
+}

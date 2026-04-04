@@ -1,0 +1,35 @@
+{
+  "id": 1203,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Top quark threshold",
+  "value": {
+    "fraction": {
+      "numerator": "172570",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Top quark becomes active. Last SM fermion threshold. Full SM particle content above this scale.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [],
+  "data4_entry": "C4",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "alpha_s": null
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": 3007,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "human_on_earth",
+  "display_name": "Human on Earth surface",
+  "mechanism": "EM normal force",
+  "version": 0
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1316,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Ion implant",
+  "equation": "N = dose/sqrt(8*R2*sig^2)*exp(..)",
+  "coordinator_Z": "straggle sigma",
+  "precision": "SIMS: 5%",
+  "data1_section": 15,
+  "data1_id": "J8",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

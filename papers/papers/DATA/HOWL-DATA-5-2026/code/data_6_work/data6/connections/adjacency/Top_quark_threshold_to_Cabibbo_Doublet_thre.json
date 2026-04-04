@@ -1,0 +1,11 @@
+{
+  "id": 3038,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Top_quark_threshold_to_Cabibbo_Doublet_thre",
+  "from_boundary": "Top quark threshold",
+  "to_boundary": "Cabibbo Doublet threshold",
+  "from_id": 1203,
+  "to_id": 1202,
+  "version": 0
+}

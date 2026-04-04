@@ -1,0 +1,22 @@
+{
+  "id": 1635,
+  "type": "entity",
+  "subtype": "flow_constant",
+  "name": "Speed of sound in air",
+  "value": {
+    "mpf": "343.0"
+  },
+  "unit": "m/s",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "flow"
+  ],
+  "source": "Standard 20C",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

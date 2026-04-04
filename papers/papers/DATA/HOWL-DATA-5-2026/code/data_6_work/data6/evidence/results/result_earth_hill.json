@@ -1,0 +1,10 @@
+{
+  "id": 5020,
+  "type": "evidence",
+  "subtype": "result",
+  "name": "earth_hill",
+  "display_name": "Earth Hill sphere ~1.5e6 km",
+  "status": "PASS",
+  "miss_pct": "verified",
+  "version": 0
+}

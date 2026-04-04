@@ -1,0 +1,40 @@
+{
+  "id": 1855,
+  "type": "entity",
+  "subtype": "dwarf_spheroidal",
+  "name": "Sextans",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical",
+    "dwarf"
+  ],
+  "source": "Walker+2009, McConnachie 2012",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "M_vis": {
+      "mpf": "4.4e5"
+    },
+    "sigma": {
+      "mpf": "7.9"
+    },
+    "r_h": {
+      "mpf": "695"
+    },
+    "M_dyn": {
+      "mpf": "1.3e8"
+    },
+    "r_core": {
+      "mpf": "400"
+    }
+  }
+}

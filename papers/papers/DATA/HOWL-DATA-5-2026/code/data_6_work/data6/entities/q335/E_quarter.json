@@ -1,0 +1,26 @@
+{
+  "id": 231,
+  "type": "entity",
+  "subtype": "q335_constant",
+  "name": "E_quarter",
+  "value": {
+    "fraction": {
+      "numerator": "12838831123877368064013945271447830958308547275690547363031262057808594572987589127687050501245929299",
+      "denominator": "8749002899132047697490008908470485461412677723572849745703082425639811996797503692894052708092215296"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 0,
+  "tags": [
+    "Q335",
+    "Level0",
+    "mathematical"
+  ],
+  "source": "Q335 basis",
+  "data4_id": "G29",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1404,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "Hartree energy",
+  "formula": "m_e*c^2*alpha^2 -- no R2",
+  "status": "R2-FREE",
+  "precision": "10 digits",
+  "data1_id": "R5",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "R2-FREE"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

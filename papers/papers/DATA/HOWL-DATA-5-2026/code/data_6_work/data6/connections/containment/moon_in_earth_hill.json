@@ -1,0 +1,9 @@
+{
+  "id": 3008,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "moon_in_earth_hill",
+  "display_name": "Moon in Earth Hill sphere",
+  "mechanism": "Gravity",
+  "version": 0
+}

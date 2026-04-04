@@ -1,0 +1,25 @@
+{
+  "id": 569,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Fermi constant",
+  "value": {
+    "fraction": {
+      "numerator": "2915947",
+      "denominator": "250000000000"
+    }
+  },
+  "unit": "GeV^-2",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "C6",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1310,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Speaker cone",
+  "equation": "Sd = R2*d_eff^2",
+  "coordinator_Z": "none (pure geometry)",
+  "precision": "Measured: 5%",
+  "data1_section": 13,
+  "data1_id": "H21",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

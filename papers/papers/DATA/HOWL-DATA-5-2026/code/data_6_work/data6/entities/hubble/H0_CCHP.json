@@ -1,0 +1,32 @@
+{
+  "id": 1702,
+  "type": "entity",
+  "subtype": "hubble_measurement",
+  "name": "CCHP (Tip of Red Giant Branch)",
+  "value": {
+    "fraction": {
+      "numerator": "349",
+      "denominator": "5"
+    }
+  },
+  "unit": "km/s/Mpc",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "hubble",
+    "cosmological"
+  ],
+  "source": "Freedman 2021, ApJ 919, 16",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "uncertainty": {
+    "numerator": "17",
+    "denominator": "10"
+  },
+  "distance_class": "medium",
+  "method": "TRGB calibration, different from Cepheids"
+}

@@ -1,0 +1,8 @@
+{
+  "id": 3023,
+  "type": "connection",
+  "subtype": "equivalent",
+  "name": "16R2_equals_4pi",
+  "identity": "16*R2 = 4*pi",
+  "version": 0
+}

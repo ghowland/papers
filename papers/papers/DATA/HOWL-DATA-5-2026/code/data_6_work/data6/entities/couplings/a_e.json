@@ -1,0 +1,25 @@
+{
+  "id": 553,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Electron g-2",
+  "value": {
+    "fraction": {
+      "numerator": "115965218059",
+      "denominator": "100000000000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B9",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

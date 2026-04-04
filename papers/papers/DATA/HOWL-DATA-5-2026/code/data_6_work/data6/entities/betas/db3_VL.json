@@ -1,0 +1,36 @@
+{
+  "id": 1005,
+  "type": "entity",
+  "subtype": "beta_coefficient",
+  "name": "db3_VL",
+  "value": {
+    "fraction": {
+      "numerator": "1",
+      "denominator": "3"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "beta",
+    "SU3"
+  ],
+  "source": "phys24_lib",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "gauge_group": "SU3",
+  "decomposition": {
+    "gauge": null,
+    "fermion": null,
+    "higgs": null,
+    "bsm": {
+      "numerator": "1",
+      "denominator": "3"
+    }
+  }
+}

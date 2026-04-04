@@ -1,0 +1,48 @@
+{
+  "id": 1604,
+  "type": "entity",
+  "subtype": "optical_fiber",
+  "name": "Corning SMF-28",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "fiber"
+  ],
+  "source": "DATA-1 Section 16",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "name": "Corning SMF-28",
+    "type": "single-mode",
+    "MFD_1310_m": {
+      "mpf": "0.0000092"
+    },
+    "MFD_1550_m": {
+      "mpf": "0.0000104"
+    },
+    "NA": {
+      "mpf": "0.14"
+    },
+    "cladding_diameter_m": {
+      "mpf": "0.000125"
+    },
+    "cutoff_wavelength_m": {
+      "mpf": "0.00000126"
+    },
+    "attenuation_1550_dB_km": {
+      "mpf": "0.18"
+    },
+    "V_cutoff": {
+      "mpf": "2.40482555769577"
+    },
+    "data1_ids": "['K7', 'K8', 'K9', 'K10', 'K11', 'K12', 'K13']"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": 1629,
+  "type": "entity",
+  "subtype": "rf_frequency",
+  "name": "GPS_base",
+  "value": {
+    "mpf": "10230000.0"
+  },
+  "unit": "Hz",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "rf",
+    "GPS"
+  ],
+  "source": "GPS ICD",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

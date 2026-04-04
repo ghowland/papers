@@ -1,0 +1,9 @@
+{
+  "id": 3010,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "solar_in_galaxy",
+  "display_name": "Solar system in galaxy",
+  "mechanism": "Disk rotation",
+  "version": 0
+}

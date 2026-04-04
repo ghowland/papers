@@ -1,0 +1,35 @@
+{
+  "id": 1212,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Strange quark threshold",
+  "value": {
+    "fraction": {
+      "numerator": "187",
+      "denominator": "2"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Strange quark decouples. 3-flavor to 2-flavor. Note: this is INSIDE the confinement wall \u2014 the threshold is real but perturbative beta running does not apply here.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [
+    "What is the correct treatment of flavor thresholds inside confinement?"
+  ],
+  "data4_entry": "D3",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {}
+}

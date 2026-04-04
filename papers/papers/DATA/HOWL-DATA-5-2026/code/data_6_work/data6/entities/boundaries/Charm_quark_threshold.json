@@ -1,0 +1,33 @@
+{
+  "id": 1209,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Charm quark threshold",
+  "value": {
+    "fraction": {
+      "numerator": "1273",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": true,
+  "what_changes": "Charm decouples. 4-flavor to 3-flavor.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [],
+  "data4_entry": "D4",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {}
+}

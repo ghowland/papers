@@ -1,0 +1,36 @@
+{
+  "id": 1103,
+  "type": "entity",
+  "subtype": "representation",
+  "name": "Left lepton doublet",
+  "su3_dim": 1,
+  "su2_dim": 2,
+  "Y": {
+    "numerator": "-1",
+    "denominator": "2"
+  },
+  "rep_type": "chiral",
+  "db1": {
+    "numerator": "1",
+    "denominator": "6"
+  },
+  "db2": {
+    "numerator": "1",
+    "denominator": "3"
+  },
+  "db3": {
+    "numerator": "0",
+    "denominator": "1"
+  },
+  "level": 1,
+  "tags": [
+    "Level1",
+    "representation",
+    "chiral"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

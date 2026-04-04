@@ -1,0 +1,9 @@
+{
+  "id": 3002,
+  "type": "connection",
+  "subtype": "containment",
+  "name": "nucleus_in_atom",
+  "display_name": "Nucleus in atom",
+  "mechanism": "EM binding",
+  "version": 0
+}

@@ -1,0 +1,10 @@
+{
+  "id": 3019,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "b2SM_19_to_gap_SM",
+  "integer": 19,
+  "target": "gap_SM",
+  "note": "|b2_SM num| = 19 in gap numerator",
+  "version": 0
+}

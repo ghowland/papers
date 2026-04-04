@@ -1,0 +1,37 @@
+{
+  "id": 1858,
+  "type": "entity",
+  "subtype": "dwarf_spheroidal",
+  "name": "Segue1",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "astrophysical",
+    "dwarf"
+  ],
+  "source": "Walker+2009, McConnachie 2012",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "M_vis": {
+      "mpf": "340"
+    },
+    "sigma": {
+      "mpf": "3.9"
+    },
+    "r_h": {
+      "mpf": "29"
+    },
+    "M_dyn": {
+      "mpf": "1.3e6"
+    }
+  }
+}

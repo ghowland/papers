@@ -1,0 +1,23 @@
+{
+  "id": 1627,
+  "type": "entity",
+  "subtype": "rf_frequency",
+  "name": "GPS_L1",
+  "value": {
+    "mpf": "1575420000.0"
+  },
+  "unit": "Hz",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "rf",
+    "GPS"
+  ],
+  "source": "154 * 10.23 MHz",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

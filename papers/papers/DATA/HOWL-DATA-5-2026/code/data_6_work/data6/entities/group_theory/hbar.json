@@ -1,0 +1,25 @@
+{
+  "id": 111,
+  "type": "entity",
+  "subtype": "group_theory",
+  "name": "Reduced Planck constant",
+  "value": {
+    "fraction": {
+      "numerator": "527247784268204869992721596205686781758008880349152705552462841510728621175001852079731631980544",
+      "denominator": "4999638483086354222264767418965699703100468284954986684566070455574775650107715562060103110159963178239195258356630802154541015625"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "group_theory"
+  ],
+  "source": "Representation theory",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

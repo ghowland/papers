@@ -1,0 +1,38 @@
+{
+  "id": 1210,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Confinement wall (upper face)",
+  "value": {
+    "fraction": {
+      "numerator": "2000",
+      "denominator": "1"
+    }
+  },
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "strong"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Perturbative QCD breaks down. alpha_s approaches O(1). Integer beta function rules cease to apply. This is the OUTSIDE face of the confinement wall.",
+  "forces_affected": [
+    "strong"
+  ],
+  "open_questions": [
+    "Is there a precise definition of the confinement boundary?",
+    "What is alpha_s at the transition?"
+  ],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "alpha_s": null
+  }
+}

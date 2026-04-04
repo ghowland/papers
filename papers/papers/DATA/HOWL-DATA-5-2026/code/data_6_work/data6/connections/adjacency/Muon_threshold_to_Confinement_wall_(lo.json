@@ -1,0 +1,11 @@
+{
+  "id": 3029,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Muon_threshold_to_Confinement_wall_(lo",
+  "from_boundary": "Muon threshold",
+  "to_boundary": "Confinement wall (lower face)",
+  "from_id": 1213,
+  "to_id": 1211,
+  "version": 0
+}

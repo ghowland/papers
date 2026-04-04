@@ -1,0 +1,25 @@
+{
+  "id": 554,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Muon g-2",
+  "value": {
+    "fraction": {
+      "numerator": "116592059",
+      "denominator": "100000000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B10",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

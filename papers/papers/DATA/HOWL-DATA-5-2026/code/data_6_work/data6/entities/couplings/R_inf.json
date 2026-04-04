@@ -1,0 +1,25 @@
+{
+  "id": 551,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "Rydberg constant",
+  "value": {
+    "fraction": {
+      "numerator": "10973731568157",
+      "denominator": "1000000"
+    }
+  },
+  "unit": "1/m",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B7",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

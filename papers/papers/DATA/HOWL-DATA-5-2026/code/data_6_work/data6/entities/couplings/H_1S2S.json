@@ -1,0 +1,25 @@
+{
+  "id": 571,
+  "type": "entity",
+  "subtype": "measured_ratio",
+  "name": "H 1S-2S frequency",
+  "value": {
+    "fraction": {
+      "numerator": "2466061413187018",
+      "denominator": "1"
+    }
+  },
+  "unit": "Hz",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "measured"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "F1",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1405,
+  "type": "entity",
+  "subtype": "r2_cancellation",
+  "name": "Phi_0^2 / R_K",
+  "formula": "h^2/e^2 * e^2/h = h -- R2 returns",
+  "status": "REAPPEARS",
+  "precision": "exact",
+  "data1_id": "R6",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "cancellation",
+    "REAPPEARS"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

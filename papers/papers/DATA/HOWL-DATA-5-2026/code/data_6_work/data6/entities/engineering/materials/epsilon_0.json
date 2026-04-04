@@ -1,0 +1,22 @@
+{
+  "id": 1624,
+  "type": "entity",
+  "subtype": "material_constant",
+  "name": "Vacuum permittivity",
+  "value": {
+    "mpf": "0.0000000000088541878128"
+  },
+  "unit": "F/m",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "material"
+  ],
+  "source": "CODATA/handbook",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

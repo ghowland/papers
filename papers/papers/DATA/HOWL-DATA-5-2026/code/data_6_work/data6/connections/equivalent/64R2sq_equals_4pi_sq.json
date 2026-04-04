@@ -1,0 +1,8 @@
+{
+  "id": 3024,
+  "type": "connection",
+  "subtype": "equivalent",
+  "name": "64R2sq_equals_4pi_sq",
+  "identity": "64*R2^2 = 4*pi^2 (Kepler)",
+  "version": 0
+}

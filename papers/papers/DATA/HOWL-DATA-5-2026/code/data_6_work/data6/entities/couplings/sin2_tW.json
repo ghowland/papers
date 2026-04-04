@@ -1,0 +1,26 @@
+{
+  "id": 21,
+  "type": "entity",
+  "subtype": "coupling",
+  "name": "sin^2(theta_W)",
+  "value": {
+    "fraction": {
+      "numerator": "11561",
+      "denominator": "50000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "coupling",
+    "Level2",
+    "CODATA"
+  ],
+  "source": "CODATA/PDG",
+  "data4_id": "B11",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

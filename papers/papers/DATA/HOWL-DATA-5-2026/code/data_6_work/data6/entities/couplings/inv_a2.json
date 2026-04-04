@@ -1,0 +1,26 @@
+{
+  "id": 11,
+  "type": "entity",
+  "subtype": "coupling",
+  "name": "1/alpha_2 GUT",
+  "value": {
+    "fraction": {
+      "numerator": "1584273186485297",
+      "denominator": "50000000000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "coupling",
+    "Level2",
+    "derived"
+  ],
+  "source": "derive_couplings",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

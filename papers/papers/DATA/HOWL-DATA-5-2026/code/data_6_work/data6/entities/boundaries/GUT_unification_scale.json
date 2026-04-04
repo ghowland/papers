@@ -1,0 +1,49 @@
+{
+  "id": 1201,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "GUT unification scale",
+  "value": null,
+  "scale_MeV_estimate": {
+    "fraction": {
+      "numerator": "3500000000000000",
+      "denominator": "1"
+    }
+  },
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "electromagnetic",
+    "weak",
+    "strong",
+    "unified"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Three gauge couplings merge into one. SU(3)xSU(2)xU(1) -> SU(5) or larger. X, Y gauge bosons become active. Proton can decay.",
+  "forces_affected": [
+    "electromagnetic",
+    "weak",
+    "strong",
+    "unified"
+  ],
+  "open_questions": [
+    "What is the GUT group? SU(5)? SO(10)?",
+    "What are the threshold corrections?",
+    "Does exact unification occur?",
+    "What is the proton lifetime precisely?"
+  ],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "1/alpha_GUT": null,
+    "1/alpha_1": null,
+    "1/alpha_2": null,
+    "1/alpha_3": null
+  }
+}

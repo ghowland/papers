@@ -1,0 +1,65 @@
+{
+  "entity": {
+    "required": [
+      "id",
+      "type",
+      "subtype",
+      "name",
+      "version"
+    ],
+    "optional": [
+      "value",
+      "unit",
+      "level",
+      "tags",
+      "source",
+      "data4_id",
+      "created"
+    ]
+  },
+  "connection": {
+    "required": [
+      "id",
+      "type",
+      "subtype",
+      "name",
+      "version"
+    ],
+    "optional": [
+      "from_id",
+      "to_id",
+      "mechanism",
+      "note"
+    ]
+  },
+  "evidence": {
+    "required": [
+      "id",
+      "type",
+      "subtype",
+      "name",
+      "version"
+    ],
+    "optional": [
+      "status",
+      "checks_total",
+      "checks_pass",
+      "checks_fail"
+    ]
+  },
+  "program": {
+    "required": [
+      "id",
+      "type",
+      "name",
+      "thesis",
+      "status",
+      "version"
+    ],
+    "optional": [
+      "scripts",
+      "kill_switches",
+      "blocking"
+    ]
+  }
+}

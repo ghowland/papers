@@ -1,0 +1,58 @@
+{
+  "id": 1603,
+  "type": "entity",
+  "subtype": "optical_disc",
+  "name": "Blu-ray Disc",
+  "value": {
+    "string": "None"
+  },
+  "unit": "mixed",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "optics",
+    "disc"
+  ],
+  "source": "DATA-1 Section 9",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "parameters": {
+    "name": "Blu-ray Disc",
+    "standard": "BD White Paper",
+    "laser_wavelength_m": {
+      "mpf": "0.000000405"
+    },
+    "NA": {
+      "mpf": "0.85"
+    },
+    "track_pitch_m": {
+      "mpf": "0.00000032"
+    },
+    "min_pit_length_m": {
+      "mpf": "0.000000149"
+    },
+    "cover_layer_m": {
+      "mpf": "0.0001"
+    },
+    "disc_diameter_m": {
+      "mpf": "0.12"
+    },
+    "capacity_bytes": {
+      "integer": 25000000000
+    },
+    "data1_ids": [
+      "D24",
+      "D25",
+      "D26",
+      "D27",
+      "D28",
+      "D29",
+      "D30",
+      "D31"
+    ]
+  }
+}

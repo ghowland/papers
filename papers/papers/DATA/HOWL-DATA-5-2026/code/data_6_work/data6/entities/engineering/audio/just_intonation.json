@@ -1,0 +1,53 @@
+{
+  "id": 1634,
+  "type": "entity",
+  "subtype": "audio_standard",
+  "name": "Just intonation ratios",
+  "value": {
+    "string": "None"
+  },
+  "unit": "ratio",
+  "level": 0,
+  "tags": [
+    "Level0",
+    "audio",
+    "mathematical"
+  ],
+  "source": "DATA-1 H12-H18",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "ratios": {
+    "octave": {
+      "numerator": "2",
+      "denominator": "1"
+    },
+    "perfect_fifth": {
+      "numerator": "3",
+      "denominator": "2"
+    },
+    "perfect_fourth": {
+      "numerator": "4",
+      "denominator": "3"
+    },
+    "major_third": {
+      "numerator": "5",
+      "denominator": "4"
+    },
+    "minor_third": {
+      "numerator": "6",
+      "denominator": "5"
+    },
+    "major_sixth": {
+      "numerator": "5",
+      "denominator": "3"
+    },
+    "minor_seventh": {
+      "numerator": "9",
+      "denominator": "5"
+    }
+  }
+}

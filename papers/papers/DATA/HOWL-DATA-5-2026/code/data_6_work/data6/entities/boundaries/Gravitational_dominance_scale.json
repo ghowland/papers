@@ -1,0 +1,38 @@
+{
+  "id": 1218,
+  "type": "entity",
+  "subtype": "boundary",
+  "name": "Gravitational dominance scale",
+  "value": null,
+  "scale_MeV_estimate": null,
+  "unit": "MeV",
+  "level": null,
+  "tags": [
+    "boundary",
+    "gravity",
+    "electromagnetic"
+  ],
+  "source": "phys24_boundary_map_lib",
+  "known": false,
+  "what_changes": "Gravity becomes the dominant long-range force for neutral massive objects. EM dominates for charged objects. No sharp boundary \u2014 crossover depends on charge/mass ratio.",
+  "forces_affected": [
+    "gravity",
+    "electromagnetic"
+  ],
+  "open_questions": [
+    "Does G vary with scale? (PHYS-3: untested across boundaries)",
+    "Is there a precise crossover scale?"
+  ],
+  "data4_entry": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  },
+  "couplings_at_boundary": {
+    "G_N": null,
+    "G_N_CODATA": {
+      "string": "6.67430e-11 m^3 kg^-1 s^-2"
+    }
+  }
+}

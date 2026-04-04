@@ -1,0 +1,26 @@
+{
+  "id": 511,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Higgs boson mass",
+  "value": {
+    "fraction": {
+      "numerator": "125200",
+      "denominator": "1"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "C5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

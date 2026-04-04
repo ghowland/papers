@@ -1,0 +1,26 @@
+{
+  "id": 1054,
+  "type": "entity",
+  "subtype": "koide_parameter",
+  "name": "Koide ratio K(e,mu,tau)",
+  "value": {
+    "fraction": {
+      "numerator": "1333321023",
+      "denominator": "2000000000"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "Level2",
+    "koide",
+    "measured"
+  ],
+  "source": "From masses",
+  "data4_id": "K8",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

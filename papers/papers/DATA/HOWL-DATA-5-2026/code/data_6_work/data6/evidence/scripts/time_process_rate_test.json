@@ -1,0 +1,11 @@
+{
+  "id": 5012,
+  "type": "evidence",
+  "subtype": "script",
+  "name": "time_process_rate_test",
+  "checks_total": 12,
+  "checks_pass": 11,
+  "checks_fail": 1,
+  "status": "PARTIAL",
+  "version": 0
+}

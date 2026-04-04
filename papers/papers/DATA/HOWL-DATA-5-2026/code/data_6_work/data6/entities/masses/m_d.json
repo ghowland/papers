@@ -1,0 +1,26 @@
+{
+  "id": 504,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Down quark mass",
+  "value": {
+    "fraction": {
+      "numerator": "47",
+      "denominator": "10"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "D2",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": 1313,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Wafer area",
+  "equation": "A = R2*D^2",
+  "coordinator_Z": "none (pure geometry)",
+  "precision": "SEMI: exact",
+  "data1_section": 15,
+  "data1_id": "J1",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

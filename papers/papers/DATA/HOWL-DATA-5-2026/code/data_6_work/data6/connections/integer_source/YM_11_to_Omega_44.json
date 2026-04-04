@@ -1,0 +1,10 @@
+{
+  "id": 3016,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "YM_11_to_Omega_44",
+  "integer": 11,
+  "target": "Omega_DM",
+  "note": "4*11 = 44 in numerator",
+  "version": 0
+}

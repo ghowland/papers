@@ -1,0 +1,26 @@
+{
+  "id": 500,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Electron mass",
+  "value": {
+    "fraction": {
+      "numerator": "51099895069",
+      "denominator": "100000000000"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "B2",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

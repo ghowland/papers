@@ -1,0 +1,11 @@
+{
+  "id": 3032,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Tau_lepton_threshold_to_Confinement_wall_(up",
+  "from_boundary": "Tau lepton threshold",
+  "to_boundary": "Confinement wall (upper face)",
+  "from_id": 1208,
+  "to_id": 1210,
+  "version": 0
+}

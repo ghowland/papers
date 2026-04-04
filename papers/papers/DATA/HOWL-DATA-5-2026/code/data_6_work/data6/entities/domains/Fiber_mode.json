@@ -1,0 +1,22 @@
+{
+  "id": 1311,
+  "type": "entity",
+  "subtype": "r2_domain",
+  "name": "Fiber mode",
+  "equation": "A_eff = R2*MFD^2",
+  "coordinator_Z": "mode confinement",
+  "precision": "Corning: 5%",
+  "data1_section": 16,
+  "data1_id": "K7",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "R2",
+    "domain"
+  ],
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

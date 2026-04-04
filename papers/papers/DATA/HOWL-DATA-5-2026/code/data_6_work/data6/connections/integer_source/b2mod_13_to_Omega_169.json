@@ -1,0 +1,10 @@
+{
+  "id": 3018,
+  "type": "connection",
+  "subtype": "integer_source",
+  "name": "b2mod_13_to_Omega_169",
+  "integer": 13,
+  "target": "Omega_DM",
+  "note": "13^2 = 169 in denominator",
+  "version": 0
+}

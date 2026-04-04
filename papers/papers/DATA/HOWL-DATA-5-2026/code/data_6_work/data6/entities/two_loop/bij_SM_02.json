@@ -1,0 +1,26 @@
+{
+  "id": 1022,
+  "type": "entity",
+  "subtype": "two_loop_coefficient",
+  "name": "bij_SM_02",
+  "value": {
+    "fraction": {
+      "numerator": "44",
+      "denominator": "5"
+    }
+  },
+  "unit": "dimensionless",
+  "level": 1,
+  "tags": [
+    "Level1",
+    "two_loop",
+    "SM"
+  ],
+  "source": "Machacek-Vaughn",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

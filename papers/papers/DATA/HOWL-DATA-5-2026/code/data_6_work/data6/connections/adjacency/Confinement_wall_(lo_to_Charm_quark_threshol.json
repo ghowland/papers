@@ -1,0 +1,11 @@
+{
+  "id": 3030,
+  "type": "connection",
+  "subtype": "adjacency",
+  "name": "Confinement_wall_(lo_to_Charm_quark_threshol",
+  "from_boundary": "Confinement wall (lower face)",
+  "to_boundary": "Charm quark threshold",
+  "from_id": 1211,
+  "to_id": 1209,
+  "version": 0
+}

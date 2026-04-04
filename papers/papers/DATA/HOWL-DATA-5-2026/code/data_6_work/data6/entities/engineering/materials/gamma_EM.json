@@ -1,0 +1,22 @@
+{
+  "id": 1626,
+  "type": "entity",
+  "subtype": "material_constant",
+  "name": "Euler-Mascheroni",
+  "value": {
+    "mpf": "0.5772156649015329"
+  },
+  "unit": "dimensionless",
+  "level": 2,
+  "tags": [
+    "engineering",
+    "material"
+  ],
+  "source": "CODATA/handbook",
+  "data4_id": null,
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}

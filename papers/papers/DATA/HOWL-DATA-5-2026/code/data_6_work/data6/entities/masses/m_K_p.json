@@ -1,0 +1,26 @@
+{
+  "id": 516,
+  "type": "entity",
+  "subtype": "mass",
+  "name": "Charged kaon mass",
+  "value": {
+    "fraction": {
+      "numerator": "493677",
+      "denominator": "1000"
+    }
+  },
+  "unit": "MeV",
+  "level": 2,
+  "tags": [
+    "mass",
+    "Level2",
+    "PDG"
+  ],
+  "source": "PDG/CODATA",
+  "data4_id": "E5",
+  "version": 0,
+  "created": {
+    "session": 4,
+    "date": "2026-04-04"
+  }
+}
