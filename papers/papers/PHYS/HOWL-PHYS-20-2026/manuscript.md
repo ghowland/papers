@@ -28,6 +28,8 @@ The Cabibbo Doublet (3,2,1/6) produces a grand unification scale M_GUT = 10^15.5
 
 ## 1. Why Protons Might Decay
 
+![Fig. 6: Proton (uud) exchanges an X boson at M_GUT — one quark converts to positron, remaining quarks form π⁰ → γγ. Three Cherenkov rings at 938 MeV total energy, zero momentum, almost background-free.](./figures/phys20_06_decay_process.png)
+
 The proton is the lightest baryon — a particle composed of three quarks (two up quarks and one down quark, uud). In the Standard Model, the proton is stable. No SM interaction converts quarks into leptons. This stability is not imposed by hand — it emerges as an accidental symmetry because no SM particle simultaneously carries both color charge and lepton number. The quantity called baryon number (B = 1 for the proton, 0 for leptons and photons) is conserved in every SM process. No experiment has ever observed the proton decaying.
 
 In grand unified theories (GUTs), the situation changes. GUTs embed the three SM gauge forces — electromagnetic, weak, and strong — into a single larger gauge group such as SU(5), proposed by Georgi and Glashow in 1974. In SU(5), the larger gauge symmetry contains heavy gauge bosons called X and Y bosons that mediate transitions between quarks and leptons. A quark inside the proton can emit an X boson and convert to a positron. The remaining two quarks bind into a neutral pion. The result is: p → e⁺ + π⁰. This is the dominant proton decay channel in minimal SU(5).
@@ -80,6 +82,8 @@ The critical feature is the M_GUT⁴ scaling. A factor of 10 in M_GUT changes th
 
 ## 4. The Proton Lifetime for Each Scenario
 
+![Fig. 2: The Cabibbo Doublet at M_GUT = 10¹⁵·⁵ sits in a narrow testability band — just above the Super-K exclusion, just within Hyper-K reach. The MSSM at 10¹⁷·³ is far beyond any planned experiment.](./figures/phys20_02_sweet_spot.png)
+
 Using standard minimal SU(5) estimates (with lattice QCD matrix elements and α_GUT extracted from the running):
 
 | Scenario | M_GUT | τ(p → e⁺π⁰) | Status |
@@ -92,6 +96,8 @@ Using standard minimal SU(5) estimates (with lattice QCD matrix elements and α_
 The Cabibbo Doublet vs MSSM comparison: the ratio of M_GUT values is 10^17.3/10^15.5 = 10^1.8 ≈ 63. The ratio of proton lifetimes is 63⁴ ≈ 1.6 × 10^7. The gap ratios are nearly identical (1.407 vs 1.400, a difference of 0.007), but the proton lifetimes differ by seven orders of magnitude. This is entirely due to the M_GUT⁴ scaling: a small difference in gap ratio translates into a large difference in M_GUT (because the running equations amplify the difference over many decades of energy), which is then raised to the fourth power.
 
 An important constraint from the review feedback: the lower end of the Cabibbo Doublet prediction range (τ ~ 10^34 yr) is already in tension with the Super-K bound of 2.4 × 10^34. The viable range is therefore τ ~ 2.4 × 10^34 to 10^35 yr — about half an order of magnitude, not a full order. This makes the prediction sharper, not weaker: the allowed window is narrow, and Hyper-K covers it entirely.
+
+![Fig. 4: SM (~10³⁰, excluded by 4 orders), 5+5̄ (~10³², excluded), Cabibbo Doublet (~10³⁴⁻³⁵, at boundary), MSSM (~10³⁷, safe) — spanning 7 orders of magnitude on the log(τ) axis.](./figures/phys20_04_four_scenarios.png)
 
 ---
 
@@ -108,6 +114,8 @@ What this means for the Cabibbo Doublet: the prediction τ ~ 10^34-35 years stra
 ---
 
 ## 6. Hyper-Kamiokande
+
+![Fig. 3: Hyper-K projected proton decay limit improves from 2.4×10³⁴ yr (Super-K legacy) to 10³⁵ yr over 20 years. The Cabibbo Doublet viable range (3×10³⁴ to 10³⁵) is fully covered by ~2047.](./figures/phys20_03_hyper_k_timeline.png)
 
 Hyper-Kamiokande is the successor to Super-Kamiokande, under construction beneath Mount Nijugo in Gifu Prefecture, Japan. It is a water Cherenkov detector with 258 kilotons of ultrapure water and a fiducial volume of approximately 188 kilotons — 8.3 times the fiducial volume of Super-K. The access tunnel was completed in June 2022, and cavern excavation is underway. Operations are scheduled to begin in 2027 (Hyper-Kamiokande Collaboration, SciPost Phys. Proc. 17, 019, 2025).
 
@@ -145,6 +153,8 @@ Non-minimal completions would then be explored: threshold corrections at M_GUT (
 
 ## 8. The M_GUT⁴ Discriminator
 
+![Fig. 5: Gap ratio difference 0.007 → M_GUT factor 63 (running amplification) → lifetime factor 10⁷ (fourth power). Nearly identical gap ratios produce seven orders of magnitude separation in proton lifetime.](./figures/phys20_05_amplification.png)
+
 The τ ∝ M_GUT⁴ scaling is what makes proton decay the decisive discriminator between the Cabibbo Doublet and the MSSM, despite their nearly identical gap ratios.
 
 | M_GUT | log₁₀(M_GUT/GeV) | τ(p → e⁺π⁰) | Testable? |
@@ -174,6 +184,8 @@ The complementarity between Hyper-K and DUNE is sharp: Hyper-K is optimized for 
 ---
 
 ## 10. Model Dependence — Honest Assessment
+
+![Fig. 7: GUT completion group dominates uncertainty (±2 orders). Threshold corrections (±1), CD mass (±0.5), matrix elements (±0.3), two-loop (±0.2) are subdominant. Combined range: log₁₀(τ) = 34 to 35.](./figures/phys20_07_uncertainties.png)
 
 The prediction τ ~ 10^34-35 years is an order-of-magnitude estimate, not a precision calculation. The sources of uncertainty:
 
@@ -218,6 +230,8 @@ The outcome table (Section 7) provides the decision tree for every possible expe
 ---
 
 ## 13. Summary
+
+![Fig. 8: Gap ratio 38/27 → M_GUT = 10¹⁵·⁵ → τ ~ 10³⁴⁻³⁵ yr. Cabibbo Doublet and MSSM separated by 10⁷ in lifetime despite 0.007 in gap ratio. Hyper-K 2027–2047 covers the full range.](./figures/phys20_08_identity_card.png)
 
 M_GUT = 10^15.5 GeV from the Cabibbo Doublet gap ratio (38/27, verified by the GUT script, 9/9 checks). The proton lifetime scales as M_GUT⁴, giving τ ~ 10^34-35 years in minimal SU(5) — an order-of-magnitude range reflecting genuine theoretical uncertainty. The Super-Kamiokande bound τ > 2.4 × 10^34 years already excludes the lower end of this range. The viable prediction window is approximately 3 × 10^34 to 10^35 years. Hyper-Kamiokande, with 8.3 times the fiducial volume of Super-K and projected sensitivity reaching 10^35 years after 20 years of data collection, covers this entire window. Operations begin approximately 2027.
 
