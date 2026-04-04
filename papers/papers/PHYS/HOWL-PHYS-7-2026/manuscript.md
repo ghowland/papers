@@ -63,6 +63,8 @@ This paper examines the logical structure of this declaration and finds that the
 
 ## IV. THE IDENTIFICATION THAT THE INSTITUTION PERFORMS EVERYWHERE ELSE
 
+![Fig. 7: Higgs, QED, and perturbative QCD vacua are identified with their energy minima without comment. Only the θ-vacuum is refused this identification — and the refusal is called a "problem."](./figures/phys7_07_vacuum_identification.png)
+
 Before examining the assumption that generates the problem, we establish the operation the institution performs for every other vacuum in quantum field theory and then refuses to perform for θ.
 
 ### 4.1 The Higgs Vacuum
@@ -103,6 +105,8 @@ The burden of proof is inverted from how the institution frames it. The institut
 
 ## V. THE ASSUMPTION THAT GENERATES THE PROBLEM
 
+![Fig. 6: α=1/137 has no derivation, no symmetry protection, no energy minimum — accepted without comment. θ=0 has all three — declared "problematic" for 50 years.](./figures/phys7_06_double_standard.png)
+
 The assumption is: because the model parameter θ can take any value in [0, 2π), the physical quantity θ could take any value in [0, 2π), and the fact that it takes the value 0 requires a mechanism or explanation.
 
 This assumption treats model freedom as physical freedom. The two are not the same.
@@ -123,6 +127,8 @@ The electron mass m_e = 0.511 MeV is a free parameter determined by the electron
 
 ### 6.1 Integer Topological Sectors
 
+![Fig. 3: Periodic energy barriers between integer topological sectors n∈ℤ. Instantons tunnel between adjacent sectors. The ground state at n=0 is the minimum of the cosine potential.](./figures/phys7_03_instanton_landscape.png)
+
 The QCD vacuum has a topological structure established by the institution's own mathematics and confirmed by lattice QCD calculations.
 
 The gauge field configurations of SU(3) fall into topological sectors labeled by an integer n — the winding number, also called the Pontryagin index or topological charge. This integer counts the number of times the gauge field wraps around the group manifold. It is an integer by mathematical theorem: the third homotopy group π₃(SU(3)) = ℤ. The winding number of a continuous map from S³ to SU(3) is always an integer. This is topology, not physics. It cannot be violated.
@@ -130,6 +136,8 @@ The gauge field configurations of SU(3) fall into topological sectors labeled by
 The sectors are separated by energy barriers. Transitions between sectors occur through instantons — localized gauge field configurations that carry one unit of topological charge. Instantons have been studied extensively in the QCD literature and confirmed in lattice calculations.
 
 ### 6.2 The Energy Functional
+
+![Fig. 1: The cosine energy functional with its unique minimum at θ=0. The vacuum is the minimum energy state. Therefore the vacuum has θ=0. This is not a problem — it is the ground state.](./figures/phys7_01_energy_functional.png)
 
 The energy of the QCD vacuum as a function of θ is:
 
@@ -147,7 +155,9 @@ This is not a dynamical claim. The paper does not assert that θ was once nonzer
 
 The ground state requires no explanation beyond the energy functional. The energy functional is known. The minimum is at θ = 0. The system is at the minimum. This is the complete account.
 
-### 6.4 The Analogy
+### 6.4 The Analog
+
+![Fig. 2: E(θ) with minimum at 0 (left) and hydrogen E(n) with minimum at n=1 (right). Both are ground states. Neither requires a mechanism. Only one has a "problem" declared.](./figures/phys7_02_ground_state_parallel.png)
 
 The hydrogen atom has states |n⟩ for every positive integer n. The ground state is |n = 1⟩. The institution does not declare a "hydrogen ground state problem." The institution does not ask why hydrogen "chose" n = 1 rather than n = 47. The institution does not demand a mechanism for how hydrogen "reached" n = 1. The ground state is the ground state. The energy is lowest there. The question "why n = 1?" is answered by "because that minimizes the energy."
 
@@ -156,6 +166,8 @@ The point of the analogy is not about relaxation dynamics. Hydrogen can reach n 
 ---
 
 ## VII. THE BASIS DECOMPOSITION OBJECTION
+
+![Fig. 4: θ_bare and arg(det M_q) transform oppositely under chiral rotation — their sum θ_phys is invariant. The "fine-tuning" is gauge artifacts canceling by construction.](./figures/phys7_04_rephasing_invariance.png)
 
 ### 7.1 The Objection
 
@@ -224,6 +236,8 @@ The CKM phase enters arg(det M_q) through the Yukawa couplings. But as establish
 ---
 
 ## IX. THE θ-VACUUM OBJECTION
+
+![Fig. 5](./figures/phys7_05_theta_vacuum.png)
 
 ### 9.1 The Objection
 
@@ -310,6 +324,8 @@ This paper does not claim any new physics. Every equation is from the institutio
 ---
 
 ## XV. CONCLUSION
+
+![Fig. 8: θ=0 is the ground state of an integer-topological system — the energy functional, the integer topology, the double standard, and no mechanism required.](./figures/phys7_08_identity_card.png)
 
 The strong CP problem asks why θ_QCD = 0. The answer is: because 0 is the ground state.
 
@@ -423,3 +439,271 @@ The fourth row is the anomaly. The same identification performed in every other 
 **Key Findings:** The basis decomposition involves gauge-dependent quantities whose "cancellation" is standard gauge invariance; naturalness has zero confirmed predictions; CP symmetry protects θ = 0; the institution applies the vacuum = minimum identification everywhere except to θ, and the refusal to apply it is the problem, not the value
 **Does Not Claim:** The axion does not exist; the PQ mechanism is wrong; any new physics
 **Falsification:** Five specific criteria including detection of θ ≠ 0 and identification of observable depending on θ_bare alone
+
+---
+
+## APPENDIX G: THE COMPLETE VACUUM IDENTIFICATION TABLE
+
+Every vacuum state in the Standard Model, showing the energy functional, the minimum, and whether the institution identifies the vacuum with the minimum or refuses to.
+
+| Sector | Energy Functional | Variable | Minimum Location | Vacuum = Minimum? | Problem Declared? | Mechanism Demanded? | Years Spent on "Problem" |
+|---|---|---|---|---|---|---|---|
+| Higgs (electroweak) | V(φ) = μ²|φ|² + λ|φ|⁴, μ² < 0 | |φ| | v = √(−μ²/2λ) = 246 GeV | Yes — without comment | No (hierarchy problem is about radiative stability, not the identification) | No | 0 for the identification |
+| QED | H_QED = Σ ℏω(k)(a†a + 1/2) | Photon number | n = 0 for all modes | Yes — without comment | No | No | 0 |
+| QCD (perturbative vacuum) | QCD Hamiltonian ground state | Field configuration | Confined vacuum, Λ_QCD ≈ 300 MeV | Yes — without comment | No | No | 0 |
+| QCD (chiral condensate) | V_eff(⟨q̄q⟩) | ⟨q̄q⟩ | ⟨q̄q⟩ ≈ −(250 MeV)³ | Yes — without comment | No | No | 0 |
+| QCD (topological, θ) | E(θ) = E₀ − χ_top·cos(θ) | θ | θ = 0 | **No — refused** | **Yes — 50 years** | **Yes — PQ mechanism** | **~50** |
+| Superconducting (BCS) | F(Δ) = F_n − N(0)Δ²/2 + ... | Gap Δ | Δ = Δ_BCS | Yes — without comment | No | No | 0 |
+| Ferromagnet | F(M) = aM² + bM⁴ − H·M | Magnetization M | M = M_sat (at T < T_c) | Yes — without comment | No | No | 0 |
+| Superfluid He-4 | F(ψ) below T_λ | Condensate ψ | |ψ| = √(n_0) | Yes — without comment | No | No | 0 |
+
+**The pattern:** Eight vacuum identifications. Seven are performed without comment. One is refused and declared a problem. The one that is refused is the one where the minimum is at the simplest possible value (zero), protected by a symmetry (CP), confirmed by every measurement, and derivable from the energy functional. The seven that are accepted include values with no derivation, no symmetry protection, and no structural reason.
+
+---
+
+## APPENDIX H: THE TOPOLOGICAL SECTOR STRUCTURE — COMPLETE
+
+The mathematical structure that labels QCD vacua by integers.
+
+| Property | Value | Source | Status |
+|---|---|---|---|
+| Gauge group | SU(3) | Standard Model | Established |
+| Relevant homotopy group | π₃(SU(3)) | Algebraic topology | Mathematical theorem |
+| π₃(SU(3)) = | ℤ (the integers) | Bott periodicity | Mathematical theorem — cannot be violated |
+| Sector label | n ∈ ℤ | Winding number = Pontryagin index | Integer by theorem |
+| Instanton charge | ν = (1/32π²) ∫ Tr(G·G̃) d⁴x | Topological invariant | Integer for any smooth gauge field |
+| Tunneling between sectors | Via instantons | 't Hooft 1976 | Established |
+| Instanton action | S = 8π² c₂/g² = 256R₄ c₂/g² (MATH-5) | Gauge theory | Established; R₄ decomposition from MATH-5 |
+| θ-vacuum definition | |θ⟩ = Σ_n e^(inθ) |n⟩ | Bloch's theorem for periodic potential | Standard QFT |
+| Energy functional | E(θ) = E₀ − χ_top·cos(θ) | Dilute instanton gas / lattice QCD | Established |
+| Topological susceptibility | χ_top = ∂²E/∂θ²|_{θ=0} > 0 | Lattice QCD; Witten-Veneziano | Confirmed positive |
+| χ_top value | ≈ (180 MeV)⁴ in pure gauge; ≈ (75 MeV)⁴ with quarks | Lattice simulations | Computed to ~5% precision |
+| Ground state | θ = 0 (unique minimum of −cos(θ) on [0, 2π)) | Calculus | Mathematical fact |
+
+**Every element is from the institution's own mathematics and confirmed by the institution's own computations. The ground state θ = 0 follows from the structure without additional input.**
+
+---
+
+## APPENDIX I: THE ENERGY FUNCTIONAL — WHY THE MINIMUM IS AT θ = 0
+
+A complete derivation of E(θ) from its components, showing that every ingredient is established.
+
+| Step | Result | Source | Integer Content |
+|---|---|---|---|
+| 1. QCD partition function | Z(θ) = Σ_n e^(inθ) Z_n | Definition of θ-vacuum | Sum over integer sectors |
+| 2. Z_n from path integral | Z_n = ∫_{ν=n} DA Dq Dq̄ e^{−S} | QCD path integral restricted to sector n | ν = n is integer |
+| 3. Free energy | F(θ) = −(1/V₄) ln Z(θ) | Thermodynamic relation | — |
+| 4. Dilute instanton approximation | Z(θ) ≈ exp[V₄ · 2K cos(θ)] | Sum of single-instanton contributions | K = instanton density |
+| 5. Energy density | E(θ) = E₀ − χ_top cos(θ) | χ_top = 2K at leading order | — |
+| 6. dE/dθ = χ_top sin(θ) | Zero at θ = 0 and θ = π | Calculus | — |
+| 7. d²E/dθ² = χ_top cos(θ) | Positive at θ = 0 (minimum), negative at θ = π (maximum) | Calculus | — |
+| 8. χ_top > 0 | Confirmed by lattice QCD and Witten-Veneziano | Multiple independent calculations | — |
+| 9. Therefore | θ = 0 is the unique global minimum on [0, 2π) | Steps 6-8 | — |
+
+**Lattice confirmation of χ_top > 0:**
+
+| Lattice Group | Year | Method | χ_top^(1/4) (MeV) | χ_top > 0? |
+|---|---|---|---|---|
+| ETMC | 2015 | N_f = 2+1+1 dynamical fermions | 73 ± 4 | Yes |
+| Budapest-Wuppertal | 2016 | N_f = 2+1 dynamical fermions | 75 ± 3 | Yes |
+| MILC | 2018 | N_f = 2+1 staggered fermions | 76 ± 5 | Yes |
+| Bonati et al. | 2015 | N_f = 2+1 Wilson fermions | 74 ± 4 | Yes |
+| Pure gauge (quenched) | Various | No dynamical quarks | ~180 | Yes |
+
+**Every lattice calculation ever performed confirms χ_top > 0. The minimum is at θ = 0 in every calculation. No exception.**
+
+---
+
+## APPENDIX J: THE GAUGE DEPENDENCE — EXPLICIT DEMONSTRATION
+
+Under a chiral rotation q_f → e^(iα_f γ₅) q_f for a single quark flavor f with mass m_f:
+
+| Before Rotation | After Rotation | Change |
+|---|---|---|
+| θ_bare | θ_bare + 2α_f | +2α_f |
+| arg(m_f) | arg(m_f) − 2α_f | −2α_f |
+| θ_phys = θ_bare + Σ_f arg(m_f) | θ_bare + 2α_f + Σ_{f'≠f} arg(m_{f'}) + arg(m_f) − 2α_f = θ_phys | 0 (invariant) |
+| Neutron EDM d_n ∝ θ_phys | Unchanged | 0 |
+| η' mass (via χ_top) | Unchanged | 0 |
+| Any CP-violating QCD observable | Unchanged | 0 |
+
+**The demonstration for the full quark mass matrix:**
+
+| Quantity | Expression | Under q_f → e^(iα_f γ₅) q_f | Physical? |
+|---|---|---|---|
+| θ_bare | Coefficient of G·G̃/(32π²) | θ_bare → θ_bare + 2 Σ_f α_f | No — gauge-dependent |
+| det M_q | Product of quark masses (complex) | det M_q → det M_q · e^{−2i Σ_f α_f} | No — gauge-dependent |
+| arg(det M_q) | Phase of quark mass determinant | arg(det M_q) → arg(det M_q) − 2 Σ_f α_f | No — gauge-dependent |
+| θ_phys = θ_bare + arg(det M_q) | Physical vacuum angle | Invariant | Yes |
+| Jarlskog invariant J | Im[V_us V_cb V*_ub V*_cs] × Δm² product | Invariant under all reparametrizations | Yes — weak CP |
+
+**The "cancellation" between θ_bare and arg(det M_q) is the cancellation of gauge artifacts in a gauge-invariant combination.** This is not fine-tuning. This is gauge invariance operating normally. The institution recognizes this cancellation as trivial in every other context (e.g., gauge-dependent pieces canceling in gauge-invariant S-matrix elements) and declares it mysterious only for θ.
+
+---
+
+## APPENDIX K: THE NATURALNESS SCORECARD — EXTENDED
+
+Every prediction naturalness has made, with outcomes.
+
+| Prediction | Based On | Year Predicted | Observation Window | Observed? | Status |
+|---|---|---|---|---|---|
+| SUSY at LEP (√s ≤ 209 GeV) | Naturalness of Higgs mass | 1980s | 1989-2000 | No SUSY found | Failed |
+| SUSY at Tevatron (√s ≤ 1.96 TeV) | Same | 1990s | 1995-2011 | No SUSY found | Failed |
+| SUSY at LHC Run 1 (√s = 7-8 TeV) | Same, updated | 2000s | 2010-2013 | No SUSY found | Failed |
+| SUSY at LHC Run 2 (√s = 13 TeV) | Same, further updated | 2010s | 2015-2018 | No SUSY found | Failed |
+| SUSY at LHC Run 3 (√s = 13.6 TeV) | Same, further updated | 2020s | 2022-present | No SUSY found so far | Ongoing — expected null |
+| Large θ_QCD ~ O(1) | θ is a "random" parameter | 1976 | 1957-present | |θ| < 5 × 10⁻¹¹ | Failed (declared "problem" instead) |
+| Λ ~ M_Pl⁴ | Vacuum energy is "natural" at Planck scale | 1980s | 1998-present | Λ ~ (10⁻³ eV)⁴, off by 10¹²⁰ | Failed |
+| New particles stabilizing m_H | m_H requires protection | 1990s | 2012-present | m_H = 125 GeV, no partners | Failed |
+| Compositeness at TeV | Higgs as pseudo-Goldstone boson | 2000s | 2010-present | No compositeness signal | Failed |
+| Extra dimensions at TeV | Hierarchy solved by geometry | 1990s-2000s | 2010-present | No extra dimension signal | Failed |
+| Dark matter as WIMP at ~100 GeV | Thermal relic with weak coupling | 1980s | 1990-present | No WIMP detected in 40 years | Failed (at original mass range) |
+
+**Score: 0 confirmed out of 11 tested predictions.** Naturalness as a predictive principle has a 0% success rate across four decades and eleven independent tests. Using naturalness to declare θ = 0 problematic is using a principle with zero predictive power to override a measurement.
+
+---
+
+## APPENDIX L: EVERY MEASUREMENT CONSISTENT WITH θ = 0
+
+| Observable | Dependence on θ | Measurement | Bound on |θ| | θ = 0 Consistent? |
+|---|---|---|---|---|
+| Neutron EDM d_n | d_n ≈ θ × 3.6 × 10⁻¹⁶ e·cm | |d_n| < 1.8 × 10⁻²⁶ e·cm (Abel et al. 2020) | < 5 × 10⁻¹¹ | Yes |
+| Mercury EDM d_Hg | d_Hg ∝ θ via nuclear Schiff moment | |d_Hg| < 7.4 × 10⁻³⁰ e·cm (Graner et al. 2016) | < 1.5 × 10⁻¹⁰ (weaker due to nuclear screening) | Yes |
+| Electron EDM d_e | Indirect sensitivity via θ-induced nuclear effects | |d_e| < 1.1 × 10⁻²⁹ e·cm (ACME 2018) | Weak constraint on θ | Yes |
+| η → π⁺π⁻ | CP-violating decay, branching ratio ∝ θ² | BR < 1.3 × 10⁻⁵ (KLOE) | < 0.01 | Yes |
+| η' → π⁺π⁻ | CP-violating decay | Not yet observed | Consistent with θ = 0 | Yes |
+| ε'/ε (K meson CP violation) | Dominated by CKM phase; θ contribution suppressed | Measured, consistent with CKM-only | θ contribution below sensitivity | Yes |
+| Nuclear Schiff moments | ∝ θ via P,T-violating nuclear forces | All consistent with zero | < 10⁻⁹ − 10⁻¹⁰ | Yes |
+| Molecular EDMs (ThO, HfF⁺) | Sensitive to electron EDM and nuclear Schiff | All consistent with zero | Weak constraint on θ directly | Yes |
+| Lattice QCD topological charge distribution | ⟨ν²⟩ = χ_top · V₄ for θ = 0 | Matches θ = 0 prediction | Consistent with θ = 0 exactly | Yes |
+| η' mass via Witten-Veneziano | m_η'² = 2N_f χ_top/f_π² at θ = 0 | m_η' = 958 MeV, consistent with χ_top from lattice | θ = 0 assumed, consistent | Yes |
+
+**Total measurements: 10+. Consistent with θ = 0: all. Evidence for θ ≠ 0: none. Every measurement ever performed in every channel at every precision level is consistent with θ being exactly zero.**
+
+---
+
+## APPENDIX M: THE AXION SEARCH — 40 YEARS OF NULL RESULTS
+
+| Experiment | Method | Mass Range Searched | Coupling Range | Result | Years Active |
+|---|---|---|---|---|---|
+| ADMX | Microwave cavity in magnetic field | 1.9-3.5 μeV | DFSZ and KSVZ sensitivity | No axion detected | 1996-present |
+| ADMX-SLIC | Sidecar cavity | 0.18-0.22 μeV | Below KSVZ | No detection | 2019-present |
+| HAYSTAC | Tunable cavity | 16.96-17.28 μeV | Near DFSZ | No detection | 2015-present |
+| ABRACADABRA | Toroidal magnet, broadband | 0.31-8.3 neV | Above DFSZ | No detection | 2018-present |
+| CASPEr | Nuclear spin precession | 10⁻⁹-10⁻⁶ eV (projected) | Various | No detection (early stages) | 2019-present |
+| CAST | Solar axion helioscope | m_a < 0.02 eV | g_aγγ < 6.6 × 10⁻¹¹ GeV⁻¹ | No detection | 2003-2015 |
+| IAXO (planned) | Next-gen helioscope | m_a < 0.25 eV | 10× better than CAST | Not yet operational | Planned |
+| ALPS II | Light-shining-through-wall | m_a < 0.1 meV | g_aγγ < 2 × 10⁻¹¹ GeV⁻¹ | No detection (early results) | 2023-present |
+| Astrophysical bounds | Stellar cooling, SN1987A | Various | Various | No positive signal; bounds set | 1987-present |
+| Cosmological bounds | CMB, BBN, structure formation | Various | Various | No positive signal; bounds set | 2000s-present |
+
+**40+ years of dedicated experimental effort. Multiple independent techniques. No detection.** The axion remains a viable dark matter candidate and should be searched for on its own merits. But its non-detection after 40 years cannot be cited as evidence that the strong CP problem is real. An unfound solution to a non-problem is not evidence for the problem.
+
+---
+
+## APPENDIX N: THE HYDROGEN ANALOGY — DETAILED
+
+The analogy between the QCD θ-vacuum and the hydrogen atom is not merely illustrative. The mathematical structures are the same.
+
+| Feature | Hydrogen Atom | QCD θ-Vacuum |
+|---|---|---|
+| States | |n⟩, n = 1, 2, 3, ... | |θ⟩, θ ∈ [0, 2π) |
+| Energy | E_n = −13.6/n² eV | E(θ) = E₀ − χ_top cos(θ) |
+| Ground state | n = 1 | θ = 0 |
+| Ground state energy | −13.6 eV | E₀ − χ_top |
+| Excited states exist? | Yes — infinitely many | Yes — continuously many |
+| Mechanism to reach ground state demanded? | No | Yes (by the institution) |
+| Problem declared? | No | Yes — for 50 years |
+| Symmetry at ground state | Full rotational symmetry (S state) | CP symmetry |
+| Symmetry broken in excited states? | Yes — angular momentum breaks isotropy | Yes — θ ≠ 0 breaks CP |
+| Can system be prepared in excited state? | Yes — by absorbing a photon | In principle — by some unknown mechanism that excites the QCD vacuum |
+| Does excited state require explanation? | Yes — must identify the excitation | Yes — θ ≠ 0 would require identifying the excitation |
+| Does ground state require explanation? | No — it is the minimum energy | No — it is the minimum energy |
+
+**The analogy is exact in logical structure.** The ground state of a quantum system does not require a mechanism. Excited states require a mechanism (an excitation). The institution applies this logic to hydrogen without hesitation. It refuses to apply it to the QCD vacuum. The refusal generates the "problem."
+
+---
+
+## APPENDIX O: THE BURDEN OF PROOF
+
+| Claim | Burden On | Evidence Required | Evidence Available |
+|---|---|---|---|
+| "The universe is in the ground state (θ = 0)" | No burden — default assumption for quantum systems | Energy functional with minimum at θ = 0 | E(θ) = E₀ − χ_top cos(θ), χ_top > 0 confirmed by lattice |
+| "The universe is NOT in the ground state (θ ≠ 0)" | Claimant — must provide excitation mechanism | Evidence of θ ≠ 0 (neutron EDM, η decay, etc.) | None — every measurement consistent with θ = 0 |
+| "θ = 0 requires a mechanism (PQ, Nelson-Barr, etc.)" | Claimant — must explain why ground state requires mechanism when no other ground state does | Logical argument distinguishing QCD vacuum from all other vacua | None that survives examination (Section IV-X) |
+| "The cancellation θ_bare + arg(det M_q) = 0 is fine-tuned" | Claimant — must show both pieces are independently physical | Observable depending on θ_bare alone | None — θ_bare changes under field redefinition (Section VII) |
+| "Naturalness requires θ ~ O(1)" | Naturalness as a principle | Prior confirmed predictions of naturalness | Zero confirmed predictions in 40 years (Appendix K) |
+
+**In every other domain of physics, the burden of proof is on those who claim the system is NOT in the ground state. Only for θ has the institution inverted the burden, demanding that the ground state justify itself.**
+
+---
+
+## APPENDIX P: WHAT THIS PAPER REMOVES FROM THE SM PARAMETER COUNT
+
+| Parameter | Before This Paper | After This Paper | Status |
+|---|---|---|---|
+| θ_QCD | Free parameter, 1 of 19 | Derived: θ = 0 (ground state of integer-topological system) | Removed from free parameter count |
+| Remaining free parameters | 19 | 18 | One fewer parameter requiring measurement |
+
+**The 18 remaining parameters:**
+
+| # | Parameter | Value | Derived? |
+|---|---|---|---|
+| 1 | g₁ (U(1) coupling) | ~0.358 at M_Z | No — measured |
+| 2 | g₂ (SU(2) coupling) | ~0.652 at M_Z | No — measured |
+| 3 | g₃ (SU(3) coupling) | ~1.221 at M_Z | No — measured |
+| 4 | λ (Higgs quartic) | ~0.129 | No — measured (from m_H) |
+| 5 | μ² (Higgs mass parameter) | ~−(88.4 GeV)² | No — measured |
+| 6 | y_e (electron Yukawa) | ~2.94 × 10⁻⁶ | No — measured |
+| 7 | y_μ (muon Yukawa) | ~6.09 × 10⁻⁴ | No — measured |
+| 8 | y_τ (tau Yukawa) | ~1.03 × 10⁻² | No — measured |
+| 9 | y_u (up Yukawa) | ~1.27 × 10⁻⁵ | No — measured (poorly) |
+| 10 | y_d (down Yukawa) | ~2.93 × 10⁻⁵ | No — measured (poorly) |
+| 11 | y_s (strange Yukawa) | ~5.50 × 10⁻⁴ | No — measured |
+| 12 | y_c (charm Yukawa) | ~7.35 × 10⁻³ | No — measured |
+| 13 | y_b (bottom Yukawa) | ~2.42 × 10⁻² | No — measured |
+| 14 | y_t (top Yukawa) | ~0.996 | No — measured |
+| 15 | θ₁₂ (CKM angle) | ~13.0° | No — measured |
+| 16 | θ₂₃ (CKM angle) | ~2.36° | No — measured |
+| 17 | θ₁₃ (CKM angle) | ~0.201° | No — measured |
+| 18 | δ_CKM (CKM phase) | ~1.20 rad | No — measured |
+
+**θ_QCD was the only parameter with a structural reason to take its value. It is now the first to be removed from the free parameter count. The remaining 18 are genuinely free — they require measurement and have no known derivation from deeper principles (except partially sin²θ_W from GUT relations).**
+
+---
+
+## APPENDIX Q: CONNECTION TO THE INSTANTON DECOMPOSITION (MATH-5)
+
+MATH-5 showed that the instanton action S = 8π²c₂/g² decomposes as S = 256R₄·c₂/g², where R₄ = π²/32 is the 4-dimensional n-ball remainder. This connects directly to the θ-vacuum structure.
+
+| MATH-5 Object | PHYS-7 Role | Connection |
+|---|---|---|
+| c₂ ∈ ℤ (instanton number) | Topological sector label n | c₂ = n is the winding number; integer by π₃(SU(3)) = ℤ |
+| R₄ = π²/32 | Geometric content of 4D spacetime | The instanton lives in 4D; R₄ is the 4-ball-to-4-cube ratio |
+| 256 = 8 × 32 | Normalization ensuring c₂ ∈ ℤ | 8 = topological normalization; 32 = denominator of R₄ |
+| 1/g² | Coupling impedance | Determines instanton action magnitude |
+| S = 256R₄c₂/g² | Instanton action in the θ-vacuum | Enters E(θ) through the instanton density K ∝ e^{−S} |
+| e^{−S} | Instanton tunneling amplitude | Controls χ_top and therefore the depth of the θ = 0 minimum |
+
+**The chain:** π₃(SU(3)) = ℤ → sectors labeled by integer c₂ → instanton action S = 256R₄c₂/g² → tunneling amplitude e^{−S} → topological susceptibility χ_top > 0 → energy E(θ) = E₀ − χ_top cos(θ) → minimum at θ = 0 → ground state.
+
+Every link is either a mathematical theorem (homotopy group), a geometric identity (R₄ = π²/32), an established QFT result (instanton action), or a confirmed lattice computation (χ_top > 0). The ground state θ = 0 follows from the chain without additional input.
+
+---
+
+## APPENDIX R: THE CKM PHASE AND STRONG CP — WHY THEY DON'T CONFLICT
+
+The institution objects that weak CP violation (the CKM phase δ_CKM ≈ 1.20 rad) should "feed into" strong CP violation through arg(det M_q). This appendix shows why the objection fails.
+
+| Statement | True or False | Explanation |
+|---|---|---|
+| The CKM phase δ_CKM produces CP violation in weak processes | True | Confirmed in K, B, D meson systems |
+| The CKM phase enters arg(det M_q) | True | arg(det M_q) depends on the Yukawa couplings, which determine both masses and CKM angles |
+| arg(det M_q) is a physical observable | **False** | Changes under chiral field redefinition |
+| The CKM phase "feeds into" θ_phys | **False** | θ_phys = θ_bare + arg(det M_q) is invariant; the CKM contribution to arg(det M_q) is exactly cancelled by the corresponding shift in θ_bare under the same field redefinition |
+| Strong CP violation requires θ_phys ≠ 0 | True | Only θ_phys enters strong-sector CP observables |
+| θ_phys = 0 contradicts δ_CKM ≈ 1.20 | **False** | Different observables in different sectors; both are gauge-invariant; both can take their measured values simultaneously |
+| The coexistence of θ_phys = 0 and δ_CKM ≈ 1.20 requires fine-tuning | **False** | θ_phys and δ_CKM are independent gauge-invariant observables; one being zero does not constrain the other |
+
+**The key insight:** The Jarlskog invariant J = Im[V_us V_cb V*_ub V*_cs] × Π(m_i² − m_j²) is the unique gauge-invariant measure of CP violation in the weak sector. θ_phys is the unique gauge-invariant measure of CP violation in the strong sector. These are independent gauge-invariant quantities. J ≠ 0 does not require θ_phys ≠ 0. The Standard Model is perfectly consistent with maximal weak CP violation (J ≈ 3 × 10⁻⁵) and zero strong CP violation (θ_phys = 0). This is what the data shows.
+
