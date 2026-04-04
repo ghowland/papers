@@ -480,3 +480,196 @@ In every row, the confirmation is of model consistency with the universal G assu
 **The Experiment:** L1/L2 measurement using existing spacecraft locations; proposed in the institution's own literature for precision reasons; never performed with boundary crossing as the motivation
 
 **Conclusion:** The universality of G is an untested assumption; the test is achievable with existing hardware; the result — null or non-null — will be the first actual evidence about G's behavior across a coherent gravitational boundary
+
+---
+
+## APPENDIX L: EVERY SPACECRAFT BEYOND EARTH'S HILL SPHERE — COMPLETE INVENTORY
+
+No spacecraft beyond Earth's Hill sphere has ever carried a G measurement apparatus. This table is exhaustive for spacecraft that have reached or exceeded the Hill sphere distance.
+
+| Spacecraft | Agency | Launch | Current Distance (approx.) | Beyond Earth Hill Sphere | Precision Mass Measurement Hardware | G Measurement Performed | Primary Mission |
+|---|---|---|---|---|---|---|---|
+| Voyager 1 | NASA | 1977 | ~163 AU | Yes | None | No | Planetary flyby → interstellar |
+| Voyager 2 | NASA | 1977 | ~136 AU | Yes | None | No | Planetary flyby → interstellar |
+| Pioneer 10 (defunct) | NASA | 1972 | ~130 AU | Yes | None | No | Jupiter flyby → deep space |
+| Pioneer 11 (defunct) | NASA | 1973 | ~90 AU | Yes | None | No | Saturn flyby → deep space |
+| New Horizons | NASA | 2006 | ~57 AU | Yes | None | No | Pluto flyby → Kuiper Belt |
+| Parker Solar Probe | NASA | 2018 | Varies (solar orbit) | Crosses boundary periodically | None relevant | No | Solar corona study |
+| Ulysses (defunct) | ESA/NASA | 1990 | Solar orbit, ~5 AU max | No (within ~3.3% of Hill sphere at aphelion) | None | No | Solar polar observation |
+| Juno | NASA | 2011 | Jupiter orbit, ~5.2 AU | Yes (in transit, now inside Jupiter's Hill sphere) | Gravity science (measures Jupiter's field, not G directly) | No — measures GM_Jupiter, assumes G | Jupiter science |
+| Cassini (defunct) | NASA/ESA | 1997 | Saturn orbit (deorbited 2017) | Yes (in transit, operated inside Saturn's Hill sphere) | Gravity science (measures Saturn's field) | No — measures GM_Saturn, assumes G | Saturn science |
+| Galileo (defunct) | NASA | 1989 | Jupiter (deorbited 2003) | Yes (in transit) | Gravity science | No — same circularity | Jupiter science |
+| MESSENGER (defunct) | NASA | 2004 | Mercury (impacted 2015) | No (inner solar system) | Gravity science | No — measures GM_Mercury | Mercury science |
+| Dawn (defunct) | NASA | 2007 | Asteroid belt | Borderline | Gravity science | No — measures GM_Vesta, GM_Ceres | Asteroid science |
+| OSIRIS-REx/APEX | NASA | 2016 | Returning/redirected | Yes (in transit) | Touch-and-go sampler | No | Asteroid sample return |
+| Lucy | NASA | 2021 | En route to Trojans | Yes (in transit) | None relevant | No | Trojan asteroid flyby |
+| Hayabusa2 | JAXA | 2014 | Extended mission, ~2 AU | Marginal | None relevant | No | Asteroid sample return |
+
+**Summary: 15+ spacecraft have operated beyond Earth's Hill sphere. Zero carried apparatus to measure G directly. Every "gravity science" instrument on planetary missions measures the product GM (gravitational parameter), not G independently. GM is measured to extraordinary precision; G and M are entangled and separated only by assuming G from Earth-surface measurements. The circularity propagates through every planetary mass determination in the solar system.**
+
+---
+
+## APPENDIX M: GM VERSUS G — THE ENTANGLEMENT
+
+The institution measures GM (the gravitational parameter) to far higher precision than G alone. This table shows the contrast and explains why it matters.
+
+| Quantity | Best Precision | How Measured | What It Assumes | What It Actually Determines |
+|---|---|---|---|---|
+| GM_Sun | ~10⁻¹¹ relative | Planetary orbit tracking, spacecraft ranging | Newtonian/GR gravity, geometry | Combined gravitational influence of the Sun — cannot separate G from M without independent measurement of one |
+| GM_Earth | ~10⁻⁹ relative | Satellite orbit tracking, lunar ranging | Same | Combined gravitational influence of Earth |
+| GM_Moon | ~10⁻¹¹ relative | Lunar laser ranging | Same | Combined gravitational influence of Moon |
+| GM_Jupiter | ~10⁻⁸ relative | Juno, Galileo tracking | Same | Combined gravitational influence of Jupiter |
+| G alone | ~2 × 10⁻⁵ relative (22 ppm) | Cavendish-type experiments on Earth surface | Known test masses, known geometry | Gravitational coupling strength inside Earth's Hill sphere |
+| M_Sun (derived) | ~2 × 10⁻⁵ relative | GM_Sun / G | Assumes G from Earth surface applies at solar distance | Projection of solar mass through Earth-boundary G value |
+| M_Jupiter (derived) | ~2 × 10⁻⁵ relative | GM_Jupiter / G | Same assumption | Projection of Jupiter's mass through Earth-boundary G value |
+
+**The structural problem:** GM is measured to 10⁻¹¹ in space. G is measured to 10⁻⁵ on Earth. Every planetary mass in every textbook, every stellar mass estimate, every galaxy mass calculation divides a precisely known GM by an imprecisely known G measured inside one boundary. If G is boundary-dependent, every derived mass inherits the boundary projection. The masses are not wrong for use within the same boundary configuration. They may not be the masses that would be measured from a different boundary depth.
+
+---
+
+## APPENDIX N: THE HILL SPHERE CALCULATION — FULL DERIVATION
+
+For completeness, the Hill sphere derivation from the institution's own celestial mechanics.
+
+| Parameter | Symbol | Value | Source |
+|---|---|---|---|
+| Earth mass | m | 5.972 × 10²⁴ kg | Satellite tracking + Earth-surface G |
+| Solar mass | M | 1.989 × 10³⁰ kg | Planetary orbital mechanics + Earth-surface G |
+| Earth-Sun distance | a | 1.496 × 10⁸ km | Radar ranging, direct measurement |
+| Mass ratio | m/M | 3.003 × 10⁻⁶ | Derived |
+| (m/3M)^(1/3) | — | 0.01000 | Derived |
+| Hill sphere radius | r_H = a(m/3M)^(1/3) | 1.496 × 10⁶ km | ~1.5 million km |
+
+| Comparison Distance | km | r/r_H | Percentage of Hill Sphere |
+|---|---|---|---|
+| Earth radius (surface) | 6,371 | 0.00426 | 0.43% |
+| Low Earth orbit (ISS) | 6,771 | 0.00453 | 0.45% |
+| Geostationary orbit | 42,164 | 0.0282 | 2.8% |
+| GPS orbit | 26,560 | 0.0178 | 1.8% |
+| Lunar distance | 384,400 | 0.257 | 25.7% |
+| L1 Lagrange point | 1,491,000 | 0.997 | 99.7% |
+| L2 Lagrange point | 1,501,000 | 1.003 | 100.3% |
+
+**Every torsion balance in history: 0.43%. Every orbital G experiment: <3%. The Moon: 26%. L1/L2: the boundary itself. The experimental record occupies the innermost half-percent of the boundary configuration.**
+
+---
+
+## APPENDIX O: G MEASUREMENTS SORTED BY ALTITUDE AND GRAVITATIONAL POTENTIAL
+
+The boundary framework predicts that G measurements at different effective depths within Earth's gravitational well should show a systematic trend. This table sorts known measurements by the gravitational potential at the measurement site, to the extent this information is available.
+
+| Experiment | Year | Altitude (approx. m above sea level) | Local g (m/s²) | G Value (×10⁻¹¹) | Uncertainty (ppm) |
+|---|---|---|---|---|---|
+| LENS (Florence) | 2014 | ~50 | 9.8065 | 6.67191 | 150 |
+| BIPM (Sèvres) | 2001 | ~66 | 9.8094 | 6.67559 | 40 |
+| BIPM (Sèvres) | 2014 | ~66 | 9.8094 | 6.67545 | 27 |
+| UWash (Seattle) | 2000 | ~10 | 9.8071 | 6.674215 | 14 |
+| HUST (Wuhan) | 2009 | ~30 | 9.7934 | 6.67349 | 26 |
+| HUST (Wuhan, method 1) | 2018 | ~30 | 9.7934 | 6.67484 | 18 |
+| HUST (Wuhan, method 2) | 2018 | ~30 | 9.7934 | 6.67349 | 27 |
+| Zurich (Zürich) | 2006 | ~408 | 9.8067 | 6.67425 | 19 |
+| NIST (Gaithersburg) | 1982 | ~100 | 9.8011 | 6.67260 | 75 |
+| Wuppertal | 1995 | ~250 | 9.8104 | 6.71540 | 83 |
+
+**Note:** The altitude variation across these measurements is ~400 meters — a gravitational potential difference of ~4 × 10⁻⁵ in Δg/g. The boundary framework does not predict that this tiny variation in altitude alone would produce the observed spread. The "effective depth" concept is richer than simple altitude — it includes local mass distribution, tidal environment, latitude (and therefore distance from Earth's center and centrifugal effects), geological density structure beneath the laboratory, and the orientation of the measurement apparatus relative to local gravitational gradients. A proper depth-dependent analysis would require modeling all of these variables, not just altitude. This table is presented as raw data for future reanalysis, not as evidence of a trend.
+
+---
+
+## APPENDIX P: THE CIRCULAR INFERENCE CHAIN — STEP BY STEP
+
+This appendix traces the complete logical chain from Earth-surface G to cosmological mass estimates, showing where the boundary assumption enters and propagates.
+
+| Step | What Is Done | What Is Assumed | What Is Actually Established |
+|---|---|---|---|
+| 1 | Measure G on Earth surface via Cavendish-type experiment | Known test masses, known geometry, Newtonian gravity | G inside Earth's Hill sphere at Earth's surface depth |
+| 2 | Measure GM_Earth via satellite tracking | GR + universal G | GM_Earth as a combined product — cannot separate G from M independently |
+| 3 | Derive M_Earth = GM_Earth / G | G from step 1 applies at satellite orbital distance | M_Earth projected through surface-G value |
+| 4 | Measure GM_Sun via planetary orbits | GR + universal G | GM_Sun as a combined product |
+| 5 | Derive M_Sun = GM_Sun / G | G from step 1 applies across entire solar system | M_Sun projected through Earth-surface-G value |
+| 6 | Measure GM_Jupiter via spacecraft tracking | GR + universal G | GM_Jupiter as a combined product |
+| 7 | Derive M_Jupiter = GM_Jupiter / G | G from step 1 applies at Jupiter's distance | M_Jupiter projected through Earth-surface-G value |
+| 8 | Model galaxy rotation from observed velocities | v² = GM(r)/r with universal G | Rotational dynamics assuming G constant across entire galaxy |
+| 9 | Infer "missing mass" (dark matter) from rotation curve discrepancy | G from step 1 applies across galactic scales | The amount of "missing mass" depends directly on the assumed G value |
+| 10 | Model CMB power spectrum | Universal G throughout cosmic history | Cosmological parameters extracted assuming G never varies |
+| 11 | Derive total mass-energy content of observable universe | G from step 1 applies universally | Every mass in cosmology is projected through a single boundary-interior G measurement |
+
+**The entire mass accounting of the universe traces back to Cavendish-type experiments on Earth's surface. If G varies across boundaries, every mass derived via steps 3-11 carries an uncharacterized boundary projection error. The "missing mass" in step 9 could be partially or wholly an artifact of applying a boundary-interior G reading to a cross-boundary gravitational observation.**
+
+---
+
+## APPENDIX Q: WHAT THE L1/L2 EXPERIMENT WOULD RESOLVE — SCENARIO TABLE
+
+| Scenario | G at L1/L2 vs Earth Surface | Implication | Next Step |
+|---|---|---|---|
+| A: Match within uncertainty | G_L1 = G_surface (after GR correction) | Boundary effect hypothesis not supported at Earth Hill sphere scale | Test solar system Hill sphere boundary (long-term) |
+| B: Small systematic difference | G_L1 ≠ G_surface by 10-100 ppm (after GR correction) | Boundary effect detected; magnitude constrains transformation law | Map G vs distance across Earth Hill sphere; design solar system boundary experiment |
+| C: Large systematic difference | G_L1 ≠ G_surface by >100 ppm | Strong boundary effect; immediate implications for all derived masses | Recalculate planetary masses with boundary-corrected G; reassess dark matter inference |
+| D: Inconclusive | Measurement precision insufficient to distinguish | Experiment needs refinement | Improve apparatus; repeat with higher precision |
+
+**In every scenario including null, the result is the first actual data about G across the boundary. The current state — assumption without measurement — is replaced by measurement in all cases.**
+
+---
+
+## APPENDIX R: THE DARK MATTER INFERENCE CHAIN THROUGH G
+
+This table traces how the dark matter problem depends on the assumption that G measured on Earth's surface applies at galactic scales.
+
+| Observable | What Is Measured | How G Enters | What "Missing Mass" Means If G Is Universal | What It Means If G Is Boundary-Dependent |
+|---|---|---|---|---|
+| Galaxy rotation curve | Stellar orbital velocities v(r) at various radii | v² = GM(r)/r → M(r) = v²r/G | More mass is needed than visible matter provides; the extra mass is "dark matter" | The inferred M(r) depends on which G applies at galactic scales; a different G changes the inferred mass |
+| Gravitational lensing | Deflection angle of background light around clusters | θ ∝ GM/(rc²) | Deflection exceeds what visible mass produces; excess attributed to dark matter | Deflection depends on GM product; if G differs at cluster scales, M inference changes |
+| CMB power spectrum | Acoustic peak heights and positions | Baryon density Ω_b and matter density Ω_m enter through gravitational dynamics with G | Non-baryonic matter component Ω_dm required to fit peaks | If G at CMB-era scales differs from laboratory G, the inferred Ω_dm changes |
+| Bullet Cluster | Offset between lensing center and gas center | Lensing mass distribution mapped assuming universal G | Lensing mass offset from gas → dark matter passed through, gas didn't | If G is boundary-dependent, lensing map changes; offset interpretation may change |
+| Structure formation | Growth rate of density perturbations | Gravitational collapse rate depends on G | Dark matter required to seed structure early enough | Different G at cosmological boundary depth changes collapse timescale |
+
+**The dark matter inference is not independent of G. Every line of evidence for dark matter uses G — measured on Earth's surface — applied at scales ranging from galactic to cosmological. If G takes a different value at those scales, the quantity of "missing mass" changes. The dark matter problem and the G universality assumption are entangled. Testing one tests the other.**
+
+---
+
+## APPENDIX S: COMPARISON WITH OTHER COUPLING BOUNDARY TESTS
+
+For α and α_s, the institution has measured the coupling at multiple depths within and across the relevant boundaries. For G, it has not. This table makes the asymmetry explicit.
+
+| Coupling | Boundary Identified | Depths Probed | Number of Boundary Crossings Measured | Cross-Boundary Measurement Exists | Inter-Method Agreement |
+|---|---|---|---|---|---|
+| α (QED) | Vacuum polarization cloud | Continuous from q² ~ 0 to q² ~ (200 GeV)² | Continuous — every collider energy is a different depth | Yes — LEP, SLC, LHC all probe inside the cloud | Yes — single confirmed running curve |
+| α_s (QCD) | Confinement boundary | Continuous from ~1 GeV to ~200 GeV | Continuous — every collider energy is a different depth | Yes — deep inelastic scattering, jet production, τ decay | Yes — single confirmed running curve |
+| Weak coupling | W/Z mass threshold | Below and above ~80 GeV | At least one crossing (below/above W mass) | Yes — Fermi theory vs full electroweak | Yes — matched at threshold |
+| G (gravity) | Earth Hill sphere (~1.5 million km) | Earth surface only (0.43% of boundary distance) | Zero | No | No — persistent disagreement |
+
+**Three couplings with boundary crossings measured: clean running curves, no disagreement. One coupling with zero boundary crossings measured: persistent disagreement for 227 years. The pattern is exactly what the framework predicts.**
+
+---
+
+## APPENDIX T: TIMELINE OF G MEASUREMENT — 227 YEARS INSIDE ONE BOUNDARY
+
+| Decade | Key Measurements | Best Precision Achieved | Disagreement Resolved? | Boundary Crossed? |
+|---|---|---|---|---|
+| 1790s | Cavendish (1798) | ~1% | N/A — first measurement | No |
+| 1800s-1890s | Multiple refinements | ~0.1% | Spread narrowing | No |
+| 1890s-1920s | Eötvös torsion balance era | ~0.01% | Clustering but not converging | No |
+| 1920s-1960s | Various national labs | ~100 ppm | No — values scatter | No |
+| 1960s-1980s | NIST, PTB | ~75 ppm | No — disagreement persists | No |
+| 1990s | Wuppertal anomaly (6.7154) | ~80 ppm individual | No — Wuppertal outlier | No |
+| 2000s | Eöt-Wash (14 ppm), BIPM, HUST | ~14-40 ppm | No — methods disagree | No |
+| 2010s | BIPM, LENS, HUST two-method | ~18-27 ppm | No — same lab disagrees with itself | No |
+| 2020s | Continuing efforts | ~10-20 ppm target | No — no resolution in sight | No |
+| **Full 227-year record** | **~300+ measurements** | **~14 ppm best** | **No — never resolved** | **No — never attempted** |
+
+**227 years. Hundreds of measurements. Precision improved by a factor of ~5,000 from Cavendish to modern experiments. The disagreement has narrowed in absolute terms but has never been resolved relative to stated uncertainties. Not one measurement outside the boundary. The experiment that could resolve whether the disagreement is noise or signal has never been performed.**
+
+---
+
+## APPENDIX U: THE WORD "UNIVERSAL" VERSUS THE EVIDENCE
+
+| Claim | Evidence Required | Evidence Available | Gap |
+|---|---|---|---|
+| G is constant in time | Measurements of G at different epochs | No direct measurement at different epochs; indirect constraints from BBN and CMB assume universal G | Circular — assumption in, assumption out |
+| G is constant in space (within Earth) | Measurements at different locations on Earth | Yes — multiple labs, multiple continents | Confirms within-boundary consistency only |
+| G is constant across Earth Hill sphere | Measurement inside and outside Earth Hill sphere | No measurement outside | Complete gap — zero data |
+| G is constant across solar system | Measurement inside and outside solar system Hill sphere | No measurement outside; celestial mechanics confirms GM product consistency within | GM consistency, not G independence; within-boundary only |
+| G is constant across galactic scales | Measurement inside and outside galactic structure | No measurement outside; galaxy dynamics use G from Earth surface | Complete gap — assumption propagates |
+| G is constant across cosmological scales | Measurement at cosmological boundary depth | No measurement; CMB analysis assumes universal G | Complete gap — assumption propagates through all cosmological mass estimates |
+| G is constant across all scales ("universal") | All of the above | Earth surface measurements only | The claim spans the observable universe; the evidence spans one laboratory boundary configuration |
+
+**Six levels of universality claimed. Evidence exists for one (within Earth's surface boundary). Five are untested assumptions. The word "universal" covers all six as though they were established.**
