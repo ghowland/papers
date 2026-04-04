@@ -64,6 +64,8 @@ All three from the verified GUT script, 9/9 checks pass.
 
 ## 3. How M_GUT Sets the Proton Lifetime
 
+![Fig. 1: Proton lifetime scales as M_GUT⁴ — SM (10¹³·⁸, excluded), 5+5̄ (10¹⁴·⁹, excluded), Cabibbo Doublet (10¹⁵·⁵, at boundary), MSSM (10¹⁷·³, untestable). Super-K bound and Hyper-K reach shown.](./figures/phys20_01_tau_vs_mgut.png)
+
 The proton decay rate in minimal SU(5) through the dominant channel p → e⁺π⁰ is mediated by the exchange of superheavy X and Y gauge bosons. The amplitude for the process contains one X/Y boson propagator, which contributes a factor of 1/M_GUT² (the inverse square of the heavy boson mass). The decay rate is the amplitude squared, giving a factor of 1/M_GUT⁴. The proton lifetime is the inverse of the decay rate.
 
 Dimensional analysis: the decay rate Γ has dimensions of mass in natural units (ℏ = c = 1). The only mass scales are M_GUT (very large) and m_p (the proton mass, much smaller). The rate must scale as m_p⁵/M_GUT⁴ — the fifth power of m_p provides the correct mass dimension, and the fourth power of M_GUT comes from the squared propagator. The full formula includes a factor of α_GUT² (the unified coupling at each X/Y vertex) and a hadronic matrix element |⟨π⁰|qqq|p⟩|² (encoding how efficiently the three quarks in the proton annihilate into a pion, computed by lattice QCD).
@@ -637,3 +639,226 @@ All measured values from DATA-3 (123 entries, 32/32 consistency checks pass).
 
 *Supporting appendix tables A through L for PHYS-20. Every M_GUT value traces to the verified GUT script (9/9 pass). Every experimental parameter verified by web search. The M_GUT⁴ scaling table provides the quantitative framework for interpreting any future proton decay result. The discriminator matrix shows that the Cabibbo Doublet and the MSSM, despite nearly identical gap ratios, are separated by seven orders of magnitude in proton lifetime — a difference that Hyper-Kamiokande can resolve within one decade of operations.*
 
+---
+
+The paper already contains Appendices A through L with comprehensive tables. My summary covered the errata and key content. The supporting appendix tables need to be NEW content providing deep reference material beyond what exists.
+
+---
+
+## APPENDIX M: THE COMPLETE CHAIN — FROM THE INTEGER 11 TO HYPER-KAMIOKANDE
+
+Every step from the Yang-Mills coefficient to the experimental test, with the type of each link and what would break it.
+
+| Step | Input | Operation | Output | Type | What Would Break This Link |
+|---|---|---|---|---|---|
+| 1 | Yang-Mills theory in 4D | One-loop computation | Gauge self-coupling coefficient −11C₂(G)/3 | Mathematical theorem | Nothing — follows from Lorentz + gauge invariance |
+| 2 | SU(3)×SU(2)×U(1) gauge group | Apply Step 1 | Gauge betas: (0, −22/3, −11) | Theorem | Discovery that gauge group is different |
+| 3 | SM fermion content (3 × 5̄+10 of SU(5)) | Anomaly cancellation | Per-gen: (4/3, 4/3, 4/3) — democratic, invisible to gap ratio | Theorem | Discovery that SM fermions don't fill complete SU(5) reps |
+| 4 | Higgs (1,2,1/2) | Scalar beta formula | (1/10, 1/6, 0) — democracy-breaking | Theorem | Discovery of different Higgs sector |
+| 5 | Steps 2+3+4 | Addition | SM betas: (41/10, −19/6, −7) | Exact arithmetic | Error in Steps 2-4 |
+| 6 | Step 5 | Ratio of differences | SM gap ratio: 218/115 = 1.896 | Exact arithmetic | Error in Step 5 |
+| 7 | α_em, sin²θ_W, α_s (DATA-3) | GUT normalization | Measured gap ratio: 1.358 | Measurement | Improved measurements change 1.358 |
+| 8 | Steps 6 vs 7 | Comparison | 40% miss — SM does not unify | Arithmetic | If improved measurements happen to give 1.896 |
+| 9 | 15 representations within scope | Dynkin index formulas | 15 sets of (Δb₁, Δb₂, Δb₃) | Theorem | Larger scope reveals new candidates |
+| 10 | SM betas + each Δb | Fraction arithmetic | 15 modified gap ratios | Exact arithmetic | Error in Step 9 |
+| 11 | Modified gaps vs 1.358 | Distance threshold 0.15 | 3 survive Stage 1 | Criterion (stated) | Different threshold (stable under 0.05-0.20) |
+| 12 | M_GUT for survivors | Running equation + DATA-3 | 3 unification scales | Exact arithmetic + measurement | Improved α_s changes M_GUT |
+| 13 | Super-K bound τ > 2.4×10³⁴ | Proton decay exclusion | SU(5) 5+5̄ eliminated | Experimental data | Updated Super-K result |
+| 14 | Step 13 | Two survivors | MSSM (7/5) and Cabibbo Doublet (38/27) | Result | — |
+| 15 | Cabibbo Doublet M_GUT = 10¹⁵·⁵ | τ ∝ M_GUT⁴ in minimal SU(5) | τ ~ 10³⁴⁻³⁵ yr | GUT formula + lattice QCD | Different GUT completion |
+| 16 | Hyper-K specifications | Projected sensitivity | ~10³⁵ yr (20 yr exposure) | Engineering projection | Construction delays or technical issues |
+| **17** | **Steps 15 vs 16** | **Comparison** | **Prediction within experimental reach** | **The testable prediction** | **Universe decides** |
+
+**Steps 1-6 are Level 1 (pure mathematics).** Steps 7 and 12-16 involve Level 2 (measurements and experimental parameters). The chain crosses the Level 1 / Level 2 boundary at Step 7. Everything before Step 7 is permanent — it does not change with improved measurements. Everything after Step 7 will sharpen as measurements improve.
+
+---
+
+## APPENDIX N: THE M_GUT⁴ AMPLIFICATION — WHY SMALL GAP RATIO DIFFERENCES BECOME HUGE LIFETIME DIFFERENCES
+
+The gap ratios of the Cabibbo Doublet and the MSSM differ by 0.007. Their proton lifetimes differ by 10⁷. This appendix traces the amplification through two stages.
+
+### N.1: Stage 1 — Gap Ratio to M_GUT (Logarithmic Amplification)
+
+M_GUT is determined by the scale where 1/α₁ = 1/α₂. The running equation:
+
+ln(M_GUT/M_Z) = 2π × (1/α₁ − 1/α₂) / (b₁ − b₂)
+
+The measured quantity (1/α₁ − 1/α₂) = 31.525 is the same for all scenarios. Only (b₁ − b₂) — the gap ratio numerator — changes.
+
+| Scenario | b₁ − b₂ | ln(M_GUT/M_Z) | log₁₀(M_GUT) | M_GUT (GeV) |
+|---|---|---|---|---|
+| SM | 109/15 = 7.267 | 2π × 31.525/7.267 = 27.26 | 13.80 | 6.3 × 10¹³ |
+| Cabibbo Doublet | 19/3 = 6.333 | 2π × 31.525/6.333 = 31.27 | 15.54 | 3.5 × 10¹⁵ |
+| MSSM | 28/5 = 5.600 | 2π × 31.525/5.600 = 35.37 | 17.32 | 2.1 × 10¹⁷ |
+
+The gap ratio numerator changes from 6.333 (CD) to 5.600 (MSSM) — a 12% decrease. But this appears in a denominator that is divided into a fixed numerator (31.525), so a 12% decrease in the denominator produces a 13% increase in the logarithm: from 31.27 to 35.37. This translates to 1.8 decades in log₁₀(M_GUT): from 15.5 to 17.3.
+
+### N.2: Stage 2 — M_GUT to Proton Lifetime (Fourth-Power Amplification)
+
+τ ∝ M_GUT⁴. The 1.8 decades in log₁₀(M_GUT) become 7.2 decades in log₁₀(τ):
+
+| Step | Quantity | CD Value | MSSM Value | Ratio MSSM/CD |
+|---|---|---|---|---|
+| Gap ratio numerator | b₁ − b₂ | 19/3 = 6.333 | 28/5 = 5.600 | 0.884 (12% less) |
+| ln(M_GUT/M_Z) | 2π × 31.525/(b₁−b₂) | 31.27 | 35.37 | 1.131 (13% more) |
+| log₁₀(M_GUT) | — | 15.54 | 17.32 | +1.78 decades |
+| M_GUT | — | 3.5 × 10¹⁵ | 2.1 × 10¹⁷ | 60× |
+| M_GUT⁴ | — | 1.5 × 10⁶² | 1.9 × 10⁶⁹ | 1.3 × 10⁷ |
+| τ (proton lifetime) | — | ~10³⁴·⁵ | ~10⁴¹·⁷... | ~10⁷ |
+
+**The amplification chain:** 12% in gap ratio numerator → 13% in ln(M_GUT) → 1.8 decades in log₁₀(M_GUT) → 7.2 decades in log₁₀(τ). A barely distinguishable difference in the gap ratio becomes a seven-order-of-magnitude separation in proton lifetime.
+
+**This is why proton decay is the decisive test.** The gap ratios are 1.407 and 1.400 — practically indistinguishable. The proton lifetimes are 10³⁴·⁵ and 10⁴¹·⁵ — completely distinguishable by any detector with megaton-year exposure.
+
+---
+
+## APPENDIX O: ALL PROTON DECAY BOUNDS — HISTORICAL AND PROJECTED
+
+| Experiment | Detector Type | Exposure | Channel | Bound τ (90% CL, years) | Year |
+|---|---|---|---|---|---|
+| IMB | Water Cherenkov, 8 kton | ~100 kton·yr | p → e⁺π⁰ | > 5.5 × 10³² | 1991 |
+| Kamiokande | Water Cherenkov, 3 kton | ~50 kton·yr | p → e⁺π⁰ | > 6 × 10³² | 1993 |
+| Super-K (Phase I) | Water Cherenkov, 22.5 kton | 92 kton·yr | p → e⁺π⁰ | > 5.4 × 10³³ | 2005 |
+| Super-K (Phase I+II) | Same | 220 kton·yr | p → e⁺π⁰ | > 1.3 × 10³⁴ | 2009 |
+| Super-K (Phase I-IV) | Same, enlarged FV | 306 kton·yr | p → e⁺π⁰ | > 1.6 × 10³⁴ | 2017 |
+| **Super-K (current)** | **Same** | **450 kton·yr** | **p → e⁺π⁰** | **> 2.4 × 10³⁴** | **2020** |
+| Hyper-K (5 yr projected) | Water Cherenkov, 188 kton | ~940 kton·yr | p → e⁺π⁰ | > ~4 × 10³⁴ | ~2032 |
+| Hyper-K (10 yr projected) | Same | ~1880 kton·yr | p → e⁺π⁰ | > ~6.3 × 10³⁴ | ~2037 |
+| **Hyper-K (20 yr projected)** | **Same** | **~3760 kton·yr** | **p → e⁺π⁰** | **> ~10³⁵** | **~2047** |
+| Super-K (current) | Same | 450 kton·yr | p → K⁺ν̄ | > 6.6 × 10³³ | 2014 |
+| DUNE (10 yr projected) | Liquid Argon, 40 kton | ~400 kton·yr | p → K⁺ν̄ | > ~10³⁴ | ~2038 |
+
+**The improvement has been steady:** from 5 × 10³² (IMB, 1991) to 2.4 × 10³⁴ (Super-K, 2020) — a factor of ~50 in three decades. Hyper-K adds another factor of ~4 with 20 years of running. The Cabibbo Doublet prediction sits exactly at the frontier where decades of improvement have brought us.
+
+---
+
+## APPENDIX P: THE TESTABILITY LANDSCAPE — EVERY ENUMERATED CANDIDATE PLACED
+
+Every candidate from the PHYS-15 enumeration, placed in the proton decay landscape.
+
+| Rank | Candidate | Gap Ratio | M_GUT (log₁₀) | Predicted τ | Super-K Status | Hyper-K Status | Testable? |
+|---|---|---|---|---|---|---|---|
+| 1 | Full MSSM | 7/5 = 1.400 | 17.3 | ~10³⁷ yr | Safe | Safe | No — beyond any planned experiment |
+| **2** | **Cabibbo Doublet (3,2,1/6)** | **38/27 = 1.407** | **15.5** | **~10³⁴⁻³⁵ yr** | **At boundary** | **Within reach** | **YES — Hyper-K 2027-2047** |
+| 3 | SU(5) 5+5̄ | 40/27 = 1.481 | 14.9 | ~10³² yr | EXCLUDED | — | Already dead |
+| 4 | 3× Scalar (1,2,1/2) | 1.631 | 14.1 | ~10³⁰ yr | EXCLUDED | — | Already dead |
+| 5 | Scalar (3,2,1/6) | 1.632 | 14.6 | ~10³¹ yr | EXCLUDED | — | Already dead |
+| 6 | Scalar (1,3,0) | 1.664 | 14.4 | ~10³¹ yr | EXCLUDED | — | Already dead |
+| 7 | VL (1,2,−1/2) | 1.712 | 14.0 | ~10²⁹ yr | EXCLUDED | — | Already dead |
+| 8 | 2× Scalar (1,2,1/2) | 1.712 | 14.0 | ~10²⁹ yr | EXCLUDED | — | Already dead |
+| 9 | Scalar (1,2,1/2) | 1.800 | 13.9 | ~10²⁹ yr | EXCLUDED | — | Already dead |
+| 10 | SU(5) 10+10̄ | 1.948 | 13.5 | ~10²⁷ yr | EXCLUDED | — | Already dead |
+| 11-15 | Various | 2.0-2.2 | 12.3-13.7 | <10²⁸ yr | EXCLUDED | — | Already dead |
+
+**The landscape divides into three zones:**
+
+Zone 1 (τ < 10³⁴): Already excluded by Super-K. Contains 13 of 15 candidates. Dead.
+
+Zone 2 (10³⁴ < τ < 10³⁵): The Hyper-K window. Contains the Cabibbo Doublet. Testable.
+
+Zone 3 (τ > 10³⁵): Beyond any planned experiment. Contains the MSSM. Untestable for the foreseeable future.
+
+**Only one candidate sits in Zone 2.** The Cabibbo Doublet is the uniquely testable survivor.
+
+---
+
+## APPENDIX Q: THE SENSITIVITY SCALING — HOW DETECTOR SIZE MAPS TO PROTON LIFETIME REACH
+
+| Quantity | Formula | Value |
+|---|---|---|
+| Expected events | N = (N_p × ε × t) / τ | N_p = protons, ε = efficiency, t = time, τ = lifetime |
+| Protons per kiloton water | 6.0 × 10³² | From N_A × (10⁶ g) × (10/18) protons per water molecule |
+| Super-K fiducial mass | 22.5 kton (original) | 1.35 × 10³⁴ protons |
+| Hyper-K fiducial mass | 188 kton | 1.13 × 10³⁵ protons |
+| Detection efficiency (p → e⁺π⁰) | ~45% | Water Cherenkov estimate |
+| Background rate (Super-K) | ~0.5 events per Mton·yr | Atmospheric neutrino CC π⁰ |
+
+### Q.1: Sensitivity vs Exposure Time
+
+For a Poisson counting experiment with near-zero background, the 90% CL limit with zero observed events is 2.3 events:
+
+τ_limit = N_p × ε × t / 2.3
+
+| Experiment | N_p × ε | Time | τ_limit | Matches Published? |
+|---|---|---|---|---|
+| Super-K (450 kton·yr) | 22.5 kton × 0.45 = 10.1 kton effective | 20 yr | 10.1 × 6×10³² × 20 / 2.3 = 5.3×10³⁴ | Published 2.4×10³⁴ — factor 2 from refined analysis cuts |
+| Hyper-K (10 yr) | 188 × 0.45 = 84.6 kton effective | 10 yr | 84.6 × 6×10³² × 10 / 2.3 = 2.2×10³⁵ | Projected ~6.3×10³⁴ — factor 3 from backgrounds + analysis |
+| Hyper-K (20 yr) | Same | 20 yr | 4.4×10³⁵ | Projected ~10³⁵ — factor 4 from backgrounds |
+
+**The simple formula overestimates sensitivity by factors of 2-4** because it neglects background subtraction, energy resolution, and systematic uncertainties. The collaboration projections account for these. The scaling with mass × time is correct; the absolute normalization requires detailed simulation.
+
+### Q.2: What Observation Would Look Like
+
+| Scenario | τ (years) | Events in Hyper-K (10 yr) | Events in Hyper-K (20 yr) | Significance |
+|---|---|---|---|---|
+| τ = 3 × 10³⁴ | Low end of CD prediction | ~5-8 events | ~10-16 events | Discovery (>5σ) |
+| τ = 10³⁵ | High end of CD prediction | ~1-2 events | ~2-4 events | Evidence (2-3σ) |
+| τ = 3 × 10³⁵ | Above CD prediction | ~0.3-0.5 events | ~0.7-1 events | Hint or null |
+| τ = 10³⁷ | MSSM prediction | ~0.01 events | ~0.02 events | Null (undetectable) |
+
+**If the proton lifetime is in the lower half of the Cabibbo Doublet range (3 × 10³⁴ yr), Hyper-K discovers proton decay with 5σ significance within 10 years.** If it is in the upper half (~10³⁵ yr), the full 20-year dataset is needed and the significance may be only 2-3σ — evidence rather than discovery.
+
+---
+
+## APPENDIX R: THE COMPLETE SERIES — WHAT EACH PAPER CONTRIBUTES TO THIS PREDICTION
+
+| Paper | Key Result | Role in Proton Decay Prediction |
+|---|---|---|
+| MATH-1 | R₂ = π/4 in nine engineering domains | π in beta coefficients is 4R₂ |
+| MATH-2 | 17 transcendentals as exact integer pairs | Foundation for Fraction arithmetic |
+| MATH-3 | Extended basis: elliptic integrals, Borwein ζ(5) | Seeds 4-loop wall resolution |
+| MATH-4 | Universal Q335 denominator | Computational infrastructure |
+| MATH-5 | R₄ = π²/32, n-ball remainder | π² in loop factors is 32R₄ |
+| MATH-6 | 82/82 PSLQ independence | SM constants don't decompose into basis — gap ratio miss is real |
+| PHYS-1 | Mass = inertia, soliton boundaries | Each mass threshold is a boundary |
+| PHYS-2 | Transformation laws are integers | Beta coefficients ARE the integers |
+| PHYS-3 | G untested outside Hill sphere | Not directly used |
+| PHYS-4 | Test program, kill switch | Not directly used |
+| PHYS-5 | α running at 0.02 ppm | Infrastructure for coupling running |
+| PHYS-6 | Confinement two-face | Hadronic VP limits gap ratio precision |
+| PHYS-7 | θ_QCD = 0 (19→18) | Parameter count baseline |
+| PHYS-8 | Koide (18→17 conditional) | Parameter count |
+| PHYS-9 | α from a_e, 4.3 ppb | Demonstrates integer structure of QED |
+| PHYS-10 | Remainder framework, PSLQ null | SM couplings don't decompose — gap ratio miss is genuine |
+| PHYS-11 | Nine domains, R₂ universal | 2π = 8R₂ in running equation |
+| PHYS-12 | Electroweak integer anatomy | Infrastructure: G_F, M_Z, sin²θ_W as exact Fractions; R_b overshoot = A_FB^b physics |
+| PHYS-13 | Gap ratio 218/115, BSM enumeration | **The enumeration — finds (3,2,1/6)** |
+| PHYS-14 | Fermion cancellation theorem | **Why fermions don't matter — only bosons and BSM** |
+| PHYS-15 | Complete elimination cascade | **Two survivors: MSSM and Cabibbo Doublet** |
+| PHYS-16 | Cabibbo Doublet specification | **Named, quantum numbers, two roads** |
+| PHYS-17 | Generation democracy proved | **Why adding fermions can't fix unification** |
+| PHYS-18 | Y = 1/6 asymmetry mechanism | **Why the Cabibbo Doublet works — Δb₂/Δb₁ = 15** |
+| PHYS-19 | Three independent anomalies | **Bottom-up evidence: CKM, A_FB^b, Higgs μ** |
+| **PHYS-20** | **Proton decay test** | **τ ~ 10³⁴⁻³⁵ yr → Hyper-K 2027-2037** |
+
+**Every paper contributes to the final prediction.** The Fraction arithmetic infrastructure (MATH-2, MATH-4), the structural insights (PHYS-14 fermion cancellation, PHYS-17 generation democracy, PHYS-18 Y = 1/6 asymmetry), the precision computations (PHYS-5, PHYS-12), the enumeration (PHYS-13, 15), the anomaly evidence (PHYS-19), and the mechanism (PHYS-18) all flow into PHYS-20's single prediction: one experiment, one decade, one answer.
+
+---
+
+## APPENDIX S: THE FINAL SCORECARD — EVERYTHING THE SERIES ESTABLISHES
+
+| Category | Result | Paper | Status | Conditional? |
+|---|---|---|---|---|
+| **Parameter reductions** | | | | |
+| θ_QCD = 0 | 19 → 18 | PHYS-7 | Established | No — unconditional |
+| m_τ from Koide | 18 → 17 | PHYS-8 | At 0.91σ from PDG | Yes — conditional on Koide exactness |
+| α ↔ a_e | Relabeling | PHYS-9 | Demonstrated | N/A — not a reduction |
+| **Structural findings** | | | | |
+| R₂ = π/4 universal | Present in 18 domains (9 engineering + 9 physics) | MATH-1, PHYS-11 | Verified | No |
+| 139 PSLQ tests null | Transcendental basis is minimal | MATH-6, PHYS-10 | Verified | No |
+| Generation democracy | (4/3, 4/3, 4/3) per gen; fermions invisible to gap ratio | PHYS-14, PHYS-17 | Proved algebraically | No |
+| Gap ratio = boson problem | 96-101% gauge, 0% fermion, −1% to +4% Higgs | PHYS-17 | Proved | No |
+| A₂ decomposition | 87.4% cancellation between geometry and arithmetic | PHYS-12 | Verified (9/9) | No |
+| **BSM identification** | | | | |
+| Gap ratio 218/115 misses by 40% | SM does not unify | PHYS-13 | Verified (9/9) | No |
+| 15 candidates enumerated, 13 eliminated | Two survivors: MSSM and Cabibbo Doublet | PHYS-15 | Verified (9/9) | Scope-dependent |
+| Y = 1/6 produces maximum asymmetry Δb₂/Δb₁ = 15 | Mechanism for gap ratio fix | PHYS-18 | Proved | No |
+| Three independent anomalies point to (3,2,1/6) | CKM 2.5-4σ, A_FB^b ~3σ, Higgs ~2σ | PHYS-19 | Documented | Each anomaly could have mundane explanation |
+| **Testable predictions** | | | | |
+| τ(p → e⁺π⁰) ~ 10³⁴⁻³⁵ yr | Hyper-K 2027-2037 | PHYS-20 | Prediction | Conditional on minimal SU(5) completion |
+| Mass 1.5-6 TeV | HL-LHC now-2040 | PHYS-16, 19 | Window | From anomaly constraints |
+| CKM deficit |V_ub'| ≈ 0.045 | Belle II now-2030+ | Prediction | From unitarity deficit |
+
+**What the series has done:** Built exact rational arithmetic infrastructure from transcendental constants through QED through electroweak physics to grand unification. Identified one particle — the Cabibbo Doublet — by two independent methods. Specified it completely. Connected it to three experimental anomalies. Derived a testable proton decay prediction. Documented every step in exact Fraction arithmetic with verified scripts.
+
+**What the series has NOT done:** Derived any SM coupling constant from first principles. Explained why the gauge group is SU(3)×SU(2)×U(1). Derived the Cabibbo Doublet mass. Proved the Cabibbo Doublet exists. These remain open. The series identifies what the integers determine and where the universe must speak.
