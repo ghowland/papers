@@ -44,6 +44,8 @@ with the well-known pattern: the CF coefficients are [2; 1, 2k, 1] repeating for
 
 ### 2.2 The Convergent Table
 
+![Fig. 1: CF convergents of e — three have power-of-two denominators. 87/32 is the last and best.](./figures/math4_01_cf_convergents.png)
+
 | Index | CF coeff | p | q | Decimal | Error (ppm) |
 |---|---|---|---|---|---|
 | 0 | 2 | 2 | 1 | 2.000 | 264,241 |
@@ -60,6 +62,8 @@ with the well-known pattern: the CF coefficients are [2; 1, 2k, 1] repeating for
 
 ### 2.3 Power-of-Two Convergents
 
+![Fig. 2: Error drops from 264,000 ppm to <1 ppm across 9 convergents. 87/32 at 172 ppm is the last power-of-two.](./figures/math4_02_error_decay.png)
+
 Three convergents of e have power-of-two denominators:
 
 | Convergent | Fraction | Denominator | ppm |
@@ -72,11 +76,15 @@ The exponents 0, 2, 5 do not continue — no further CF convergent of e has a po
 
 ### 2.4 The Extension
 
+![Fig. 4: Each transcendental is rounded to the nearest integer multiple of 2⁻³³⁵. The rounding error is 10⁶⁶ times smaller than the Planck length.](./figures/math4_04_projection_operation.png)
+
 The CF convergent observation motivates the question: at what power of two does the nearest integer to e · 2ⁿ provide 100-digit agreement with e?
 
 The rounding error when projecting a real number x onto the nearest p/2ⁿ is bounded by 1/(2 · 2ⁿ) = 2⁻⁽ⁿ⁺¹⁾. For 100-digit agreement, we need 2⁻⁽ⁿ⁺¹⁾ < 10⁻¹⁰⁰, giving n > 100 · log₂(10) − 1 ≈ 331.2. Constants smaller than 1 (such as ln(2) ≈ 0.693) require an additional bit because their leading digit occupies less of the available range.
 
 Empirically, n = 335 provides 100-digit agreement for all 22 constants in the extended MATH-2/MATH-3 basis. At n = 334, one constant (Catalan's G) fails at position 101. At n = 333, two fail. At n = 335, all 22 match.
+
+![Fig. 7: At n=334, Catalan's G fails. At n=335, all 22 constants pass 100-digit verification. 335 is the minimal universal exponent.](./figures/math4_07_minimal_exponent.png)
 
 ---
 
@@ -91,6 +99,8 @@ No physical process, no experiment, no measurement at any energy scale can acces
 ---
 
 ## IV. THE COMPLETE BASIS
+
+![Fig. 3: All 22 constants positioned by value — each is a single ~102-digit integer over the shared denominator 2³³⁵.](./figures/math4_03_q335_number_line.png)
 
 Each constant C is represented as p_C / 2³³⁵, where p_C is the nearest integer to C · 2³³⁵. Every entry is verified against mpmath at 100 decimal digits by string comparison. All 22 entries match.
 
@@ -254,6 +264,8 @@ The arithmetic is simpler stated directly: compute each term as a Fraction (rati
 
 ## VI. COMPRESSION
 
+![Fig. 6: MATH-2 pair sizes vs Q335 numerator sizes on log scale — e^π compresses 1,280× from 131,868 digits to 103.](./figures/math4_06_compression_ratio.png)
+
 ### 6.1 Storage Comparison
 
 | Constant | MATH-2 p+q digits | 2³³⁵ p digits | Ratio |
@@ -301,6 +313,8 @@ The two representations are complementary. The MATH-2 pairs are the high-precisi
 
 ## VIII. APPLICATION: A₂ IN THE UNIVERSAL BASIS
 
+![Fig. 5: The 2-loop QED coefficient as four integer operations on Q335 numerators — multiplies, adds, one bit-shift.](./figures/math4_05_a2_computation.png)
+
 The 2-loop electron anomalous magnetic moment coefficient:
 
 A₂ = 197/144 + π²/12 + 3ζ(3)/4 − (π²/2) · ln(2)
@@ -341,6 +355,8 @@ Multiplication of two basis constants produces a result with denominator 2⁶⁷
 ---
 
 ## XI. CONCLUSION
+
+![Fig. 8: The power-of-two basis — from 87/32 to 2³³⁵, addition is integer addition, 22/22 verified, denominators eliminated.](./figures/math4_08_identity_card.png)
 
 The 22 transcendental constants spanning the MATH-2 and MATH-3 bases — every constant needed for QED through 3-loop order — can be represented as single integers over a shared denominator 2³³⁵. The representation is verified at 100 digits for all 22 entries. Addition and subtraction of constants reduces to integer addition of numerators. The total storage is 2,238 digits plus the shared exponent.
 
