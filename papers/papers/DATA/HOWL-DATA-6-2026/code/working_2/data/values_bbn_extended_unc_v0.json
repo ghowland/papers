@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {
+      "key": "cosmo_li7_measured_unc_v0",
+      "canonical": "cosmo_li7_measured_unc",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "li7_measured_unc",
+      "level": 2,
+      "value": "0.000000000030",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 2,
+      "source": "Spite plateau. Sbordone et al. 2010. 0.3 x 10^-10.",
+      "tags": ["cosmology", "BBN", "lithium", "uncertainty"]
+    },
+    {
+      "key": "cosmo_he3_measured_unc_v0",
+      "canonical": "cosmo_he3_measured_unc",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "he3_measured_unc",
+      "level": 2,
+      "value": "0.0000020",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 2,
+      "source": "Bania et al. 2002. 0.2 x 10^-5.",
+      "tags": ["cosmology", "BBN", "helium3", "uncertainty"]
+    }
+  ]
+}
+

@@ -3935,6 +3935,167 @@ def muon_g2_total_prediction_v0(value_dicts):
             float(amu_sm), float(amu_measured), float(amu_diff_x1e11), float(tension_sigma)),
     }
 
+# ================================================================
+# CATEGORY R: BBN EXTENDED — LITHIUM AND HELIUM-3
+# ================================================================
+
+def bridge_li7_from_eta_v0(value_dicts):
+    """Derive primordial Li-7/H from derived eta via BBN.
+    
+    Li-7/H (x10^10) = a + b*(eta_10 - 6)
+    
+    where a = 4.68, b = 0.67 are BBN fitting coefficients
+    from Pitrou et al. 2018.
+    
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Derived eta_10 from chain
+    eta10 = mpf(str(_get(vm, "result_eta10_derived_v0")))
+
+    # BBN fitting coefficients
+    li7_a = _mpf_val(vm, "bbn_li7_a_coeff_v0")
+    li7_b = _mpf_val(vm, "bbn_li7_b_coeff_v0")
+
+    # Li-7/H (x10^10) = a + b*(eta_10 - 6)
+    li7_x1e10 = li7_a + li7_b * (eta10 - mpf("6"))
+    li7_derived = li7_x1e10 * mpf("1e-10")
+
+    # Measured
+    li7_measured = _mpf_val(vm, "cosmo_li7_measured_v0")
+    li7_measured_unc = _mpf_val(vm, "cosmo_li7_measured_unc_v0")
+
+    miss = abs(li7_derived - li7_measured) / li7_measured * mpf("100")
+    li7_sigma = abs(li7_derived - li7_measured) / li7_measured_unc
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_li7_from_eta_v0",
+        "outputs": {
+            "result_li7_derived_v0": _approx(li7_derived),
+            "result_li7_x1e10_derived_v0": _approx(li7_x1e10),
+            "result_li7_measured_v0": _approx(li7_measured),
+            "result_li7_miss_pct_v0": _approx(miss),
+            "result_li7_sigma_v0": _approx(li7_sigma),
+            "result_eta10_used_v0": _approx(eta10),
+        },
+        "notes": "Li-7/H = %.2e (derived) vs %.2e (measured), %.1f sigma" % (
+            float(li7_derived), float(li7_measured), float(li7_sigma)),
+    }
+
+
+def bridge_he3_from_eta_v0(value_dicts):
+    """Derive primordial He-3/H from derived eta via BBN.
+    
+    He-3/H (x10^5) = a + b*(eta_10 - 6)
+    
+    where a = 1.04, b = -0.14 are BBN fitting coefficients
+    from Pitrou et al. 2018.
+    
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Derived eta_10 from chain
+    eta10 = mpf(str(_get(vm, "result_eta10_derived_v0")))
+
+    # BBN fitting coefficients
+    he3_a = _mpf_val(vm, "bbn_he3_a_coeff_v0")
+    he3_b = _mpf_val(vm, "bbn_he3_b_coeff_v0")
+
+    # He-3/H (x10^5) = a + b*(eta_10 - 6)
+    he3_x1e5 = he3_a + he3_b * (eta10 - mpf("6"))
+    he3_derived = he3_x1e5 * mpf("1e-5")
+
+    # Measured
+    he3_measured = _mpf_val(vm, "cosmo_he3_measured_v0")
+    he3_measured_unc = _mpf_val(vm, "cosmo_he3_measured_unc_v0")
+
+    miss = abs(he3_derived - he3_measured) / he3_measured * mpf("100")
+    he3_sigma = abs(he3_derived - he3_measured) / he3_measured_unc
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_he3_from_eta_v0",
+        "outputs": {
+            "result_he3_derived_v0": _approx(he3_derived),
+            "result_he3_x1e5_derived_v0": _approx(he3_x1e5),
+            "result_he3_measured_v0": _approx(he3_measured),
+            "result_he3_miss_pct_v0": _approx(miss),
+            "result_he3_sigma_v0": _approx(he3_sigma),
+            "result_eta10_used_v0": _approx(eta10),
+        },
+        "notes": "He-3/H = %.2e (derived) vs %.2e (measured), %.1f sigma" % (
+            float(he3_derived), float(he3_measured), float(he3_sigma)),
+    }
+
+
+def bridge_li7_problem_v0(value_dicts):
+    """Quantify the cosmological lithium problem.
+    
+    BBN predicts Li-7/H ~ 4.7 x 10^-10.
+    Observed: Li-7/H ~ 1.6 x 10^-10.
+    Ratio: predicted/observed ~ 3.
+    
+    This is the lithium problem. Our chain reproducing it is 
+    a validation — the system gets D/H right and Li-7 wrong 
+    in exactly the way standard BBN does.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Derived Li-7 from chain
+    li7_derived = mpf(str(_get(vm, "result_li7_derived_v0")))
+
+    # Measured
+    li7_measured = _mpf_val(vm, "cosmo_li7_measured_v0")
+
+    # The lithium problem ratio
+    ratio = li7_derived / li7_measured
+    is_real = ratio > mpf("2")
+
+    # Also compute: if Li-7 were correct, what eta_10 would be needed?
+    # Li-7 (x10^10) = 4.68 + 0.67*(eta_10 - 6)
+    # For measured Li-7 = 1.6e-10 = 1.6 in x10^10 units:
+    # 1.6 = 4.68 + 0.67*(eta_10 - 6)
+    # eta_10 = 6 + (1.6 - 4.68)/0.67 = 6 - 4.60 = 1.40
+    li7_a = _mpf_val(vm, "bbn_li7_a_coeff_v0")
+    li7_b = _mpf_val(vm, "bbn_li7_b_coeff_v0")
+    li7_meas_x1e10 = li7_measured * mpf("1e10")
+    eta10_needed_for_li7 = mpf("6") + (li7_meas_x1e10 - li7_a) / li7_b
+
+    # Compare to our derived eta_10
+    eta10_derived = mpf(str(_get(vm, "result_eta10_derived_v0")))
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_li7_problem_v0",
+        "outputs": {
+            "result_li7_problem_ratio_v0": _approx(ratio),
+            "result_li7_problem_is_real_v0": is_real,
+            "result_li7_predicted_v0": _approx(li7_derived),
+            "result_li7_observed_v0": _approx(li7_measured),
+            "result_eta10_needed_for_li7_v0": _approx(eta10_needed_for_li7),
+            "result_eta10_derived_v0": _approx(eta10_derived),
+            "result_eta10_li7_tension_v0": _approx(abs(eta10_derived - eta10_needed_for_li7)),
+        },
+        "notes": "Li-7 problem ratio = %.2f (predicted/observed). Li-7 needs eta_10 = %.2f, we have %.2f. Tension: %.1f in eta_10 units." % (
+            float(ratio), float(eta10_needed_for_li7), float(eta10_derived),
+            float(abs(eta10_derived - eta10_needed_for_li7))),
+    }
+
 
 
 # ================================================================
@@ -4033,6 +4194,10 @@ DERIVATION_MORE_INDEX_V0 = {
     # Q: Muon g-2 prediction
     "muon_g2_qed_from_alpha_v0": muon_g2_qed_from_alpha_v0,
     "muon_g2_total_prediction_v0": muon_g2_total_prediction_v0,    
+    # R: BBN extended — lithium and helium-3
+    "bridge_li7_from_eta_v0": bridge_li7_from_eta_v0,
+    "bridge_he3_from_eta_v0": bridge_he3_from_eta_v0,
+    "bridge_li7_problem_v0": bridge_li7_problem_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {
