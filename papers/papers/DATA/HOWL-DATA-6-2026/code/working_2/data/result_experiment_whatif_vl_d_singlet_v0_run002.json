@@ -1,0 +1,76 @@
+{
+  "key": "result_experiment_whatif_vl_d_singlet_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_whatif_vl_d_singlet_v0",
+  "timestamp": "2026-04-05T10:48:53Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "coupling_whatif_vl_d_singlet_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Gap ratio vs measured",
+      "output_key": "result_whatif_vl_d_singlet_gap_ratio_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "1.3582",
+      "got": "2.0181818",
+      "miss_pct": "48.59",
+      "detail": "predicted 2.0181818 ref 1.3582 miss 48.59%"
+    },
+    {
+      "label": "Distance from measured",
+      "output_key": "result_whatif_vl_d_singlet_distance_v0",
+      "match_mode": "range",
+      "reference_source": "scan",
+      "got": "0.659989",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    }
+  ],
+  "outputs": {
+    "result_whatif_vl_d_singlet_db1_v0": {
+      "_type": "Fraction",
+      "num": "2",
+      "den": "15"
+    },
+    "result_whatif_vl_d_singlet_db2_v0": {
+      "_type": "Fraction",
+      "num": "0",
+      "den": "1"
+    },
+    "result_whatif_vl_d_singlet_db3_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "6"
+    },
+    "result_whatif_vl_d_singlet_gap_ratio_v0": {
+      "_type": "Fraction",
+      "num": "111",
+      "den": "55"
+    },
+    "result_whatif_vl_d_singlet_distance_v0": "0.659989134036974",
+    "result_whatif_vl_d_singlet_asymmetry_v0": {
+      "_type": "Fraction",
+      "num": "0",
+      "den": "1"
+    }
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 0,
+    "comparisons_info": 1,
+    "comparisons_skip": 0
+  }
+}

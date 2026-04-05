@@ -14,18 +14,21 @@
             "rep_whatif_vl_u_singlet_db2": 0,
             "rep_whatif_vl_u_singlet_db3": 0
         },
-        "derivations": {"coupling_whatif_direct_db": 0},
+        "derivations": {"coupling_whatif_vl_u_singlet": 0},
         "connections": {}
     },
-    "execution_plan": ["coupling_whatif_direct_db_v0"],
+    "execution_plan": ["coupling_whatif_vl_u_singlet_v0"],
     "connections": [],
-    "expected_outputs": ["result_whatif_direct_gap_ratio_v0", "result_whatif_direct_distance_v0"],
+    "expected_outputs": [
+        "result_whatif_vl_u_singlet_gap_ratio_v0",
+        "result_whatif_vl_u_singlet_distance_v0"
+    ],
     "comparisons": [
-        {"label": "Gap ratio vs measured", "output_key": "result_whatif_direct_gap_ratio_v0",
+        {"label": "Gap ratio vs measured", "output_key": "result_whatif_vl_u_singlet_gap_ratio_v0",
          "match_mode": "miss_pct", "expected": "1.3582", "reference_source": "measured"},
-        {"label": "Distance from measured", "output_key": "result_whatif_direct_distance_v0",
+        {"label": "Distance from measured", "output_key": "result_whatif_vl_u_singlet_distance_v0",
          "match_mode": "range", "lo": "0", "hi": "1", "reference_source": "scan"}
     ],
     "diagrams": [],
-    "notes": "VL (3,1,2/3). Uses coupling_whatif_direct_db_v0 with candidate-prefixed db keys."
+    "notes": "VL (3,1,2/3). Candidate 15 of 15."
 }
