@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 """
-DATA-6 CLI
-===========
+DATA-6 CLI v0.3
+================
 Single entry point for all DATA-6 operations.
 
 Usage:
     python data6.py run <experiment>
     python data6.py diagram <experiment>
-    python data6.py test
     python data6.py validate
     python data6.py index
     python data6.py compile
     python data6.py list values|derivations|connections|experiments|results
     python data6.py search <query>
-    python data6.py export
     python data6.py info <key>
 """
 
@@ -22,19 +20,24 @@ import os
 import json
 import glob
 
-DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.abspath(__file__))
+DATA = os.path.join(ROOT, "data")
+FIGURES = os.path.join(ROOT, "figures")
+
+
+def ensure_dirs():
+    os.makedirs(DATA, exist_ok=True)
+    os.makedirs(FIGURES, exist_ok=True)
 
 
 def get_all_json_files():
-    """Return sorted list of all JSON files in the working directory."""
-    return sorted(glob.glob(os.path.join(DIR, "*.json")))
+    return sorted(glob.glob(os.path.join(DATA, "*.json")))
 
 
 def _deserialize(obj):
-    """Recursively convert Fraction/mpf markers."""
     if isinstance(obj, dict):
         if obj.get("_type") == "Fraction":
-            return obj  # keep as dict for display
+            return obj
         if obj.get("_type") == "mpf":
             return obj.get("value", obj)
         return {k: _deserialize(v) for k, v in obj.items()}
@@ -49,9 +52,8 @@ def load_json(path):
 
 
 def load_all_value_nodes():
-    """Load all value nodes from values_*.json files."""
     nodes = []
-    for path in sorted(glob.glob(os.path.join(DIR, "values_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "values_*.json"))):
         data = load_json(path)
         for node in data.get("nodes", []):
             nodes.append(node)
@@ -63,15 +65,12 @@ def load_all_value_nodes():
 # ================================================================
 
 def cmd_run(args):
-    """Run an experiment."""
     if not args:
         print("Usage: data6.py run <experiment_name>")
         return 1
-
-    # Import and delegate to data_6_run.py
-    sys.path.insert(0, DIR)
+    sys.path.insert(0, ROOT)
     from data_6_run import run_experiment
-    return run_experiment(args[0], DIR)
+    return run_experiment(args[0], DATA)
 
 
 # ================================================================
@@ -79,27 +78,12 @@ def cmd_run(args):
 # ================================================================
 
 def cmd_diagram(args):
-    """Generate diagrams for an experiment."""
     if not args:
         print("Usage: data6.py diagram <experiment_name>")
         return 1
-
-    sys.path.insert(0, DIR)
+    sys.path.insert(0, ROOT)
     from data_6_diagrams import generate_diagrams
-    return generate_diagrams(args[0], DIR)
-
-
-# ================================================================
-# COMMAND: test
-# ================================================================
-
-def cmd_test(args):
-    """Run the super test."""
-    script = os.path.join(DIR, "_data_6_super_test_v0.py")
-    if not os.path.exists(script):
-        print("ERROR: %s not found" % script)
-        return 1
-    return os.system("%s %s" % (sys.executable, script))
+    return generate_diagrams(args[0], DATA, FIGURES)
 
 
 # ================================================================
@@ -107,7 +91,6 @@ def cmd_test(args):
 # ================================================================
 
 def cmd_validate(args):
-    """Validate all JSON files against node schema."""
     print("=" * 70)
     print("DATA-6 VALIDATE")
     print("=" * 70)
@@ -130,14 +113,13 @@ def cmd_validate(args):
             total_warnings += 1
             continue
 
-        # Determine node list
         nodes = []
         if isinstance(data, dict) and "nodes" in data:
             nodes = data["nodes"]
         elif isinstance(data, dict) and "node_type" in data:
             nodes = [data]
         else:
-            continue  # result files, etc
+            continue
 
         file_warnings = 0
         for node in nodes:
@@ -160,8 +142,8 @@ def cmd_validate(args):
             print("  [OK]   %-45s %3d nodes" % (fname, len(nodes)))
 
     print()
-    print("  Total nodes checked: %d" % total_nodes)
-    print("  Total warnings:      %d" % total_warnings)
+    print("  Total nodes: %d" % total_nodes)
+    print("  Warnings:    %d" % total_warnings)
     print()
 
     if total_warnings == 0:
@@ -179,7 +161,6 @@ def cmd_validate(args):
 # ================================================================
 
 def cmd_index(args):
-    """Build manifest index of all JSON files."""
     print("=" * 70)
     print("DATA-6 INDEX")
     print("=" * 70)
@@ -196,14 +177,10 @@ def cmd_index(args):
             data = load_json(path)
         except Exception:
             manifest["files"].append({
-                "filename": fname,
-                "type": "invalid",
-                "nodes": 0,
-                "size_bytes": fsize,
-            })
+                "filename": fname, "type": "invalid",
+                "nodes": 0, "size_bytes": fsize})
             continue
 
-        # Classify file
         nodes = []
         ftype = "unknown"
 
@@ -222,14 +199,10 @@ def cmd_index(args):
             nodes = [data]
         elif isinstance(data, dict) and "experiment_key" in data:
             ftype = "result"
-            nodes = []
 
         entry = {
-            "filename": fname,
-            "type": ftype,
-            "nodes": len(nodes),
-            "size_bytes": fsize,
-        }
+            "filename": fname, "type": ftype,
+            "nodes": len(nodes), "size_bytes": fsize}
         manifest["files"].append(entry)
         manifest["total_nodes"] += len(nodes)
 
@@ -240,11 +213,11 @@ def cmd_index(args):
     print("  Total files: %d" % len(manifest["files"]))
     print("  Total nodes: %d" % manifest["total_nodes"])
 
-    manifest_path = os.path.join(DIR, "data_6_manifest.json")
+    manifest_path = os.path.join(DATA, "data_6_manifest.json")
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2)
     print()
-    print("  Manifest written: data_6_manifest.json")
+    print("  Manifest written: %s" % manifest_path)
     print()
     print("=" * 70)
     return 0
@@ -255,14 +228,13 @@ def cmd_index(args):
 # ================================================================
 
 def cmd_compile(args):
-    """Produce a single compiled JSON with everything."""
     print("=" * 70)
     print("DATA-6 COMPILE")
     print("=" * 70)
     print()
 
     compiled = {
-        "version": "0.2",
+        "version": "0.3",
         "values": {},
         "connections": [],
         "programs": [],
@@ -270,7 +242,6 @@ def cmd_compile(args):
         "results": [],
     }
 
-    # Values — organized by section
     nodes = load_all_value_nodes()
     for node in nodes:
         section = node.get("section", "other")
@@ -278,32 +249,27 @@ def cmd_compile(args):
             compiled["values"][section] = []
         compiled["values"][section].append(node)
 
-    # Connections
-    for path in sorted(glob.glob(os.path.join(DIR, "connections_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "connections_*.json"))):
         data = load_json(path)
         for node in data.get("nodes", []):
             compiled["connections"].append(node)
 
-    # Programs
-    prog_path = os.path.join(DIR, "programs_v0.json")
+    prog_path = os.path.join(DATA, "programs_v0.json")
     if os.path.exists(prog_path):
         data = load_json(prog_path)
         for node in data.get("nodes", []):
             compiled["programs"].append(node)
 
-    # Experiments
-    for path in sorted(glob.glob(os.path.join(DIR, "experiment_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "experiment_*.json"))):
         data = load_json(path)
         compiled["experiments"].append(data)
 
-    # Results
-    for path in sorted(glob.glob(os.path.join(DIR, "result_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "result_*.json"))):
         data = load_json(path)
         compiled["results"].append(data)
 
-    # Derivation registry summary
+    sys.path.insert(0, ROOT)
     try:
-        sys.path.insert(0, DIR)
         from _data_6_derivations_v0 import (
             DERIVATION_INDEX_V0, CONNECTION_INDEX_V0)
         compiled["derivation_keys"] = sorted(DERIVATION_INDEX_V0.keys())
@@ -313,7 +279,6 @@ def cmd_compile(args):
         compiled["derivation_keys"] = []
         compiled["connection_function_keys"] = []
 
-    # Summary counts
     total_values = sum(len(v) for v in compiled["values"].values())
     compiled["summary"] = {
         "total_values": total_values,
@@ -326,7 +291,7 @@ def cmd_compile(args):
         "connection_functions": len(compiled["connection_function_keys"]),
     }
 
-    out_path = os.path.join(DIR, "data_6_compiled.json")
+    out_path = os.path.join(DATA, "data_6_compiled.json")
 
     def _default(obj):
         if hasattr(obj, "numerator"):
@@ -347,7 +312,7 @@ def cmd_compile(args):
     print("  Derivations:  %d" % len(compiled["derivation_keys"]))
     print("  Conn funcs:   %d" % len(compiled["connection_function_keys"]))
     print()
-    print("  Compiled: data_6_compiled.json")
+    print("  Compiled: %s" % out_path)
     print()
     print("=" * 70)
     return 0
@@ -358,7 +323,6 @@ def cmd_compile(args):
 # ================================================================
 
 def cmd_list(args):
-    """List nodes by type."""
     if not args:
         print("Usage: data6.py list values|derivations|connections|experiments|results")
         return 1
@@ -382,7 +346,7 @@ def cmd_list(args):
         return 0
 
     elif target == "derivations":
-        sys.path.insert(0, DIR)
+        sys.path.insert(0, ROOT)
         try:
             from _data_6_derivations_v0 import DERIVATION_INDEX_V0
             keys = sorted(DERIVATION_INDEX_V0.keys())
@@ -399,7 +363,7 @@ def cmd_list(args):
         return 0
 
     elif target == "connections":
-        sys.path.insert(0, DIR)
+        sys.path.insert(0, ROOT)
         try:
             from _data_6_derivations_v0 import CONNECTION_INDEX_V0
             keys = sorted(CONNECTION_INDEX_V0.keys())
@@ -416,14 +380,13 @@ def cmd_list(args):
         return 0
 
     elif target == "experiments":
-        files = sorted(glob.glob(os.path.join(DIR, "experiment_*.json")))
+        files = sorted(glob.glob(os.path.join(DATA, "experiment_*.json")))
         print("=" * 70)
         print("EXPERIMENTS: %d files" % len(files))
         print("=" * 70)
         for path in files:
             fname = os.path.basename(path)
             data = load_json(path)
-            desc = data.get("description", "")[:50]
             n_deriv = len(data.get("execution_plan", []))
             n_comp = len(data.get("comparisons", []))
             print("  %-45s %2d derivations, %2d comparisons" % (
@@ -431,7 +394,7 @@ def cmd_list(args):
         return 0
 
     elif target == "results":
-        files = sorted(glob.glob(os.path.join(DIR, "result_*.json")))
+        files = sorted(glob.glob(os.path.join(DATA, "result_*.json")))
         print("=" * 70)
         print("RESULTS: %d files" % len(files))
         print("=" * 70)
@@ -458,7 +421,6 @@ def cmd_list(args):
 # ================================================================
 
 def cmd_search(args):
-    """Search across all node keys, tags, notes, source."""
     if not args:
         print("Usage: data6.py search <query>")
         return 1
@@ -472,7 +434,6 @@ def cmd_search(args):
 
     matches = []
 
-    # Search value nodes
     nodes = load_all_value_nodes()
     for node in nodes:
         searchable = " ".join([
@@ -487,8 +448,7 @@ def cmd_search(args):
             matches.append(("value", node.get("key", "?"),
                            node.get("section", "")))
 
-    # Search connection nodes
-    for path in sorted(glob.glob(os.path.join(DIR, "connections_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "connections_*.json"))):
         data = load_json(path)
         for node in data.get("nodes", []):
             searchable = " ".join([
@@ -501,8 +461,7 @@ def cmd_search(args):
                 matches.append(("connection", node.get("key", "?"),
                                node.get("connection_type", "")))
 
-    # Search program nodes
-    prog_path = os.path.join(DIR, "programs_v0.json")
+    prog_path = os.path.join(DATA, "programs_v0.json")
     if os.path.exists(prog_path):
         data = load_json(prog_path)
         for node in data.get("nodes", []):
@@ -515,8 +474,7 @@ def cmd_search(args):
                 matches.append(("program", node.get("key", "?"),
                                node.get("status", "")))
 
-    # Search derivation keys
-    sys.path.insert(0, DIR)
+    sys.path.insert(0, ROOT)
     try:
         from _data_6_derivations_v0 import (
             DERIVATION_INDEX_V0, CONNECTION_INDEX_V0)
@@ -543,36 +501,20 @@ def cmd_search(args):
 
 
 # ================================================================
-# COMMAND: export
-# ================================================================
-
-def cmd_export(args):
-    """Re-run the JSON exporter."""
-    script = os.path.join(DIR, "data_6_export_json.py")
-    if not os.path.exists(script):
-        print("ERROR: data_6_export_json.py not found")
-        return 1
-    return os.system("%s %s" % (sys.executable, script))
-
-
-# ================================================================
 # COMMAND: info
 # ================================================================
 
 def cmd_info(args):
-    """Print full details for one node by key."""
     if not args:
         print("Usage: data6.py info <key>")
         return 1
 
     target = args[0]
-    # Add _v0 if not present
     if not target.split("_")[-1].startswith("v"):
         target_v0 = target + "_v0"
     else:
         target_v0 = target
 
-    # Search value nodes
     nodes = load_all_value_nodes()
     for node in nodes:
         if node.get("key") == target or node.get("key") == target_v0:
@@ -581,9 +523,7 @@ def cmd_info(args):
             print("=" * 70)
             print()
             for k, v in sorted(node.items()):
-                if isinstance(v, dict):
-                    print("  %-20s %s" % (k, json.dumps(v)))
-                elif isinstance(v, list):
+                if isinstance(v, (dict, list)):
                     print("  %-20s %s" % (k, json.dumps(v)))
                 else:
                     print("  %-20s %s" % (k, v))
@@ -591,8 +531,7 @@ def cmd_info(args):
             print("=" * 70)
             return 0
 
-    # Search connection nodes
-    for path in sorted(glob.glob(os.path.join(DIR, "connections_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "connections_*.json"))):
         data = load_json(path)
         for node in data.get("nodes", []):
             if node.get("key") == target or node.get("key") == target_v0:
@@ -607,8 +546,7 @@ def cmd_info(args):
                 print("=" * 70)
                 return 0
 
-    # Search programs
-    prog_path = os.path.join(DIR, "programs_v0.json")
+    prog_path = os.path.join(DATA, "programs_v0.json")
     if os.path.exists(prog_path):
         data = load_json(prog_path)
         for node in data.get("nodes", []):
@@ -624,8 +562,7 @@ def cmd_info(args):
                 print("=" * 70)
                 return 0
 
-    # Search experiment files
-    for path in sorted(glob.glob(os.path.join(DIR, "experiment_*.json"))):
+    for path in sorted(glob.glob(os.path.join(DATA, "experiment_*.json"))):
         data = load_json(path)
         if data.get("key") == target or data.get("key") == target_v0:
             print("=" * 70)
@@ -635,16 +572,11 @@ def cmd_info(args):
             print("  description:    %s" % data.get("description", ""))
             print("  mode:           %s" % data.get("experiment_mode", ""))
             print("  purpose:        %s" % data.get("purpose", ""))
-            print("  derivations:    %d" % len(
-                data.get("execution_plan", [])))
-            print("  connections:    %d" % len(
-                data.get("connections", [])))
-            print("  comparisons:    %d" % len(
-                data.get("comparisons", [])))
-            print("  diagrams:       %d" % len(
-                data.get("diagrams", [])))
-            print("  expected out:   %d" % len(
-                data.get("expected_outputs", [])))
+            print("  derivations:    %d" % len(data.get("execution_plan", [])))
+            print("  connections:    %d" % len(data.get("connections", [])))
+            print("  comparisons:    %d" % len(data.get("comparisons", [])))
+            print("  diagrams:       %d" % len(data.get("diagrams", [])))
+            print("  expected out:   %d" % len(data.get("expected_outputs", [])))
             print()
             print("=" * 70)
             return 0
@@ -654,39 +586,35 @@ def cmd_info(args):
 
 
 # ================================================================
-# COMMAND DISPATCH
+# DISPATCH
 # ================================================================
 
 COMMANDS = {
     "run": cmd_run,
     "diagram": cmd_diagram,
-    "test": cmd_test,
     "validate": cmd_validate,
     "index": cmd_index,
     "compile": cmd_compile,
     "list": cmd_list,
     "search": cmd_search,
-    "export": cmd_export,
     "info": cmd_info,
 }
 
 
 def main():
     if len(sys.argv) < 2:
-        print("DATA-6 CLI")
+        print("DATA-6 CLI v0.3")
         print()
         print("Usage: python data6.py <command> [args]")
         print()
         print("Commands:")
         print("  run <experiment>       Run experiment, write result JSON")
         print("  diagram <experiment>   Generate PNGs from diagram specs")
-        print("  test                   Run super test (values + derivations)")
         print("  validate               Check all JSON against node schema")
         print("  index                  Rebuild manifest from all JSON files")
         print("  compile                Produce single compiled JSON")
         print("  list <type>            List nodes (values|derivations|connections|experiments|results)")
         print("  search <query>         Search across all nodes")
-        print("  export                 Re-run JSON exporter")
         print("  info <key>             Print full details for one node")
         return 1
 
@@ -699,6 +627,7 @@ def main():
         print("Available: %s" % ", ".join(sorted(COMMANDS.keys())))
         return 1
 
+    ensure_dirs()
     return handler(args)
 
 

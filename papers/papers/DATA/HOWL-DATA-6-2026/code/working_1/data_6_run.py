@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 """
-DATA-6 EXPERIMENT RUNNER
-=========================
-Generic CLI runner that loads an experiment JSON, executes it
-against the value pool and derivation registry, and writes
-a result JSON to CWD.
+DATA-6 EXPERIMENT RUNNER v0.3
+==============================
+Generic runner that loads an experiment JSON from ./data/,
+executes it against the value pool and derivation registry,
+and writes a result JSON to ./data/.
 
-Usage:
-    python data_6_run.py beta_unification_v0
-    python data_6_run.py experiment_beta_unification_v0
-
-Looks for: experiment_<name>.json or <name>.json in CWD.
-Outputs:   result_<experiment_key>_<timestamp>.json in CWD.
+Pre-flight validation, connection outputs into pool,
+result run counter (never overwrites).
 """
 
 import sys
@@ -30,6 +26,8 @@ from mpmath import mp
 
 mp.dps = 100
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from _data_6_derivations_v0 import (
     DERIVATION_INDEX_V0,
     CONNECTION_INDEX_V0,
@@ -41,7 +39,6 @@ from _data_6_derivations_v0 import (
 # ================================================================
 
 def _deserialize(obj):
-    """Recursively convert Fraction/mpf markers back to Python types."""
     if isinstance(obj, dict):
         if obj.get("_type") == "Fraction":
             return Fraction(int(obj["num"]), int(obj["den"]))
@@ -54,17 +51,15 @@ def _deserialize(obj):
 
 
 def _serialize_default(obj):
-    """JSON serializer for Fraction."""
     if isinstance(obj, Fraction):
         return {"_type": "Fraction", "num": str(obj.numerator),
                 "den": str(obj.denominator)}
     return str(obj)
 
 
-def load_all_values(directory):
-    """Load all values_*.json from directory into a list of dicts."""
+def load_all_values(data_dir):
     nodes = []
-    pattern = os.path.join(directory, "values_*.json")
+    pattern = os.path.join(data_dir, "values_*.json")
     for path in sorted(glob.glob(pattern)):
         with open(path) as f:
             data = json.load(f)
@@ -73,14 +68,13 @@ def load_all_values(directory):
     return nodes
 
 
-def load_experiment(name, directory):
-    """Find and load an experiment JSON by name."""
+def load_experiment(name, data_dir):
     candidates = [
-        os.path.join(directory, "experiment_%s.json" % name),
-        os.path.join(directory, "%s.json" % name),
+        os.path.join(data_dir, "experiment_%s.json" % name),
+        os.path.join(data_dir, "%s.json" % name),
     ]
     if name.startswith("experiment_"):
-        candidates.insert(0, os.path.join(directory, "%s.json" % name))
+        candidates.insert(0, os.path.join(data_dir, "%s.json" % name))
 
     for path in candidates:
         if os.path.exists(path):
@@ -96,7 +90,6 @@ def load_experiment(name, directory):
 # ================================================================
 
 def make_result_entry(key, value, source="derivation"):
-    """Wrap a derivation output as a value entry dict."""
     if isinstance(value, Fraction):
         vtype = "exact_fraction"
     elif isinstance(value, int):
@@ -118,11 +111,40 @@ def make_result_entry(key, value, source="derivation"):
 
 
 def find_output(key, pool):
-    """Find a value by key in the pool. Last wins."""
     for entry in reversed(pool):
         if entry["key"] == key:
             return entry["value"]
     return None
+
+
+# ================================================================
+# PRE-FLIGHT VALIDATION
+# ================================================================
+
+def preflight(experiment, pool, data_dir):
+    """Check dependencies exist before execution. Warn, don't abort."""
+    warnings = []
+
+    by_key = {}
+    for entry in pool:
+        by_key[entry["key"]] = True
+
+    deps = experiment.get("dependencies", {})
+
+    for canonical, version in deps.get("values", {}).items():
+        versioned = "%s_v%d" % (canonical, version)
+        if versioned not in by_key:
+            warnings.append("value missing: %s" % versioned)
+
+    for deriv_key in experiment.get("execution_plan", []):
+        if deriv_key not in DERIVATION_INDEX_V0:
+            warnings.append("derivation missing: %s" % deriv_key)
+
+    for conn_key in experiment.get("connections", []):
+        if conn_key not in CONNECTION_INDEX_V0:
+            warnings.append("connection missing: %s" % conn_key)
+
+    return warnings
 
 
 # ================================================================
@@ -148,8 +170,6 @@ def _miss_pct(got_mpf, ref_mpf):
 
 
 def run_comparison(spec, pool):
-    """Evaluate one comparison spec against the value pool.
-    Returns a result dict."""
     output_key = spec["output_key"]
     mode = spec["match_mode"]
     label = spec.get("label", output_key)
@@ -158,18 +178,14 @@ def run_comparison(spec, pool):
     got = find_output(output_key, pool)
     if got is None:
         return {
-            "label": label,
-            "output_key": output_key,
-            "match_mode": mode,
-            "status": "SKIP",
+            "label": label, "output_key": output_key,
+            "match_mode": mode, "status": "SKIP",
             "detail": "output not found in pool",
         }
 
     result = {
-        "label": label,
-        "output_key": output_key,
-        "match_mode": mode,
-        "reference_source": ref_source,
+        "label": label, "output_key": output_key,
+        "match_mode": mode, "reference_source": ref_source,
     }
 
     if mode == "exact":
@@ -249,13 +265,26 @@ def run_comparison(spec, pool):
 
 
 # ================================================================
+# RESULT FILE NAMING
+# ================================================================
+
+def next_result_path(exp_key, data_dir):
+    """Find next available run number for result file."""
+    run = 1
+    while True:
+        filename = "result_%s_run%03d.json" % (exp_key, run)
+        path = os.path.join(data_dir, filename)
+        if not os.path.exists(path):
+            return path, filename
+        run += 1
+
+
+# ================================================================
 # MAIN RUNNER
 # ================================================================
 
-def run_experiment(name, directory):
-    """Load and execute one experiment, return result dict."""
-
-    experiment, exp_path = load_experiment(name, directory)
+def run_experiment(name, data_dir):
+    experiment, exp_path = load_experiment(name, data_dir)
     exp_key = experiment["key"]
 
     print("=" * 70)
@@ -268,9 +297,19 @@ def run_experiment(name, directory):
     print()
 
     # ---- LOAD VALUES ----
-    pool = load_all_values(directory)
+    pool = load_all_values(data_dir)
     print("Loaded %d value nodes." % len(pool))
     print()
+
+    # ---- PRE-FLIGHT ----
+    warnings = preflight(experiment, pool, data_dir)
+    if warnings:
+        print("-" * 70)
+        print("PRE-FLIGHT WARNINGS: %d" % len(warnings))
+        print("-" * 70)
+        for w in warnings:
+            print("  [WARN] %s" % w)
+        print()
 
     # ---- EXECUTION PLAN ----
     plan = experiment.get("execution_plan", [])
@@ -336,6 +375,15 @@ def run_experiment(name, directory):
             print("  [OK] %-55s %2d values, %2d edges" % (
                 conn_key, n_v, n_e))
             conn_results_list.append(conn_key)
+
+            # Merge connection named_values into pool
+            for local_name, nv in cr.get("named_values", {}).items():
+                source_key = nv.get("source_key", "")
+                if source_key and find_output(source_key, pool) is None:
+                    pool.append(make_result_entry(
+                        source_key, nv.get("value"),
+                        source=conn_key))
+
         print()
 
     # ---- EXPECTED OUTPUTS CHECK ----
@@ -375,7 +423,8 @@ def run_experiment(name, directory):
     diagrams = experiment.get("diagrams", [])
     if diagrams:
         print("-" * 70)
-        print("DIAGRAMS: %d specs (not rendered)" % len(diagrams))
+        print("DIAGRAMS: %d specs (use 'data6.py diagram' to render)" % (
+            len(diagrams)))
         print("-" * 70)
         for d in diagrams:
             print("  [SPEC] %-50s %s" % (
@@ -390,16 +439,14 @@ def run_experiment(name, directory):
 
     timestamp = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Collect all derivation outputs for the result
     all_outputs = {}
     for entry in pool:
-        if entry.get("source", "").endswith("_v0") and \
-           entry["source"] in DERIVATION_INDEX_V0:
+        src = entry.get("source", "")
+        if src in DERIVATION_INDEX_V0:
             all_outputs[entry["key"]] = entry["value"]
 
     result_node = {
-        "key": "result_%s_%s" % (exp_key,
-                                  timestamp.replace(":", "").replace("-", "")),
+        "key": "result_%s" % exp_key,
         "node_type": "result",
         "experiment_key": exp_key,
         "timestamp": timestamp,
@@ -419,9 +466,8 @@ def run_experiment(name, directory):
         },
     }
 
-    # ---- WRITE RESULT JSON ----
-    result_filename = "result_%s.json" % exp_key
-    result_path = os.path.join(directory, result_filename)
+    # ---- WRITE RESULT JSON (never overwrite) ----
+    result_path, result_filename = next_result_path(exp_key, data_dir)
     with open(result_path, "w") as f:
         json.dump(result_node, f, indent=2, default=_serialize_default)
     print("Result written: %s" % result_filename)
@@ -450,19 +496,3 @@ def run_experiment(name, directory):
     print("=" * 70)
 
     return fail_count
-
-
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python data_6_run.py <experiment_name>")
-        print("Example: python data_6_run.py beta_unification_v0")
-        return 1
-
-    name = sys.argv[1]
-    directory = os.path.dirname(os.path.abspath(__file__))
-    return run_experiment(name, directory)
-
-
-if __name__ == "__main__":
-    sys.exit(main())
-    
