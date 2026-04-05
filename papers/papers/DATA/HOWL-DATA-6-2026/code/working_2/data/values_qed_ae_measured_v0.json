@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "key": "qed_ae_electron_measured_v0",
+      "canonical": "qed_ae_electron_measured",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "ae_electron_measured",
+      "level": 2,
+      "value": "0.00115965218059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 15,
+      "uncertainty": "0.00000000000013",
+      "source": "Fan et al. 2023 (Harvard). PRL 130, 071801",
+      "tags": ["QED", "g-2", "electron", "measured", "CODATA"],
+      "notes": "a_e = (g-2)/2 for the electron. 0.11 ppb precision."
+    },
+    {
+      "key": "qed_alpha_inv_cs_recoil_v0",
+      "canonical": "qed_alpha_inv_cs_recoil",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "alpha_inv_cs_recoil",
+      "level": 2,
+      "value": "137.035999046",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 12,
+      "uncertainty": "0.000000027",
+      "source": "Parker et al. 2018 (Berkeley). Science 360, 191. Cs recoil.",
+      "tags": ["alpha", "Cs", "recoil", "measured"],
+      "notes": "alpha^-1 from Cs atom recoil. 0.20 ppb."
+    },
+    {
+      "key": "qed_alpha_inv_rb_recoil_v0",
+      "canonical": "qed_alpha_inv_rb_recoil",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "alpha_inv_rb_recoil",
+      "level": 2,
+      "value": "137.035999206",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 12,
+      "uncertainty": "0.000000011",
+      "source": "Morel et al. 2020 (LKB Paris). Nature 588, 61. Rb recoil.",
+      "tags": ["alpha", "Rb", "recoil", "measured"],
+      "notes": "alpha^-1 from Rb atom recoil. 0.081 ppb. Currently most precise independent alpha."
+    },
+    {
+      "key": "qed_alpha_inv_codata_2018_v0",
+      "canonical": "qed_alpha_inv_codata_2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "alpha_inv_codata_2018",
+      "level": 2,
+      "value": "137.035999084",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 12,
+      "uncertainty": "0.000000021",
+      "source": "CODATA 2018 recommended value",
+      "tags": ["alpha", "CODATA", "recommended"],
+      "notes": "CODATA 2018 least-squares adjustment. 0.15 ppb."
+    }
+  ]
+}
+
