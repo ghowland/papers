@@ -21,6 +21,8 @@ This paper extends the derivation graph from 17 values across five physics domai
 
 The derivation graph now spans QED, electroweak, cosmology, nuclear, muon, flavor, and mass (Koide) domains. From 15 measured inputs it produces 38 derived values — 23 more outputs than inputs. Every value where the Standard Model agrees with experiment, the chain agrees. Every anomaly the Standard Model has (muon g-2, lithium problem, CKM deficit), the chain reproduces. The graph contains no free parameters beyond the measured inputs.
 
+![Fig. 8: Identity card — 38 derived values across QED, electroweak, cosmology, BBN, muon, flavor, and mass domains from 15 measured inputs.](./figures/phys38_08_identity_card.png)
+
 ---
 
 ## II. THE EW V2 EXPERIMENT — G_F AS INPUT
@@ -77,6 +79,8 @@ The initial v2 run gave R_l = 6.94 instead of 20.77. The error: we computed Γ_h
 
 ## III. SUB-PPB QED — THE 18× IMPROVEMENT
 
+![Fig. 1: α⁻¹ from five methods — the corrected value lands on the Rb recoil at 12-digit agreement, 18× closer than the uncorrected extraction.](./figures/phys38_01_alpha_corrections.png)
+
 ### 3.1 The Seven Corrections
 
 The PHYS-36 extraction of α from the electron g-2 used only the mass-independent QED series (A₁-A₅). This misses contributions from heavy particles and hadronic physics. Seven published corrections were added:
@@ -116,6 +120,8 @@ Then Newton-invert the QED series A₁x + A₂x² + A₃x³ + A₄x⁴ + A₅x�
 
 The α-power scaling from PHYS-36 is preserved: R∞ (∝ α²) at 0.44 ppb = 2 × 0.22 ppb. a₀ and μ₀ (∝ α¹) at 0.22 ppb. Single-source error propagation confirmed at the improved precision.
 
+![Fig. 5: Seven published corrections push α⁻¹ incrementally from 3.99 ppb below CODATA to 0.22 ppb above — landing on the Rb recoil target.](./figures/phys38_05_correction_cascade.png)
+
 ### 3.4 What Limits the Precision Now
 
 The bottleneck shifted from our code to the published corrections. The hadronic light-by-light uncertainty (±0.020 × 10⁻¹²) contributes ~0.14 ppb. The a_e measurement (Fan et al. 2023) contributes 0.11 ppb. The A₅ coefficient choice (Volkov vs AHKN) contributes ~0.04 ppb. Quadrature total: ~0.22 ppb — matching the observed miss. The QED series itself (A₁-A₅) contributes negligibly.
@@ -123,6 +129,8 @@ The bottleneck shifted from our code to the published corrections. The hadronic 
 ---
 
 ## IV. THE MUON G-2 PREDICTION
+
+![Fig. 7: SM prediction (116591741) vs Fermilab measurement (116592059) — the 318 × 10⁻¹¹ gap is 6.5σ, dominated by hadronic VP uncertainty.](./figures/phys38_07_muon_g2.png)
 
 ### 4.1 The SM Budget
 
@@ -156,6 +164,8 @@ The CMD-3 experiment (2023) measured a higher e⁺e⁻ → π⁺π⁻ cross sect
 
 ## V. BBN EXTENDED — FOUR PRIMORDIAL ELEMENTS
 
+![Fig. 4: Four primordial elements from one η₁₀ = 6.09 — D/H (0.12σ), Y_p (0.94σ), He-3 (0.36σ) agree; Li-7 at 2.96× reproduces the lithium problem.](./figures/phys38_04_bbn_four_elements.png)
+
 ### 5.1 The Complete BBN Scorecard
 
 | Element | Predicted | Measured | Miss | σ | Status |
@@ -178,6 +188,8 @@ Our chain reproducing the standard 2.96× overprediction validates that we are u
 ### 5.3 Connection to Chemistry
 
 The BBN products (H, D, ³He, ⁴He, ⁷Li) are the starting inventory for all subsequent chemistry. The primordial D/H ratio determines the HD/H₂ ratio in the first molecular clouds. HD is a more efficient coolant than H₂ due to its permanent dipole moment. The fraction of HD controls the minimum mass of the first stars, which determines whether the first supernovae produce the carbon and oxygen necessary for rocky planets. Our gauge integers → D/H prediction connects — through multiple intermediary steps — to the conditions required for the emergence of chemistry and eventually biochemistry.
+
+![Fig. 6: The integers 11 and 13 flow through (22/13)π to Ω_b, through η to four BBN elements — three agree (green), lithium fails (red).](./figures/phys38_06_integer_map.png)
 
 ---
 
@@ -214,6 +226,8 @@ No single line is definitive. Together they form a coherent picture: one BSM rep
 ---
 
 ## VII. THE COMPLETE INVENTORY
+
+![Fig. 3: All 38 derived values on a log-scale axis from 0.007 ppb (α vs Rb) to 196% (lithium problem) — seven domains color-coded.](./figures/phys38_03_precision_landscape.png)
 
 ### 7.1 All 38 Derived Values
 
@@ -275,6 +289,8 @@ No single line is definitive. Together they form a coherent picture: one BSM rep
 ---
 
 ## VIII. THE EW ITERATION HISTORY
+
+![Fig. 2: M_W and Γ_Z converge through four iterations — tree (0.52%), v0 (+ρ, 0.044%), v1 (+corrections, 0.040%), v2 (G_F input, 0.019%).](./figures/phys38_02_ew_convergence.png)
 
 The electroweak sector was built in four iterations, each diagnosed by the DATA-6 comparison engine:
 
