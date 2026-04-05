@@ -1679,6 +1679,248 @@ def qed_alpha_from_ae_v0(value_dicts):
     }
 
 
+def qed_coefficients_assemble_v0(value_dicts):
+    """Assemble QED g-2 series coefficients A1 through A5.
+    A1 = 1/2 from pool.
+    A2 = analytical from Q335 constants and rational coefficients from pool.
+    A3 = analytical from Q335 constants and rational coefficients from pool.
+    A4 from pool (Laporta 30-digit).
+    A5 from pool (Volkov).
+    Zero hardcoded values.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    # A1
+    A1 = _frac(vm, "qed_a1_schwinger_v0")
+
+    # A2 = 197/144 + (1/12)*pi^2 + (3/4)*zeta(3) + (-1/2)*pi^2*ln(2)
+    a2_rat = _frac(vm, "qed_a2_rational_term_v0")
+    a2_pi2 = _frac(vm, "qed_a2_pi2_coeff_v0")
+    a2_z3 = _frac(vm, "qed_a2_zeta3_coeff_v0")
+    a2_pi2ln2 = _frac(vm, "qed_a2_pi2ln2_coeff_v0")
+
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+    ln2_m = _f2m(_frac(vm, "geom_ln2_v0"))
+    z3_m = _f2m(_frac(vm, "geom_zeta3_v0"))
+    z5_m = _f2m(_frac(vm, "geom_zeta5_v0"))
+    li4_m = _f2m(_frac(vm, "geom_li4_half_v0"))
+
+    pi2_m = pi_m * pi_m
+
+    A2_m = (_f2m(a2_rat)
+            + _f2m(a2_pi2) * pi2_m
+            + _f2m(a2_z3) * z3_m
+            + _f2m(a2_pi2ln2) * pi2_m * ln2_m)
+
+    # A3 = (83/72)*pi^2*z3 + (-215/24)*z5
+    #    + (100/3)*[Li4(1/2) + ln2^4/24 - pi^2*ln2^2/24]
+    #    + (-239/2160)*pi^4
+    #    + (139/18)*z3
+    #    + (-298/9)*pi^2*ln2
+    #    + (17101/810)*pi^2
+    #    + 28259/5184
+    a3_pi2z3 = _frac(vm, "qed_a3_pi2z3_coeff_v0")
+    a3_z5 = _frac(vm, "qed_a3_z5_coeff_v0")
+    a3_li4 = _frac(vm, "qed_a3_li4_coeff_v0")
+    a3_pi4 = _frac(vm, "qed_a3_pi4_coeff_v0")
+    a3_z3 = _frac(vm, "qed_a3_z3_coeff_v0")
+    a3_pi2ln2 = _frac(vm, "qed_a3_pi2ln2_coeff_v0")
+    a3_pi2 = _frac(vm, "qed_a3_pi2_coeff_v0")
+    a3_rat = _frac(vm, "qed_a3_rational_term_v0")
+
+    ln2_2 = ln2_m * ln2_m
+    ln2_4 = ln2_2 * ln2_2
+    pi4_m = pi2_m * pi2_m
+
+    A3_m = (_f2m(a3_pi2z3) * pi2_m * z3_m
+            + _f2m(a3_z5) * z5_m
+            + _f2m(a3_li4) * (li4_m + ln2_4 / mpf("24") - pi2_m * ln2_2 / mpf("24"))
+            + _f2m(a3_pi4) * pi4_m
+            + _f2m(a3_z3) * z3_m
+            + _f2m(a3_pi2ln2) * pi2_m * ln2_m
+            + _f2m(a3_pi2) * pi2_m
+            + _f2m(a3_rat))
+
+    # A4, A5 from pool
+    A4_m = _mpf_val(vm, "qed_a4_laporta_v0")
+    A5_m = _mpf_val(vm, "qed_a5_volkov_v0")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_coefficients_assemble_v0",
+        "outputs": {
+            "result_qed_a1_v0": A1,
+            "result_qed_a2_v0": _approx(A2_m),
+            "result_qed_a3_v0": _approx(A3_m),
+            "result_qed_a4_v0": _approx(A4_m),
+            "result_qed_a5_v0": _approx(A5_m),
+        },
+        "notes": "A1 exact. A2,A3 from Q335 analytical. A4 Laporta. A5 Volkov.",
+    }
+
+
+def qed_alpha_from_ae_v0(value_dicts):
+    """Extract alpha from measured a_e by inverting the QED series.
+    a_e = A1*x + A2*x^2 + A3*x^3 + A4*x^4 + A5*x^5
+    where x = alpha/pi.
+    All inputs from pool. Zero hardcoded values.
+    Also computes forward check from known CODATA alpha.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    ae = _mpf_val(vm, "qed_ae_electron_measured_v0")
+
+    A1 = _f2m(_frac(vm, "result_qed_a1_v0"))
+    A2 = mpf(str(_get(vm, "result_qed_a2_v0")))
+    A3 = mpf(str(_get(vm, "result_qed_a3_v0")))
+    A4 = mpf(str(_get(vm, "result_qed_a4_v0")))
+    A5 = mpf(str(_get(vm, "result_qed_a5_v0")))
+
+    # Forward check: known alpha -> a_e
+    alpha_inv_known = _mpf_val(vm, "coupling_alpha_em_inverse_v0")
+    alpha_known = mpf("1") / alpha_inv_known
+    x_known = alpha_known / mpi
+    ae_forward = A1*x_known + A2*x_known**2 + A3*x_known**3 + A4*x_known**4 + A5*x_known**5
+    forward_residual = ae_forward - ae
+    forward_residual_rel = forward_residual / ae
+
+    # Inverse: Newton
+    def f(x):
+        return A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5 - ae
+
+    def fp(x):
+        return A1 + 2*A2*x + 3*A3*x**2 + 4*A4*x**3 + 5*A5*x**4
+
+    x = mpf("2") * ae
+    for i in range(50):
+        dx = f(x) / fp(x)
+        x = x - dx
+        if abs(dx) < mpf("1e-180"):
+            break
+
+    alpha_extracted = mpi * x
+    alpha_inv_extracted = mpf("1") / alpha_extracted
+
+    # References from pool
+    alpha_inv_cs = _mpf_val(vm, "qed_alpha_inv_cs_recoil_v0")
+    alpha_inv_rb = _mpf_val(vm, "qed_alpha_inv_rb_recoil_v0")
+    alpha_inv_codata = _mpf_val(vm, "qed_alpha_inv_codata_2018_v0")
+
+    diff_cs = alpha_inv_extracted - alpha_inv_cs
+    diff_rb = alpha_inv_extracted - alpha_inv_rb
+    diff_codata = alpha_inv_extracted - alpha_inv_codata
+    diff_cs_ppb = abs(diff_cs) / alpha_inv_cs * mpf("1e9")
+    diff_rb_ppb = abs(diff_rb) / alpha_inv_rb * mpf("1e9")
+    diff_codata_ppb = abs(diff_codata) / alpha_inv_codata * mpf("1e9")
+
+    ae_check = A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5
+    residual = abs(ae_check - ae)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_alpha_from_ae_v0",
+        "outputs": {
+            "result_ae_forward_from_known_alpha_v0": _approx(ae_forward),
+            "result_ae_forward_residual_v0": _approx(forward_residual),
+            "result_ae_forward_residual_rel_v0": _approx(forward_residual_rel),
+            "result_alpha_inv_known_v0": _approx(alpha_inv_known),
+            "result_alpha_inv_from_ae_v0": _approx(alpha_inv_extracted),
+            "result_alpha_from_ae_v0": _approx(alpha_extracted),
+            "result_alpha_inv_from_ae_full_v0": mp.nstr(alpha_inv_extracted, 30),
+            "result_x_alpha_over_pi_v0": _approx(x),
+            "result_newton_iterations_v0": i + 1,
+            "result_newton_residual_v0": _approx(residual),
+            "result_diff_vs_cs_ppb_v0": _approx(diff_cs_ppb),
+            "result_diff_vs_rb_ppb_v0": _approx(diff_rb_ppb),
+            "result_diff_vs_codata_ppb_v0": _approx(diff_codata_ppb),
+            "result_ae_input_v0": _approx(ae),
+            "result_ae_recovered_v0": _approx(ae_check),
+            "result_a4_used_v0": _approx(A4),
+            "result_a5_used_v0": _approx(A5),
+        },
+        "notes": "alpha_inv(a_e) = %s. vs CODATA: %.2f ppb" % (
+            mp.nstr(alpha_inv_extracted, 15), float(diff_codata_ppb)),
+    }
+
+
+def qed_derived_codata_v0(value_dicts):
+    """Derive R_infinity, a_0, mu_0 from the extracted alpha.
+    R_inf = alpha^2 * m_e * c / (2h)
+    a_0   = hbar / (m_e * c * alpha)
+    mu_0  = 2 * alpha * h / (c * e^2)
+    All inputs from pool. Zero hardcoded values.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    # Derived alpha from previous derivation in chain
+    alpha_inv_str = str(_get(vm, "result_alpha_inv_from_ae_v0"))
+    alpha_inv_m = mpf(alpha_inv_str)
+    alpha_m = mpf("1") / alpha_inv_m
+
+    # SI exact constants from pool
+    c_m = _f2m(_frac(vm, "si_speed_of_light_v0"))
+    h_m = _f2m(_frac(vm, "si_planck_constant_v0"))
+    hbar_m = _f2m(_frac(vm, "si_reduced_planck_constant_v0"))
+    e_m = _f2m(_frac(vm, "si_elementary_charge_v0"))
+
+    # Measured mass from pool
+    m_e_m = _f2m(_frac(vm, "mass_electron_v0"))
+    # m_e is in MeV, need in kg for SI formulas
+    # m_e (kg) = m_e (MeV) * 1e6 * e_charge / c^2
+    m_e_kg = m_e_m * mpf("1e6") * e_m / (c_m * c_m)
+
+    # CODATA reference values from pool
+    R_inf_measured = _mpf_val(vm, "atomic_rydberg_constant_v0")
+    a0_measured = _mpf_val(vm, "atomic_bohr_radius_v0")
+
+    # R_infinity = alpha^2 * m_e * c / (2 * h)
+    R_inf_derived = alpha_m * alpha_m * m_e_kg * c_m / (mpf("2") * h_m)
+
+    # a_0 = hbar / (m_e * c * alpha)
+    a0_derived = hbar_m / (m_e_kg * c_m * alpha_m)
+
+    # mu_0 = 2 * alpha * h / (c * e^2)
+    mu0_derived = mpf("2") * alpha_m * h_m / (c_m * e_m * e_m)
+
+    # Miss calculations
+    R_inf_miss = abs(R_inf_derived - R_inf_measured) / R_inf_measured * mpf("100")
+    a0_miss = abs(a0_derived - a0_measured) / a0_measured * mpf("100")
+
+    # R_inf and a0 agreement in digits
+    R_inf_digits = -mlog(abs(R_inf_derived - R_inf_measured) / R_inf_measured)
+    a0_digits = -mlog(abs(a0_derived - a0_measured) / a0_measured)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_derived_codata_v0",
+        "outputs": {
+            "result_rydberg_from_derived_alpha_v0": _approx(R_inf_derived),
+            "result_bohr_from_derived_alpha_v0": _approx(a0_derived),
+            "result_mu0_from_derived_alpha_v0": _approx(mu0_derived),
+            "result_rydberg_miss_pct_v0": _approx(R_inf_miss),
+            "result_bohr_miss_pct_v0": _approx(a0_miss),
+            "result_rydberg_digits_v0": _approx(R_inf_digits),
+            "result_bohr_digits_v0": _approx(a0_digits),
+            "result_alpha_used_v0": _approx(alpha_m),
+            "result_m_e_kg_used_v0": _approx(m_e_kg),
+        },
+        "notes": "R_inf: %s digits. a_0: %s digits. From derived alpha." % (
+            _approx(R_inf_digits), _approx(a0_digits)),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -1740,6 +1982,9 @@ DERIVATION_MORE_INDEX_V0 = {
     # J: QED alpha extraction
     "qed_coefficients_assemble_v0": qed_coefficients_assemble_v0,
     "qed_alpha_from_ae_v0": qed_alpha_from_ae_v0,
+    "qed_coefficients_assemble_v0": qed_coefficients_assemble_v0,
+    "qed_alpha_from_ae_v0": qed_alpha_from_ae_v0,
+    "qed_derived_codata_v0": qed_derived_codata_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {
