@@ -1171,3 +1171,279 @@ For each new experiment, you should create or modify:
 
 Never modify existing value files to change values. Create `_v1` nodes if corrections are needed. Never delete result files — they are permanent records.
 
+---
+
+## Addendum: Experiment Output as Value Nodes
+
+**Added to:** data6_experiment_dev_spec.md
+**Section:** 11
+**Date:** April 5, 2026
+**Source:** Runner feature implemented in Session 4
+
+---
+
+### 11.1 The Feature
+
+When the runner completes an experiment, it writes two files:
+
+1. `result_experiment_{name}_v0_run{NNN}.json` — the result record (as before)
+2. `values_experiment_{name}_v0_run{NNN}.json` — every output as a proper value node
+
+The second file follows the standard `values_*.json` pattern. The runner picks it up automatically on the next run via the glob. Experiment outputs become pool values without manual intervention.
+
+### 11.2 Key Namespacing
+
+Each output key is namespaced by experiment and run number to prevent collisions:
+
+```
+{experiment_key}_run{NNN}_{original_output_key}
+```
+
+Example: the derivation `bridge_omega_b_from_integers_v0` produces `result_omega_b_derived_v0`. When run inside `experiment_bridge_bbn_v0` as run 001, the value node key becomes:
+
+```
+experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0
+```
+
+This means:
+- Multiple experiments can produce outputs with the same original key — no collision
+- Multiple runs of the same experiment coexist — run001 and run002 both in the pool
+- The provenance is in the key — you can read which experiment and which run produced it
+
+### 11.3 The Value Node Format
+
+Each output becomes a standard value node:
+
+```json
+{
+    "key": "experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0",
+    "canonical": "experiment_bridge_bbn_v0_run001_result_omega_b_derived",
+    "version": 0,
+    "node_type": "value",
+    "value": "0.049035637966613",
+    "value_type": "approximate",
+    "unit": "dimensionless",
+    "level": 3,
+    "source": "experiment_bridge_bbn_v0_run001"
+}
+```
+
+Key properties:
+- `level: 3` — always derived/predicted, distinguishing from measured (level 2) and structural (level 0-1)
+- `source` — the experiment and run that produced it
+- `value_type: "approximate"` — outputs are stored as decimal strings via `_approx()`
+- `unit: "dimensionless"` — the runner doesn't track units on outputs (the derivation function knows, but the runner doesn't)
+
+### 11.4 How to Chain Experiments
+
+**Before this feature:** To chain experiment A → experiment B, you had three options:
+
+1. Put all derivations in one experiment (forces a single execution plan)
+2. Manually create intermediate value files with the outputs of A
+3. Have experiment B re-run the derivations from A in its own execution plan
+
+All three had drawbacks: option 1 creates monolithic experiments, option 2 requires manual work, option 3 duplicates computation.
+
+**After this feature:** Run experiment A. Its outputs become value nodes. Run experiment B. It reads A's outputs from the pool. No manual steps. No duplication.
+
+```
+# Run experiment A
+$ data6.py run experiment_alpha_extraction_v0
+
+# A's outputs are now in:
+#   values_experiment_alpha_extraction_v0_run001.json
+
+# Run experiment B — it can read A's outputs
+$ data6.py run experiment_derived_codata_v0
+```
+
+### 11.5 Reading Chained Outputs in Derivation Functions
+
+A derivation in experiment B that needs an output from experiment A reads it by the namespaced key:
+
+```python
+def my_derivation_v0(value_dicts):
+    vm = _value_map(value_dicts)
+    
+    # Read output from a previous experiment run
+    omega_b_str = str(_get(vm, 
+        "experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0"))
+    omega_b = mpf(omega_b_str)
+    
+    # ... rest of derivation ...
+```
+
+Alternatively, if the derivation should work both standalone (within its own experiment) and chained (reading from a prior experiment), use a fallback pattern:
+
+```python
+def my_derivation_v0(value_dicts):
+    vm = _value_map(value_dicts)
+    
+    # Try the local key first (from same experiment's execution plan)
+    # Fall back to a namespaced key from a prior experiment
+    try:
+        omega_b = mpf(str(_get(vm, "result_omega_b_derived_v0")))
+    except Exception:
+        omega_b = mpf(str(_get(vm, 
+            "experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0")))
+    
+    # ... rest of derivation ...
+```
+
+The first pattern is simpler and preferred when the experiment is always chained. The fallback pattern is for derivations that may run in different contexts.
+
+### 11.6 When to Use Experiment Chaining vs Single Experiment
+
+**Use a single experiment when:**
+- The derivations form a tight sequential chain (A → B → C)
+- All derivations share the same physics domain
+- The experiment is small (< 8 derivations)
+- You want a single result file with all outputs together
+
+**Use chained experiments when:**
+- The derivation chains cross physics domains (QED → EW → cosmology)
+- Each experiment makes sense as an independent, re-runnable unit
+- You want to iterate on one part without re-running everything
+- Different experiments have different comparison criteria
+- The experiments were developed in different sessions
+
+### 11.7 When to Still Write Manual Value Files
+
+Experiment output auto-generation does NOT replace manual value files for:
+
+| Situation | Why Manual | Example |
+|---|---|---|
+| New measured constants from literature | Not derived from computation | Planck Ω_DM, PDG masses |
+| New structural constants | Level 0-1, not experiment outputs | Q335 constants, beta coefficients |
+| BBN fitting coefficients | Published parameters, not derived | Y_p(η) slope, D/H(η) slope |
+| Correction factors from literature | Computed elsewhere, stored here | κ_Z, δ_vb, Δα_had |
+| Reference values for comparison | Needed as comparison targets | Measured M_W, Γ_Z, G_F |
+| Global values discovered in analysis | Promoted to permanent namespace | New integer relationships |
+
+Rule of thumb: if it comes from the literature or from your analysis (not from a DATA-6 experiment run), write it as a manual value file. If it comes from an experiment run, let the runner generate it.
+
+### 11.8 Run Number Semantics
+
+The run number (`run001`, `run002`, etc.) increments each time the experiment executes. All runs coexist in the pool:
+
+```
+values_experiment_bridge_bbn_v0_run001.json    # first run
+values_experiment_bridge_bbn_v0_run002.json    # second run (after fix)
+values_experiment_bridge_bbn_v0_run003.json    # third run (after another fix)
+```
+
+**Last-wins in the pool:** When multiple runs exist, the glob loads them alphabetically. `run003` loads after `run001`, so if both have the same original output key, `run003`'s value wins. This is correct — you always want the latest run's outputs.
+
+**Referencing a specific run:** If you need a specific run's output (not the latest), use the full namespaced key including the run number:
+
+```python
+# Always gets run001, regardless of later runs
+omega_b = _get(vm, "experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0")
+
+# Gets whichever run loaded last (usually the highest-numbered)
+omega_b = _get(vm, "experiment_bridge_bbn_v0_run003_result_omega_b_derived_v0")
+```
+
+### 11.9 Pool Size Management
+
+Each experiment run adds a values file to the pool. A single experiment with 30 outputs adds 30 value nodes. After 10 experiments with 3 runs each, the pool grows by ~900 nodes. The runner loads all of them.
+
+Current pool: ~450 manual value nodes + experiment output nodes. The runner handles this efficiently — `_value_map()` builds the lookup dict once per derivation. No performance concern at current scale.
+
+If the pool grows beyond ~5000 nodes, consider:
+- Archiving old run files (move `run001`, `run002` to an archive directory, keep only the latest)
+- Using the `--dataset` flag (when implemented) to filter which values load
+- Splitting experiments into sub-experiments that produce fewer outputs
+
+### 11.10 The Complete Data Flow
+
+```
+Manual value files (values_*.json)
+        │
+        ├── Loaded by runner via glob
+        │
+Experiment output files (values_experiment_*_run*.json)
+        │
+        ├── Also loaded by runner via glob
+        │
+        ▼
+    VALUE POOL (all nodes, flat dict, last-wins)
+        │
+        ├── Derivation functions read from pool
+        │
+        ▼
+    DERIVATION OUTPUTS (merged into pool after each step)
+        │
+        ├── Within-experiment chaining (immediate)
+        │
+        ▼
+    RESULT JSON + VALUES JSON (written by runner)
+        │
+        ├── Values JSON picked up by next experiment
+        │
+        ▼
+    NEXT EXPERIMENT reads all prior outputs
+```
+
+### 11.11 Example: Three-Experiment Chain
+
+**Experiment 1: QED alpha extraction**
+```
+Run: data6.py run experiment_qed_derived_codata_v0
+Produces: values_experiment_qed_derived_codata_v0_run003.json
+Contains: result_alpha_inv_from_ae_v0 = 137.035998630
+```
+
+**Experiment 2: Bridge EW + cosmology**
+```
+Run: data6.py run experiment_bridge_ew_cosmo_v0
+Reads: (uses its own derivations, doesn't need experiment 1 outputs directly)
+Produces: values_experiment_bridge_ew_cosmo_v0_run001.json
+Contains: result_omega_b_derived_v0 = 0.049035...
+```
+
+**Experiment 3: Bridge BBN**
+```
+Run: data6.py run experiment_bridge_bbn_v0
+Reads: result_omega_b_derived_v0 from experiment 2's execution plan
+       (bridge_omega_b_from_integers_v0 re-runs in this experiment's plan)
+Produces: values_experiment_bridge_bbn_v0_run003.json
+Contains: result_dh_derived_v0 = 2.531e-5
+```
+
+In this example, experiment 3 re-runs the Ω_b derivation in its own plan rather than reading experiment 2's output. Both approaches work. The choice depends on whether you want experiment 3 to be self-contained (re-run) or dependent on experiment 2 having run first (chain).
+
+### 11.12 Checklist Addendum
+
+Add to the Section 10 checklist:
+
+```
+[ ] If chaining from a prior experiment:
+    [ ] Prior experiment has been run successfully
+    [ ] Prior experiment's values_*.json exists in data/
+    [ ] Derivation functions use correct namespaced keys OR
+        re-run the needed derivations in their own execution plan
+    [ ] Dependencies list includes the prior experiment's value keys
+```
+
+### 11.13 Anti-Patterns
+
+**Anti-pattern 1: Depending on a specific run number that might not exist.**
+```python
+# FRAGILE — breaks if run001 doesn't exist
+omega_b = _get(vm, "experiment_bridge_bbn_v0_run001_result_omega_b_derived_v0")
+```
+Better: re-run the derivation in your own experiment's execution plan, or use the local key.
+
+**Anti-pattern 2: Editing experiment output value files by hand.**
+These files are auto-generated. Editing them is lost on the next run. If you need to correct an output, fix the derivation function and re-run.
+
+**Anti-pattern 3: Using experiment output keys in manual value files.**
+Don't create a manual `values_foo.json` containing keys that look like `experiment_bar_run001_result_baz_v0`. These keys belong to the runner. Manual values use standard topic prefixes (`mass_`, `coupling_`, `cosmo_`, etc.).
+
+**Anti-pattern 4: Chaining 10 experiments in sequence where each depends on the previous.**
+This creates a fragile pipeline. If experiment 3 fails, experiments 4-10 can't run. Better: make each experiment self-contained by including the needed derivations in its own execution plan, or group related derivations into 2-3 larger experiments.
+
+---
+
+*End of addendum. Experiment outputs are now value nodes. The pool grows automatically. Chain experiments through the pool or re-run derivations — both work. Manual value files are for literature inputs and global constants, not for experiment intermediates.*
