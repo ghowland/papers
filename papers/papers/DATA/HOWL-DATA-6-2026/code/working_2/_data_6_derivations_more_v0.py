@@ -1405,6 +1405,61 @@ def connection_mond_transition_v0(value_dicts):
     }
 
 
+def coupling_whatif_direct_db_v0(value_dicts):
+    """What-if scan with pre-computed db shifts.
+    Reads rep_whatif_db1_v0, rep_whatif_db2_v0, rep_whatif_db3_v0
+    directly from the pool. Works for any candidate: VL, scalar,
+    compound, multiplied. The caller computes the db values.
+    """
+    vm = _value_map(value_dicts)
+
+    db1 = _frac(vm, "rep_whatif_db1_v0")
+    db2 = _frac(vm, "rep_whatif_db2_v0")
+    db3 = _frac(vm, "rep_whatif_db3_v0")
+
+    b1_SM = _frac(vm, "beta_sm_u1_total_v0")
+    b2_SM = _frac(vm, "beta_sm_su2_total_v0")
+    b3_SM = _frac(vm, "beta_sm_su3_total_v0")
+
+    b1m = b1_SM + db1
+    b2m = b2_SM + db2
+    b3m = b3_SM + db3
+
+    denom = b2m - b3m
+    if denom == 0:
+        return {
+            "key": "coupling_whatif_direct_db_v0",
+            "outputs": {
+                "result_whatif_direct_gap_ratio_v0": None,
+                "result_whatif_direct_distance_v0": None,
+            },
+            "notes": "denominator zero — degenerate representation",
+        }
+
+    gap = (b1m - b2m) / denom
+
+    gap_measured = _f2m(_frac(vm, "coupling_measured_gap_ratio_v0"))
+    distance = abs(_f2m(gap) - gap_measured)
+
+    asymmetry = db2 / db1 if db1 != 0 else None
+
+    return {
+        "key": "coupling_whatif_direct_db_v0",
+        "outputs": {
+            "result_whatif_direct_db1_v0": db1,
+            "result_whatif_direct_db2_v0": db2,
+            "result_whatif_direct_db3_v0": db3,
+            "result_whatif_direct_b1_mod_v0": b1m,
+            "result_whatif_direct_b2_mod_v0": b2m,
+            "result_whatif_direct_b3_mod_v0": b3m,
+            "result_whatif_direct_gap_ratio_v0": gap,
+            "result_whatif_direct_distance_v0": _approx(distance),
+            "result_whatif_direct_asymmetry_v0": asymmetry,
+        },
+        "notes": "Direct db what-if: db=(%s, %s, %s), gap=%s" % (db1, db2, db3, gap),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -1457,6 +1512,8 @@ DERIVATION_MORE_INDEX_V0 = {
     "dwarf_cosmic_ratio_v0": dwarf_cosmic_ratio_v0,
     "dwarf_faber_jackson_v0": dwarf_faber_jackson_v0,
     "dwarf_tully_fisher_v0": dwarf_tully_fisher_v0,
+    # WhatIf
+    "coupling_whatif_direct_db_v0": coupling_whatif_direct_db_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {

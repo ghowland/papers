@@ -1,0 +1,21 @@
+
+{
+  "nodes": [
+    {"key": "rep_whatif_su3_dim_v0", "canonical": "rep_whatif_su3_dim", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_su3_dim", "level": 1,
+     "value": {"_type": "Fraction", "num": "3", "den": "1"},
+     "value_type": "exact_fraction", "unit": "dimensionless",
+     "source": "candidate 15: VL (3,1,2/3)"},
+    {"key": "rep_whatif_su2_dim_v0", "canonical": "rep_whatif_su2_dim", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_su2_dim", "level": 1,
+     "value": {"_type": "Fraction", "num": "1", "den": "1"},
+     "value_type": "exact_fraction", "unit": "dimensionless",
+     "source": "candidate 15: VL (3,1,2/3)"},
+    {"key": "rep_whatif_y_v0", "canonical": "rep_whatif_y", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_y", "level": 1,
+     "value": {"_type": "Fraction", "num": "2", "den": "3"},
+     "value_type": "exact_fraction", "unit": "dimensionless",
+     "source": "candidate 15: VL (3,1,2/3)"}
+  ]
+}
+
