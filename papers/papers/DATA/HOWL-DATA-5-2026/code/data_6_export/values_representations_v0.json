@@ -1,0 +1,1138 @@
+{
+  "nodes": [
+    {
+      "key": "rep_q_l_su3_dim_v0",
+      "canonical": "rep_q_l_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_su2_dim_v0",
+      "canonical": "rep_q_l_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 2,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_hypercharge_v0",
+      "canonical": "rep_q_l_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "6"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_type_v0",
+      "canonical": "rep_q_l_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "chiral",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_db1_v0",
+      "canonical": "rep_q_l_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_db2_v0",
+      "canonical": "rep_q_l_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_q_l_db3_v0",
+      "canonical": "rep_q_l_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "q_l_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_su3_dim_v0",
+      "canonical": "rep_u_r_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_su2_dim_v0",
+      "canonical": "rep_u_r_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_hypercharge_v0",
+      "canonical": "rep_u_r_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_type_v0",
+      "canonical": "rep_u_r_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "chiral",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_db1_v0",
+      "canonical": "rep_u_r_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "8",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_db2_v0",
+      "canonical": "rep_u_r_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_u_r_db3_v0",
+      "canonical": "rep_u_r_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "u_r_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_su3_dim_v0",
+      "canonical": "rep_d_r_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_su2_dim_v0",
+      "canonical": "rep_d_r_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_hypercharge_v0",
+      "canonical": "rep_d_r_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "-1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_type_v0",
+      "canonical": "rep_d_r_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "chiral",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_db1_v0",
+      "canonical": "rep_d_r_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_db2_v0",
+      "canonical": "rep_d_r_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_d_r_db3_v0",
+      "canonical": "rep_d_r_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "d_r_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "quark",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_l_l_su3_dim_v0",
+      "canonical": "rep_l_l_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_su2_dim_v0",
+      "canonical": "rep_l_l_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 2,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_hypercharge_v0",
+      "canonical": "rep_l_l_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "-1",
+        "den": "2"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_type_v0",
+      "canonical": "rep_l_l_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "chiral",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_db1_v0",
+      "canonical": "rep_l_l_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_db2_v0",
+      "canonical": "rep_l_l_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_l_l_db3_v0",
+      "canonical": "rep_l_l_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "l_l_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_e_r_su3_dim_v0",
+      "canonical": "rep_e_r_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_su2_dim_v0",
+      "canonical": "rep_e_r_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_hypercharge_v0",
+      "canonical": "rep_e_r_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "-1",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_type_v0",
+      "canonical": "rep_e_r_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "chiral",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_db1_v0",
+      "canonical": "rep_e_r_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_db2_v0",
+      "canonical": "rep_e_r_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_e_r_db3_v0",
+      "canonical": "rep_e_r_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "e_r_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "lepton"
+      ]
+    },
+    {
+      "key": "rep_cd_su3_dim_v0",
+      "canonical": "rep_cd_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_su2_dim_v0",
+      "canonical": "rep_cd_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 2,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_hypercharge_v0",
+      "canonical": "rep_cd_hypercharge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_hypercharge",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "6"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_type_v0",
+      "canonical": "rep_cd_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "vector-like",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_db1_v0",
+      "canonical": "rep_cd_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_db2_v0",
+      "canonical": "rep_cd_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cd_db3_v0",
+      "canonical": "rep_cd_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cd_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_higgs_db1_v0",
+      "canonical": "rep_higgs_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "higgs_db1",
+      "level": 1,
+      "source": "Scalar Higgs beta shift",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "10"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "notes": "Higgs is scalar, not fermion. Different coefficients.",
+      "tags": [
+        "SM",
+        "scalar",
+        "EW"
+      ]
+    },
+    {
+      "key": "rep_higgs_db2_v0",
+      "canonical": "rep_higgs_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "higgs_db2",
+      "level": 1,
+      "source": "Scalar Higgs beta shift",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "6"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "scalar",
+        "EW"
+      ]
+    },
+    {
+      "key": "rep_higgs_db3_v0",
+      "canonical": "rep_higgs_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "higgs_db3",
+      "level": 1,
+      "source": "Scalar Higgs beta shift",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "scalar",
+        "EW"
+      ]
+    },
+    {
+      "key": "group_c2_adj_su3_v0",
+      "canonical": "group_c2_adj_su3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "c2_adj_su3",
+      "level": 1,
+      "source": "C2(adj SU(3)) = N for SU(N)",
+      "value": {
+        "_type": "Fraction",
+        "num": "3",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_c2_adj_su2_v0",
+      "canonical": "group_c2_adj_su2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "c2_adj_su2",
+      "level": 1,
+      "source": "C2(adj SU(2)) = N for SU(N)",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_c2_fund_su3_v0",
+      "canonical": "group_c2_fund_su3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "c2_fund_su3",
+      "level": 1,
+      "source": "C2(fund SU(3)) = (N^2-1)/(2N)",
+      "value": {
+        "_type": "Fraction",
+        "num": "4",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_c2_fund_su2_v0",
+      "canonical": "group_c2_fund_su2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "c2_fund_su2",
+      "level": 1,
+      "source": "C2(fund SU(2)) = (N^2-1)/(2N)",
+      "value": {
+        "_type": "Fraction",
+        "num": "3",
+        "den": "4"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_s2_fundamental_v0",
+      "canonical": "group_s2_fundamental",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "s2_fundamental",
+      "level": 1,
+      "source": "S2(fund) = 1/2 for any SU(N)",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "2"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_k1_gut_normalization_v0",
+      "canonical": "group_k1_gut_normalization",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "k1_gut_normalization",
+      "level": 1,
+      "source": "SU(5) U(1) normalization",
+      "value": {
+        "_type": "Fraction",
+        "num": "3",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_gauge_coeff_yang_mills_v0",
+      "canonical": "group_gauge_coeff_yang_mills",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "gauge_coeff_yang_mills",
+      "level": 1,
+      "source": "One-loop gauge self-coupling -(11/3)*C2(adj)",
+      "value": {
+        "_type": "Fraction",
+        "num": "-11",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_sm_generation_count_v0",
+      "canonical": "group_sm_generation_count",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "sm_generation_count",
+      "level": 1,
+      "source": "Number of SM generations",
+      "value": {
+        "_type": "Fraction",
+        "num": "3",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory"
+    },
+    {
+      "key": "group_per_gen_db_v0",
+      "canonical": "group_per_gen_db",
+      "version": 0,
+      "node_type": "value",
+      "topic": "group",
+      "term": "per_gen_db",
+      "level": 1,
+      "source": "Per-generation beta shift (same for all three groups)",
+      "value": {
+        "_type": "Fraction",
+        "num": "4",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "group_theory",
+      "notes": "Generation democracy: db1=db2=db3=4/3 per gen"
+    }
+  ]
+}

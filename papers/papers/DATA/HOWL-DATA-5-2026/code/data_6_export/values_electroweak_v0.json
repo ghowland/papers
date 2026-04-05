@@ -1,0 +1,165 @@
+{
+  "nodes": [
+    {
+      "key": "mass_z_boson_v0",
+      "canonical": "mass_z_boson",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "z_boson",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "455938",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 6,
+      "section": "electroweak",
+      "tags": [
+        "EW",
+        "PDG"
+      ],
+      "legacy_refs": {
+        "data4": "C1",
+        "phys24": "M_Z"
+      }
+    },
+    {
+      "key": "mass_z_boson_width_v0",
+      "canonical": "mass_z_boson_width",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "z_boson_width",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "12476",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 5,
+      "section": "electroweak",
+      "tags": [
+        "EW",
+        "PDG"
+      ],
+      "legacy_refs": {
+        "data4": "C2",
+        "phys24": "Gamma_Z"
+      }
+    },
+    {
+      "key": "mass_w_boson_v0",
+      "canonical": "mass_w_boson",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "w_boson",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "401846",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 6,
+      "section": "electroweak",
+      "tags": [
+        "EW",
+        "PDG"
+      ],
+      "legacy_refs": {
+        "data4": "C3",
+        "phys24": "M_W"
+      }
+    },
+    {
+      "key": "mass_top_quark_v0",
+      "canonical": "mass_top_quark",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "top_quark",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "172570",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 5,
+      "section": "electroweak",
+      "tags": [
+        "quark",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "C4",
+        "phys24": "m_t"
+      }
+    },
+    {
+      "key": "mass_higgs_boson_v0",
+      "canonical": "mass_higgs_boson",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "higgs_boson",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "125200",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 5,
+      "section": "electroweak",
+      "tags": [
+        "scalar",
+        "EW"
+      ],
+      "legacy_refs": {
+        "data4": "C5",
+        "phys24": "m_H"
+      }
+    },
+    {
+      "key": "coupling_fermi_constant_v0",
+      "canonical": "coupling_fermi_constant",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "fermi_constant",
+      "level": 2,
+      "source": "LEP/PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "2915947",
+        "den": "250000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "GeV^-2",
+      "digits": 8,
+      "section": "electroweak",
+      "tags": [
+        "EW"
+      ],
+      "legacy_refs": {
+        "data4": "C6",
+        "phys24": "G_F"
+      }
+    }
+  ]
+}
