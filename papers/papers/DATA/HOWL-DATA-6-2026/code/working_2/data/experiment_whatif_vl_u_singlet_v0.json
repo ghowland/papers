@@ -1,32 +1,31 @@
-
 {
     "key": "experiment_whatif_vl_u_singlet_v0",
     "canonical": "experiment_whatif_vl_u_singlet",
     "version": 0,
     "node_type": "experiment",
-    "description": "What-if: VL up-type singlet (3,1,2/3). Rank 15 in 15-candidate enumeration.",
+    "description": "What-if: VL up singlet (3,1,2/3). Candidate 15. db=(8/15, 0, 1/6).",
     "purpose": "program_beta_unification_v0",
     "experiment_mode": "whatif",
     "dependencies": {
         "values": {
             "beta_sm_u1_total": 0, "beta_sm_su2_total": 0, "beta_sm_su3_total": 0,
             "coupling_measured_gap_ratio": 0,
-            "rep_whatif_su3_dim": 0, "rep_whatif_su2_dim": 0, "rep_whatif_y": 0
+            "rep_whatif_vl_u_singlet_db1": 0,
+            "rep_whatif_vl_u_singlet_db2": 0,
+            "rep_whatif_vl_u_singlet_db3": 0
         },
-        "derivations": {"coupling_whatif_rep": 0},
+        "derivations": {"coupling_whatif_direct_db": 0},
         "connections": {}
     },
-    "execution_plan": ["coupling_whatif_rep_v0"],
+    "execution_plan": ["coupling_whatif_direct_db_v0"],
     "connections": [],
-    "expected_outputs": ["result_whatif_gap_ratio_v0", "result_whatif_distance_v0"],
+    "expected_outputs": ["result_whatif_direct_gap_ratio_v0", "result_whatif_direct_distance_v0"],
     "comparisons": [
-        {"label": "Gap ratio computed", "output_key": "result_whatif_gap_ratio_v0",
+        {"label": "Gap ratio vs measured", "output_key": "result_whatif_direct_gap_ratio_v0",
          "match_mode": "miss_pct", "expected": "1.3582", "reference_source": "measured"},
-        {"label": "Distance from measured", "output_key": "result_whatif_distance_v0",
+        {"label": "Distance from measured", "output_key": "result_whatif_direct_distance_v0",
          "match_mode": "range", "lo": "0", "hi": "1", "reference_source": "scan"}
     ],
     "diagrams": [],
-    "notes": "VL (3,1,2/3). Load values_whatif_vl_u_singlet_v0.json."
+    "notes": "VL (3,1,2/3). Uses coupling_whatif_direct_db_v0 with candidate-prefixed db keys."
 }
-
-

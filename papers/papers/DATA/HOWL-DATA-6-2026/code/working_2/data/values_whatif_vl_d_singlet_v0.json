@@ -1,19 +1,19 @@
 {
   "nodes": [
-    {"key": "rep_whatif_su3_dim_v0", "canonical": "rep_whatif_su3_dim", "version": 0,
-     "node_type": "value", "topic": "rep", "term": "whatif_su3_dim", "level": 1,
-     "value": {"_type": "Fraction", "num": "3", "den": "1"},
+    {"key": "rep_whatif_vl_d_singlet_db1_v0", "canonical": "rep_whatif_vl_d_singlet_db1", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_vl_d_singlet_db1", "level": 1,
+     "value": {"_type": "Fraction", "num": "2", "den": "15"},
      "value_type": "exact_fraction", "unit": "dimensionless",
-     "source": "candidate 13: VL (3,1,-1/3)"},
-    {"key": "rep_whatif_su2_dim_v0", "canonical": "rep_whatif_su2_dim", "version": 0,
-     "node_type": "value", "topic": "rep", "term": "whatif_su2_dim", "level": 1,
-     "value": {"_type": "Fraction", "num": "1", "den": "1"},
+     "source": "candidate 13: VL (3,1,-1/3). db1=(2/5)*3*1*(1/9)=2/15"},
+    {"key": "rep_whatif_vl_d_singlet_db2_v0", "canonical": "rep_whatif_vl_d_singlet_db2", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_vl_d_singlet_db2", "level": 1,
+     "value": {"_type": "Fraction", "num": "0", "den": "1"},
      "value_type": "exact_fraction", "unit": "dimensionless",
-     "source": "candidate 13: VL (3,1,-1/3)"},
-    {"key": "rep_whatif_y_v0", "canonical": "rep_whatif_y", "version": 0,
-     "node_type": "value", "topic": "rep", "term": "whatif_y", "level": 1,
-     "value": {"_type": "Fraction", "num": "-1", "den": "3"},
+     "source": "candidate 13: VL (3,1,-1/3). db2=0 (SU(2) singlet)"},
+    {"key": "rep_whatif_vl_d_singlet_db3_v0", "canonical": "rep_whatif_vl_d_singlet_db3", "version": 0,
+     "node_type": "value", "topic": "rep", "term": "whatif_vl_d_singlet_db3", "level": 1,
+     "value": {"_type": "Fraction", "num": "1", "den": "6"},
      "value_type": "exact_fraction", "unit": "dimensionless",
-     "source": "candidate 13: VL (3,1,-1/3)"}
+     "source": "candidate 13: VL (3,1,-1/3). db3=(1/3)*1*(1/2)=1/6"}
   ]
 }
