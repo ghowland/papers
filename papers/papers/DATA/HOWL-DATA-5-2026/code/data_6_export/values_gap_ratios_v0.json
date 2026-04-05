@@ -24,29 +24,6 @@
       ]
     },
     {
-      "key": "gap_sm_ratio_v0",
-      "canonical": "gap_sm_ratio",
-      "version": 0,
-      "node_type": "value",
-      "topic": "gap",
-      "term": "sm_ratio",
-      "level": 1,
-      "source": "(b1_SM - b2_SM) / (b2_SM - b3_SM)",
-      "value": {
-        "_type": "Fraction",
-        "num": "218",
-        "den": "115"
-      },
-      "value_type": "exact_fraction",
-      "unit": "dimensionless",
-      "section": "GUT",
-      "tags": [
-        "Level1",
-        "exact",
-        "ratio"
-      ]
-    },
-    {
       "key": "gap_sm_numerator_v0",
       "canonical": "gap_sm_numerator",
       "version": 0,
