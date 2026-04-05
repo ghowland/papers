@@ -38,15 +38,12 @@ mp.dps = 100
 # ================================================================
 
 def _value_map(value_dicts):
-    """Build key -> entry dict from value_dicts list."""
+    """Build key -> entry dict from value_dicts list. Last wins."""
     out = {}
     for entry in value_dicts:
         key = entry["key"]
-        if key in out:
-            raise ValueError("Duplicate value entry for key: %s" % key)
         out[key] = entry
     return out
-
 
 def _need(values_by_key, key):
     """Get the value field from a value entry, or raise."""
