@@ -1528,6 +1528,139 @@ def coupling_whatif_vl_u_singlet_v0(value_dicts):
 
 
 # ================================================================
+# CATEGORY J: QED ALPHA EXTRACTION FROM a_e
+# ================================================================
+
+def qed_coefficients_assemble_v0(value_dicts):
+    """Assemble QED g-2 series coefficients C2 through C10.
+    C2 = 1/2 exact.
+    C4, C6 from analytical results (stored as approximate strings).
+    C8, C10 from Laporta full-precision sums.
+    """
+    vm = _value_map(value_dicts)
+
+    C2 = Fraction(1, 2)
+
+    # C4: Petermann 1957 / Sommerfield 1957 (2-loop, analytical)
+    # Known exactly in terms of pi, ln2, zeta(3), Li4(1/2)
+    # Evaluated to 50 digits — more than sufficient since
+    # C4*(alpha/pi)^2 contributes at 10^-6 level
+    C4_str = "-0.32847896557919378441940972013173099268677837425749"
+
+    # C6: Laporta & Remiddi 1996 (3-loop, analytical)
+    C6_str = "1.18124145658720064823019429893916630476428788313123"
+
+    # C8, C10: from Laporta value nodes (full precision sums)
+    C8_str = str(_get(vm, "qed_c8_total_v0"))
+    C10_str = str(_get(vm, "qed_c10_total_v0"))
+
+    return {
+        "key": "qed_coefficients_assemble_v0",
+        "outputs": {
+            "result_qed_c2_v0": C2,
+            "result_qed_c4_v0": C4_str,
+            "result_qed_c6_v0": C6_str,
+            "result_qed_c8_v0": C8_str,
+            "result_qed_c10_v0": C10_str,
+        },
+        "notes": "QED a_e series: 5 coefficients assembled",
+    }
+
+
+def qed_alpha_from_ae_v0(value_dicts):
+    """Extract alpha from measured a_e by inverting the QED series.
+
+    a_e = C2*x + C4*x^2 + C6*x^3 + C8*x^4 + C10*x^5
+    where x = alpha/pi.
+
+    Newton's method: given a_e, solve for x, then alpha = pi*x.
+    Compare to alpha(Cs recoil) and alpha(Rb recoil).
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200  # far beyond needed, ensures no rounding issues
+
+    # Measured a_e (Harvard 2023, Fan et al.)
+    # a_e = 0.00115965218059(13)
+    ae_str = "0.00115965218059"
+    ae = mpf(ae_str)
+
+    # Coefficients
+    C2 = mpf("0.5")
+    C4 = mpf(str(_get(vm, "result_qed_c4_v0")))
+    C6 = mpf(str(_get(vm, "result_qed_c6_v0")))
+    C8 = mpf(str(_get(vm, "result_qed_c8_v0")))
+    C10 = mpf(str(_get(vm, "result_qed_c10_v0")))
+
+    # f(x) = C2*x + C4*x^2 + C6*x^3 + C8*x^4 + C10*x^5 - a_e
+    # f'(x) = C2 + 2*C4*x + 3*C6*x^2 + 4*C8*x^3 + 5*C10*x^4
+
+    def f(x):
+        return C2*x + C4*x**2 + C6*x**3 + C8*x**4 + C10*x**5 - ae
+
+    def fp(x):
+        return C2 + 2*C4*x + 3*C6*x**2 + 4*C8*x**3 + 5*C10*x**4
+
+    # Initial guess: x ~ a_e / C2 = 2*a_e
+    x = mpf("2") * ae
+
+    # Newton iterations
+    for i in range(50):
+        dx = f(x) / fp(x)
+        x = x - dx
+        if abs(dx) < mpf("1e-180"):
+            break
+
+    alpha_extracted = mpi * x
+    alpha_inv_extracted = mpf("1") / alpha_extracted
+
+    # Reference values
+    # alpha_inv(Cs recoil, Berkeley 2018): 137.035999046(27)
+    # alpha_inv(Rb recoil, LKB 2020):     137.035999206(11)
+    # alpha_inv(a_e, this extraction):     computed above
+    alpha_inv_cs = mpf("137.035999046")
+    alpha_inv_rb = mpf("137.035999206")
+
+    diff_cs = alpha_inv_extracted - alpha_inv_cs
+    diff_rb = alpha_inv_extracted - alpha_inv_rb
+    diff_cs_ppb = abs(diff_cs) / alpha_inv_cs * mpf("1e9")
+    diff_rb_ppb = abs(diff_rb) / alpha_inv_rb * mpf("1e9")
+
+    # Also compare to CODATA 2018 recommended value
+    # alpha_inv(CODATA): 137.035999084(21)
+    alpha_inv_codata = mpf("137.035999084")
+    diff_codata = alpha_inv_extracted - alpha_inv_codata
+    diff_codata_ppb = abs(diff_codata) / alpha_inv_codata * mpf("1e9")
+
+    # Verify: plug alpha back into series, recover a_e
+    ae_check = C2*x + C4*x**2 + C6*x**3 + C8*x**4 + C10*x**5
+    residual = abs(ae_check - ae)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_alpha_from_ae_v0",
+        "outputs": {
+            "result_alpha_inv_from_ae_v0": _approx(alpha_inv_extracted),
+            "result_alpha_from_ae_v0": _approx(alpha_extracted),
+            "result_alpha_inv_from_ae_full_v0": mp.nstr(alpha_inv_extracted, 30),
+            "result_x_alpha_over_pi_v0": _approx(x),
+            "result_newton_iterations_v0": i + 1,
+            "result_newton_residual_v0": _approx(residual),
+            "result_diff_vs_cs_ppb_v0": _approx(diff_cs_ppb),
+            "result_diff_vs_rb_ppb_v0": _approx(diff_rb_ppb),
+            "result_diff_vs_codata_ppb_v0": _approx(diff_codata_ppb),
+            "result_ae_input_v0": ae_str,
+            "result_ae_recovered_v0": _approx(ae_check),
+        },
+        "notes": "alpha_inv(a_e) = %s. vs Cs: %.2f ppb, vs Rb: %.2f ppb" % (
+            mp.nstr(alpha_inv_extracted, 15),
+            float(diff_cs_ppb), float(diff_rb_ppb)),
+    }
+
+
+# ================================================================
 # REGISTRIES
 # ================================================================
 
@@ -1585,6 +1718,9 @@ DERIVATION_MORE_INDEX_V0 = {
     "coupling_whatif_vl_singlet_e_v0": coupling_whatif_vl_singlet_e_v0,
     "coupling_whatif_vl_d_singlet_v0": coupling_whatif_vl_d_singlet_v0,
     "coupling_whatif_vl_u_singlet_v0": coupling_whatif_vl_u_singlet_v0,
+    # J: QED alpha extraction
+    "qed_coefficients_assemble_v0": qed_coefficients_assemble_v0,
+    "qed_alpha_from_ae_v0": qed_alpha_from_ae_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {
