@@ -1,0 +1,132 @@
+{
+    "key": "experiment_r2_universality_v0",
+    "canonical": "experiment_r2_universality",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "R2 universality: verify R2 = pi/4 across all domains, verify cancellation identities (RC product to 30 digits, KJ*RK = 2/e), compute areas at standard diameters, normalizations, vena contracta.",
+    "purpose": "program_r2_universality_v0",
+    "experiment_mode": "verification",
+
+    "dependencies": {
+        "values": {
+            "geom_r2": 0,
+            "si_planck_constant": 0,
+            "si_elementary_charge": 0,
+            "eng_copper_resistivity": 0,
+            "eng_vacuum_permittivity": 0,
+            "math_euler_mascheroni": 0
+        },
+        "derivations": {
+            "domain_r2_area": 0,
+            "domain_wire_resistance": 0,
+            "domain_capacitance": 0,
+            "domain_rc_cancellation": 0,
+            "domain_disc_spot": 0,
+            "domain_kj_rk_cancellation": 0,
+            "domain_fourier_gaussian_norms": 0,
+            "domain_vena_contracta": 0
+        },
+        "connections": {
+            "connection_r2_cancellation_registry": 0
+        }
+    },
+
+    "execution_plan": [
+        "domain_r2_area_v0",
+        "domain_wire_resistance_v0",
+        "domain_capacitance_v0",
+        "domain_rc_cancellation_v0",
+        "domain_disc_spot_v0",
+        "domain_kj_rk_cancellation_v0",
+        "domain_fourier_gaussian_norms_v0",
+        "domain_vena_contracta_v0"
+    ],
+
+    "connections": [
+        "connection_r2_cancellation_registry_v0"
+    ],
+
+    "expected_outputs": [
+        "result_rc_r2_cancels_30_digits_v0",
+        "result_kj_rk_equals_2_over_e_v0",
+        "result_vena_contracta_identity_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "RC product: R2 cancels to 30 digits",
+            "output_key": "result_rc_r2_cancels_30_digits_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "numerical_verification"
+        },
+        {
+            "label": "K_J * R_K = 2/e (R2 cancels)",
+            "output_key": "result_kj_rk_equals_2_over_e_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "metrological_identity"
+        },
+        {
+            "label": "Vena contracta = pi/(pi+2)",
+            "output_key": "result_vena_contracta_identity_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "Kirchhoff_1869"
+        },
+        {
+            "label": "BCS gap ratio ~ 1.764",
+            "output_key": "result_bcs_gap_ratio_v0",
+            "match_mode": "digits",
+            "expected": "1.7639",
+            "digits": 4,
+            "reference_source": "BCS_theory"
+        },
+        {
+            "label": "Blu-ray spot size (um)",
+            "output_key": "result_disc_bluray_spot_um_v0",
+            "match_mode": "range",
+            "lo": "0.5",
+            "hi": "0.7",
+            "reference_source": "optical_disc_standard"
+        },
+        {
+            "label": "AWG 12 resistance ~ 5.2 mohm/m",
+            "output_key": "result_wire_r_awg12_per_m_mohm_v0",
+            "match_mode": "range",
+            "lo": "4.5",
+            "hi": "6.0",
+            "reference_source": "wire_handbook"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_r2_areas_v0",
+            "title": "R2*d^2 areas across domains",
+            "type": "bar",
+            "categories": ["SMF-28 fiber", "AWG 12 wire", "12in speaker", "120mm disc", "300mm wafer"],
+            "values_from": [
+                "result_r2_area_smf28_fiber_m2_v0",
+                "result_r2_area_awg12_wire_m2_v0",
+                "result_r2_area_12inch_speaker_m2_v0",
+                "result_r2_area_120mm_disc_m2_v0",
+                "result_r2_area_300mm_wafer_m2_v0"
+            ],
+            "notes": "Same R2*d^2 formula. Different d. Different domain. Same geometry."
+        },
+        {
+            "key": "diagram_disc_spots_v0",
+            "title": "Optical disc spot sizes",
+            "type": "bar",
+            "categories": ["CD", "DVD", "Blu-ray"],
+            "values_from": [
+                "result_disc_cd_area_um2_v0",
+                "result_disc_dvd_area_um2_v0",
+                "result_disc_bluray_area_um2_v0"
+            ],
+            "notes": "A = R2*(1.22*lambda/NA)^2. Diffraction limit."
+        }
+    ]
+}
+

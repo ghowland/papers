@@ -1,0 +1,41 @@
+{
+    "key": "experiment_boundary_scales_v0",
+    "canonical": "experiment_boundary_scales",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Boundary scale conversion and adjacency: convert all particle masses to distance scales, compute running distances L between adjacent boundaries.",
+    "purpose": "program_soliton_gravity_v0",
+    "experiment_mode": "verification",
+
+    "dependencies": {
+        "values": {
+            "eng_hbar_c_mev_fm": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_charm_quark": 0,
+            "mass_bottom_quark": 0,
+            "mass_w_boson": 0,
+            "mass_z_boson": 0,
+            "mass_higgs_boson": 0,
+            "mass_top_quark": 0
+        },
+        "derivations": {},
+        "connections": {
+            "connection_boundary_adjacency": 0
+        }
+    },
+
+    "execution_plan": [],
+
+    "connections": [
+        "connection_boundary_adjacency_v0"
+    ],
+
+    "expected_outputs": [],
+
+    "comparisons": [],
+
+    "diagrams": []
+}
+

@@ -1,0 +1,88 @@
+{
+    "key": "experiment_electroweak_anatomy_v0",
+    "canonical": "experiment_electroweak_anatomy",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Electroweak anatomy: coupling extraction, sin2_tW prediction from 3/8, Casimir verification, group theory primitives.",
+    "purpose": "program_electroweak_anatomy_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_weak_mixing": 0,
+            "coupling_alpha_s_strong_mz": 0,
+            "group_c2_adj_su2": 0,
+            "group_c2_adj_su3": 0,
+            "group_c2_fund_su2": 0,
+            "group_c2_fund_su3": 0,
+            "group_s2_fundamental": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "mass_z_boson": 0
+        },
+        "derivations": {
+            "coupling_extraction": 0,
+            "coupling_one_loop_sin2_prediction": 0,
+            "group_theory_casimirs": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "coupling_extraction_v0",
+        "group_theory_casimirs_v0",
+        "coupling_one_loop_sin2_prediction_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "coupling_alpha_1_inverse_gut_normalized_mz_v0",
+        "coupling_alpha_2_inverse_mz_v0",
+        "coupling_alpha_3_inverse_mz_v0",
+        "result_pure_gauge_gap_v0",
+        "result_sin2_tW_one_loop_predicted_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Pure gauge gap = 2 (from Casimirs)",
+            "output_key": "result_pure_gauge_gap_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "2", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "sin2_tW one-loop vs measured",
+            "output_key": "result_sin2_tW_one_loop_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23122",
+            "reference_source": "LEP_SLD"
+        },
+        {
+            "label": "YM coefficient = -11/3",
+            "output_key": "result_ym_coefficient_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-11", "den": "3"},
+            "reference_source": "group_theory"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_coupling_spread_v0",
+            "title": "Inverse couplings at M_Z",
+            "type": "bar",
+            "categories": ["1/alpha_1 (U1)", "1/alpha_2 (SU2)", "1/alpha_3 (SU3)"],
+            "values_from": [
+                "coupling_alpha_1_inverse_gut_normalized_mz_v0",
+                "coupling_alpha_2_inverse_mz_v0",
+                "coupling_alpha_3_inverse_mz_v0"
+            ],
+            "notes": "Spread factor 7.5x at M_Z. Must converge at M_GUT."
+        }
+    ]
+}
+
