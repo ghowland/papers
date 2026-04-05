@@ -112,6 +112,58 @@
         "Level2",
         "ratio"
       ]
+    },
+    {
+      "key": "cosmo_dm_to_baryon_ratio_prefactor_v0",
+      "canonical": "cosmo_dm_to_baryon_ratio_prefactor",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "dm_to_baryon_ratio_prefactor",
+      "level": 1,
+      "source": "Table 15 / (22/13)*pi formula prefactor",
+      "value": {
+        "_type": "Fraction",
+        "num": "22",
+        "den": "13"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data5": "cosmo_dm_to_baryon_ratio_prefactor_v0"
+      }
+    },
+    {
+      "key": "cosmo_omega_dm_r2_prefactor_v0",
+      "canonical": "cosmo_omega_dm_r2_prefactor",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_dm_r2_prefactor",
+      "level": 1,
+      "source": "Table 15 / (44/169)*R2 formula prefactor",
+      "value": {
+        "_type": "Fraction",
+        "num": "44",
+        "den": "169"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data5": "cosmo_omega_dm_r2_prefactor_v0"
+      }
     }
   ]
 }
