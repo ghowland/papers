@@ -293,6 +293,36 @@ def next_result_path(exp_key, data_dir):
 # MAIN RUNNER
 # ================================================================
 
+def write_output_values(exp_key, run_number, all_outputs, data_dir):
+    """Write experiment outputs as a values JSON file."""
+    prefix = "%s_run%03d" % (exp_key, run_number)
+    nodes = []
+    for key, value in all_outputs.items():
+        if isinstance(value, Fraction):
+            vtype = "exact_fraction"
+        elif isinstance(value, int):
+            vtype = "exact_integer"
+        elif isinstance(value, bool):
+            vtype = "exact_integer"
+        else:
+            vtype = "approximate"
+        nodes.append({
+            "key": "%s_%s" % (prefix, key),
+            "canonical": "%s_%s" % (prefix, key.replace("_v0", "")),
+            "version": 0,
+            "node_type": "value",
+            "value": value,
+            "value_type": vtype,
+            "unit": "dimensionless",
+            "level": 3,
+            "source": prefix,
+        })
+    filename = "values_%s.json" % prefix
+    path = os.path.join(data_dir, filename)
+    with open(path, "w") as f:
+        json.dump({"nodes": nodes}, f, indent=2, default=_serialize_default)
+    return filename
+
 def run_experiment(name, data_dir):
     experiment, exp_path = load_experiment(name, data_dir)
     exp_key = experiment["key"]
@@ -478,9 +508,17 @@ def run_experiment(name, data_dir):
 
     # ---- WRITE RESULT JSON (never overwrite) ----
     result_path, result_filename = next_result_path(exp_key, data_dir)
+    # Extract run number from filename
+    run_number = int(result_filename.split("_run")[1].split(".")[0])
     with open(result_path, "w") as f:
         json.dump(result_node, f, indent=2, default=_serialize_default)
     print("Result written: %s" % result_filename)
+
+    # ---- WRITE OUTPUT VALUES JSON ----
+    if all_outputs:
+        values_filename = write_output_values(
+            exp_key, run_number, all_outputs, data_dir)
+        print("Values written: %s" % values_filename)
     print()
 
     # ---- SUMMARY ----
