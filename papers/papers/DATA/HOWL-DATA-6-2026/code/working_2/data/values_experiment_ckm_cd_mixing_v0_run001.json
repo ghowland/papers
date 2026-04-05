@@ -1,0 +1,312 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_predicted_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.997975",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_measured_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.99848",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_miss_pct_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_unitarity_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0505768768528163",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_sin2_theta14_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_sin2_theta14",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.002025",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_deficit_predicted_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_deficit_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.002025",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_deficit_measured_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_deficit_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00152",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_deficit_tension_sigma_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_deficit_tension_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.827868852459016",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_sin_theta14_used_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_sin_theta14_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.045",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_corrected_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.973473121149218",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_measured_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.97373",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_miss_pct_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0263809116266351",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_diff_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_diff",
+      "version": 0,
+      "node_type": "value",
+      "value": "-0.000256878850782034",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_tension_sigma_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_tension_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.828641454135592",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud2_from_4x4_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud2_from_4x4",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.9476499176",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_corrected_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.224529090786153",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_standard_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_standard",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.224472842965855",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_pdg_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_angle_pdg",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.22501",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_miss_corrected_pct_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_miss_corrected_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.213727929357238",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_miss_standard_pct_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_miss_standard_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.238725849582414",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_shift_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_cabibbo_shift",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.62478202986682e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_4x4_unitarity_sum_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_4x4_unitarity_sum",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0005001953",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_3x3_unitarity_sum_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_3x3_unitarity_sum",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.9984751953",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_4x4_unitarity_residual_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_4x4_unitarity_residual",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0005001953",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_3x3_deficit_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_3x3_deficit",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0015248047",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_sin2_theta14_vs_deficit_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_sin2_theta14_vs_deficit",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0005001953",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vud_used_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vud_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.97373",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vus_used_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vus_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.2243",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    },
+    {
+      "key": "experiment_ckm_cd_mixing_v0_run001_result_vub_used_v0",
+      "canonical": "experiment_ckm_cd_mixing_v0_run001_result_vub_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00382",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ckm_cd_mixing_v0_run001"
+    }
+  ]
+}

@@ -4096,6 +4096,245 @@ def bridge_li7_problem_v0(value_dicts):
             float(abs(eta10_derived - eta10_needed_for_li7))),
     }
 
+# ================================================================
+# CATEGORY S: CKM FROM CABIBBO DOUBLET MIXING
+# ================================================================
+
+def ckm_first_row_from_cd_v0(value_dicts):
+    """Predict first-row unitarity from CD mixing angle theta_14.
+    
+    In the 3x3 CKM: |V_ud|^2 + |V_us|^2 + |V_ub|^2 = 1 (exact)
+    In the 4x4 CKM: |V_ud|^2 + |V_us|^2 + |V_ub|^2 + |V_ub'|^2 = 1
+    
+    where |V_ub'|^2 = sin^2(theta_14)
+    
+    So the 3x3 sum = 1 - sin^2(theta_14) < 1  (the deficit)
+    
+    The measured deficit: 0.99848 = 1 - 0.00152
+    CD prediction: 1 - sin^2(0.045) = 1 - 0.002025 = 0.997975
+    
+    Compare predicted deficit to measured deficit.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    sin_theta14 = _mpf_val(vm, "cd_sin_theta14_v0")
+    sin2_theta14 = sin_theta14 * sin_theta14
+
+    # Predicted 3x3 unitarity sum
+    unitarity_predicted = mpf("1") - sin2_theta14
+
+    # Measured
+    unitarity_measured = _mpf_val(vm, "ckm_first_row_unitarity_measured_v0")
+    unitarity_unc = _mpf_val(vm, "ckm_first_row_unitarity_unc_v0")
+
+    # Deficit comparison
+    deficit_predicted = sin2_theta14
+    deficit_measured = mpf("1") - unitarity_measured
+
+    deficit_diff = abs(deficit_predicted - deficit_measured)
+    deficit_tension = deficit_diff / unitarity_unc
+
+    miss = abs(unitarity_predicted - unitarity_measured) / unitarity_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ckm_first_row_from_cd_v0",
+        "outputs": {
+            "result_unitarity_predicted_v0": _approx(unitarity_predicted),
+            "result_unitarity_measured_v0": _approx(unitarity_measured),
+            "result_unitarity_miss_pct_v0": _approx(miss),
+            "result_sin2_theta14_v0": _approx(sin2_theta14),
+            "result_deficit_predicted_v0": _approx(deficit_predicted),
+            "result_deficit_measured_v0": _approx(deficit_measured),
+            "result_deficit_tension_sigma_v0": _approx(deficit_tension),
+            "result_sin_theta14_used_v0": _approx(sin_theta14),
+        },
+        "notes": "3x3 unitarity: predicted %.5f (CD), measured %.5f. Deficit: predicted %.5f, measured %.5f. Tension: %.2f sigma" % (
+            float(unitarity_predicted), float(unitarity_measured),
+            float(deficit_predicted), float(deficit_measured), float(deficit_tension)),
+    }
+
+
+def ckm_vud_corrected_v0(value_dicts):
+    """Correct V_ud for 4x4 mixing.
+    
+    The measured V_ud assumes the muon decay rate is proportional to
+    G_F^2 |V_ud|^2, where G_F is extracted assuming 3x3 unitarity.
+    
+    In the 4x4 framework, the extraction of V_ud from beta decay
+    is modified. The corrected V_ud satisfies:
+    
+    |V_ud(4x4)|^2 = |V_ud(measured)|^2 / (1 - sin^2(theta_14))
+    
+    This is because the measured V_ud absorbs part of the 4th-row
+    mixing into its effective value.
+    
+    Actually, the simpler picture: the MEASURED V_ud is correct as
+    extracted. The DEFICIT is explained by the missing |V_ub'|^2 term.
+    V_ud doesn't change — the unitarity sum changes.
+    
+    So V_ud(corrected) = V_ud(measured) — no change.
+    But the INTERPRETATION changes: V_ud is no longer constrained
+    by 3x3 unitarity, so its uncertainty can be evaluated differently.
+    
+    For this derivation: compute what V_ud would be if we IMPOSED
+    4x4 unitarity with the measured V_us, V_ub, and sin(theta_14):
+    
+    |V_ud|^2 = 1 - |V_us|^2 - |V_ub|^2 - sin^2(theta_14)
+    V_ud = sqrt(above)
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import sqrt as msqrt
+
+    vud_measured = _mpf_val(vm, "ckm_vud_measured_v0")
+    vus_measured = _mpf_val(vm, "ckm_vus_measured_v0")
+    vub_measured = _mpf_val(vm, "ckm_vub_measured_v0")
+    sin_theta14 = _mpf_val(vm, "cd_sin_theta14_v0")
+
+    # From 4x4 unitarity:
+    # |V_ud|^2 = 1 - |V_us|^2 - |V_ub|^2 - sin^2(theta_14)
+    vud2_from_4x4 = (mpf("1") - vus_measured**2 
+                     - vub_measured**2 - sin_theta14**2)
+    vud_corrected = msqrt(vud2_from_4x4)
+
+    # Compare to measured
+    miss = abs(vud_corrected - vud_measured) / vud_measured * mpf("100")
+    diff = vud_corrected - vud_measured
+    vud_unc = _mpf_val(vm, "ckm_vud_unc_v0")
+    tension = abs(diff) / vud_unc
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ckm_vud_corrected_v0",
+        "outputs": {
+            "result_vud_corrected_v0": _approx(vud_corrected),
+            "result_vud_measured_v0": _approx(vud_measured),
+            "result_vud_miss_pct_v0": _approx(miss),
+            "result_vud_diff_v0": _approx(diff),
+            "result_vud_tension_sigma_v0": _approx(tension),
+            "result_vud2_from_4x4_v0": _approx(vud2_from_4x4),
+        },
+        "notes": "V_ud(4x4) = %.5f, measured = %.5f, diff = %.5f (%.1f sigma)" % (
+            float(vud_corrected), float(vud_measured), float(diff), float(tension)),
+    }
+
+
+def ckm_cabibbo_angle_from_cd_v0(value_dicts):
+    """Derive the Cabibbo angle from the 4x4 corrected CKM elements.
+    
+    Standard: sin(theta_C) = |V_us| / sqrt(|V_ud|^2 + |V_us|^2)
+    
+    With CD correction, use V_ud from 4x4 unitarity:
+    sin(theta_C) = |V_us| / sqrt(|V_ud(4x4)|^2 + |V_us|^2)
+    
+    Compare to PDG Cabibbo angle.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import sqrt as msqrt, atan as matan
+
+    vus_measured = _mpf_val(vm, "ckm_vus_measured_v0")
+    vud_corrected = mpf(str(_get(vm, "result_vud_corrected_v0")))
+
+    # sin(theta_C) = V_us / sqrt(V_ud^2 + V_us^2)
+    sin_cabibbo = vus_measured / msqrt(vud_corrected**2 + vus_measured**2)
+
+    # Also compute the uncorrected (standard) Cabibbo angle
+    vud_measured = _mpf_val(vm, "ckm_vud_measured_v0")
+    sin_cabibbo_standard = vus_measured / msqrt(vud_measured**2 + vus_measured**2)
+
+    # PDG reference
+    cabibbo_pdg = _mpf_val(vm, "ckm_cabibbo_angle_pdg_v0")
+
+    miss_corrected = abs(sin_cabibbo - cabibbo_pdg) / cabibbo_pdg * mpf("100")
+    miss_standard = abs(sin_cabibbo_standard - cabibbo_pdg) / cabibbo_pdg * mpf("100")
+
+    shift = sin_cabibbo - sin_cabibbo_standard
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ckm_cabibbo_angle_from_cd_v0",
+        "outputs": {
+            "result_cabibbo_angle_corrected_v0": _approx(sin_cabibbo),
+            "result_cabibbo_angle_standard_v0": _approx(sin_cabibbo_standard),
+            "result_cabibbo_angle_pdg_v0": _approx(cabibbo_pdg),
+            "result_cabibbo_miss_corrected_pct_v0": _approx(miss_corrected),
+            "result_cabibbo_miss_standard_pct_v0": _approx(miss_standard),
+            "result_cabibbo_shift_v0": _approx(shift),
+        },
+        "notes": "sin(theta_C): corrected = %.5f, standard = %.5f, PDG = %.5f, shift = %.5f" % (
+            float(sin_cabibbo), float(sin_cabibbo_standard),
+            float(cabibbo_pdg), float(shift)),
+    }
+
+
+def ckm_unitarity_test_v0(value_dicts):
+    """Full 4x4 unitarity test.
+    
+    |V_ud|^2 + |V_us|^2 + |V_ub|^2 + sin^2(theta_14) = ?
+    
+    Should equal 1.0000 if the CD accounts for the deficit.
+    
+    Uses the MEASURED V_ud, V_us, V_ub (not corrected) plus
+    sin^2(theta_14) from the CD.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    vud = _mpf_val(vm, "ckm_vud_measured_v0")
+    vus = _mpf_val(vm, "ckm_vus_measured_v0")
+    vub = _mpf_val(vm, "ckm_vub_measured_v0")
+    sin_theta14 = _mpf_val(vm, "cd_sin_theta14_v0")
+
+    # 3x3 sum
+    sum_3x3 = vud**2 + vus**2 + vub**2
+
+    # 4x4 sum
+    sum_4x4 = sum_3x3 + sin_theta14**2
+
+    # Residual from unity
+    residual = abs(sum_4x4 - mpf("1"))
+
+    # 3x3 deficit
+    deficit_3x3 = mpf("1") - sum_3x3
+
+    # Does theta_14 overshoot or undershoot the deficit?
+    overshoot = sin_theta14**2 - deficit_3x3
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ckm_unitarity_test_v0",
+        "outputs": {
+            "result_4x4_unitarity_sum_v0": _approx(sum_4x4),
+            "result_3x3_unitarity_sum_v0": _approx(sum_3x3),
+            "result_4x4_unitarity_residual_v0": _approx(residual),
+            "result_3x3_deficit_v0": _approx(deficit_3x3),
+            "result_sin2_theta14_vs_deficit_v0": _approx(overshoot),
+            "result_vud_used_v0": _approx(vud),
+            "result_vus_used_v0": _approx(vus),
+            "result_vub_used_v0": _approx(vub),
+        },
+        "notes": "3x3 sum = %.5f (deficit %.5f). 4x4 sum = %.5f (residual %.5f). sin^2(theta_14) overshoot = %.5f" % (
+            float(sum_3x3), float(deficit_3x3), float(sum_4x4),
+            float(residual), float(overshoot)),
+    }
+
 
 
 # ================================================================
@@ -4198,6 +4437,11 @@ DERIVATION_MORE_INDEX_V0 = {
     "bridge_li7_from_eta_v0": bridge_li7_from_eta_v0,
     "bridge_he3_from_eta_v0": bridge_he3_from_eta_v0,
     "bridge_li7_problem_v0": bridge_li7_problem_v0,    
+    # S: CKM from Cabibbo Doublet mixing
+    "ckm_first_row_from_cd_v0": ckm_first_row_from_cd_v0,
+    "ckm_vud_corrected_v0": ckm_vud_corrected_v0,
+    "ckm_cabibbo_angle_from_cd_v0": ckm_cabibbo_angle_from_cd_v0,
+    "ckm_unitarity_test_v0": ckm_unitarity_test_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

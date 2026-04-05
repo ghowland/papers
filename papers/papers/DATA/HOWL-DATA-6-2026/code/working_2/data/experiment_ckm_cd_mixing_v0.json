@@ -1,0 +1,118 @@
+{
+    "key": "experiment_ckm_cd_mixing_v0",
+    "canonical": "experiment_ckm_cd_mixing",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "CKM corrections from Cabibbo Doublet 4x4 mixing. Predict first-row unitarity deficit from sin^2(theta_14), derive corrected V_ud and Cabibbo angle. Test whether CD accounts for the Cabibbo angle anomaly.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "ckm_vud_measured": 0,
+            "ckm_vud_unc": 0,
+            "ckm_vus_measured": 0,
+            "ckm_vub_measured": 0,
+            "ckm_first_row_unitarity_measured": 0,
+            "ckm_first_row_unitarity_unc": 0,
+            "ckm_cabibbo_angle_pdg": 0,
+            "cd_sin_theta14": 0,
+            "cd_sin_theta24": 0,
+            "cd_sin_theta34": 0,
+            "cd_mass_reference": 0
+        },
+        "derivations": {
+            "ckm_first_row_from_cd": 0,
+            "ckm_vud_corrected": 0,
+            "ckm_cabibbo_angle_from_cd": 0,
+            "ckm_unitarity_test": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "ckm_first_row_from_cd_v0",
+        "ckm_vud_corrected_v0",
+        "ckm_cabibbo_angle_from_cd_v0",
+        "ckm_unitarity_test_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_unitarity_predicted_v0",
+        "result_vud_corrected_v0",
+        "result_cabibbo_angle_corrected_v0",
+        "result_4x4_unitarity_sum_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "First-row unitarity (3x3) predicted from CD vs measured",
+            "output_key": "result_unitarity_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.99848",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "Unitarity deficit from CD within 2 sigma of measured",
+            "output_key": "result_deficit_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2.0",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "V_ud corrected vs measured",
+            "output_key": "result_vud_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.97373",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "Cabibbo angle corrected vs PDG",
+            "output_key": "result_cabibbo_angle_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.22501",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "4x4 unitarity sum = 1.0000",
+            "output_key": "result_4x4_unitarity_sum_v0",
+            "match_mode": "miss_pct",
+            "expected": "1.0000",
+            "reference_source": "unitarity"
+        },
+        {
+            "label": "4x4 unitarity residual < 0.001",
+            "output_key": "result_4x4_unitarity_residual_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.001",
+            "reference_source": "exact_unitarity"
+        },
+        {
+            "label": "sin^2(theta_14) vs measured deficit",
+            "output_key": "result_sin2_theta14_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00152",
+            "reference_source": "deficit_comparison"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_ckm_cd_v0",
+            "title": "CKM first-row: 3x3 vs 4x4 with CD",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "|V_ud|^2 + |V_us|^2 + |V_ub|^2 (3x3)", "predicted": "result_unitarity_predicted_v0", "measured": "0.99848"},
+                {"label": "+ sin^2(theta_14) (4x4)", "predicted": "result_4x4_unitarity_sum_v0", "measured": "1.0000"},
+                {"label": "V_ud (corrected)", "predicted": "result_vud_corrected_v0", "measured": "0.97373"},
+                {"label": "sin(theta_C) corrected", "predicted": "result_cabibbo_angle_corrected_v0", "measured": "0.22501"}
+            ],
+            "notes": "The CD 4th-generation mixing angle theta_14 accounts for the CKM first-row deficit."
+        }
+    ]
+}
+
