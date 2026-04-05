@@ -1,0 +1,123 @@
+{
+  "key": "result_experiment_muon_g2_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_muon_g2_v0",
+  "timestamp": "2026-04-05T17:03:47Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "muon_g2_qed_from_alpha_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "muon_g2_total_prediction_v0",
+      "status": "ok",
+      "output_count": 16
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "a_mu(QED from our alpha) vs published QED",
+      "output_key": "result_amu_qed_from_alpha_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Aoyama_WP2020",
+      "status": "INFO",
+      "expected": "0.00116584718900",
+      "got": "0.00116584718874682",
+      "miss_pct": "2.172e-8",
+      "detail": "predicted 0.00116584718874682 ref 0.00116584718900 miss 2.172e-8%"
+    },
+    {
+      "label": "a_mu(SM total) vs Fermilab measured",
+      "output_key": "result_amu_sm_total_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Fermilab_2023",
+      "status": "INFO",
+      "expected": "0.00116592059",
+      "got": "0.00116591740874682",
+      "miss_pct": "0.0002729",
+      "detail": "predicted 0.00116591740874682 ref 0.00116592059 miss 0.0002729%"
+    },
+    {
+      "label": "Tension < 5 sigma",
+      "output_key": "result_amu_tension_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "SM_consistency",
+      "got": "6.48291",
+      "lo": "0",
+      "hi": "5.0",
+      "status": "FAIL",
+      "detail": "6.48291 not in [0, 5.0]"
+    },
+    {
+      "label": "QED alpha shift from CODATA (x10^-11)",
+      "output_key": "result_amu_qed_alpha_shift_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "alpha_sensitivity",
+      "status": "INFO",
+      "expected": "0",
+      "got": "-2.53184773123028e-13",
+      "miss_pct": "0.0",
+      "detail": "predicted -2.53184773123028e-13 ref 0 miss 0.0%"
+    },
+    {
+      "label": "a_mu(SM) - a_mu(exp) in units of 10^-11",
+      "output_key": "result_amu_difference_x1e11_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "anomaly_check",
+      "status": "INFO",
+      "expected": "0",
+      "got": "318.125318",
+      "miss_pct": "0.0",
+      "detail": "predicted 318.125318 ref 0 miss 0.0%"
+    },
+    {
+      "label": "Hadronic LO dominates uncertainty",
+      "output_key": "result_amu_had_lo_fraction_v0",
+      "match_mode": "range",
+      "reference_source": "uncertainty_budget",
+      "got": "0.831601",
+      "lo": "0.5",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0.5, 1.0]"
+    }
+  ],
+  "outputs": {
+    "result_amu_qed_from_alpha_v0": "0.00116584718874682",
+    "result_amu_qed_published_v0": "0.001165847189",
+    "result_amu_qed_alpha_shift_v0": "-2.53184773123028e-13",
+    "result_amu_qed_alpha_shift_x1e11_v0": "-0.0253184773123028",
+    "result_amu_qed_miss_vs_published_pct_v0": "2.17168060713168e-8",
+    "result_alpha_inv_ours_v0": "137.035999206965",
+    "result_alpha_inv_codata_v0": "137.035999177",
+    "result_delta_alpha_v0": "-1.59567683569003e-12",
+    "result_amu_sm_total_v0": "0.00116591740874682",
+    "result_amu_difference_v0": "3.18125318e-9",
+    "result_amu_difference_x1e11_v0": "318.125318",
+    "result_amu_tension_sigma_v0": "6.48291000040409",
+    "result_amu_miss_pct_v0": "0.000272853332146746",
+    "result_amu_theory_unc_v0": "4.38634243989226e-10",
+    "result_amu_total_unc_v0": "4.90713765855412e-10",
+    "result_amu_had_lo_fraction_v0": "0.831600831600832",
+    "result_amu_had_lo_used_v0": "6.931e-8",
+    "result_amu_qed_x1e11_v0": "116584718.874682",
+    "result_amu_had_lo_x1e11_v0": "6931.0",
+    "result_amu_had_nlo_x1e11_v0": "-983.0",
+    "result_amu_had_lbl_x1e11_v0": "920.0",
+    "result_amu_ew_x1e11_v0": "154.0",
+    "result_amu_sm_x1e11_v0": "116591740.874682",
+    "result_amu_meas_x1e11_v0": "116592059.0"
+  },
+  "summary": {
+    "derivations_ok": 2,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 1,
+    "comparisons_info": 4,
+    "comparisons_skip": 0
+  }
+}

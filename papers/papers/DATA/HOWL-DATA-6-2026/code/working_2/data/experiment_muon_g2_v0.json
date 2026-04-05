@@ -1,0 +1,110 @@
+{
+    "key": "experiment_muon_g2_v0",
+    "canonical": "experiment_muon_g2",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Predict muon anomalous magnetic moment from derived alpha plus published hadronic and EW corrections. Compare to Fermilab measurement. Compute tension in sigma.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_amu_measured": 0,
+            "qed_amu_measured_unc": 0,
+            "qed_amu_qed_published": 0,
+            "qed_amu_hadronic_lo": 0,
+            "qed_amu_hadronic_lo_unc": 0,
+            "qed_amu_hadronic_nlo": 0,
+            "qed_amu_hadronic_lbl": 0,
+            "qed_amu_hadronic_lbl_unc": 0,
+            "qed_amu_ew": 0,
+            "coupling_alpha_em_inverse": 0,
+            "geom_pi": 0,
+            "qed_a1_schwinger": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0
+        },
+        "derivations": {
+            "muon_g2_qed_from_alpha": 0,
+            "muon_g2_total_prediction": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "muon_g2_qed_from_alpha_v0",
+        "muon_g2_total_prediction_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_amu_qed_from_alpha_v0",
+        "result_amu_sm_total_v0",
+        "result_amu_tension_sigma_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "a_mu(QED from our alpha) vs published QED",
+            "output_key": "result_amu_qed_from_alpha_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00116584718900",
+            "reference_source": "Aoyama_WP2020"
+        },
+        {
+            "label": "a_mu(SM total) vs Fermilab measured",
+            "output_key": "result_amu_sm_total_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00116592059",
+            "reference_source": "Fermilab_2023"
+        },
+        {
+            "label": "Tension < 5 sigma",
+            "output_key": "result_amu_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5.0",
+            "reference_source": "SM_consistency"
+        },
+        {
+            "label": "QED alpha shift from CODATA (x10^-11)",
+            "output_key": "result_amu_qed_alpha_shift_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "alpha_sensitivity"
+        },
+        {
+            "label": "a_mu(SM) - a_mu(exp) in units of 10^-11",
+            "output_key": "result_amu_difference_x1e11_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "anomaly_check"
+        },
+        {
+            "label": "Hadronic LO dominates uncertainty",
+            "output_key": "result_amu_had_lo_fraction_v0",
+            "match_mode": "range",
+            "lo": "0.5",
+            "hi": "1.0",
+            "reference_source": "uncertainty_budget"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_muon_g2_budget_v0",
+            "title": "Muon g-2: SM prediction vs measurement",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "a_mu(QED)", "predicted": "result_amu_qed_from_alpha_v0", "measured": "0.00116584718900"},
+                {"label": "a_mu(had LO)", "predicted": "result_amu_had_lo_used_v0", "measured": "0.00000006931"},
+                {"label": "a_mu(SM total)", "predicted": "result_amu_sm_total_v0", "measured": "0.00116592059"},
+                {"label": "Tension (sigma)", "predicted": "result_amu_tension_sigma_v0", "measured": "0"}
+            ],
+            "notes": "SM prediction from derived alpha + published corrections vs Fermilab."
+        }
+    ]
+}
+

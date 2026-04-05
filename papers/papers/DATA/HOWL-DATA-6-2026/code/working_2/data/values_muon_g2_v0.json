@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "key": "qed_amu_measured_unc_v0",
+      "canonical": "qed_amu_measured_unc",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "amu_measured_unc",
+      "level": 2,
+      "value": "0.00000000022",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 2,
+      "source": "Fermilab 2023 + BNL combined. 22 x 10^-11.",
+      "tags": ["QED", "g-2", "muon", "uncertainty", "Fermilab"]
+    },
+    {
+      "key": "qed_amu_hadronic_lo_unc_v0",
+      "canonical": "qed_amu_hadronic_lo_unc",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "amu_hadronic_lo_unc",
+      "level": 2,
+      "value": "0.00000000040",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 2,
+      "source": "WP 2020. Uncertainty on leading-order HVP. 40 x 10^-11.",
+      "tags": ["QED", "g-2", "muon", "hadronic", "uncertainty"]
+    },
+    {
+      "key": "qed_amu_hadronic_lbl_unc_v0",
+      "canonical": "qed_amu_hadronic_lbl_unc",
+      "version": 0,
+      "node_type": "value",
+      "topic": "qed",
+      "term": "amu_hadronic_lbl_unc",
+      "level": 2,
+      "value": "0.00000000018",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 2,
+      "source": "WP 2020. Uncertainty on hadronic light-by-light. 18 x 10^-11.",
+      "tags": ["QED", "g-2", "muon", "hadronic", "light_by_light", "uncertainty"]
+    }
+  ]
+}
+
