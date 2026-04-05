@@ -27,6 +27,8 @@ This paper presents no new computation. It records the operational status of the
 
 ## 1. Purpose
 
+![Fig. 8: The Session 3 operational ground — gap ratio (218/115 vs 38/27 vs 1.358), Cabibbo Doublet ((3,2,1/6), asymmetry 15), two-loop (Δ: −1.17 → −0.40), 329/329 checks, the ground is set until falsified.](./figures/phys24_08_identity_card.png)
+
 The HOWL series has produced 6 MATH papers, 23 PHYS papers, 4 DATA papers, and 6 verified scripts with 98 total checks across three sessions. A future session that needs to build on this work faces a choice: read 30 papers, or read one. This paper is the one.
 
 The purpose is not to declare infallibility. Any item below may be falsified by later computation or experiment. The purpose is the opposite: to make progress possible by stating plainly what is being treated as working ground, so that future sessions do not spend their time re-litigating foundations already established to the current standard of the series. The standard is exact arithmetic, verified scripts, explicit provenance, and bounded claims.
@@ -127,6 +129,8 @@ Every number below comes from a verified script. Any discrepancy with a paper re
 
 ## 6. The Gap Ratio and the Boson Problem
 
+![Fig. 4: All 15 candidates on one number line with the SM (218/115) and measured (1.358). Only MSSM (7/5) and the Cabibbo Doublet (38/27) survive within the ±0.15 window. 12 eliminated by arithmetic.](./figures/phys24_04_gap_landscape.png)
+
 The SM gauge couplings do not unify at one loop. The gap ratio — the ratio (b₁−b₂)/(b₂−b₃) of exact rational beta differences — is 218/115 = 1.896 for the SM. The measured gap ratio from the three couplings at M_Z is 1.358. The miss is 39.6%. This is not a rounding error. It means the three inverse coupling lines do not meet at a point.
 
 The miss is a boson problem. Complete fermion generations contribute (4/3, 4/3, 4/3) to the three betas — identical across all gauge groups. This is generation democracy: fermions are invisible to the gap ratio. The fermion contribution to both numerator and denominator of the gap ratio is exactly zero. The gap ratio decomposes as 96-101% gauge self-coupling, −0.9% to +4.3% Higgs correction, 0% fermion. The pure-gauge gap ratio (no Higgs, no fermions) is the Casimir ratio C₂(SU(2))/(C₂(SU(3))−C₂(SU(2))) = 2. The Higgs shifts this from 2 to 218/115. Fermions shift it by exactly zero.
@@ -159,6 +163,8 @@ Future sessions do not reopen the question "which minimal single-multiplet candi
 
 ## 8. The Two-Loop Status
 
+![Fig. 1: Unification quality improving from Δ = −6.58 (SM, excluded) through −1.17 (CD one-loop) to −0.40 (CD two-loop, 66% improvement) toward ~0 (closable by GUT thresholds).](./figures/phys24_01_unification_ladder.png)
+
 The two-loop SM beta function matrix b_ij is a 3×3 matrix of exact Fractions from Machacek-Vaughn (1983) and Luo-Xiao (hep-ph/0207271):
 
 |  | U(1) | SU(2) | SU(3) |
@@ -174,6 +180,8 @@ At M_VL = 500 GeV: the one-loop Cabibbo Doublet miss is Δ(1/α₃) = −1.17. T
 The Cabibbo Doublet at two loops achieves the same unification quality as the MSSM at one loop: both need GUT threshold corrections of comparable magnitude.
 
 What remains: the VL two-loop b_ij contribution (neglected, estimated ~0.1% effect), GUT threshold parametrization as a function of M_T/M_X splitting, finding M_VL for exact unification, and predicting α_s and sin²θ_W from the unification condition.
+
+![Fig. 3: Δ(1/α₃) improves from −1.17 (one-loop) to −0.40 (two-loop) — 66% improvement. The dominant effect is b₃₃ = −26, which slows SU(3) running and brings α₃ closer to unification.](./figures/phys24_03_two_loop.png)
 
 ---
 
@@ -197,6 +205,8 @@ The positive pieces (+2.270) cancel against the geometric piece (−2.598) by 87
 
 ## 11. The Search Record
 
+![Fig. 7: Three parameter reductions came from physical derivation (θ_QCD, α↔a_e, Koide conditional). 82 PSLQ searches returned null. Every success was derivation. Every search was null. Prioritize derivation.](./figures/phys24_07_derivation_vs_search.png)
+
 The PSLQ integer relation algorithm, applied to 82 constants from three categories — physical (59 tests, 4-15 digits), dynamical (3 tests, 10-30 digits), and analytical (10 tests, 100 digits) — finds zero relations against a 20-constant transcendental basis with maxcoeff 10,000. The sanity check confirms the algorithm is operational: PSLQ finds the known relation π² = 6ζ(2) as the integer vector [1, 0, −6]. The Bessel zeros j₁₁, j₀₁, j₁₂ are independent of the entire basis at 100-digit precision — the strongest independence statement in the series by 70 orders of magnitude over the SM parameter tests.
 
 Every parameter reduction in the series came from physical derivation: θ_QCD = 0 from energy minimization (PHYS-7), α ↔ a_e at 4.3 ppb from QED perturbation theory (PHYS-9), Koide K = 2/3 conditional from a trigonometric identity (PHYS-8). Every PSLQ search returned null: 0/82. Derivation beats search. Future effort should prioritize physical derivation paths over numerical pattern hunting.
@@ -215,6 +225,8 @@ DATA-3 is retired. When new measurements become available, they enter as DATA-5 
 
 ## 13. The Experimental Triangle
 
+![Fig. 5: Proton lifetime log scale — SM (~10³⁰, excluded), CD (~10³⁴⁻³⁵, at Super-K boundary), MSSM (~10³⁷, beyond reach). The 10⁷ separation between CD and MSSM comes from the M_GUT⁴ scaling.](./figures/phys24_05_proton_lifetime.png)
+
 Three experiments test the Cabibbo Doublet framework on different timescales:
 
 **Hyper-Kamiokande** (proton decay p → e⁺π⁰). Operations ~2027. The CD predicts τ ~ 10^34-35 yr in minimal SU(5)-type completion. Super-K current bound: τ > 2.4 × 10^34 yr. Hyper-K 20-year sensitivity: ~10^35 yr. The MSSM predicts τ ~ 10^37 yr, beyond reach. This is the decisive discriminator between the two scenarios with nearly identical gap ratios (38/27 vs 7/5).
@@ -228,6 +240,8 @@ Complementary: DUNE (p → K⁺ν̄, the SUSY SU(5) channel, ~2028+), NA62 (rare
 ---
 
 ## 14. The Parameter Scorecard
+
+![Fig. 2: Parameter count from 19 (SM) → 18 (θ_QCD derived) → 17 (Koide conditional) → 23 (+6 from Cabibbo Doublet). Six new parameters buy 3 anomaly resolutions, 40% → 3.6% gap ratio improvement, and testable proton decay.](./figures/phys24_02_parameter_scorecard.png)
 
 | Step | Change | Method | Status |
 |---|---|---|---|
@@ -284,6 +298,8 @@ The script standard (phys24_script_rules.md) governs all scripts from this paper
 ---
 
 ## 16. What Is Closed, What Is Open, What Is Deprioritized
+
+![Fig. 6: After Session 3 — 8 paths closed (SM non-unification, C₃ Koide, PSLQ null, etc.), 8 paths open (two-loop, GUT thresholds, sin²θ_W, Koide amplitude), 6 deprioritized. sin²θ_W from 3/8 is unblocked.](./figures/phys24_06_work_landscape.png)
 
 **Closed** (stop re-litigating):
 
