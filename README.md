@@ -127,6 +127,7 @@
 | **[[@HOWL-PHYS-34-2026]](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **The sin²θ_W Two-Loop Test — 3/13 Is Not the Limit** | Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin²θ_W = 0.23133, miss 0.048%.  |
 | **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **The No-Threshold Puzzle — More CD Running Means Better Predictions** | No-threshold beats hard threshold by 12×. Soft threshold is worse. The CD contribution is needed at all scales.  |
 | **[[@HOWL-PHYS-36-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **The QED Integer Chain at 5-Loop** | Four CODATA Values from One Measurement. |
+| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **From Gauge Integers to Primordial Deuterium** | Seventeen Derived Values Across Five Physics Domains. |
 
 ---
 
