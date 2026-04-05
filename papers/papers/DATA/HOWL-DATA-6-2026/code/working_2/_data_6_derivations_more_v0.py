@@ -3167,15 +3167,16 @@ def ew_gf_corrected_v0(value_dicts):
 # ================================================================
 
 def ew_mw_from_gf_v0(value_dicts):
-    """Derive M_W from G_F using the Sirlin relation.
+    """Derive M_W from G_F using the on-shell Sirlin relation.
     
-    sin2_tW * M_W^2 = pi * alpha / (sqrt(2) * G_F) * 1/(1 - Delta_r)
+    M_W^2 * (1 - M_W^2/M_Z^2) = pi*alpha/(sqrt(2)*G_F) * 1/(1-Delta_r)
     
-    Delta_r = Delta_alpha - (cos2_tW/sin2_tW)*Delta_rho + Delta_r_remainder
-    Delta_rho = 3*alpha(M_Z)*m_t^2 / (16*pi*sin2_tW*M_W^2)
+    Let x = M_W^2/M_Z^2. Then x*(1-x) = A/(M_Z^2*(1-Delta_r))
+    x^2 - x + A/(M_Z^2*(1-Delta_r)) = 0
+    x = (1 + sqrt(1 - 4*A/(M_Z^2*(1-Delta_r)))) / 2  [LARGER root]
     
-    sin2_tW is the INPUT measured value throughout. M_W appears only in
-    Delta_rho and on the LHS. Iterate M_W to convergence.
+    Delta_r = Delta_alpha - (cos2/sin2)*Delta_rho + Delta_r_rem
+    where sin2 = 1-x, cos2 = x (on-shell). Iterate.
     """
     vm = _value_map(value_dicts)
 
@@ -3189,8 +3190,6 @@ def ew_mw_from_gf_v0(value_dicts):
     m_t = _f2m(_frac(vm, "mass_top_quark_v0"))
     pi_m = _f2m(_frac(vm, "geom_pi_v0"))
     M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
-    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
-    cos2_tw = mpf("1") - sin2_tw
 
     alpha_inv_mz = _mpf_val(vm, "ew_alpha_mz_measured_v0")
     alpha_mz = mpf("1") / alpha_inv_mz
@@ -3206,25 +3205,34 @@ def ew_mw_from_gf_v0(value_dicts):
 
     m_t_gev = m_t / mpf("1000")
     M_Z_gev = M_Z / mpf("1000")
+    M_Z_gev2 = M_Z_gev * M_Z_gev
 
     # A = pi * alpha(0) / (sqrt(2) * G_F)  [GeV^2]
     A = pi_m * alpha_0 / (msqrt(mpf("2")) * G_F)
 
-    # Tree-level
-    M_W_gev = msqrt(A / sin2_tw)
+    # Tree-level: x = (1 + sqrt(1 - 4A/M_Z^2)) / 2  [LARGER root]
+    disc = mpf("1") - mpf("4") * A / M_Z_gev2
+    x = (mpf("1") + msqrt(disc)) / mpf("2")
+    M_W_gev = M_Z_gev * msqrt(x)
 
-    # Iterate
+    # Iterate with Delta_r
     for iteration in range(20):
         M_W_gev2 = M_W_gev * M_W_gev
+        x_curr = M_W_gev2 / M_Z_gev2
+        sin2_os = mpf("1") - x_curr   # on-shell sin2
+        cos2_os = x_curr               # on-shell cos2
 
-        # Delta_rho uses sin2_tW (input), not sin2_os
         delta_rho = mpf("3") * alpha_mz * m_t_gev * m_t_gev / (
-            mpf("16") * pi_m * sin2_tw * M_W_gev2)
+            mpf("16") * pi_m * sin2_os * M_W_gev2)
 
-        # Delta_r uses sin2_tW, cos2_tW (input)
-        delta_r = delta_alpha - (cos2_tw / sin2_tw) * delta_rho + delta_r_rem
+        delta_r = delta_alpha - (cos2_os / sin2_os) * delta_rho + delta_r_rem
 
-        M_W_gev_new = msqrt(A / (sin2_tw * (mpf("1") - delta_r)))
+        rhs = A / (M_Z_gev2 * (mpf("1") - delta_r))
+        disc_new = mpf("1") - mpf("4") * rhs
+        if disc_new < mpf("0"):
+            break
+        x_new = (mpf("1") + msqrt(disc_new)) / mpf("2")
+        M_W_gev_new = M_Z_gev * msqrt(x_new)
 
         if abs(M_W_gev_new - M_W_gev) / M_W_gev < mpf("1e-15"):
             M_W_gev = M_W_gev_new
