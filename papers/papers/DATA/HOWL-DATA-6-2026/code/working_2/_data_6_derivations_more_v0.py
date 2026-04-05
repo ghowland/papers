@@ -3426,7 +3426,8 @@ def ew_z_partial_widths_v0(value_dicts):
     gamma_total = gamma_inv + gamma_lep + gamma_had
 
     # R_l = Gamma_had / Gamma_lep
-    r_l = gamma_had / gamma_lep
+    # r_l = gamma_had / gamma_lep
+    r_l = gamma_had / gamma_ee
 
     # N_gen from invisible width
     # Gamma(inv) / Gamma(single nu) = N_gen
