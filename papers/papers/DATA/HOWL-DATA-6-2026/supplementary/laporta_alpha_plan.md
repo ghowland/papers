@@ -54,3 +54,42 @@ One free parameter removed from CODATA. Want me to write the derivation function
 
 ---
 
+The forward check reveals the problem:
+
+```
+result_ae_forward_from_known_alpha_v0    0.0011596553669292
+result_ae_input_v0                       0.00115965218059
+result_ae_forward_residual_v0            3.18633920375802e-9
+result_ae_forward_residual_rel_v0        2.74766801381505e-6
+```
+
+Known alpha + Laporta coefficients give a_e = 0.001159655**37**, but measured a_e = 0.001159652**18**. The forward residual is 3.2×10⁻⁹, which is 2.7 ppm. That's enormous — measured a_e precision is 0.11 ppb.
+
+**The series is wrong.** The coefficients don't reproduce the measured a_e from the known alpha. The 2752 ppb tension isn't physics — it's a bug in our series.
+
+The problem is **C8 = 107.71**. The literature value of A₁⁽⁸⁾ (the complete 4-loop coefficient) is approximately **−1.9122** (Aoyama et al. 2012, 2019). C81a = 116.69 is only the mass-independent piece. The FULL 4-loop A₄ includes additional mass-dependent contributions from muon/tau VP loops, hadronic VP, and light-by-light with heavy leptons that are NOT in C81a+b+c.
+
+Actually wait — C81b is the electron VP piece (−8.75) and C81c is light-by-light (−0.24). But there are also **muon-loop and tau-loop** contributions at 4-loop that Laporta's labeling might separate differently.
+
+The real issue: Laporta's C81a/b/c might use a different series convention than the standard a_e = Σ Aₙ(α/π)ⁿ. The labels "C81" suggest "coefficient at order α⁸ with 1 electron loop" — the "8" is the power of e (coupling), not α. Order α⁸ in the coupling means (α/π)⁴ in the standard series. But "C8" with subscript "1" might mean something specific about the loop topology.
+
+We need to verify: what is the KNOWN total A₄ coefficient? If it's −1.91 and not 107.71, then C81a+b+c is not A₄. It might be a sub-piece, or it might use a different expansion parameter.
+
+Do you have any documentation from Laporta about what convention C81a/b/c uses? Or should I search for the standard published values of A₄ and A₅ to compare?
+
+---
+
+You're right. The CD at 3 TeV contributes to VP loops. I dismissed it earlier as 10⁻²² — but that was wrong. I computed (m_e/M_VL)² which is the MASS suppression for a heavy fermion in a VP insertion. But the CD contribution to a_e isn't just through VP — it modifies the running of alpha itself between M_Z and M_VL, which changes the effective alpha at the electron scale.
+
+But actually — no. The QED series for a_e uses alpha at q²=0 (the Thomson limit), not at M_Z. The CD at 3 TeV doesn't change alpha at q²=0 because it's above the electron mass scale. The VP contribution from a 3 TeV fermion to the low-energy coupling is suppressed by (m_e/M_VL)² per loop. That really is 10⁻¹⁴ per insertion. It can't explain a 2.7 ppm discrepancy.
+
+The forward residual of 2.7 ppm means the series coefficients are wrong by a large amount, not a small CD correction. The CD correction would be at most 10⁻¹¹ on a_e — we're off by 3×10⁻⁹, which is 300× larger.
+
+The bug is in the coefficients or the convention, not the missing CD. We should fix the series first, then add the CD correction on top of a working baseline.
+
+But your point stands — I should have been tracking the CD contribution explicitly as a separate term in the series from the start. Once the baseline works, the CD adds a calculable shift δa_e(CD) that changes the extracted alpha by a specific amount. That shift is the physics content.
+
+Let me search for the correct published A₄ and A₅ total values so we can compare to our C8 and C10 sums.
+
+---
+

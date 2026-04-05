@@ -1532,80 +1532,100 @@ def coupling_whatif_vl_u_singlet_v0(value_dicts):
 # ================================================================
 
 def qed_coefficients_assemble_v0(value_dicts):
-    """Assemble QED g-2 series coefficients C2 through C10.
-    C2 = 1/2 exact.
-    C4, C6 from analytical results (stored as approximate strings).
-    C8, C10 from Laporta full-precision sums.
+    """Assemble QED g-2 series coefficients A1 through A5.
+    A1 = 1/2 exact.
+    A2, A3 from analytical forms (Q335 constants).
+    A4 = -1.912245764926... (Laporta 2017, 1100 digits).
+    A5 from Laporta C83a+b+c (convention TBD).
     """
     vm = _value_map(value_dicts)
 
     C2 = Fraction(1, 2)
 
-    # C4: Petermann 1957 / Sommerfield 1957 (2-loop, analytical)
-    # Known exactly in terms of pi, ln2, zeta(3), Li4(1/2)
-    # Evaluated to 50 digits — more than sufficient since
-    # C4*(alpha/pi)^2 contributes at 10^-6 level
-    C4_str = "-0.32847896557919378441940972013173099268677837425749"
+    # A2: Petermann/Sommerfield 1957 — exact analytical
+    # A2 = 197/144 + pi^2/12 + 3*zeta(3)/4 - pi^2*ln2/2
+    pi_f = _f2m(_frac(vm, "geom_pi_v0"))
+    ln2_f = _f2m(_frac(vm, "geom_ln2_v0"))
+    z3_f = _f2m(_frac(vm, "geom_zeta3_v0"))
 
-    # C6: Laporta & Remiddi 1996 (3-loop, analytical)
-    C6_str = "1.18124145658720064823019429893916630476428788313123"
+    old_dps = mp.dps
+    mp.dps = 200
+    pi2 = pi_f * pi_f
+    A2_mpf = (mpf("197")/mpf("144") + pi2/12
+              + mpf("3")/4 * z3_f - pi2/2 * ln2_f)
 
-    # C8, C10: from Laporta value nodes (full precision sums)
-    C8_str = str(_get(vm, "qed_c8_total_v0"))
-    C10_str = str(_get(vm, "qed_c10_total_v0"))
+    # A3: Laporta & Remiddi 1996 — exact analytical
+    z5_f = _f2m(_frac(vm, "geom_zeta5_v0"))
+    li4_f = _f2m(_frac(vm, "geom_li4_half_v0"))
+    ln2_2 = ln2_f * ln2_f
+    ln2_4 = ln2_2 * ln2_2
+    pi4 = pi2 * pi2
+
+    A3_mpf = (mpf("83")/72 * pi2 * z3_f
+              - mpf("215")/24 * z5_f
+              + mpf("100")/3 * (li4_f + ln2_4/24 - pi2*ln2_2/24)
+              - mpf("239")/2160 * pi4
+              + mpf("139")/18 * z3_f
+              - mpf("298")/9 * pi2 * ln2_f
+              + mpf("17101")/810 * pi2
+              + mpf("28259")/5184)
+
+    # A4: Laporta 2017, numerical, 30-digit Fraction from PHYS-9
+    A4_str = "-1.912245764926445574152647167440"
+
+    # A5: 5-loop — Volkov 2024 value (pending convention mapping from C83)
+    # For now use Volkov's published value
+    A5_str = "5.891"
+
+    mp.dps = old_dps
 
     return {
         "key": "qed_coefficients_assemble_v0",
         "outputs": {
-            "result_qed_c2_v0": C2,
-            "result_qed_c4_v0": C4_str,
-            "result_qed_c6_v0": C6_str,
-            "result_qed_c8_v0": C8_str,
-            "result_qed_c10_v0": C10_str,
+            "result_qed_a1_v0": C2,
+            "result_qed_a2_v0": _approx(A2_mpf),
+            "result_qed_a3_v0": _approx(A3_mpf),
+            "result_qed_a4_v0": A4_str,
+            "result_qed_a5_v0": A5_str,
         },
-        "notes": "QED a_e series: 5 coefficients assembled",
+        "notes": "A1-A3 exact from Q335. A4 from Laporta (30 digits). A5 from Volkov (3 digits).",
     }
 
 
 def qed_alpha_from_ae_v0(value_dicts):
     """Extract alpha from measured a_e by inverting the QED series.
-
-    a_e = C2*x + C4*x^2 + C6*x^3 + C8*x^4 + C10*x^5
+    a_e = A1*x + A2*x^2 + A3*x^3 + A4*x^4 + A5*x^5
     where x = alpha/pi.
-
-    Newton's method: given a_e, solve for x, then alpha = pi*x.
-    Compare to alpha(Cs recoil) and alpha(Rb recoil).
     """
     vm = _value_map(value_dicts)
 
     old_dps = mp.dps
-    mp.dps = 200  # far beyond needed, ensures no rounding issues
+    mp.dps = 200
 
-    # Measured a_e (Harvard 2023, Fan et al.)
-    # a_e = 0.00115965218059(13)
-    ae_str = "0.00115965218059"
-    ae = mpf(ae_str)
+    ae = _mpf_val(vm, "qed_ae_electron_measured_v0")
 
-    # Coefficients
-    C2 = mpf("0.5")
-    C4 = mpf(str(_get(vm, "result_qed_c4_v0")))
-    C6 = mpf(str(_get(vm, "result_qed_c6_v0")))
-    C8 = mpf(str(_get(vm, "result_qed_c8_v0")))
-    C10 = mpf(str(_get(vm, "result_qed_c10_v0")))
+    A1 = mpf("0.5")
+    A2 = mpf(str(_get(vm, "result_qed_a2_v0")))
+    A3 = mpf(str(_get(vm, "result_qed_a3_v0")))
+    A4 = mpf(str(_get(vm, "result_qed_a4_v0")))
+    A5 = mpf(str(_get(vm, "result_qed_a5_v0")))
 
-    # f(x) = C2*x + C4*x^2 + C6*x^3 + C8*x^4 + C10*x^5 - a_e
-    # f'(x) = C2 + 2*C4*x + 3*C6*x^2 + 4*C8*x^3 + 5*C10*x^4
+    # Forward check: known alpha -> a_e
+    alpha_inv_known = _mpf_val(vm, "coupling_alpha_em_inverse_v0")
+    alpha_known = mpf("1") / alpha_inv_known
+    x_known = alpha_known / mpi
+    ae_forward = A1*x_known + A2*x_known**2 + A3*x_known**3 + A4*x_known**4 + A5*x_known**5
+    forward_residual = ae_forward - ae
+    forward_residual_rel = forward_residual / ae
 
+    # Inverse: Newton's method
     def f(x):
-        return C2*x + C4*x**2 + C6*x**3 + C8*x**4 + C10*x**5 - ae
+        return A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5 - ae
 
     def fp(x):
-        return C2 + 2*C4*x + 3*C6*x**2 + 4*C8*x**3 + 5*C10*x**4
+        return A1 + 2*A2*x + 3*A3*x**2 + 4*A4*x**3 + 5*A5*x**4
 
-    # Initial guess: x ~ a_e / C2 = 2*a_e
     x = mpf("2") * ae
-
-    # Newton iterations
     for i in range(50):
         dx = f(x) / fp(x)
         x = x - dx
@@ -1615,26 +1635,18 @@ def qed_alpha_from_ae_v0(value_dicts):
     alpha_extracted = mpi * x
     alpha_inv_extracted = mpf("1") / alpha_extracted
 
-    # Reference values
-    # alpha_inv(Cs recoil, Berkeley 2018): 137.035999046(27)
-    # alpha_inv(Rb recoil, LKB 2020):     137.035999206(11)
-    # alpha_inv(a_e, this extraction):     computed above
     alpha_inv_cs = mpf("137.035999046")
     alpha_inv_rb = mpf("137.035999206")
+    alpha_inv_codata = mpf("137.035999084")
 
     diff_cs = alpha_inv_extracted - alpha_inv_cs
     diff_rb = alpha_inv_extracted - alpha_inv_rb
+    diff_codata = alpha_inv_extracted - alpha_inv_codata
     diff_cs_ppb = abs(diff_cs) / alpha_inv_cs * mpf("1e9")
     diff_rb_ppb = abs(diff_rb) / alpha_inv_rb * mpf("1e9")
-
-    # Also compare to CODATA 2018 recommended value
-    # alpha_inv(CODATA): 137.035999084(21)
-    alpha_inv_codata = mpf("137.035999084")
-    diff_codata = alpha_inv_extracted - alpha_inv_codata
     diff_codata_ppb = abs(diff_codata) / alpha_inv_codata * mpf("1e9")
 
-    # Verify: plug alpha back into series, recover a_e
-    ae_check = C2*x + C4*x**2 + C6*x**3 + C8*x**4 + C10*x**5
+    ae_check = A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5
     residual = abs(ae_check - ae)
 
     mp.dps = old_dps
@@ -1642,6 +1654,10 @@ def qed_alpha_from_ae_v0(value_dicts):
     return {
         "key": "qed_alpha_from_ae_v0",
         "outputs": {
+            "result_ae_forward_from_known_alpha_v0": _approx(ae_forward),
+            "result_ae_forward_residual_v0": _approx(forward_residual),
+            "result_ae_forward_residual_rel_v0": _approx(forward_residual_rel),
+            "result_alpha_inv_known_v0": _approx(alpha_inv_known),
             "result_alpha_inv_from_ae_v0": _approx(alpha_inv_extracted),
             "result_alpha_from_ae_v0": _approx(alpha_extracted),
             "result_alpha_inv_from_ae_full_v0": mp.nstr(alpha_inv_extracted, 30),
@@ -1651,12 +1667,15 @@ def qed_alpha_from_ae_v0(value_dicts):
             "result_diff_vs_cs_ppb_v0": _approx(diff_cs_ppb),
             "result_diff_vs_rb_ppb_v0": _approx(diff_rb_ppb),
             "result_diff_vs_codata_ppb_v0": _approx(diff_codata_ppb),
-            "result_ae_input_v0": ae_str,
+            "result_ae_input_v0": _approx(ae),
             "result_ae_recovered_v0": _approx(ae_check),
+            "result_a4_used_v0": A4_str,
+            "result_a5_used_v0": str(A5),
         },
-        "notes": "alpha_inv(a_e) = %s. vs Cs: %.2f ppb, vs Rb: %.2f ppb" % (
+        "notes": "alpha_inv(a_e) = %s. Forward residual = %s. vs Rb: %.2f ppb" % (
             mp.nstr(alpha_inv_extracted, 15),
-            float(diff_cs_ppb), float(diff_rb_ppb)),
+            _approx(forward_residual),
+            float(diff_rb_ppb)),
     }
 
 
