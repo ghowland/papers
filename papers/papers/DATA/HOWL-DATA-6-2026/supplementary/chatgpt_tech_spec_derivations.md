@@ -1,1085 +1,797 @@
-Good next step.
-
-I made these choices in this first-pass naming script:
-
-- first token is always a single-word topic
-- every key ends in `_v0`
-- all keys are lowercase
-- I used longer descriptive names where physics ambiguity exists
-- I treated Tables 1–25 as the source set
-- I did not encode Tables 26–27 here, because those are better handled later as:
-  - verification/status metadata
-  - level/taxonomy metadata
-- for Q335 basis constants and geometric constants whose exact values were not fully written in your pasted tables, I kept stable names and stored a `ref` to the legacy platform source
-
-Here is one Python script for the whole first-pass registry.
-
-```python
 #!/usr/bin/env python3
 """
-DATA-5 FIRST-PASS V0 VALUE NAMING REGISTRY
-Filename: data_5_v0_master_value_registry.py
-===========================================
+DATA-5 FIRST-PASS V0 DERIVATION FUNCTION REGISTRY
+Filename: data_5_v0_master_derivation_registry.py
 
-Purpose:
-- Create one stable lowercase topic_varname_v0 key for each physics item
-  in the corrected HOWL master tables.
-- Keep values in plain Python so they can be exported to JSON later.
-- Preserve exact Fractions where supplied.
-- Use strings or legacy refs where the pasted tables gave only approximate
-  decimal values or platform references.
+Contract:
+- Every derivation function has the same signature:
+    fn(value_dicts)
+- value_dicts is a list of value-entry dicts from VALUE_INDEX_V0.values()
+- Each function returns a plain dict with:
+    - key
+    - outputs
+    - notes
 
 Notes:
-- Tables 1-25 are represented here.
-- Tables 26-27 are intentionally excluded from this value registry because
-  they are validation/taxonomy metadata rather than physics value entries.
-- Q335 basis constants are declared with stable names and legacy refs because
-  their full exact numerators were not included in the pasted table excerpt.
+- Exact arithmetic uses Fraction where possible.
+- mpf is used only at the display / irrational / numerical boundary.
+- Input variable bindings are documented in each function docstring.
 """
 
 from fractions import Fraction
 
+from mpmath import mp
 
-VALUE_INDEX_V0 = {}
+
+mp.dps = 100
+
+FUNCTION_INDEX_V0 = {}
 
 
-def add(key, value=None, unit="", source="", notes="", ref=""):
-    """Register one v0 value entry and also bind it into globals()."""
-    if key != key.lower():
-        raise ValueError("Key must be lowercase: %s" % key)
-    if not key.endswith("_v0"):
-        raise ValueError("Key must end with _v0: %s" % key)
-    if key in VALUE_INDEX_V0:
-        raise ValueError("Duplicate key: %s" % key)
+def _value_map(value_dicts):
+    out = {}
+    for entry in value_dicts:
+        key = entry["key"]
+        if key in out:
+            raise ValueError("Duplicate value entry for key: %s" % key)
+        out[key] = entry
+    return out
 
-    topic = key.split("_")[0]
-    term = "_".join(key.split("_")[1:-1])
 
-    globals()[key] = value
-    VALUE_INDEX_V0[key] = {
+def _need(values_by_key, key):
+    if key not in values_by_key:
+        raise KeyError("Missing required value key: %s" % key)
+    return values_by_key[key]["value"]
+
+
+def _frac(x):
+    if isinstance(x, Fraction):
+        return x
+    if isinstance(x, int):
+        return Fraction(x, 1)
+    raise TypeError("Expected Fraction/int, got %r" % (type(x),))
+
+
+def _mpf_from_fraction(x):
+    x = _frac(x)
+    return mp.mpf(x.numerator) / mp.mpf(x.denominator)
+
+
+def _mpf(x):
+    if isinstance(x, Fraction):
+        return _mpf_from_fraction(x)
+    if isinstance(x, int):
+        return mp.mpf(x)
+    if isinstance(x, str):
+        return mp.mpf(x)
+    raise TypeError("Cannot convert to mpf: %r" % (type(x),))
+
+
+def _mp_str(x, digits=20):
+    return mp.nstr(_mpf(x) if not hasattr(x, "_mpf_") else x, digits)
+
+
+def _result(key, outputs, notes=""):
+    return {
         "key": key,
-        "topic": topic,
-        "term": term,
-        "version": 0,
-        "value": value,
-        "unit": unit,
-        "source": source,
+        "outputs": outputs,
         "notes": notes,
-        "ref": ref,
     }
 
 
-# ================================================================
-# TABLE 1: SM BETA COEFFICIENTS
-# ================================================================
+def coupling_extraction_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - coupling_alpha_em_inverse_v0 -> alpha_inv
+    - coupling_sin2_theta_w_v0 -> sin2_tW
+    - coupling_alpha_s_mz_v0 -> alpha_s
+    """
+    v = _value_map(value_dicts)
 
-add(
-    "beta_sm_u1_total_v0",
-    Fraction(41, 10),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_u1_gauge_v0",
-    Fraction(0, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_u1_fermion_three_gen_v0",
-    Fraction(4, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_u1_higgs_v0",
-    Fraction(1, 10),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
+    alpha_inv = _frac(_need(v, "coupling_alpha_em_inverse_v0"))
+    sin2_tW = _frac(_need(v, "coupling_sin2_theta_w_v0"))
+    alpha_s = _frac(_need(v, "coupling_alpha_s_mz_v0"))
 
-add(
-    "beta_sm_su2_total_v0",
-    Fraction(-19, 6),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su2_gauge_v0",
-    Fraction(-22, 3),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su2_fermion_three_gen_v0",
-    Fraction(4, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su2_higgs_v0",
-    Fraction(1, 6),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
+    alpha_em = Fraction(1, 1) / alpha_inv
+    cos2_tW = Fraction(1, 1) - sin2_tW
+    inv_a1 = Fraction(3, 5) * alpha_inv * cos2_tW
+    inv_a2 = alpha_inv * sin2_tW
+    inv_a3 = Fraction(1, 1) / alpha_s
 
-add(
-    "beta_sm_su3_total_v0",
-    Fraction(-7, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su3_gauge_v0",
-    Fraction(-11, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su3_fermion_three_gen_v0",
-    Fraction(4, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
-add(
-    "beta_sm_su3_higgs_v0",
-    Fraction(0, 1),
-    unit="dimensionless",
-    source="corrected master table 1 / phys24_lib.py",
-)
+    return _result(
+        "coupling_extraction_v0",
+        {
+            "coupling_alpha_em_v0": alpha_em,
+            "coupling_cos2_theta_w_v0": cos2_tW,
+            "coupling_alpha_1_inverse_gut_normalized_mz_v0": inv_a1,
+            "coupling_alpha_2_inverse_mz_v0": inv_a2,
+            "coupling_alpha_3_inverse_mz_v0": inv_a3,
+        },
+    )
 
-# ================================================================
-# TABLE 2: CABIBBO DOUBLET SHIFTS
-# ================================================================
 
-add(
-    "beta_cabibbo_doublet_vectorlike_u1_shift_v0",
-    Fraction(1, 15),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-)
-add(
-    "beta_cabibbo_doublet_vectorlike_su2_shift_v0",
-    Fraction(1, 1),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-)
-add(
-    "beta_cabibbo_doublet_vectorlike_su3_shift_v0",
-    Fraction(1, 3),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-)
+def gap_measured_ratio_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - coupling_alpha_1_inverse_gut_normalized_mz_v0 -> inv_a1
+    - coupling_alpha_2_inverse_mz_v0 -> inv_a2
+    - coupling_alpha_3_inverse_mz_v0 -> inv_a3
+    """
+    v = _value_map(value_dicts)
 
-add(
-    "beta_modified_u1_total_v0",
-    Fraction(25, 6),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-    notes="Corrected from erroneous 62/15 in earlier DATA-5 text.",
-)
-add(
-    "beta_modified_su2_total_v0",
-    Fraction(-13, 6),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-)
-add(
-    "beta_modified_su3_total_v0",
-    Fraction(-20, 3),
-    unit="dimensionless",
-    source="corrected master table 2 / phys24_lib.py",
-)
+    inv_a1 = _frac(_need(v, "coupling_alpha_1_inverse_gut_normalized_mz_v0"))
+    inv_a2 = _frac(_need(v, "coupling_alpha_2_inverse_mz_v0"))
+    inv_a3 = _frac(_need(v, "coupling_alpha_3_inverse_mz_v0"))
 
-# ================================================================
-# TABLE 3: GAP RATIOS
-# ================================================================
+    numerator = inv_a1 - inv_a2
+    denominator = inv_a2 - inv_a3
+    gap = numerator / denominator
 
-add(
-    "gap_pure_gauge_numerator_v0",
-    Fraction(22, 3),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_pure_gauge_denominator_v0",
-    Fraction(11, 3),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_pure_gauge_ratio_v0",
-    Fraction(2, 1),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
+    return _result(
+        "gap_measured_ratio_v0",
+        {
+            "gap_measured_numerator_v0": numerator,
+            "gap_measured_denominator_v0": denominator,
+            "gap_measured_ratio_exact_v0": gap,
+            "gap_measured_ratio_numeric_v0": _mp_str(_mpf_from_fraction(gap), 20),
+        },
+    )
 
-add(
-    "gap_sm_numerator_v0",
-    Fraction(109, 15),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_denominator_v0",
-    Fraction(23, 6),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_ratio_v0",
-    Fraction(218, 115),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
 
-add(
-    "gap_sm_cabibbo_doublet_numerator_v0",
-    Fraction(19, 3),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_cabibbo_doublet_denominator_v0",
-    Fraction(9, 2),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_cabibbo_doublet_ratio_v0",
-    Fraction(38, 27),
-    unit="dimensionless",
-    source="corrected master table 3",
-)
+def beta_sm_coefficients_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - group_c2_adj_su2_v0 -> c2_su2
+    - group_c2_adj_su3_v0 -> c2_su3
+    - group_sm_generation_count_v0 -> n_gen
+    - rep_sm_generation_democracy_db1_sum_v0 -> gen_db1
+    - rep_sm_generation_democracy_db2_sum_v0 -> gen_db2
+    - rep_sm_generation_democracy_db3_sum_v0 -> gen_db3
+    - beta_sm_u1_higgs_v0 -> higgs_db1
+    - beta_sm_su2_higgs_v0 -> higgs_db2
+    - beta_sm_su3_higgs_v0 -> higgs_db3
+    """
+    v = _value_map(value_dicts)
 
-add(
-    "gap_mssm_ratio_v0",
-    Fraction(7, 5),
-    unit="dimensionless",
-    source="corrected master table 3",
-    notes="Corrected from erroneous 5/7 in one alignment document.",
-)
+    c2_su2 = _frac(_need(v, "group_c2_adj_su2_v0"))
+    c2_su3 = _frac(_need(v, "group_c2_adj_su3_v0"))
+    n_gen = _frac(_need(v, "group_sm_generation_count_v0"))
 
-add(
-    "gap_measured_ratio_v0",
-    "1.3582",
-    unit="dimensionless",
-    source="corrected master table 3 / derived from couplings",
-)
-add(
-    "gap_sm_distance_from_measured_v0",
-    "0.5375",
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_miss_pct_v0",
-    "39.6",
-    unit="percent",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_cabibbo_doublet_distance_from_measured_v0",
-    "0.0492",
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_sm_cabibbo_doublet_miss_pct_v0",
-    "3.6",
-    unit="percent",
-    source="corrected master table 3",
-)
-add(
-    "gap_mssm_distance_from_measured_v0",
-    "0.0418",
-    unit="dimensionless",
-    source="corrected master table 3",
-)
-add(
-    "gap_mssm_miss_pct_v0",
-    "3.1",
-    unit="percent",
-    source="corrected master table 3",
-)
+    gen_db1 = _frac(_need(v, "rep_sm_generation_democracy_db1_sum_v0"))
+    gen_db2 = _frac(_need(v, "rep_sm_generation_democracy_db2_sum_v0"))
+    gen_db3 = _frac(_need(v, "rep_sm_generation_democracy_db3_sum_v0"))
 
-# ================================================================
-# TABLE 4: BETA DECOMPOSITION
-# ================================================================
+    higgs_db1 = _frac(_need(v, "beta_sm_u1_higgs_v0"))
+    higgs_db2 = _frac(_need(v, "beta_sm_su2_higgs_v0"))
+    higgs_db3 = _frac(_need(v, "beta_sm_su3_higgs_v0"))
 
-add(
-    "beta_gap_source_gauge_numerator_delta_v0",
-    Fraction(22, 3),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_gauge_numerator_pct_v0",
-    "100.9",
-    unit="percent",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_gauge_denominator_delta_v0",
-    Fraction(11, 3),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_gauge_denominator_pct_v0",
-    "95.7",
-    unit="percent",
-    source="corrected master table 4",
-)
+    gauge_b1 = Fraction(0, 1)
+    gauge_b2 = Fraction(-11, 3) * c2_su2
+    gauge_b3 = Fraction(-11, 3) * c2_su3
 
-add(
-    "beta_gap_source_fermion_per_generation_delta_numerator_v0",
-    Fraction(0, 1),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_fermion_per_generation_numerator_pct_v0",
-    "0.0",
-    unit="percent",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_fermion_per_generation_delta_denominator_v0",
-    Fraction(0, 1),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_fermion_per_generation_denominator_pct_v0",
-    "0.0",
-    unit="percent",
-    source="corrected master table 4",
-)
+    fermion_b1 = n_gen * gen_db1
+    fermion_b2 = n_gen * gen_db2
+    fermion_b3 = n_gen * gen_db3
 
-add(
-    "beta_gap_source_higgs_numerator_delta_v0",
-    Fraction(-1, 15),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_higgs_numerator_pct_v0",
-    "-0.9",
-    unit="percent",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_higgs_denominator_delta_v0",
-    Fraction(1, 6),
-    unit="dimensionless",
-    source="corrected master table 4",
-)
-add(
-    "beta_gap_source_higgs_denominator_pct_v0",
-    "4.3",
-    unit="percent",
-    source="corrected master table 4",
-)
+    b1 = gauge_b1 + fermion_b1 + higgs_db1
+    b2 = gauge_b2 + fermion_b2 + higgs_db2
+    b3 = gauge_b3 + fermion_b3 + higgs_db3
 
-# ================================================================
-# TABLE 5: DOUBLE ACTION (CD EFFECT)
-# ================================================================
+    return _result(
+        "beta_sm_coefficients_v0",
+        {
+            "beta_sm_u1_gauge_derived_v0": gauge_b1,
+            "beta_sm_su2_gauge_derived_v0": gauge_b2,
+            "beta_sm_su3_gauge_derived_v0": gauge_b3,
+            "beta_sm_u1_fermion_derived_v0": fermion_b1,
+            "beta_sm_su2_fermion_derived_v0": fermion_b2,
+            "beta_sm_su3_fermion_derived_v0": fermion_b3,
+            "beta_sm_u1_total_derived_v0": b1,
+            "beta_sm_su2_total_derived_v0": b2,
+            "beta_sm_su3_total_derived_v0": b3,
+        },
+    )
 
-add(
-    "beta_cd_effect_numerator_sm_v0",
-    Fraction(109, 15),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_numerator_delta_v0",
-    Fraction(-14, 15),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_numerator_modified_v0",
-    Fraction(19, 3),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_numerator_change_pct_v0",
-    "-12.8",
-    unit="percent",
-    source="corrected master table 5",
-)
 
-add(
-    "beta_cd_effect_denominator_sm_v0",
-    Fraction(23, 6),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_denominator_delta_v0",
-    Fraction(2, 3),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_denominator_modified_v0",
-    Fraction(9, 2),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_denominator_change_pct_v0",
-    "17.4",
-    unit="percent",
-    source="corrected master table 5",
-)
+def gap_sm_ratio_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - beta_sm_u1_total_v0 -> b1
+    - beta_sm_su2_total_v0 -> b2
+    - beta_sm_su3_total_v0 -> b3
+    """
+    v = _value_map(value_dicts)
 
-add(
-    "beta_cd_effect_gap_ratio_sm_v0",
-    Fraction(218, 115),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_gap_ratio_modified_v0",
-    Fraction(38, 27),
-    unit="dimensionless",
-    source="corrected master table 5",
-)
-add(
-    "beta_cd_effect_gap_ratio_change_pct_v0",
-    "-25.8",
-    unit="percent",
-    source="corrected master table 5",
-)
+    b1 = _frac(_need(v, "beta_sm_u1_total_v0"))
+    b2 = _frac(_need(v, "beta_sm_su2_total_v0"))
+    b3 = _frac(_need(v, "beta_sm_su3_total_v0"))
 
-# ================================================================
-# TABLE 6: TWO-LOOP SM b_ij MATRIX
-# ================================================================
+    numerator = b1 - b2
+    denominator = b2 - b3
+    gap = numerator / denominator
 
-sm_bij = {
-    "u1_u1": Fraction(199, 50),
-    "u1_su2": Fraction(27, 10),
-    "u1_su3": Fraction(44, 5),
-    "su2_u1": Fraction(9, 10),
-    "su2_su2": Fraction(35, 6),
-    "su2_su3": Fraction(12, 1),
-    "su3_u1": Fraction(11, 10),
-    "su3_su2": Fraction(9, 2),
-    "su3_su3": Fraction(-26, 1),
+    return _result(
+        "gap_sm_ratio_v0",
+        {
+            "gap_sm_numerator_derived_v0": numerator,
+            "gap_sm_denominator_derived_v0": denominator,
+            "gap_sm_ratio_derived_v0": gap,
+            "gap_sm_ratio_numeric_v0": _mp_str(_mpf_from_fraction(gap), 20),
+        },
+    )
+
+
+def generation_democracy_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - rep_sm_generation_democracy_db1_sum_v0 -> gen_db1
+    - rep_sm_generation_democracy_db2_sum_v0 -> gen_db2
+    - rep_sm_generation_democracy_db3_sum_v0 -> gen_db3
+    """
+    v = _value_map(value_dicts)
+
+    gen_db1 = _frac(_need(v, "rep_sm_generation_democracy_db1_sum_v0"))
+    gen_db2 = _frac(_need(v, "rep_sm_generation_democracy_db2_sum_v0"))
+    gen_db3 = _frac(_need(v, "rep_sm_generation_democracy_db3_sum_v0"))
+
+    gap_num = gen_db1 - gen_db2
+    gap_den = gen_db2 - gen_db3
+
+    return _result(
+        "generation_democracy_v0",
+        {
+            "generation_democracy_gap_numerator_v0": gap_num,
+            "generation_democracy_gap_denominator_v0": gap_den,
+            "generation_democracy_independent_of_n_gen_v0": gap_num == 0
+            and gap_den == 0,
+        },
+    )
+
+
+def gauge_pure_gap_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - group_c2_adj_su2_v0 -> c2_su2
+    - group_c2_adj_su3_v0 -> c2_su3
+    """
+    v = _value_map(value_dicts)
+
+    c2_su2 = _frac(_need(v, "group_c2_adj_su2_v0"))
+    c2_su3 = _frac(_need(v, "group_c2_adj_su3_v0"))
+
+    b1 = Fraction(0, 1)
+    b2 = Fraction(-11, 3) * c2_su2
+    b3 = Fraction(-11, 3) * c2_su3
+
+    numerator = b1 - b2
+    denominator = b2 - b3
+    gap = numerator / denominator
+    casimir_gap = c2_su2 / (c2_su3 - c2_su2)
+
+    return _result(
+        "gauge_pure_gap_v0",
+        {
+            "gap_pure_gauge_numerator_derived_v0": numerator,
+            "gap_pure_gauge_denominator_derived_v0": denominator,
+            "gap_pure_gauge_ratio_derived_v0": gap,
+            "gap_pure_gauge_casimir_form_v0": casimir_gap,
+        },
+    )
+
+
+def beta_cabibbo_doublet_shifts_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - rep_cabibbo_doublet_su3_dim_v0 -> d3
+    - rep_cabibbo_doublet_su2_dim_v0 -> d2
+    - rep_cabibbo_doublet_y_v0 -> y
+    - group_s2_fundamental_v0 -> s2_fund
+    """
+    v = _value_map(value_dicts)
+
+    d3 = _frac(_need(v, "rep_cabibbo_doublet_su3_dim_v0"))
+    d2 = _frac(_need(v, "rep_cabibbo_doublet_su2_dim_v0"))
+    y = _frac(_need(v, "rep_cabibbo_doublet_y_v0"))
+    s2_fund = _frac(_need(v, "group_s2_fundamental_v0"))
+
+    db1 = Fraction(2, 5) * d3 * d2 * y * y
+    db2 = Fraction(2, 3) * d3 * s2_fund
+    db3 = Fraction(1, 3) * d2 * s2_fund
+
+    return _result(
+        "beta_cabibbo_doublet_shifts_v0",
+        {
+            "beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0": db1,
+            "beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0": db2,
+            "beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0": db3,
+        },
+    )
+
+
+def beta_modified_and_cd_gap_ratio_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - beta_sm_u1_total_v0 -> b1
+    - beta_sm_su2_total_v0 -> b2
+    - beta_sm_su3_total_v0 -> b3
+    - beta_cabibbo_doublet_vectorlike_u1_shift_v0 -> db1
+    - beta_cabibbo_doublet_vectorlike_su2_shift_v0 -> db2
+    - beta_cabibbo_doublet_vectorlike_su3_shift_v0 -> db3
+    """
+    v = _value_map(value_dicts)
+
+    b1 = _frac(_need(v, "beta_sm_u1_total_v0"))
+    b2 = _frac(_need(v, "beta_sm_su2_total_v0"))
+    b3 = _frac(_need(v, "beta_sm_su3_total_v0"))
+
+    db1 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_u1_shift_v0"))
+    db2 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_su2_shift_v0"))
+    db3 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_su3_shift_v0"))
+
+    b1_mod = b1 + db1
+    b2_mod = b2 + db2
+    b3_mod = b3 + db3
+
+    numerator = b1_mod - b2_mod
+    denominator = b2_mod - b3_mod
+    gap = numerator / denominator
+
+    return _result(
+        "beta_modified_and_cd_gap_ratio_v0",
+        {
+            "beta_modified_u1_total_derived_v0": b1_mod,
+            "beta_modified_su2_total_derived_v0": b2_mod,
+            "beta_modified_su3_total_derived_v0": b3_mod,
+            "gap_sm_cabibbo_doublet_numerator_derived_v0": numerator,
+            "gap_sm_cabibbo_doublet_denominator_derived_v0": denominator,
+            "gap_sm_cabibbo_doublet_ratio_derived_v0": gap,
+            "gap_sm_cabibbo_doublet_ratio_numeric_v0": _mp_str(
+                _mpf_from_fraction(gap), 20
+            ),
+        },
+    )
+
+
+def beta_double_action_mechanism_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - beta_cabibbo_doublet_vectorlike_u1_shift_v0 -> db1
+    - beta_cabibbo_doublet_vectorlike_su2_shift_v0 -> db2
+    - beta_cabibbo_doublet_vectorlike_su3_shift_v0 -> db3
+    - gap_sm_numerator_v0 -> sm_num
+    - gap_sm_denominator_v0 -> sm_den
+    """
+    v = _value_map(value_dicts)
+
+    db1 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_u1_shift_v0"))
+    db2 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_su2_shift_v0"))
+    db3 = _frac(_need(v, "beta_cabibbo_doublet_vectorlike_su3_shift_v0"))
+    sm_num = _frac(_need(v, "gap_sm_numerator_v0"))
+    sm_den = _frac(_need(v, "gap_sm_denominator_v0"))
+
+    num_delta = db1 - db2
+    den_delta = db2 - db3
+    num_pct = mp.mpf("100") * _mpf_from_fraction(num_delta) / _mpf_from_fraction(
+        sm_num
+    )
+    den_pct = mp.mpf("100") * _mpf_from_fraction(den_delta) / _mpf_from_fraction(
+        sm_den
+    )
+    asymmetry = db2 / db1
+
+    return _result(
+        "beta_double_action_mechanism_v0",
+        {
+            "beta_cd_effect_numerator_delta_derived_v0": num_delta,
+            "beta_cd_effect_denominator_delta_derived_v0": den_delta,
+            "beta_cd_effect_numerator_change_pct_derived_v0": _mp_str(num_pct, 10),
+            "beta_cd_effect_denominator_change_pct_derived_v0": _mp_str(
+                den_pct, 10
+            ),
+            "beta_cd_effect_db2_over_db1_v0": asymmetry,
+        },
+    )
+
+
+def beta_y_dependence_family_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - rep_cabibbo_doublet_y_v0 -> y
+    """
+    v = _value_map(value_dicts)
+
+    y = _frac(_need(v, "rep_cabibbo_doublet_y_v0"))
+
+    db1_coeff = Fraction(12, 5)
+    numerator_const = Fraction(94, 15)
+    denominator_const = Fraction(9, 2)
+
+    numerator_at_y = numerator_const + db1_coeff * y * y
+    gap_at_y = numerator_at_y / denominator_const
+
+    return _result(
+        "beta_y_dependence_family_v0",
+        {
+            "beta_y_dependence_db1_coeff_v0": db1_coeff,
+            "beta_y_dependence_numerator_const_v0": numerator_const,
+            "beta_y_dependence_denominator_const_v0": denominator_const,
+            "beta_y_dependence_formula_text_v0": "(188 + 72*Y^2) / 135",
+            "beta_y_dependence_gap_at_input_y_v0": gap_at_y,
+        },
+    )
+
+
+def crossing_one_loop_scale_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - coupling_alpha_1_inverse_gut_normalized_mz_v0 -> inv_a1
+    - coupling_alpha_2_inverse_mz_v0 -> inv_a2
+    - beta_modified_u1_total_v0 -> b1_mod
+    - beta_modified_su2_total_v0 -> b2_mod
+    - mass_z_boson_v0 -> mz_mev
+    """
+    v = _value_map(value_dicts)
+
+    inv_a1 = _frac(_need(v, "coupling_alpha_1_inverse_gut_normalized_mz_v0"))
+    inv_a2 = _frac(_need(v, "coupling_alpha_2_inverse_mz_v0"))
+    b1_mod = _frac(_need(v, "beta_modified_u1_total_v0"))
+    b2_mod = _frac(_need(v, "beta_modified_su2_total_v0"))
+    mz_mev = _frac(_need(v, "mass_z_boson_v0"))
+
+    l_exact = (inv_a1 - inv_a2) / (b1_mod - b2_mod)
+
+    mz_gev = _mpf_from_fraction(mz_mev) / mp.mpf("1000")
+    m_gut_gev = mz_gev * mp.exp(mp.mpf("2") * mp.pi * _mpf_from_fraction(l_exact))
+    log10_m_gut_gev = mp.log10(m_gut_gev)
+
+    return _result(
+        "crossing_one_loop_scale_v0",
+        {
+            "result_l_gut_one_loop_cabibbo_doublet_derived_v0": l_exact,
+            "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0": _mp_str(
+                log10_m_gut_gev, 12
+            ),
+        },
+    )
+
+
+def coupling_one_loop_alpha_s_prediction_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - coupling_alpha_1_inverse_gut_normalized_mz_v0 -> inv_a1
+    - beta_modified_u1_total_v0 -> b1_mod
+    - beta_modified_su2_total_v0 -> b2_mod
+    - beta_modified_su3_total_v0 -> b3_mod
+    - coupling_alpha_s_mz_v0 -> alpha_s_measured
+    """
+    v = _value_map(value_dicts)
+
+    inv_a1 = _frac(_need(v, "coupling_alpha_1_inverse_gut_normalized_mz_v0"))
+    b1_mod = _frac(_need(v, "beta_modified_u1_total_v0"))
+    b2_mod = _frac(_need(v, "beta_modified_su2_total_v0"))
+    b3_mod = _frac(_need(v, "beta_modified_su3_total_v0"))
+    alpha_s_measured = _frac(_need(v, "coupling_alpha_s_mz_v0"))
+
+    l_exact = (
+        _frac(_need(v, "coupling_alpha_1_inverse_gut_normalized_mz_v0"))
+        - _frac(_need(v, "coupling_alpha_2_inverse_mz_v0"))
+    ) / (b1_mod - b2_mod)
+
+    inv_a_gut = inv_a1 - b1_mod * l_exact
+    inv_a3_mz = inv_a_gut + b3_mod * l_exact
+    alpha_s_pred = Fraction(1, 1) / inv_a3_mz
+
+    miss_pct = (
+        mp.mpf("100")
+        * abs(_mpf_from_fraction(alpha_s_pred) - _mpf_from_fraction(alpha_s_measured))
+        / _mpf_from_fraction(alpha_s_measured)
+    )
+
+    return _result(
+        "coupling_one_loop_alpha_s_prediction_v0",
+        {
+            "result_alpha_s_one_loop_cabibbo_doublet_exact_v0": alpha_s_pred,
+            "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0": _mp_str(
+                _mpf_from_fraction(alpha_s_pred), 12
+            ),
+            "result_alpha_s_one_loop_cabibbo_doublet_miss_pct_v0": _mp_str(
+                miss_pct, 8
+            ),
+        },
+    )
+
+
+def _matrix_from_values(v, prefix):
+    return [
+        [
+            _frac(_need(v, "%s_u1_u1_v0" % prefix)),
+            _frac(_need(v, "%s_u1_su2_v0" % prefix)),
+            _frac(_need(v, "%s_u1_su3_v0" % prefix)),
+        ],
+        [
+            _frac(_need(v, "%s_su2_u1_v0" % prefix)),
+            _frac(_need(v, "%s_su2_su2_v0" % prefix)),
+            _frac(_need(v, "%s_su2_su3_v0" % prefix)),
+        ],
+        [
+            _frac(_need(v, "%s_su3_u1_v0" % prefix)),
+            _frac(_need(v, "%s_su3_su2_v0" % prefix)),
+            _frac(_need(v, "%s_su3_su3_v0" % prefix)),
+        ],
+    ]
+
+
+def _run_inv_alpha_euler(inv_start, b_vec, bij_mat, l_target, steps):
+    step = l_target / mp.mpf(steps)
+    invs = [mp.mpf(x) for x in inv_start]
+
+    for _ in range(steps):
+        alphas = [mp.mpf("1") / x for x in invs]
+        derivs = []
+        for i in range(3):
+            two_loop_sum = mp.mpf("0")
+            for j in range(3):
+                two_loop_sum += bij_mat[i][j] * alphas[j] / (mp.mpf("2") * mp.pi)
+            derivs.append(-b_vec[i] - two_loop_sum)
+        for i in range(3):
+            invs[i] += derivs[i] * step
+
+    return invs
+
+
+def _predict_alpha_s_two_loop(inv0, b_vec, bij_mat):
+    def residual(l_guess):
+        invs = _run_inv_alpha_euler(inv0, b_vec, bij_mat, l_guess, 4000)
+        return invs[0] - invs[1]
+
+    low = mp.mpf("0")
+    high = mp.mpf("10")
+    r_low = residual(low)
+    r_high = residual(high)
+
+    while r_low * r_high > 0:
+        high *= mp.mpf("2")
+        if high > mp.mpf("100"):
+            raise ValueError("Could not bracket two-loop crossing.")
+        r_high = residual(high)
+
+    for _ in range(60):
+        mid = (low + high) / mp.mpf("2")
+        r_mid = residual(mid)
+        if r_low * r_mid <= 0:
+            high = mid
+            r_high = r_mid
+        else:
+            low = mid
+            r_low = r_mid
+
+    l_gut = (low + high) / mp.mpf("2")
+    invs_at_cross = _run_inv_alpha_euler(inv0, b_vec, bij_mat, l_gut, 4000)
+    inv_gut = (invs_at_cross[0] + invs_at_cross[1]) / mp.mpf("2")
+    invs_back = _run_inv_alpha_euler(
+        [inv_gut, inv_gut, inv_gut], b_vec, bij_mat, -l_gut, 4000
+    )
+    alpha_s_pred = mp.mpf("1") / invs_back[2]
+
+    return l_gut, inv_gut, alpha_s_pred
+
+
+def coupling_two_loop_alpha_s_euler_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - coupling_alpha_1_inverse_gut_normalized_mz_v0 -> inv_a1
+    - coupling_alpha_2_inverse_mz_v0 -> inv_a2
+    - coupling_alpha_3_inverse_mz_v0 -> inv_a3
+    - beta_modified_u1_total_v0 -> b1_mod
+    - beta_modified_su2_total_v0 -> b2_mod
+    - beta_modified_su3_total_v0 -> b3_mod
+    - beta_two_loop_sm_bij_*_v0 -> sm bij matrix
+    - beta_two_loop_cabibbo_doublet_dbij_*_v0 -> vl dbij matrix
+    - coupling_alpha_s_mz_v0 -> alpha_s_measured
+    """
+    v = _value_map(value_dicts)
+
+    inv0 = [
+        _mpf_from_fraction(
+            _frac(_need(v, "coupling_alpha_1_inverse_gut_normalized_mz_v0"))
+        ),
+        _mpf_from_fraction(_frac(_need(v, "coupling_alpha_2_inverse_mz_v0"))),
+        _mpf_from_fraction(_frac(_need(v, "coupling_alpha_3_inverse_mz_v0"))),
+    ]
+    b_vec = [
+        _mpf_from_fraction(_frac(_need(v, "beta_modified_u1_total_v0"))),
+        _mpf_from_fraction(_frac(_need(v, "beta_modified_su2_total_v0"))),
+        _mpf_from_fraction(_frac(_need(v, "beta_modified_su3_total_v0"))),
+    ]
+    sm_bij_frac = _matrix_from_values(v, "beta_two_loop_sm_bij")
+    vl_dbij_frac = _matrix_from_values(v, "beta_two_loop_cabibbo_doublet_dbij")
+    sm_bij = [[_mpf_from_fraction(x) for x in row] for row in sm_bij_frac]
+    full_bij = [
+        [
+            _mpf_from_fraction(sm_bij_frac[i][j] + vl_dbij_frac[i][j])
+            for j in range(3)
+        ]
+        for i in range(3)
+    ]
+
+    _, _, alpha_s_sm = _predict_alpha_s_two_loop(inv0, b_vec, sm_bij)
+    l_full, inv_gut_full, alpha_s_full = _predict_alpha_s_two_loop(
+        inv0, b_vec, full_bij
+    )
+
+    alpha_s_measured = _mpf_from_fraction(_frac(_need(v, "coupling_alpha_s_mz_v0")))
+    miss_sm = mp.mpf("100") * abs(alpha_s_sm - alpha_s_measured) / alpha_s_measured
+    miss_full = (
+        mp.mpf("100") * abs(alpha_s_full - alpha_s_measured) / alpha_s_measured
+    )
+
+    return _result(
+        "coupling_two_loop_alpha_s_euler_v0",
+        {
+            "result_alpha_s_two_loop_sm_bij_derived_v0": _mp_str(alpha_s_sm, 12),
+            "result_alpha_s_two_loop_sm_bij_miss_pct_v0": _mp_str(miss_sm, 8),
+            "result_alpha_s_two_loop_full_bij_derived_v0": _mp_str(
+                alpha_s_full, 12
+            ),
+            "result_alpha_s_two_loop_full_bij_miss_pct_v0": _mp_str(
+                miss_full, 8
+            ),
+            "result_two_loop_l_gut_full_bij_v0": _mp_str(l_full, 12),
+            "result_two_loop_alpha_gut_inverse_full_bij_v0": _mp_str(
+                inv_gut_full, 12
+            ),
+        },
+        notes="Uses Euler integration and 60-step binary search.",
+    )
+
+
+def koide_ratio_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - mass_electron_v0 -> m_e
+    - mass_muon_v0 -> m_mu
+    - mass_tau_v0 -> m_tau
+    """
+    v = _value_map(value_dicts)
+
+    m_e = _mpf_from_fraction(_frac(_need(v, "mass_electron_v0")))
+    m_mu = _mpf_from_fraction(_frac(_need(v, "mass_muon_v0")))
+    m_tau = _mpf_from_fraction(_frac(_need(v, "mass_tau_v0")))
+
+    s = mp.sqrt(m_e) + mp.sqrt(m_mu) + mp.sqrt(m_tau)
+    k = (m_e + m_mu + m_tau) / (s * s)
+    a2 = mp.mpf("2") * (mp.mpf("3") * k - mp.mpf("1"))
+
+    return _result(
+        "koide_ratio_v0",
+        {
+            "koide_charged_leptons_k_derived_v0": _mp_str(k, 12),
+            "koide_charged_leptons_a2_derived_v0": _mp_str(a2, 12),
+            "koide_charged_leptons_a2_minus_two_derived_v0": _mp_str(
+                a2 - mp.mpf("2"), 12
+            ),
+        },
+    )
+
+
+def koide_tau_prediction_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - mass_electron_v0 -> m_e
+    - mass_muon_v0 -> m_mu
+    """
+    v = _value_map(value_dicts)
+
+    m_e = _mpf_from_fraction(_frac(_need(v, "mass_electron_v0")))
+    m_mu = _mpf_from_fraction(_frac(_need(v, "mass_muon_v0")))
+
+    s = mp.sqrt(m_e) + mp.sqrt(m_mu)
+    m_sum = m_e + m_mu
+    x = mp.mpf("2") * s + mp.sqrt(mp.mpf("6") * s * s - mp.mpf("3") * m_sum)
+    m_tau_pred = x * x
+
+    return _result(
+        "koide_tau_prediction_v0",
+        {
+            "result_tau_mass_koide_two_thirds_derived_v0": _mp_str(
+                m_tau_pred, 12
+            ),
+        },
+    )
+
+
+def cosmo_dm_baryon_ratio_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - integer_two_times_yang_mills_v0 -> two_ym
+    - integer_b2_modified_numerator_abs_v0 -> b2_abs_num
+    """
+    v = _value_map(value_dicts)
+
+    two_ym = _frac(_need(v, "integer_two_times_yang_mills_v0"))
+    b2_abs_num = _frac(_need(v, "integer_b2_modified_numerator_abs_v0"))
+
+    prefactor = two_ym / b2_abs_num
+    numeric = _mpf_from_fraction(prefactor) * mp.pi
+
+    return _result(
+        "cosmo_dm_baryon_ratio_v0",
+        {
+            "cosmo_dm_to_baryon_ratio_prefactor_derived_v0": prefactor,
+            "cosmo_dm_to_baryon_ratio_predicted_derived_v0": _mp_str(numeric, 12),
+        },
+        notes="Uses pi numerically via mpmath; exact prefactor is rational.",
+    )
+
+
+def cosmo_omega_dm_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - integer_four_times_yang_mills_v0 -> four_ym
+    - integer_b2_modified_numerator_square_v0 -> b2_sq
+    """
+    v = _value_map(value_dicts)
+
+    four_ym = _frac(_need(v, "integer_four_times_yang_mills_v0"))
+    b2_sq = _frac(_need(v, "integer_b2_modified_numerator_square_v0"))
+
+    prefactor = four_ym / b2_sq
+    r2_numeric = mp.pi / mp.mpf("4")
+    omega = _mpf_from_fraction(prefactor) * r2_numeric
+
+    return _result(
+        "cosmo_omega_dm_v0",
+        {
+            "cosmo_omega_dm_r2_prefactor_derived_v0": prefactor,
+            "cosmo_omega_dm_predicted_derived_v0": _mp_str(omega, 12),
+        },
+        notes="Uses R2 = pi/4 numerically until geom_r2_v0 is ref-resolved.",
+    )
+
+
+def cosmo_amplification_factor_decomposition_v0(value_dicts):
+    """
+    Input bindings from VALUE_INDEX_V0:
+    - integer_four_times_yang_mills_v0 -> four_ym
+    - integer_b2_modified_numerator_abs_v0 -> b2_abs_num
+    """
+    v = _value_map(value_dicts)
+
+    four_ym = _frac(_need(v, "integer_four_times_yang_mills_v0"))
+    b2_abs_num = _frac(_need(v, "integer_b2_modified_numerator_abs_v0"))
+
+    reduced_factor = four_ym / b2_abs_num
+
+    return _result(
+        "cosmo_amplification_factor_decomposition_v0",
+        {
+            "cosmo_amplification_reduced_factor_v0": reduced_factor,
+            "cosmo_amplification_formula_text_v0": "(44/13) * pi * (c/v)^2",
+        },
+    )
+
+
+FUNCTION_INDEX_V0 = {
+    "coupling_extraction_v0": coupling_extraction_v0,
+    "gap_measured_ratio_v0": gap_measured_ratio_v0,
+    "beta_sm_coefficients_v0": beta_sm_coefficients_v0,
+    "gap_sm_ratio_v0": gap_sm_ratio_v0,
+    "generation_democracy_v0": generation_democracy_v0,
+    "gauge_pure_gap_v0": gauge_pure_gap_v0,
+    "beta_cabibbo_doublet_shifts_v0": beta_cabibbo_doublet_shifts_v0,
+    "beta_modified_and_cd_gap_ratio_v0": beta_modified_and_cd_gap_ratio_v0,
+    "beta_double_action_mechanism_v0": beta_double_action_mechanism_v0,
+    "beta_y_dependence_family_v0": beta_y_dependence_family_v0,
+    "crossing_one_loop_scale_v0": crossing_one_loop_scale_v0,
+    "coupling_one_loop_alpha_s_prediction_v0": (
+        coupling_one_loop_alpha_s_prediction_v0
+    ),
+    "coupling_two_loop_alpha_s_euler_v0": coupling_two_loop_alpha_s_euler_v0,
+    "koide_ratio_v0": koide_ratio_v0,
+    "koide_tau_prediction_v0": koide_tau_prediction_v0,
+    "cosmo_dm_baryon_ratio_v0": cosmo_dm_baryon_ratio_v0,
+    "cosmo_omega_dm_v0": cosmo_omega_dm_v0,
+    "cosmo_amplification_factor_decomposition_v0": (
+        cosmo_amplification_factor_decomposition_v0
+    ),
 }
-for name, value in sm_bij.items():
-    add(
-        "beta_two_loop_sm_bij_%s_v0" % name,
-        value,
-        unit="dimensionless",
-        source="corrected master table 6 / phys24_lib.py",
-    )
-
-# ================================================================
-# TABLE 7: TWO-LOOP VL db_ij MATRIX
-# ================================================================
-
-vl_dbij = {
-    "u1_u1": Fraction(7, 15),
-    "u1_su2": Fraction(1, 15),
-    "u1_su3": Fraction(16, 135),
-    "su2_u1": Fraction(1, 30),
-    "su2_su2": Fraction(15, 4),
-    "su2_su3": Fraction(8, 3),
-    "su3_u1": Fraction(1, 45),
-    "su3_su2": Fraction(1, 1),
-    "su3_su3": Fraction(40, 9),
-}
-for name, value in vl_dbij.items():
-    add(
-        "beta_two_loop_cabibbo_doublet_dbij_%s_v0" % name,
-        value,
-        unit="dimensionless",
-        source="corrected master table 7 / phys24_lib.py",
-        notes="su2_su2 = 15/4 is the corrected value, not 39/4.",
-    )
-
-# ================================================================
-# TABLE 8: REPRESENTATIONS
-# ================================================================
-
-rep_rows = {
-    "left_quark_doublet": {
-        "su3_dim": 3,
-        "su2_dim": 2,
-        "y": Fraction(1, 6),
-        "type": "chiral",
-        "db1": Fraction(1, 30),
-        "db2": Fraction(1, 1),
-        "db3": Fraction(1, 3),
-    },
-    "right_up_singlet": {
-        "su3_dim": 3,
-        "su2_dim": 1,
-        "y": Fraction(2, 3),
-        "type": "chiral",
-        "db1": Fraction(8, 15),
-        "db2": Fraction(0, 1),
-        "db3": Fraction(1, 3),
-    },
-    "right_down_singlet": {
-        "su3_dim": 3,
-        "su2_dim": 1,
-        "y": Fraction(-1, 3),
-        "type": "chiral",
-        "db1": Fraction(2, 15),
-        "db2": Fraction(0, 1),
-        "db3": Fraction(1, 3),
-    },
-    "left_lepton_doublet": {
-        "su3_dim": 1,
-        "su2_dim": 2,
-        "y": Fraction(-1, 2),
-        "type": "chiral",
-        "db1": Fraction(1, 6),
-        "db2": Fraction(1, 3),
-        "db3": Fraction(0, 1),
-    },
-    "right_electron_singlet": {
-        "su3_dim": 1,
-        "su2_dim": 1,
-        "y": Fraction(-1, 1),
-        "type": "chiral",
-        "db1": Fraction(2, 5),
-        "db2": Fraction(0, 1),
-        "db3": Fraction(0, 1),
-    },
-    "cabibbo_doublet": {
-        "su3_dim": 3,
-        "su2_dim": 2,
-        "y": Fraction(1, 6),
-        "type": "vector_like",
-        "db1": Fraction(1, 15),
-        "db2": Fraction(1, 1),
-        "db3": Fraction(1, 3),
-    },
-}
-for rep_name, row in rep_rows.items():
-    add(
-        "rep_%s_su3_dim_v0" % rep_name,
-        row["su3_dim"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_su2_dim_v0" % rep_name,
-        row["su2_dim"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_y_v0" % rep_name,
-        row["y"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_type_v0" % rep_name,
-        row["type"],
-        unit="classification",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_db1_v0" % rep_name,
-        row["db1"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_db2_v0" % rep_name,
-        row["db2"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-    add(
-        "rep_%s_db3_v0" % rep_name,
-        row["db3"],
-        unit="dimensionless",
-        source="corrected master table 8",
-    )
-
-add(
-    "rep_sm_generation_democracy_db1_sum_v0",
-    Fraction(4, 3),
-    unit="dimensionless",
-    source="corrected master table 8 note",
-)
-add(
-    "rep_sm_generation_democracy_db2_sum_v0",
-    Fraction(4, 3),
-    unit="dimensionless",
-    source="corrected master table 8 note",
-)
-add(
-    "rep_sm_generation_democracy_db3_sum_v0",
-    Fraction(4, 3),
-    unit="dimensionless",
-    source="corrected master table 8 note",
-)
-
-# ================================================================
-# TABLE 9: GROUP THEORY CONSTANTS
-# ================================================================
-
-add(
-    "group_c2_adj_su3_v0",
-    3,
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_c2_adj_su2_v0",
-    2,
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_c2_fundamental_su3_v0",
-    Fraction(4, 3),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_c2_fundamental_su2_v0",
-    Fraction(3, 4),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_s2_fundamental_v0",
-    Fraction(1, 2),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_k1_gut_normalization_v0",
-    Fraction(3, 5),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_gauge_coeff_yang_mills_v0",
-    Fraction(-11, 3),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_sm_generation_count_v0",
-    3,
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-add(
-    "group_pure_gauge_gap_v0",
-    Fraction(2, 1),
-    unit="dimensionless",
-    source="corrected master table 9",
-)
-
-# ================================================================
-# TABLE 10: MEASURED COUPLINGS AT M_Z
-# ================================================================
-
-add(
-    "coupling_alpha_em_inverse_v0",
-    Fraction(137035999177, 10**9),
-    unit="dimensionless",
-    source="corrected master table 10 / CODATA 2022",
-)
-add(
-    "coupling_sin2_theta_w_v0",
-    Fraction(23122, 100000),
-    unit="dimensionless",
-    source="corrected master table 10 / LEP-SLD",
-)
-add(
-    "coupling_alpha_s_mz_v0",
-    Fraction(59, 500),
-    unit="dimensionless",
-    source="corrected master table 10 / PDG",
-)
-add(
-    "coupling_alpha_1_inverse_gut_normalized_mz_v0",
-    Fraction(15802580317094109, 250000000000000),
-    unit="dimensionless",
-    source="corrected master table 10 / derived",
-)
-add(
-    "coupling_alpha_2_inverse_mz_v0",
-    Fraction(1584273186485297, 50000000000000),
-    unit="dimensionless",
-    source="corrected master table 10 / derived",
-)
-add(
-    "coupling_alpha_3_inverse_mz_v0",
-    Fraction(500, 59),
-    unit="dimensionless",
-    source="corrected master table 10 / derived",
-)
-add(
-    "coupling_measured_gap_ratio_v0",
-    "1.3582",
-    unit="dimensionless",
-    source="corrected master table 10 / derived",
-)
-
-# ================================================================
-# TABLE 11: MASSES
-# ================================================================
-
-mass_rows = {
-    "electron": Fraction(51099895069, 10**11),
-    "muon": Fraction(1056583755, 10**7),
-    "tau": Fraction(177686, 100),
-    "up_quark": Fraction(216, 100),
-    "down_quark": Fraction(470, 100),
-    "strange_quark": Fraction(935, 10),
-    "charm_quark": Fraction(1273, 1),
-    "bottom_quark": Fraction(4183, 1),
-    "top_quark": Fraction(172570, 1),
-    "z_boson": Fraction(911876, 10),
-    "w_boson": Fraction(803692, 10),
-    "higgs_boson": Fraction(125200, 1),
-    "proton": Fraction(93827208943, 10**8),
-    "neutron": Fraction(93956542194, 10**8),
-}
-for name, value in mass_rows.items():
-    notes = ""
-    if name == "w_boson":
-        notes = "Corrected master value: 80369.2 MeV, not 80379 MeV."
-    add(
-        "mass_%s_v0" % name,
-        value,
-        unit="MeV",
-        source="corrected master table 11 / phys24_lib.py",
-        notes=notes,
-    )
-
-# ================================================================
-# TABLE 12: GEOMETRIC CONSTANTS
-# ================================================================
-
-add(
-    "geom_r2_v0",
-    None,
-    unit="dimensionless",
-    source="corrected master table 12 / phys24_lib.py",
-    ref="phys24_lib.R2",
-    notes="Exact platform value; identity R2 = pi/4.",
-)
-add(
-    "geom_r4_v0",
-    None,
-    unit="dimensionless",
-    source="corrected master table 12 / phys24_lib.py",
-    ref="phys24_lib.R4",
-    notes="Exact platform value; identity R4 = pi^2/32.",
-)
-add(
-    "geom_pi_v0",
-    None,
-    unit="dimensionless",
-    source="corrected master table 12 / phys24_lib.py",
-    ref="phys24_lib.pi_f",
-)
-add(
-    "geom_two_pi_v0",
-    None,
-    unit="dimensionless",
-    source="corrected master table 12",
-    notes="Identity 8*R2 = 2*pi.",
-    ref="8*phys24_lib.R2",
-)
-add(
-    "geom_four_pi_squared_v0",
-    None,
-    unit="dimensionless",
-    source="corrected master table 12",
-    notes="Identity 64*R2^2 = 4*pi^2.",
-    ref="64*(phys24_lib.R2**2)",
-)
-
-# ================================================================
-# TABLE 13: DERIVATION RESULTS
-# ================================================================
-
-add(
-    "result_alpha_s_one_loop_cabibbo_doublet_v0",
-    "0.10769",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Measured 0.1180; miss 8.74%.",
-)
-add(
-    "result_alpha_s_two_loop_sm_bij_v0",
-    "0.11753",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Measured 0.1180; miss 0.397%.",
-)
-add(
-    "result_alpha_s_two_loop_full_bij_v0",
-    "0.11838",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Measured 0.1180; miss 0.325%.",
-)
-add(
-    "result_sin2_theta_w_one_loop_cabibbo_doublet_v0",
-    "0.22845",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Measured 0.23122; miss 1.199%.",
-)
-add(
-    "result_tau_mass_koide_two_thirds_v0",
-    "1776.969",
-    unit="MeV",
-    source="corrected master table 13",
-    notes="Measured 1776.86 MeV; miss 0.00614%.",
-)
-add(
-    "result_m_gut_one_loop_cabibbo_doublet_log10_gev_v0",
-    "15.54",
-    unit="log10(GeV)",
-    source="corrected master table 13",
-)
-add(
-    "result_l_gut_one_loop_cabibbo_doublet_v0",
-    "4.978",
-    unit="dimensionless",
-    source="corrected master table 13",
-)
-add(
-    "result_dm_to_baryon_ratio_beta_integer_v0",
-    "5.3165",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Measured 5.3204; miss 0.0725%.",
-)
-add(
-    "result_omega_dm_beta_integer_v0",
-    "0.2045",
-    unit="dimensionless",
-    source="corrected master table 13",
-    notes="Compared to Planck 2018 value 0.2607.",
-)
-add(
-    "result_gps_correction_general_relativity_v0",
-    "38.5",
-    unit="microseconds/day",
-    source="corrected master table 13",
-    notes="Compared to about 38.6 microseconds/day.",
-)
-add(
-    "result_mond_a0_c_h0_over_eight_r2_v0",
-    "1.1e-10",
-    unit="m/s^2",
-    source="corrected master table 13",
-    notes="Compared to about 1.2e-10 m/s^2; miss about 8%.",
-)
-
-# ================================================================
-# TABLE 14: KOIDE DATA
-# ================================================================
-
-add(
-    "koide_charged_leptons_k_v0",
-    Fraction(6666605115, 10**10),
-    unit="dimensionless",
-    source="corrected master table 14 / phys24_lib.py",
-)
-add(
-    "koide_charged_leptons_a2_v0",
-    Fraction(19999630688, 10**10),
-    unit="dimensionless",
-    source="corrected master table 14 / phys24_lib.py",
-    notes="Near but not exactly 2.",
-)
-add(
-    "koide_charged_leptons_a2_minus_two_v0",
-    "-3.7e-5",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_charged_leptons_status_v0",
-    "near_k_two_thirds",
-    unit="classification",
-    source="corrected master table 14",
-)
-
-add(
-    "koide_down_quarks_k_v0",
-    "0.73129",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_down_quarks_a2_v0",
-    "2.388",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_down_quarks_a2_minus_two_v0",
-    "0.388",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_down_quarks_status_v0",
-    "far_from_k_two_thirds",
-    unit="classification",
-    source="corrected master table 14",
-)
-
-add(
-    "koide_up_quarks_k_v0",
-    "0.84879",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_up_quarks_a2_v0",
-    "3.093",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_up_quarks_a2_minus_two_v0",
-    "1.093",
-    unit="dimensionless",
-    source="corrected master table 14",
-)
-add(
-    "koide_up_quarks_status_v0",
-    "far_from_k_two_thirds",
-    unit="classification",
-    source="corrected master table 14",
-)
-
-# ================================================================
-# TABLE 15: COSMOLOGICAL PARAMETERS FROM BETA INTEGERS
-# ================================================================
-
-add(
-    "cosmo_dm_to_baryon_ratio_prefactor_v0",
-    Fraction(22, 13),
-    unit="dimensionless",
-    source="corrected master table 15",
-    notes="Formula prefactor in (22/13)*pi.",
-)
-add(
-    "cosmo_dm_to_baryon_ratio_predicted_v0",
-    "5.3165",
-    unit="dimensionless",
-    source="corrected master table 15",
-)
-add(
-    "cosmo_dm_to_baryon_ratio_planck2018_v0",
-    "5.3204",
-    unit="dimensionless",
-    source="corrected master table 15",
-)
-add(
-    "cosmo_dm_to_baryon_ratio_miss_pct_v0",
-    "0.0725",
-    unit="percent",
-    source="corrected master table 15",
-    notes="Corrected from 0.073% rounded statement in one chunk.",
-)
-
-add(
-    "cosmo_omega_dm_r2_prefactor_v0",
-    Fraction(44, 169),
-    unit="dimensionless",
-    source="corrected master table 15",
-    notes="Pure rational prefactor in (44/169)*R2.",
-)
-add(
-    "cosmo_omega_dm_predicted_v0",
-    "0.2045",
-    unit="dimensionless",
-    source="corrected master table 15",
-)
-add(
-    "cosmo_omega_dm_planck2018_v0",
-    "0.2607",
-    unit="dimensionless",
-    source="corrected master table 15",
-)
-
-# ================================================================
-# TABLE 16: INTEGER POOL
-# ================================================================
-
-add(
-    "integer_yang_mills_eleven_v0",
-    11,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_b2_modified_numerator_abs_v0",
-    13,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_b2_sm_numerator_abs_v0",
-    19,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_b3_modified_times_three_abs_v0",
-    20,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_two_times_yang_mills_v0",
-    22,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_four_times_yang_mills_v0",
-    44,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_b2_modified_numerator_square_v0",
-    169,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_cabibbo_doublet_gap_numerator_v0",
-    38,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_cabibbo_doublet_gap_denominator_v0",
-    27,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-add(
-    "integer_sm_gap_numerator_v0",
-    218,
-    unit="dimensionless",
-    source="corrected master table 16",
-)
-

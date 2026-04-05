@@ -75,6 +75,39 @@ def write_json(filename, data):
 # ENVELOPE BUILDER
 # ================================================================
 
+
+def _normalize_decimal(s):
+    """Convert sci-notation string to plain decimal.
+    '2.1969811e-6' -> '0.0000021969811'
+    '6.674e-11' -> '0.00000000006674'
+    '1.989e30' -> '1989000000000000000000000000000'
+    '197.3269804' -> '197.3269804' (unchanged)
+    Preserves all significant digits. No rounding.
+    """
+    s = s.strip()
+    if "e" not in s.lower():
+        return s
+    coeff, exp = s.lower().split("e")
+    exp = int(exp)
+    sign = ""
+    if coeff.startswith("-"):
+        sign = "-"
+        coeff = coeff[1:]
+    if "." in coeff:
+        integer_part, frac_part = coeff.split(".")
+    else:
+        integer_part = coeff
+        frac_part = ""
+    all_digits = integer_part + frac_part
+    dot_pos = len(integer_part) + exp
+    if dot_pos <= 0:
+        return sign + "0." + "0" * (-dot_pos) + all_digits
+    elif dot_pos >= len(all_digits):
+        return sign + all_digits + "0" * (dot_pos - len(all_digits))
+    else:
+        return sign + all_digits[:dot_pos] + "." + all_digits[dot_pos:]
+
+
 def make_value(key, value, unit, level, source,
                digits=None, section=None, notes=None,
                tags=None, legacy_refs=None, uncertainty=None,
@@ -94,10 +127,15 @@ def make_value(key, value, unit, level, source,
             vtype = "classification"
         else:
             vtype = "approximate"
+            value = _normalize_decimal(value)
     elif isinstance(value, mpf):
         vtype = "approximate"
     else:
         vtype = "approximate"
+
+    # Normalize uncertainty string if present
+    if uncertainty is not None and isinstance(uncertainty, str):
+        uncertainty = _normalize_decimal(uncertainty)
 
     # Extract topic and term from key
     parts = key.split("_")
@@ -138,7 +176,6 @@ def make_value(key, value, unit, level, source,
         node["pitfalls"] = pitfalls
 
     return node
-
 
 # ================================================================
 # IMPORT PLATFORM LIBRARIES
@@ -732,6 +769,220 @@ gut_nodes = [
 
 write_json("values_gut_beta_v0.json", {"nodes": gut_nodes})
 
+
+# ================================================================
+# EXPORT 8b: INTEGER POOL (Table 16)
+# ================================================================
+
+integer_nodes = [
+    make_value("integer_yang_mills_eleven_v0", 11, "dimensionless", 1,
+               "Table 16 / phys24_lib.py", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_yang_mills_eleven_v0"}),
+    make_value("integer_b2_modified_numerator_abs_v0", 13, "dimensionless", 1,
+               "Table 16 / |numerator of b2_mod = -13/6|", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_b2_modified_numerator_abs_v0"}),
+    make_value("integer_b2_sm_numerator_abs_v0", 19, "dimensionless", 1,
+               "Table 16 / |numerator of b2_SM = -19/6|", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_b2_sm_numerator_abs_v0"}),
+    make_value("integer_b3_modified_times_three_abs_v0", 20, "dimensionless", 1,
+               "Table 16 / |3 * b3_mod| = |3 * -20/3|", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_b3_modified_times_three_abs_v0"}),
+    make_value("integer_two_times_yang_mills_v0", 22, "dimensionless", 1,
+               "Table 16 / 2 * 11", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_two_times_yang_mills_v0"}),
+    make_value("integer_four_times_yang_mills_v0", 44, "dimensionless", 1,
+               "Table 16 / 4 * 11", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_four_times_yang_mills_v0"}),
+    make_value("integer_b2_modified_numerator_square_v0", 169, "dimensionless", 1,
+               "Table 16 / 13^2", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_b2_modified_numerator_square_v0"}),
+    make_value("integer_cabibbo_doublet_gap_numerator_v0", 38, "dimensionless", 1,
+               "Table 16 / numerator of 38/27", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_cabibbo_doublet_gap_numerator_v0"}),
+    make_value("integer_cabibbo_doublet_gap_denominator_v0", 27, "dimensionless", 1,
+               "Table 16 / denominator of 38/27", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_cabibbo_doublet_gap_denominator_v0"}),
+    make_value("integer_sm_gap_numerator_v0", 218, "dimensionless", 1,
+               "Table 16 / numerator of 218/115", section="integer_pool",
+               tags=["Level1", "exact"],
+               legacy_refs={"data5": "integer_sm_gap_numerator_v0"}),
+]
+
+write_json("values_integer_pool_v0.json", {"nodes": integer_nodes})
+
+
+# ================================================================
+# EXPORT 8c: GENERATION DEMOCRACY SUMS (Table 8 note)
+# ================================================================
+
+gen_demo_nodes = [
+    make_value("rep_sm_generation_democracy_db1_sum_v0",
+               Fraction(4, 3), "dimensionless", 1,
+               "Table 8 note: sum of db1 per generation",
+               section="representation", tags=["SM", "generation_democracy"],
+               notes="Q_L + u_R + d_R + L_L + e_R db1 sum per generation"),
+    make_value("rep_sm_generation_democracy_db2_sum_v0",
+               Fraction(4, 3), "dimensionless", 1,
+               "Table 8 note: sum of db2 per generation",
+               section="representation", tags=["SM", "generation_democracy"]),
+    make_value("rep_sm_generation_democracy_db3_sum_v0",
+               Fraction(4, 3), "dimensionless", 1,
+               "Table 8 note: sum of db3 per generation",
+               section="representation", tags=["SM", "generation_democracy"]),
+]
+
+write_json("values_generation_democracy_v0.json", {"nodes": gen_demo_nodes})
+
+
+# ================================================================
+# EXPORT 8d: GAP RATIOS (Table 3)
+# ================================================================
+
+gap_nodes = [
+    make_value("gap_pure_gauge_ratio_v0", Fraction(2, 1), "dimensionless", 1,
+               "Table 3 / C2(SU2)/(C2(SU3)-C2(SU2))", section="GUT",
+               tags=["Level1", "exact", "ratio"]),
+    make_value("gap_sm_ratio_v0", Fraction(218, 115), "dimensionless", 1,
+               "(b1_SM - b2_SM) / (b2_SM - b3_SM)", section="GUT",
+               tags=["Level1", "exact", "ratio"]),
+    make_value("gap_sm_numerator_v0", Fraction(109, 15), "dimensionless", 1,
+               "b1_SM - b2_SM", section="GUT",
+               tags=["Level1", "exact"]),
+    make_value("gap_sm_denominator_v0", Fraction(23, 6), "dimensionless", 1,
+               "b2_SM - b3_SM", section="GUT",
+               tags=["Level1", "exact"]),
+    make_value("gap_sm_cabibbo_doublet_ratio_v0", Fraction(38, 27), "dimensionless", 1,
+               "(b1_mod - b2_mod) / (b2_mod - b3_mod)", section="GUT",
+               tags=["Level1", "exact", "ratio", "CD"]),
+    make_value("coupling_measured_gap_ratio_v0", gap_measured, "dimensionless", 2,
+               "Derived from alpha_EM, sin2_tW, alpha_s", section="GUT",
+               tags=["Level2", "ratio"]),
+]
+
+write_json("values_gap_ratios_v0.json", {"nodes": gap_nodes})
+
+
+# ================================================================
+# EXPORT 8e: TWO-LOOP VL db_ij MATRIX (Table 7)
+# ================================================================
+
+vl_dbij = {
+    "u1_u1": Fraction(7, 15),
+    "u1_su2": Fraction(1, 15),
+    "u1_su3": Fraction(16, 135),
+    "su2_u1": Fraction(1, 30),
+    "su2_su2": Fraction(15, 4),
+    "su2_su3": Fraction(8, 3),
+    "su3_u1": Fraction(1, 45),
+    "su3_su2": Fraction(1, 1),
+    "su3_su3": Fraction(40, 9),
+}
+
+vl_dbij_nodes = []
+for name, value in vl_dbij.items():
+    vl_dbij_nodes.append(make_value(
+        "beta_two_loop_cabibbo_doublet_dbij_%s_v0" % name,
+        value, "dimensionless", 1,
+        "Table 7 / phys24_lib.py", section="GUT",
+        tags=["Level1", "two-loop", "CD"],
+        notes="su2_su2 = 15/4 is corrected value, not 39/4."))
+
+write_json("values_two_loop_vl_dbij_v0.json", {"nodes": vl_dbij_nodes})
+
+
+# ================================================================
+# EXPORT 8f: REPRESENTATION ALIASES (DATA-5 key compatibility)
+# ================================================================
+# The derivation functions expect rep_cabibbo_doublet_* keys
+# but the exporter wrote rep_cd_* keys. Export both forms.
+
+rep_alias_nodes = [
+    make_value("rep_cabibbo_doublet_su3_dim_v0",
+               CABIBBO_DOUBLET["su3_dim"], "dimensionless", 1,
+               "SM representation", section="representation",
+               tags=["CD", "BSM", "SU3"]),
+    make_value("rep_cabibbo_doublet_su2_dim_v0",
+               CABIBBO_DOUBLET["su2_dim"], "dimensionless", 1,
+               "SM representation", section="representation",
+               tags=["CD", "BSM", "SU2"]),
+    make_value("rep_cabibbo_doublet_y_v0",
+               CABIBBO_DOUBLET["Y"], "dimensionless", 1,
+               "SM representation", section="representation",
+               tags=["CD", "BSM"]),
+    make_value("rep_cabibbo_doublet_type_v0",
+               CABIBBO_DOUBLET["rep_type"], "classification", 1,
+               "SM representation", section="representation",
+               tags=["CD", "BSM"]),
+    make_value("rep_cabibbo_doublet_db1_v0",
+               CABIBBO_DOUBLET["db1"], "dimensionless", 1,
+               "Dynkin formula", section="representation",
+               tags=["CD", "BSM"]),
+    make_value("rep_cabibbo_doublet_db2_v0",
+               CABIBBO_DOUBLET["db2"], "dimensionless", 1,
+               "Dynkin formula", section="representation",
+               tags=["CD", "BSM"]),
+    make_value("rep_cabibbo_doublet_db3_v0",
+               CABIBBO_DOUBLET["db3"], "dimensionless", 1,
+               "Dynkin formula", section="representation",
+               tags=["CD", "BSM"]),
+]
+
+write_json("values_rep_aliases_v0.json", {"nodes": rep_alias_nodes})
+
+
+# ================================================================
+# EXPORT 8g: BETA SHIFT ALIASES (DATA-5 key compatibility)
+# ================================================================
+# Derivations expect beta_cabibbo_doublet_vectorlike_u1_shift_v0
+# but exporter wrote beta_cabibbo_doublet_u1_shift_v0
+
+beta_alias_nodes = [
+    make_value("beta_cabibbo_doublet_vectorlike_u1_shift_v0",
+               db1_VL, "dimensionless", 1,
+               "VL Dynkin formula", section="GUT",
+               tags=["Level1", "U1", "CD"]),
+    make_value("beta_cabibbo_doublet_vectorlike_su2_shift_v0",
+               db2_VL, "dimensionless", 1,
+               "VL Dynkin formula", section="GUT",
+               tags=["Level1", "SU2", "CD"]),
+    make_value("beta_cabibbo_doublet_vectorlike_su3_shift_v0",
+               db3_VL, "dimensionless", 1,
+               "VL Dynkin formula", section="GUT",
+               tags=["Level1", "SU3", "CD"]),
+]
+
+write_json("values_beta_aliases_v0.json", {"nodes": beta_alias_nodes})
+
+
+# ================================================================
+# EXPORT 8h: HIGGS BETA SHIFTS (Table 1)
+# ================================================================
+
+higgs_beta_nodes = [
+    make_value("beta_sm_u1_higgs_v0",
+               Fraction(1, 10), "dimensionless", 1,
+               "Table 1 / phys24_lib.py", section="GUT",
+               tags=["Level1", "U1", "SM", "Higgs"]),
+    make_value("beta_sm_su2_higgs_v0",
+               Fraction(1, 6), "dimensionless", 1,
+               "Table 1 / phys24_lib.py", section="GUT",
+               tags=["Level1", "SU2", "SM", "Higgs"]),
+    make_value("beta_sm_su3_higgs_v0",
+               Fraction(0, 1), "dimensionless", 1,
+               "Table 1 / phys24_lib.py", section="GUT",
+               tags=["Level1", "SU3", "SM", "Higgs"]),
+]
+
+write_json("values_higgs_beta_v0.json", {"nodes": higgs_beta_nodes})
 
 # ================================================================
 # EXPORT 9: REPRESENTATIONS (from structure lib)

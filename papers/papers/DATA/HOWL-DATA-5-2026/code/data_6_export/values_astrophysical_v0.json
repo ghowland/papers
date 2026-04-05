@@ -9,7 +9,7 @@
       "term": "gravitational_constant",
       "level": 2,
       "source": "CODATA 2022",
-      "value": "6.674e-11",
+      "value": "0.00000000006674",
       "value_type": "approximate",
       "unit": "m^3/(kg*s^2)",
       "section": "astrophysical",
@@ -26,7 +26,7 @@
       "term": "mass_sun",
       "level": 2,
       "source": "IAU",
-      "value": "1.989e30",
+      "value": "1989000000000000000000000000000",
       "value_type": "approximate",
       "unit": "kg",
       "section": "astrophysical"
@@ -40,7 +40,7 @@
       "term": "mass_earth",
       "level": 2,
       "source": "IAU",
-      "value": "5.972e24",
+      "value": "5972000000000000000000000",
       "value_type": "approximate",
       "unit": "kg",
       "section": "astrophysical"
@@ -54,7 +54,7 @@
       "term": "mass_moon",
       "level": 2,
       "source": "IAU",
-      "value": "7.342e22",
+      "value": "73420000000000000000000",
       "value_type": "approximate",
       "unit": "kg",
       "section": "astrophysical"
@@ -68,7 +68,7 @@
       "term": "radius_earth",
       "level": 2,
       "source": "WGS84 mean",
-      "value": "6.371e6",
+      "value": "6371000",
       "value_type": "approximate",
       "unit": "m",
       "section": "astrophysical"
@@ -82,7 +82,7 @@
       "term": "radius_sun",
       "level": 2,
       "source": "IAU",
-      "value": "6.957e8",
+      "value": "695700000",
       "value_type": "approximate",
       "unit": "m",
       "section": "astrophysical"
@@ -96,7 +96,7 @@
       "term": "au",
       "level": 2,
       "source": "IAU 2012",
-      "value": "1.496e11",
+      "value": "149600000000",
       "value_type": "approximate",
       "unit": "m",
       "section": "astrophysical"
@@ -110,7 +110,7 @@
       "term": "parsec",
       "level": 2,
       "source": "IAU",
-      "value": "3.086e16",
+      "value": "30860000000000000",
       "value_type": "approximate",
       "unit": "m",
       "section": "astrophysical"
@@ -124,7 +124,7 @@
       "term": "gps_orbit_radius",
       "level": 2,
       "source": "GPS ICD",
-      "value": "2.6556e7",
+      "value": "26556000",
       "value_type": "approximate",
       "unit": "m",
       "section": "astrophysical"
@@ -152,7 +152,7 @@
       "term": "muon_rest_lifetime",
       "level": 2,
       "source": "PDG",
-      "value": "2.1969811e-6",
+      "value": "0.0000021969811",
       "value_type": "approximate",
       "unit": "s",
       "section": "astrophysical",
