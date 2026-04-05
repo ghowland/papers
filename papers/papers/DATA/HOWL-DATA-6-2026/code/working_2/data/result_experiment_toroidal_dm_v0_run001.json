@@ -1,0 +1,194 @@
+{
+  "key": "result_experiment_toroidal_dm_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_toroidal_dm_v0",
+  "timestamp": "2026-04-05T13:47:29Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "cosmo_dm_baryon_ratio_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_amplification_factor_decomposition_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "gravity_mond_a0_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "cosmo_virial_ratio_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_frame_dragging_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "dwarf_purity_v0",
+      "status": "ok",
+      "output_count": 12
+    },
+    {
+      "key": "dwarf_cosmic_ratio_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "dwarf_faber_jackson_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "dwarf_tully_fisher_v0",
+      "status": "ok",
+      "output_count": 2
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Amplification reduced = 44/13",
+      "output_key": "cosmo_amplification_reduced_factor_v0",
+      "match_mode": "exact",
+      "reference_source": "integer_pool",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "44/13",
+      "got": "44/13"
+    },
+    {
+      "label": "Frame dragging negligible for galaxy",
+      "output_key": "result_frame_dragging_negligible_v0",
+      "match_mode": "bool",
+      "reference_source": "physics",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "Virial ratio ~ 5-10 (DM dominated)",
+      "output_key": "result_virial_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "galactic_dynamics",
+      "got": "2.81294",
+      "lo": "1",
+      "hi": "20",
+      "status": "PASS",
+      "detail": "in [1, 20]"
+    },
+    {
+      "label": "TF v^4 scaling: TF(440)/TF(220) = 16",
+      "output_key": "result_tf_v4_scaling_test_v0",
+      "match_mode": "digits",
+      "reference_source": "scaling_law",
+      "expected": "16",
+      "got": "16.0",
+      "digits": 4,
+      "miss_pct": "0.0",
+      "status": "PASS",
+      "detail": "4-digit match, miss 0.0%"
+    },
+    {
+      "label": "Draco DM/vis > 100",
+      "output_key": "result_dwarf_draco_dm_vis_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "Walker+2009",
+      "got": "186.207",
+      "lo": "100",
+      "hi": "500",
+      "status": "PASS",
+      "detail": "in [100, 500]"
+    },
+    {
+      "label": "Segue1 DM/vis > 1000",
+      "output_key": "result_dwarf_segue1_dm_vis_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "Simon+2011",
+      "got": "3823.53",
+      "lo": "1000",
+      "hi": "10000",
+      "status": "PASS",
+      "detail": "in [1000, 10000]"
+    },
+    {
+      "label": "Fornax DM/vis order of magnitude",
+      "output_key": "result_dwarf_fornax_dm_vis_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "Walker+2009",
+      "got": "8.0",
+      "lo": "3",
+      "hi": "20",
+      "status": "PASS",
+      "detail": "in [3, 20]"
+    },
+    {
+      "label": "DM/baryon vs Planck",
+      "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "5.3204",
+      "got": "5.31654141377",
+      "miss_pct": "0.07252",
+      "detail": "predicted 5.31654141377 ref 5.3204 miss 0.07252%"
+    }
+  ],
+  "outputs": {
+    "cosmo_dm_to_baryon_ratio_prefactor_derived_v0": {
+      "_type": "Fraction",
+      "num": "22",
+      "den": "13"
+    },
+    "cosmo_dm_to_baryon_ratio_predicted_derived_v0": "5.31654141377",
+    "cosmo_amplification_reduced_factor_v0": {
+      "_type": "Fraction",
+      "num": "44",
+      "den": "13"
+    },
+    "cosmo_amplification_formula_text_v0": "(44/13) * pi * (c/v)^2",
+    "result_mond_a0_v0": "1.04208899459679e-10",
+    "result_mond_a0_match_pct_v0": "13.1592504502674",
+    "result_mond_transition_earth_au_v0": "13.0728116035403",
+    "result_mond_transition_sun_au_v0": "7544.43106237327",
+    "result_virial_mass_solar_v0": "168776336979.549",
+    "result_virial_ratio_v0": "2.81293894965915",
+    "result_frame_dragging_ratio_v0": "2.06194748710125e-13",
+    "result_frame_dragging_negligible_v0": true,
+    "result_dwarf_fornax_dm_vis_ratio_v0": "8.0",
+    "result_dwarf_fornax_dark_fraction_v0": "0.875",
+    "result_dwarf_sculptor_dm_vis_ratio_v0": "30.4347826086957",
+    "result_dwarf_sculptor_dark_fraction_v0": "0.967142857142857",
+    "result_dwarf_draco_dm_vis_ratio_v0": "186.206896551724",
+    "result_dwarf_draco_dark_fraction_v0": "0.99462962962963",
+    "result_dwarf_carina_dm_vis_ratio_v0": "84.2105263157895",
+    "result_dwarf_carina_dark_fraction_v0": "0.988125",
+    "result_dwarf_sextans_dm_vis_ratio_v0": "295.454545454545",
+    "result_dwarf_sextans_dark_fraction_v0": "0.996615384615385",
+    "result_dwarf_segue1_dm_vis_ratio_v0": "3823.52941176471",
+    "result_dwarf_segue1_dark_fraction_v0": "0.999738461538462",
+    "result_dwarf_fornax_cosmic_ratio_v0": "1.50473764377792",
+    "result_dwarf_sculptor_cosmic_ratio_v0": "5.72454538393774",
+    "result_dwarf_draco_cosmic_ratio_v0": "35.024065846555",
+    "result_fj_fornax_mass_solar_v0": "1354620.52649917",
+    "result_fj_sculptor_mass_solar_v0": "517875.677616424",
+    "result_fj_draco_mass_solar_v0": "495723.804926766",
+    "result_tf_mw_mass_solar_v0": "169342095064.297",
+    "result_tf_v4_scaling_test_v0": "16.0"
+  },
+  "summary": {
+    "derivations_ok": 9,
+    "derivations_err": 0,
+    "comparisons_pass": 7,
+    "comparisons_fail": 0,
+    "comparisons_info": 1,
+    "comparisons_skip": 0
+  }
+}
