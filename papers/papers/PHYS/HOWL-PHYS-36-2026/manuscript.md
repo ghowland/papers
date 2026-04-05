@@ -1,4 +1,5 @@
-# The QED Integer Chain at 5-Loop: Four CODATA Values from One Measurement
+# The QED Integer Chain at 5-Loop
+## Four CODATA Values from One Measurement
 
 **Registry:** [@HOWL-PHYS-36-2026]
 
