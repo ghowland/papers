@@ -629,6 +629,22 @@
         "unit": "MeV",
         "source": "LEP EWWG 2005. Z total width 2495.2 +/- 2.3 MeV.",
         "tags": ["electroweak", "LEP", "Z_width", "measured"]
+    },
+    {
+        "key": "ew_delta_r_total_v0",
+        "canonical": "ew_delta_r_total",
+        "version": 0,
+        "node_type": "value",
+        "topic": "ew",
+        "term": "delta_r_total",
+        "level": 1,
+        "value": "0.03692",
+        "value_type": "approximate",
+        "unit": "dimensionless",
+        "digits": 4,
+        "source": "Stål, Weiglein, Zeune 2015. Sum of all Δr contributions at one and two-loop: Δr(α)=297.17e-4, Δr(αα_s)=36.28e-4, Δr(αα_s²)=7.03e-4, Δr(α²)=29.14e-4, higher=-0.37e-4. Total=369.25e-4. For m_t=173.34, m_H=125.09, M_W=80.385.",
+        "tags": ["electroweak", "radiative", "Delta_r", "published", "two-loop"],
+        "notes": "Published total Δr including complete two-loop EW + QCD corrections. NOT decomposed into Δα/Δρ/remainder — the decomposition loses accuracy due to scheme-dependent pieces. Use this total directly in the Sirlin relation."
     }
   ]
 }

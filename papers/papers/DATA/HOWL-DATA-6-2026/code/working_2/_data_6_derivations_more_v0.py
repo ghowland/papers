@@ -3225,19 +3225,26 @@ def ew_mw_from_gf_v0(value_dicts):
         delta_rho = mpf("3") * alpha_mz * m_t_gev * m_t_gev / (
             mpf("16") * pi_m * sin2_os * M_W_gev2)
 
-        delta_r = delta_alpha - (cos2_os / sin2_os) * delta_rho + delta_r_rem
-
+        # delta_r = delta_alpha - (cos2_os / sin2_os) * delta_rho + delta_r_rem
+        delta_r = _mpf_val(vm, "ew_delta_r_total_v0")
+    
+        # No iteration needed — Delta_r is the published total
         rhs = A / (M_Z_gev2 * (mpf("1") - delta_r))
-        disc_new = mpf("1") - mpf("4") * rhs
-        if disc_new < mpf("0"):
-            break
-        x_new = (mpf("1") + msqrt(disc_new)) / mpf("2")
-        M_W_gev_new = M_Z_gev * msqrt(x_new)
+        disc = mpf("1") - mpf("4") * rhs
+        x = (mpf("1") + msqrt(disc)) / mpf("2")
+        M_W_gev = M_Z_gev * msqrt(x)
 
-        if abs(M_W_gev_new - M_W_gev) / M_W_gev < mpf("1e-15"):
-            M_W_gev = M_W_gev_new
-            break
-        M_W_gev = M_W_gev_new
+        # rhs = A / (M_Z_gev2 * (mpf("1") - delta_r))
+        # disc_new = mpf("1") - mpf("4") * rhs
+        # if disc_new < mpf("0"):
+        #     break
+        # x_new = (mpf("1") + msqrt(disc_new)) / mpf("2")
+        # M_W_gev_new = M_Z_gev * msqrt(x_new)
+
+        # if abs(M_W_gev_new - M_W_gev) / M_W_gev < mpf("1e-15"):
+        #     M_W_gev = M_W_gev_new
+        #     break
+        # M_W_gev = M_W_gev_new
 
     M_W_mev = M_W_gev * mpf("1000")
 
