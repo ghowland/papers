@@ -1,0 +1,165 @@
+{
+  "nodes": [
+    {
+      "key": "si_speed_of_light_v0",
+      "canonical": "si_speed_of_light",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "speed_of_light",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "299792458",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "m/s",
+      "digits": 9,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A1",
+        "phys24": "c"
+      }
+    },
+    {
+      "key": "si_planck_constant_v0",
+      "canonical": "si_planck_constant",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "planck_constant",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "132521403",
+        "den": "200000000000000000000000000000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "J*s",
+      "digits": 9,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A2",
+        "phys24": "h_planck"
+      }
+    },
+    {
+      "key": "si_elementary_charge_v0",
+      "canonical": "si_elementary_charge",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "elementary_charge",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "801088317",
+        "den": "5000000000000000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "C",
+      "digits": 10,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A3",
+        "phys24": "e_charge"
+      }
+    },
+    {
+      "key": "si_boltzmann_constant_v0",
+      "canonical": "si_boltzmann_constant",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "boltzmann_constant",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "1380649",
+        "den": "100000000000000000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "J/K",
+      "digits": 7,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A4",
+        "phys24": "k_B"
+      }
+    },
+    {
+      "key": "si_avogadro_number_v0",
+      "canonical": "si_avogadro_number",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "avogadro_number",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "602214076000000000000000",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "mol^-1",
+      "digits": 9,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A5",
+        "phys24": "N_A"
+      }
+    },
+    {
+      "key": "si_cesium_hyperfine_v0",
+      "canonical": "si_cesium_hyperfine",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "cesium_hyperfine",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "9192631770",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "Hz",
+      "digits": 10,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A6",
+        "phys24": "dv_Cs"
+      }
+    },
+    {
+      "key": "si_luminous_efficacy_v0",
+      "canonical": "si_luminous_efficacy",
+      "version": 0,
+      "node_type": "value",
+      "topic": "si",
+      "term": "luminous_efficacy",
+      "level": 0,
+      "source": "SI 2019 (exact)",
+      "value": {
+        "_type": "Fraction",
+        "num": "683",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "lm/W",
+      "digits": 3,
+      "section": "SI",
+      "legacy_refs": {
+        "data4": "A7",
+        "phys24": "K_cd"
+      }
+    }
+  ]
+}
