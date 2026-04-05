@@ -128,18 +128,6 @@
 | **[[@HOWL-PHYS-35-2026]](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **The No-Threshold Puzzle — More CD Running Means Better Predictions** | No-threshold beats hard threshold by 12×. Soft threshold is worse. The CD contribution is needed at all scales.  |
 | **[[@HOWL-PHYS-36-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **The QED Integer Chain at 5-Loop** | Four CODATA Values from One Measurement. |
 
-
-
-| **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **The QED Integer Chain at 5-Loop** | Four CODATA Values from One Measurement.  |
-| **[[@HOWL-PHYS-38-2026]](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-39-2026]](papers/papers/PHYS/HOWL-PHYS-39-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-40-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-41-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-42-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-43-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-44-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-| **[[@HOWL-PHYS-45-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **Derived Quantity** | Two inputs, one prediction. The correction is 15/104.  |
-
 ---
 
 ## Data
