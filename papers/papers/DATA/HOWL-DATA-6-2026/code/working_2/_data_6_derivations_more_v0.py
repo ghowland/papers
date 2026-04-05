@@ -1412,10 +1412,21 @@ def coupling_whatif_direct_db_v0(value_dicts):
     compound, multiplied. The caller computes the db values.
     """
     vm = _value_map(value_dicts)
+    
+    # Try candidate-prefixed keys first, fall back to generic
+    prefix = vm.get("whatif_candidate_prefix_v0")
+    if prefix:
+        db1_key = "rep_whatif_%s_db1_v0" % prefix
+        db2_key = "rep_whatif_%s_db2_v0" % prefix
+        db3_key = "rep_whatif_%s_db3_v0" % prefix
+    else:
+        db1_key = "rep_whatif_db1_v0"
+        db2_key = "rep_whatif_db2_v0"
+        db3_key = "rep_whatif_db3_v0"
 
-    db1 = _frac(vm, "rep_whatif_db1_v0")
-    db2 = _frac(vm, "rep_whatif_db2_v0")
-    db3 = _frac(vm, "rep_whatif_db3_v0")
+    db1 = _frac(vm, db1_key)
+    db2 = _frac(vm, db2_key)
+    db3 = _frac(vm, db3_key)
 
     b1_SM = _frac(vm, "beta_sm_u1_total_v0")
     b2_SM = _frac(vm, "beta_sm_su2_total_v0")
@@ -1458,6 +1469,62 @@ def coupling_whatif_direct_db_v0(value_dicts):
         },
         "notes": "Direct db what-if: db=(%s, %s, %s), gap=%s" % (db1, db2, db3, gap),
     }
+
+
+# Add after the existing coupling_whatif_direct_db_v0:
+
+def _whatif_from_keys(vm, prefix):
+    """Shared helper for candidate-specific what-if derivations."""
+    db1 = _frac(vm, "rep_whatif_%s_db1_v0" % prefix)
+    db2 = _frac(vm, "rep_whatif_%s_db2_v0" % prefix)
+    db3 = _frac(vm, "rep_whatif_%s_db3_v0" % prefix)
+
+    b1m = _frac(vm, "beta_sm_u1_total_v0") + db1
+    b2m = _frac(vm, "beta_sm_su2_total_v0") + db2
+    b3m = _frac(vm, "beta_sm_su3_total_v0") + db3
+
+    denom = b2m - b3m
+    if denom == 0:
+        return {
+            "key": "coupling_whatif_%s_v0" % prefix,
+            "outputs": {},
+            "notes": "degenerate: b2_mod = b3_mod",
+        }
+
+    gap = (b1m - b2m) / denom
+    gap_measured = _f2m(_frac(vm, "coupling_measured_gap_ratio_v0"))
+    distance = abs(_f2m(gap) - gap_measured)
+    asymmetry = db2 / db1 if db1 != 0 else None
+
+    return {
+        "key": "coupling_whatif_%s_v0" % prefix,
+        "outputs": {
+            "result_whatif_%s_db1_v0" % prefix: db1,
+            "result_whatif_%s_db2_v0" % prefix: db2,
+            "result_whatif_%s_db3_v0" % prefix: db3,
+            "result_whatif_%s_gap_ratio_v0" % prefix: gap,
+            "result_whatif_%s_distance_v0" % prefix: _approx(distance),
+            "result_whatif_%s_asymmetry_v0" % prefix: asymmetry,
+        },
+        "notes": "What-if %s: db=(%s,%s,%s), gap=%s" % (prefix, db1, db2, db3, gap),
+    }
+
+
+def coupling_whatif_vl_lepton_doublet_v0(value_dicts):
+    """Candidate 7: VL (1,2,-1/2). db=(1/5, 1/3, 0)."""
+    return _whatif_from_keys(_value_map(value_dicts), "vl_lepton_doublet")
+
+def coupling_whatif_vl_singlet_e_v0(value_dicts):
+    """Candidate 12: VL (1,1,-1). db=(2/5, 0, 0)."""
+    return _whatif_from_keys(_value_map(value_dicts), "vl_singlet_e")
+
+def coupling_whatif_vl_d_singlet_v0(value_dicts):
+    """Candidate 13: VL (3,1,-1/3). db=(2/15, 0, 1/6)."""
+    return _whatif_from_keys(_value_map(value_dicts), "vl_d_singlet")
+
+def coupling_whatif_vl_u_singlet_v0(value_dicts):
+    """Candidate 15: VL (3,1,2/3). db=(8/15, 0, 1/6)."""
+    return _whatif_from_keys(_value_map(value_dicts), "vl_u_singlet")
 
 
 # ================================================================
@@ -1514,6 +1581,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "dwarf_tully_fisher_v0": dwarf_tully_fisher_v0,
     # WhatIf
     "coupling_whatif_direct_db_v0": coupling_whatif_direct_db_v0,
+    "coupling_whatif_vl_lepton_doublet_v0": coupling_whatif_vl_lepton_doublet_v0,
+    "coupling_whatif_vl_singlet_e_v0": coupling_whatif_vl_singlet_e_v0,
+    "coupling_whatif_vl_d_singlet_v0": coupling_whatif_vl_d_singlet_v0,
+    "coupling_whatif_vl_u_singlet_v0": coupling_whatif_vl_u_singlet_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {
