@@ -33,6 +33,13 @@ from _data_6_derivations_v0 import (
     CONNECTION_INDEX_V0,
 )
 
+# More
+import _data_6_derivations_more_v0
+
+# After the existing imports, merge:
+DERIVATION_INDEX_V0.update(_data_6_derivations_more_v0.DERIVATION_MORE_INDEX_V0)
+CONNECTION_INDEX_V0.update(_data_6_derivations_more_v0.CONNECTION_MORE_INDEX_V0)
+
 
 # ================================================================
 # JSON LOADER / SERIALIZER

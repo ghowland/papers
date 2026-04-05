@@ -34,6 +34,16 @@ from _data_6_derivations_v0 import (
 )
 
 
+from _data_6_derivations_more_v0 import (
+    DERIVATION_MORE_INDEX_V0,
+    CONNECTION_MORE_INDEX_V0,
+)
+
+# After the existing imports, merge:
+DERIVATION_INDEX_V0.update(DERIVATION_MORE_INDEX_V0)
+CONNECTION_INDEX_V0.update(CONNECTION_MORE_INDEX_V0)
+
+
 # ================================================================
 # JSON LOADER / SERIALIZER
 # ================================================================

@@ -24,7 +24,6 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "data")
 FIGURES = os.path.join(ROOT, "figures")
 
-
 def ensure_dirs():
     os.makedirs(DATA, exist_ok=True)
     os.makedirs(FIGURES, exist_ok=True)
