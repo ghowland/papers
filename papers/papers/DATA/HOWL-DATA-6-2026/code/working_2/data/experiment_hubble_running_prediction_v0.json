@@ -1,9 +1,9 @@
 {
-    "key": "experiment_hubble_running_prediction_v0",
-    "canonical": "experiment_hubble_running_prediction",
+    "key": "experiment_hubble_vp_prediction_v0",
+    "canonical": "experiment_hubble_vp_prediction",
     "version": 0,
     "node_type": "experiment",
-    "description": "Test the Hubble running hypothesis: H0(N) = H0(0) * r^N where r = 1 - 1/(3*pi) from the VP step size. Solve for N, predict H0(CMB), check intermediate measurements, scan for rational N. SPECULATIVE — tagged as active investigation, not verified physics.",
+    "description": "Test the Hubble VP step hypothesis: H0(N) = H0(0) * r^N where r = 1 - 1/(3*pi) from the VP step size. Solve for N, predict H0(CMB), check intermediate measurements, scan for rational N. SPECULATIVE — tagged as active investigation, not verified physics.",
     "purpose": "program_hubble_running_v0",
     "experiment_mode": "standard",
 
@@ -44,7 +44,7 @@
 
     "comparisons": [
         {
-            "label": "N from VP step (should be positive and > 0.5)",
+            "label": "N from VP step (should be positive)",
             "output_key": "result_n_vp_v0",
             "match_mode": "range",
             "lo": "0.1",
@@ -86,7 +86,7 @@
             "output_key": "result_n_monotonic_v0",
             "match_mode": "bool",
             "expected": true,
-            "reference_source": "running_curve_requirement"
+            "reference_source": "hypothesis_requirement"
         },
         {
             "label": "F1 soft monotonicity (within 1-sigma)",
@@ -110,7 +110,7 @@
             "reference_source": "rational_scan"
         },
         {
-            "label": "Required r at N=8 vs VP step 1/(3*pi)",
+            "label": "Required 1-r at N=8 vs VP step 1/(3*pi)",
             "output_key": "result_r_vs_vp_at_n8_miss_pct_v0",
             "match_mode": "miss_pct",
             "expected": "0.10610329539",
@@ -120,8 +120,8 @@
 
     "diagrams": [
         {
-            "key": "diagram_hubble_running_curve_v0",
-            "title": "H0 running curve: VP step vs required r at various N",
+            "key": "diagram_hubble_vp_curve_v0",
+            "title": "H0 VP step prediction: required r vs VP step at various N",
             "type": "comparison_table",
             "rows": [
                 {"label": "N_vp (from VP)", "predicted": "result_n_vp_v0", "measured": ">1 required"},
@@ -129,8 +129,7 @@
                 {"label": "r_vp", "predicted": "result_r_vp_v0", "measured": "0.89390"},
                 {"label": "Best integer N", "predicted": "result_best_integer_n_v0", "measured": "scan"}
             ],
-            "notes": "Hubble running hypothesis test. VP step 1/(3*pi) as per-transit correction."
+            "notes": "Hubble VP step hypothesis test. VP step 1/(3*pi) as per-transit correction."
         }
     ]
 }
-
