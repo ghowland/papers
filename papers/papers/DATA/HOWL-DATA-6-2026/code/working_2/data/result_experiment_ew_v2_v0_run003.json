@@ -1,0 +1,212 @@
+{
+  "key": "result_experiment_ew_v2_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_ew_v2_v0",
+  "timestamp": "2026-04-05T15:50:06Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "ew_mw_from_gf_v0",
+      "status": "ok",
+      "output_count": 10
+    },
+    {
+      "key": "ew_sin2_eff_from_mw_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "ew_z_partial_widths_v0",
+      "status": "ok",
+      "output_count": 14
+    },
+    {
+      "key": "ew_mw_consistency_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "M_W from G_F vs PDG measured",
+      "output_key": "result_mw_from_gf_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "80369.2",
+      "got": "78805.5181912292",
+      "miss_pct": "1.946",
+      "detail": "predicted 78805.5181912292 ref 80369.2 miss 1.946%"
+    },
+    {
+      "label": "M_W from G_F miss < 0.5%",
+      "output_key": "result_mw_from_gf_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "target",
+      "got": "1.94562",
+      "lo": "0",
+      "hi": "0.5",
+      "status": "FAIL",
+      "detail": "1.94562 not in [0, 0.5]"
+    },
+    {
+      "label": "sin2_eff from on-shell M_W vs LEP",
+      "output_key": "result_sin2_eff_from_mw_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_SLD",
+      "status": "INFO",
+      "expected": "0.23153",
+      "got": "0.259735206141168",
+      "miss_pct": "12.18",
+      "detail": "predicted 0.259735206141168 ref 0.23153 miss 12.18%"
+    },
+    {
+      "label": "Gamma(Z->ee) vs LEP",
+      "output_key": "result_gamma_z_ee_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "83.91",
+      "got": "77.6458240798053",
+      "miss_pct": "7.465",
+      "detail": "predicted 77.6458240798053 ref 83.91 miss 7.465%"
+    },
+    {
+      "label": "Gamma(Z->mumu) vs LEP",
+      "output_key": "result_gamma_z_mumu_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "83.99",
+      "got": "77.6458240798053",
+      "miss_pct": "7.553",
+      "detail": "predicted 77.6458240798053 ref 83.99 miss 7.553%"
+    },
+    {
+      "label": "Gamma(Z->tautau) vs LEP",
+      "output_key": "result_gamma_z_tautau_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "84.08",
+      "got": "77.6458240798053",
+      "miss_pct": "7.652",
+      "detail": "predicted 77.6458240798053 ref 84.08 miss 7.652%"
+    },
+    {
+      "label": "Gamma(Z->hadrons) vs LEP",
+      "output_key": "result_gamma_z_had_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "1744.4",
+      "got": "1560.82920446652",
+      "miss_pct": "10.52",
+      "detail": "predicted 1560.82920446652 ref 1744.4 miss 10.52%"
+    },
+    {
+      "label": "Gamma(Z->invisible) vs LEP",
+      "output_key": "result_gamma_z_inv_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "499.0",
+      "got": "464.366213464917",
+      "miss_pct": "6.941",
+      "detail": "predicted 464.366213464917 ref 499.0 miss 6.941%"
+    },
+    {
+      "label": "R_l = Gamma_had/Gamma_lep derived vs LEP",
+      "output_key": "result_r_l_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "20.767",
+      "got": "6.7006359666438",
+      "miss_pct": "67.73",
+      "detail": "predicted 6.7006359666438 ref 20.767 miss 67.73%"
+    },
+    {
+      "label": "Gamma_Z total derived vs LEP",
+      "output_key": "result_gamma_z_total_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "2495.2",
+      "got": "2258.13289017086",
+      "miss_pct": "9.501",
+      "detail": "predicted 2258.13289017086 ref 2495.2 miss 9.501%"
+    },
+    {
+      "label": "M_W consistency: G_F path vs sin2 path < 500 ppm",
+      "output_key": "result_mw_consistency_ppm_v0",
+      "match_mode": "range",
+      "reference_source": "consistency_check",
+      "got": "19245.1",
+      "lo": "0",
+      "hi": "500",
+      "status": "FAIL",
+      "detail": "19245.1 not in [0, 500]"
+    },
+    {
+      "label": "N_gen from invisible width = 3",
+      "output_key": "result_n_gen_from_inv_v0",
+      "match_mode": "range",
+      "reference_source": "LEP_N_nu",
+      "got": "3.0",
+      "lo": "2.9",
+      "hi": "3.1",
+      "status": "PASS",
+      "detail": "in [2.9, 3.1]"
+    }
+  ],
+  "outputs": {
+    "result_mw_from_gf_v0": "78805.5181912292",
+    "result_mw_from_gf_miss_pct_v0": "1.94562320985006",
+    "result_mw_from_gf_miss_mev_v0": "1563.68180877082",
+    "result_delta_r_v0": "0.0321190731404839",
+    "result_delta_alpha_v0": "0.05916",
+    "result_delta_rho_from_gf_v0": "0.00883625463236947",
+    "result_delta_r_rem_used_v0": "-0.00097",
+    "result_sin2_os_from_gf_v0": "0.253135723215681",
+    "result_gf_used_v0": "1.1663788e-5",
+    "result_alpha_0_used_v0": "0.00729735256433143",
+    "result_sin2_eff_from_mw_v0": "0.259735206141168",
+    "result_sin2_eff_measured_v0": "0.23153",
+    "result_sin2_eff_miss_pct_v0": "12.1820956857288",
+    "result_sin2_os_v0": "0.253135723215681",
+    "result_cos2_os_v0": "0.746864276784319",
+    "result_delta_rho_used_v0": "0.00883625463236947",
+    "result_mw_used_for_sin2_v0": "78805.5181912292",
+    "result_gamma_z_ee_v0": "77.6458240798053",
+    "result_gamma_z_mumu_v0": "77.6458240798053",
+    "result_gamma_z_tautau_v0": "77.6458240798053",
+    "result_gamma_z_inv_v0": "464.366213464917",
+    "result_gamma_z_had_v0": "1560.82920446652",
+    "result_gamma_z_lep_v0": "232.937472239416",
+    "result_gamma_z_total_v0": "2258.13289017086",
+    "result_gamma_z_total_miss_pct_v0": "9.50092617141488",
+    "result_r_l_derived_v0": "6.7006359666438",
+    "result_n_gen_from_inv_v0": "3.0",
+    "result_gamma_z_single_nu_v0": "154.788737821639",
+    "result_sin2_eff_used_v0": "0.259735206141168",
+    "result_rho_used_v0": "1.00883625463237",
+    "result_qcd_factor_used_v0": "1.03887151327678",
+    "result_mw_from_sin2_v0": "80336.8729108158",
+    "result_mw_from_gf_path_v0": "78805.5181912292",
+    "result_mw_consistency_ppm_v0": "19245.0887407448",
+    "result_mw_consistency_mev_v0": "1531.35471958659",
+    "result_mw_sin2_miss_pct_v0": "0.0402232312679637",
+    "result_mw_gf_miss_pct_v0": "1.94562320985004"
+  },
+  "summary": {
+    "derivations_ok": 4,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 2,
+    "comparisons_info": 9,
+    "comparisons_skip": 0
+  }
+}

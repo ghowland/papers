@@ -3170,18 +3170,13 @@ def ew_mw_from_gf_v0(value_dicts):
     """Derive M_W from G_F using the Sirlin relation with full Delta_r.
     
     The standard EW relation:
-    M_W^2 * (1 - M_W^2/M_Z^2) = pi * alpha / (sqrt(2) * G_F) * 1/(1 - Delta_r)
+    sin2_tW * M_W^2 = pi * alpha / (sqrt(2) * G_F) * 1/(1 - Delta_r)
+    
+    So: M_W = sqrt(pi * alpha / (sqrt(2) * G_F * sin2_tW * (1 - Delta_r)))
     
     Delta_r = Delta_alpha - (cos2/sin2)*Delta_rho + Delta_r_remainder
     
-    where:
-    Delta_alpha = Delta_alpha_lep + Delta_alpha_had (VP running to M_Z)
-    Delta_rho = 3*alpha*m_t^2 / (16*pi*sin2*M_W^2) (top quark loops)
-    Delta_r_remainder = published non-universal remainder
-    
-    M_W appears on both sides. Iterate to convergence.
-    Uses G_F (measured, 0.6 ppm) as input — the most precise EW quantity.
-    All other inputs from pool.
+    M_W appears inside Delta_rho, so iterate to convergence.
     """
     vm = _value_map(value_dicts)
 
@@ -3195,84 +3190,52 @@ def ew_mw_from_gf_v0(value_dicts):
     m_t = _f2m(_frac(vm, "mass_top_quark_v0"))
     pi_m = _f2m(_frac(vm, "geom_pi_v0"))
     M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
 
-    # alpha(M_Z) measured
     alpha_inv_mz = _mpf_val(vm, "ew_alpha_mz_measured_v0")
     alpha_mz = mpf("1") / alpha_inv_mz
 
-    # alpha(0) for Delta_alpha
     alpha_inv_0 = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
     alpha_0 = mpf("1") / alpha_inv_0
 
-    # VP running components
     delta_alpha_lep = _mpf_val(vm, "ew_delta_alpha_lep_v0")
     delta_alpha_had = _mpf_val(vm, "ew_delta_alpha_had_v0")
     delta_alpha = delta_alpha_lep + delta_alpha_had
 
-    # Remainder
     delta_r_rem = _mpf_val(vm, "ew_delta_r_remainder_v0")
 
-    # G_F in GeV^-2, M_Z in MeV -> convert
+    m_t_gev = m_t / mpf("1000")
     M_Z_gev = M_Z / mpf("1000")
 
-    # The RHS constant: pi*alpha(0) / (sqrt(2)*G_F)
+    # A = pi * alpha(0) / (sqrt(2) * G_F)  [GeV^2]
     A = pi_m * alpha_0 / (msqrt(mpf("2")) * G_F)
-    # A has units of GeV^2
 
-    # Iteration: solve M_W^2 * sin2_os = A / (1 - Delta_r)
-    # where sin2_os = 1 - M_W^2/M_Z^2
-    # so M_W^2 * (1 - M_W^2/M_Z^2) = A / (1 - Delta_r)
-
-    # Start with tree-level M_W
-    # At tree level, Delta_r = 0:
-    # M_W^2 * (1 - M_W^2/M_Z^2) = A
-    # Let x = M_W^2/M_Z^2, then M_Z^2 * x * (1-x) = A
-    # x^2 - x + A/M_Z^2 = 0
-    # x = (1 - sqrt(1 - 4*A/M_Z^4)) / 2
-    # But A is in GeV^2 and M_Z in MeV, so use GeV consistently
-
-    M_Z_gev2 = M_Z_gev * M_Z_gev
-    disc = mpf("1") - mpf("4") * A / M_Z_gev2
-    x_tree = (mpf("1") - msqrt(disc)) / mpf("2")
-    M_W_gev = M_Z_gev * msqrt(x_tree)
+    # Tree-level: M_W = sqrt(A / sin2_tW)
+    M_W_gev = msqrt(A / sin2_tw)
 
     # Iterate with Delta_r
     for iteration in range(20):
         M_W_gev2 = M_W_gev * M_W_gev
-        sin2_os = mpf("1") - M_W_gev2 / M_Z_gev2
-        cos2_os = M_W_gev2 / M_Z_gev2
+        sin2_os = mpf("1") - M_W_gev2 / (M_Z_gev * M_Z_gev)
+        cos2_os = M_W_gev2 / (M_Z_gev * M_Z_gev)
 
-        # Delta_rho from top quark (using alpha(M_Z))
-        delta_rho = mpf("3") * alpha_mz * m_t * m_t / (
-            mpf("16") * pi_m * sin2_os * M_W_gev2 * mpf("1e6"))
-        # m_t is in MeV, M_W_gev is in GeV -> m_t^2/M_W^2 needs m_t in GeV
-        m_t_gev = m_t / mpf("1000")
         delta_rho = mpf("3") * alpha_mz * m_t_gev * m_t_gev / (
             mpf("16") * pi_m * sin2_os * M_W_gev2)
 
-        # Full Delta_r
         delta_r = delta_alpha - (cos2_os / sin2_os) * delta_rho + delta_r_rem
 
-        # Solve: M_W^2 * sin2_os = A / (1 - Delta_r)
-        A_corrected = A / (mpf("1") - delta_r)
-        disc_new = mpf("1") - mpf("4") * A_corrected / M_Z_gev2
-        if disc_new < mpf("0"):
-            break
-        x_new = (mpf("1") - msqrt(disc_new)) / mpf("2")
-        M_W_gev_new = M_Z_gev * msqrt(x_new)
+        M_W_gev_new = msqrt(A / (sin2_tw * (mpf("1") - delta_r)))
 
         if abs(M_W_gev_new - M_W_gev) / M_W_gev < mpf("1e-15"):
             M_W_gev = M_W_gev_new
             break
         M_W_gev = M_W_gev_new
 
-    # Convert back to MeV
     M_W_mev = M_W_gev * mpf("1000")
 
     miss = abs(M_W_mev - M_W_measured) / M_W_measured * mpf("100")
     miss_mev = abs(M_W_mev - M_W_measured)
 
-    # On-shell sin2 from derived M_W
     sin2_os_final = mpf("1") - (M_W_mev * M_W_mev) / (M_Z * M_Z)
 
     mp.dps = old_dps
