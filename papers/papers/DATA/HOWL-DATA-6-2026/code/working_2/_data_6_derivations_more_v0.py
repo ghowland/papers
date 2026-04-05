@@ -1669,8 +1669,8 @@ def qed_alpha_from_ae_v0(value_dicts):
             "result_diff_vs_codata_ppb_v0": _approx(diff_codata_ppb),
             "result_ae_input_v0": _approx(ae),
             "result_ae_recovered_v0": _approx(ae_check),
-            "result_a4_used_v0": A4_str,
-            "result_a5_used_v0": str(A5),
+            "result_a4_used_v0": _approx(A4),
+            "result_a5_used_v0": _approx(A5),
         },
         "notes": "alpha_inv(a_e) = %s. Forward residual = %s. vs Rb: %.2f ppb" % (
             mp.nstr(alpha_inv_extracted, 15),
