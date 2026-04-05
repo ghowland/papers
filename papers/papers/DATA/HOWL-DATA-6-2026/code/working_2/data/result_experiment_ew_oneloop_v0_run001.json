@@ -1,0 +1,122 @@
+{
+  "key": "result_experiment_ew_oneloop_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_ew_oneloop_v0",
+  "timestamp": "2026-04-05T14:36:19Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "ew_alpha_at_mz_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_mw_oneloop_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_gamma_z_oneloop_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_gf_from_corrected_mw_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "alpha^-1(M_Z) from VP running vs measured",
+      "output_key": "result_alpha_inv_mz_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha^-1(M_Z) digits",
+      "output_key": "result_alpha_inv_mz_derived_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W one-loop vs measured",
+      "output_key": "result_mw_oneloop_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W one-loop digits",
+      "output_key": "result_mw_oneloop_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W improvement over tree-level",
+      "output_key": "result_mw_tree_miss_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W one-loop miss < tree-level miss",
+      "output_key": "result_mw_oneloop_miss_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma_Z one-loop vs measured",
+      "output_key": "result_gamma_z_oneloop_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma_Z one-loop digits",
+      "output_key": "result_gamma_z_oneloop_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "G_F from corrected M_W vs measured",
+      "output_key": "result_gf_oneloop_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "G_F one-loop digits",
+      "output_key": "result_gf_oneloop_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "sin2_eff derived vs LEP/SLD",
+      "output_key": "result_sin2_eff_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Delta_rho from m_t",
+      "output_key": "result_delta_rho_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 4,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 12
+  }
+}

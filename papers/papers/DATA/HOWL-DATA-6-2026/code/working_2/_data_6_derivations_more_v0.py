@@ -2579,6 +2579,359 @@ def bridge_vacuum_energy_v0(value_dicts):
     }
 
 # ================================================================
+# CATEGORY M: ONE-LOOP ELECTROWEAK CORRECTIONS
+# ================================================================
+
+def ew_alpha_at_mz_v0(value_dicts):
+    """Derive alpha^-1(M_Z) from alpha^-1(0) via VP running.
+    
+    alpha^-1(M_Z) = alpha^-1(0) - Delta_alpha_lep - Delta_alpha_had
+    
+    Delta_alpha_lep = leptonic VP (computed from QED, stored as value)
+    Delta_alpha_had = hadronic VP (measured from e+e- data, stored as value)
+    
+    This bridges the QED island (alpha at q^2=0) to the EW island (alpha at M_Z).
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    alpha_inv_0 = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    delta_alpha_lep = _mpf_val(vm, "ew_delta_alpha_lep_v0")
+    delta_alpha_had = _mpf_val(vm, "ew_delta_alpha_had_v0")
+
+    # alpha^-1(M_Z) = alpha^-1(0) / (1 - Delta_alpha)
+    # where Delta_alpha = Delta_alpha_lep + Delta_alpha_had
+    delta_alpha_total = delta_alpha_lep + delta_alpha_had
+
+    # The running formula: alpha(M_Z) = alpha(0) / (1 - Delta_alpha)
+    # So alpha^-1(M_Z) = alpha^-1(0) * (1 - Delta_alpha)
+    alpha_inv_mz = alpha_inv_0 * (mpf("1") - delta_alpha_total)
+
+    # Measured reference
+    alpha_inv_mz_measured = _mpf_val(vm, "ew_alpha_mz_measured_v0")
+
+    miss = abs(alpha_inv_mz - alpha_inv_mz_measured) / alpha_inv_mz_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_alpha_at_mz_v0",
+        "outputs": {
+            "result_alpha_inv_mz_derived_v0": _approx(alpha_inv_mz),
+            "result_alpha_mz_derived_v0": _approx(mpf("1") / alpha_inv_mz),
+            "result_alpha_inv_mz_measured_v0": _approx(alpha_inv_mz_measured),
+            "result_alpha_inv_mz_miss_pct_v0": _approx(miss),
+            "result_delta_alpha_total_v0": _approx(delta_alpha_total),
+            "result_delta_alpha_lep_used_v0": _approx(delta_alpha_lep),
+            "result_delta_alpha_had_used_v0": _approx(delta_alpha_had),
+            "result_alpha_inv_0_used_v0": _approx(alpha_inv_0),
+        },
+        "notes": "alpha^-1(M_Z) = %.3f (derived) vs %.3f (measured), miss %.4f%%" % (
+            float(alpha_inv_mz), float(alpha_inv_mz_measured), float(miss)),
+    }
+
+
+def ew_mw_oneloop_v0(value_dicts):
+    """Derive M_W with one-loop rho parameter correction from top quark.
+    
+    Tree-level: M_W = M_Z * cos(theta_W)
+    
+    One-loop: M_W^2 = M_Z^2/2 * (1 + sqrt(1 - 4*pi*alpha(M_Z)/(sqrt(2)*G_F*M_Z^2*(1-Delta_r))))
+    
+    But we want to avoid using G_F as input (we're deriving it).
+    
+    Alternative approach using the rho parameter:
+    M_W = M_Z * sqrt(1 - sin2_tW) * sqrt(1 + Delta_rho * cos2_tW / (cos2_tW - sin2_tW))
+    
+    Simplest correct form:
+    The on-shell relation with one-loop correction:
+    sin2_tW * (1 - sin2_tW) = pi * alpha(M_Z) / (sqrt(2) * G_F * M_Z^2)
+    
+    We use the iterative approach:
+    1. Compute Delta_rho from alpha, m_t, sin2_tW, M_Z
+    2. M_W^2 = rho * M_Z^2 * (1 - sin2_tW) where rho = 1/(1 - Delta_rho)
+    
+    Delta_rho = 3 * alpha * m_t^2 / (16 * pi * sin2_tW * M_Z^2 * (1-sin2_tW))
+    (This is the non-G_F form, using on-shell sin2_tW = 1 - M_W^2/M_Z^2)
+    
+    Since we don't know M_W yet, we iterate:
+    start with tree M_W, compute sin2 = 1 - M_W^2/M_Z^2, compute Delta_rho, update M_W.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import sqrt as msqrt
+
+    sin2_tw_input = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
+    m_t = _f2m(_frac(vm, "mass_top_quark_v0"))
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # alpha at M_Z from previous derivation in chain
+    alpha_mz_str = str(_get(vm, "result_alpha_mz_derived_v0"))
+    alpha_mz = mpf(alpha_mz_str)
+
+    # Tree-level starting point
+    M_W_tree = M_Z * msqrt(mpf("1") - sin2_tw_input)
+    tree_miss = abs(M_W_tree - M_W_measured) / M_W_measured * mpf("100")
+
+    # Iterative one-loop correction
+    # Use the universal form: Delta_rho = 3 * alpha(M_Z) * m_t^2 / (16 * pi * sin2 * M_W^2)
+    # where sin2 = 1 - M_W^2/M_Z^2 (on-shell definition)
+    M_W = M_W_tree  # start
+
+    for iteration in range(10):
+        sin2_os = mpf("1") - (M_W * M_W) / (M_Z * M_Z)
+        cos2_os = (M_W * M_W) / (M_Z * M_Z)
+
+        # Delta_rho from top quark (leading one-loop)
+        # Delta_rho = 3 * alpha(M_Z) * m_t^2 / (16 * pi * sin2 * M_W^2)
+        # But m_t is in MeV, M_W is in MeV, so m_t^2/M_W^2 is dimensionless
+        delta_rho = mpf("3") * alpha_mz * m_t * m_t / (mpf("16") * pi_m * sin2_os * M_W * M_W)
+
+        # rho = 1 + Delta_rho (leading order)
+        rho = mpf("1") + delta_rho
+
+        # Corrected M_W: M_W^2 = rho * M_Z^2 * cos2_tW
+        # But cos2 depends on M_W, so use the input sin2_tW for the weak mixing
+        # Actually: M_W^2 = rho * M_Z^2 * (1 - sin2_tW_input)
+        # This avoids circularity — sin2_tW_input is the on-shell measured value
+        M_W_new = M_Z * msqrt(rho * (mpf("1") - sin2_tw_input))
+
+        if abs(M_W_new - M_W) / M_W < mpf("1e-15"):
+            M_W = M_W_new
+            break
+        M_W = M_W_new
+
+    oneloop_miss = abs(M_W - M_W_measured) / M_W_measured * mpf("100")
+
+    # sin2_eff = kappa_Z * sin2_tW
+    kappa_z = _mpf_val(vm, "ew_kappa_z_v0")
+    sin2_eff_derived = kappa_z * sin2_tw_input
+    sin2_eff_measured = _mpf_val(vm, "ew_sin2_eff_measured_v0")
+    sin2_eff_miss = abs(sin2_eff_derived - sin2_eff_measured) / sin2_eff_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_mw_oneloop_v0",
+        "outputs": {
+            "result_mw_oneloop_v0": _approx(M_W),
+            "result_mw_tree_v0": _approx(M_W_tree),
+            "result_mw_measured_v0": _approx(M_W_measured),
+            "result_mw_oneloop_miss_pct_v0": _approx(oneloop_miss),
+            "result_mw_tree_miss_pct_v0": _approx(tree_miss),
+            "result_delta_rho_derived_v0": _approx(delta_rho),
+            "result_rho_parameter_v0": _approx(rho),
+            "result_mw_improvement_factor_v0": _approx(tree_miss / oneloop_miss),
+            "result_sin2_eff_derived_v0": _approx(sin2_eff_derived),
+            "result_sin2_eff_measured_v0": _approx(sin2_eff_measured),
+            "result_sin2_eff_miss_pct_v0": _approx(sin2_eff_miss),
+            "result_alpha_mz_used_v0": _approx(alpha_mz),
+            "result_mt_used_v0": _approx(m_t),
+        },
+        "notes": "M_W(1-loop) = %.1f MeV (tree = %.1f), measured = %.1f, miss %.3f%% (tree %.3f%%)" % (
+            float(M_W), float(M_W_tree), float(M_W_measured),
+            float(oneloop_miss), float(tree_miss)),
+    }
+
+
+def ew_gamma_z_oneloop_v0(value_dicts):
+    """Derive Z total width with one-loop corrections.
+    
+    Uses effective sin2_theta instead of on-shell:
+    sin2_eff = kappa_Z * sin2_tW (from previous derivation output)
+    
+    Uses alpha(M_Z) instead of alpha(0) for the EW coupling.
+    
+    Includes QCD correction factor (1 + alpha_s/pi) for quark channels.
+    
+    Gamma(Z -> f fbar) = N_c * alpha(M_Z) * M_Z / (12 * sin2_eff * (1-sin2_eff)) * (v_f^2 + a_f^2)
+    
+    where v_f = T3_f - 2*Q_f*sin2_eff, a_f = T3_f
+    
+    Additional correction: multiply by rho parameter for each channel.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    alpha_s = _f2m(_frac(vm, "coupling_alpha_s_mz_v0"))
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # alpha(M_Z) from chain
+    alpha_mz_str = str(_get(vm, "result_alpha_mz_derived_v0"))
+    alpha_mz = mpf(alpha_mz_str)
+
+    # sin2_eff from chain
+    sin2_eff_str = str(_get(vm, "result_sin2_eff_derived_v0"))
+    sin2_eff = mpf(sin2_eff_str)
+    cos2_eff = mpf("1") - sin2_eff
+
+    # rho parameter from chain
+    rho_str = str(_get(vm, "result_rho_parameter_v0"))
+    rho = mpf(rho_str)
+
+    # Measured reference
+    try:
+        gamma_z_measured = _f2m(_frac(vm, "coupling_z_width_v0"))
+    except Exception:
+        gamma_z_measured = mpf("2495.2")
+
+    # Prefactor with rho correction
+    # Gamma = rho * N_c * alpha(M_Z) * M_Z / (12 * sin2_eff * cos2_eff)
+    prefactor = rho * alpha_mz * M_Z / (mpf("12") * sin2_eff * cos2_eff)
+
+    # QCD correction for quarks
+    qcd_factor = mpf("1") + alpha_s / pi_m
+
+    # Fermion channels using effective sin2
+    fermions = [
+        ("neutrinos", 3, 1, mpf("0.5"), mpf("0")),
+        ("charged_leptons", 3, 1, mpf("-0.5"), mpf("-1")),
+        ("up_quarks", 2, 3, mpf("0.5"), mpf("2") / mpf("3")),
+        ("down_quarks", 3, 3, mpf("-0.5"), mpf("-1") / mpf("3")),
+    ]
+
+    gamma_total = mpf("0")
+    partials = {}
+
+    for label, n_gen, n_c, t3, q in fermions:
+        v_f = t3 - mpf("2") * q * sin2_eff
+        a_f = t3
+        gamma_f = n_gen * n_c * prefactor * (v_f * v_f + a_f * a_f)
+        if n_c == 3:
+            gamma_f *= qcd_factor
+        gamma_total += gamma_f
+        partials[label] = float(gamma_f)
+
+    miss = abs(gamma_total - gamma_z_measured) / gamma_z_measured * mpf("100")
+
+    # Also compute the tree-level result for comparison (using on-shell sin2)
+    sin2_os = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    cos2_os = mpf("1") - sin2_os
+    alpha_0 = mpf("1") / _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    prefactor_tree = alpha_0 * M_Z / (mpf("12") * sin2_os * cos2_os)
+    gamma_tree = mpf("0")
+    for label, n_gen, n_c, t3, q in fermions:
+        v_f = t3 - mpf("2") * q * sin2_os
+        a_f = t3
+        gamma_f = n_gen * n_c * prefactor_tree * (v_f * v_f + a_f * a_f)
+        if n_c == 3:
+            gamma_f *= qcd_factor
+        gamma_tree += gamma_f
+    tree_miss = abs(gamma_tree - gamma_z_measured) / gamma_z_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_gamma_z_oneloop_v0",
+        "outputs": {
+            "result_gamma_z_oneloop_v0": _approx(gamma_total),
+            "result_gamma_z_tree_v0": _approx(gamma_tree),
+            "result_gamma_z_measured_v0": _approx(gamma_z_measured),
+            "result_gamma_z_oneloop_miss_pct_v0": _approx(miss),
+            "result_gamma_z_tree_miss_pct_v0": _approx(tree_miss),
+            "result_gamma_z_improvement_v0": _approx(tree_miss / miss),
+            "result_gamma_z_neutrinos_v0": _approx(mpf(str(partials["neutrinos"]))),
+            "result_gamma_z_leptons_v0": _approx(mpf(str(partials["charged_leptons"]))),
+            "result_gamma_z_up_quarks_v0": _approx(mpf(str(partials["up_quarks"]))),
+            "result_gamma_z_down_quarks_v0": _approx(mpf(str(partials["down_quarks"]))),
+            "result_sin2_eff_used_v0": _approx(sin2_eff),
+            "result_rho_used_v0": _approx(rho),
+            "result_qcd_factor_v0": _approx(qcd_factor),
+        },
+        "notes": "Gamma_Z(1-loop) = %.1f MeV (tree = %.1f), measured = %.1f, miss %.2f%% (tree %.2f%%)" % (
+            float(gamma_total), float(gamma_tree), float(gamma_z_measured),
+            float(miss), float(tree_miss)),
+    }
+
+
+def ew_gf_from_corrected_mw_v0(value_dicts):
+    """Derive Fermi constant from one-loop corrected M_W, alpha(M_Z), sin2_eff.
+    
+    Tree-level: G_F = pi * alpha / (sqrt(2) * M_W^2 * sin2_tW)
+    
+    One-loop corrected: use alpha(M_Z) and corrected M_W and sin2_eff:
+    G_F = pi * alpha(M_Z) / (sqrt(2) * M_W(1-loop)^2 * sin2_eff * (1 - Delta_r_remainder))
+    
+    The full one-loop relation in the on-shell scheme:
+    G_F = pi * alpha(M_Z) / (sqrt(2) * M_W^2 * (1 - M_W^2/M_Z^2))
+    
+    where M_W is the one-loop corrected value.
+    This form is exact at one-loop because sin2_tW(on-shell) = 1 - M_W^2/M_Z^2.
+    
+    Uses derived M_W from ew_mw_oneloop_v0.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import sqrt as msqrt
+
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+
+    # alpha(M_Z) from chain
+    alpha_mz_str = str(_get(vm, "result_alpha_mz_derived_v0"))
+    alpha_mz = mpf(alpha_mz_str)
+
+    # M_W one-loop from chain
+    M_W_str = str(_get(vm, "result_mw_oneloop_v0"))
+    M_W = mpf(M_W_str)
+
+    # On-shell sin2 from corrected M_W
+    sin2_os = mpf("1") - (M_W * M_W) / (M_Z * M_Z)
+
+    # Convert M_W to GeV for G_F in GeV^-2
+    M_W_gev = M_W / mpf("1000")
+    M_Z_gev = M_Z / mpf("1000")
+
+    # G_F = pi * alpha(M_Z) / (sqrt(2) * M_W^2(GeV) * sin2_os)
+    G_F_derived = pi_m * alpha_mz / (msqrt(mpf("2")) * M_W_gev * M_W_gev * sin2_os)
+
+    G_F_measured = _f2m(_frac(vm, "coupling_fermi_constant_v0"))
+
+    miss = abs(G_F_derived - G_F_measured) / G_F_measured * mpf("100")
+
+    # Also compute tree-level G_F for comparison
+    alpha_0 = mpf("1") / _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    sin2_input = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    M_W_tree_str = str(_get(vm, "result_mw_tree_v0"))
+    M_W_tree_gev = mpf(M_W_tree_str) / mpf("1000")
+    G_F_tree = pi_m * alpha_0 / (msqrt(mpf("2")) * M_W_tree_gev * M_W_tree_gev * sin2_input)
+    tree_miss = abs(G_F_tree - G_F_measured) / G_F_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_gf_from_corrected_mw_v0",
+        "outputs": {
+            "result_gf_oneloop_v0": _approx(G_F_derived),
+            "result_gf_tree_v0": _approx(G_F_tree),
+            "result_gf_measured_v0": _approx(G_F_measured),
+            "result_gf_oneloop_miss_pct_v0": _approx(miss),
+            "result_gf_tree_miss_pct_v0": _approx(tree_miss),
+            "result_gf_improvement_v0": _approx(tree_miss / miss),
+            "result_gf_mw_used_v0": _approx(M_W),
+            "result_gf_alpha_mz_used_v0": _approx(alpha_mz),
+            "result_gf_sin2_os_used_v0": _approx(sin2_os),
+        },
+        "notes": "G_F(1-loop) = %s (tree = %s), measured = %s, miss %.3f%% (tree %.3f%%)" % (
+            _approx(G_F_derived), _approx(G_F_tree), _approx(G_F_measured),
+            float(miss), float(tree_miss)),
+    }
+
+# ================================================================
 # REGISTRIES
 # ================================================================
 
@@ -2654,6 +3007,11 @@ DERIVATION_MORE_INDEX_V0 = {
     "bridge_dh_from_eta_v0": bridge_dh_from_eta_v0,
     "bridge_neff_consistency_v0": bridge_neff_consistency_v0,
     "bridge_vacuum_energy_v0": bridge_vacuum_energy_v0,
+    # M: One-loop electroweak corrections
+    "ew_alpha_at_mz_v0": ew_alpha_at_mz_v0,
+    "ew_mw_oneloop_v0": ew_mw_oneloop_v0,
+    "ew_gamma_z_oneloop_v0": ew_gamma_z_oneloop_v0,
+    "ew_gf_from_corrected_mw_v0": ew_gf_from_corrected_mw_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {
