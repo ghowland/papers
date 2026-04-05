@@ -3534,6 +3534,208 @@ def ew_mw_consistency_v0(value_dicts):
             float(M_W_a), float(M_W_b), float(consistency_ppm), float(consistency_mev)),
     }
 
+
+# ================================================================
+# CATEGORY P: QED ALPHA WITH FULL CORRECTIONS
+# ================================================================
+
+def qed_alpha_full_corrections_v0(value_dicts):
+    """Extract alpha from a_e with all 7 published corrections subtracted."""
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    # Measured a_e — approximate string
+    ae_measured = _mpf_val(vm, "qed_ae_electron_measured_v0")
+
+    # 7 corrections — all approximate strings
+    corr_mass_2loop = _mpf_val(vm, "qed_ae_mass_dep_2loop_v0")
+    corr_mass_3loop = _mpf_val(vm, "qed_ae_mass_dep_3loop_v0")
+    corr_mass_4loop = _mpf_val(vm, "qed_ae_mass_dep_4loop_v0")
+    corr_had_lo = _mpf_val(vm, "qed_ae_hadronic_lo_v0")
+    corr_had_nlo = _mpf_val(vm, "qed_ae_hadronic_nlo_v0")
+    corr_had_lbl = _mpf_val(vm, "qed_ae_hadronic_lbl_v0")
+    corr_ew = _mpf_val(vm, "qed_ae_electroweak_v0")
+
+    total_correction = (corr_mass_2loop + corr_mass_3loop + corr_mass_4loop
+                       + corr_had_lo + corr_had_nlo + corr_had_lbl + corr_ew)
+
+    ae_qed_pure = ae_measured - total_correction
+
+    # QED coefficients
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+    z3_m = _f2m(_frac(vm, "geom_zeta3_v0"))
+    z5_m = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2_m = _f2m(_frac(vm, "geom_ln2_v0"))
+    li4_m = _f2m(_frac(vm, "geom_li4_half_v0"))
+    pi2 = pi_m * pi_m
+    pi4 = pi2 * pi2
+    ln2_2 = ln2_m * ln2_m
+    ln2_4 = ln2_2 * ln2_2
+
+    # A1 = 1/2
+    A1 = _f2m(_frac(vm, "qed_a1_schwinger_v0"))
+
+    # A2 from 4 rational x Q335
+    a2_rat = _f2m(_frac(vm, "qed_a2_rational_term_v0"))
+    a2_pi2 = _f2m(_frac(vm, "qed_a2_pi2_coeff_v0"))
+    a2_z3 = _f2m(_frac(vm, "qed_a2_zeta3_coeff_v0"))
+    a2_pi2ln2 = _f2m(_frac(vm, "qed_a2_pi2ln2_coeff_v0"))
+    A2 = a2_rat + a2_pi2 * pi2 + a2_z3 * z3_m + a2_pi2ln2 * pi2 * ln2_m
+
+    # A3 from 8 rational x Q335
+    a3_pi2z3 = _f2m(_frac(vm, "qed_a3_pi2z3_coeff_v0"))
+    a3_z5 = _f2m(_frac(vm, "qed_a3_z5_coeff_v0"))
+    a3_li4 = _f2m(_frac(vm, "qed_a3_li4_coeff_v0"))
+    a3_pi4 = _f2m(_frac(vm, "qed_a3_pi4_coeff_v0"))
+    a3_z3 = _f2m(_frac(vm, "qed_a3_z3_coeff_v0"))
+    a3_pi2ln2 = _f2m(_frac(vm, "qed_a3_pi2ln2_coeff_v0"))
+    a3_pi2 = _f2m(_frac(vm, "qed_a3_pi2_coeff_v0"))
+    a3_rat = _f2m(_frac(vm, "qed_a3_rational_term_v0"))
+
+    A3 = (a3_pi2z3 * pi2 * z3_m
+          + a3_z5 * z5_m
+          + a3_li4 * (li4_m + ln2_4 / mpf("24") - pi2 * ln2_2 / mpf("24"))
+          + a3_pi4 * pi4
+          + a3_z3 * z3_m
+          + a3_pi2ln2 * pi2 * ln2_m
+          + a3_pi2 * pi2
+          + a3_rat)
+
+    # A4 and A5 — approximate strings
+    A4 = _mpf_val(vm, "qed_a4_laporta_v0")
+    A5 = _mpf_val(vm, "qed_a5_volkov_v0")
+
+    # CODATA alpha as starting guess
+    alpha_inv_codata = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+
+    # Newton inversion for corrected a_e
+    x = mpf("1") / (alpha_inv_codata * pi_m)
+    for iteration in range(20):
+        f = A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5 - ae_qed_pure
+        fp = A1 + mpf("2")*A2*x + mpf("3")*A3*x**2 + mpf("4")*A4*x**3 + mpf("5")*A5*x**4
+        dx = f / fp
+        x = x - dx
+        if abs(dx) < mpf("1e-50"):
+            break
+
+    alpha_inv_corrected = mpf("1") / (x * pi_m)
+
+    # Forward check
+    ae_forward = A1*x + A2*x**2 + A3*x**3 + A4*x**4 + A5*x**5
+    forward_residual = abs(ae_forward - ae_qed_pure)
+
+    # Uncorrected for comparison
+    x_unc = mpf("1") / (alpha_inv_codata * pi_m)
+    for iteration in range(20):
+        f = A1*x_unc + A2*x_unc**2 + A3*x_unc**3 + A4*x_unc**4 + A5*x_unc**5 - ae_measured
+        fp = A1 + mpf("2")*A2*x_unc + mpf("3")*A3*x_unc**2 + mpf("4")*A4*x_unc**3 + mpf("5")*A5*x_unc**4
+        dx = f / fp
+        x_unc = x_unc - dx
+        if abs(dx) < mpf("1e-50"):
+            break
+    alpha_inv_uncorrected = mpf("1") / (x_unc * pi_m)
+
+    # Misses in ppb
+    miss_corrected_ppb = abs(alpha_inv_corrected - alpha_inv_codata) / alpha_inv_codata * mpf("1e9")
+    miss_uncorrected_ppb = abs(alpha_inv_uncorrected - alpha_inv_codata) / alpha_inv_codata * mpf("1e9")
+
+    alpha_inv_rb = _mpf_val(vm, "coupling_alpha_inv_rb_recoil_v0")
+    alpha_inv_cs = _mpf_val(vm, "coupling_alpha_inv_cs_recoil_v0")
+    miss_vs_rb_ppb = abs(alpha_inv_corrected - alpha_inv_rb) / alpha_inv_rb * mpf("1e9")
+    miss_vs_cs_ppb = abs(alpha_inv_corrected - alpha_inv_cs) / alpha_inv_cs * mpf("1e9")
+
+    improvement_ppb = miss_uncorrected_ppb - miss_corrected_ppb
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_alpha_full_corrections_v0",
+        "outputs": {
+            "result_alpha_inv_corrected_v0": _approx(alpha_inv_corrected),
+            "result_alpha_inv_uncorrected_v0": _approx(alpha_inv_uncorrected),
+            "result_alpha_inv_corrected_miss_ppb_v0": _approx(miss_corrected_ppb),
+            "result_alpha_inv_uncorrected_miss_ppb_v0": _approx(miss_uncorrected_ppb),
+            "result_alpha_inv_improvement_ppb_v0": _approx(improvement_ppb),
+            "result_alpha_inv_miss_vs_rb_ppb_v0": _approx(miss_vs_rb_ppb),
+            "result_alpha_inv_miss_vs_cs_ppb_v0": _approx(miss_vs_cs_ppb),
+            "result_total_correction_v0": _approx(total_correction),
+            "result_ae_qed_pure_v0": _approx(ae_qed_pure),
+            "result_ae_measured_v0": _approx(ae_measured),
+            "result_forward_residual_v0": _approx(forward_residual),
+        },
+        "notes": "alpha^-1(corrected) = %s (%.2f ppb vs CODATA), uncorrected %.2f ppb. Improvement: %.2f ppb" % (
+            _approx(alpha_inv_corrected), float(miss_corrected_ppb),
+            float(miss_uncorrected_ppb), float(improvement_ppb)),
+    }
+
+
+def qed_derived_codata_corrected_v0(value_dicts):
+    """Derive R_inf, a_0, mu_0 from corrected alpha.
+    
+    R_inf = alpha^2 * m_e * c / (2h)
+    a_0 = hbar / (m_e * c * alpha)
+    mu_0 = 2 * alpha * h / (c * e^2)
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    # Corrected alpha from chain
+    alpha_inv = mpf(str(_get(vm, "result_alpha_inv_corrected_v0")))
+    alpha = mpf("1") / alpha_inv
+
+    # SI constants — all exact Fractions
+    c = _f2m(_frac(vm, "si_speed_of_light_v0"))
+    h = _f2m(_frac(vm, "si_planck_constant_v0"))
+    hbar = _f2m(_frac(vm, "si_reduced_planck_constant_v0"))
+    e = _f2m(_frac(vm, "si_elementary_charge_v0"))
+
+    # m_e in kg
+    m_e_mev = _f2m(_frac(vm, "mass_electron_v0"))
+    m_e_kg = m_e_mev * mpf("1e6") * e / (c * c)
+
+    # R_inf = alpha^2 * m_e * c / (2 * h)
+    R_inf = alpha * alpha * m_e_kg * c / (mpf("2") * h)
+
+    # a_0 = hbar / (m_e * c * alpha)
+    a_0 = hbar / (m_e_kg * c * alpha)
+
+    # mu_0 = 2 * alpha * h / (c * e^2)
+    mu_0 = mpf("2") * alpha * h / (c * e * e)
+
+    # CODATA references — use pool values
+    alpha_inv_codata = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_codata = mpf("1") / alpha_inv_codata
+    R_inf_codata = alpha_codata**2 * m_e_kg * c / (mpf("2") * h)
+    a_0_codata = hbar / (m_e_kg * c * alpha_codata)
+    mu_0_codata = mpf("2") * alpha_codata * h / (c * e * e)
+
+    miss_R = abs(R_inf - R_inf_codata) / R_inf_codata * mpf("1e9")
+    miss_a0 = abs(a_0 - a_0_codata) / a_0_codata * mpf("1e9")
+    miss_mu0 = abs(mu_0 - mu_0_codata) / mu_0_codata * mpf("1e9")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "qed_derived_codata_corrected_v0",
+        "outputs": {
+            "result_rydberg_corrected_v0": _approx(R_inf),
+            "result_bohr_radius_corrected_v0": _approx(a_0),
+            "result_mu0_corrected_v0": _approx(mu_0),
+            "result_rydberg_miss_ppb_v0": _approx(miss_R),
+            "result_bohr_radius_miss_ppb_v0": _approx(miss_a0),
+            "result_mu0_miss_ppb_v0": _approx(miss_mu0),
+            "result_alpha_inv_used_v0": _approx(alpha_inv),
+        },
+        "notes": "R_inf miss %.2f ppb, a_0 miss %.2f ppb, mu_0 miss %.2f ppb" % (
+            float(miss_R), float(miss_a0), float(miss_mu0)),
+    }
+
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -3624,6 +3826,9 @@ DERIVATION_MORE_INDEX_V0 = {
     "ew_sin2_eff_from_mw_v0": ew_sin2_eff_from_mw_v0,
     "ew_z_partial_widths_v0": ew_z_partial_widths_v0,
     "ew_mw_consistency_v0": ew_mw_consistency_v0,    
+    # P: QED alpha with full corrections
+    "qed_alpha_full_corrections_v0": qed_alpha_full_corrections_v0,
+    "qed_derived_codata_corrected_v0": qed_derived_codata_corrected_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

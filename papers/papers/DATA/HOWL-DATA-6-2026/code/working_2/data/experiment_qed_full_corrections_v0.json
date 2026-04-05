@@ -1,0 +1,145 @@
+{
+    "key": "experiment_qed_full_corrections_v0",
+    "canonical": "experiment_qed_full_corrections",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Extract alpha from a_e with 7 published corrections subtracted. Target: alpha at sub-ppb.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_ae_electron_measured": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_li4_half": 0,
+            "geom_ln2": 0,
+            "qed_a1_schwinger": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "qed_a4_laporta": 0,
+            "qed_a5_volkov": 0,
+            "qed_ae_mass_dep_2loop": 0,
+            "qed_ae_mass_dep_3loop": 0,
+            "qed_ae_mass_dep_4loop": 0,
+            "qed_ae_hadronic_lo": 0,
+            "qed_ae_hadronic_nlo": 0,
+            "qed_ae_hadronic_lbl": 0,
+            "qed_ae_electroweak": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_alpha_inv_cs_recoil": 0,
+            "coupling_alpha_inv_rb_recoil": 0,
+            "si_speed_of_light": 0,
+            "si_planck_constant": 0,
+            "si_reduced_planck_constant": 0,
+            "si_elementary_charge": 0,
+            "mass_electron": 0
+        },
+        "derivations": {
+            "qed_alpha_full_corrections": 0,
+            "qed_derived_codata_corrected": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "qed_alpha_full_corrections_v0",
+        "qed_derived_codata_corrected_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_alpha_inv_corrected_v0",
+        "result_rydberg_corrected_v0",
+        "result_bohr_radius_corrected_v0",
+        "result_mu0_corrected_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "alpha^-1 corrected vs CODATA",
+            "output_key": "result_alpha_inv_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "137.035999084",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "alpha^-1 corrected vs Rb recoil",
+            "output_key": "result_alpha_inv_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "137.035999206",
+            "reference_source": "Morel_2020"
+        },
+        {
+            "label": "alpha^-1 corrected vs Cs recoil",
+            "output_key": "result_alpha_inv_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "137.035999046",
+            "reference_source": "Parker_2018"
+        },
+        {
+            "label": "alpha^-1 improvement over uncorrected",
+            "output_key": "result_alpha_inv_improvement_ppb_v0",
+            "match_mode": "range",
+            "lo": "0.5",
+            "hi": "5",
+            "reference_source": "improvement_check"
+        },
+        {
+            "label": "R_inf corrected vs CODATA",
+            "output_key": "result_rydberg_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "10973731.568160",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "a_0 corrected vs CODATA",
+            "output_key": "result_bohr_radius_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0000000000529177210903",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "mu_0 corrected vs CODATA",
+            "output_key": "result_mu0_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00000125663706212",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "alpha^-1 corrected miss vs CODATA < 1.5 ppb",
+            "output_key": "result_alpha_inv_corrected_miss_ppb_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.5",
+            "reference_source": "target"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_alpha_before_after_v0",
+            "title": "Alpha extraction: uncorrected vs corrected",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "alpha^-1 (uncorrected)", "predicted": "result_alpha_inv_uncorrected_v0", "measured": "137.035999084"},
+                {"label": "alpha^-1 (corrected)", "predicted": "result_alpha_inv_corrected_v0", "measured": "137.035999084"},
+                {"label": "Miss uncorrected (ppb)", "predicted": "result_alpha_inv_uncorrected_miss_ppb_v0", "measured": "0"},
+                {"label": "Miss corrected (ppb)", "predicted": "result_alpha_inv_corrected_miss_ppb_v0", "measured": "0"}
+            ],
+            "notes": "Seven published corrections shift alpha toward CODATA."
+        }
+    ]
+}
