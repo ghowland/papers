@@ -160,6 +160,20 @@
         "data4": "C6",
         "phys24": "G_F"
       }
+    },
+    {
+        "key": "coupling_z_width_v0",
+        "canonical": "coupling_z_width",
+        "version": 0,
+        "node_type": "value",
+        "topic": "coupling",
+        "term": "z_width",
+        "level": 2,
+        "value": {"_type": "Fraction", "num": "24952", "den": "10"},
+        "value_type": "exact_fraction",
+        "unit": "MeV",
+        "source": "LEP EWWG. Z total width.",
+        "tags": ["electroweak", "LEP", "measured"]
     }
   ]
 }

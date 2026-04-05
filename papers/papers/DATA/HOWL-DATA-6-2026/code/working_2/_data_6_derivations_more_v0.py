@@ -1920,6 +1920,296 @@ def qed_derived_codata_v0(value_dicts):
             _approx(R_inf_digits), _approx(a0_digits)),
     }
 
+# ================================================================
+# CATEGORY K: BRIDGE DERIVATIONS — EW + COSMOLOGY
+# ================================================================
+
+def bridge_mw_from_weinberg_v0(value_dicts):
+    """Bridge 1: Derive M_W from sin2_tW and M_Z via tree-level Weinberg relation.
+    M_W = M_Z * sqrt(1 - sin2_tW)
+    Tree-level only — no radiative corrections.
+    Expected ~0.1% miss from measured M_W due to missing loop corrections.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
+
+    from mpmath import sqrt as msqrt
+    M_W_derived = M_Z * msqrt(mpf("1") - sin2_tw)
+
+    miss = abs(M_W_derived - M_W_measured) / M_W_measured * mpf("100")
+    miss_mev = abs(M_W_derived - M_W_measured)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_mw_from_weinberg_v0",
+        "outputs": {
+            "result_mw_derived_v0": _approx(M_W_derived),
+            "result_mw_measured_v0": _approx(M_W_measured),
+            "result_mw_miss_pct_v0": _approx(miss),
+            "result_mw_miss_mev_v0": _approx(miss_mev),
+            "result_sin2_tw_used_v0": _approx(sin2_tw),
+            "result_cos_tw_v0": _approx(msqrt(mpf("1") - sin2_tw)),
+        },
+        "notes": "M_W(tree) = %.1f MeV, measured = %.1f MeV, miss = %.3f%%" % (
+            float(M_W_derived), float(M_W_measured), float(miss)),
+    }
+
+
+def bridge_gamma_z_from_couplings_v0(value_dicts):
+    """Bridge 2: Derive Z total width from alpha, sin2_tW, M_Z, and fermion content.
+    
+    Gamma(Z -> f fbar) = (N_c * G_F * M_Z^3) / (6 * pi * sqrt(2)) * (v_f^2 + a_f^2)
+    
+    But we want to derive G_F, not use it as input. So use the equivalent form:
+    Gamma(Z -> f fbar) = (N_c * alpha * M_Z) / (12 * sin2_tW * (1 - sin2_tW)) * (v_f^2 + a_f^2)
+    
+    where v_f = T3_f - 2*Q_f*sin2_tW, a_f = T3_f
+    
+    Sum over: 3 neutrinos, 3 charged leptons, 2 up-type quarks (u,c), 3 down-type quarks (d,s,b).
+    Top quark excluded (M_Z < 2*m_t).
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    alpha_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_em = mpf("1") / alpha_inv
+
+    # Measured reference
+    gamma_z_measured = mpf("2495.2")  # from pool: mass_z_width or coupling_z_width
+    # Read from pool if available, otherwise use known value
+    try:
+        gamma_z_measured = _mpf_val(vm, "coupling_z_width_v0")
+    except Exception:
+        gamma_z_measured = mpf("2495.2")
+
+    # Prefactor: alpha * M_Z / (12 * sin2_tW * cos2_tW)
+    cos2_tw = mpf("1") - sin2_tw
+    prefactor = alpha_em * M_Z / (mpf("12") * sin2_tw * cos2_tw)
+
+    # Fermion contributions: (N_c, T3, Q) for each fermion type
+    # Neutrinos: 3 generations, N_c=1, T3=+1/2, Q=0
+    # Charged leptons: 3 gen, N_c=1, T3=-1/2, Q=-1
+    # Up quarks: 2 gen (u,c), N_c=3, T3=+1/2, Q=+2/3
+    # Down quarks: 3 gen (d,s,b), N_c=3, T3=-1/2, Q=-1/3
+
+    fermions = [
+        # (label, N_generations, N_c, T3, Q)
+        ("neutrinos", 3, 1, mpf("0.5"), mpf("0")),
+        ("charged_leptons", 3, 1, mpf("-0.5"), mpf("-1")),
+        ("up_quarks", 2, 3, mpf("0.5"), mpf("2") / mpf("3")),
+        ("down_quarks", 3, 3, mpf("-0.5"), mpf("-1") / mpf("3")),
+    ]
+
+    gamma_total = mpf("0")
+    partial_widths = {}
+
+    for label, n_gen, n_c, t3, q in fermions:
+        v_f = t3 - mpf("2") * q * sin2_tw
+        a_f = t3
+        gamma_f = n_gen * n_c * prefactor * (v_f * v_f + a_f * a_f)
+        gamma_total += gamma_f
+        partial_widths[label] = float(gamma_f)
+
+    # QCD correction for quarks: multiply quark widths by (1 + alpha_s/pi)
+    # We use alpha_s from pool for the correction
+    try:
+        alpha_s = _f2m(_frac(vm, "coupling_alpha_s_mz_v0"))
+        qcd_factor = mpf("1") + alpha_s / mpi
+        # Recompute with QCD correction
+        gamma_total_qcd = mpf("0")
+        for label, n_gen, n_c, t3, q in fermions:
+            v_f = t3 - mpf("2") * q * sin2_tw
+            a_f = t3
+            gamma_f = n_gen * n_c * prefactor * (v_f * v_f + a_f * a_f)
+            if n_c == 3:  # quarks
+                gamma_f *= qcd_factor
+            gamma_total_qcd += gamma_f
+    except Exception:
+        gamma_total_qcd = gamma_total
+        qcd_factor = mpf("1")
+
+    miss_tree = abs(gamma_total - gamma_z_measured) / gamma_z_measured * mpf("100")
+    miss_qcd = abs(gamma_total_qcd - gamma_z_measured) / gamma_z_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_gamma_z_from_couplings_v0",
+        "outputs": {
+            "result_gamma_z_derived_v0": _approx(gamma_total_qcd),
+            "result_gamma_z_tree_v0": _approx(gamma_total),
+            "result_gamma_z_measured_v0": _approx(gamma_z_measured),
+            "result_gamma_z_miss_tree_pct_v0": _approx(miss_tree),
+            "result_gamma_z_miss_qcd_pct_v0": _approx(miss_qcd),
+            "result_gamma_z_qcd_factor_v0": _approx(qcd_factor),
+            "result_gamma_z_neutrinos_v0": _approx(mpf(str(partial_widths["neutrinos"]))),
+            "result_gamma_z_leptons_v0": _approx(mpf(str(partial_widths["charged_leptons"]))),
+            "result_gamma_z_up_quarks_v0": _approx(mpf(str(partial_widths["up_quarks"]))),
+            "result_gamma_z_down_quarks_v0": _approx(mpf(str(partial_widths["down_quarks"]))),
+        },
+        "notes": "Gamma_Z(tree) = %.1f MeV, with QCD = %.1f MeV, measured = %.1f MeV" % (
+            float(gamma_total), float(gamma_total_qcd), float(gamma_z_measured)),
+    }
+
+
+def bridge_gf_from_mw_v0(value_dicts):
+    """Bridge 3: Derive Fermi constant from alpha, M_W, sin2_tW.
+    G_F = pi * alpha / (sqrt(2) * M_W^2 * sin2_tW)
+    Uses the derived M_W from Bridge 1 (result_mw_derived_v0).
+    Tree-level relation.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    alpha_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_em = mpf("1") / alpha_inv
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+
+    # Use derived M_W from Bridge 1
+    M_W_derived_str = str(_get(vm, "result_mw_derived_v0"))
+    M_W = mpf(M_W_derived_str)
+
+    # Convert M_W from MeV to GeV for G_F in GeV^-2
+    M_W_gev = M_W / mpf("1000")
+
+    from mpmath import sqrt as msqrt
+    G_F_derived = mpi * alpha_em / (msqrt(mpf("2")) * M_W_gev * M_W_gev * sin2_tw)
+
+    G_F_measured = _f2m(_frac(vm, "coupling_fermi_constant_v0"))
+
+    miss = abs(G_F_derived - G_F_measured) / G_F_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_gf_from_mw_v0",
+        "outputs": {
+            "result_gf_derived_v0": _approx(G_F_derived),
+            "result_gf_measured_v0": _approx(G_F_measured),
+            "result_gf_miss_pct_v0": _approx(miss),
+            "result_gf_mw_used_v0": _approx(M_W),
+            "result_gf_alpha_used_v0": _approx(alpha_em),
+        },
+        "notes": "G_F(tree) = %s, measured = %s, miss = %.3f%%" % (
+            _approx(G_F_derived), _approx(G_F_measured), float(miss)),
+    }
+
+
+def bridge_omega_b_from_integers_v0(value_dicts):
+    """Bridge 4: Derive baryon density from DM density and integer ratio.
+    DM/baryon = (22/13) * pi  (from gauge beta integers)
+    Omega_b = Omega_DM / ((22/13) * pi)
+    Also derive Omega_m = Omega_b + Omega_DM.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Integer prefactor from pool
+    prefactor = _frac(vm, "cosmo_dm_to_baryon_ratio_prefactor_v0")
+    pi_f = _frac(vm, "geom_pi_v0")
+    dm_baryon_ratio = _f2m(prefactor * pi_f)
+
+    # Measured Omega_DM from Planck
+    omega_dm = _mpf_val(vm, "cosmo_omega_dm_planck_v0")
+
+    # Derive Omega_b
+    omega_b_derived = omega_dm / dm_baryon_ratio
+
+    # Derive Omega_m
+    omega_m_derived = omega_b_derived + omega_dm
+
+    # Measured references
+    omega_b_measured = _mpf_val(vm, "cosmo_omega_b_planck_v0")
+    omega_m_measured = _mpf_val(vm, "cosmo_omega_m_planck_v0")
+
+    miss_b = abs(omega_b_derived - omega_b_measured) / omega_b_measured * mpf("100")
+    miss_m = abs(omega_m_derived - omega_m_measured) / omega_m_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_omega_b_from_integers_v0",
+        "outputs": {
+            "result_omega_b_derived_v0": _approx(omega_b_derived),
+            "result_omega_b_measured_v0": _approx(omega_b_measured),
+            "result_omega_b_miss_pct_v0": _approx(miss_b),
+            "result_omega_m_derived_v0": _approx(omega_m_derived),
+            "result_omega_m_measured_v0": _approx(omega_m_measured),
+            "result_omega_m_miss_pct_v0": _approx(miss_m),
+            "result_dm_baryon_ratio_used_v0": _approx(dm_baryon_ratio),
+            "result_omega_dm_input_v0": _approx(omega_dm),
+        },
+        "notes": "Omega_b = %.4f (derived) vs %.4f (Planck), miss %.3f%%" % (
+            float(omega_b_derived), float(omega_b_measured), float(miss_b)),
+    }
+
+
+def bridge_omega_de_from_flatness_v0(value_dicts):
+    """Bridge 5: Derive dark energy density from flatness constraint.
+    Omega_DE = 1 - Omega_m
+    where Omega_m = Omega_b(derived) + Omega_DM(Planck)
+    Uses the derived Omega_b from Bridge 4.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Derived Omega_m from Bridge 4
+    omega_m_derived_str = str(_get(vm, "result_omega_m_derived_v0"))
+    omega_m = mpf(omega_m_derived_str)
+
+    # Flatness
+    omega_de_derived = mpf("1") - omega_m
+
+    # Also get individual components for the breakdown
+    omega_b_derived_str = str(_get(vm, "result_omega_b_derived_v0"))
+    omega_b = mpf(omega_b_derived_str)
+    omega_dm_str = str(_get(vm, "result_omega_dm_input_v0"))
+    omega_dm = mpf(omega_dm_str)
+
+    # Measured reference
+    omega_de_measured = _mpf_val(vm, "cosmo_omega_de_planck_v0")
+
+    miss = abs(omega_de_derived - omega_de_measured) / omega_de_measured * mpf("100")
+
+    # Flatness check: all three should sum to 1
+    flatness_sum = omega_b + omega_dm + omega_de_derived
+    flatness_residual = abs(flatness_sum - mpf("1"))
+
+    mp.dps = old_dps
+
+    return {
+        "key": "bridge_omega_de_from_flatness_v0",
+        "outputs": {
+            "result_omega_de_derived_v0": _approx(omega_de_derived),
+            "result_omega_de_measured_v0": _approx(omega_de_measured),
+            "result_omega_de_miss_pct_v0": _approx(miss),
+            "result_omega_b_component_v0": _approx(omega_b),
+            "result_omega_dm_component_v0": _approx(omega_dm),
+            "result_omega_de_component_v0": _approx(omega_de_derived),
+            "result_flatness_sum_v0": _approx(flatness_sum),
+            "result_flatness_residual_v0": _approx(flatness_residual),
+        },
+        "notes": "Omega_DE = %.4f (derived) vs %.4f (Planck), miss %.3f%%. Flatness: %.15f" % (
+            float(omega_de_derived), float(omega_de_measured), float(miss), float(flatness_sum)),
+    }
+
 
 # ================================================================
 # REGISTRIES
@@ -1985,6 +2275,12 @@ DERIVATION_MORE_INDEX_V0 = {
     "qed_coefficients_assemble_v0": qed_coefficients_assemble_v0,
     "qed_alpha_from_ae_v0": qed_alpha_from_ae_v0,
     "qed_derived_codata_v0": qed_derived_codata_v0,
+    # K: Bridge derivations — EW + Cosmology
+    "bridge_mw_from_weinberg_v0": bridge_mw_from_weinberg_v0,
+    "bridge_gamma_z_from_couplings_v0": bridge_gamma_z_from_couplings_v0,
+    "bridge_gf_from_mw_v0": bridge_gf_from_mw_v0,
+    "bridge_omega_b_from_integers_v0": bridge_omega_b_from_integers_v0,
+    "bridge_omega_de_from_flatness_v0": bridge_omega_de_from_flatness_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {

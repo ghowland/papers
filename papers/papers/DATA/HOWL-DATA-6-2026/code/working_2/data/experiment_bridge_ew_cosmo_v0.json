@@ -1,0 +1,167 @@
+{
+    "key": "experiment_bridge_ew_cosmo_v0",
+    "canonical": "experiment_bridge_ew_cosmo",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Five bridge derivations connecting the QED, electroweak, and cosmology islands. Bridge 1: M_W from sin2_tW and M_Z. Bridge 2: Gamma_Z from alpha, sin2_tW, M_Z. Bridge 3: G_F from alpha, M_W, sin2_tW. Bridge 4: Omega_b from Omega_DM and DM/baryon integers. Bridge 5: Omega_DE from flatness.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_sin2_theta_w": 0,
+            "mass_z_boson": 0,
+            "mass_w_boson": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_fermi_constant": 0,
+            "geom_pi": 0,
+            "cosmo_omega_dm_planck": 0,
+            "cosmo_omega_b_planck": 0,
+            "cosmo_omega_m_planck": 0,
+            "cosmo_omega_de_planck": 0,
+            "cosmo_dm_to_baryon_planck": 0,
+            "cosmo_dm_to_baryon_ratio_prefactor": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_up_quark": 0,
+            "mass_down_quark": 0,
+            "mass_strange_quark": 0,
+            "mass_charm_quark": 0,
+            "mass_bottom_quark": 0,
+            "mass_top_quark": 0,
+            "integer_yang_mills_eleven": 0,
+            "integer_b2_modified_numerator_abs": 0
+        },
+        "derivations": {
+            "bridge_mw_from_weinberg": 0,
+            "bridge_gamma_z_from_couplings": 0,
+            "bridge_gf_from_mw": 0,
+            "bridge_omega_b_from_integers": 0,
+            "bridge_omega_de_from_flatness": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "bridge_mw_from_weinberg_v0",
+        "bridge_gamma_z_from_couplings_v0",
+        "bridge_gf_from_mw_v0",
+        "bridge_omega_b_from_integers_v0",
+        "bridge_omega_de_from_flatness_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_mw_derived_v0",
+        "result_gamma_z_derived_v0",
+        "result_gf_derived_v0",
+        "result_omega_b_derived_v0",
+        "result_omega_de_derived_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "M_W from Weinberg relation vs measured",
+            "output_key": "result_mw_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "80369.2",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W digits of agreement",
+            "output_key": "result_mw_derived_v0",
+            "match_mode": "digits",
+            "expected": "80360",
+            "digits": 4,
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "Gamma_Z total width vs measured",
+            "output_key": "result_gamma_z_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "2495.2",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "G_F derived vs measured",
+            "output_key": "result_gf_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0000116638",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "G_F digits of agreement",
+            "output_key": "result_gf_derived_v0",
+            "match_mode": "digits",
+            "expected": "0.00001166",
+            "digits": 4,
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "Omega_b from integers vs Planck",
+            "output_key": "result_omega_b_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0490",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_b digits of agreement",
+            "output_key": "result_omega_b_derived_v0",
+            "match_mode": "digits",
+            "expected": "0.049",
+            "digits": 3,
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_DE from flatness vs Planck",
+            "output_key": "result_omega_de_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.6889",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_m derived vs Planck",
+            "output_key": "result_omega_m_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.3111",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "sin2_tW used (input verification)",
+            "output_key": "result_sin2_tw_used_v0",
+            "match_mode": "digits",
+            "expected": "0.23122",
+            "digits": 5,
+            "reference_source": "input_check"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_bridge_ew_v0",
+            "title": "Electroweak bridge: sin2_tW + M_Z → M_W → G_F",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "M_W (MeV)", "predicted": "result_mw_derived_v0", "measured": "80369.2"},
+                {"label": "Gamma_Z (MeV)", "predicted": "result_gamma_z_derived_v0", "measured": "2495.2"},
+                {"label": "G_F (GeV^-2)", "predicted": "result_gf_derived_v0", "measured": "0.0000116638"}
+            ],
+            "notes": "Three EW observables derived from sin2_tW and M_Z. Tree-level, no radiative corrections."
+        },
+        {
+            "key": "diagram_bridge_cosmo_v0",
+            "title": "Cosmology bridge: integers → Omega_b → Omega_DE",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "DM/baryon", "predicted": "cosmo_dm_to_baryon_ratio_predicted_derived_v0", "measured": "5.3204"},
+                {"label": "Omega_b", "predicted": "result_omega_b_derived_v0", "measured": "0.0490"},
+                {"label": "Omega_m", "predicted": "result_omega_m_derived_v0", "measured": "0.3111"},
+                {"label": "Omega_DE", "predicted": "result_omega_de_derived_v0", "measured": "0.6889"}
+            ],
+            "notes": "From Omega_DM (Planck) + DM/baryon = (22/13)*pi → three cosmological parameters."
+        }
+    ]
+}
+
