@@ -1,5 +1,7 @@
 {
   "nodes": [
+
+
     {
       "key": "program_beta_unification_v0",
       "canonical": "program_beta_unification",
@@ -11,11 +13,7 @@
       "source": "Session 4",
       "thesis": "Gauge group beta coefficient integers determine cosmological parameters",
       "status": "ACTIVE",
-      "tags": [
-        "beta",
-        "unification",
-        "cosmology"
-      ],
+      "tags": ["beta", "unification", "cosmology"],
       "scripts": [
         {
           "name": "beta_unification_test.py",
@@ -40,6 +38,8 @@
         "program_hubble_running": "shares integer 20/13"
       }
     },
+
+
     {
       "key": "program_toroidal_dm_v0",
       "canonical": "program_toroidal_dm",
@@ -51,11 +51,7 @@
       "source": "Session 4",
       "thesis": "DM amplification via toroidal circulation A=(44/13)*pi*(c/v)^2",
       "status": "ACTIVE",
-      "tags": [
-        "DM",
-        "toroidal",
-        "amplification"
-      ],
+      "tags": ["DM", "toroidal", "amplification"],
       "scripts": [
         {
           "name": "toroidal_tidal_stripping.py",
@@ -79,6 +75,8 @@
         "program_beta_unification": "A numerator 44/13 from betas"
       }
     },
+
+
     {
       "key": "program_hubble_running_v0",
       "canonical": "program_hubble_running",
@@ -90,11 +88,7 @@
       "source": "Session 4",
       "thesis": "H0 decreases with boundary transit count: H0(N) = H0(0)*r^N",
       "status": "ACTIVE",
-      "tags": [
-        "Hubble",
-        "running",
-        "cosmology"
-      ],
+      "tags": ["Hubble", "running", "cosmology"],
       "scripts": [
         {
           "name": "hubble_structure_catalog.py",
@@ -116,6 +110,417 @@
       ],
       "program_connections": {
         "program_beta_unification": "(1-r) = alpha^2*pi^2*(20/13)"
+      }
+    },
+
+
+    {
+      "key": "program_soliton_gravity_v0",
+      "canonical": "program_soliton_gravity",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "soliton_gravity",
+      "level": null,
+      "source": "Session 4",
+      "thesis": "Gravity is the ground state in a soliton nesting hierarchy. GM/(rc^2) determines well depth at every level. Same R2 in orbital mechanics as in pipes and wires.",
+      "status": "ACTIVE",
+      "tags": ["gravity", "soliton", "hierarchy", "R2", "Kepler", "GPS"],
+      "scripts": [
+        {
+          "name": "nested_soliton_gravity.py",
+          "description": "11-level hierarchy, Kepler via 64*R2^2, Hill spheres, escape velocities",
+          "stage": 1
+        },
+        {
+          "name": "time_process_rate_test.py",
+          "description": "Process rate sqrt(1-2GM/rc^2), GPS 38.5 us/day, muon gamma",
+          "stage": 1
+        },
+        {
+          "name": "dwarf_soliton_ground_state.py",
+          "description": "Dwarf purity spectrum, FJ/TF from a0 = cH0/(8R2)",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "process_rate_measurement",
+          "condition": "Measurement contradicts sqrt(1-2GM/rc^2) at any scale",
+          "data_source": "Gravity Probe B / ACES / future clock comparisons"
+        },
+        {
+          "name": "dwarf_dynamics",
+          "condition": "Dwarf spheroidal dynamics incompatible with soliton model",
+          "data_source": "Gaia DR4 / LSST proper motions"
+        },
+        {
+          "name": "kepler_deviation",
+          "condition": "Planetary orbit deviation from 64*R2^2*a^3/(GM) beyond ephemeris precision",
+          "data_source": "JPL DE440+ ephemeris"
+        }
+      ],
+      "program_connections": {
+        "program_r2_universality": "same R2 = pi/4 in Kepler and all domains",
+        "program_toroidal_dm": "MOND a0 = cH0/(8R2) connects to DM transition",
+        "program_hubble_running": "boundary transit count N for cosmological running"
+      }
+    },
+
+
+    {
+      "key": "program_r2_universality_v0",
+      "canonical": "program_r2_universality",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "r2_universality",
+      "level": null,
+      "source": "Session 1-4",
+      "thesis": "R2 = pi/4 is the universal geometric remainder appearing in every circular-to-rectilinear conversion. R2-free products achieve highest measurement precision. R2-dependent observables are limited to engineering precision.",
+      "status": "CONFIRMED",
+      "tags": ["R2", "geometry", "domains", "cancellation", "pi"],
+      "scripts": [
+        {
+          "name": "demo_cross_domain.py",
+          "description": "10 cross-domain translations, 22 R2 equations, 7 cancellations",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "new_domain_failure",
+          "condition": "A circular-to-rectilinear conversion found that does NOT use R2*d^2",
+          "data_source": "Any engineering domain"
+        },
+        {
+          "name": "cancellation_failure",
+          "condition": "R2 fails to cancel in a product where it enters both sides",
+          "data_source": "Numerical verification"
+        }
+      ],
+      "program_connections": {
+        "program_soliton_gravity": "Kepler T^2 = 64*R2^2*a^3/(GM)",
+        "program_q335_basis": "R2 stored as pi_f/4 in Q335 Fraction arithmetic"
+      }
+    },
+
+
+    {
+      "key": "program_koide_analysis_v0",
+      "canonical": "program_koide_analysis",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "koide_analysis",
+      "level": null,
+      "source": "Session 2-4",
+      "thesis": "Koide ratio K = (1+a^2/2)/3 is a tautology for N=3. The spacing (a^2 ~ 2 for leptons) is an open problem. K = 2/3 is a saddle on the C3 landscape, not a minimum. The m_tau prediction (1776.97 MeV, miss 0.006%) is conditional on a^2 = 2 exact.",
+      "status": "ACTIVE",
+      "tags": ["Koide", "mass", "lepton", "tautology", "conditional"],
+      "scripts": [
+        {
+          "name": "koide_three_sector.py",
+          "description": "K and a^2 for leptons, down quarks, up quarks",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "m_tau_deviation",
+          "condition": "m_tau deviates > 3 sigma from 1776.97 MeV with improved measurement",
+          "data_source": "Belle II / FCC-ee tau mass measurement"
+        },
+        {
+          "name": "a2_derivation",
+          "condition": "a^2 = 2 derived from physics (would upgrade from conditional to confirmed)",
+          "data_source": "Theoretical derivation"
+        }
+      ],
+      "program_connections": {
+        "program_parameter_reduction": "conditional reduction 18->17 via Koide"
+      }
+    },
+
+
+    {
+      "key": "program_q335_basis_v0",
+      "canonical": "program_q335_basis",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "q335_basis",
+      "level": null,
+      "source": "Session 1-2",
+      "thesis": "All transcendental constants needed for physics computation can be stored as p/Q where Q = 2^335, giving 100+ digit precision with exact Fraction arithmetic. 35 constants verified. 82/82 PSLQ searches for compact integer relations returned null. Derivation beats search.",
+      "status": "CONFIRMED",
+      "tags": ["Q335", "Fraction", "PSLQ", "exact", "arithmetic"],
+      "scripts": [
+        {
+          "name": "q335_basis.py",
+          "description": "Compute all 35 Q335 numerators from scratch",
+          "stage": 1
+        },
+        {
+          "name": "more_constants_335_basis.py",
+          "description": "Extended basis: elliptic integrals, higher polylogarithms",
+          "stage": 1
+        },
+        {
+          "name": "pslq_82_null.py",
+          "description": "82/82 PSLQ independence tests, all null",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "compact_relation_found",
+          "condition": "PSLQ finds a compact integer relation for any tested constant",
+          "data_source": "PSLQ search with increased basis dimension"
+        },
+        {
+          "name": "precision_failure",
+          "condition": "Q335 numerator disagrees with mpmath at 100 digits for any constant",
+          "data_source": "Numerical verification at mp.dps=120"
+        }
+      ],
+      "program_connections": {
+        "program_r2_universality": "R2 = pi_f/4 stored in Q335 basis",
+        "program_electroweak_anatomy": "zeta(3), Li4(1/2), ln(2) needed for QED coefficients"
+      }
+    },
+
+
+    {
+      "key": "program_electroweak_anatomy_v0",
+      "canonical": "program_electroweak_anatomy",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "electroweak_anatomy",
+      "level": null,
+      "source": "Session 2-3",
+      "thesis": "The electroweak sector is overconstrained: 7 DATA-4 inputs determine 11 observables through integer coefficients from SU(2)xU(1). The QED A2 coefficient decomposes into rational + number-theoretic + geometric pieces with 87.4% cancellation. R4 = pi^2/32 enters every loop integral.",
+      "status": "CONFIRMED",
+      "tags": ["electroweak", "A2", "QED", "overconstrained", "R4"],
+      "scripts": [
+        {
+          "name": "electroweak_11_observables.py",
+          "description": "7 inputs -> 11 overconstrained observables",
+          "stage": 1
+        },
+        {
+          "name": "a2_three_piece.py",
+          "description": "A2 = 197/144 + (3/4)zeta(3) + R4*(8/3-16ln2), 87% cancel",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "ew_observable_failure",
+          "condition": "Any of the 11 EW observables disagrees with integer anatomy beyond precision",
+          "data_source": "LEP/SLD/LHC EW precision data"
+        }
+      ],
+      "program_connections": {
+        "program_q335_basis": "A2 needs zeta(3), Li4(1/2), ln(2) from Q335",
+        "program_beta_unification": "same SM betas, same coupling extraction"
+      }
+    },
+
+
+    {
+      "key": "program_parameter_reduction_v0",
+      "canonical": "program_parameter_reduction",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "parameter_reduction",
+      "level": null,
+      "source": "Session 2-3",
+      "thesis": "SM parameter count reduces from 19 to 17 via two independent derivations: theta_QCD = 0 (unconditional, energy minimization) and alpha <-> a_e (relabeling, 4.3 ppb). Koide m_tau adds a conditional reduction to 17 if a^2 = 2 exact. CD adds 6 new parameters (net 23).",
+      "status": "CONFIRMED",
+      "tags": ["parameters", "theta_QCD", "alpha", "reduction"],
+      "scripts": [
+        {
+          "name": "parameter_scorecard.py",
+          "description": "Track 19 -> 18 -> 17 (conditional) -> 23 (with CD)",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "theta_qcd_nonzero",
+          "condition": "Neutron EDM measurement detects nonzero theta_QCD",
+          "data_source": "nEDM@SNS / n2EDM"
+        },
+        {
+          "name": "ae_alpha_disagreement",
+          "condition": "alpha from a_e disagrees with alpha from quantum Hall / Cs recoil beyond 4 ppb",
+          "data_source": "CODATA / Northwestern a_e measurement"
+        }
+      ],
+      "program_connections": {
+        "program_koide_analysis": "Koide conditional adds the 18->17 step",
+        "program_beta_unification": "CD adds 6 parameters (net 23)"
+      }
+    },
+
+
+    {
+      "key": "program_confinement_mapping_v0",
+      "canonical": "program_confinement_mapping",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "confinement_mapping",
+      "level": null,
+      "source": "Session 2",
+      "thesis": "The confinement wall (~0.3-2 GeV) is the one zone where perturbative beta function rules do not apply. alpha_s ~ O(1). The boundary has two faces: perturbative above, hadronic below. The map marks it blank and does not pretend to compute through it.",
+      "status": "PARKED",
+      "tags": ["confinement", "QCD", "non-perturbative", "blank_zone"],
+      "scripts": [
+        {
+          "name": "confinement_two_face.py",
+          "description": "Map the confinement wall upper and lower faces",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "lattice_qcd_breakthrough",
+          "condition": "Lattice QCD computes through confinement with integer-traceable coefficients",
+          "data_source": "Lattice QCD collaborations"
+        }
+      ],
+      "program_connections": {
+        "program_soliton_gravity": "confinement boundary sits inside the soliton hierarchy",
+        "program_beta_unification": "beta running stops at confinement upper face"
+      }
+    },
+
+
+    {
+      "key": "program_statistical_control_v0",
+      "canonical": "program_statistical_control",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "statistical_control",
+      "level": null,
+      "source": "Session 4",
+      "thesis": "The appearance of integers 11 and 13 in both gauge theory (betas) and cosmology (DM/baryon, Omega_DM) requires a combinatoric analysis to determine whether the match is statistically significant or a selection effect.",
+      "status": "BLOCKING",
+      "tags": ["statistics", "combinatorics", "selection_effect", "blocking"],
+      "scripts": [
+        {
+          "name": "beta_statistical_control.py",
+          "description": "Combinatoric probability that random integers match observed pattern",
+          "stage": 0
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "high_probability",
+          "condition": "p > 0.1 — the integer match is likely coincidence",
+          "data_source": "Combinatoric computation"
+        },
+        {
+          "name": "low_probability",
+          "condition": "p < 0.01 — the integer match is unlikely coincidence (would upgrade beta_unification)",
+          "data_source": "Combinatoric computation"
+        }
+      ],
+      "blocking_for": ["program_beta_unification"],
+      "program_connections": {
+        "program_beta_unification": "BLOCKS confirmation of integer coincidence significance"
+      },
+      "notes": "This is the single most important unwritten script in the series. Without it, the (22/13)*pi match could be a fluke."
+    },
+
+
+    {
+      "key": "program_proton_decay_v0",
+      "canonical": "program_proton_decay",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "proton_decay",
+      "level": null,
+      "source": "Session 3",
+      "thesis": "CD gives M_GUT = 10^15.5 GeV. In minimal SU(5), tau_p ~ M_GUT^4 ~ 10^34-35 yr. Hyper-K (2027-2037) can test this window. MSSM gives 10^36-37 (beyond Hyper-K). This is the decisive experiment.",
+      "status": "ACTIVE",
+      "tags": ["proton_decay", "Hyper-K", "M_GUT", "SU5", "prediction"],
+      "scripts": [
+        {
+          "name": "proton_decay_window.py",
+          "description": "M_GUT^4 scaling, uncertainty budget, Hyper-K sensitivity",
+          "stage": 1
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "hyper_k_null",
+          "condition": "Hyper-K null at tau > 10^35 yr — kills minimal SU(5), CD itself survives",
+          "data_source": "Hyper-Kamiokande p -> e+pi0 search"
+        },
+        {
+          "name": "hyper_k_detection",
+          "condition": "Hyper-K detects proton decay in the 10^34-35 window — confirms CD + min SU(5)",
+          "data_source": "Hyper-Kamiokande"
+        },
+        {
+          "name": "dune_kaon_channel",
+          "condition": "DUNE detects p -> K+nu_bar — complementary channel",
+          "data_source": "DUNE"
+        }
+      ],
+      "program_connections": {
+        "program_beta_unification": "M_GUT from one-loop CD crossing at L = 4.978",
+        "program_gut_threshold": "threshold corrections modify M_GUT and tau_p"
+      }
+    },
+
+
+    {
+      "key": "program_gut_threshold_v0",
+      "canonical": "program_gut_threshold",
+      "version": 0,
+      "node_type": "program",
+      "topic": "program",
+      "term": "gut_threshold",
+      "level": null,
+      "source": "Session 3-4",
+      "thesis": "GUT threshold corrections, exact M_VL determination, and three-loop running are the precision frontier. Two-loop with full b_ij improves alpha_s miss from 8.74% (one-loop) to 0.325% (two-loop). Three-loop would constrain M_VL within the 1.5-6 TeV window.",
+      "status": "ACTIVE",
+      "tags": ["GUT", "threshold", "three-loop", "M_VL", "precision"],
+      "scripts": [
+        {
+          "name": "gut_threshold_corrections.py",
+          "description": "Threshold corrections at GUT scale in minimal SU(5)",
+          "stage": 0
+        },
+        {
+          "name": "m_vl_exact.py",
+          "description": "Determine M_VL for exact unification within two-loop",
+          "stage": 0
+        }
+      ],
+      "kill_switches": [
+        {
+          "name": "alpha_s_three_loop_failure",
+          "condition": "Three-loop alpha_s prediction diverges from two-loop (non-perturbative breakdown)",
+          "data_source": "Three-loop computation"
+        },
+        {
+          "name": "lhc_vl_exclusion",
+          "condition": "LHC excludes VL quarks above 6 TeV — closes the mass window entirely",
+          "data_source": "HL-LHC VLQ pair production search"
+        }
+      ],
+      "program_connections": {
+        "program_beta_unification": "extends one/two-loop to three-loop and threshold",
+        "program_proton_decay": "threshold corrections modify tau_p prediction"
       }
     }
   ]
