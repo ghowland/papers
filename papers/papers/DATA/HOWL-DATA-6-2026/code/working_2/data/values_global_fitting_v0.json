@@ -615,6 +615,20 @@
       "unit": "dimensionless",
       "source": "Numerical configuration. mpmath decimal places for Euler integration.",
       "tags": ["config", "numerical", "precision"]
+    },
+    {
+        "key": "coupling_z_width_v0",
+        "canonical": "coupling_z_width",
+        "version": 0,
+        "node_type": "value",
+        "topic": "coupling",
+        "term": "z_width",
+        "level": 2,
+        "value": {"_type": "Fraction", "num": "24952", "den": "10"},
+        "value_type": "exact_fraction",
+        "unit": "MeV",
+        "source": "LEP EWWG 2005. Z total width 2495.2 +/- 2.3 MeV.",
+        "tags": ["electroweak", "LEP", "Z_width", "measured"]
     }
   ]
 }

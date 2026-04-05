@@ -1,0 +1,188 @@
+{
+    "key": "experiment_ew_v2_v0",
+    "canonical": "experiment_ew_v2",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "EW v2: flipped logic. G_F as input, derive M_W from Sirlin relation with full Delta_r. Derive sin2_eff from on-shell M_W. Derive individual Z partial widths. Compare M_W(from G_F) to M_W(from sin2_tW) for consistency.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_fermi_constant": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_s_mz": 0,
+            "mass_z_boson": 0,
+            "mass_w_boson": 0,
+            "mass_top_quark": 0,
+            "mass_higgs_boson": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_bottom_quark": 0,
+            "mass_charm_quark": 0,
+            "geom_pi": 0,
+            "ew_alpha_mz_measured": 0,
+            "ew_sin2_eff_measured": 0,
+            "ew_delta_alpha_had": 0,
+            "ew_delta_alpha_lep": 0,
+            "ew_delta_vb": 0,
+            "ew_fsr_lepton": 0,
+            "ew_delta_r_remainder": 0,
+            "ew_gamma_z_ee_measured": 0,
+            "ew_gamma_z_mumu_measured": 0,
+            "ew_gamma_z_tautau_measured": 0,
+            "ew_gamma_z_had_measured": 0,
+            "ew_gamma_z_inv_measured": 0,
+            "ew_r_l_measured": 0,
+            "coupling_z_width": 0
+        },
+        "derivations": {
+            "ew_mw_from_gf": 0,
+            "ew_sin2_eff_from_mw": 0,
+            "ew_z_partial_widths": 0,
+            "ew_mw_consistency": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "ew_mw_from_gf_v0",
+        "ew_sin2_eff_from_mw_v0",
+        "ew_z_partial_widths_v0",
+        "ew_mw_consistency_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_mw_from_gf_v0",
+        "result_sin2_eff_from_mw_v0",
+        "result_gamma_z_ee_v0",
+        "result_gamma_z_mumu_v0",
+        "result_gamma_z_tautau_v0",
+        "result_gamma_z_had_v0",
+        "result_gamma_z_inv_v0",
+        "result_mw_consistency_ppm_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "M_W from G_F vs PDG measured",
+            "output_key": "result_mw_from_gf_v0",
+            "match_mode": "miss_pct",
+            "expected": "80369.2",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W from G_F miss < 0.5%",
+            "output_key": "result_mw_from_gf_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.5",
+            "reference_source": "target"
+        },
+        {
+            "label": "sin2_eff from on-shell M_W vs LEP",
+            "output_key": "result_sin2_eff_from_mw_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23153",
+            "reference_source": "LEP_SLD"
+        },
+        {
+            "label": "Gamma(Z->ee) vs LEP",
+            "output_key": "result_gamma_z_ee_v0",
+            "match_mode": "miss_pct",
+            "expected": "83.91",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma(Z->mumu) vs LEP",
+            "output_key": "result_gamma_z_mumu_v0",
+            "match_mode": "miss_pct",
+            "expected": "83.99",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma(Z->tautau) vs LEP",
+            "output_key": "result_gamma_z_tautau_v0",
+            "match_mode": "miss_pct",
+            "expected": "84.08",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma(Z->hadrons) vs LEP",
+            "output_key": "result_gamma_z_had_v0",
+            "match_mode": "miss_pct",
+            "expected": "1744.4",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma(Z->invisible) vs LEP",
+            "output_key": "result_gamma_z_inv_v0",
+            "match_mode": "miss_pct",
+            "expected": "499.0",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "R_l = Gamma_had/Gamma_lep derived vs LEP",
+            "output_key": "result_r_l_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "20.767",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma_Z total derived vs LEP",
+            "output_key": "result_gamma_z_total_v0",
+            "match_mode": "miss_pct",
+            "expected": "2495.2",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "M_W consistency: G_F path vs sin2 path < 500 ppm",
+            "output_key": "result_mw_consistency_ppm_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "500",
+            "reference_source": "consistency_check"
+        },
+        {
+            "label": "N_gen from invisible width = 3",
+            "output_key": "result_n_gen_from_inv_v0",
+            "match_mode": "range",
+            "lo": "2.9",
+            "hi": "3.1",
+            "reference_source": "LEP_N_nu"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_ew_v2_partial_widths_v0",
+            "title": "Z partial widths: derived vs LEP",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "Gamma(ee) MeV", "predicted": "result_gamma_z_ee_v0", "measured": "83.91"},
+                {"label": "Gamma(mumu) MeV", "predicted": "result_gamma_z_mumu_v0", "measured": "83.99"},
+                {"label": "Gamma(tautau) MeV", "predicted": "result_gamma_z_tautau_v0", "measured": "84.08"},
+                {"label": "Gamma(had) MeV", "predicted": "result_gamma_z_had_v0", "measured": "1744.4"},
+                {"label": "Gamma(inv) MeV", "predicted": "result_gamma_z_inv_v0", "measured": "499.0"},
+                {"label": "Gamma(total) MeV", "predicted": "result_gamma_z_total_v0", "measured": "2495.2"}
+            ],
+            "notes": "Individual Z partial widths from flipped EW logic: G_F as input, M_W derived."
+        },
+        {
+            "key": "diagram_mw_two_paths_v0",
+            "title": "M_W from two independent paths",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "M_W from sin2_tW + rho", "predicted": "result_mw_from_sin2_v0", "measured": "80369.2"},
+                {"label": "M_W from G_F + Delta_r", "predicted": "result_mw_from_gf_v0", "measured": "80369.2"},
+                {"label": "Consistency (ppm)", "predicted": "result_mw_consistency_ppm_v0", "measured": "0"}
+            ],
+            "notes": "Two independent derivations of M_W. Agreement tests EW self-consistency."
+        }
+    ]
+}
+

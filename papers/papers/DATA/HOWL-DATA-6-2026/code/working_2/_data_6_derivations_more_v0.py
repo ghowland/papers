@@ -2781,10 +2781,7 @@ def ew_gamma_z_oneloop_v0(value_dicts):
     rho = mpf(rho_str)
 
     # Measured reference
-    try:
-        gamma_z_measured = _f2m(_frac(vm, "coupling_z_width_v0"))
-    except Exception:
-        gamma_z_measured = mpf("2495.2")
+    gamma_z_measured = _f2m(_frac(vm, "coupling_z_width_v0"))
 
     # Prefactor with rho correction
     # Gamma = rho * N_c * alpha(M_Z) * M_Z / (12 * sin2_eff * cos2_eff)
@@ -3165,6 +3162,398 @@ def ew_gf_corrected_v0(value_dicts):
             _approx(G_F_derived), _approx(G_F_measured), float(miss)),
     }
 
+# ================================================================
+# CATEGORY O: EW V2 — FLIPPED LOGIC (G_F AS INPUT)
+# ================================================================
+
+def ew_mw_from_gf_v0(value_dicts):
+    """Derive M_W from G_F using the Sirlin relation with full Delta_r.
+    
+    The standard EW relation:
+    M_W^2 * (1 - M_W^2/M_Z^2) = pi * alpha / (sqrt(2) * G_F) * 1/(1 - Delta_r)
+    
+    Delta_r = Delta_alpha - (cos2/sin2)*Delta_rho + Delta_r_remainder
+    
+    where:
+    Delta_alpha = Delta_alpha_lep + Delta_alpha_had (VP running to M_Z)
+    Delta_rho = 3*alpha*m_t^2 / (16*pi*sin2*M_W^2) (top quark loops)
+    Delta_r_remainder = published non-universal remainder
+    
+    M_W appears on both sides. Iterate to convergence.
+    Uses G_F (measured, 0.6 ppm) as input — the most precise EW quantity.
+    All other inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import sqrt as msqrt
+
+    G_F = _f2m(_frac(vm, "coupling_fermi_constant_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    m_t = _f2m(_frac(vm, "mass_top_quark_v0"))
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+    M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
+
+    # alpha(M_Z) measured
+    alpha_inv_mz = _mpf_val(vm, "ew_alpha_mz_measured_v0")
+    alpha_mz = mpf("1") / alpha_inv_mz
+
+    # alpha(0) for Delta_alpha
+    alpha_inv_0 = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_0 = mpf("1") / alpha_inv_0
+
+    # VP running components
+    delta_alpha_lep = _mpf_val(vm, "ew_delta_alpha_lep_v0")
+    delta_alpha_had = _mpf_val(vm, "ew_delta_alpha_had_v0")
+    delta_alpha = delta_alpha_lep + delta_alpha_had
+
+    # Remainder
+    delta_r_rem = _mpf_val(vm, "ew_delta_r_remainder_v0")
+
+    # G_F in GeV^-2, M_Z in MeV -> convert
+    M_Z_gev = M_Z / mpf("1000")
+
+    # The RHS constant: pi*alpha(0) / (sqrt(2)*G_F)
+    A = pi_m * alpha_0 / (msqrt(mpf("2")) * G_F)
+    # A has units of GeV^2
+
+    # Iteration: solve M_W^2 * sin2_os = A / (1 - Delta_r)
+    # where sin2_os = 1 - M_W^2/M_Z^2
+    # so M_W^2 * (1 - M_W^2/M_Z^2) = A / (1 - Delta_r)
+
+    # Start with tree-level M_W
+    # At tree level, Delta_r = 0:
+    # M_W^2 * (1 - M_W^2/M_Z^2) = A
+    # Let x = M_W^2/M_Z^2, then M_Z^2 * x * (1-x) = A
+    # x^2 - x + A/M_Z^2 = 0
+    # x = (1 - sqrt(1 - 4*A/M_Z^4)) / 2
+    # But A is in GeV^2 and M_Z in MeV, so use GeV consistently
+
+    M_Z_gev2 = M_Z_gev * M_Z_gev
+    disc = mpf("1") - mpf("4") * A / M_Z_gev2
+    x_tree = (mpf("1") - msqrt(disc)) / mpf("2")
+    M_W_gev = M_Z_gev * msqrt(x_tree)
+
+    # Iterate with Delta_r
+    for iteration in range(20):
+        M_W_gev2 = M_W_gev * M_W_gev
+        sin2_os = mpf("1") - M_W_gev2 / M_Z_gev2
+        cos2_os = M_W_gev2 / M_Z_gev2
+
+        # Delta_rho from top quark (using alpha(M_Z))
+        delta_rho = mpf("3") * alpha_mz * m_t * m_t / (
+            mpf("16") * pi_m * sin2_os * M_W_gev2 * mpf("1e6"))
+        # m_t is in MeV, M_W_gev is in GeV -> m_t^2/M_W^2 needs m_t in GeV
+        m_t_gev = m_t / mpf("1000")
+        delta_rho = mpf("3") * alpha_mz * m_t_gev * m_t_gev / (
+            mpf("16") * pi_m * sin2_os * M_W_gev2)
+
+        # Full Delta_r
+        delta_r = delta_alpha - (cos2_os / sin2_os) * delta_rho + delta_r_rem
+
+        # Solve: M_W^2 * sin2_os = A / (1 - Delta_r)
+        A_corrected = A / (mpf("1") - delta_r)
+        disc_new = mpf("1") - mpf("4") * A_corrected / M_Z_gev2
+        if disc_new < mpf("0"):
+            break
+        x_new = (mpf("1") - msqrt(disc_new)) / mpf("2")
+        M_W_gev_new = M_Z_gev * msqrt(x_new)
+
+        if abs(M_W_gev_new - M_W_gev) / M_W_gev < mpf("1e-15"):
+            M_W_gev = M_W_gev_new
+            break
+        M_W_gev = M_W_gev_new
+
+    # Convert back to MeV
+    M_W_mev = M_W_gev * mpf("1000")
+
+    miss = abs(M_W_mev - M_W_measured) / M_W_measured * mpf("100")
+    miss_mev = abs(M_W_mev - M_W_measured)
+
+    # On-shell sin2 from derived M_W
+    sin2_os_final = mpf("1") - (M_W_mev * M_W_mev) / (M_Z * M_Z)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_mw_from_gf_v0",
+        "outputs": {
+            "result_mw_from_gf_v0": _approx(M_W_mev),
+            "result_mw_from_gf_miss_pct_v0": _approx(miss),
+            "result_mw_from_gf_miss_mev_v0": _approx(miss_mev),
+            "result_delta_r_v0": _approx(delta_r),
+            "result_delta_alpha_v0": _approx(delta_alpha),
+            "result_delta_rho_from_gf_v0": _approx(delta_rho),
+            "result_delta_r_rem_used_v0": _approx(delta_r_rem),
+            "result_sin2_os_from_gf_v0": _approx(sin2_os_final),
+            "result_gf_used_v0": _approx(G_F),
+            "result_alpha_0_used_v0": _approx(alpha_0),
+        },
+        "notes": "M_W(from G_F) = %.1f MeV, measured = %.1f MeV, miss %.4f%%, Delta_r = %.5f" % (
+            float(M_W_mev), float(M_W_measured), float(miss), float(delta_r)),
+    }
+
+
+def ew_sin2_eff_from_mw_v0(value_dicts):
+    """Derive sin2_theta_eff from on-shell M_W (derived from G_F).
+    
+    sin2_os = 1 - M_W^2/M_Z^2  (on-shell definition)
+    
+    kappa_Z relates on-shell to effective:
+    sin2_eff = kappa_Z * sin2_os
+    
+    kappa_Z is computed from m_t and M_Z:
+    kappa_Z = 1 + cos2_os/sin2_os * Delta_rho
+    (leading approximation — absorbs the rho correction into the
+    effective mixing angle)
+    
+    More precisely:
+    kappa_Z ~ 1 + (alpha(M_Z)/(4*pi*sin2_os*cos2_os)) * 
+              (11/(3*sin2_os) - 3) * (m_t^2/M_Z^2 - 5/3)
+    
+    For simplicity, use the published kappa_Z relation:
+    sin2_eff = sin2_os + cos2_os * Delta_rho
+    which gives sin2_eff directly without kappa_Z.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+
+    # M_W from G_F chain
+    M_W_str = str(_get(vm, "result_mw_from_gf_v0"))
+    M_W = mpf(M_W_str)
+
+    # On-shell sin2
+    sin2_os = mpf("1") - (M_W * M_W) / (M_Z * M_Z)
+    cos2_os = (M_W * M_W) / (M_Z * M_Z)
+
+    # Delta_rho from the chain
+    delta_rho_str = str(_get(vm, "result_delta_rho_from_gf_v0"))
+    delta_rho = mpf(delta_rho_str)
+
+    # sin2_eff from the radiative correction relation:
+    # sin2_eff = sin2_os + cos2_os * Delta_rho
+    # This is the leading one-loop relation (Sirlin/Marciano)
+    sin2_eff = sin2_os + cos2_os * delta_rho
+
+    sin2_eff_measured = _mpf_val(vm, "ew_sin2_eff_measured_v0")
+    miss = abs(sin2_eff - sin2_eff_measured) / sin2_eff_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_sin2_eff_from_mw_v0",
+        "outputs": {
+            "result_sin2_eff_from_mw_v0": _approx(sin2_eff),
+            "result_sin2_eff_measured_v0": _approx(sin2_eff_measured),
+            "result_sin2_eff_miss_pct_v0": _approx(miss),
+            "result_sin2_os_v0": _approx(sin2_os),
+            "result_cos2_os_v0": _approx(cos2_os),
+            "result_delta_rho_used_v0": _approx(delta_rho),
+            "result_mw_used_for_sin2_v0": _approx(M_W),
+        },
+        "notes": "sin2_eff = %.5f (derived from M_W=%.1f), measured = %.5f, miss %.3f%%" % (
+            float(sin2_eff), float(M_W), float(sin2_eff_measured), float(miss)),
+    }
+
+
+def ew_z_partial_widths_v0(value_dicts):
+    """Derive individual Z partial widths for each fermion channel.
+    
+    Uses alpha(M_Z), sin2_eff (derived from M_W from G_F), rho parameter,
+    delta_vb, QCD for quarks, FSR for leptons.
+    
+    Each lepton generation computed individually (e, mu, tau).
+    Quark channels: uu+cc (2 gen up-type), dd+ss+bb (3 gen down-type).
+    
+    Gamma(Z->ff) = rho * (1+delta_vb) * alpha(M_Z) * M_Z /
+                   (12 * sin2_eff * cos2_eff) * (v_f^2 + a_f^2)
+                   * correction_factor
+    
+    correction_factor = (1+FSR) for leptons, QCD_factor for quarks
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    alpha_s = _f2m(_frac(vm, "coupling_alpha_s_mz_v0"))
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # alpha(M_Z) measured
+    alpha_inv_mz = _mpf_val(vm, "ew_alpha_mz_measured_v0")
+    alpha_mz = mpf("1") / alpha_inv_mz
+
+    # sin2_eff from chain (derived from M_W from G_F)
+    sin2_eff_str = str(_get(vm, "result_sin2_eff_from_mw_v0"))
+    sin2_eff = mpf(sin2_eff_str)
+    cos2_eff = mpf("1") - sin2_eff
+
+    # rho parameter: read from G_F chain or compute
+    # rho = 1 + delta_rho
+    delta_rho_str = str(_get(vm, "result_delta_rho_from_gf_v0"))
+    rho = mpf("1") + mpf(delta_rho_str)
+
+    # Corrections from pool
+    delta_vb = _mpf_val(vm, "ew_delta_vb_v0")
+    fsr_lep = _mpf_val(vm, "ew_fsr_lepton_v0")
+
+    # QCD factor with higher orders
+    as_pi = alpha_s / pi_m
+    qcd_factor = mpf("1") + as_pi + mpf("1.41") * as_pi**2 - mpf("12.8") * as_pi**3
+
+    # Prefactor
+    prefactor = rho * (mpf("1") + delta_vb) * alpha_mz * M_Z / (mpf("12") * sin2_eff * cos2_eff)
+
+    # Individual fermion channels
+    # (label, N_c, T3, Q)
+    channels = [
+        ("nu_e", 1, mpf("0.5"), mpf("0")),
+        ("nu_mu", 1, mpf("0.5"), mpf("0")),
+        ("nu_tau", 1, mpf("0.5"), mpf("0")),
+        ("e", 1, mpf("-0.5"), mpf("-1")),
+        ("mu", 1, mpf("-0.5"), mpf("-1")),
+        ("tau", 1, mpf("-0.5"), mpf("-1")),
+        ("u", 3, mpf("0.5"), mpf("2") / mpf("3")),
+        ("c", 3, mpf("0.5"), mpf("2") / mpf("3")),
+        ("d", 3, mpf("-0.5"), mpf("-1") / mpf("3")),
+        ("s", 3, mpf("-0.5"), mpf("-1") / mpf("3")),
+        ("b", 3, mpf("-0.5"), mpf("-1") / mpf("3")),
+    ]
+
+    widths = {}
+    for label, n_c, t3, q in channels:
+        v_f = t3 - mpf("2") * q * sin2_eff
+        a_f = t3
+        gamma_f = n_c * prefactor * (v_f * v_f + a_f * a_f)
+        if n_c == 3:
+            gamma_f *= qcd_factor
+        elif q != mpf("0"):  # charged lepton
+            gamma_f *= (mpf("1") + fsr_lep)
+        widths[label] = gamma_f
+
+    # Aggregate channels
+    gamma_ee = widths["e"]
+    gamma_mumu = widths["mu"]
+    gamma_tautau = widths["tau"]
+    gamma_inv = widths["nu_e"] + widths["nu_mu"] + widths["nu_tau"]
+    gamma_had = widths["u"] + widths["c"] + widths["d"] + widths["s"] + widths["b"]
+    gamma_lep = gamma_ee + gamma_mumu + gamma_tautau
+    gamma_total = gamma_inv + gamma_lep + gamma_had
+
+    # R_l = Gamma_had / Gamma_lep
+    r_l = gamma_had / gamma_lep
+
+    # N_gen from invisible width
+    # Gamma(inv) / Gamma(single nu) = N_gen
+    gamma_single_nu = widths["nu_e"]
+    n_gen = gamma_inv / gamma_single_nu
+
+    # Measured references
+    gamma_z_measured = mpf("2495.2")
+    try:
+        gamma_z_measured = _f2m(_frac(vm, "coupling_z_width_v0"))
+    except Exception:
+        pass
+
+    miss_total = abs(gamma_total - gamma_z_measured) / gamma_z_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_z_partial_widths_v0",
+        "outputs": {
+            "result_gamma_z_ee_v0": _approx(gamma_ee),
+            "result_gamma_z_mumu_v0": _approx(gamma_mumu),
+            "result_gamma_z_tautau_v0": _approx(gamma_tautau),
+            "result_gamma_z_inv_v0": _approx(gamma_inv),
+            "result_gamma_z_had_v0": _approx(gamma_had),
+            "result_gamma_z_lep_v0": _approx(gamma_lep),
+            "result_gamma_z_total_v0": _approx(gamma_total),
+            "result_gamma_z_total_miss_pct_v0": _approx(miss_total),
+            "result_r_l_derived_v0": _approx(r_l),
+            "result_n_gen_from_inv_v0": _approx(n_gen),
+            "result_gamma_z_single_nu_v0": _approx(gamma_single_nu),
+            "result_sin2_eff_used_v0": _approx(sin2_eff),
+            "result_rho_used_v0": _approx(rho),
+            "result_qcd_factor_used_v0": _approx(qcd_factor),
+        },
+        "notes": "Gamma_Z(total) = %.1f MeV (measured %.1f), R_l = %.3f, N_gen = %.2f" % (
+            float(gamma_total), float(gamma_z_measured), float(r_l), float(n_gen)),
+    }
+
+
+def ew_mw_consistency_v0(value_dicts):
+    """Compare M_W derived from two independent paths:
+    Path A: sin2_tW + M_Z + rho(m_t) -> M_W (from experiment_ew_oneloop_v1)
+    Path B: G_F + alpha + M_Z + Delta_r -> M_W (from this experiment)
+    
+    Report the consistency in ppm. If both paths agree, the EW sector
+    is self-consistent and M_W is overdetermined.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    M_W_measured = _f2m(_frac(vm, "mass_w_boson_v0"))
+
+    from mpmath import sqrt as msqrt
+
+    # Path A: M_W from sin2_tW + rho
+    # Recompute here so the comparison is within one experiment
+    alpha_inv_mz = _mpf_val(vm, "ew_alpha_mz_measured_v0")
+    alpha_mz = mpf("1") / alpha_inv_mz
+    m_t = _f2m(_frac(vm, "mass_top_quark_v0"))
+    pi_m = _f2m(_frac(vm, "geom_pi_v0"))
+
+    M_W_a = M_Z * msqrt(mpf("1") - sin2_tw)
+    for iteration in range(10):
+        sin2_a = mpf("1") - (M_W_a * M_W_a) / (M_Z * M_Z)
+        delta_rho_a = mpf("3") * alpha_mz * m_t * m_t / (
+            mpf("16") * pi_m * sin2_a * M_W_a * M_W_a)
+        rho_a = mpf("1") + delta_rho_a
+        M_W_a_new = M_Z * msqrt(rho_a * (mpf("1") - sin2_tw))
+        if abs(M_W_a_new - M_W_a) / M_W_a < mpf("1e-15"):
+            M_W_a = M_W_a_new
+            break
+        M_W_a = M_W_a_new
+
+    # Path B: M_W from G_F (from chain)
+    M_W_b_str = str(_get(vm, "result_mw_from_gf_v0"))
+    M_W_b = mpf(M_W_b_str)
+
+    # Consistency
+    consistency_mev = abs(M_W_a - M_W_b)
+    consistency_ppm = consistency_mev / ((M_W_a + M_W_b) / mpf("2")) * mpf("1e6")
+
+    # Both vs measured
+    miss_a = abs(M_W_a - M_W_measured) / M_W_measured * mpf("100")
+    miss_b = abs(M_W_b - M_W_measured) / M_W_measured * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "ew_mw_consistency_v0",
+        "outputs": {
+            "result_mw_from_sin2_v0": _approx(M_W_a),
+            "result_mw_from_gf_path_v0": _approx(M_W_b),
+            "result_mw_consistency_ppm_v0": _approx(consistency_ppm),
+            "result_mw_consistency_mev_v0": _approx(consistency_mev),
+            "result_mw_sin2_miss_pct_v0": _approx(miss_a),
+            "result_mw_gf_miss_pct_v0": _approx(miss_b),
+        },
+        "notes": "M_W(sin2) = %.1f, M_W(G_F) = %.1f, consistency = %.0f ppm (%.1f MeV)" % (
+            float(M_W_a), float(M_W_b), float(consistency_ppm), float(consistency_mev)),
+    }
 
 # ================================================================
 # REGISTRIES
@@ -3251,6 +3640,11 @@ DERIVATION_MORE_INDEX_V0 = {
     "ew_mw_oneloop_v1_v0": ew_mw_oneloop_v1_v0,
     "ew_gamma_z_corrected_v0": ew_gamma_z_corrected_v0,
     "ew_gf_corrected_v0": ew_gf_corrected_v0,    
+    # O: EW v2 — flipped logic
+    "ew_mw_from_gf_v0": ew_mw_from_gf_v0,
+    "ew_sin2_eff_from_mw_v0": ew_sin2_eff_from_mw_v0,
+    "ew_z_partial_widths_v0": ew_z_partial_widths_v0,
+    "ew_mw_consistency_v0": ew_mw_consistency_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

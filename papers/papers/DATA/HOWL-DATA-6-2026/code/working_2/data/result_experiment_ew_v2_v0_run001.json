@@ -1,0 +1,122 @@
+{
+  "key": "result_experiment_ew_v2_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_ew_v2_v0",
+  "timestamp": "2026-04-05T15:46:10Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "ew_mw_from_gf_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_sin2_eff_from_mw_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_z_partial_widths_v0",
+      "status": "skip"
+    },
+    {
+      "key": "ew_mw_consistency_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "M_W from G_F vs PDG measured",
+      "output_key": "result_mw_from_gf_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W from G_F miss < 0.5%",
+      "output_key": "result_mw_from_gf_miss_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "sin2_eff from on-shell M_W vs LEP",
+      "output_key": "result_sin2_eff_from_mw_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma(Z->ee) vs LEP",
+      "output_key": "result_gamma_z_ee_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma(Z->mumu) vs LEP",
+      "output_key": "result_gamma_z_mumu_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma(Z->tautau) vs LEP",
+      "output_key": "result_gamma_z_tautau_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma(Z->hadrons) vs LEP",
+      "output_key": "result_gamma_z_had_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma(Z->invisible) vs LEP",
+      "output_key": "result_gamma_z_inv_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "R_l = Gamma_had/Gamma_lep derived vs LEP",
+      "output_key": "result_r_l_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Gamma_Z total derived vs LEP",
+      "output_key": "result_gamma_z_total_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "M_W consistency: G_F path vs sin2 path < 500 ppm",
+      "output_key": "result_mw_consistency_ppm_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "N_gen from invisible width = 3",
+      "output_key": "result_n_gen_from_inv_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 4,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 12
+  }
+}
