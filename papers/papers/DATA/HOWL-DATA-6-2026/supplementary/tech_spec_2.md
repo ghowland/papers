@@ -972,3 +972,209 @@ All stored as exact `Fraction` values with 100+ digit precision. Numerators seri
 ---
 
 *End of appendices. 9 tables covering the complete DATA-6 system inventory.*
+
+
+---
+
+## Addendum: v0.3 Improvement Plan
+
+Incorporated from post-v0.2 review. Prioritized by impact on correctness and trust.
+
+---
+
+---
+
+### A2. Alias Consolidation
+
+10 aliases across 2 files exist solely to paper over naming disagreements between the exporter and the derivation registry. This is technical debt.
+
+Rule: the derivation registry's input keys ARE the canonical names. The exporter writes those names. No alias files.
+
+Concrete changes:
+- Exporter writes `beta_cabibbo_doublet_vectorlike_u1_shift_v0`, not `beta_cabibbo_doublet_u1_shift_v0`
+- Exporter writes `rep_cabibbo_doublet_su3_dim_v0`, not `rep_cd_su3_dim_v0`
+- Delete `values_beta_aliases_v0.json` and `values_rep_aliases_v0.json`
+- Update any value-spot-check tests that reference the old keys
+
+Naming convention to establish: spell out `cabibbo_doublet`, never abbreviate to `cd`. Use `_derived` suffix consistently on all derivation output keys. Document in the spec.
+
+**Priority: 2. Aliases make the system look unreliable.**
+
+---
+
+### A3. Pitfall Entries on Value Nodes
+
+The pitfall mechanism is documented but unused. Known pitfalls from our work that should be attached to the relevant value nodes:
+
+| Node key | Wrong | Right | Session |
+|---|---|---|---|
+| coupling_alpha_2_inverse_mz_v0 | 1/a2 = alpha_inv / sin2_tW = 593 | 1/a2 = sin2_tW * alpha_inv = 31.7 | PHYS-30 |
+| beta_modified_u1_total_v0 | b1_mod = 62/15 | b1_mod = 25/6 (same value, cleaner form) | DATA-5 |
+| beta_two_loop_sm_bij_su2_su2_v0 | 39/4 (gauge double-count) | 15/4 (fermion only) | PHYS-33 |
+| mass_w_boson_v0 | 80379 MeV (some sessions) | 80369.2 MeV (phys24_lib: 803692/10) | DATA-4 |
+
+These go into the exporter as `pitfalls=[...]` on the relevant `make_value` calls. New sessions reading the JSON see the trap before falling into it.
+
+**Priority: 3. Safety for future sessions.**
+
+---
+
+---
+
+### A5. Hardcoded Numerical Parameters
+
+The derivation functions contain numerical parameters that should be value nodes:
+
+| Parameter | Current location | Proposed key | Value |
+|---|---|---|---|
+| Euler step count | `_run_inv_alpha_euler` | config_euler_step_count_v0 | 4000 |
+| Bisection depth | `_predict_alpha_s_two_loop` | config_bisection_depth_v0 | 60 |
+| Bisection bracket max | `_predict_alpha_s_two_loop` | config_bisection_bracket_max_v0 | 100 |
+| CD mass estimate | `render_coupling_running` | config_cd_mass_estimate_gev_v0 | 3000 |
+| mpmath precision | module level | config_mpmath_dps_v0 | 100 |
+
+These are Level 2 choices — they could be different. When someone wants to test at 1000 steps or M_VL = 5 TeV, they create a dataset override, not a code fork.
+
+Note: the platform uses 500 Euler steps, the derivation uses 4000. This discrepancy may be related to the two-loop bug (A1). Investigate before changing.
+
+**Priority: 8. Principle compliance after correctness is fixed.**
+
+---
+
+### A6. Runner Pre-Flight Validation
+
+The runner should validate before executing:
+
+1. Check that all values declared in `dependencies.values` exist in the pool
+2. Check that all derivation keys in `execution_plan` exist in `DERIVATION_INDEX_V0`
+3. Check that all connection keys in `connections` exist in `CONNECTION_INDEX_V0`
+4. Report all missing items before running anything
+5. If a derivation fails, track which output keys are missing and skip downstream derivations that require them
+
+This does not require topological sort — the experiment author declares valid execution order. It just requires a pre-flight check that the declared order is satisfiable.
+
+**Priority: 5. Cascading failures waste time.**
+
+---
+
+### A7. Result Versioning
+
+Results currently overwrite: `result_experiment_beta_unification_v0.json`. Running twice destroys the first result. This violates the append-only principle.
+
+Fix: append a run counter. `result_experiment_beta_unification_v0_run001.json`. The runner checks for existing results and increments the counter. Old results are never deleted.
+
+**Priority: 6. Append-only means append-only.**
+
+---
+
+
+---
+
+### A9. Connection Outputs into the Pool
+
+Derivation outputs are merged into the value pool after execution. Connection outputs are not — the runner calls the connection, prints the summary, and discards the computed data. If a connection's `named_values` contain useful computed data, it's lost.
+
+Fix: after each connection executes, append its `named_values` entries to the pool as value entries with `source` set to the connection key. This makes connection outputs available to later comparisons and diagrams.
+
+**Priority: 9. Small code change, enables richer experiments.**
+
+---
+
+### A10. Missing Value Categories
+
+The 357-node inventory is missing some categories present in the DATA-5 platform:
+
+**Moduli** (~16 values): R2 as filling fraction, vena contracta coefficient, BCS gap ratios, Fourier/Gaussian normalizations. These are structural constants connecting domains.
+
+**Boundary scale values**: Boundaries exist in `connections_v0.json` as static metadata but not as proper value nodes with `scale_MeV`, `known`/`unknown`, `forces_affected`. Each boundary scale should be a value node so derivations can reference boundary scales by key.
+
+**Dwarf galaxy core radii**: Some observational entries are missing `r_core` which the soliton analysis uses.
+
+**Priority: 10. Needed for experiments A8.**
+
+---
+
+### A11. Compiled Single-File View
+
+A compiler script `data_6_compile.py` should produce a single `data_6_compiled.json` containing all value nodes organized by section, all connection metadata, all program nodes, derivation registry signatures, experiment comparison results, and integer pool traceability. This is the LLM ingest format — drop one file into context and the full knowledge base is available.
+
+**Priority: 11. Usability for new sessions.**
+
+---
+
+### A12. Manifest Index
+
+The flat layout works but needs an index. A `data_6_manifest.json` listing every file, its type, its node count, and its content hash. The runner reads the manifest instead of globbing. The manifest is regenerated by `data_6_index.py` whenever files change. Better than subdirectories because the manifest IS the index and diffs are visible in version control.
+
+**Priority: 12. Operational hygiene.**
+
+---
+
+### A13. JSON Schema Validation
+
+A `data_6_validate.py` script that checks all JSON files against the node schema. Every value node must have: key, canonical, version, node_type, value, value_type, unit, level, source. Invalid nodes produce warnings (not crashes) with the node key and the missing field. Exits 0 if all valid, 1 if any invalid.
+
+**Priority: 13. Catches data entry errors before runtime.**
+
+---
+
+### A14. Identity Match Mode
+
+The deferred `identity` match mode is needed for:
+- 64*R2^2 = 4*pi^2 (Kepler identity)
+- 8*R2 = 2*pi (exact within Q335)
+- K_J * R_K = 2/e (R2 cancellation)
+- Wire R * Cap C = rho*eps0*L/t (cross-domain cancellation)
+
+These are two-sided identities where both sides are computed from the value pool. Even a limited expression evaluator handling multiply, power, and addition of value pool entries would cover the important cases.
+
+**Priority: 14. Needed for cross-domain verification experiments.**
+
+---
+
+### A15. Provenance Index
+
+The runner has all the information to build a post-run provenance index showing which values were consumed by which derivations and which derivations produced which outputs. Write it to `provenance_experiment_{name}_v0.json` alongside the result JSON.
+
+```json
+{
+    "coupling_alpha_em_inverse_v0": {
+        "consumed_by": ["coupling_extraction_v0"],
+        "produced_by": "phys24_lib (CODATA 2022)"
+    },
+    "coupling_alpha_1_inverse_gut_normalized_mz_v0": {
+        "consumed_by": ["gap_measured_ratio_v0", "crossing_one_loop_scale_v0"],
+        "produced_by": "coupling_extraction_v0"
+    }
+}
+```
+
+**Priority: 15. Completes the provenance story.**
+
+---
+
+### A16. Priority Summary
+
+| Priority | Item | Category |
+|---|---|---|
+| 1 | Two-loop bug (A1) | Correctness |
+| 2 | Alias consolidation (A2) | Trust |
+| 3 | Pitfall entries (A3) | Safety |
+| 4 | Omega_DM comparison (A4) | Accuracy |
+| 5 | Pre-flight validation (A6) | Robustness |
+| 6 | Result versioning (A7) | Data preservation |
+| 7 | Missing experiments (A8) | Coverage |
+| 8 | Hardcoded constants (A5) | Principle compliance |
+| 9 | Connection outputs (A9) | Capability |
+| 10 | Missing values (A10) | Completeness |
+| 11 | Compiled view (A11) | Usability |
+| 12 | Manifest index (A12) | Hygiene |
+| 13 | Schema validation (A13) | Robustness |
+| 14 | Identity match mode (A14) | Capability |
+| 15 | Provenance index (A15) | Provenance |
+
+Items 1-4 affect correctness and credibility. Items 5-6 affect operational reliability. Items 7-10 affect coverage. Items 11-15 are infrastructure improvements.
+
+---
+
+*End of v0.3 improvement plan addendum. The two-loop bug is the gate. Everything else follows.*
