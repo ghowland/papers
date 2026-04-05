@@ -1,0 +1,679 @@
+{
+  "key": "result_experiment_beta_unification_v0_20260405T065544Z",
+  "node_type": "result",
+  "experiment_key": "experiment_beta_unification_v0",
+  "timestamp": "2026-04-05T06:55:44Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "coupling_extraction_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "beta_sm_coefficients_v0",
+      "status": "ok",
+      "output_count": 9
+    },
+    {
+      "key": "beta_cabibbo_doublet_shifts_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "beta_modified_and_cd_gap_ratio_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "generation_democracy_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "gauge_pure_gap_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "gap_sm_ratio_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "gap_measured_ratio_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "beta_double_action_mechanism_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "beta_y_dependence_family_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "crossing_one_loop_scale_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "coupling_one_loop_alpha_s_prediction_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "coupling_two_loop_alpha_s_euler_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "koide_ratio_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "koide_tau_prediction_v0",
+      "status": "ok",
+      "output_count": 1
+    },
+    {
+      "key": "cosmo_dm_baryon_ratio_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_omega_dm_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_amplification_factor_decomposition_v0",
+      "status": "ok",
+      "output_count": 2
+    }
+  ],
+  "connections_resolved": [
+    "connection_coupling_convergence_v0",
+    "connection_gap_correction_chain_v0",
+    "connection_integer_network_v0",
+    "connection_three_programs_shared_set_v0",
+    "connection_object_adjacency_v0"
+  ],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Pure gauge gap = 2",
+      "output_key": "gap_pure_gauge_ratio_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "2",
+      "got": "2"
+    },
+    {
+      "label": "SM gap = 218/115",
+      "output_key": "gap_sm_ratio_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "218/115",
+      "got": "218/115"
+    },
+    {
+      "label": "CD gap = 38/27",
+      "output_key": "gap_sm_cabibbo_doublet_ratio_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "38/27",
+      "got": "38/27"
+    },
+    {
+      "label": "Casimir form = 2",
+      "output_key": "gap_pure_gauge_casimir_form_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "2",
+      "got": "2"
+    },
+    {
+      "label": "Generation democracy holds",
+      "output_key": "generation_democracy_independent_of_n_gen_v0",
+      "match_mode": "bool",
+      "reference_source": "structural",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "b1_SM = 41/10",
+      "output_key": "beta_sm_u1_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "41/10",
+      "got": "41/10"
+    },
+    {
+      "label": "b2_SM = -19/6",
+      "output_key": "beta_sm_su2_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-19/6",
+      "got": "-19/6"
+    },
+    {
+      "label": "b3_SM = -7",
+      "output_key": "beta_sm_su3_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-7",
+      "got": "-7"
+    },
+    {
+      "label": "b1_mod = 25/6",
+      "output_key": "beta_modified_u1_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "25/6",
+      "got": "25/6"
+    },
+    {
+      "label": "b2_mod = -13/6",
+      "output_key": "beta_modified_su2_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-13/6",
+      "got": "-13/6"
+    },
+    {
+      "label": "b3_mod = -20/3",
+      "output_key": "beta_modified_su3_total_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-20/3",
+      "got": "-20/3"
+    },
+    {
+      "label": "CD db1 = 1/15",
+      "output_key": "beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "1/15",
+      "got": "1/15"
+    },
+    {
+      "label": "CD db2 = 1",
+      "output_key": "beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "1",
+      "got": "1"
+    },
+    {
+      "label": "CD db3 = 1/3",
+      "output_key": "beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "1/3",
+      "got": "1/3"
+    },
+    {
+      "label": "Y-dep gap at Y=1/6 = 38/27",
+      "output_key": "beta_y_dependence_gap_at_input_y_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "38/27",
+      "got": "38/27"
+    },
+    {
+      "label": "DM prefactor = 22/13",
+      "output_key": "cosmo_dm_to_baryon_ratio_prefactor_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "integer_pool",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "22/13",
+      "got": "22/13"
+    },
+    {
+      "label": "Omega_DM prefactor = 44/169",
+      "output_key": "cosmo_omega_dm_r2_prefactor_derived_v0",
+      "match_mode": "exact",
+      "reference_source": "integer_pool",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "44/169",
+      "got": "44/169"
+    },
+    {
+      "label": "Amplification = 44/13",
+      "output_key": "cosmo_amplification_reduced_factor_v0",
+      "match_mode": "exact",
+      "reference_source": "integer_pool",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "44/13",
+      "got": "44/13"
+    },
+    {
+      "label": "Measured gap ratio",
+      "output_key": "gap_measured_ratio_numeric_v0",
+      "match_mode": "digits",
+      "reference_source": "measured",
+      "expected": "1.3582",
+      "got": "1.35819",
+      "digits": 4,
+      "miss_pct": "0.0005386",
+      "status": "PASS",
+      "detail": "4-digit match, miss 0.0005386%"
+    },
+    {
+      "label": "alpha_s one-loop vs measured",
+      "output_key": "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "0.10768641",
+      "miss_pct": "8.74",
+      "detail": "predicted 0.10768641 ref 0.1180 miss 8.74%"
+    },
+    {
+      "label": "alpha_s two-loop SM bij vs measured",
+      "output_key": "result_alpha_s_two_loop_sm_bij_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "0.12995016",
+      "miss_pct": "10.13",
+      "detail": "predicted 0.12995016 ref 0.1180 miss 10.13%"
+    },
+    {
+      "label": "alpha_s two-loop full bij vs measured",
+      "output_key": "result_alpha_s_two_loop_full_bij_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "0.13207943",
+      "miss_pct": "11.93",
+      "detail": "predicted 0.13207943 ref 0.1180 miss 11.93%"
+    },
+    {
+      "label": "Koide K",
+      "output_key": "koide_charged_leptons_k_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "computed",
+      "expected": "0.666660511",
+      "got": "0.66666051147",
+      "digits": 9,
+      "miss_pct": "6.99e-8",
+      "status": "PASS",
+      "detail": "9-digit match, miss 6.99e-8%"
+    },
+    {
+      "label": "Koide a^2 vs 2",
+      "output_key": "koide_charged_leptons_a2_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "theoretical",
+      "status": "INFO",
+      "expected": "2.0",
+      "got": "1.9999631",
+      "miss_pct": "0.001847",
+      "detail": "predicted 1.9999631 ref 2.0 miss 0.001847%"
+    },
+    {
+      "label": "Koide m_tau prediction vs measured",
+      "output_key": "result_tau_mass_koide_two_thirds_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "1776.86",
+      "got": "1776.969",
+      "miss_pct": "0.006136",
+      "detail": "predicted 1776.969 ref 1776.86 miss 0.006136%"
+    },
+    {
+      "label": "DM/baryon predicted vs Planck",
+      "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "5.3204",
+      "got": "5.3165414",
+      "miss_pct": "0.07252",
+      "detail": "predicted 5.3165414 ref 5.3204 miss 0.07252%"
+    },
+    {
+      "label": "Omega_DM predicted vs Planck",
+      "output_key": "cosmo_omega_dm_predicted_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "measured",
+      "status": "INFO",
+      "expected": "0.2607",
+      "got": "0.20448236",
+      "miss_pct": "21.56",
+      "detail": "predicted 0.20448236 ref 0.2607 miss 21.56%"
+    },
+    {
+      "label": "log10(M_GUT/GeV) in [15, 16]",
+      "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+      "match_mode": "range",
+      "reference_source": "theoretical",
+      "got": "15.5426",
+      "lo": "15",
+      "hi": "16",
+      "status": "PASS",
+      "detail": "in [15, 16]"
+    },
+    {
+      "label": "L_GUT in [4, 6]",
+      "output_key": "result_l_gut_one_loop_cabibbo_doublet_derived_v0",
+      "match_mode": "range",
+      "reference_source": "theoretical",
+      "got": "4.97761",
+      "lo": "4",
+      "hi": "6",
+      "status": "PASS",
+      "detail": "in [4, 6]"
+    }
+  ],
+  "outputs": {
+    "coupling_alpha_em_v0": {
+      "_type": "Fraction",
+      "num": "1000000000",
+      "den": "137035999177"
+    },
+    "coupling_cos2_theta_w_v0": {
+      "_type": "Fraction",
+      "num": "38439",
+      "den": "50000"
+    },
+    "coupling_alpha_1_inverse_gut_normalized_mz_v0": {
+      "_type": "Fraction",
+      "num": "15802580317094109",
+      "den": "250000000000000"
+    },
+    "coupling_alpha_2_inverse_mz_v0": {
+      "_type": "Fraction",
+      "num": "1584273186485297",
+      "den": "50000000000000"
+    },
+    "coupling_alpha_3_inverse_mz_v0": {
+      "_type": "Fraction",
+      "num": "500",
+      "den": "59"
+    },
+    "beta_sm_u1_gauge_derived_v0": {
+      "_type": "Fraction",
+      "num": "0",
+      "den": "1"
+    },
+    "beta_sm_su2_gauge_derived_v0": {
+      "_type": "Fraction",
+      "num": "-22",
+      "den": "3"
+    },
+    "beta_sm_su3_gauge_derived_v0": {
+      "_type": "Fraction",
+      "num": "-11",
+      "den": "1"
+    },
+    "beta_sm_u1_fermion_derived_v0": {
+      "_type": "Fraction",
+      "num": "4",
+      "den": "1"
+    },
+    "beta_sm_su2_fermion_derived_v0": {
+      "_type": "Fraction",
+      "num": "4",
+      "den": "1"
+    },
+    "beta_sm_su3_fermion_derived_v0": {
+      "_type": "Fraction",
+      "num": "4",
+      "den": "1"
+    },
+    "beta_sm_u1_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "41",
+      "den": "10"
+    },
+    "beta_sm_su2_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "-19",
+      "den": "6"
+    },
+    "beta_sm_su3_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "-7",
+      "den": "1"
+    },
+    "beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "15"
+    },
+    "beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "1"
+    },
+    "beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "3"
+    },
+    "beta_modified_u1_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "25",
+      "den": "6"
+    },
+    "beta_modified_su2_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "-13",
+      "den": "6"
+    },
+    "beta_modified_su3_total_derived_v0": {
+      "_type": "Fraction",
+      "num": "-20",
+      "den": "3"
+    },
+    "gap_sm_cabibbo_doublet_numerator_derived_v0": {
+      "_type": "Fraction",
+      "num": "19",
+      "den": "3"
+    },
+    "gap_sm_cabibbo_doublet_denominator_derived_v0": {
+      "_type": "Fraction",
+      "num": "9",
+      "den": "2"
+    },
+    "gap_sm_cabibbo_doublet_ratio_derived_v0": {
+      "_type": "Fraction",
+      "num": "38",
+      "den": "27"
+    },
+    "gap_sm_cabibbo_doublet_ratio_numeric_v0": "1.4074074074074074074",
+    "generation_democracy_gap_numerator_v0": {
+      "_type": "Fraction",
+      "num": "0",
+      "den": "1"
+    },
+    "generation_democracy_gap_denominator_v0": {
+      "_type": "Fraction",
+      "num": "0",
+      "den": "1"
+    },
+    "generation_democracy_independent_of_n_gen_v0": true,
+    "gap_pure_gauge_numerator_derived_v0": {
+      "_type": "Fraction",
+      "num": "22",
+      "den": "3"
+    },
+    "gap_pure_gauge_denominator_derived_v0": {
+      "_type": "Fraction",
+      "num": "11",
+      "den": "3"
+    },
+    "gap_pure_gauge_ratio_derived_v0": {
+      "_type": "Fraction",
+      "num": "2",
+      "den": "1"
+    },
+    "gap_pure_gauge_casimir_form_v0": {
+      "_type": "Fraction",
+      "num": "2",
+      "den": "1"
+    },
+    "gap_sm_numerator_derived_v0": {
+      "_type": "Fraction",
+      "num": "109",
+      "den": "15"
+    },
+    "gap_sm_denominator_derived_v0": {
+      "_type": "Fraction",
+      "num": "23",
+      "den": "6"
+    },
+    "gap_sm_ratio_derived_v0": {
+      "_type": "Fraction",
+      "num": "218",
+      "den": "115"
+    },
+    "gap_sm_ratio_numeric_v0": "1.8956521739130434783",
+    "gap_measured_numerator_v0": {
+      "_type": "Fraction",
+      "num": "985151798083453",
+      "den": "31250000000000"
+    },
+    "gap_measured_denominator_v0": {
+      "_type": "Fraction",
+      "num": "68472118002632523",
+      "den": "2950000000000000"
+    },
+    "gap_measured_ratio_exact_v0": {
+      "_type": "Fraction",
+      "num": "464991648695389816",
+      "den": "342360590013162615"
+    },
+    "gap_measured_ratio_numeric_v0": "1.358192684144844033",
+    "beta_cd_effect_numerator_delta_derived_v0": {
+      "_type": "Fraction",
+      "num": "-14",
+      "den": "15"
+    },
+    "beta_cd_effect_denominator_delta_derived_v0": {
+      "_type": "Fraction",
+      "num": "2",
+      "den": "3"
+    },
+    "beta_cd_effect_numerator_change_pct_derived_v0": "-12.8440367",
+    "beta_cd_effect_denominator_change_pct_derived_v0": "17.39130435",
+    "beta_cd_effect_db2_over_db1_v0": {
+      "_type": "Fraction",
+      "num": "15",
+      "den": "1"
+    },
+    "beta_y_dependence_db1_coeff_v0": {
+      "_type": "Fraction",
+      "num": "12",
+      "den": "5"
+    },
+    "beta_y_dependence_numerator_const_v0": {
+      "_type": "Fraction",
+      "num": "94",
+      "den": "15"
+    },
+    "beta_y_dependence_denominator_const_v0": {
+      "_type": "Fraction",
+      "num": "9",
+      "den": "2"
+    },
+    "beta_y_dependence_formula_text_v0": "(188 + 72*Y^2) / 135",
+    "beta_y_dependence_gap_at_input_y_v0": {
+      "_type": "Fraction",
+      "num": "38",
+      "den": "27"
+    },
+    "result_l_gut_one_loop_cabibbo_doublet_derived_v0": {
+      "_type": "Fraction",
+      "num": "2955455394250359",
+      "den": "593750000000000"
+    },
+    "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0": "15.5426000541",
+    "result_alpha_s_one_loop_cabibbo_doublet_exact_v0": {
+      "_type": "Fraction",
+      "num": "4750000000000000",
+      "den": "44109558523090291"
+    },
+    "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0": "0.107686409908",
+    "result_alpha_s_one_loop_cabibbo_doublet_miss_pct_v0": "8.7403306",
+    "result_alpha_s_two_loop_sm_bij_derived_v0": "0.129950161414",
+    "result_alpha_s_two_loop_sm_bij_miss_pct_v0": "10.127255",
+    "result_alpha_s_two_loop_full_bij_derived_v0": "0.132079428096",
+    "result_alpha_s_two_loop_full_bij_miss_pct_v0": "11.931719",
+    "result_two_loop_l_gut_full_bij_v0": "5.02681583379",
+    "result_two_loop_alpha_gut_inverse_full_bij_v0": "41.8001620925",
+    "koide_charged_leptons_k_derived_v0": "0.666660511466",
+    "koide_charged_leptons_a2_derived_v0": "1.99996306879",
+    "koide_charged_leptons_a2_minus_two_derived_v0": "-3.69312068681e-5",
+    "result_tau_mass_koide_two_thirds_derived_v0": "1776.96902729",
+    "cosmo_dm_to_baryon_ratio_prefactor_derived_v0": {
+      "_type": "Fraction",
+      "num": "22",
+      "den": "13"
+    },
+    "cosmo_dm_to_baryon_ratio_predicted_derived_v0": "5.31654141377",
+    "cosmo_omega_dm_r2_prefactor_derived_v0": {
+      "_type": "Fraction",
+      "num": "44",
+      "den": "169"
+    },
+    "cosmo_omega_dm_predicted_derived_v0": "0.204482362068",
+    "cosmo_amplification_reduced_factor_v0": {
+      "_type": "Fraction",
+      "num": "44",
+      "den": "13"
+    },
+    "cosmo_amplification_formula_text_v0": "(44/13) * pi * (c/v)^2"
+  },
+  "summary": {
+    "derivations_ok": 18,
+    "derivations_err": 0,
+    "comparisons_pass": 22,
+    "comparisons_fail": 0,
+    "comparisons_info": 7,
+    "comparisons_skip": 0
+  }
+}

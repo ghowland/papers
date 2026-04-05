@@ -1,0 +1,352 @@
+{
+  "nodes": [
+    {
+      "key": "coupling_alpha_em_inverse_v0",
+      "canonical": "coupling_alpha_em_inverse",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "alpha_em_inverse",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "137035999177",
+        "den": "1000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 12,
+      "section": "measured",
+      "tags": [
+        "EM",
+        "coupling"
+      ],
+      "legacy_refs": {
+        "data4": "B1",
+        "phys24": "alpha_inv"
+      }
+    },
+    {
+      "key": "mass_electron_v0",
+      "canonical": "mass_electron",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "electron",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "51099895069",
+        "den": "100000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 11,
+      "section": "measured",
+      "tags": [
+        "lepton",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "B2",
+        "phys24": "m_e"
+      }
+    },
+    {
+      "key": "mass_muon_v0",
+      "canonical": "mass_muon",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "muon",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "211316751",
+        "den": "2000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 10,
+      "section": "measured",
+      "tags": [
+        "lepton",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "B3",
+        "phys24": "m_mu"
+      }
+    },
+    {
+      "key": "mass_tau_v0",
+      "canonical": "mass_tau",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "tau",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "88843",
+        "den": "50"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 6,
+      "section": "measured",
+      "tags": [
+        "lepton",
+        "mass",
+        "Koide"
+      ],
+      "legacy_refs": {
+        "data4": "B4",
+        "phys24": "m_tau"
+      }
+    },
+    {
+      "key": "mass_proton_v0",
+      "canonical": "mass_proton",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "proton",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "93827208943",
+        "den": "100000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 11,
+      "section": "measured",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "B5",
+        "phys24": "m_p"
+      }
+    },
+    {
+      "key": "ratio_proton_electron_mass_v0",
+      "canonical": "ratio_proton_electron_mass",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "proton_electron_mass",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "183615267343",
+        "den": "100000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 13,
+      "section": "measured",
+      "tags": [
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data4": "B6",
+        "phys24": "mp_me"
+      }
+    },
+    {
+      "key": "atomic_rydberg_constant_v0",
+      "canonical": "atomic_rydberg_constant",
+      "version": 0,
+      "node_type": "value",
+      "topic": "atomic",
+      "term": "rydberg_constant",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "10973731568157",
+        "den": "1000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "m^-1",
+      "digits": 13,
+      "section": "measured",
+      "tags": [
+        "atomic"
+      ],
+      "legacy_refs": {
+        "data4": "B7",
+        "phys24": "R_inf"
+      }
+    },
+    {
+      "key": "atomic_bohr_radius_v0",
+      "canonical": "atomic_bohr_radius",
+      "version": 0,
+      "node_type": "value",
+      "topic": "atomic",
+      "term": "bohr_radius",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "33073575659",
+        "den": "625000000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "m",
+      "digits": 12,
+      "section": "measured",
+      "tags": [
+        "atomic"
+      ],
+      "legacy_refs": {
+        "data4": "B8",
+        "phys24": "a_0"
+      }
+    },
+    {
+      "key": "coupling_electron_anomalous_moment_v0",
+      "canonical": "coupling_electron_anomalous_moment",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "electron_anomalous_moment",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "115965218059",
+        "den": "100000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 12,
+      "section": "measured",
+      "tags": [
+        "EM"
+      ],
+      "legacy_refs": {
+        "data4": "B9",
+        "phys24": "a_e"
+      }
+    },
+    {
+      "key": "coupling_muon_anomalous_moment_v0",
+      "canonical": "coupling_muon_anomalous_moment",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "muon_anomalous_moment",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "116592059",
+        "den": "100000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 9,
+      "section": "measured",
+      "tags": [
+        "EM"
+      ],
+      "legacy_refs": {
+        "data4": "B10",
+        "phys24": "a_mu"
+      }
+    },
+    {
+      "key": "coupling_sin2_theta_w_v0",
+      "canonical": "coupling_sin2_theta_w",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "sin2_theta_w",
+      "level": 2,
+      "source": "LEP-SLD",
+      "value": {
+        "_type": "Fraction",
+        "num": "11561",
+        "den": "50000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 5,
+      "section": "measured",
+      "tags": [
+        "weak",
+        "coupling",
+        "EW"
+      ],
+      "legacy_refs": {
+        "data4": "B11",
+        "phys24": "sin2_tW"
+      }
+    },
+    {
+      "key": "coupling_alpha_s_mz_v0",
+      "canonical": "coupling_alpha_s_mz",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "alpha_s_mz",
+      "level": 2,
+      "source": "PDG",
+      "value": {
+        "_type": "Fraction",
+        "num": "59",
+        "den": "500"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 4,
+      "section": "measured",
+      "tags": [
+        "strong",
+        "coupling",
+        "QCD"
+      ],
+      "legacy_refs": {
+        "data4": "B12",
+        "phys24": "alpha_s"
+      }
+    },
+    {
+      "key": "coupling_vacuum_permeability_v0",
+      "canonical": "coupling_vacuum_permeability",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "vacuum_permeability",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "125663706127",
+        "den": "100000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "N/A^2",
+      "digits": 12,
+      "section": "measured",
+      "tags": [
+        "EM"
+      ],
+      "legacy_refs": {
+        "data4": "B13",
+        "phys24": "mu_0"
+      }
+    }
+  ]
+}

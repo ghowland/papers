@@ -1,0 +1,148 @@
+{
+  "nodes": [
+    {
+      "key": "rep_cabibbo_doublet_su3_dim_v0",
+      "canonical": "rep_cabibbo_doublet_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_su3_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU3"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_su2_dim_v0",
+      "canonical": "rep_cabibbo_doublet_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_su2_dim",
+      "level": 1,
+      "source": "SM representation",
+      "value": 2,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM",
+        "SU2"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_y_v0",
+      "canonical": "rep_cabibbo_doublet_y",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_y",
+      "level": 1,
+      "source": "SM representation",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "6"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_type_v0",
+      "canonical": "rep_cabibbo_doublet_type",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_type",
+      "level": 1,
+      "source": "SM representation",
+      "value": "vector-like",
+      "value_type": "classification",
+      "unit": "classification",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_db1_v0",
+      "canonical": "rep_cabibbo_doublet_db1",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_db1",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_db2_v0",
+      "canonical": "rep_cabibbo_doublet_db2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_db2",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM"
+      ]
+    },
+    {
+      "key": "rep_cabibbo_doublet_db3_v0",
+      "canonical": "rep_cabibbo_doublet_db3",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "cabibbo_doublet_db3",
+      "level": 1,
+      "source": "Dynkin formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "CD",
+        "BSM"
+      ]
+    }
+  ]
+}

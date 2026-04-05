@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "key": "rep_sm_generation_democracy_db1_sum_v0",
+      "canonical": "rep_sm_generation_democracy_db1_sum",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "sm_generation_democracy_db1_sum",
+      "level": 1,
+      "source": "Table 8 note: sum of db1 per generation",
+      "value": {
+        "_type": "Fraction",
+        "num": "4",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "notes": "Q_L + u_R + d_R + L_L + e_R db1 sum per generation",
+      "tags": [
+        "SM",
+        "generation_democracy"
+      ]
+    },
+    {
+      "key": "rep_sm_generation_democracy_db2_sum_v0",
+      "canonical": "rep_sm_generation_democracy_db2_sum",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "sm_generation_democracy_db2_sum",
+      "level": 1,
+      "source": "Table 8 note: sum of db2 per generation",
+      "value": {
+        "_type": "Fraction",
+        "num": "4",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "generation_democracy"
+      ]
+    },
+    {
+      "key": "rep_sm_generation_democracy_db3_sum_v0",
+      "canonical": "rep_sm_generation_democracy_db3_sum",
+      "version": 0,
+      "node_type": "value",
+      "topic": "rep",
+      "term": "sm_generation_democracy_db3_sum",
+      "level": 1,
+      "source": "Table 8 note: sum of db3 per generation",
+      "value": {
+        "_type": "Fraction",
+        "num": "4",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "representation",
+      "tags": [
+        "SM",
+        "generation_democracy"
+      ]
+    }
+  ]
+}
