@@ -709,3 +709,516 @@ From result_experiment_qed_derived_codata_v0_run003.json.
 **Key limitation:** The two-loop α_s bug, the alias mess, the missing statistical control script. All documented. All on the improvement path.
 
 **Falsification:** Five specific criteria. All currently met except the statistical control (not yet computed).
+
+---
+
+## APPENDIX F: COMPLETE VALUE NODE INVENTORY BY TOPIC PREFIX
+
+| Prefix | Count | Level Range | Value Types | Description |
+|---|---|---|---|---|
+| astro | 12 | 2 | approximate | Gravitational constant, masses, radii, AU, parsec, muon lifetime |
+| atomic | 2 | 2 | exact_fraction | Rydberg constant, Bohr radius |
+| beta | 36 | 1 | exact_fraction | SM betas, CD shifts, modified betas, two-loop b_ij, aliases |
+| cd | 4 | 2 | mixed | CD mass bounds, mixing angle, hypercharge |
+| ckm | 3 | 2 | exact_fraction | CKM mixing angles |
+| cosmo | 13 | 1-2 | mixed | H₀ measurements, Planck parameters, DM/baryon prefactors |
+| coupling | 12 | 1-2 | exact_fraction | alpha_inv, sin²θ_W, alpha_s, GUT couplings, gap ratio, Fermi constant |
+| energy | 1 | 2 | exact_fraction | Deuteron binding energy |
+| eng | 41 | 0-2 | mixed | hbar*c, resistivity, permittivity, sound speed, disc parameters |
+| gap | 8 | 1-2 | exact_fraction | Pure gauge, SM, CD, MSSM gap ratios and components |
+| geom | 31 | 0 | exact_fraction | Q335 basis: π through E(k²=3/4) |
+| group | 10 | 1 | exact_fraction | Casimirs, Dynkin indices, generation count |
+| integer | 10 | 1 | exact_integer | Yang-Mills 11, b₂_mod 13, derived 22, 44, 169, 218 |
+| koide | 4 | 2 | mixed | K values and a² for leptons, down quarks, up quarks |
+| mass | 21 | 2 | exact_fraction | Z, W, top, Higgs, electron through bottom, neutron, pions, kaon, deuteron, He-4 |
+| math | 3 | 0 | exact_fraction | Bessel zeros, Euler-Mascheroni |
+| obs | 75 | 2 | approximate | Disc specifications, dwarf galaxy catalog (11 dwarfs × 5-7 properties) |
+| qed | 32 | 1-2 | mixed | Laporta C81/C83, A₁-A₅, series rationals, a_e measured, alpha references |
+| ratio | 11 | 2 | exact_fraction | Mass ratios: proton/electron, charm/strange, Koide derived |
+| rep | 70 | 1 | mixed | SM representations, CD representation, what-if candidate quantum numbers |
+| scale | 2 | 2 | approximate | Energy/distance conversion inputs |
+| si | 8 | 0 | exact_fraction | c, h, ℏ, e, k_B, N_A, Δν_Cs, K_cd |
+| spectro | 1 | 2 | exact_fraction | Hydrogen 1S-2S transition |
+| **Total** | **414** | | | |
+
+
+## APPENDIX G: SI EXACT CONSTANTS
+
+These seven constants have zero uncertainty by the 2019 SI redefinition. They are exact integers or exact Fractions. They anchor the entire measurement system.
+
+| Key | Symbol | Value | Fraction | Unit |
+|---|---|---|---|---|
+| si_speed_of_light_v0 | c | 299792458 | 299792458/1 | m/s |
+| si_planck_constant_v0 | h | 6.62607015 × 10⁻³⁴ | 662607015/10⁴² | J·s |
+| si_reduced_planck_constant_v0 | ℏ | 1.05457182 × 10⁻³⁴ | h/(2π) via Q335 | J·s |
+| si_elementary_charge_v0 | e | 1.602176634 × 10⁻¹⁹ | 1602176634/10²⁸ | C |
+| si_boltzmann_constant_v0 | k_B | 1.380649 × 10⁻²³ | 1380649/10²⁹ | J/K |
+| si_avogadro_number_v0 | N_A | 6.02214076 × 10²³ | 602214076 × 10¹⁵ | mol⁻¹ |
+| si_cesium_hyperfine_v0 | Δν_Cs | 9192631770 | 9192631770/1 | Hz |
+| si_luminous_efficacy_v0 | K_cd | 683 | 683/1 | lm/W |
+
+
+## APPENDIX H: Q335 ANALYTICAL BASIS
+
+31 constants stored as Fraction(p, 2³³⁵) where p is a ~100-digit integer. All verified against mpmath at mp.dps=120.
+
+| # | Key | Constant | First 20 digits of p | Match Digits |
+|---|---|---|---|---|
+| 1 | geom_pi_v0 | π | 21988642587319235101 | 102 |
+| 2 | geom_e_euler_v0 | e | 19025804478276920258 | 102 |
+| 3 | geom_ln2_v0 | ln(2) | 48514773537953331556 | 101 |
+| 4 | geom_sqrt2_v0 | √2 | 98983668457552556369 | 101 |
+| 5 | geom_sqrt3_v0 | √3 | 12122974029491289523 | 102 |
+| 6 | geom_sqrt5_v0 | √5 | 15650692174241595562 | 102 |
+| 7 | geom_sqrt7_v0 | √7 | 18518148712709215377 | 102 |
+| 8 | geom_golden_ratio_v0 | φ | 11324947246773616860 | 102 |
+| 9 | geom_zeta3_v0 | ζ(3) | 84134394645319852071 | 101 |
+| 10 | geom_zeta5_v0 | ζ(5) | 72576671487518636549 | 101 |
+| 11 | geom_pi_squared_v0 | π² | 69079358014733772680 | 102 |
+| 12 | geom_zeta2_v0 | ζ(2) = π²/6 | 11513226335788962113 | 102 |
+| 13 | geom_r2_v0 | R₂ = π/4 | (derived: p_pi/4) | 102 |
+| 14 | geom_r4_v0 | R₄ = π²/32 | (derived: p_pi2/32) | 102 |
+| 15 | geom_two_pi_v0 | 2π | (derived: 2×p_pi) | exact |
+| 16 | geom_zeta7_v0 | ζ(7) | 70576406009217185140 | 101 |
+| 17 | geom_zeta9_v0 | ζ(9) | 70132594670320295983 | 101 |
+| 18 | geom_li4_half_v0 | Li₄(1/2) | 36219406486600619537 | 101 |
+| 19 | geom_li5_half_v0 | Li₅(1/2) | 35583985133688170166 | 101 |
+| 20 | geom_li6_half_v0 | Li₆(1/2) | 35282656774609749602 | 101 |
+| 21 | geom_li7_half_v0 | Li₇(1/2) | 35137014959475068515 | 101 |
+| 22 | geom_catalan_v0 | Catalan | 64110285111693582641 | 101 |
+| 23 | geom_e_to_pi_v0 | e^π | 16196638954568755371 | 103 |
+| 24 | geom_ln3_v0 | ln(3) | 76894096788635086096 | 101 |
+| 25 | geom_ln5_v0 | ln(5) | 11264781569487179915 | 102 |
+| 26 | geom_elliptic_k_quarter_v0 | K(k²=1/4) | 11798907793174624666 | 102 |
+| 27 | geom_elliptic_k_half_v0 | K(k²=1/2) | 12977043781533614962 | 102 |
+| 28 | geom_elliptic_k_threequarter_v0 | K(k²=3/4) | 15093889321598402955 | 102 |
+| 29 | geom_elliptic_e_quarter_v0 | E(k²=1/4) | 10271064899101894451 | 102 |
+| 30 | geom_elliptic_e_half_v0 | E(k²=1/2) | 94534297847848588347 | 101 |
+| 31 | geom_elliptic_e_threequarter_v0 | E(k²=3/4) | 84764261569662347707 | 101 |
+
+
+## APPENDIX I: INTEGER POOL TRACEABILITY
+
+Every integer traces from gauge theory to where it appears in predictions.
+
+| Key | Value | Origin | Formula Role | Appears In |
+|---|---|---|---|---|
+| integer_yang_mills_eleven_v0 | 11 | -(11/3)×C₂(adj) gauge coefficient | YM coupling constant | b₃_SM = -11, DM numerator 2×11 = 22, Ω_DM numerator 4×11 = 44 |
+| integer_b2_modified_numerator_abs_v0 | 13 | \|numerator of b₂_mod = -13/6\| | Modified SU(2) beta | DM denominator 13, gap denominator, Ω_DM denominator 13² = 169 |
+| integer_b2_sm_numerator_abs_v0 | 19 | \|numerator of b₂_SM = -19/6\| | SM SU(2) beta | SM gap numerator doubles to 38, dwarf cosmic ratio ~19 |
+| integer_b3_modified_times_three_abs_v0 | 20 | \|3 × b₃_mod\| = \|3 × -20/3\| | Modified SU(3) structure | b₃_mod = -20/3 |
+| integer_two_times_yang_mills_v0 | 22 | 2 × 11 | DM/baryon prefactor | (22/13)×π = 5.3165 |
+| integer_cabibbo_doublet_gap_numerator_v0 | 38 | 2 × 19 | CD gap numerator | gap_CD = 38/27 |
+| integer_cabibbo_doublet_gap_denominator_v0 | 27 | denominator of 38/27 = 3³ | CD gap denominator | gap_CD = 38/27 |
+| integer_four_times_yang_mills_v0 | 44 | 4 × 11 | Ω_DM prefactor | (44/169)×R₂, amplification (44/13)×π×(c/v)² |
+| integer_b2_modified_numerator_square_v0 | 169 | 13² | Ω_DM denominator | (44/169)×R₂ is pure rational after R₂ cancels |
+| integer_sm_gap_numerator_v0 | 218 | numerator of 218/115 | SM gap ratio | gap_SM = 218/115 = 1.8957 |
+
+
+## APPENDIX J: MEASURED CONSTANTS (CODATA 2022 / PDG 2024)
+
+### J.1 Fundamental Constants
+
+| Key | Symbol | Value | Fraction | Sig. Figs | Unit |
+|---|---|---|---|---|---|
+| coupling_alpha_em_inverse_v0 | α⁻¹ | 137.035999177 | 137035999177/10⁹ | 12 | dimensionless |
+| mass_electron_v0 | m_e | 0.51099895069 | 51099895069/10¹¹ | 11 | MeV |
+| mass_muon_v0 | m_μ | 105.6583755 | 1056583755/10⁷ | 10 | MeV |
+| mass_tau_v0 | m_τ | 1776.86 | 177686/100 | 6 | MeV |
+| mass_proton_v0 | m_p | 938.27208943 | 93827208943/10⁸ | 11 | MeV |
+| ratio_proton_electron_mass_v0 | m_p/m_e | 1836.15267343 | 183615267343/10⁸ | 13 | dimensionless |
+| atomic_rydberg_constant_v0 | R∞ | 10973731.568157 | 10973731568157/10⁶ | 13 | m⁻¹ |
+| atomic_bohr_radius_v0 | a₀ | 5.29177210544 × 10⁻¹¹ | 529177210544/10²² | 12 | m |
+| qed_ae_electron_measured_v0 | a_e | 0.00115965218059 | 115965218059/10¹⁴ | 12 | dimensionless |
+| coupling_sin2_theta_w_v0 | sin²θ_W | 0.23122 | 23122/100000 | 5 | dimensionless |
+| coupling_alpha_s_mz_v0 | α_s(M_Z) | 0.1180 | 1180/10000 | 4 | dimensionless |
+
+### J.2 Electroweak
+
+| Key | Symbol | Value | Fraction | Sig. Figs | Unit |
+|---|---|---|---|---|---|
+| mass_z_boson_v0 | M_Z | 91187.6 | 911876/10 | 6 | MeV |
+| mass_w_boson_v0 | M_W | 80369.2 | 803692/10 | 6 | MeV |
+| mass_top_quark_v0 | m_t | 172570 | 172570/1 | 5 | MeV |
+| mass_higgs_boson_v0 | m_H | 125200 | 125200/1 | 5 | MeV |
+| coupling_fermi_constant_v0 | G_F | 1.1663788 × 10⁻⁵ | 11663788/10¹² | 8 | GeV⁻² |
+
+### J.3 Quark Masses
+
+| Key | Symbol | Value | Scale | Sig. Figs | Unit |
+|---|---|---|---|---|---|
+| mass_up_quark_v0 | m_u | 2.16 | 2 GeV MS-bar | 3 | MeV |
+| mass_down_quark_v0 | m_d | 4.70 | 2 GeV MS-bar | 3 | MeV |
+| mass_strange_quark_v0 | m_s | 93.5 | 2 GeV MS-bar | 3 | MeV |
+| mass_charm_quark_v0 | m_c | 1273 | m_c MS-bar | 4 | MeV |
+| mass_bottom_quark_v0 | m_b | 4183 | m_b MS-bar | 4 | MeV |
+
+
+## APPENDIX K: BETA COEFFICIENTS — COMPLETE TABLE
+
+### K.1 SM One-Loop Betas (Level 1, exact)
+
+| Component | b₁ (U(1)) | b₂ (SU(2)) | b₃ (SU(3)) |
+|---|---|---|---|
+| Gauge | 0 | -22/3 | -11 |
+| Per generation (×3) | +4/3 each = +4 | +4/3 each = +4 | +4/3 each = +4 |
+| Higgs | +1/10 | +1/6 | 0 |
+| **Total** | **41/10** | **-19/6** | **-7** |
+
+### K.2 Cabibbo Doublet VL Shifts (Level 1, exact)
+
+| Formula | db₁ | db₂ | db₃ |
+|---|---|---|---|
+| Expression | (2/5)×d₃×d₂×Y² | (2/3)×d₃×S₂ | (1/3)×d₂×S₂ |
+| (d₃,d₂,Y) = (3,2,1/6) | (2/5)×3×2×(1/36) = **1/15** | (2/3)×3×(1/2) = **1** | (1/3)×2×(1/2) = **1/3** |
+
+### K.3 Modified Betas (Level 1, exact)
+
+| | b₁_mod | b₂_mod | b₃_mod |
+|---|---|---|---|
+| SM + CD | 41/10 + 1/15 = **25/6** | -19/6 + 1 = **-13/6** | -7 + 1/3 = **-20/3** |
+
+### K.4 Gap Ratios (Level 1, exact)
+
+| Model | Numerator | Denominator | Gap Ratio | Distance from 1.3582 |
+|---|---|---|---|---|
+| Pure gauge | 22/3 | 11/3 | **2** | 0.642 |
+| SM | 109/15 | 23/6 | **218/115 = 1.8957** | 0.538 |
+| SM + CD | 19/3 | 9/2 | **38/27 = 1.4074** | 0.049 |
+| MSSM | — | — | **7/5 = 1.4000** | 0.042 |
+| Measured | — | — | **1.3582** | 0 |
+
+### K.5 Two-Loop SM b_ij Matrix (Level 1, exact)
+
+| b_ij | U(1) | SU(2) | SU(3) |
+|---|---|---|---|
+| U(1) | 199/50 | 27/10 | 44/5 |
+| SU(2) | 9/10 | 35/6 | 12 |
+| SU(3) | 11/10 | 9/2 | -26 |
+
+
+## APPENDIX L: GAP RATIO CORRECTION CHAIN
+
+| Step | Gap Before | Correction | Gap After | Cumulative Distance | % of Total Fix |
+|---|---|---|---|---|---|
+| Pure gauge | — | Baseline | 2.000 | 0.642 | 0% |
+| + Higgs (1/10, 1/6, 0) | 2.000 | -0.104 | 1.896 | 0.538 | 16.2% |
+| + SM fermions (4/3 each ×3) | 1.896 | 0.000 | 1.896 | 0.538 | 0.0% |
+| + Cabibbo Doublet (1/15, 1, 1/3) | 1.896 | -0.489 | 1.407 | 0.049 | 76.2% |
+| + Threshold + two-loop | 1.407 | -0.049 | 1.358 | 0.000 | 7.6% |
+
+The CD does 76% of the correction. Fermions do exactly 0% (generation democracy). The Higgs does 16%. Threshold corrections do 8%.
+
+
+## APPENDIX M: COSMOLOGICAL PREDICTIONS FROM BETA INTEGERS
+
+### M.1 DM/Baryon Ratio
+
+| Step | Expression | Value |
+|---|---|---|
+| Extract YM | 11 from -(11/3)×C₂(adj) | 11 |
+| Extract \|b₂_mod num\| | 13 from b₂_mod = -13/6 | 13 |
+| Prefactor | 2×YM / \|b₂_mod_num\| = 22/13 | exact Fraction |
+| DM/baryon | (22/13) × π = (22/13) × 4R₂ | 5.3165 |
+| Planck 2018 | — | 5.3204 |
+| Miss | — | 0.073% |
+
+### M.2 Omega_DM
+
+| Step | Expression | Value |
+|---|---|---|
+| Prefactor | 4×YM / \|b₂_mod_num\|² = 44/169 | exact Fraction |
+| Ω_DM | (44/169) × R₂ | 0.2045 |
+| R₂ cancels | 44/169 is pure rational | no irrational factors |
+| Planck 2018 | Ω_DM = 0.2607 | — |
+| Note | Absolute Ω comparison requires normalization | DM/baryon ratio is the meaningful test |
+
+### M.3 Amplification Factor
+
+| Step | Expression | Value |
+|---|---|---|
+| Reduced factor | 4×YM / \|b₂_mod_num\| = 44/13 | exact Fraction |
+| Full amplification | (44/13) × π × (c/v)² | at galactic rotation velocity |
+| Integer content | 44 = 4×11, 13 from b₂_mod | same two integers |
+
+
+## APPENDIX N: DWARF GALAXY OBSERVATIONAL CATALOG
+
+| Dwarf | Type | M_vis (M☉) | M_dyn (M☉) | σ (km/s) | r_h (pc) |
+|---|---|---|---|---|---|
+| Segue 1 | Ultra-faint | 340 | 1.3 × 10⁶ | 3.9 | 29 |
+| Reticulum II | Ultra-faint | 2600 | 1.0 × 10⁶ | 3.3 | 32 |
+| Tucana II | Ultra-faint | 3000 | 3.6 × 10⁷ | 8.6 | 165 |
+| Draco | Classical dSph | 2.9 × 10⁵ | 5.4 × 10⁷ | 9.1 | 221 |
+| Ursa Minor | Classical dSph | 2.9 × 10⁵ | 5.4 × 10⁷ | 9.5 | 181 |
+| Sculptor | Classical dSph | 2.3 × 10⁶ | 7.0 × 10⁷ | 9.2 | 283 |
+| Carina | Classical dSph | 3.8 × 10⁵ | 1.3 × 10⁷ | 6.6 | 250 |
+| Sextans | Classical dSph | 4.4 × 10⁵ | 2.5 × 10⁷ | 7.9 | 695 |
+| Fornax | Classical dSph | 2.0 × 10⁷ | 1.6 × 10⁸ | 11.7 | 710 |
+| Leo I | Classical dSph | 5.5 × 10⁶ | 1.2 × 10⁸ | 9.2 | 251 |
+| Leo II | Classical dSph | 7.4 × 10⁵ | 4.2 × 10⁶ | 6.6 | 176 |
+
+All stored as `obs_{name}_{property}_v0` value nodes in values_observational_v0.json.
+
+
+## APPENDIX O: H₀ MEASUREMENTS AND HUBBLE RUNNING
+
+| Key | Method | H₀ (km/s/Mpc) | Uncertainty | Distance Class |
+|---|---|---|---|---|
+| cosmo_h0_sh0es_v0 | Cepheids (SH0ES) | 73.0 | ±1.0 | local |
+| cosmo_h0_h0licow_v0 | Strong lensing (H0LiCOW) | 73.3 | ±1.8 | local-medium |
+| cosmo_h0_cchp_v0 | TRGB (CCHP) | 69.8 | ±1.7 | medium |
+| cosmo_h0_des_bao_bbn_v0 | BAO+BBN (DES) | 67.4 | ±1.2 | high-z |
+| cosmo_h0_planck_v0 | CMB (Planck) | 67.4 | ±0.5 | maximum |
+
+Cumulative ratio: H₀(Planck)/H₀(SH0ES) = 337/365 (exact Fraction).
+Tension: ~5σ between local and far.
+Running hypothesis: H₀(N) = H₀(0) × r^N where r = (337/365)^(1/N).
+VP step size: 1/(12R₂) = 1/(3π) = 0.1061.
+F1 strict monotonicity: FAIL (H0LiCOW > SH0ES).
+F1 soft (within 1σ): PASS (no hard inversions).
+
+
+## APPENDIX P: R2 DOMAIN EQUATIONS
+
+R₂ = π/4 appears in every equation that converts between circular and rectilinear geometry.
+
+| # | Domain | Equation | R₂ Role | Coordinator Z |
+|---|---|---|---|---|
+| 1 | Pipe flow | Q = R₂d²v | Flow area | velocity |
+| 2 | Drag force | F = ½ρv²R₂d²Cd | Frontal area | drag coeff |
+| 3 | Orifice flow | Q = CdR₂d²√(2ΔP/ρ) | Orifice area | discharge coeff |
+| 4 | Hagen-Poiseuille | Q = R₂d⁴ΔP/(32μL) | Pipe geometry | viscosity |
+| 5 | Wire resistance | R = ρL/(R₂d²) | Wire cross-section | resistivity |
+| 6 | Capacitance | C = ε₀R₂d²/t | Plate area | permittivity |
+| 7 | Antenna aperture | A = ηR₂D² | Effective area | efficiency |
+| 8 | Free-space path loss | FSPL = (16R₂d/λ)² | Propagation | distance/wavelength |
+| 9 | Poynting flux | P = SR₂d² | Irradiance capture | irradiance |
+| 10 | Airy disc | A = R₂(1.22λ/NA)² | Diffraction spot | aperture |
+| 11 | Fiber mode | A = R₂MFD² | Mode confinement | mode field |
+| 12 | Gaussian beam | A = R₂w₀² | Beam waist | beam parameter |
+| 13 | Speaker cone | Sd = R₂d²_eff | Radiation area | (geometry) |
+| 14 | Sound intensity | I = P/(16R₂r²) | Spherical spreading | distance |
+| 15 | Helmholtz | f = (c/(8R₂))√(S/(lV)) | Resonance | port geometry |
+| 16 | Thermal radiation | Q = εσT⁴R₂d² | Radiation area | emissivity |
+| 17 | Semiconductor wafer | A = R₂D² | Wafer area | (geometry) |
+| 18 | Kepler's law | T² = 64R₂²a³/(GM) | Orbital geometry | gravity |
+| 19 | Fourier normalization | 1/(8R₂) = 1/(2π) | Transform norm | (identity) |
+| 20 | Gaussian peak | 1/√(8R₂) = 1/√(2π) | Distribution norm | (identity) |
+| 21 | BCS gap | π/exp(γ) | Superconducting gap | Euler-Mascheroni |
+| 22 | Vena contracta | π/(π+2) = 4R₂/(4R₂+2) | Orifice contraction | Kirchhoff |
+
+
+## APPENDIX Q: R2 CANCELLATION IDENTITIES
+
+| # | Product | Quantity A (R₂ enters) | Quantity B (R₂ enters) | Result (R₂ gone) | Precision |
+|---|---|---|---|---|---|
+| 1 | K_J × R_K | 2e/h = 2e/(8R₂ℏ) | h/e² = 8R₂ℏ/e² | 2/e | 10⁻⁸ |
+| 2 | G₀ × R_K | 2e²/h | h/e² | 2 | exact |
+| 3 | Wire R × Cap C | ρL/(R₂d²) | ε₀R₂d²/t | ρε₀L/t | 30 digits |
+| 4 | Rydberg | α²m_ec/(2h) | h = 8R₂ℏ | R₂-free ratio | 13 digits |
+| 5 | Bohr × α | ℏ/(m_ec) | — | R₂-free ratio | 12 digits |
+| 6 | Ω_DM product | (44/169)×R₂ | R₂ factor | 44/169 pure rational | exact |
+
+Pattern: R₂-free observables achieve 10⁻⁸ to 10⁻¹³ precision. R₂-dependent observables are limited to ~10⁻⁶ (engineering precision). The modulus is topological — it cancels in symmetric ratios.
+
+
+## APPENDIX R: EXPERIMENT COMPARISON RESULTS — ALL COMPLETED EXPERIMENTS
+
+### R.1 experiment_beta_unification_v0 (29 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Pure gauge gap = 2 | exact | PASS | exact match |
+| 2 | SM gap = 218/115 | exact | PASS | exact match |
+| 3 | CD gap = 38/27 | exact | PASS | exact match |
+| 4 | Casimir form = 2 | exact | PASS | exact match |
+| 5 | Generation democracy | bool | PASS | true |
+| 6 | b₁_SM = 41/10 | exact | PASS | exact match |
+| 7 | b₂_SM = -19/6 | exact | PASS | exact match |
+| 8 | b₃_SM = -7 | exact | PASS | exact match |
+| 9 | b₁_mod = 25/6 | exact | PASS | exact match |
+| 10 | b₂_mod = -13/6 | exact | PASS | exact match |
+| 11 | b₃_mod = -20/3 | exact | PASS | exact match |
+| 12 | CD db₁ = 1/15 | exact | PASS | exact match |
+| 13 | CD db₂ = 1 | exact | PASS | exact match |
+| 14 | CD db₃ = 1/3 | exact | PASS | exact match |
+| 15 | Y-dep gap at Y=1/6 | exact | PASS | exact match |
+| 16 | DM prefactor = 22/13 | exact | PASS | exact match |
+| 17 | Ω_DM prefactor = 44/169 | exact | PASS | exact match |
+| 18 | Amplification = 44/13 | exact | PASS | exact match |
+| 19 | Measured gap ratio | 4 digits | PASS | 1.3582 |
+| 20 | α_s one-loop vs measured | miss% | INFO | 8.74% |
+| 21 | α_s two-loop SM b_ij | miss% | INFO | 10.13% (bug) |
+| 22 | α_s two-loop full b_ij | miss% | INFO | 11.93% (bug) |
+| 23 | Koide K | 9 digits | PASS | 0.666660511 |
+| 24 | Koide a² vs 2 | miss% | INFO | 0.002% |
+| 25 | Koide m_τ vs measured | miss% | INFO | 0.006% |
+| 26 | DM/baryon vs Planck | miss% | INFO | 0.073% |
+| 27 | Ω_DM vs Planck | miss% | INFO | 21.56% (normalization) |
+| 28 | log₁₀(M_GUT/GeV) ∈ [15,16] | range | PASS | 15.54 |
+| 29 | L_GUT ∈ [4,6] | range | PASS | 4.978 |
+
+Summary: 22 PASS, 7 INFO, 0 FAIL.
+
+### R.2 experiment_qed_derived_codata_v0 (8 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | A₂ from Q335 | 12 digits | PASS | 5.9 × 10⁻¹¹ % |
+| 2 | A₃ from Q335 | 11 digits | PASS | 2.4 × 10⁻¹⁰ % |
+| 3 | α⁻¹ ∈ [137.035, 137.037] | range | PASS | 137.035998630 |
+| 4 | R∞ vs CODATA | miss% | INFO | 8.0 × 10⁻⁷ % |
+| 5 | R∞ 8-digit match | digits | PASS | 8.0 × 10⁻⁷ % |
+| 6 | a₀ vs CODATA | miss% | INFO | 4.0 × 10⁻⁷ % |
+| 7 | μ₀ vs CODATA | miss% | INFO | 4.0 × 10⁻⁷ % |
+| 8 | Newton residual < 10⁻⁵⁰ | range | PASS | 1.59 × 10⁻²⁰⁴ |
+
+Summary: 5 PASS, 3 INFO, 0 FAIL.
+
+### R.3 experiment_whatif_scan_v0 (1 comparison)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Gap ratio ∈ [1.0, 3.0] | range | PASS | 38/27 = 1.407 |
+
+### R.4 experiment_whatif_vl_lepton_doublet_v0 (2 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Gap ratio vs measured | miss% | INFO | 26.05% |
+| 2 | Distance ∈ [0, 1] | range | PASS | 0.354 |
+
+### R.5 experiment_whatif_vl_singlet_e_v0 (2 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Gap ratio vs measured | miss% | INFO | 47.25% |
+| 2 | Distance ∈ [0, 1] | range | PASS | 0.642 |
+
+### R.6 experiment_whatif_vl_d_singlet_v0 (2 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Gap ratio vs measured | miss% | INFO | 48.59% |
+| 2 | Distance ∈ [0, 1] | range | PASS | 0.660 |
+
+### R.7 experiment_whatif_vl_u_singlet_v0 (2 comparisons)
+
+| # | Label | Mode | Status | Detail |
+|---|---|---|---|---|
+| 1 | Gap ratio vs measured | miss% | INFO | 56.62% |
+| 2 | Distance ∈ [0, 1] | range | PASS | 0.769 |
+
+
+## APPENDIX S: PROGRAM CONNECTION NETWORK
+
+Which programs share which integers and how they connect.
+
+| Program A | Program B | Shared Content | Connection Type |
+|---|---|---|---|
+| beta_unification | toroidal_dm | Integers 22, 13, 44 | Integer sharing |
+| beta_unification | hubble_running | Integer 20/13 | Integer sharing |
+| beta_unification | electroweak_anatomy | Same SM betas, same coupling extraction | Common derivations |
+| beta_unification | parameter_reduction | CD adds 6 parameters (net 23) | Parameter counting |
+| beta_unification | proton_decay | M_GUT from crossing at L = 4.978 | Derived quantity |
+| beta_unification | gut_threshold | Three-loop extends two-loop | Precision extension |
+| beta_unification | statistical_control | BLOCKED: significance of integer match | Gate dependency |
+| toroidal_dm | soliton_gravity | MOND a₀ = cH₀/(8R₂) connects DM transition | Shared formula |
+| soliton_gravity | r2_universality | Same R₂ = π/4 in Kepler and all domains | Geometric constant |
+| r2_universality | q335_basis | R₂ stored as π_f/4 in Q335 Fraction arithmetic | Storage format |
+| q335_basis | electroweak_anatomy | ζ(3), Li₄(1/2), ln(2) needed for QED A₂ coefficients | Transcendental basis |
+| koide_analysis | parameter_reduction | Conditional reduction 18→17 via Koide | Parameter counting |
+| confinement_mapping | soliton_gravity | Confinement boundary inside soliton hierarchy | Nesting |
+| confinement_mapping | beta_unification | Beta running stops at confinement upper face | Running boundary |
+| hubble_running | soliton_gravity | Boundary transit count N for cosmological running | Scale counting |
+
+
+## APPENDIX T: PITFALL REGISTRY
+
+Known errors that have occurred and should be documented on value nodes to prevent recurrence.
+
+| Node Key | Wrong | Right | Session | Impact |
+|---|---|---|---|---|
+| coupling_alpha_2_inverse_mz_v0 | 1/α₂ = α_inv / sin²θ_W = 593 | 1/α₂ = sin²θ_W × α_inv = 31.7 | PHYS-30 | Catastrophic — wrong by 19× |
+| beta_modified_u1_total_v0 | 62/15 | 25/6 (same value, canonical form) | DATA-5 | Cosmetic — same number, confusing notation |
+| beta_two_loop_vl_dbij_su2_su2_v0 | 39/4 (gauge + fermion double-count) | 15/4 (fermion only) | PHYS-33 | Two-loop α_s off by 10% |
+| mass_w_boson_v0 | 80379 MeV | 80369.2 MeV = 803692/10 | DATA-4 | 0.012% mass error |
+| gap_mssm_v0 | 5/7 = 0.714 | 7/5 = 1.400 | DATA-5 | Inverted ratio — wrong by 2× |
+| qed_c8_total_v0 | Used as A₄ = 107.71 | A₄ = -1.9122 (different convention) | PHYS-36 | α off by 2752 ppb |
+
+Each pitfall should be an entry on the relevant value node's `pitfalls` list. Currently documented in this appendix; to be migrated to node metadata in v1.
+
+
+## APPENDIX U: FILE MANIFEST
+
+Complete listing of all files in the DATA-6 system.
+
+### U.1 Value JSON Files (24 files, 414 nodes)
+
+| File | Nodes | Size (approx) |
+|---|---|---|
+| values_si_exact_v0.json | 8 | 2 KB |
+| values_measured_v0.json | 13 | 4 KB |
+| values_electroweak_v0.json | 6 | 2 KB |
+| values_quarks_ckm_v0.json | 11 | 3 KB |
+| values_nuclear_spectro_v0.json | 9 | 3 KB |
+| values_q335_v0.json | 31 | 15 KB |
+| values_ratios_koide_v0.json | 11 | 3 KB |
+| values_gut_beta_v0.json | 32 | 10 KB |
+| values_integer_pool_v0.json | 10 | 3 KB |
+| values_generation_democracy_v0.json | 3 | 1 KB |
+| values_gap_ratios_v0.json | 7 | 2 KB |
+| values_two_loop_vl_dbij_v0.json | 9 | 3 KB |
+| values_higgs_beta_v0.json | 3 | 1 KB |
+| values_representations_v0.json | 54 | 15 KB |
+| values_engineering_v0.json | 66 | 20 KB |
+| values_astrophysical_v0.json | 12 | 4 KB |
+| values_cosmological_v0.json | 11 | 4 KB |
+| values_observational_v0.json | 52 | 15 KB |
+| values_experiment_inputs_v0.json | 8 | 3 KB |
+| values_qed_laporta_v0.json | 8 | 120 KB |
+| values_qed_coefficients_v0.json | 8 | 3 KB |
+| values_qed_ae_measured_v0.json | 4 | 2 KB |
+| values_qed_series_rationals_v0.json | 12 | 4 KB |
+| values_whatif_*_v0.json (×5) | 15 | 5 KB |
+
+### U.2 Other JSON Files
+
+| File | Type | Nodes |
+|---|---|---|
+| connections_v0.json | Connection metadata | 63 |
+| connections_more_v0.json | Extended connections | 4 |
+| connections_papers_v0.json | Paper cross-references | 29 |
+| programs_v0_complete.json | Research programs | 13 |
+| experiment_*.json (×17) | Experiment specs | 17 |
+| result_*.json (×7+) | Experiment results | 7+ |
+
+### U.3 Python Files
+
+| File | Lines (approx) | Role |
+|---|---|---|
+| data6.py | 200 | CLI entry point / router |
+| data_6_run.py | 350 | Experiment runner |
+| data_6_diagrams.py | 300 | Diagram generator |
+| data_6_diagram_lib.py | 400 | Diagram helper library |
+| _data_6_derivations_v0.py | 800 | 18 derivations + 5 connections |
+| _data_6_derivations_more_v0.py | 1200 | 39 derivations + 4 connections |
+| data_6_export_json.py | 500 | JSON exporter from platform |
+| laporta_to_json.py | 100 | Laporta coefficient converter |
+
+
+## APPENDIX V: KNOWN ISSUES AND TECHNICAL DEBT
+
+| # | Issue | Category | Severity | Status |
+|---|---|---|---|---|
+| 1 | Two-loop α_s shows 10-12% miss (should be <1%) | Correctness | High | Open — db_ij matrix investigation needed |
+| 2 | 10 key aliases across 2 files | Trust | Medium | Open — pick canonical, update exporter |
+| 3 | 0 pitfall entries on value nodes | Safety | Medium | Open — migrate from Appendix T |
+| 4 | No pre-flight dependency validation | Robustness | Medium | Open — runner starts without checking |
+| 5 | Hardcoded Euler step count (4000) | Principle | Low | Open — should be config_* value node |
+| 6 | Connection outputs discarded after printing | Capability | Low | Open — should merge into pool |
+| 7 | No dataset support | Capability | Low | Specified — not implemented |
+| 8 | No identity match mode | Capability | Low | Specified — needed for R₂ cancellations |
+| 9 | Laporta C81/C83 convention unmapped | Investigation | Low | Archived — Laporta numbers stored, convention open |
+| 10 | statistical_control script unwritten | Blocking | High | Open — blocks beta_unification confirmation |

@@ -218,7 +218,7 @@ def run_comparison(spec, pool):
         ref_s = mp.nstr(ref_mpf, digits)
         miss = _miss_pct(got_mpf, ref_mpf)
         result["expected"] = expected_str
-        result["got"] = mp.nstr(got_mpf, digits + 2)
+        result["got"] = mp.nstr(got_mpf, max(digits + 2, 15))
         result["digits"] = digits
         result["miss_pct"] = mp.nstr(miss, 4)
         if got_s == ref_s:
@@ -252,7 +252,7 @@ def run_comparison(spec, pool):
         miss = _miss_pct(got_mpf, ref_mpf)
         result["status"] = "INFO"
         result["expected"] = ref_str
-        result["got"] = mp.nstr(got_mpf, 8)
+        result["got"] = mp.nstr(got_mpf, 15)
         result["miss_pct"] = mp.nstr(miss, 4)
         result["detail"] = "predicted %s ref %s miss %s%%" % (
             result["got"], ref_str, result["miss_pct"])
