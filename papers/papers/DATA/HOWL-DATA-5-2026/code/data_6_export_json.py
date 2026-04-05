@@ -863,6 +863,16 @@ gap_nodes = [
     make_value("coupling_measured_gap_ratio_v0", gap_measured, "dimensionless", 2,
                "Derived from alpha_EM, sin2_tW, alpha_s", section="GUT",
                tags=["Level2", "ratio"]),
+    make_value("cosmo_dm_to_baryon_ratio_prefactor_v0",
+               Fraction(22, 13), "dimensionless", 1,
+               "Table 15 / (22/13)*pi formula prefactor", section="cosmological",
+               tags=["Level1", "exact", "ratio"],
+               legacy_refs={"data5": "cosmo_dm_to_baryon_ratio_prefactor_v0"}),
+    make_value("cosmo_omega_dm_r2_prefactor_v0",
+               Fraction(44, 169), "dimensionless", 1,
+               "Table 15 / (44/169)*R2 formula prefactor", section="cosmological",
+               tags=["Level1", "exact", "ratio"],
+               legacy_refs={"data5": "cosmo_omega_dm_r2_prefactor_v0"}),
 ]
 
 write_json("values_gap_ratios_v0.json", {"nodes": gap_nodes})
