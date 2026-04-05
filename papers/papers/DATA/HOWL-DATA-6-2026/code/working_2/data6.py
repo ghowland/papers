@@ -596,6 +596,223 @@ def cmd_info(args):
 # COMMAND: report
 # ================================================================
 
+# ================================================================
+# REPORT FORMATTING HELPERS
+# ================================================================
+
+def _format_miss(pct_str):
+    """Format miss percentage as ppb, ppm, or percent."""
+    try:
+        from mpmath import mpf, mp
+        pct = mpf(str(pct_str))
+        if pct < mpf("0.001"):
+            ppb = pct * mpf("1e7")
+            return "%s ppb" % mp.nstr(ppb, 4)
+        elif pct < mpf("1"):
+            ppm = pct * mpf("1e4")
+            return "%s ppm" % mp.nstr(ppm, 4)
+        else:
+            return "%s%%" % mp.nstr(pct, 4)
+    except Exception:
+        return "%s%%" % pct_str
+
+
+def _string_compare(got_str, expected_str):
+    """Character-by-character digit comparison.
+    Returns dict with agree, total, diverge_pos, diverge_got, diverge_exp.
+    """
+    # Strip leading/trailing whitespace
+    g = got_str.strip()
+    e = expected_str.strip()
+
+    # Find significant digit count in expected
+    total = 0
+    for ch in e:
+        if ch.isdigit():
+            total += 1
+
+    # Character comparison
+    agree = 0
+    diverge_pos = -1
+    diverge_got = ""
+    diverge_exp = ""
+    min_len = min(len(g), len(e))
+
+    for i in range(min_len):
+        if g[i] == e[i]:
+            agree += 1
+        else:
+            diverge_pos = i
+            diverge_got = g[i]
+            diverge_exp = e[i]
+            break
+
+    if diverge_pos == -1 and len(g) < len(e):
+        diverge_pos = len(g)
+        diverge_got = "(end)"
+        diverge_exp = e[diverge_pos] if diverge_pos < len(e) else ""
+
+    # Count digit agreement (only counting digit characters)
+    digit_agree = 0
+    g_idx = 0
+    e_idx = 0
+    while g_idx < len(g) and e_idx < len(e):
+        gc = g[g_idx]
+        ec = e[e_idx]
+        if gc == ec:
+            if gc.isdigit():
+                digit_agree += 1
+            g_idx += 1
+            e_idx += 1
+        else:
+            break
+        g_idx_next = g_idx
+        e_idx_next = e_idx
+
+    return {
+        "agree": digit_agree,
+        "total": total,
+        "diverge_pos": diverge_pos,
+        "diverge_got": diverge_got,
+        "diverge_exp": diverge_exp,
+    }
+
+
+def _format_value_full(val):
+    """Format a value at full precision for report display."""
+    if isinstance(val, dict) and val.get("_type") == "Fraction":
+        num = val["num"]
+        den = val["den"]
+        try:
+            from fractions import Fraction
+            from mpmath import mpf, mp
+            f = Fraction(int(num), int(den))
+            dec = mp.nstr(mpf(f.numerator) / mpf(f.denominator), 15)
+            if den == "1":
+                return "%s  (= %s)" % (num, dec)
+            return "%s/%s  (= %s)" % (num, den, dec)
+        except Exception:
+            if den == "1":
+                return num
+            return "%s/%s" % (num, den)
+    if isinstance(val, bool):
+        return str(val)
+    if isinstance(val, str):
+        return val
+    return str(val)
+
+
+def _format_comparison(cr):
+    """Format one comparison result as a list of output lines.
+    PASS: compact unless exact (show Fraction).
+    INFO/FAIL: expanded with precision detail.
+    """
+    status = cr.get("status", "?")
+    label = cr.get("label", "?")
+    mode = cr.get("match_mode", "?")
+    detail = cr.get("detail", "")
+    lines = []
+
+    if status == "PASS" and mode == "exact":
+        got = cr.get("got", "?")
+        expected = cr.get("expected", "?")
+        lines.append("")
+        lines.append("  [PASS] %s" % label)
+        lines.append("    expected: %s" % _format_value_full(_try_parse_fraction(expected)))
+        lines.append("    got:      %s" % _format_value_full(_try_parse_fraction(got)))
+        lines.append("    status:   PASS (exact Fraction match)")
+
+    elif status == "PASS" and mode == "bool":
+        lines.append("")
+        lines.append("  [PASS] %s" % label)
+        lines.append("    got:      %s" % cr.get("got", "?"))
+        lines.append("    status:   PASS (bool match)")
+
+    elif status == "PASS" and mode == "range":
+        lines.append("")
+        lines.append("  [PASS] %s" % label)
+        lines.append("    got:      %s" % cr.get("got", "?"))
+        lines.append("    range:    [%s, %s]" % (
+            cr.get("lo", "?"), cr.get("hi", "?")))
+
+    elif status == "PASS" and mode == "digits":
+        got = cr.get("got", "?")
+        expected = cr.get("expected", "?")
+        miss_pct = cr.get("miss_pct", "0")
+        sc = _string_compare(str(got), str(expected))
+        lines.append("")
+        lines.append("  [PASS] %s" % label)
+        lines.append("    expected: %s" % expected)
+        lines.append("    got:      %s" % got)
+        lines.append("    agree:    %d of %d digits" % (
+            sc["agree"], sc["total"]))
+        lines.append("    miss:     %s" % _format_miss(miss_pct))
+
+    elif status == "INFO":
+        got = cr.get("got", "?")
+        expected = cr.get("expected", "?")
+        miss_pct = cr.get("miss_pct", "0")
+        sc = _string_compare(str(got), str(expected))
+        lines.append("")
+        lines.append("  [INFO] %s" % label)
+        lines.append("    predicted:  %s" % got)
+        lines.append("    measured:   %s" % expected)
+        if sc["agree"] > 0 or sc["total"] > 0:
+            lines.append("    agree:      %d of %d digits" % (
+                sc["agree"], sc["total"]))
+        if sc["diverge_pos"] >= 0:
+            lines.append("    diverge:    position %d: '%s' vs '%s'" % (
+                sc["diverge_pos"], sc["diverge_got"], sc["diverge_exp"]))
+        lines.append("    miss:       %s" % _format_miss(miss_pct))
+        lines.append("    status:     INFO")
+
+    elif status == "FAIL":
+        got = cr.get("got", "?")
+        expected = cr.get("expected", "?")
+        miss_pct = cr.get("miss_pct", "")
+        lines.append("")
+        lines.append("  [FAIL] %s" % label)
+        if mode == "exact":
+            lines.append("    expected: %s" % _format_value_full(
+                _try_parse_fraction(expected)))
+            lines.append("    got:      %s" % _format_value_full(
+                _try_parse_fraction(got)))
+            lines.append("    status:   FAIL (values differ)")
+        else:
+            sc = _string_compare(str(got), str(expected))
+            lines.append("    expected: %s" % expected)
+            lines.append("    got:      %s" % got)
+            if sc["agree"] > 0 or sc["total"] > 0:
+                lines.append("    agree:    %d of %d digits" % (
+                    sc["agree"], sc["total"]))
+            if sc["diverge_pos"] >= 0:
+                lines.append("    diverge:  position %d: '%s' vs '%s'" % (
+                    sc["diverge_pos"], sc["diverge_got"],
+                    sc["diverge_exp"]))
+            if miss_pct:
+                lines.append("    miss:     %s" % _format_miss(miss_pct))
+            lines.append("    status:   FAIL")
+
+    elif status == "SKIP":
+        lines.append("")
+        lines.append("  [SKIP] %s" % label)
+        lines.append("    detail:   %s" % detail)
+
+    else:
+        lines.append("")
+        lines.append("  [%s] %s" % (status, label))
+        lines.append("    detail:   %s" % detail)
+
+    return lines
+
+
+def _try_parse_fraction(val_str):
+    """Try to detect if a string looks like a Fraction for display."""
+    s = str(val_str)
+    if "/" in s and not s.startswith("{"):
+        return s
+    return s
+
 def cmd_report(args):
     if not args:
         print("Usage: data6.py report <experiment_name>")
@@ -753,19 +970,11 @@ def cmd_report(args):
         print("-" * 70)
         print("COMPARISONS: %d checks" % len(comp_results))
         print("-" * 70)
-        print()
-        print("  %-40s %-10s %-10s %s" % (
-            "Label", "Mode", "Status", "Detail"))
-        print("  %-40s %-10s %-10s %s" % (
-            "-" * 40, "-" * 10, "-" * 10, "-" * 30))
 
         for cr in comp_results:
-            label = cr.get("label", "?")[:40]
-            mode = cr.get("match_mode", "?")
-            status = cr.get("status", "?")
-            detail = cr.get("detail", "")
-
-            print("  %-40s %-10s %-10s %s" % (label, mode, status, detail))
+            lines = _format_comparison(cr)
+            for line in lines:
+                print(line)
 
         print()
 
@@ -801,12 +1010,17 @@ def _format_value(val):
         den = val["den"]
         if den == "1":
             return num
-        return "%s/%s" % (num, den)
+        try:
+            from fractions import Fraction as F
+            from mpmath import mpf, mp
+            f = F(int(num), int(den))
+            dec = mp.nstr(mpf(f.numerator) / mpf(f.denominator), 15)
+            return "%s/%s  (= %s)" % (num, den, dec)
+        except Exception:
+            return "%s/%s" % (num, den)
     if isinstance(val, bool):
         return str(val)
     if isinstance(val, str):
-        if len(val) > 50:
-            return val[:47] + "..."
         return val
     return str(val)
 
