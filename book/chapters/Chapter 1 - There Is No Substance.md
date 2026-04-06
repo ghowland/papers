@@ -151,7 +151,7 @@ Numerology would be picking 22 and 13 because they happen to work. Here, 22 and 
 
 The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
 
-![Card](../figures/book_08_identity_card.png)
+![The Rational Universe Card](../figures/book_08_identity_card.png)
 
 ---
 

@@ -10,6 +10,8 @@ So why didn't anyone assemble them?
 
 Three reasons: the wrong numbers, the wrong names, and the wrong departments.
 
+![53 Derivations Across 8 Domains](../figures/book_13_precision_landscape.png)
+
 ---
 
 ### The Wrong Numbers
@@ -57,6 +59,8 @@ The computation never leaves the integers. At no point do we convert to decimals
 This is why unification was missed. The standard approach is: measure the couplings as decimals, run them as decimals, check if they meet as decimals. They don't meet — because the running accumulates rounding errors, because the crossing detection uses floating-point comparison, because the gap is computed as a decimal and compared to zero. The integer structure — 38/27, not 1.40741 — is below the resolution of the decimal approach.
 
 The Fraction approach is: start from exact integer betas, compute the gap ratio as an exact Fraction, identify which BSM representation produces an exact Fraction gap ratio, derive the coupling predictions from that Fraction structure, and compare to measurement. The comparison is the only place decimals enter — and at that point, the predictions match to 12 ppm.
+
+![Fractions show precision or equality that Epsilon and Renormalization obscure](../figures/book_16_fraction_structure.png)
 
 ---
 
