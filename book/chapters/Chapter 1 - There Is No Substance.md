@@ -79,7 +79,7 @@ The 'weak force' does not exist as a separate force. It is the reading at the el
 
 'Electromagnetic radiation' is not a substance traveling through space. It is a propagating disturbance in the vortex field — a ripple with no boundary, which is why it has no mass and no inertia.
 
-Light is pure change with nothing being changed — a disturbance that moves without carrying anything with it. A wave in the ocean moves energy across the water, but no water travels with it. Light is the same: a pattern moving through the field, carrying energy but no substance, with no boundary to give it resistance. This is why it travels at the fastest possible speed — nothing resists its motion, because there is no soliton boundary to push back.  Light has no inertia.
+Light is a pure "change pattern" with nothing being changed — a disturbance that moves without carrying anything with it. A wave in the ocean moves energy across the water, but no water travels with it. Light is the same: a pattern moving through the field (vortex interior), carrying energy but no substance, with no boundary to give it resistance. This is why it travels at the fastest possible speed — nothing resists its motion, because there is no soliton boundary to push back.  Light has no inertia.
 
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
@@ -87,19 +87,19 @@ This is the Rectification of Names. Physics already has all the correct equation
 
 ### Nesting
 
-Everything is nested.
+Everything is nested. Like a Russian nesting doll, every component of the universe sits inside something larger.
 
-Start with a quark. A vortex pattern at the smallest scale we can probe. Three quarks inside a proton. The proton is a soliton — it has a boundary (about 0.88 femtometers across) where the reading changes. Inside: confinement, α_s ≈ 1, quarks can't escape. Outside: freedom, α_s ≈ 0.118, quarks don't exist as free particles.
+Start with a quark. The smallest vortex pattern we can detect. Three quarks sit inside a proton — a donut soliton with a boundary about a trillionth of a millimeter across, about 80 billion times smaller than a human hair. Inside the proton donut boundary, quarks are permanently trapped. Every experiment ever performed to pull a quark out of a proton has failed — the harder you pull, the more energy you add, and that energy turns into new quarks before the original can escape. Outside the proton donut boundary, that same force is weak enough that protons sit peacefully next to each other.
 
-The proton sits inside an atom. The atom is a soliton — it has a boundary (the electron cloud, about 0.1 nanometers across) where the reading changes. Inside: discrete energy levels, quantum mechanics dominates. Outside: the atom looks like a point charge, classical electrostatics works.
+The proton sits inside an atom. The atom is a soliton too — it has its own boundary, about ten thousand times larger than the proton. Inside, electrons exist only in specific shells, jumping between them in exact integer steps. Outside, the atom looks like a single tiny sphere with a charge. Different rules inside than outside. Same principle. The boundary determines which rules apply.
 
-The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth.
+The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth. At every level, the same structure — a pattern inside a boundary, with different readings on each side.
 
-The Earth is a soliton. It has a boundary — the Hill sphere, about 1.5 million kilometers across — where the gravitational reading changes. Inside the Hill sphere, objects orbit the Earth. Outside the Hill sphere, objects orbit the Sun. The Moon is inside the Earth's Hill sphere. That's why it orbits the Earth and not the Sun. The boundary determines the orbit.
+The Earth itself is a sphere soliton. Every object in space has a zone of "gravitational influence" (Hill sphere) — a region where its pull is stronger than anything else's. For the Earth, this zone extends about 1.5 million kilometers in every direction. Inside that zone, objects orbit the Earth. Outside it, objects orbit the Sun. The Moon is inside the Earth's zone. That's why it orbits us and not the Sun. The boundary determines the orbit.
 
-The Earth sits inside the Sun's Hill sphere. The Sun sits inside the galaxy.
+The Earth sits inside the Sun's zone. The Sun sits inside the galaxy.
 
-The galaxy is a soliton. And here something new happens.
+The galaxy is a donut soliton, a toroid.
 
 ---
 
@@ -111,17 +111,27 @@ Galaxies are not spheres. They're toroids.
 
 Look at any spiral galaxy — the Milky Way, Andromeda, the thousands captured by Hubble and Webb. A flat rotating disc with a bulge at the center and a vast halo surrounding it. The disc is where the stars are. The halo is where the "dark matter" is. The standard model of cosmology says the halo is filled with invisible massive particles that provide the extra gravitational pull needed to keep the outer stars from flying off.
 
-But there's another reading. The halo isn't filled with invisible particles. The halo is the toroidal flow pattern of the galaxy itself.
+But there's another reading. The halo isn't filled with invisible particles. The halo is the toroidal flow pattern of the galaxy itself, like the smoke ring, but much more resistant to external change.
 
 A toroid is a doughnut shape. The flow circulates through the hole, around the outside, and back through the hole — a continuous self-sustaining vortex. The disc of the galaxy is the equatorial cross-section of the toroid. The "dark matter halo" is the rest of the toroidal flow — the part that circulates above and below the disc and returns through the center.
 
 This is why the galaxy rotation curves are flat. The outer stars aren't being pulled by invisible particles. They're embedded in a toroidal flow pattern that naturally produces flat rotation curves — because the toroidal circulation has a specific velocity profile determined by the flow geometry, not by a central mass. The stars at the outer edge of the disc aren't moving "too fast for the visible mass." They're moving at exactly the right speed for the toroidal flow.
 
-The dark matter ratio — how much "dark matter" versus visible matter the universe contains — is (22/13)π. That's 5.317. The measured ratio from the Planck satellite is 5.320. The miss is 725 parts per million.
+The universe is built from integer arithmetic — whole numbers and their ratios. The patterns we've been describing, the solitons and vortices at every scale, are governed by specific integers that come from counting how particles interact with each force. These integers aren't mysterious. They're the result of counting: how many particles exist, how they combine, how they transform. And when you do the counting correctly, the integers predict what we measure.
 
-Where do 22 and 13 come from? From the gauge group. 22 = 2 × 11, where 11 is the Yang-Mills coefficient of SU(2) — the coefficient that determines how the weak force runs with energy. 13 is the numerator of the modified SU(2) beta coefficient (−13/6) — modified by the same particle (the Cabibbo Doublet) that makes the gauge couplings unify. The dark matter ratio is not a free parameter. It's a reading of the gauge group structure at the galactic boundary scale.
+Two integers — 22 and 13 — multiplied by π, predict exactly how much dark matter the universe contains.
 
-The universe tells us how much dark matter exists through the CMB. The gauge integers tell us the ratio should be (22/13)π. They agree to 725 ppm. One equation. No invisible particles.
+The prediction: (22/13) × π = 5.3165. The measurement from the Planck satellite: 5.3204. They agree to 725 parts per million.
+
+Why 725 parts per million? To see how close this is, think of it this way. If you predicted the distance from New York to Los Angeles — about 3,944 kilometers — and your prediction was off by 725 parts per million, you'd be wrong by about 3 kilometers. Out of a four-hour flight, you'd be off by eleven seconds. The first three digits match exactly: 5.31. The disagreement starts at the fourth digit, where the prediction says 6 and the measurement says 2. Everything before that is identical.
+
+Where do the integers 22 and 13 come from? They come from counting how particles interact with the weak force — the same force responsible for radioactive decay. The number 11 appears when you calculate how the weak force changes strength at different scales. Double it: 22. 
+
+The number 13 appears when you add one specific particle — the Cabibbo Doublet — to that count. This particle was identified by the research behind this book as the single representation that makes the three forces converge. It's named after the Cabibbo angle, one of the fundamental mixing angles in particle physics, and 'doublet' because it comes in a pair — a geometric property of how it interacts with the weak force. The Cabibbo Doublet hasn't been found in a laboratory yet. It was found in the integers — it's the only particle whose properties produce exact fraction ratios when added to the Standard Model count. Its existence is a prediction, and the (22/13)π dark matter ratio is one of its consequences.
+
+Nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
+
+The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
 
 ---
 
