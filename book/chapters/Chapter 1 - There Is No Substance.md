@@ -7,6 +7,8 @@
 
 Mass is not a thing. It is a reading.
 
+A reading is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A running reading is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
+
 Pick up a rock. It feels heavy. You think you're feeling the substance of the rock — the stuff it's made of, the matter inside it. You're not. You're feeling resistance. The rock resists being moved. That resistance is what you call mass.
 
 Newton wrote this down in 1687: F = ma. Force equals mass times acceleration. Rearrange it: m = F/a. Mass equals force divided by acceleration. Mass is how hard you have to push something to make it move. That's all it is. That's all it has ever been.
@@ -63,8 +65,6 @@ In an electrical circuit, the resistance that opposes current flow — that's in
 
 **Soliton.** The boundary that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. 
 
-A reading is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A running reading is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
-
 Inside the proton, the "strong" coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the "strong" coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
 
 When we say soliton, we mean the boundary. When we say vortex, we mean the pattern inside the boundary. When we say inertia, we mean how the pattern resists measurement and change from outside the boundary.
@@ -107,7 +107,7 @@ The galaxy is a donut soliton, a toroid.
 
 ![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](../figures/book_02_toroidal_galaxy.png)
 
-Galaxies are not spheres. They're toroids.
+Galaxies are not spheres. Galaxies are toroids, donuts.  Thin donuts.
 
 Look at any spiral galaxy — the Milky Way, Andromeda, the thousands captured by Hubble and Webb. A flat rotating disc with a bulge at the center and a vast halo surrounding it. The disc is where the stars are. The halo is where the "dark matter" is. The standard model of cosmology says the halo is filled with invisible massive particles that provide the extra gravitational pull needed to keep the outer stars from flying off.
 
@@ -117,6 +117,8 @@ A toroid is a doughnut shape. The flow circulates through the hole, around the o
 
 This is why the galaxy rotation curves are flat. The outer stars aren't being pulled by invisible particles. They're embedded in a toroidal flow pattern that naturally produces flat rotation curves — because the toroidal circulation has a specific velocity profile determined by the flow geometry, not by a central mass. The stars at the outer edge of the disc aren't moving "too fast for the visible mass." They're moving at exactly the right speed for the toroidal flow.
 
+So far, this may sound like a story about shapes alone — spheres, donuts, boundaries, and flow. But shapes in physics are not freehand. They come with counts. How many stable components fit inside a boundary. How many ways a pattern can circulate. How many distinct interactions are allowed before a pattern changes into another. Those counts are integers, and the integers set the possible ratios.
+
 The universe is built from integer arithmetic — whole numbers and their ratios. The patterns we've been describing, the solitons and vortices at every scale, are governed by specific integers that come from counting how particles interact with each force. These integers aren't mysterious. They're the result of counting: how many particles exist, how they combine, how they transform. And when you do the counting correctly, the integers predict what we measure.
 
 Two integers — 22 and 13 — multiplied by π, predict exactly how much dark matter the universe contains.
@@ -125,11 +127,17 @@ The prediction: (22/13) × π = 5.3165. The measurement from the Planck satellit
 
 Why 725 parts per million? To see how close this is, think of it this way. If you predicted the distance from New York to Los Angeles — about 3,944 kilometers — and your prediction was off by 725 parts per million, you'd be wrong by about 3 kilometers. Out of a four-hour flight, you'd be off by eleven seconds. The first three digits match exactly: 5.31. The disagreement starts at the fourth digit, where the prediction says 6 and the measurement says 2. Everything before that is identical.
 
+That sounds too simple, so to say clearly what is being claimed: This is not numerology. It is not taking random numbers and forcing them to match a measurement. The claim is that once the particle-counting is done correctly, the geometry of the toroid turns those counts into a fixed ratio. The integers come from the counting. The π comes from the shape.
+
 Where do the integers 22 and 13 come from? They come from counting how particles interact with the weak force — the same force responsible for radioactive decay. The number 11 appears when you calculate how the weak force changes strength at different scales. Double it: 22. 
+
+To a non-physicist, “counting interactions” can sound vague, so here is the simple version. In particle physics, each family of particles contributes in a specific, countable way to how a coupling changes with scale. You do not guess these contributions. You add them. The result is a total, and that total is an integer.
 
 The number 13 appears when you add one specific particle — the Cabibbo Doublet — to that count. This particle was identified by the research behind this book as the single representation that makes the three forces converge. It's named after the Cabibbo angle, one of the fundamental mixing angles in particle physics, and 'doublet' because it comes in a pair — a geometric property of how it interacts with the weak force. The Cabibbo Doublet hasn't been found in a laboratory yet. It was found in the integers — it's the only particle whose properties produce exact fraction ratios when added to the Standard Model count. Its existence is a prediction, and the (22/13)π dark matter ratio is one of its consequences.
 
-Nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
+This is the one place where the argument depends on a new proposed ingredient, so it should be introduced plainly: The "Cabibbo Doublet" particle is not being proposed as a particle invented to save the model after the fact. It appears because the counting does not close cleanly without it. Add it, and the ratios become exact. Leave it out, and they do not.
+
+In the case of dark matter, nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
 
 The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
 
