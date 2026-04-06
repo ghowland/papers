@@ -145,35 +145,49 @@ The universe tells us how much dark matter exists through satellite measurements
 
 ### Saturn's Rings and the Asteroid Belt
 
+#### Gaps in the Rings
+
 ![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](../figures/book_10_bessel_zeros.png)
 
-If galaxies are toroids, their internal structure should show toroidal standing wave patterns. Standing waves in a toroidal cavity have nodes — places where the wave amplitude is zero. These nodes are circles. They appear at specific radii determined by the zeros of Bessel functions — the mathematical functions that describe waves in circular geometries.
+If galaxies are donuts, they should vibrate like donuts.
 
-Saturn's rings are gaps and bands at specific radii. The asteroid belt has gaps at specific orbital radii (the Kirkwood gaps). The galaxy disc has spiral arms at specific radii. All of these are nodal patterns of toroidal standing waves — the same mathematics, the same physics, at different scales.
+Every shape that vibrates has a pattern. A guitar string vibrates with fixed points at each end — the nodes — where the string doesn't move. A circular drumhead vibrates with rings of stillness — circles where the surface stays flat while everything around it moves. The shape determines where the dead spots are.
 
-Bessel function J₀ has zeros at x = 2.405, 5.520, 8.654, 11.792... These are the radii where the standing wave vanishes. At these radii, no stable orbit exists — particles get pushed to adjacent nodes. The Kirkwood gaps in the asteroid belt correspond to orbital resonances with Jupiter, but the pattern of resonances follows the same Bessel zero structure because Jupiter's gravitational influence creates a standing wave pattern in the orbital disc.
+A standing wave is a pattern that stays in place while the motion inside it repeats. Some parts move strongly. Some parts do not move at all. Those still places are called nodes. On a donut-shaped system, the nodes are not just points or lines. They can form whole circular bands.
 
-This isn't coincidence. This is what standing waves do in toroidal geometries. The galaxy is a toroidal vortex. Saturn's ring system is a toroidal vortex. The asteroid belt is a cross-section of the solar system's toroidal flow. The nodes are at the Bessel zeros because Bessel functions are the eigenfunctions of the Laplacian in cylindrical coordinates — which is the natural coordinate system for a toroid.
+A donut vibrates too. Its standing wave pattern produces dead rings — circles at specific radii where the wave cancels itself out. Nothing stable sits at a dead ring. Material gets pushed inward or outward, toward the nearest live zone. The result: gaps at specific radii, with material concentrated between them.
+
+Now look at Saturn's rings. Gaps and bands at specific radii. The Cassini Division — the famous dark gap visible through a backyard telescope — sits at a specific distance from Saturn. The Kirkwood gaps in the asteroid belt sit at specific distances from the Sun. The galaxy's spiral arms sit at specific radii within the disc.
+
+The standard explanation for these gaps is orbital resonances — places where a moon's or planet's gravity periodically tugs objects out of stable orbits. That explanation is correct. But the deeper question is: why do resonances produce gaps at those particular radii? The answer, in the donut framework, is that the resonances occur at the dead rings of the toroidal standing wave (donut vortex, "smoke ring"). The shape determines where the dead spots are. The resonances are the mechanism. The donut geometry is the reason the mechanism acts where it does.
+
+Saturn’s rings, the asteroid belt, and the galactic disc differ in scale, but not in principle: the same mathematics produces the same dead rings.
 
 ---
 
 ### Gravity Is a Reading
 
-Gravity is not a force. Einstein showed this in 1915 — objects in gravitational fields follow geodesics, the straightest possible paths through curved spacetime. There is no gravitational force pushing you toward the Earth. There is curved spacetime, and you follow the natural path through it. The "force" you feel standing on the ground is the ground pushing you upward, away from your natural geodesic (which would take you through the floor toward the center of the Earth).
+Gravity is not a force. Einstein showed this in 1915. Objects in a gravitational field aren't being pushed or pulled — they're following the most natural path through curved space. The apple doesn't fall because the Earth pulls it. The apple falls because the space between it and the Earth is curved, and "down" is the straightest line available. The only force you feel standing on the ground is the ground pushing up on your feet, preventing you from following your natural path — which would take you straight through the floor.
 
-In our language: gravity is the ground state reading of the nearest soliton boundary.
+In our language: gravity is what happens when a small soliton returns to the ground state of the larger soliton it sits inside.
 
-When you stand on the Earth, you're at the ground state of the Earth soliton. The ground state is the lowest energy configuration — the state the system naturally falls to. Jump, and you briefly leave the ground state. You're in an excited state. But excited states decay, and you fall back to the ground. This is not a metaphor. This is exactly what "gravitational potential energy" means — the energy difference between your current state and the ground state.
+The ground state is the lowest energy position — the place a system naturally settles to if nothing holds it up. Pick up a ball and release it. It falls. It's returning to its ground state — the surface of the Earth. Jump off a diving board. For a moment, you're in an excited state — above ground. But excited states don't last. You come back down. This isn't a metaphor for gravity. This is what gravity is: the tendency of every pattern to settle into the lowest energy configuration of the boundary it lives inside.
 
-Orbit is a metastable state — a long-lived excited state that doesn't immediately decay. The Moon is in a metastable state of the Earth soliton. It's above ground state but in a stable configuration. Apply enough energy (escape velocity) and you transition out of the Earth soliton entirely — you leave the Hill sphere and enter the Sun's soliton.
+The Moon doesn't fall to Earth because it's in a stable orbit — an excited state that lasts billions of years without decaying. But apply enough energy — reach escape velocity — and you leave the Earth's gravitational zone entirely. You exit the Earth's boundary and enter the Sun's. The boundary determines which ground state you fall toward.
 
-The gravitational constant G = 6.674 × 10⁻¹¹ is a reading. It's measured inside the Earth's Hill sphere, using experiments conducted on the Earth's surface, inside the Earth's atmosphere, inside the Earth's magnetic field, inside the Earth's soliton boundary. Every measurement of G ever performed has been made inside this single boundary. The scatter in G measurements — larger than for any other fundamental constant — is telling us something. It's telling us that G is a boundary reading, and we're measuring it from one location inside one boundary.
+So far, gravity has been described as a pattern settling into its natural place inside a larger pattern. The next step is to ask how we know the strength of that settling. Physics gives that strength a name: G, the gravitational constant. But a constant is only constant if it reads the same way everywhere.
 
-The electromagnetic coupling α = 1/137 runs with energy — it changes value depending on what scale you probe it. At low energy, α ≈ 1/137. At the Z boson mass, α ≈ 1/128. At the GUT scale, α ≈ 1/42. Same coupling, different readings at different boundaries.
+Now here's the key claim. Every measurement of gravitational strength ever performed — every laboratory experiment with lead spheres and torsion balances — has been performed inside the Earth's gravitational zone, on the Earth's surface, inside the Earth's boundary (Hill sphere). Every single one. And the measurements don't agree with each other as well as they should. The gravitational constant G has more scatter between experiments than any other fundamental constant in physics. The standard explanation is that gravity is just hard to measure. The boundary explanation is different: G is a reading that depends on which boundary you're inside.
 
-The model says gravity does the same thing. G reads one value inside the Earth's Hill sphere. It reads a different value inside the Sun's Hill sphere. It reads a different value at the galactic scale. The "dark matter problem" — the observation that galaxies rotate as if they contain more mass than we can see — is not a matter problem. It's a reading problem. The gravitational reading at the galactic boundary (the toroidal edge) is different from the gravitational reading inside the solar Hill sphere.
+That idea may sound strange at first, but it is not strange elsewhere in physics. We already accept that a force can be one thing in principle and still read differently at different scales. The reading changes even when the underlying interaction does not.
 
-This is not settled. This is the frontier of the map. We have not derived G from integers the way we've derived α from integers. But the model says G is the same kind of thing — a soliton boundary reading — and the dark matter ratio (22/13)π being correct to 725 ppm from gauge integers is the first evidence that the gravitational sector connects to the gauge sector through the same integer structure.
+We already know this happens with other forces. The strength of the electromagnetic force changes depending on how closely you look — it reads 1/137 at everyday scales, 1/128 at the scale of the Z boson, and 1/42 at the unification scale. Same force. Different reading. Different boundary.
+
+If gravity belongs to the same unified structure, then it should behave the same way. Its underlying role would stay the same, while the measured reading would depend on the boundary and scale of the system being measured.
+
+This model says gravity works the same way. G reads one value inside the Earth's boundary. It reads a different value at the scale of the solar system. It reads a different value at the scale of the galaxy. The "dark matter problem" — galaxies rotating as if they contain far more mass (inertia) than we can see — may not be a mass problem at all. It may be a reading problem. The gravitational reading at the galactic boundary is different from the gravitational reading inside our solar system's boundary.
+
+This is the frontier of the map — not settled, not fully derived. We haven't connected G to the gauge integers the way we've connected the dark matter ratio. But (22/13)π matching the Planck satellite measurement to 725 parts per million is the first evidence that gravity connects to the same integer structure as the other forces. The bridge exists. It's just not fully built yet.
 
 ---
 
@@ -185,17 +199,25 @@ Stand on the surface of the Earth. Look around. The ground is flat. The horizon 
 
 Now look at the Earth from space. It's a sphere. The surface curves. The horizon is a circle. The Earth, from outside the boundary, reads curved.
 
+A boundary does not look the same from every position. The same surface can present one reading to something embedded in it and another to something viewing it from outside. This is not a trick of language. It is a difference in vantage.
+
 Both readings are correct. They're not contradictory. They're readings from different sides of the same soliton boundary. The surface of the Earth is a boundary. From inside (standing on it), the boundary reads flat — because every soliton boundary looks locally flat from the inside. From outside (orbiting above it), the boundary reads curved — because every soliton boundary looks globally curved from the outside.
+
+Once that inside/outside distinction is clear on the Earth, the next question is whether it is only a local fact or a general one. The claim here is that it repeats. The same split in reading appears again and again at different scales.
 
 This is true at every scale.
 
-A proton looks pointlike from outside — a zero-dimensional object with a charge and a mass. From inside (probed by high-energy electrons at SLAC, DESY, and Jefferson Lab), the proton has internal structure — three quarks, gluon fields, sea quarks, a complex internal landscape 0.88 femtometers across. Pointlike outside. Structured inside. Two readings, one boundary.
+A proton looks pointlike from outside — a zero-dimensional object with a charge and a mass. From inside (when probed by high-energy electrons at SLAC, DESY, and Jefferson Lab), the proton has internal structure — three quarks, gluon fields, sea quarks, a complex internal landscape 0.88 femtometers across. Pointlike outside. Structured inside. Two readings, one boundary.
 
-A galaxy looks like a dot from 100 megaparsecs away. From inside, it has spiral arms, a bulge, a disc, a halo, 200 billion stars. Dot outside. Structure inside. Two readings, one boundary.
+A galaxy looks like a dot from a billion light-years away. From inside, it has spiral arms, a bulge, a disc, a halo, 200 billion stars. Dot outside. Structure inside. Two readings, one boundary.
 
-The universe itself has this property. From inside — from our position inside the galaxy, inside the local group, inside the observable horizon — spacetime looks locally flat. The curvature parameter k, measured by Planck, is consistent with zero. Flat. From outside (if "outside" means anything for the universe), the total curvature would read differently. We can't get outside to check. But the flatness reading from inside is exactly what the soliton model predicts.
+Push the idea outward far enough and it reaches the largest thing we can talk about. If nested boundaries are a universal feature, then the same inside/outside logic should apply not only to objects in the universe, but to the universe as a whole.
 
-This is what it means for everything to be nested. You're a soliton, standing on the Earth soliton, inside the Earth's Hill sphere soliton, inside the Sun's Hill sphere soliton, inside the galaxy toroid soliton, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
+The universe itself has this property. From inside — from our position inside the galaxy, inside our local neighborhood of galaxies, inside the observable horizon — spacetime looks flat. Every measurement confirms it. Perfectly flat. From outside (if "outside" means anything for the universe), the total curvature would read differently. We can't get outside to check. But the flatness reading from inside is exactly what the soliton model predicts.
+
+Nesting does not just mean smaller things sitting inside larger ones. It means each larger boundary changes what can be seen, measured, and treated as natural from within it.
+
+This is what it means for everything to be nested: You're a soliton, standing on the Earth soliton, inside the Earth's gravitational boundary, inside the Sun's gravitational boundary, inside the galaxy donut, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
 
 ---
 
