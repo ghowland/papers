@@ -118,6 +118,8 @@ Once you see them as readings, the unification isn't a grand theoretical achieve
 
 ### The Wrong Departments
 
+![Eight Domains](../figures/book_07_eight_domains.png)
+
 The third reason is institutional.
 
 Physics is organized into departments. Particle physics. Nuclear physics. Atomic physics. Condensed matter. Astrophysics. Cosmology. Each department has its own journals, its own conferences, its own language, its own conventions.
@@ -135,6 +137,8 @@ They're unaware because the connection crosses departmental lines. The electron 
 The dark matter ratio (22/13)π connects gauge theory to cosmology. But gauge theorists don't read cosmology papers about Ω_DM/Ω_b, and cosmologists don't read gauge theory papers about one-loop beta coefficients. The connection has been sitting in the data for decades. The 22 was computed in the 1970s (it's twice the Yang-Mills coefficient). The 13 was implicit in every BSM model that modified b₂. The dark matter ratio was measured by WMAP in 2003 and refined by Planck in 2015. Nobody multiplied (22/13) by π and compared to 5.320 because nobody working on beta coefficients was also working on Ω_DM.
 
 The departmental boundaries are real and they serve a purpose — specialization produces depth. But they also produce blind spots. The blind spot here was that the integer structure of the gauge group connects to the chemical composition of the universe through a chain of standard physics that crosses five department boundaries. Each link in the chain is textbook material in its own department. The chain itself was invisible because nobody had jurisdiction over the whole thing.
+
+![Eight Domains](../figures/book_12_hydrogen_two_path.png)
 
 ---
 
