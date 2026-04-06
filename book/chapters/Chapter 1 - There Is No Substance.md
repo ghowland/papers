@@ -45,7 +45,7 @@ A proton is a donut soliton — a toroidal flow pattern made of three smaller so
 
 Two shapes. Spheres and donuts. The universe builds everything from these two patterns nested inside each other at every scale. Quarks inside protons. Electrons orbiting nuclei. Atoms inside galaxies. The combinations vary — the alternation isn't rigid — but the building blocks are always the same two shapes. At no point in this chain does substance appear. At every point, what appears is pattern — stable, self-sustaining, resistant to change.
 
-You are made of these patterns. Your mass is the total resistance of all your patterns to acceleration. When you step on a scale, you are being pulled toward the Earth's center — toward your gravitational ground state, the lowest point you can reach. The scale compresses under you. The number it shows is the force you're applying downward, trying to reach that ground state. It isn't measuring how much stuff you contain. It's measuring how hard you push toward the ground.
+You are made of these patterns. Your mass is the total resistance of all your patterns to acceleration, resistance to change. When you step on a scale, you are being pulled toward the Earth's center — toward your gravitational ground state, the lowest point you can reach. The scale compresses under you. The number it shows is the force you're applying downward, trying to reach that ground state. It isn't measuring how much stuff you contain. It's measuring how hard you push toward the ground.
 
 ---
 
@@ -59,11 +59,27 @@ We need three words.
 
 **Vortex.** The pattern that resists. The stable circulation that maintains itself against perturbation. An electron is a vortex. A proton is a vortex containing three smaller vortices. An atom is a vortex containing nuclear vortices orbited by electron vortices. A star is a vortex of plasma held by gravitational circulation. A galaxy is a vortex of stars held by toroidal flow. At every scale, the same word, because at every scale, the same physics — a self-sustaining pattern of flow that resists change.
 
-**Soliton.** The boundary that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. Inside the proton, the strong coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the strong coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
+In an electrical circuit, the resistance that opposes current flow — that's inertia. The viscosity that slows fluid through a pipe — inertia. The drag that holds back a moving car — inertia. The stiffness of a spring, the inductance of a coil, the thermal resistance of an insulating wall — all inertia. Every department gave it a different name. It was always the same thing: the pattern pushing back against change.
 
-When we say soliton, we mean the boundary. When we say vortex, we mean the pattern inside the boundary. When we say inertia, we mean how the pattern resists measurement from outside the boundary.
+**Soliton.** The boundary that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. 
+
+A reading is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A running reading is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
+
+Inside the proton, the "strong" coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the "strong" coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
+
+When we say soliton, we mean the boundary. When we say vortex, we mean the pattern inside the boundary. When we say inertia, we mean how the pattern resists measurement and change from outside the boundary.
 
 These three words replace the entire vocabulary of physics. Not because the old words are wrong — they're not — but because they carry baggage that prevents seeing the connections. "Electromagnetic force" and "strong force" sound like different things. They're not. They're different readings of the same coupling at different soliton boundaries. "Gravity" and "electromagnetism" sound like different things. They're not. They're readings at different scales of the same nested boundary structure. The old names kept them apart. The new names show they're the same.
+
+Gravity does not exist as a separate force. It is a child soliton returning to the ground state of its parent soliton — a ball falling toward the Earth is a small pattern settling into the lowest energy configuration of the larger pattern it sits inside. 
+
+The 'strong force' does not exist as a separate force. It is the reading of the coupling inside the proton boundary, where the value is so high that nothing escapes. 
+
+The 'weak force' does not exist as a separate force. It is the reading at the electroweak boundary where certain vortex patterns are allowed to decay into other patterns. 
+
+'Electromagnetic radiation' is not a substance traveling through space. It is a propagating disturbance in the vortex field — a ripple with no boundary, which is why it has no mass and no inertia.
+
+Light is pure change with nothing being changed — a disturbance that moves without carrying anything with it. A wave in the ocean moves energy across the water, but no water travels with it. Light is the same: a pattern moving through the field, carrying energy but no substance, with no boundary to give it resistance. This is why it travels at the fastest possible speed — nothing resists its motion, because there is no soliton boundary to push back.  Light has no inertia.
 
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
