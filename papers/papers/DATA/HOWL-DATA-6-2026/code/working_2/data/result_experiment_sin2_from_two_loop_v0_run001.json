@@ -1,0 +1,118 @@
+{
+  "key": "result_experiment_sin2_from_two_loop_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_sin2_from_two_loop_v0",
+  "timestamp": "2026-04-06T03:36:19Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "sin2_from_two_loop_crossing_v0",
+      "status": "ok",
+      "output_count": 24
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "sin2_theta_W predicted vs measured",
+      "output_key": "result_sin2_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.23122",
+      "got": "0.231222764946095",
+      "miss_pct": "0.001196",
+      "detail": "predicted 0.231222764946095 ref 0.23122 miss 0.001196%"
+    },
+    {
+      "label": "sin2_theta_W within 5% of measured",
+      "output_key": "result_sin2_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "0.00119581",
+      "lo": "0",
+      "hi": "5.0",
+      "status": "PASS",
+      "detail": "in [0, 5.0]"
+    },
+    {
+      "label": "alpha_s predicted vs measured",
+      "output_key": "result_alpha_s_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "0.118384375944315",
+      "miss_pct": "0.3257",
+      "detail": "predicted 0.118384375944315 ref 0.1180 miss 0.3257%"
+    },
+    {
+      "label": "alpha_s within 10% of measured",
+      "output_key": "result_alpha_s_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "0.325742",
+      "lo": "0",
+      "hi": "10.0",
+      "status": "PASS",
+      "detail": "in [0, 10.0]"
+    },
+    {
+      "label": "log10(M_GUT) in [15, 17]",
+      "output_key": "result_m_gut_log10_v0",
+      "match_mode": "range",
+      "reference_source": "proton_decay_bounds",
+      "got": "15.6098",
+      "lo": "15",
+      "hi": "17",
+      "status": "PASS",
+      "detail": "in [15, 17]"
+    },
+    {
+      "label": "Reverse integration recovers alpha_GUT at M_GUT",
+      "output_key": "result_forward_check_gap_v0",
+      "match_mode": "range",
+      "reference_source": "numerical_verification",
+      "got": "4.50679e-5",
+      "lo": "0",
+      "hi": "0.001",
+      "status": "PASS",
+      "detail": "in [0, 0.001]"
+    }
+  ],
+  "outputs": {
+    "result_sin2_predicted_v0": "0.231222764946095",
+    "result_sin2_miss_pct_v0": "0.00119580749721487",
+    "result_alpha_s_predicted_v0": "0.118384375944315",
+    "result_alpha_s_miss_pct_v0": "0.325742325690491",
+    "result_alpha_gut_inv_v0": "42.1349625508559",
+    "result_t_cross_v0": "31.4298737454464",
+    "result_m_gut_log10_v0": "15.6097565200659",
+    "result_gap_at_cross_v0": "0.0269437887127664",
+    "result_alpha_1_inv_mz_predicted_v0": "63.2105638074136",
+    "result_alpha_2_inv_mz_predicted_v0": "31.6858426268567",
+    "result_alpha_3_inv_mz_predicted_v0": "8.44706061947209",
+    "result_alpha_1_inv_mz_measured_v0": "63.2103212683764",
+    "result_alpha_2_inv_mz_measured_v0": "31.6854637297059",
+    "result_alpha_3_inv_mz_measured_v0": "8.47457627118644",
+    "result_sin2_measured_v0": "0.23122",
+    "result_alpha_s_measured_v0": "0.118",
+    "result_forward_check_12_v0": "2.47002418249423e-5",
+    "result_forward_check_gap_v0": "4.50679302061041e-5",
+    "result_forward_alpha_1_gut_v0": "42.1349298330466",
+    "result_forward_alpha_2_gut_v0": "42.1349051328048",
+    "result_forward_alpha_3_gut_v0": "42.1350413765632",
+    "result_cos2_predicted_v0": "0.768777235053905",
+    "result_alpha_1_check_v0": "63.210093930086",
+    "result_alpha_1_check_vs_predicted_v0": "0.000469877327677126"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 4,
+    "comparisons_fail": 0,
+    "comparisons_info": 2,
+    "comparisons_skip": 0
+  }
+}

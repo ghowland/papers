@@ -1,0 +1,91 @@
+{
+    "key": "experiment_hydrogen_1s2s_v0",
+    "canonical": "experiment_hydrogen_1s2s",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Derive the hydrogen 1S-2S transition frequency from derived R_inf plus published QED Lamb shift corrections. Compare to the most precise spectroscopic measurement in physics (Parthey 2011, 4.2e-15 precision).",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "spectro_hydrogen_1s2s": 0,
+            "spectro_hydrogen_1s2s_measured_unc": 0,
+            "spectro_proton_charge_radius": 0,
+            "spectro_lamb_shift_1s_total": 0,
+            "spectro_lamb_shift_2s_total": 0,
+            "atomic_rydberg_constant": 0,
+            "si_speed_of_light": 0,
+            "ratio_proton_electron_mass": 0,
+            "coupling_alpha_em_inverse": 0,
+            "geom_pi": 0
+        },
+        "derivations": {
+            "hydrogen_1s2s_from_rydberg": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "hydrogen_1s2s_from_rydberg_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_1s2s_frequency_derived_v0",
+        "result_1s2s_frequency_measured_v0",
+        "result_1s2s_miss_hz_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "1S-2S frequency derived vs measured",
+            "output_key": "result_1s2s_frequency_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "2466061413187018",
+            "reference_source": "Parthey_2011"
+        },
+        {
+            "label": "1S-2S miss < 100 kHz",
+            "output_key": "result_1s2s_miss_hz_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100000",
+            "reference_source": "QED_theory_uncertainty"
+        },
+        {
+            "label": "1S-2S derived from CODATA R_inf (cross-check)",
+            "output_key": "result_1s2s_from_codata_rydberg_v0",
+            "match_mode": "miss_pct",
+            "expected": "2466061413187018",
+            "reference_source": "Parthey_2011"
+        },
+        {
+            "label": "1S-2S derived from our R_inf vs from CODATA R_inf",
+            "output_key": "result_1s2s_our_vs_codata_hz_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "self_consistency"
+        },
+        {
+            "label": "Reduced mass correction factor",
+            "output_key": "result_reduced_mass_factor_v0",
+            "match_mode": "range",
+            "lo": "0.99945",
+            "hi": "0.99946",
+            "reference_source": "physics"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_hydrogen_1s2s_v0",
+            "title": "Hydrogen 1S-2S: derived vs measured at 15-digit precision",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "1S-2S (Hz)", "predicted": "result_1s2s_frequency_derived_v0", "measured": "2466061413187018"}
+            ]
+        }
+    ]
+}

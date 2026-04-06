@@ -491,3 +491,175 @@ So the attack path I enumerated is correct in sequence but wrong in framing. It'
 
 For the immediate work, the priority sequence doesn't change — sin²θ_W from 3/8, α_s from crossing, M_W from derived couplings, proton decay from M_GUT. These are the next edges to draw. But the framing should be: we're completing a map, not minimizing a parameter count. The map is finite. The integers are known. The soliton hierarchy is the structure. Every reading is derivable once we know which boundary it crosses and which siblings modify it.
 
+---
+
+The pattern is clear from the evidence: every time we connect a new domain, it works. The QED chain landed at 0.007 ppb. The cosmology chain landed at 725 ppm. The BBN chain landed at 0.12σ. The EW chain landed at 195 ppm. The CKM chain landed at 0.83σ. The two-loop unification gap collapsed to 0.027. None of these were guaranteed to work. All of them did.
+
+The thesis predicts this — if everything is one connected integer structure, then every new bridge should land close. And it does. So the strategy is: stop optimizing existing bridges and build new ones into territory we haven't touched.
+
+---
+
+## THE NEXT BRIDGES — RANKED BY NEW TERRITORY
+
+### 1. HYDROGEN SPECTROSCOPY — THE MOST PRECISE MEASUREMENT IN PHYSICS
+
+**What we have:** R∞ derived at 0.44 ppb. The hydrogen 1S-2S transition frequency is in the pool: `spectro_hydrogen_1s2s_v0` = 2466061413187018 Hz. This is measured to 4.2 × 10⁻¹⁵ relative precision — the single most precise measurement in all of physics.
+
+**What we'd derive:** The 1S-2S transition frequency from our derived R∞ plus QED corrections (Lamb shift, recoil, nuclear size). The formula is:
+
+E(1S-2S) = R∞ × c × (1 − 1/4) × [1 + QED corrections + recoil + proton size]
+
+The QED corrections are known analytically through several orders. The proton charge radius r_p = 0.8414 fm (the proton radius puzzle is resolved). The recoil corrections use m_p/m_e (in the pool at 13 digits).
+
+**Why this is the biggest win:** We'd be comparing our derived R∞ (from a_e → α → R∞) against the most precise spectroscopic measurement ever made. If it matches to 10+ digits, that's a bridge from atomic trap physics (a_e) through QED perturbation theory (α) through atomic structure (R∞) to precision spectroscopy (1S-2S) — four domains connected by one chain at parts-per-trillion precision. No other measurement in physics offers this level of overconstrained testing.
+
+**Difficulty:** Medium. The Lamb shift terms are published. Need ~5 value nodes for the QED corrections at different orders. The formula structure is textbook.
+
+**New territory:** Spectroscopy. Currently disconnected from the graph.
+
+---
+
+### 2. sin²θ_W FROM TWO-LOOP CROSSING — THE KEYSTONE
+
+**What we have:** The two-loop CD crossing at α_GUT⁻¹ = 42.135, gap = 0.027. The Euler integration machinery works. The b_ij matrix is correct (k₁ bug fixed).
+
+**What we'd derive:** Run α₂ backward from the crossing point (α₂⁻¹ = 42.135 at t = 31.43) to M_Z using the full two-loop RGE. Read off α₂⁻¹(M_Z), compute sin²θ_W = α₂⁻¹(M_Z)/α_em⁻¹. If this matches 0.23122 at ~1%, sin²θ_W moves from measured to derived.
+
+**Why this is a big win:** Converts a measured input to a derived output. The surplus goes from 31 to 33. The electroweak coupling sector collapses from two independent measurements (α_em, sin²θ_W) to one (α_em) plus integer betas.
+
+**Difficulty:** Medium. The reverse-running Euler integration is the same code as the forward run but starting from the crossing instead of M_Z. Need to be careful with the two-loop coupling interdependence.
+
+**New territory:** Not new territory per se — it deepens the gauge sector. But it's the single most impactful parameter reduction.
+
+---
+
+### 3. NEUTRON LIFETIME FROM BBN + WEAK INTERACTION
+
+**What we have:** Y_p = 0.2486 from the BBN chain. The helium abundance is set by the neutron-to-proton freeze-out ratio n/p ≈ exp(−Δm/T_freeze), where Δm = m_n − m_p = 1.293 MeV (in the pool as `mass_neutron_proton_diff_v0`) and T_freeze ≈ 0.7 MeV from the weak interaction rate.
+
+**What we'd derive:** The neutron lifetime τ_n enters the freeze-out calculation through the weak decay rate Γ_weak ∝ G_F² × (phase space). Given our derived G_F (or measured, at 0.6 ppm) and Δm, we can derive τ_n and compare to the measured 880 seconds. Alternatively, invert: given Y_p and η, what τ_n is needed? Compare to the measured value.
+
+**Why this is a big win:** Connects nuclear decay physics (neutron lifetime) to cosmological abundances (helium) through weak interactions (G_F). Three domains bridged by one chain. The neutron lifetime is one of the fundamental nuclear quantities, measured in lab experiments to ~1 second precision. Deriving it from cosmological data would be a new cross-domain connection.
+
+**Difficulty:** Medium. The freeze-out calculation involves the competition between the weak rate and the Hubble expansion rate. The formula is in Kolb & Turner or Weinberg's cosmology textbook.
+
+**New territory:** Nuclear decay. Currently not connected to the graph.
+
+---
+
+### 4. PROTON DECAY τ_p — THE EXPERIMENTAL PREDICTION
+
+**What we have:** M_GUT = 10¹⁵·⁶¹ (two-loop), α_GUT⁻¹ = 42.13, proton mass and matrix elements in the pool. The experiment is defined (`experiment_proton_decay_v0`) and ran for M_GUT — just needs the τ_p formula added.
+
+**What we'd derive:** τ_p = M_GUT⁴ / (α_GUT² × m_p⁵ × |α_H|² × phase_space). One number: the proton lifetime in years. Compare to Super-K bound (>1.6×10³⁴ yr) and Hyper-K sensitivity (10³⁴-10³⁵ yr).
+
+**Why this matters:** Not a precision test — it's an order-of-magnitude prediction. But it's the only prediction in the series that can be definitively confirmed or refuted by a running experiment within a decade. If Hyper-K sees proton decay in this window, the entire chain from gauge integers to nuclear decay is confirmed. If it doesn't, minimal SU(5) completion is excluded (though the CD itself survives).
+
+**Difficulty:** Easy. One derivation function. The formula is textbook. The model dependence is in the GUT completion (minimal SU(5) assumption).
+
+**New territory:** Proton decay / baryon number violation.
+
+---
+
+### 5. WEINBERG ANGLE RUNNING TO LOW ENERGY — APV AND QWEAK
+
+**What we have:** sin²θ_W at M_Z = 0.23122. The beta function running for sin²θ_W is determined by the same betas that give us everything else.
+
+**What we'd derive:** sin²θ_W(Q) at low momentum transfer Q ~ 0.1-1 GeV. The running of sin²θ_W below M_Z is a standard SM prediction. Compare to: atomic parity violation in cesium (Q ≈ 0), the Qweak experiment at Jefferson Lab (Q ≈ 0.16 GeV), and Møller scattering (Q ≈ 0.16 GeV).
+
+**Why this is a big win:** The running of sin²θ_W below M_Z has been measured at 3-4 different scales. Each measurement is an independent test of the coupling running — the same integer transformation laws that give us the gap ratio and unification also predict how sin²θ_W changes between M_Z and atomic scales. If the CD modifies this running (it shouldn't significantly at low energy, but the check matters), that's detectable.
+
+**Difficulty:** Medium. The running formula is standard. Need atomic parity violation and Qweak measured values as new value nodes.
+
+**New territory:** Low-energy weak physics. Currently disconnected.
+
+---
+
+### 6. QUARK MASS RATIOS FROM LATTICE + CKM
+
+**What we have:** All six quark masses in the pool. Three CKM angles. The Koide ratio for leptons. The CD extends the CKM to 4×4.
+
+**What we'd derive:** Test the empirical relations: sin θ₁₂ ≈ √(m_d/m_s), sin θ₂₃ ≈ √(m_s/m_b), sin θ₁₃ ≈ √(m_u m_d)/(m_c m_s) × sin θ₂₃. These are observed at the percent level in the literature but have no known derivation. If they hold, mass ratios and CKM angles are not independent — the derivation graph gains edges between the mass sector and the flavor sector.
+
+**Why this matters:** If mass-mixing relations hold, the Koide atoll starts to connect. Mass ratios become derivable from CKM angles (or vice versa). The mass sector — currently the most opaque part of the SM — starts to open.
+
+**Difficulty:** Easy to test (just compute the ratios). Hard to understand why they work.
+
+**New territory:** Mass-flavor connection. The deepest unexplored territory.
+
+---
+
+### 7. GRAVITATIONAL SECTOR — G FROM THE SOLITON HIERARCHY
+
+**What we have:** The soliton gravity program is ACTIVE. GM/(rc²) is computed at all levels of the hierarchy. MOND a₀ = cH₀/(8R₂) at 13% miss. The dwarf galaxy catalog with purity spectrum.
+
+**What we'd derive:** Test whether the gravitational constant G has a relationship to the gauge sector. The Planck mass M_P = 1/√G (in natural units) is ~10¹⁹ GeV. Our M_GUT is ~10¹⁵·⁶ GeV. The ratio M_P/M_GUT ≈ 10³·⁴. Is this ratio an integer or simple fraction from the gauge group? If M_P = M_GUT × f(integers), then G is derivable.
+
+**Why this matters:** G is the least precise of the fundamental constants (4.7 digits). If it connects to the gauge sector through the soliton hierarchy, the gravitational sector joins the derivation graph. This would be the boldest bridge — connecting gravity to gauge theory through integers.
+
+**Difficulty:** High. No known formula connects G to gauge couplings. The hierarchy problem (why M_P ≫ M_GUT) is one of the deepest unsolved problems. But the ratio 10³·⁴ ≈ 2500 is tantalizingly close to simple numbers.
+
+**New territory:** Gravity. The last disconnected domain.
+
+---
+
+## MY RECOMMENDED SEQUENCE
+
+| Priority | Bridge | New Territory | Win Type | Difficulty |
+|---|---|---|---|---|
+| **1** | **Hydrogen 1S-2S** | **Spectroscopy** | **Most precise test in physics** | **Medium** |
+| **2** | **sin²θ_W from two-loop** | **Deepens gauge** | **Parameter reduction** | **Medium** |
+| **3** | **Proton decay τ_p** | **Baryon violation** | **Experimental prediction** | **Easy** |
+| **4** | **Neutron lifetime** | **Nuclear decay** | **Cross-domain** | **Medium** |
+| **5** | **sin²θ_W running** | **Low-energy weak** | **Multiple measurements** | **Medium** |
+| **6** | **Mass-CKM relations** | **Mass-flavor** | **Opens the mass sector** | **Easy to test** |
+| **7** | **G from hierarchy** | **Gravity** | **Boldest bridge** | **High** |
+
+The reasoning: hydrogen 1S-2S is the biggest win because it tests the QED chain at the highest precision available in physics, connecting four domains at parts-per-trillion. It uses values already in the pool (R∞ derived, m_p/m_e measured, spectro_hydrogen_1s2s_v0 measured). It needs ~5 new value nodes for the Lamb shift corrections. The derivation function is one formula with published correction terms.
+
+sin²θ_W from two-loop is second because it's the keystone for the parameter reduction cascade — once sin²θ_W is derived, the G_F flip gives G_F as a derived output, and the entire EW sector collapses.
+
+Proton decay is third because it's easy and produces the only prediction testable at Hyper-K — but it doesn't connect a new domain, it extends an existing one.
+
+The bold move would be to do hydrogen 1S-2S first. If R∞ at 0.44 ppb reproduces the 1S-2S frequency to 10+ digits, that's the single most overconstrained test in the derivation graph — and it connects spectroscopy to the mainland through a chain that starts at a_e and ends at the energy levels of hydrogen. That's four domains (atomic trap → QED → atomic structure → spectroscopy) in one chain. Every link is an integer transformation law. Every link is independently testable. And the endpoint is measured to 15 digits.
+
+---
+
+The pattern is clear from the evidence. Every time we've connected a new domain — QED to EW, gauge to cosmology, cosmology to nuclear, gauge to flavor — the predictions landed close. The QED chain at 0.007 ppb, D/H at 0.12σ, M_W at 195 ppm, the CKM deficit at 0.83σ, and now the two-loop gap at 0.027 (0.064%). The series doesn't struggle with precision — it struggles with missing structure. Once the structure is found, the numbers work.
+
+So the question isn't "what can we derive most precisely?" It's "what's the next island we haven't touched that would connect to the mainland?"
+
+**The biggest untouched territory is the Higgs sector.**
+
+The Higgs mass m_H = 125.2 GeV enters the derivation graph only through EW corrections (Δr, ρ parameter). It's a passive input — it sits in the formulas but nothing derives FROM it or TO it. The Higgs VEV v = 246 GeV sets the electroweak scale. The ratio m_H/M_Z = 1.373 is a pure number sitting in the pool (`ratio_higgs_z_mass_v0` = 137299/100000) with no derivation connecting it to anything.
+
+But the Higgs quartic coupling λ = m_H²/(2v²) is a derived quantity. And λ has a running — it runs with energy through the RGE just like the gauge couplings do. The question "does λ remain positive up to M_GUT?" is the vacuum stability question. With the CD at 3 TeV, the VL quark Yukawa coupling modifies the running of λ. The CD could stabilize the vacuum or destabilize it. Either answer is a derived prediction testable against the measured m_H.
+
+This is a new island: Higgs/vacuum stability. One experiment, a few derivation functions, connects m_H to the gauge sector through λ running. If the CD-modified λ running gives a stability boundary that matches the measured m_H, that's a new domain connected.
+
+**The second biggest untouched territory is hydrogen spectroscopy.**
+
+R∞ is derived at 0.44 ppb. The hydrogen 1S-2S transition is measured at 4.2 × 10⁻¹⁵. The pool already has `spectro_hydrogen_1s2s_v0` = 2466061413187018 Hz. The formula connecting R∞ to the 1S-2S frequency involves QED Lamb shift corrections and the proton charge radius. Most of these are published values that can be added as pool nodes.
+
+This is an easy win — the infrastructure exists (R∞ derived, 1S-2S measured, formula known). One experiment connecting atomic spectroscopy to the QED chain. The predicted 1S-2S frequency from our derived R∞ would be the most precise spectroscopic prediction from the derivation graph. If it matches to 10⁻¹⁴ or better, that's a new domain (atomic spectroscopy) connected through a single bridge.
+
+**The third path: extract sin²θ_W from the two-loop crossing.**
+
+We just showed the CD two-loop gap is 0.027. The three couplings nearly meet at α_GUT⁻¹ = 42.13. If we run α₂ backward from that crossing point using the two-loop RGE, we get a predicted α₂⁻¹(M_Z), and sin²θ_W = α₂⁻¹(M_Z)/α_em⁻¹. The existing integration machinery can do this — run the Euler integration from M_GUT down to M_Z instead of up. The gap of 0.027 means the prediction should be close to 0.231 but won't be exact. The miss tells us what GUT thresholds need to contribute.
+
+**My ranking:**
+
+| Priority | Target | Difficulty | New domain? | Expected yield | Why |
+|---|---|---|---|---|---|
+| 1 | Hydrogen 1S-2S from R∞ | Easy | Yes (spectroscopy) | 1 value at 10⁻¹⁴ | Uses existing R∞, published corrections, clean test |
+| 2 | sin²θ_W from two-loop crossing | Medium | No (extends GUT) | 1 derived input | Uses existing integration, answers the central question |
+| 3 | τ_p from M_GUT two-loop | Easy | No (extends GUT) | 1 prediction | M_GUT already computed, formula is one line |
+| 4 | Higgs vacuum stability | Medium | Yes (Higgs sector) | 2-3 values | New physics domain, connects m_H to gauge sector |
+| 5 | Oblique parameters S, T | Medium | No (extends EW) | 2 values | Tests CD against EW precision data |
+
+**But based on the thesis — "boldly move into new territory" — the answer is hydrogen spectroscopy.** It's a clean new island that connects through R∞ (which we already have at 0.44 ppb). The measurement is the most precise in physics. The prediction from our chain would be the most demanding test of the QED anchor. And it touches atomic physics — a domain the series hasn't entered yet.
+
+The sin²θ_W two-loop extraction is important but it's refinement of existing territory. The hydrogen 1S-2S prediction is a new bridge to a new island. Every new island connected makes the whole map more visible. That's the path.
+
+---
+

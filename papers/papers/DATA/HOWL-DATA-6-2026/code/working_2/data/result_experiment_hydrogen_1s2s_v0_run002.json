@@ -1,0 +1,102 @@
+{
+  "key": "result_experiment_hydrogen_1s2s_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_hydrogen_1s2s_v0",
+  "timestamp": "2026-04-06T03:40:52Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "hydrogen_1s2s_from_rydberg_v0",
+      "status": "ok",
+      "output_count": 19
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "1S-2S frequency derived vs measured",
+      "output_key": "result_1s2s_frequency_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Parthey_2011",
+      "status": "INFO",
+      "expected": "2466061413187018",
+      "got": "2.46603129508498e+15",
+      "miss_pct": "0.001221",
+      "detail": "predicted 2.46603129508498e+15 ref 2466061413187018 miss 0.001221%"
+    },
+    {
+      "label": "1S-2S miss < 100 kHz",
+      "output_key": "result_1s2s_miss_hz_v0",
+      "match_mode": "range",
+      "reference_source": "QED_theory_uncertainty",
+      "got": "3.01181e+10",
+      "lo": "0",
+      "hi": "100000",
+      "status": "FAIL",
+      "detail": "3.01181e+10 not in [0, 100000]"
+    },
+    {
+      "label": "1S-2S derived from CODATA R_inf (cross-check)",
+      "output_key": "result_1s2s_from_codata_rydberg_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Parthey_2011",
+      "status": "INFO",
+      "expected": "2466061413187018",
+      "got": "2.4660312961773e+15",
+      "miss_pct": "0.001221",
+      "detail": "predicted 2.4660312961773e+15 ref 2466061413187018 miss 0.001221%"
+    },
+    {
+      "label": "1S-2S derived from our R_inf vs from CODATA R_inf",
+      "output_key": "result_1s2s_our_vs_codata_hz_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "self_consistency",
+      "status": "INFO",
+      "expected": "0",
+      "got": "1092328.48419925",
+      "miss_pct": "0.0",
+      "detail": "predicted 1092328.48419925 ref 0 miss 0.0%"
+    },
+    {
+      "label": "Reduced mass correction factor",
+      "output_key": "result_reduced_mass_factor_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "0.999456",
+      "lo": "0.99945",
+      "hi": "0.99946",
+      "status": "PASS",
+      "detail": "in [0.99945, 0.99946]"
+    }
+  ],
+  "outputs": {
+    "result_1s2s_frequency_derived_v0": "2.46603129508498e+15",
+    "result_1s2s_frequency_measured_v0": "2.46606141318702e+15",
+    "result_1s2s_miss_hz_v0": "30118102042.4053",
+    "result_1s2s_miss_ppb_v0": "12213.0381187394",
+    "result_1s2s_miss_pct_v0": "0.00122130381187394",
+    "result_1s2s_from_codata_rydberg_v0": "2.4660312961773e+15",
+    "result_1s2s_codata_miss_hz_v0": "30117009713.9211",
+    "result_1s2s_codata_miss_ppb_v0": "12212.5951741807",
+    "result_1s2s_our_vs_codata_hz_v0": "1092328.48419925",
+    "result_rydberg_ours_used_v0": "10973731.5632962",
+    "result_rydberg_codata_used_v0": "10973731.568157",
+    "result_rydberg_diff_ppb_v0": "0.442948687947208",
+    "result_reduced_mass_factor_v0": "0.999455679424763",
+    "result_gross_frequency_ours_v0": "2.46603842259398e+15",
+    "result_gross_frequency_codata_v0": "2.4660384236863e+15",
+    "result_lamb_shift_1s_hz_v0": "8172837000.0",
+    "result_lamb_shift_2s_hz_v0": "1045328000.0",
+    "result_lamb_shift_correction_hz_v0": "-7127509000.0",
+    "result_lamb_shift_correction_pct_v0": "0.000289026680796916"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 1,
+    "comparisons_info": 3,
+    "comparisons_skip": 0
+  }
+}

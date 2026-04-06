@@ -1,0 +1,213 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_frequency_derived_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_frequency_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.46603129508498e+15",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_frequency_measured_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_frequency_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.46606141318702e+15",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "30118102042.4053",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_ppb_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "12213.0381187394",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_pct_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00122130381187394",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_from_codata_rydberg_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_from_codata_rydberg",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.4660312961773e+15",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_codata_miss_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_codata_miss_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "30117009713.9211",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_codata_miss_ppb_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_codata_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "12212.5951741807",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_our_vs_codata_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_1s2s_our_vs_codata_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "1092328.48419925",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_ours_used_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_ours_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "10973731.5632962",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_codata_used_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_codata_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "10973731.568157",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_diff_ppb_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_rydberg_diff_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.442948687947208",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_reduced_mass_factor_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_reduced_mass_factor",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.999455679424763",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_gross_frequency_ours_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_gross_frequency_ours",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.46603842259398e+15",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_gross_frequency_codata_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_gross_frequency_codata",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.4660384236863e+15",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_1s_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_1s_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "8172837000.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_2s_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_2s_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "1045328000.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_correction_hz_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_correction_hz",
+      "version": 0,
+      "node_type": "value",
+      "value": "-7127509000.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    },
+    {
+      "key": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_correction_pct_v0",
+      "canonical": "experiment_hydrogen_1s2s_v0_run001_result_lamb_shift_correction_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.000289026680796916",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_hydrogen_1s2s_v0_run001"
+    }
+  ]
+}

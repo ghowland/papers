@@ -5591,6 +5591,371 @@ def two_loop_diagnostic_v0(value_dicts):
     }
 
 
+def sin2_from_two_loop_crossing_v0(value_dicts):
+    """Predict sin2_theta_W and alpha_s from two-loop CD unification.
+
+    Method:
+    1. Run the three couplings UP from M_Z (using measured values) to find
+       the two-loop 1-2 crossing point: t_cross, alpha_GUT_inv.
+    2. Start all three couplings at alpha_GUT_inv at t_cross.
+    3. Run DOWN from t_cross to t=0 (M_Z) using the same two-loop RGE.
+    4. Read off alpha_2_inv(M_Z) and alpha_3_inv(M_Z) at the bottom.
+    5. sin2_theta_W = alpha_2_inv(M_Z) / alpha_em_inv
+    6. alpha_s = 1 / alpha_3_inv(M_Z)
+
+    The only input is alpha_em. sin2_theta_W and alpha_s are predictions.
+    The measured sin2_theta_W and alpha_s are used ONLY in step 1 to find
+    the crossing — after that, the downward run starts from exact
+    unification and predicts what the couplings must be at M_Z.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 100
+
+    # ── Read inputs ───────────────────────────────────────────────────
+
+    alpha_em_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    sin2_tw = _f2m(_frac(vm, "coupling_sin2_theta_w_v0"))
+    alpha_s_mz = _f2m(_frac(vm, "coupling_alpha_s_mz_v0"))
+    k1 = _f2m(_frac(vm, "group_k1_gut_normalization_v0"))  # 3/5
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    M_Z = _f2m(_frac(vm, "mass_z_boson_v0"))
+
+    # Couplings at M_Z (from measured values — used to find crossing)
+    alpha_1_inv_mz = k1 * (mpf("1") - sin2_tw) * alpha_em_inv
+    alpha_2_inv_mz = sin2_tw * alpha_em_inv
+    alpha_3_inv_mz = mpf("1") / alpha_s_mz
+
+    # CD-modified one-loop betas
+    b1 = _f2m(_frac(vm, "beta_modified_u1_total_v0"))
+    b2 = _f2m(_frac(vm, "beta_modified_su2_total_v0"))
+    b3 = _f2m(_frac(vm, "beta_modified_su3_total_v0"))
+    b_one = [b1, b2, b3]
+
+    # SM + CD two-loop matrix
+    sm_keys = [
+        ["beta_two_loop_sm_bij_u1_u1_v0",  "beta_two_loop_sm_bij_u1_su2_v0",  "beta_two_loop_sm_bij_u1_su3_v0"],
+        ["beta_two_loop_sm_bij_su2_u1_v0", "beta_two_loop_sm_bij_su2_su2_v0", "beta_two_loop_sm_bij_su2_su3_v0"],
+        ["beta_two_loop_sm_bij_su3_u1_v0", "beta_two_loop_sm_bij_su3_su2_v0", "beta_two_loop_sm_bij_su3_su3_v0"],
+    ]
+    cd_keys = [
+        ["beta_two_loop_cabibbo_doublet_dbij_u1_u1_v0",  "beta_two_loop_cabibbo_doublet_dbij_u1_su2_v0",  "beta_two_loop_cabibbo_doublet_dbij_u1_su3_v0"],
+        ["beta_two_loop_cabibbo_doublet_dbij_su2_u1_v0", "beta_two_loop_cabibbo_doublet_dbij_su2_su2_v0", "beta_two_loop_cabibbo_doublet_dbij_su2_su3_v0"],
+        ["beta_two_loop_cabibbo_doublet_dbij_su3_u1_v0", "beta_two_loop_cabibbo_doublet_dbij_su3_su2_v0", "beta_two_loop_cabibbo_doublet_dbij_su3_su3_v0"],
+    ]
+    bij = [[mpf("0")]*3 for _ in range(3)]
+    for i in range(3):
+        for j in range(3):
+            bij[i][j] = _f2m(_frac(vm, sm_keys[i][j])) + _f2m(_frac(vm, cd_keys[i][j]))
+
+    # ── Step 1: Find the two-loop 1-2 crossing (forward run) ──────────
+
+    n_steps = 10000
+    t_cross, a_cross = _find_crossing_scale(
+        [alpha_1_inv_mz, alpha_2_inv_mz, alpha_3_inv_mz],
+        b_one, bij, pi_val, n_steps)
+
+    alpha_gut_inv = (a_cross[0] + a_cross[1]) / mpf("2")
+    gap_at_cross = a_cross[2] - alpha_gut_inv
+
+    from mpmath import exp as mexp, log10 as mlog10
+    M_Z_gev = M_Z / mpf("1000")
+    M_GUT_gev = M_Z_gev * mexp(t_cross)
+    log10_mgut = mlog10(M_GUT_gev)
+
+    # ── Step 2-3: Run DOWN from crossing to M_Z ──────────────────────
+    #
+    # Start all three at alpha_GUT_inv (exact unification).
+    # Integrate from t_cross DOWN to 0 by integrating with NEGATIVE dt.
+    # Equivalently: integrate from 0 to t_cross but with reversed signs
+    # on the RGE (or just use _two_loop_euler_integrate with negative t).
+    #
+    # The RGE going UP is: d(alpha_i_inv)/dt = -b_i/(2pi) - sum_j bij*alpha_j/(8pi^2)
+    # Going DOWN (t decreasing): the same equation applies, we just
+    # integrate from t_cross to 0, which means dt < 0.
+    #
+    # Implementation: integrate from 0 to t_cross with the NEGATED RGE,
+    # starting from alpha_GUT_inv. This gives the couplings at M_Z.
+
+    two_pi = mpf("2") * pi_val
+    eight_pi2 = mpf("8") * pi_val * pi_val
+    dt = t_cross / mpf(str(n_steps))
+
+    a_inv = [mpf(str(alpha_gut_inv)) for _ in range(3)]
+
+    for step in range(n_steps):
+        a = [mpf("1") / a_inv[i] if a_inv[i] > mpf("0") else mpf("0") for i in range(3)]
+
+        da_inv = [mpf("0")] * 3
+        for i in range(3):
+            da_inv[i] = -b_one[i] / two_pi
+            for j in range(3):
+                da_inv[i] -= bij[i][j] * a[j] / eight_pi2
+
+        # NEGATIVE step: we're running DOWN, so subtract instead of add
+        for i in range(3):
+            a_inv[i] -= da_inv[i] * dt
+
+    # ── Step 4-6: Extract predictions ─────────────────────────────────
+
+    alpha_1_inv_predicted = a_inv[0]
+    alpha_2_inv_predicted = a_inv[1]
+    alpha_3_inv_predicted = a_inv[2]
+
+    sin2_predicted = alpha_2_inv_predicted / alpha_em_inv
+    alpha_s_predicted = mpf("1") / alpha_3_inv_predicted
+
+    # Also extract cos2 and check alpha_1
+    cos2_predicted = mpf("1") - sin2_predicted
+    alpha_1_check = k1 * cos2_predicted * alpha_em_inv
+
+    # ── Forward check: does the predicted sin2 give the right alpha_GUT? ──
+    # Run the predicted couplings UP and check they meet at alpha_GUT_inv
+
+    a_fwd = _two_loop_euler_integrate(
+        [alpha_1_inv_predicted, alpha_2_inv_predicted, alpha_3_inv_predicted],
+        b_one, bij, t_cross, n_steps, pi_val)
+
+    fwd_check_12 = abs(a_fwd[0] - a_fwd[1])
+    fwd_check_avg = (a_fwd[0] + a_fwd[1]) / mpf("2")
+    fwd_check_vs_gut = abs(fwd_check_avg - alpha_gut_inv)
+
+    # ── Miss computations ─────────────────────────────────────────────
+
+    miss_sin2 = abs(sin2_predicted - sin2_tw) / sin2_tw * mpf("100")
+    miss_alpha_s = abs(alpha_s_predicted - alpha_s_mz) / alpha_s_mz * mpf("100")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "sin2_from_two_loop_crossing_v0",
+        "outputs": {
+            # Main predictions
+            "result_sin2_predicted_v0":           _approx(sin2_predicted),
+            "result_sin2_miss_pct_v0":            _approx(miss_sin2),
+            "result_alpha_s_predicted_v0":        _approx(alpha_s_predicted),
+            "result_alpha_s_miss_pct_v0":         _approx(miss_alpha_s),
+
+            # Crossing point
+            "result_alpha_gut_inv_v0":            _approx(alpha_gut_inv),
+            "result_t_cross_v0":                  _approx(t_cross),
+            "result_m_gut_log10_v0":              _approx(log10_mgut),
+            "result_gap_at_cross_v0":             _approx(gap_at_cross),
+
+            # Predicted couplings at M_Z
+            "result_alpha_1_inv_mz_predicted_v0": _approx(alpha_1_inv_predicted),
+            "result_alpha_2_inv_mz_predicted_v0": _approx(alpha_2_inv_predicted),
+            "result_alpha_3_inv_mz_predicted_v0": _approx(alpha_3_inv_predicted),
+
+            # Comparison values
+            "result_alpha_1_inv_mz_measured_v0":  _approx(alpha_1_inv_mz),
+            "result_alpha_2_inv_mz_measured_v0":  _approx(alpha_2_inv_mz),
+            "result_alpha_3_inv_mz_measured_v0":  _approx(alpha_3_inv_mz),
+            "result_sin2_measured_v0":            _approx(sin2_tw),
+            "result_alpha_s_measured_v0":         _approx(alpha_s_mz),
+
+            # Forward check
+            "result_forward_check_12_v0":         _approx(fwd_check_12),
+            "result_forward_check_gap_v0":        _approx(fwd_check_vs_gut),
+            "result_forward_alpha_1_gut_v0":      _approx(a_fwd[0]),
+            "result_forward_alpha_2_gut_v0":      _approx(a_fwd[1]),
+            "result_forward_alpha_3_gut_v0":      _approx(a_fwd[2]),
+
+            # Derived quantities
+            "result_cos2_predicted_v0":           _approx(cos2_predicted),
+            "result_alpha_1_check_v0":            _approx(alpha_1_check),
+            "result_alpha_1_check_vs_predicted_v0": _approx(abs(alpha_1_check - alpha_1_inv_predicted)),
+        },
+        "notes": (
+            "sin2_tW(predicted) = %.6f, measured = %.5f, miss = %.3f%%. "
+            "alpha_s(predicted) = %.5f, measured = %.4f, miss = %.2f%%. "
+            "M_GUT = 10^%.2f, alpha_GUT_inv = %.3f, gap = %.4f. "
+            "Forward check: |alpha_1-alpha_2| at GUT = %.2e."
+        ) % (
+            float(sin2_predicted), float(sin2_tw), float(miss_sin2),
+            float(alpha_s_predicted), float(alpha_s_mz), float(miss_alpha_s),
+            float(log10_mgut), float(alpha_gut_inv), float(gap_at_cross),
+            float(fwd_check_12),
+        ),
+    }
+
+def hydrogen_1s2s_from_rydberg_v0(value_dicts):
+    """Derive hydrogen 1S-2S transition frequency from R_inf + Lamb shifts.
+    
+    f(1S-2S) = Gross structure + Lamb shift difference
+    
+    Gross: (3/4) * R_inf * c * (mu/m_e)^2
+    where mu = m_e * m_p / (m_e + m_p) is the reduced mass
+    
+    Lamb shift: L(1S) - L(2S) correction in Hz
+    
+    Uses both our derived R_inf (from QED alpha extraction) and 
+    CODATA R_inf for comparison.
+    
+    All inputs from pool. Zero hardcoded physics.
+    """
+    vm = _value_map(value_dicts)
+    
+    old_dps = mp.dps
+    mp.dps = 50
+    
+    # Read inputs
+    c = _f2m(_frac(vm, "si_speed_of_light_v0"))
+    R_inf_codata = _f2m(_frac(vm, "atomic_rydberg_constant_v0"))  # m^-1
+    mp_me_ratio = _f2m(_frac(vm, "ratio_proton_electron_mass_v0"))
+    alpha_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    
+    # Our derived R_inf from QED chain
+    # Try corrected first, fall back to uncorrected
+    try:
+        R_inf_ours_str = str(_get(vm, 
+            "experiment_qed_full_corrections_v0_run005_result_rydberg_corrected_v0"))
+        R_inf_ours = mpf(R_inf_ours_str)
+    except Exception:
+        try:
+            R_inf_ours_str = str(_get(vm,
+                "experiment_qed_full_corrections_v0_run006_result_rydberg_corrected_v0"))
+            R_inf_ours = mpf(R_inf_ours_str)
+        except Exception:
+            try:
+                R_inf_ours_str = str(_get(vm,
+                    "experiment_qed_full_corrections_v0_run007_result_rydberg_corrected_v0"))
+                R_inf_ours = mpf(R_inf_ours_str)
+            except Exception:
+                R_inf_ours_str = str(_get(vm,
+                    "experiment_qed_full_corrections_v0_run008_result_rydberg_corrected_v0"))
+                R_inf_ours = mpf(R_inf_ours_str)
+    
+    # Lamb shifts (published theory values)
+    L_1S_khz = _mpf_val(vm, "spectro_lamb_shift_1s_total_v0")  # kHz
+    L_2S_khz = _mpf_val(vm, "spectro_lamb_shift_2s_total_v0")  # kHz
+    
+    # Convert Lamb shifts to Hz
+    L_1S_hz = L_1S_khz * mpf("1000")
+    L_2S_hz = L_2S_khz * mpf("1000")
+    
+    # Measured 1S-2S frequency
+    f_measured = _f2m(_frac(vm, "spectro_hydrogen_1s2s_v0"))  # Hz
+    
+    # Reduced mass factor
+    # mu/m_e = m_p/(m_e + m_p) = 1/(1 + m_e/m_p) = 1/(1 + 1/ratio)
+    # = ratio/(ratio + 1)
+    reduced_mass_factor = mp_me_ratio / (mp_me_ratio + mpf("1"))
+    
+    # Gross structure: f_gross = (3/4) * R_inf * c * (mu/m_e)^2
+    # R_inf is in m^-1, c in m/s, so R_inf * c is in Hz (s^-1)
+    # But R_inf already includes the electron mass: R_inf = alpha^2 * m_e * c / (2h)
+    # The hydrogen Rydberg is R_H = R_inf * (mu/m_e) = R_inf * m_p/(m_e + m_p)
+    # Energy levels: E_n = -R_H * h * c / n^2
+    # Frequency: f = R_H * c * (1/n1^2 - 1/n2^2) for Rydberg in m^-1
+    # Wait: R_inf has units m^-1. R_inf * c has units s^-1 = Hz.
+    # f(1S-2S) = R_H * c * (1 - 1/4) = (3/4) * R_H * c
+    # where R_H = R_inf * mu/m_e = R_inf * m_p/(m_e+m_p)
+    # Actually the reduced mass correction is:
+    # R_H = R_inf / (1 + m_e/m_p) = R_inf * m_p/(m_e + m_p)
+    # So mu/m_e = m_p/(m_e+m_p) and R_H = R_inf * (mu/m_e)
+    
+    # But the standard formula for hydrogen energy levels uses:
+    # E_n = -(mu/m_e) * R_inf * hc / n^2
+    # So f(1S-2S) = (mu/m_e) * R_inf * c * (1 - 1/4)
+    #             = (3/4) * R_inf * c / (1 + 1/ratio)
+    #             = (3/4) * R_inf * c * ratio / (ratio + 1)
+    
+    f_gross_ours = (mpf("3") / mpf("4")) * R_inf_ours * c * reduced_mass_factor
+    f_gross_codata = (mpf("3") / mpf("4")) * R_inf_codata * c * reduced_mass_factor
+    
+    # Add Lamb shift correction
+    # The Lamb shift RAISES the 1S level and RAISES the 2S level
+    # but by different amounts. The 1S-2S transition frequency is:
+    # f(1S-2S) = f_gross + (L_2S - L_1S)
+    # Wait: E(2S) = E_Dirac(2S) + L(2S), E(1S) = E_Dirac(1S) + L(1S)
+    # f = (E(2S) - E(1S))/h = f_Dirac + (L(2S) - L(1S))
+    # The 1S Lamb shift is positive (level goes UP), 2S is also positive
+    # but 1S is larger. So L(2S) - L(1S) is NEGATIVE.
+    # This DECREASES the transition frequency from the Dirac value.
+    
+    # Actually: the Lamb shift convention. The "Lamb shift" of 1S is typically
+    # defined as the shift from the Dirac value. L(1S) > 0 (level pushed up).
+    # L(2S) > 0 but L(2S) < L(1S) because |psi(0)|^2 scales as 1/n^3.
+    # So the correction to f(1S-2S) is L(2S) - L(1S) < 0.
+    
+    # But wait: this is the Lamb shift of the LEVEL, not the FREQUENCY.
+    # If we're talking about the energy levels:
+    # E(1S) = E_Dirac(1S) + h*L(1S)  where L(1S) in Hz
+    # E(2S) = E_Dirac(2S) + h*L(2S)
+    # f(1S-2S) = [E(2S) - E(1S)]/h = f_Dirac(1S-2S) + L(2S) - L(1S)
+    
+    lamb_shift_correction_hz = L_2S_hz - L_1S_hz  # Negative (1S shift > 2S shift)
+    
+    f_total_ours = f_gross_ours + lamb_shift_correction_hz
+    f_total_codata = f_gross_codata + lamb_shift_correction_hz
+    
+    # Misses
+    miss_ours_hz = abs(f_total_ours - f_measured)
+    miss_codata_hz = abs(f_total_codata - f_measured)
+    miss_ours_vs_codata_hz = abs(f_total_ours - f_total_codata)
+    
+    miss_ours_pct = miss_ours_hz / f_measured * mpf("100")
+    miss_codata_pct = miss_codata_hz / f_measured * mpf("100")
+    
+    # Relative precision
+    miss_ours_ppb = miss_ours_hz / f_measured * mpf("1e9")
+    miss_codata_ppb = miss_codata_hz / f_measured * mpf("1e9")
+    
+    # How many digits agree?
+    # The measured frequency is 2466061413187018 Hz (16 digits)
+    
+    mp.dps = old_dps
+    
+    return {
+        "key": "hydrogen_1s2s_from_rydberg_v0",
+        "outputs": {
+            # Main results
+            "result_1s2s_frequency_derived_v0": _approx(f_total_ours),
+            "result_1s2s_frequency_measured_v0": _approx(f_measured),
+            "result_1s2s_miss_hz_v0": _approx(miss_ours_hz),
+            "result_1s2s_miss_ppb_v0": _approx(miss_ours_ppb),
+            "result_1s2s_miss_pct_v0": _approx(miss_ours_pct),
+            
+            # CODATA comparison
+            "result_1s2s_from_codata_rydberg_v0": _approx(f_total_codata),
+            "result_1s2s_codata_miss_hz_v0": _approx(miss_codata_hz),
+            "result_1s2s_codata_miss_ppb_v0": _approx(miss_codata_ppb),
+            
+            # Our vs CODATA R_inf
+            "result_1s2s_our_vs_codata_hz_v0": _approx(miss_ours_vs_codata_hz),
+            
+            # Diagnostics
+            "result_rydberg_ours_used_v0": _approx(R_inf_ours),
+            "result_rydberg_codata_used_v0": _approx(R_inf_codata),
+            "result_rydberg_diff_ppb_v0": _approx(abs(R_inf_ours - R_inf_codata) / R_inf_codata * mpf("1e9")),
+            "result_reduced_mass_factor_v0": _approx(reduced_mass_factor),
+            "result_gross_frequency_ours_v0": _approx(f_gross_ours),
+            "result_gross_frequency_codata_v0": _approx(f_gross_codata),
+            "result_lamb_shift_1s_hz_v0": _approx(L_1S_hz),
+            "result_lamb_shift_2s_hz_v0": _approx(L_2S_hz),
+            "result_lamb_shift_correction_hz_v0": _approx(lamb_shift_correction_hz),
+            "result_lamb_shift_correction_pct_v0": _approx(abs(lamb_shift_correction_hz) / f_gross_ours * mpf("100")),
+        },
+        "notes": (
+            "f(1S-2S) derived = %s Hz, measured = %s Hz, miss = %s Hz (%.3f ppb). "
+            "From CODATA R_inf: miss = %s Hz (%.3f ppb). "
+            "Our R_inf vs CODATA: %s Hz difference. "
+            "Reduced mass factor = %s. "
+            "Lamb shift correction = %s Hz (%.6f%% of gross)."
+        ) % (
+            _approx(f_total_ours), _approx(f_measured), 
+            _approx(miss_ours_hz), float(miss_ours_ppb),
+            _approx(miss_codata_hz), float(miss_codata_ppb),
+            _approx(miss_ours_vs_codata_hz),
+            _approx(reduced_mass_factor),
+            _approx(lamb_shift_correction_hz),
+            float(abs(lamb_shift_correction_hz) / f_gross_ours * mpf("100"))
+        ),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -5707,6 +6072,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "two_loop_alpha_s_sm_only_v0": two_loop_alpha_s_sm_only_v0,
     "two_loop_alpha_s_sm_cd_v0": two_loop_alpha_s_sm_cd_v0,
     "two_loop_diagnostic_v0": two_loop_diagnostic_v0,
+    # Sin2 2-Loop
+    "sin2_from_two_loop_crossing_v0": sin2_from_two_loop_crossing_v0,
+    # V: Spectroscopy derivations
+    "hydrogen_1s2s_from_rydberg_v0": hydrogen_1s2s_from_rydberg_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {

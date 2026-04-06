@@ -1,0 +1,121 @@
+{
+    "key": "experiment_sin2_from_two_loop_v0",
+    "canonical": "experiment_sin2_from_two_loop",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Extract sin2_theta_W by running couplings DOWN from the two-loop CD crossing point. Start all three couplings at alpha_GUT_inv = 42.135 at t_cross = 31.43, integrate backward to M_Z. sin2_theta_W = alpha_2_inv(M_Z) / alpha_em_inv. Also predicts alpha_s.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_s_mz": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "beta_two_loop_sm_bij_u1_u1": 0,
+            "beta_two_loop_sm_bij_u1_su2": 0,
+            "beta_two_loop_sm_bij_u1_su3": 0,
+            "beta_two_loop_sm_bij_su2_u1": 0,
+            "beta_two_loop_sm_bij_su2_su2": 0,
+            "beta_two_loop_sm_bij_su2_su3": 0,
+            "beta_two_loop_sm_bij_su3_u1": 0,
+            "beta_two_loop_sm_bij_su3_su2": 0,
+            "beta_two_loop_sm_bij_su3_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su3": 0,
+            "group_k1_gut_normalization": 0,
+            "geom_pi": 0,
+            "mass_z_boson": 0
+        },
+        "derivations": {
+            "sin2_from_two_loop_crossing": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "sin2_from_two_loop_crossing_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_sin2_predicted_v0",
+        "result_alpha_s_predicted_v0",
+        "result_alpha_gut_inv_v0",
+        "result_t_cross_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "sin2_theta_W predicted vs measured",
+            "output_key": "result_sin2_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23122",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "sin2_theta_W within 5% of measured",
+            "output_key": "result_sin2_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5.0",
+            "reference_source": "physics"
+        },
+        {
+            "label": "alpha_s predicted vs measured",
+            "output_key": "result_alpha_s_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "alpha_s within 10% of measured",
+            "output_key": "result_alpha_s_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "10.0",
+            "reference_source": "physics"
+        },
+        {
+            "label": "log10(M_GUT) in [15, 17]",
+            "output_key": "result_m_gut_log10_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "17",
+            "reference_source": "proton_decay_bounds"
+        },
+        {
+            "label": "Reverse integration recovers alpha_GUT at M_GUT",
+            "output_key": "result_forward_check_gap_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.001",
+            "reference_source": "numerical_verification"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_sin2_two_loop_prediction_v0",
+            "title": "sin2_theta_W and alpha_s: two-loop CD prediction vs measurement",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "sin2_theta_W", "predicted": "result_sin2_predicted_v0", "measured": "0.23122"},
+                {"label": "alpha_s", "predicted": "result_alpha_s_predicted_v0", "measured": "0.1180"},
+                {"label": "log10(M_GUT)", "predicted": "result_m_gut_log10_v0", "measured": "15.54 (one-loop)"}
+            ],
+            "notes": "Both sin2_theta_W and alpha_s predicted from alpha_em alone + CD betas. Two-loop exact unification assumed at the crossing."
+        }
+    ]
+}
