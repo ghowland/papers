@@ -75,6 +75,14 @@
             "lo": "0.99945",
             "hi": "0.99946",
             "reference_source": "physics"
+        },
+        {
+            "label": "1S-2S miss < 100 kHz",
+            "output_key": "result_1s2s_miss_hz_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100000",
+            "reference_source": "QED_theory_uncertainty"
         }
     ],
 

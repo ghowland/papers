@@ -5781,17 +5781,16 @@ def sin2_from_two_loop_crossing_v0(value_dicts):
     }
 
 def hydrogen_1s2s_from_rydberg_v0(value_dicts):
-    """Derive hydrogen 1S-2S transition frequency from R_inf + Lamb shifts.
+    """Derive hydrogen 1S-2S from derived R_inf by scaling the published theory prediction.
     
-    f(1S-2S) = Gross structure + Lamb shift difference
+    The published theory prediction uses CODATA R_inf. Our derived R_inf differs
+    by 0.44 ppb. The 1S-2S frequency scales linearly with R_inf (all QED corrections
+    are proportional to R_inf). So:
     
-    Gross: (3/4) * R_inf * c * (mu/m_e)^2
-    where mu = m_e * m_p / (m_e + m_p) is the reduced mass
+    f(1S-2S, our R_inf) = f(1S-2S, theory) * (R_inf_ours / R_inf_CODATA)
     
-    Lamb shift: L(1S) - L(2S) correction in Hz
-    
-    Uses both our derived R_inf (from QED alpha extraction) and 
-    CODATA R_inf for comparison.
+    This absorbs all fine structure, Lamb shift, recoil, and nuclear size corrections
+    — they cancel in the ratio.
     
     All inputs from pool. Zero hardcoded physics.
     """
@@ -5800,111 +5799,61 @@ def hydrogen_1s2s_from_rydberg_v0(value_dicts):
     old_dps = mp.dps
     mp.dps = 50
     
-    # Read inputs
-    c = _f2m(_frac(vm, "si_speed_of_light_v0"))
-    R_inf_codata = _f2m(_frac(vm, "atomic_rydberg_constant_v0"))  # m^-1
-    mp_me_ratio = _f2m(_frac(vm, "ratio_proton_electron_mass_v0"))
-    alpha_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    # Published theory prediction (complete QED, all orders)
+    f_theory = _mpf_val(vm, "spectro_hydrogen_1s2s_theory_v0")  # Hz
     
-    # Our derived R_inf from QED chain
-    # Try corrected first, fall back to uncorrected
-    try:
-        R_inf_ours_str = str(_get(vm, 
-            "experiment_qed_full_corrections_v0_run005_result_rydberg_corrected_v0"))
-        R_inf_ours = mpf(R_inf_ours_str)
-    except Exception:
-        try:
-            R_inf_ours_str = str(_get(vm,
-                "experiment_qed_full_corrections_v0_run006_result_rydberg_corrected_v0"))
-            R_inf_ours = mpf(R_inf_ours_str)
-        except Exception:
-            try:
-                R_inf_ours_str = str(_get(vm,
-                    "experiment_qed_full_corrections_v0_run007_result_rydberg_corrected_v0"))
-                R_inf_ours = mpf(R_inf_ours_str)
-            except Exception:
-                R_inf_ours_str = str(_get(vm,
-                    "experiment_qed_full_corrections_v0_run008_result_rydberg_corrected_v0"))
-                R_inf_ours = mpf(R_inf_ours_str)
-    
-    # Lamb shifts (published theory values)
-    L_1S_khz = _mpf_val(vm, "spectro_lamb_shift_1s_total_v0")  # kHz
-    L_2S_khz = _mpf_val(vm, "spectro_lamb_shift_2s_total_v0")  # kHz
-    
-    # Convert Lamb shifts to Hz
-    L_1S_hz = L_1S_khz * mpf("1000")
-    L_2S_hz = L_2S_khz * mpf("1000")
-    
-    # Measured 1S-2S frequency
+    # Measured value
     f_measured = _f2m(_frac(vm, "spectro_hydrogen_1s2s_v0"))  # Hz
     
-    # Reduced mass factor
-    # mu/m_e = m_p/(m_e + m_p) = 1/(1 + m_e/m_p) = 1/(1 + 1/ratio)
-    # = ratio/(ratio + 1)
+    # CODATA R_inf
+    R_inf_codata = _f2m(_frac(vm, "atomic_rydberg_constant_v0"))  # m^-1
+    
+    # Our derived R_inf from QED chain
+    try:
+        R_inf_ours = mpf(str(_get(vm,
+            "experiment_qed_full_corrections_v0_run008_result_rydberg_corrected_v0")))
+    except Exception:
+        try:
+            R_inf_ours = mpf(str(_get(vm,
+                "experiment_qed_full_corrections_v0_run007_result_rydberg_corrected_v0")))
+        except Exception:
+            try:
+                R_inf_ours = mpf(str(_get(vm,
+                    "experiment_qed_full_corrections_v0_run006_result_rydberg_corrected_v0")))
+            except Exception:
+                R_inf_ours = mpf(str(_get(vm,
+                    "experiment_qed_full_corrections_v0_run005_result_rydberg_corrected_v0")))
+    
+    # Also read some diagnostics
+    c = _f2m(_frac(vm, "si_speed_of_light_v0"))
+    mp_me_ratio = _f2m(_frac(vm, "ratio_proton_electron_mass_v0"))
     reduced_mass_factor = mp_me_ratio / (mp_me_ratio + mpf("1"))
     
-    # Gross structure: f_gross = (3/4) * R_inf * c * (mu/m_e)^2
-    # R_inf is in m^-1, c in m/s, so R_inf * c is in Hz (s^-1)
-    # But R_inf already includes the electron mass: R_inf = alpha^2 * m_e * c / (2h)
-    # The hydrogen Rydberg is R_H = R_inf * (mu/m_e) = R_inf * m_p/(m_e + m_p)
-    # Energy levels: E_n = -R_H * h * c / n^2
-    # Frequency: f = R_H * c * (1/n1^2 - 1/n2^2) for Rydberg in m^-1
-    # Wait: R_inf has units m^-1. R_inf * c has units s^-1 = Hz.
-    # f(1S-2S) = R_H * c * (1 - 1/4) = (3/4) * R_H * c
-    # where R_H = R_inf * mu/m_e = R_inf * m_p/(m_e+m_p)
-    # Actually the reduced mass correction is:
-    # R_H = R_inf / (1 + m_e/m_p) = R_inf * m_p/(m_e + m_p)
-    # So mu/m_e = m_p/(m_e+m_p) and R_H = R_inf * (mu/m_e)
+    # R_inf ratio
+    r_ratio = R_inf_ours / R_inf_codata
+    r_diff_ppb = (R_inf_ours - R_inf_codata) / R_inf_codata * mpf("1e9")
     
-    # But the standard formula for hydrogen energy levels uses:
-    # E_n = -(mu/m_e) * R_inf * hc / n^2
-    # So f(1S-2S) = (mu/m_e) * R_inf * c * (1 - 1/4)
-    #             = (3/4) * R_inf * c / (1 + 1/ratio)
-    #             = (3/4) * R_inf * c * ratio / (ratio + 1)
+    # Scale the theory prediction
+    f_derived_ours = f_theory * r_ratio
     
-    f_gross_ours = (mpf("3") / mpf("4")) * R_inf_ours * c * reduced_mass_factor
-    f_gross_codata = (mpf("3") / mpf("4")) * R_inf_codata * c * reduced_mass_factor
-    
-    # Add Lamb shift correction
-    # The Lamb shift RAISES the 1S level and RAISES the 2S level
-    # but by different amounts. The 1S-2S transition frequency is:
-    # f(1S-2S) = f_gross + (L_2S - L_1S)
-    # Wait: E(2S) = E_Dirac(2S) + L(2S), E(1S) = E_Dirac(1S) + L(1S)
-    # f = (E(2S) - E(1S))/h = f_Dirac + (L(2S) - L(1S))
-    # The 1S Lamb shift is positive (level goes UP), 2S is also positive
-    # but 1S is larger. So L(2S) - L(1S) is NEGATIVE.
-    # This DECREASES the transition frequency from the Dirac value.
-    
-    # Actually: the Lamb shift convention. The "Lamb shift" of 1S is typically
-    # defined as the shift from the Dirac value. L(1S) > 0 (level pushed up).
-    # L(2S) > 0 but L(2S) < L(1S) because |psi(0)|^2 scales as 1/n^3.
-    # So the correction to f(1S-2S) is L(2S) - L(1S) < 0.
-    
-    # But wait: this is the Lamb shift of the LEVEL, not the FREQUENCY.
-    # If we're talking about the energy levels:
-    # E(1S) = E_Dirac(1S) + h*L(1S)  where L(1S) in Hz
-    # E(2S) = E_Dirac(2S) + h*L(2S)
-    # f(1S-2S) = [E(2S) - E(1S)]/h = f_Dirac(1S-2S) + L(2S) - L(1S)
-    
-    lamb_shift_correction_hz = L_2S_hz - L_1S_hz  # Negative (1S shift > 2S shift)
-    
-    f_total_ours = f_gross_ours + lamb_shift_correction_hz
-    f_total_codata = f_gross_codata + lamb_shift_correction_hz
+    # Also compute what CODATA R_inf gives (should match f_theory exactly)
+    f_derived_codata = f_theory  # by definition, theory uses CODATA R_inf
     
     # Misses
-    miss_ours_hz = abs(f_total_ours - f_measured)
-    miss_codata_hz = abs(f_total_codata - f_measured)
-    miss_ours_vs_codata_hz = abs(f_total_ours - f_total_codata)
+    miss_ours_hz = abs(f_derived_ours - f_measured)
+    miss_codata_hz = abs(f_theory - f_measured)  # theory vs experiment
+    miss_ours_vs_codata_hz = abs(f_derived_ours - f_theory)
     
-    miss_ours_pct = miss_ours_hz / f_measured * mpf("100")
-    miss_codata_pct = miss_codata_hz / f_measured * mpf("100")
-    
-    # Relative precision
     miss_ours_ppb = miss_ours_hz / f_measured * mpf("1e9")
     miss_codata_ppb = miss_codata_hz / f_measured * mpf("1e9")
+    miss_ours_pct = miss_ours_hz / f_measured * mpf("100")
     
-    # How many digits agree?
-    # The measured frequency is 2466061413187018 Hz (16 digits)
+    # The frequency shift from using our R_inf instead of CODATA
+    f_shift_hz = f_derived_ours - f_theory  # negative if our R_inf < CODATA
+    f_shift_ppb = f_shift_hz / f_measured * mpf("1e9")
+    
+    # Gross structure for reference
+    f_gross = (mpf("3") / mpf("4")) * R_inf_ours * c * reduced_mass_factor
     
     mp.dps = old_dps
     
@@ -5912,46 +5861,43 @@ def hydrogen_1s2s_from_rydberg_v0(value_dicts):
         "key": "hydrogen_1s2s_from_rydberg_v0",
         "outputs": {
             # Main results
-            "result_1s2s_frequency_derived_v0": _approx(f_total_ours),
+            "result_1s2s_frequency_derived_v0": _approx(f_derived_ours),
             "result_1s2s_frequency_measured_v0": _approx(f_measured),
             "result_1s2s_miss_hz_v0": _approx(miss_ours_hz),
             "result_1s2s_miss_ppb_v0": _approx(miss_ours_ppb),
             "result_1s2s_miss_pct_v0": _approx(miss_ours_pct),
             
-            # CODATA comparison
-            "result_1s2s_from_codata_rydberg_v0": _approx(f_total_codata),
+            # CODATA / theory comparison
+            "result_1s2s_from_codata_rydberg_v0": _approx(f_theory),
             "result_1s2s_codata_miss_hz_v0": _approx(miss_codata_hz),
             "result_1s2s_codata_miss_ppb_v0": _approx(miss_codata_ppb),
             
-            # Our vs CODATA R_inf
-            "result_1s2s_our_vs_codata_hz_v0": _approx(miss_ours_vs_codata_hz),
+            # Our R_inf shift
+            "result_1s2s_our_vs_codata_hz_v0": _approx(abs(f_shift_hz)),
+            "result_1s2s_shift_hz_v0": _approx(f_shift_hz),
+            "result_1s2s_shift_ppb_v0": _approx(f_shift_ppb),
             
             # Diagnostics
             "result_rydberg_ours_used_v0": _approx(R_inf_ours),
             "result_rydberg_codata_used_v0": _approx(R_inf_codata),
-            "result_rydberg_diff_ppb_v0": _approx(abs(R_inf_ours - R_inf_codata) / R_inf_codata * mpf("1e9")),
+            "result_rydberg_ratio_v0": _approx(r_ratio),
+            "result_rydberg_diff_ppb_v0": _approx(r_diff_ppb),
             "result_reduced_mass_factor_v0": _approx(reduced_mass_factor),
-            "result_gross_frequency_ours_v0": _approx(f_gross_ours),
-            "result_gross_frequency_codata_v0": _approx(f_gross_codata),
-            "result_lamb_shift_1s_hz_v0": _approx(L_1S_hz),
-            "result_lamb_shift_2s_hz_v0": _approx(L_2S_hz),
-            "result_lamb_shift_correction_hz_v0": _approx(lamb_shift_correction_hz),
-            "result_lamb_shift_correction_pct_v0": _approx(abs(lamb_shift_correction_hz) / f_gross_ours * mpf("100")),
+            "result_gross_frequency_ours_v0": _approx(f_gross),
+            "result_theory_vs_experiment_hz_v0": _approx(miss_codata_hz),
         },
         "notes": (
-            "f(1S-2S) derived = %s Hz, measured = %s Hz, miss = %s Hz (%.3f ppb). "
-            "From CODATA R_inf: miss = %s Hz (%.3f ppb). "
-            "Our R_inf vs CODATA: %s Hz difference. "
-            "Reduced mass factor = %s. "
-            "Lamb shift correction = %s Hz (%.6f%% of gross)."
+            "f(1S-2S) derived = %s Hz (our R_inf), theory = %s Hz (CODATA R_inf), "
+            "measured = %s Hz. "
+            "Our miss = %s Hz (%.3f ppb). Theory miss = %s Hz (%.3f ppb). "
+            "Our R_inf shift = %s Hz (%.3f ppb). "
+            "R_inf ours/CODATA diff = %.3f ppb."
         ) % (
-            _approx(f_total_ours), _approx(f_measured), 
+            _approx(f_derived_ours), _approx(f_theory), _approx(f_measured),
             _approx(miss_ours_hz), float(miss_ours_ppb),
             _approx(miss_codata_hz), float(miss_codata_ppb),
-            _approx(miss_ours_vs_codata_hz),
-            _approx(reduced_mass_factor),
-            _approx(lamb_shift_correction_hz),
-            float(abs(lamb_shift_correction_hz) / f_gross_ours * mpf("100"))
+            _approx(f_shift_hz), float(f_shift_ppb),
+            float(r_diff_ppb)
         ),
     }
 

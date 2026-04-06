@@ -129,6 +129,7 @@
 | **[[@HOWL-PHYS-36-2026]](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **The QED Integer Chain at 5-Loop** | Four CODATA Values from One Measurement. |
 | **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **From Gauge Integers to Primordial Deuterium** | Seventeen Derived Values Across Five Physics Domains. |
 | **[[@HOWL-PHYS-38-2026]](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Precision Frontier** | 38 Derived Values from Sub-ppb QED to the Lithium Problem. |
+| **[[@HOWL-PHYS-39-2026]](papers/papers/PHYS/HOWL-PHYS-39-2026/manuscript.md)** | **From Gauge Integers to Hydrogen Spectroscopy** | Two-Loop Unification, the k₁ Bug, and Eight Connected Domains. |
 
 ---
 
