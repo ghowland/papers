@@ -105,6 +105,8 @@ The Earth sits inside the Sun's zone. The Sun sits inside the galaxy.
 
 The galaxy is a donut soliton, a toroid.
 
+![Smoke Ring](../figures/nesting_doll.jpg)
+
 ---
 
 ## The Toroid
