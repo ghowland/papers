@@ -131,6 +131,8 @@ That sounds too simple, so to say clearly what is being claimed: This is not num
 
 Where do the integers 22 and 13 come from? They come from counting how particles interact with the weak force — the same force responsible for radioactive decay. The number 11 appears when you calculate how the weak force changes strength at different scales. Double it: 22. 
 
+Why 22?  Because the 22 is 2 × 11 because the predicted "Cabibbo Doublet" particle is vector-like — it has both left-handed and right-handed components, each contributing 11, so the total contribution is doubled.
+
 To a non-physicist, “counting interactions” can sound vague, so here is the simple version. In particle physics, each family of particles contributes in a specific, countable way to how a coupling changes with scale. You do not guess these contributions. You add them. The result is a total, and that total is an integer.
 
 The number 13 appears when you add one specific particle — the Cabibbo Doublet — to that count. This particle was identified by the research behind this book as the single representation that makes the three forces converge. It's named after the Cabibbo angle, one of the fundamental mixing angles in particle physics, and 'doublet' because it comes in a pair — a geometric property of how it interacts with the weak force. The Cabibbo Doublet hasn't been found in a laboratory yet. It was found in the integers — it's the only particle whose properties produce exact fraction ratios when added to the Standard Model count. Its existence is a prediction, and the (22/13)π dark matter ratio is one of its consequences.
@@ -264,7 +266,7 @@ Every layer follows the same rule. Inside reads different from outside. The boun
 
 In standard physics, the ratio of dark matter to visible matter is what's called a free parameter. A free parameter is a number that physics can measure but not explain — it has no formula, no derivation, no reason to be what it is. You go to the universe, you measure it, and you write down what you get. There's no equation that predicts what the number should be.
 
-The Planck satellite measured this ratio from the afterglow of the Big Bang — the cosmic microwave background, the oldest light in the universe. The result: 5.320. For every unit of visible matter, there are 5.320 units of dark matter. Nobody knows why. Nobody has a formula. It's just what the universe says when you measure it.
+The Planck satellite measured this ratio from the afterglow of the Big Bang — the cosmic microwave background (CMB), the oldest light in the universe. The result: 5.320. For every unit of visible matter, there are 5.320 units of dark matter. Nobody knows why. Nobody has a formula. It's just what the universe says when you measure it.
 
 This model says: the ratio is (22/13) × π.
 
