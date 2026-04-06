@@ -87,8 +87,6 @@ Light is a pure "change pattern" with nothing being changed — a disturbance th
 
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
-![Proton Donut](../figures/light_no_ripple.jpg)
-
 ---
 
 ## Nesting
