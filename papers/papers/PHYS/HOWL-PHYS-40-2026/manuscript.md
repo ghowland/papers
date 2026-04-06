@@ -31,9 +31,13 @@ The deepest precision: α⁻¹ = 137.035999207, matching the rubidium recoil mea
 
 This paper draws the map.
 
+![Fig. 8: Identity card — 53 derived values across eight physics domains from 13 measured inputs, surplus +40.](./figures/phys40_08_identity_card.png)
+
 ---
 
 ## II. THE EIGHT DOMAINS
+
+![Fig. 3: Energy hierarchy from m_e to M_Planck — SM M_GUT excluded by Super-K, CD M_GUT in Hyper-K window.](./figures/phys40_03_energy_landscape.png)
 
 ### QED (6 values, 0.007–0.44 ppb)
 
@@ -77,6 +81,8 @@ m_τ = 1776.97 MeV from K = 2/3 and a² = 2. Miss: 62 ppm (0.006%). θ_QCD = 0 (
 
 ## III. THE TWELVE CROSSINGS
 
+![Fig. 5: Eight physics domains connected by twelve crossings — hydrogen appears at both ends, Koide atoll floats.](./figures/phys40_05_eight_domain_graph.png)
+
 Each crossing connects two domains through a specific physical mechanism. Each is independently testable. Each could fail without affecting the others.
 
 | # | From → To | Bridge | Precision | What it tests |
@@ -100,6 +106,8 @@ All twelve produce matches at or better than their expected precision. None fail
 
 ## IV. THE COUPLING SECTOR COLLAPSE
 
+![Fig. 1: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement.](./figures/phys40_01_coupling_running.png)
+
 The central structural achievement: three SM coupling constants (α_em, sin²θ_W, α_s) collapse to one (α_em) through CD two-loop unification.
 
 **Before:** Three independent measurements needed. α_em from electron g-2. sin²θ_W from LEP/SLD. α_s from jet rates, τ decay, lattice.
@@ -112,9 +120,13 @@ The k₁ normalization bug (5/3 instead of 3/5) that blocked this computation fo
 
 **What this means for the map:** Every EW observable that uses sin²θ_W or α_s as input can now be re-derived using the two-loop predictions. M_W, Γ_Z, all partial widths, R_l — all potentially derivable from α_em + integers. The electroweak sector approaches full derivability.
 
+![Fig. 2: Three couplings diverge from α_GUT⁻¹ = 42.135 — predicted sin²θ_W = 0.231223 at 12 ppm, α_s = 0.11838 at 0.33%.](./figures/phys40_02_backward_extraction.png)
+
 ---
 
 ## V. THE CD EVIDENCE
+
+![Fig. 6: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5).](./figures/phys40_06_gap_comparison.png)
 
 Five independent lines, five domains, five different physics.
 
@@ -150,6 +162,8 @@ All 53 values, organized by what limits their precision:
 
 ## VII. WHAT DOESN'T WORK
 
+![Fig. 7: The k₁ normalization bug — one inverted factor (5/3 vs 3/5) cascaded to 10⁴² error in M_GUT.](./figures/phys40_07_k1_bug_cascade.png)
+
 **Hubble VP prediction: killed.** The attempt to predict H₀ from a vacuum polarization step gave N_VP = 0.71 < 1 (step too large for one cycle). Branch dead. Three runs, all showing the same result. The pool preserves the failure permanently.
 
 **One-loop sin²θ_W: algebraically impossible.** The 1-2 crossing equation is an identity (s = s). Three attempts, three different methods, all leading to the same proof. One-loop cannot determine sin²θ_W from the crossing alone — the information comes from two-loop effects.
@@ -177,6 +191,8 @@ But more than that: predicting sin²θ_W to five significant figures is not a st
 ---
 
 ## IX. THE FORWARD MAP
+
+![Fig. 4: Proton lifetime scales as M_GUT⁴ — SM excluded, CD testable at Hyper-K, MSSM above sensitivity.](./figures/phys40_04_proton_decay.png)
 
 What can be derived next, organized by what it opens:
 
