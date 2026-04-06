@@ -149,7 +149,7 @@ To a non-physicist, “counting interactions” can sound vague, so here is the 
 
 The number 13 appears when you add one specific particle — the Cabibbo Doublet — to that count. This particle was identified by the research behind this book as the single representation that makes the three forces converge. It's named after the Cabibbo angle, one of the fundamental mixing angles in particle physics, and 'doublet' because it comes in a pair — a geometric property of how it interacts with the weak force. The Cabibbo Doublet hasn't been found in a laboratory yet. It was found in the integers — it's the only particle whose properties produce exact fraction ratios when added to the Standard Model count. Its existence is a prediction, and the (22/13)π dark matter ratio is one of its consequences.
 
-This is the one place where the argument depends on a new proposed ingredient, so it should be introduced plainly: The "Cabibbo Doublet" particle is not being proposed as a particle invented to save the model after the fact. It appears because the counting does not close cleanly without it. Add it, and the ratios become exact. Leave it out, and they do not.
+The "Cabibbo Doublet" particle is not being proposed as a particle invented to save the model after the fact. It appears because the counting does not close cleanly without it. Add it, and the ratios become exact. Leave it out, and they do not.
 
 In the case of dark matter, nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
 
