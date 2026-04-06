@@ -77,7 +77,7 @@ The galaxy is a soliton. And here something new happens.
 
 ### The Toroid
 
-![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](./figures/book_02_toroidal_galaxy.png)
+![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](../figures/book_02_toroidal_galaxy.png)
 
 Galaxies are not spheres. They're toroids.
 
@@ -99,7 +99,7 @@ The universe tells us how much dark matter exists through the CMB. The gauge int
 
 ### Saturn's Rings and the Asteroid Belt
 
-![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](./figures/book_10_bessel_zeros.png)
+![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](../figures/book_10_bessel_zeros.png)
 
 If galaxies are toroids, their internal structure should show toroidal standing wave patterns. Standing waves in a toroidal cavity have nodes — places where the wave amplitude is zero. These nodes are circles. They appear at specific radii determined by the zeros of Bessel functions — the mathematical functions that describe waves in circular geometries.
 
@@ -133,7 +133,7 @@ This is not settled. This is the frontier of the map. We have not derived G from
 
 ### The Flat Inside and the Curved Outside
 
-![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](./figures/book_09_flat_curved.png)
+![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](../figures/book_09_flat_curved.png)
 
 Stand on the surface of the Earth. Look around. The ground is flat. The horizon is flat. Railroad tracks run straight for a thousand miles. The Earth's surface, from inside the boundary, reads flat.
 
@@ -155,7 +155,7 @@ This is what it means for everything to be nested. You're a soliton, standing on
 
 ### The Hierarchy of Readings
 
-![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](./figures/book_01_nested_solitons.png)
+![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](../figures/book_01_nested_solitons.png)
 
 Here is the nesting, from smallest to largest:
 
@@ -177,7 +177,7 @@ Here is the nesting, from smallest to largest:
 
 **The Universe** — the outermost soliton boundary. The vacuum. Inside: all physics, all readings, all measurements. The cosmological constant Λ is the vacuum reading — the ground state energy of the outermost boundary. It's tiny (10⁻¹²² in Planck units) because it's the reading of the largest possible soliton, and larger solitons have smaller boundary energy densities.
 
-![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](./figures/book_12_hydrogen_two_path.png)
+![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](../figures/book_12_hydrogen_two_path.png)
 
 ---
 
@@ -373,7 +373,7 @@ The departmental boundaries are real and they serve a purpose — specialization
 
 ### The Ceiling
 
-![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](./figures/book_14_gap_comparison.png)
+![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](../figures/book_14_gap_comparison.png)
 
 There's a deeper reason, beneath the wrong numbers and wrong names and wrong departments. It's the assumption that unification requires new physics.
 
@@ -540,7 +540,7 @@ These three numbers — 41/10, −19/6, −7 — determine the entire structure 
 
 ### Layer 5: The Cabibbo Doublet
 
-![Fig. 3: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement from one additional representation.](./figures/book_03_coupling_running.png)
+![Fig. 3: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement from one additional representation.](../figures/book_03_coupling_running.png)
 
 One additional particle changes everything.
 
@@ -606,7 +606,7 @@ All of these numbers flow from the same inputs: α_em, sin²θ_W, α_s, M_Z, and
 
 ### Layer 7: The QED Chain
 
-![Fig. 4: The QED chain — one measurement (a_e at Harvard) produces a spectroscopy prediction (f(1S-2S) at Garching) matching to eleven digits across five experimental groups on three continents.](./figures/book_04_qed_chain.png)
+![Fig. 4: The QED chain — one measurement (a_e at Harvard) produces a spectroscopy prediction (f(1S-2S) at Garching) matching to eleven digits across five experimental groups on three continents.](../figures/book_04_qed_chain.png)
 
 The most precise chain in the model. Start with one measurement. End with six sub-ppb values.
 
@@ -638,13 +638,13 @@ The entire 0.44 ppb miss traces to the R∞ precision, which traces to the α pr
 
 One measurement (a_e in a Penning trap at Harvard) produces a prediction for a laser spectroscopy measurement (hydrogen 1S-2S at Garching) that matches to eleven significant digits. Two experiments separated by an ocean, using completely different physics, connected by integer arithmetic.
 
-![Fig. 11: Six sub-ppb values follow exact α-power scaling — quantities proportional to α miss by 0.22 ppb, quantities proportional to α² miss by 0.44 ppb, no exceptions.](./figures/book_11_alpha_scaling.png)
+![Fig. 11: Six sub-ppb values follow exact α-power scaling — quantities proportional to α miss by 0.22 ppb, quantities proportional to α² miss by 0.44 ppb, no exceptions.](../figures/book_11_alpha_scaling.png)
 
 ---
 
 ### Layer 8: The Cosmological Chain
 
-![Fig. 5: Two integers (11, 13) from the weak force beta function determine the primordial abundances of deuterium, helium, and lithium — three match, one reproduces the lithium problem.](./figures/book_05_cosmo_chain.png)
+![Fig. 5: Two integers (11, 13) from the weak force beta function determine the primordial abundances of deuterium, helium, and lithium — three match, one reproduces the lithium problem.](../figures/book_05_cosmo_chain.png)
 
 The longest chain. From gauge integers to primordial chemistry in six links.
 
@@ -921,7 +921,7 @@ But real numbers have a fatal limitation. They cannot represent structure.
 
 ### The Problem with Decimals
 
-![Fig. 16: The same three beta coefficients as decimals (left, anonymous points) vs Fractions (right, every integer labeled with its physical meaning) — the physics is in the Fractions, invisible in the decimals.](./figures/book_16_fraction_structure.png)
+![Fig. 16: The same three beta coefficients as decimals (left, anonymous points) vs Fractions (right, every integer labeled with its physical meaning) — the physics is in the Fractions, invisible in the decimals.](../figures/book_16_fraction_structure.png)
 
 The Standard Model has three one-loop beta coefficients:
 
@@ -1015,7 +1015,7 @@ Physics is built on a Fraction foundation. The decimal measurements are readings
 
 ### What Happens When You Work in Decimals
 
-![Fig. 15: One inverted normalization factor (5/3 vs 3/5) cascaded through the computation — 2.78× at the coupling, 10⁴² at M_GUT, non-physical α_s. Found by automatic comparison in three diagnostic runs.](./figures/book_15_k1_bug.png)
+![Fig. 15: One inverted normalization factor (5/3 vs 3/5) cascaded through the computation — 2.78× at the coupling, 10⁴² at M_GUT, non-physical α_s. Found by automatic comparison in three diagnostic runs.](../figures/book_15_k1_bug.png)
 
 Here is a true story from the series.
 
@@ -1390,7 +1390,7 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Done
 
-![Fig. 13: All 53 derived values on a log precision scale, colored by domain — six sub-ppb QED values at left, spanning five orders of magnitude to nuclear and muon results at right.](./figures/book_13_precision_landscape.png)
+![Fig. 13: All 53 derived values on a log precision scale, colored by domain — six sub-ppb QED values at left, spanning five orders of magnitude to nuclear and muon results at right.](../figures/book_13_precision_landscape.png)
 
 **The QED chain.** Complete. a_e → α → R∞ → a₀ → μ₀ → f(1S-2S). Six sub-ppb values following α-power scaling. Limited by hadronic light-by-light uncertainty (0.14 ppb) and the a_e measurement (0.11 ppb). Improving either requires experimental advances outside the framework — better lattice QCD calculations or a new Penning trap measurement. The derivation itself is finished. There is nothing more to compute here with current inputs.
 
@@ -1408,7 +1408,7 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Close
 
-![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](./figures/book_06_proton_decay.png)
+![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](../figures/book_06_proton_decay.png)
 
 These are computations where all inputs exist in the pool, the physics is standard, and the derivation function hasn't been written yet. Each could be done in an afternoon.
 
@@ -1524,7 +1524,7 @@ The cosmological constant problem is often called "the worst prediction in physi
 
 ### The Map with Edges
 
-![Fig. 7: The complete derivation graph — eight physics domains connected by twelve crossings, hydrogen at both ends, Koide atoll floating disconnected, surplus +40.](./figures/book_07_eight_domains.png)
+![Fig. 7: The complete derivation graph — eight physics domains connected by twelve crossings, hydrogen at both ends, Koide atoll floating disconnected, surplus +40.](../figures/book_07_eight_domains.png)
 
 Here is the honest map. Solid lines are computed and verified. Dashed lines are close (inputs available, physics known, computation not yet performed). Dotted lines are far (theoretical work needed). Absent lines are possibly impossible (no known mathematical path).
 
@@ -1606,7 +1606,7 @@ This is the story of how a human and an AI produced 40 physics papers, 53 derive
 
 It is not the story you expect.
 
-![Fig. 8: Identity card — 53 derived values across eight physics domains from 13 measured inputs, surplus +40, the complete model in one image.](./figures/book_08_identity_card.png)
+![Fig. 8: Identity card — 53 derived values across eight physics domains from 13 measured inputs, surplus +40, the complete model in one image.](../figures/book_08_identity_card.png)
 
 ---
 

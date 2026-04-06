@@ -77,7 +77,7 @@ The galaxy is a soliton. And here something new happens.
 
 ### The Toroid
 
-![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](./figures/book_02_toroidal_galaxy.png)
+![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](../figures/book_02_toroidal_galaxy.png)
 
 Galaxies are not spheres. They're toroids.
 
@@ -99,7 +99,7 @@ The universe tells us how much dark matter exists through the CMB. The gauge int
 
 ### Saturn's Rings and the Asteroid Belt
 
-![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](./figures/book_10_bessel_zeros.png)
+![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](../figures/book_10_bessel_zeros.png)
 
 If galaxies are toroids, their internal structure should show toroidal standing wave patterns. Standing waves in a toroidal cavity have nodes — places where the wave amplitude is zero. These nodes are circles. They appear at specific radii determined by the zeros of Bessel functions — the mathematical functions that describe waves in circular geometries.
 
@@ -133,7 +133,7 @@ This is not settled. This is the frontier of the map. We have not derived G from
 
 ### The Flat Inside and the Curved Outside
 
-![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](./figures/book_09_flat_curved.png)
+![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](../figures/book_09_flat_curved.png)
 
 Stand on the surface of the Earth. Look around. The ground is flat. The horizon is flat. Railroad tracks run straight for a thousand miles. The Earth's surface, from inside the boundary, reads flat.
 
@@ -155,7 +155,7 @@ This is what it means for everything to be nested. You're a soliton, standing on
 
 ### The Hierarchy of Readings
 
-![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](./figures/book_01_nested_solitons.png)
+![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](../figures/book_01_nested_solitons.png)
 
 Here is the nesting, from smallest to largest:
 
@@ -177,7 +177,7 @@ Here is the nesting, from smallest to largest:
 
 **The Universe** — the outermost soliton boundary. The vacuum. Inside: all physics, all readings, all measurements. The cosmological constant Λ is the vacuum reading — the ground state energy of the outermost boundary. It's tiny (10⁻¹²² in Planck units) because it's the reading of the largest possible soliton, and larger solitons have smaller boundary energy densities.
 
-![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](./figures/book_12_hydrogen_two_path.png)
+![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](../figures/book_12_hydrogen_two_path.png)
 
 ---
 

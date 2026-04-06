@@ -10,7 +10,7 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Done
 
-![Fig. 13: All 53 derived values on a log precision scale, colored by domain — six sub-ppb QED values at left, spanning five orders of magnitude to nuclear and muon results at right.](./figures/book_13_precision_landscape.png)
+![Fig. 13: All 53 derived values on a log precision scale, colored by domain — six sub-ppb QED values at left, spanning five orders of magnitude to nuclear and muon results at right.](../figures/book_13_precision_landscape.png)
 
 **The QED chain.** Complete. a_e → α → R∞ → a₀ → μ₀ → f(1S-2S). Six sub-ppb values following α-power scaling. Limited by hadronic light-by-light uncertainty (0.14 ppb) and the a_e measurement (0.11 ppb). Improving either requires experimental advances outside the framework — better lattice QCD calculations or a new Penning trap measurement. The derivation itself is finished. There is nothing more to compute here with current inputs.
 
@@ -28,7 +28,7 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Close
 
-![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](./figures/book_06_proton_decay.png)
+![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](../figures/book_06_proton_decay.png)
 
 These are computations where all inputs exist in the pool, the physics is standard, and the derivation function hasn't been written yet. Each could be done in an afternoon.
 
@@ -144,7 +144,7 @@ The cosmological constant problem is often called "the worst prediction in physi
 
 ### The Map with Edges
 
-![Fig. 7: The complete derivation graph — eight physics domains connected by twelve crossings, hydrogen at both ends, Koide atoll floating disconnected, surplus +40.](./figures/book_07_eight_domains.png)
+![Fig. 7: The complete derivation graph — eight physics domains connected by twelve crossings, hydrogen at both ends, Koide atoll floating disconnected, surplus +40.](../figures/book_07_eight_domains.png)
 
 Here is the honest map. Solid lines are computed and verified. Dashed lines are close (inputs available, physics known, computation not yet performed). Dotted lines are far (theoretical work needed). Absent lines are possibly impossible (no known mathematical path).
 

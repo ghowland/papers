@@ -4,7 +4,7 @@ This is the story of how a human and an AI produced 40 physics papers, 53 derive
 
 It is not the story you expect.
 
-![Fig. 8: Identity card — 53 derived values across eight physics domains from 13 measured inputs, surplus +40, the complete model in one image.](./figures/book_08_identity_card.png)
+![Fig. 8: Identity card — 53 derived values across eight physics domains from 13 measured inputs, surplus +40, the complete model in one image.](../figures/book_08_identity_card.png)
 
 ---
 

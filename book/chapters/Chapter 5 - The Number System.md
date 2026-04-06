@@ -10,7 +10,7 @@ But real numbers have a fatal limitation. They cannot represent structure.
 
 ### The Problem with Decimals
 
-![Fig. 16: The same three beta coefficients as decimals (left, anonymous points) vs Fractions (right, every integer labeled with its physical meaning) — the physics is in the Fractions, invisible in the decimals.](./figures/book_16_fraction_structure.png)
+![Fig. 16: The same three beta coefficients as decimals (left, anonymous points) vs Fractions (right, every integer labeled with its physical meaning) — the physics is in the Fractions, invisible in the decimals.](../figures/book_16_fraction_structure.png)
 
 The Standard Model has three one-loop beta coefficients:
 
@@ -104,7 +104,7 @@ Physics is built on a Fraction foundation. The decimal measurements are readings
 
 ### What Happens When You Work in Decimals
 
-![Fig. 15: One inverted normalization factor (5/3 vs 3/5) cascaded through the computation — 2.78× at the coupling, 10⁴² at M_GUT, non-physical α_s. Found by automatic comparison in three diagnostic runs.](./figures/book_15_k1_bug.png)
+![Fig. 15: One inverted normalization factor (5/3 vs 3/5) cascaded through the computation — 2.78× at the coupling, 10⁴² at M_GUT, non-physical α_s. Found by automatic comparison in three diagnostic runs.](../figures/book_15_k1_bug.png)
 
 Here is a true story from the series.
 
