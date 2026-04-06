@@ -22,6 +22,7 @@ import glob
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "data")
+RESULTS = os.path.join(ROOT, "results")
 FIGURES = os.path.join(ROOT, "figures")
 
 sys.path.insert(0, ROOT)
@@ -38,7 +39,7 @@ except ImportError:
 def ensure_dirs():
     os.makedirs(DATA, exist_ok=True)
     os.makedirs(FIGURES, exist_ok=True)
-
+    os.makedirs(RESULTS, exist_ok=True)
 
 def get_all_json_files():
     return sorted(glob.glob(os.path.join(DATA, "*.json")))
@@ -80,7 +81,7 @@ def cmd_run(args):
         return 1
     sys.path.insert(0, ROOT)
     from data_6_run import run_experiment
-    return run_experiment(args[0], DATA)
+    return run_experiment(args[0], DATA, RESULTS)
 
 
 # ================================================================
@@ -93,7 +94,7 @@ def cmd_diagram(args):
         return 1
     sys.path.insert(0, ROOT)
     from data_6_diagrams import generate_diagrams
-    return generate_diagrams(args[0], DATA, FIGURES)
+    return generate_diagrams(args[0], DATA, FIGURES, RESULTS)
 
 
 # ================================================================
@@ -274,7 +275,7 @@ def cmd_compile(args):
         data = load_json(path)
         compiled["experiments"].append(data)
 
-    for path in sorted(glob.glob(os.path.join(DATA, "result_*.json"))):
+    for path in sorted(glob.glob(os.path.join(RESULTS, "result_*.json"))):
         data = load_json(path)
         compiled["results"].append(data)
 
@@ -403,7 +404,7 @@ def cmd_list(args):
         return 0
 
     elif target == "results":
-        files = sorted(glob.glob(os.path.join(DATA, "result_*.json")))
+        files = sorted(glob.glob(os.path.join(RESULTS, "result_*.json")))
         print("=" * 70)
         print("RESULTS: %d files" % len(files))
         print("=" * 70)
@@ -888,13 +889,13 @@ def cmd_report(args):
 
     result_path = None
     for prefix in candidates:
-        pattern = os.path.join(DATA, "%s_run*.json" % prefix)
+        pattern = os.path.join(RESULTS, "%s_run*.json" % prefix)
         matches = sorted(glob.glob(pattern))
         if matches:
             result_path = matches[-1]
             break
         # Try without run number
-        path = os.path.join(DATA, "%s.json" % prefix)
+        path = os.path.join(RESULTS, "%s.json" % prefix)
         if os.path.exists(path):
             result_path = path
             break

@@ -323,7 +323,7 @@ def write_output_values(exp_key, run_number, all_outputs, data_dir):
         json.dump({"nodes": nodes}, f, indent=2, default=_serialize_default)
     return filename
 
-def run_experiment(name, data_dir):
+def run_experiment(name, data_dir, results_dir):
     experiment, exp_path = load_experiment(name, data_dir)
     exp_key = experiment["key"]
 
@@ -507,7 +507,7 @@ def run_experiment(name, data_dir):
     }
 
     # ---- WRITE RESULT JSON (never overwrite) ----
-    result_path, result_filename = next_result_path(exp_key, data_dir)
+    result_path, result_filename = next_result_path(exp_key, results_dir)
     # Extract run number from filename
     run_number = int(result_filename.split("_run")[1].split(".")[0])
     with open(result_path, "w") as f:

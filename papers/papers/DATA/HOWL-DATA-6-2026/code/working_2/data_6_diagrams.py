@@ -365,13 +365,13 @@ RENDERERS = {
 }
 
 
-def generate_diagrams(name, data_dir, figures_dir):
+def generate_diagrams(name, data_dir, figures_dir, results_dir):
     exp_path = find_file(name, data_dir, ["experiment_", ""])
     if exp_path is None:
         print("ERROR: experiment JSON not found for '%s'" % name)
         return 1
 
-    result_path = find_file(name, data_dir,
+    result_path = find_file(name, results_dir,
                             ["result_experiment_", "result_"])
     if result_path is None:
         print("ERROR: result JSON not found for '%s'" % name)
