@@ -91,11 +91,15 @@ This is the Rectification of Names. Physics already has all the correct equation
 
 ## Nesting
 
+![Nesting](../figures/nesting_doll.jpg)
+
 Everything is nested. Like a Russian nesting doll, every component of the universe sits inside something larger.
 
 Start with a quark. The smallest vortex pattern we can detect. Three quarks sit inside a proton — a donut soliton with a boundary about a trillionth of a millimeter across, about 80 billion times smaller than a human hair. Inside the proton donut boundary, quarks are permanently trapped. Every experiment ever performed to pull a quark out of a proton has failed — the harder you pull, the more energy you add, and that energy turns into new quarks before the original can escape. Outside the proton donut boundary, that same force is weak enough that protons sit peacefully next to each other.
 
 The proton sits inside an atom. The atom is a soliton too — it has its own boundary, about ten thousand times larger than the proton. Inside, electrons exist only in specific shells, jumping between them in exact integer steps. Outside, the atom looks like a single tiny sphere with a charge. Different rules inside than outside. Same principle. The boundary determines which rules apply.
+
+![Proton Donut](../figures/donut.jpg)
 
 The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth. At every level, the same structure — a pattern inside a boundary, with different readings on each side.
 
@@ -104,8 +108,6 @@ The Earth itself is a sphere soliton. Every object in space has a zone of "gravi
 The Earth sits inside the Sun's zone. The Sun sits inside the galaxy.
 
 The galaxy is a donut soliton, a toroid.
-
-![Smoke Ring](../figures/nesting_doll.jpg)
 
 ---
 
@@ -204,6 +206,8 @@ If gravity belongs to the same unified structure, then it should behave the same
 This model says gravity works the same way. G reads one value inside the Earth's boundary. It reads a different value at the scale of the solar system. It reads a different value at the scale of the galaxy. The "dark matter problem" — galaxies rotating as if they contain far more mass (inertia) than we can see — may not be a mass problem at all. It may be a reading problem. The gravitational reading at the galactic boundary is different from the gravitational reading inside our solar system's boundary.
 
 This is the frontier of the map — not settled, not fully derived. We haven't connected G to the gauge integers the way we've connected the dark matter ratio. But (22/13)π matching the Planck satellite measurement to 725 parts per million is the first evidence that gravity connects to the same integer structure as the other forces. The bridge exists. It's just not fully built yet.
+
+![Smoke Ring](../figures/gravity_well.jpg)
 
 ---
 
