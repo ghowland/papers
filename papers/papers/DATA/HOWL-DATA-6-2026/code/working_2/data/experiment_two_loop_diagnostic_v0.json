@@ -1,0 +1,152 @@
+{
+    "key": "experiment_two_loop_diagnostic_v0",
+    "canonical": "experiment_two_loop_diagnostic",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Diagnose the two-loop alpha_s bug. Run SM-only and SM+CD two-loop Euler integration. Compare alpha_s predictions to published values. Output full matrix and intermediate couplings for inspection.",
+    "purpose": "program_beta_unification_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_s_mz": 0,
+            "beta_sm_u1_total": 0,
+            "beta_sm_su2_total": 0,
+            "beta_sm_su3_total": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "beta_two_loop_sm_bij_u1_u1": 0,
+            "beta_two_loop_sm_bij_u1_su2": 0,
+            "beta_two_loop_sm_bij_u1_su3": 0,
+            "beta_two_loop_sm_bij_su2_u1": 0,
+            "beta_two_loop_sm_bij_su2_su2": 0,
+            "beta_two_loop_sm_bij_su2_su3": 0,
+            "beta_two_loop_sm_bij_su3_u1": 0,
+            "beta_two_loop_sm_bij_su3_su2": 0,
+            "beta_two_loop_sm_bij_su3_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su3": 0,
+            "group_k1_gut_normalization": 0,
+            "geom_pi": 0,
+            "mass_z_boson": 0,
+            "config_euler_step_count": 0,
+            "config_euler_dps": 0
+        },
+        "derivations": {
+            "two_loop_alpha_s_sm_only": 0,
+            "two_loop_alpha_s_sm_cd": 0,
+            "two_loop_diagnostic": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "two_loop_alpha_s_sm_only_v0",
+        "two_loop_alpha_s_sm_cd_v0",
+        "two_loop_diagnostic_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_alpha_s_sm_two_loop_v0",
+        "result_alpha_s_cd_two_loop_v0",
+        "result_dbij_su2_su2_used_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "alpha_s SM-only one-loop vs published",
+            "output_key": "result_alpha_s_sm_one_loop_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0731",
+            "reference_source": "textbook_one_loop_SM"
+        },
+        {
+            "label": "alpha_s SM-only two-loop vs published ~0.118",
+            "output_key": "result_alpha_s_sm_two_loop_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1185",
+            "reference_source": "published_two_loop_SM"
+        },
+        {
+            "label": "alpha_s SM-only two-loop within 5% of measured",
+            "output_key": "result_alpha_s_sm_two_loop_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5.0",
+            "reference_source": "physics"
+        },
+        {
+            "label": "alpha_s SM+CD one-loop",
+            "output_key": "result_alpha_s_cd_one_loop_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "alpha_s SM+CD two-loop vs measured",
+            "output_key": "result_alpha_s_cd_two_loop_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "alpha_s SM+CD two-loop within 5%",
+            "output_key": "result_alpha_s_cd_two_loop_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5.0",
+            "reference_source": "physics"
+        },
+        {
+            "label": "SM two-loop M_GUT in [10^13, 10^15]",
+            "output_key": "result_m_gut_sm_two_loop_log10_v0",
+            "match_mode": "range",
+            "lo": "13",
+            "hi": "15",
+            "reference_source": "textbook_SM_unification"
+        },
+        {
+            "label": "CD two-loop M_GUT in [10^15, 10^17]",
+            "output_key": "result_m_gut_cd_two_loop_log10_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "17",
+            "reference_source": "proton_decay_bounds"
+        },
+        {
+            "label": "dbij(SU2,SU2) is 15/4 not 39/4",
+            "output_key": "result_dbij_su2_su2_used_v0",
+            "match_mode": "miss_pct",
+            "expected": "3.75",
+            "reference_source": "PHYS-33_pitfall_resolution"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_two_loop_comparison_v0",
+            "title": "alpha_s: SM vs SM+CD at one-loop and two-loop",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "alpha_s SM 1-loop", "predicted": "result_alpha_s_sm_one_loop_v0", "measured": "0.0731"},
+                {"label": "alpha_s SM 2-loop", "predicted": "result_alpha_s_sm_two_loop_v0", "measured": "0.1185"},
+                {"label": "alpha_s CD 1-loop", "predicted": "result_alpha_s_cd_one_loop_v0", "measured": "0.1180"},
+                {"label": "alpha_s CD 2-loop", "predicted": "result_alpha_s_cd_two_loop_v0", "measured": "0.1180"}
+            ],
+            "notes": "The SM two-loop should match published ~0.1185. The CD two-loop should match platform 0.33% miss. If SM is wrong, bug is in integration. If SM is right but CD is wrong, bug is in db_ij."
+        }
+    ]
+}
+

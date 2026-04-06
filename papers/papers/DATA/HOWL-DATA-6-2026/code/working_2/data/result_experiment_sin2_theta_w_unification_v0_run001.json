@@ -1,0 +1,104 @@
+{
+  "key": "result_experiment_sin2_theta_w_unification_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_sin2_theta_w_unification_v0",
+  "timestamp": "2026-04-06T02:40:51Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "sin2_theta_w_from_unification_v0",
+      "status": "ok",
+      "output_count": 21
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "sin2_theta_W derived vs measured",
+      "output_key": "result_sin2_theta_w_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.23122",
+      "got": "-9.56654192179066e+21",
+      "miss_pct": "4.137e+24",
+      "detail": "predicted -9.56654192179066e+21 ref 0.23122 miss 4.137e+24%"
+    },
+    {
+      "label": "sin2_theta_W within 5% of measured",
+      "output_key": "result_sin2_theta_w_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "4.13742e+24",
+      "lo": "0",
+      "hi": "5.0",
+      "status": "FAIL",
+      "detail": "4.13742e+24 not in [0, 5.0]"
+    },
+    {
+      "label": "log10(M_GUT/GeV) in [15, 16]",
+      "output_key": "result_m_gut_log10_derived_v0",
+      "match_mode": "range",
+      "reference_source": "proton_decay_bounds",
+      "got": "9.03736e+23",
+      "lo": "15",
+      "hi": "16",
+      "status": "FAIL",
+      "detail": "9.03736e+23 not in [15, 16]"
+    },
+    {
+      "label": "alpha_s(M_Z) one-loop vs measured",
+      "output_key": "result_alpha_s_one_loop_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "-4.39187540935518e-25",
+      "miss_pct": "100.0",
+      "detail": "predicted -4.39187540935518e-25 ref 0.1180 miss 100.0%"
+    },
+    {
+      "label": "Iteration converged (delta < 1e-10)",
+      "output_key": "result_iteration_delta_v0",
+      "match_mode": "range",
+      "reference_source": "numerical_verification",
+      "got": "3.82662e+21",
+      "lo": "0",
+      "hi": "0.0000000001",
+      "status": "FAIL",
+      "detail": "3.82662e+21 not in [0, 0.0000000001]"
+    }
+  ],
+  "outputs": {
+    "result_sin2_theta_w_derived_v0": "-9.56654192179066e+21",
+    "result_sin2_theta_w_miss_pct_v0": "4.13741973955136e+24",
+    "result_l_gut_derived_v0": "3.31190054127472e+23",
+    "result_m_gut_log10_derived_v0": "9.03735756958243e+23",
+    "result_alpha_gut_inv_derived_v0": "-6.89979279432232e+22",
+    "result_alpha_s_one_loop_derived_v0": "-4.39187540935518e-25",
+    "result_alpha_s_miss_pct_v0": "100.0",
+    "result_iteration_count_v0": 100,
+    "result_iteration_delta_v0": "3.82661676871627e+21",
+    "result_converged_v0": false,
+    "result_alpha_em_inv_used_v0": "137.035999177",
+    "result_b1_mod_used_v0": "25/6",
+    "result_b2_mod_used_v0": "-13/6",
+    "result_b3_mod_used_v0": "-20/3",
+    "result_b_diff_v0": "6.33333333333333",
+    "result_sin2_measured_v0": "0.23122",
+    "result_alpha_s_measured_v0": "0.118",
+    "result_alpha_1_inv_mz_derived_v0": "1.31096063092124e+24",
+    "result_alpha_2_inv_mz_derived_v0": "-7.86576378552745e+23",
+    "result_alpha_3_inv_mz_derived_v0": "-2.27693162212637e+24",
+    "result_m_gut_gev_derived_v0": "7.24010229641743e+903735756958243399803053"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 0,
+    "comparisons_fail": 3,
+    "comparisons_info": 2,
+    "comparisons_skip": 0
+  }
+}

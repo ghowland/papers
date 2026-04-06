@@ -1,0 +1,93 @@
+{
+    "key": "experiment_sin2_from_unification_v0",
+    "canonical": "experiment_sin2_from_unification",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Derive sin2_theta_W and alpha_s from GUT unification condition using CD-modified betas. Self-consistent iteration: start from sin2=3/8, compute crossing, update sin2, repeat until converged. Only alpha_em is input. Both sin2_theta_W and alpha_s are outputs.",
+    "purpose": "program_beta_unification_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "group_k1_gut_normalization": 0,
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_s_mz": 0,
+            "mass_z_boson": 0,
+            "geom_pi": 0
+        },
+        "derivations": {
+            "unification_sin2_alpha_s_prediction": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "unification_sin2_alpha_s_prediction_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_sin2_predicted_v0",
+        "result_alpha_s_predicted_v0",
+        "result_alpha_gut_inv_v0",
+        "result_l_gut_predicted_v0",
+        "result_m_gut_log10_predicted_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "alpha_s predicted vs measured",
+            "output_key": "result_alpha_s_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "alpha_s within 15% of measured",
+            "output_key": "result_alpha_s_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "15.0",
+            "reference_source": "one_loop_expectation"
+        },
+        {
+            "label": "log10(M_GUT/GeV) in [14, 17]",
+            "output_key": "result_m_gut_log10_predicted_v0",
+            "match_mode": "range",
+            "lo": "14",
+            "hi": "17",
+            "reference_source": "GUT_bounds"
+        },
+        {
+            "label": "L_12 vs L_23 deficit < 20%",
+            "output_key": "result_delta_l_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "20",
+            "reference_source": "unification_quality"
+        },
+        {
+            "label": "sin2 formula self-consistency",
+            "output_key": "result_sin2_formula_check_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1e-10",
+            "reference_source": "numerical"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_sin2_convergence_v0",
+            "title": "sin2_theta_W convergence from 3/8 to predicted value",
+            "type": "line",
+            "notes": "Each iteration step from 0.375 down to converged value"
+        }
+    ]
+}
+

@@ -1,0 +1,213 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_sin2_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_sin2_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_s_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_s_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0194596068382171",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_gut_inv_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_gut_inv",
+      "version": 0,
+      "node_type": "value",
+      "value": "51.388499691375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_l_gut_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_l_gut_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_m_gut_log10_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_m_gut_log10_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.95993578550263",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_sin2_miss_pct_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_sin2_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "62.1832021451432",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_s_miss_pct_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_s_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "83.5088077642228",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_sin2_measured_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_sin2_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23122",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_s_measured_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_s_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.118",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_iterations_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_iterations",
+      "version": 0,
+      "node_type": "value",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_convergence_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_convergence",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_em_inv_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_em_inv_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999177",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_b1_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_b1_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.16666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_b2_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_b2_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-2.16666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_b3_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_b3_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-6.66666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_1_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_1_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "51.388499691375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_2_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_2_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "51.388499691375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_alpha_3_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_alpha_3_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "51.388499691375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run001_result_m_gut_mev_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run001_result_m_gut_mev",
+      "version": 0,
+      "node_type": "value",
+      "value": "91187.6",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run001"
+    }
+  ]
+}
