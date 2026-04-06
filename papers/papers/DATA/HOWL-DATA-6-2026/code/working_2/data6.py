@@ -454,8 +454,8 @@ def cmd_search(args):
             " ".join(node.get("tags", [])),
         ]).lower()
         if query in searchable:
-            matches.append(("value", node.get("key", "?"),
-                           node.get("section", "")))
+                    matches.append(("value", node.get("key", "?"),
+                                _format_value(node.get("value", ""))))
 
     for path in sorted(glob.glob(os.path.join(DATA, "connections_*.json"))):
         data = load_json(path)
@@ -497,7 +497,7 @@ def cmd_search(args):
 
     if matches:
         for mtype, mkey, mextra in sorted(matches):
-            print("  [%-12s] %-55s %s" % (mtype, mkey, mextra))
+            print("  [%-12s] %-50s %s" % (mtype, mkey, mextra))
         print()
         print("  %d matches" % len(matches))
     else:
