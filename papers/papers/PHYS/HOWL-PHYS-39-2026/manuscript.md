@@ -19,6 +19,8 @@
 
 This paper reports three findings that extend the derivation graph from 38 values across seven domains (PHYS-38) to 48 values across eight domains, increasing the surplus from +23 to +33. First, the two-loop Cabibbo Doublet unification gap collapses to 0.027 — the three gauge couplings meet within 0.064% at M_GUT = 10¹⁵·⁶¹ GeV, a 218× improvement over the SM gap of 5.88. A critical normalization bug (k₁ = 5/3 instead of 3/5) that caused the persistent 10-12% two-loop α_s discrepancy was identified and fixed. Second, the one-loop sin²θ_W derivation from the α₁-α₂ crossing was proven algebraically impossible — the difference equation reduces to the identity s = s — establishing that coupling predictions require two-loop effects. Third, the hydrogen 1S-2S transition frequency is predicted at 0.44 ppb from the most precisely measured quantity in physics, connecting atomic spectroscopy as the eighth domain. The derivation graph now spans QED, electroweak, GUT, cosmology, nuclear, muon, flavor, and spectroscopy. Hydrogen appears in the graph through two independent paths: from QED (a_e → α → R∞ → f(1S-2S) at 0.44 ppb) and from gauge integers ((22/13)π → η → D/H at 0.12σ). The same element, predicted from opposite ends of physics, both matching their measurements.
 
+![Fig. 8: Identity card — 48 derived values across eight physics domains from 15 measured inputs, surplus +33.](./figures/phys39_08_identity_card.png)
+
 ---
 
 ## II. THE ONE-LOOP DEGENERACY
@@ -76,6 +78,8 @@ One line in each derivation function. From: `k1_inv = mpf("5") / mpf("3")` follo
 ---
 
 ## IV. TWO-LOOP UNIFICATION
+
+![Fig. 1: SM vs CD two-loop running — the SM triangle (gap 5.88) vs the CD near-point (gap 0.027), a 218× improvement.](./figures/phys39_01_two_loop_comparison.png)
 
 ### 4.1 SM Baseline
 
@@ -142,9 +146,13 @@ The two-loop computation uses the SM b_ij matrix (9 elements) plus the CD db_ij 
 
 The critical entry: db_ij(SU2,SU2) = 15/4, confirmed as the fermion-only contribution. The PHYS-33 pitfall value was 39/4 (gauge+fermion double-count). The 15/4 value in the pool is correct.
 
+![Fig. 4: The CD M_GUT = 10¹⁵·⁶ sits in the Hyper-K proton decay window while the SM M_GUT = 10¹³·⁸ is excluded by Super-K.](./figures/phys39_04_mgut_scale.png)
+
 ---
 
 ## V. sin²θ_W AND α_s FROM THE TWO-LOOP CROSSING
+
+![Fig. 2: Three couplings diverge from α_GUT⁻¹ = 42.135 running down to M_Z — sin²θ_W = 0.231223 at 12 ppm, α_s = 0.11838 at 0.33%.](./figures/phys39_02_sin2_extraction.png)
 
 ### 5.1 The Method
 
@@ -172,6 +180,8 @@ The 0.027 gap at the crossing maps to a 0.33% miss in α_s and a 12 ppm miss in 
 ---
 
 ## VI. THE HYDROGEN 1S-2S BRIDGE
+
+![Fig. 5: The hydrogen 1S-2S error budget — the R∞ residual (1.09 MHz) is 64,000× larger than the theory-experiment gap (17 Hz).](./figures/phys39_05_1s2s_error_budget.png)
 
 ### 6.1 The Chain
 
@@ -216,6 +226,8 @@ The iteration from 30 GHz to 1.09 MHz demonstrates the experiment system diagnos
 
 ## VII. HYDROGEN: TWO PATHS TO THE SAME ELEMENT
 
+![Fig. 3: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite physics.](./figures/phys39_03_hydrogen_two_path.png)
+
 ### 7.1 The QED Path
 
 a_e → α → R∞ → f(1S-2S) at 0.44 ppb. This chain predicts how hydrogen atoms absorb and emit light. It uses the electron's magnetic moment, QED perturbation theory through five loops, the SI definition of R∞, and the bound-state structure of the hydrogen atom. The endpoint is the most precise spectroscopic measurement in physics.
@@ -239,6 +251,8 @@ Helium appears through two paths as well. The BBN chain predicts the primordial 
 ---
 
 ## VIII. THE EIGHT-DOMAIN GRAPH
+
+![Fig. 6: The derivation graph spans eight physics domains with twelve crossings — hydrogen appears at the top (spectroscopy) and bottom (BBN abundance).](./figures/phys39_06_eight_domains.png)
 
 ### 8.1 The Continent
 
@@ -290,6 +304,8 @@ Each crossing uses different physics. Each could fail without affecting the othe
 ---
 
 ## IX. THE COMPLETE INVENTORY — 48 VALUES
+
+![Fig. 7: All 48 derived values from 0.007 ppb to 2.96× — six sub-ppb values follow α-power scaling, new values marked with diamonds.](./figures/phys39_07_precision_landscape.png)
 
 ### 9.1 All 48 Derived Values
 
