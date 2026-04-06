@@ -128,6 +128,8 @@ These three numbers — 41/10, −19/6, −7 — determine the entire structure 
 
 ### Layer 5: The Cabibbo Doublet
 
+![Fig. 3: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement from one additional representation.](./figures/book_03_coupling_running.png)
+
 One additional particle changes everything.
 
 The Cabibbo Doublet (CD) is a vector-like quark doublet — a pair of quarks (one with charge +2/3, one with charge −1/3) that transforms as (3, 2, 1/6) under the gauge group. This means: it carries color charge (the 3, under SU(3)), it's a weak doublet (the 2, under SU(2)), and it has hypercharge 1/6 (under U(1)).
@@ -192,6 +194,8 @@ All of these numbers flow from the same inputs: α_em, sin²θ_W, α_s, M_Z, and
 
 ### Layer 7: The QED Chain
 
+![Fig. 4: The QED chain — one measurement (a_e at Harvard) produces a spectroscopy prediction (f(1S-2S) at Garching) matching to eleven digits across five experimental groups on three continents.](./figures/book_04_qed_chain.png)
+
 The most precise chain in the model. Start with one measurement. End with six sub-ppb values.
 
 **Step 1: Measure a_e.** The electron anomalous magnetic moment — how much the electron's magnetic field exceeds the prediction of the Dirac equation. Measured by Fan et al. at Harvard in 2023 using a single electron in a Penning trap: a_e = 0.00115965218059 ± 0.00000000000013. Thirteen digits. The most precisely measured property of any particle.
@@ -225,6 +229,8 @@ One measurement (a_e in a Penning trap at Harvard) produces a prediction for a l
 ---
 
 ### Layer 8: The Cosmological Chain
+
+![Fig. 5: Two integers (11, 13) from the weak force beta function determine the primordial abundances of deuterium, helium, and lithium — three match, one reproduces the lithium problem.](./figures/book_05_cosmo_chain.png)
 
 The longest chain. From gauge integers to primordial chemistry in six links.
 
@@ -301,6 +307,8 @@ The Hubble tension — the discrepancy between the local measurement of the expa
 ---
 
 ### Layer 12: The Universe
+
+![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](./figures/book_06_proton_decay.png)
 
 The outermost soliton. The vacuum.
 

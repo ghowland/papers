@@ -26,6 +26,8 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Close
 
+![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](./figures/book_06_proton_decay.png)
+
 These are computations where all inputs exist in the pool, the physics is standard, and the derivation function hasn't been written yet. Each could be done in an afternoon.
 
 **M_W from derived sin²θ_W.** The existing `experiment_ew_oneloop_v1` computes M_W from measured sin²θ_W. Feeding it the derived sin²θ_W = 0.231223 instead of measured 0.23122 requires changing one input. The result should be M_W within ~1 MeV of the current 80,337 MeV. This is the simplest cascade step — it validates that the coupling sector collapse propagates correctly into the mass sector.
@@ -139,6 +141,8 @@ The cosmological constant problem is often called "the worst prediction in physi
 ---
 
 ### The Map with Edges
+
+![Fig. 7: The complete derivation graph — eight physics domains connected by twelve crossings, hydrogen at both ends, Koide atoll floating disconnected, surplus +40.](./figures/book_07_eight_domains.png)
 
 Here is the honest map. Solid lines are computed and verified. Dashed lines are close (inputs available, physics known, computation not yet performed). Dotted lines are far (theoretical work needed). Absent lines are possibly impossible (no known mathematical path).
 

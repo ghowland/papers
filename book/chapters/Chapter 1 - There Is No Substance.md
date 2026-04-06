@@ -72,6 +72,8 @@ The galaxy is a soliton. And here something new happens.
 
 ### The Toroid
 
+![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](./figures/book_02_toroidal_galaxy.png)
+
 Galaxies are not spheres. They're toroids.
 
 Look at any spiral galaxy — the Milky Way, Andromeda, the thousands captured by Hubble and Webb. A flat rotating disc with a bulge at the center and a vast halo surrounding it. The disc is where the stars are. The halo is where the "dark matter" is. The standard model of cosmology says the halo is filled with invisible massive particles that provide the extra gravitational pull needed to keep the outer stars from flying off.
@@ -143,6 +145,8 @@ This is what it means for everything to be nested. You're a soliton, standing on
 ---
 
 ### The Hierarchy of Readings
+
+![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](./figures/book_01_nested_solitons.png)
 
 Here is the nesting, from smallest to largest:
 
