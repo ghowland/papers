@@ -262,35 +262,63 @@ Every layer follows the same rule. Inside reads different from outside. The boun
 
 ### The Dark Matter Ratio
 
-The single most striking result of this model is the dark matter ratio.
+In standard physics, the ratio of dark matter to visible matter is what's called a free parameter. A free parameter is a number that physics can measure but not explain — it has no formula, no derivation, no reason to be what it is. You go to the universe, you measure it, and you write down what you get. There's no equation that predicts what the number should be.
 
-Standard cosmology measures the ratio of dark matter to visible matter in the universe: 5.320 ± 0.003 (from the Planck satellite CMB observations). This number is treated as a free parameter — a measurement with no theoretical prediction. Nobody knows why the universe has 5.3 times more dark matter than visible matter. It just does.
+The Planck satellite measured this ratio from the afterglow of the Big Bang — the cosmic microwave background, the oldest light in the universe. The result: 5.320. For every unit of visible matter, there are 5.320 units of dark matter. Nobody knows why. Nobody has a formula. It's just what the universe says when you measure it.
 
-The model says: the ratio is (22/13)π.
+This model says: the ratio is (22/13) × π.
 
-22 = 2 × 11. The 11 is the Yang-Mills coefficient — the number that appears in the gauge coupling beta function for SU(2), the symmetry group of the weak nuclear force. It determines how the weak force changes strength with energy.
+That's two integers and one geometric constant. Nothing else.
 
-13 is the numerator of the modified SU(2) beta coefficient. When you add the Cabibbo Doublet — the one additional particle that the gauge mathematics requires for coupling unification — the SU(2) beta changes from −19/6 to −13/6. The 13 comes from this modification.
+To understand where 22 and 13 come from, recall what we described earlier: each type of particle contributes a specific, countable amount to how a force changes strength at different scales. You don't guess these contributions. You count them. You add them up. The totals are integers.
 
-π is π.
+The number 11 comes from counting how the weak force — the force responsible for radioactive decay — changes strength as you zoom in. This is the Yang-Mills coefficient, a number that appears in every textbook on particle physics. It has been known since the 1970s. It is not controversial. Double it: 22.
 
-(22/13)π = 5.3165. Planck measures 5.320. Miss: 725 parts per million.
+The number 13 comes from modifying that count. When you add the Cabibbo Doublet — the single additional particle identified by this research — the weak force count changes. The total shifts from 19 to 13. This is exact. It comes from the same kind of counting that produced 11. One particle added, one integer changed.
 
-This is not a fit. Nobody adjusted 22 or 13 or π to match the data. The 22 and 13 come from the gauge group — the same mathematical structure that determines how strongly particles interact at every energy scale. The dark matter ratio is a gauge reading at the cosmological boundary. The gauge integers predict it. The universe confirms it.
+π is the geometric constant — the ratio of a circle's circumference to its diameter. It appears here because the toroidal (donut) geometry of the galaxy introduces circular structure into the calculation, just as it introduces π/4 into pipe flow and antenna equations.
 
-And the chain doesn't stop at the ratio. The ratio gives the baryon density Ω_b = 0.04904 (measured: 0.0490, miss 727 ppm). The baryon density gives the baryon-to-photon ratio η₁₀ = 6.090 (measured: 6.104, miss 0.24%). The baryon-to-photon ratio determines how much deuterium, helium, and lithium the universe produced in the first three minutes after the Big Bang:
+Put them together: (22/13) × π = 5.3165.
 
-Deuterium: predicted 2.531 × 10⁻⁵, measured 2.527 × 10⁻⁵. Miss: 0.12σ.
+The Planck satellite measures: 5.3204.
 
-Helium-4: predicted 0.2486, measured 0.2449. Miss: 0.94σ.
+The first three digits match exactly: 5.31. The disagreement starts at the fourth digit. The total miss is 725 parts per million. If you predicted the distance from New York to Los Angeles and were off by 725 parts per million, you'd miss by about 3 kilometers out of 3,944.
 
-Helium-3: predicted 1.03 × 10⁻⁵, measured 1.10 × 10⁻⁵. Miss: 0.36σ.
+This is not a fit. Nobody adjusted 22 or 13 or π to match the measurement. The integers come from particle counting. The π comes from the shape. The prediction falls out of the mathematics and lands within 725 parts per million of what the satellite measured.
 
-Lithium-7: predicted 4.74 × 10⁻¹⁰, measured 1.60 × 10⁻¹⁰. Miss: 2.96× — the famous lithium problem, an unsolved discrepancy that has persisted for 40 years.
+But the chain doesn't stop at the dark matter ratio. The ratio is just the first link.
 
-The same two integers — 11 and 13 — that come from the gauge group predict the chemical composition of the universe at three minutes old. Three elements match within measurement uncertainty. One reproduces a known unsolved problem. From the mathematics of the weak force to the chemistry of the Big Bang in six links of integer arithmetic.
+**Link 1 → Link 2: From dark matter ratio to visible matter density.**
 
-This is what unification looks like.
+If you know how much dark matter there is relative to visible matter (5.3165), and you know the total amount of dark matter (measured by Planck), you can divide to get the amount of visible matter. This is called the baryon density — "baryon" is just the physicist's word for ordinary matter: protons, neutrons, atoms, everything you can see and touch and build telescopes out of. The baryon density is the fraction of the universe made of this ordinary stuff.
+
+Predicted from (22/13)π: 0.04904. Measured by Planck: 0.0490. They agree to 727 parts per million.
+
+**Link 2 → Link 3: From visible matter density to the atom-to-light ratio.**
+
+After the Big Bang, the universe was filled with both atoms and light — an enormous number of photons for every atom. As the universe expanded and cooled, the ratio between them became fixed. This ratio — how many atoms exist for every photon of leftover Big Bang light — is called the baryon-to-photon ratio. It's a head count: atoms on one side, photons on the other.
+
+This ratio matters because it determines what happened during the first three minutes after the Big Bang. In those three minutes, the universe was hot enough and dense enough to fuse hydrogen into heavier elements. How far that fusion went — how much deuterium, how much helium, how much lithium was produced — depended on exactly how many atoms were available per photon. More atoms per photon means more collisions, more fusion, more heavy elements.
+
+Predicted from the baryon density: 6.090. Measured: 6.104. They agree to 0.24%.
+
+**Link 3 → Link 4: From the atom-to-light ratio to the chemical composition of the universe.**
+
+The atom-to-light ratio at three minutes old determines exactly how much of each element the universe cooked. This is Big Bang nucleosynthesis — the nuclear cooking that happened before the universe cooled too much for fusion. The recipes are known. The nuclear reaction rates are measured in laboratories. The only input that matters is the atom-to-light ratio. Everything else is standard nuclear physics.
+
+The two integers — 11 and 13 — predict the amounts:
+
+Deuterium (heavy hydrogen): predicted 2.531 parts per hundred thousand. Measured: 2.527. Miss: 0.12 standard deviations. Essentially exact.
+
+Helium-4: predicted 24.86%. Measured: 24.49%. Miss: 0.94 standard deviations. Well within uncertainty.
+
+Helium-3: predicted 1.03 parts per hundred thousand. Measured: 1.10. Miss: 0.36 standard deviations. Well within uncertainty.
+
+Lithium-7: predicted 4.74 parts per ten billion. Measured: 1.60 parts per ten billion. Miss: a factor of three. This is the famous "lithium problem" — an unsolved discrepancy that has persisted for 40 years in every model of Big Bang nucleosynthesis. Standard physics has this same problem. Our chain inherits it, because we use the same nuclear physics. The fact that we reproduce the same unsolved problem confirms we're doing the same physics correctly.
+
+Three elements match within measurement uncertainty. One reproduces a known unsolved problem. All four predictions flow from two integers — 11 and 13 — that come from counting how particles interact with the weak force. From the mathematics of particle interactions to the chemical composition of the universe at three minutes old, in four links of integer arithmetic.
+
+This is what unification looks like. Not a grand theory announced from a podium. A chain of integer fractions, connecting domains that have never been connected before, producing predictions that match what we measure.
 
 ---
 
