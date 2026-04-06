@@ -99,8 +99,6 @@ Start with a quark. The smallest vortex pattern we can detect. Three quarks sit 
 
 The proton sits inside an atom. The atom is a soliton too — it has its own boundary, about ten thousand times larger than the proton. Inside, electrons exist only in specific shells, jumping between them in exact integer steps. Outside, the atom looks like a single tiny sphere with a charge. Different rules inside than outside. Same principle. The boundary determines which rules apply.
 
-![Proton Donut](../figures/donut.jpg)
-
 The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth. At every level, the same structure — a pattern inside a boundary, with different readings on each side.
 
 The Earth itself is a sphere soliton. Every object in space has a zone of "gravitational influence" (Hill sphere) — a region where its pull is stronger than anything else's. For the Earth, this zone extends about 1.5 million kilometers in every direction. Inside that zone, objects orbit the Earth. Outside it, objects orbit the Sun. The Moon is inside the Earth's zone. That's why it orbits us and not the Sun. The boundary determines the orbit.
@@ -108,6 +106,8 @@ The Earth itself is a sphere soliton. Every object in space has a zone of "gravi
 The Earth sits inside the Sun's zone. The Sun sits inside the galaxy.
 
 The galaxy is a donut soliton, a toroid.
+
+![Proton Donut](../figures/donut.jpg)
 
 ---
 
