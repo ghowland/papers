@@ -10,6 +10,8 @@ Here is what's done, what's close, what's far, and what may be impossible.
 
 ### Done
 
+![Fig. 13: All 53 derived values on a log precision scale, colored by domain — six sub-ppb QED values at left, spanning five orders of magnitude to nuclear and muon results at right.](./figures/book_13_precision_landscape.png)
+
 **The QED chain.** Complete. a_e → α → R∞ → a₀ → μ₀ → f(1S-2S). Six sub-ppb values following α-power scaling. Limited by hadronic light-by-light uncertainty (0.14 ppb) and the a_e measurement (0.11 ppb). Improving either requires experimental advances outside the framework — better lattice QCD calculations or a new Penning trap measurement. The derivation itself is finished. There is nothing more to compute here with current inputs.
 
 **The cosmology-nuclear chain.** Complete. Gauge integers (11, 13) → (22/13)π → Ω_b → η₁₀ → D/H, Y_p, He-3, Li-7. Four primordial abundances from two integers and π. Three match within measurement uncertainty. One reproduces the lithium problem. The BBN physics is standard. The fitting formulas are published. The chain is computed and verified. Extending it would mean adding Li-6, Be-7, or updating the nuclear reaction rates — incremental improvements, not structural advances.

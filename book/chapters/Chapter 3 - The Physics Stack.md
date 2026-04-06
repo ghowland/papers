@@ -226,6 +226,8 @@ The entire 0.44 ppb miss traces to the R∞ precision, which traces to the α pr
 
 One measurement (a_e in a Penning trap at Harvard) produces a prediction for a laser spectroscopy measurement (hydrogen 1S-2S at Garching) that matches to eleven significant digits. Two experiments separated by an ocean, using completely different physics, connected by integer arithmetic.
 
+![Fig. 11: Six sub-ppb values follow exact α-power scaling — quantities proportional to α miss by 0.22 ppb, quantities proportional to α² miss by 0.44 ppb, no exceptions.](./figures/book_11_alpha_scaling.png)
+
 ---
 
 ### Layer 8: The Cosmological Chain
@@ -307,8 +309,6 @@ The Hubble tension — the discrepancy between the local measurement of the expa
 ---
 
 ### Layer 12: The Universe
-
-![Fig. 6: Proton lifetime scales as M_GUT⁴ — SM is excluded by Super-K, CD sits in the Hyper-K sensitivity window (2027-2037), the most concrete falsifiable prediction.](./figures/book_06_proton_decay.png)
 
 The outermost soliton. The vacuum.
 

@@ -136,6 +136,8 @@ The departmental boundaries are real and they serve a purpose — specialization
 
 ### The Ceiling
 
+![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](./figures/book_14_gap_comparison.png)
+
 There's a deeper reason, beneath the wrong numbers and wrong names and wrong departments. It's the assumption that unification requires new physics.
 
 The Grand Unified Theory program of the 1970s established the expectation: to unify the forces, you need new particles, new symmetries, new dynamics at high energy scales. Supersymmetry adds 105 new parameters. String theory adds 10 dimensions. SO(10) adds enormous Higgs representations. The expectation was that unification is hard because the new physics at the GUT scale is complicated and unknown.
