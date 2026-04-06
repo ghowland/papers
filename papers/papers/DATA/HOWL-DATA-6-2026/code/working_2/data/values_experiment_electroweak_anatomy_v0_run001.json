@@ -1,0 +1,176 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_em_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_em",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1000000000",
+        "den": "137035999177"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_coupling_cos2_theta_w_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_coupling_cos2_theta_w",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "38439",
+        "den": "50000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_1_inverse_gut_normalized_mz_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_1_inverse_gut_normalized_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "15802580317094109",
+        "den": "250000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_2_inverse_mz_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_2_inverse_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1584273186485297",
+        "den": "50000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_3_inverse_mz_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_coupling_alpha_3_inverse_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "500",
+        "den": "59"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_pure_gauge_gap_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_pure_gauge_gap",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_gauge_b2_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_gauge_b2",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-22",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_gauge_b3_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_gauge_b3",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-11",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_ym_coefficient_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_ym_coefficient",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-11",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_one_loop_predicted_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_one_loop_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.167232799480875",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_one_loop_miss_pct_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_one_loop_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "27.6737308706535",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    },
+    {
+      "key": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_b_em_v0",
+      "canonical": "experiment_electroweak_anatomy_v0_run001_result_sin2_tW_b_em",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "43",
+        "den": "9"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_electroweak_anatomy_v0_run001"
+    }
+  ]
+}

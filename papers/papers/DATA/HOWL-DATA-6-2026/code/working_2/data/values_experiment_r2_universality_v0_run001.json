@@ -1,0 +1,290 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_r2_universality_v0_run001_result_r2_area_300mm_wafer_m2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_r2_area_300mm_wafer_m2",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0706858347057703",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_r2_area_120mm_disc_m2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_r2_area_120mm_disc_m2",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0113097335529233",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_r2_area_awg12_wire_m2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_r2_area_awg12_wire_m2",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.31030324767104e-6",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_r2_area_12inch_speaker_m2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_r2_area_12inch_speaker_m2",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0730616641500476",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_r2_area_smf28_fiber_m2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_r2_area_smf28_fiber_m2",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.4948665353068e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_wire_r_awg12_per_m_ohm_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_wire_r_awg12_per_m_ohm",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00520828416917088",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_wire_r_awg12_per_m_mohm_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_wire_r_awg12_per_m_mohm",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.20828416917088",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_capacitance_120mm_1mm_pf_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_capacitance_120mm_1mm_pf",
+      "version": 0,
+      "node_type": "value",
+      "value": "100.138504990308",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_rc_product_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_rc_product",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.52655052080485e-16",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_rc_direct_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_rc_direct",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.52655052080485e-16",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_rc_r2_cancels_30_digits_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_rc_r2_cancels_30_digits",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_cd_spot_um_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_cd_spot_um",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.11466666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_cd_area_um2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_cd_area_um2",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.51215537531962",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_dvd_spot_um_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_dvd_spot_um",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.32166666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_dvd_area_um2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_dvd_area_um2",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.37193569348423",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_bluray_spot_um_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_bluray_spot_um",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.581294117647059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_disc_bluray_area_um2_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_disc_bluray_area_um2",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.265388278747938",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_kj_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_kj",
+      "version": 0,
+      "node_type": "value",
+      "value": "483597848416984.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_rk_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_rk",
+      "version": 0,
+      "node_type": "value",
+      "value": "25812.8074593045",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_kj_times_rk_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_kj_times_rk",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.24830181489215e+19",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_kj_rk_equals_2_over_e_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_kj_rk_equals_2_over_e",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_fourier_norm_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_fourier_norm",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.159154943091895",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_gaussian_norm_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_gaussian_norm",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.398942280401433",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_bcs_gap_ratio_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_bcs_gap_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.76387698886205",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_vena_contracta_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_vena_contracta",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.611015470351657",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    },
+    {
+      "key": "experiment_r2_universality_v0_run001_result_vena_contracta_identity_v0",
+      "canonical": "experiment_r2_universality_v0_run001_result_vena_contracta_identity",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_r2_universality_v0_run001"
+    }
+  ]
+}

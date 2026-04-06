@@ -1,0 +1,257 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_gamma_at_0_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_gamma_at_0",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.1969811",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_gamma_at_0p5_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_gamma_at_0p5",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.15470053837925",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p5_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p5",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.53685525897904",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_gamma_at_0p9_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_gamma_at_0p9",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.29415733870562",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p9_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p9",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.04022031356254",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_gamma_at_0p99_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_gamma_at_0p99",
+      "version": 0,
+      "node_type": "value",
+      "value": "7.08881205008336",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p99_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p99",
+      "version": 0,
+      "node_type": "value",
+      "value": "15.5739860954854",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_gamma_at_0p999_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_gamma_at_0p999",
+      "version": 0,
+      "node_type": "value",
+      "value": "22.3662720421292",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p999_v0",
+      "canonical": "experiment_relativity_v0_run001_result_muon_tau_obs_us_at_0p999",
+      "version": 0,
+      "node_type": "value",
+      "value": "49.1382769540163",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_gamma_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_gamma",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.29415733870562",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_years_A_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_years_A",
+      "version": 0,
+      "node_type": "value",
+      "value": "10.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_years_B_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_years_B",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.35889894354067",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_cycles_A_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_cycles_A",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.90097396344952e+18",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_cycles_B_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_cycles_B",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.26450523445191e+18",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_cycle_difference_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_cycle_difference",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.63646872899761e+18",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_twin_B_ages_less_v0",
+      "canonical": "experiment_relativity_v0_run001_result_twin_B_ages_less",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_lightlike_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_lightlike",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_timelike_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_timelike",
+      "version": 0,
+      "node_type": "value",
+      "value": "-8.98755178736818e+16",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_spacelike_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_spacelike",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_light_is_zero_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_light_is_zero",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_time_is_negative_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_time_is_negative",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    },
+    {
+      "key": "experiment_relativity_v0_run001_result_ds2_space_is_positive_v0",
+      "canonical": "experiment_relativity_v0_run001_result_ds2_space_is_positive",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_relativity_v0_run001"
+    }
+  ]
+}

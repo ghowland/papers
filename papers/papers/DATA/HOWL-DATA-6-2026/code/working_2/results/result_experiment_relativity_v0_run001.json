@@ -1,0 +1,121 @@
+{
+  "key": "result_experiment_relativity_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_relativity_v0",
+  "timestamp": "2026-04-06T04:31:02Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "relativity_muon_lifetime_v0",
+      "status": "ok",
+      "output_count": 10
+    },
+    {
+      "key": "relativity_twin_paradox_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "relativity_ds_squared_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Muon gamma at v=0 is 1",
+      "output_key": "result_muon_gamma_at_0_v0",
+      "match_mode": "digits",
+      "reference_source": "SR",
+      "expected": "1.0",
+      "got": "1.0",
+      "digits": 10,
+      "miss_pct": "0.0",
+      "status": "PASS",
+      "detail": "10-digit match, miss 0.0%"
+    },
+    {
+      "label": "Muon gamma at 0.99c ~ 7.09",
+      "output_key": "result_muon_gamma_at_0p99_v0",
+      "match_mode": "digits",
+      "reference_source": "SR",
+      "expected": "7.0888",
+      "got": "7.08881205008336",
+      "digits": 4,
+      "miss_pct": "0.00017",
+      "status": "PASS",
+      "detail": "4-digit match, miss 0.00017%"
+    },
+    {
+      "label": "Twin B ages less than A",
+      "output_key": "result_twin_B_ages_less_v0",
+      "match_mode": "bool",
+      "reference_source": "SR",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "ds^2 = 0 for light (lightlike)",
+      "output_key": "result_ds2_light_is_zero_v0",
+      "match_mode": "bool",
+      "reference_source": "Minkowski",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "ds^2 < 0 for stationary (timelike)",
+      "output_key": "result_ds2_time_is_negative_v0",
+      "match_mode": "bool",
+      "reference_source": "Minkowski",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "ds^2 > 0 for simultaneous (spacelike)",
+      "output_key": "result_ds2_space_is_positive_v0",
+      "match_mode": "bool",
+      "reference_source": "Minkowski",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    }
+  ],
+  "outputs": {
+    "result_muon_gamma_at_0_v0": "1.0",
+    "result_muon_tau_obs_us_at_0_v0": "2.1969811",
+    "result_muon_gamma_at_0p5_v0": "1.15470053837925",
+    "result_muon_tau_obs_us_at_0p5_v0": "2.53685525897904",
+    "result_muon_gamma_at_0p9_v0": "2.29415733870562",
+    "result_muon_tau_obs_us_at_0p9_v0": "5.04022031356254",
+    "result_muon_gamma_at_0p99_v0": "7.08881205008336",
+    "result_muon_tau_obs_us_at_0p99_v0": "15.5739860954854",
+    "result_muon_gamma_at_0p999_v0": "22.3662720421292",
+    "result_muon_tau_obs_us_at_0p999_v0": "49.1382769540163",
+    "result_twin_gamma_v0": "2.29415733870562",
+    "result_twin_years_A_v0": "10.0",
+    "result_twin_years_B_v0": "4.35889894354067",
+    "result_twin_cycles_A_v0": "2.90097396344952e+18",
+    "result_twin_cycles_B_v0": "1.26450523445191e+18",
+    "result_twin_cycle_difference_v0": "1.63646872899761e+18",
+    "result_twin_B_ages_less_v0": true,
+    "result_ds2_lightlike_v0": "0.0",
+    "result_ds2_timelike_v0": "-8.98755178736818e+16",
+    "result_ds2_spacelike_v0": "1.0",
+    "result_ds2_light_is_zero_v0": true,
+    "result_ds2_time_is_negative_v0": true,
+    "result_ds2_space_is_positive_v0": true
+  },
+  "summary": {
+    "derivations_ok": 3,
+    "derivations_err": 0,
+    "comparisons_pass": 6,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}

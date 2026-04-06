@@ -509,6 +509,64 @@ def cmd_search(args):
 
 
 # ================================================================
+# COMMAND: runall
+# ================================================================
+
+def cmd_runall(args):
+    """Run all experiments sequentially."""
+    files = sorted(glob.glob(os.path.join(DATA, "experiment_*.json")))
+    if not files:
+        print("No experiment files found in %s" % DATA)
+        return 1
+
+    print("=" * 70)
+    print("DATA-6 RUN ALL: %d experiments" % len(files))
+    print("=" * 70)
+    print()
+
+    sys.path.insert(0, ROOT)
+    from data_6_run import run_experiment
+
+    total_pass = 0
+    total_fail = 0
+    results = []
+
+    for path in files:
+        fname = os.path.basename(path)
+        name = fname.replace("experiment_", "").replace(".json", "")
+        print(">>> %s" % name)
+        print()
+        try:
+            fail_count = run_experiment(name, DATA)
+        except Exception as e:
+            print("  CRASHED: %s" % e)
+            fail_count = -1
+        if fail_count == 0:
+            total_pass += 1
+            results.append((name, "PASS"))
+        elif fail_count < 0:
+            total_fail += 1
+            results.append((name, "CRASH"))
+        else:
+            total_fail += 1
+            results.append((name, "FAIL(%d)" % fail_count))
+        print()
+
+    print("=" * 70)
+    print("RUN ALL SUMMARY")
+    print("=" * 70)
+    print()
+    for name, status in results:
+        print("  %-50s %s" % (name, status))
+    print()
+    print("  Total: %d pass, %d fail/crash" % (total_pass, total_fail))
+    print()
+    print("=" * 70)
+
+    return 0 if total_fail == 0 else 1
+
+
+# ================================================================
 # COMMAND: info
 # ================================================================
 
@@ -1031,6 +1089,7 @@ def _format_value(val):
 
 COMMANDS = {
     "run": cmd_run,
+    "runall": cmd_runall,
     "diagram": cmd_diagram,
     "validate": cmd_validate,
     "index": cmd_index,
@@ -1050,6 +1109,7 @@ def main():
         print()
         print("Commands:")
         print("  run <experiment>       Run experiment, write result JSON")
+        print("  runall                 Run all experiments sequentially")
         print("  diagram <experiment>   Generate PNGs from diagram specs")
         print("  validate               Check all JSON against node schema")
         print("  index                  Rebuild manifest from all JSON files")
