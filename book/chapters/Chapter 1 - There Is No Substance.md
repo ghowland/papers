@@ -1,3 +1,8 @@
+# The Rational Universe
+## Unification Through the Rectification of Names
+
+![Book Cover: The Rational Universe: Unification Through the Rectification of Names](../book_cover_front.png)
+
 ## Chapter 1: There Is No Substance
 
 Mass is not a thing. It is a reading.
