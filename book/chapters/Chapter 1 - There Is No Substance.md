@@ -21,7 +21,7 @@ That equation is usually read as "F = ma": if you know the mass and the accelera
 
 m = F/a. There is no substance, there is only inertia.  The resistance to change.
 
-![The Nested Universe ](../figures/book_01_nested_solitons.png)
+![The Nested Universe](../figures/book_01_nested_solitons.png)
 
 ---
 
@@ -150,6 +150,8 @@ In the case of dark matter, nobody multiplied (22/13) by π and compared it to t
 Numerology would be picking 22 and 13 because they happen to work. Here, 22 and 13 are the only numbers the counting produces. You can't choose different integers without changing which particles exist.
 
 The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
+
+![Card](../figures/book_08_identity_card.png)
 
 ---
 
