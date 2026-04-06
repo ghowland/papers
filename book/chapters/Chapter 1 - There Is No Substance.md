@@ -241,7 +241,7 @@ The universe itself has this property. From inside — from our position inside 
 
 Nesting does not just mean smaller things sitting inside larger ones. It means each larger boundary changes what can be seen, measured, and treated as natural from within it.
 
-This is what it means for everything to be nested: You're a soliton, standing on the Earth soliton, inside the Earth's gravitational boundary, inside the Sun's gravitational boundary, inside the galaxy donut, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
+**This is what it means for everything to be nested:** You're a soliton, standing on the Earth soliton, inside the Earth's gravitational boundary, inside the Sun's gravitational boundary, inside the galaxy donut, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
 
 ![Flat and Round Soliton Observations](../figures/flat_round.jpg)
 
