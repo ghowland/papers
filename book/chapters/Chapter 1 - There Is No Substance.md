@@ -125,6 +125,8 @@ A toroid is a doughnut shape. The flow circulates through the hole, around the o
 
 This is why the galaxy rotation curves are flat. The outer stars aren't being pulled by invisible particles. They're embedded in a toroidal flow pattern that naturally produces flat rotation curves — because the toroidal circulation has a specific velocity profile determined by the flow geometry, not by a central mass. The stars at the outer edge of the disc aren't moving "too fast for the visible mass." They're moving at exactly the right speed for the toroidal flow.
 
+![Proton Donut](../figures/galaxy_ring.jpg)
+
 So far, this may sound like a story about shapes alone — spheres, donuts, boundaries, and flow. But shapes in physics are not freehand. They come with counts. How many stable components fit inside a boundary. How many ways a pattern can circulate. How many distinct interactions are allowed before a pattern changes into another. Those counts are integers, and the integers set the possible ratios.
 
 The universe is built from integer arithmetic — whole numbers and their ratios. The patterns we've been describing, the solitons and vortices at every scale, are governed by specific integers that come from counting how particles interact with each force. These integers aren't mysterious. They're the result of counting: how many particles exist, how they combine, how they transform. And when you do the counting correctly, the integers predict what we measure.
