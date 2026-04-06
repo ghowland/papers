@@ -21,6 +21,8 @@ That equation is usually read as "F = ma": if you know the mass and the accelera
 
 m = F/a. There is no substance, there is only inertia.  The resistance to change.
 
+![The Nested Universe ](../figures/book_01_nested_solitons.png)
+
 ---
 
 ## Patterns All the Way Down
