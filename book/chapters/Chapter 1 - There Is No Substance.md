@@ -87,6 +87,8 @@ Light is a pure "change pattern" with nothing being changed — a disturbance th
 
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
+![Proton Donut](../figures/light_no_ripple.jpg)
+
 ---
 
 ## Nesting
@@ -125,7 +127,7 @@ A toroid is a doughnut shape. The flow circulates through the hole, around the o
 
 This is why the galaxy rotation curves are flat. The outer stars aren't being pulled by invisible particles. They're embedded in a toroidal flow pattern that naturally produces flat rotation curves — because the toroidal circulation has a specific velocity profile determined by the flow geometry, not by a central mass. The stars at the outer edge of the disc aren't moving "too fast for the visible mass." They're moving at exactly the right speed for the toroidal flow.
 
-![Proton Donut](../figures/galaxy_ring.jpg)
+![Proton Donut](../figures/donut_deep.jpg)
 
 So far, this may sound like a story about shapes alone — spheres, donuts, boundaries, and flow. But shapes in physics are not freehand. They come with counts. How many stable components fit inside a boundary. How many ways a pattern can circulate. How many distinct interactions are allowed before a pattern changes into another. Those counts are integers, and the integers set the possible ratios.
 
@@ -209,7 +211,7 @@ This model says gravity works the same way. G reads one value inside the Earth's
 
 This is the frontier of the map — not settled, not fully derived. We haven't connected G to the gauge integers the way we've connected the dark matter ratio. But (22/13)π matching the Planck satellite measurement to 725 parts per million is the first evidence that gravity connects to the same integer structure as the other forces. The bridge exists. It's just not fully built yet.
 
-![Smoke Ring](../figures/gravity_well.jpg)
+![Gravity Well](../figures/gravity_well.jpg)
 
 ---
 
@@ -233,6 +235,8 @@ A proton looks pointlike from outside — a zero-dimensional object with a charg
 
 A galaxy looks like a dot from a billion light-years away. From inside, it has spiral arms, a bulge, a disc, a halo, 200 billion stars. Dot outside. Structure inside. Two readings, one boundary.
 
+![Proton Donut](../figures/galaxy_ring.jpg)
+
 Push the idea outward far enough and it reaches the largest thing we can talk about. If nested boundaries are a universal feature, then the same inside/outside logic should apply not only to objects in the universe, but to the universe as a whole.
 
 The universe itself has this property. From inside — from our position inside the galaxy, inside our local neighborhood of galaxies, inside the observable horizon — spacetime looks flat. Every measurement confirms it. Perfectly flat. From outside (if "outside" means anything for the universe), the total curvature would read differently. We can't get outside to check. But the flatness reading from inside is exactly what the soliton model predicts.
@@ -241,7 +245,7 @@ Nesting does not just mean smaller things sitting inside larger ones. It means e
 
 This is what it means for everything to be nested: You're a soliton, standing on the Earth soliton, inside the Earth's gravitational boundary, inside the Sun's gravitational boundary, inside the galaxy donut, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
 
-![Smoke Ring](../figures/flat_round.jpg)
+![Flat and Round Soliton Observations](../figures/flat_round.jpg)
 
 ---
 
@@ -337,6 +341,8 @@ This ratio matters because it determines what happened during the first three mi
 Predicted from the baryon density: 6.090. Measured: 6.104. They agree to 0.24%.
 
 This is where the chain meets its sharpest test. If the earlier steps are sound, they should not stop at ratios. They should recover the observed elemental yields of the early universe.
+
+![Light Sphere](../figures/light.jpg)
 
 **Link 3 → Link 4: From the atom-to-light ratio to the chemical composition of the universe.**
 
