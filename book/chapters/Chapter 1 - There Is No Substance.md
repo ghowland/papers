@@ -37,6 +37,8 @@ The air inside the ring is moving differently from the air outside. The boundary
 
 Now try to poke it. It resists. Not much — it's made of air — but it pushes back briefly before breaking. It has a stubbornness. The pattern doesn't want to change. That stubbornness is the same thing you felt when you picked up the rock. Resistance to change. Inertia. The smoke donut has it not because it's made of heavy stuff, but because the circulation pattern resists disruption.
 
+![Smoke Ring](../figures/smoke_ring.jpg)
+
 Now imagine a smoke donut that can't break. A permanent, self-sustaining ring of flow that maintains its circulation forever — not because something holds it together, but because the pattern itself is locked in, like a knot that can't be untied without cutting the rope. In physics, a permanent pattern like this is called a soliton.
 
 A soliton can take different shapes depending on the scale it exists at.
