@@ -23,7 +23,7 @@ m = F/a. There is no substance, there is only inertia.  The resistance to change
 
 ---
 
-### Patterns All the Way Down
+## Patterns All the Way Down
 
 If mass isn't substance, what is it?
 
@@ -51,7 +51,7 @@ You are made of these patterns. Your mass is the total resistance of all your pa
 
 ---
 
-### Three Words for One Universe
+## Three Words for One Universe
 
 The standard language of physics uses dozens of terms — field, particle, wave, force, energy, matter, radiation, spacetime, vacuum — and every term carries centuries of baggage. "Particle" makes you think of a tiny ball. "Field" makes you think of an invisible substance filling space. "Force" makes you think of a hand pushing. Every one of these images is wrong, and every one makes unification harder to see.
 
@@ -85,7 +85,7 @@ This is the Rectification of Names. Physics already has all the correct equation
 
 ---
 
-### Nesting
+## Nesting
 
 Everything is nested. Like a Russian nesting doll, every component of the universe sits inside something larger.
 
@@ -103,7 +103,7 @@ The galaxy is a donut soliton, a toroid.
 
 ---
 
-### The Toroid
+## The Toroid
 
 ![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](../figures/book_02_toroidal_galaxy.png)
 
@@ -131,7 +131,11 @@ That sounds too simple, so to say clearly what is being claimed: This is not num
 
 Where do the integers 22 and 13 come from? They come from counting how particles interact with the weak force — the same force responsible for radioactive decay. The number 11 appears when you calculate how the weak force changes strength at different scales. Double it: 22. 
 
-Why 22?  Because the 22 is 2 × 11 because the predicted "Cabibbo Doublet" particle is vector-like — it has both left-handed and right-handed components, each contributing 11, so the total contribution is doubled.
+### The Predicted "Cabibbo Doublet" particle
+
+Why double it?  Because the 22 is 2 × 11 because the predicted "Cabibbo Doublet" particle is vector-like — it has both left-handed and right-handed components, each contributing 11, so the total contribution is doubled.
+
+Most matter particles are lopsided — they only interact using one 'hand,' the left. This is one of the deep asymmetries of nature, and it's why physicists call normal matter 'chiral,' meaning handed. The Cabibbo Doublet is different. It interacts with both hands — left and right — which is why physicists call it 'vector-like.' Each hand contributes 11 to the weak force count, so the total is 2 × 11 = 22.
 
 To a non-physicist, “counting interactions” can sound vague, so here is the simple version. In particle physics, each family of particles contributes in a specific, countable way to how a coupling changes with scale. You do not guess these contributions. You add them. The result is a total, and that total is an integer.
 
@@ -141,13 +145,15 @@ This is the one place where the argument depends on a new proposed ingredient, s
 
 In the case of dark matter, nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
 
+Numerology would be picking 22 and 13 because they happen to work. Here, 22 and 13 are the only numbers the counting produces. You can't choose different integers without changing which particles exist.
+
 The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
 
 ---
 
-### Saturn's Rings and the Asteroid Belt
+## Saturn's Rings and the Asteroid Belt
 
-#### Gaps in the Rings
+### Gaps in the Rings
 
 ![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](../figures/book_10_bessel_zeros.png)
 
@@ -167,7 +173,7 @@ Saturn’s rings, the asteroid belt, and the galactic disc differ in scale, but 
 
 ---
 
-### Gravity Is a Reading
+## Gravity Is a Reading
 
 Gravity is not a force. Einstein showed this in 1915. Objects in a gravitational field aren't being pushed or pulled — they're following the most natural path through curved space. The apple doesn't fall because the Earth pulls it. The apple falls because the space between it and the Earth is curved, and "down" is the straightest line available. The only force you feel standing on the ground is the ground pushing up on your feet, preventing you from following your natural path — which would take you straight through the floor.
 
@@ -193,7 +199,7 @@ This is the frontier of the map — not settled, not fully derived. We haven't c
 
 ---
 
-### The Flat Inside and the Curved Outside
+## The Flat Inside and the Curved Outside
 
 ![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](../figures/book_09_flat_curved.png)
 
@@ -223,7 +229,7 @@ This is what it means for everything to be nested: You're a soliton, standing on
 
 ---
 
-### The Hierarchy of Readings
+## The Hierarchy of Readings
 
 ![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](../figures/book_01_nested_solitons.png)
 
@@ -262,7 +268,7 @@ Every layer follows the same rule. Inside reads different from outside. The boun
 
 ---
 
-### The Dark Matter Ratio
+## The Dark Matter Ratio
 
 In standard physics, the ratio of dark matter to visible matter is what's called a free parameter. A free parameter is a number that physics can measure but not explain — it has no formula, no derivation, no reason to be what it is. You go to the universe, you measure it, and you write down what you get. There's no equation that predicts what the number should be.
 
@@ -274,9 +280,15 @@ That's two integers and one geometric constant. Nothing else.
 
 To understand where 22 and 13 come from, recall what we described earlier: each type of particle contributes a specific, countable amount to how a force changes strength at different scales. You don't guess these contributions. You count them. You add them up. The totals are integers.
 
+At this point the argument shifts from cosmology back to particle physics. The claim is simple: some numbers are not fitted to data after the fact, but arise from counting the allowed contributions to how a coupling changes with scale.
+
 The number 11 comes from counting how the weak force — the force responsible for radioactive decay — changes strength as you zoom in. This is the Yang-Mills coefficient, a number that appears in every textbook on particle physics. It has been known since the 1970s. It is not controversial. Double it: 22.
 
-The number 13 comes from modifying that count. When you add the Cabibbo Doublet — the single additional particle identified by this research — the weak force count changes. The total shifts from 19 to 13. This is exact. It comes from the same kind of counting that produced 11. One particle added, one integer changed.
+This is the point where the model departs from the standard count. Add the extra particle, and the integer changes. The issue is not the arithmetic but the legitimacy of the addition.
+
+The number 13 comes from modifying that count. When you add the Cabibbo Doublet, the two-handed particle we introduced earlier and the single additional particle identified by this research — the weak force count changes. The total shifts from 19 to 13. This is exact. It comes from the same kind of counting that produced 11. One particle added, one integer changed.
+
+Counting gives the integers, but the large-scale shape of the system also matters. Once the galaxy is treated as a toroid, geometry enters the result, and with geometry comes π.
 
 π is the geometric constant — the ratio of a circle's circumference to its diameter. It appears here because the toroidal (donut) geometry of the galaxy introduces circular structure into the calculation, just as it introduces π/4 into pipe flow and antenna equations.
 
@@ -290,11 +302,15 @@ This is not a fit. Nobody adjusted 22 or 13 or π to match the measurement. The 
 
 But the chain doesn't stop at the dark matter ratio. The ratio is just the first link.
 
+The dark matter ratio is not the end of the argument. It is the first quantity in a chain, and once that first link is fixed, the rest can be carried forward by ordinary cosmological relations.
+
 **Link 1 → Link 2: From dark matter ratio to visible matter density.**
 
 If you know how much dark matter there is relative to visible matter (5.3165), and you know the total amount of dark matter (measured by Planck), you can divide to get the amount of visible matter. This is called the baryon density — "baryon" is just the physicist's word for ordinary matter: protons, neutrons, atoms, everything you can see and touch and build telescopes out of. The baryon density is the fraction of the universe made of this ordinary stuff.
 
 Predicted from (22/13)π: 0.04904. Measured by Planck: 0.0490. They agree to 727 parts per million.
+
+The next step moves from cosmic inventory to early-universe conditions. In standard cosmology, those are not separate subjects but successive descriptions of the same system.
 
 **Link 2 → Link 3: From visible matter density to the atom-to-light ratio.**
 
@@ -303,6 +319,8 @@ After the Big Bang, the universe was filled with both atoms and light — an eno
 This ratio matters because it determines what happened during the first three minutes after the Big Bang. In those three minutes, the universe was hot enough and dense enough to fuse hydrogen into heavier elements. How far that fusion went — how much deuterium, how much helium, how much lithium was produced — depended on exactly how many atoms were available per photon. More atoms per photon means more collisions, more fusion, more heavy elements.
 
 Predicted from the baryon density: 6.090. Measured: 6.104. They agree to 0.24%.
+
+This is where the chain meets its sharpest test. If the earlier steps are sound, they should not stop at ratios. They should recover the observed elemental yields of the early universe.
 
 **Link 3 → Link 4: From the atom-to-light ratio to the chemical composition of the universe.**
 
@@ -324,7 +342,7 @@ This is what unification looks like. Not a grand theory announced from a podium.
 
 ---
 
-### What You've Just Read
+## What You've Just Read
 
 This chapter has given you the complete model. Everything else in this book fills in the details, the history, and the remaining questions. But the model is here:
 
