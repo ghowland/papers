@@ -225,27 +225,38 @@ This is what it means for everything to be nested: You're a soliton, standing on
 
 ![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](../figures/book_01_nested_solitons.png)
 
-Here is the nesting, from smallest to largest:
+By now the pieces have been introduced one at a time. What follows is not a new argument, but a summary. The point is to let the whole ladder be seen at once, from the smallest boundaries we can probe to the largest boundary we can infer.
 
-**Quarks** — the innermost vortices. Confined inside hadrons. Their reading of the strong coupling is α_s ≈ 1 (strong confinement). From outside the hadron, α_s ≈ 0.118 (weak, perturbative).
+Here is the complete nesting, from smallest to largest. At every level, the same principle: a boundary with different readings on each side.
 
-**Hadrons (protons, neutrons)** — soliton boundaries at ~1 femtometer. Inside: quarks and gluons. Outside: nuclear physics. The reading that changes at this boundary: color confinement.
+**Quarks** — the smallest vortices we can detect. Confined inside protons. Inside the proton boundary, the force between quarks is overwhelming — nothing gets out. Outside, that same force is gentle enough that protons sit next to each other in atomic nuclei.
 
-**Nuclei** — soliton boundaries at ~1-10 femtometers. Inside: protons and neutrons bound by residual strong force. Outside: atomic physics. The reading that changes: nuclear binding energy.
+**Protons and neutrons** — donut solitons about 80 billion times smaller than a human hair. Inside: quarks and intense circulation. Outside: the calmer world of nuclear physics.
 
-**Atoms** — soliton boundaries at ~0.1 nanometers. Inside: quantum mechanics, discrete energy levels, the electron cloud. Outside: chemistry, molecular bonds. The reading that changes: the electromagnetic coupling structure (from discrete atomic spectra to continuous molecular bands).
+**Nuclei** — clusters of protons and neutrons bound together. Inside: nuclear forces hold everything tight. Outside: the electron cloud and atomic physics. The boundary is where nuclear rules end and electromagnetic rules begin.
 
-**Molecules, cells, organisms** — boundaries at nanometer to meter scales. Each has an inside and an outside. Each has readings that change at the boundary. We call this "biology" and "chemistry" but it's the same boundary physics at different scales.
+**Atoms** — sphere solitons about ten thousand times larger than a proton. Inside: electrons in specific shells, jumping in exact integer steps. Outside: chemistry. The boundary is where quantum rules give way to the rules of molecular bonding.
 
-**Planets** — soliton boundaries at the Hill sphere (~1.5 million km for Earth). Inside: objects orbit the planet. Outside: objects orbit the star. The reading that changes: which gravitational ground state you're in.
+**Molecules, cells, organisms** — boundaries at every scale from nanometers to meters. Each has an inside and an outside. Each has readings that change at the boundary. We call these different scales "chemistry" and "biology," but it's the same boundary physics continuing upward.
 
-**Stars** — soliton boundaries at the stellar Hill sphere (~1-2 light-years for the Sun). Inside: the planetary system. Outside: interstellar space. The reading that changes: gravitational binding to the star.
+Up to this point the nesting has moved through the familiar small scales of matter. The same logic now extends upward into the gravitational world, where the boundary is not a hard surface but the region inside which one larger pattern dominates the motion of smaller ones.
 
-**Galaxies** — toroidal soliton boundaries. The disc is the equatorial cross-section. The halo is the toroidal flow. Inside: stars orbit in the disc. The toroidal flow provides the "extra" gravitational reading that we call dark matter. Outside: intergalactic space.
+**Planets** — sphere solitons with gravitational boundaries extending about 1.5 million kilometers for Earth. Inside: objects orbit the planet. Outside: objects orbit the star. The reading that changes: which ground state you fall toward.
 
-**The Universe** — the outermost soliton boundary. The vacuum. Inside: all physics, all readings, all measurements. The cosmological constant Λ is the vacuum reading — the ground state energy of the outermost boundary. It's tiny (10⁻¹²² in Planck units) because it's the reading of the largest possible soliton, and larger solitons have smaller boundary energy densities.
+**Stars** — sphere solitons with gravitational boundaries extending one to two light-years for the Sun. Inside: the planetary system. Outside: interstellar space.
+
+At galactic scale the shape changes, but the rule does not. Instead of a sphere with a surrounding zone, the larger pattern is a toroid: a circulating donut whose visible disc and surrounding halo are two parts of one flow.
+
+**Galaxies** — donut solitons. The disc is the cross-section. The halo is the toroidal flow. Inside: stars orbit in the disc, carried by the flow. The flow provides the "extra" gravitational reading that cosmologists call dark matter. Outside: intergalactic space.
+
+The final step is the largest one. If nesting does not stop at stars or galaxies, then the whole observable universe must also be treated as a boundary with an inside reading. At that point even the vacuum is no longer empty background, but the interior of the outermost structure.
+
+**The Universe** — the outermost soliton. The vacuum itself. Inside: all physics, all readings, all measurements. The energy of this outermost boundary — what physicists call the cosmological constant — is almost unimaginably small. It's tiny because it's the ground state energy of the largest possible soliton, and the larger the soliton, the smaller its boundary energy.
+
+Every layer follows the same rule. Inside reads different from outside. The boundary determines which rules apply. The shapes are spheres and donuts, nested inside each other, from quarks to the universe. One structure. One principle. Every scale.
 
 ![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](../figures/book_12_hydrogen_two_path.png)
+
 
 ---
 
