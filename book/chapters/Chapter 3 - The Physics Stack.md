@@ -152,37 +152,37 @@ All from three fractions. All exact. All counted, not measured.
 
 ![Fig. 3: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement from one additional representation.](../figures/book_03_coupling_running.png)
 
-One additional particle changes everything.
+One additional mathematically forced particle changes everything.
 
-The Cabibbo Doublet (CD) is a vector-like quark doublet — a pair of quarks (one with charge +2/3, one with charge −1/3) that transforms as (3, 2, 1/6) under the gauge group. This means: it carries color charge (the 3, under SU(3)), it's a weak doublet (the 2, under SU(2)), and it has hypercharge 1/6 (under U(1)).
+The Cabibbo Doublet is a pair of quarks — one with charge +2/3, one with charge −1/3 — that interacts with all three forces (strong, weak and EM). It carries color charge (it feels the strong force), it's a weak doublet (it feels the weak force as a pair), and it has a small hypercharge of 1/6 (it feels the electromagnetic-type force). In the gauge group notation from Layer 1, its quantum numbers are written (3, 2, 1/6) — three integers, one for each symmetry.
 
-"Vector-like" means both left-handed and right-handed components have the same gauge quantum numbers. Standard Model fermions are chiral — their left and right components transform differently. The CD is vector-like — both components transform the same way. This is important because vector-like fermions don't spoil the mathematical consistency (anomaly cancellation) of the Standard Model.
+What makes it special is its handedness. Standard Model particles are lopsided — their left-handed and right-handed components interact differently. The Cabibbo Doublet is symmetric — both hands interact the same way. Physicists call this "vector-like." This symmetry is important for two reasons: it doubles the Cabibbo Doublet's contribution to the force running rates (both hands count), and it preserves the mathematical consistency of the Standard Model (it doesn't break anything that already works).
 
-The CD shifts the three beta coefficients by exactly:
+The Cabibbo Doublet shifts the three force running rates by three small exact fractions:
 
-Δb₁ = 1/15 (from the U(1) hypercharge Y = 1/6)
+The electromagnetic running rate shifts by 1/15 (from its small hypercharge of 1/6).
 
-Δb₂ = 1 (from the SU(2) doublet: two contributions of 1/2)
+The weak running rate shifts by 1 (from its doublet structure, both hands contributing 1/2).
 
-Δb₃ = 1/3 (from the SU(3) triplet: two contributions of 1/6)
+The strong running rate shifts by 1/3 (from its color triplet structure, both hands contributing 1/6).
 
-These three Fractions — 1/15, 1, 1/3 — are the entire new physics content. Three numbers. From them:
+Three fractions. 1/15, 1, and 1/3. These are the entire new content. One particle, three numbers. From them, everything follows:
 
-The modified betas become b₁ = 25/6, b₂ = −13/6, b₃ = −20/3.
+The modified running rates become b₁ = 25/6, b₂ = −13/6, b₃ = −20/3.
 
 The gap ratio becomes 38/27 (exact).
 
-The unification scale rises from 10¹³·⁸ to 10¹⁵·⁶ (above the proton decay bound).
+The unification scale rises into the range testable by Hyper-Kamiokande (starting 2027).
 
-The three couplings converge within 0.064% at two-loop.
+The three forces converge within 0.064% at two-loop precision.
 
-sin²θ_W is predicted at 12 ppm.
+The weak mixing angle is predicted to 12 parts per million.
 
-α_s is predicted at 0.33%.
+The strong force strength is predicted to 0.33%.
 
-The dark matter ratio (22/13)π emerges from the integer 13 (in b₂ = −13/6) and the integer 11 (in the Yang-Mills coefficient −11/3).
+The dark matter ratio (22/13)π emerges from the integer 13 (in the modified weak running rate −13/6) and the integer 11 (the Yang-Mills coefficient), doubled to 22 because the Cabibbo Doublet is two-handed.
 
-Nobody chose this particle by hand. It was selected by a mathematical criterion: which BSM representation preserves the gap ratio as an exact Fraction? Out of all possible representations — singlets, doublets, triplets, in every combination of SU(3) × SU(2) × U(1) quantum numbers — only one gives a gap ratio that is an exact Fraction with small integers: (3, 2, 1/6) vector-like. The gap ratio is 38/27. Every other representation either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
+Nobody chose this particle by hand. It was selected by a mathematical criterion: out of all possible new particles, in every combination of strong, weak, and electromagnetic charges, which one produces a gap ratio that is an exact fraction with small, physically meaningful integers? The answer is unique. Only (3, 2, 1/6) vector-like gives 38/27. Every other candidate either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
 
 The integers chose the particle. The particle predicts the couplings. The couplings predict the chemistry.
 
