@@ -86,7 +86,7 @@ There's an obvious objection: what about π? What about ζ(3) = 1.202...? These 
 
 The answer is Q335.
 
-Q335 is the name for a specific representation of transcendental constants as exact rational numbers at 335 decimal digits of precision. The idea is simple. π is transcendental — it cannot be expressed as a ratio of integers. But π can be computed to any desired number of decimal places. At 335 digits, π is known to a precision of 10⁻³³⁵. The Planck length — the smallest meaningful distance in physics — corresponds to a precision of about 10⁻³⁵. So 335 digits is 300 orders of magnitude more precise than any physical measurement could ever require.
+Q335 is the name for a specific representation of transcendental constants as exact rational numbers using 2³³⁵ as a shared denominator, giving about 101 decimal digits of precision. The idea is simple. π is transcendental — it cannot be expressed as a ratio of integers. But π can be computed to any desired number of digits. Using 2³³⁵ as the denominator, the stored fraction matches π to 101 decimal places. The Planck length — the smallest meaningful distance in physics — requires only about 35 decimal digits. So Q335 provides 65 orders of magnitude more precision than any physical measurement could ever require.
 
 The Q335 representation stores π as a Fraction with a numerator and denominator each having about 335 digits. This Fraction is not equal to π — nothing rational is equal to π — but it differs from π by less than 10⁻³³⁵. For every physical computation, this difference is zero. Not approximately zero. Operationally zero. No experiment, no measurement, no observation could ever detect the difference.
 
@@ -265,7 +265,7 @@ Instead of starting from a grand theory and working down to predictions, the wor
 
 Instead of working in one department, it crossed all of them. The same derivation chain touched QED, electroweak physics, gauge theory, cosmology, nuclear physics, atomic physics, and precision spectroscopy. Each crossing was a test. Each test could have failed. None did.
 
-Instead of using decimal arithmetic, it used fraction arithmetic. Every integer in every beta coefficient was preserved through every computation. No rounding errors. No floating-point comparisons. No lost structure.
+Instead of using decimal arithmetic, it used fraction arithmetic. Every integer in every beta coefficient was preserved through every computation. No rounding errors entering the chain until the final comparison. No intermediate floating-point comparisons. No lost structure.
 
 Instead of working on paper, it used a versioned database of 2,237 stored values. Every fraction, every measurement, every intermediate result was tracked and testable. The system computed predictions from the stored values, compared every output to measurement, and reported PASS or FAIL automatically. Bugs were found by the comparisons, not by intuition. The k₁ normalization bug, one inverted fraction that made all two-loop predictions wrong for weeks, was found by the system in three diagnostic runs.
 
