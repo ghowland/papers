@@ -102,7 +102,7 @@ The weak mixing angle, sin²θ_W = 0.231, is the reading that measures how much 
 
 Below this soliton boundary: three separate forces with three separate readings. The electromagnetic, weak, and strong forces have different strengths, different behaviors, and appear to follow different rules. This is the world we live in and measure.
 
-Above this soltion boundary: one force with one reading. All three forces converge to the same strength — about 1/42. They were always the same force. Below the unification boundary, the different soliton boundaries between us and that scale make them read differently. Above it, the differences disappear.
+Above this soliton boundary: one force with one reading. All three forces converge to the same strength — about 1/42. They were always the same force. Below the unification boundary, the different soliton boundaries between us and that scale make them read differently. Above it, the differences disappear.
 
 The three forces meet at this boundary to within 0.064%. That's a gap of 0.027 out of a reading of 42.135. This near-exact convergence is what the Cabibbo Doublet's integer fractions produce at two-loop precision. Without the Cabibbo Doublet, the forces miss each other by 218 times more. With it, they nearly touch. The remaining 0.064% gap is where the next level of precision begins, which is the remaining work under this model.
 
@@ -348,8 +348,8 @@ Here is the list. Pin it to your wall.
 
 | Layer | What it is | Soliton boundary | Key reading | Integer source |
 |---|---|---|---|---|
-| 0 | Vacuum | Universe (outermost) | Λ = 10⁻¹²² (Planck) | — |
-| 1 | Quantum fields | — (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group |
+| 0 | Vacuum soliton | Universe (outermost) | Λ = 10⁻¹²² (Planck) | — |
+| 1 | Quantum field solitons | — (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group |
 | 2 | Stable solitons | Particle boundaries | Quantum numbers (exact integers) | Representation theory |
 | 3 | Boundary readings | Every soliton boundary | α, α_s, sin²θ_W (scale-dependent) | Beta coefficients |
 | 4 | Running | Between boundaries | β₁ = 41/10, β₂ = −19/6, β₃ = −7 | Particle counting |
