@@ -120,25 +120,31 @@ This is why G, the gravitational constant, has the largest measurement scatter o
 
 ### Layer 4: The Running
 
-Couplings run. They change value depending on the energy scale at which you measure them. This is not a theoretical speculation — it's measured. The electromagnetic coupling α has been measured at multiple energy scales:
+Force strengths "run". They change value depending on how closely you look. This is not theoretical speculation — it's measured.
 
-At zero energy (atomic physics): α = 1/137.036
+This creates a problem with the word "constant." Physics calls these numbers "coupling constants," but they aren't constant. They change with scale. A constant that changes isn't a constant — it's a reading. This is one of the naming errors the Rectification addresses. Calling a running value a "constant" makes physicists treat it as fixed, when it's actually a running reading that depends on which soliton boundary you're measuring from.
 
-At 1 GeV (τ lepton decay): α ≈ 1/134
+The electromagnetic force strength has been measured at multiple energy scales, and it gives a different reading at each one:
 
-At 91 GeV (Z boson mass): α = 1/127.95
+At everyday energies (atomic physics): about 1/137
 
-At 200 GeV (LEP2): α ≈ 1/126
+At medium energies (around the tau lepton): about 1/134
 
-The coupling gets stronger at higher energy. This is because the vacuum is filled with virtual electron-positron pairs that screen the electric charge. At low energy (large distance), you see the screened charge. At high energy (short distance), you penetrate the screening cloud and see more of the bare charge.
+At high energies (the Z boson scale): about 1/128
 
-The rate of running is determined by the beta function — the derivative of the coupling with respect to the energy scale. For α, the one-loop beta coefficient is b₁ = 41/10 (including the GUT normalization). The 41 counts: 3 generations × (1/6 + 8/3 + 1 + 3/2 + 1/2) from quarks and leptons + 1/10 from the Higgs. Every term is a Fraction from representation theory. The 41 is an integer because it counts quantum number contributions.
+At very high energies (the LEP2 collider): about 1/126
 
-The strong coupling α_s runs in the opposite direction — it gets weaker at higher energy. This is asymptotic freedom, discovered by Gross, Wilczek, and Politzer in 1973 (Nobel Prize 2004). The one-loop beta coefficient is b₃ = −7. The negative sign means the coupling decreases with energy. The 7 comes from: −11 (gluon self-interaction, the Yang-Mills contribution) + 4 (quark contributions from 6 flavors). The −11 is the most important integer in the Standard Model — it's what makes QCD confining at low energy and perturbative at high energy.
+The force gets stronger the closer you look. Why? Because the vacuum is not truly empty — it's filled with fleeting particle-antiparticle pairs that pop in and out of existence. These pairs act like a screen around every electric charge, partially hiding its true strength. At low energy (far away), you see the screened charge. At high energy (close up), you punch through the screen and see more of the bare charge underneath. The reading changes because the screen is thinner at closer range.
 
-The weak coupling runs too, with b₂ = −19/6. The −19 comes from: −22/3 (gauge boson self-interaction) + 4 (fermion contributions) + 1/6 (Higgs contribution).
+How fast a force runs is set by its running rate — the beta coefficient we met in Chapter 2. For the electromagnetic force, this running rate is b₁ = 41/10. The 41 is an integer because it counts particle contributions. Every quark, every lepton, and the Higgs boson each contribute a specific fraction to the total, and when you add them all up, the numerator is 41. The denominator 10 comes from the symmetry normalization. The number 41/10 is not measured. It is counted.
 
-These three numbers — 41/10, −19/6, −7 — determine the entire structure of coupling unification. Their ratios determine the gap ratio. Their values determine the unification scale. Their modifications by new particles determine which BSM representations improve unification. All from three Fractions. All exact.
+The strong force runs in the opposite direction — it gets weaker at higher energy, not stronger. This is called asymptotic freedom, discovered by Gross, Wilczek, and Politzer in 1973 (Nobel Prize 2004). Its running rate is b₃ = −7. The negative sign means the force gets weaker as you zoom in. The 7 comes from two contributions pulling in opposite directions: −11 from the gluon field's self-interaction (the Yang-Mills coefficient we met in the dark matter ratio) and +4 from the quarks. The −11 wins, making the total negative. This single integer, 11, is arguably the most important number in the Standard Model. It is what makes the strong force confining at low energy (trapping quarks inside protons) and calculable at high energy (allowing precise predictions).
+
+The weak force runs too. Its running rate is b₂ = −19/6. The −19 comes from: −22/3 from gauge boson self-interaction, +4 from fermion contributions, and +1/6 from the Higgs. Three terms, each counted from the particle content, summing to −19 in the numerator.
+
+These three fractions — 41/10, −19/6, and −7 — determine the entire structure of force unification. Their ratios determine the gap ratio. Their values determine the energy at which the forces converge. Adding a new particle changes these fractions by specific amounts, and those amounts determine whether unification improves or worsens. The Cabibbo Doublet shifts them by 1/15, 1, and 1/3 — the only shifts that make the gap ratio an exact fraction with small meaningful integers.
+
+All from three fractions. All exact. All counted, not measured.
 
 ---
 
