@@ -8,18 +8,6 @@ By the end you will have a list you can recite. Every element of physics from qu
 
 ### Layer 0: The Vacuum
 
-The vacuum is not empty. The vacuum is the ground state — the lowest energy configuration of everything. It's what you get when you remove all particles, all radiation, all matter. What's left is not nothing. What's left is a seething, fluctuating quantum field at its minimum energy.
-
-Think of a still lake. No waves, no boats, no fish jumping. The surface is flat. But zoom in and the surface is trembling — tiny ripples from thermal motion, from wind at the molecular level, from quantum uncertainty. The lake is "empty" of boats but not empty of water. The vacuum is "empty" of particles but not empty of field.
-
-The vacuum has energy. The cosmological constant Λ — the energy density of empty space — is measured at 5.88 × 10⁻³⁰ g/cm³. This is absurdly small. In natural units (Planck units), it's 10⁻¹²² — a number so tiny that explaining it has been called "the worst prediction in physics" (quantum field theory naively predicts 10¹²⁰ times more vacuum energy than observed).
-
-In our language: the vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. It's small because the universe is the largest possible soliton, and larger solitons have smaller boundary energy densities. A proton's boundary energy is ~1 GeV over ~1 femtometer. The universe's boundary energy is ~10⁻⁴⁷ GeV⁴ over ~10²⁶ meters. The ratio of sizes is 10⁴¹. The ratio of energy densities scales accordingly.
-
-The vacuum is Layer 0. Everything else is a pattern in the vacuum.
-
-### Layer 0: The Vacuum
-
 The vacuum is not empty. The vacuum is the ground state — the lowest energy configuration of everything. It's what you get when you remove all particles, all radiation, all matter. What's left is not nothing. What's left is a trembling quantum field at its minimum energy.
 
 Think of a still lake. No waves, no boats, no fish jumping. The surface looks flat. But zoom in and the surface is trembling — tiny ripples from thermal motion, from wind at the molecular level, from quantum uncertainty. The lake is "empty" of boats but not empty of water. The vacuum is "empty" of particles but not empty of field.
