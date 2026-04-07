@@ -256,3 +256,21 @@ The physics was already there. The integers were already there. The measurements
 That's what this book describes. Not new physics. New organization. The Rectification of Names applied to the entire Standard Model, producing 53 derived values across eight physics domains from 13 measurements and integer arithmetic.
 
 The universe was always rational. We were just using the wrong number system to see it.
+
+### What Changed
+
+What changed was not the physics. What changed was the method.
+
+Instead of starting from a grand theory and working down to predictions, the work started from the integers and worked outward to comparisons. Instead of proposing a master equation, it proposed a single particle and tested its consequences across every domain that standard physics could reach.
+
+Instead of working in one department, it crossed all of them. The same derivation chain touched QED, electroweak physics, gauge theory, cosmology, nuclear physics, atomic physics, and precision spectroscopy. Each crossing was a test. Each test could have failed. None did.
+
+Instead of using decimal arithmetic, it used fraction arithmetic. Every integer in every beta coefficient was preserved through every computation. No rounding errors. No floating-point comparisons. No lost structure.
+
+Instead of working on paper, it used a versioned database of 2,237 stored values. Every fraction, every measurement, every intermediate result was tracked and testable. The system computed predictions from the stored values, compared every output to measurement, and reported PASS or FAIL automatically. Bugs were found by the comparisons, not by intuition. The k₁ normalization bug, one inverted fraction that made all two-loop predictions wrong for weeks, was found by the system in three diagnostic runs.
+
+The physics was already there. The integers were already there. The measurements were already there. What was missing was the method: start from integers, work in fractions, cross all departments, test everything against measurement, iterate.
+
+That's what this book describes. Not new physics. New organization. The Rectification of Names applied to the entire Standard Model, producing 53 derived values across eight physics domains from 13 measurements and integer arithmetic.
+
+The universe was always rational. We were just using the wrong number system to see it.
