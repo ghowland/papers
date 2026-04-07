@@ -16,29 +16,35 @@ Three reasons: the wrong numbers, the wrong names, and the wrong departments.
 
 ### The Wrong Numbers
 
-Physics runs on real numbers. Decimal numbers. Floating point. Every measurement is reported as a decimal: α = 0.0072973525693, sin²θ_W = 0.23122, G = 6.674 × 10⁻¹¹. Every computation uses real-number arithmetic. Every comparison rounds to a certain number of significant figures and reports a percentage miss.
+Physics runs on real numbers. Decimal numbers. Floating point. Every measurement is reported as a decimal: the strength of electromagnetism is 0.0072973525693, the weak mixing angle is 0.23122, the gravitational constant is 6.674 × 10⁻¹¹. Every computation uses decimal arithmetic. Every comparison rounds to a certain number of significant figures and reports a percentage miss.
 
-Real numbers built modern physics. They built the Standard Model. They put humans on the Moon and protons through the LHC. Real numbers work.
+Real numbers built modern physics. They built the Standard Model. They put humans on the Moon and protons through the Large Hadron Collider (LHC). Real numbers work.
 
-But real numbers cannot reach equality.
+But real numbers cannot reach equality. When you compare two decimals, you can say they're close. You can say they match to six digits. But you can never say they're equal — because there's always another digit to check, and you can never check them all.
 
-Take the gap ratio — the number that determines whether the three gauge couplings converge to a single point at high energy. In the Standard Model, this ratio is 218/115. With the predicted "Cabibbo Doublet", it becomes 38/27. In real numbers, these are:
+Take the "gap ratio" — the number that determines whether the three forces (electromagnetic, weak, and strong) converge to a single strength at high energy. You met this ratio in Chapter 1: it comes from dividing one force's running rate against another's, and it tells you whether the three forces meet at a point. In the Standard Model, this ratio is 218/115. With the predicted Cabibbo Doublet, it becomes 38/27. In decimals, these are:
 
 218/115 = 1.89565217391304347826...
 
 38/27 = 1.40740740740740740740...
 
-The decimal representations repeat forever. They never terminate. They're exact as fractions, but as decimals, they're infinite. And infinity is where equality hides.
+The decimal representations repeat forever. They never terminate. They're exact as fractions, but as decimals, they're infinite. And infinity is where equality is abandoned.
 
-When a physicist computes the gap ratio from measured couplings, they get something like 1.358192684144844. They compare this to 38/27 = 1.407407... and see a miss of about 3.5%. They note the miss and move on. The miss is larger than the measurement uncertainty, so they conclude the couplings don't exactly unify. The standard conclusion in every GUT textbook: "the Standard Model gauge couplings do not unify."
+Here's where it goes wrong. When a physicist computes the gap ratio from measured force strengths, they get something like 1.358192684144844. They compare this to 38/27 = 1.407407... and see a miss of about 3.5%. They note the miss and move on. The miss is larger than the measurement uncertainty, so they conclude the forces don't exactly unify. The standard conclusion in every textbook on grand unification: "the Standard Model gauge couplings do not unify."
 
-But the comparison was done in the wrong number system. The measured gap ratio 1.358... doesn't match 38/27 because the measured couplings include the running of the Standard Model betas. The 38/27 is the gap ratio with the Cabibbo Doublet's betas included. The comparison should be: does the Cabibbo Doublet modified ratio (38/27) produce the correct coupling predictions? The answer requires computing sin²θ_W and α_s from the 38/27 structure and comparing to measurement.
+But the comparison was done in the wrong number system. The measured number 1.358 is the gap ratio calculated from today's known particles — without the newly predicted Cabibbo Doublet. The predicted number 38/27 is what you get when you include the Cabibbo Doublet in the count. Comparing them directly is like comparing a recipe's predicted cooking time with the actual time when you left out one major ingredient — the numbers won't match because you're not comparing the same thing.
 
-That computation gives sin²θ_W = 0.231223 (matching measured 0.23122 at 12 parts per million) and α_s = 0.11838 (matching measured 0.1180 at 0.33%). These matches are invisible in the decimal representation. They only become visible when you start from the Fraction 38/27 and derive forward.
+The right comparison is: does the Cabibbo Doublet's ratio (38/27) produce the correct predictions when you work forward from it? Start from 38/27, run the three forces from the unification point back down to laboratory energy, and read off what the weak mixing angle and the strong force strength should be.
 
-This is the ceiling of decimal arithmetic. Real numbers are dense — between any two real numbers there are infinitely many others. This density is a strength for approximation but a fatal weakness for structure or equality. In the real numbers, 38/27 is indistinguishable from 1.407 or 1.4074 or 1.40741. The structure — the fact that the numerator is 38 = 2 × 19 and the denominator is 27 = 3³ — is invisible. The integers 2, 19, and 3 carry physical meaning (they come from specific gauge group representations), but the decimal number 1.40741 carries no meaning at all. It's just a location on the number line.
+That computation gives sin²θ_W = 0.231223. The measured value is 0.23122. They match to 12 parts per million — five significant figures from integer arithmetic.
 
-Physics missed the integer structure because it was looking at the decimals.
+It gives α_s = 0.11838. The measured value is 0.1180. They match to 0.33%.
+
+These matches are invisible in the decimal representation. You cannot see them by staring at 1.40741 and 1.358. They only appear when you start from the fraction 38/27 — preserving the integers 38 and 27 through every step of the calculation — and derive forward to predictions.
+
+This is the ceiling of decimal arithmetic. In decimals, 38/27 looks the same as 1.407 or 1.4074 or 1.40741. The structure is erased. You can't see that the numerator is 38 = 2 × 19 or that the denominator is 27 = 3³. Those integers have physical meaning — 19 is the weak force beta coefficient from the Standard Model, 3³ is the cube of the number of color charges — but the decimal 1.40741 carries none of that. It's just a location on the number line. The meaning is gone.
+
+Physics missed the integer structure because it was looking at the decimals, and decimals have no structure, and cannot preserve equality.
 
 ---
 
