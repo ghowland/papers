@@ -90,7 +90,7 @@ Outside: the same force reads about 0.118. Despite being called the "strong" for
 
 The boundary is where the reading transitions. Same force. Different reading. Inside: overwhelming. Outside: manageable. The soliton boundary is what separates the two worlds.
 
-**The electroweak boundary** at the energy scale of the W⁺, W⁻, and Z bosons is about is ~100 GeV:
+**The electroweak boundary** at the energy scale of the W⁺, W⁻, and Z bosons is about 100 GeV:
 
 Below this boundary — at the energies of everyday life, chemistry, and most laboratory experiments — the electromagnetic force and the weak force look completely different. Photons have no inertia at all. The W⁺, W⁻, and Z bosons are among the "heaviest" known particles (most inertia). The electromagnetic force reads about 1/137. The weak force reads much stronger. They appear to be two separate forces with nothing in common.
 
