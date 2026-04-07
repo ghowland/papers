@@ -52,19 +52,29 @@ Physics missed the integer structure because it was looking at the decimals, and
 
 The path to unification starts from integers and works outward.
 
-The gauge group SU(3) × SU(2) × U(1) determines three one-loop beta coefficients: b₁ = 41/10, b₂ = −19/6, b₃ = −7. These are exact Fractions. The 41 in b₁ counts the U(1) charge contributions of every particle in the Standard Model — each quark, each lepton, the Higgs. The 19 in b₂ counts the SU(2) contributions. The 7 in b₃ counts the SU(3) contributions. Every numerator is an integer because it counts particles. Every denominator is an integer because it comes from group theory normalization.
+The three forces of the Standard Model — electromagnetic, weak, and strong — are organized by a mathematical structure called the gauge group. The gauge group is not a theory or a guess. It is the proven symmetry structure of particle interactions, and everything it produces is exact — not measured, not approximated, but calculated from the mathematics of symmetry the way you calculate that a cube has six faces.  Every number the gauge group produces is an integer or a ratio of integers.
 
-These Fractions are not approximations. They are not rounded. They are exact results of representation theory — the mathematics of symmetry. The number 41/10 is as exact as the number 3 — it is a consequence of mathematical structure, not a measurement.
+The gauge group determines three numbers called "one-loop beta coefficients" — which are the "running rates" of the three forces. The running rate is how fast a force's strength changes as you zoom in — it's the speed of the running reading, and each force has its own.
 
-The gap ratio (b₁ − b₂)/(b₂ − b₃) = (41/10 + 19/6)/(−19/6 + 7) = (246/60 + 190/60)/(−190/60 + 420/60) = 436/60 ÷ 230/60 = 436/230 = 218/115. Every step is exact. The result 218/115 is exact. The integers 218 and 115 carry the information of the entire Standard Model particle content compressed into two numbers.
+These running rates are: b₁ = 41/10, b₂ = −19/6, b₃ = −7. They are exact integer fractions. The 41 in b₁ counts the charge contributions of every particle in the Standard Model — each quark, each lepton, the Higgs boson. The 19 in b₂ counts the weak force contributions. The 7 in b₃ counts the strong force contributions. Every numerator is an integer because it counts particles. Every denominator is an integer because it comes from the symmetry structure's normalization. These fractions are as exact as the number 3 — they are consequences of mathematical structure, not measurements.
 
-Add the Cabibbo Doublet — one vector-like quark doublet with quantum numbers (3, 2, 1/6) — and the betas shift to b₁ = 25/6, b₂ = −13/6, b₃ = −20/3. The gap ratio becomes (25/6 + 13/6)/(−13/6 + 20/3) = (38/6)/(27/6) = 38/27. Exact. The integers 38 and 27 now carry the information of the Standard Model plus one additional particle.
+From these three fractions, you can compute the "gap ratio" — the number that tells you whether the three forces converge. The computation is pure fraction arithmetic: subtract one beta from another, divide by a different subtraction, simplify. Every step is exact. Nothing is rounded. Nothing is approximated. The result for the Standard Model is:
 
-The computation never leaves the integers. At no point do we convert to decimals, lose precision, round, truncate, or approximate. The Fractions flow from one formula to the next as Fractions. The numerators and denominators carry physical meaning at every step.
+Gap ratio (SM) = 218/115
 
-This is why unification was missed. The standard approach is: measure the couplings as decimals, run them as decimals, check if they meet as decimals. They don't meet — because the running accumulates rounding errors, because the crossing detection uses floating-point comparison, because the gap is computed as a decimal and compared to zero. The integer structure — 38/27, not 1.40741 — is below the resolution of the decimal approach.
+Two integers. The entire particle content of the Standard Model — every quark, every lepton, every boson — compressed into two numbers.
 
-The Fraction approach is: start from exact integer betas, compute the gap ratio as an exact Fraction, identify which BSM representation produces an exact Fraction gap ratio, derive the coupling predictions from that Fraction structure, and compare to measurement. The comparison is the only place decimals enter — and at that point, the predictions match to 12 ppm.
+Now we add the predicted Cabibbo Doublet (CD) particle. Its three small fractional shifts (1/15, 1, 1/3) modify the three betas. The same fraction arithmetic, the same exact steps, produces:
+
+Gap ratio (CD) = 38/27
+
+Two smaller integers. The Standard Model plus one particle, compressed into two numbers. The computation never left the integers. At no point did we convert to decimals, lose precision, round, truncate, or approximate. The fractions flowed from one formula to the next as fractions. The numerators and denominators carried physical meaning at every step — 38 = 2 × 19, where 19 is the Standard Model weak force count; 27 = 3³, the cube of the number of color charges.
+
+This is why unification was missed. The standard approach in physics is: measure the force strengths as decimals, run them as decimals, check if they meet as decimals. They don't meet — because the running accumulates rounding errors, and because the comparison uses floating-point arithmetic, and because the gap is computed as a decimal and compared to zero. The integer structure is 38/27, not 1.40741. That 38/27 integer fraction structure lives below the resolution of the decimal approach. The decimals results can't show it.
+
+The integer fraction approach is different. Start from exact integer betas. Compute the gap ratio as an exact fraction. Identify which new particle produces an exact fraction gap ratio with small, meaningful integers. Derive the predictions from that fraction. Compare to measurement only at the final step — the one place where decimals enter. At that point, the predictions match to 12 parts per million.
+
+The decimals obscure it. The fractions reveal it.
 
 ![Fractions show precision or equality that Epsilon and Renormalization obscure](../figures/book_16_fraction_structure.png)
 
@@ -91,6 +101,39 @@ Each term is a product of a rational coefficient (197/144, 1/12, −1/2, 3/4) an
 The Q335 approach is not a philosophical statement about whether π is "really" rational. It's an engineering decision. Physics needs numbers with enough precision to test predictions against measurement. 335 digits is enough. The Fraction arithmetic preserves all integer structure through every computation. The transcendentals are handled at operationally infinite precision. The result is a number system where every value is traceable — every numerator and denominator carries physical meaning from the gauge group through the derivation chain to the final prediction.
 
 This is what makes the 12 ppm sin²θ_W prediction possible. The computation starts from integer betas (25/6, −13/6, −20/3), runs through Fraction arithmetic with Q335 transcendentals, and arrives at sin²θ_W = 0.231223 — a number that matches measurement to five significant figures. No rounding error contributed to the miss. No floating-point comparison missed a crossing. The 12 ppm miss is physical — it comes from the 0.027 gap at the unification scale, not from numerical noise.
+
+### Transcendentals
+
+There's an obvious objection: what about π? What about other irrational constants like:
+
+- ζ(3) - a specific number from the Riemann zeta function, approximately 1.202, that appears throughout quantum calculations
+- ln(2) - the natural logarithm of 2, approximately 0.693
+    
+These numbers appear everywhere in physics. They appear in the area of a circle, in the QED series coefficients, in the dark matter ratio (22/13)π. They are transcendental or irrational. They cannot be written as a ratio of integers. If the goal is integer arithmetic, how do you handle numbers that aren't integers?
+
+This is my single innovation in this entire system, and it is not a physics or mathematical innovation, it is an engineering one.  If π and other transcendentals are infinite series, and so cannot be computed into an exact value, what if we make integer fractions so large that they match π and others to 100 decimal digits?
+
+The result is an engineering decision called Q335.  Q335 is 2^335 as the common denominator for all large integer transcendental values.
+
+Starting with the simplest problem: π is transcendental. No ratio of integers equals π. That is a mathematical theorem, proven in 1882, and nothing in this book challenges it. But π can be computed to any desired number of digits. And there is a precision beyond which no physical measurement could ever tell the difference between the true π and a very good fraction.
+
+That precision threshold is set by the Planck length, the smallest meaningful distance in physics, approximately 10⁻³⁵ meters. Knowing π to 35 digits would let you compute the circumference of the observable universe to within one Planck length. 35 decimal digits exhausts all of physical reality.
+
+Q335 uses 335 base-2 digits. That is 65 decimal digits beyond the Planck threshold. The difference between Q335's stored fraction for π and the true π is smaller than anything the universe can distinguish. Not approximately smaller. Fundamentally smaller. No experiment ever built or theoretically possible could detect the difference. This is what "operationally zero" means: the difference exists mathematically but has no physical observable.  This is the single innovation in this model, and it is an engineering innovation to operationalize transcendentals.
+
+The Q335 representation stores π as a fraction with a numerator and denominator each about 101 decimal digits long. This fraction is not equal to π. But it differs from π by less than 10⁻¹⁰⁰. For every physical computation, it is π as far as any physics system can handle the precision of π.
+
+The same approach works for every transcendental and irrational number that appears in physics: ζ(3), ζ(5), ln(2), the Catalan constant, the elliptic integrals. Each is stored as a Q335 fraction. Each is exact to 65 orders of magnitude beyond the Planck threshold. Each flows through the fraction arithmetic without rounding, without truncation, without losing the integer structure of the rational coefficients that multiply them.
+
+Here is what this looks like in practice. The QED two-loop coefficient A₂ (one of the numbers in the chain from the electron's magnetic moment to the fine structure constant) is:
+
+A₂ = 197/144 + (1/12)π² − (1/2)π²ln(2) + (3/4)ζ(3)
+
+Four terms. Each term is a rational coefficient (197/144, 1/12, −1/2, 3/4) multiplied by a transcendental constant (1, π², π²ln(2), ζ(3)). Every rational coefficient is an integer fraction from the physics. Every transcendental is stored at 335 base-2 digits (Q335). The computation never touches a decimal until the final comparison against measurement. The integer structure of the rational coefficients is preserved through every step, and the result is precision matching to the 100th decimal digit for all transcendentals.
+
+The Q335 approach is not a philosophical statement about whether π is "really" rational, π is not rational and cannot be made rational. It is an engineering decision that solves a specific problem: how do you do fraction arithmetic when some of the numbers aren't clear fractions and never end (infinite series)? The answer is that you store them at a precision so far beyond physical measured reality that the distinction between "exact" and "operationally exact at 65 decimal orders of magnitude beyond Planck" has no meaning for physics.
+
+This is what makes the entire derivation chain possible in integer fractions. The computation starts from integer betas (25/6, −13/6, −20/3), runs through fraction arithmetic with Q335 converted transcendentals, and arrives at sin²θ_W = 0.231223, a number that matches measurement to five significant figures. No rounding error contributed to the miss. No floating-point comparison missed a crossing. The 12 parts per million miss is physical. It comes from the 0.027 gap at the unification scale, not from numerical noise. The number system is clean. The miss is real physics, and knowing that it is real physics is itself a result.  This model accepts all results, and uses them for further derivations or places where more precise measurements are required to progress.
 
 ---
 
