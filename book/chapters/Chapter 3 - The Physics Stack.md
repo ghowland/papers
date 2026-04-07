@@ -90,13 +90,14 @@ Outside: the same force reads about 0.118. Despite being called the "strong" for
 
 The boundary is where the reading transitions. Same force. Different reading. Inside: overwhelming. Outside: manageable. The soliton boundary is what separates the two worlds.
 
-**The electroweak boundary** (~100 GeV, the W/Z boson mass scale):
+**The electroweak boundary** at the energy scale of the W⁺, W⁻, and Z bosons is about is ~100 GeV:
 
-Below this boundary: the electromagnetic force and the weak force look different. Photons are massless. W and Z bosons are massive (~80 and 91 GeV). The electromagnetic coupling α ≈ 1/137 is much weaker than the weak coupling. They appear to be separate forces with separate coupling constants.
+Below this boundary — at the energies of everyday life, chemistry, and most laboratory experiments — the electromagnetic force and the weak force look completely different. Photons have no inertia at all. The W⁺, W⁻, and Z bosons are among the "heaviest" known particles (most inertia). The electromagnetic force reads about 1/137. The weak force reads much stronger. They appear to be two separate forces with nothing in common.
 
-Above this boundary: the electromagnetic and weak forces are unified. They're the same force — the electroweak force — with a single coupling constant. The distinction between them is an artifact of the Higgs field's nonzero vacuum value, which "breaks" the symmetry below 100 GeV.
+Above this boundary — at energies higher than the W⁺, W⁻, and Z boson inertia — the "two forces" merge. They become one force, called the electroweak force, with a single reading. The apparent difference between them at lower energies is created by the Higgs field's nonzero ground state, which "breaks" the symmetry and makes the two forces look different below this energy scale. Above it, the disguise falls away and they are visibly the same.
 
-sin²θ_W = 0.23122 is the reading that quantifies the mixing between electromagnetic and weak at our energy scale. At the GUT scale, sin²θ_W = 3/8 = 0.375. Between these scales, the reading runs — it changes continuously, determined by the beta coefficients.
+The weak mixing angle, sin²θ_W = 0.231, is the reading that measures how much of the electroweak force goes to the weak side at our energy scale. At the unification scale, this reading is exactly the integer fraction 3/8. Between the two scales, it "runs" — changing reading values continuously, determined by the same integer beta coefficients that govern all the force running rates. The integer fractions determine how the reading changes between any two soliton boundaries. The reading at any point between parent and child boundary is set by the same integer rules.
+
 
 **The unification boundary** (~10¹⁵·⁶ GeV, the GUT scale):
 
