@@ -82,13 +82,13 @@ Here is where the model departs from standard presentation. Standard physics des
 
 Every soliton boundary separates an inside from an outside. At the boundary, the force strength values change. In the model's language, the reading changes. This change is sharp — it happens within the thin shell of the boundary itself, not gradually across a wide region. The reading you get depends on which side you're measuring from. This is the same principle we saw with the Earth: flat from inside, curved from outside. Here it applies to force strengths, not geometry.
 
-**The confinement boundary** (the proton/hadron boundary, ~1 femtometer):
+**The confinement boundary** is the proton boundary: ~1 femtometer, about 80 billion times smaller than a human hair:
 
-Inside: the strong coupling α_s ≈ 1. Quarks and gluons are strongly coupled. Color confinement holds — no colored particle can escape. The interior is a boiling soup of gluon field energy, with quarks bouncing off the boundary walls.
+Inside: the strong force reads close to 1, its maximum. Quarks and gluons are bound so tightly that nothing escapes. The interior is a "boiling storm of energy", with quarks ricocheting off the boundary walls. You can't meaningfully talk about individual quarks in there, everything is tangled together.
 
-Outside: α_s ≈ 0.118 at the Z boson scale. The strong coupling is weak (despite its name). Perturbation theory works. You can compute Feynman diagrams and get accurate answers.
+Outside: the same force reads about 0.118. Despite being called the "strong" force, outside the proton it's gentle enough that protons sit calmly next to each other. At this strength, physicists can calculate its effects precisely using standard mathematical tools.
 
-The boundary is where the reading transitions. Deep inside the proton, you can't meaningfully talk about individual quarks — the coupling is too strong, everything is entangled. Far outside, you can't see quarks at all — they're confined. The boundary mediates between these two worlds.
+The boundary is where the reading transitions. Same force. Different reading. Inside: overwhelming. Outside: manageable. The soliton boundary is what separates the two worlds.
 
 **The electroweak boundary** (~100 GeV, the W/Z boson mass scale):
 
