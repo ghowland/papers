@@ -64,7 +64,11 @@ The electron is stable because it carries a permanent label — physicists call 
 
 The proton is stable. Its measured lifetime is longer than 10³⁴ years — a million trillion trillion years, far longer than the age of the universe (about 14 billion years). But it may not be eternal. If the Cabibbo Doublet model is correct, the energy at which the three forces unify predicts that protons will eventually decay, with a lifetime of around 10³⁴ to 10³⁵ years. That prediction is testable. The Hyper-Kamiokande detector in Japan begins operation in 2027, and it is designed to watch for exactly this: the death of a proton.
 
-**The neutron** is like the proton but with one up quark replaced by a down quark. It's slightly heavier (939.57 MeV) and unstable when free — it decays to a proton, an electron, and an antineutrino with a half-life of about 10 minutes. But inside a nucleus, the neutron is stabilized by the nuclear binding energy. The same pattern (three quarks inside a confinement boundary) is stable or unstable depending on which larger soliton it's nested inside. The boundary context determines the stability.
+**The neutron** is a donut soliton like the proton but with one up quark replaced by a down quark. It's slightly heavier (939.57 MeV) and unstable when "free". A "free" neutron is one that has been knocked out of a nucleus and is sitting alone, no longer stabilized by the boundary it used to live inside.
+
+Left on its own, a neutron decays into a proton, an electron, and an antineutrino (the antimatter partner of the neutrino, carrying almost no inertia and barely interacting with anything). This happens with a half-life of about 10 minutes — meaning half of any group of free neutrons will have decayed within 10 minutes.
+
+But inside a nucleus, the neutron is stable. The nuclear binding energy holds it in place and prevents the decay. The same pattern — three quarks inside a confinement boundary — is stable or unstable depending on which larger soliton it's nested inside. The boundary context determines the stability.
 
 **The atoms** — 118 elements in the periodic table. Each is a soliton: a nucleus (protons and neutrons bound by the residual strong force) surrounded by an electron cloud (electrons bound by the electromagnetic force). Each atom has a boundary — the electron cloud's outer edge — where the interior reading (quantum mechanical energy levels, discrete spectra) transitions to the exterior reading (chemical bonding, continuous interaction with neighbors).
 
