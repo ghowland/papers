@@ -34,15 +34,15 @@ The Standard Model has 17 fields, or 17 kinds of soliton vortices:
 
 **6 lepton fields** — electron, muon, tau, and their three neutrinos. These carry no color charge. They interact electromagnetically (the charged leptons) or only weakly (the neutrinos).
 
-**4 gauge boson fields** — the photon (electromagnetic), W⁺/W⁻/Z (weak), and 8 gluons (strong). These are the carriers of the readings. When we say "the electromagnetic coupling reads 1/137," the photon field is what's doing the reading. The gauge bosons mediate the boundary crossings — they carry information about the coupling strength from one side of a boundary to the other.
-
 **4 gauge boson field types** — the photon (carries the electromagnetic reading), the W⁺ (positively charged), W⁻ (negatively charged), and Z (neutral) together carry the weak reading, and 8 gluons carry the strong reading. When two electrons push each other apart, it's photons carrying the reading between them. When a quark changes type inside a proton, it's a W boson carrying the reading across that boundary. The gauge bosons are the messengers. They carry information about the coupling strength from one side of a boundary to the other.
 
 **1 Higgs field** — the odd one out. Every other field settles to zero when nothing is happening. The Higgs field doesn't. Its ground state, its resting value, is not zero. It sits at a specific nonzero value everywhere in the universe, all the time. This is what gives the W⁺, W⁻, Z, and all matter particles their inertia. Not by adding substance to them, but by providing resistance. Every field that interacts with the Higgs field acquires resistance to change from that interaction. The Higgs mechanism is not a substance-granting machine. It's the vacuum vortex itself carrying a nonzero reading for one specific field, and everything that touches it picking up inertia from the contact.
 
-These 17 fields are organized by the gauge group SU(3) × SU(2) × U(1). The SU(3) determines which fields carry color charge (quarks and gluons). The SU(2) determines which fields carry weak charge (left-handed fermions and W/Z bosons). The U(1) determines which fields carry hypercharge (all fermions and the Higgs).
+These 17 field types are organized by the gauge group, written as SU(3) × SU(2) × U(1). The notation looks dense, but each piece is simple. SU(3) is the symmetry of the strong force — it determines which fields carry color charge (quarks and gluons). SU(2) is the symmetry of the weak force — it determines which fields carry weak charge (left-handed particles and the W⁺, W⁻, and Z bosons). U(1) is the symmetry of the electromagnetic force — it determines which fields carry electric-type charge (all "matter particles" and the Higgs).
 
-The gauge group is the source of the integers. Every beta coefficient, every gap ratio, every coupling prediction traces back to how these 17 fields transform under SU(3) × SU(2) × U(1). The group theory is exact. The Fractions are exact. The integers are exact. The only approximations enter when we compare to measurement.
+The three numbers in the name — 3, 2, and 1 — are integers. The gauge group is the source of all the integers in this model. Every beta coefficient, every gap ratio, every coupling prediction traces back to how these 17 field types transform under these three symmetries. The group theory is exact. The fractions are exact. The integers are exact. The only approximations enter at the very end, when we compare predictions to measurements.
+
+This is the Standard Model as it stands today, with 17 field types and three symmetries. The Cabibbo Doublet has not been added yet. When it is, one new doublet (2 particles) is added — two new quarks, each with both handednesses — and every integer in the system shifts by the three small fractions we met in Chapter 1: 1/15, 1, and 1/3.
 
 ---
 
