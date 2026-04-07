@@ -85,6 +85,8 @@ The 'weak force' does not exist as a separate force. It is the reading at the el
 
 Light is a pure "change pattern" with nothing being changed — a disturbance that moves without carrying anything with it. A wave in the ocean moves energy across the water, but no water travels with it. Light is the same: a pattern moving through the field (vortex interior), carrying energy but no substance, with no boundary to give it resistance. This is why it travels at the fastest possible speed — nothing resists its motion, because there is no soliton boundary to push back.  Light has no inertia.
 
+Inertia is the resistance of a pattern to change.  Vortex is the self-maintaining pattern.  Soliton is the bounded structure: a pattern with an inside, an outside, and a boundary where the reading changes.
+
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
 ---
