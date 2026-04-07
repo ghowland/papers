@@ -215,6 +215,28 @@ The assumption that unification requires enormous new physics was wrong. The Sta
 
 Nobody found this before because they were looking for a Theory of Everything. They were looking for new forces, new dimensions, new symmetries. They were looking for the Lagrangian of the universe. What was actually needed was one particle and the willingness to take the integers seriously.
 
+### The Ceiling
+
+![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](../figures/book_14_gap_comparison.png)
+
+There's a deeper reason, beneath the wrong numbers and wrong names and wrong departments. It's the assumption that unification requires new physics.
+
+The Grand Unified Theory program of the 1970s established the expectation: to unify the forces, you need new particles, new symmetries, new dynamics at high energy scales. Supersymmetry adds 105 new parameters. String theory adds 10 dimensions. Other grand unified models add enormous new mathematical structures. The expectation was that unification is hard because the new physics at the unification scale is complicated and unknown.
+
+What if unification is easy because the new physics at the unification scale is one missing particle?
+
+The Cabibbo Doublet, the two-handed vector quark doublet with quantum numbers (3, 2, 1/6), shifts the three force running rates by three small fractions: 1/15, 1, and 1/3. Three numbers. Three exact integer fractions. One new mathematically forced particle.
+
+With that one particle:
+
+The gap ratio becomes 38/27 (exact). The unification scale rises from 10¹³·⁸ to 10¹⁵·⁶, into the range where the next generation of detectors (Hyper-Kamiokande in Japan, starting 2027) can test it through proton decay. The three forces converge within 0.064% at two-loop precision. The weak mixing angle is predicted to 12 parts per million. The strong force strength is predicted to 0.33%. The dark matter ratio is (22/13)π. The primordial deuterium abundance matches at 0.12 standard deviations.
+
+53 derived values. 40 surplus tests. One additional particle.  Completed in about 1 week of integrating with this model's system.
+
+The assumption that unification requires enormous new physics was wrong. The Standard Model was already 99% of the way there. The missing piece was one particle, selected not by theoretical preference but by the force integer structure of the gap ratio. It is the only particle whose properties preserve the gap ratio as an exact fraction with small, physically meaningful integers.
+
+Nobody found this before because they were looking for a Theory of Everything. They were looking for new forces, new dimensions, new symmetries. They were looking for the master equation of the universe. What was actually needed was one particle, and the willingness to work in integer fractions all the way to the final comparison. The integers were always there. The decimal process was obscuring the results.
+
 ---
 
 ### What Changed
