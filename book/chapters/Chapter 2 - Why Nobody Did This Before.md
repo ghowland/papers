@@ -117,7 +117,7 @@ The result is an engineering decision called Q335.  Q335 is 2^335 as the common 
 
 Starting with the simplest problem: π is transcendental. No ratio of integers equals π. That is a mathematical theorem, proven in 1882, and nothing in this book challenges it. But π can be computed to any desired number of digits. And there is a precision beyond which no physical measurement could ever tell the difference between the true π and a very good fraction.
 
-That precision threshold is set by the Planck length, the smallest meaningful distance in physics, approximately 10⁻³⁵ meters. Knowing π to 35 digits would let you compute the circumference of the observable universe to within one Planck length. 35 decimal digits exhausts all of physical reality.
+That precision threshold is set by the Planck length, the smallest meaningful distance in physics, approximately 10⁻³⁵ meters. Knowing π to 35 digits would let you compute the circumference of the observable universe to within one Planck length. 35 decimal digits is the maximum precision physical reality can be measured at, and we are calculating to 101 decimal digits, 65 digits beyond the physical maximum.
 
 Q335 uses 335 base-2 digits. That is 65 decimal digits beyond the Planck threshold. The difference between Q335's stored fraction for π and the true π is smaller than anything the universe can distinguish. Not approximately smaller. Fundamentally smaller. No experiment ever built or theoretically possible could detect the difference. This is what "operationally zero" means: the difference exists mathematically but has no physical observable.  This is the single innovation in this model, and it is an engineering innovation to operationalize transcendentals.
 
@@ -147,7 +147,7 @@ It's wrong. Not factually wrong — the four interactions exist and are differen
 
 But the forces aren't separate things. They're readings of the same thing at different boundaries.
 
-The electromagnetic coupling α reads 1/137 at low energy. It reads 1/128 at the Z boson mass. It reads 1/42 at the GUT scale. These aren't three different forces. They're one coupling that gives different readings at different soliton boundaries — the atomic boundary, the electroweak boundary, the unification boundary.
+The electromagnetic coupling α reads 1/137 at low energy. It reads 1/128 at the Z boson mass. It reads 1/42 at the GUT scale. These aren't three different forces. They're one "coupling" that gives different readings at different soliton boundaries — the atomic boundary, the electroweak boundary, the unification boundary.
 
 The strong coupling α_s reads 0.118 at the Z mass. It reads ~1 at the confinement scale (~1 GeV). It reads 1/42 at the GUT scale (the same 1/42 as the electromagnetic coupling — that's what unification means). Again, not two different forces. One coupling, two readings, two boundaries.
 
@@ -162,6 +162,36 @@ The name "gravity" was distinguished from the other three before anyone tried to
 The Rectification of Names says: stop. These are all readings. The electromagnetic reading and the strong reading and the weak reading are all readings of gauge couplings at different soliton boundaries. The gravitational reading is a reading at the planetary/stellar/galactic soliton boundary. They're not four forces. They're one thing — boundary readings of a nested soliton structure — that gives different values depending on which boundary you're reading from.
 
 Once you see them as readings, the unification isn't a grand theoretical achievement to be discovered. It's an accounting exercise to be performed. Which readings come from which boundaries? Which integers determine the running? Which Fractions connect the values at different scales? The answers are in the gauge group, and the gauge group is known.
+
+### The Wrong Names
+
+The second reason nobody unified physics before is language.
+
+Physics has four fundamental forces: electromagnetic, weak nuclear, strong nuclear, and gravitational. This statement appears in every textbook, every popular science book, every university lecture. It's been the organizing principle of physics since the 1970s.
+
+It's wrong. Not factually wrong. The four interactions exist and they behave differently from each other. But calling them "four forces" is organizationally wrong. It makes them sound like four separate things. Four mechanisms. Four explanations needed. The goal of unification becomes: find one force that explains the other three. Find a Theory of Everything that contains all four forces as special cases.
+
+But the forces aren't separate things. They're readings of the same thing at different boundaries.
+
+Consider the electromagnetic force. At everyday scales, its strength reads 1/137. Zoom in to the scale of the Z boson (one of the heavy particles that carries the weak force), and the same force reads 1/128. Zoom in further to the unification scale, and it reads 1/42. The force didn't change. The reading changed. You crossed boundaries, and at each boundary the measurement gave a different value, the same way a thermometer gives different readings at different depths in the ocean. Same ocean. Different readings. Different depths.
+
+The strong force does the same thing. At the Z boson scale, it reads 0.118. At the confinement scale (inside the proton), it reads approximately 1. At the unification scale, it reads 1/42. The same 1/42 as the electromagnetic force. That's what unification means. The two forces that look completely different at laboratory scales give the same reading at the unification boundary. They were always the same coupling. They just read differently from different boundaries.
+
+The weak mixing angle follows the same pattern. At the unification scale, it's exactly 3/8, a pure fraction determined by the symmetry structure. At laboratory scales, it reads 0.231. The running from 3/8 to 0.231 is determined by the same beta coefficients that determine how the force strengths run. One number, one transition between boundaries, one derivation.
+
+So why does physics teach them as four separate forces?
+
+Because the names were assigned before the connections were found, and once assigned, they stuck.
+
+The names "electromagnetic force" and "weak force" were assigned before the electroweak unification of the 1960s. Weinberg, Salam, and Glashow showed they're the same force, and won the Nobel Prize for it. But the names persisted. We still teach them as separate forces in separate chapters. We still fund separate experimental programs to study them. We still assign separate faculty positions for them.
+
+The names "strong force" and "electroweak force" were distinguished before the grand unification program of the 1970s. That program showed the three non-gravitational forces could be unified, but the proof was incomplete. The couplings didn't quite meet. So the unification was filed as "promising but unfinished" and the separate names persisted.
+
+The name "gravity" was distinguished from the other three before anyone tried to include it in the same framework. General relativity describes gravity using the language of curved space. The other three forces are described using the language of symmetry groups. The two languages look completely different, so they got completely different names, and the different names made people think they needed completely different unification strategies.
+
+The Rectification of Names says: stop. These are all readings. The electromagnetic reading and the strong reading and the weak reading are all readings of the same gauge coupling at different soliton boundaries. The gravitational reading is a reading at the planetary, stellar, and galactic soliton boundaries. They're not four forces. They're one thing. One underlying structure that gives different values depending on which boundary you're reading from.
+
+Once you see them as readings, the unification isn't a grand theoretical achievement waiting to be discovered. It's an accounting exercise waiting to be performed. Which readings come from which boundaries? Which integers determine the running rates? Which fractions connect the values at different scales? The answers are in the gauge group, and the gauge group is known.
 
 ---
 
