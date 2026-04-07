@@ -220,9 +220,11 @@ A "decay channel" is a specific way a particle can break apart. The Z boson is u
 
 An "invisible" decay channel is one where the products can't be detected — they pass through the detector without leaving a trace. The only particles that do this are neutrinos (in the lepton group with electrons, muons, and taus — they carry no "color" charge and barely interact with anything). So the "invisible channel" is really the "neutrino channel", measured not by seeing what came out, but by accounting for the energy that went missing.
 
-The "invisible decay channel" (neutrino) tells us something remarkable beyond just the decay rate. By measuring how much total energy disappears into invisible products, and dividing by the predicted decay rate for a single neutrino type for a single neutrino type, you can count how many types of neutrino exist. You don't need to see them. You just need to measure how much energy went missing, and the mathematics tells you how many invisible particles are sharing it:
+The "invisible decay channel" (neutrino) tells us something remarkable beyond just the decay rate. By measuring how much total energy disappears into invisible products, and dividing by the predicted decay rate for a single neutrino type, you can count how many types of neutrino exist. You don't need to see them. You just need to measure how much energy went missing, and the mathematics tells you how many invisible particles are sharing it:
 
-Three. Not two, not four, not 3.5. Exactly three. An integer. The number of neutrino generations is a counting result, and the count is exact.
+Three. Not two, not four, not 3.5. Exactly three. An integer, an integer fraction: 3/1. The number of neutrino generations is a counting result, and the count is exact.
+
+This is the integer structure making itself visible in a completely different way. The dark matter ratio gave us integers from particle counting. The gap ratio gave us integers from force running rates. Here, the invisible width of the Z boson gives us an integer from decay counting. Three neutrinos. Not a prediction from this model — a measurement that confirms the universe organizes itself in integers at every level. The count is exact because the universe doesn't make half a neutrino type. The boundary either supports a pattern or it doesn't. When you count how many types of pattern exist, the answer is always an integer. You can't have 3.5 types of neutrino. The count is exact because the patterns are exact.
 
 The ratio of quark decays to lepton decays gives another test: predicted 20.82, measured 20.767. Miss: 0.27%.
 
