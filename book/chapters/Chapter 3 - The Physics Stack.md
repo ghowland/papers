@@ -48,9 +48,11 @@ This is the Standard Model as it stands today, with 17 field types and three sym
 
 ### Layer 2: Stable Patterns — The Solitons
 
-Most excitations of the quantum fields are unstable. A photon propagates freely. A free quark can't exist (confinement). A W boson decays in 10⁻²⁵ seconds. Most disturbances in the quantum fields either propagate away (radiation) or decay instantly (unstable particles).
+Most excitations of the quantum fields don't last. They come in three varieties of impermanence: radiation, confinement and appear-and-instant-decay. 
 
-But some patterns are stable. They persist. They maintain their shape. They resist disruption. These are the solitons.
+Some fly away at the speed of light and never come back — that's radiation, like photons. Some can't exist on their own at all — that's confinement, like quarks, which are permanently trapped inside protons and neutrons. Some appear and decay almost instantly — like the W⁺, W⁻ bosons, which live for less than a trillionth of a trillionth of a second before transforming into other particles.
+
+But some patterns are stable and persist. They maintain their shape, they resist disruption (inertia). They don't fly away, they don't decay, and they don't need to be confined inside something else to survive. These are the solitons — the permanent patterns we met in Chapter 1.
 
 **The electron** is the simplest stable soliton. It's a pattern in the electron field that carries exactly one unit of electric charge (−1), exactly 1/2 unit of spin, exactly zero color charge, and exactly 0.511 MeV of inertia. Every electron in the universe has exactly these numbers. Not approximately. Exactly. The stability is topological — the electron carries a conserved quantum number (lepton number) that cannot be destroyed by any known process. You can't untie the knot without cutting the rope.
 
