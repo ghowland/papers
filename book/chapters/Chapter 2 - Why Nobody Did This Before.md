@@ -22,7 +22,7 @@ Real numbers built modern physics. They built the Standard Model. They put human
 
 But real numbers cannot reach equality.
 
-Take the gap ratio — the number that determines whether the three gauge couplings converge to a single point at high energy. In the Standard Model, this ratio is 218/115. With the Cabibbo Doublet, it becomes 38/27. In real numbers, these are:
+Take the gap ratio — the number that determines whether the three gauge couplings converge to a single point at high energy. In the Standard Model, this ratio is 218/115. With the predicted "Cabibbo Doublet", it becomes 38/27. In real numbers, these are:
 
 218/115 = 1.89565217391304347826...
 
@@ -32,11 +32,11 @@ The decimal representations repeat forever. They never terminate. They're exact 
 
 When a physicist computes the gap ratio from measured couplings, they get something like 1.358192684144844. They compare this to 38/27 = 1.407407... and see a miss of about 3.5%. They note the miss and move on. The miss is larger than the measurement uncertainty, so they conclude the couplings don't exactly unify. The standard conclusion in every GUT textbook: "the Standard Model gauge couplings do not unify."
 
-But the comparison was done in the wrong number system. The measured gap ratio 1.358... doesn't match 38/27 because the measured couplings include the running of the Standard Model betas. The 38/27 is the gap ratio with the Cabibbo Doublet's betas included. The comparison should be: does the CD-modified ratio (38/27) produce the correct coupling predictions? The answer requires computing sin²θ_W and α_s from the 38/27 structure and comparing to measurement.
+But the comparison was done in the wrong number system. The measured gap ratio 1.358... doesn't match 38/27 because the measured couplings include the running of the Standard Model betas. The 38/27 is the gap ratio with the Cabibbo Doublet's betas included. The comparison should be: does the Cabibbo Doublet modified ratio (38/27) produce the correct coupling predictions? The answer requires computing sin²θ_W and α_s from the 38/27 structure and comparing to measurement.
 
 That computation gives sin²θ_W = 0.231223 (matching measured 0.23122 at 12 parts per million) and α_s = 0.11838 (matching measured 0.1180 at 0.33%). These matches are invisible in the decimal representation. They only become visible when you start from the Fraction 38/27 and derive forward.
 
-This is the ceiling of decimal arithmetic. Real numbers are dense — between any two real numbers there are infinitely many others. This density is a strength for approximation but a fatal weakness for structure. In the real numbers, 38/27 is indistinguishable from 1.407 or 1.4074 or 1.40741. The structure — the fact that the numerator is 38 = 2 × 19 and the denominator is 27 = 3³ — is invisible. The integers 2, 19, and 3 carry physical meaning (they come from specific gauge group representations), but the decimal number 1.40741 carries no meaning at all. It's just a location on the number line.
+This is the ceiling of decimal arithmetic. Real numbers are dense — between any two real numbers there are infinitely many others. This density is a strength for approximation but a fatal weakness for structure or equality. In the real numbers, 38/27 is indistinguishable from 1.407 or 1.4074 or 1.40741. The structure — the fact that the numerator is 38 = 2 × 19 and the denominator is 27 = 3³ — is invisible. The integers 2, 19, and 3 carry physical meaning (they come from specific gauge group representations), but the decimal number 1.40741 carries no meaning at all. It's just a location on the number line.
 
 Physics missed the integer structure because it was looking at the decimals.
 

@@ -67,7 +67,7 @@ We need three words.
 
 In an electrical circuit, the resistance that opposes current flow — that's inertia. The viscosity that slows fluid through a pipe — inertia. The drag that holds back a moving car — inertia. The stiffness of a spring, the inductance of a coil, the thermal resistance of an insulating wall — all inertia. Every department gave it a different name. It was always the same thing: the pattern pushing back against change.
 
-**Soliton.** The boundary that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. 
+**Soliton.** The boundary structure that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. We call this a Soliton and a Soliton Boundary.
 
 Inside the proton, the "strong" coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the "strong" coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
 
