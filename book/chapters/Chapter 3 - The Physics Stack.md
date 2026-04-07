@@ -188,33 +188,37 @@ This is not a model that explains one thing well and hopes the rest will follow.
 
 Nobody chose this particle by hand. It was selected by a mathematical criterion: out of all possible new particles, in every combination of strong, weak, and electromagnetic charges, which one produces a gap ratio that is an exact fraction with small, physically meaningful integers? The answer is unique. Only (3, 2, 1/6) vector-like gives 38/27. Every other candidate either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
 
-The integers chose the particle. The particle predicts the couplings. The couplings predict the chemistry.
+The integers forced the particle. The particle predicts the couplings. The couplings predict the chemistry.
 
 ---
 
 ### Layer 6: The Electroweak Sector
 
-With the couplings determined, the electroweak sector follows.
+Once the force strengths are determined, the properties of the particles that carry the weak force follow.
 
-The W boson mass: M_W = M_Z × √(ρ(1 − sin²θ_W)), where M_Z = 91.1876 GeV is the Z boson mass (measured), sin²θ_W = 0.23122 (measured, or derived from two-loop unification at 12 ppm), and ρ = 1 + Δρ is the rho parameter that accounts for the top quark's contribution to the W mass. This gives M_W = 80,354 MeV. Measured: 80,369 MeV. Miss: 195 ppm.
+The W⁺ and W⁻ bosons have a specific inertia (mass) that depends on the Z boson's inertia, the weak mixing angle, and a correction from the top quark (the heaviest known particle). These are not independent numbers. They're connected by the same integer structure. Feed in the weak mixing angle from two-loop unification and the measured Z boson inertia, and the W⁺, W⁻ inertia is predicted:
 
-The Z boson width: Γ_Z tells you how quickly the Z decays. It decays to every fermion lighter than M_Z/2 — electron-positron, muon pairs, tau pairs, quark-antiquark pairs, and neutrino pairs. Each decay channel contributes a partial width determined by the fermion's coupling to the Z, which depends on sin²θ_W and α_s:
+Predicted: 80,354 MeV. Measured: 80,369 MeV. Miss: 195 parts per million.
 
-Γ(Z → ee) = 84.47 MeV (measured: 83.91, miss 0.67%)
+The Z boson is unstable — it decays almost instantly into pairs of lighter particles. How quickly it decays, and what it decays into, depends on the weak mixing angle and the strong force strength. The Z can decay into every type of particle lighter than half its own inertia: electron-positron pairs, muon pairs, tau pairs, quark pairs, and neutrino pairs. Each decay channel has a predicted rate, and every rate depends on the same inputs.
 
-Γ(Z → μμ) = 84.47 MeV (measured: 83.99, miss 0.57%)
+Decay to electron pairs: predicted 84.47 MeV, measured 83.91. Miss: 0.67%.
 
-Γ(Z → ττ) = 84.47 MeV (measured: 84.08, miss 0.47%)
+Decay to muon pairs: predicted 84.47 MeV, measured 83.99. Miss: 0.57%.
 
-Γ(Z → hadrons) = 1759 MeV (measured: 1744.4, miss 0.84%)
+Decay to tau pairs: predicted 84.47 MeV, measured 84.08. Miss: 0.47%.
 
-Γ(Z → invisible) = 503 MeV (measured: 499.0, miss 0.81%)
+Decay to quarks (hadrons): predicted 1759 MeV, measured 1744.4. Miss: 0.84%.
 
-The invisible width is three neutrino species — exactly three. Γ(invisible)/Γ(single neutrino) = 3.00. This is the most precise determination of the number of neutrino generations: three, not two, not four, not 3.5. Three. An integer. The reading is exact.
+Decay to neutrinos (invisible): predicted 503 MeV, measured 499.0. Miss: 0.81%.
 
-The ratio R_l = Γ(hadrons)/Γ(leptons) = 20.82 (measured: 20.767, miss 0.27%). This ratio is sensitive to α_s because the hadronic width includes QCD corrections. The prediction uses α_s = 0.118.
+The invisible decay channel tells us something remarkable. The Z decays to neutrinos, but neutrinos are invisible — they pass through detectors without interacting. So the "invisible width" measures how much of the Z's decay goes to particles we can't see. Divide the invisible width by the width for a single neutrino species, and you get the number of neutrino types in existence:
 
-All of these numbers flow from the same inputs: α_em, sin²θ_W, α_s, M_Z, and the fermion masses. With sin²θ_W and α_s derived from two-loop unification, the entire electroweak sector is derivable from α_em, M_Z, and the top quark mass. Three numbers produce fifteen electroweak observables.
+Three. Not two, not four, not 3.5. Exactly three. An integer. The number of neutrino generations is a counting result, and the count is exact.
+
+The ratio of quark decays to lepton decays gives another test: predicted 20.82, measured 20.767. Miss: 0.27%.
+
+All of these numbers flow from the same few inputs: the electromagnetic force strength, the weak mixing angle, the strong force strength, and the Z boson inertia. With the weak mixing angle and strong force strength now derived from two-loop unification (instead of measured independently), the entire electroweak sector becomes derivable from just three measured numbers: the electromagnetic force strength, the Z boson inertia, and the top quark inertia. Three inputs produce fifteen predictions. All match.
 
 ---
 
