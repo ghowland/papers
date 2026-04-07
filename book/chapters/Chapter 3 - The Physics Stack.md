@@ -18,6 +18,20 @@ In our language: the vacuum energy is the ground state reading of the outermost 
 
 The vacuum is Layer 0. Everything else is a pattern in the vacuum.
 
+### Layer 0: The Vacuum
+
+The vacuum is not empty. The vacuum is the ground state — the lowest energy configuration of everything. It's what you get when you remove all particles, all radiation, all matter. What's left is not nothing. What's left is a trembling quantum field at its minimum energy.
+
+Think of a still lake. No waves, no boats, no fish jumping. The surface looks flat. But zoom in and the surface is trembling — tiny ripples from thermal motion, from wind at the molecular level, from quantum uncertainty. The lake is "empty" of boats but not empty of water. The vacuum is "empty" of particles but not empty of field.
+
+The vacuum has energy. Not much. The measured energy density of empty space is so small that it took decades of increasingly precise cosmological observations to confirm it was there at all. Physicists call this energy the cosmological constant.
+
+Here is one of the great embarrassments of modern physics: when physicists try to calculate how much energy empty space should have, their equations give an answer that is 10¹²⁰ times too large. That is a 1 followed by 120 zeros. The predicted value is not just wrong — it is the most wrong prediction in the history of science, off by more than a googol. This has been called "the worst prediction in physics," and no framework has explained why the actual value is so small.
+
+In our language, the explanation is structural. The vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. It's small because the universe is the largest possible soliton, and larger solitons have smaller boundary energy densities. The same principle holds at every scale: a proton is small and its boundary energy is intense. The universe is vast and its boundary energy is almost unimaginably faint. The bigger the soliton, the gentler its ground state. The universe is the biggest soliton, so its ground state energy is the smallest.
+
+The vacuum is Layer 0. Everything else is a pattern in the vacuum.
+
 ---
 
 ### Layer 1: The Quantum Fields
