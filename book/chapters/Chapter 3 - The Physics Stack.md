@@ -214,6 +214,8 @@ Decay to quarks (hadrons): predicted 1759 MeV, measured 1744.4. Miss: 0.84%.
 
 Decay to neutrinos (invisible): predicted 503 MeV, measured 499.0. Miss: 0.81%.
 
+Every one of these decay channels is predicted from the same inputs — the same weak mixing angle, the same force strengths, the same integer fractions. Five different measurements, from five different types of particle produced in the same decay, all matching within 1%. These aren't five separate predictions from five separate models. They're five consequences of one set of numbers. When five independent measurements all agree with predictions from the same source, the source is doing something right. That is why this model is based on derivations from integer fractions against existing measured precision data.
+
 The invisible decay channel tells us something remarkable. The Z decays to neutrinos, but neutrinos are invisible — they pass through detectors without interacting. So the "invisible width" measures how much of the Z's decay goes to particles we can't see. Divide the invisible width by the width for a single neutrino species, and you get the number of neutrino types in existence:
 
 Three. Not two, not four, not 3.5. Exactly three. An integer. The number of neutrino generations is a counting result, and the count is exact.
