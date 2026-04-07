@@ -106,13 +106,15 @@ Above this soliton boundary: one force with one reading. All three forces conver
 
 The three forces meet at this boundary to within 0.064%. That's a gap of 0.027 out of a reading of 42.135. This near-exact convergence is what the Cabibbo Doublet's integer fractions produce at two-loop precision. Without the Cabibbo Doublet, the forces miss each other by 218 times more. With it, they nearly touch. The remaining 0.064% gap is where the next level of precision begins, which is the remaining work under this model.
 
-**The gravitational boundary** (the Hill sphere):
+**The gravitational boundary** is the Hill sphere, the gravitational zone we met in Chapter 1 which the Earth, the Sun and all cosmic sphere solitons have:
 
-Every massive object has a Hill sphere — the region within which its gravitational influence dominates over the next larger object. Earth's Hill sphere extends about 1.5 million km. Inside: objects orbit Earth. Outside: objects orbit the Sun.
+Every massive object has a Hill sphere — the region within which its gravitational pull dominates over the next larger object. Earth's Hill sphere extends about 1.5 million km (the Moon, at 384,000 km away, sits comfortably inside it — that's why the Moon orbits Earth and not the Sun).
 
-The Hill sphere is a gravitational soliton boundary. Inside, the gravitational reading gives you Earth's gravity. Outside, the gravitational reading gives you the Sun's gravity. The transition happens at the Hill sphere radius, where the gravitational influence of Earth and Sun are equal.
+The Hill sphere is a gravitational soliton boundary. Inside, the gravitational reading gives you Earth's gravity. Outside, the gravitational reading gives you the Sun's gravity. The transition happens at the Hill sphere radius, where the gravitational influence of Earth and Sun are equal.  
 
-This is why G — the gravitational constant — has the largest measurement scatter of any fundamental constant. Every measurement of G has been performed inside Earth's Hill sphere, on Earth's surface, using laboratory masses separated by centimeters. The measurement is a reading from inside one specific boundary. If G is a boundary reading (like α), it should depend on which boundary you're inside. The scatter in G measurements may not be experimental error — it may be the boundary trying to tell us something.
+Gravity's readings are different at different distances from Earth's center, because you're measuring at different points within the Earth's running reading. Step outside the Earth's Hill sphere and the reading changes entirely — now you're inside the Sun's running reading, and the Sun's gravity sets the rules.
+
+This is why G, the gravitational constant, has the largest measurement scatter of any fundamental constant. Every measurement of G has been performed inside Earth's Hill sphere, on Earth's surface, using laboratory masses separated by centimeters. The measurement is a reading from inside one specific boundary. If G is a boundary reading (like the electromagnetic force strength, which changes value at different scales), it should depend on which boundary you're inside. In this model, the scatter in G measurements is expected. G is a boundary reading, and we're measuring it from near a single location inside one boundary.
 
 ---
 
