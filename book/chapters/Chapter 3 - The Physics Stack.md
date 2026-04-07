@@ -194,7 +194,7 @@ The integers forced the particle. The particle predicts the couplings. The coupl
 
 ### Layer 6: The Electroweak Sector
 
-Once the force strengths are determined, the properties of the particles that carry the weak force follow.
+Once the three force running rates are determined by the Cabibbo Doublet's integer fractions, the properties of the particles that carry the weak interaction — the W⁺, W⁻, and Z bosons — follow as consequences.
 
 The W⁺ and W⁻ bosons have a specific inertia (mass) that depends on the Z boson's inertia, the weak mixing angle, and a correction from the top quark (the heaviest known particle). These are not independent numbers. They're connected by the same integer structure. Feed in the weak mixing angle from two-loop unification and the measured Z boson inertia, and the W⁺, W⁻ inertia is predicted:
 

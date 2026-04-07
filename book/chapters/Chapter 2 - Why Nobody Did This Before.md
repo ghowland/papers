@@ -58,7 +58,9 @@ The gauge group determines three numbers called "one-loop beta coefficients" —
 
 These running rates are: b₁ = 41/10, b₂ = −19/6, b₃ = −7. They are exact integer fractions. The 41 in b₁ counts the charge contributions of every particle in the Standard Model — each quark, each lepton, the Higgs boson. The 19 in b₂ counts the weak force contributions. The 7 in b₃ counts the strong force contributions. Every numerator is an integer because it counts particles. Every denominator is an integer because it comes from the symmetry structure's normalization. These fractions are as exact as the number 3 — they are consequences of mathematical structure, not measurements.
 
-From these three fractions, you can compute the "gap ratio" — the number that tells you whether the three forces converge. The computation is pure fraction arithmetic: subtract one beta from another, divide by a different subtraction, simplify. Every step is exact. Nothing is rounded. Nothing is approximated. The result for the Standard Model is:
+As an aside here: every integer is a fraction with denominator 1. The number 3 is 3/1. The number 7 is 7/1. The system doesn't switch between integers and fractions. It's fractions everywhere. Some just have simple denominators.  We call them "integers" or "integer fractions" with 3, 2 or 1/6, but they can all be written 3/1, 2/1 and 1/6 as integer fractions.
+
+From these three fractions (b₁ = 41/10, b₂ = −19/6, b₃ = −7), you can compute the "gap ratio" — the number that tells you whether the three forces converge. The computation is pure fraction arithmetic: subtract one beta from another, divide by a different subtraction, simplify. Every step is exact. Nothing is rounded. Nothing is approximated. The result for the Standard Model is:
 
 Gap ratio (SM) = 218/115
 
