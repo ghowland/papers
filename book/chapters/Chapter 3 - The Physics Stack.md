@@ -98,14 +98,13 @@ Above this boundary — at energies higher than the W⁺, W⁻, and Z boson iner
 
 The weak mixing angle, sin²θ_W = 0.231, is the reading that measures how much of the electroweak force goes to the weak side at our energy scale. At the unification scale, this reading is exactly the integer fraction 3/8. Between the two scales, it "runs" — changing reading values continuously, determined by the same integer beta coefficients that govern all the force running rates. The integer fractions determine how the reading changes between any two soliton boundaries. The reading at any point between parent and child boundary is set by the same integer rules.
 
+**The unification boundary** at about 10¹⁵·⁶ GeV, an energy scale far beyond any current experiment:
 
-**The unification boundary** (~10¹⁵·⁶ GeV, the GUT scale):
+Below this soliton boundary: three separate forces with three separate readings. The electromagnetic, weak, and strong forces have different strengths, different behaviors, and appear to follow different rules. This is the world we live in and measure.
 
-Below this boundary: three separate gauge couplings, three separate forces (strong, weak, electromagnetic). Different strengths, different behaviors, different mathematical structures (SU(3) × SU(2) × U(1)).
+Above this soltion boundary: one force with one reading. All three forces converge to the same strength — about 1/42. They were always the same force. Below the unification boundary, the different soliton boundaries between us and that scale make them read differently. Above it, the differences disappear.
 
-Above this boundary: one gauge coupling, one force, one mathematical structure (SU(5) or SO(10) or whatever the unified group is). All three couplings read the same value: α_GUT ≈ 1/42.
-
-The three couplings meet at this boundary to within 0.064% — the gap of 0.027 out of α_GUT⁻¹ = 42.135. This is the near-exact unification achieved by the Cabibbo Doublet betas at two-loop.
+The three forces meet at this boundary to within 0.064%. That's a gap of 0.027 out of a reading of 42.135. This near-exact convergence is what the Cabibbo Doublet's integer fractions produce at two-loop precision. Without the Cabibbo Doublet, the forces miss each other by 218 times more. With it, they nearly touch. The remaining 0.064% gap is where the next level of precision begins, which is the remaining work under this model.
 
 **The gravitational boundary** (the Hill sphere):
 
