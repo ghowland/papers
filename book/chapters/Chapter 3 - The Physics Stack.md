@@ -216,7 +216,11 @@ Decay to neutrinos (invisible): predicted 503 MeV, measured 499.0. Miss: 0.81%.
 
 Every one of these decay channels is predicted from the same inputs — the same weak mixing angle, the same force strengths, the same integer fractions. Five different measurements, from five different types of particle produced in the same decay, all matching within 1%. These aren't five separate predictions from five separate models. They're five consequences of one set of numbers. When five independent measurements all agree with predictions from the same source, the source is doing something right. That is why this model is based on derivations from integer fractions against existing measured precision data.
 
-The invisible decay channel tells us something remarkable. The Z decays to neutrinos, but neutrinos are invisible — they pass through detectors without interacting. So the "invisible width" measures how much of the Z's decay goes to particles we can't see. Divide the invisible width by the width for a single neutrino species, and you get the number of neutrino types in existence:
+A "decay channel" is a specific way a particle can break apart. The Z boson is unstable — it exists for a tiny fraction of a second before transforming into a pair of lighter particles. Each type of pair it can produce is one decay channel. The electron pair channel, the muon pair channel, the quark channel — each is a separate exit route, and each has a measurable running rate. 
+
+An "invisible" decay channel is one where the products can't be detected — they pass through the detector without leaving a trace. The only particles that do this are neutrinos (in the lepton group with electrons, muons, and taus — they carry no "color" charge and barely interact with anything). So the "invisible channel" is really the "neutrino channel", measured not by seeing what came out, but by accounting for the energy that went missing.
+
+The "invisible decay channel" (neutrino) tells us something remarkable beyond just the decay rate. By measuring how much total energy disappears into invisible products, and dividing by the predicted decay rate for a single neutrino type for a single neutrino type, you can count how many types of neutrino exist. You don't need to see them. You just need to measure how much energy went missing, and the mathematics tells you how many invisible particles are sharing it:
 
 Three. Not two, not four, not 3.5. Exactly three. An integer. The number of neutrino generations is a counting result, and the count is exact.
 
