@@ -70,9 +70,9 @@ Left on its own, a neutron decays into a proton, an electron, and an antineutrin
 
 But inside a nucleus, the neutron is stable. The nuclear binding energy holds it in place and prevents the decay. The same pattern — three quarks inside a confinement boundary — is stable or unstable depending on which larger soliton it's nested inside. The boundary context determines the stability.
 
-**The atoms** — 118 elements in the periodic table. Each is a soliton: a nucleus (protons and neutrons bound by the residual strong force) surrounded by an electron cloud (electrons bound by the electromagnetic force). Each atom has a boundary — the electron cloud's outer edge — where the interior reading (quantum mechanical energy levels, discrete spectra) transitions to the exterior reading (chemical bonding, continuous interaction with neighbors).
+**The atoms** — all 118 elements in the periodic table. Each is a soliton: a nucleus (protons and neutrons bound together by the residual strong force — the small amount of strong force that leaks through the proton boundary and pulls neighboring protons and neutrons together) surrounded by an electron cloud (electrons bound by the electromagnetic force). Each atom has a boundary at the outer edge of its electron cloud. Inside that boundary: electrons in specific shells, jumping between levels in exact integer steps. Outside: chemical bonding, continuous interaction with neighboring atoms. The boundary is where quantum rules give way to chemical rules.
 
-The periodic table is a catalog of solitons. Each element is a different vortex pattern — a different configuration of nuclear and electronic circulation — with different inertia, different boundary size, and different interaction properties. Hydrogen is the simplest: one proton, one electron, one boundary. Uranium is complex: 92 protons, 146 neutrons, 92 electrons, multiple electron shells forming nested sub-boundaries.
+The periodic table is a catalog of solitons. Each element is a different vortex pattern — a different configuration of nuclear and electronic circulation — with different inertia, different boundary size, and different interaction properties. Hydrogen is the simplest: one proton, one electron, one boundary. Uranium is among the most complex: 92 protons, 146 neutrons, 92 electrons, multiple electron shells forming nested sub-boundaries within the atom itself.
 
 ---
 
@@ -80,7 +80,7 @@ The periodic table is a catalog of solitons. Each element is a different vortex 
 
 Here is where the model departs from standard presentation. Standard physics describes "forces" and "coupling constants." We describe readings.
 
-Every soliton boundary separates an inside from an outside. At the boundary, the coupling values change. The change is not gradual — it's sharp, occurring over the boundary thickness. The reading you get depends on which side you're measuring from.
+Every soliton boundary separates an inside from an outside. At the boundary, the force strength values change. In the model's language, the reading changes. This change is sharp — it happens within the thin shell of the boundary itself, not gradually across a wide region. The reading you get depends on which side you're measuring from. This is the same principle we saw with the Earth: flat from inside, curved from outside. Here it applies to force strengths, not geometry.
 
 **The confinement boundary** (the proton/hadron boundary, ~1 femtometer):
 
@@ -366,4 +366,4 @@ Twelve layers. One vocabulary. One principle: nested soliton boundaries with int
 
 Everything you've been taught as separate subjects — quantum mechanics, atomic physics, nuclear physics, particle physics, cosmology, astrophysics — is one subject. The readings change at the boundaries. The boundaries are nested. The transformation laws between readings are integer Fractions from the gauge group.
 
-This is the physics stack. This is how the universe is organized.
+This is the physics stack. This is how the universe is organized in this model.
