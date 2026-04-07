@@ -1,6 +1,6 @@
 ## Chapter 2: Why Nobody Did This Before
 
-Everything in the previous chapter uses known physics.
+Everything in the previous chapter uses known physics.  Everything in this and the coming chapters uses known physics.  This model does not introduce new physics or math, it reorganizes them.
 
 The beta functions are in the textbooks. The QED series coefficients are published. The BBN fitting formulas are standard. The Weinberg relation, the RGE, the CKM matrix, the Sirlin corrections — all standard. The Bessel functions have been known since 1817. Newton's second law since 1687. Einstein's geodesics since 1915. Solitons since 1834, when John Scott Russell watched a water wave travel two miles down a canal without dispersing and called it "the wave of translation."
 

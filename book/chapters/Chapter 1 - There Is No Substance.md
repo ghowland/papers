@@ -7,7 +7,7 @@
 
 Mass is not a thing. It is a reading.
 
-A reading is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A running reading is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
+A "reading" is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A "running reading" is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
 
 Pick up a rock. It feels heavy. You think you're feeling the substance of the rock — the stuff it's made of, the matter inside it. You're not. You're feeling resistance. The rock resists being moved. That resistance is what you call mass.
 
@@ -17,7 +17,7 @@ Every mass measurement ever performed — every scale, every balance, every part
 
 When physicists found the Higgs boson in 2012, the headlines said "the particle that gives things mass." What the Higgs field actually does is provide resistance to acceleration for particles passing through it. The Higgs mechanism is not a substance-granting machine. It is a resistance-providing pattern. The language of substance crept in because people couldn't stop thinking of mass as stuff. But stuff doesn't appear in any equation.
 
-That equation is usually read as "F = ma": if you know the mass and the acceleration, you can calculate the force. But you can read it the other way. If you know how hard you pushed and how much the thing accelerated, you can calculate the mass. Divide both sides by acceleration and you get: m = F/a.
+The equation is usually read as "F = ma": if you know the mass and the acceleration, you can calculate the force. But you can read it the other way. If you know how hard you pushed and how much the thing accelerated, you can calculate the mass. Divide both sides by acceleration and you get: m = F/a.
 
 m = F/a. There is no substance, there is only inertia.  The resistance to change.
 
