@@ -200,6 +200,8 @@ The W⁺ and W⁻ bosons have a specific inertia (mass) that depends on the Z bo
 
 Predicted: 80,354 MeV. Measured: 80,369 MeV. Miss: 195 parts per million.
 
+An aside on "loops": When physicists calculate how forces run, the simplest calculation is called "one-loop" — it accounts for the most basic quantum effects. A "two-loop" calculation includes finer corrections on top of the first, like adding a second layer of precision to an already precise measurement. Each additional loop makes the prediction more accurate but the computation more complex. The one-loop prediction for the weak mixing angle gets within 1.2% of the measured value. The two-loop prediction gets within 12 parts per million. The same integers, carried to one more level of precision, produce dramatically better results. This is why two-loop matters: it's where the integer structure proves it isn't a coincidence.
+
 The Z boson is unstable — it decays almost instantly into pairs of lighter particles. How quickly it decays, and what it decays into, depends on the weak mixing angle and the strong force strength. The Z can decay into every type of particle lighter than half its own inertia: electron-positron pairs, muon pairs, tau pairs, quark pairs, and neutrino pairs. Each decay channel has a predicted rate, and every rate depends on the same inputs.
 
 Decay to electron pairs: predicted 84.47 MeV, measured 83.91. Miss: 0.67%.
