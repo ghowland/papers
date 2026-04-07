@@ -154,9 +154,9 @@ All from three fractions. All exact. All counted, not measured.
 
 One additional mathematically forced particle changes everything.
 
-The Cabibbo Doublet is a pair of quarks — one with charge +2/3, one with charge −1/3 — that interacts with all three forces (strong, weak and EM). It carries color charge (it feels the strong force), it's a weak doublet (it feels the weak force as a pair), and it has a small hypercharge of 1/6 (it feels the electromagnetic-type force). In the gauge group notation from Layer 1, its quantum numbers are written (3, 2, 1/6) — three integers, one for each symmetry.
+The Cabibbo Doublet is a pair of quarks — one with charge +2/3, one with charge −1/3 — that interacts with all three forces (strong, weak, and electromagnetic). It carries "color" charge (it feels the strong force), it's a weak doublet (it feels the weak force as a pair), and it has a small hypercharge of 1/6 (it feels the electromagnetic-type force). In the gauge group notation from Layer 1, its quantum numbers are written (3, 2, 1/6) — three integer based numbers, one for each symmetry.
 
-What makes it special is its handedness. Standard Model particles are lopsided — their left-handed and right-handed components interact differently. The Cabibbo Doublet is symmetric — both hands interact the same way. Physicists call this "vector-like." This symmetry is important for two reasons: it doubles the Cabibbo Doublet's contribution to the force running rates (both hands count), and it preserves the mathematical consistency of the Standard Model (it doesn't break anything that already works).
+What makes it special is its "handedness" (chirality). Standard Model particles are lopsided — their left-handed and right-handed components interact differently. The Cabibbo Doublet is symmetric — both hands interact the same way. Physicists call this "vector-like." This symmetry is important for two reasons: it doubles the Cabibbo Doublet's contribution to the force running rates (both hands count, 11 doubles to 22 in counting), and it preserves the mathematical consistency of the Standard Model, because it doesn't break anything that already works.
 
 The Cabibbo Doublet shifts the three force running rates by three small exact fractions:
 
@@ -181,6 +181,10 @@ The weak mixing angle is predicted to 12 parts per million.
 The strong force strength is predicted to 0.33%.
 
 The dark matter ratio (22/13)π emerges from the integer 13 (in the modified weak running rate −13/6) and the integer 11 (the Yang-Mills coefficient), doubled to 22 because the Cabibbo Doublet is two-handed.
+
+Step back and see what just happened. One particle — selected by the integers, not by preference — produced all of these results. The weak mixing angle, which has been measured to extraordinary precision in laboratories around the world, is predicted to 12 parts per million from integer arithmetic. The strong force strength, measured independently at particle colliders, is predicted to 0.33%. The dark matter ratio, measured by a satellite observing the oldest light in the universe, is predicted to 725 parts per million. Three completely independent measurements, from three different kinds of experiment, in three different branches of physics, all predicted by the same three fractions from one particle.
+
+This is not a model that explains one thing well and hopes the rest will follow. It is a model that explains many things, across many domains, from one source. The predictions don't require separate assumptions for each domain. They flow from the same three numbers: 1/15, 1, and 1/3. Everything else is standard physics, carried forward by integer fractions.
 
 Nobody chose this particle by hand. It was selected by a mathematical criterion: out of all possible new particles, in every combination of strong, weak, and electromagnetic charges, which one produces a gap ratio that is an exact fraction with small, physically meaningful integers? The answer is unique. Only (3, 2, 1/6) vector-like gives 38/27. Every other candidate either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
 
