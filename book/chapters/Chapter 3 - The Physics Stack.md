@@ -14,7 +14,7 @@ Think of this universe soliton as a still lake. No waves, no boats, no fish jump
 
 The vacuum has energy. The cosmological constant Λ — the energy density of empty space — is measured at 5.88 × 10⁻³⁰ g/cm³. This is absurdly small. In natural units (Planck units), it's 10⁻¹²² — a number so tiny that explaining it has been called "the worst prediction in physics" (quantum field theory naively predicts 10¹²⁰ times more vacuum energy than observed).
 
-In our language: the vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. It's small because the universe is the largest possible soliton, and larger solitons have smaller boundary energy densities. A proton's boundary energy is ~1 GeV over ~1 femtometer. The universe's boundary energy is ~10⁻⁴⁷ GeV⁴ over ~10²⁶ meters. The ratio of sizes is 10⁴¹. The ratio of energy densities scales accordingly.
+In our language, the explanation is structural. The vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. But that reading isn't measured directly. It's measured from inside every nested boundary between us and the outer edge — inside the galaxy, inside the solar system, inside the Earth's gravitational zone. Every boundary we measure through changes the reading. Every crossing introduces its own "running reading". The cosmological constant is the final reading after passing through every soliton boundary in the entire nested stack, from the outermost edge to our instruments.
 
 The vacuum is Layer 0. Everything else is a pattern in the vacuum.
 
