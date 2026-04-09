@@ -1,0 +1,400 @@
+{
+    "key": "experiment_gr_reading_depth_mega_v0",
+    "canonical": "experiment_gr_reading_depth_mega",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "GR time dilation as soliton boundary reading depth. 40 comparisons across gravitational, SR, cosmological, and astrophysical domains. PHYS-41.",
+    "purpose": "program_gr_reading_depth_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "astro_gravitational_constant": 0,
+            "astro_mass_earth": 0,
+            "astro_mass_sun": 0,
+            "astro_radius_earth": 0,
+            "astro_radius_sun": 0,
+            "astro_gps_orbit_radius": 0,
+            "astro_gps_satellite_velocity": 0,
+            "astro_au": 0,
+            "astro_muon_rest_lifetime": 0,
+            "si_speed_of_light": 0,
+            "geom_pi": 0,
+            "gr_pound_rebka_height_m": 0,
+            "gr_skytree_height_m": 0,
+            "gr_muon_cosmic_ray_beta": 0,
+            "gr_sgr_a_mass_solar": 0,
+            "gr_s2_periapsis_au": 0,
+            "gr_planck_time_s": 0,
+            "gr_planck_length_m": 0,
+            "gr_h0_shoes_2022": 0,
+            "gr_h0_planck_2018": 0,
+            "gr_milky_way_phi_c2": 0,
+            "gr_sirius_b_mass_solar": 0,
+            "gr_sirius_b_radius_solar": 0,
+            "gr_hafele_keating_altitude_m": 0,
+            "gr_hafele_keating_eastbound_ns": 0,
+            "gr_hafele_keating_eastbound_unc_ns": 0,
+            "gr_hafele_keating_westbound_ns": 0,
+            "gr_hafele_keating_westbound_unc_ns": 0,
+            "gr_hafele_keating_gr_east_ns": 0,
+            "gr_hafele_keating_gr_east_unc_ns": 0,
+            "gr_hafele_keating_gr_west_ns": 0,
+            "gr_hafele_keating_gr_west_unc_ns": 0,
+            "gr_hulse_taylor_period_decay_us_yr": 0,
+            "gr_hulse_taylor_gr_prediction_us_yr": 0,
+            "gr_hulse_taylor_gr_agreement_pct": 0,
+            "gr_gravity_probe_a_altitude_m": 0,
+            "gr_shapiro_cassini_gamma_pn": 0,
+            "gr_shapiro_cassini_gamma_pn_unc": 0
+        },
+        "derivations": {
+            "gr_reading_depth_mega": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "gr_reading_depth_mega_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "pound_rebka_predicted_shift",
+        "gps_grav_dilation_us_per_day",
+        "gps_velocity_dilation_us_per_day",
+        "gps_net_correction_us_per_day",
+        "skytree_predicted_shift",
+        "solar_redshift_ms",
+        "mercury_perihelion_arcsec_century",
+        "light_deflection_arcsec",
+        "sirius_b_redshift_kms",
+        "muon_cosmic_gamma_sr",
+        "muon_cosmic_dilated_lifetime_us",
+        "earth_surface_phi_c2",
+        "sun_surface_phi_c2",
+        "gps_orbit_phi_c2",
+        "s2_redshift_kms",
+        "sn_ia_stretch_z05",
+        "hubble_tension_ratio",
+        "galactic_phi_c2_total",
+        "hubble_shortfall_orders",
+        "c_from_planck_units",
+        "c_equals_lp_over_tp",
+        "universe_age_planck_steps_log10",
+        "muon_lifetime_planck_steps_log10",
+        "proton_lifetime_planck_steps_log10",
+        "hierarchy_ordering_correct",
+        "hafele_keating_east_consistent",
+        "hafele_keating_west_consistent",
+        "hulse_taylor_decay_consistent",
+        "gravity_probe_a_shift",
+        "cassini_gamma_consistent",
+        "all_on_gr_line",
+        "depth_ordering_astro",
+        "hubble_tension_computation_failed",
+        "sun_schwarzschild_radius_m",
+        "earth_schwarzschild_radius_m",
+        "shapiro_delay_solar_limb_us",
+        "dm_amplification_factor",
+        "neutron_star_phi_c2_range",
+        "event_horizon_phi_c2",
+        "minkowski_signature_correct"
+    ],
+
+    "comparisons": [
+        {
+            "label": "C01: Pound-Rebka shift",
+            "output_key": "pound_rebka_predicted_shift",
+            "match_mode": "miss_pct",
+            "expected": "2.46e-15",
+            "reference_source": "Pound_Rebka_1959"
+        },
+        {
+            "label": "C02: GPS gravitational dilation (us/day)",
+            "output_key": "gps_grav_dilation_us_per_day",
+            "match_mode": "miss_pct",
+            "expected": "45.85",
+            "reference_source": "GPS_system"
+        },
+        {
+            "label": "C03: GPS velocity dilation (us/day)",
+            "output_key": "gps_velocity_dilation_us_per_day",
+            "match_mode": "miss_pct",
+            "expected": "7.21",
+            "reference_source": "GPS_system"
+        },
+        {
+            "label": "C04: GPS net correction (us/day)",
+            "output_key": "gps_net_correction_us_per_day",
+            "match_mode": "miss_pct",
+            "expected": "38.64",
+            "reference_source": "GPS_system"
+        },
+        {
+            "label": "C05: Skytree 450m shift",
+            "output_key": "skytree_predicted_shift",
+            "match_mode": "miss_pct",
+            "expected": "4.93e-15",
+            "reference_source": "Takamoto_2020"
+        },
+        {
+            "label": "C06: Solar limb redshift (m/s)",
+            "output_key": "solar_redshift_ms",
+            "match_mode": "miss_pct",
+            "expected": "633.1",
+            "reference_source": "solar_spectroscopy"
+        },
+        {
+            "label": "C07: Mercury perihelion (arcsec/century)",
+            "output_key": "mercury_perihelion_arcsec_century",
+            "match_mode": "miss_pct",
+            "expected": "42.98",
+            "reference_source": "planetary_ephemeris"
+        },
+        {
+            "label": "C08: Light deflection (arcsec)",
+            "output_key": "light_deflection_arcsec",
+            "match_mode": "miss_pct",
+            "expected": "1.7512",
+            "reference_source": "Eddington_VLBI"
+        },
+        {
+            "label": "C09: Sirius B redshift (km/s)",
+            "output_key": "sirius_b_redshift_kms",
+            "match_mode": "miss_pct",
+            "expected": "89",
+            "reference_source": "Barstow_2005"
+        },
+        {
+            "label": "C10: Muon cosmic ray gamma",
+            "output_key": "muon_cosmic_gamma_sr",
+            "match_mode": "miss_pct",
+            "expected": "15.82",
+            "reference_source": "cosmic_ray_muon"
+        },
+        {
+            "label": "C11: Muon dilated lifetime (us)",
+            "output_key": "muon_cosmic_dilated_lifetime_us",
+            "match_mode": "miss_pct",
+            "expected": "34.7",
+            "reference_source": "cosmic_ray_muon"
+        },
+        {
+            "label": "C12: Earth surface Phi/c^2",
+            "output_key": "earth_surface_phi_c2",
+            "match_mode": "miss_pct",
+            "expected": "6.95e-10",
+            "reference_source": "CODATA_G_M_R"
+        },
+        {
+            "label": "C13: Sun surface Phi/c^2",
+            "output_key": "sun_surface_phi_c2",
+            "match_mode": "miss_pct",
+            "expected": "2.12e-6",
+            "reference_source": "CODATA_G_M_R"
+        },
+        {
+            "label": "C14: GPS orbit Phi/c^2",
+            "output_key": "gps_orbit_phi_c2",
+            "match_mode": "miss_pct",
+            "expected": "2.34e-10",
+            "reference_source": "CODATA_G_M_R"
+        },
+        {
+            "label": "C15: S2 star redshift (km/s)",
+            "output_key": "s2_redshift_kms",
+            "match_mode": "miss_pct",
+            "expected": "200",
+            "reference_source": "GRAVITY_2018"
+        },
+        {
+            "label": "C16: SN Ia stretch at z=0.5",
+            "output_key": "sn_ia_stretch_z05",
+            "match_mode": "miss_pct",
+            "expected": "1.50",
+            "reference_source": "SN_cosmology"
+        },
+        {
+            "label": "C17: Hubble tension ratio",
+            "output_key": "hubble_tension_ratio",
+            "match_mode": "info",
+            "reference_source": "SH0ES_Planck"
+        },
+        {
+            "label": "C18: Galactic potential total",
+            "output_key": "galactic_phi_c2_total",
+            "match_mode": "info",
+            "reference_source": "reading_depth_model"
+        },
+        {
+            "label": "C19: Hubble shortfall orders",
+            "output_key": "hubble_shortfall_orders",
+            "match_mode": "info",
+            "reference_source": "reading_depth_model"
+        },
+        {
+            "label": "C20: c from Planck units vs SI",
+            "output_key": "c_from_planck_units",
+            "match_mode": "miss_pct",
+            "expected": "299792458",
+            "reference_source": "SI_definition"
+        },
+        {
+            "label": "C21: Universe age Planck steps log10",
+            "output_key": "universe_age_planck_steps_log10",
+            "match_mode": "range",
+            "lo": "60",
+            "hi": "62",
+            "reference_source": "cosmology"
+        },
+        {
+            "label": "C22: Muon lifetime Planck steps log10",
+            "output_key": "muon_lifetime_planck_steps_log10",
+            "match_mode": "range",
+            "lo": "37",
+            "hi": "38",
+            "reference_source": "particle_physics"
+        },
+        {
+            "label": "C23: Proton lifetime Planck steps log10",
+            "output_key": "proton_lifetime_planck_steps_log10",
+            "match_mode": "range",
+            "lo": "76",
+            "hi": "80",
+            "reference_source": "GUT_prediction"
+        },
+        {
+            "label": "C24: Hierarchy ordering correct",
+            "output_key": "hierarchy_ordering_correct",
+            "match_mode": "info",
+            "reference_source": "physics"
+        },
+        {
+            "label": "C25: Hafele-Keating west consistent",
+            "output_key": "hafele_keating_west_consistent",
+            "match_mode": "info",
+            "reference_source": "Hafele_Keating_1972"
+        },
+        {
+            "label": "C26: Hafele-Keating east consistent",
+            "output_key": "hafele_keating_east_consistent",
+            "match_mode": "info",
+            "reference_source": "Hafele_Keating_1972"
+        },
+        {
+            "label": "C27: Hulse-Taylor decay consistent",
+            "output_key": "hulse_taylor_decay_consistent",
+            "match_mode": "info",
+            "reference_source": "Hulse_Taylor_1975"
+        },
+        {
+            "label": "C28: Gravity Probe A shift",
+            "output_key": "gravity_probe_a_shift",
+            "match_mode": "miss_pct",
+            "expected": "7.11e-10",
+            "reference_source": "Vessot_1980"
+        },
+        {
+            "label": "C29: Cassini PPN gamma consistent",
+            "output_key": "cassini_gamma_consistent",
+            "match_mode": "info",
+            "reference_source": "Bertotti_2003"
+        },
+        {
+            "label": "C30: c = l_P / t_P",
+            "output_key": "c_equals_lp_over_tp",
+            "match_mode": "info",
+            "reference_source": "Planck_units"
+        },
+        {
+            "label": "C31: All on GR line",
+            "output_key": "all_on_gr_line",
+            "match_mode": "info",
+            "reference_source": "GR_consistency"
+        },
+        {
+            "label": "C32: Astro depth ordering",
+            "output_key": "depth_ordering_astro",
+            "match_mode": "info",
+            "reference_source": "physics"
+        },
+        {
+            "label": "C33: Hubble tension fails (expected)",
+            "output_key": "hubble_tension_computation_failed",
+            "match_mode": "info",
+            "reference_source": "PHYS-41_honest_failure"
+        },
+        {
+            "label": "C34: Schwarzschild radius Sun (m)",
+            "output_key": "sun_schwarzschild_radius_m",
+            "match_mode": "miss_pct",
+            "expected": "2953",
+            "reference_source": "GR_textbook"
+        },
+        {
+            "label": "C35: Schwarzschild radius Earth (m)",
+            "output_key": "earth_schwarzschild_radius_m",
+            "match_mode": "miss_pct",
+            "expected": "0.00887",
+            "reference_source": "GR_textbook"
+        },
+        {
+            "label": "C36: Shapiro delay solar limb (us)",
+            "output_key": "shapiro_delay_solar_limb_us",
+            "match_mode": "miss_pct",
+            "expected": "250",
+            "reference_source": "Viking_1979"
+        },
+        {
+            "label": "C37: DM amplification (22/13)*pi",
+            "output_key": "dm_amplification_factor",
+            "match_mode": "miss_pct",
+            "expected": "5.3165",
+            "reference_source": "HOWL_framework"
+        },
+        {
+            "label": "C38: NS Phi/c^2 in range",
+            "output_key": "neutron_star_phi_c2_range",
+            "match_mode": "info",
+            "reference_source": "NS_physics"
+        },
+        {
+            "label": "C39: Event horizon Phi/c^2 = 0.5",
+            "output_key": "event_horizon_phi_c2",
+            "match_mode": "miss_pct",
+            "expected": "0.5",
+            "reference_source": "GR_textbook"
+        },
+        {
+            "label": "C40: Minkowski signature correct",
+            "output_key": "minkowski_signature_correct",
+            "match_mode": "info",
+            "reference_source": "SR_textbook"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_century_of_reading_depth_v0",
+            "title": "67 years of reading depth: Pound-Rebka 1959 to S2 star 2018",
+            "type": "running",
+            "x_axis": "Phi/c^2",
+            "y_axis": "dilation",
+            "notes": "Every GR experiment as (Phi/c^2, measured dilation). All on one line."
+        },
+        {
+            "key": "diagram_hubble_shortfall_v0",
+            "title": "Hubble tension: 5-order shortfall",
+            "type": "threshold",
+            "notes": "galactic Phi/c^2 ~ 10^-6 vs required ~0.08. Honest failure."
+        },
+        {
+            "key": "diagram_soliton_hierarchy_v0",
+            "title": "Reading depth across soliton hierarchy",
+            "type": "scale",
+            "notes": "Earth < Sun < NS < BH. Deeper soliton = larger Phi/c^2."
+        }
+    ]
+}
