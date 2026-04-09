@@ -1,4 +1,5 @@
-## Reading Depth Across the Soliton Hierarchy — 18 Tests from Meters to Gigaparsecs
+# Reading Depth Across the Soliton Hierarchy
+## 18 Tests from Meters to Gigaparsecs
 
 **Registry:** [@HOWL-PHYS-42-2026]
 
