@@ -7,6 +7,8 @@
 
 Mass is not a thing. It is a reading.
 
+A "reading" is the number an instrument gives you when you measure something. It depends on where you're standing when you measure. A "running reading" is one that changes value depending on the scale at which you measure it — not because your instrument is wrong, but because the thing you're measuring actually has different values at different scales.
+
 Pick up a rock. It feels heavy. You think you're feeling the substance of the rock — the stuff it's made of, the matter inside it. You're not. You're feeling resistance. The rock resists being moved. That resistance is what you call mass.
 
 Newton wrote this down in 1687: F = ma. Force equals mass times acceleration. Rearrange it: m = F/a. Mass equals force divided by acceleration. Mass is how hard you have to push something to make it move. That's all it is. That's all it has ever been.
@@ -15,29 +17,45 @@ Every mass measurement ever performed — every scale, every balance, every part
 
 When physicists found the Higgs boson in 2012, the headlines said "the particle that gives things mass." What the Higgs field actually does is provide resistance to acceleration for particles passing through it. The Higgs mechanism is not a substance-granting machine. It is a resistance-providing pattern. The language of substance crept in because people couldn't stop thinking of mass as stuff. But stuff doesn't appear in any equation.
 
-m = F/a. There is no substance.
+The equation is usually read as "F = ma": if you know the mass and the acceleration, you can calculate the force. But you can read it the other way. If you know how hard you pushed and how much the thing accelerated, you can calculate the mass. Divide both sides by acceleration and you get: m = F/a.
+
+m = F/a. There is no substance, there is only inertia.  The resistance to change.
+
+![The Nested Universe](../figures/book_01_nested_solitons.png)
 
 ---
 
-### Patterns All the Way Down
+## Patterns All the Way Down
 
 If mass isn't substance, what is it?
 
 It's a pattern that resists change.
 
-Think of a whirlpool in a river. The whirlpool has no substance of its own — it's made of water flowing in a circle. But try to push the whirlpool sideways. It resists. It maintains its shape. It has inertia — not because it's made of something, but because the pattern of circulation resists disruption. Push harder and it moves, but it pushes back. The resistance of the pattern to change is the whirlpool's effective mass.
+Blow a smoke ring. Watch it cross the room. It holds its shape — a spinning donut of air that refuses to fall apart. The smoke doesn't make the smoke ring happen, the smoke makes the pattern visible. What you're seeing is air circulating through the center of the donut, around the outside, and back through the center again — a continuous loop of flow that sustains itself.
 
-Now imagine a whirlpool that can't dissipate. A permanent, self-sustaining vortex that maintains its circulation forever. Not because something holds it together, but because the pattern itself is stable — like a knot that can't be untied without cutting the rope. That's a soliton. A soliton is a wave pattern that doesn't spread out. It holds its shape. It propagates. It interacts with other solitons and survives. It resists.
+The air inside the ring is moving differently from the air outside. The boundary between inside flow and outside flow is what gives the ring its shape. That boundary is real — you can see it — even though it's made of nothing but air in motion. No walls. No container. Just a pattern that holds together because the flow on the inside and the flow on the outside maintain each other.
 
-An electron is a soliton. Not "like" a soliton. Not "modeled as" a soliton. The electron is a stable self-sustaining pattern in the quantum field that maintains its shape, carries its quantum numbers, and resists acceleration. Every electron in the universe has exactly the same mass — 0.511 MeV — because every electron is the same pattern, and the same pattern has the same resistance.
+Now try to poke it. It resists. Not much — it's made of air — but it pushes back briefly before breaking. It has a stubbornness. The pattern doesn't want to change. That stubbornness is the same thing you felt when you picked up the rock. Resistance to change. Inertia. The smoke donut has it not because it's made of heavy stuff, but because the circulation pattern resists disruption.
 
-A proton is a soliton made of three smaller solitons (quarks) bound inside a boundary. The proton's mass is almost entirely from the binding energy of the pattern — the quarks themselves contribute less than 2% of the proton's mass. The remaining 98% is pure pattern energy. The proton is heavy not because it's made of heavy stuff, but because the internal circulation pattern resists change with tremendous force.
+![Smoke Ring](../figures/smoke_ring.jpg)
 
-You are made of solitons. Electrons and quarks, bound into atoms, bound into molecules, bound into cells, bound into a body. At no point in this chain does substance appear. At every point, what appears is pattern — stable, self-sustaining, resistant to change. Your mass is the total resistance of all your patterns to acceleration. When you step on a scale, the number is not telling you how much stuff you contain. It's telling you how hard the Earth has to push to keep you from falling through the floor.
+Now imagine a smoke donut that can't break. A permanent, self-sustaining ring of flow that maintains its circulation forever — not because something holds it together, but because the pattern itself is locked in, like a knot that can't be untied without cutting the rope. In physics, a permanent pattern like this is called a soliton.
+
+A soliton can take different shapes depending on the scale it exists at.
+
+At the scale of an electron, the soliton is a sphere. Same principle — a self-sustaining pattern with a boundary, flow on the inside different from the outside, resistant to change. But at this tiny scale, the pattern has no preferred axis. It looks the same from every direction. It is the simplest possible soliton — a sphere of quantum field flow that never dissipates, never changes, never breaks.
+
+Every electron in the universe has exactly the same mass — 0.511 MeV — because every electron is the same spherical pattern, and the same pattern has the same resistance to change.  The same intertia.
+
+A proton is a donut soliton — a toroidal flow pattern made of three smaller solitons called quarks, bound inside a boundary by intense internal circulation. The proton's mass is almost entirely from the energy of that circulation — the quarks themselves contribute less than 2% of the proton's mass (inertia). The remaining 98% is pure pattern energy. The proton is "heavy" not because it's made of heavy stuff, but because the internal circulation pattern resists change with tremendous force.
+
+Two shapes. Spheres and donuts. The universe builds everything from these two patterns nested inside each other at every scale. Quarks inside protons. Electrons orbiting nuclei. Atoms inside galaxies. The combinations vary — the alternation isn't rigid — but the building blocks are always the same two shapes. At no point in this chain does substance appear. At every point, what appears is pattern — stable, self-sustaining, resistant to change.
+
+You are made of these patterns. Your mass is the total resistance of all your patterns to acceleration, resistance to change. When you step on a scale, you are being pulled toward the Earth's center — toward your gravitational ground state, the lowest point you can reach. The scale compresses under you. The number it shows is the force you're applying downward, trying to reach that ground state. It isn't measuring how much stuff you contain. It's measuring how hard you push toward the ground.
 
 ---
 
-### Three Words for One Universe
+## Three Words for One Universe
 
 The standard language of physics uses dozens of terms — field, particle, wave, force, energy, matter, radiation, spacetime, vacuum — and every term carries centuries of baggage. "Particle" makes you think of a tiny ball. "Field" makes you think of an invisible substance filling space. "Force" makes you think of a hand pushing. Every one of these images is wrong, and every one makes unification harder to see.
 
@@ -47,91 +65,157 @@ We need three words.
 
 **Vortex.** The pattern that resists. The stable circulation that maintains itself against perturbation. An electron is a vortex. A proton is a vortex containing three smaller vortices. An atom is a vortex containing nuclear vortices orbited by electron vortices. A star is a vortex of plasma held by gravitational circulation. A galaxy is a vortex of stars held by toroidal flow. At every scale, the same word, because at every scale, the same physics — a self-sustaining pattern of flow that resists change.
 
-**Soliton.** The boundary that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. Inside the proton, the strong coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the strong coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
+In an electrical circuit, the resistance that opposes current flow — that's inertia. The viscosity that slows fluid through a pipe — inertia. The drag that holds back a moving car — inertia. The stiffness of a spring, the inductance of a coil, the thermal resistance of an insulating wall — all inertia. Every department gave it a different name. It was always the same thing: the pattern pushing back against change.
 
-When we say soliton, we mean the boundary. When we say vortex, we mean the pattern inside the boundary. When we say inertia, we mean how the pattern resists measurement from outside the boundary.
+**Soliton.** The boundary structure that separates inside from outside. Every vortex exists inside a boundary. The boundary is where readings change. We call this a Soliton and a Soliton Boundary.
+
+Inside the proton, the "strong" coupling reads α_s ≈ 1 (strong, confining). Outside the proton, the "strong" coupling reads α_s ≈ 0.118 (weak, perturbative). The boundary is where the reading transitions from one value to the other. Inside the atom, the electromagnetic coupling determines the energy levels. Outside the atom, the same coupling determines how atoms interact. Different boundary, different reading, same coupling.
+
+When we say soliton, we mean the boundary. When we say vortex, we mean the pattern inside the boundary. When we say inertia, we mean how the pattern resists measurement and change from outside the boundary.
 
 These three words replace the entire vocabulary of physics. Not because the old words are wrong — they're not — but because they carry baggage that prevents seeing the connections. "Electromagnetic force" and "strong force" sound like different things. They're not. They're different readings of the same coupling at different soliton boundaries. "Gravity" and "electromagnetism" sound like different things. They're not. They're readings at different scales of the same nested boundary structure. The old names kept them apart. The new names show they're the same.
+
+Gravity does not exist as a separate force. It is a child soliton returning to the ground state of its parent soliton — a ball falling toward the Earth is a small pattern settling into the lowest energy configuration of the larger pattern it sits inside. 
+
+The 'strong force' does not exist as a separate force. It is the reading of the coupling inside the proton boundary, where the value is so high that nothing escapes. 
+
+The 'weak force' does not exist as a separate force. It is the reading at the electroweak boundary where certain vortex patterns are allowed to decay into other patterns. 
+
+'Electromagnetic radiation' is not a substance traveling through space. It is a propagating disturbance in the vortex field — a ripple with no boundary, which is why it has no mass and no inertia.
+
+Light is a pure "change pattern" with nothing being changed — a disturbance that moves without carrying anything with it. A wave in the ocean moves energy across the water, but no water travels with it. Light is the same: a pattern moving through the field (vortex interior), carrying energy but no substance, with no boundary to give it resistance. This is why it travels at the fastest possible speed — nothing resists its motion, because there is no soliton boundary to push back.  Light has no inertia.
+
+Inertia is the resistance of a pattern to change.  Vortex is the self-maintaining pattern.  Soliton is the bounded structure: a pattern with an inside, an outside, and a boundary where the reading changes.
 
 This is the Rectification of Names. Physics already has all the correct equations. It has all the correct measurements. What it doesn't have is the correct names — names that reveal the unity instead of obscuring it.
 
 ---
 
-### Nesting
+## Nesting
 
-Everything is nested.
+![Nesting](../figures/nesting_doll.jpg)
 
-Start with a quark. A vortex pattern at the smallest scale we can probe. Three quarks inside a proton. The proton is a soliton — it has a boundary (about 0.88 femtometers across) where the reading changes. Inside: confinement, α_s ≈ 1, quarks can't escape. Outside: freedom, α_s ≈ 0.118, quarks don't exist as free particles.
+Everything is nested. Like a Russian nesting doll, every component of the universe sits inside something larger.
 
-The proton sits inside an atom. The atom is a soliton — it has a boundary (the electron cloud, about 0.1 nanometers across) where the reading changes. Inside: discrete energy levels, quantum mechanics dominates. Outside: the atom looks like a point charge, classical electrostatics works.
+Start with a quark. The smallest vortex pattern we can detect. Three quarks sit inside a proton — a donut soliton with a boundary about a trillionth of a millimeter across, about 80 billion times smaller than a human hair. Inside the proton donut boundary, quarks are permanently trapped. Every experiment ever performed to pull a quark out of a proton has failed — the harder you pull, the more energy you add, and that energy turns into new quarks before the original can escape. Outside the proton donut boundary, that same force is weak enough that protons sit peacefully next to each other.
 
-The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth.
+The proton sits inside an atom. The atom is a soliton too — it has its own boundary, about ten thousand times larger than the proton. Inside, electrons exist only in specific shells, jumping between them in exact integer steps. Outside, the atom looks like a single tiny sphere with a charge. Different rules inside than outside. Same principle. The boundary determines which rules apply.
 
-The Earth is a soliton. It has a boundary — the Hill sphere, about 1.5 million kilometers across — where the gravitational reading changes. Inside the Hill sphere, objects orbit the Earth. Outside the Hill sphere, objects orbit the Sun. The Moon is inside the Earth's Hill sphere. That's why it orbits the Earth and not the Sun. The boundary determines the orbit.
+The atom sits inside a molecule. The molecule sits inside a cell. The cell sits inside an organism. The organism sits on the surface of the Earth. At every level, the same structure — a pattern inside a boundary, with different readings on each side.
 
-The Earth sits inside the Sun's Hill sphere. The Sun sits inside the galaxy.
+The Earth itself is a sphere soliton. Every object in space has a zone of "gravitational influence" (Hill sphere) — a region where its pull is stronger than anything else's. For the Earth, this zone extends about 1.5 million kilometers in every direction. Inside that zone, objects orbit the Earth. Outside it, objects orbit the Sun. The Moon is inside the Earth's zone. That's why it orbits us and not the Sun. The boundary determines the orbit.
 
-The galaxy is a soliton. And here something new happens.
+The Earth sits inside the Sun's zone. The Sun sits inside the galaxy.
+
+The galaxy is a donut soliton, a toroid.
+
+![Proton Donut](../figures/donut.jpg)
 
 ---
 
-### The Toroid
+## The Toroid
 
 ![Fig. 2: Galaxy toroidal cross-section — the visible disc is the equatorial slice, the "dark matter" halo is the toroidal circulation flow, DM ratio = (22/13)π = 5.317.](../figures/book_02_toroidal_galaxy.png)
 
-Galaxies are not spheres. They're toroids.
+Galaxies are not spheres. Galaxies are toroids, donuts.  Thin donuts.
 
 Look at any spiral galaxy — the Milky Way, Andromeda, the thousands captured by Hubble and Webb. A flat rotating disc with a bulge at the center and a vast halo surrounding it. The disc is where the stars are. The halo is where the "dark matter" is. The standard model of cosmology says the halo is filled with invisible massive particles that provide the extra gravitational pull needed to keep the outer stars from flying off.
 
-But there's another reading. The halo isn't filled with invisible particles. The halo is the toroidal flow pattern of the galaxy itself.
+But there's another reading. The halo isn't filled with invisible particles. The halo is the toroidal flow pattern of the galaxy itself, like the smoke ring, but much more resistant to external change.
 
 A toroid is a doughnut shape. The flow circulates through the hole, around the outside, and back through the hole — a continuous self-sustaining vortex. The disc of the galaxy is the equatorial cross-section of the toroid. The "dark matter halo" is the rest of the toroidal flow — the part that circulates above and below the disc and returns through the center.
 
 This is why the galaxy rotation curves are flat. The outer stars aren't being pulled by invisible particles. They're embedded in a toroidal flow pattern that naturally produces flat rotation curves — because the toroidal circulation has a specific velocity profile determined by the flow geometry, not by a central mass. The stars at the outer edge of the disc aren't moving "too fast for the visible mass." They're moving at exactly the right speed for the toroidal flow.
 
-The dark matter ratio — how much "dark matter" versus visible matter the universe contains — is (22/13)π. That's 5.317. The measured ratio from the Planck satellite is 5.320. The miss is 725 parts per million.
+![Proton Donut](../figures/donut_deep.jpg)
 
-Where do 22 and 13 come from? From the gauge group. 22 = 2 × 11, where 11 is the Yang-Mills coefficient of SU(2) — the coefficient that determines how the weak force runs with energy. 13 is the numerator of the modified SU(2) beta coefficient (−13/6) — modified by the same particle (the Cabibbo Doublet) that makes the gauge couplings unify. The dark matter ratio is not a free parameter. It's a reading of the gauge group structure at the galactic boundary scale.
+So far, this may sound like a story about shapes alone — spheres, donuts, boundaries, and flow. But shapes in physics are not freehand. They come with counts. How many stable components fit inside a boundary. How many ways a pattern can circulate. How many distinct interactions are allowed before a pattern changes into another. Those counts are integers, and the integers set the possible ratios.
 
-The universe tells us how much dark matter exists through the CMB. The gauge integers tell us the ratio should be (22/13)π. They agree to 725 ppm. One equation. No invisible particles.
+The universe is built from integer arithmetic — whole numbers and their ratios. The patterns we've been describing, the solitons and vortices at every scale, are governed by specific integers that come from counting how particles interact with each force. These integers aren't mysterious. They're the result of counting: how many particles exist, how they combine, how they transform. And when you do the counting correctly, the integers predict what we measure.
+
+Two integers — 22 and 13 — multiplied by π, predict exactly how much dark matter the universe contains.
+
+The prediction: (22/13) × π = 5.3165. The measurement from the Planck satellite: 5.3204. They agree to 725 parts per million.
+
+Why 725 parts per million? To see how close this is, think of it this way. If you predicted the distance from New York to Los Angeles — about 3,944 kilometers — and your prediction was off by 725 parts per million, you'd be wrong by about 3 kilometers. Out of a four-hour flight, you'd be off by eleven seconds. The first three digits match exactly: 5.31. The disagreement starts at the fourth digit, where the prediction says 6 and the measurement says 2. Everything before that is identical.
+
+That sounds too simple, so to say clearly what is being claimed: This is not numerology. It is not taking random numbers and forcing them to match a measurement. The claim is that once the particle-counting is done correctly, the geometry of the toroid turns those counts into a fixed ratio. The integers come from the counting. The π comes from the shape.
+
+Where do the integers 22 and 13 come from? They come from counting how particles interact with the weak force — the same force responsible for radioactive decay. The number 11 appears when you calculate how the weak force changes strength at different scales. Double it: 22. 
+
+### The Predicted "Cabibbo Doublet" particle
+
+Why double it?  Because the 22 is 2 × 11 because the predicted "Cabibbo Doublet" particle is vector-like — it has both left-handed and right-handed components, each contributing 11, so the total contribution is doubled.
+
+Most matter particles are lopsided — they only interact using one 'hand,' the left. This is one of the deep asymmetries of nature, and it's why physicists call normal matter 'chiral,' meaning handed. The Cabibbo Doublet is different. It interacts with both hands — left and right — which is why physicists call it 'vector-like.' Each hand contributes 11 to the weak force count, so the total is 2 × 11 = 22.
+
+To a non-physicist, “counting interactions” can sound vague, so here is the simple version. In particle physics, each family of particles contributes in a specific, countable way to how a coupling changes with scale. You do not guess these contributions. You add them. The result is a total, and that total is an integer.
+
+The number 13 appears when you add one specific particle — the Cabibbo Doublet — to that count. This particle was identified by the research behind this book as the single representation that makes the three forces converge. It's named after the Cabibbo angle, one of the fundamental mixing angles in particle physics, and 'doublet' because it comes in a pair — a geometric property of how it interacts with the weak force. The Cabibbo Doublet hasn't been found in a laboratory yet. It was found in the integers — it's the only particle whose properties produce exact fraction ratios when added to the Standard Model count. Its existence is a prediction, and the (22/13)π dark matter ratio is one of its consequences.
+
+The "Cabibbo Doublet" particle is not being proposed as a particle invented to save the model after the fact. It appears because the counting does not close cleanly without it. Add it, and the ratios become exact. Leave it out, and they do not.
+
+In the case of dark matter, nobody multiplied (22/13) by π and compared it to the dark matter ratio before — because the people who work with these integers and the people who measure dark matter are in different departments.
+
+Numerology would be picking 22 and 13 because they happen to work. Here, 22 and 13 are the only numbers the counting produces. You can't choose different integers without changing which particles exist.
+
+The universe tells us how much dark matter exists through satellite measurements. The integers tell us the ratio should be (22/13)π. They agree. One equation. No invisible particles.
+
+![The Rational Universe Card](../figures/book_08_identity_card.png)
 
 ---
 
-### Saturn's Rings and the Asteroid Belt
+## Saturn's Rings and the Asteroid Belt
+
+### Gaps in the Rings
 
 ![Fig. 10: Bessel function J₀(x) zeros (top) correspond to ring gaps in disc structures (bottom) — Saturn's rings, asteroid belt, galaxy disc all follow the same standing wave pattern.](../figures/book_10_bessel_zeros.png)
 
-If galaxies are toroids, their internal structure should show toroidal standing wave patterns. Standing waves in a toroidal cavity have nodes — places where the wave amplitude is zero. These nodes are circles. They appear at specific radii determined by the zeros of Bessel functions — the mathematical functions that describe waves in circular geometries.
+If galaxies are donuts, they should vibrate like donuts.
 
-Saturn's rings are gaps and bands at specific radii. The asteroid belt has gaps at specific orbital radii (the Kirkwood gaps). The galaxy disc has spiral arms at specific radii. All of these are nodal patterns of toroidal standing waves — the same mathematics, the same physics, at different scales.
+Every shape that vibrates has a pattern. A guitar string vibrates with fixed points at each end — the nodes — where the string doesn't move. A circular drumhead vibrates with rings of stillness — circles where the surface stays flat while everything around it moves. The shape determines where the dead spots are.
 
-Bessel function J₀ has zeros at x = 2.405, 5.520, 8.654, 11.792... These are the radii where the standing wave vanishes. At these radii, no stable orbit exists — particles get pushed to adjacent nodes. The Kirkwood gaps in the asteroid belt correspond to orbital resonances with Jupiter, but the pattern of resonances follows the same Bessel zero structure because Jupiter's gravitational influence creates a standing wave pattern in the orbital disc.
+A standing wave is a pattern that stays in place while the motion inside it repeats. Some parts move strongly. Some parts do not move at all. Those still places are called nodes. On a donut-shaped system, the nodes are not just points or lines. They can form whole circular bands.
 
-This isn't coincidence. This is what standing waves do in toroidal geometries. The galaxy is a toroidal vortex. Saturn's ring system is a toroidal vortex. The asteroid belt is a cross-section of the solar system's toroidal flow. The nodes are at the Bessel zeros because Bessel functions are the eigenfunctions of the Laplacian in cylindrical coordinates — which is the natural coordinate system for a toroid.
+A donut vibrates too. Its standing wave pattern produces dead rings — circles at specific radii where the wave cancels itself out. Nothing stable sits at a dead ring. Material gets pushed inward or outward, toward the nearest live zone. The result: gaps at specific radii, with material concentrated between them.
 
----
+Now look at Saturn's rings. Gaps and bands at specific radii. The Cassini Division — the famous dark gap visible through a backyard telescope — sits at a specific distance from Saturn. The Kirkwood gaps in the asteroid belt sit at specific distances from the Sun. The galaxy's spiral arms sit at specific radii within the disc.
 
-### Gravity Is a Reading
+The standard explanation for these gaps is orbital resonances — places where a moon's or planet's gravity periodically tugs objects out of stable orbits. That explanation is correct. But the deeper question is: why do resonances produce gaps at those particular radii? The answer, in the donut framework, is that the resonances occur at the dead rings of the toroidal standing wave (donut vortex, "smoke ring"). The shape determines where the dead spots are. The resonances are the mechanism. The donut geometry is the reason the mechanism acts where it does.
 
-Gravity is not a force. Einstein showed this in 1915 — objects in gravitational fields follow geodesics, the straightest possible paths through curved spacetime. There is no gravitational force pushing you toward the Earth. There is curved spacetime, and you follow the natural path through it. The "force" you feel standing on the ground is the ground pushing you upward, away from your natural geodesic (which would take you through the floor toward the center of the Earth).
-
-In our language: gravity is the ground state reading of the nearest soliton boundary.
-
-When you stand on the Earth, you're at the ground state of the Earth soliton. The ground state is the lowest energy configuration — the state the system naturally falls to. Jump, and you briefly leave the ground state. You're in an excited state. But excited states decay, and you fall back to the ground. This is not a metaphor. This is exactly what "gravitational potential energy" means — the energy difference between your current state and the ground state.
-
-Orbit is a metastable state — a long-lived excited state that doesn't immediately decay. The Moon is in a metastable state of the Earth soliton. It's above ground state but in a stable configuration. Apply enough energy (escape velocity) and you transition out of the Earth soliton entirely — you leave the Hill sphere and enter the Sun's soliton.
-
-The gravitational constant G = 6.674 × 10⁻¹¹ is a reading. It's measured inside the Earth's Hill sphere, using experiments conducted on the Earth's surface, inside the Earth's atmosphere, inside the Earth's magnetic field, inside the Earth's soliton boundary. Every measurement of G ever performed has been made inside this single boundary. The scatter in G measurements — larger than for any other fundamental constant — is telling us something. It's telling us that G is a boundary reading, and we're measuring it from one location inside one boundary.
-
-The electromagnetic coupling α = 1/137 runs with energy — it changes value depending on what scale you probe it. At low energy, α ≈ 1/137. At the Z boson mass, α ≈ 1/128. At the GUT scale, α ≈ 1/42. Same coupling, different readings at different boundaries.
-
-The model says gravity does the same thing. G reads one value inside the Earth's Hill sphere. It reads a different value inside the Sun's Hill sphere. It reads a different value at the galactic scale. The "dark matter problem" — the observation that galaxies rotate as if they contain more mass than we can see — is not a matter problem. It's a reading problem. The gravitational reading at the galactic boundary (the toroidal edge) is different from the gravitational reading inside the solar Hill sphere.
-
-This is not settled. This is the frontier of the map. We have not derived G from integers the way we've derived α from integers. But the model says G is the same kind of thing — a soliton boundary reading — and the dark matter ratio (22/13)π being correct to 725 ppm from gauge integers is the first evidence that the gravitational sector connects to the gauge sector through the same integer structure.
+Saturn’s rings, the asteroid belt, and the galactic disc differ in scale, but not in principle: the same mathematics produces the same dead rings.
 
 ---
 
-### The Flat Inside and the Curved Outside
+## Gravity Is a Reading
+
+Gravity is not a force. Einstein showed this in 1915. Objects in a gravitational field aren't being pushed or pulled — they're following the most natural path through curved space. The apple doesn't fall because the Earth pulls it. The apple falls because the space between it and the Earth is curved, and "down" is the straightest line available. The only force you feel standing on the ground is the ground pushing up on your feet, preventing you from following your natural path — which would take you straight through the floor.
+
+In our language: gravity is what happens when a small soliton returns to the ground state of the larger soliton it sits inside.
+
+The ground state is the lowest energy position — the place a system naturally settles to if nothing holds it up. Pick up a ball and release it. It falls. It's returning to its ground state — the surface of the Earth. Jump off a diving board. For a moment, you're in an excited state — above ground. But excited states don't last. You come back down. This isn't a metaphor for gravity. This is what gravity is: the tendency of every pattern to settle into the lowest energy configuration of the boundary it lives inside.
+
+The Moon doesn't fall to Earth because it's in a stable orbit — an excited state that lasts billions of years without decaying. But apply enough energy — reach escape velocity — and you leave the Earth's gravitational zone entirely. You exit the Earth's boundary and enter the Sun's. The boundary determines which ground state you fall toward.
+
+So far, gravity has been described as a pattern settling into its natural place inside a larger pattern. The next step is to ask how we know the strength of that settling. Physics gives that strength a name: G, the gravitational constant. But a constant is only constant if it reads the same way everywhere.
+
+Now here's the key claim. Every measurement of gravitational strength ever performed — every laboratory experiment with lead spheres and torsion balances — has been performed inside the Earth's gravitational zone, on the Earth's surface, inside the Earth's boundary (Hill sphere). Every single one. And the measurements don't agree with each other as well as they should. The gravitational constant G has more scatter between experiments than any other fundamental constant in physics. The standard explanation is that gravity is just hard to measure. The boundary explanation is different: G is a reading that depends on which boundary you're inside.
+
+That idea may sound strange at first, but it is not strange elsewhere in physics. We already accept that a force can be one thing in principle and still read differently at different scales. The reading changes even when the underlying interaction does not.
+
+We already know this happens with other forces. The strength of the electromagnetic force changes depending on how closely you look — it reads 1/137 at everyday scales, 1/128 at the scale of the Z boson, and 1/42 at the unification scale. Same force. Different reading. Different boundary.
+
+If gravity belongs to the same unified structure, then it should behave the same way. Its underlying role would stay the same, while the measured reading would depend on the boundary and scale of the system being measured.
+
+This model says gravity works the same way. G reads one value inside the Earth's boundary. It reads a different value at the scale of the solar system. It reads a different value at the scale of the galaxy. The "dark matter problem" — galaxies rotating as if they contain far more mass (inertia) than we can see — may not be a mass problem at all. It may be a reading problem. The gravitational reading at the galactic boundary is different from the gravitational reading inside our solar system's boundary.
+
+This is the frontier of the map — not settled, not fully derived. We haven't connected G to the gauge integers the way we've connected the dark matter ratio. But (22/13)π matching the Planck satellite measurement to 725 parts per million is the first evidence that gravity connects to the same integer structure as the other forces. The bridge exists. It's just not fully built yet.
+
+![Gravity Well](../figures/gravity_well.jpg)
+
+---
+
+## The Flat Inside and the Curved Outside
 
 ![Fig. 9: Same soliton boundary reads flat from inside (left) and curved from outside (right) — both correct, both measurable.](../figures/book_09_flat_curved.png)
 
@@ -139,83 +223,148 @@ Stand on the surface of the Earth. Look around. The ground is flat. The horizon 
 
 Now look at the Earth from space. It's a sphere. The surface curves. The horizon is a circle. The Earth, from outside the boundary, reads curved.
 
+A boundary does not look the same from every position. The same surface can present one reading to something embedded in it and another to something viewing it from outside. This is not a trick of language. It is a difference in vantage.
+
 Both readings are correct. They're not contradictory. They're readings from different sides of the same soliton boundary. The surface of the Earth is a boundary. From inside (standing on it), the boundary reads flat — because every soliton boundary looks locally flat from the inside. From outside (orbiting above it), the boundary reads curved — because every soliton boundary looks globally curved from the outside.
+
+Once that inside/outside distinction is clear on the Earth, the next question is whether it is only a local fact or a general one. The claim here is that it repeats. The same split in reading appears again and again at different scales.
 
 This is true at every scale.
 
-A proton looks pointlike from outside — a zero-dimensional object with a charge and a mass. From inside (probed by high-energy electrons at SLAC, DESY, and Jefferson Lab), the proton has internal structure — three quarks, gluon fields, sea quarks, a complex internal landscape 0.88 femtometers across. Pointlike outside. Structured inside. Two readings, one boundary.
+A proton looks pointlike from outside — a zero-dimensional object with a charge and a mass. From inside (when probed by high-energy electrons at SLAC, DESY, and Jefferson Lab), the proton has internal structure — three quarks, gluon fields, sea quarks, a complex internal landscape 0.88 femtometers across. Pointlike outside. Structured inside. Two readings, one boundary.
 
-A galaxy looks like a dot from 100 megaparsecs away. From inside, it has spiral arms, a bulge, a disc, a halo, 200 billion stars. Dot outside. Structure inside. Two readings, one boundary.
+A galaxy looks like a dot from a billion light-years away. From inside, it has spiral arms, a bulge, a disc, a halo, 200 billion stars. Dot outside. Structure inside. Two readings, one boundary.
 
-The universe itself has this property. From inside — from our position inside the galaxy, inside the local group, inside the observable horizon — spacetime looks locally flat. The curvature parameter k, measured by Planck, is consistent with zero. Flat. From outside (if "outside" means anything for the universe), the total curvature would read differently. We can't get outside to check. But the flatness reading from inside is exactly what the soliton model predicts.
+![Proton Donut](../figures/galaxy_ring.jpg)
 
-This is what it means for everything to be nested. You're a soliton, standing on the Earth soliton, inside the Earth's Hill sphere soliton, inside the Sun's Hill sphere soliton, inside the galaxy toroid soliton, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
+Push the idea outward far enough and it reaches the largest thing we can talk about. If nested boundaries are a universal feature, then the same inside/outside logic should apply not only to objects in the universe, but to the universe as a whole.
+
+The universe itself has this property. From inside — from our position inside the galaxy, inside our local neighborhood of galaxies, inside the observable horizon — spacetime looks flat. Every measurement confirms it. Perfectly flat. From outside (if "outside" means anything for the universe), the total curvature would read differently. We can't get outside to check. But the flatness reading from inside is exactly what the soliton model predicts.
+
+Nesting does not just mean smaller things sitting inside larger ones. It means each larger boundary changes what can be seen, measured, and treated as natural from within it.
+
+**This is what it means for everything to be nested:** You're a soliton, standing on the Earth soliton, inside the Earth's gravitational boundary, inside the Sun's gravitational boundary, inside the galaxy donut, inside the universe. Each boundary has two readings. You see the flat reading from inside each boundary that contains you. You see the curved reading from outside each boundary you've exited.
+
+![Flat and Round Soliton Observations](../figures/flat_round.jpg)
 
 ---
 
-### The Hierarchy of Readings
+## The Hierarchy of Readings
 
 ![Fig. 1: Nested soliton boundaries from quark to universe — each boundary separates an inside reading from an outside reading, the same structure at every scale.](../figures/book_01_nested_solitons.png)
 
-Here is the nesting, from smallest to largest:
+By now the pieces have been introduced one at a time. What follows is not a new argument, but a summary. The point is to let the whole ladder be seen at once, from the smallest boundaries we can probe to the largest boundary we can infer.
 
-**Quarks** — the innermost vortices. Confined inside hadrons. Their reading of the strong coupling is α_s ≈ 1 (strong confinement). From outside the hadron, α_s ≈ 0.118 (weak, perturbative).
+Here is the complete nesting, from smallest to largest. At every level, the same principle: a boundary with different readings on each side.
 
-**Hadrons (protons, neutrons)** — soliton boundaries at ~1 femtometer. Inside: quarks and gluons. Outside: nuclear physics. The reading that changes at this boundary: color confinement.
+**Quarks** — the smallest vortices we can detect. Confined inside protons. Inside the proton boundary, the force between quarks is overwhelming — nothing gets out. Outside, that same force is gentle enough that protons sit next to each other in atomic nuclei.
 
-**Nuclei** — soliton boundaries at ~1-10 femtometers. Inside: protons and neutrons bound by residual strong force. Outside: atomic physics. The reading that changes: nuclear binding energy.
+**Protons and neutrons** — donut solitons about 80 billion times smaller than a human hair. Inside: quarks and intense circulation. Outside: the calmer world of nuclear physics.
 
-**Atoms** — soliton boundaries at ~0.1 nanometers. Inside: quantum mechanics, discrete energy levels, the electron cloud. Outside: chemistry, molecular bonds. The reading that changes: the electromagnetic coupling structure (from discrete atomic spectra to continuous molecular bands).
+**Nuclei** — clusters of protons and neutrons bound together. Inside: nuclear forces hold everything tight. Outside: the electron cloud and atomic physics. The boundary is where nuclear rules end and electromagnetic rules begin.
 
-**Molecules, cells, organisms** — boundaries at nanometer to meter scales. Each has an inside and an outside. Each has readings that change at the boundary. We call this "biology" and "chemistry" but it's the same boundary physics at different scales.
+**Atoms** — sphere solitons about ten thousand times larger than a proton. Inside: electrons in specific shells, jumping in exact integer steps. Outside: chemistry. The boundary is where quantum rules give way to the rules of molecular bonding.
 
-**Planets** — soliton boundaries at the Hill sphere (~1.5 million km for Earth). Inside: objects orbit the planet. Outside: objects orbit the star. The reading that changes: which gravitational ground state you're in.
+**Molecules, cells, organisms** — boundaries at every scale from nanometers to meters. Each has an inside and an outside. Each has readings that change at the boundary. We call these different scales "chemistry" and "biology," but it's the same boundary physics continuing upward.
 
-**Stars** — soliton boundaries at the stellar Hill sphere (~1-2 light-years for the Sun). Inside: the planetary system. Outside: interstellar space. The reading that changes: gravitational binding to the star.
+Up to this point the nesting has moved through the familiar small scales of matter. The same logic now extends upward into the gravitational world, where the boundary is not a hard surface but the region inside which one larger pattern dominates the motion of smaller ones.
 
-**Galaxies** — toroidal soliton boundaries. The disc is the equatorial cross-section. The halo is the toroidal flow. Inside: stars orbit in the disc. The toroidal flow provides the "extra" gravitational reading that we call dark matter. Outside: intergalactic space.
+**Planets** — sphere solitons with gravitational boundaries extending about 1.5 million kilometers for Earth. Inside: objects orbit the planet. Outside: objects orbit the star. The reading that changes: which ground state you fall toward.
 
-**The Universe** — the outermost soliton boundary. The vacuum. Inside: all physics, all readings, all measurements. The cosmological constant Λ is the vacuum reading — the ground state energy of the outermost boundary. It's tiny (10⁻¹²² in Planck units) because it's the reading of the largest possible soliton, and larger solitons have smaller boundary energy densities.
+**Stars** — sphere solitons with gravitational boundaries extending one to two light-years for the Sun. Inside: the planetary system. Outside: interstellar space.
+
+At galactic scale the shape changes, but the rule does not. Instead of a sphere with a surrounding zone, the larger pattern is a toroid: a circulating donut whose visible disc and surrounding halo are two parts of one flow.
+
+**Galaxies** — donut solitons. The disc is the cross-section. The halo is the toroidal flow. Inside: stars orbit in the disc, carried by the flow. The flow provides the "extra" gravitational reading that cosmologists call dark matter. Outside: intergalactic space.
+
+The final step is the largest one. If nesting does not stop at stars or galaxies, then the whole observable universe must also be treated as a boundary with an inside reading. At that point even the vacuum is no longer empty background, but the interior of the outermost structure.
+
+**The Universe** — the outermost soliton. The vacuum itself. Inside: all physics, all readings, all measurements. The energy of this outermost boundary — what physicists call the cosmological constant — is almost unimaginably small. It's tiny because it's the ground state energy of the largest possible soliton, and the larger the soliton, the smaller its boundary energy.
+
+Every layer follows the same rule. Inside reads different from outside. The boundary determines which rules apply. The shapes are spheres and donuts, nested inside each other, from quarks to the universe. One structure. One principle. Every scale.
 
 ![Fig. 12: Hydrogen predicted from two independent paths — QED spectroscopy (0.44 ppb) and BBN nucleosynthesis (0.12σ) — same element from opposite ends of physics, both matching.](../figures/book_12_hydrogen_two_path.png)
 
----
-
-### The Dark Matter Ratio
-
-The single most striking result of this model is the dark matter ratio.
-
-Standard cosmology measures the ratio of dark matter to visible matter in the universe: 5.320 ± 0.003 (from the Planck satellite CMB observations). This number is treated as a free parameter — a measurement with no theoretical prediction. Nobody knows why the universe has 5.3 times more dark matter than visible matter. It just does.
-
-The model says: the ratio is (22/13)π.
-
-22 = 2 × 11. The 11 is the Yang-Mills coefficient — the number that appears in the gauge coupling beta function for SU(2), the symmetry group of the weak nuclear force. It determines how the weak force changes strength with energy.
-
-13 is the numerator of the modified SU(2) beta coefficient. When you add the Cabibbo Doublet — the one additional particle that the gauge mathematics requires for coupling unification — the SU(2) beta changes from −19/6 to −13/6. The 13 comes from this modification.
-
-π is π.
-
-(22/13)π = 5.3165. Planck measures 5.320. Miss: 725 parts per million.
-
-This is not a fit. Nobody adjusted 22 or 13 or π to match the data. The 22 and 13 come from the gauge group — the same mathematical structure that determines how strongly particles interact at every energy scale. The dark matter ratio is a gauge reading at the cosmological boundary. The gauge integers predict it. The universe confirms it.
-
-And the chain doesn't stop at the ratio. The ratio gives the baryon density Ω_b = 0.04904 (measured: 0.0490, miss 727 ppm). The baryon density gives the baryon-to-photon ratio η₁₀ = 6.090 (measured: 6.104, miss 0.24%). The baryon-to-photon ratio determines how much deuterium, helium, and lithium the universe produced in the first three minutes after the Big Bang:
-
-Deuterium: predicted 2.531 × 10⁻⁵, measured 2.527 × 10⁻⁵. Miss: 0.12σ.
-
-Helium-4: predicted 0.2486, measured 0.2449. Miss: 0.94σ.
-
-Helium-3: predicted 1.03 × 10⁻⁵, measured 1.10 × 10⁻⁵. Miss: 0.36σ.
-
-Lithium-7: predicted 4.74 × 10⁻¹⁰, measured 1.60 × 10⁻¹⁰. Miss: 2.96× — the famous lithium problem, an unsolved discrepancy that has persisted for 40 years.
-
-The same two integers — 11 and 13 — that come from the gauge group predict the chemical composition of the universe at three minutes old. Three elements match within measurement uncertainty. One reproduces a known unsolved problem. From the mathematics of the weak force to the chemistry of the Big Bang in six links of integer arithmetic.
-
-This is what unification looks like.
 
 ---
 
-### What You've Just Read
+## The Dark Matter Ratio
+
+In standard physics, the ratio of dark matter to visible matter is what's called a free parameter. A free parameter is a number that physics can measure but not explain — it has no formula, no derivation, no reason to be what it is. You go to the universe, you measure it, and you write down what you get. There's no equation that predicts what the number should be.
+
+The Planck satellite measured this ratio from the afterglow of the Big Bang — the cosmic microwave background (CMB), the oldest light in the universe. The result: 5.320. For every unit of visible matter, there are 5.320 units of dark matter. Nobody knows why. Nobody has a formula. It's just what the universe says when you measure it.
+
+This model says: the ratio is (22/13) × π.
+
+That's two integers and one geometric constant. Nothing else.
+
+To understand where 22 and 13 come from, recall what we described earlier: each type of particle contributes a specific, countable amount to how a force changes strength at different scales. You don't guess these contributions. You count them. You add them up. The totals are integers.
+
+At this point the argument shifts from cosmology back to particle physics. The claim is simple: some numbers are not fitted to data after the fact, but arise from counting the allowed contributions to how a coupling changes with scale.
+
+The number 11 comes from counting how the weak force — the force responsible for radioactive decay — changes strength as you zoom in. This is the Yang-Mills coefficient, a number that appears in every textbook on particle physics. It has been known since the 1970s. It is not controversial. Double it: 22.
+
+This is the point where the model departs from the standard count. Add the extra particle, and the integer changes. The issue is not the arithmetic but the legitimacy of the addition.
+
+The number 13 comes from modifying that count. When you add the Cabibbo Doublet, the two-handed particle we introduced earlier and the single additional particle identified by this research — the weak force count changes. The total shifts from 19 to 13. This is exact. It comes from the same kind of counting that produced 11. One particle added, one integer changed.
+
+Counting gives the integers, but the large-scale shape of the system also matters. Once the galaxy is treated as a toroid, geometry enters the result, and with geometry comes π.
+
+π is the geometric constant — the ratio of a circle's circumference to its diameter. It appears here because the toroidal (donut) geometry of the galaxy introduces circular structure into the calculation, just as it introduces π/4 into pipe flow and antenna equations.
+
+Put them together: (22/13) × π = 5.3165.
+
+The Planck satellite measures: 5.3204.
+
+The first three digits match exactly: 5.31. The disagreement starts at the fourth digit. The total miss is 725 parts per million. If you predicted the distance from New York to Los Angeles and were off by 725 parts per million, you'd miss by about 3 kilometers out of 3,944.
+
+This is not a fit. Nobody adjusted 22 or 13 or π to match the measurement. The integers come from particle counting. The π comes from the shape. The prediction falls out of the mathematics and lands within 725 parts per million of what the satellite measured.
+
+But the chain doesn't stop at the dark matter ratio. The ratio is just the first link.
+
+The dark matter ratio is not the end of the argument. It is the first quantity in a chain, and once that first link is fixed, the rest can be carried forward by ordinary cosmological relations.
+
+**Link 1 → Link 2: From dark matter ratio to visible matter density.**
+
+If you know how much dark matter there is relative to visible matter (5.3165), and you know the total amount of dark matter (measured by Planck), you can divide to get the amount of visible matter. This is called the baryon density — "baryon" is just the physicist's word for ordinary matter: protons, neutrons, atoms, everything you can see and touch and build telescopes out of. The baryon density is the fraction of the universe made of this ordinary stuff.
+
+Predicted from (22/13)π: 0.04904. Measured by Planck: 0.0490. They agree to 727 parts per million.
+
+The next step moves from cosmic inventory to early-universe conditions. In standard cosmology, those are not separate subjects but successive descriptions of the same system.
+
+**Link 2 → Link 3: From visible matter density to the atom-to-light ratio.**
+
+After the Big Bang, the universe was filled with both atoms and light — an enormous number of photons for every atom. As the universe expanded and cooled, the ratio between them became fixed. This ratio — how many atoms exist for every photon of leftover Big Bang light — is called the baryon-to-photon ratio. It's a head count: atoms on one side, photons on the other.
+
+This ratio matters because it determines what happened during the first three minutes after the Big Bang. In those three minutes, the universe was hot enough and dense enough to fuse hydrogen into heavier elements. How far that fusion went — how much deuterium, how much helium, how much lithium was produced — depended on exactly how many atoms were available per photon. More atoms per photon means more collisions, more fusion, more heavy elements.
+
+Predicted from the baryon density: 6.090. Measured: 6.104. They agree to 0.24%.
+
+This is where the chain meets its sharpest test. If the earlier steps are sound, they should not stop at ratios. They should recover the observed elemental yields of the early universe.
+
+![Light Sphere](../figures/light.jpg)
+
+**Link 3 → Link 4: From the atom-to-light ratio to the chemical composition of the universe.**
+
+The atom-to-light ratio at three minutes old determines exactly how much of each element the universe cooked. This is Big Bang nucleosynthesis — the nuclear cooking that happened before the universe cooled too much for fusion. The recipes are known. The nuclear reaction rates are measured in laboratories. The only input that matters is the atom-to-light ratio. Everything else is standard nuclear physics.
+
+The two integers — 11 and 13 — predict the amounts:
+
+Deuterium (heavy hydrogen): predicted 2.531 parts per hundred thousand. Measured: 2.527. Miss: 0.12 standard deviations. Essentially exact.
+
+Helium-4: predicted 24.86%. Measured: 24.49%. Miss: 0.94 standard deviations. Well within uncertainty.
+
+Helium-3: predicted 1.03 parts per hundred thousand. Measured: 1.10. Miss: 0.36 standard deviations. Well within uncertainty.
+
+Lithium-7: predicted 4.74 parts per ten billion. Measured: 1.60 parts per ten billion. Miss: a factor of three. This is the famous "lithium problem" — an unsolved discrepancy that has persisted for 40 years in every model of Big Bang nucleosynthesis. Standard physics has this same problem. Our chain inherits it, because we use the same nuclear physics. The fact that we reproduce the same unsolved problem confirms we're doing the same physics correctly.
+
+Three elements match within measurement uncertainty. One reproduces a known unsolved problem. All four predictions flow from two integers — 11 and 13 — that come from counting how particles interact with the weak force. From the mathematics of particle interactions to the chemical composition of the universe at three minutes old, in four links of integer arithmetic.
+
+This is what unification looks like. Not a grand theory announced from a podium. A chain of integer fractions, connecting domains that have never been connected before, producing predictions that match what we measure.
+
+---
+
+## What You've Just Read
 
 This chapter has given you the complete model. Everything else in this book fills in the details, the history, and the remaining questions. But the model is here:
 
@@ -237,43 +386,51 @@ There is no substance. There is only the rational universe.
 
 ## Chapter 2: Why Nobody Did This Before
 
-Everything in the previous chapter uses known physics.
+Everything in the previous chapter uses known physics.  Everything in this and the coming chapters uses known physics.  This model does not introduce new physics or math, it reorganizes them.
 
-The beta functions are in the textbooks. The QED series coefficients are published. The BBN fitting formulas are standard. The Weinberg relation, the RGE, the CKM matrix, the Sirlin corrections — all standard. The Bessel functions have been known since 1817. Newton's second law since 1687. Einstein's geodesics since 1915. Solitons since 1834, when John Scott Russell watched a water wave travel two miles down a canal without dispersing and called it "the wave of translation."
+The beta functions are in the textbooks. The QED series coefficients are published. The BBN (Big Bang nucleosynthesis) fitting formulas are standard. The Weinberg relation, the RGE (renormalization group equations), the CKM matrix (Cabibbo-Kobayashi-Maskawa), the Sirlin corrections — all standard. The Bessel functions have been known since 1817. Newton's second law since 1687. Einstein's geodesics since 1915. Solitons since 1834, when John Scott Russell watched a water wave travel two miles down a canal without dispersing and called it "the wave of translation."
 
-Nothing in the derivation chain uses new physics. Not one equation is original. The QED five-loop coefficient A₅ = 5.891 was computed by Volkov in 2019 from Feynman diagrams that Schwinger would have recognized in 1948. The two-loop beta matrix b_ij was computed in the 1980s. The BBN nuclear reaction rates were measured in laboratories in the 1990s. The hydrogen 1S-2S transition was measured to 15 digits in 2011. Every piece was already on the table.
+Nothing in the derivation chain uses new physics. Not one equation is original. The QED five-loop coefficient A₅ = 5.891 was computed by Volkov in 2019 from Feynman diagrams that Schwinger would have recognized in 1948. The two-loop beta matrix b_ij (the two-loop beta matrix) was computed in the 1980s. The BBN nuclear reaction rates were measured in laboratories in the 1990s. The hydrogen 1S-2S transition was measured to 15 digits in 2011. Every piece was already on the table.
 
 So why didn't anyone assemble them?
 
 Three reasons: the wrong numbers, the wrong names, and the wrong departments.
 
+![53 Derivations Across 8 Domains](../figures/book_13_precision_landscape.png)
+
 ---
 
 ### The Wrong Numbers
 
-Physics runs on real numbers. Decimal numbers. Floating point. Every measurement is reported as a decimal: α = 0.0072973525693, sin²θ_W = 0.23122, G = 6.674 × 10⁻¹¹. Every computation uses real-number arithmetic. Every comparison rounds to a certain number of significant figures and reports a percentage miss.
+Physics runs on real numbers. Decimal numbers. Floating point. Every measurement is reported as a decimal: the strength of electromagnetism is 0.0072973525693, the weak mixing angle is 0.23122, the gravitational constant is 6.674 × 10⁻¹¹. Every computation uses decimal arithmetic. Every comparison rounds to a certain number of significant figures and reports a percentage miss.
 
-Real numbers built modern physics. They built the Standard Model. They put humans on the Moon and protons through the LHC. Real numbers work.
+Real numbers built modern physics. They built the Standard Model. They put humans on the Moon and protons through the Large Hadron Collider (LHC). Real numbers work.
 
-But real numbers cannot reach equality.
+But real numbers cannot reach equality. When you compare two decimals, you can say they're close. You can say they match to six digits. But you can never say they're equal — because there's always another digit to check, and you can never check them all.
 
-Take the gap ratio — the number that determines whether the three gauge couplings converge to a single point at high energy. In the Standard Model, this ratio is 218/115. With the Cabibbo Doublet, it becomes 38/27. In real numbers, these are:
+Take the "gap ratio" — the number that determines whether the three forces (electromagnetic, weak, and strong) converge to a single strength at high energy. You met this ratio in Chapter 1: it comes from dividing one force's running rate against another's, and it tells you whether the three forces meet at a point. In the Standard Model, this ratio is 218/115. With the predicted Cabibbo Doublet, it becomes 38/27. In decimals, these are:
 
 218/115 = 1.89565217391304347826...
 
 38/27 = 1.40740740740740740740...
 
-The decimal representations repeat forever. They never terminate. They're exact as fractions, but as decimals, they're infinite. And infinity is where equality hides.
+The decimal representations repeat forever. They never terminate. They're exact as fractions, but as decimals, they're infinite. And infinity is where equality is abandoned.
 
-When a physicist computes the gap ratio from measured couplings, they get something like 1.358192684144844. They compare this to 38/27 = 1.407407... and see a miss of about 3.5%. They note the miss and move on. The miss is larger than the measurement uncertainty, so they conclude the couplings don't exactly unify. The standard conclusion in every GUT textbook: "the Standard Model gauge couplings do not unify."
+Here's where it goes wrong. When a physicist computes the gap ratio from measured force strengths, they get something like 1.358192684144844. They compare this to 38/27 = 1.407407... and see a miss of about 3.5%. They note the miss and move on. The miss is larger than the measurement uncertainty, so they conclude the forces don't exactly unify. The standard conclusion in every textbook on grand unification: "the Standard Model gauge couplings do not unify."
 
-But the comparison was done in the wrong number system. The measured gap ratio 1.358... doesn't match 38/27 because the measured couplings include the running of the Standard Model betas. The 38/27 is the gap ratio with the Cabibbo Doublet's betas included. The comparison should be: does the CD-modified ratio (38/27) produce the correct coupling predictions? The answer requires computing sin²θ_W and α_s from the 38/27 structure and comparing to measurement.
+But the comparison was done in the wrong number system. The measured number 1.358 is the gap ratio calculated from today's known particles — without the newly predicted Cabibbo Doublet. The predicted number 38/27 is what you get when you include the Cabibbo Doublet in the count. Comparing them directly is like comparing a recipe's predicted cooking time with the actual time when you left out one major ingredient — the numbers won't match because you're not comparing the same thing.
 
-That computation gives sin²θ_W = 0.231223 (matching measured 0.23122 at 12 parts per million) and α_s = 0.11838 (matching measured 0.1180 at 0.33%). These matches are invisible in the decimal representation. They only become visible when you start from the Fraction 38/27 and derive forward.
+The right comparison is: does the Cabibbo Doublet's ratio (38/27) produce the correct predictions when you work forward from it? Start from 38/27, run the three forces from the unification point back down to laboratory energy, and read off what the weak mixing angle and the strong force strength should be.
 
-This is the ceiling of decimal arithmetic. Real numbers are dense — between any two real numbers there are infinitely many others. This density is a strength for approximation but a fatal weakness for structure. In the real numbers, 38/27 is indistinguishable from 1.407 or 1.4074 or 1.40741. The structure — the fact that the numerator is 38 = 2 × 19 and the denominator is 27 = 3³ — is invisible. The integers 2, 19, and 3 carry physical meaning (they come from specific gauge group representations), but the decimal number 1.40741 carries no meaning at all. It's just a location on the number line.
+That computation gives sin²θ_W = 0.231223. The measured value is 0.23122. They match to 12 parts per million — five significant figures from integer arithmetic.
 
-Physics missed the integer structure because it was looking at the decimals.
+It gives α_s = 0.11838. The measured value is 0.1180. They match to 0.33%.
+
+These matches are invisible in the decimal representation. You cannot see them by staring at 1.40741 and 1.358. They only appear when you start from the fraction 38/27 — preserving the integers 38 and 27 through every step of the calculation — and derive forward to predictions.
+
+This is the ceiling of decimal arithmetic. In decimals, 38/27 looks the same as 1.407 or 1.4074 or 1.40741. The structure is erased. You can't see that the numerator is 38 = 2 × 19 or that the denominator is 27 = 3³. Those integers have physical meaning — 19 is the weak force beta coefficient from the Standard Model, 3³ is the cube of the number of color charges — but the decimal 1.40741 carries none of that. It's just a location on the number line. The meaning is gone.
+
+Physics missed the integer structure because it was looking at the decimals, and decimals have no structure, and cannot preserve equality.
 
 ---
 
@@ -281,19 +438,33 @@ Physics missed the integer structure because it was looking at the decimals.
 
 The path to unification starts from integers and works outward.
 
-The gauge group SU(3) × SU(2) × U(1) determines three one-loop beta coefficients: b₁ = 41/10, b₂ = −19/6, b₃ = −7. These are exact Fractions. The 41 in b₁ counts the U(1) charge contributions of every particle in the Standard Model — each quark, each lepton, the Higgs. The 19 in b₂ counts the SU(2) contributions. The 7 in b₃ counts the SU(3) contributions. Every numerator is an integer because it counts particles. Every denominator is an integer because it comes from group theory normalization.
+The three forces of the Standard Model — electromagnetic, weak, and strong — are organized by a mathematical structure called the gauge group. The gauge group is not a theory or a guess. It is the proven symmetry structure of particle interactions, and everything it produces is exact — not measured, not approximated, but calculated from the mathematics of symmetry the way you calculate that a cube has six faces.  Every number the gauge group produces is an integer or a ratio of integers.
 
-These Fractions are not approximations. They are not rounded. They are exact results of representation theory — the mathematics of symmetry. The number 41/10 is as exact as the number 3 — it is a consequence of mathematical structure, not a measurement.
+The gauge group determines three numbers called "one-loop beta coefficients" — which are the "running rates" of the three forces. The running rate is how fast a force's strength changes as you zoom in — it's the speed of the running reading, and each force has its own.
 
-The gap ratio (b₁ − b₂)/(b₂ − b₃) = (41/10 + 19/6)/(−19/6 + 7) = (246/60 + 190/60)/(−190/60 + 420/60) = 436/60 ÷ 230/60 = 436/230 = 218/115. Every step is exact. The result 218/115 is exact. The integers 218 and 115 carry the information of the entire Standard Model particle content compressed into two numbers.
+These running rates are: b₁ = 41/10, b₂ = −19/6, b₃ = −7. They are exact integer fractions. The 41 in b₁ counts the charge contributions of every particle in the Standard Model — each quark, each lepton, the Higgs boson. The 19 in b₂ counts the weak force contributions. The 7 in b₃ counts the strong force contributions. Every numerator is an integer because it counts particles. Every denominator is an integer because it comes from the symmetry structure's normalization. These fractions are as exact as the number 3 — they are consequences of mathematical structure, not measurements.
 
-Add the Cabibbo Doublet — one vector-like quark doublet with quantum numbers (3, 2, 1/6) — and the betas shift to b₁ = 25/6, b₂ = −13/6, b₃ = −20/3. The gap ratio becomes (25/6 + 13/6)/(−13/6 + 20/3) = (38/6)/(27/6) = 38/27. Exact. The integers 38 and 27 now carry the information of the Standard Model plus one additional particle.
+As an aside here: every integer is a fraction with denominator 1. The number 3 is 3/1. The number 7 is 7/1. The system doesn't switch between integers and fractions. It's fractions everywhere. Some just have simple denominators.  We call them "integers" or "integer fractions" with 3, 2 or 1/6, but they can all be written 3/1, 2/1 and 1/6 as integer fractions.
 
-The computation never leaves the integers. At no point do we convert to decimals, lose precision, round, truncate, or approximate. The Fractions flow from one formula to the next as Fractions. The numerators and denominators carry physical meaning at every step.
+From these three fractions (b₁ = 41/10, b₂ = −19/6, b₃ = −7), you can compute the "gap ratio" — the number that tells you whether the three forces converge. The computation is pure fraction arithmetic: subtract one beta from another, divide by a different subtraction, simplify. Every step is exact. Nothing is rounded. Nothing is approximated. The result for the Standard Model is:
 
-This is why unification was missed. The standard approach is: measure the couplings as decimals, run them as decimals, check if they meet as decimals. They don't meet — because the running accumulates rounding errors, because the crossing detection uses floating-point comparison, because the gap is computed as a decimal and compared to zero. The integer structure — 38/27, not 1.40741 — is below the resolution of the decimal approach.
+Gap ratio (SM) = 218/115
 
-The Fraction approach is: start from exact integer betas, compute the gap ratio as an exact Fraction, identify which BSM representation produces an exact Fraction gap ratio, derive the coupling predictions from that Fraction structure, and compare to measurement. The comparison is the only place decimals enter — and at that point, the predictions match to 12 ppm.
+Two integers. The entire particle content of the Standard Model — every quark, every lepton, every boson — compressed into two numbers.
+
+Now we add the predicted Cabibbo Doublet (CD) particle. Its three small fractional shifts (1/15, 1, 1/3) modify the three betas. The same fraction arithmetic, the same exact steps, produces:
+
+Gap ratio (CD) = 38/27
+
+Two smaller integers. The Standard Model plus one particle, compressed into two numbers. The computation never left the integers. At no point did we convert to decimals, lose precision, round, truncate, or approximate. The fractions flowed from one formula to the next as fractions. The numerators and denominators carried physical meaning at every step — 38 = 2 × 19, where 19 is the Standard Model weak force count; 27 = 3³, the cube of the number of color charges.
+
+This is why unification was missed. The standard approach in physics is: measure the force strengths as decimals, run them as decimals, check if they meet as decimals. They don't meet — because the running accumulates rounding errors, and because the comparison uses floating-point arithmetic, and because the gap is computed as a decimal and compared to zero. The integer structure is 38/27, not 1.40741. That 38/27 integer fraction structure lives below the resolution of the decimal approach. The decimals results can't show it.
+
+The integer fraction approach is different. Start from exact integer betas. Compute the gap ratio as an exact fraction. Identify which new particle produces an exact fraction gap ratio with small, meaningful integers. Derive the predictions from that fraction. Compare to measurement only at the final step — the one place where decimals enter. At that point, the predictions match to 12 parts per million.
+
+The decimals obscure it. The fractions reveal it.
+
+![Fractions show precision or equality that Epsilon and Renormalization obscure](../figures/book_16_fraction_structure.png)
 
 ---
 
@@ -303,7 +474,7 @@ There's an obvious objection: what about π? What about ζ(3) = 1.202...? These 
 
 The answer is Q335.
 
-Q335 is the name for a specific representation of transcendental constants as exact rational numbers at 335 decimal digits of precision. The idea is simple. π is transcendental — it cannot be expressed as a ratio of integers. But π can be computed to any desired number of decimal places. At 335 digits, π is known to a precision of 10⁻³³⁵. The Planck length — the smallest meaningful distance in physics — corresponds to a precision of about 10⁻³⁵. So 335 digits is 300 orders of magnitude more precise than any physical measurement could ever require.
+Q335 is the name for a specific representation of transcendental constants as exact rational numbers using 2³³⁵ as a shared denominator, giving about 101 decimal digits of precision. The idea is simple. π is transcendental — it cannot be expressed as a ratio of integers. But π can be computed to any desired number of digits. Using 2³³⁵ as the denominator, the stored fraction matches π to 101 decimal places. The Planck length — the smallest meaningful distance in physics — requires only about 35 decimal digits. So Q335 provides 65 orders of magnitude more precision than any physical measurement could ever require.
 
 The Q335 representation stores π as a Fraction with a numerator and denominator each having about 335 digits. This Fraction is not equal to π — nothing rational is equal to π — but it differs from π by less than 10⁻³³⁵. For every physical computation, this difference is zero. Not approximately zero. Operationally zero. No experiment, no measurement, no observation could ever detect the difference.
 
@@ -319,6 +490,39 @@ The Q335 approach is not a philosophical statement about whether π is "really" 
 
 This is what makes the 12 ppm sin²θ_W prediction possible. The computation starts from integer betas (25/6, −13/6, −20/3), runs through Fraction arithmetic with Q335 transcendentals, and arrives at sin²θ_W = 0.231223 — a number that matches measurement to five significant figures. No rounding error contributed to the miss. No floating-point comparison missed a crossing. The 12 ppm miss is physical — it comes from the 0.027 gap at the unification scale, not from numerical noise.
 
+### Transcendentals
+
+There's an obvious objection: what about π? What about other irrational constants like:
+
+- ζ(3) - a specific number from the Riemann zeta function, approximately 1.202, that appears throughout quantum calculations
+- ln(2) - the natural logarithm of 2, approximately 0.693
+    
+These numbers appear everywhere in physics. They appear in the area of a circle, in the QED series coefficients, in the dark matter ratio (22/13)π. They are transcendental or irrational. They cannot be written as a ratio of integers. If the goal is integer arithmetic, how do you handle numbers that aren't integers?
+
+This is my single innovation in this entire system, and it is not a physics or mathematical innovation, it is an engineering one.  If π and other transcendentals are infinite series, and so cannot be computed into an exact value, what if we make integer fractions so large that they match π and others to 100 decimal digits?
+
+The result is an engineering decision called Q335.  Q335 is 2^335 as the common denominator for all large integer transcendental values.
+
+Starting with the simplest problem: π is transcendental. No ratio of integers equals π. That is a mathematical theorem, proven in 1882, and nothing in this book challenges it. But π can be computed to any desired number of digits. And there is a precision beyond which no physical measurement could ever tell the difference between the true π and a very good fraction.
+
+That precision threshold is set by the Planck length, the smallest meaningful distance in physics, approximately 10⁻³⁵ meters. Knowing π to 35 digits would let you compute the circumference of the observable universe to within one Planck length. 35 decimal digits is the maximum precision physical reality can be measured at, and we are calculating to 101 decimal digits, 65 digits beyond the physical maximum.
+
+Q335 uses 335 base-2 digits. That is 65 decimal digits beyond the Planck threshold. The difference between Q335's stored fraction for π and the true π is smaller than anything the universe can distinguish. Not approximately smaller. Fundamentally smaller. No experiment ever built or theoretically possible could detect the difference. This is what "operationally zero" means: the difference exists mathematically but has no physical observable.  This is the single innovation in this model, and it is an engineering innovation to operationalize transcendentals.
+
+The Q335 representation stores π as a fraction with a numerator and denominator each about 101 decimal digits long. This fraction is not equal to π. But it differs from π by less than 10⁻¹⁰⁰. For every physical computation, it is π as far as any physics system can handle the precision of π.
+
+The same approach works for every transcendental and irrational number that appears in physics: ζ(3), ζ(5), ln(2), the Catalan constant, the elliptic integrals. Each is stored as a Q335 fraction. Each is exact to 65 orders of magnitude beyond the Planck threshold. Each flows through the fraction arithmetic without rounding, without truncation, without losing the integer structure of the rational coefficients that multiply them.
+
+Here is what this looks like in practice. The QED two-loop coefficient A₂ (one of the numbers in the chain from the electron's magnetic moment to the fine structure constant) is:
+
+A₂ = 197/144 + (1/12)π² − (1/2)π²ln(2) + (3/4)ζ(3)
+
+Four terms. Each term is a rational coefficient (197/144, 1/12, −1/2, 3/4) multiplied by a transcendental constant (1, π², π²ln(2), ζ(3)). Every rational coefficient is an integer fraction from the physics. Every transcendental is stored at 335 base-2 digits (Q335). The computation never touches a decimal until the final comparison against measurement. The integer structure of the rational coefficients is preserved through every step, and the result is precision matching to the 100th decimal digit for all transcendentals.
+
+The Q335 approach is not a philosophical statement about whether π is "really" rational, π is not rational and cannot be made rational. It is an engineering decision that solves a specific problem: how do you do fraction arithmetic when some of the numbers aren't clear fractions and never end (infinite series)? The answer is that you store them at a precision so far beyond physical measured reality that the distinction between "exact" and "operationally exact at 65 decimal orders of magnitude beyond Planck" has no meaning for physics.
+
+This is what makes the entire derivation chain possible in integer fractions. The computation starts from integer betas (25/6, −13/6, −20/3), runs through fraction arithmetic with Q335 converted transcendentals, and arrives at sin²θ_W = 0.231223, a number that matches measurement to five significant figures. No rounding error contributed to the miss. No floating-point comparison missed a crossing. The 12 parts per million miss is physical. It comes from the 0.027 gap at the unification scale, not from numerical noise. The number system is clean. The miss is real physics, and knowing that it is real physics is itself a result.  This model accepts all results, and uses them for further derivations or places where more precise measurements are required to progress.
+
 ---
 
 ### The Wrong Names
@@ -327,47 +531,55 @@ The second reason nobody unified physics before is language.
 
 Physics has four fundamental forces: electromagnetic, weak nuclear, strong nuclear, and gravitational. This statement appears in every textbook, every popular science book, every university lecture. It's been the organizing principle of physics since the 1970s.
 
-It's wrong. Not factually wrong — the four interactions exist and are different — but organizationally wrong. Calling them "four forces" makes them sound like four separate things. Four mechanisms. Four explanations needed. The goal of unification becomes: find one force that explains the other three. Find a Theory of Everything that contains all four forces as special cases.
+It's wrong. Not factually wrong. The four interactions exist and they behave differently from each other. But calling them "four forces" is organizationally wrong. It makes them sound like four separate things. Four mechanisms. Four explanations needed. The goal of unification becomes: find one force that explains the other three. Find a Theory of Everything that contains all four forces as special cases.
 
 But the forces aren't separate things. They're readings of the same thing at different boundaries.
 
-The electromagnetic coupling α reads 1/137 at low energy. It reads 1/128 at the Z boson mass. It reads 1/42 at the GUT scale. These aren't three different forces. They're one coupling that gives different readings at different soliton boundaries — the atomic boundary, the electroweak boundary, the unification boundary.
+Consider the electromagnetic force. At everyday scales, its strength reads about 1/137. Zoom in to the scale of the Z boson (one of the heavy particles that carries the weak force), and the same force reads about 1/128. Zoom in further to the unification scale, and it reads about 1/42. The force didn't change. The reading changed. You crossed boundaries, and at each boundary the measurement gave a different value, the same way a thermometer gives different readings at different depths in the ocean. Same ocean. Different readings. Different depths.
 
-The strong coupling α_s reads 0.118 at the Z mass. It reads ~1 at the confinement scale (~1 GeV). It reads 1/42 at the GUT scale (the same 1/42 as the electromagnetic coupling — that's what unification means). Again, not two different forces. One coupling, two readings, two boundaries.
+The strong force does the same thing. At the Z boson scale, it reads about 0.118. At the confinement scale (inside the proton), it reads approximately 1. At the unification scale, it reads about 1/42. The same 1/42 as the electromagnetic force. That's what unification means. The two forces that look completely different at laboratory scales give the same reading at the unification boundary. They were always the same coupling. They just read differently from different boundaries.
 
-The weak mixing angle sin²θ_W — which determines the relative strength of the electromagnetic and weak interactions — is not a separate parameter. It's a reading that follows from the same unification point. At the GUT scale, sin²θ_W = 3/8 exactly. At low energy, it reads 0.231. The running from 3/8 to 0.231 is determined by the same beta coefficients that determine the coupling running. One number, one boundary transition, one derivation.
+The weak mixing angle follows the same pattern. At the unification scale, it's exactly 3/8, a pure fraction determined by the symmetry structure. At laboratory scales, it reads about 0.231. The running from 3/8 to 0.231 is determined by the same beta coefficients that determine how the force strengths run. One number, one transition between boundaries, one derivation.
 
-The names "electromagnetic force" and "weak force" were assigned before the electroweak unification of the 1960s. Weinberg, Salam, and Glashow showed they're the same force, but the names persisted. We still teach them as separate forces in separate chapters. We still fund separate experimental programs to study them. We still assign separate faculty positions for them.
+So why does physics teach them as four separate forces?
 
-The names "strong force" and "electroweak force" were distinguished before the GUT program of the 1970s. The GUT program showed they could be unified, but the proof was incomplete — the couplings didn't quite meet — so the unification was filed as "promising but unfinished" and the separate names persisted.
+Because the names were assigned before the connections were found, and once assigned, they stuck.
 
-The name "gravity" was distinguished from the other three before anyone tried to include it in the gauge framework. General relativity is formulated as geometry (curved spacetime), not as a gauge theory (connections on a fiber bundle). The mathematical frameworks look different, so they got different names, and the different names made people think they needed different unification strategies.
+The names "electromagnetic force" and "weak force" were assigned before the electroweak unification of the 1960s. Weinberg, Salam, and Glashow showed they're the same force, and won the Nobel Prize for it. But the names persisted. We still teach them as separate forces in separate chapters. We still fund separate experimental programs to study them. We still assign separate faculty positions for them.
 
-The Rectification of Names says: stop. These are all readings. The electromagnetic reading and the strong reading and the weak reading are all readings of gauge couplings at different soliton boundaries. The gravitational reading is a reading at the planetary/stellar/galactic soliton boundary. They're not four forces. They're one thing — boundary readings of a nested soliton structure — that gives different values depending on which boundary you're reading from.
+The names "strong force" and "electroweak force" were distinguished before the grand unification program of the 1970s. That program showed the three non-gravitational forces could be unified, but the proof was incomplete. One particle was missing from the count, though nobody knew it at the time. That missing particle is the newly predicted Cabibbo Doublet. The couplings didn't quite meet. So the unification was filed as "promising but unfinished" and the separate names persisted.
 
-Once you see them as readings, the unification isn't a grand theoretical achievement to be discovered. It's an accounting exercise to be performed. Which readings come from which boundaries? Which integers determine the running? Which Fractions connect the values at different scales? The answers are in the gauge group, and the gauge group is known.
+The name "gravity" was distinguished from the other three before anyone tried to include it in the same framework. General relativity describes gravity using the language of curved space. The other three forces are described using the language of symmetry groups. The two languages look completely different, so they got completely different names, and the different names made people think they needed completely different unification strategies.
+
+The Rectification of Names says: stop. These are all readings. The electromagnetic reading and the strong reading and the weak reading are all readings of the same gauge coupling at different soliton boundaries. The gravitational reading is a reading at the planetary, stellar, and galactic soliton boundaries. They're not four forces. They're one thing. One underlying structure that gives different values depending on which boundary you're reading from.
+
+Once you see them as readings, the unification isn't a grand theoretical achievement waiting to be discovered. It's an accounting exercise waiting to be performed. Which readings come from which boundaries? Which integers determine the running rates? Which fractions connect the values at different scales? The answers are in the gauge group, and the gauge group is known.
 
 ---
 
 ### The Wrong Departments
 
+![Eight Domains](../figures/book_07_eight_domains.png)
+
 The third reason is institutional.
 
 Physics is organized into departments. Particle physics. Nuclear physics. Atomic physics. Condensed matter. Astrophysics. Cosmology. Each department has its own journals, its own conferences, its own language, its own conventions.
 
-The beta functions live in particle physics. The BBN fitting formulas live in cosmology. The hydrogen spectroscopy lives in atomic physics. The Z boson width lives in high-energy experimental physics. The QED series coefficients live in mathematical physics. The CKM matrix lives in flavor physics.
+The beta functions live in particle physics. The Big Bang nucleosynthesis fitting formulas live in cosmology. The hydrogen spectroscopy lives in atomic physics. The Z boson width lives in high-energy experimental physics. The QED series coefficients live in mathematical physics. The quark mixing matrix lives in flavor physics.
 
 Nobody put them together because they belong to different departments.
 
-The derivation chain in Chapter 1 — from gauge integers to deuterium — crosses five departments: mathematical physics (beta coefficients), particle physics (coupling extraction), cosmology (dark matter ratio, baryon density), nuclear physics (BBN), and observational astronomy (quasar absorption spectra). No single physicist sits in all five departments. No single journal publishes papers spanning all five fields. No single conference program has sessions on QED series coefficients and on primordial deuterium abundance.
+The derivation chain in Chapter 1, from gauge integers to deuterium, crosses five departments: mathematical physics (beta coefficients), particle physics (coupling extraction), cosmology (dark matter ratio, baryon density), nuclear physics (Big Bang nucleosynthesis), and observational astronomy (quasar absorption spectra). No single physicist sits in all five departments. No single journal publishes papers spanning all five fields. No single conference has sessions on both QED series coefficients and primordial deuterium abundance.
 
-The chain from the electron magnetic moment to the hydrogen 1S-2S frequency crosses three departments: experimental particle physics (Penning trap measurements), mathematical physics (QED perturbation theory), and atomic physics (precision spectroscopy). The electron g-2 is measured at Harvard. The QED series is computed at RIKEN. The hydrogen spectroscopy is measured at Garching. Three groups on three continents, each world-class in their field, each unaware that their results are connected by a single derivation chain that produces 0.007 ppb agreement.
+The chain from the electron's magnetic moment to the hydrogen transition frequency crosses three departments: experimental particle physics (Penning trap measurements at Harvard), mathematical physics (QED perturbation theory computed at RIKEN in Japan), and atomic physics (precision laser spectroscopy at Garching in Germany). Three groups on three continents, each world-class in their field, each unaware that their results are connected by a single derivation chain that produces agreement to 0.007 parts per billion.
 
-They're unaware because the connection crosses departmental lines. The electron g-2 paper cites QED theory papers. The QED theory papers cite mathematical physics papers. The hydrogen spectroscopy papers cite atomic theory papers. But the electron g-2 paper does not cite the hydrogen spectroscopy paper, because they're in different fields. The connection — that the same α extracted from a_e determines R∞ which determines f(1S-2S) — is implicit in the physics but invisible in the citation network.
+They're unaware because the connection crosses departmental lines. The electron magnetic moment paper cites QED theory papers. The QED theory papers cite mathematical physics papers. The hydrogen spectroscopy papers cite atomic theory papers. But the electron magnetic moment paper does not cite the hydrogen spectroscopy paper, because they're in different fields. The connection between them, that the same fundamental constant extracted from the electron's magnetic moment determines the constant that determines the frequency at which hydrogen absorbs light, is implicit in the physics but invisible in the citation network. The chain exists. Nobody drew it because the endpoints are in different departments.
 
-The dark matter ratio (22/13)π connects gauge theory to cosmology. But gauge theorists don't read cosmology papers about Ω_DM/Ω_b, and cosmologists don't read gauge theory papers about one-loop beta coefficients. The connection has been sitting in the data for decades. The 22 was computed in the 1970s (it's twice the Yang-Mills coefficient). The 13 was implicit in every BSM model that modified b₂. The dark matter ratio was measured by WMAP in 2003 and refined by Planck in 2015. Nobody multiplied (22/13) by π and compared to 5.320 because nobody working on beta coefficients was also working on Ω_DM.
+The dark matter ratio (22/13)π connects gauge theory to cosmology. But gauge theorists don't read cosmology papers about the dark matter to visible matter ratio, and cosmologists don't read gauge theory papers about one-loop beta coefficients. The connection has been sitting in the data for decades. The number 22 was computed in the 1970s. It's twice the Yang-Mills coefficient (Cabibbo Doublet has left and right, so we double 11). The number 13 was implicit in every model that added new particles to the Standard Model count and modified the weak force running rate. The dark matter ratio was measured by the WMAP satellite in 2003 and refined by the Planck satellite in 2015. Nobody multiplied (22/13) by π and compared to 5.320 because nobody working on beta coefficients was also working on the dark matter ratio.
 
-The departmental boundaries are real and they serve a purpose — specialization produces depth. But they also produce blind spots. The blind spot here was that the integer structure of the gauge group connects to the chemical composition of the universe through a chain of standard physics that crosses five department boundaries. Each link in the chain is textbook material in its own department. The chain itself was invisible because nobody had jurisdiction over the whole thing.
+The departmental boundaries are real and they serve a purpose. Specialization produces depth. But specialization also produces blind spots. The blind spot here was that the integer structure of the gauge group connects to the chemical composition of the universe through a chain of standard physics that crosses five departmental boundaries. Each link in the chain is textbook material in its own department. The chain itself was invisible because nobody had jurisdiction over the whole thing.
+
+![Eight Domains](../figures/book_12_hydrogen_two_path.png)
 
 ---
 
@@ -391,6 +603,28 @@ The assumption that unification requires enormous new physics was wrong. The Sta
 
 Nobody found this before because they were looking for a Theory of Everything. They were looking for new forces, new dimensions, new symmetries. They were looking for the Lagrangian of the universe. What was actually needed was one particle and the willingness to take the integers seriously.
 
+### The Ceiling
+
+![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](../figures/book_14_gap_comparison.png)
+
+There's a deeper reason, beneath the wrong numbers and wrong names and wrong departments. It's the assumption that unification requires new physics.
+
+The Grand Unified Theory program of the 1970s established the expectation: to unify the forces, you need new particles, new symmetries, new dynamics at high energy scales. Supersymmetry adds 105 new parameters. String theory adds 10 dimensions. Other grand unified models add enormous new mathematical structures. The expectation was that unification is hard because the new physics at the unification scale is complicated and unknown.
+
+What if unification is easy because the new physics at the unification scale is one missing particle?
+
+The Cabibbo Doublet, the two-handed vector quark doublet with quantum numbers (3, 2, 1/6), shifts the three force running rates by three small fractions: 1/15, 1, and 1/3. Three numbers. Three exact integer fractions. One new mathematically forced particle.
+
+With that one particle:
+
+The gap ratio becomes 38/27 (exact). The unification scale rises from 10¹³·⁸ to 10¹⁵·⁶, into the range where the next generation of detectors (Hyper-Kamiokande in Japan, starting 2027) can test it through proton decay. The three forces converge within 0.064% at two-loop precision. The weak mixing angle is predicted to 12 parts per million. The strong force strength is predicted to 0.33%. The dark matter ratio is (22/13)π. The primordial deuterium abundance matches at 0.12 standard deviations.
+
+53 derived values. 40 surplus tests. One additional particle.  Completed in about 1 week of integrating with this model's system.
+
+The assumption that unification requires enormous new physics was wrong. The Standard Model was already 99% of the way there. The missing piece was one particle, selected not by theoretical preference but by the force integer structure of the gap ratio. It is the only particle whose properties preserve the gap ratio as an exact fraction with small, physically meaningful integers.
+
+Nobody found this before because they were looking for a Theory of Everything. They were looking for new forces, new dimensions, new symmetries. They were looking for the master equation of the universe. What was actually needed was one particle, and the willingness to work in integer fractions all the way to the final comparison. The integers were always there. The decimal process was obscuring the results.
+
 ---
 
 ### What Changed
@@ -410,6 +644,24 @@ The physics was already there. The integers were already there. The measurements
 That's what this book describes. Not new physics. New organization. The Rectification of Names applied to the entire Standard Model, producing 53 derived values across eight physics domains from 13 measurements and integer arithmetic.
 
 The universe was always rational. We were just using the wrong number system to see it.
+
+### What Changed
+
+What changed was not the physics. What changed was the method.
+
+Instead of starting from a grand theory and working down to predictions, the work started from the integers and worked outward to comparisons. Instead of proposing a master equation, it proposed a single particle and tested its consequences across every domain that standard physics could reach.
+
+Instead of working in one department, it crossed all of them. The same derivation chain touched QED, electroweak physics, gauge theory, cosmology, nuclear physics, atomic physics, and precision spectroscopy. Each crossing was a test. Each test could have failed. None did.
+
+Instead of using decimal arithmetic, it used fraction arithmetic. Every integer in every beta coefficient was preserved through every computation. No rounding errors entering the chain until the final comparison. No intermediate floating-point comparisons. No lost structure.
+
+Instead of working on paper, it used a versioned database of 2,237 stored values. Every fraction, every measurement, every intermediate result was tracked and testable. The system computed predictions from the stored values, compared every output to measurement, and reported PASS or FAIL automatically. Bugs were found by the comparisons, not by intuition. The k₁ normalization bug, one inverted fraction that made all two-loop predictions wrong for weeks, was found by the system in three diagnostic runs.
+
+The physics was already there. The integers were already there. The measurements were already there. What was missing was the method: start from integers, work in fractions, cross all departments, test everything against measurement, iterate.
+
+That's what this book describes. Not new physics. New organization. The Rectification of Names applied to the entire Standard Model, producing 53 derived values across eight physics domains from 13 measurements and integer arithmetic.
+
+The universe was always rational. We were just using the wrong number system to see it.
 ## Chapter 3: The Physics Stack
 
 This chapter is a reference. Every layer of physical reality, from the vacuum to the universe, described in one consistent language: soliton, vortex, inertia. You can read it straight through or flip to any layer when you need it.
@@ -420,13 +672,13 @@ By the end you will have a list you can recite. Every element of physics from qu
 
 ### Layer 0: The Vacuum
 
-The vacuum is not empty. The vacuum is the ground state — the lowest energy configuration of everything. It's what you get when you remove all particles, all radiation, all matter. What's left is not nothing. What's left is a seething, fluctuating quantum field at its minimum energy.
+The vacuum is not empty. The vacuum is the ground state — the lowest energy configuration of everything. It's what you get when you remove all particles, all radiation, all matter. What's left is not nothing. What's left is "fluctuating quantum fields" at its minimum energy.  In this model's language, that is a soliton vortex reading of the outermost soliton we know of: the running reading of the Universe.
 
-Think of a still lake. No waves, no boats, no fish jumping. The surface is flat. But zoom in and the surface is trembling — tiny ripples from thermal motion, from wind at the molecular level, from quantum uncertainty. The lake is "empty" of boats but not empty of water. The vacuum is "empty" of particles but not empty of field.
+Think of this universe soliton as a still lake. No waves, no boats, no fish jumping. The surface is flat. But zoom in and the surface is "trembling", tiny ripples from thermal motion, from wind at the molecular level, from quantum uncertainty. The lake is "empty" of boats but not empty of water. The vacuum is "empty" of particles but not empty of field.
 
 The vacuum has energy. The cosmological constant Λ — the energy density of empty space — is measured at 5.88 × 10⁻³⁰ g/cm³. This is absurdly small. In natural units (Planck units), it's 10⁻¹²² — a number so tiny that explaining it has been called "the worst prediction in physics" (quantum field theory naively predicts 10¹²⁰ times more vacuum energy than observed).
 
-In our language: the vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. It's small because the universe is the largest possible soliton, and larger solitons have smaller boundary energy densities. A proton's boundary energy is ~1 GeV over ~1 femtometer. The universe's boundary energy is ~10⁻⁴⁷ GeV⁴ over ~10²⁶ meters. The ratio of sizes is 10⁴¹. The ratio of energy densities scales accordingly.
+In our language, the explanation is structural. The vacuum energy is the ground state reading of the outermost soliton boundary — the universe itself. But that reading isn't measured directly. It's measured from inside every nested boundary between us and the outer edge — inside the galaxy, inside the solar system, inside the Earth's gravitational zone. Every boundary we measure through changes the reading. Every crossing introduces its own "running reading". The cosmological constant is the final reading after passing through every soliton boundary in the entire nested stack, from the outermost edge to our instruments.
 
 The vacuum is Layer 0. Everything else is a pattern in the vacuum.
 
@@ -434,43 +686,57 @@ The vacuum is Layer 0. Everything else is a pattern in the vacuum.
 
 ### Layer 1: The Quantum Fields
 
-Excite the vacuum and you get fields. The electromagnetic field. The electron field. The quark fields. The gluon field. The Higgs field. The gravitational field. Each field fills all of space. Each field can carry excitations — disturbances that propagate, interact, and carry energy.
+"Excite the vacuum" and you get "fields". The electromagnetic field. The electron field. The quark fields. The gluon field. The Higgs field. The gravitational field. Each field fills all of space. Each field can carry excitations — disturbances that propagate, interact, and carry energy.
 
-In the old language, these are "fundamental fields" and their excitations are "particles." In our language: the fields are the first layer of pattern above the vacuum ground state. They're not substance. They're the capacity of the vacuum to sustain disturbances of specific types. The electromagnetic field is the vacuum's capacity to sustain electromagnetic disturbances. The electron field is the vacuum's capacity to sustain electron-type disturbances.
+In our model's language, "excite the vacuum" is injecting charge into a vortex using a laser or similar mechanism.   
 
-The Standard Model has 17 fields:
+In the old language, these are "fundamental fields" and their excitations are "particles." In our language: the fields are the first layer of pattern above the vacuum soliton ground state. They're not substance. They're the capacity of the vacuum soliton to sustain disturbances of specific types. The electromagnetic field is the vacuum's capacity to sustain electromagnetic disturbances. The electron field is the vacuum's capacity to sustain electron-type disturbances.
 
-**6 quark fields** — up, down, charm, strange, top, bottom. Each comes in three colors (the SU(3) quantum number) and two chiralities (left and right). These are the vortex patterns that carry color charge and live inside hadrons.
+The Standard Model has 17 fields, or 17 kinds of soliton vortices:
+
+**6 quark fields** — up, down, charm, strange, top, bottom. Each comes in three "colors" (the SU(3) quantum number) and two "chiralities" (left and right "handedness"). These are the vortex patterns that carry color charge and live inside hadrons (protons and neutrons).  "Color" is descriptive language physicists use to differentiate things that have little to differentiate them, later we will see "flavor" used similarly.
 
 **6 lepton fields** — electron, muon, tau, and their three neutrinos. These carry no color charge. They interact electromagnetically (the charged leptons) or only weakly (the neutrinos).
 
-**4 gauge boson fields** — the photon (electromagnetic), W⁺/W⁻/Z (weak), and 8 gluons (strong). These are the carriers of the readings. When we say "the electromagnetic coupling reads 1/137," the photon field is what's doing the reading. The gauge bosons mediate the boundary crossings — they carry information about the coupling strength from one side of a boundary to the other.
+**4 gauge boson field types** — the photon (carries the electromagnetic reading), the W⁺ (positively charged), W⁻ (negatively charged), and Z (neutral) together carry the weak reading, and 8 gluons carry the strong reading. When two electrons push each other apart, it's photons carrying the reading between them. When a quark changes type inside a proton, it's a W boson carrying the reading across that boundary. The gauge bosons are the messengers. They carry information about the coupling strength from one side of a boundary to the other.
 
-**1 Higgs field** — the field whose ground state value is not zero. Every other field has zero as its ground state (the vacuum value). The Higgs field has a nonzero ground state — v = 246 GeV — and this nonzero value is what gives the W, Z, and fermion fields their inertia. The Higgs mechanism is not a substance. It's the vacuum itself having a nonzero reading for one specific field, and every other field that interacts with it acquiring resistance (inertia) from that interaction.
+**1 Higgs field** — the odd one out. Every other field settles to zero when nothing is happening. The Higgs field doesn't. Its ground state, its resting value, is not zero. It sits at a specific nonzero value everywhere in the universe, all the time. This is what gives the W⁺, W⁻, Z, and all matter particles their inertia. Not by adding substance to them, but by providing resistance. Every field that interacts with the Higgs field acquires resistance to change from that interaction. The Higgs mechanism is not a substance-granting machine. It's the vacuum vortex itself carrying a nonzero reading for one specific field, and everything that touches it picking up inertia from the contact.
 
-These 17 fields are organized by the gauge group SU(3) × SU(2) × U(1). The SU(3) determines which fields carry color charge (quarks and gluons). The SU(2) determines which fields carry weak charge (left-handed fermions and W/Z bosons). The U(1) determines which fields carry hypercharge (all fermions and the Higgs).
+These 17 field types are organized by the gauge group, written as SU(3) × SU(2) × U(1). The notation looks dense, but each piece is simple. SU(3) is the symmetry of the strong force — it determines which fields carry color charge (quarks and gluons). SU(2) is the symmetry of the weak force — it determines which fields carry weak charge (left-handed particles and the W⁺, W⁻, and Z bosons). U(1) is the symmetry of the electromagnetic force — it determines which fields carry electric-type charge (all "matter particles" and the Higgs).
 
-The gauge group is the source of the integers. Every beta coefficient, every gap ratio, every coupling prediction traces back to how these 17 fields transform under SU(3) × SU(2) × U(1). The group theory is exact. The Fractions are exact. The integers are exact. The only approximations enter when we compare to measurement.
+The three numbers in the name — 3, 2, and 1 — are integers. The gauge group is the source of all the integers in this model. Every beta coefficient, every gap ratio, every coupling prediction traces back to how these 17 field types transform under these three symmetries. The group theory is exact. The fractions are exact. The integers are exact. The only approximations enter at the very end, when we compare predictions to measurements.
+
+This is the Standard Model as it stands today, with 17 field types and three symmetries. The Cabibbo Doublet has not been added yet. When it is, one new doublet (2 particles) is added — two new quarks, each with both handednesses — and every integer in the system shifts by the three small fractions we met in Chapter 1: 1/15, 1, and 1/3.
 
 ---
 
-### Layer 2: Stable Patterns — The Solitons
+### Layer 2: Stable Patterns — The Stable Solitons
 
-Most excitations of the quantum fields are unstable. A photon propagates freely. A free quark can't exist (confinement). A W boson decays in 10⁻²⁵ seconds. Most disturbances in the quantum fields either propagate away (radiation) or decay instantly (unstable particles).
+Most excitations of the quantum fields don't last. They come in three varieties of impermanence: radiation, confinement and appear-and-instant-decay. 
 
-But some patterns are stable. They persist. They maintain their shape. They resist disruption. These are the solitons.
+Some fly away at the speed of light and never come back — that's radiation, like photons. Some can't exist on their own at all — that's confinement, like quarks, which are permanently trapped inside protons and neutrons. Some appear and decay almost instantly — like the W⁺, W⁻ bosons, which live for less than a trillionth of a trillionth of a second before transforming into other particles.
 
-**The electron** is the simplest stable soliton. It's a pattern in the electron field that carries exactly one unit of electric charge (−1), exactly 1/2 unit of spin, exactly zero color charge, and exactly 0.511 MeV of inertia. Every electron in the universe has exactly these numbers. Not approximately. Exactly. The stability is topological — the electron carries a conserved quantum number (lepton number) that cannot be destroyed by any known process. You can't untie the knot without cutting the rope.
+But some patterns are stable and persist. They maintain their shape, they resist disruption (inertia). They don't fly away, they don't decay, and they don't need to be confined inside something else to survive. These are the stable solitons — the permanent patterns we met in Chapter 1.
 
-**The proton** is a composite soliton — three quark vortices (two up, one down) bound inside a confinement boundary by the gluon field. The proton's inertia is 938.27 MeV, of which less than 2% comes from the quark inertias (about 10 MeV total). The remaining 98% — 928 MeV — is the energy of the gluon field pattern inside the boundary. The proton is heavy because its internal vortex pattern is intense, not because its constituent quarks are heavy.
+**The electron** is the simplest stable soliton. It's a sphere pattern in the electron field that carries exactly one unit of negative electric charge, exactly 1/2 unit of spin (an intrinsic rotation that every particle carries, always in exact fractions), exactly zero color charge, and exactly 0.511 MeV of inertia (about 1/1836th of a proton's inertia, making it one of the "lightest" (least inertia) stable patterns in nature).
 
-The proton is stable. Its lifetime is longer than 10³⁴ years — far longer than the age of the universe (1.38 × 10¹⁰ years). If the Cabibbo Doublet model is correct and M_GUT = 10¹⁵·⁶ GeV, the proton lifetime is around 10³⁴⁻³⁵ years — testable at the Hyper-Kamiokande detector in Japan starting in 2027.
+Every electron in the universe has exactly these numbers. Not approximately. Exactly. No electron has ever been found with slightly different charge or slightly different inertia. They are all identical because they are all the same pattern.
 
-**The neutron** is like the proton but with one up quark replaced by a down quark. It's slightly heavier (939.57 MeV) and unstable when free — it decays to a proton, an electron, and an antineutrino with a half-life of about 10 minutes. But inside a nucleus, the neutron is stabilized by the nuclear binding energy. The same pattern (three quarks inside a confinement boundary) is stable or unstable depending on which larger soliton it's nested inside. The boundary context determines the stability.
+The electron is stable because it carries a permanent label — physicists call it lepton number — that cannot be destroyed by any known process. You can't untie the knot without cutting the rope. No experiment has ever destroyed an electron. They are permanent.
 
-**The atoms** — 118 elements in the periodic table. Each is a soliton: a nucleus (protons and neutrons bound by the residual strong force) surrounded by an electron cloud (electrons bound by the electromagnetic force). Each atom has a boundary — the electron cloud's outer edge — where the interior reading (quantum mechanical energy levels, discrete spectra) transitions to the exterior reading (chemical bonding, continuous interaction with neighbors).
+**The proton** is a composite soliton — a donut pattern made of three quark vortices (two up, one down) bound inside a confinement boundary by the gluon field. The proton's inertia is 938.27 MeV, of which less than 2% comes from the quark inertias (about 10 MeV total). The remaining 98% is the energy of the gluon "field" pattern inside the boundary. The proton is "heavy" not because its constituent quarks are heavy, but because the internal circulation pattern is intense.
 
-The periodic table is a catalog of solitons. Each element is a different vortex pattern — a different configuration of nuclear and electronic circulation — with different inertia, different boundary size, and different interaction properties. Hydrogen is the simplest: one proton, one electron, one boundary. Uranium is complex: 92 protons, 146 neutrons, 92 electrons, multiple electron shells forming nested sub-boundaries.
+The proton is stable. Its measured lifetime is longer than 10³⁴ years — a million trillion trillion years, far longer than the age of the universe (about 14 billion years). But it may not be eternal. If the Cabibbo Doublet model is correct, the energy at which the three forces unify predicts that protons will eventually decay, with a lifetime of around 10³⁴ to 10³⁵ years. That prediction is testable. The Hyper-Kamiokande detector in Japan begins operation in 2027, and it is designed to watch for exactly this: the death of a proton.
+
+**The neutron** is a donut soliton like the proton but with one up quark replaced by a down quark. It's slightly heavier (939.57 MeV) and unstable when "free". A "free" neutron is one that has been knocked out of a nucleus and is sitting alone, no longer stabilized by the boundary it used to live inside.
+
+Left on its own, a neutron decays into a proton, an electron, and an antineutrino (the antimatter partner of the neutrino, carrying almost no inertia and barely interacting with anything). This happens with a half-life of about 10 minutes — meaning half of any group of free neutrons will have decayed within 10 minutes.
+
+But inside a nucleus, the neutron is stable. The nuclear binding energy holds it in place and prevents the decay. The same pattern — three quarks inside a confinement boundary — is stable or unstable depending on which larger soliton it's nested inside. The boundary context determines the stability.
+
+**The atoms** — all 118 elements in the periodic table. Each is a soliton: a nucleus (protons and neutrons bound together by the residual strong force — the small amount of strong force that leaks through the proton boundary and pulls neighboring protons and neutrons together) surrounded by an electron cloud (electrons bound by the electromagnetic force). Each atom has a boundary at the outer edge of its electron cloud. Inside that boundary: electrons in specific shells, jumping between levels in exact integer steps. Outside: chemical bonding, continuous interaction with neighboring atoms. The boundary is where quantum rules give way to chemical rules.
+
+The periodic table is a catalog of solitons. Each element is a different vortex pattern — a different configuration of nuclear and electronic circulation — with different inertia, different boundary size, and different interaction properties. Hydrogen is the simplest: one proton, one electron, one boundary. Uranium is among the most complex: 92 protons, 146 neutrons, 92 electrons, multiple electron shells forming nested sub-boundaries within the atom itself.
 
 ---
 
@@ -478,63 +744,71 @@ The periodic table is a catalog of solitons. Each element is a different vortex 
 
 Here is where the model departs from standard presentation. Standard physics describes "forces" and "coupling constants." We describe readings.
 
-Every soliton boundary separates an inside from an outside. At the boundary, the coupling values change. The change is not gradual — it's sharp, occurring over the boundary thickness. The reading you get depends on which side you're measuring from.
+Every soliton boundary separates an inside from an outside. At the boundary, the force strength values change. In the model's language, the reading changes. This change is sharp — it happens within the thin shell of the boundary itself, not gradually across a wide region. The reading you get depends on which side you're measuring from. This is the same principle we saw with the Earth: flat from inside, curved from outside. Here it applies to force strengths, not geometry.
 
-**The confinement boundary** (the proton/hadron boundary, ~1 femtometer):
+**The confinement boundary** is the proton boundary: ~1 femtometer, about 80 billion times smaller than a human hair:
 
-Inside: the strong coupling α_s ≈ 1. Quarks and gluons are strongly coupled. Color confinement holds — no colored particle can escape. The interior is a boiling soup of gluon field energy, with quarks bouncing off the boundary walls.
+Inside: the strong force reads close to 1, its maximum. Quarks and gluons are bound so tightly that nothing escapes. The interior is a "boiling storm of energy", with quarks ricocheting off the boundary walls. You can't meaningfully talk about individual quarks in there, everything is tangled together.
 
-Outside: α_s ≈ 0.118 at the Z boson scale. The strong coupling is weak (despite its name). Perturbation theory works. You can compute Feynman diagrams and get accurate answers.
+Outside: the same force reads about 0.118. Despite being called the "strong" force, outside the proton it's gentle enough that protons sit calmly next to each other. At this strength, physicists can calculate its effects precisely using standard mathematical tools.
 
-The boundary is where the reading transitions. Deep inside the proton, you can't meaningfully talk about individual quarks — the coupling is too strong, everything is entangled. Far outside, you can't see quarks at all — they're confined. The boundary mediates between these two worlds.
+The boundary is where the reading transitions. Same force. Different reading. Inside: overwhelming. Outside: manageable. The soliton boundary is what separates the two worlds.
 
-**The electroweak boundary** (~100 GeV, the W/Z boson mass scale):
+**The electroweak boundary** at the energy scale of the W⁺, W⁻, and Z bosons is about 100 GeV:
 
-Below this boundary: the electromagnetic force and the weak force look different. Photons are massless. W and Z bosons are massive (~80 and 91 GeV). The electromagnetic coupling α ≈ 1/137 is much weaker than the weak coupling. They appear to be separate forces with separate coupling constants.
+Below this boundary — at the energies of everyday life, chemistry, and most laboratory experiments — the electromagnetic force and the weak force look completely different. Photons have no inertia at all. The W⁺, W⁻, and Z bosons are among the "heaviest" known particles (most inertia). The electromagnetic force reads about 1/137. The weak force reads much stronger. They appear to be two separate forces with nothing in common.
 
-Above this boundary: the electromagnetic and weak forces are unified. They're the same force — the electroweak force — with a single coupling constant. The distinction between them is an artifact of the Higgs field's nonzero vacuum value, which "breaks" the symmetry below 100 GeV.
+Above this boundary — at energies higher than the W⁺, W⁻, and Z boson inertia — the "two forces" merge. They become one force, called the electroweak force, with a single reading. The apparent difference between them at lower energies is created by the Higgs field's nonzero ground state, which "breaks" the symmetry and makes the two forces look different below this energy scale. Above it, the disguise falls away and they are visibly the same.
 
-sin²θ_W = 0.23122 is the reading that quantifies the mixing between electromagnetic and weak at our energy scale. At the GUT scale, sin²θ_W = 3/8 = 0.375. Between these scales, the reading runs — it changes continuously, determined by the beta coefficients.
+The weak mixing angle, sin²θ_W = 0.231, is the reading that measures how much of the electroweak force goes to the weak side at our energy scale. At the unification scale, this reading is exactly the integer fraction 3/8. Between the two scales, it "runs" — changing reading values continuously, determined by the same integer beta coefficients that govern all the force running rates. The integer fractions determine how the reading changes between any two soliton boundaries. The reading at any point between parent and child boundary is set by the same integer rules.
 
-**The unification boundary** (~10¹⁵·⁶ GeV, the GUT scale):
+**The unification boundary** at about 10¹⁵·⁶ GeV, an energy scale far beyond any current experiment:
 
-Below this boundary: three separate gauge couplings, three separate forces (strong, weak, electromagnetic). Different strengths, different behaviors, different mathematical structures (SU(3) × SU(2) × U(1)).
+Below this soliton boundary: three separate forces with three separate readings. The electromagnetic, weak, and strong forces have different strengths, different behaviors, and appear to follow different rules. This is the world we live in and measure.
 
-Above this boundary: one gauge coupling, one force, one mathematical structure (SU(5) or SO(10) or whatever the unified group is). All three couplings read the same value: α_GUT ≈ 1/42.
+Above this soliton boundary: one force with one reading. All three forces converge to the same strength — about 1/42. They were always the same force. Below the unification boundary, the different soliton boundaries between us and that scale make them read differently. Above it, the differences disappear.
 
-The three couplings meet at this boundary to within 0.064% — the gap of 0.027 out of α_GUT⁻¹ = 42.135. This is the near-exact unification achieved by the Cabibbo Doublet betas at two-loop.
+The three forces meet at this boundary to within 0.064%. That's a gap of 0.027 out of a reading of 42.135. This near-exact convergence is what the Cabibbo Doublet's integer fractions produce at two-loop precision. Without the Cabibbo Doublet, the forces miss each other by 218 times more. With it, they nearly touch. The remaining 0.064% gap is where the next level of precision begins, which is the remaining work under this model.
 
-**The gravitational boundary** (the Hill sphere):
+**The gravitational boundary** is the Hill sphere, the gravitational zone we met in Chapter 1 which the Earth, the Sun and all cosmic sphere solitons have:
 
-Every massive object has a Hill sphere — the region within which its gravitational influence dominates over the next larger object. Earth's Hill sphere extends about 1.5 million km. Inside: objects orbit Earth. Outside: objects orbit the Sun.
+Every massive object has a Hill sphere — the region within which its gravitational pull dominates over the next larger object. Earth's Hill sphere extends about 1.5 million km (the Moon, at 384,000 km away, sits comfortably inside it — that's why the Moon orbits Earth and not the Sun).
 
-The Hill sphere is a gravitational soliton boundary. Inside, the gravitational reading gives you Earth's gravity. Outside, the gravitational reading gives you the Sun's gravity. The transition happens at the Hill sphere radius, where the gravitational influence of Earth and Sun are equal.
+The Hill sphere is a gravitational soliton boundary. Inside, the gravitational reading gives you Earth's gravity. Outside, the gravitational reading gives you the Sun's gravity. The transition happens at the Hill sphere radius, where the gravitational influence of Earth and Sun are equal.  
 
-This is why G — the gravitational constant — has the largest measurement scatter of any fundamental constant. Every measurement of G has been performed inside Earth's Hill sphere, on Earth's surface, using laboratory masses separated by centimeters. The measurement is a reading from inside one specific boundary. If G is a boundary reading (like α), it should depend on which boundary you're inside. The scatter in G measurements may not be experimental error — it may be the boundary trying to tell us something.
+Gravity's readings are different at different distances from Earth's center, because you're measuring at different points within the Earth's running reading. Step outside the Earth's Hill sphere and the reading changes entirely — now you're inside the Sun's running reading, and the Sun's gravity sets the rules.
+
+This is why G, the gravitational constant, has the largest measurement scatter of any fundamental constant. Every measurement of G has been performed inside Earth's Hill sphere, on Earth's surface, using laboratory masses separated by centimeters. The measurement is a reading from inside one specific boundary. If G is a boundary reading (like the electromagnetic force strength, which changes value at different scales), it should depend on which boundary you're inside. In this model, the scatter in G measurements is expected. G is a boundary reading, and we're measuring it from near a single location inside one boundary.
 
 ---
 
 ### Layer 4: The Running
 
-Couplings run. They change value depending on the energy scale at which you measure them. This is not a theoretical speculation — it's measured. The electromagnetic coupling α has been measured at multiple energy scales:
+Force strengths "run". They change value depending on how closely you look. This is not theoretical speculation — it's measured.
 
-At zero energy (atomic physics): α = 1/137.036
+This creates a problem with the word "constant." Physics calls these numbers "coupling constants," but they aren't constant. They change with scale. A constant that changes isn't a constant — it's a reading. This is one of the naming errors the Rectification addresses. Calling a running value a "constant" makes physicists treat it as fixed, when it's actually a running reading that depends on which soliton boundary you're measuring from.
 
-At 1 GeV (τ lepton decay): α ≈ 1/134
+The electromagnetic force strength has been measured at multiple energy scales, and it gives a different reading at each one:
 
-At 91 GeV (Z boson mass): α = 1/127.95
+At everyday energies (atomic physics): about 1/137
 
-At 200 GeV (LEP2): α ≈ 1/126
+At medium energies (around the tau lepton): about 1/134
 
-The coupling gets stronger at higher energy. This is because the vacuum is filled with virtual electron-positron pairs that screen the electric charge. At low energy (large distance), you see the screened charge. At high energy (short distance), you penetrate the screening cloud and see more of the bare charge.
+At high energies (the Z boson scale): about 1/128
 
-The rate of running is determined by the beta function — the derivative of the coupling with respect to the energy scale. For α, the one-loop beta coefficient is b₁ = 41/10 (including the GUT normalization). The 41 counts: 3 generations × (1/6 + 8/3 + 1 + 3/2 + 1/2) from quarks and leptons + 1/10 from the Higgs. Every term is a Fraction from representation theory. The 41 is an integer because it counts quantum number contributions.
+At very high energies (the LEP2 collider): about 1/126
 
-The strong coupling α_s runs in the opposite direction — it gets weaker at higher energy. This is asymptotic freedom, discovered by Gross, Wilczek, and Politzer in 1973 (Nobel Prize 2004). The one-loop beta coefficient is b₃ = −7. The negative sign means the coupling decreases with energy. The 7 comes from: −11 (gluon self-interaction, the Yang-Mills contribution) + 4 (quark contributions from 6 flavors). The −11 is the most important integer in the Standard Model — it's what makes QCD confining at low energy and perturbative at high energy.
+The force gets stronger the closer you look. Why? Because the vacuum is not truly empty — it's filled with fleeting particle-antiparticle pairs that pop in and out of existence (unstable solitons). These pairs act like a screen around every electric charge, partially hiding its true strength. At low energy (far away), you see the screened charge. At high energy (close up), you punch through the screen and see more of the bare charge underneath. The reading changes because the "screen" is thinner at closer range.
 
-The weak coupling runs too, with b₂ = −19/6. The −19 comes from: −22/3 (gauge boson self-interaction) + 4 (fermion contributions) + 1/6 (Higgs contribution).
+How fast a force runs is set by its running rate — the beta coefficient we met in Chapter 2. For the electromagnetic force, this running rate is b₁ = 41/10. The 41 is an integer because it counts particle contributions. Every quark, every lepton, and the Higgs boson each contribute a specific fraction to the total, and when you add them all up, the numerator is 41. The denominator 10 comes from the symmetry normalization. The number 41/10 is not measured. It is counted.
 
-These three numbers — 41/10, −19/6, −7 — determine the entire structure of coupling unification. Their ratios determine the gap ratio. Their values determine the unification scale. Their modifications by new particles determine which BSM representations improve unification. All from three Fractions. All exact.
+The strong force runs in the opposite direction — it gets weaker at higher energy, not stronger. This is called "asymptotic freedom", discovered by Gross, Wilczek, and Politzer in 1973 (Nobel Prize 2004). Its running rate is b₃ = −7. The negative sign means the force gets weaker as you zoom in. The 7 comes from two contributions pulling in opposite directions: −11 from the gluon field's self-interaction (the Yang-Mills coefficient we met in the dark matter ratio) and +4 from the quarks. The −11 wins, making the total negative. This single integer, 11, is arguably the most important number in the Standard Model. It is what makes the strong force confining at low energy (trapping quarks inside protons) and calculable at high energy (allowing precise predictions).
+
+The weak force runs too. Its running rate is b₂ = −19/6. The −19 comes from: −22/3 from gauge boson self-interaction, +4 from fermion contributions, and +1/6 from the Higgs. Three terms, each counted from the particle content, summing to −19 in the numerator.
+
+These three fractions — 41/10, −19/6, and −7 — determine the entire structure of force unification. Their ratios determine the gap ratio. Their values determine the energy at which the forces converge. Adding a new particle changes these fractions by specific amounts, and those amounts determine whether unification improves or worsens. The Cabibbo Doublet shifts them by 1/15, 1, and 1/3 — the only shifts that make the gap ratio an exact fraction with small meaningful integers.
+
+All from three fractions. All exact. All counted, not measured.
 
 ---
 
@@ -542,65 +816,83 @@ These three numbers — 41/10, −19/6, −7 — determine the entire structure 
 
 ![Fig. 3: Two-loop coupling running — SM triangle (gap 5.88) vs CD near-point (gap 0.027), a 218× improvement from one additional representation.](../figures/book_03_coupling_running.png)
 
-One additional particle changes everything.
+One additional mathematically forced particle changes everything.
 
-The Cabibbo Doublet (CD) is a vector-like quark doublet — a pair of quarks (one with charge +2/3, one with charge −1/3) that transforms as (3, 2, 1/6) under the gauge group. This means: it carries color charge (the 3, under SU(3)), it's a weak doublet (the 2, under SU(2)), and it has hypercharge 1/6 (under U(1)).
+The Cabibbo Doublet is a pair of quarks — one with charge +2/3, one with charge −1/3 — that interacts with all three forces (strong, weak, and electromagnetic). It carries "color" charge (it feels the strong force), it's a weak doublet (it feels the weak force as a pair), and it has a small hypercharge of 1/6 (it feels the electromagnetic-type force). In the gauge group notation from Layer 1, its quantum numbers are written (3, 2, 1/6) — three integer based numbers, one for each symmetry.
 
-"Vector-like" means both left-handed and right-handed components have the same gauge quantum numbers. Standard Model fermions are chiral — their left and right components transform differently. The CD is vector-like — both components transform the same way. This is important because vector-like fermions don't spoil the mathematical consistency (anomaly cancellation) of the Standard Model.
+What makes it special is its "handedness" (chirality). Standard Model particles are lopsided — their left-handed and right-handed components interact differently. The Cabibbo Doublet is symmetric — both hands interact the same way. Physicists call this "vector-like." This symmetry is important for two reasons: it doubles the Cabibbo Doublet's contribution to the force running rates (both hands count, 11 doubles to 22 in counting), and it preserves the mathematical consistency of the Standard Model, because it doesn't break anything that already works.
 
-The CD shifts the three beta coefficients by exactly:
+The Cabibbo Doublet shifts the three force running rates by three small exact fractions:
 
-Δb₁ = 1/15 (from the U(1) hypercharge Y = 1/6)
+The electromagnetic running rate shifts by 1/15 (from its small hypercharge of 1/6).
 
-Δb₂ = 1 (from the SU(2) doublet: two contributions of 1/2)
+The weak running rate shifts by 1 (from its doublet structure, both hands contributing 1/2).
 
-Δb₃ = 1/3 (from the SU(3) triplet: two contributions of 1/6)
+The strong running rate shifts by 1/3 (from its color triplet structure, both hands contributing 1/6).
 
-These three Fractions — 1/15, 1, 1/3 — are the entire new physics content. Three numbers. From them:
+Three fractions. 1/15, 1, and 1/3. These are the entire new content. One particle, three numbers. From them, everything follows:
 
-The modified betas become b₁ = 25/6, b₂ = −13/6, b₃ = −20/3.
+The modified running rates become b₁ = 25/6, b₂ = −13/6, b₃ = −20/3.
 
 The gap ratio becomes 38/27 (exact).
 
-The unification scale rises from 10¹³·⁸ to 10¹⁵·⁶ (above the proton decay bound).
+The unification scale rises into the range testable by Hyper-Kamiokande (starting 2027).
 
-The three couplings converge within 0.064% at two-loop.
+The three forces converge within 0.064% at two-loop precision.
 
-sin²θ_W is predicted at 12 ppm.
+The weak mixing angle is predicted to 12 parts per million.
 
-α_s is predicted at 0.33%.
+The strong force strength is predicted to 0.33%.
 
-The dark matter ratio (22/13)π emerges from the integer 13 (in b₂ = −13/6) and the integer 11 (in the Yang-Mills coefficient −11/3).
+The dark matter ratio (22/13)π emerges from the integer 13 (in the modified weak running rate −13/6) and the integer 11 (the Yang-Mills coefficient), doubled to 22 because the Cabibbo Doublet is two-handed.
 
-Nobody chose this particle by hand. It was selected by a mathematical criterion: which BSM representation preserves the gap ratio as an exact Fraction? Out of all possible representations — singlets, doublets, triplets, in every combination of SU(3) × SU(2) × U(1) quantum numbers — only one gives a gap ratio that is an exact Fraction with small integers: (3, 2, 1/6) vector-like. The gap ratio is 38/27. Every other representation either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
+Step back and see what just happened. One particle — selected by the integers, not by model preference — produced all of these results. The weak mixing angle, which has been measured to extraordinary precision in laboratories around the world, is predicted to 12 parts per million from integer arithmetic. The strong force strength, measured independently at particle colliders, is predicted to 0.33%. The dark matter ratio, measured by a satellite observing the "oldest light" in the universe, is predicted to 725 parts per million. Three completely independent measurements, from three different kinds of experiment, in three different branches of physics, all predicted by the same three fractions from one new mathematically forced particle.
 
-The integers chose the particle. The particle predicts the couplings. The couplings predict the chemistry.
+This is not a model that explains one thing well and hopes the rest will follow. It is a model that explains many things, across many domains, from one source. The predictions don't require separate assumptions for each domain. They flow from the same three numbers: 1/15, 1, and 1/3. Everything else is standard physics, carried forward by integer fractions.
+
+Nobody chose this particle by hand. It was selected by a mathematical criterion: out of all possible new particles, in every combination of strong, weak, and electromagnetic charges, which one produces a gap ratio that is an exact fraction with small, physically meaningful integers? The answer is unique. Only (3, 2, 1/6) vector-like gives 38/27. Every other candidate either gives an irrational gap ratio or one with large integers that don't connect to the gauge structure.
+
+The integers forced the particle. The particle predicts the couplings. The couplings predict the chemistry.
 
 ---
 
 ### Layer 6: The Electroweak Sector
 
-With the couplings determined, the electroweak sector follows.
+Once the three force running rates are determined by the Cabibbo Doublet's integer fractions, the properties of the particles that carry the weak interaction — the W⁺, W⁻, and Z bosons — follow as consequences.
 
-The W boson mass: M_W = M_Z × √(ρ(1 − sin²θ_W)), where M_Z = 91.1876 GeV is the Z boson mass (measured), sin²θ_W = 0.23122 (measured, or derived from two-loop unification at 12 ppm), and ρ = 1 + Δρ is the rho parameter that accounts for the top quark's contribution to the W mass. This gives M_W = 80,354 MeV. Measured: 80,369 MeV. Miss: 195 ppm.
+The W⁺ and W⁻ bosons have a specific inertia (mass) that depends on the Z boson's inertia, the weak mixing angle, and a correction from the top quark (the heaviest known particle). These are not independent numbers. They're connected by the same integer structure. Feed in the weak mixing angle from two-loop unification and the measured Z boson inertia, and the W⁺, W⁻ inertia is predicted:
 
-The Z boson width: Γ_Z tells you how quickly the Z decays. It decays to every fermion lighter than M_Z/2 — electron-positron, muon pairs, tau pairs, quark-antiquark pairs, and neutrino pairs. Each decay channel contributes a partial width determined by the fermion's coupling to the Z, which depends on sin²θ_W and α_s:
+Predicted: 80,354 MeV. Measured: 80,369 MeV. Miss: 195 parts per million.
 
-Γ(Z → ee) = 84.47 MeV (measured: 83.91, miss 0.67%)
+An aside on "loops": When physicists calculate how forces run, the simplest calculation is called "one-loop" — it accounts for the most basic quantum effects. A "two-loop" calculation includes finer corrections on top of the first, like adding a second layer of precision to an already precise measurement. Each additional loop makes the prediction more accurate but the computation more complex. The one-loop prediction for the weak mixing angle gets within 1.2% of the measured value. The two-loop prediction gets within 12 parts per million. The same integers, carried to one more level of precision, produce dramatically better results. This is why two-loop matters: it's where the integer structure proves it isn't a coincidence.
 
-Γ(Z → μμ) = 84.47 MeV (measured: 83.99, miss 0.57%)
+The Z boson is unstable — it decays almost instantly into pairs of lighter particles. How quickly it decays, and what it decays into, depends on the weak mixing angle and the strong force strength. The Z can decay into every type of particle lighter than half its own inertia: electron-positron pairs, muon pairs, tau pairs, quark pairs, and neutrino pairs. Each decay channel has a predicted rate, and every rate depends on the same inputs.
 
-Γ(Z → ττ) = 84.47 MeV (measured: 84.08, miss 0.47%)
+Decay to electron pairs: predicted 84.47 MeV, measured 83.91. Miss: 0.67%.
 
-Γ(Z → hadrons) = 1759 MeV (measured: 1744.4, miss 0.84%)
+Decay to muon pairs: predicted 84.47 MeV, measured 83.99. Miss: 0.57%.
 
-Γ(Z → invisible) = 503 MeV (measured: 499.0, miss 0.81%)
+Decay to tau pairs: predicted 84.47 MeV, measured 84.08. Miss: 0.47%.
 
-The invisible width is three neutrino species — exactly three. Γ(invisible)/Γ(single neutrino) = 3.00. This is the most precise determination of the number of neutrino generations: three, not two, not four, not 3.5. Three. An integer. The reading is exact.
+Decay to quarks (hadrons): predicted 1759 MeV, measured 1744.4. Miss: 0.84%.
 
-The ratio R_l = Γ(hadrons)/Γ(leptons) = 20.82 (measured: 20.767, miss 0.27%). This ratio is sensitive to α_s because the hadronic width includes QCD corrections. The prediction uses α_s = 0.118.
+Decay to neutrinos (invisible): predicted 503 MeV, measured 499.0. Miss: 0.81%.
 
-All of these numbers flow from the same inputs: α_em, sin²θ_W, α_s, M_Z, and the fermion masses. With sin²θ_W and α_s derived from two-loop unification, the entire electroweak sector is derivable from α_em, M_Z, and the top quark mass. Three numbers produce fifteen electroweak observables.
+Every one of these decay channels is predicted from the same inputs — the same weak mixing angle, the same force strengths, the same integer fractions. Five different measurements, from five different types of particle produced in the same decay, all matching within 1%. These aren't five separate predictions from five separate models. They're five consequences of one set of numbers. When five independent measurements all agree with predictions from the same source, the source is doing something right. That is why this model is based on derivations from integer fractions against existing measured precision data.
+
+A "decay channel" is a specific way a particle can break apart. The Z boson is unstable — it exists for a tiny fraction of a second before transforming into a pair of lighter particles. Each type of pair it can produce is one decay channel. The electron pair channel, the muon pair channel, the quark channel — each is a separate exit route, and each has a measurable running rate. 
+
+An "invisible" decay channel is one where the products can't be detected — they pass through the detector without leaving a trace. The only particles that do this are neutrinos (in the lepton group with electrons, muons, and taus — they carry no "color" charge and barely interact with anything). So the "invisible channel" is really the "neutrino channel", measured not by seeing what came out, but by accounting for the energy that went missing.
+
+The "invisible decay channel" (neutrino) tells us something remarkable beyond just the decay rate. By measuring how much total energy disappears into invisible products, and dividing by the predicted decay rate for a single neutrino type, you can count how many types of neutrino exist. You don't need to see them. You just need to measure how much energy went missing, and the mathematics tells you how many invisible particles are sharing it:
+
+Three. Not two, not four, not 3.5. Exactly three. An integer, an integer fraction: 3/1. The number of neutrino generations is a counting result, and the count is exact.
+
+This is the integer structure making itself visible in a completely different way. The dark matter ratio gave us integers from particle counting. The gap ratio gave us integers from force running rates. Here, the invisible width of the Z boson gives us an integer from decay counting. Three neutrinos. Not a prediction from this model — a measurement that confirms the universe organizes itself in integers at every level. The count is exact because the universe doesn't make half a neutrino type. The boundary either supports a pattern or it doesn't. When you count how many types of pattern exist, the answer is always an integer. You can't have 3.5 types of neutrino. The count is exact because the patterns are exact.
+
+The ratio of quark decays to lepton decays gives another test: predicted 20.82, measured 20.767. Miss: 0.27%.
+
+All of these numbers flow from the same few inputs: the electromagnetic force strength, the weak mixing angle, the strong force strength, and the Z boson inertia. With the weak mixing angle and strong force strength now derived from two-loop unification (instead of measured independently), the entire electroweak sector becomes derivable from just three measured numbers: the electromagnetic force strength, the Z boson inertia, and the top quark inertia. Three inputs produce fifteen predictions. All match.
 
 ---
 
@@ -746,8 +1038,8 @@ Here is the list. Pin it to your wall.
 
 | Layer | What it is | Soliton boundary | Key reading | Integer source |
 |---|---|---|---|---|
-| 0 | Vacuum | Universe (outermost) | Λ = 10⁻¹²² (Planck) | — |
-| 1 | Quantum fields | — (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group |
+| 0 | Vacuum soliton | Universe (outermost) | Λ = 10⁻¹²² (Planck) | — |
+| 1 | Quantum field solitons | — (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group |
 | 2 | Stable solitons | Particle boundaries | Quantum numbers (exact integers) | Representation theory |
 | 3 | Boundary readings | Every soliton boundary | α, α_s, sin²θ_W (scale-dependent) | Beta coefficients |
 | 4 | Running | Between boundaries | β₁ = 41/10, β₂ = −19/6, β₃ = −7 | Particle counting |
@@ -764,7 +1056,7 @@ Twelve layers. One vocabulary. One principle: nested soliton boundaries with int
 
 Everything you've been taught as separate subjects — quantum mechanics, atomic physics, nuclear physics, particle physics, cosmology, astrophysics — is one subject. The readings change at the boundaries. The boundaries are nested. The transformation laws between readings are integer Fractions from the gauge group.
 
-This is the physics stack. This is how the universe is organized.
+This is the physics stack. This is how the universe is organized in this model.
 ## Chapter 4: What Unification Brings
 
 Physics currently has walls.
