@@ -135,7 +135,7 @@
 | **[[@HOWL-PHYS-38-2026]](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Precision Frontier** | 38 Derived Values from Sub-ppb QED to the Lithium Problem. |
 | **[[@HOWL-PHYS-39-2026]](papers/papers/PHYS/HOWL-PHYS-39-2026/manuscript.md)** | **From Gauge Integers to Hydrogen Spectroscopy** | Two-Loop Unification, the k₁ Bug, and Eight Connected Domains. |
 | **[[@HOWL-PHYS-40-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **You Are Here (II): The Derivation Map at 53 Values** | Eight Domains, Thirteen Inputs, and the Path to Full Unification. |
-| **[[@HOWL-PHYS-41-2026]](papers/papers/PHYS/HOWL-PHYS-41-2026/manuscript.md)** | **You Are Here (II): The Derivation Map at 53 Values** | Eight Domains, Thirteen Inputs, and the Path to Full Unification. |
+| **[[@HOWL-PHYS-41-2026]](papers/papers/PHYS/HOWL-PHYS-41-2026/manuscript.md)** | **Time as Reading Depth** | The Fourth Coordinate Reinterpreted. |
 
 ---
 
