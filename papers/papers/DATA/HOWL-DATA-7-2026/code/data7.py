@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DATA-6 CLI v0.3
+DATA-7 CLI v0.4
 ================
 Single entry point for all DATA-6 operations.
 

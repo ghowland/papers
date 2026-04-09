@@ -24,6 +24,6 @@
         "gr_planck_length_m_v0"
     ],
     "derivation_functions": [
-        "gr_reading_depth_mega_v0"
+        "gr_reading_depth_mega2_v0"
     ]
 }

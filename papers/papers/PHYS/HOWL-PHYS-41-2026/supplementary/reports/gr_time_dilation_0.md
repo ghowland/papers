@@ -378,3 +378,5 @@ This experiment opens the ninth physics domain in the HOWL derivation graph: GR 
 | Expected status | ALL COMPARISONS PASSED |
 | New domain added | GR time dilation (ninth domain) |
 
+---
+
