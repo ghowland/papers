@@ -84,28 +84,6 @@ The decimals obscure it. The fractions reveal it.
 
 ### Transcendentals
 
-There's an obvious objection: what about π? What about ζ(3) = 1.202...? These irrational and transcendental numbers appear everywhere in physics — in the QED series coefficients, in the area of a circle, in the dark matter ratio (22/13)π. If the goal is integer arithmetic, how do you handle numbers that aren't integers?
-
-The answer is Q335.
-
-Q335 is the name for a specific representation of transcendental constants as exact rational numbers using 2³³⁵ as a shared denominator, giving about 101 decimal digits of precision. The idea is simple. π is transcendental — it cannot be expressed as a ratio of integers. But π can be computed to any desired number of digits. Using 2³³⁵ as the denominator, the stored fraction matches π to 101 decimal places. The Planck length — the smallest meaningful distance in physics — requires only about 35 decimal digits. So Q335 provides 65 orders of magnitude more precision than any physical measurement could ever require.
-
-The Q335 representation stores π as a Fraction with a numerator and denominator each having about 335 digits. This Fraction is not equal to π — nothing rational is equal to π — but it differs from π by less than 10⁻³³⁵. For every physical computation, this difference is zero. Not approximately zero. Operationally zero. No experiment, no measurement, no observation could ever detect the difference.
-
-The same approach works for every transcendental that appears in physics: ζ(3), ζ(5), ln(2), the Catalan constant, the elliptic integrals. Each is stored as a Q335 Fraction. Each is exact to 300 orders of magnitude beyond Planck precision. Each flows through the Fraction arithmetic without rounding, without truncation, without loss.
-
-The QED two-loop coefficient A₂ is a closed-form expression in rational numbers, π², ln(2), and ζ(3). In decimal, A₂ = −0.3285.... In Q335 Fraction arithmetic, A₂ is:
-
-A₂ = 197/144 + (1/12)π² − (1/2)π²ln(2) + (3/4)ζ(3)
-
-Each term is a product of a rational coefficient (197/144, 1/12, −1/2, 3/4) and a Q335 transcendental (1, π², π²ln(2), ζ(3)). The result is a Q335 Fraction with 335 digits of precision. Exact enough. More than exact enough. Exact enough to verify that the QED series, evaluated in Fraction arithmetic, reproduces the measured electron anomalous magnetic moment to 12 digits when compared to the rubidium recoil measurement of α.
-
-The Q335 approach is not a philosophical statement about whether π is "really" rational. It's an engineering decision. Physics needs numbers with enough precision to test predictions against measurement. 335 digits is enough. The Fraction arithmetic preserves all integer structure through every computation. The transcendentals are handled at operationally infinite precision. The result is a number system where every value is traceable — every numerator and denominator carries physical meaning from the gauge group through the derivation chain to the final prediction.
-
-This is what makes the 12 ppm sin²θ_W prediction possible. The computation starts from integer betas (25/6, −13/6, −20/3), runs through Fraction arithmetic with Q335 transcendentals, and arrives at sin²θ_W = 0.231223 — a number that matches measurement to five significant figures. No rounding error contributed to the miss. No floating-point comparison missed a crossing. The 12 ppm miss is physical — it comes from the 0.027 gap at the unification scale, not from numerical noise.
-
-### Transcendentals
-
 There's an obvious objection: what about π? What about other irrational constants like:
 
 - ζ(3) - a specific number from the Riemann zeta function, approximately 1.202, that appears throughout quantum calculations
@@ -196,26 +174,6 @@ The departmental boundaries are real and they serve a purpose. Specialization pr
 ![Eight Domains](../figures/book_12_hydrogen_two_path.png)
 
 ---
-
-### The Ceiling
-
-![Fig. 14: Unification gap on log scale — CD (0.027) is 218× better than SM (5.88) and 19× better than MSSM (~0.5), with 3 new parameters vs 105.](../figures/book_14_gap_comparison.png)
-
-There's a deeper reason, beneath the wrong numbers and wrong names and wrong departments. It's the assumption that unification requires new physics.
-
-The Grand Unified Theory program of the 1970s established the expectation: to unify the forces, you need new particles, new symmetries, new dynamics at high energy scales. Supersymmetry adds 105 new parameters. String theory adds 10 dimensions. SO(10) adds enormous Higgs representations. The expectation was that unification is hard because the new physics at the GUT scale is complicated and unknown.
-
-What if unification is easy because the new physics at the GUT scale is one particle?
-
-The Cabibbo Doublet — one vector-like quark doublet with quantum numbers (3, 2, 1/6) — shifts the three beta coefficients by (1/15, 1, 1/3). That's three numbers: one-fifteenth, one, and one-third. Three small Fractions. Three exact integers in the numerators. One particle.
-
-With that one particle, the gap ratio becomes 38/27 (exact). The unification scale rises from 10¹³·⁸ to 10¹⁵·⁶ (into the proton decay testability window). The three couplings converge within 0.064% at two-loop. sin²θ_W is predicted to 12 ppm. α_s is predicted to 0.33%. The dark matter ratio is (22/13)π. The deuterium abundance matches at 0.12σ.
-
-53 derived values. 40 surplus tests. One additional particle.
-
-The assumption that unification requires enormous new physics was wrong. The Standard Model was already 99% of the way there. The missing piece was one representation, selected not by theoretical preference but by the integer structure of the gap ratio — the only representation that preserves the gap ratio as an exact Fraction.
-
-Nobody found this before because they were looking for a Theory of Everything. They were looking for new forces, new dimensions, new symmetries. They were looking for the Lagrangian of the universe. What was actually needed was one particle and the willingness to take the integers seriously.
 
 ### The Ceiling
 
