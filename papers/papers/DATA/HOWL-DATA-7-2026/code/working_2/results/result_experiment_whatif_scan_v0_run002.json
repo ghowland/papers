@@ -1,0 +1,33 @@
+{
+  "key": "result_experiment_whatif_scan_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_whatif_scan_v0",
+  "timestamp": "2026-04-05T09:50:29Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "coupling_whatif_rep_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "What-if gap ratio computed",
+      "output_key": "result_whatif_gap_ratio_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 1,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 1
+  }
+}

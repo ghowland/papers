@@ -1,0 +1,148 @@
+{
+  "key": "result_experiment_ckm_cd_mixing_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_ckm_cd_mixing_v0",
+  "timestamp": "2026-04-06T04:30:58Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "ckm_first_row_from_cd_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "ckm_vud_corrected_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "ckm_cabibbo_angle_from_cd_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "ckm_unitarity_test_v0",
+      "status": "ok",
+      "output_count": 8
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "First-row unitarity (3x3) predicted from CD vs measured",
+      "output_key": "result_unitarity_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.99848",
+      "got": "0.997975",
+      "miss_pct": "0.05058",
+      "detail": "predicted 0.997975 ref 0.99848 miss 0.05058%"
+    },
+    {
+      "label": "Unitarity deficit from CD within 2 sigma of measured",
+      "output_key": "result_deficit_tension_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_2024",
+      "got": "0.827869",
+      "lo": "0",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0, 2.0]"
+    },
+    {
+      "label": "V_ud corrected vs measured",
+      "output_key": "result_vud_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.97373",
+      "got": "0.973473121149218",
+      "miss_pct": "0.02638",
+      "detail": "predicted 0.973473121149218 ref 0.97373 miss 0.02638%"
+    },
+    {
+      "label": "Cabibbo angle corrected vs PDG",
+      "output_key": "result_cabibbo_angle_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.22501",
+      "got": "0.224529090786153",
+      "miss_pct": "0.2137",
+      "detail": "predicted 0.224529090786153 ref 0.22501 miss 0.2137%"
+    },
+    {
+      "label": "4x4 unitarity sum = 1.0000",
+      "output_key": "result_4x4_unitarity_sum_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "unitarity",
+      "status": "INFO",
+      "expected": "1.0000",
+      "got": "1.0005001953",
+      "miss_pct": "0.05002",
+      "detail": "predicted 1.0005001953 ref 1.0000 miss 0.05002%"
+    },
+    {
+      "label": "4x4 unitarity residual < 0.001",
+      "output_key": "result_4x4_unitarity_residual_v0",
+      "match_mode": "range",
+      "reference_source": "exact_unitarity",
+      "got": "0.000500195",
+      "lo": "0",
+      "hi": "0.001",
+      "status": "PASS",
+      "detail": "in [0, 0.001]"
+    },
+    {
+      "label": "sin^2(theta_14) vs measured deficit",
+      "output_key": "result_sin2_theta14_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "deficit_comparison",
+      "status": "INFO",
+      "expected": "0.00152",
+      "got": "0.002025",
+      "miss_pct": "33.22",
+      "detail": "predicted 0.002025 ref 0.00152 miss 33.22%"
+    }
+  ],
+  "outputs": {
+    "result_unitarity_predicted_v0": "0.997975",
+    "result_unitarity_measured_v0": "0.99848",
+    "result_unitarity_miss_pct_v0": "0.0505768768528163",
+    "result_sin2_theta14_v0": "0.002025",
+    "result_deficit_predicted_v0": "0.002025",
+    "result_deficit_measured_v0": "0.00152",
+    "result_deficit_tension_sigma_v0": "0.827868852459016",
+    "result_sin_theta14_used_v0": "0.045",
+    "result_vud_corrected_v0": "0.973473121149218",
+    "result_vud_measured_v0": "0.97373",
+    "result_vud_miss_pct_v0": "0.0263809116266351",
+    "result_vud_diff_v0": "-0.000256878850782034",
+    "result_vud_tension_sigma_v0": "0.828641454135592",
+    "result_vud2_from_4x4_v0": "0.9476499176",
+    "result_cabibbo_angle_corrected_v0": "0.224529090786153",
+    "result_cabibbo_angle_standard_v0": "0.224472842965855",
+    "result_cabibbo_angle_pdg_v0": "0.22501",
+    "result_cabibbo_miss_corrected_pct_v0": "0.213727929357238",
+    "result_cabibbo_miss_standard_pct_v0": "0.238725849582414",
+    "result_cabibbo_shift_v0": "5.62478202986682e-5",
+    "result_4x4_unitarity_sum_v0": "1.0005001953",
+    "result_3x3_unitarity_sum_v0": "0.9984751953",
+    "result_4x4_unitarity_residual_v0": "0.0005001953",
+    "result_3x3_deficit_v0": "0.0015248047",
+    "result_sin2_theta14_vs_deficit_v0": "0.0005001953",
+    "result_vud_used_v0": "0.97373",
+    "result_vus_used_v0": "0.2243",
+    "result_vub_used_v0": "0.00382"
+  },
+  "summary": {
+    "derivations_ok": 4,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 0,
+    "comparisons_info": 5,
+    "comparisons_skip": 0
+  }
+}

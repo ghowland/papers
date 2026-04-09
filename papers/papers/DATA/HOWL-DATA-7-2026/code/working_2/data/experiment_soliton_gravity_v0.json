@@ -1,0 +1,198 @@
+{
+    "key": "experiment_soliton_gravity_v0",
+    "canonical": "experiment_soliton_gravity",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Soliton gravity: GM/(rc^2) hierarchy, Kepler via R2, GPS correction, Hill spheres, MOND a0, escape velocities. Tests the thesis that gravity is the ground state in a nesting hierarchy.",
+    "purpose": "program_soliton_gravity_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "astro_gravitational_constant": 0,
+            "astro_mass_earth": 0,
+            "astro_mass_sun": 0,
+            "astro_mass_moon": 0,
+            "astro_radius_earth": 0,
+            "astro_radius_sun": 0,
+            "astro_au": 0,
+            "astro_gps_orbit_radius": 0,
+            "astro_gps_satellite_velocity": 0,
+            "astro_parsec": 0,
+            "si_speed_of_light": 0,
+            "geom_r2": 0,
+            "cosmo_h0_planck": 0
+        },
+        "derivations": {
+            "gravity_coupling": 0,
+            "gravity_escape_velocity": 0,
+            "gravity_binding_fraction": 0,
+            "gravity_hill_sphere": 0,
+            "gravity_kepler_period": 0,
+            "gravity_process_rate": 0,
+            "gravity_gps_correction": 0,
+            "gravity_mond_a0": 0
+        },
+        "connections": {
+            "connection_soliton_hierarchy": 0,
+            "connection_mond_transition": 0
+        }
+    },
+
+    "execution_plan": [
+        "gravity_coupling_v0",
+        "gravity_escape_velocity_v0",
+        "gravity_binding_fraction_v0",
+        "gravity_hill_sphere_v0",
+        "gravity_kepler_period_v0",
+        "gravity_process_rate_v0",
+        "gravity_gps_correction_v0",
+        "gravity_mond_a0_v0"
+    ],
+
+    "connections": [
+        "connection_soliton_hierarchy_v0",
+        "connection_mond_transition_v0"
+    ],
+
+    "expected_outputs": [
+        "result_grav_coupling_earth_surface_v0",
+        "result_grav_coupling_sun_surface_v0",
+        "result_escape_velocity_earth_km_s_v0",
+        "result_binding_fraction_earth_v0",
+        "result_hill_sphere_earth_km_v0",
+        "result_kepler_identity_64r2sq_equals_4pi2_v0",
+        "result_kepler_earth_days_v0",
+        "result_process_rate_earth_surface_v0",
+        "result_gps_rate_exceeds_earth_v0",
+        "result_gps_total_us_per_day_v0",
+        "result_gps_gravity_dominates_v0",
+        "result_mond_a0_v0",
+        "result_mond_transition_sun_au_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "64*R2^2 = 4*pi^2 (Kepler identity)",
+            "output_key": "result_kepler_identity_64r2sq_equals_4pi2_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "mathematical_identity"
+        },
+        {
+            "label": "Earth Kepler period ~ 365.25 days",
+            "output_key": "result_kepler_earth_days_v0",
+            "match_mode": "digits",
+            "expected": "365.25",
+            "digits": 4,
+            "reference_source": "ephemeris"
+        },
+        {
+            "label": "Earth escape velocity ~ 11.2 km/s",
+            "output_key": "result_escape_velocity_earth_km_s_v0",
+            "match_mode": "range",
+            "lo": "11.0",
+            "hi": "11.3",
+            "reference_source": "physics"
+        },
+        {
+            "label": "Earth Hill sphere ~ 1.5e6 km",
+            "output_key": "result_hill_sphere_earth_km_v0",
+            "match_mode": "range",
+            "lo": "1400000",
+            "hi": "1600000",
+            "reference_source": "orbital_mechanics"
+        },
+        {
+            "label": "GPS gravity dominates velocity",
+            "output_key": "result_gps_gravity_dominates_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "physics"
+        },
+        {
+            "label": "GPS total correction ~ 38 us/day",
+            "output_key": "result_gps_total_us_per_day_v0",
+            "match_mode": "range",
+            "lo": "35",
+            "hi": "42",
+            "reference_source": "GPS_operations"
+        },
+        {
+            "label": "GPS orbit rate > Earth surface rate",
+            "output_key": "result_gps_rate_exceeds_earth_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "GR"
+        },
+        {
+            "label": "Earth GM/(Rc^2) ~ 7e-10",
+            "output_key": "result_grav_coupling_earth_surface_v0",
+            "match_mode": "range",
+            "lo": "5e-10",
+            "hi": "1e-9",
+            "reference_source": "physics"
+        },
+        {
+            "label": "MOND a0 ~ 1e-10 m/s^2",
+            "output_key": "result_mond_a0_v0",
+            "match_mode": "range",
+            "lo": "5e-11",
+            "hi": "2.5e-10",
+            "reference_source": "MOND_literature"
+        },
+        {
+            "label": "MOND a0 match to published",
+            "output_key": "result_mond_a0_match_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "20",
+            "reference_source": "MOND_literature"
+        },
+        {
+            "label": "Sun MOND radius > 100 AU",
+            "output_key": "result_mond_transition_sun_au_v0",
+            "match_mode": "range",
+            "lo": "100",
+            "hi": "10000",
+            "reference_source": "dynamics"
+        },
+        {
+            "label": "Jupiter Kepler period ratio ~ 1",
+            "output_key": "result_kepler_jupiter_ratio_v0",
+            "match_mode": "range",
+            "lo": "0.995",
+            "hi": "1.005",
+            "reference_source": "ephemeris"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_soliton_coupling_hierarchy_v0",
+            "title": "Gravitational coupling GM/(rc^2) across scales",
+            "type": "bar",
+            "categories": ["Earth surface", "GPS orbit", "Sun surface", "Sun-Earth"],
+            "values_from": [
+                "result_grav_coupling_earth_surface_v0",
+                "result_grav_coupling_gps_orbit_v0",
+                "result_grav_coupling_sun_surface_v0",
+                "result_grav_coupling_sun_earth_v0"
+            ],
+            "notes": "Same GM/(rc^2) formula at every level of the soliton hierarchy"
+        },
+        {
+            "key": "diagram_gps_correction_v0",
+            "title": "GPS clock correction components",
+            "type": "bar",
+            "categories": ["Gravitational", "Velocity", "Total"],
+            "values_from": [
+                "result_gps_grav_shift_v0",
+                "result_gps_vel_shift_v0",
+                "result_gps_total_shift_v0"
+            ],
+            "notes": "Gravity (positive) dominates velocity (negative). Net +38.5 us/day."
+        }
+    ]
+}
+

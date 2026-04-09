@@ -1,0 +1,139 @@
+{
+  "key": "result_experiment_qed_full_corrections_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_qed_full_corrections_v0",
+  "timestamp": "2026-04-06T02:33:19Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "qed_alpha_full_corrections_v0",
+      "status": "ok",
+      "output_count": 11
+    },
+    {
+      "key": "qed_derived_codata_corrected_v0",
+      "status": "ok",
+      "output_count": 7
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "alpha^-1 corrected vs CODATA",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "137.035999084",
+      "got": "137.035999206965",
+      "miss_pct": "8.973e-8",
+      "detail": "predicted 137.035999206965 ref 137.035999084 miss 8.973e-8%"
+    },
+    {
+      "label": "alpha^-1 corrected vs Rb recoil",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Morel_2020",
+      "status": "INFO",
+      "expected": "137.035999206",
+      "got": "137.035999206965",
+      "miss_pct": "7.042e-10",
+      "detail": "predicted 137.035999206965 ref 137.035999206 miss 7.042e-10%"
+    },
+    {
+      "label": "alpha^-1 corrected vs Cs recoil",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Parker_2018",
+      "status": "INFO",
+      "expected": "137.035999046",
+      "got": "137.035999206965",
+      "miss_pct": "1.175e-7",
+      "detail": "predicted 137.035999206965 ref 137.035999046 miss 1.175e-7%"
+    },
+    {
+      "label": "alpha^-1 improvement over uncorrected",
+      "output_key": "result_alpha_inv_improvement_ppb_v0",
+      "match_mode": "range",
+      "reference_source": "improvement_check",
+      "got": "3.77025",
+      "lo": "0.5",
+      "hi": "5",
+      "status": "PASS",
+      "detail": "in [0.5, 5]"
+    },
+    {
+      "label": "R_inf corrected vs CODATA",
+      "output_key": "result_rydberg_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "10973731.568160",
+      "got": "10973731.5632962",
+      "miss_pct": "4.432e-8",
+      "detail": "predicted 10973731.5632962 ref 10973731.568160 miss 4.432e-8%"
+    },
+    {
+      "label": "a_0 corrected vs CODATA",
+      "output_key": "result_bohr_radius_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "0.0000000000529177210903",
+      "got": "5.29177210661989e-11",
+      "miss_pct": "4.554e-8",
+      "detail": "predicted 5.29177210661989e-11 ref 0.0000000000529177210903 miss 4.554e-8%"
+    },
+    {
+      "label": "mu_0 corrected vs CODATA",
+      "output_key": "result_mu0_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "0.00000125663706212",
+      "got": "1.25663706099344e-6",
+      "miss_pct": "8.965e-8",
+      "detail": "predicted 1.25663706099344e-6 ref 0.00000125663706212 miss 8.965e-8%"
+    },
+    {
+      "label": "alpha^-1 corrected miss vs CODATA < 1.5 ppb",
+      "output_key": "result_alpha_inv_corrected_miss_ppb_v0",
+      "match_mode": "range",
+      "reference_source": "target",
+      "got": "0.218666",
+      "lo": "0",
+      "hi": "1.5",
+      "status": "PASS",
+      "detail": "in [0, 1.5]"
+    }
+  ],
+  "outputs": {
+    "result_alpha_inv_corrected_v0": "137.035999206965",
+    "result_alpha_inv_uncorrected_v0": "137.035998630375",
+    "result_alpha_inv_corrected_miss_ppb_v0": "0.218665639820526",
+    "result_alpha_inv_uncorrected_miss_ppb_v0": "3.98891773751487",
+    "result_alpha_inv_improvement_ppb_v0": "3.77025209769434",
+    "result_alpha_inv_miss_vs_rb_ppb_v0": "0.00704241545342421",
+    "result_alpha_inv_miss_vs_cs_ppb_v0": "1.17461882687082",
+    "result_total_correction_v0": "4.872e-12",
+    "result_ae_qed_pure_v0": "0.001159652175718",
+    "result_ae_measured_v0": "0.00115965218059",
+    "result_forward_residual_v0": "1.28552893601276e-200",
+    "result_rydberg_corrected_v0": "10973731.5632962",
+    "result_bohr_radius_corrected_v0": "5.29177210661989e-11",
+    "result_mu0_corrected_v0": "1.25663706099344e-6",
+    "result_rydberg_miss_ppb_v0": "0.437330339036939",
+    "result_bohr_radius_miss_ppb_v0": "0.218665169590191",
+    "result_mu0_miss_ppb_v0": "0.218665169542377",
+    "result_alpha_inv_used_v0": "137.035999206965"
+  },
+  "summary": {
+    "derivations_ok": 2,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 0,
+    "comparisons_info": 6,
+    "comparisons_skip": 0
+  }
+}

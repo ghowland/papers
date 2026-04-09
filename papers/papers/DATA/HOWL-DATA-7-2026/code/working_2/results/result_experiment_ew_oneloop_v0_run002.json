@@ -1,0 +1,222 @@
+{
+  "key": "result_experiment_ew_oneloop_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_ew_oneloop_v0",
+  "timestamp": "2026-04-05T14:38:11Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "ew_alpha_at_mz_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "ew_mw_oneloop_v0",
+      "status": "ok",
+      "output_count": 13
+    },
+    {
+      "key": "ew_gamma_z_oneloop_v0",
+      "status": "ok",
+      "output_count": 13
+    },
+    {
+      "key": "ew_gf_from_corrected_mw_v0",
+      "status": "ok",
+      "output_count": 9
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "alpha^-1(M_Z) from VP running vs measured",
+      "output_key": "result_alpha_inv_mz_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "127.952",
+      "got": "128.928949465689",
+      "miss_pct": "0.7635",
+      "detail": "predicted 128.928949465689 ref 127.952 miss 0.7635%"
+    },
+    {
+      "label": "alpha^-1(M_Z) digits",
+      "output_key": "result_alpha_inv_mz_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "PDG_2024",
+      "expected": "127.95",
+      "got": "128.928949465689",
+      "digits": 4,
+      "miss_pct": "0.7651",
+      "status": "FAIL",
+      "detail": "4 digits: expected 127.9 got 128.9 miss 0.7651%"
+    },
+    {
+      "label": "M_W one-loop vs measured",
+      "output_key": "result_mw_oneloop_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "80369.2",
+      "got": "80333.9046827915",
+      "miss_pct": "0.04392",
+      "detail": "predicted 80333.9046827915 ref 80369.2 miss 0.04392%"
+    },
+    {
+      "label": "M_W one-loop digits",
+      "output_key": "result_mw_oneloop_v0",
+      "match_mode": "digits",
+      "reference_source": "PDG_2024",
+      "expected": "80370",
+      "got": "80333.9046827915",
+      "digits": 4,
+      "miss_pct": "0.04491",
+      "status": "FAIL",
+      "detail": "4 digits: expected 8.037e+4 got 8.033e+4 miss 0.04491%"
+    },
+    {
+      "label": "M_W improvement over tree-level",
+      "output_key": "result_mw_tree_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "sanity_check",
+      "got": "0.517388",
+      "lo": "0.3",
+      "hi": "0.8",
+      "status": "PASS",
+      "detail": "in [0.3, 0.8]"
+    },
+    {
+      "label": "M_W one-loop miss < tree-level miss",
+      "output_key": "result_mw_oneloop_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "improvement_check",
+      "got": "0.0439165",
+      "lo": "0",
+      "hi": "0.2",
+      "status": "PASS",
+      "detail": "in [0, 0.2]"
+    },
+    {
+      "label": "Gamma_Z one-loop vs measured",
+      "output_key": "result_gamma_z_oneloop_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "2495.2",
+      "got": "2423.66860191517",
+      "miss_pct": "2.867",
+      "detail": "predicted 2423.66860191517 ref 2495.2 miss 2.867%"
+    },
+    {
+      "label": "Gamma_Z one-loop digits",
+      "output_key": "result_gamma_z_oneloop_v0",
+      "match_mode": "digits",
+      "reference_source": "LEP_EWWG",
+      "expected": "2495",
+      "got": "2423.66860191517",
+      "digits": 3,
+      "miss_pct": "2.859",
+      "status": "FAIL",
+      "detail": "3 digits: expected 2.5e+3 got 2.42e+3 miss 2.859%"
+    },
+    {
+      "label": "G_F from corrected M_W vs measured",
+      "output_key": "result_gf_oneloop_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "0.0000116638",
+      "got": "1.19251004153546e-5",
+      "miss_pct": "2.24",
+      "detail": "predicted 1.19251004153546e-5 ref 0.0000116638 miss 2.24%"
+    },
+    {
+      "label": "G_F one-loop digits",
+      "output_key": "result_gf_oneloop_v0",
+      "match_mode": "digits",
+      "reference_source": "CODATA_2022",
+      "expected": "0.0000117",
+      "got": "1.19251004153546e-5",
+      "digits": 3,
+      "miss_pct": "1.924",
+      "status": "FAIL",
+      "detail": "3 digits: expected 1.17e-5 got 1.19e-5 miss 1.924%"
+    },
+    {
+      "label": "sin2_eff derived vs LEP/SLD",
+      "output_key": "result_sin2_eff_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_SLD",
+      "status": "INFO",
+      "expected": "0.23153",
+      "got": "0.23977514",
+      "miss_pct": "3.561",
+      "detail": "predicted 0.23977514 ref 0.23153 miss 3.561%"
+    },
+    {
+      "label": "Delta_rho from m_t",
+      "output_key": "result_delta_rho_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "one_loop_calculation",
+      "status": "INFO",
+      "expected": "0.00940",
+      "got": "0.00954133550648524",
+      "miss_pct": "1.504",
+      "detail": "predicted 0.00954133550648524 ref 0.00940 miss 1.504%"
+    }
+  ],
+  "outputs": {
+    "result_alpha_inv_mz_derived_v0": "128.928949465689",
+    "result_alpha_mz_derived_v0": "0.00775620994465735",
+    "result_alpha_inv_mz_measured_v0": "127.952",
+    "result_alpha_inv_mz_miss_pct_v0": "0.763528093104195",
+    "result_delta_alpha_total_v0": "0.05916",
+    "result_delta_alpha_lep_used_v0": "0.0315",
+    "result_delta_alpha_had_used_v0": "0.02766",
+    "result_alpha_inv_0_used_v0": "137.035999177",
+    "result_mw_oneloop_v0": "80333.9046827915",
+    "result_mw_tree_v0": "79953.3792003491",
+    "result_mw_measured_v0": "80369.2",
+    "result_mw_oneloop_miss_pct_v0": "0.0439164719923569",
+    "result_mw_tree_miss_pct_v0": "0.517388252777084",
+    "result_delta_rho_derived_v0": "0.00954133550648524",
+    "result_rho_parameter_v0": "1.00954133550649",
+    "result_mw_improvement_factor_v0": "11.7811889094172",
+    "result_sin2_eff_derived_v0": "0.23977514",
+    "result_sin2_eff_measured_v0": "0.23153",
+    "result_sin2_eff_miss_pct_v0": "3.56115406210858",
+    "result_alpha_mz_used_v0": "0.00775620994465735",
+    "result_mt_used_v0": "172570.0",
+    "result_gamma_z_oneloop_v0": "2423.66860191517",
+    "result_gamma_z_tree_v0": "2336.80780523693",
+    "result_gamma_z_measured_v0": "2495.2",
+    "result_gamma_z_oneloop_miss_pct_v0": "2.86676010279047",
+    "result_gamma_z_tree_miss_pct_v0": "6.34787571188969",
+    "result_gamma_z_improvement_v0": "2.21430307534654",
+    "result_gamma_z_neutrinos_v0": "489.635885427159",
+    "result_gamma_z_leptons_v0": "245.227465401787",
+    "result_gamma_z_up_quarks_v0": "574.08668493212",
+    "result_gamma_z_down_quarks_v0": "1114.71856615411",
+    "result_sin2_eff_used_v0": "0.23977514",
+    "result_rho_used_v0": "1.00954133550649",
+    "result_qcd_factor_v0": "1.03756056656969",
+    "result_gf_oneloop_v0": "1.19251004153546e-5",
+    "result_gf_tree_v0": "1.09673362736561e-5",
+    "result_gf_measured_v0": "1.1663788e-5",
+    "result_gf_oneloop_miss_pct_v0": "2.2403734991973",
+    "result_gf_tree_miss_pct_v0": "5.97105954209683",
+    "result_gf_improvement_v0": "2.66520718274707",
+    "result_gf_mw_used_v0": "80333.9046827915",
+    "result_gf_alpha_mz_used_v0": "0.00775620994465735",
+    "result_gf_sin2_os_used_v0": "0.223884812089325"
+  },
+  "summary": {
+    "derivations_ok": 4,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 4,
+    "comparisons_info": 6,
+    "comparisons_skip": 0
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "nodes": [
+    {
+      "key": "mass_neutron_v0",
+      "canonical": "mass_neutron",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "neutron",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "46978271097",
+        "den": "50000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 11,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E1",
+        "phys24": "m_n"
+      }
+    },
+    {
+      "key": "mass_neutron_proton_diff_v0",
+      "canonical": "mass_neutron_proton_diff",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "neutron_proton_diff",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "129333251",
+        "den": "100000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 8,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E2",
+        "phys24": "mn_mp_diff"
+      }
+    },
+    {
+      "key": "mass_pion_charged_v0",
+      "canonical": "mass_pion_charged",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "pion_charged",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "13957039",
+        "den": "100000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 8,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E3",
+        "phys24": "m_pi_p"
+      }
+    },
+    {
+      "key": "mass_pion_neutral_v0",
+      "canonical": "mass_pion_neutral",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "pion_neutral",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "134977",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 7,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E4",
+        "phys24": "m_pi_0"
+      }
+    },
+    {
+      "key": "mass_kaon_charged_v0",
+      "canonical": "mass_kaon_charged",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "kaon_charged",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "493677",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 6,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E5",
+        "phys24": "m_K_p"
+      }
+    },
+    {
+      "key": "mass_deuteron_v0",
+      "canonical": "mass_deuteron",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "deuteron",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "375122589",
+        "den": "200000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 12,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E6",
+        "phys24": "m_D"
+      }
+    },
+    {
+      "key": "mass_helium4_v0",
+      "canonical": "mass_helium4",
+      "version": 0,
+      "node_type": "value",
+      "topic": "mass",
+      "term": "helium4",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "18636897059",
+        "den": "5000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 10,
+      "section": "nuclear",
+      "tags": [
+        "nuclear",
+        "mass"
+      ],
+      "legacy_refs": {
+        "data4": "E7",
+        "phys24": "m_He4"
+      }
+    },
+    {
+      "key": "energy_deuteron_binding_v0",
+      "canonical": "energy_deuteron_binding",
+      "version": 0,
+      "node_type": "value",
+      "topic": "energy",
+      "term": "deuteron_binding",
+      "level": 2,
+      "source": "CODATA 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "111228307",
+        "den": "50000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "digits": 8,
+      "section": "nuclear",
+      "tags": [
+        "nuclear"
+      ],
+      "legacy_refs": {
+        "data4": "E8",
+        "phys24": "E_D"
+      }
+    },
+    {
+      "key": "spectro_hydrogen_1s2s_v0",
+      "canonical": "spectro_hydrogen_1s2s",
+      "version": 0,
+      "node_type": "value",
+      "topic": "spectro",
+      "term": "hydrogen_1s2s",
+      "level": 2,
+      "source": "MPQ 2011",
+      "value": {
+        "_type": "Fraction",
+        "num": "2466061413187018",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "Hz",
+      "digits": 16,
+      "section": "spectroscopy",
+      "tags": [
+        "atomic",
+        "clock"
+      ],
+      "legacy_refs": {
+        "data4": "F1",
+        "phys24": "H_1S2S"
+      }
+    }
+  ]
+}

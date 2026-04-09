@@ -1,0 +1,63 @@
+{
+    "key": "experiment_parameter_reduction_v0",
+    "canonical": "experiment_parameter_reduction",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Parameter reduction verification: 19 SM parameters -> 18 (theta_QCD=0) -> 17 (Koide conditional) -> 23 (+6 from CD). Tracks the scorecard.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "verification",
+
+    "dependencies": {
+        "values": {
+            "koide_charged_leptons_k": 0,
+            "koide_charged_leptons_a2": 0,
+            "mass_tau": 0
+        },
+        "derivations": {
+            "koide_ratio": 0,
+            "koide_tau_prediction": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "koide_ratio_v0",
+        "koide_tau_prediction_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "koide_charged_leptons_k_derived_v0",
+        "result_tau_mass_koide_two_thirds_derived_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Koide m_tau miss < 0.01%",
+            "output_key": "result_tau_mass_koide_two_thirds_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "1776.86",
+            "reference_source": "PDG"
+        },
+        {
+            "label": "a^2 near 2 (conditional test)",
+            "output_key": "koide_charged_leptons_a2_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "hypothesis"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_parameter_scorecard_v0",
+            "title": "SM parameter reduction scorecard",
+            "type": "bar",
+            "categories": ["SM start", "theta_QCD=0", "Koide (cond.)", "+ CD"],
+            "values_from": ["19", "18", "17", "23"],
+            "notes": "19->18 unconditional. 18->17 conditional (a^2=2). +6 from CD (net 23)."
+        }
+    ]
+}
+

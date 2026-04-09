@@ -1,0 +1,183 @@
+{
+    "key": "experiment_ew_oneloop_v0",
+    "canonical": "experiment_ew_oneloop",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "One-loop electroweak corrections to M_W, Gamma_Z, and G_F. Connects gauge island to EW precision observables at sub-percent level. Uses rho parameter from top quark, kappa_Z for effective sin2, and alpha(M_Z) from VP running.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_alpha_s_mz": 0,
+            "coupling_fermi_constant": 0,
+            "mass_z_boson": 0,
+            "mass_w_boson": 0,
+            "mass_top_quark": 0,
+            "mass_higgs_boson": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_up_quark": 0,
+            "mass_down_quark": 0,
+            "mass_strange_quark": 0,
+            "mass_charm_quark": 0,
+            "mass_bottom_quark": 0,
+            "geom_pi": 0,
+            "ew_delta_alpha_had": 0,
+            "ew_delta_alpha_lep": 0,
+            "ew_alpha_mz_measured": 0,
+            "ew_sin2_eff_measured": 0,
+            "ew_kappa_z": 0,
+            "ew_delta_rho": 0,
+            "ew_mw_pdg_2024": 0,
+            "coupling_z_width": 0
+        },
+        "derivations": {
+            "ew_alpha_at_mz": 0,
+            "ew_mw_oneloop": 0,
+            "ew_gamma_z_oneloop": 0,
+            "ew_gf_from_corrected_mw": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "ew_alpha_at_mz_v0",
+        "ew_mw_oneloop_v0",
+        "ew_gamma_z_oneloop_v0",
+        "ew_gf_from_corrected_mw_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_alpha_inv_mz_derived_v0",
+        "result_mw_oneloop_v0",
+        "result_gamma_z_oneloop_v0",
+        "result_gf_oneloop_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "alpha^-1(M_Z) from VP running vs measured",
+            "output_key": "result_alpha_inv_mz_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "127.952",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "alpha^-1(M_Z) digits",
+            "output_key": "result_alpha_inv_mz_derived_v0",
+            "match_mode": "digits",
+            "expected": "127.95",
+            "digits": 4,
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W one-loop vs measured",
+            "output_key": "result_mw_oneloop_v0",
+            "match_mode": "miss_pct",
+            "expected": "80369.2",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W one-loop digits",
+            "output_key": "result_mw_oneloop_v0",
+            "match_mode": "digits",
+            "expected": "80370",
+            "digits": 4,
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W improvement over tree-level",
+            "output_key": "result_mw_tree_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0.3",
+            "hi": "0.8",
+            "reference_source": "sanity_check"
+        },
+        {
+            "label": "M_W one-loop miss < tree-level miss",
+            "output_key": "result_mw_oneloop_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.2",
+            "reference_source": "improvement_check"
+        },
+        {
+            "label": "Gamma_Z one-loop vs measured",
+            "output_key": "result_gamma_z_oneloop_v0",
+            "match_mode": "miss_pct",
+            "expected": "2495.2",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma_Z one-loop digits",
+            "output_key": "result_gamma_z_oneloop_v0",
+            "match_mode": "digits",
+            "expected": "2495",
+            "digits": 3,
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "G_F from corrected M_W vs measured",
+            "output_key": "result_gf_oneloop_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0000116638",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "G_F one-loop digits",
+            "output_key": "result_gf_oneloop_v0",
+            "match_mode": "digits",
+            "expected": "0.0000117",
+            "digits": 3,
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "sin2_eff derived vs LEP/SLD",
+            "output_key": "result_sin2_eff_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23153",
+            "reference_source": "LEP_SLD"
+        },
+        {
+            "label": "Delta_rho from m_t",
+            "output_key": "result_delta_rho_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00940",
+            "reference_source": "one_loop_calculation"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_ew_improvement_v0",
+            "title": "EW precision: tree-level vs one-loop",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "M_W (MeV)", "predicted": "result_mw_oneloop_v0", "measured": "80369.2"},
+                {"label": "Gamma_Z (MeV)", "predicted": "result_gamma_z_oneloop_v0", "measured": "2495.2"},
+                {"label": "G_F (GeV^-2)", "predicted": "result_gf_oneloop_v0", "measured": "0.0000116638"},
+                {"label": "sin2_eff", "predicted": "result_sin2_eff_derived_v0", "measured": "0.23153"}
+            ],
+            "notes": "One-loop corrections close tree-level gaps from 0.5-6% to sub-percent."
+        },
+        {
+            "key": "diagram_tree_vs_oneloop_v0",
+            "title": "Miss reduction: tree-level vs one-loop",
+            "type": "bar",
+            "categories": ["M_W", "Gamma_Z", "G_F"],
+            "values_from": [
+                "result_mw_oneloop_miss_pct_v0",
+                "result_gamma_z_oneloop_miss_pct_v0",
+                "result_gf_oneloop_miss_pct_v0"
+            ],
+            "notes": "Bars should all be below 1% after one-loop corrections."
+        }
+    ]
+}
+

@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_db1_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_db1",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    },
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_db2_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_db2",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    },
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_db3_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_db3",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    },
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_gap_ratio_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_gap_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "38",
+        "den": "27"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    },
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_distance_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_distance",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0492147232625634",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    },
+    {
+      "key": "experiment_whatif_scan_v0_run007_result_whatif_asymmetry_v0",
+      "canonical": "experiment_whatif_scan_v0_run007_result_whatif_asymmetry",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "15",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_scan_v0_run007"
+    }
+  ]
+}

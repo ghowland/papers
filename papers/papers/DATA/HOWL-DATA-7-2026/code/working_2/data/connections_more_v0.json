@@ -1,0 +1,96 @@
+{
+  "nodes": [
+    {
+      "key": "connection_soliton_hierarchy_v0",
+      "canonical": "connection_soliton_hierarchy",
+      "version": 0,
+      "node_type": "connection",
+      "connection_type": "hierarchy",
+      "topic": "connection",
+      "term": "soliton_hierarchy",
+      "level": null,
+      "source": "Session 4 — nested_soliton_gravity.py",
+      "description": "11-level soliton nesting hierarchy with GM/(rc^2) coupling at each level. From quark confinement to cosmological scale.",
+      "inputs": [
+        "astro_gravitational_constant_v0",
+        "astro_mass_earth_v0",
+        "astro_mass_sun_v0",
+        "astro_radius_earth_v0",
+        "astro_radius_sun_v0",
+        "astro_au_v0",
+        "si_speed_of_light_v0"
+      ],
+      "tags": ["gravity", "soliton", "hierarchy", "nesting", "GM_rc2"],
+      "notes": "Same principle at every level: ground state within container. GM/(rc^2) determines well depth. R2 in every orbital area."
+    },
+    {
+      "key": "connection_r2_cancellation_registry_v0",
+      "canonical": "connection_r2_cancellation_registry",
+      "version": 0,
+      "node_type": "connection",
+      "connection_type": "cancellation",
+      "topic": "connection",
+      "term": "r2_cancellation_registry",
+      "level": null,
+      "source": "Session 4 — phys24_domain_lib.py",
+      "description": "Verify all R2 cancellation identities: K_J*R_K = 2/e, Wire R * Cap C = rho*eps0*L/t, gap ratio R2-free, generation democracy R2-free.",
+      "inputs": [
+        "geom_r2_v0",
+        "si_planck_constant_v0",
+        "si_elementary_charge_v0",
+        "eng_copper_resistivity_v0",
+        "eng_vacuum_permittivity_v0"
+      ],
+      "tags": ["R2", "cancellation", "metrological", "precision"],
+      "notes": "R2-free products achieve highest measurement precision (10^-8 to 10^-13). R2-dependent observables limited to ~10^-6."
+    },
+    {
+      "key": "connection_boundary_adjacency_v0",
+      "canonical": "connection_boundary_adjacency",
+      "version": 0,
+      "node_type": "connection",
+      "connection_type": "adjacency",
+      "topic": "connection",
+      "term": "boundary_adjacency",
+      "level": null,
+      "source": "Session 4 — phys24_boundary_map_lib.py",
+      "description": "Running distance L = ln(E2/E1)/(2*pi) between adjacent particle mass thresholds. Maps the energy landscape from electron to top quark.",
+      "inputs": [
+        "mass_electron_v0",
+        "mass_muon_v0",
+        "mass_charm_quark_v0",
+        "mass_tau_lepton_v0",
+        "mass_bottom_quark_v0",
+        "mass_w_boson_v0",
+        "mass_z_boson_v0",
+        "mass_higgs_boson_v0",
+        "mass_top_quark_v0"
+      ],
+      "tags": ["boundary", "adjacency", "running_distance", "energy_scale"],
+      "notes": "Total e->top: L ~ 2.0. The confinement wall (L ~ 0.3) is 4.4% of total m_e to M_GUT running."
+    },
+    {
+      "key": "connection_mond_transition_v0",
+      "canonical": "connection_mond_transition",
+      "version": 0,
+      "node_type": "connection",
+      "connection_type": "hierarchy",
+      "topic": "connection",
+      "term": "mond_transition",
+      "level": null,
+      "source": "Session 4 — toroidal_dm_test.py",
+      "description": "MOND transition radii r = sqrt(GM/a0) compared to Hill spheres. a0 = cH0/(8R2). Earth MOND radius > Earth Hill sphere.",
+      "inputs": [
+        "astro_gravitational_constant_v0",
+        "astro_mass_earth_v0",
+        "astro_mass_sun_v0",
+        "astro_au_v0",
+        "si_speed_of_light_v0",
+        "geom_r2_v0",
+        "cosmo_h0_planck_v0"
+      ],
+      "tags": ["MOND", "a0", "Hill_sphere", "transition", "R2"],
+      "notes": "a0 = cH0/(8R2) = cH0/(2pi) ~ 1.04e-10 m/s^2. Published MOND a0 ~ 1.2e-10. Match within ~15%."
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "key": "result_experiment_hubble_vp_prediction_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_hubble_vp_prediction_v0",
+  "timestamp": "2026-04-05T18:22:14Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "hubble_solve_n_from_vp_v0",
+      "status": "ok",
+      "output_count": 18
+    },
+    {
+      "key": "hubble_predict_h0_cmb_v0",
+      "status": "ok",
+      "output_count": 10
+    },
+    {
+      "key": "hubble_intermediate_scan_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "hubble_rational_scan_v0",
+      "status": "ok",
+      "output_count": 12
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "N from VP step (should be positive)",
+      "output_key": "result_n_vp_v0",
+      "match_mode": "range",
+      "reference_source": "physics_constraint",
+      "got": "0.71158",
+      "lo": "0.1",
+      "hi": "100000",
+      "status": "PASS",
+      "detail": "in [0.1, 100000]"
+    },
+    {
+      "label": "H0(CMB predicted) vs Planck",
+      "output_key": "result_h0_cmb_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "67.4",
+      "got": "67.4",
+      "miss_pct": "0.0",
+      "detail": "predicted 67.4 ref 67.4 miss 0.0%"
+    },
+    {
+      "label": "H0(CMB) within 2 sigma of Planck",
+      "output_key": "result_h0_cmb_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Planck_2018",
+      "got": "5.12644e-15",
+      "lo": "0",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0, 2.0]"
+    },
+    {
+      "label": "r_vp = 1 - 1/(3*pi)",
+      "output_key": "result_r_vp_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "VP_step_definition",
+      "status": "INFO",
+      "expected": "0.89389670461",
+      "got": "0.893896704605403",
+      "miss_pct": "5.143e-10",
+      "detail": "predicted 0.893896704605403 ref 0.89389670461 miss 5.143e-10%"
+    },
+    {
+      "label": "N_vp > 1 (at least one full transit needed)",
+      "output_key": "result_n_vp_v0",
+      "match_mode": "range",
+      "reference_source": "physical_plausibility",
+      "got": "0.71158",
+      "lo": "1.0",
+      "hi": "100000",
+      "status": "FAIL",
+      "detail": "0.71158 not in [1.0, 100000]"
+    },
+    {
+      "label": "Intermediate N values monotonically increasing",
+      "output_key": "result_n_monotonic_v0",
+      "match_mode": "bool",
+      "reference_source": "hypothesis_requirement",
+      "got": "False",
+      "status": "FAIL",
+      "detail": "expected True got False"
+    },
+    {
+      "label": "F1 soft monotonicity (within 1-sigma)",
+      "output_key": "result_f1_soft_v0",
+      "match_mode": "bool",
+      "reference_source": "hubble_lib_F1",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "VP step too large? N < 1 means hypothesis fails",
+      "output_key": "result_vp_step_too_large_v0",
+      "match_mode": "bool",
+      "reference_source": "falsification",
+      "got": "True",
+      "status": "FAIL",
+      "detail": "expected False got True"
+    },
+    {
+      "label": "Best integer N scan \u2014 match quality",
+      "output_key": "result_best_integer_n_miss_pct_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "rational_scan",
+      "status": "INFO",
+      "expected": "1.0",
+      "got": "40.5323109430901",
+      "miss_pct": "3953.0",
+      "detail": "predicted 40.5323109430901 ref 1.0 miss 3953.0%"
+    },
+    {
+      "label": "Required 1-r at N=8 vs VP step 1/(3*pi)",
+      "output_key": "result_r_vs_vp_at_n8_miss_pct_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "VP_comparison",
+      "status": "INFO",
+      "expected": "0.10610329539",
+      "got": "90.6438347025269",
+      "miss_pct": "8.533e+4",
+      "detail": "predicted 90.6438347025269 ref 0.10610329539 miss 8.533e+4%"
+    }
+  ],
+  "outputs": {
+    "result_n_vp_v0": "0.711580129358977",
+    "result_r_vp_v0": "0.893896704605403",
+    "result_one_minus_r_vp_v0": "0.106103295394597",
+    "result_vp_step_too_large_v0": true,
+    "result_cum_ratio_v0": "0.923287671232877",
+    "result_ln_ratio_v0": "-0.0798144232301298",
+    "result_ln_r_vp_v0": "-0.1121650534312",
+    "result_h0_planck_used_v0": "67.4",
+    "result_h0_shoes_used_v0": "73.0",
+    "result_r_at_n1_v0": "0.923287671232877",
+    "result_r_at_n5_v0": "0.984163846966975",
+    "result_r_at_n8_v0": "0.990072800296815",
+    "result_r_at_n10_v0": "0.99205032481572",
+    "result_r_at_n20_v0": "0.99601723118414",
+    "result_r_at_n50_v0": "0.998404984926172",
+    "result_omr_n8_v0": "0.00992719970318465",
+    "result_omr_n10_v0": "0.00794967518428032",
+    "result_r_vs_vp_at_n8_miss_pct_v0": "90.6438347025269",
+    "result_h0_cmb_predicted_v0": "67.4",
+    "result_h0_cmb_miss_pct_v0": "3.80299476219779e-15",
+    "result_h0_cmb_sigma_v0": "5.12643693944262e-15",
+    "result_h0_at_best_int_n_v0": "65.2544594361944",
+    "result_best_integer_n_v0": "1.0",
+    "result_best_integer_n_miss_pct_v0": "40.5323109430901",
+    "result_h0_at_n_floor_v0": "65.2544594361944",
+    "result_h0_at_n_ceil_v0": "65.2544594361944",
+    "result_n_floor_v0": "1.0",
+    "result_n_ceil_v0": "1.0",
+    "result_n_monotonic_v0": false,
+    "result_f1_soft_v0": true,
+    "result_n_sh0es_v0": "0.0",
+    "result_n_h0licow_v0": "-0.0365636855576435",
+    "result_n_cchp_v0": "0.399638122648954",
+    "result_n_des_v0": "0.711580129358977",
+    "result_n_planck_v0": "0.711580129358977",
+    "result_n_span_v0": "0.711580129358977",
+    "result_best_rational_n_v0": "1.0",
+    "result_best_rational_frac_num_v0": "28.0",
+    "result_best_rational_frac_den_v0": "365.0",
+    "result_best_rational_quality_pct_v0": "3.75000000000001e-13",
+    "result_n_vp_nearest_int_v0": "1.0",
+    "result_n_vp_nearest_int_miss_v0": "40.5323109430901",
+    "result_scan_n1_omr_v0": "0.076712328767123",
+    "result_scan_n5_omr_v0": "0.015836153033025",
+    "result_scan_n10_omr_v0": "0.00794967518428028",
+    "result_scan_n20_omr_v0": "0.00398276881586044"
+  },
+  "summary": {
+    "derivations_ok": 4,
+    "derivations_err": 0,
+    "comparisons_pass": 3,
+    "comparisons_fail": 3,
+    "comparisons_info": 4,
+    "comparisons_skip": 0
+  }
+}

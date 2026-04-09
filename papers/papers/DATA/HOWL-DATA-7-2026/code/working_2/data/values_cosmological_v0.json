@@ -1,0 +1,219 @@
+{
+  "nodes": [
+    {
+      "key": "cosmo_h0_sh0es_v0",
+      "canonical": "cosmo_h0_sh0es",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_sh0es",
+      "level": 2,
+      "source": "Riess et al. 2022, ApJ 934, L7",
+      "value": {
+        "_type": "Fraction",
+        "num": "73",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "km/s/Mpc",
+      "section": "cosmological",
+      "notes": "Method: distance ladder: Cepheids -> SNe Ia. Year: 2022.",
+      "tags": [
+        "Hubble",
+        "local"
+      ],
+      "uncertainty": "1"
+    },
+    {
+      "key": "cosmo_h0_h0licow_v0",
+      "canonical": "cosmo_h0_h0licow",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_h0licow",
+      "level": 2,
+      "source": "Wong et al. 2020, MNRAS 498, 1420",
+      "value": {
+        "_type": "Fraction",
+        "num": "733",
+        "den": "10"
+      },
+      "value_type": "exact_fraction",
+      "unit": "km/s/Mpc",
+      "section": "cosmological",
+      "notes": "Method: strong lensing time delays through lens galaxy. Year: 2020.",
+      "tags": [
+        "Hubble",
+        "local-medium"
+      ],
+      "uncertainty": "9/5"
+    },
+    {
+      "key": "cosmo_h0_cchp_v0",
+      "canonical": "cosmo_h0_cchp",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_cchp",
+      "level": 2,
+      "source": "Freedman 2021, ApJ 919, 16",
+      "value": {
+        "_type": "Fraction",
+        "num": "349",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "km/s/Mpc",
+      "section": "cosmological",
+      "notes": "Method: TRGB calibration, different from Cepheids. Year: 2021.",
+      "tags": [
+        "Hubble",
+        "medium"
+      ],
+      "uncertainty": "17/10"
+    },
+    {
+      "key": "cosmo_h0_des_bao_bbn_v0",
+      "canonical": "cosmo_h0_des_bao_bbn",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_des_bao_bbn",
+      "level": 2,
+      "source": "DES Collaboration 2022",
+      "value": {
+        "_type": "Fraction",
+        "num": "337",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "km/s/Mpc",
+      "section": "cosmological",
+      "notes": "Method: baryon acoustic oscillations + big bang nucleosynthesis. Year: 2022.",
+      "tags": [
+        "Hubble",
+        "high"
+      ],
+      "uncertainty": "6/5"
+    },
+    {
+      "key": "cosmo_h0_planck_v0",
+      "canonical": "cosmo_h0_planck",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_planck",
+      "level": 2,
+      "source": "Planck Collaboration 2020, A&A 641, A6",
+      "value": {
+        "_type": "Fraction",
+        "num": "337",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "km/s/Mpc",
+      "section": "cosmological",
+      "notes": "Method: CMB power spectrum fit assuming Lambda-CDM. Year: 2020.",
+      "tags": [
+        "Hubble",
+        "maximum"
+      ],
+      "uncertainty": "1/2"
+    },
+    {
+      "key": "cosmo_dm_baryon_ratio_planck2018_v0",
+      "canonical": "cosmo_dm_baryon_ratio_planck2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "dm_baryon_ratio_planck2018",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "5.3204",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Planck",
+        "DM"
+      ]
+    },
+    {
+      "key": "cosmo_omega_b_planck2018_v0",
+      "canonical": "cosmo_omega_b_planck2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_b_planck2018",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "0.0490",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Planck"
+      ]
+    },
+    {
+      "key": "cosmo_omega_dm_planck2018_v0",
+      "canonical": "cosmo_omega_dm_planck2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_dm_planck2018",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "0.2607",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Planck",
+        "DM"
+      ]
+    },
+    {
+      "key": "cosmo_omega_matter_planck2018_v0",
+      "canonical": "cosmo_omega_matter_planck2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_matter_planck2018",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "0.3111",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "section": "cosmological"
+    },
+    {
+      "key": "cosmo_omega_de_planck2018_v0",
+      "canonical": "cosmo_omega_de_planck2018",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_de_planck2018",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "0.6889",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "section": "cosmological"
+    },
+    {
+      "key": "cosmo_lambda_log10_planck_v0",
+      "canonical": "cosmo_lambda_log10_planck",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "lambda_log10_planck",
+      "level": 2,
+      "source": "Planck 2018",
+      "value": "-121.54",
+      "value_type": "approximate",
+      "unit": "log10(Lambda/M_Planck^4)",
+      "section": "cosmological"
+    }
+  ]
+}

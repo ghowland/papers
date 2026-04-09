@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "key": "ew_kappa_z_v1",
+      "canonical": "ew_kappa_z",
+      "version": 1,
+      "node_type": "value",
+      "topic": "ew",
+      "term": "kappa_z",
+      "level": 1,
+      "value": "1.0353",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 4,
+      "source": "Awramik, Czakon, Freitas, Weiglein 2004. PRD 69, 053006. Form factor kappa_Z for m_t=172.57, m_H=125.2.",
+      "tags": ["electroweak", "radiative", "correction"],
+      "supersedes": "ew_kappa_z_v0",
+      "notes": "Corrected from v0 = 1.0370 which was too high. kappa_Z = 1 + (c_t * m_t^2/M_Z^2 + c_H * ln(m_H/M_Z)) * alpha/(4*pi*sin2*cos2). At m_t=172.57, m_H=125.2: kappa_Z = 1.0353.",
+      "pitfalls": [{"wrong": "1.0370", "right": "1.0353", "session": "PHYS-36/EW-bridge"}]
+    },
+    {
+      "key": "ew_delta_vb_v0",
+      "canonical": "ew_delta_vb",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ew",
+      "term": "delta_vb",
+      "level": 1,
+      "value": "-0.00652",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 3,
+      "source": "Non-universal vertex+box corrections to Z decay. Computed from m_t, m_H, M_Z. Degrassi et al. 2014.",
+      "tags": ["electroweak", "vertex", "box", "correction"],
+      "notes": "Additional correction to Gamma_Z beyond rho and kappa_Z. Gamma = Gamma_0 * rho * (1 + delta_vb). Negative — reduces width."
+    },
+    {
+      "key": "ew_delta_qcd_z_v0",
+      "canonical": "ew_delta_qcd_z",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ew",
+      "term": "delta_qcd_z",
+      "level": 1,
+      "value": "0.0400",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 3,
+      "source": "Mixed QCD-EW corrections to Z hadronic width. O(alpha_s/pi) + O(alpha_s^2/pi^2) terms.",
+      "tags": ["electroweak", "QCD", "correction"],
+      "notes": "Total QCD correction factor is (1 + delta_qcd) for quark channels. Includes alpha_s/pi + 1.41*(alpha_s/pi)^2 - 12.8*(alpha_s/pi)^3."
+    },
+    {
+      "key": "ew_fsr_lepton_v0",
+      "canonical": "ew_fsr_lepton",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ew",
+      "term": "fsr_lepton",
+      "level": 1,
+      "value": "0.00173",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "digits": 3,
+      "source": "Final-state QED radiation correction for Z -> l+l-. 3*alpha/(4*pi) = 0.00173.",
+      "tags": ["electroweak", "QED", "FSR", "correction"],
+      "notes": "Multiplicative correction: Gamma_l *= (1 + 3*alpha/(4*pi)). Small but needed for sub-percent."
+    }
+  ]
+}
+

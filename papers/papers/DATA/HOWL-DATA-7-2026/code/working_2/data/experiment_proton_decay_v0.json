@@ -1,0 +1,71 @@
+{
+    "key": "experiment_proton_decay_v0",
+    "canonical": "experiment_proton_decay",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Proton decay prediction: M_GUT from CD one-loop crossing, tau ~ M_GUT^4, comparison to Hyper-K sensitivity window, MSSM comparison.",
+    "purpose": "program_proton_decay_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_weak_mixing": 0,
+            "coupling_alpha_s_strong_mz": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "mass_z_boson": 0
+        },
+        "derivations": {
+            "coupling_extraction": 0,
+            "crossing_one_loop_scale": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "coupling_extraction_v0",
+        "crossing_one_loop_scale_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+        "result_l_gut_one_loop_cabibbo_doublet_derived_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "log10(M_GUT/GeV) in [15, 16]",
+            "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "16",
+            "reference_source": "theoretical"
+        },
+        {
+            "label": "CD M_GUT vs Super-K bound (must survive)",
+            "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "18",
+            "reference_source": "Super-K_2020"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_m_gut_comparison_v0",
+            "title": "M_GUT and proton lifetime: CD vs MSSM",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "SM (min SU(5))", "predicted": "13.8", "measured": "EXCLUDED"},
+                {"label": "Cabibbo Doublet", "predicted": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0", "measured": "15.5"},
+                {"label": "MSSM", "predicted": "17.3", "measured": "beyond Hyper-K"}
+            ],
+            "notes": "CD: tau ~ 10^34-35 yr (Hyper-K window). MSSM: tau ~ 10^36-37 (beyond)."
+        }
+    ]
+}
+

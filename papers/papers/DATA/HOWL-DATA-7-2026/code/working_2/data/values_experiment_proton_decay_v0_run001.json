@@ -1,0 +1,105 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_proton_decay_v0_run001_coupling_alpha_em_v0",
+      "canonical": "experiment_proton_decay_v0_run001_coupling_alpha_em",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1000000000",
+        "den": "137035999177"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_coupling_cos2_theta_w_v0",
+      "canonical": "experiment_proton_decay_v0_run001_coupling_cos2_theta_w",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "38439",
+        "den": "50000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_coupling_alpha_1_inverse_gut_normalized_mz_v0",
+      "canonical": "experiment_proton_decay_v0_run001_coupling_alpha_1_inverse_gut_normalized_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "15802580317094109",
+        "den": "250000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_coupling_alpha_2_inverse_mz_v0",
+      "canonical": "experiment_proton_decay_v0_run001_coupling_alpha_2_inverse_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1584273186485297",
+        "den": "50000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_coupling_alpha_3_inverse_mz_v0",
+      "canonical": "experiment_proton_decay_v0_run001_coupling_alpha_3_inverse_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "500",
+        "den": "59"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_result_l_gut_one_loop_cabibbo_doublet_derived_v0",
+      "canonical": "experiment_proton_decay_v0_run001_result_l_gut_one_loop_cabibbo_doublet_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "2955455394250359",
+        "den": "593750000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    },
+    {
+      "key": "experiment_proton_decay_v0_run001_result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+      "canonical": "experiment_proton_decay_v0_run001_result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "15.5426000541",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_proton_decay_v0_run001"
+    }
+  ]
+}

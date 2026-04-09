@@ -1,0 +1,323 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_mw_v1_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_mw_v1",
+      "version": 0,
+      "node_type": "value",
+      "value": "80336.8729108158",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_mw_tree_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_mw_tree",
+      "version": 0,
+      "node_type": "value",
+      "value": "79953.3792003491",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_mw_v1_miss_pct_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_mw_v1_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0402232312679637",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_mw_tree_miss_pct_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_mw_tree_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.517388252777084",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_mw_improvement_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_mw_improvement",
+      "version": 0,
+      "node_type": "value",
+      "value": "12.862921164396",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_delta_rho_v1_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_delta_rho_v1",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0096159392308961",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_rho_v1_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_rho_v1",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0096159392309",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_sin2_eff_v1_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_sin2_eff_v1",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.239382066",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_sin2_eff_miss_v1_pct_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_sin2_eff_miss_v1_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.39138167840021",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_alpha_mz_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_alpha_mz_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00781543078654495",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_kappa_z_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_kappa_z_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0353",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "2509.77970945379",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_corrected_miss_pct_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_corrected_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.58431025383882",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_measured_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "2495.2",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_neutrinos_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_neutrinos_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "502.203641108323",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_leptons_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_leptons_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "252.909175419885",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_up_quarks_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_up_quarks_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "598.091287465137",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gamma_z_down_quarks_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gamma_z_down_quarks_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "1156.57560546044",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_qcd_factor_v1_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_qcd_factor_v1",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.03887151327678",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_delta_vb_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_delta_vb_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-0.00652",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_fsr_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_fsr_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00173",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_sin2_eff_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_sin2_eff_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23153",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_rho_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_rho_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0096159392309",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_corrected_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.20183428031057e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_corrected_miss_pct_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_corrected_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.03979121624708",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_measured_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.1663788e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_mw_v1_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_mw_v1_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "80336.8729108158",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_sin2_os_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_sin2_os",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.223827458238071",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    },
+    {
+      "key": "experiment_ew_oneloop_v1_run003_result_gf_alpha_mz_used_v0",
+      "canonical": "experiment_ew_oneloop_v1_run003_result_gf_alpha_mz_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00781543078654495",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_ew_oneloop_v1_run003"
+    }
+  ]
+}

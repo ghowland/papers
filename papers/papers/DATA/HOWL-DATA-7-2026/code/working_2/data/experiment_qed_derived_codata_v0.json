@@ -1,0 +1,146 @@
+{
+    "key": "experiment_qed_derived_codata_v0",
+    "canonical": "experiment_qed_derived_codata",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Derive CODATA values from a_e: extract alpha via QED series, then compute R_infinity, a_0, mu_0 from derived alpha plus exact SI constants. Tests whether one measurement (a_e) plus integer laws reproduces three independent CODATA values.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_a1_schwinger": 0,
+            "qed_a4_laporta": 0,
+            "qed_a5_volkov": 0,
+            "qed_ae_electron_measured": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "geom_pi": 0,
+            "geom_ln2": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_li4_half": 0,
+            "si_speed_of_light": 0,
+            "si_planck_constant": 0,
+            "si_reduced_planck_constant": 0,
+            "si_elementary_charge": 0,
+            "mass_electron": 0,
+            "atomic_rydberg_constant": 0,
+            "atomic_bohr_radius": 0,
+            "coupling_alpha_em_inverse": 0
+        },
+        "derivations": {
+            "qed_coefficients_assemble": 0,
+            "qed_alpha_from_ae": 0,
+            "qed_derived_codata": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "qed_coefficients_assemble_v0",
+        "qed_alpha_from_ae_v0",
+        "qed_derived_codata_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_qed_a2_v0",
+        "result_qed_a3_v0",
+        "result_alpha_inv_from_ae_v0",
+        "result_rydberg_from_derived_alpha_v0",
+        "result_bohr_from_derived_alpha_v0",
+        "result_mu0_from_derived_alpha_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "A2 = -0.3285 (from Q335 analytical)",
+            "output_key": "result_qed_a2_v0",
+            "match_mode": "digits",
+            "expected": "-0.328478965579",
+            "digits": 12,
+            "reference_source": "Petermann_1957"
+        },
+        {
+            "label": "A3 = 1.1812 (from Q335 analytical)",
+            "output_key": "result_qed_a3_v0",
+            "match_mode": "digits",
+            "expected": "1.18124145659",
+            "digits": 11,
+            "reference_source": "Laporta_Remiddi_1996"
+        },
+        {
+            "label": "alpha_inv(a_e) ~ 137.036",
+            "output_key": "result_alpha_inv_from_ae_v0",
+            "match_mode": "range",
+            "lo": "137.035",
+            "hi": "137.037",
+            "reference_source": "physics"
+        },
+        {
+            "label": "R_infinity from derived alpha vs CODATA",
+            "output_key": "result_rydberg_from_derived_alpha_v0",
+            "match_mode": "miss_pct",
+            "expected": "10973731.568157",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "R_infinity digits of agreement",
+            "output_key": "result_rydberg_from_derived_alpha_v0",
+            "match_mode": "digits",
+            "expected": "10973731.568",
+            "digits": 8,
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "Bohr radius from derived alpha vs CODATA",
+            "output_key": "result_bohr_from_derived_alpha_v0",
+            "match_mode": "miss_pct",
+            "expected": "5.29177210544e-11",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "mu_0 from derived alpha vs CODATA",
+            "output_key": "result_mu0_from_derived_alpha_v0",
+            "match_mode": "miss_pct",
+            "expected": "1.25663706127e-6",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "Newton residual < 1e-50",
+            "output_key": "result_newton_residual_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1e-50",
+            "reference_source": "numerical_verification"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_derived_codata_v0",
+            "title": "CODATA values: measured vs derived from a_e",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "alpha_inv", "predicted": "result_alpha_inv_from_ae_v0", "measured": "137.035999084"},
+                {"label": "R_infinity (m^-1)", "predicted": "result_rydberg_from_derived_alpha_v0", "measured": "10973731.568157"},
+                {"label": "a_0 (m)", "predicted": "result_bohr_from_derived_alpha_v0", "measured": "0.0000000000529177210544"},
+                {"label": "mu_0 (N/A^2)", "predicted": "result_mu0_from_derived_alpha_v0", "measured": "0.00000125663706127"}
+            ],
+            "notes": "All four derived from one measurement (a_e) plus integer QED law plus exact SI constants."
+        }
+    ]
+}
+

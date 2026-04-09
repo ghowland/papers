@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {
+      "key": "cosmo_h0_cumulative_ratio_v0",
+      "canonical": "cosmo_h0_cumulative_ratio",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "h0_cumulative_ratio",
+      "level": 2,
+      "value": {"_type": "Fraction", "num": "337", "den": "365"},
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "source": "H0(Planck)/H0(SH0ES) = (337/5)/(73) = 337/365. Exact from Planck Fraction.",
+      "tags": ["cosmology", "Hubble", "ratio", "measured"],
+      "notes": "Cumulative H0 ratio far/near. 337/365 = 0.92329. The tension is ln(365/337) = 0.07981."
+    }
+  ]
+}
+

@@ -1,0 +1,126 @@
+{
+  "key": "result_experiment_qed_alpha_extraction_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_qed_alpha_extraction_v0",
+  "timestamp": "2026-04-06T04:31:01Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "qed_coefficients_assemble_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "qed_alpha_from_ae_v0",
+      "status": "ok",
+      "output_count": 17
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Newton inversion converged (residual < 1e-50)",
+      "output_key": "result_newton_residual_v0",
+      "match_mode": "range",
+      "reference_source": "numerical_verification",
+      "got": "1.59475e-204",
+      "lo": "0",
+      "hi": "1e-50",
+      "status": "PASS",
+      "detail": "in [0, 1e-50]"
+    },
+    {
+      "label": "alpha_inv(a_e) ~ 137.036",
+      "output_key": "result_alpha_inv_from_ae_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "137.036",
+      "lo": "137.035",
+      "hi": "137.037",
+      "status": "PASS",
+      "detail": "in [137.035, 137.037]"
+    },
+    {
+      "label": "alpha_inv(a_e) vs Cs recoil (ppb)",
+      "output_key": "result_diff_vs_cs_ppb_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Parker_2018",
+      "status": "INFO",
+      "expected": "0",
+      "got": "3.03296455549078",
+      "miss_pct": "0.0",
+      "detail": "predicted 3.03296455549078 ref 0 miss 0.0%"
+    },
+    {
+      "label": "alpha_inv(a_e) vs Rb recoil (ppb)",
+      "output_key": "result_diff_vs_rb_ppb_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Morel_2020",
+      "status": "INFO",
+      "expected": "0",
+      "got": "4.20054096199551",
+      "miss_pct": "0.0",
+      "detail": "predicted 4.20054096199551 ref 0 miss 0.0%"
+    },
+    {
+      "label": "alpha_inv(a_e) vs CODATA 2018 (ppb)",
+      "output_key": "result_diff_vs_codata_ppb_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "0",
+      "got": "3.31026395228253",
+      "miss_pct": "0.0",
+      "detail": "predicted 3.31026395228253 ref 0 miss 0.0%"
+    },
+    {
+      "label": "a_e series recovery matches input",
+      "output_key": "result_ae_recovered_v0",
+      "match_mode": "digits",
+      "reference_source": "self_consistency",
+      "expected": "0.00115965218059",
+      "got": "0.00115965218059",
+      "digits": 14,
+      "miss_pct": "0.0",
+      "status": "PASS",
+      "detail": "14-digit match, miss 0.0%"
+    }
+  ],
+  "outputs": {
+    "result_qed_a1_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "2"
+    },
+    "result_qed_a2_v0": "-0.328478965579194",
+    "result_qed_a3_v0": "1.1812414565872",
+    "result_qed_a4_v0": "-1.91224576492645",
+    "result_qed_a5_v0": "5.891",
+    "result_ae_forward_from_known_alpha_v0": "0.00115965217597119",
+    "result_ae_forward_residual_v0": "-4.61880502023806e-12",
+    "result_ae_forward_residual_rel_v0": "-3.98292272247368e-9",
+    "result_alpha_inv_known_v0": "137.035999177",
+    "result_alpha_inv_from_ae_v0": "137.035998630375",
+    "result_alpha_from_ae_v0": "0.00729735259343996",
+    "result_alpha_inv_from_ae_full_v0": "137.035998630374672067213142569",
+    "result_x_alpha_over_pi_v0": "0.00232281947346086",
+    "result_newton_iterations_v0": 6,
+    "result_newton_residual_v0": "1.59475119217561e-204",
+    "result_diff_vs_cs_ppb_v0": "3.03296455549078",
+    "result_diff_vs_rb_ppb_v0": "4.20054096199551",
+    "result_diff_vs_codata_ppb_v0": "3.31026395228253",
+    "result_ae_input_v0": "0.00115965218059",
+    "result_ae_recovered_v0": "0.00115965218059",
+    "result_a4_used_v0": "-1.91224576492645",
+    "result_a5_used_v0": "5.891"
+  },
+  "summary": {
+    "derivations_ok": 2,
+    "derivations_err": 0,
+    "comparisons_pass": 3,
+    "comparisons_fail": 0,
+    "comparisons_info": 3,
+    "comparisons_skip": 0
+  }
+}

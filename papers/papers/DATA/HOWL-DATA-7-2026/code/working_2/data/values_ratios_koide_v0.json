@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "key": "ratio_muon_electron_v0",
+      "canonical": "ratio_muon_electron",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "muon_electron",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "20676828270846717969",
+        "den": "100000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 10,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K1",
+        "phys24": "mmu_me"
+      }
+    },
+    {
+      "key": "ratio_tau_electron_v0",
+      "canonical": "ratio_tau_electron",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "tau_electron",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "347723",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 6,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K2",
+        "phys24": "mtau_me"
+      }
+    },
+    {
+      "key": "ratio_tau_muon_v0",
+      "canonical": "ratio_tau_muon",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "tau_muon",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "16817",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 5,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K3",
+        "phys24": "mtau_mmu"
+      }
+    },
+    {
+      "key": "ratio_neutron_proton_v0",
+      "canonical": "ratio_neutron_proton",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "neutron_proton",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "2503446048658405951",
+        "den": "2500000000000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 11,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K4",
+        "phys24": "mn_mp"
+      }
+    },
+    {
+      "key": "ratio_w_z_mass_v0",
+      "canonical": "ratio_w_z_mass",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "w_z_mass",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "881361",
+        "den": "1000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 6,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K5",
+        "phys24": "MW_MZ"
+      }
+    },
+    {
+      "key": "ratio_higgs_z_mass_v0",
+      "canonical": "ratio_higgs_z_mass",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "higgs_z_mass",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "137299",
+        "den": "100000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 5,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K6",
+        "phys24": "mH_MZ"
+      }
+    },
+    {
+      "key": "ratio_top_z_mass_v0",
+      "canonical": "ratio_top_z_mass",
+      "version": 0,
+      "node_type": "value",
+      "topic": "ratio",
+      "term": "top_z_mass",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "189247",
+        "den": "100000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 5,
+      "section": "ratios",
+      "legacy_refs": {
+        "data4": "K7",
+        "phys24": "mt_MZ"
+      }
+    },
+    {
+      "key": "koide_charged_leptons_k_v0",
+      "canonical": "koide_charged_leptons_k",
+      "version": 0,
+      "node_type": "value",
+      "topic": "koide",
+      "term": "charged_leptons_k",
+      "level": 2,
+      "source": "DATA-4 derived",
+      "value": {
+        "_type": "Fraction",
+        "num": "1333321023",
+        "den": "2000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 10,
+      "section": "koide",
+      "tags": [
+        "Koide",
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data4": "K8",
+        "phys24": "K_koide"
+      }
+    },
+    {
+      "key": "koide_charged_leptons_a2_v0",
+      "canonical": "koide_charged_leptons_a2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "koide",
+      "term": "charged_leptons_a2",
+      "level": 2,
+      "source": "Koide from m_e, m_mu, m_tau",
+      "value": {
+        "_type": "Fraction",
+        "num": "624988459",
+        "den": "312500000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 6,
+      "section": "koide",
+      "notes": "Measurement, NOT hypothesis. a^2=2 is Level 1 hypothesis.",
+      "tags": [
+        "Koide"
+      ],
+      "legacy_refs": {
+        "phys24": "a2_lep"
+      }
+    },
+    {
+      "key": "koide_down_quarks_a2_v0",
+      "canonical": "koide_down_quarks_a2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "koide",
+      "term": "down_quarks_a2",
+      "level": 2,
+      "source": "Koide from m_d, m_s, m_b",
+      "value": {
+        "_type": "Fraction",
+        "num": "2387725461",
+        "den": "1000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 3,
+      "section": "koide",
+      "tags": [
+        "Koide",
+        "quark"
+      ],
+      "legacy_refs": {
+        "phys24": "a2_down"
+      }
+    },
+    {
+      "key": "koide_up_quarks_a2_v0",
+      "canonical": "koide_up_quarks_a2",
+      "version": 0,
+      "node_type": "value",
+      "topic": "koide",
+      "term": "up_quarks_a2",
+      "level": 2,
+      "source": "Koide from m_u, m_c, m_t",
+      "value": {
+        "_type": "Fraction",
+        "num": "6185522571",
+        "den": "2000000000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "digits": 3,
+      "section": "koide",
+      "tags": [
+        "Koide",
+        "quark"
+      ],
+      "legacy_refs": {
+        "phys24": "a2_up"
+      }
+    }
+  ]
+}

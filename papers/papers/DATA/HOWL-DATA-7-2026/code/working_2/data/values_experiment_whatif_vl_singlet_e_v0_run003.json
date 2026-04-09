@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db1_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db1",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "5"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    },
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db2_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db2",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    },
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db3_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_db3",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    },
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_gap_ratio_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_gap_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    },
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_distance_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_distance",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.641807315855156",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    },
+    {
+      "key": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_asymmetry_v0",
+      "canonical": "experiment_whatif_vl_singlet_e_v0_run003_result_whatif_vl_singlet_e_asymmetry",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "0",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_whatif_vl_singlet_e_v0_run003"
+    }
+  ]
+}

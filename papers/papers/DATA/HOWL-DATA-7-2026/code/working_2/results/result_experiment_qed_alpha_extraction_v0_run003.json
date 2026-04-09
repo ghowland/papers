@@ -1,0 +1,84 @@
+{
+  "key": "result_experiment_qed_alpha_extraction_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_qed_alpha_extraction_v0",
+  "timestamp": "2026-04-05T12:04:07Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "qed_coefficients_assemble_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "qed_alpha_from_ae_v0",
+      "status": "error",
+      "error": "name 'A4_str' is not defined"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Newton inversion converged (residual < 1e-50)",
+      "output_key": "result_newton_residual_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha_inv(a_e) ~ 137.036",
+      "output_key": "result_alpha_inv_from_ae_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha_inv(a_e) vs Cs recoil (ppb)",
+      "output_key": "result_diff_vs_cs_ppb_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha_inv(a_e) vs Rb recoil (ppb)",
+      "output_key": "result_diff_vs_rb_ppb_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha_inv(a_e) vs CODATA 2018 (ppb)",
+      "output_key": "result_diff_vs_codata_ppb_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "a_e series recovery matches input",
+      "output_key": "result_ae_recovered_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {
+    "result_qed_a1_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "2"
+    },
+    "result_qed_a2_v0": "-0.328478965579194",
+    "result_qed_a3_v0": "1.1812414565872",
+    "result_qed_a4_v0": "-1.912245764926445574152647167440",
+    "result_qed_a5_v0": "5.891"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 1,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 6
+  }
+}

@@ -1,0 +1,405 @@
+{
+    "key": "experiment_beta_unification_v0",
+    "canonical": "experiment_beta_unification",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Beta unification: derive SM and CD beta coefficients, gap ratios, coupling predictions, Koide, and cosmological parameters from measured inputs and group theory.",
+    "purpose": "program_beta_unification_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_s_mz": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_z_boson": 0,
+            "group_c2_adj_su2": 0,
+            "group_c2_adj_su3": 0,
+            "group_sm_generation_count": 0,
+            "group_s2_fundamental": 0,
+            "rep_sm_generation_democracy_db1_sum": 0,
+            "rep_sm_generation_democracy_db2_sum": 0,
+            "rep_sm_generation_democracy_db3_sum": 0,
+            "rep_cabibbo_doublet_su3_dim": 0,
+            "rep_cabibbo_doublet_su2_dim": 0,
+            "rep_cabibbo_doublet_y": 0,
+            "beta_sm_u1_higgs": 0,
+            "beta_sm_su2_higgs": 0,
+            "beta_sm_su3_higgs": 0,
+            "beta_sm_u1_total": 0,
+            "beta_sm_su2_total": 0,
+            "beta_sm_su3_total": 0,
+            "beta_cabibbo_doublet_vectorlike_u1_shift": 0,
+            "beta_cabibbo_doublet_vectorlike_su2_shift": 0,
+            "beta_cabibbo_doublet_vectorlike_su3_shift": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "gap_sm_numerator": 0,
+            "gap_sm_denominator": 0,
+            "integer_two_times_yang_mills": 0,
+            "integer_four_times_yang_mills": 0,
+            "integer_b2_modified_numerator_abs": 0,
+            "integer_b2_modified_numerator_square": 0,
+            "integer_yang_mills_eleven": 0,
+            "integer_b2_sm_numerator_abs": 0,
+            "integer_cabibbo_doublet_gap_numerator": 0,
+            "integer_cabibbo_doublet_gap_denominator": 0,
+            "gap_sm_ratio": 0,
+            "gap_sm_cabibbo_doublet_ratio": 0,
+            "gap_pure_gauge_ratio": 0,
+            "coupling_measured_gap_ratio": 0,
+            "cosmo_dm_to_baryon_ratio_prefactor": 0,
+            "cosmo_omega_dm_r2_prefactor": 0,
+            "geom_r2": 0
+        },
+        "derivations": {
+            "coupling_extraction": 0,
+            "beta_sm_coefficients": 0,
+            "beta_cabibbo_doublet_shifts": 0,
+            "beta_modified_and_cd_gap_ratio": 0,
+            "generation_democracy": 0,
+            "gauge_pure_gap": 0,
+            "gap_sm_ratio": 0,
+            "gap_measured_ratio": 0,
+            "beta_double_action_mechanism": 0,
+            "beta_y_dependence_family": 0,
+            "crossing_one_loop_scale": 0,
+            "coupling_one_loop_alpha_s_prediction": 0,
+            "coupling_two_loop_alpha_s_euler": 0,
+            "koide_ratio": 0,
+            "koide_tau_prediction": 0,
+            "cosmo_dm_baryon_ratio": 0,
+            "cosmo_omega_dm": 0,
+            "cosmo_amplification_factor_decomposition": 0
+        },
+        "connections": {
+            "connection_coupling_convergence": 0,
+            "connection_gap_correction_chain": 0,
+            "connection_integer_network": 0,
+            "connection_three_programs_shared_set": 0,
+            "connection_object_adjacency": 0
+        }
+    },
+
+    "execution_plan": [
+        "coupling_extraction_v0",
+        "beta_sm_coefficients_v0",
+        "beta_cabibbo_doublet_shifts_v0",
+        "beta_modified_and_cd_gap_ratio_v0",
+        "generation_democracy_v0",
+        "gauge_pure_gap_v0",
+        "gap_sm_ratio_v0",
+        "gap_measured_ratio_v0",
+        "beta_double_action_mechanism_v0",
+        "beta_y_dependence_family_v0",
+        "crossing_one_loop_scale_v0",
+        "coupling_one_loop_alpha_s_prediction_v0",
+        "coupling_two_loop_alpha_s_euler_v0",
+        "koide_ratio_v0",
+        "koide_tau_prediction_v0",
+        "cosmo_dm_baryon_ratio_v0",
+        "cosmo_omega_dm_v0",
+        "cosmo_amplification_factor_decomposition_v0"
+    ],
+
+    "connections": [
+        "connection_coupling_convergence_v0",
+        "connection_gap_correction_chain_v0",
+        "connection_integer_network_v0",
+        "connection_three_programs_shared_set_v0",
+        "connection_object_adjacency_v0"
+    ],
+
+    "expected_outputs": [
+        "coupling_alpha_em_v0",
+        "coupling_alpha_1_inverse_gut_normalized_mz_v0",
+        "coupling_alpha_2_inverse_mz_v0",
+        "coupling_alpha_3_inverse_mz_v0",
+        "beta_sm_u1_total_derived_v0",
+        "beta_sm_su2_total_derived_v0",
+        "beta_sm_su3_total_derived_v0",
+        "beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0",
+        "beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0",
+        "beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0",
+        "beta_modified_u1_total_derived_v0",
+        "beta_modified_su2_total_derived_v0",
+        "beta_modified_su3_total_derived_v0",
+        "gap_sm_cabibbo_doublet_ratio_derived_v0",
+        "gap_pure_gauge_ratio_derived_v0",
+        "gap_sm_ratio_derived_v0",
+        "gap_measured_ratio_exact_v0",
+        "generation_democracy_independent_of_n_gen_v0",
+        "beta_y_dependence_gap_at_input_y_v0",
+        "result_l_gut_one_loop_cabibbo_doublet_derived_v0",
+        "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+        "result_alpha_s_one_loop_cabibbo_doublet_exact_v0",
+        "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0",
+        "result_alpha_s_two_loop_sm_bij_derived_v0",
+        "result_alpha_s_two_loop_full_bij_derived_v0",
+        "koide_charged_leptons_k_derived_v0",
+        "koide_charged_leptons_a2_derived_v0",
+        "result_tau_mass_koide_two_thirds_derived_v0",
+        "cosmo_dm_to_baryon_ratio_prefactor_derived_v0",
+        "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+        "cosmo_omega_dm_r2_prefactor_derived_v0",
+        "cosmo_omega_dm_predicted_derived_v0",
+        "cosmo_amplification_reduced_factor_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Pure gauge gap = 2",
+            "output_key": "gap_pure_gauge_ratio_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "2", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "SM gap = 218/115",
+            "output_key": "gap_sm_ratio_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "218", "den": "115"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "CD gap = 38/27",
+            "output_key": "gap_sm_cabibbo_doublet_ratio_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "38", "den": "27"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "Casimir form = 2",
+            "output_key": "gap_pure_gauge_casimir_form_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "2", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "Generation democracy holds",
+            "output_key": "generation_democracy_independent_of_n_gen_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "structural"
+        },
+        {
+            "label": "b1_SM = 41/10",
+            "output_key": "beta_sm_u1_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "41", "den": "10"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "b2_SM = -19/6",
+            "output_key": "beta_sm_su2_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-19", "den": "6"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "b3_SM = -7",
+            "output_key": "beta_sm_su3_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-7", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "b1_mod = 25/6",
+            "output_key": "beta_modified_u1_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "25", "den": "6"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "b2_mod = -13/6",
+            "output_key": "beta_modified_su2_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-13", "den": "6"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "b3_mod = -20/3",
+            "output_key": "beta_modified_su3_total_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-20", "den": "3"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "CD db1 = 1/15",
+            "output_key": "beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "1", "den": "15"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "CD db2 = 1",
+            "output_key": "beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "1", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "CD db3 = 1/3",
+            "output_key": "beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "1", "den": "3"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "Y-dep gap at Y=1/6 = 38/27",
+            "output_key": "beta_y_dependence_gap_at_input_y_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "38", "den": "27"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "DM prefactor = 22/13",
+            "output_key": "cosmo_dm_to_baryon_ratio_prefactor_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "22", "den": "13"},
+            "reference_source": "integer_pool"
+        },
+        {
+            "label": "Omega_DM prefactor = 44/169",
+            "output_key": "cosmo_omega_dm_r2_prefactor_derived_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "44", "den": "169"},
+            "reference_source": "integer_pool"
+        },
+        {
+            "label": "Amplification = 44/13",
+            "output_key": "cosmo_amplification_reduced_factor_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "44", "den": "13"},
+            "reference_source": "integer_pool"
+        },
+        {
+            "label": "Measured gap ratio",
+            "output_key": "gap_measured_ratio_numeric_v0",
+            "match_mode": "digits",
+            "expected": "1.3582",
+            "digits": 4,
+            "reference_source": "measured"
+        },
+        {
+            "label": "alpha_s one-loop vs measured",
+            "output_key": "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "measured"
+        },
+        {
+            "label": "alpha_s two-loop SM bij vs measured",
+            "output_key": "result_alpha_s_two_loop_sm_bij_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "measured"
+        },
+        {
+            "label": "alpha_s two-loop full bij vs measured",
+            "output_key": "result_alpha_s_two_loop_full_bij_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "measured"
+        },
+        {
+            "label": "Koide K",
+            "output_key": "koide_charged_leptons_k_derived_v0",
+            "match_mode": "digits",
+            "expected": "0.666660511",
+            "digits": 9,
+            "reference_source": "computed"
+        },
+        {
+            "label": "Koide a^2 vs 2",
+            "output_key": "koide_charged_leptons_a2_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "theoretical"
+        },
+        {
+            "label": "Koide m_tau prediction vs measured",
+            "output_key": "result_tau_mass_koide_two_thirds_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "1776.86",
+            "reference_source": "measured"
+        },
+        {
+            "label": "DM/baryon predicted vs Planck",
+            "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "5.3204",
+            "reference_source": "measured"
+        },
+        {
+            "label": "Omega_DM predicted vs Planck",
+            "output_key": "cosmo_omega_dm_predicted_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.2607",
+            "reference_source": "measured"
+        },
+        {
+            "label": "log10(M_GUT/GeV) in [15, 16]",
+            "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "16",
+            "reference_source": "theoretical"
+        },
+        {
+            "label": "L_GUT in [4, 6]",
+            "output_key": "result_l_gut_one_loop_cabibbo_doublet_derived_v0",
+            "match_mode": "range",
+            "lo": "4",
+            "hi": "6",
+            "reference_source": "theoretical"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_coupling_running_v0",
+            "title": "Gauge coupling running with Cabibbo Doublet",
+            "type": "line",
+            "x_axis": "log10(Q/GeV)",
+            "y_axis": "1/alpha_i",
+            "series": [
+                {"label": "U(1)", "color": "blue"},
+                {"label": "SU(2)", "color": "green"},
+                {"label": "SU(3)", "color": "red"}
+            ],
+            "source_derivation": "coupling_two_loop_alpha_s_euler_v0",
+            "notes": "Three lines converge near log10(Q) ~ 15.5"
+        },
+        {
+            "key": "diagram_gap_correction_bar_v0",
+            "title": "Gap ratio correction chain",
+            "type": "bar",
+            "categories": ["Pure gauge", "SM", "CD", "Measured"],
+            "values_from": [
+                "gap_pure_gauge_ratio_derived_v0",
+                "gap_sm_ratio_derived_v0",
+                "gap_sm_cabibbo_doublet_ratio_derived_v0",
+                "gap_measured_ratio_numeric_v0"
+            ],
+            "notes": "Shows correction chain converging toward measured value"
+        },
+        {
+            "key": "diagram_cosmological_predictions_v0",
+            "title": "Cosmological predictions from beta integers",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "DM/baryon", "predicted": "cosmo_dm_to_baryon_ratio_predicted_derived_v0", "measured": "5.3204"},
+                {"label": "Omega_DM", "predicted": "cosmo_omega_dm_predicted_derived_v0", "measured": "0.2607"},
+                {"label": "alpha_s (1L)", "predicted": "result_alpha_s_one_loop_cabibbo_doublet_numeric_v0", "measured": "0.1180"},
+                {"label": "alpha_s (2L full)", "predicted": "result_alpha_s_two_loop_full_bij_derived_v0", "measured": "0.1180"},
+                {"label": "m_tau Koide", "predicted": "result_tau_mass_koide_two_thirds_derived_v0", "measured": "1776.86"}
+            ],
+            "notes": "Summary comparison of all predictions against measurements"
+        }
+    ]
+}

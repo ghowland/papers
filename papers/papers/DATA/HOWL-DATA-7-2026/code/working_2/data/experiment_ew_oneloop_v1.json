@@ -1,0 +1,145 @@
+{
+    "key": "experiment_ew_oneloop_v1",
+    "canonical": "experiment_ew_oneloop",
+    "version": 1,
+    "node_type": "experiment",
+    "description": "One-loop EW corrections v1: use measured alpha(M_Z) directly, corrected kappa_Z, vertex+box corrections, QCD corrections to Z width. Targets: M_W < 0.1%, Gamma_Z < 1%, G_F < 1%, sin2_eff < 0.5%.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+    "supersedes": "experiment_ew_oneloop_v0",
+
+    "dependencies": {
+        "values": {
+            "coupling_sin2_theta_w": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_alpha_s_mz": 0,
+            "coupling_fermi_constant": 0,
+            "mass_z_boson": 0,
+            "mass_w_boson": 0,
+            "mass_top_quark": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "mass_up_quark": 0,
+            "mass_down_quark": 0,
+            "mass_strange_quark": 0,
+            "mass_charm_quark": 0,
+            "mass_bottom_quark": 0,
+            "geom_pi": 0,
+            "ew_alpha_mz_measured": 0,
+            "ew_sin2_eff_measured": 0,
+            "ew_kappa_z": 1,
+            "ew_delta_vb": 0,
+            "ew_delta_qcd_z": 0,
+            "ew_fsr_lepton": 0,
+            "ew_mw_pdg_2024": 0,
+            "coupling_z_width": 0
+        },
+        "derivations": {
+            "ew_mw_oneloop_v1": 0,
+            "ew_gamma_z_corrected": 0,
+            "ew_gf_corrected": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "ew_mw_oneloop_v1_v0",
+        "ew_gamma_z_corrected_v0",
+        "ew_gf_corrected_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_mw_v1_v0",
+        "result_gamma_z_corrected_v0",
+        "result_gf_corrected_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "M_W one-loop v1 vs measured",
+            "output_key": "result_mw_v1_v0",
+            "match_mode": "miss_pct",
+            "expected": "80369.2",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "M_W v1 miss < 0.1%",
+            "output_key": "result_mw_v1_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.1",
+            "reference_source": "target"
+        },
+        {
+            "label": "sin2_eff v1 vs LEP/SLD",
+            "output_key": "result_sin2_eff_v1_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23153",
+            "reference_source": "LEP_SLD"
+        },
+        {
+            "label": "Gamma_Z corrected vs measured",
+            "output_key": "result_gamma_z_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "2495.2",
+            "reference_source": "LEP_EWWG"
+        },
+        {
+            "label": "Gamma_Z miss < 1%",
+            "output_key": "result_gamma_z_corrected_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "target"
+        },
+        {
+            "label": "G_F corrected vs measured",
+            "output_key": "result_gf_corrected_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0000116638",
+            "reference_source": "CODATA_2022"
+        },
+        {
+            "label": "G_F miss < 1%",
+            "output_key": "result_gf_corrected_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "target"
+        },
+        {
+            "label": "Gamma_Z neutrino channel ~ 500 MeV",
+            "output_key": "result_gamma_z_neutrinos_corrected_v0",
+            "match_mode": "range",
+            "lo": "490",
+            "hi": "510",
+            "reference_source": "LEP_invisible"
+        },
+        {
+            "label": "Delta_rho from m_t",
+            "output_key": "result_delta_rho_v1_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00940",
+            "reference_source": "one_loop"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_ew_v1_improvement_v0",
+            "title": "EW precision v1: tree vs v0 vs v1",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "M_W (MeV)", "predicted": "result_mw_v1_v0", "measured": "80369.2"},
+                {"label": "Gamma_Z (MeV)", "predicted": "result_gamma_z_corrected_v0", "measured": "2495.2"},
+                {"label": "G_F (GeV^-2)", "predicted": "result_gf_corrected_v0", "measured": "0.0000116638"},
+                {"label": "sin2_eff", "predicted": "result_sin2_eff_v1_v0", "measured": "0.23153"}
+            ],
+            "notes": "Using measured alpha(M_Z), corrected kappa_Z, vertex+box, QCD corrections."
+        }
+    ]
+}
+

@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "key": "rep_whatif_su3_dim_v0",
+      "canonical": "rep_whatif_su3_dim",
+      "version": 0,
+      "node_type": "value",
+      "value": {"_type": "Fraction", "num": "3", "den": "1"},
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 1,
+      "source": "whatif_scan",
+      "topic": "rep",
+      "term": "whatif_su3_dim"
+    },
+    {
+      "key": "rep_whatif_su2_dim_v0",
+      "canonical": "rep_whatif_su2_dim",
+      "version": 0,
+      "node_type": "value",
+      "value": {"_type": "Fraction", "num": "2", "den": "1"},
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 1,
+      "source": "whatif_scan",
+      "topic": "rep",
+      "term": "whatif_su2_dim"
+    },
+    {
+      "key": "rep_whatif_y_v0",
+      "canonical": "rep_whatif_y",
+      "version": 0,
+      "node_type": "value",
+      "value": {"_type": "Fraction", "num": "1", "den": "6"},
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 1,
+      "source": "whatif_scan",
+      "topic": "rep",
+      "term": "whatif_y"
+    }
+  ]
+}

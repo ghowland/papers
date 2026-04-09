@@ -1,0 +1,156 @@
+{
+  "key": "result_experiment_bridge_bbn_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_bridge_bbn_v0",
+  "timestamp": "2026-04-05T14:25:06Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "bridge_omega_b_from_integers_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_eta_from_omega_b_v0",
+      "status": "error",
+      "error": "astro_parsec_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "bridge_yp_from_eta_v0",
+      "status": "error",
+      "error": "'missing value: result_eta10_derived_v0'"
+    },
+    {
+      "key": "bridge_dh_from_eta_v0",
+      "status": "error",
+      "error": "'missing value: result_eta10_derived_v0'"
+    },
+    {
+      "key": "bridge_neff_consistency_v0",
+      "status": "error",
+      "error": "'missing value: result_yp_derived_v0'"
+    },
+    {
+      "key": "bridge_vacuum_energy_v0",
+      "status": "error",
+      "error": "'missing value: result_omega_de_derived_v0'"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Omega_b from integers vs Planck",
+      "output_key": "result_omega_b_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.0490",
+      "got": "0.049035637966613",
+      "miss_pct": "0.07273",
+      "detail": "predicted 0.049035637966613 ref 0.0490 miss 0.07273%"
+    },
+    {
+      "label": "eta (baryon-to-photon) derived vs Planck",
+      "output_key": "result_eta_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "eta_10 derived vs Planck",
+      "output_key": "result_eta10_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Y_p (primordial helium) from integers vs measured",
+      "output_key": "result_yp_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Y_p digits of agreement",
+      "output_key": "result_yp_derived_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "D/H (primordial deuterium) from integers vs measured",
+      "output_key": "result_dh_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "D/H digits of agreement",
+      "output_key": "result_dh_derived_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "N_eff consistency: derived Omega ratios consistent with N_eff = 3",
+      "output_key": "result_neff_check_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "N_eff derived vs standard 3.044",
+      "output_key": "result_neff_check_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Vacuum energy density (GeV^4) derived vs observed",
+      "output_key": "result_rho_lambda_gev4_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Vacuum energy density (g/cm^3) derived vs observed",
+      "output_key": "result_rho_lambda_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Full chain: integers -> eta_10 -> Y_p within 1 sigma",
+      "output_key": "result_yp_sigma_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Full chain: integers -> eta_10 -> D/H within 1 sigma",
+      "output_key": "result_dh_sigma_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {
+    "result_omega_b_derived_v0": "0.049035637966613",
+    "result_omega_b_measured_v0": "0.049",
+    "result_omega_b_miss_pct_v0": "0.0727305441080672",
+    "result_omega_m_derived_v0": "0.309735637966613",
+    "result_omega_m_measured_v0": "0.3111",
+    "result_omega_m_miss_pct_v0": "0.438560602181629",
+    "result_dm_baryon_ratio_used_v0": "5.31654141376734",
+    "result_omega_dm_input_v0": "0.2607"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 5,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 1,
+    "comparisons_skip": 12
+  }
+}

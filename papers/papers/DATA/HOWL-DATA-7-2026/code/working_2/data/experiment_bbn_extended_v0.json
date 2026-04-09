@@ -1,0 +1,133 @@
+{
+    "key": "experiment_bbn_extended_v0",
+    "canonical": "experiment_bbn_extended",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Extend BBN chain to Li-7 and He-3. Reproduce the lithium problem (predicted/observed ~ 3). Same eta from gauge integers as D/H and Y_p predictions.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "cosmo_omega_dm_planck": 0,
+            "cosmo_omega_b_planck": 0,
+            "cosmo_dm_to_baryon_ratio_prefactor": 0,
+            "cosmo_t_cmb": 0,
+            "cosmo_h0_planck": 0,
+            "cosmo_eta_planck": 0,
+            "cosmo_li7_measured": 0,
+            "cosmo_li7_measured_unc": 0,
+            "cosmo_he3_measured": 0,
+            "cosmo_he3_measured_unc": 0,
+            "bbn_li7_a_coeff": 0,
+            "bbn_li7_b_coeff": 0,
+            "bbn_he3_a_coeff": 0,
+            "bbn_he3_b_coeff": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "astro_gravitational_constant": 0,
+            "astro_parsec": 0,
+            "mass_proton": 0,
+            "si_speed_of_light": 0,
+            "si_planck_constant": 0,
+            "si_reduced_planck_constant": 0,
+            "si_elementary_charge": 0,
+            "si_boltzmann_constant": 0
+        },
+        "derivations": {
+            "bridge_omega_b_from_integers": 0,
+            "bridge_eta_from_omega_b": 0,
+            "bridge_li7_from_eta": 0,
+            "bridge_he3_from_eta": 0,
+            "bridge_li7_problem": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "bridge_omega_b_from_integers_v0",
+        "bridge_eta_from_omega_b_v0",
+        "bridge_li7_from_eta_v0",
+        "bridge_he3_from_eta_v0",
+        "bridge_li7_problem_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_li7_derived_v0",
+        "result_he3_derived_v0",
+        "result_li7_problem_ratio_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Li-7/H predicted vs Spite plateau",
+            "output_key": "result_li7_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.000000000160",
+            "reference_source": "Sbordone_2010"
+        },
+        {
+            "label": "Li-7 problem ratio ~ 3",
+            "output_key": "result_li7_problem_ratio_v0",
+            "match_mode": "range",
+            "lo": "2.0",
+            "hi": "4.0",
+            "reference_source": "BBN_lithium_problem"
+        },
+        {
+            "label": "Li-7 predicted within BBN range (3-6 x10^-10)",
+            "output_key": "result_li7_x1e10_derived_v0",
+            "match_mode": "range",
+            "lo": "3.0",
+            "hi": "6.0",
+            "reference_source": "BBN_prediction"
+        },
+        {
+            "label": "He-3/H predicted vs galactic",
+            "output_key": "result_he3_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0000110",
+            "reference_source": "Bania_2002"
+        },
+        {
+            "label": "He-3 predicted within 1 sigma",
+            "output_key": "result_he3_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2.0",
+            "reference_source": "Bania_2002"
+        },
+        {
+            "label": "eta_10 from integers (recomputed)",
+            "output_key": "result_eta10_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "6.104",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Li-7 problem is real (ratio > 2)",
+            "output_key": "result_li7_problem_is_real_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "BBN_lithium_problem"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_bbn_extended_v0",
+            "title": "BBN predictions from gauge integers: all four elements",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "D/H (prior)", "predicted": "result_dh_derived_v0", "measured": "2.527e-5"},
+                {"label": "Y_p (prior)", "predicted": "result_yp_derived_v0", "measured": "0.2449"},
+                {"label": "Li-7/H", "predicted": "result_li7_derived_v0", "measured": "1.6e-10"},
+                {"label": "He-3/H", "predicted": "result_he3_derived_v0", "measured": "1.1e-5"}
+            ],
+            "notes": "Same eta_10 = 6.09 from gauge integers predicts all four primordial abundances."
+        }
+    ]
+}
+

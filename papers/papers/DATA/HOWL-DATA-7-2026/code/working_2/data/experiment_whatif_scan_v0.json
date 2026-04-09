@@ -1,0 +1,53 @@
+{
+    "key": "experiment_whatif_scan_v0",
+    "canonical": "experiment_whatif_scan",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "What-if BSM scan: test the CD representation (3,2,1/6) against the measured gap ratio. Requires rep_whatif_* values pre-loaded for each candidate.",
+    "purpose": "program_beta_unification_v0",
+    "experiment_mode": "whatif",
+
+    "dependencies": {
+        "values": {
+            "beta_sm_u1_total": 0,
+            "beta_sm_su2_total": 0,
+            "beta_sm_su3_total": 0,
+            "coupling_measured_gap_ratio": 0,
+            "rep_whatif_su3_dim": 0,
+            "rep_whatif_su2_dim": 0,
+            "rep_whatif_y": 0
+        },
+        "derivations": {
+            "coupling_whatif_rep": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "coupling_whatif_rep_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_whatif_gap_ratio_v0",
+        "result_whatif_distance_v0",
+        "result_whatif_asymmetry_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "What-if gap ratio computed",
+            "output_key": "result_whatif_gap_ratio_v0",
+            "match_mode": "range",
+            "lo": "1.0",
+            "hi": "3.0",
+            "reference_source": "scan"
+        }
+    ],
+
+    "diagrams": [],
+
+    "notes": "Pre-load rep_whatif_su3_dim_v0, rep_whatif_su2_dim_v0, rep_whatif_y_v0 before running. For the CD: (3, 2, 1/6). For each of the 15 candidates, change these values and re-run."
+}
+

@@ -1,0 +1,97 @@
+{
+    "key": "experiment_sin2_theta_w_unification_v0",
+    "canonical": "experiment_sin2_theta_w_unification",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Derive sin2_theta_W from the SU(5) boundary value 3/8 at M_GUT, run down to M_Z with CD-modified betas. Self-consistent iteration eliminates circularity: L_GUT and sin2_theta_W are solved simultaneously from alpha_em alone.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "mass_z_boson": 0,
+            "coupling_sin2_theta_w": 0,
+            "group_k1_gut_normalization": 0,
+            "geom_pi": 0
+        },
+        "derivations": {
+            "sin2_theta_w_from_unification": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "sin2_theta_w_from_unification_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_sin2_theta_w_derived_v0",
+        "result_sin2_theta_w_miss_pct_v0",
+        "result_l_gut_derived_v0",
+        "result_m_gut_log10_derived_v0",
+        "result_alpha_gut_inv_derived_v0",
+        "result_alpha_s_one_loop_derived_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "sin2_theta_W derived vs measured",
+            "output_key": "result_sin2_theta_w_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.23122",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "sin2_theta_W within 5% of measured",
+            "output_key": "result_sin2_theta_w_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5.0",
+            "reference_source": "physics"
+        },
+        {
+            "label": "log10(M_GUT/GeV) in [15, 16]",
+            "output_key": "result_m_gut_log10_derived_v0",
+            "match_mode": "range",
+            "lo": "15",
+            "hi": "16",
+            "reference_source": "proton_decay_bounds"
+        },
+        {
+            "label": "alpha_s(M_Z) one-loop vs measured",
+            "output_key": "result_alpha_s_one_loop_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.1180",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "Iteration converged (delta < 1e-10)",
+            "output_key": "result_iteration_delta_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.0000000001",
+            "reference_source": "numerical_verification"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_sin2_theta_w_unification_v0",
+            "title": "sin2_theta_W: GUT prediction vs measurement",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "sin2_theta_W (derived)", "predicted": "result_sin2_theta_w_derived_v0", "measured": "0.23122"},
+                {"label": "alpha_s (one-loop)", "predicted": "result_alpha_s_one_loop_derived_v0", "measured": "0.1180"},
+                {"label": "log10(M_GUT/GeV)", "predicted": "result_m_gut_log10_derived_v0", "measured": "15.54 (proton decay exp)"}
+            ],
+            "notes": "Attack 1: derives sin2_theta_W and alpha_s from alpha_em + integer betas. The GUT boundary condition sin2_theta_W = 3/8 runs down to M_Z."
+        }
+    ]
+}
+

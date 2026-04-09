@@ -1,0 +1,123 @@
+{
+    "key": "experiment_qed_alpha_extraction_v0",
+    "canonical": "experiment_qed_alpha_extraction",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Extract alpha from measured a_e using 5-loop QED series with Laporta coefficients. Compare to Cs recoil, Rb recoil, and CODATA alpha.",
+    "purpose": "program_parameter_reduction_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_c81a": 0,
+            "qed_c81b": 0,
+            "qed_c81c": 0,
+            "qed_c83a": 0,
+            "qed_c83b": 0,
+            "qed_c83c": 0,
+            "qed_c8_total": 0,
+            "qed_c10_total": 0,
+            "qed_ae_electron_measured": 0,
+            "qed_alpha_inv_cs_recoil": 0,
+            "qed_alpha_inv_rb_recoil": 0,
+            "qed_alpha_inv_codata_2018": 0
+        },
+        "derivations": {
+            "qed_coefficients_assemble": 0,
+            "qed_alpha_from_ae": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "qed_coefficients_assemble_v0",
+        "qed_alpha_from_ae_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_alpha_inv_from_ae_v0",
+        "result_diff_vs_cs_ppb_v0",
+        "result_diff_vs_rb_ppb_v0",
+        "result_diff_vs_codata_ppb_v0",
+        "result_newton_residual_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Newton inversion converged (residual < 1e-50)",
+            "output_key": "result_newton_residual_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1e-50",
+            "reference_source": "numerical_verification"
+        },
+        {
+            "label": "alpha_inv(a_e) ~ 137.036",
+            "output_key": "result_alpha_inv_from_ae_v0",
+            "match_mode": "range",
+            "lo": "137.035",
+            "hi": "137.037",
+            "reference_source": "physics"
+        },
+        {
+            "label": "alpha_inv(a_e) vs Cs recoil (ppb)",
+            "output_key": "result_diff_vs_cs_ppb_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "Parker_2018"
+        },
+        {
+            "label": "alpha_inv(a_e) vs Rb recoil (ppb)",
+            "output_key": "result_diff_vs_rb_ppb_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "Morel_2020"
+        },
+        {
+            "label": "alpha_inv(a_e) vs CODATA 2018 (ppb)",
+            "output_key": "result_diff_vs_codata_ppb_v0",
+            "match_mode": "miss_pct",
+            "expected": "0",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "a_e series recovery matches input",
+            "output_key": "result_ae_recovered_v0",
+            "match_mode": "digits",
+            "expected": "0.00115965218059",
+            "digits": 14,
+            "reference_source": "self_consistency"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_alpha_comparison_v0",
+            "title": "alpha^-1 from four methods",
+            "type": "bar",
+            "categories": ["a_e extraction", "Cs recoil", "Rb recoil", "CODATA 2018"],
+            "values_from": [
+                "result_alpha_inv_from_ae_v0",
+                "qed_alpha_inv_cs_recoil_v0",
+                "qed_alpha_inv_rb_recoil_v0",
+                "qed_alpha_inv_codata_2018_v0"
+            ],
+            "notes": "All four should agree. Tension between a_e and Cs/Rb is the open question."
+        },
+        {
+            "key": "diagram_alpha_tension_ppb_v0",
+            "title": "Tension in ppb: alpha(a_e) vs independent measurements",
+            "type": "bar",
+            "categories": ["vs Cs recoil", "vs Rb recoil", "vs CODATA"],
+            "values_from": [
+                "result_diff_vs_cs_ppb_v0",
+                "result_diff_vs_rb_ppb_v0",
+                "result_diff_vs_codata_ppb_v0"
+            ],
+            "notes": "Smaller = better agreement. Current tension ~5 sigma between methods."
+        }
+    ]
+}
+

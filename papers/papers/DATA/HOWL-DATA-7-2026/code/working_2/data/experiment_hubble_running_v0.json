@@ -1,0 +1,112 @@
+{
+    "key": "experiment_hubble_running_v0",
+    "canonical": "experiment_hubble_running",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Hubble running hypothesis: H0(N) = H0(0)*r^N. Tests monotonicity, cumulative ratio, required r at several N, VP step size, F1 strict and soft falsification.",
+    "purpose": "program_hubble_running_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "cosmo_h0_sh0es": 0,
+            "cosmo_h0_h0licow": 0,
+            "cosmo_h0_cchp": 0,
+            "cosmo_h0_des_bao_bbn": 0,
+            "cosmo_h0_planck": 0,
+            "geom_r2": 0
+        },
+        "derivations": {
+            "hubble_cumulative_ratio": 0,
+            "hubble_tension_sigma": 0,
+            "hubble_required_r": 0,
+            "hubble_vp_step_size": 0,
+            "hubble_test_f1_strict": 0,
+            "hubble_test_f1_soft": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "hubble_cumulative_ratio_v0",
+        "hubble_tension_sigma_v0",
+        "hubble_required_r_v0",
+        "hubble_vp_step_size_v0",
+        "hubble_test_f1_strict_v0",
+        "hubble_test_f1_soft_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_hubble_cumulative_ratio_v0",
+        "result_hubble_tension_sigma_v0",
+        "result_hubble_vp_step_v0",
+        "result_f1_soft_pass_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Cumulative ratio = 337/365",
+            "output_key": "result_hubble_cumulative_ratio_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "337", "den": "365"},
+            "reference_source": "H0_data"
+        },
+        {
+            "label": "Tension > 4 sigma",
+            "output_key": "result_hubble_tension_above_4_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "H0_data"
+        },
+        {
+            "label": "VP step = 1/(3*pi)",
+            "output_key": "result_hubble_vp_equals_1_over_3pi_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "identity"
+        },
+        {
+            "label": "F1 soft passes (no hard inversions)",
+            "output_key": "result_f1_soft_pass_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "H0_data"
+        },
+        {
+            "label": "Tension in sigma",
+            "output_key": "result_hubble_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "4",
+            "hi": "6",
+            "reference_source": "H0_data"
+        },
+        {
+            "label": "1-r at N=100",
+            "output_key": "result_hubble_1_minus_r_at_N100_v0",
+            "match_mode": "range",
+            "lo": "0.0005",
+            "hi": "0.002",
+            "reference_source": "running_hypothesis"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_h0_measurements_v0",
+            "title": "H0 measurements by distance class",
+            "type": "bar",
+            "categories": ["SH0ES", "H0LiCOW", "CCHP", "DES_BAO", "Planck"],
+            "values_from": [
+                "cosmo_h0_sh0es_v0",
+                "cosmo_h0_h0licow_v0",
+                "cosmo_h0_cchp_v0",
+                "cosmo_h0_des_bao_bbn_v0",
+                "cosmo_h0_planck_v0"
+            ],
+            "notes": "H0 decreasing from local to far: the Hubble tension"
+        }
+    ]
+}
+

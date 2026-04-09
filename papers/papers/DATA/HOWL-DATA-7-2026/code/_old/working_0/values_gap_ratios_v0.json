@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "key": "gap_pure_gauge_ratio_v0",
+      "canonical": "gap_pure_gauge_ratio",
+      "version": 0,
+      "node_type": "value",
+      "topic": "gap",
+      "term": "pure_gauge_ratio",
+      "level": 1,
+      "source": "Table 3 / C2(SU2)/(C2(SU3)-C2(SU2))",
+      "value": {
+        "_type": "Fraction",
+        "num": "2",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "GUT",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio"
+      ]
+    },
+    {
+      "key": "gap_sm_numerator_v0",
+      "canonical": "gap_sm_numerator",
+      "version": 0,
+      "node_type": "value",
+      "topic": "gap",
+      "term": "sm_numerator",
+      "level": 1,
+      "source": "b1_SM - b2_SM",
+      "value": {
+        "_type": "Fraction",
+        "num": "109",
+        "den": "15"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "GUT",
+      "tags": [
+        "Level1",
+        "exact"
+      ]
+    },
+    {
+      "key": "gap_sm_denominator_v0",
+      "canonical": "gap_sm_denominator",
+      "version": 0,
+      "node_type": "value",
+      "topic": "gap",
+      "term": "sm_denominator",
+      "level": 1,
+      "source": "b2_SM - b3_SM",
+      "value": {
+        "_type": "Fraction",
+        "num": "23",
+        "den": "6"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "GUT",
+      "tags": [
+        "Level1",
+        "exact"
+      ]
+    },
+    {
+      "key": "gap_sm_cabibbo_doublet_ratio_v0",
+      "canonical": "gap_sm_cabibbo_doublet_ratio",
+      "version": 0,
+      "node_type": "value",
+      "topic": "gap",
+      "term": "sm_cabibbo_doublet_ratio",
+      "level": 1,
+      "source": "(b1_mod - b2_mod) / (b2_mod - b3_mod)",
+      "value": {
+        "_type": "Fraction",
+        "num": "38",
+        "den": "27"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "GUT",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio",
+        "CD"
+      ]
+    },
+    {
+      "key": "coupling_measured_gap_ratio_v0",
+      "canonical": "coupling_measured_gap_ratio",
+      "version": 0,
+      "node_type": "value",
+      "topic": "coupling",
+      "term": "measured_gap_ratio",
+      "level": 2,
+      "source": "Derived from alpha_EM, sin2_tW, alpha_s",
+      "value": {
+        "_type": "Fraction",
+        "num": "464991648695389816",
+        "den": "342360590013162615"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "GUT",
+      "tags": [
+        "Level2",
+        "ratio"
+      ]
+    },
+    {
+      "key": "cosmo_dm_to_baryon_ratio_prefactor_v0",
+      "canonical": "cosmo_dm_to_baryon_ratio_prefactor",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "dm_to_baryon_ratio_prefactor",
+      "level": 1,
+      "source": "Table 15 / (22/13)*pi formula prefactor",
+      "value": {
+        "_type": "Fraction",
+        "num": "22",
+        "den": "13"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data5": "cosmo_dm_to_baryon_ratio_prefactor_v0"
+      }
+    },
+    {
+      "key": "cosmo_omega_dm_r2_prefactor_v0",
+      "canonical": "cosmo_omega_dm_r2_prefactor",
+      "version": 0,
+      "node_type": "value",
+      "topic": "cosmo",
+      "term": "omega_dm_r2_prefactor",
+      "level": 1,
+      "source": "Table 15 / (44/169)*R2 formula prefactor",
+      "value": {
+        "_type": "Fraction",
+        "num": "44",
+        "den": "169"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "section": "cosmological",
+      "tags": [
+        "Level1",
+        "exact",
+        "ratio"
+      ],
+      "legacy_refs": {
+        "data5": "cosmo_omega_dm_r2_prefactor_v0"
+      }
+    }
+  ]
+}

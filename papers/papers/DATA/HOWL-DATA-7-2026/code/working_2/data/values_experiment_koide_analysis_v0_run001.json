@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_koide_analysis_v0_run001_koide_charged_leptons_k_derived_v0",
+      "canonical": "experiment_koide_analysis_v0_run001_koide_charged_leptons_k_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.666660511466",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_koide_analysis_v0_run001"
+    },
+    {
+      "key": "experiment_koide_analysis_v0_run001_koide_charged_leptons_a2_derived_v0",
+      "canonical": "experiment_koide_analysis_v0_run001_koide_charged_leptons_a2_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.99996306879",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_koide_analysis_v0_run001"
+    },
+    {
+      "key": "experiment_koide_analysis_v0_run001_koide_charged_leptons_a2_minus_two_derived_v0",
+      "canonical": "experiment_koide_analysis_v0_run001_koide_charged_leptons_a2_minus_two_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "-3.69312068681e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_koide_analysis_v0_run001"
+    },
+    {
+      "key": "experiment_koide_analysis_v0_run001_result_tau_mass_koide_two_thirds_derived_v0",
+      "canonical": "experiment_koide_analysis_v0_run001_result_tau_mass_koide_two_thirds_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "1776.96902729",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_koide_analysis_v0_run001"
+    }
+  ]
+}

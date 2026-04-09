@@ -1,0 +1,166 @@
+{
+  "key": "result_experiment_ew_oneloop_v1",
+  "node_type": "result",
+  "experiment_key": "experiment_ew_oneloop_v1",
+  "timestamp": "2026-04-05T15:14:56Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "ew_mw_oneloop_v1_v0",
+      "status": "ok",
+      "output_count": 11
+    },
+    {
+      "key": "ew_gamma_z_corrected_v0",
+      "status": "ok",
+      "output_count": 12
+    },
+    {
+      "key": "ew_gf_corrected_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "M_W one-loop v1 vs measured",
+      "output_key": "result_mw_v1_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "80369.2",
+      "got": "80336.8729108158",
+      "miss_pct": "0.04022",
+      "detail": "predicted 80336.8729108158 ref 80369.2 miss 0.04022%"
+    },
+    {
+      "label": "M_W v1 miss < 0.1%",
+      "output_key": "result_mw_v1_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "target",
+      "got": "0.0402232",
+      "lo": "0",
+      "hi": "0.1",
+      "status": "PASS",
+      "detail": "in [0, 0.1]"
+    },
+    {
+      "label": "sin2_eff v1 vs LEP/SLD",
+      "output_key": "result_sin2_eff_v1_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_SLD",
+      "status": "INFO",
+      "expected": "0.23153",
+      "got": "0.239382066",
+      "miss_pct": "3.391",
+      "detail": "predicted 0.239382066 ref 0.23153 miss 3.391%"
+    },
+    {
+      "label": "Gamma_Z corrected vs measured",
+      "output_key": "result_gamma_z_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "2495.2",
+      "got": "2509.77970945379",
+      "miss_pct": "0.5843",
+      "detail": "predicted 2509.77970945379 ref 2495.2 miss 0.5843%"
+    },
+    {
+      "label": "Gamma_Z miss < 1%",
+      "output_key": "result_gamma_z_corrected_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "target",
+      "got": "0.58431",
+      "lo": "0",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0, 1.0]"
+    },
+    {
+      "label": "G_F corrected vs measured",
+      "output_key": "result_gf_corrected_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "0.0000116638",
+      "got": "1.20183428031057e-5",
+      "miss_pct": "3.04",
+      "detail": "predicted 1.20183428031057e-5 ref 0.0000116638 miss 3.04%"
+    },
+    {
+      "label": "G_F miss < 1%",
+      "output_key": "result_gf_corrected_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "target",
+      "got": "3.03979",
+      "lo": "0",
+      "hi": "1.0",
+      "status": "FAIL",
+      "detail": "3.03979 not in [0, 1.0]"
+    },
+    {
+      "label": "Gamma_Z neutrino channel ~ 500 MeV",
+      "output_key": "result_gamma_z_neutrinos_corrected_v0",
+      "match_mode": "range",
+      "reference_source": "LEP_invisible",
+      "got": "502.204",
+      "lo": "490",
+      "hi": "510",
+      "status": "PASS",
+      "detail": "in [490, 510]"
+    },
+    {
+      "label": "Delta_rho from m_t",
+      "output_key": "result_delta_rho_v1_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "one_loop",
+      "status": "INFO",
+      "expected": "0.00940",
+      "got": "0.0096159392308961",
+      "miss_pct": "2.297",
+      "detail": "predicted 0.0096159392308961 ref 0.00940 miss 2.297%"
+    }
+  ],
+  "outputs": {
+    "result_mw_v1_v0": "80336.8729108158",
+    "result_mw_tree_v0": "79953.3792003491",
+    "result_mw_v1_miss_pct_v0": "0.0402232312679637",
+    "result_mw_tree_miss_pct_v0": "0.517388252777084",
+    "result_mw_improvement_v0": "12.862921164396",
+    "result_delta_rho_v1_v0": "0.0096159392308961",
+    "result_rho_v1_v0": "1.0096159392309",
+    "result_sin2_eff_v1_v0": "0.239382066",
+    "result_sin2_eff_miss_v1_pct_v0": "3.39138167840021",
+    "result_alpha_mz_used_v0": "0.00781543078654495",
+    "result_kappa_z_used_v0": "1.0353",
+    "result_gamma_z_corrected_v0": "2509.77970945379",
+    "result_gamma_z_corrected_miss_pct_v0": "0.58431025383882",
+    "result_gamma_z_measured_v0": "2495.2",
+    "result_gamma_z_neutrinos_corrected_v0": "502.203641108323",
+    "result_gamma_z_leptons_corrected_v0": "252.909175419885",
+    "result_gamma_z_up_quarks_corrected_v0": "598.091287465137",
+    "result_gamma_z_down_quarks_corrected_v0": "1156.57560546044",
+    "result_qcd_factor_v1_v0": "1.03887151327678",
+    "result_delta_vb_used_v0": "-0.00652",
+    "result_fsr_used_v0": "0.00173",
+    "result_sin2_eff_used_v0": "0.23153",
+    "result_rho_used_v0": "1.0096159392309",
+    "result_gf_corrected_v0": "1.20183428031057e-5",
+    "result_gf_corrected_miss_pct_v0": "3.03979121624708",
+    "result_gf_measured_v0": "1.1663788e-5",
+    "result_gf_mw_v1_used_v0": "80336.8729108158",
+    "result_gf_sin2_os_v0": "0.223827458238071",
+    "result_gf_alpha_mz_used_v0": "0.00781543078654495"
+  },
+  "summary": {
+    "derivations_ok": 3,
+    "derivations_err": 0,
+    "comparisons_pass": 3,
+    "comparisons_fail": 1,
+    "comparisons_info": 5,
+    "comparisons_skip": 0
+  }
+}

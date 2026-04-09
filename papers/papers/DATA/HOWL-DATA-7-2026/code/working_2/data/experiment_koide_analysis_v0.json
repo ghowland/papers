@@ -1,0 +1,95 @@
+{
+    "key": "experiment_koide_analysis_v0",
+    "canonical": "experiment_koide_analysis",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Koide full analysis: K and a^2 for leptons, m_tau prediction from K=2/3 hypothesis, C3 closure (tautology + saddle). Three-sector comparison.",
+    "purpose": "program_koide_analysis_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau": 0,
+            "koide_charged_leptons_k": 0,
+            "koide_charged_leptons_a2": 0,
+            "koide_down_quarks_a2": 0,
+            "koide_up_quarks_a2": 0
+        },
+        "derivations": {
+            "koide_ratio": 0,
+            "koide_tau_prediction": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "koide_ratio_v0",
+        "koide_tau_prediction_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "koide_charged_leptons_k_derived_v0",
+        "koide_charged_leptons_a2_derived_v0",
+        "result_tau_mass_koide_two_thirds_derived_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "K(leptons) ~ 2/3",
+            "output_key": "koide_charged_leptons_k_derived_v0",
+            "match_mode": "digits",
+            "expected": "0.666660511",
+            "digits": 9,
+            "reference_source": "computed_from_masses"
+        },
+        {
+            "label": "a^2(leptons) ~ 2",
+            "output_key": "koide_charged_leptons_a2_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "theoretical_hypothesis"
+        },
+        {
+            "label": "m_tau predicted vs measured",
+            "output_key": "result_tau_mass_koide_two_thirds_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "1776.86",
+            "reference_source": "PDG_2022"
+        },
+        {
+            "label": "a^2(down quarks) far from 2",
+            "output_key": "koide_down_quarks_a2_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "theoretical"
+        },
+        {
+            "label": "a^2(up quarks) far from 2",
+            "output_key": "koide_up_quarks_a2_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "theoretical"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_koide_three_sectors_v0",
+            "title": "Koide a^2 across three mass sectors",
+            "type": "bar",
+            "categories": ["Leptons", "Down quarks", "Up quarks", "Target (a^2=2)"],
+            "values_from": [
+                "koide_charged_leptons_a2_derived_v0",
+                "koide_down_quarks_a2_v0",
+                "koide_up_quarks_a2_v0",
+                "2.0"
+            ],
+            "notes": "Only leptons are near a^2 = 2. Quarks: far. The amplitude IS the open problem."
+        }
+    ]
+}
+

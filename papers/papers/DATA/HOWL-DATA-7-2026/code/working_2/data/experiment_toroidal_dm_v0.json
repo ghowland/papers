@@ -1,0 +1,149 @@
+{
+    "key": "experiment_toroidal_dm_v0",
+    "canonical": "experiment_toroidal_dm",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Toroidal DM: amplification factor decomposition, dwarf spheroidal purity spectrum, Faber-Jackson and Tully-Fisher from a0 = cH0/(8R2), virial ratios, frame dragging.",
+    "purpose": "program_toroidal_dm_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "astro_gravitational_constant": 0,
+            "astro_mass_sun": 0,
+            "astro_parsec": 0,
+            "si_speed_of_light": 0,
+            "geom_r2": 0,
+            "cosmo_h0_planck": 0,
+            "cosmo_dm_to_baryon_ratio_prefactor": 0,
+            "cosmo_omega_dm_r2_prefactor": 0,
+            "integer_yang_mills_eleven": 0,
+            "integer_b2_modified_numerator_abs": 0
+        },
+        "derivations": {
+            "cosmo_dm_baryon_ratio": 0,
+            "cosmo_amplification_factor_decomposition": 0,
+            "cosmo_virial_ratio": 0,
+            "cosmo_frame_dragging": 0,
+            "dwarf_purity": 0,
+            "dwarf_cosmic_ratio": 0,
+            "dwarf_faber_jackson": 0,
+            "dwarf_tully_fisher": 0,
+            "gravity_mond_a0": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "cosmo_dm_baryon_ratio_v0",
+        "cosmo_amplification_factor_decomposition_v0",
+        "gravity_mond_a0_v0",
+        "cosmo_virial_ratio_v0",
+        "cosmo_frame_dragging_v0",
+        "dwarf_purity_v0",
+        "dwarf_cosmic_ratio_v0",
+        "dwarf_faber_jackson_v0",
+        "dwarf_tully_fisher_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "cosmo_amplification_reduced_factor_v0",
+        "result_virial_ratio_v0",
+        "result_frame_dragging_negligible_v0",
+        "result_tf_mw_mass_solar_v0",
+        "result_tf_v4_scaling_test_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Amplification reduced = 44/13",
+            "output_key": "cosmo_amplification_reduced_factor_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "44", "den": "13"},
+            "reference_source": "integer_pool"
+        },
+        {
+            "label": "Frame dragging negligible for galaxy",
+            "output_key": "result_frame_dragging_negligible_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "physics"
+        },
+        {
+            "label": "Virial ratio ~ 5-10 (DM dominated)",
+            "output_key": "result_virial_ratio_v0",
+            "match_mode": "range",
+            "lo": "1",
+            "hi": "20",
+            "reference_source": "galactic_dynamics"
+        },
+        {
+            "label": "TF v^4 scaling: TF(440)/TF(220) = 16",
+            "output_key": "result_tf_v4_scaling_test_v0",
+            "match_mode": "digits",
+            "expected": "16",
+            "digits": 4,
+            "reference_source": "scaling_law"
+        },
+        {
+            "label": "Draco DM/vis > 100",
+            "output_key": "result_dwarf_draco_dm_vis_ratio_v0",
+            "match_mode": "range",
+            "lo": "100",
+            "hi": "500",
+            "reference_source": "Walker+2009"
+        },
+        {
+            "label": "Segue1 DM/vis > 1000",
+            "output_key": "result_dwarf_segue1_dm_vis_ratio_v0",
+            "match_mode": "range",
+            "lo": "1000",
+            "hi": "10000",
+            "reference_source": "Simon+2011"
+        },
+        {
+            "label": "Fornax DM/vis order of magnitude",
+            "output_key": "result_dwarf_fornax_dm_vis_ratio_v0",
+            "match_mode": "range",
+            "lo": "3",
+            "hi": "20",
+            "reference_source": "Walker+2009"
+        },
+        {
+            "label": "DM/baryon vs Planck",
+            "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "5.3204",
+            "reference_source": "Planck_2018"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_purity_spectrum_v0",
+            "title": "Dwarf soliton purity spectrum",
+            "type": "bar",
+            "categories": ["Segue1", "Draco", "Sculptor", "Fornax"],
+            "values_from": [
+                "result_dwarf_segue1_dm_vis_ratio_v0",
+                "result_dwarf_draco_dm_vis_ratio_v0",
+                "result_dwarf_sculptor_dm_vis_ratio_v0",
+                "result_dwarf_fornax_dm_vis_ratio_v0"
+            ],
+            "notes": "UF dwarfs: nearly pure dark solitons. Classical: partial baryon loading."
+        },
+        {
+            "key": "diagram_cosmological_predictions_toroidal_v0",
+            "title": "DM predictions from beta integers",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "DM/baryon = (22/13)*pi", "predicted": "cosmo_dm_to_baryon_ratio_predicted_derived_v0", "measured": "5.3204"},
+                {"label": "MW TF mass (Msun)", "predicted": "result_tf_mw_mass_solar_v0", "measured": "360000000000"}
+            ],
+            "notes": "Same a0 = cH0/(8R2) for both TF and FJ"
+        }
+    ]
+}
+

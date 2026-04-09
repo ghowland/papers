@@ -1,0 +1,101 @@
+{
+    "key": "experiment_cosmology_chain_v0",
+    "canonical": "experiment_cosmology_chain",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Full cosmological parameter cascade: DM/baryon -> Omega_DM -> Omega_b -> Omega_m -> Omega_DE. Flatness check Omega_m + Omega_DE = 1.",
+    "purpose": "program_beta_unification_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "geom_r2": 0,
+            "cosmo_dm_to_baryon_ratio_prefactor": 0,
+            "cosmo_omega_dm_r2_prefactor": 0,
+            "cosmo_omega_b_planck2018": 0,
+            "cosmo_omega_dm_planck2018": 0,
+            "cosmo_omega_matter_planck2018": 0,
+            "cosmo_omega_de_planck2018": 0
+        },
+        "derivations": {
+            "cosmo_dm_baryon_ratio": 0,
+            "cosmo_omega_dm": 0,
+            "cosmo_omega_b": 0,
+            "cosmo_omega_matter": 0,
+            "cosmo_omega_de": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "cosmo_dm_baryon_ratio_v0",
+        "cosmo_omega_dm_v0",
+        "cosmo_omega_b_v0",
+        "cosmo_omega_matter_v0",
+        "cosmo_omega_de_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_cosmo_omega_b_v0",
+        "result_cosmo_omega_matter_v0",
+        "result_cosmo_omega_de_v0",
+        "result_cosmo_flatness_sum_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Flatness: Omega_m + Omega_DE = 1",
+            "output_key": "result_cosmo_flatness_sum_v0",
+            "match_mode": "digits",
+            "expected": "1.0",
+            "digits": 10,
+            "reference_source": "flatness_constraint"
+        },
+        {
+            "label": "DM/baryon vs Planck",
+            "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+            "match_mode": "miss_pct",
+            "expected": "5.3204",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_b predicted",
+            "output_key": "result_cosmo_omega_b_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0490",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_m predicted",
+            "output_key": "result_cosmo_omega_matter_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.3111",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "Omega_DE predicted",
+            "output_key": "result_cosmo_omega_de_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.6889",
+            "reference_source": "Planck_2018"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_omega_cascade_v0",
+            "title": "Cosmological parameter cascade from beta integers",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "DM/baryon = (22/13)*pi", "predicted": "cosmo_dm_to_baryon_ratio_predicted_derived_v0", "measured": "5.3204"},
+                {"label": "Omega_b", "predicted": "result_cosmo_omega_b_v0", "measured": "0.0490"},
+                {"label": "Omega_m", "predicted": "result_cosmo_omega_matter_v0", "measured": "0.3111"},
+                {"label": "Omega_DE", "predicted": "result_cosmo_omega_de_v0", "measured": "0.6889"}
+            ],
+            "notes": "All from two integers: YM=11, |b2_mod|=13. R2 cancels in Omega_DM."
+        }
+    ]
+}
+

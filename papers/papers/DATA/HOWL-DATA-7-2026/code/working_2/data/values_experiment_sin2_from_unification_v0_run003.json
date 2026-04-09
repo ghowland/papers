@@ -1,0 +1,279 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_sin2_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_sin2_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23122",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_s_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_s_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.107686409908489",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_gut_inv_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_gut_inv",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.470283413988",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_l_gut_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_l_gut_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.97760908505324",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_m_gut_log10_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_m_gut_log10_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "15.5426000541325",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_sin2_miss_pct_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_sin2_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_s_miss_pct_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_s_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.740330586026",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_sin2_measured_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_sin2_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23122",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_s_measured_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_s_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.118",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_1_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_1_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "63.2103212683764",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_2_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_2_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "31.6854637297059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz",
+      "version": 0,
+      "node_type": "value",
+      "value": "9.28622284696638",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz_predicted_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "9.28622284696638",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz_measured_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_3_inv_mz_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.47457627118644",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_l_12_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_l_12",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.97760908505324",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_l_23_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_l_23",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.15797499078211",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_delta_l_pct_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_delta_l_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.62354501221234",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_sin2_formula_check_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_sin2_formula_check",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.34095588761524e-52",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_iterations_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_iterations",
+      "version": 0,
+      "node_type": "value",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_convergence_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_convergence",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_alpha_em_inv_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_alpha_em_inv_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999177",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_b1_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_b1_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.16666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_b2_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_b2_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-2.16666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_b3_used_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_b3_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-6.66666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    },
+    {
+      "key": "experiment_sin2_from_unification_v0_run003_result_m_gut_mev_v0",
+      "canonical": "experiment_sin2_from_unification_v0_run003_result_m_gut_mev",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.48818936885793e+18",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_unification_v0_run003"
+    }
+  ]
+}

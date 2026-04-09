@@ -1,0 +1,157 @@
+{
+  "key": "result_experiment_bbn_extended_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_bbn_extended_v0",
+  "timestamp": "2026-04-06T03:31:44Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "bridge_omega_b_from_integers_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_eta_from_omega_b_v0",
+      "status": "ok",
+      "output_count": 9
+    },
+    {
+      "key": "bridge_li7_from_eta_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "bridge_he3_from_eta_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "bridge_li7_problem_v0",
+      "status": "ok",
+      "output_count": 7
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Li-7/H predicted vs Spite plateau",
+      "output_key": "result_li7_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Sbordone_2010",
+      "status": "INFO",
+      "expected": "0.000000000160",
+      "got": "4.73998810761166e-10",
+      "miss_pct": "196.2",
+      "detail": "predicted 4.73998810761166e-10 ref 0.000000000160 miss 196.2%"
+    },
+    {
+      "label": "Li-7 problem ratio ~ 3",
+      "output_key": "result_li7_problem_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "BBN_lithium_problem",
+      "got": "2.96249",
+      "lo": "2.0",
+      "hi": "4.0",
+      "status": "PASS",
+      "detail": "in [2.0, 4.0]"
+    },
+    {
+      "label": "Li-7 predicted within BBN range (3-6 x10^-10)",
+      "output_key": "result_li7_x1e10_derived_v0",
+      "match_mode": "range",
+      "reference_source": "BBN_prediction",
+      "got": "4.73999",
+      "lo": "3.0",
+      "hi": "6.0",
+      "status": "PASS",
+      "detail": "in [3.0, 6.0]"
+    },
+    {
+      "label": "He-3/H predicted vs galactic",
+      "output_key": "result_he3_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Bania_2002",
+      "status": "INFO",
+      "expected": "0.0000110",
+      "got": "1.02746517154383e-5",
+      "miss_pct": "6.594",
+      "detail": "predicted 1.02746517154383e-5 ref 0.0000110 miss 6.594%"
+    },
+    {
+      "label": "He-3 predicted within 1 sigma",
+      "output_key": "result_he3_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Bania_2002",
+      "got": "0.362674",
+      "lo": "0",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0, 2.0]"
+    },
+    {
+      "label": "eta_10 from integers (recomputed)",
+      "output_key": "result_eta10_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "6.104",
+      "got": "6.08953448897262",
+      "miss_pct": "0.237",
+      "detail": "predicted 6.08953448897262 ref 6.104 miss 0.237%"
+    },
+    {
+      "label": "Li-7 problem is real (ratio > 2)",
+      "output_key": "result_li7_problem_is_real_v0",
+      "match_mode": "bool",
+      "reference_source": "BBN_lithium_problem",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    }
+  ],
+  "outputs": {
+    "result_omega_b_derived_v0": "0.049035637966613",
+    "result_omega_b_measured_v0": "0.049",
+    "result_omega_b_miss_pct_v0": "0.0727305441080672",
+    "result_omega_m_derived_v0": "0.309735637966613",
+    "result_omega_m_measured_v0": "0.3111",
+    "result_omega_m_miss_pct_v0": "0.438560602181629",
+    "result_dm_baryon_ratio_used_v0": "5.31654141376734",
+    "result_omega_dm_input_v0": "0.2607",
+    "result_eta_derived_v0": "6.08953448897262e-10",
+    "result_eta10_derived_v0": "6.08953448897262",
+    "result_eta_measured_v0": "6.104e-10",
+    "result_eta10_measured_v0": "6.104",
+    "result_eta_miss_pct_v0": "0.23698412561246",
+    "result_rho_crit_computed_v0": "8.53145574533961e-27",
+    "result_n_gamma_computed_v0": "410726847.924845",
+    "result_h0_si_v0": "2.18405703175632e-18",
+    "result_omega_b_used_v0": "0.049035637966613",
+    "result_li7_derived_v0": "4.73998810761166e-10",
+    "result_li7_x1e10_derived_v0": "4.73998810761166",
+    "result_li7_measured_v0": "1.6e-10",
+    "result_li7_miss_pct_v0": "196.249256725728",
+    "result_li7_sigma_v0": "10.4666270253722",
+    "result_eta10_used_v0": "6.08953448897262",
+    "result_he3_derived_v0": "1.02746517154383e-5",
+    "result_he3_x1e5_derived_v0": "1.02746517154383",
+    "result_he3_measured_v0": "1.1e-5",
+    "result_he3_miss_pct_v0": "6.59407531419698",
+    "result_he3_sigma_v0": "0.362674142280834",
+    "result_li7_problem_ratio_v0": "2.96249256725729",
+    "result_li7_problem_is_real_v0": true,
+    "result_li7_predicted_v0": "4.73998810761166e-10",
+    "result_li7_observed_v0": "1.6e-10",
+    "result_eta10_needed_for_li7_v0": "1.40298507462687",
+    "result_eta10_li7_tension_v0": "4.68654941434575"
+  },
+  "summary": {
+    "derivations_ok": 5,
+    "derivations_err": 0,
+    "comparisons_pass": 4,
+    "comparisons_fail": 0,
+    "comparisons_info": 3,
+    "comparisons_skip": 0
+  }
+}

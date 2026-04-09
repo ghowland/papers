@@ -1,0 +1,95 @@
+{
+  "key": "result_experiment_qed_full_corrections_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_qed_full_corrections_v0",
+  "timestamp": "2026-04-05T16:35:12Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "qed_alpha_full_corrections_v0",
+      "status": "error",
+      "error": "qed_ae_electron_measured_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "qed_derived_codata_corrected_v0",
+      "status": "error",
+      "error": "'missing value: result_alpha_inv_corrected_v0'"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "alpha^-1 corrected vs CODATA",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha^-1 corrected vs Rb recoil",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha^-1 corrected vs Cs recoil",
+      "output_key": "result_alpha_inv_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha^-1 improvement over uncorrected",
+      "output_key": "result_alpha_inv_improvement_ppb_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "R_inf corrected vs CODATA",
+      "output_key": "result_rydberg_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "a_0 corrected vs CODATA",
+      "output_key": "result_bohr_radius_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "mu_0 corrected vs CODATA",
+      "output_key": "result_mu0_corrected_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "Total correction magnitude",
+      "output_key": "result_total_correction_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "alpha^-1 corrected miss vs CODATA < 1 ppb",
+      "output_key": "result_alpha_inv_corrected_miss_ppb_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 2,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 9
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "key": "result_experiment_qed_derived_codata_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_qed_derived_codata_v0",
+  "timestamp": "2026-04-05T12:59:03Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "qed_coefficients_assemble_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "qed_alpha_from_ae_v0",
+      "status": "ok",
+      "output_count": 17
+    },
+    {
+      "key": "qed_derived_codata_v0",
+      "status": "ok",
+      "output_count": 9
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "A2 = -0.3285 (from Q335 analytical)",
+      "output_key": "result_qed_a2_v0",
+      "match_mode": "digits",
+      "reference_source": "Petermann_1957",
+      "expected": "-0.328478965579",
+      "got": "-0.328478965579194",
+      "digits": 12,
+      "miss_pct": "5.906e-11",
+      "status": "PASS",
+      "detail": "12-digit match, miss 5.906e-11%"
+    },
+    {
+      "label": "A3 = 1.1812 (from Q335 analytical)",
+      "output_key": "result_qed_a3_v0",
+      "match_mode": "digits",
+      "reference_source": "Laporta_Remiddi_1996",
+      "expected": "1.18124145659",
+      "got": "1.1812414565872",
+      "digits": 11,
+      "miss_pct": "2.37e-10",
+      "status": "PASS",
+      "detail": "11-digit match, miss 2.37e-10%"
+    },
+    {
+      "label": "alpha_inv(a_e) ~ 137.036",
+      "output_key": "result_alpha_inv_from_ae_v0",
+      "match_mode": "range",
+      "reference_source": "physics",
+      "got": "137.036",
+      "lo": "137.035",
+      "hi": "137.037",
+      "status": "PASS",
+      "detail": "in [137.035, 137.037]"
+    },
+    {
+      "label": "R_infinity from derived alpha vs CODATA",
+      "output_key": "result_rydberg_from_derived_alpha_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "10973731.568157",
+      "got": "10973731.6556419",
+      "miss_pct": "7.972e-7",
+      "detail": "predicted 10973731.6556419 ref 10973731.568157 miss 7.972e-7%"
+    },
+    {
+      "label": "R_infinity digits of agreement",
+      "output_key": "result_rydberg_from_derived_alpha_v0",
+      "match_mode": "digits",
+      "reference_source": "CODATA_2022",
+      "expected": "10973731.568",
+      "got": "10973731.6556419",
+      "digits": 8,
+      "miss_pct": "7.987e-7",
+      "status": "PASS",
+      "detail": "8-digit match, miss 7.987e-7%"
+    },
+    {
+      "label": "Bohr radius from derived alpha vs CODATA",
+      "output_key": "result_bohr_from_derived_alpha_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "5.29177210544e-11",
+      "got": "5.29177208435434e-11",
+      "miss_pct": "3.985e-7",
+      "detail": "predicted 5.29177208435434e-11 ref 5.29177210544e-11 miss 3.985e-7%"
+    },
+    {
+      "label": "mu_0 from derived alpha vs CODATA",
+      "output_key": "result_mu0_from_derived_alpha_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "1.25663706127e-6",
+      "got": "1.25663706628085e-6",
+      "miss_pct": "3.988e-7",
+      "detail": "predicted 1.25663706628085e-6 ref 1.25663706127e-6 miss 3.988e-7%"
+    },
+    {
+      "label": "Newton residual < 1e-50",
+      "output_key": "result_newton_residual_v0",
+      "match_mode": "range",
+      "reference_source": "numerical_verification",
+      "got": "1.59475e-204",
+      "lo": "0",
+      "hi": "1e-50",
+      "status": "PASS",
+      "detail": "in [0, 1e-50]"
+    }
+  ],
+  "outputs": {
+    "result_qed_a1_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "2"
+    },
+    "result_qed_a2_v0": "-0.328478965579194",
+    "result_qed_a3_v0": "1.1812414565872",
+    "result_qed_a4_v0": "-1.91224576492645",
+    "result_qed_a5_v0": "5.891",
+    "result_ae_forward_from_known_alpha_v0": "0.00115965217597119",
+    "result_ae_forward_residual_v0": "-4.61880502023806e-12",
+    "result_ae_forward_residual_rel_v0": "-3.98292272247368e-9",
+    "result_alpha_inv_known_v0": "137.035999177",
+    "result_alpha_inv_from_ae_v0": "137.035998630375",
+    "result_alpha_from_ae_v0": "0.00729735259343996",
+    "result_alpha_inv_from_ae_full_v0": "137.035998630374672067213142569",
+    "result_x_alpha_over_pi_v0": "0.00232281947346086",
+    "result_newton_iterations_v0": 6,
+    "result_newton_residual_v0": "1.59475119217561e-204",
+    "result_diff_vs_cs_ppb_v0": "3.03296455549078",
+    "result_diff_vs_rb_ppb_v0": "4.20054096199551",
+    "result_diff_vs_codata_ppb_v0": "3.31026395228253",
+    "result_ae_input_v0": "0.00115965218059",
+    "result_ae_recovered_v0": "0.00115965218059",
+    "result_a4_used_v0": "-1.91224576492645",
+    "result_a5_used_v0": "5.891",
+    "result_rydberg_from_derived_alpha_v0": "10973731.6556419",
+    "result_bohr_from_derived_alpha_v0": "5.29177208435434e-11",
+    "result_mu0_from_derived_alpha_v0": "1.25663706628085e-6",
+    "result_rydberg_miss_pct_v0": "7.97221351280856e-7",
+    "result_bohr_miss_pct_v0": "3.98461270059113e-7",
+    "result_rydberg_digits_v0": "18.6473036521135",
+    "result_bohr_digits_v0": "19.3408257187396",
+    "result_alpha_used_v0": "0.00729735259343995",
+    "result_m_e_kg_used_v0": "9.10938371386875e-31"
+  },
+  "summary": {
+    "derivations_ok": 3,
+    "derivations_err": 0,
+    "comparisons_pass": 5,
+    "comparisons_fail": 0,
+    "comparisons_info": 3,
+    "comparisons_skip": 0
+  }
+}

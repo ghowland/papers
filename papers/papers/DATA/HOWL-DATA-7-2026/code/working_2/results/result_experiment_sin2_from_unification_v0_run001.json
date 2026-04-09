@@ -1,0 +1,124 @@
+{
+  "key": "result_experiment_sin2_from_unification_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_sin2_from_unification_v0",
+  "timestamp": "2026-04-06T02:39:16Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "unification_sin2_alpha_s_prediction_v0",
+      "status": "ok",
+      "output_count": 19
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "sin2_theta_W predicted vs measured",
+      "output_key": "result_sin2_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.23122",
+      "got": "0.375",
+      "miss_pct": "62.18",
+      "detail": "predicted 0.375 ref 0.23122 miss 62.18%"
+    },
+    {
+      "label": "sin2_theta_W within 5% of measured",
+      "output_key": "result_sin2_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "one_loop_expectation",
+      "got": "62.1832",
+      "lo": "0",
+      "hi": "5.0",
+      "status": "FAIL",
+      "detail": "62.1832 not in [0, 5.0]"
+    },
+    {
+      "label": "alpha_s predicted vs measured",
+      "output_key": "result_alpha_s_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.1180",
+      "got": "0.0194596068382171",
+      "miss_pct": "83.51",
+      "detail": "predicted 0.0194596068382171 ref 0.1180 miss 83.51%"
+    },
+    {
+      "label": "alpha_s within 15% of measured",
+      "output_key": "result_alpha_s_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "one_loop_expectation",
+      "got": "83.5088",
+      "lo": "0",
+      "hi": "15.0",
+      "status": "FAIL",
+      "detail": "83.5088 not in [0, 15.0]"
+    },
+    {
+      "label": "log10(M_GUT/GeV) in [14, 17]",
+      "output_key": "result_m_gut_log10_predicted_v0",
+      "match_mode": "range",
+      "reference_source": "GUT_bounds",
+      "got": "1.95994",
+      "lo": "14",
+      "hi": "17",
+      "status": "FAIL",
+      "detail": "1.95994 not in [14, 17]"
+    },
+    {
+      "label": "Self-consistent iteration converged",
+      "output_key": "result_iterations_v0",
+      "match_mode": "range",
+      "reference_source": "numerical",
+      "got": "1.0",
+      "lo": "1",
+      "hi": "20",
+      "status": "PASS",
+      "detail": "in [1, 20]"
+    },
+    {
+      "label": "sin2 change in last iteration < 1e-10",
+      "output_key": "result_convergence_v0",
+      "match_mode": "range",
+      "reference_source": "numerical",
+      "got": "0.0",
+      "lo": "0",
+      "hi": "1e-10",
+      "status": "PASS",
+      "detail": "in [0, 1e-10]"
+    }
+  ],
+  "outputs": {
+    "result_sin2_predicted_v0": "0.375",
+    "result_alpha_s_predicted_v0": "0.0194596068382171",
+    "result_alpha_gut_inv_v0": "51.388499691375",
+    "result_l_gut_predicted_v0": "0.0",
+    "result_m_gut_log10_predicted_v0": "1.95993578550263",
+    "result_sin2_miss_pct_v0": "62.1832021451432",
+    "result_alpha_s_miss_pct_v0": "83.5088077642228",
+    "result_sin2_measured_v0": "0.23122",
+    "result_alpha_s_measured_v0": "0.118",
+    "result_iterations_v0": 1,
+    "result_convergence_v0": "0.0",
+    "result_alpha_em_inv_used_v0": "137.035999177",
+    "result_b1_used_v0": "4.16666666666667",
+    "result_b2_used_v0": "-2.16666666666667",
+    "result_b3_used_v0": "-6.66666666666667",
+    "result_alpha_1_inv_mz_v0": "51.388499691375",
+    "result_alpha_2_inv_mz_v0": "51.388499691375",
+    "result_alpha_3_inv_mz_v0": "51.388499691375",
+    "result_m_gut_mev_v0": "91187.6"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 3,
+    "comparisons_info": 2,
+    "comparisons_skip": 0
+  }
+}

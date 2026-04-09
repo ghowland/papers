@@ -1,0 +1,20 @@
+{
+  "key": "result_experiment_boundary_scales_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_boundary_scales_v0",
+  "timestamp": "2026-04-05T09:44:03Z",
+  "status": "complete",
+  "execution_log": [],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 0,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}
