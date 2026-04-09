@@ -1,0 +1,319 @@
+{
+  "name": "experiment_gr_reading_depth_mega_v0",
+  "description": "GR time dilation as soliton boundary reading depth. Tests: Pound-Rebka, GPS gravitational and velocity dilation, Shapiro delay, Mercury perihelion, solar redshift, light deflection, muon lifetime dilation, Sirius B redshift, S2 star redshift, Tokyo Skytree, Hulse-Taylor, Hubble tension computation (expected to fail), supernova stretch, reading depth potentials across the soliton hierarchy, Planck step counts for particle lifetimes.",
+  "version": "v0",
+  "date": "2026-04-09",
+  "paper": "PHYS-41",
+  "execution_plan": [
+    {
+      "step": 1,
+      "function": "gr_reading_depth_mega_v0",
+      "description": "Compute all GR time dilation predictions from reading depth (Phi/c^2) and compare to measured values. Also compute Hubble tension potential, Planck step counts, and reading depth hierarchy."
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "C01: Pound-Rebka shift prediction",
+      "output_key": "pound_rebka_predicted_shift",
+      "match_mode": "pct_miss",
+      "match_value": "2.46e-15",
+      "threshold_pct": 2.0,
+      "notes": "GR prediction gh/c^2 for 22.5m at Earth surface"
+    },
+    {
+      "label": "C02: GPS gravitational dilation prediction",
+      "output_key": "gps_grav_dilation_us_per_day",
+      "match_mode": "pct_miss",
+      "match_value": "45.85",
+      "threshold_pct": 1.0,
+      "notes": "Gravitational reading depth effect at GPS orbit"
+    },
+    {
+      "label": "C03: GPS velocity dilation prediction",
+      "output_key": "gps_velocity_dilation_us_per_day",
+      "match_mode": "pct_miss",
+      "match_value": "7.21",
+      "threshold_pct": 2.0,
+      "notes": "Velocity reading allocation effect at GPS orbit"
+    },
+    {
+      "label": "C04: GPS net correction prediction",
+      "output_key": "gps_net_correction_us_per_day",
+      "match_mode": "pct_miss",
+      "match_value": "38.64",
+      "threshold_pct": 2.0,
+      "notes": "Net reading depth correction"
+    },
+    {
+      "label": "C05: Skytree shift prediction (450m)",
+      "output_key": "skytree_predicted_shift",
+      "match_mode": "pct_miss",
+      "match_value": "4.93e-15",
+      "threshold_pct": 2.0,
+      "notes": "Reading depth gradient over 450m within Earth soliton"
+    },
+    {
+      "label": "C06: Solar limb gravitational redshift",
+      "output_key": "solar_redshift_ms",
+      "match_mode": "pct_miss",
+      "match_value": "633.1",
+      "threshold_pct": 2.0,
+      "notes": "Reading depth at Sun's surface"
+    },
+    {
+      "label": "C07: Mercury perihelion advance",
+      "output_key": "mercury_perihelion_arcsec_century",
+      "match_mode": "pct_miss",
+      "match_value": "42.98",
+      "threshold_pct": 1.0,
+      "notes": "Reading depth precession in deep solar soliton"
+    },
+    {
+      "label": "C08: Light deflection at solar limb",
+      "output_key": "light_deflection_arcsec",
+      "match_mode": "pct_miss",
+      "match_value": "1.7512",
+      "threshold_pct": 1.0,
+      "notes": "Photon spatial update path curving in solar reading depth"
+    },
+    {
+      "label": "C09: Sirius B gravitational redshift",
+      "output_key": "sirius_b_redshift_kms",
+      "match_mode": "pct_miss",
+      "match_value": "89",
+      "threshold_pct": 20.0,
+      "notes": "Deep compact soliton reading depth"
+    },
+    {
+      "label": "C10: Muon cosmic ray gamma factor",
+      "output_key": "muon_cosmic_gamma_sr",
+      "match_mode": "pct_miss",
+      "match_value": "15.82",
+      "threshold_pct": 2.0,
+      "notes": "Velocity reading allocation: gamma = 1/sqrt(1 - beta^2)"
+    },
+    {
+      "label": "C11: Muon cosmic ray dilated lifetime",
+      "output_key": "muon_cosmic_dilated_lifetime_us",
+      "match_mode": "pct_miss",
+      "match_value": "34.7",
+      "threshold_pct": 5.0,
+      "notes": "Dilated lifetime = gamma * rest lifetime"
+    },
+    {
+      "label": "C12: Earth surface Phi/c^2",
+      "output_key": "earth_surface_phi_c2",
+      "match_mode": "pct_miss",
+      "match_value": "6.95e-10",
+      "threshold_pct": 2.0,
+      "notes": "Reading depth of Earth surface from GM/(Rc^2)"
+    },
+    {
+      "label": "C13: Sun surface Phi/c^2",
+      "output_key": "sun_surface_phi_c2",
+      "match_mode": "pct_miss",
+      "match_value": "2.12e-6",
+      "threshold_pct": 2.0,
+      "notes": "Reading depth of Sun surface"
+    },
+    {
+      "label": "C14: GPS orbit Phi/c^2",
+      "output_key": "gps_orbit_phi_c2",
+      "match_mode": "pct_miss",
+      "match_value": "2.34e-10",
+      "threshold_pct": 5.0,
+      "notes": "Reading depth at GPS altitude"
+    },
+    {
+      "label": "C15: S2 star redshift at Sgr A*",
+      "output_key": "s2_redshift_kms",
+      "match_mode": "pct_miss",
+      "match_value": "200",
+      "threshold_pct": 15.0,
+      "notes": "Reading depth of Sgr A* soliton at S2 periapsis"
+    },
+    {
+      "label": "C16: SN Ia stretch at z=0.5",
+      "output_key": "sn_ia_stretch_z05",
+      "match_mode": "pct_miss",
+      "match_value": "1.50",
+      "threshold_pct": 2.0,
+      "notes": "Cosmological reading depth ratio (1+z)"
+    },
+    {
+      "label": "C17: Hubble tension ratio",
+      "output_key": "hubble_tension_ratio",
+      "match_mode": "info",
+      "notes": "H0(local)/H0(CMB) = reading depth ratio"
+    },
+    {
+      "label": "C18: Galactic potential for Hubble tension",
+      "output_key": "galactic_phi_c2_total",
+      "match_mode": "info",
+      "notes": "Total Phi/c^2 including DM amplification — expected to be ~5 orders too small"
+    },
+    {
+      "label": "C19: Hubble tension shortfall orders",
+      "output_key": "hubble_shortfall_orders",
+      "match_mode": "info",
+      "notes": "log10(required / available) — expected ~5"
+    },
+    {
+      "label": "C20: Speed of light = l_P / t_P",
+      "output_key": "c_from_planck_units",
+      "match_mode": "pct_miss",
+      "match_value": "299792458",
+      "threshold_pct": 0.001,
+      "notes": "Maximum reading update rate from Planck units"
+    },
+    {
+      "label": "C21: Universe age in Planck steps",
+      "output_key": "universe_age_planck_steps_log10",
+      "match_mode": "range",
+      "match_min": "60",
+      "match_max": "62",
+      "notes": "Total reading depth of outermost soliton"
+    },
+    {
+      "label": "C22: Muon lifetime in Planck steps",
+      "output_key": "muon_lifetime_planck_steps_log10",
+      "match_mode": "range",
+      "match_min": "37",
+      "match_max": "38",
+      "notes": "Muon reading persistence"
+    },
+    {
+      "label": "C23: Proton lifetime in Planck steps (from M_GUT)",
+      "output_key": "proton_lifetime_planck_steps_log10",
+      "match_mode": "range",
+      "match_min": "76",
+      "match_max": "80",
+      "notes": "Proton reading persistence — deepest stable hadronic reading"
+    },
+    {
+      "label": "C24: Reading depth hierarchy correct ordering",
+      "output_key": "hierarchy_ordering_correct",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Deeper solitons have larger Phi/c^2"
+    },
+    {
+      "label": "C25: Hafele-Keating westbound within uncertainty",
+      "output_key": "hafele_keating_west_consistent",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Westbound clock prediction consistent with GR and measurement"
+    },
+    {
+      "label": "C26: Hafele-Keating eastbound within uncertainty",
+      "output_key": "hafele_keating_east_consistent",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Eastbound clock prediction consistent with GR and measurement"
+    },
+    {
+      "label": "C27: Hulse-Taylor orbital decay",
+      "output_key": "hulse_taylor_decay_consistent",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Binary pulsar reading depth energy radiation matches GR to 0.2%"
+    },
+    {
+      "label": "C28: Gravity Probe A consistency",
+      "output_key": "gravity_probe_a_shift",
+      "match_mode": "pct_miss",
+      "match_value": "7.11e-10",
+      "threshold_pct": 5.0,
+      "notes": "Suborbital reading depth profile"
+    },
+    {
+      "label": "C29: Cassini PPN gamma consistent with 1",
+      "output_key": "cassini_gamma_consistent",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "PPN gamma = 1 + (2.1 +/- 2.3)e-5, consistent with GR"
+    },
+    {
+      "label": "C30: c = l_P / t_P identity",
+      "output_key": "c_equals_lp_over_tp",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Speed of light IS the maximum reading update rate"
+    },
+    {
+      "label": "C31: All GR experiments on reading depth line",
+      "output_key": "all_on_gr_line",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Every experiment Phi/c^2 matches measured dilation within its uncertainty"
+    },
+    {
+      "label": "C32: Reading depth at Earth surface < Sun surface < neutron star",
+      "output_key": "depth_ordering_astro",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Astrophysical reading depth ordering correct"
+    },
+    {
+      "label": "C33: Hubble tension CANNOT be explained by galactic potential",
+      "output_key": "hubble_tension_computation_failed",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Expected FAIL — galactic Phi/c^2 ~ 10^-6 vs required ~0.08"
+    },
+    {
+      "label": "C34: Schwarzschild radius of Sun from reading depth",
+      "output_key": "sun_schwarzschild_radius_m",
+      "match_mode": "pct_miss",
+      "match_value": "2953",
+      "threshold_pct": 2.0,
+      "notes": "r_s = 2GM/c^2 — radius where reading depth diverges"
+    },
+    {
+      "label": "C35: Schwarzschild radius of Earth from reading depth",
+      "output_key": "earth_schwarzschild_radius_m",
+      "match_mode": "pct_miss",
+      "match_value": "0.00887",
+      "threshold_pct": 2.0,
+      "notes": "r_s = 2GM/c^2 for Earth"
+    },
+    {
+      "label": "C36: Shapiro delay magnitude (solar limb)",
+      "output_key": "shapiro_delay_solar_limb_us",
+      "match_mode": "pct_miss",
+      "match_value": "250",
+      "threshold_pct": 10.0,
+      "notes": "Extra Planck steps from photon traversing Sun's deep reading zone"
+    },
+    {
+      "label": "C37: DM amplification factor",
+      "output_key": "dm_amplification_factor",
+      "match_mode": "pct_miss",
+      "match_value": "5.3165",
+      "threshold_pct": 1.0,
+      "notes": "(22/13)*pi from HOWL framework"
+    },
+    {
+      "label": "C38: Neutron star surface Phi/c^2 in correct range",
+      "output_key": "neutron_star_phi_c2_range",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Phi/c^2 ~ 0.15-0.35 for typical NS"
+    },
+    {
+      "label": "C39: Event horizon is Phi/c^2 = 0.5 (reading depth divergence)",
+      "output_key": "event_horizon_phi_c2",
+      "match_mode": "pct_miss",
+      "match_value": "0.5",
+      "threshold_pct": 0.1,
+      "notes": "At r = r_s, Phi/c^2 = 0.5 exactly — update rate drops to zero"
+    },
+    {
+      "label": "C40: Minkowski signature (one negative, three positive)",
+      "output_key": "minkowski_signature_correct",
+      "match_mode": "exact",
+      "match_value": "True",
+      "notes": "Exactly one coordinate has opposite sign = exactly one is reading depth"
+    }
+  ]
+}

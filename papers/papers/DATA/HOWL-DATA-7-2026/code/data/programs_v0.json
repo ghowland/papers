@@ -522,6 +522,17 @@
         "program_beta_unification": "extends one/two-loop to three-loop and threshold",
         "program_proton_decay": "threshold corrections modify tau_p prediction"
       }
+    },
+    {
+        "__paste_into_programs_json": true,
+        "entry": {
+            "name": "program_gr_reading_depth_v0",
+            "description": "GR time dilation as reading depth — mega-experiment testing the reading depth interpretation across gravitational, SR, cosmological, and astrophysical domains",
+            "paper": "PHYS-41",
+            "experiments": [
+            "experiment_gr_reading_depth_mega_v0"
+            ]
+        }
     }
   ]
 }
