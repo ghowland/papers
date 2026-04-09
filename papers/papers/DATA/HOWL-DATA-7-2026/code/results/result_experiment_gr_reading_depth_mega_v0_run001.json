@@ -1,0 +1,341 @@
+{
+  "key": "result_experiment_gr_reading_depth_mega_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_gr_reading_depth_mega_v0",
+  "timestamp": "2026-04-09T13:17:05Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "gr_reading_depth_mega_v0",
+      "status": "ok",
+      "output_count": 33
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "C01: Pound-Rebka shift prediction",
+      "output_key": "pound_rebka_predicted_shift",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C02: GPS gravitational dilation (us/day)",
+      "output_key": "gps_grav_dilation_us_per_day",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C03: GPS velocity dilation (us/day)",
+      "output_key": "gps_velocity_dilation_us_per_day",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C04: GPS net correction (us/day)",
+      "output_key": "gps_net_correction_us_per_day",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C05: Tokyo Skytree 450m shift",
+      "output_key": "skytree_predicted_shift",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C06: Solar limb gravitational redshift (m/s)",
+      "output_key": "solar_redshift_ms",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C07: Mercury perihelion (arcsec/century)",
+      "output_key": "mercury_perihelion_arcsec_century",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C08: Light deflection at solar limb (arcsec)",
+      "output_key": "light_deflection_arcsec",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C09: Sirius B gravitational redshift (km/s)",
+      "output_key": "sirius_b_redshift_kms",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C10: Muon cosmic ray gamma",
+      "output_key": "muon_cosmic_gamma_sr",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C11: Muon dilated lifetime (us)",
+      "output_key": "muon_cosmic_dilated_lifetime_us",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C12: Earth surface Phi/c^2",
+      "output_key": "earth_surface_phi_c2",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C13: Sun surface Phi/c^2",
+      "output_key": "sun_surface_phi_c2",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C14: GPS orbit Phi/c^2",
+      "output_key": "gps_orbit_phi_c2",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C15: S2 star redshift at Sgr A* (km/s)",
+      "output_key": "s2_redshift_kms",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C16: SN Ia stretch at z=0.5",
+      "output_key": "sn_ia_stretch_z05",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C17: Hubble tension ratio (info)",
+      "output_key": "hubble_tension_ratio",
+      "match_mode": "info",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C18: Galactic potential for Hubble tension (info)",
+      "output_key": "galactic_phi_c2_total",
+      "match_mode": "info",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C19: Hubble shortfall orders (info)",
+      "output_key": "hubble_shortfall_orders",
+      "match_mode": "info",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C20: c from Planck units",
+      "output_key": "c_from_planck_units",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C21: Universe age in Planck steps (log10)",
+      "output_key": "universe_age_planck_steps_log10",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C22: Muon lifetime in Planck steps (log10)",
+      "output_key": "muon_lifetime_planck_steps_log10",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C23: Proton lifetime in Planck steps (log10)",
+      "output_key": "proton_lifetime_planck_steps_log10",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C24: Reading depth hierarchy correct",
+      "output_key": "hierarchy_ordering_correct",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C25: Hafele-Keating westbound consistent",
+      "output_key": "hafele_keating_west_consistent",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C26: Hafele-Keating eastbound consistent",
+      "output_key": "hafele_keating_east_consistent",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C27: Hulse-Taylor decay consistent",
+      "output_key": "hulse_taylor_decay_consistent",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C28: Gravity Probe A shift",
+      "output_key": "gravity_probe_a_shift",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C29: Cassini PPN gamma consistent with 1",
+      "output_key": "cassini_gamma_consistent",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C30: c = l_P / t_P identity",
+      "output_key": "c_equals_lp_over_tp",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C31: All GR experiments on reading depth line",
+      "output_key": "all_on_gr_line",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C32: Astrophysical depth ordering correct",
+      "output_key": "depth_ordering_astro",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C33: Hubble tension CANNOT be explained (expected)",
+      "output_key": "hubble_tension_computation_failed",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C34: Schwarzschild radius of Sun (m)",
+      "output_key": "sun_schwarzschild_radius_m",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C35: Schwarzschild radius of Earth (m)",
+      "output_key": "earth_schwarzschild_radius_m",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C36: Shapiro delay solar limb (us)",
+      "output_key": "shapiro_delay_solar_limb_us",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C37: DM amplification factor",
+      "output_key": "dm_amplification_factor",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C38: Neutron star Phi/c^2 in [0.1, 0.4]",
+      "output_key": "neutron_star_phi_c2_range",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C39: Event horizon at Phi/c^2 = 0.5",
+      "output_key": "event_horizon_phi_c2",
+      "match_mode": "pct_miss",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C40: Minkowski signature (1 neg, 3 pos)",
+      "output_key": "minkowski_signature_correct",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {
+    "result_pound_rebka_predicted_v0": "2.45846300735076e-15",
+    "result_pound_rebka_miss_pct_v0": "4.33996080347249",
+    "result_gps_grav_shift_v0": "5.29145981282767e-10",
+    "result_gps_velocity_shift_v0": "-8.34925703632288e-11",
+    "result_gps_net_shift_v0": "3.85044547034481e-5",
+    "result_gps_net_miss_pct_v0": "0.350790104947939",
+    "result_gpa_predicted_v0": "4.25219875792062e-10",
+    "result_gpa_miss_pct_v0": "2.47250555227925",
+    "result_solar_redshift_predicted_v0": "636.310262701498",
+    "result_solar_miss_pct_v0": "0.00161287152250672",
+    "result_mercury_perihelion_predicted_v0": "42.9800195424136",
+    "result_mercury_miss_pct_v0": "0.000278135625187979",
+    "result_muon_dilated_lifetime_v0": "6.437154623e-5",
+    "result_muon_miss_pct_v0": "0.0441828726708075",
+    "result_shapiro_gamma_predicted_v0": "1.0",
+    "result_ht_pdot_ratio_v0": "0.999958378423375",
+    "result_ht_pdot_miss_pct_v0": "0.00416215766253226",
+    "result_sn1a_stretch_predicted_v0": "2.0",
+    "result_planck_time_from_constants_v0": "5.39124644666194e-44",
+    "result_planck_length_from_constants_v0": "1.61625502392855e-35",
+    "result_c_from_planck_v0": "299792458.0",
+    "result_planck_time_miss_pct_v0": "1.02636376356069e-5",
+    "result_planck_length_miss_pct_v0": "1.48049348962168e-6",
+    "result_c_miss_pct_v0": "0.0",
+    "result_g_surface_from_gm_v0": "9.82025048706393",
+    "result_g_surface_miss_pct_v0": "0.138686371634844",
+    "result_earth_phi_over_c2_v0": "6.96127458659185e-10",
+    "result_sun_phi_over_c2_v0": "2.12250257043324e-6",
+    "result_earth_schwarzschild_radius_v0": "0.00887005607823534",
+    "result_c_used_v0": "299792458.0",
+    "result_gm_earth_used_v0": "398600441800000.0",
+    "result_gm_sun_used_v0": "1.32712440018e+20",
+    "result_g_derived_v0": "9.82025048706393"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 40
+  }
+}
