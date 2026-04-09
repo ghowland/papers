@@ -27,9 +27,13 @@ The FAIL is Gravity Probe A at 2.47% miss, caused by a nominal altitude approxim
 
 The headline numbers: Mercury perihelion at 2.8 ppb. Solar redshift at 16 ppm. Hulse-Taylor binary at 40 ppm. Planck length at 14.8 ppb. GPS net correction at 0.35%. Speed of light from Planck units at exactly 0.0% miss. These are not new measurements. They are the standard GR predictions, computed from pool constants, matching a century of published data. The contribution is the unified treatment: one function, one pool, every scale.
 
+![Fig. 1: The Reading Depth Hierarchy — 18 orders of Φ/c² from Pound-Rebka to Planck.](./figures/phys42_01_reading_depth_hierarchy.png)
+
 ---
 
 ## II. EARTH SOLITON — THREE DEPTHS
+
+![Fig. 7: Gravity Probe A FAIL diagnosis — the rocket trajectory vs the peak-altitude approximation explains the 2.47% miss.](./figures/phys42_07_gpa_fail_diagnosis.png)
 
 The Earth soliton has reading depth Φ/c² = GM_E/(R_E·c²) = 6.961 × 10⁻¹⁰ at the surface. Clocks here run slower by 0.696 parts per billion compared to clocks at infinity. Three experiments probe different depth ranges within this soliton.
 
@@ -56,6 +60,8 @@ All three Earth soliton tests use the same formula: Δf/f = ΔΦ/c². Same physi
 ---
 
 ## III. SOLAR SOLITON — THREE DEPTHS
+
+![Fig. 5: Mercury Perihelion — reading depth gradient near the Sun curves the spatial update path. 42.98 arcsec/century at 2.8 ppb.](./figures/phys42_05_mercury_perihelion.png)
 
 The Sun has reading depth Φ/c² = GM_S/(R_S·c²) = 2.123 × 10⁻⁶ at the surface — about 3,000 times deeper than Earth. Three experiments probe different aspects of this soliton.
 
@@ -115,6 +121,8 @@ This is a structural identity — c is defined through both l_P and t_P, so the 
 
 ## VI. THE UNIFIED READING DEPTH PROFILE
 
+![Fig. 2: Precision vs Reading Depth — miss traces to input precision at every scale.](./figures/phys42_02_precision_vs_depth.png)
+
 Every test in the experiment measures the same thing: the reading update rate at a specific depth in the soliton hierarchy. The results, ordered by depth:
 
 | Level | Test | Φ/c² or effect | Predicted | Measured | Miss |
@@ -136,6 +144,10 @@ One formula at every level. Every measurement matches. The misses trace to input
 
 The profile spans 18 orders of magnitude in Φ/c². From the 22.5 m differential (10⁻¹⁵) to the neutron star binary (10⁻¹). At every point, the same GR formula applies. At every point, the reading depth interpretation names what the formula describes.
 
+![Fig. 4: The Redshift Curve — update rate vs depth showing which tests probe the linear vs nonlinear regime.](./figures/phys42_04_redshift_curve.png)
+
+![Fig. 8: Soliton Nesting — concentric boundaries from Universe to Planck core with reading depth increasing inward.](./figures/phys42_08_soliton_nesting.png)
+
 ---
 
 ## VII. THE g SURFACE SYSTEMATIC
@@ -151,6 +163,8 @@ This connects to the G scatter question from PHYS-41. Published measurements of 
 ---
 
 ## VIII. THE NINTH DOMAIN
+
+![Fig. 3: The Integer–Reading Depth Connection — same gauge group drives coupling predictions and gravitational hierarchy.](./figures/phys42_03_integer_reading_depth_map.png)
 
 The HOWL derivation graph before this experiment connected eight physics domains through the integer transformation law structure. The GR experiment adds the ninth.
 
@@ -176,6 +190,8 @@ The precision ranking of the full framework, updated:
 | 10 | M_W (path B) | 195 ppm | EW | ew_v2 |
 
 The GR experiment places 5 results in the framework's top 10. Mercury perihelion at 2.8 ppb is the most precise non-QED result.
+
+![Fig. 6: Framework Precision Ranking — 65 derived values ranked by miss. GR domain (gold) contributes 5 of the top 10.](./figures/phys42_06_precision_ranking.png)
 
 ---
 
