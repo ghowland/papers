@@ -51,9 +51,13 @@ R∞ miss = 0.437 ppb (from `experiment_qed_full_corrections_v0_run008_result_ry
 
 f(1S-2S) miss = 0.443 ppb (from `experiment_hydrogen_1s2s_v0_run003_result_1s2s_miss_ppb_v0`)
 
+![Fig. 2: The α-power scaling law — miss = n × 0.219 ppb verified at n=1 (three constants) and n=2 (two constants), with four predictions extending to n=4.](./figures/math7_02_scaling_line.png)
+
 ---
 
 ## II. WHY THE SCALING IS EXACT (TO CURRENT RESOLUTION)
+
+![Fig. 6: Seven published corrections narrow the α miss from 3.99 ppb (uncorrected) to 0.219 ppb (final) — a descending staircase with hadronic light-by-light as the current bottleneck.](./figures/math7_06_extraction_pipeline.png)
 
 The 2019 SI redefinition made four constants exact by definition: h (Planck), c (speed of light), e (elementary charge), and k_B (Boltzmann). From these, ℏ = h/(2π) is exact. The electron mass m_e is measured independently to 0.03 ppb — seven times better than the α extraction uncertainty of 0.22 ppb.
 
@@ -77,6 +81,8 @@ The scaling is exact in principle (from error propagation of f ∝ αⁿ through
 
 ## III. INDEPENDENCE OF THE VERIFICATION
 
+![Fig. 3: Five independent measurement groups on three continents, all connected by one parameter α — no shared apparatus, no shared systematics.](./figures/math7_03_five_groups.png)
+
 The five verified values are measured by five independent groups:
 
 **α extraction input:** Fan et al. (Harvard, 2023). Single electron in a Penning trap. Measured a_e = 0.00115965218059 ± 0.00000000000013. This is the starting point — the measured quantity from which α is extracted via the 5-loop QED series with 7 non-QED corrections (hadronic VP, hadronic LbL, electroweak, mass-dependent at 2-4 loop). The extraction is performed in DATA-6 using Newton inversion at 100-digit Fraction precision.
@@ -90,6 +96,8 @@ The five verified values are measured by five independent groups:
 **f(1S-2S) reference:** Parthey, Matveev, Alnis, Bernhardt, Beyer, Holzwarth, Maistrou, Pohl, Udem, Wilken, Kolachevsky, Abgrall, Rovera, Salomon, Laurent, and Hänsch (Garching MPQ, 2011). Two-photon laser spectroscopy of the hydrogen 1S-2S transition using an optical frequency comb. Result: f = 2466061413187018 ± 10 Hz. Our prediction: f = 2466061412094700 Hz (from the R∞ ratio scaling in `experiment_hydrogen_1s2s_v0_run003`). Miss: 0.443 ppb.
 
 Three continents (North America, Europe, international). Five different experimental methods (Penning trap, atom interferometry, SI redefinition, least-squares adjustment, laser spectroscopy). No shared apparatus. No shared systematic errors. The scaling law holds across all of them.
+
+![Fig. 7: Two comparisons for α⁻¹ on one number line — the Rb agreement (0.007 ppb) validates the extraction, the CODATA difference (0.219 ppb) provides the scaling base. They test different things.](./figures/math7_07_rb_crosscheck.png)
 
 ---
 
@@ -135,6 +143,8 @@ Each prediction is testable by computing the constant from our derived α (store
 
 ## VI. THE DERIVED CONSTANT TREE
 
+![Fig. 1: The derived constant tree — one measurement (a_e) produces one parameter (α) which determines nine constants through integer powers. Solid = verified, dashed = predicted.](./figures/math7_01_constant_tree.png)
+
 The tree has α at the root. Every branch is labeled with its α power. Every leaf is a measurable quantity.
 
 ```
@@ -168,6 +178,8 @@ One measurement. One extraction. One parameter. Five verified constants. Four pr
 
 ## VII. THE SCALING LAW AS A DIAGNOSTIC
 
+![Fig. 4: Four deviation scenarios — R∞ alone deviating (bound-state QED signal), all shifting together (new a_e), m_e emerging at high precision, and σ_T testing n=4.](./figures/math7_04_diagnostic_scenarios.png)
+
 The exact scaling (miss = n × δα) turns every derived constant into a cross-check of every other. Deviations from the scaling are signals.
 
 **Scenario 1: R∞ deviates while a₀ agrees.** Suppose a future R∞ measurement gives a miss of 0.50 ppb from our α, while a₀ still agrees at 0.22 ppb. The pure-α prediction for R∞ is 2 × 0.22 = 0.44 ppb. The deviation is 0.06 ppb. This could indicate:
@@ -191,6 +203,8 @@ The scaling law is not just a verification tool. It is a search tool. Any depart
 ---
 
 ## VIII. CONSEQUENCE FOR FUTURE QED COMPUTATIONS
+
+![Fig. 5: When m_e becomes detectable — currently 7% of the R∞ miss, rising to 60% at δα = 0.05 ppb and dominant below 0.02 ppb. The transition from single-parameter to two-parameter tree.](./figures/math7_05_me_threshold.png)
 
 The scaling law constrains error budgets for every precision measurement program that depends on α.
 
@@ -219,6 +233,8 @@ The scaling law remains exact (n × δα) but at a finer base. The verification 
 ---
 
 ## IX. WHAT THIS PAPER DOES NOT CLAIM
+
+![Fig. 8: Identity card — the α-power scaling law: miss = n × 0.219 ppb, five verified constants, four predicted, one parameter, one tree.](./figures/math7_08_identity_card.png)
 
 This paper does not claim the scaling law is surprising. Error propagation of f ∝ αⁿ through exact SI definitions predicts it. Any metrologist who has worked with CODATA adjustments knows that α-dependent constants are correlated.
 
