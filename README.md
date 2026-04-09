@@ -84,6 +84,9 @@
 | **[[@HOWL-MATH-5-2026]](papers/papers/MATH/HOWL-MATH-5-2026/manuscript.md)** | **The n-Ball Remainder Sequence** | Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime. |
 | **[[@HOWL-MATH-6-2026]](papers/papers/MATH/HOWL-MATH-6-2026/manuscript.md)** | **The 82/82 Independence Record** | 82 tests, zero relations, derivation beats search. |
 | **[[@HOWL-MATH-7-2026]](papers/papers/MATH/HOWL-MATH-7-2026/manuscript.md)** | **The α-Power Scaling Law** | Single-Parameter Projection of the Derived Constant Tree. |
+| **[[@HOWL-MATH-8-2026]](papers/papers/MATH/HOWL-MATH-8-2026/manuscript.md)** | **Q335** | An Operationally Exact Number System for Physical Computation. |
+| **[[@HOWL-MATH-9-2026]](papers/papers/MATH/HOWL-MATH-9-2026/manuscript.md)** | **The One-Loop Degeneracy Theorem** | Why sin²θ_W Cannot Be Predicted from One-Loop Gauge Coupling Unification. |
+| **[[@HOWL-MATH-10-2026]](papers/papers/MATH/HOWL-MATH-10-2026/manuscript.md)** | **The Derivation-as-Proof Principle** | When Surplus Predictions Constitute Evidence. |
 
 ---
 
