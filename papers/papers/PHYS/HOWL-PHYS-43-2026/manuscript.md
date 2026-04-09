@@ -537,3 +537,281 @@ Every prior test compares objects within one force sector. Test 1 is the first c
 
 ---
 
+### Table B.1: Complete Beta Coefficient Matrix — All Three Sectors
+
+| Coefficient | SM value | CD shift | CD-modified value | Decimal | Pool key |
+|---|---|---|---|---|---|
+| b₁ (U(1)) | 41/10 | 1/15 | 25/6 | 4.1667 | beta_modified_u1_total_v0 |
+| b₂ (SU(2)) | −19/6 | 1/3 | −13/6 | −2.1667 | beta_modified_su2_total_v0 |
+| b₃ (SU(3)) | −7/1 | 1/3 | −20/3 | −6.6667 | beta_modified_su3_total_v0 |
+
+### Table B.2: All Pairwise Sector Splittings
+
+| Pair (i,j) | |b_i − b_j| | Exact Fraction | Decimal | Clock pair | ε at Δh=1000m (κ=1) |
+|---|---|---|---|---|---|
+| Strong − EM (3,1) | |−20/3 − 25/6| | 65/6 | 10.833 | Th-229 vs Sr-87 | 1.18 × 10⁻¹² |
+| Strong − Weak (3,2) | |−20/3 + 13/6| | 27/6 = 9/2 | 4.500 | Th-229 vs Yb⁺ (E3) | 4.91 × 10⁻¹³ |
+| Weak − EM (2,1) | |−13/6 − 25/6| | 38/6 = 19/3 | 6.333 | Yb⁺ (E3) vs Sr-87 | 6.90 × 10⁻¹³ |
+
+Note: The Yb⁺ electric octupole (E3) transition at 467 nm has a strong sensitivity to α variation (enhancement factor K_α ≈ −6), making it a partial probe of the weak sector through higher-order QED corrections. The assignment is approximate — clean sector separation requires the thorium nuclear clock for the strong sector.
+
+### Table B.3: Sector Splitting vs Detection Threshold — κ Sensitivity
+
+| κ value | ε(3,1) at Δh=1000m | Margin over 10⁻¹⁸ | Detectable? | Physical meaning |
+|---|---|---|---|---|
+| 1 | 1.18 × 10⁻¹² | 10⁶ × | Yes, massively | Direct linear mapping: energy scale ↔ gravitational depth |
+| 10⁻¹ | 1.18 × 10⁻¹³ | 10⁵ × | Yes | Mild suppression from threshold effects |
+| 10⁻² | 1.18 × 10⁻¹⁴ | 10⁴ × | Yes | Moderate suppression |
+| 10⁻³ | 1.18 × 10⁻¹⁵ | 10³ × | Yes | Strong suppression, still comfortable |
+| 10⁻⁴ | 1.18 × 10⁻¹⁶ | 10² × | Yes | Very suppressed, 2 orders margin |
+| 10⁻⁵ | 1.18 × 10⁻¹⁷ | 10 × | Marginal | At detection edge, needs long integration |
+| 10⁻⁶ | 1.18 × 10⁻¹⁸ | 1 × | Barely | At noise floor of best projected clocks |
+| 10⁻⁷ | 1.18 × 10⁻¹⁹ | 0.1 × | No | Below detection — D-sector killed at this scale |
+| 10⁻⁹ | 1.18 × 10⁻²¹ | 10⁻³ × | No | Far below — would need space-based clocks |
+
+The margin spans 13 orders of magnitude from κ = 1 to the detection floor. Non-detection at 10⁻¹⁸ constrains κ < 10⁻⁶. Non-detection at 10⁻¹⁹ constrains κ < 10⁻⁷. The constraint tightens linearly with clock sensitivity.
+
+### Table B.4: Thorium-229 Nuclear Clock — Development Status
+
+| Group | Institution | Milestone achieved | Date | Next milestone | Projected date |
+|---|---|---|---|---|---|
+| Seiferle et al. | LMU Munich | First direct detection of isomer | 2019 | — | — |
+| Tiedau et al. | PTB Braunschweig | Nuclear transition energy measured | 2024 | Clock-quality interrogation | 2027-2028 |
+| Zhang et al. | JILA / CU Boulder | Laser excitation of transition | 2024 | Coherent spectroscopy | 2026-2027 |
+| Peik et al. | PTB Braunschweig | Th-229 in crystal lattice | ongoing | Solid-state nuclear clock | 2028-2030 |
+| Thirolf et al. | LMU Munich | Isomer lifetime measurement | 2024 | Improved lifetime | 2026 |
+| Kazakov et al. | TU Wien | Theoretical clock performance | 2012+ | Experimental realization | 2028+ |
+
+The transition energy is 8.355733 ± 0.000002 eV (Tiedau et al. 2024), corresponding to ~148.38 nm vacuum ultraviolet. This is within reach of frequency comb spectroscopy. The projected systematic uncertainty for a Th-229 nuclear clock is 10⁻¹⁹ or better (Peik & Tamm 2003, Campbell et al. 2012), which is sufficient for the PHYS-43 sector splitting test.
+
+### Table B.5: Millisecond Pulsar Timing Arrays — Current Datasets
+
+| Array | Telescope(s) | Pulsars | Timespan | Best residual | GW background? | Reference |
+|---|---|---|---|---|---|---|
+| NANOGrav | GBT, Arecibo, VLA | 68 | 15 yr | ~100 ns | Yes (2023) | Agazie et al. 2023 |
+| EPTA | Effelsberg, Jodrell Bank, Nançay, Sardinia, Westerbork | 25 | 24 yr | ~100 ns | Yes (2023) | Antoniadis et al. 2023 |
+| PPTA | Parkes/Murriyang | 26 | 18 yr | ~100 ns | Yes (2023) | Reardon et al. 2023 |
+| InPTA | uGMRT | 14 | 3.5 yr | ~μs | No (limited) | Tarafdar et al. 2022 |
+| IPTA | Combined | ~100 | varies | ~50 ns | Yes (combined) | Antoniadis et al. 2022 |
+
+For Test 2, the key quantity is the number of pulsars that can be assigned to spiral arm vs inter-arm regions. Using the NE2001 electron density model (Cordes & Lazio 2002) and the Vallée (2008) spiral arm model, approximately 30-40 of the NANOGrav pulsars have well-determined Galactic positions with arm/inter-arm assignments. This is marginal for the 25-per-category requirement but will improve with the 25-year dataset (~100 pulsars projected).
+
+### Table B.6: Spiral Arm Assignment for NANOGrav Pulsars (Representative Sample)
+
+| Pulsar | l (°) | b (°) | Distance (kpc) | Arm assignment | Timing residual (ns) |
+|---|---|---|---|---|---|
+| J0030+0451 | 113 | −57 | 0.33 | Local | ~200 |
+| J0437−4715 | 254 | −42 | 0.16 | Local | ~50 |
+| J1713+0747 | 29 | +25 | 1.18 | Inter-arm | ~30 |
+| J1909−3744 | 359 | −20 | 1.14 | Sagittarius | ~40 |
+| J2145−0750 | 48 | −42 | 0.50 | Local | ~150 |
+| J1744−1134 | 14 | +9 | 0.42 | Inter-arm | ~100 |
+| J0613−0200 | 210 | −9 | 0.48 | Perseus | ~120 |
+| J1600−3053 | 344 | +16 | 1.63 | Scutum-Centaurus | ~80 |
+
+This is illustrative, not exhaustive. The actual analysis would use the full NANOGrav catalog with distances from parallax (where available) or DM-distance models. The correlation test compares mean residual (arm) vs mean residual (inter-arm) and tests for significance.
+
+### Table B.7: Published G Measurements — Values and Laboratory Environments
+
+| Year | Group | Technique | G (10⁻¹¹ m³kg⁻¹s⁻²) | Unc (ppm) | Lab altitude (m) | Latitude (°) |
+|---|---|---|---|---|---|---|
+| 1982 | Luther & Towler | Torsion balance | 6.6726 | 75 | 325 (NIST) | 39.0 |
+| 1996 | Karagioz & Izmailov | Torsion balance | 6.6729 | 75 | 150 (Moscow) | 55.7 |
+| 1997 | Bagley & Luther | Torsion balance | 6.6740 | 70 | 325 (NIST) | 39.0 |
+| 2000 | Gundlach & Merkowitz | Torsion balance | 6.67422 | 14 | 50 (UW Seattle) | 47.7 |
+| 2001 | Quinn et al. | Torsion strip | 6.67559 | 40 | 400 (BIPM) | 48.8 |
+| 2003 | Armstrong & Fitzgerald | Torsion balance | 6.67387 | 27 | 200 (MSL NZ) | −41.3 |
+| 2005 | Hu et al. | Torsion balance | 6.67228 | 44 | 50 (HUST) | 30.5 |
+| 2006 | Schlamminger et al. | Beam balance | 6.67425 | 12 | 400 (BIPM) | 48.8 |
+| 2010 | Parks & Faller | Torsion pendulum | 6.67234 | 21 | 1640 (JILA) | 40.0 |
+| 2013 | Rosi et al. | Atom interferometry | 6.67191 | 150 | 50 (Florence) | 43.8 |
+| 2014 | Newman et al. | Torsion balance | 6.67435 | 15 | 320 (Irvine) | 33.6 |
+| 2014 | Quinn et al. | Torsion strip (redo) | 6.67554 | 25 | 400 (BIPM) | 48.8 |
+| 2018 | Li et al. (TOS) | Torsion balance (time of swing) | 6.674184 | 12 | 50 (HUST) | 30.5 |
+| 2018 | Li et al. (AAF) | Torsion balance (angular acceleration) | 6.674484 | 12 | 50 (HUST) | 30.5 |
+| 2022 | Tiesinga et al. | CODATA recommended | 6.67430 | 22 | — | — |
+
+Range: 6.67191 to 6.67559, span = 368 ppm. CODATA uncertainty: 22 ppm. The scatter exceeds uncertainty by ~17×.
+
+The Φ/c² at each laboratory: Φ_lab/c² = GM_E/((R_E + h_lab)·c²). Variation across labs: ΔΦ/c² ~ g × Δh/c² ~ 10 × 1600/(9×10¹⁶) ~ 1.8 × 10⁻¹³. This is 0.00018 ppb — completely negligible against the 368 ppm scatter. The smooth potential cannot explain the scatter. Any G-reading correlation must involve boundary nesting, not smooth potential.
+
+### Table B.8: Gravitational Potential at Each G Laboratory
+
+| Lab | h (m) | Φ/c² (×10⁻¹⁰) | ΔΦ from BIPM (×10⁻¹³) | G value (×10⁻¹¹) | G deviation from CODATA (ppm) |
+|---|---|---|---|---|---|
+| HUST (Wuhan) | 50 | 6.9612 | +3.8 | 6.674184 / 6.674484 | −17 / +28 |
+| UW (Seattle) | 50 | 6.9612 | +3.8 | 6.67422 | −1 |
+| Florence | 50 | 6.9612 | +3.8 | 6.67191 | −358 |
+| Moscow | 150 | 6.9611 | +2.7 | 6.6729 | −210 |
+| MSL (NZ) | 200 | 6.9611 | +2.2 | 6.67387 | −64 |
+| NIST (Gaithersburg) | 325 | 6.9609 | +0.8 | 6.6726 / 6.6740 | −255 / −45 |
+| Irvine | 320 | 6.9609 | +0.9 | 6.67435 | +7 |
+| BIPM (Sèvres) | 400 | 6.9608 | 0.0 (ref) | 6.67559 / 6.67425 | +193 / −7 |
+| JILA (Boulder) | 1640 | 6.9594 | −13.5 | 6.67234 | −294 |
+
+Pearson correlation r(G, Φ/c²) across the 15 measurements: the values show no obvious trend by inspection. JILA at the highest altitude gives a low G, but so does Florence at sea level. BIPM at intermediate altitude gives both high (Quinn) and low (Schlamminger) values. The technique confound dominates: Quinn (strip balance) gets systematically high values, Rosi (atom interferometry) gets systematically low. A rigorous regression requires technique indicator variables, which consumes most of the 15 degrees of freedom.
+
+### Table B.9: Quasar α Variation Constraints — Existing Data
+
+| Source | Instrument | z range | N systems | Δα/α (×10⁻⁶) | 1σ unc (×10⁻⁶) | Reference |
+|---|---|---|---|---|---|---|
+| Webb et al. | Keck HIRES | 0.2–4.2 | 143 | −0.57 (dipole) | 0.11 | Webb et al. 2011 |
+| Webb et al. | VLT UVES | 0.2–3.7 | 153 | +0.61 (dipole) | 0.18 | King et al. 2012 |
+| Combined dipole | Keck + VLT | 0.2–4.2 | 296 | Dipole 0.97 | 0.21 | Webb et al. 2011 |
+| Murphy et al. | ESPRESSO/VLT | 1.0–1.8 | 4 | +0.3 | 1.6 | Murphy et al. 2022 |
+| Wilczynska et al. | VLT UVES (reanalysis) | 0.2–3.7 | 153 | +0.2 | 1.2 | Wilczynska et al. 2020 |
+| Oklo reactor | Natural fission | z = 0.14 | 1 | < 0.1 | — | Damour & Dyson 1996 |
+| Meteorite β-decay | Re-187 → Os-187 | z ≈ 0.4 | 1 | < 0.3 | — | Olive et al. 2004 |
+| BBN constraint | D/H vs η | z ≈ 10⁹ | — | < 0.02 | — | Coc et al. 2007 |
+
+The Webb dipole remains the most provocative result. If real, it suggests α varies across the sky at ~10⁻⁶. The ESPRESSO data has too few systems and too limited sky coverage to confirm or refute the dipole. The Oklo and meteorite constraints are at different redshifts and probe different lookback times. The BBN constraint is the tightest but applies at z ~ 10⁹ (the first minutes), not the quasar epoch.
+
+### Table B.10: Per-Tick Drift Bounds from Each Constraint
+
+| Constraint | Δα/α bound | Lookback time | ΔN (Planck ticks) | δα/(α×tick) bound | Notes |
+|---|---|---|---|---|---|
+| ESPRESSO z ~ 1.5 | < 2 × 10⁻⁶ | 9.5 Gyr | 5.6 × 10⁶⁰ | < 3.6 × 10⁻⁶⁷ | Best spectroscopic |
+| Oklo z = 0.14 | < 10⁻⁷ | 2.0 Gyr | 1.2 × 10⁶⁰ | < 8.3 × 10⁻⁶⁸ | Tightest per-tick |
+| Meteorite | < 3 × 10⁻⁷ | 4.6 Gyr | 2.7 × 10⁶⁰ | < 1.1 × 10⁻⁶⁷ | |
+| BBN z ~ 10⁹ | < 2 × 10⁻² | 13.8 Gyr | 8.1 × 10⁶⁰ | < 2.5 × 10⁻⁶³ | Weakest per-tick (long lever arm) |
+| ANDES projection | < 10⁻⁸ | ~10 Gyr | ~6 × 10⁶⁰ | < 1.7 × 10⁻⁶⁹ | Future |
+
+The Oklo constraint gives the tightest per-tick bound: < 8.3 × 10⁻⁶⁸ fractional change in α per Planck tick. ANDES would improve this to < 1.7 × 10⁻⁶⁹. At that level, the geometric tick hypothesis produces no consequence distinguishable from zero on any timescale shorter than ~10⁶⁹ ticks ≈ 10⁶⁹ × 5.4 × 10⁻⁴⁴ s ≈ 10²⁵ s ≈ 3 × 10¹⁷ years ≈ 20 million times the current age of the universe.
+
+### Table B.11: Voyager Heliopause Crossing — Key Parameters
+
+| Parameter | Voyager 1 | Voyager 2 | Source |
+|---|---|---|---|
+| Heliopause crossing date | August 25, 2012 | November 5, 2018 | Stone et al. 2013, 2019 |
+| Distance at crossing | 121.6 AU | 119.0 AU | NASA JPL |
+| Radial velocity at crossing | ~17 km/s | ~15 km/s | NASA JPL |
+| Tracking frequency | S-band 2.3 GHz, X-band 8.4 GHz | S-band 2.3 GHz, X-band 8.4 GHz | DSN |
+| Doppler precision | ~0.1 mm/s (X-band, 1000s integration) | ~0.1 mm/s (X-band, 1000s integration) | JPL navigation |
+| Solar wind velocity (pre-crossing) | ~400 km/s (upstream) | ~400 km/s (upstream) | SWAP instrument |
+| GR potential at 120 AU | GM_S/(r×c²) = 1.23 × 10⁻⁸ | similar | Computed |
+| Expected boundary step (κ=1) | (v_sw/c)² ~ 1.8 × 10⁻⁶ | similar | This paper |
+| Expected boundary step (κ=10⁻⁶) | ~1.8 × 10⁻¹² | similar | Suppressed |
+| Doppler equivalent of 10⁻¹² step | ~0.3 mm/s | similar | f × δΦ/c² |
+| Signal-to-noise at 0.3 mm/s | ~3 (marginal) | ~3 (marginal) | Vs 0.1 mm/s precision |
+
+The two crossings provide independent measurements at similar distances. Agreement between V1 and V2 on a step magnitude would strengthen the detection. Disagreement would suggest plasma contamination rather than a reading depth signal.
+
+### Table B.12: Plasma Contamination Budget at Heliopause
+
+| Effect | Magnitude (mm/s equivalent) | Duration | Distinguishable from step? |
+|---|---|---|---|
+| Solar wind ram pressure change | 1-10 | gradual (months) | Yes — gradual vs instantaneous |
+| Magnetic field rotation | 0.1-1 | days | Partially — rapid but oscillatory |
+| Energetic particle pressure | 0.01-0.1 | weeks | Yes — correlates with particle flux |
+| Thermal radiation asymmetry | ~0.01 | constant | Yes — secular, not step |
+| Interstellar medium drag onset | 0.01-0.1 | gradual (months) | Yes — gradual |
+| **Reading depth step** | **0.3 (κ=10⁻⁶)** | **instantaneous** | **Unique: coincident with HP, both spacecraft** |
+
+The reading depth step, if present, has a unique signature: it is instantaneous (happens at the boundary), coincident with the heliopause crossing (identified independently by particle and magnetic field instruments), and should be the same magnitude for both Voyager 1 and Voyager 2. No plasma effect has all three properties.
+
+### Table B.13: The Hierarchy Coordinate Mapping
+
+| Hierarchy level | Energy scale μ | Gravitational Φ/c² | Mapping | Tested by |
+|---|---|---|---|---|
+| Planck | 1.22 × 10¹⁹ GeV | 1 (event horizon) | μ_Planck ↔ Φ/c² = 1 | c = l_P/t_P identity |
+| GUT | 10¹⁵·⁵ GeV | ~10⁻⁴ (?) | Coupling unification ↔ ? | Not yet tested |
+| EW (M_Z) | 91.2 GeV | ~10⁻⁶ (galactic) | sin²θ_W running ↔ ? | Not yet tested |
+| Nuclear | ~1 GeV | ~0.2 (NS surface) | Strong coupling ↔ compact objects | Test 1 (indirectly) |
+| Atomic | ~10 eV | ~10⁻¹⁰ (Earth surface) | QED coupling ↔ laboratory Φ | Test 1 (directly) |
+| Chemical | ~1 eV | ~10⁻¹³ (altitude diff) | — | Test 1 (clock comparison) |
+
+The mapping between energy scale and gravitational potential is the unknown function that κ parameterizes. At the extremes (Planck scale ↔ event horizon), the mapping is fixed by dimensional analysis. At intermediate scales, it is not. Test 1 measures one point on this mapping curve: the nuclear-vs-atomic ratio at Earth's gravitational potential. Multiple measurements at different potentials would trace the mapping function.
+
+### Table B.14: What Three Altitude Measurements Would Determine
+
+| Measurement | Altitudes | What it determines | Required precision |
+|---|---|---|---|
+| First: detect or constrain ε | Sea level + 1000 m | κ × (65/6) × ΔΦ/c² | 10⁻¹⁸ |
+| Second: confirm linearity | Sea level + 1000 m + 3000 m | Is ε proportional to ΔΦ? | 10⁻¹⁸ |
+| Third: test mapping function | Sea level + 1000 m + 3000 m + underground (−1000 m) | Is the mapping linear or curved? | 10⁻¹⁹ |
+
+The underground measurement is critical. If the mapping is linear, the splitting at −1000 m (deeper, higher Φ/c²) is the same magnitude as at +1000 m but opposite sign relative to sea level. If the mapping is nonlinear (e.g., logarithmic in μ as the RGE suggests), the splitting at −1000 m is larger. The ratio of underground-to-surface splitting directly measures the curvature of the hierarchy coordinate mapping.
+
+Candidate underground laboratories: Gran Sasso (1400 m rock overburden), Sudbury (2100 m), Kamioka (1000 m), Boulby (1100 m). These facilities already operate precision physics experiments and could potentially host clock comparisons.
+
+### Table B.15: The Integer Chain Through the Sector Splitting
+
+| Step | Quantity | Value | Source | Role in ε |
+|---|---|---|---|---|
+| 1 | SM gauge group | SU(3)×SU(2)×U(1) | Standard Model | Defines 3 sectors |
+| 2 | SM fermion content | 3 generations, known reps | Standard Model | Determines SM betas |
+| 3 | Cabibbo Doublet | (2, 1/3) VL fermion pair | RUM BSM extension | Shifts betas |
+| 4 | CD beta shifts | Δb = (1/15, 1/3, 1/3) | Group theory | Produces modified betas |
+| 5 | Modified betas | (25/6, −13/6, −20/3) | Pool values | Used in ε formula |
+| 6 | β difference (3,1) | 65/6 = 10.833 | Exact Fraction | Sector splitting coefficient |
+| 7 | Earth Φ/c² | 6.961 × 10⁻¹⁰ | PHYS-42 pool | Gravitational depth |
+| 8 | Conversion factor κ | Unknown (test measures) | PHYS-43 prediction | Hierarchy coordinate mapping |
+| 9 | Sector splitting ε | κ × (65/6) × ΔΦ/c² | Central formula | Observable in clock comparison |
+
+Steps 1-5 come from the same chain that produced sin²θ_W = 0.231 at 12 ppm and α_s = 0.1184 at 0.33%. Steps 6-7 come from the same pool that produced Mercury at 2.8 ppm. Step 8 is the unknown. Step 9 is the measurement. If ε is measured, the chain extends from gauge group representation theory through beta coefficients through gravitational potentials to laboratory clock rates. The integers that predict cosmological parameters also predict clock splitting.
+
+### Table B.16: Comparison — PHYS-43 Predictions vs Existing BSM Clock Tests
+
+| Model | Predicted effect | Magnitude | Sector dependence | Status |
+|---|---|---|---|---|
+| Scalar field (Damour-Polyakov) | α variation with Φ | δα/α ~ 10⁻⁷ × Φ/c² | EM only | Constrained by clocks + Oklo |
+| Dilaton (string theory) | All couplings shift with Φ | Universal, κ_dilaton × Φ/c² | All sectors equally | Constrained by EP tests |
+| Chameleon field | Coupling depends on local density | Environment-dependent | Possible sector dependence | Constrained by Eöt-Wash |
+| Symmetron | Phase transition at critical density | Step function at boundaries | Possible | Unconstrained at clock level |
+| **RUM D-sector** | **β-weighted splitting with Φ** | **κ(65/6)ΔΦ/c²** | **Sector-dependent via β ratios** | **Untested** |
+
+The RUM prediction is distinct from all existing BSM models in one specific way: the sector dependence is determined by the gauge coupling beta coefficients, not by a new coupling constant. The dilaton predicts universal coupling (no sector splitting). The chameleon predicts environment-dependent coupling but without a specific sector ratio. The RUM prediction says the ratio of splitting between any two sectors is exactly |b_i − b_j|/|b_k − b_l| — a ratio of known integers. This is falsifiable: if sector splitting is detected but the ratios do not match the β coefficients, RUM's hierarchy interpretation is wrong even though sector splitting is real.
+
+### Table B.17: The Falsifiability Matrix — What Confirms What
+
+| Observation | Confirms RUM | Confirms BSM (not RUM) | Confirms GR only |
+|---|---|---|---|
+| ε(3,1) detected, ε(3,2)/ε(3,1) = (9/2)/(65/6) = 27/65 | Yes — ratios match β | No | No |
+| ε(3,1) detected, ratios don't match β | No — sector splitting exists but integers wrong | Yes | No |
+| ε(3,1) = 0 at 10⁻¹⁹, all ratios zero | No — D-sector killed | No | Yes (or D-blind) |
+| ε varies with Φ non-linearly | Possible — hierarchy mapping curved | Possible | No |
+| ε varies between labs at same Φ | No — contradicts RUM framework | Possible (environment effect) | No |
+
+The critical distinguishing test is the ratio measurement. Detecting sector splitting is necessary but not sufficient for RUM. The splitting ratios must match the beta coefficient differences. This requires measuring at least two sector pairs: strong-EM (Th-229 vs Sr) and weak-EM (Yb⁺ E3 vs Sr) or strong-weak (Th-229 vs Yb⁺ E3). Two ratio measurements overconstrain the prediction and provide a definitive test.
+
+### Table B.18: Required Experimental Program — Minimum for Resolution
+
+| Phase | Measurement | Timeline | Cost/effort | Resolves |
+|---|---|---|---|---|
+| Phase 0 (now) | Archival: Voyager Doppler, G regression, NANOGrav reanalysis | 2026 | Low (analysis only) | Preliminary constraints on Tests 2-4 |
+| Phase 1 (near) | First Th-229 vs Sr comparison at one altitude | 2028-2029 | Medium (requires clock) | Detect or constrain ε(3,1) |
+| Phase 2 (decisive) | Th-229 vs Sr at 3 altitudes + Yb⁺ E3 vs Sr at 1 altitude | 2030-2032 | High (multi-site campaign) | Measure κ, test linearity, test β ratios |
+| Phase 3 (mapping) | Underground + surface + mountain + space | 2032+ | Very high | Map full hierarchy coordinate function |
+| Phase 4 (cosmological) | ANDES α survey at z = 1-5 | 2035+ | Part of ELT program | Tick geometry constraint |
+
+Phase 0 costs nothing beyond analysis time. Phase 1 requires the thorium nuclear clock to exist, which is being developed independently. Phase 2 is the decisive experiment. Phases 3-4 are contingent on Phase 2 results.
+
+### Table B.19: Connection to Other RUM Predictions
+
+| RUM prediction | Precision | How PHYS-43 connects | What changes if Test 1 positive |
+|---|---|---|---|
+| sin²θ_W = 0.231 from 3/8 + betas | 12 ppm | Same β coefficients appear in ε formula | β coefficients confirmed as physical in gravity sector |
+| α_s = 0.1184 from crossing | 0.33% | Same β₃ appears in ε(3,1) | Strong sector running confirmed to couple to gravity |
+| DM/baryon = (22/13)π | 725 ppm | Integers 22, 13 from same betas | Integer structure gains gravitational evidence |
+| M_GUT = 10¹⁵·⁵⁴ | in range | Crossing scale from same betas | GUT scale validated from new direction |
+| Ω_DM = 44/169 | 0.12% | 44 = 2×22, 169 = 13² from same betas | Cosmological predictions gain gravitational support |
+| α⁻¹ = 137.036 from a_e | 0.007 ppb | QED sector provides EM baseline for Test 1 | QED chain connected to gravitational sector |
+| Mercury at 2.8 ppm | GR confirmed | Provides Φ/c² for ε formula | GR results feed into sector splitting |
+
+If Test 1 is positive, every row in this table gains a cross-domain confirmation. The β coefficients that predict sin²θ_W also predict clock splitting. The gravitational potential that gives Mercury's perihelion also gives the sector splitting magnitude. The integer chain that produces cosmological parameters also produces the hierarchy coordinate mapping. The entire RUM framework — gauge physics, cosmology, gravity — becomes a single connected structure, not three parallel stories.
+
+If Test 1 is negative (κ < 10⁻⁶), the connections remain interpretive but not quantitative. The β coefficients predict sin²θ_W but do not visibly affect gravity. The framework retains its value as a computational platform and an organizational scheme, but the strongest claim — that the soliton hierarchy is a unified physical structure connecting gauge physics to gravity through integer transformation laws — is not supported by measurement.
+
+### Table B.20: The Decision Tree — Year by Year
+
+| Year | If positive result | If null result | Framework status |
+|---|---|---|---|
+| 2026 (archival) | Any anomaly in Tests 2-4 → focus resources on confirmation | All null → expected, archival data is weak | Unchanged |
+| 2028 (first clock) | ε > 10⁻¹⁷ → immediate priority, mobilize Phase 2 | ε < 10⁻¹⁷ → κ < 10⁻⁵, still possible | D-sector alive if margin allows |
+| 2030 (decisive clock) | ε measured at 10⁻¹⁸ + ratios match β → RUM confirmed as physics | ε < 10⁻¹⁹ → κ < 10⁻⁷, D-sector dead at Earth | D-sector dead or alive — binary |
+| 2030 (NANOGrav 25yr) | Arm correlation detected → boundary structure confirmed | No correlation → galactic boundary R dead | Constrains large-scale R |
+| 2032 (multi-site clock) | Linearity confirmed + ratios match → hierarchy mapping measured | Non-linear or ratios wrong → RUM wrong, BSM possible | Distinguishes RUM from generic BSM |
+| 2035 (ANDES) | α drift detected → tick geometry confirmed | No drift at 10⁻⁸ → geometric tick shelved | Constrains tick component |
+
+---
+
