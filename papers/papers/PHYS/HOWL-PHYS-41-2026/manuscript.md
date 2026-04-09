@@ -31,6 +31,8 @@ GR time dilation IS reading depth. Clocks deeper in a gravitational soliton upda
 
 ## II. READING DEPTH IN THE SOLITON HIERARCHY
 
+![Fig. 1: Soliton Nesting — nested boundaries from quark to universe with reading depth and update rate at each level.](./figures/phys41_01_soliton_nesting.png)
+
 The soliton nesting hierarchy, from deepest to shallowest:
 
 Quark → Proton → Nucleus → Atom → Molecule → Earth → Sun → Galaxy → Universe
@@ -47,6 +49,8 @@ The speed of light c = l_P / t_P — one Planck length per Planck time — is th
 
 A moving clock allocates some reading capacity to spatial displacement, leaving less for depth updating. The clock runs slower. The dilation factor γ = 1/√(1 − v²/c²) is the ratio of total reading capacity to depth-update capacity. At v = c, all capacity goes to spatial displacement. The clock stops. The reading freezes.
 
+![Fig. 4: Update Rate Hierarchy — reading update rates from universe (shallowest, fastest) to quark (deepest, slowest).](./figures/phys41_04_update_rate_hierarchy.png)
+
 ### The Cesium Clock Problem
 
 The second is defined as 9,192,631,770 periods of the cesium-133 hyperfine transition. This definition assumes the transition frequency is universal — the same everywhere, in all boundary environments.
@@ -59,9 +63,13 @@ The cesium frequency may have the same property. Its extraordinary constancy (10
 
 GR already accounts for gravitational time dilation of cesium clocks — clocks at different altitudes run at different rates, and GPS corrects for this. The reading depth claim goes further: there may be additional timing effects at soliton boundary transitions (Hill sphere edges, heliosphere, galactic toroid boundary) that the smooth GR metric doesn't capture. These would appear as discrete shifts on top of the smooth gravitational dilation.
 
+![Fig. 6: The Lifetime Ladder — particle lifetimes measured in Planck steps, from W boson (10^18) to proton (10^79).](./figures/phys41_06_lifetime_ladder_planck.png)
+
 ---
 
 ## III. A CENTURY OF EVIDENCE
+
+![Fig. 2: A Century of Reading Depth — 30 GR time dilation experiments spanning 15 orders of magnitude, all falling on the GR prediction line.](./figures/phys41_02_century_of_reading_depth.png)
 
 GR time dilation has been measured across the entire soliton hierarchy. Every measurement confirms that clocks at different depths run at different rates. Every measurement is evidence for reading depth.
 
@@ -79,9 +87,15 @@ GR time dilation has been measured across the entire soliton hierarchy. Every me
 
 These six examples span the hierarchy from meters to gigaparsecs. The complete inventory of ~30 experiments is in Appendix A.1. Each uses different physics, different instruments, and different soliton boundaries. Each confirms the same thing: clocks at different depths run at different rates. The reading depth interpretation adds no new prediction to any of these measurements. It names what they measure.
 
+![Fig. 5: Coupling Convergence — three gauge couplings converging with increasing reading depth, unifying at the GUT boundary.](./figures/phys41_05_coupling_convergence_depth.png)
+
+![Fig. 8: GPS as Reading Depth — satellite orbit through Earth's reading depth gradient with gravitational (+45.85 μs/day), velocity (−7.21 μs/day), and net (+38.64 μs/day) corrections.](./figures/phys41_08_gps_reading_depth.png)
+
 ---
 
 ## IV. THE HUBBLE TENSION
+
+![Fig. 3: The Hubble Tension Shortfall — galactic potential (orange notch) is five orders of magnitude too small for the required 8.4% reading depth correction.](./figures/phys41_03_hubble_tension_shortfall.png)
 
 The Hubble tension is the most significant open anomaly in cosmology. As of early 2026, it persists at 5σ despite extensive investigation.
 
@@ -94,6 +108,8 @@ Ratio: 73.04 / 67.4 = 1.0837. The local universe appears to be expanding 8.4% fa
 No standard cosmological model explains this. Proposed solutions include early dark energy, modified gravity, interacting dark energy, new relativistic species, and systematic errors. None is widely accepted. JWST ruled out the leading systematic explanation (Cepheid calibration errors).
 
 ### The Reading Depth Hypothesis
+
+![Fig. 7: Hubble Measurements by Environment — H₀ data color-coded by reading depth: local/toroid (red), intermediate (orange), CMB/cosmic (blue).](./figures/phys41_07_hubble_by_environment.png)
 
 The local measurement uses Cepheid variable stars, calibrated against geometric parallax distances, all observed from inside the galactic toroid. Every rung of the distance ladder is inside the Milky Way's toroidal boundary.
 
