@@ -83,6 +83,7 @@
 | **[[@HOWL-MATH-4-2026]](papers/papers/MATH/HOWL-MATH-4-2026/manuscript.md)** | **The Universal Power-of-Two Basis** | Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision. |
 | **[[@HOWL-MATH-5-2026]](papers/papers/MATH/HOWL-MATH-5-2026/manuscript.md)** | **The n-Ball Remainder Sequence** | Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime. |
 | **[[@HOWL-MATH-6-2026]](papers/papers/MATH/HOWL-MATH-6-2026/manuscript.md)** | **The 82/82 Independence Record** | 82 tests, zero relations, derivation beats search. |
+| **[[@HOWL-MATH-7-2026]](papers/papers/MATH/HOWL-MATH-7-2026/manuscript.md)** | **The α-Power Scaling Law** | Single-Parameter Projection of the Derived Constant Tree. |
 
 ---
 
@@ -130,6 +131,7 @@
 | **[[@HOWL-PHYS-37-2026]](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **From Gauge Integers to Primordial Deuterium** | Seventeen Derived Values Across Five Physics Domains. |
 | **[[@HOWL-PHYS-38-2026]](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Precision Frontier** | 38 Derived Values from Sub-ppb QED to the Lithium Problem. |
 | **[[@HOWL-PHYS-39-2026]](papers/papers/PHYS/HOWL-PHYS-39-2026/manuscript.md)** | **From Gauge Integers to Hydrogen Spectroscopy** | Two-Loop Unification, the k₁ Bug, and Eight Connected Domains. |
+| **[[@HOWL-PHYS-40-2026]](papers/papers/PHYS/HOWL-PHYS-40-2026/manuscript.md)** | **You Are Here (II): The Derivation Map at 53 Values** | Eight Domains, Thirteen Inputs, and the Path to Full Unification. |
 
 ---
 

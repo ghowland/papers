@@ -1,4 +1,5 @@
-## The α-Power Scaling Law: Single-Parameter Projection of the Derived Constant Tree
+# The α-Power Scaling Law
+## Single-Parameter Projection of the Derived Constant Tree
 
 **Registry:** [@HOWL-MATH-7-2026]
 
