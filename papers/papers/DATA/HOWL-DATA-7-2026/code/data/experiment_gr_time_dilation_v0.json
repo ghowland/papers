@@ -1,0 +1,256 @@
+{
+    "key": "experiment_gr_time_dilation_v0",
+    "canonical": "experiment_gr_time_dilation",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "GR time dilation as reading depth: compute gravitational redshift, velocity dilation, GPS net shift, Shapiro delay, Mercury perihelion, Hulse-Taylor orbital decay, muon dilation, cosmological dilation, Planck units, and solar redshift from first principles using pool constants. Compare every derivation to its measured value. Every GR time dilation measurement IS a reading depth measurement. This experiment tests whether the reading depth formula (standard GR) reproduces ~30 measurements across the entire soliton hierarchy from meters to gigaparsecs.",
+    "purpose": "program_soliton_gravity_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "si_speed_of_light": 0,
+            "gr_newton_g": 0,
+            "gr_mass_earth": 0,
+            "gr_gm_earth": 0,
+            "gr_radius_earth": 0,
+            "gr_gm_sun": 0,
+            "gr_radius_sun": 0,
+            "gr_pound_rebka_height": 0,
+            "gr_pound_rebka_measured_shift": 0,
+            "gr_gps_orbit_radius": 0,
+            "gr_gps_orbit_velocity": 0,
+            "gr_gps_net_shift_measured": 0,
+            "gr_gravity_probe_a_measured": 0,
+            "gr_gravity_probe_a_altitude": 0,
+            "gr_shapiro_cassini_gamma": 0,
+            "gr_solar_redshift_measured": 0,
+            "gr_muon_lorentz_gamma": 0,
+            "gr_muon_lifetime_rest": 0,
+            "gr_muon_lifetime_dilated_measured": 0,
+            "gr_hulse_taylor_pdot_measured": 0,
+            "gr_hulse_taylor_pdot_gr": 0,
+            "gr_mercury_perihelion_measured": 0,
+            "gr_mercury_semimajor": 0,
+            "gr_mercury_eccentricity": 0,
+            "gr_mercury_period": 0,
+            "gr_sn1a_stretch_factor_z1": 0,
+            "gr_planck_time": 0,
+            "gr_planck_length": 0,
+            "gr_g_surface_earth": 0,
+            "gr_si_hbar": 0,
+            "geom_pi": 0
+        },
+        "derivations": {
+            "gr_reading_depth_mega": 0
+        },
+        "connections": {
+            "connection_gr_reading_depth": 0
+        }
+    },
+
+    "execution_plan": [
+        "gr_reading_depth_mega_v0"
+    ],
+
+    "connections": [
+        "connection_gr_reading_depth_v0"
+    ],
+
+    "expected_outputs": [
+        "result_pound_rebka_predicted_v0",
+        "result_gps_grav_shift_v0",
+        "result_gps_velocity_shift_v0",
+        "result_gps_net_shift_v0",
+        "result_gpa_predicted_v0",
+        "result_solar_redshift_predicted_v0",
+        "result_mercury_perihelion_predicted_v0",
+        "result_muon_dilated_lifetime_v0",
+        "result_shapiro_gamma_predicted_v0",
+        "result_ht_pdot_ratio_v0",
+        "result_sn1a_stretch_predicted_v0",
+        "result_planck_time_from_constants_v0",
+        "result_planck_length_from_constants_v0",
+        "result_c_from_planck_v0",
+        "result_g_surface_from_gm_v0",
+        "result_earth_phi_over_c2_v0",
+        "result_sun_phi_over_c2_v0",
+        "result_earth_schwarzschild_radius_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "Pound-Rebka/Snider: predicted vs measured Df/f",
+            "output_key": "result_pound_rebka_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.46e-15",
+            "reference_source": "Pound_Snider_1965"
+        },
+        {
+            "label": "Pound-Rebka within 10% of measured",
+            "output_key": "result_pound_rebka_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "10",
+            "reference_source": "Pound_Snider_1965"
+        },
+        {
+            "label": "GPS net daily shift predicted vs measured",
+            "output_key": "result_gps_net_shift_v0",
+            "match_mode": "miss_pct",
+            "expected": "38.64e-6",
+            "reference_source": "Ashby_2003"
+        },
+        {
+            "label": "GPS net shift within 1% of measured",
+            "output_key": "result_gps_net_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "Ashby_2003"
+        },
+        {
+            "label": "Gravity Probe A: predicted vs measured",
+            "output_key": "result_gpa_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "4.36e-10",
+            "reference_source": "Vessot_Levine_1980"
+        },
+        {
+            "label": "GPA within 1% of measured",
+            "output_key": "result_gpa_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "Vessot_Levine_1980"
+        },
+        {
+            "label": "Solar surface redshift predicted vs measured",
+            "output_key": "result_solar_redshift_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "636.3",
+            "reference_source": "multiple_solar"
+        },
+        {
+            "label": "Mercury perihelion predicted vs measured",
+            "output_key": "result_mercury_perihelion_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "42.9799",
+            "reference_source": "Park_2017"
+        },
+        {
+            "label": "Mercury perihelion within 0.1% of measured",
+            "output_key": "result_mercury_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.1",
+            "reference_source": "Park_2017"
+        },
+        {
+            "label": "Muon dilated lifetime predicted vs measured",
+            "output_key": "result_muon_dilated_lifetime_v0",
+            "match_mode": "miss_pct",
+            "expected": "64.4e-6",
+            "reference_source": "g2_storage_ring"
+        },
+        {
+            "label": "Cassini Shapiro: gamma consistent with 1",
+            "output_key": "result_shapiro_gamma_predicted_v0",
+            "match_mode": "range",
+            "lo": "0.99997",
+            "hi": "1.00003",
+            "reference_source": "Bertotti_2003"
+        },
+        {
+            "label": "Hulse-Taylor Pdot ratio within 0.5% of 1",
+            "output_key": "result_ht_pdot_ratio_v0",
+            "match_mode": "range",
+            "lo": "0.995",
+            "hi": "1.005",
+            "reference_source": "Weisberg_Taylor_2005"
+        },
+        {
+            "label": "SN Ia stretch at z=1 matches (1+z)=2",
+            "output_key": "result_sn1a_stretch_predicted_v0",
+            "match_mode": "range",
+            "lo": "1.99",
+            "hi": "2.01",
+            "reference_source": "Blondin_2008"
+        },
+        {
+            "label": "Planck time from hbar, G, c matches CODATA",
+            "output_key": "result_planck_time_from_constants_v0",
+            "match_mode": "miss_pct",
+            "expected": "5.391247e-44",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "Planck length from hbar, G, c matches CODATA",
+            "output_key": "result_planck_length_from_constants_v0",
+            "match_mode": "miss_pct",
+            "expected": "1.616255e-35",
+            "reference_source": "CODATA_2018"
+        },
+        {
+            "label": "c = l_P / t_P (reading update speed)",
+            "output_key": "result_c_from_planck_v0",
+            "match_mode": "miss_pct",
+            "expected": "299792458",
+            "reference_source": "SI_exact"
+        },
+        {
+            "label": "g at Earth surface from GM/R^2",
+            "output_key": "result_g_surface_from_gm_v0",
+            "match_mode": "miss_pct",
+            "expected": "9.80665",
+            "reference_source": "CGPM_1901"
+        },
+        {
+            "label": "Earth reading depth Phi/c^2 order 10^-9",
+            "output_key": "result_earth_phi_over_c2_v0",
+            "match_mode": "range",
+            "lo": "6e-10",
+            "hi": "8e-10",
+            "reference_source": "physics"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_reading_depth_hierarchy_v0",
+            "title": "Reading depth across the soliton hierarchy",
+            "type": "bar",
+            "categories": ["Pound-Rebka (22.5m)", "GPS (20200km)", "GPA (10000km)", "Earth surface", "Solar surface", "Mercury orbit", "Muon (SR)", "SN Ia (z=1)"],
+            "values_from": [
+                "result_pound_rebka_predicted_v0",
+                "result_gps_grav_shift_v0",
+                "result_gpa_predicted_v0",
+                "result_earth_phi_over_c2_v0",
+                "result_sun_phi_over_c2_v0",
+                "result_mercury_perihelion_predicted_v0",
+                "result_muon_dilated_lifetime_v0",
+                "result_sn1a_stretch_predicted_v0"
+            ],
+            "notes": "GR time dilation = reading depth. Every measurement in the hierarchy confirms clocks at different depths run at different rates."
+        },
+        {
+            "key": "diagram_miss_pct_all_v0",
+            "title": "Miss percentage: GR prediction vs measurement across all tests",
+            "type": "bar",
+            "categories": ["Pound-Rebka", "GPS net", "GPA", "Solar redshift", "Mercury", "Muon SR", "HT Pdot", "Planck time", "Planck length", "g surface"],
+            "values_from": [
+                "result_pound_rebka_miss_pct_v0",
+                "result_gps_net_miss_pct_v0",
+                "result_gpa_miss_pct_v0",
+                "result_solar_miss_pct_v0",
+                "result_mercury_miss_pct_v0",
+                "result_muon_miss_pct_v0",
+                "result_ht_pdot_miss_pct_v0",
+                "result_planck_time_miss_pct_v0",
+                "result_planck_length_miss_pct_v0",
+                "result_g_surface_miss_pct_v0"
+            ],
+            "notes": "All misses should be <1% for well-measured quantities. Larger misses indicate input precision limits."
+        }
+    ]
+}

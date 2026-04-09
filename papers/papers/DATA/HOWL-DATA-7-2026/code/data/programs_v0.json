@@ -524,15 +524,45 @@
       }
     },
     {
-        "__paste_into_programs_json": true,
-        "entry": {
-            "name": "program_gr_reading_depth_v0",
-            "description": "GR time dilation as reading depth — mega-experiment testing the reading depth interpretation across gravitational, SR, cosmological, and astrophysical domains",
-            "paper": "PHYS-41",
-            "experiments": [
-            "experiment_gr_reading_depth_mega_v0"
-            ]
-        }
+        "name": "program_gr_reading_mega_depth_v0",
+        "canonical": "program_gr_reading_mega_depth",
+        "description": "GR time dilation as reading depth — mega-experiment testing the reading depth interpretation across gravitational, SR, cosmological, and astrophysical domains",
+        "paper": "PHYS-41",
+        "experiments": [
+        "experiment_gr_reading_depth_mega_v0"
+        ],
+        "connections": [
+            "connection_gr_reading_mega_depth_v0"
+        ]
+    },
+    {
+        "key": "program_gr_reading_depth_time_dilation_v0",
+        "canonical": "program_gr_reading_depth_time_dilation",
+        "version": 0,
+        "node_type": "program",
+        "title": "GR Time Dilation as Boundary Reading Depth",
+        "thesis": "The fourth coordinate is reading depth — position within the nested soliton boundary hierarchy. GR time dilation IS reading depth. Every GR time dilation measurement is evidence for reading depth. The experiment computes the GR prediction for ~12 measured time dilation effects across the entire soliton hierarchy (lab to cosmological) and compares to published measurements. The reading depth interpretation adds no new predictions to standard GR — it names what the measurements describe.",
+        "status": "ACTIVE",
+        "paper": "HOWL-PHYS-41-2026",
+        "experiments": [
+            "experiment_gr_time_dilation_v0"
+        ],
+        "kill_switches": [
+            {
+            "criterion": "Any GR time dilation prediction disagrees with measurement by >5% where the measurement precision is <1%",
+            "action": "KILL — the reading depth formula (which IS the GR formula) fails, meaning either the computation has a bug or the input values are wrong",
+            "status": "active"
+            },
+            {
+            "criterion": "Nuclear clock vs optical clock comparison shows disagreement beyond GR at same gravitational potential",
+            "action": "UPGRADE — reading depth is force-dependent, not a reinterpretation of GR but new physics. This would be a discovery.",
+            "status": "active"
+            }
+        ],
+        "connections": [
+            "connection_gr_reading_depth_v0"
+        ],
+        "notes": "This program tests the PHYS-41 interpretation: time is reading depth, GR time dilation is the evidence. The experiment is a reinterpretation exercise — every comparison should PASS because the reading depth formula IS the GR formula. Any FAIL is a computational bug, not a physics failure. The program's value is demonstrating that a century of GR time dilation data constitutes evidence for the reading depth interpretation across the full soliton hierarchy."
     }
   ]
 }
