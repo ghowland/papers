@@ -523,18 +523,64 @@
         "program_proton_decay": "threshold corrections modify tau_p prediction"
       }
     },
+
     {
-        "name": "program_gr_reading_mega_depth_v0",
-        "canonical": "program_gr_reading_mega_depth",
-        "description": "GR time dilation as reading depth — mega-experiment testing the reading depth interpretation across gravitational, SR, cosmological, and astrophysical domains",
-        "paper": "PHYS-41",
-        "experiments": [
-        "experiment_gr_reading_depth_mega_v0"
+        "key": "program_gr_reading_depth_v0",
+        "canonical": "program_gr_reading_depth",
+        "version": 0,
+        "node_type": "program",
+        "topic": "program",
+        "term": "gr_reading_depth",
+        "level": null,
+        "source": "Session 7",
+        "thesis": "The fourth coordinate is reading depth in the soliton hierarchy. GR time dilation IS reading depth. Every GR experiment spanning 67 years is evidence.",
+        "status": "ACTIVE",
+        "tags": ["gravity", "reading_depth", "time_dilation", "soliton", "GR"],
+        "scripts": [
+            {
+                "name": "gr_reading_depth_mega_v0",
+                "description": "40 GR comparisons across gravitational, SR, cosmological, and astrophysical domains",
+                "stage": 1
+            }
         ],
-        "connections": [
-            "connection_gr_reading_mega_depth_v0"
+        "kill_switches": [
+            {
+                "name": "nuclear_vs_optical_clock",
+                "condition": "Thorium-229 nuclear clock and Sr optical clock show SAME dilation in identical potential — would prove cesium universality, ruling out reading depth distinction",
+                "data_source": "JILA/PTB nuclear clock experiments (3-5 years)"
+            },
+            {
+                "name": "nanograv_no_gradient",
+                "condition": "NANOGrav pulsar timing residuals show NO correlation with galactocentric radius — would disprove reading depth gradient across galaxy",
+                "data_source": "NANOGrav 15yr+ dataset"
+            },
+            {
+                "name": "hubble_tension_resolved_conventionally",
+                "condition": "Hubble tension resolved by systematic error in SH0ES or Planck — removes the anomaly this program tries to reinterpret",
+                "data_source": "SH0ES/Planck/DESI reanalysis"
+            },
+            {
+                "name": "g_scatter_no_pattern",
+                "condition": "Published G measurements show NO correlation with lab gravitational environment — would disprove reading depth dependence of G",
+                "data_source": "CODATA G measurement compilation"
+            },
+            {
+                "name": "voyager_doppler_matches_gr",
+                "condition": "Voyager Doppler data at heliopause shows EXACT GR match with no reading depth anomaly — would close the boundary test",
+                "data_source": "NASA DSN Voyager tracking data"
+            }
+        ],
+        "program_connections": {
+            "program_soliton_gravity": "shares GM/(Rc^2) computation, soliton hierarchy",
+            "program_relativity": "shares Lorentz gamma, muon dilation, Minkowski ds^2",
+            "program_toroidal_dm": "DM amplification factor (22/13)*pi used in Hubble tension",
+            "program_beta_unification": "M_GUT gives proton lifetime Planck steps"
+        },
+        "experiments": [
+            "experiment_gr_reading_depth_mega_v0"
         ]
     },
+
     {
         "key": "program_gr_reading_depth_time_dilation_v0",
         "canonical": "program_gr_reading_depth_time_dilation",

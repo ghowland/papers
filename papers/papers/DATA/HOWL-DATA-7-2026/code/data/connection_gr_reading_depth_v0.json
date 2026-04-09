@@ -1,0 +1,38 @@
+{
+    "key": "connection_gr_reading_depth_v0",
+    "canonical": "connection_gr_reading_depth",
+    "version": 0,
+    "node_type": "connection",
+    "description": "GR time dilation as soliton boundary reading depth. The fourth coordinate is reading depth in the soliton hierarchy. Every GR dilation measurement is evidence for the reading depth interpretation.",
+    "paper": "PHYS-41",
+    "domains_connected": ["gravity", "special_relativity", "cosmology", "astrophysics", "atomic_physics"],
+    "thesis": "GR time dilation IS reading depth. Minkowski signature encodes dimension vs process.",
+    "formula": "dilation = 1 - Phi/c^2 = 1 - GM/(Rc^2)",
+    "input_values": [
+        "astro_gravitational_constant_v0",
+        "astro_mass_earth_v0",
+        "astro_mass_sun_v0",
+        "astro_radius_earth_v0",
+        "astro_radius_sun_v0",
+        "astro_gps_orbit_radius_v0",
+        "astro_gps_satellite_velocity_v0",
+        "astro_au_v0",
+        "astro_muon_rest_lifetime_v0",
+        "si_speed_of_light_v0",
+        "gr_pound_rebka_height_m_v0",
+        "gr_skytree_height_m_v0",
+        "gr_planck_time_s_v0",
+        "gr_planck_length_m_v0"
+    ],
+    "output_values": [
+        "pound_rebka_predicted_shift",
+        "gps_grav_dilation_us_per_day",
+        "mercury_perihelion_arcsec_century",
+        "light_deflection_arcsec",
+        "earth_surface_phi_c2",
+        "sun_surface_phi_c2"
+    ],
+    "derivation_functions": [
+        "gr_reading_depth_mega_v0"
+    ]
+}
