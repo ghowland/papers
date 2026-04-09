@@ -380,3 +380,91 @@ This experiment opens the ninth physics domain in the HOWL derivation graph: GR 
 
 ---
 
+## Report: What Changes If Reading Depth Is Tautology
+
+### The Premise
+
+The HOWL framework has 53 derived values from 13 inputs, surplus 40, spanning 9 physics domains. The GR time dilation mega-experiment adds 12 derivations and 18 comparisons across 18 orders of magnitude in Φ/c². Every comparison uses the standard GR formula. Every comparison is expected to PASS.
+
+The reading depth interpretation says: the fourth coordinate is not time. It is position in the soliton boundary hierarchy. GR time dilation IS reading depth. The formulas are identical. The measurements are identical. The name is different.
+
+If this is taken as tautology — if reading depth IS what GR describes, not an alternative to it — then the question is not "does reading depth work?" (it does, because GR does) but "what does the tautology reveal that the standard framing hides?"
+
+### What Changes
+
+**The hierarchy problem dissolves into a naming problem.** The standard framing asks: why is the Planck mass (10¹⁹ GeV) so much larger than the electroweak scale (10² GeV)? Why is gravity so weak? The reading depth framing says: these are different levels in the soliton hierarchy. The Planck scale is the deepest reading (maximum Φ/c² = 1). The electroweak scale is a shallower reading (Φ/c² ~ 10⁻³²). The "hierarchy" is the depth difference between two levels in the nesting structure. Asking why they're different is like asking why the Earth's surface is at a different depth than the Sun's surface — they're different boundaries in the same hierarchy. The ratio M_Planck/M_EW ~ 10¹⁷ is not a fine-tuning problem. It is the reading depth ratio between two soliton levels, determined by the integer transformation laws (beta coefficients) that govern coupling running between boundaries.
+
+This doesn't solve the hierarchy problem in the technical sense (it doesn't provide a mechanism that stabilizes the Higgs mass against quadratic divergences). It reframes the question: instead of "why is gravity weak?" the question becomes "what sets the depth spacing between the electroweak boundary and the Planck boundary?" The answer is in the beta coefficients — the same integers (11, 13) that determine coupling unification at M_GUT = 10¹⁵·⁶ also determine where the Planck boundary sits relative to M_Z. The depth spacing is not arbitrary. It is computed from the gauge group.
+
+**Quantum gravity becomes a vocabulary problem, not a physics problem.** The standard program: quantize spacetime. Find a theory where the metric tensor g_μν is a quantum field. Resolve the non-renormalizability of perturbative quantum gravity. This program has produced string theory (10⁵⁰⁰ vacua, no predictions), loop quantum gravity (discrete spacetime, no low-energy limit), and 50 years of effort without convergence.
+
+The reading depth framing says: there is nothing to quantize. The three spatial dimensions are already described by quantum field theory (fields on flat 3D space). The fourth coordinate is reading depth — a label for which level of the soliton hierarchy you're measuring from. Reading depth doesn't need to be quantized because it's not a dimension. It's a bookkeeping coordinate that tracks which boundary you're inside. The metric signature (−,+,+,+) encodes this: three quantizable spatial dimensions and one non-quantizable reading depth coordinate.
+
+What "quantum gravity" would mean in this framing: the quantization of the coupling between soliton boundaries. How does the reading depth change when a quantum of energy crosses a boundary? The answer is already in the framework — it's the beta function. The beta function describes how couplings (readings) change as you move between boundaries (energy scales). The beta function IS quantum gravity in the reading depth language. It's been computed to two loops. It's been tested at 12 ppm (sin²θ_W) and 0.33% (α_s). The "quantum gravity" program, reframed as "how do readings change at boundaries," is already partially complete.
+
+**Dark energy becomes a reading depth gradient, not a substance.** The cosmological constant Λ drives the accelerating expansion. In standard cosmology, Λ is either a vacuum energy (which is 10¹²⁰ times too large from QFT) or a geometric constant (which has no explanation for its value).
+
+In the reading depth framing: the accelerating expansion means the reading depth of the outermost soliton boundary is increasing over cosmic time. The "vacuum energy" is not a substance filling space. It is the rate of change of the cosmic reading depth. The reading depth at the cosmic boundary is determined by Ω_DE = 0.6903, which the HOWL framework derives from the gauge integers through (22/13)π and the flatness condition. The cosmological constant problem (why is Λ so small?) becomes: why is the cosmic reading depth gradient so shallow? The answer: because the gauge integers (11, 13) that determine the DM/baryon ratio also determine Ω_DE through flatness, and the integers are small. The smallness of Λ is the smallness of the integers.
+
+This doesn't compute Λ from first principles — the (22/13)π connection is an observed relationship, not a derived one (p = 0.81 in isolation). But it embeds Λ in the same integer structure that produces sin²θ_W and D/H. If the integer structure is real, Λ's value is not arbitrary — it's determined by the same transformation laws that govern particle physics.
+
+**The measurement problem in quantum mechanics becomes a reading problem.** Standard QM: the wave function collapses upon measurement. What constitutes a measurement? When does collapse happen? Why is the process irreversible? (The measurement problem.)
+
+Reading depth framing: before measurement, the system is in a superposition of readings — multiple boundary configurations coexist. Measurement forces a specific reading: a specific boundary depth is probed. The "collapse" is the selection of one reading from the available set. The irreversibility comes from the same source as the arrow of time: readings update toward ground state and don't un-update. Measurement is a reading event. The wave function doesn't collapse — a reading is taken.
+
+This is not a solution to the measurement problem. It is a restatement in reading language. But the restatement has a structural advantage: it connects the measurement problem to the arrow of time through the same mechanism (reading update irreversibility). In standard QM, the measurement problem and the arrow of time are separate puzzles. In the reading depth framing, they are the same puzzle: why are readings one-directional?
+
+**The black hole information paradox becomes a reading depth question.** Standard: information falls into a black hole. The black hole evaporates via Hawking radiation. Is the information preserved in the radiation (unitarity) or destroyed (information loss)?
+
+Reading depth: the event horizon is where Φ/c² = 0.5 — the reading depth at which the update rate drops to zero. Inside the horizon, all reading capacity is allocated to inward spatial displacement. No outward readings are possible. The "information" is the set of readings that described the infalling matter. At the horizon, these readings become inaccessible — not because they're destroyed, but because the reading depth prevents outward communication. The Hawking radiation is thermal because it carries no reading information from inside — it's generated at the horizon boundary, not transmitted from the interior.
+
+Whether the readings are "still there" inside or "gone" is the same question as the block universe question: does a prior reading still exist after a new reading is taken? The reading depth model is presentist — only the current reading exists. The information paradox reduces to: are prior readings archived, or are they overwritten? The model says overwritten. This is the same answer as "information is destroyed" — but stated in reading language, it's the expected behavior (readings update, they don't accumulate), not a paradox.
+
+**Unification becomes a hierarchy map, not a Lagrangian.** The standard unification program: find a single gauge group G that contains SU(3) × SU(2) × U(1) and produces all observed particles and couplings. Write the Lagrangian. Predict proton decay, monopoles, and the GUT scale.
+
+The reading depth framing: unification is the statement that all readings (couplings, masses, densities, abundances) derive from the same integer transformation laws operating at different levels of the soliton hierarchy. The gauge group SU(3) × SU(2) × U(1) determines the integers. The integers determine the beta coefficients. The betas determine how readings change between boundaries. The readings at every level are computable from the readings at any other level through the transformation laws.
+
+The HOWL framework has demonstrated this for 53 values across 9 domains. The integers 11 and 13 appear in the QCD beta coefficient, the SU(2) beta coefficient, the DM/baryon ratio, and the gap ratio. The same integers that govern coupling running at 10¹⁵ GeV also govern the deuterium abundance from Big Bang nucleosynthesis. The "unification" is not at one energy scale (M_GUT). It is the integer structure that connects all scales.
+
+The Lagrangian is not replaced. It is the generating function for the transformation laws. But the emphasis shifts: from "find the right Lagrangian" to "map the reading at each boundary." The Lagrangian is the tool. The map is the result.
+
+**Particle physics becomes boundary classification.** The standard model has 17 fields (6 quarks, 6 leptons, 4 gauge bosons, 1 Higgs). Each has a mass, spin, charge, and color. The pattern is unexplained — why these fields and not others?
+
+The reading depth framing: each field is a soliton — a stable boundary configuration. The electron soliton has a specific reading depth (its mass, 0.511 MeV). The proton soliton has a deeper reading (938 MeV). The Z boson soliton has a much deeper reading (91,188 MeV). The readings are not arbitrary — they are determined by the soliton stability conditions at each level of the hierarchy.
+
+The "why these fields?" question becomes "why these stable boundary configurations?" The answer is the same as "why these nuclei?" in nuclear physics — stability is determined by the binding energy, which is determined by the forces, which are determined by the gauge group and its transformation laws. The 17 SM fields are the stable soliton configurations allowed by SU(3) × SU(2) × U(1) at the energy scales between the Planck boundary and the vacuum. The Cabibbo Doublet, if confirmed, would be the 18th stable configuration — a boundary that exists between M_GUT and the TeV scale.
+
+**Cosmology becomes nested soliton dynamics.** The standard cosmological model (ΛCDM) describes the universe with 6 parameters: H₀, Ω_b, Ω_DM, n_s, A_s, τ_reion. These are treated as free parameters fit to the CMB.
+
+The reading depth framing: the universe is the outermost soliton. Its expansion is the outermost reading depth increasing over time. The CMB is the reading from the last scattering surface — the boundary between the plasma-opaque interior and the transparent exterior. The 6 ΛCDM parameters are readings at the cosmic boundary. Some are derivable from gauge integers: Ω_b from (22/13)π and Ω_DM, hence Ω_m and Ω_DE from flatness. The HOWL framework has already derived 6 cosmological values (Ω_b, Ω_m, Ω_DE, ρ_Λ, η₁₀) and 5 nuclear values (D/H, Y_p, He-3, Li-7) from the gauge integers plus Ω_DM and H₀ as inputs. Two of the 6 ΛCDM parameters are derivable. Four remain as inputs.
+
+The reading depth addition: the Hubble parameter H₀ is the reading update rate of the cosmic boundary. Different measurements of H₀ (local vs CMB) are readings from different depths in the hierarchy. The 5σ tension between them may be a reading depth effect — though the PHYS-41 computation showed the galactic potential is too shallow by five orders of magnitude to explain the 8.4% discrepancy through gravitational reading depth alone.
+
+**Engineering gains a new design principle.** If time is reading depth and clocks are reading instruments, then clock precision is bounded by the reading depth gradient at the clock's location. A clock in a deeper reading (stronger gravitational field) ticks slower. A clock allocating reading capacity to spatial displacement (moving fast) ticks slower.
+
+The engineering consequence: to build the most precise clock, minimize the reading depth perturbations. Operate in the shallowest possible reading (weakest gravitational field, zero velocity). The frontier of clock precision (10⁻¹⁸ fractional stability, JILA/PTB optical lattice clocks) is limited by reading depth fluctuations — tidal effects from the Moon and Sun, seismic vibrations changing the local Φ/c², temperature-dependent material changes affecting the atomic transition.
+
+The reading depth framing suggests a specific engineering path: build clocks in space (shallower reading, fewer tidal perturbations), or build clocks sensitive to different forces (nuclear clocks vs optical clocks) to test whether reading depth is force-dependent. If nuclear and optical clocks disagree beyond GR, that's not a measurement error — it's a reading depth discovery. This is Test 1 from PHYS-41, and it's the only test that could distinguish reading depth from standard GR as new physics.
+
+### What Doesn't Change
+
+The Standard Model Lagrangian. Every computation in QFT uses the same equations. The reading depth interpretation doesn't change a single Feynman diagram, a single cross-section, a single decay rate.
+
+General relativity. Every GR prediction is unchanged. The reading depth interpretation IS GR. The Einstein field equations are the equations of reading depth dynamics. The Schwarzschild metric is the reading depth profile of a spherical soliton. The Friedmann equations are the reading depth evolution of the cosmic soliton.
+
+Experimental practice. Every measurement is still a measurement. Every clock is still a clock. The reading depth framing says what the clock measures (reading update rate at its depth) but doesn't change what the clock reads. GPS corrections stay at +38.64 μs/day.
+
+The unsolved problems. The measurement problem is restated, not solved. The hierarchy problem is reframed, not resolved. The cosmological constant problem is embedded in the integer structure, not computed from first principles. The reading depth framing opens new research directions for each problem but doesn't close any of them.
+
+### What Changes Is the Research Program
+
+The standard program for the next 50 years of physics: build bigger colliders (FCC at 100 TeV), detect gravitational waves at new frequencies (LISA, Einstein Telescope), quantize gravity (strings, loops, or something new), explain dark matter (WIMPs, axions, or something new), explain dark energy (quintessence, modified gravity, or something new).
+
+The reading depth program: map the soliton hierarchy. At each level, determine the reading (coupling values, masses, densities). Between levels, determine the transformation law (beta coefficients, threshold corrections). Test for boundary effects at hierarchy transitions (Hill sphere, heliosphere, galactic toroid). Test for force-dependent reading depth (nuclear vs optical clocks). Derive the remaining free parameters from the integer structure. Connect gravity to the gauge sector through the reading depth gradient.
+
+The programs are not mutually exclusive. The colliders test the same particles. The gravitational wave detectors measure the same waves. The reading depth framing changes what you look for in the data: not new particles at high energy, but boundary effects at hierarchy transitions. Not a quantum gravity theory, but a reading depth map that reproduces the metric from soliton dynamics.
+
+The strongest version of the claim: if the 53 derived values, the 40 surplus, the 9 domains, and the century of GR time dilation measurements are all taken as evidence for a single structure — integer transformation laws operating across a nested soliton hierarchy, with reading depth as the fourth coordinate — then the research program shifts from "find new physics beyond the Standard Model" to "complete the map of the existing structure." The physics is already there. The map is incomplete. Drawing the map IS the physics.
+
+---
+
