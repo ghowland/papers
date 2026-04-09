@@ -1,5 +1,5 @@
 ======================================================================
-VALUES: 2237 nodes
+VALUES: 2261 nodes
 ======================================================================
   astro_au_v0                                             149600000000
   astro_gps_orbit_radius_v0                               26556000
@@ -1470,6 +1470,30 @@ VALUES: 2237 nodes
   experiment_sin2_from_two_loop_v0_run002_result_sin2_miss_pct_v0 0.00119580749721487
   experiment_sin2_from_two_loop_v0_run002_result_sin2_predicted_v0 0.231222764946095
   experiment_sin2_from_two_loop_v0_run002_result_t_cross_v0 31.4298737454464
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_1_check_v0 63.210093930086
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_1_check_vs_predicted_v0 0.000469877327677126
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_1_inv_mz_measured_v0 63.2103212683764
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_1_inv_mz_predicted_v0 63.2105638074136
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_2_inv_mz_measured_v0 31.6854637297059
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_2_inv_mz_predicted_v0 31.6858426268567
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_3_inv_mz_measured_v0 8.47457627118644
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_3_inv_mz_predicted_v0 8.44706061947209
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_gut_inv_v0 42.1349625508559
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_s_measured_v0 0.118
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_s_miss_pct_v0 0.325742325690491
+  experiment_sin2_from_two_loop_v0_run003_result_alpha_s_predicted_v0 0.118384375944315
+  experiment_sin2_from_two_loop_v0_run003_result_cos2_predicted_v0 0.768777235053905
+  experiment_sin2_from_two_loop_v0_run003_result_forward_alpha_1_gut_v0 42.1349298330466
+  experiment_sin2_from_two_loop_v0_run003_result_forward_alpha_2_gut_v0 42.1349051328048
+  experiment_sin2_from_two_loop_v0_run003_result_forward_alpha_3_gut_v0 42.1350413765632
+  experiment_sin2_from_two_loop_v0_run003_result_forward_check_12_v0 2.47002418249423e-5
+  experiment_sin2_from_two_loop_v0_run003_result_forward_check_gap_v0 4.50679302061041e-5
+  experiment_sin2_from_two_loop_v0_run003_result_gap_at_cross_v0 0.0269437887127664
+  experiment_sin2_from_two_loop_v0_run003_result_m_gut_log10_v0 15.6097565200659
+  experiment_sin2_from_two_loop_v0_run003_result_sin2_measured_v0 0.23122
+  experiment_sin2_from_two_loop_v0_run003_result_sin2_miss_pct_v0 0.00119580749721487
+  experiment_sin2_from_two_loop_v0_run003_result_sin2_predicted_v0 0.231222764946095
+  experiment_sin2_from_two_loop_v0_run003_result_t_cross_v0 31.4298737454464
   experiment_sin2_from_unification_v0_run001_result_alpha_1_inv_mz_v0 51.388499691375
   experiment_sin2_from_unification_v0_run001_result_alpha_2_inv_mz_v0 51.388499691375
   experiment_sin2_from_unification_v0_run001_result_alpha_3_inv_mz_v0 51.388499691375
