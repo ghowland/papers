@@ -15,3 +15,525 @@
 
 ---
 
+## Separating Clock from Reading: Five Tests That Decompose Time Dilation
+
+**Registry:** [@HOWL-PHYS-43-2026]
+
+**Series Path:** [@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026] → [@HOWL-PHYS-43-2026]
+
+**Date:** April 9, 2026
+
+**Domain:** Gravitation / Metrology / Fundamental Constants / Experimental Design
+
+**Status:** Complete
+
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
+
+---
+
+## I. WHAT PHYS-42 ESTABLISHED
+
+PHYS-42 tested GR time dilation as reading depth across 18 orders of magnitude in gravitational potential. One derivation function. 34 pool constants. 18 comparisons. Mercury perihelion at 2.8 ppm. Solar redshift at 16 ppm. Hulse-Taylor binary at 42 ppm. GPS at 0.35%. Speed of light from Planck units at 0.0%. Seven PASS, one understood FAIL (Gravity Probe A altitude approximation), ten INFO.
+
+Every test confirmed the formula:
+
+dτ/dt = √(1 − 2Φ/c²)
+
+This formula describes the ratio of local clock rate to distant clock rate as a function of gravitational potential. PHYS-42 confirmed it works everywhere precision measurements exist. The reading depth interpretation — clocks at different positions in the soliton hierarchy update at different rates — rides the formula exactly. Every PASS for GR is a PASS for reading depth. The two are experimentally identical at every tested scale.
+
+This paper asks: are they actually identical, or does the formula hide two components that could be separated?
+
+---
+
+## II. THE DECOMPOSITION
+
+The observed dilation dτ/dt = √(1 − 2Φ/c²) could arise from two distinct physical mechanisms.
+
+**The depth component (D).** Position within the nested soliton hierarchy determines the local values of physical constants. A clock oscillates at a frequency set by the local coupling strengths, particle masses, and force laws. At a different depth — deeper in a gravitational well, meaning deeper in the soliton hierarchy — the readings change. The oscillation frequency changes. The clock rate changes. This is a spatial structure. It exists in frozen time. You could scan through the hierarchy mathematically, without any temporal evolution, and predict the reading at each depth from the boundary transformation laws.
+
+**The tick component (K).** Time is a monotonic counting process. The universe advances in discrete Planck steps of t_P = 5.391 × 10⁻⁴⁴ seconds. Each tick increments a counter. The counter may be universal (one count for the whole universe) or local (each region maintains its own count). Each tick may have geometric consequences — slightly deforming boundary structures, expanding the outermost boundary, drifting the values of constants over cosmic time. The tick is a process. It requires temporal evolution. It cannot be computed from a frozen snapshot.
+
+The Rational Universe Model (RUM) treats these as separate. Standard GR does not distinguish them — it uses one coordinate (t) and one dilation factor (the metric component g₀₀). The distinction matters only if the two components can be experimentally separated.
+
+This paper identifies five measurements where they can be.
+
+The central equation is:
+
+dτ/dt = √(1 − 2Φ/c²) × [1 + ε_sector × R_sector(Φ)]
+
+where the first factor is the standard GR dilation (capturing the combined effect that PHYS-42 confirmed), and the second factor is a correction from sector-dependent reading depth. The parameter ε_sector encodes how much the depth component (D) differs between force sectors — electromagnetic versus strong versus weak — at a given gravitational potential. R_sector(Φ) is the sector-dependent deviation from the universal potential.
+
+If ε_sector = 0, reading depth is sector-blind and experimentally identical to standard GR. If ε_sector ≠ 0, reading depth is sector-dependent and produces new physics: different clock types at the same gravitational potential tick at different rates.
+
+The dimensional estimate for ε_sector uses the one quantity that already connects force sectors to the soliton hierarchy: the beta function coefficients. The β coefficients govern how coupling strengths change across energy scales — which IS how readings change across hierarchy levels. The sector splitting is:
+
+ε_sector = |Δβ_ij / β_ref| × Φ/c²
+
+where Δβ_ij is the difference in one-loop beta coefficients between sectors i and j, and β_ref is a reference running rate. For the strong-vs-electromagnetic comparison:
+
+|β₃/β₁| = |(−20/3)/(25/6)| = |−8/5| = 8/5 = 1.6
+
+giving ε_strong-em ≈ 1.6 × Φ_earth/c² ≈ 1.6 × 6.96 × 10⁻¹⁰ ≈ 1.1 × 10⁻⁹.
+
+This is the paper's central prediction. The sector splitting between a nuclear clock (probing the strong force) and an optical clock (probing the electromagnetic force) at Earth's surface is approximately 10⁻⁹ in fractional frequency. This is three orders of magnitude above the projected sensitivity of next-generation clock comparisons (10⁻¹⁸ to 10⁻¹⁹). If the formula is correct, the effect is detectable. If the formula overcounts by 10⁵, the effect is still at 10⁻¹⁴, four orders above detection. Only if it overcounts by more than 10⁹ is the effect below the noise floor.
+
+The β coefficients in this formula come from the same pool that predicted sin²θ_W at 12 ppm and α_s at 0.33%. They are the CD-modified betas: (25/6, −13/6, −20/3). The gravitational potential comes from the same pool that computed Mercury's perihelion at 2.8 ppm. The sector splitting prediction connects the GUT domain (β coefficients from the Cabibbo Doublet) to the GR domain (Φ/c² from the PHYS-42 derivation) through the soliton hierarchy. This is the first quantitative prediction that links gravity to gauge physics through the RUM boundary structure.
+
+---
+
+## III. THE FOUR SCENARIOS
+
+The review of the plan identified that three scenarios are insufficient. The logical space requires four.
+
+**Scenario GR (standard general relativity).** One spacetime coordinate. Universal coupling. The equivalence principle holds exactly. All clock types at the same potential agree to arbitrary precision. There is no decomposition because there is only one component. This is the null hypothesis.
+
+**Scenario D-blind (universal tick, sector-independent reading depth).** The tick is universal — one Planck counter for the entire universe. Reading depth exists as a spatial structure but does not depend on which force sector you probe. Electromagnetic readings and strong-force readings shift by exactly the same amount across a gravitational boundary. All clock types agree. Experimentally indistinguishable from Scenario GR at currently achievable precision. Reading depth is real but it is a vocabulary change, not new physics.
+
+**Scenario D-sector (universal tick, sector-dependent reading depth).** The tick is universal. Reading depth exists AND it depends on the force sector. The electromagnetic reading at a given depth differs from the strong-force reading at the same depth. The boundary transformation laws have sector-dependent coefficients — the β functions, which already differ between sectors in the gauge coupling running. A nuclear clock and an optical clock at the same gravitational potential disagree by ε_sector × Φ/c². This is the scenario that produces new physics. It is the one this paper primarily tests.
+
+**Scenario K-local (local tick rates, no separate reading depth).** The tick rate varies from place to place, determined by the local boundary environment. There is no separate reading depth — the dilation is entirely in the tick count. All clock types at one location agree because they all count the same local ticks. But the tick rate depends on the full boundary environment, not just the smooth gravitational potential. This could produce timing residuals that track local density and boundary nesting, distinguishable from the smooth GR potential.
+
+The four scenarios are distinguishable:
+
+| Scenario | Nuclear vs optical | Pulsar residual pattern | Predicted by |
+|---|---|---|---|
+| GR | Exact agreement | No residuals beyond GR | Standard physics |
+| D-blind | Exact agreement | No residuals beyond GR | RUM without sector dependence |
+| D-sector | Disagreement by ε × Φ/c² | Structure-correlated | RUM with sector dependence |
+| K-local | Exact agreement | Density-correlated | RUM with local ticks |
+
+The nuclear clock test (Test 1) distinguishes D-sector from all other scenarios. The pulsar timing test (Test 2) distinguishes K-local from GR and D-blind by the spatial pattern of residuals. Tests 3-5 provide supporting constraints.
+
+---
+
+## IV. THE COUNTING MACHINE
+
+The Planck time t_P = √(ℏG/c⁵) = 5.391 × 10⁻⁴⁴ seconds is not a human convention. It is the unique combination of three fundamental constants (ℏ, G, c) with dimensions of time. The Planck length l_P = √(ℏG/c³) = 1.616 × 10⁻³⁵ meters is the unique combination with dimensions of length. Their ratio is c = l_P/t_P = 299,792,458 m/s exactly (confirmed at 0.0% miss in PHYS-42).
+
+These are the resolution limits of the universe. t_P is the smallest time interval over which a physical state can change. l_P is the smallest spatial interval over which a physical state can differ. Below these scales, the universe does not subdivide.
+
+This is established physics. Loop quantum gravity (Rovelli, Thiemann) predicts area and volume quantization at the Planck scale. String theory predicts a minimum length. The Planck scale appears in every approach to quantum gravity as a fundamental resolution limit. The RUM framework adopts this consensus and names it: the universe is a counting machine. Each Planck tick advances the state by one step. Between ticks, nothing happens.
+
+The evidence is circumstantial but consistent. The Planck time exists — it is derived from measured constants, not postulated. The speed of light equals l_P/t_P — one resolution unit per tick, the maximum update rate. The arrow of time is the property of counting: N+1 > N. You cannot count backwards. The second law of thermodynamics, which is otherwise mysterious (why should entropy increase?), is trivial in a counting framework: the count increases, the number of accessible states increases with it, entropy increases. The arrow is not thermodynamic. It is arithmetic.
+
+The geometric effect of ticking is cosmological expansion. If the outermost boundary of the universe expands by one Planck length per tick, the expansion rate at that boundary is l_P/t_P = c. The particle horizon expands at c. This is the standard cosmological result, derived here from the tick process rather than from the Friedmann equations. The Friedmann equations describe how the metric evolves in continuous time. The tick process describes why the metric evolves: each tick geometrically deforms the boundary structure by one resolution unit.
+
+Gravitationally bound systems (galaxies, stellar systems, atoms) do not expand with each tick because their internal binding exceeds the per-tick deformation. The binding energy holds the boundary structure fixed against the tick's geometric tendency to expand. This is the standard explanation for why bound systems don't participate in Hubble expansion, arrived at from a different direction: not "the metric expansion is too weak to overcome gravity" but "the tick's geometric deformation is absorbed by the binding energy of the boundary."
+
+The per-tick deformation is constrained by observations. If each tick shifts the fine structure constant α by δα per tick, the accumulated drift over cosmic time is Δα = δα × ΔN, where ΔN is the number of ticks between epochs. Quasar absorption spectra constrain Δα/α < 10⁻⁶ at z ~ 2 (Murphy et al. 2022, ESPRESSO). The number of ticks from z = 2 to now is approximately 3 × 10⁶⁰. This gives δα/α < 3 × 10⁻⁶⁷ per tick. The per-tick deformation is extraordinarily small — but it is not zero by observation. The observations set an upper bound. Whether the true value is zero or merely very small is an open question that future spectrographs (ANDES on ELT, 2030s) will address.
+
+---
+
+## V. THE FROZEN SCAN
+
+Reading depth is not temporal. It is spatial. It is not a process. It is a structure.
+
+Consider the soliton hierarchy at one frozen instant — one specific Planck tick N. The universe is a nested set of boundaries: the cosmological boundary containing galactic boundaries containing stellar boundaries containing planetary boundaries containing atomic boundaries containing nuclear boundaries. At each level, the physical constants have specific values. The coupling strengths run. The masses shift. The metric changes. All of these are functions of position in the hierarchy, not functions of time.
+
+If you knew all the integers — the beta coefficients, the representation content, the boundary transformation laws — you could scan through the hierarchy mathematically, at frozen tick N, and predict the reading at every depth. You would know: at the surface of the Earth (depth Φ/c² = 6.96 × 10⁻¹⁰), the clock rate is reduced by this fraction. At the surface of the Sun (Φ/c² = 2.12 × 10⁻⁶), reduced by that fraction. At the surface of a neutron star (Φ/c² ~ 0.2), reduced by this larger fraction. No time evolution required. No ticking required. The readings are geometric.
+
+This is what PHYS-42 demonstrated: one derivation function scanning through the hierarchy at every tested depth, predicting the reading at each level, matching measurement. The derivation does not evolve anything in time. It computes static relationships between depths. Mercury's perihelion advance looks temporal (it precesses over decades) but the formula δω = 6πGM/(ac²(1−e²)) is a geometric property of the solar reading depth gradient, not a dynamical evolution. The precession is what an orbit does in curved reading depth space. The curvature is static. The precession is a consequence of scanning the orbit through the curved structure.
+
+The frozen scan is where the sector dependence lives. At one depth (one gravitational potential), the electromagnetic reading and the strong-force reading may differ because the boundary transformation laws are sector-dependent. The beta functions are different for each gauge group: β₁ = 25/6, β₂ = −13/6, β₃ = −20/3. These are different numbers. They describe different running rates. If reading depth is literally "how couplings change across boundaries," then different couplings change by different amounts. The depth is the same. The readings differ.
+
+This is not speculative extrapolation. It is the structure that already exists in the Standard Model. Couplings run at different rates with energy scale. Energy scale maps to position in the hierarchy (higher energy = smaller distance = deeper boundary). The running rates are the beta coefficients, which are different for each gauge group. The sector dependence of reading depth is the sector dependence of coupling running, applied to gravitational boundaries rather than energy-scale boundaries.
+
+The connection requires one assumption: that gravitational boundaries and energy-scale boundaries are the same hierarchy, viewed from different coordinates. In the RUM framework, this is the defining claim: the soliton hierarchy is the hierarchy. Energy scale and gravitational potential are two projections of position within it. The beta coefficients govern how readings change along the energy-scale projection. The metric governs how readings change along the gravitational projection. If both projections describe the same underlying hierarchy, the beta coefficients should appear in the gravitational sector as sector-dependent corrections to the universal metric.
+
+This is the sector splitting formula:
+
+ε_sector(i,j) = |Δβ_ij| / |β_ref| × Φ/c²
+
+and it is either true (the hierarchy is unified) or false (gravitational and energy-scale hierarchies are separate). Test 1 decides.
+
+---
+
+## VI. TEST 1: NUCLEAR VS OPTICAL CLOCK
+
+**The measurement.** Compare a thorium-229 nuclear clock with a strontium-87 optical lattice clock. Both clocks at the same location, same gravitational potential, same laboratory. Measure the ratio of their frequencies over extended integration time. Look for a deviation from the ratio predicted by standard physics (which predicts exact constancy of the ratio at any fixed potential).
+
+**Why this works.** A strontium optical clock counts oscillations of an electronic transition at 429 THz. The transition frequency depends on α (fine structure constant), m_e (electron mass), and the strontium nuclear charge — all electromagnetic sector quantities. The clock probes the electromagnetic reading at its depth.
+
+A thorium-229 nuclear clock counts oscillations of the 8.36 eV nuclear isomer transition — the lowest-energy nuclear transition known, which is what makes it usable as a clock. The transition frequency depends on the strong nuclear force, the nuclear shell structure, the arrangement of 90 protons and 139 neutrons in the thorium nucleus. The clock probes the strong-force reading at its depth.
+
+In standard GR (Scenario GR) and in sector-blind reading depth (Scenario D-blind), the metric couples universally. Both clocks experience the same dilation. Their frequency ratio does not depend on gravitational potential. Moving both clocks to a different altitude changes both frequencies by the same factor. The ratio is constant.
+
+In sector-dependent reading depth (Scenario D-sector), the electromagnetic reading and the strong-force reading shift by different amounts across a gravitational boundary. The strontium clock frequency changes by the electromagnetic factor. The thorium clock frequency changes by the strong-force factor. The ratio changes.
+
+**The prediction.** Using the sector splitting formula:
+
+ε_strong-em = |β₃/β₁| × Φ_earth/c²
+
+with β₃ = −20/3, β₁ = 25/6 (both from the pool, CD-modified values):
+
+|β₃/β₁| = |(−20/3)/(25/6)| = |(−120/75)| = 8/5 = 1.6
+
+Φ_earth/c² = 6.961 × 10⁻¹⁰ (from PHYS-42 derivation)
+
+ε_strong-em ≈ 1.6 × 6.96 × 10⁻¹⁰ ≈ 1.1 × 10⁻⁹
+
+The predicted frequency ratio change between sea level and an elevated laboratory (Δh ~ 1000 m, ΔΦ/c² ~ 10⁻¹³) is:
+
+Δ(f_Th/f_Sr) / (f_Th/f_Sr) ≈ ε_strong-em × ΔΦ/Φ ≈ 1.6 × 10⁻¹³
+
+This is four orders of magnitude above the projected 10⁻¹⁸ clock comparison sensitivity. Even if the formula overcounts by a factor of 10⁴, the effect is at the detection threshold. The margin is large.
+
+**The critical feature.** This prediction uses numbers from two previously unconnected domains. The β coefficients come from the gauge sector — the same integers that predict sin²θ_W = 0.231 and α_s = 0.1184. The gravitational potential comes from the GR sector — the same GM_E/(R_E·c²) that predicted Mercury at 2.8 ppm. The sector splitting formula multiplies them together. If the formula is confirmed, it is the first measured connection between gauge coupling integers and gravitational physics. The soliton hierarchy would be quantitatively confirmed as a unified structure, not just an interpretive framework.
+
+**The timeline.** The thorium-229 nuclear isomer transition was directly observed in 2024 (Tiedau et al., PTB). Laser excitation of the transition was demonstrated in 2024 (Zhang et al., JILA). Clock-quality interrogation — the precision needed for a sector-splitting test — requires systematic uncertainty below 10⁻¹⁸, projected for 2028-2032 at PTB, JILA, or TU Wien.
+
+**The kill condition.** If the thorium-229 and strontium-87 frequency ratio is constant to 10⁻¹⁹ across two or more gravitational potentials (e.g., sea level and 1000 m altitude), then ε_strong-em < 10⁻¹⁹/10⁻¹³ = 10⁻⁶. The sector splitting is at least a million times smaller than the β-ratio prediction. Scenario D-sector is dead at these scales. Reading depth reduces to sector-blind (Scenario D-blind), experimentally indistinguishable from standard GR.
+
+**Context within equivalence principle tests.** Existing tests of the equivalence principle — MICROSCOPE (WEP, titanium vs platinum, η < 10⁻¹⁵), Lunar Laser Ranging (Nordtvedt effect, η < 10⁻¹³), atom interferometry (Rb-87 vs Rb-85, Δf/f < 10⁻¹²), optical clock altitude comparison (Sr vs Sr, Δf/f at 10⁻¹⁸) — all compare objects within the same force sector. They test whether different materials at different potentials experience the same dilation. They find: yes.
+
+Test 1 is qualitatively different. It compares different force sectors at the same potential. It tests whether the electromagnetic sector and the strong-force sector experience the same reading depth. No existing experiment tests this. The equivalence principle as standardly formulated (universality of free fall, universality of gravitational redshift) does not address cross-sector clock comparisons because it assumes universal coupling. The assumption is what Test 1 tests.
+
+---
+
+## VII. TEST 2: PULSAR TIMING VS GALACTIC STRUCTURE
+
+**The measurement.** Analyze the ensemble of millisecond pulsars timed by the International Pulsar Timing Array (IPTA) — combining NANOGrav, EPTA, PPTA, and InPTA datasets. After subtracting the known galactic gravitational potential gradient (from published mass models: Bovy 2015, McMillan 2017), compute timing residuals. Correlate the residuals with four spatial variables: (a) galactocentric radius, (b) local DM column density, (c) spiral arm membership (Cordes & Lazio NE2001 model), (d) height above the galactic plane.
+
+**Why this works.** The Milky Way's gravitational potential produces a smooth gradient in clock rates across the galaxy. This gradient is well-modeled and already subtracted in standard pulsar timing analyses. What remains in the residuals is noise (pulsar spin-down irregularities, interstellar medium propagation effects) plus any additional signal.
+
+The reading depth interpretation says the galaxy is a soliton with internal structure: spiral arms, a central bar, a toroidal DM distribution. If reading depth depends on boundary nesting (not just the smooth potential), pulsars inside a spiral arm are at a different nesting level than pulsars between arms, even at the same galactocentric radius. This structural dependence would produce timing residuals correlated with spiral arm membership but not with radius alone.
+
+The local tick rate interpretation (Scenario K-local) says the tick rate depends on local density. Pulsars in dense environments (near molecular clouds, in the galactic plane) tick at a rate determined by the local mass concentration. This density dependence would produce timing residuals correlated with local DM column density and height above the plane.
+
+Standard GR predicts neither pattern. After subtracting the smooth potential, the residuals should be uncorrelated with galactic structure.
+
+**The complication.** The NANOGrav 15-year dataset (Agazie et al. 2023) detected a stochastic gravitational wave background through spatially correlated timing residuals — the Hellings-Downs curve. This signal is real and must be separated from any reading depth gradient. The separation is possible because the GW background produces a specific angular correlation pattern (quadrupolar) that depends on the angle between pulsar pairs, while a reading depth gradient produces a correlation with galactic position (radius, arm membership, plane height). The two signals live in different correlation spaces: angular for GWs, positional for reading depth.
+
+The specific statistical test: compute Pearson correlations r(residual, variable) for variables (a) through (d), after fitting and subtracting the Hellings-Downs angular correlation. Report each correlation with its p-value and uncertainty. The prediction:
+
+| Variable | GR predicts | D-sector predicts | K-local predicts |
+|---|---|---|---|
+| (a) galactocentric radius | r ≈ 0 | r ≈ 0 | r ≈ 0 |
+| (b) DM column density | r ≈ 0 | r ≈ 0 | r > 0 (p < 0.01) |
+| (c) spiral arm membership | r ≈ 0 | r > 0 (p < 0.01) | r ≈ 0 |
+| (d) galactic plane height | r ≈ 0 | possible | r > 0 (p < 0.01) |
+
+**The required sensitivity.** The NANOGrav 15-year dataset has timing residuals at the ~100 ns level for the best millisecond pulsars, with ~70 pulsars. The galactic potential gradient across the ensemble produces timing differences of order (ΔΦ/c²) × T_obs ~ 10⁻⁶ × 15 yr ~ 500 μs. After model subtraction, the residuals are at 100 ns. A reading depth structural signal at the 10 ns level (0.002% of the total gradient) would require ~25 pulsars per arm/interarm category to detect at 2σ. The NANOGrav dataset is approaching this count. The 25-year dataset (expected ~2030) will exceed it.
+
+**The kill condition.** If NANOGrav 25-year data shows no correlation between timing residuals and spiral arm membership at the 10 ns level (|r| < 0.3, p > 0.05), the galactic boundary structure component of reading depth is below the noise floor at galactic scales.
+
+---
+
+## VIII. TEST 3: VOYAGER AT THE HELIOPAUSE
+
+**The measurement.** Analyze Doppler tracking data from Voyager 1 (heliopause crossing August 2012) and Voyager 2 (heliopause crossing November 2018). After subtracting the known deceleration, solar wind ram pressure, and thermal radiation pressure, look for an anomalous frequency step coincident with the heliopause crossing.
+
+**Why this works.** The heliopause is a physical boundary: the transition from the solar wind (solar soliton interior) to the interstellar medium (galactic soliton exterior). If reading depth changes across soliton boundaries, a spacecraft crossing from one boundary domain to another experiences a step change in the local readings. The spacecraft's radio transmitter oscillates at a frequency set by local electromagnetic readings. A step change in readings produces a step change in the Doppler residual.
+
+Standard GR predicts no step. The gravitational potential changes smoothly through the heliopause. The boundary is in the plasma, not in the metric.
+
+**The magnitude estimate.** The heliospheric boundary transformation involves the solar wind — plasma flowing at v_sw ≈ 400 km/s. The reading depth step at the boundary is of order:
+
+δΦ_boundary/c² ~ (v_sw/c)² ~ (1.3 × 10⁻³)² ~ 1.8 × 10⁻⁶
+
+This is a generous upper bound — it assumes the entire solar wind kinetic energy budget contributes to the boundary reading step. The actual step would be the fraction of this energy that couples to the boundary transformation law. If the coupling is 10⁻⁶ of the kinetic budget, the step is ~10⁻¹², producing a Doppler shift of ~0.3 mm/s.
+
+**The complication.** The heliopause crossing produced dramatic plasma physics signatures: energetic particle flux changes (Krimigis et al. 2013), magnetic field rotation (Burlaga et al. 2013), galactic cosmic ray increase (Stone et al. 2013). These plasma effects dominate the spacecraft dynamics at the boundary. The Doppler data during the crossing period is contaminated by plasma-induced forces at the 1-10 mm/s level. Extracting a 0.3 mm/s reading depth step from this background requires careful plasma modeling and subtraction.
+
+For this reason, Test 3 is a supporting check, not a decisive test. If Tests 1 or 2 show positive results for reading depth, the Voyager data provides a third measurement at a completely different scale and boundary type. If Tests 1 and 2 are null, the Voyager analysis is unlikely to produce a convincing standalone detection.
+
+**The existing anomaly context.** The Pioneer anomaly (anomalous sunward acceleration of ~8.7 × 10⁻¹⁰ m/s²) was initially consistent with a boundary-related effect. Turyshev et al. (2012) resolved it as thermal radiation pressure from the spacecraft's radioisotope thermoelectric generators. The analysis methodology developed for Pioneer — systematic modeling of all non-gravitational forces, followed by residual extraction — is directly applicable to Voyager heliopause data.
+
+**The data.** NASA Deep Space Network tracking data for Voyager 1 and 2 is archived at the Planetary Data System. Both heliopause crossings are covered. The analysis is archival — no new observation required.
+
+**The kill condition.** If Voyager 1 and 2 Doppler residuals at the heliopause, after plasma correction, show no step exceeding 0.1 mm/s, the heliospheric boundary reading depth contribution is below 10⁻¹². This constrains the boundary coupling fraction to < 10⁻⁶ of the solar wind kinetic budget.
+
+---
+
+## IX. TEST 4: G SCATTER VS LABORATORY ENVIRONMENT
+
+**The measurement.** Compile published measurements of Newton's constant G from the CODATA collection (Mohr, Newell, Taylor 2016) and subsequent publications. For each measurement, record: the G value, its stated uncertainty, the measurement technique, and the laboratory's gravitational environment (altitude, latitude, proximity to large mass concentrations, local crustal density from geological surveys).
+
+Perform a regression of G values against laboratory gravitational potential Φ_lab/c², controlling for measurement technique.
+
+**Why this works.** Newton's constant G enters the reading depth formula: Φ/c² = GM/(Rc²). If G itself is a reading — a value that depends on position in the soliton hierarchy — then measurements at different positions would return different values. The published G measurements disagree by up to 500 ppm, far exceeding individual uncertainties of 10-50 ppm. The standard explanation is underestimated systematics. The reading depth explanation is that G varies.
+
+**The confound.** The ~15 published G measurements use radically different techniques: torsion balance (Cavendish descendants), beam balance, atom interferometry, servo-controlled pendulum. Each technique has its own systematic error profile. European metrology labs (PTB, BIPM) are at different altitudes than American labs (NIST) and Chinese labs (HUST). A correlation between G and altitude could be a correlation between G and technique.
+
+With ~15 data points and ~5 technique categories, the statistical power for a technique-corrected environmental regression is marginal. The honest assessment: with existing data, this test is suggestive at best. It cannot be decisive.
+
+The test becomes decisive under a specific condition: if future G measurements are performed at deliberately varied gravitational potentials using the same technique, by the same group, with the same apparatus. A torsion balance experiment performed at sea level and at 3000 m altitude, with everything else identical, would directly measure δG/δΦ. This has not been done. The existing data was not collected for this purpose.
+
+**The RUM prediction.** If G is a reading, its variation with depth is:
+
+δG/G ~ δΦ/c² ~ ΔΦ_lab/c²
+
+where ΔΦ_lab is the gravitational potential difference between laboratories. For laboratories spanning sea level to ~1500 m altitude:
+
+ΔΦ_lab/c² ~ g × Δh / c² ~ 10 × 1500 / (3 × 10⁸)² ~ 1.7 × 10⁻¹³
+
+This is 0.00017 ppb — vastly below the 500 ppm scatter. The smooth potential variation cannot explain the scatter.
+
+If the G variation depends on boundary nesting (local geological density, proximity to mountains or ocean trenches) rather than smooth potential, the effect could be larger. A laboratory inside a mountain tunnel (surrounded by dense rock on all sides) is at a different nesting level than a laboratory on a flat plain. The nesting difference does not map onto a simple altitude or Φ/c² metric. Without a quantitative nesting model, the prediction is that G values correlate with some measure of local boundary complexity, but the specific metric is not determined.
+
+**The kill condition.** If regression of published G values against laboratory Φ/c² shows |r| < 0.3 after technique correction (using technique indicator variables), with 20 or more measurements, reading depth variation of G at the 500 ppm level is not supported. If the same regression against a boundary complexity metric (local crustal density within 1 km, altitude variability within 10 km) also shows |r| < 0.3, boundary-dependent G is not supported at the precision of existing data.
+
+---
+
+## X. TEST 5: COSMOLOGICAL α DRIFT
+
+**The measurement.** Compare the fine structure constant α measured in quasar absorption spectra at z = 1-4 (7-12 billion years ago) with the laboratory value. Use existing published constraints from ESPRESSO/VLT (Murphy et al. 2022), Keck+VLT (Webb et al. 2011), and future constraints from ANDES on ELT (first light ~2030s).
+
+**Why this works.** If each Planck tick geometrically deforms the soliton boundary structure — expanding the outermost boundary, slightly shifting internal boundaries — the accumulated deformation over cosmic time changes the readings. Physical constants measured at earlier cosmic epochs (fewer accumulated ticks) would differ from current values. This is a direct test of the tick's geometric effect.
+
+**The existing physics.** Varying fundamental constants is a well-established research program (Uzan 2003, 2011; Martins 2017). The connection to the RUM framework is that the variation mechanism is specified: each Planck tick deforms boundaries by a geometric increment. The per-tick deformation rate is a parameter of the model. Existing constraints determine the allowed range of this parameter. The RUM framework provides the interpretation — the drift is a counting process, not a dynamical field evolution — but does not change the observational program.
+
+The existing constraints:
+
+| Source | z range | Constraint on Δα/α | Per-tick bound |
+|---|---|---|---|
+| Webb et al. 2011 (Keck+VLT) | 0.2-4.2 | Possible spatial dipole ~10⁻⁵ | Unresolved |
+| Murphy et al. 2022 (ESPRESSO) | 1.0-1.8 | < 2 × 10⁻⁶ (1σ) | < 7 × 10⁻⁶⁷/tick |
+| Oklo reactor constraint | z = 0.14 | < 10⁻⁷ | < 5 × 10⁻⁶⁸/tick |
+| ANDES projection (2030s) | 1-5 | < 10⁻⁸ (goal) | < 3 × 10⁻⁶⁹/tick |
+
+The per-tick bound is computed from: δα/α < Δα/(α × ΔN), where ΔN = Δt/t_P is the number of Planck ticks between the observation epoch and now.
+
+**The four-scenario predictions:**
+
+Scenario GR: α may or may not vary. GR does not address fundamental constant variation. No prediction.
+
+Scenario D-blind: No α drift. Reading depth is a spatial structure that does not evolve. The hierarchy is static. Constants at different epochs are the same.
+
+Scenario D-sector: No α drift. Reading depth is sector-dependent but static. The hierarchy changes with position, not with time.
+
+Scenario K-local: Possible α drift. If local tick rates change with cosmic expansion (because the expansion changes the boundary structure), the coupling readings at earlier epochs differ from current values. The drift rate connects to the expansion history.
+
+Additionally, the geometric tick hypothesis (any scenario with tick-induced boundary deformation) predicts drift at the per-tick rate δα/α per tick. The existing constraints push this rate below 10⁻⁶⁷ per tick. If ANDES pushes it below 10⁻⁶⁹ per tick and finds no drift, the geometric tick effect is unfalsifiable at foreseeable precision and should be shelved as a live hypothesis. It would not be disproven — only pushed beyond observational reach.
+
+**The Webb dipole.** Webb et al. (2011) reported a possible spatial dipole in Δα/α: α appears to be slightly larger in one direction on the sky and slightly smaller in the opposite direction. If confirmed, this would be inconsistent with all four scenarios as stated — none predicts a spatial dipole in a fundamental constant. A dipole would require the universe to have a preferred direction, which would be extraordinary. The ESPRESSO results (Murphy et al. 2022) do not confirm the dipole but have limited sky coverage. The status is unresolved.
+
+In the RUM framework, a spatial dipole in α would imply anisotropic soliton boundary structure at the cosmological scale — the outermost boundary is not spherically symmetric. This is possible (cosmological anisotropy exists in the CMB at low multipoles) but would require significant extension of the current framework.
+
+**The kill condition.** If ANDES measures |Δα/α| < 10⁻⁸ at z = 1-5 with no spatial dipole, the geometric tick deformation rate is pushed below 3 × 10⁻⁶⁹ per tick. At that level, the geometric tick hypothesis produces no observable consequence on any foreseeable timescale. It should be declared unfalsifiable and shelved — not disproven, but removed from the active research program.
+
+---
+
+## XI. THE DECOMPOSITION MATRIX
+
+| Test | Primarily probes | GR predicts | D-blind predicts | D-sector predicts | K-local predicts | Timeline |
+|---|---|---|---|---|---|---|
+| 1. Nuclear vs optical | D sector dependence | agree | agree | **disagree by ε×Φ/c²** | agree | 2028-2032 |
+| 2. Pulsar gradient | D boundary structure / K density | no structure | no structure | **arm-correlated** | **density-correlated** | 2026 archival, 2030 decisive |
+| 3. Voyager heliopause | D boundary step | no step | no step | **step possible** | no step | 2026 archival |
+| 4. G scatter | D depth variation | no correlation | no correlation | **possible** | no correlation | 2026 archival, 2030+ decisive |
+| 5. α drift | K geometric tick | no prediction | no drift | no drift | **possible drift** | 2030s for ANDES |
+
+The five tests are complementary. Test 1 is the decisive test for D-sector. Test 2 distinguishes D-sector from K-local by the spatial pattern. Test 5 is the only test that probes the tick geometry directly. Tests 3 and 4 are supporting constraints that become important if the decisive tests show positive results.
+
+The resolution timeline spans a decade. Test 1 requires new hardware (thorium clock, 3-5 years). Tests 2, 3, 4 use existing data (archival analysis possible now). Test 5 requires a next-generation spectrograph (ANDES, 2030s). By 2035, the decomposition will be constrained from five independent directions.
+
+---
+
+## XII. THE SECTOR SPLITTING FORMULA
+
+The central prediction of this paper deserves explicit derivation, not just a dimensional estimate.
+
+In the RUM framework, the soliton hierarchy has one coordinate: depth. At each depth, the gauge couplings take values determined by the renormalization group equations:
+
+dα_i⁻¹/d(ln μ) = −b_i/(2π)
+
+where μ is the energy scale and b_i are the one-loop beta coefficients. The energy scale μ maps to position in the hierarchy: higher energy corresponds to deeper position (smaller distance, more deeply nested boundary).
+
+The gravitational potential Φ/c² = GM/(Rc²) also maps to position in the hierarchy: larger potential corresponds to deeper position. The claim is that these two "depths" — the energy-scale depth accessed by accelerators and the gravitational depth accessed by astronomical observations — are projections of the same underlying hierarchy coordinate.
+
+If they are the same, the coupling running with energy scale implies coupling variation with gravitational potential. At one-loop, the fractional change in coupling α_i across a gravitational potential difference ΔΦ/c² is:
+
+δα_i/α_i ~ b_i × ΔΦ/c² × (coupling to hierarchy coordinate)
+
+The "coupling to hierarchy coordinate" is the conversion factor between the energy-scale parameterization and the gravitational-potential parameterization of the hierarchy. In the simplest case (linear mapping, which is what the weak-field limit gives), this factor is of order unity.
+
+The sector splitting between sectors i and j is:
+
+Δ(δα)/α ~ |b_i − b_j| × ΔΦ/c²
+
+For the strong (i = 3, b₃ = −20/3) vs electromagnetic (j = 1, b₁ = 25/6) comparison:
+
+|b₃ − b₁| = |−20/3 − 25/6| = |−40/6 − 25/6| = |−65/6| = 65/6 ≈ 10.83
+
+At Earth's surface, ΔΦ/c² between sea level and ~1000 m altitude is:
+
+ΔΦ/c² = g × Δh / c² ≈ 9.82 × 1000 / (2.998 × 10⁸)² ≈ 1.09 × 10⁻¹³
+
+The predicted frequency ratio change between a nuclear clock and an optical clock at these two altitudes:
+
+Δ(f_nuclear/f_optical) / (f_nuclear/f_optical) ≈ (65/6) × 1.09 × 10⁻¹³ ≈ 1.2 × 10⁻¹²
+
+This is six orders of magnitude above the projected clock comparison sensitivity of 10⁻¹⁸. If the linear mapping is even approximately correct, the effect is massively detectable.
+
+But the linear mapping may not be correct. The conversion between energy scale and gravitational potential may involve suppression factors — powers of α, geometric factors, or threshold effects. The dimensional estimate gives the maximum effect. The actual effect could be suppressed by factors ranging from 1 to 10⁹. The experimental program covers this range: at 10⁻¹⁸ sensitivity, suppression factors up to 10⁶ are still detectable. Only suppression beyond 10⁶ hides the effect.
+
+The formula, stated precisely:
+
+ε_sector(3,1) = κ × |b₃ − b₁| × ΔΦ/c²
+
+where κ is the hierarchy coordinate conversion factor, predicted to be of order unity but unknown. The experiment measures ε or constrains κ.
+
+If ε is measured: κ is determined. The connection between gauge running and gravitational depth is quantified. The soliton hierarchy is confirmed as a unified structure with a measured conversion factor.
+
+If ε < 10⁻¹⁸: κ < 10⁻⁶. The hierarchy may still be unified but the coupling is extremely weak — weaker than the naive estimate by six orders of magnitude. This would suggest that gravitational and energy-scale depths are related but not simply proportional. The unified hierarchy hypothesis would survive but require a more complex mapping.
+
+If ε < 10⁻¹⁹ at multiple potentials: the constraint on κ tightens further with each additional potential tested. Two potentials give one constraint. Three potentials test the linearity of the mapping. The experimental program should aim for comparisons at sea level, ~1 km altitude, and ~3 km altitude (mountain laboratory) to test both the magnitude and the scaling.
+
+---
+
+## XIII. WHAT THIS PAPER DOES AND DOES NOT DO
+
+**This paper does:**
+
+Identify five measurements that decompose the GR dilation formula into tick and depth components. State predictions under four scenarios. Specify the required experimental sensitivity for each test. Set kill conditions that are specific, falsifiable, and tied to named experiments. Derive the sector splitting formula connecting β coefficients to gravitational potential through the soliton hierarchy. Provide the roadmap for a decade of tests.
+
+**This paper does not:**
+
+Perform any of the five tests. Add to the integer chain prediction count. Compute new derived values from existing pool data beyond the sector splitting estimate. Claim that any scenario is correct — the decomposition is a framework for experimental resolution, not a theoretical conclusion.
+
+**This paper is a roadmap, not a results paper.** The derivations constrain parameter space. They do not predict observables with the certainty of Mercury at 2.8 ppm or α at 0.007 ppb. The one concrete prediction — ε_strong-em from the β-ratio formula — has an unknown conversion factor κ. The experiment measures or constrains this factor. The roadmap says where to look, how hard to look, and what the results mean.
+
+**This paper connects two previously separate domains.** The β coefficients from the GUT domain and the gravitational potential from the GR domain appear together in the sector splitting formula. If Test 1 confirms the formula, it is the first quantitative link between gauge physics and gravity through the soliton hierarchy. If Test 1 refutes it, the gauge and gravitational sectors of the RUM framework remain interpretively connected but quantitatively separate.
+
+---
+
+## XIV. KILL CONDITIONS — SUMMARY
+
+| Kill switch | Measurement | Threshold | Kills |
+|---|---|---|---|
+| Clock sector agreement | Th-229 vs Sr-87 at ≥ 2 potentials | ratio constant to 10⁻¹⁹ | D-sector at Earth scale |
+| Pulsar no structure | NANOGrav 25-year, arm correlation | |r| < 0.3 at 10 ns | Galactic boundary reading depth |
+| Voyager no step | V1+V2 Doppler at heliopause | no step > 0.1 mm/s after plasma correction | Heliospheric boundary step |
+| G no environment | G vs Φ_lab regression | |r| < 0.3 with ≥ 20 measurements | G as environment-dependent reading |
+| α no drift | ANDES |Δα/α| at z = 1-5 | < 10⁻⁸ with no dipole | Geometric tick deformation |
+
+None of these kills the entire RUM framework. Each constrains one aspect of the T/D decomposition. If all five are null, reading depth reduces to Scenario D-blind (indistinguishable from GR) and the tick is either universal with no geometric effect or has effects below all foreseeable detection thresholds. The RUM framework would remain valid as an organizational scheme — one pool, one comparison engine, nine connected domains — but its strongest interpretive claim (sector-dependent reading depth as new physics) would be ruled out.
+
+If Test 1 is positive — if nuclear and optical clocks disagree beyond GR — everything changes. The equivalence principle is violated. Reading depth is sector-dependent. The β coefficients encode gravitational physics. The soliton hierarchy is a physical structure, not a vocabulary choice. The conversion factor κ is measured. And the next generation of experiments (higher precision clocks, more clock types, space-based comparisons) maps the full sector dependence across the hierarchy.
+
+---
+
+**END HOWL-PHYS-43-2026**
+
+**Registry:** [@HOWL-PHYS-43-2026]
+
+**Status:** Complete
+
+**Central Statement:** The GR dilation formula dτ/dt = √(1 − 2Φ/c²) may hide two components: a tick count (K, temporal process) and a reading depth (D, spatial structure). This paper identifies five tests that decompose them. The decisive test is the nuclear-vs-optical clock comparison, where the sector splitting ε = κ|b₃ − b₁| × ΔΦ/c² connects gauge coupling β coefficients to gravitational potential through the soliton hierarchy. If κ ~ 1, the effect is 10⁶ above detection threshold. The thorium-229 nuclear clock, under development at PTB and JILA, is the instrument. The timeline is 3-5 years. Four supporting tests — pulsar timing gradients, Voyager heliopause Doppler, G scatter regression, cosmological α drift — constrain the decomposition from independent directions using existing archival data. Kill conditions are specified for each test. By 2035, the decomposition will be resolved.
+
+---
+
+## APPENDIX TABLES
+
+### Table A.1: Complete Predictions — All Five Tests Under Four Scenarios
+
+| Test | Observable | GR | D-blind | D-sector | K-local |
+|---|---|---|---|---|---|
+| 1a | Th/Sr ratio at sea level | constant | constant | shifted by ε×Φ/c² | constant |
+| 1b | Th/Sr ratio change with altitude | 0 | 0 | κ×(65/6)×ΔΦ/c² | 0 |
+| 2a | Timing residual vs arm membership | r = 0 | r = 0 | r > 0.3 | r ≈ 0 |
+| 2b | Timing residual vs local DM density | r = 0 | r = 0 | r ≈ 0 | r > 0.3 |
+| 2c | Timing residual vs galactic height | r = 0 | r = 0 | possible | r > 0.3 |
+| 3 | Voyager Doppler step at heliopause | 0 | 0 | κ_boundary×(v_sw/c)² | 0 |
+| 4 | G vs lab Φ/c² correlation | r = 0 | r = 0 | possible (nesting) | r = 0 |
+| 5a | Δα/α at z = 2 | no prediction | 0 | 0 | possible |
+| 5b | Spatial dipole in Δα/α | no prediction | 0 | 0 | 0 (unless anisotropic K) |
+
+### Table A.2: The Sector Splitting — Numerical Prediction
+
+| Quantity | Value | Source |
+|---|---|---|
+| b₃ (SU(3), CD-modified) | −20/3 | pool: beta_modified_su3_total_v0 |
+| b₁ (U(1), CD-modified) | 25/6 | pool: beta_modified_u1_total_v0 |
+| b₂ (SU(2), CD-modified) | −13/6 | pool: beta_modified_su2_total_v0 |
+| |b₃ − b₁| | 65/6 = 10.833 | exact from pool Fractions |
+| |b₃ − b₂| | |−20/3 + 13/6| = |−27/6| = 9/2 = 4.5 | exact |
+| |b₂ − b₁| | |−13/6 − 25/6| = |−38/6| = 19/3 = 6.333 | exact |
+| Φ_earth/c² | 6.961 × 10⁻¹⁰ | PHYS-42 result |
+| ΔΦ/c² (sea level to 1000 m) | 1.09 × 10⁻¹³ | g×Δh/c² |
+| ε(3,1) assuming κ = 1 | (65/6) × 1.09 × 10⁻¹³ = 1.18 × 10⁻¹² | prediction |
+| ε(3,2) assuming κ = 1 | (9/2) × 1.09 × 10⁻¹³ = 4.9 × 10⁻¹³ | prediction |
+| ε(2,1) assuming κ = 1 | (19/3) × 1.09 × 10⁻¹³ = 6.9 × 10⁻¹³ | prediction |
+| Detection threshold | 10⁻¹⁸ to 10⁻¹⁹ | PTB/JILA projections |
+| Margin (κ = 1) | 10⁶ above threshold | massively detectable |
+| κ required for non-detection | κ < 10⁻⁶ | strong constraint on hierarchy mapping |
+
+### Table A.3: Existing Equivalence Principle Tests vs PHYS-43 Test 1
+
+| Experiment | Year | Tests | Sensitivity | Sectors compared |
+|---|---|---|---|---|
+| Eötvös (torsion balance) | 1922 | WEP: different materials fall same | 10⁻⁹ | Same (gravitational) |
+| Lunar Laser Ranging | 1969- | Nordtvedt: self-energy falls same | 10⁻¹³ | Same (gravitational) |
+| Atom interferometry | 2014 | WEP: Rb-87 vs Rb-85 | 10⁻¹² | Same (EM) |
+| MICROSCOPE | 2022 | WEP: Ti vs Pt free fall | 10⁻¹⁵ | Same (gravitational) |
+| Optical clock comparison | 2022 | EEP: Sr vs Sr at Δh | 10⁻¹⁸ | Same (EM) |
+| **PHYS-43 Test 1** | **2028-2032** | **EEP: Th-229 vs Sr at same Φ** | **10⁻¹⁸ to 10⁻¹⁹** | **Different (strong vs EM)** |
+
+Every prior test compares objects within one force sector. Test 1 is the first cross-sector clock comparison for the Einstein equivalence principle. The qualitative novelty is the sector comparison, not the precision (which is comparable to existing optical clock tests).
+
+### Table A.4: Timeline to Resolution
+
+| Year | Milestone | Test affected | Decision point |
+|---|---|---|---|
+| 2026 | Archival analysis of Voyager Doppler data | Test 3 | Boundary step detected or constrained |
+| 2026 | Regression of published G values vs lab environment | Test 4 | Correlation or null at current data |
+| 2026 | Reanalysis of NANOGrav 15yr for structure correlations | Test 2 | Preliminary arm correlation or null |
+| 2027 | ESPRESSO α constraints published at z = 1-3 | Test 5 | Drift constrained to < 10⁻⁶ |
+| 2028-29 | First Th-229 nuclear clock comparison with Sr | Test 1 | First sector splitting measurement |
+| 2030 | NANOGrav 25-year dataset | Test 2 | Decisive arm correlation test |
+| 2030-32 | Th-229 at 10⁻¹⁹ sensitivity at ≥ 2 potentials | Test 1 | Decisive: D-sector confirmed or killed |
+| 2030+ | Same-technique G at varied altitudes | Test 4 | Decisive if performed |
+| 2035+ | ANDES first light, quasar α survey | Test 5 | Drift at 10⁻⁸ or null |
+
+### Table A.5: Kill Matrix — What Null Results Kill
+
+| If null at threshold: | D-sector | K-local | Geometric tick | Reading depth (any) |
+|---|---|---|---|---|
+| Test 1 (clocks agree 10⁻¹⁹) | **DEAD** at Earth scale | survives | not tested | D-blind survives |
+| Test 2 (no arm correlation 10 ns) | weakened | weakened | not tested | local scale survives |
+| Test 3 (no Voyager step 0.1 mm/s) | heliosphere constrained | not tested | not tested | other boundaries survive |
+| Test 4 (no G correlation r<0.3) | weakened | not tested | not tested | below G scatter |
+| Test 5 (no α drift 10⁻⁸) | not tested | weakened | **SHELVED** | not tested |
+| All five null | **DEAD** | **weakened severely** | **SHELVED** | reduces to D-blind = GR |
+
+### Table A.6: The Soliton Hierarchy — Where Each Test Probes
+
+| Level | Scale | Φ/c² | Test | What it probes |
+|---|---|---|---|---|
+| Planck | 10⁻³⁵ m | 1 | (5, indirectly) | Tick step size, α drift rate |
+| Nuclear | 10⁻¹⁵ m | — | 1 | Strong force reading vs EM reading |
+| Atomic | 10⁻¹⁰ m | — | 1 | EM reading (optical clock baseline) |
+| Laboratory | 1-1000 m | 10⁻¹³ change | 1, 4 | Sector splitting, G variation |
+| Planetary | 10⁷ m | 10⁻¹⁰ | (PHYS-42) | Confirmed by GPS, Pound-Rebka |
+| Heliospheric | 10¹³ m | 10⁻⁶ | 3 | Boundary step at heliopause |
+| Galactic | 10²⁰ m | 10⁻⁶ | 2 | Structure vs density residuals |
+| Cosmological | 10²⁶ m | varies with z | 5 | α drift over Gyr timescales |
+
+### Table A.7: Connection to RUM Pool — Inputs for PHYS-43 Derivations
+
+| Pool value | Key | Used in test | Role |
+|---|---|---|---|
+| β₁ (CD-modified) | beta_modified_u1_total_v0 = 25/6 | Test 1 | EM running rate |
+| β₂ (CD-modified) | beta_modified_su2_total_v0 = −13/6 | Test 1 | Weak running rate |
+| β₃ (CD-modified) | beta_modified_su3_total_v0 = −20/3 | Test 1 | Strong running rate |
+| Φ_earth/c² | result_earth_phi_over_c2_v0 | Test 1, 4 | Gravitational depth |
+| GM_S | astro_mass_sun_v0 × astro_gravitational_constant_v0 | Test 3 | Heliospheric potential |
+| H₀, Ω_m, Ω_DE | cosmo_h0_planck_v0, cosmo_omega_m_planck_v0, etc. | Test 5 | Expansion history |
+| t_P | gr_planck_time_s_v0 | Test 5 | Tick step size |
+| α_em | coupling_alpha_em_inverse_v0 | Test 5 | Current α for drift baseline |
+| DM amplification | (22/13)π from integer pool | Test 2 | Galactic boundary model |
+
+### Table A.8: What Success Means — The Cascade
+
+| If Test 1 shows ε > 0: | Immediate consequence | Next step |
+|---|---|---|
+| κ is measured | Hierarchy coordinate conversion is quantified | Measure κ at 3+ potentials to test linearity |
+| EP is violated (sector-dependent) | First EP violation in 100 years | Identify which sector combinations (strong-EM, weak-EM, strong-weak) |
+| β coefficients encode gravity | The integers that predict sin²θ_W also predict clock splitting | Derive the full sector splitting matrix from the CD representation |
+| RUM is physical, not interpretive | Reading depth is measurable new physics | Map the full hierarchy: space clocks, lunar clocks, solar orbit clocks |
+| Test 2 becomes decisive | Galactic structure residuals expected at ε-predicted level | Targeted pulsar timing near arm boundaries |
+| Test 3 becomes interesting | Voyager step magnitude predicted from κ | Reanalysis with predicted step magnitude |
+
+---
+
