@@ -349,3 +349,98 @@ That's not a future experiment. That data already exists. Every G measurement ha
 
 ---
 
+## Report: Integration of the Time-as-Reading-Depth Experiments
+
+### What the Exchange Produced
+
+The discussion between you and the other Claude started with a concept (time is reading depth, not a dimension), passed through three rounds of pushback and correction, and arrived at two concrete results:
+
+First, GR time dilation IS reading depth. This is not a prediction — it is a restatement. Every time dilation measurement ever made is already evidence for the reading depth interpretation. The evidence base is a century of precision experiments, not a future program.
+
+Second, the restatement has predictive content in exactly two places: where GR has unexplained anomalies (the Hubble tension) and where the soliton boundary model distinguishes readings that GR treats as identical (nuclear vs electromagnetic clocks in the same gravitational field).
+
+### The 44 Experiments — Sorted by What They Actually Test
+
+The other Claude's list of 44 experiments is thorough but needs triage. The experiments fall into three categories:
+
+**Category 1: Already confirms reading depth (GR equivalence).** These experiments confirm GR time dilation, which IS reading depth. They are not tests of reading depth — they are evidence for it. Pound-Rebka, Hafele-Keating, GPS, Gravity Probe A, Shapiro delay (Viking, Cassini), pulsar timing (Hulse-Taylor, double pulsar), Mercury perihelion, light deflection, gravitational lensing, EHT shadow, gravitational wave inspiral/ringdown, Tokyo Skytree, optical clock comparisons, S-star orbits, supernova time dilation, quasar variability, BAO, CMB acoustic peaks. That's roughly 30 of the 44. All confirmed. All are reading depth evidence under the reinterpretation. No new physics predicted. No reanalysis needed.
+
+**Category 2: Tests where the soliton boundary model might differ from standard GR.** These are the actual tests. They fall into two sub-categories:
+
+Sub-category 2a: boundary transition effects. The reading depth model says boundaries between solitons may produce discrete timing effects that smooth GR doesn't predict. Experiments probing boundary regions:
+
+- Clock at Earth-Sun L2 (experiment 38) — near the Hill sphere boundary. Currently beyond technology but the clearest single test.
+- Voyager Doppler tracking at the heliopause (experiment 23) — the data exists but hasn't been analyzed for timing anomalies at the boundary crossing. A literature search and reanalysis is possible now.
+- Optical clock on sounding rocket crossing atmospheric boundaries (experiment 37) — tests whether atmospheric layer transitions produce timing inflections. Achievable within current technology.
+- Lunar laser ranging residuals (experiment 17) — 50+ years of data. Test for systematic correlations with the Moon's position relative to Hill sphere geometry.
+- VLBI timing residuals (experiment 16) — test for angular correlation with the galactic plane (how much toroid boundary the signal crosses).
+- Pulsar timing array residuals vs galactocentric radius (experiment 44) — testable with existing NANOGrav data. The most immediately actionable test on the list.
+- FRB timing residuals vs galactic plane angle (experiment 43) — testable with existing CHIME data.
+
+Sub-category 2b: force-dependent reading depth. The reading depth model says different forces (electromagnetic, strong, gravitational) are different boundary readings. Standard GR says time dilation is universal — all clocks dilate equally regardless of what force drives them. If different forces read different depths, a nuclear clock (strong force) and an optical clock (electromagnetic force) at the same gravitational potential would disagree.
+
+- Nuclear clock vs optical clock comparison (experiment 39) — thorium-229 nuclear transition at 8 eV vs strontium optical transition. If they disagree beyond GR, different boundary readings are proven. This is the single most important experiment on the list for distinguishing reading depth from standard GR.
+- Antihydrogen spectroscopy (experiment 40) — tests whether matter and antimatter read the same depth. Less directly relevant to reading depth vs GR, more relevant to CPT.
+
+**Category 3: Standard physics rewritten in reading language but with no different prediction.** QED lifetimes as Planck step counts (experiments 1-5), EW boson lifetimes (10-12), tunneling time (26), quantum Zeno effect (25), Boltzmann H-theorem (29), protein folding (41), circadian rhythms (42), chemical reaction rates (37). These are reinterpretations that may provide conceptual clarity but produce no different numbers. They belong in the book (Chapter 3 stack) not in an experimental test program.
+
+### The Three Actionable Tests
+
+From the 44 experiments, three can be done now with existing data or near-term infrastructure:
+
+**Test 1: Pulsar timing array residuals vs galactocentric radius.** NANOGrav monitors ~70 millisecond pulsars at nanosecond precision. Each pulsar sits at a different position within the galactic toroid. If the toroid has a reading depth gradient (deeper at center, shallower at edge), pulsars at different galactocentric radii should show systematic timing offsets after standard GR corrections. The data exists. The analysis pipeline exists. The test requires proposing the correlation and running the regression. Zero new hardware.
+
+**Test 2: Voyager Doppler tracking at the heliopause.** Voyager 1 crossed the heliopause in August 2012. Voyager 2 crossed in November 2018. Both spacecraft are tracked via coherent Doppler at DSN stations. The frequency data through the boundary crossing exists in NASA archives. The test: is there a systematic frequency offset (beyond solar wind deceleration and GR) at the crossing time? The heliopause is a real soliton boundary — the Sun's magnetic field terminates there. If reading depth shifts at soliton boundaries, this is where it would show. Reanalysis of existing data.
+
+**Test 3: Nuclear clock vs optical clock.** The thorium-229 isomer is being developed into a clock at multiple labs (TU Wien, UCLA, PTB). When operational, comparing it to a strontium optical clock at the same location tests whether the strong force reading and the electromagnetic reading respond identically to gravitational potential. GR says yes — time dilation is universal. The reading depth model permits them to differ if the strong and electromagnetic boundaries have different depth profiles. This test is 3-5 years away from sufficient precision.
+
+### The Hubble Tension
+
+This deserves separate treatment because it's the highest-impact connection.
+
+The Hubble tension is a 5σ discrepancy between local H₀ = 73.04 km/s/Mpc and CMB H₀ = 67.36 km/s/Mpc. No standard cosmological model explains it. Proposed solutions include early dark energy, modified gravity, new relativistic species, and systematic errors in either measurement chain. None is widely accepted.
+
+The reading depth model says: the local measurement uses Cepheid variable stars calibrated against parallax distances, all inside the galactic toroid. The CMB measurement uses the acoustic peak positions in the power spectrum, calibrated against the entire observable universe. The two measurements are made from different reading depths — one inside the galactic toroid, one from the cosmic boundary.
+
+The ratio: 73.04 / 67.36 = 1.084. The question is whether this 8.4% difference corresponds to a specific reading depth ratio in the soliton hierarchy. The toroidal DM ratio (22/13)π = 5.3165 already connects gauge integers to galactic-scale gravitational readings at 725 ppm. If the Hubble tension is a reading depth effect, the 1.084 ratio should be derivable from the same boundary structure.
+
+This is not computed. The VP step model (which attempted something similar) was killed because N = 0.71 < 1. But the VP step model used a specific mechanism (1/3 step per boundary crossing) that failed. The reading depth model uses a different mechanism (update rate depends on depth within the toroid, not on discrete steps). Whether the toroidal reading depth produces a 1.084 ratio is a computation that hasn't been done. It requires modeling the reading depth profile of the galactic toroid and computing the update rate difference between interior and exterior.
+
+If it works — if (22/13)π or some other combination of gauge integers produces 1.084 — the model explains the most significant open anomaly in cosmology from the same integers that explain the dark matter ratio. That would be the strongest single result possible from the reading depth concept.
+
+If it doesn't work, the Hubble tension remains unexplained and the reading depth concept loses its highest-impact prediction. The concept survives (GR time dilation is still reading depth), but the galactic-scale prediction fails.
+
+This computation is the priority for PHYS-41.
+
+### What PHYS-41 Should Contain
+
+The paper should present:
+
+The concept (time is reading depth, one page), the reinterpretation of GR time dilation (one page, with the century of evidence), the three actionable tests (pulsar timing, Voyager Doppler, nuclear vs optical clock), the Hubble tension computation (if it produces a result), and the honest frontier (what's reinterpretation vs what's new prediction).
+
+The 44 experiment list belongs in an appendix, sorted into the three categories above, with each experiment tagged as "confirms reading depth (GR equivalence)," "tests boundary effects (new prediction)," or "reinterpretation only (no different number)." This tagging is the Rectification of Names applied to the experiment list itself — calling each experiment what it actually tests, not what it could test in principle.
+
+The category 3 experiments (QED lifetimes, Boltzmann, protein folding, etc.) should not be in PHYS-41. They belong in the book or in future papers that extend the reading depth concept into specific domains. PHYS-41 should stay focused on the concept, the GR equivalence, and the three tests.
+
+### The G Scatter — Your Addition
+
+The G scatter correlation analysis is the fourth actionable test and may be the easiest. Every precision G measurement has a published lab location. The measurements cluster into two groups separated by ~500 ppm. The test: do the two clusters correlate with any boundary-relevant variable (altitude, latitude, local geological structure, distance from tectonic plate boundaries, position relative to Earth's core-mantle boundary)?
+
+If they correlate, G is a boundary reading and the scatter is real physics, not systematic error. If they don't correlate, the scatter is experimental systematics and the reading depth model doesn't apply to G at the lab scale.
+
+This is a literature search and a regression. It can be done in an afternoon with the published G measurement data.
+
+### Summary of Actionable Items
+
+| Test | Data source | Effort | Timeline | What it tests |
+|---|---|---|---|---|
+| Pulsar timing vs galactocentric radius | NANOGrav public data | Regression analysis | Now | Toroid reading depth gradient |
+| Voyager Doppler at heliopause | NASA DSN archives | Reanalysis | Now | Soliton boundary timing shift |
+| G scatter vs lab location | Published G measurements | Literature search + regression | Now | G as boundary reading |
+| Hubble tension from toroid reading depth | Computation in DATA-6 | New derivation function | Next session | (22/13)π connection to 1.084 ratio |
+| Nuclear vs optical clock | Thorium-229 clock development | Wait for experimental maturity | 3-5 years | Force-dependent reading depth |
+
+Three of five are doable now with existing data. One requires a new computation. One requires waiting for hardware. The reading depth concept is not a "someday" research program. It has immediate tests.
+
+---
+
