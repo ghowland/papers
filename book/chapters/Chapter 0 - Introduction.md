@@ -62,7 +62,7 @@ I needed a number system that preserved the integers. Not a new mathematics, som
 
 The problem was transcendental numbers. π is irrational. It cannot be written as a fraction. But it can be approximated by a fraction whose denominator is 2³³⁵, a number with 101 decimal digits. This fraction agrees with true π to 100 decimal places, which is roughly 37 digits beyond the precision at which you could compute the circumference of the observable universe to within one Planck length. For every physical computation, this fraction equals π. I called this system Q335 and applied it to every transcendental constant in physics.
 
-With exact fractions for the rational parts and Q335 fractions for the transcendental parts, the entire computation could proceed without a single decimal until the final step: converting the derived fraction to a decimal string and comparing it digit by digit against the published experimental value. The decimal is the test. The fraction is the physics.
+With exact fractions for the rational parts and Q335 fractions for the transcendental parts, the entire computation could proceed without a single decimal until the final step: converting the derived fraction to a decimal string and comparing it digit by digit against the published experimental value. The decimal is the test. The integer fraction is the physics.
 
 I had initially planned to solve this problem with a new number system called VDR, for Value, Denominator, Remainder, which would recreate calculus through remainder nesting and recursion. That project produced over 240 axioms and still hadn't solved all the arithmetic it needed. The Q335 approach made VDR unnecessary for immediate progress. The transcendental caching was a shortcut that worked, and working beats elegant.
 
@@ -80,7 +80,7 @@ The three nouns: **inertia**, the resistance of a pattern to change. **Vortex**,
 
 The two verbs: **reading**, the value you measure at a boundary. **Running reading**, how the reading changes between boundaries.
 
-Everything in physics maps to these terms. A particle is a vortex. Its mass is its inertia. The edge of a proton is a soliton boundary. The force strength measured at the proton boundary is a reading. How that force strength changes with energy is the running. The beta coefficient is the running rate. The coupling constant is the reading at a specific boundary.
+Everything in physics maps to these terms. A particle is a vortex. Its mass is its inertia. The edge of a proton is a soliton boundary. The force strength measured at the proton boundary is a reading. How that force strength changes with energy is the running reading. The beta coefficient is the running reading rate. The coupling constant is the reading at a specific boundary, the reading depth.
 
 This is the Rectification of Names. Take things that are isomorphically the same, that have the same mathematical structure, the same behavior, the same role in the equations, and call them by the same name. Discard the historical baggage. Discard the departmental jargon. Use one vocabulary for one physics. The universe has no departments.
 
