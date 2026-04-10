@@ -181,3 +181,15 @@ General relativity merges running reading depth and clock into one mathematical 
 The running reading depth carries 89% of the physics. The clock carries 11%. The structure dominates. The process contributes. Both are needed for a complete description. But they are not the same thing, and the thorium-229 nuclear clock will determine whether their separation is a physical fact about the universe or merely a useful way to organize the mathematics.
 
 The integers have spoken across eight domains. Fifty-three derived values. Surplus forty. The running reading depth extends their reach toward gravity. The clock grounds them in actuality. The test is coming.
+
+### The Complete Model
+
+This book began with three nouns and two verbs. Inertia, vortex, soliton boundary. Reading, running reading. Chapter by chapter, those five words described the vacuum, the quantum fields, the stable particles, the boundary readings, the force running rates, the Cabibbo Doublet, the electroweak sector, the QED chain, the cosmological chain, the muon anomaly, the flavor sector, the galactic toroid, and the universe. Eight domains of physics connected by integer fractions from the gauge group. 53 derived values from 13 measured inputs. Surplus +40. Every test passing.
+
+Chapter 9 closed the one remaining gap. Time is the clock — the universe counting forward in Planck steps. Running reading depth is spatial geometry — your position in the nested soliton hierarchy. General relativity merges them into one formula. The decomposition separates them: 89% geometry, 11% clock. The model now covers all of physics, including gravity and time, in one vocabulary.
+
+The integer fraction results from Chapters 1 through 8 do not depend on Chapter 9. The weak mixing angle at 12 parts per million, the deuterium abundance at 0.12 standard deviations, the hydrogen spectral frequency at 0.44 parts per billion — these are computed, tested, and passing. If the sector splitting prediction returns null, the 53 values still stand. The 89/11 split still holds as a classification of existing general relativity tests. The integers still work across eight domains. Chapter 9 extends the model's reach. It does not put the existing results at risk.
+
+What Chapter 9 adds is the one prediction that could connect the integers to gravity. The same beta coefficients that predict the weak mixing angle might also predict that a nuclear clock and an optical clock disagree at the same gravitational potential. The thorium-229 nuclear clock is under development. First comparisons with optical clocks are expected 2028-2029. Decisive sensitivity is expected 2030-2032. Five tests spanning laboratory to cosmological scales will constrain the separation from independent directions. By 2035, the question is answered.
+
+The universe is rational. The integers are the structure. The clock is the process. The running reading depth is the geometry. The model is complete. The test is coming.
