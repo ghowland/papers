@@ -27,9 +27,13 @@ This formula describes the ratio of local clock rate to distant clock rate as a 
 
 This paper asks: are they actually identical, or does the formula hide two components that could be separated?
 
+![Fig. 2: PHYS-42 confirmation across 18 orders of magnitude. All on the line. What hides inside?](./figures/phys43_02_reading_depth_profile.png)
+
 ---
 
 ## II. THE DECOMPOSITION
+
+![Fig. 1: The D-K Decomposition — GR measures the diagonal. Five tests project onto Depth and Tick axes.](./figures/phys43_01_dk_decomposition.png)
 
 The observed dilation dτ/dt = √(1 − 2Φ/c²) could arise from two distinct physical mechanisms.
 
@@ -66,6 +70,8 @@ The β coefficients in this formula come from the same pool that predicted sin²
 ---
 
 ## III. THE FOUR SCENARIOS
+
+![Fig. 8: Nested soliton boundaries from Planck to Cosmos. Five tests probe five levels of the hierarchy.](./figures/phys43_08_soliton_hierarchy.png)
 
 The review of the plan identified that three scenarios are insufficient. The logical space requires four.
 
@@ -110,6 +116,8 @@ The per-tick deformation is constrained by observations. If each tick shifts the
 
 ## V. THE FROZEN SCAN
 
+![Fig. 3: The same beta coefficients that drive unification also determine the sector splitting. Inset shows the three pairwise differences.](./figures/phys43_03_coupling_running_splitting.png)
+
 Reading depth is not temporal. It is spatial. It is not a process. It is a structure.
 
 Consider the soliton hierarchy at one frozen instant — one specific Planck tick N. The universe is a nested set of boundaries: the cosmological boundary containing galactic boundaries containing stellar boundaries containing planetary boundaries containing atomic boundaries containing nuclear boundaries. At each level, the physical constants have specific values. The coupling strengths run. The masses shift. The metric changes. All of these are functions of position in the hierarchy, not functions of time.
@@ -133,6 +141,8 @@ and it is either true (the hierarchy is unified) or false (gravitational and ene
 ---
 
 ## VI. TEST 1: NUCLEAR VS OPTICAL CLOCK
+
+![Fig. 4: Predicted Th-229 vs Sr-87 splitting as a function of altitude for seven kappa values. Detection threshold is 10^6 below the kappa=1 prediction.](./figures/phys43_04_clock_splitting_altitude.png)
 
 **The measurement.** Compare a thorium-229 nuclear clock with a strontium-87 optical lattice clock. Both clocks at the same location, same gravitational potential, same laboratory. Measure the ratio of their frequencies over extended integration time. Look for a deviation from the ratio predicted by standard physics (which predicts exact constancy of the ratio at any fixed potential).
 
@@ -171,6 +181,8 @@ This is four orders of magnitude above the projected 10⁻¹⁸ clock comparison
 **Context within equivalence principle tests.** Existing tests of the equivalence principle — MICROSCOPE (WEP, titanium vs platinum, η < 10⁻¹⁵), Lunar Laser Ranging (Nordtvedt effect, η < 10⁻¹³), atom interferometry (Rb-87 vs Rb-85, Δf/f < 10⁻¹²), optical clock altitude comparison (Sr vs Sr, Δf/f at 10⁻¹⁸) — all compare objects within the same force sector. They test whether different materials at different potentials experience the same dilation. They find: yes.
 
 Test 1 is qualitatively different. It compares different force sectors at the same potential. It tests whether the electromagnetic sector and the strong-force sector experience the same reading depth. No existing experiment tests this. The equivalence principle as standardly formulated (universality of free fall, universality of gravitational redshift) does not address cross-sector clock comparisons because it assumes universal coupling. The assumption is what Test 1 tests.
+
+![Fig. 6: A century of equivalence principle tests — all same-sector. PHYS-43 Test 1 is the first cross-sector comparison.](./figures/phys43_06_ep_landscape.png)
 
 ---
 
@@ -316,6 +328,8 @@ The resolution timeline spans a decade. Test 1 requires new hardware (thorium cl
 
 ## XII. THE SECTOR SPLITTING FORMULA
 
+![Fig. 5: The full kappa sweep for three sector pairs. 13 orders of detectable range before the signal drops below the noise floor.](./figures/phys43_05_kappa_sweep.png)
+
 The central prediction of this paper deserves explicit derivation, not just a dimensional estimate.
 
 In the RUM framework, the soliton hierarchy has one coordinate: depth. At each depth, the gauge couplings take values determined by the renormalization group equations:
@@ -363,6 +377,8 @@ If ε is measured: κ is determined. The connection between gauge running and gr
 If ε < 10⁻¹⁸: κ < 10⁻⁶. The hierarchy may still be unified but the coupling is extremely weak — weaker than the naive estimate by six orders of magnitude. This would suggest that gravitational and energy-scale depths are related but not simply proportional. The unified hierarchy hypothesis would survive but require a more complex mapping.
 
 If ε < 10⁻¹⁹ at multiple potentials: the constraint on κ tightens further with each additional potential tested. Two potentials give one constraint. Three potentials test the linearity of the mapping. The experimental program should aim for comparisons at sea level, ~1 km altitude, and ~3 km altitude (mountain laboratory) to test both the magnitude and the scaling.
+
+![Fig. 7: The same beta coefficients (25/6, -13/6, -20/3) predict sin2_tW, alpha_s, AND the sector splitting epsilon. Each arrow carries a Fraction.](./figures/phys43_07_integer_chain.png)
 
 ---
 
