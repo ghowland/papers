@@ -408,6 +408,232 @@ If Test 1 is positive — if nuclear and optical clocks disagree beyond GR — e
 
 ---
 
+## PHYS-43 Review: Errata, Annotations, and Technical Notes
+
+---
+
+### ERRATA
+
+**E1. Mercury perihelion precision unit error (Section I, carried from PHYS-42 summary).**
+
+The paper states "Mercury perihelion at 2.8 ppm" in Section I. The actual result from PHYS-42 is 2.8 ppb (0.000278%), not 2.8 ppm. The value 2.8 ppb is confirmed in the PHYS-42 experiment report: predicted 42.9800 vs measured 42.9799 arcsec/century, miss 0.000278%. The error is repeated in two other locations where PHYS-42 results are summarized. All instances should read "2.8 ppb" not "2.8 ppm."
+
+Affected locations: Section I first paragraph, Section XII penultimate paragraph ("Mercury at 2.8 ppm"), Section XIII last paragraph ("Mercury at 2.8 ppm").
+
+**E2. The sector splitting formula uses two different β ratios inconsistently.**
+
+Section II introduces the splitting as:
+
+ε_sector = |β₃/β₁| × Φ/c² = 1.6 × 6.96 × 10⁻¹⁰ ≈ 1.1 × 10⁻⁹
+
+Section XII derives a different formula:
+
+ε_sector = κ × |b₃ − b₁| × ΔΦ/c² = κ × (65/6) × 1.09 × 10⁻¹³ ≈ 1.2 × 10⁻¹²
+
+These are not the same formula. The first uses the ratio |β₃/β₁| = 8/5 = 1.6 times the absolute potential. The second uses the difference |b₃ − b₁| = 65/6 ≈ 10.83 times the potential difference between two altitudes. They measure different things:
+
+The Section II formula gives the total sector splitting at Earth's surface relative to infinity. This is the absolute fractional frequency difference between a nuclear clock and an optical clock, both at sea level, compared to clocks at infinity. It equals ~10⁻⁹.
+
+The Section XII formula gives the differential sector splitting between two altitudes. This is the change in the nuclear/optical frequency ratio when you move both clocks from sea level to 1000 m altitude. It equals ~10⁻¹² (using ΔΦ/c² ~ 10⁻¹³ for 1000 m).
+
+Both formulas are physically meaningful but they answer different experimental questions. The paper should state clearly which quantity the experiment actually measures. The answer is: the experiment measures the differential (Section XII formula), because you compare clocks at two altitudes and look for a ratio change. You cannot measure the absolute splitting (Section II formula) because you have no clock at infinity.
+
+The paper needs to pick one formula as the central prediction and derive the other from it. The correct experimental prediction is the Section XII version (differential), which gives ~10⁻¹² for a 1000 m altitude difference. The Section II version gives the total accumulated splitting at Earth's surface, which is the integral of the differential from infinity to the surface.
+
+The practical consequence: the "three orders of magnitude above detection" claim (Section II) uses the wrong number. The correct comparison is: predicted differential ~10⁻¹² vs sensitivity ~10⁻¹⁸, which is six orders above detection (even better). The claim is conservative, not wrong, but the reasoning is muddled.
+
+Additionally: the Section II formula uses |β₃/β₁| (ratio) while Section XII uses |b₃ − b₁| (difference). These encode different physics. The ratio says "the strong force runs 1.6× faster than the electromagnetic force." The difference says "the strong force and electromagnetic force together change by 10.83 units per hierarchy level." The ratio is the natural measure for a relative splitting between two clocks. The difference is the natural measure for an absolute correction to the metric. The paper should use the ratio for the clock comparison prediction and reserve the difference for the absolute correction.
+
+**Recommended fix:** Unify on one formula throughout. Use:
+
+δ(f_nuc/f_opt) / (f_nuc/f_opt) = κ × (|β₃| − |β₁|) / |β_ref| × ΔΦ/c²
+
+where β_ref is a reference scale (e.g., the average |β| or the largest |β|). This makes the dimensional structure clear: the splitting is a fraction of the dilation, weighted by how much the two sectors' running rates differ relative to a reference.
+
+**E3. The β difference |b₃ − b₁| = 65/6 computation is wrong.**
+
+Section XII states:
+
+|b₃ − b₁| = |−20/3 − 25/6| = |−40/6 − 25/6| = |−65/6| = 65/6
+
+Check: −20/3 = −40/6. Then −40/6 − 25/6 = −65/6. |−65/6| = 65/6 ≈ 10.833.
+
+This arithmetic is correct. However, this is β₃ − β₁ (subtracting the U(1) coefficient from the SU(3) coefficient). The physical question is whether to use the GUT-normalized β₁ = 25/6 or the un-normalized β_Y. Since the sector splitting concerns the physical coupling running rates at low energy (where GUT normalization has no physical effect), the correct coefficients to use are the physical ones at the M_Z scale.
+
+At M_Z, the physical running rates are:
+- Electromagnetic: dα_em⁻¹/d(ln μ) involves a combination of β₁ and β₂ through the Weinberg angle mixing
+- Strong: dα_s⁻¹/d(ln μ) = −β₃/(2π)
+
+The electromagnetic coupling α_em = α₂ sin²θ_W = e²/(4π) runs with its own effective beta function that mixes U(1) and SU(2). Using the GUT-normalized β₁ directly (as if a pure U(1) coupling were being compared to SU(3)) is not quite right for a real clock comparison, because the strontium clock probes α_em, not α₁. The correction is at the factor-of-2 level (sin²θ_W ≈ 0.23 mixes the two).
+
+This doesn't change the order of magnitude but it should be noted as a systematic uncertainty in the formula. The sector splitting prediction has a factor ~2 theoretical uncertainty from the mixing angle correction. The paper should state this.
+
+**E4. The muon cosmic ray Lorentz factor discrepancy.**
+
+The pool catalog (Appendix A.11 from the experiment report) lists `gr_muon_cosmic_ray_beta_v0 = 499/500` which gives γ ≈ 22.4. But the PHYS-42 experiment used `gr_muon_lorentz_gamma_v0 = 29.3` for the Fermilab g-2 ring. These are different muon populations (cosmic ray vs storage ring). Both are correct for their context. No erratum needed, but the paper should note that the sector splitting test would use laboratory-controlled muons (g-2 ring, γ = 29.3), not cosmic ray muons, because the gravitational potential must be precisely known.
+
+---
+
+### ANNOTATIONS
+
+**A1. On the four-scenario structure (Section III).**
+
+The four scenarios are clean and cover the logical space. The reviewer's suggestion to expand from three to four was correct and the paper implements it well. One subtlety: Scenario D-blind and Scenario GR are stated as "experimentally indistinguishable at currently achievable precision." This is true for Tests 1-5 but may not be true in principle. D-blind says reading depth is a real spatial structure that happens to be sector-independent. GR says there is no separate structure — just one metric. These could differ at higher order: D-blind might produce effects at Φ²/c⁴ (second-order reading depth) that GR does not, because GR is exact while D-blind is an approximation. The paper correctly does not pursue this because the second-order effects are ~10⁻¹⁸ at Earth's surface, below current sensitivity. But a future version could note that D-blind vs GR becomes distinguishable at strong-field sources (neutron stars, Φ/c² ~ 0.2, where second-order effects are ~0.04).
+
+**A2. On the frozen scan concept (Section V).**
+
+This is the paper's most philosophically provocative section and also its weakest physics section. The claim that reading depth is "spatial, not temporal" and "computable from a frozen snapshot" is true for the static Schwarzschild metric but not obviously true for time-dependent spacetimes (cosmological expansion, gravitational waves, binary inspiral). The Hulse-Taylor binary is losing energy through gravitational wave emission — a profoundly temporal process. The frozen scan cannot describe this. The paper should note that the frozen scan concept applies to equilibrium configurations (static metrics) and that dynamical situations require temporal evolution (ticking), which is precisely where the K component enters.
+
+The paper partially addresses this by saying "the tick's geometric effect" drives cosmological expansion (Section IV). But this creates a tension: if the frozen scan is spatial and static, and the tick is temporal and dynamic, then the GR mega-experiment (PHYS-42) — which includes the Hulse-Taylor binary (dynamic) and the SN Ia stretch (cosmological expansion) — is testing BOTH components simultaneously, not just the D component. The decomposition is not as clean as the paper implies. Some of the 18 PHYS-42 tests are D-tests (static potentials: Pound-Rebka, solar redshift, Mercury) and some are K-tests (dynamic systems: Hulse-Taylor, SN Ia). The paper should classify which PHYS-42 tests probe which component.
+
+Suggested classification:
+
+| PHYS-42 test | Probes D (static depth) | Probes K (dynamic tick) | Both |
+|---|---|---|---|
+| Pound-Rebka | Yes | — | — |
+| GPS | Yes (grav) | — | Yes (velocity = K allocation) |
+| Gravity Probe A | Yes | — | — |
+| Solar redshift | Yes | — | — |
+| Mercury perihelion | — | — | Yes (precession is dynamic but formula is static geometry) |
+| Muon dilation | — | Yes (velocity = K allocation) | — |
+| Shapiro delay | Yes | — | — |
+| Hulse-Taylor | — | Yes (GW emission is temporal) | — |
+| SN Ia stretch | — | Yes (cosmic expansion is temporal) | — |
+| Planck units | — | — | Neither (structural identities) |
+| g surface | Yes | — | — |
+
+This classification strengthens the paper by showing that the D/K decomposition is already partially tested by the existing PHYS-42 data — the static tests confirm D works, the dynamic tests confirm K works, and what's needed (Tests 1-5) is to test whether D and K are separable.
+
+**A3. On the sector splitting formula and the conversion factor κ (Section XII).**
+
+The formula ε = κ|b₃ − b₁| × ΔΦ/c² with "κ predicted to be of order unity but unknown" is honest but also somewhat empty. A prediction with an unknown multiplicative constant spanning nine orders of magnitude (κ could be 1 or 10⁻⁹ before the effect disappears) is not a sharp prediction. The paper acknowledges this ("the dimensional estimate gives the maximum effect") but should be more explicit about what values of κ would be interesting vs trivial.
+
+Suggested interpretation guide:
+
+| κ value | What it means | How the hierarchy connects |
+|---|---|---|
+| κ ~ 1 | Energy scale and gravitational depth are directly proportional | The soliton hierarchy has one coordinate; β coefficients directly set the gravitational sector dependence |
+| κ ~ α_em ≈ 1/137 | The coupling enters as a loop factor | The sector dependence is a one-loop quantum correction to the classical GR metric |
+| κ ~ (Φ/c²) ≈ 10⁻⁹ | The effect is quadratic in the potential | Reading depth is a second-order correction, suppressed by the weakness of Earth's gravity |
+| κ ~ (m_p/M_Planck)² ≈ 10⁻³⁸ | The hierarchy problem suppresses the effect | The gauge and gravitational sectors are connected but through the Planck scale |
+| κ < 10⁻⁹ | The effect is undetectable at 10⁻¹⁸ | The sectors are effectively decoupled at accessible gravitational potentials |
+
+The paper should present this table or something like it. It makes the prediction space concrete: κ ~ 1 is the bold prediction, κ ~ α is the "loop suppression" prediction, κ ~ Φ/c² is the "quadratic" prediction. Each has a physical interpretation. The experiment determines which regime nature occupies.
+
+**A4. On Test 2 and the GW background separation (Section VII).**
+
+The paper correctly identifies that NANOGrav has already detected a stochastic gravitational wave background (Agazie et al. 2023) through the Hellings-Downs angular correlation. It correctly states that the GW signal lives in angular correlation space while the reading depth signal lives in positional correlation space. But it should note one additional complication: the GW background is not perfectly isotropic. If the GW background has anisotropies (from nearby supermassive black hole binary populations), these anisotropies could correlate with galactic structure (because nearby galaxies cluster in the same large-scale structure as the Milky Way's environment). This would create a false positive for Test 2 — structure-correlated timing residuals that come from anisotropic GWs, not from reading depth.
+
+The mitigation: the GW anisotropy signal has a specific angular power spectrum (dipole + quadrupole dominated) while the reading depth signal correlates with galactic position variables (arm membership, plane height). These can be separated statistically, but the separation requires sufficient pulsar count in each category. The paper should note this as a systematic uncertainty for Test 2.
+
+**A5. On Test 4 and the G scatter (Section IX).**
+
+The paper is appropriately cautious about this test ("suggestive at best" with existing data). The annotation from the review should be added directly: the G scatter test becomes decisive only under the condition of same-technique measurements at deliberately varied potentials. With existing heterogeneous data, technique-dependent systematics dominate.
+
+One additional note: the CODATA 2018 evaluation of G already performed some analysis of measurement-by-measurement discrepancies and concluded that the scatter is dominated by underestimated systematic errors in the short-range force modeling of torsion balance experiments. The reading depth hypothesis must contend with this specific explanation. If the scatter is from short-range force systematics (which have a known physics origin: Casimir forces, electrostatic patch effects, surface contamination), then the reading depth interpretation is unnecessary for the G scatter specifically. The paper should acknowledge this competing explanation.
+
+**A6. On the connection to the Cabibbo Doublet mass (not addressed).**
+
+The sector splitting formula uses the CD-modified β coefficients. If the Cabibbo Doublet is discovered at the LHC or FCC at a specific mass m_CD, the β coefficients change at scales above m_CD (the CD decouples). This means the sector splitting prediction depends on the CD mass — a quantity that is not yet measured. The paper uses the one-loop modified betas as if the CD is active at all scales from M_Z to M_GUT. At laboratory scales (clock comparisons at ~1 eV transition energies), the relevant β coefficients are the SM values, not the CD-modified values, because the CD is too heavy to contribute to running at eV scales.
+
+This is a significant issue. The β coefficients in the sector splitting formula should be the SM betas (41/10, −19/6, −7) at laboratory energy scales, not the CD-modified betas (25/6, −13/6, −20/3). The CD modifies the running only above the CD mass threshold (~1.5-6 TeV). At the ~1 eV scale relevant for clock transitions, the SM betas apply.
+
+The correction: use SM betas for the sector splitting prediction.
+
+|b₃_SM − b₁_SM| = |−7 − 41/10| = |−70/10 − 41/10| = |−111/10| = 111/10 = 11.1
+
+|β₃_SM/β₁_SM| = |−7/(41/10)| = |−70/41| = 70/41 ≈ 1.707
+
+The ratio changes from 1.6 (CD) to 1.7 (SM). The difference changes from 65/6 (CD) to 111/10 (SM). These are close — the sector splitting prediction is similar either way. But the paper should use the correct coefficients for the laboratory scale.
+
+The CD betas are relevant for a different question: how does the sector splitting change between M_Z and M_GUT? If clock comparisons are ever performed at collider energies (impractical but conceptually possible), the CD betas would apply above the CD threshold. For all practical purposes (Earth-based clock comparisons), the SM betas are the correct ones.
+
+**A7. On the relationship to existing varying-constants frameworks.**
+
+The paper cites Uzan (2003, 2011) and Martins (2017) for the varying constants program. It should also cite the Bekenstein (1982) framework for varying α, the Sandvik-Barrow-Magueijo (2002) framework for cosmological α evolution, and the Damour-Polyakov (1994) framework for dilaton-mediated coupling evolution. These existing frameworks make specific predictions about how α, G, and other constants vary with position and time. The RUM sector splitting formula should be compared to these frameworks: is it a special case? A competing prediction? A reinterpretation?
+
+The Damour-Polyakov framework is closest: it predicts that all couplings vary with a universal dilaton field, with sector-dependent coupling strengths. The sector dependence is parameterized by coupling constants d_i that multiply the dilaton gradient. The RUM sector splitting formula ε = κ|Δβ| × ΔΦ/c² could be mapped to the Damour-Polyakov framework with d_strong/d_em = |β₃/β₁| and the dilaton gradient proportional to ΔΦ/c². If this mapping works, the RUM prediction is a specific realization of the Damour-Polyakov framework with the d_i determined by β coefficients rather than left as free parameters. This would be a significant result — it would fix the Damour-Polyakov coupling constants from gauge theory rather than from phenomenological fitting.
+
+**A8. On the Planck tick as physical reality (Section IV).**
+
+The paper states "the Planck time is not a human convention" and treats it as a physical discretization. This is a strong claim that most physicists would dispute. The Planck time is a dimensional analysis result — the unique combination of ℏ, G, c with time dimensions. That it exists as a number does not imply that time is discrete at that scale. String theory, loop quantum gravity, and causal set theory all suggest discreteness near the Planck scale, but none have observational confirmation.
+
+The paper should distinguish between three claims of increasing strength:
+
+(a) The Planck time exists as a dimensional combination. (Trivially true, not contested.)
+(b) Physical processes cannot resolve time intervals shorter than t_P. (Widely expected, not confirmed.)
+(c) The universe advances in discrete Planck steps. (Strong claim, the RUM position, not required by any observation.)
+
+The paper implicitly treats (c) as established. It should frame it as the model's assumption and note that (a) is all that the framework strictly requires. The sector splitting formula works regardless of whether time is continuous or discrete — it depends on β coefficients and Φ/c², not on the discreteness of time.
+
+---
+
+### TECHNICAL NOTES
+
+**T1. The experiment `experiment_clock_sector_decomposition_v0` needs careful design.**
+
+The derivation function `clock_sector_splitting_v0` should compute the predicted fractional frequency ratio change between a nuclear clock and an optical clock at two altitudes. The inputs from the pool:
+
+- β₁_SM = 41/10 (from `beta_sm_u1_total_v0` — use SM, not CD, per A6)
+- β₃_SM = −7 (from `beta_sm_su3_total_v0`)
+- Φ_earth/c² = 6.961 × 10⁻¹⁰ (from `result_earth_phi_over_c2_v0`)
+- g = 9.82 m/s² (from `result_g_surface_from_gm_v0`)
+- c = 299792458 m/s (from `si_speed_of_light_v0`)
+- Altitude difference Δh (new pool value, e.g., 1000 m)
+
+The computation:
+
+```
+ΔΦ/c² = g × Δh / c²
+ε_sector = κ × |β₃ − β₁| × ΔΦ/c²
+```
+
+where κ is output as a parameter and the experiment compares ε_sector against the (future) measured frequency ratio change.
+
+The comparison mode should be `miss_pct` (always INFO) because the experimental data does not yet exist. The comparison stores the prediction for future comparison when thorium clock data becomes available.
+
+**T2. The pulsar timing derivation needs the galactic mass model.**
+
+The derivation function `pulsar_gradient_model_v0` requires a galactic mass model in the pool. The minimum model: bulge mass, disk mass, disk scale length, halo mass, halo scale radius. Published models (McMillan 2017) provide these. The derivation computes the smooth potential gradient across the pulsar ensemble and the predicted timing gradient. The comparison stores the predicted gradient for future comparison against NANOGrav residuals.
+
+New value nodes needed (~10):
+
+```
+galactic_bulge_mass_v0, galactic_disk_mass_v0, 
+galactic_disk_scale_length_v0, galactic_disk_scale_height_v0,
+galactic_halo_mass_v0, galactic_halo_scale_radius_v0,
+solar_galactocentric_distance_v0, solar_galactic_height_v0,
+galactic_rotation_velocity_v0, galactic_virial_radius_v0
+```
+
+**T3. The notation T/R (from the plan) was changed to K/D in the paper.**
+
+The plan used T for tick and R for reading depth. The paper uses K for tick (Kount? from counting) and D for depth. This avoids the confusion flagged in the review (T looks like "time," R looks like something else). The change is good. But the tech dump document (Layer 15 and elsewhere) still uses the old T/R notation. Future documents should use K/D consistently.
+
+**T4. The per-tick α drift calculation should be made explicit.**
+
+The paper states δα/α < 7 × 10⁻⁶⁷ per tick from ESPRESSO constraints. The derivation:
+
+ESPRESSO constrains Δα/α < 2 × 10⁻⁶ at z ~ 1.5.
+
+The lookback time to z = 1.5 is approximately 9.5 × 10⁹ years = 3.0 × 10¹⁷ seconds.
+
+The number of Planck ticks: ΔN = 3.0 × 10¹⁷ / 5.391 × 10⁻⁴⁴ = 5.6 × 10⁶⁰.
+
+Per-tick bound: δα/α < 2 × 10⁻⁶ / 5.6 × 10⁶⁰ = 3.6 × 10⁻⁶⁷ per tick.
+
+The paper rounds to 7 × 10⁻⁶⁷, which is within a factor of 2. The discrepancy is from the lookback time estimate (the paper may use a slightly different cosmology). Either way, the order of magnitude is 10⁻⁶⁷. The exact value doesn't matter — the point is that it's extraordinarily small.
+
+**T5. The paper's relationship to the HOWL surplus count.**
+
+PHYS-43 does not add to the derived value count (53) or the surplus (+40). The five tests are predictions awaiting experimental data, not computations with existing measurements. The sector splitting prediction (ε ~ 10⁻⁹ to 10⁻¹²) is a parameterized prediction, not a definite number. The framework's quantitative track record (53 from 13, surplus +40) is unchanged by this paper.
+
+If Test 1 succeeds (nuclear ≠ optical beyond GR), it would add one new derived value (the sector splitting ε) and determine one new parameter (κ). The surplus would increase by 1. More importantly, it would establish the soliton hierarchy as a physical structure with a measured conversion factor between gauge and gravitational sectors — a qualitative advance that transcends the counting.
+
+If Test 1 fails, the surplus is unchanged and Scenario D-sector is killed. The framework continues with Scenario D-blind (reading depth exists but is sector-independent), which is experimentally identical to GR. The framework remains valid as a computational tool but its strongest new-physics prediction is refuted.
+
+---
+
 ## APPENDIX TABLES
 
 ### Table A.1: Complete Predictions — All Five Tests Under Four Scenarios
