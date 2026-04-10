@@ -170,23 +170,21 @@ The real numbers do the calculus. The fractions do the counting. Both are needed
 
 ### The Ceiling
 
-Real-number physics has a ceiling. The ceiling is not computational, modern computers handle 64-bit floating point, which gives 15-16 significant digits. The ceiling is structural.
+Real-number physics has a ceiling. The ceiling is not computational — modern computers handle floating-point arithmetic to fifteen or sixteen significant digits, far beyond most experimental precision. The ceiling is structural.
 
-In real-number physics, the three coupling constants at M_Z are three points on the number line: 63.21, 31.69, and 8.47 (the inverse couplings). These three points don't look special. They don't suggest 38/27. They don't suggest (22/13)π. They don't suggest anything, they're just three numbers.
+In real-number physics, the three force strengths at the Z boson energy scale are three points on the number line: 63.21, 31.69, and 8.47 (expressed as inverse couplings, which makes them easier to compare). These three points don't look special. They don't suggest any particular ratio. They don't hint at a pattern. They are just three numbers.
 
-To see the structure, you have to compute the gap ratio as a Fraction and recognize 218/115. Then you have to ask: what BSM representation changes 218/115 to a simpler Fraction? Then you have to enumerate all representations and find that only (3, 2, 1/6) gives 38/27. Then you have to compute the consequences of 38/27 through the entire derivation chain and compare to measurements.
+To see the structure, you have to compute the gap ratio as a fraction and recognize 218/115. Then you have to ask: what new particle changes 218/115 to a simpler fraction? Then you have to enumerate all possible particles and find that only one, with quantum numbers (3, 2, 1/6), produces 38/27. Then you have to compute the consequences of 38/27 through the entire derivation chain and compare to measurements across eight domains of physics.
 
-Every step after the first requires Fraction arithmetic. The first step, recognizing that the gap ratio is an interesting number, was done in real numbers by people who happened to notice that the SM couplings "almost" unify. But "almost" in real numbers is a vague statement. In Fractions, it's precise: the gap ratio is 218/115, and it becomes 38/27 with one specific representation.
+Every step after the first requires fraction arithmetic. The first step, noticing that the three forces come close to meeting at a single point, was done in real numbers by physicists who observed that the couplings "almost" unify. But "almost" in real numbers is a vague statement. How close is close enough? Is a 40% miss interesting or dismissible? In fractions, the statement is precise: the gap ratio is exactly 218/115, and it becomes exactly 38/27 with one specific particle. There is no ambiguity about whether the result is close. It either simplifies to a meaningful fraction or it doesn't.
 
-The ceiling of real numbers is the inability to see this structure. The numbers 1.896 and 1.407 don't look related. The Fractions 218/115 and 38/27 do, they share the same algebraic origin (the gap ratio formula) with different particle content. The structure is in the Fractions. The decimals are the shadow cast on the number line.
+The ceiling of real numbers is the inability to see this structure. The decimals 1.896 and 1.407 don't look related. The fractions 218/115 and 38/27 visibly share the same algebraic origin, the gap ratio formula applied to different particle content. The structure is in the fractions. The decimals are the shadow cast on the number line.
 
-Physics hit this ceiling decades ago. The Standard Model was completed in the 1970s. The coupling constants were measured to high precision by the 1990s. The gap ratio was computed and found to be "close to but not exactly" unifying. The conclusion was: the Standard Model doesn't unify, and new physics (SUSY, extra dimensions, etc.) is needed to close the gap.
+Physics reached this ceiling decades ago. The Standard Model was completed in the 1970s. The coupling constants were measured to high precision by the 1990s. The gap ratio was computed and found to be close to but not exactly unifying. The response was to search for new physics that could close the gap, primarily supersymmetry, which predicts a partner particle for every known particle.
 
-The correct conclusion was: the Standard Model doesn't unify in decimal arithmetic, and one additional Fraction (the CD's contribution) closes the gap exactly. The difference between these two conclusions is the difference between 40 years of searching for supersymmetric partners that don't exist and one computation in Fraction arithmetic that produces 53 correct predictions.
+The Cabibbo Doublet offers a different path. Not an entire doubling of the particle spectrum, but one additional fraction, three small shifts to the three running rates (1/15, 1, and 1/3), that brings the gap ratio from 218/115 to 38/27 and produces 53 derived values matching measurements across eight domains.
 
-The wrong number system led to the wrong conclusion. The wrong conclusion led to the wrong search. The wrong search consumed billions of dollars and decades of effort.
-
-Fraction arithmetic costs nothing. It runs on the same computers. It uses the same physics. It just keeps the integers visible.
+This path was not visible in decimal arithmetic. Not because decimals give wrong answers, but because decimals don't show you the structure of the answers. The fraction 218/115 tells you something: it has specific integers in the numerator and denominator, each traceable to the particle content of the Standard Model. The decimal 1.896 tells you nothing except a location on the number line. The methodological insight of this model is that the structure was always there, in the fractions, waiting to be read. The integers were always carrying the physics. The number system just needed to make them visible.
 
 ---
 
