@@ -121,17 +121,17 @@ Unification doesn't mean finding one equation that replaces all of physics. It m
 
 You don't need to derive protein folding from gauge integers to benefit from unification. The benefit comes from the organizational clarity.
 
-**Understanding replaces mystery.** Dark matter is not a mystery if it's toroidal flow predicted by gauge integers at 725 ppm. The Hubble tension is not a crisis if it's a boundary reading effect. The cosmological constant problem is not "the worst prediction in physics" if the vacuum energy is the ground state reading of the outermost soliton. The muon g-2 anomaly is not "evidence of new physics" if it's a hadronic VP measurement dispute.
+**Understanding replaces mystery.** Dark matter is less mysterious when a ratio derived from gauge integers matches the Planck satellite measurement at 725 parts per million. The cosmological constant is less baffling when the vacuum energy can be understood as the ground state reading of the outermost soliton boundary. The muon g-2 anomaly is less alarming when it traces to a known measurement dispute about hadronic contributions, not necessarily to unknown physics. The Hubble tension is less paradoxical when the soliton boundary framework predicts that measurements from different scales should give different readings.
 
-Every "crisis" in modern physics has the same structure: a measurement doesn't match a prediction, and the response is to propose new particles, new forces, new dimensions. The soliton boundary framework offers a different response: check which boundary you're reading from. The measurement might be correct and the prediction might be correct, and the disagreement might be because they're readings from different boundaries.
+None of these are declared solved. The dark matter ratio is derived and matches. The cosmological constant interpretation is proposed but not yet tested quantitatively. The muon anomaly awaits resolution of the hadronic dispute. The Hubble tension connection is speculative. Each has a different status in the model, and the model states that status plainly. But each demonstrates the same principle: before proposing new particles, new forces, or new dimensions to explain a discrepancy, check which boundary you are reading from. The measurement might be correct and the prediction might be correct, and the disagreement might come from readings taken at different boundaries.
 
-This doesn't solve every problem. But it provides a framework for asking the right question. Instead of "what new particle explains the discrepancy?" the question becomes "what boundary crossing produces the discrepancy?" The first question has infinitely many answers (you can always invent a new particle). The second question has a finite answer determined by the nesting structure.
+This doesn't solve every problem. But it provides a framework for asking the right question. Instead of "what new particle explains the discrepancy?" the question becomes "what boundary crossing produces the discrepancy?" The first question has infinitely many answers, because you can always invent a new particle. The second question has a finite answer determined by the nesting structure.
 
 **Education changes.** Instead of teaching four forces and hoping students see the unity later, teach one principle (boundary readings) and show how it produces four different values at four different scales. Instead of teaching quantum mechanics and general relativity as separate subjects, teach them as interior and exterior readings of the same soliton structure. Instead of presenting the Standard Model as a collection of particles and forces, present it as a gauge group, three letters, SU(3) × SU(2) × U(1), from which everything follows by integer arithmetic.
 
-A student who understands soliton, vortex, and inertia can read the physics stack from Layer 0 to Layer 12 and see the universe as one connected system. That student doesn't need to choose between particle physics and cosmology. They're the same subject.
+A student who understands soliton, vortex, and inertia can read the physics stack from Layer 0 to Layer 12 and see the universe as one connected system. That student doesn't need to choose between particle physics and cosmology. They are the same subject.
 
-**Technology accelerates.** Every engineering optimization that currently requires empirical measurement, the band gap, the attenuation coefficient, the absorption spectrum, the binding affinity, becomes in principle derivable. Not overnight. Not easily. But derivably. The integer chain provides a path from fundamental constants to material properties that doesn't exist in the departmentalized structure. Following that path even partway, deriving one material property from first principles instead of measuring it, saves experimental effort and provides deeper understanding of why the property has the value it does.
+**Technology accelerates.** Every engineering optimization that currently requires empirical measurement, the band gap, the attenuation coefficient, the absorption spectrum, the binding affinity, becomes derivable through the integer chain. Not overnight. Not easily. But the path exists. The integer chain provides a route from fundamental constants to material properties that does not exist in the departmentalized structure. Following that path even partway, deriving one material property from first principles instead of measuring it, saves experimental effort and provides deeper understanding of why the property has the value it does.
 
 ---
 
@@ -139,9 +139,13 @@ A student who understands soliton, vortex, and inertia can read the physics stac
 
 The promise of unification is omni-domain derivation: start from integers, end anywhere. The honest limit is that most of the chains are long, many links are computationally expensive, and some links haven't been attempted.
 
-We have computed: gauge integers → couplings → cosmological densities → primordial abundances (6 links, 5 domains, works to 0.12σ). We have computed: a_e → α → R∞ → f(1S-2S) (3 links, 4 domains, works to 0.44 ppb). We have computed: gauge integers → sin²θ_W → M_W → Γ_Z (4 links, 3 domains, works to 195 ppm).
+We have computed: gauge integers through force running rates through cosmological densities through primordial element abundances. Six links, five domains, matching the deuterium abundance at 0.12 standard deviations.
 
-We have not computed: gauge integers → silicon band gap. We have not computed: α → CO₂ absorption spectrum. We have not computed: gauge group → protein folding energy. These are future work, years or decades of future work.
+We have computed: the electron's wobble through the electromagnetic force strength through the Rydberg constant through the hydrogen spectral frequency. Three links, four domains, matching the most precisely measured quantity in physics at 0.44 parts per billion.
+
+We have computed: gauge integers through the weak mixing angle through the W boson inertia through the Z boson decay rates. Four links, three domains, matching the W boson inertia at 195 parts per million.
+
+We have not computed: gauge integers through atomic physics through crystal structure to the silicon band gap. We have not computed: the electromagnetic force strength through molecular physics to the CO₂ absorption spectrum. We have not computed: the gauge group through chemistry through molecular biology to protein folding energies. These are future work, years or decades of future work.
 
 But the path is open. Every chain that has been computed works. Every chain uses standard physics. Every chain can be extended. The walls are departmental, not physical. Tearing them down is engineering, not discovery.
 
