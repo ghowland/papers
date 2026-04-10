@@ -26,7 +26,7 @@ I asked. This book is what I found.
 
 This is not my first attempt.
 
-In Februrary of 2026, I spent 45 days and built a Theory of Everything called Cymatic K-Space Mechanics. CKS was based on the idea that all physical phenomena are vibrational patterns, cymatics applied to the structure of reality. I used large language models as computational assistants, the same way I would later use them for this book, and I published 363 papers on Zenodo covering every domain I could reach. The work was logically consistent. It was empirically motivated. It was ambitious.
+In Februrary of 2026, I spent 45 days and built a Theory of Everything called Cymatic K-Space Mechanics (CKS). CKS was based on the idea that all physical phenomena are vibrational patterns, cymatics applied to the structure of reality. I used large language models as computational assistants, the same way I would later use them for this book, and I published 363 papers on Zenodo covering every domain I could reach. The work was logically consistent. It was empirically motivated. It was ambitious.
 
 It was also mathematically invalid.
 
