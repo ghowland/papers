@@ -603,6 +603,69 @@
             "connection_gr_reading_depth_v0"
         ],
         "notes": "This program tests the PHYS-41 interpretation: time is reading depth, GR time dilation is the evidence. The experiment is a reinterpretation exercise — every comparison should PASS because the reading depth formula IS the GR formula. Any FAIL is a computational bug, not a physics failure. The program's value is demonstrating that a century of GR time dilation data constitutes evidence for the reading depth interpretation across the full soliton hierarchy."
+    },
+
+    {
+        "key": "program_clock_reading_decomposition_v0",
+        "canonical": "program_clock_reading_decomposition",
+        "version": 0,
+        "node_type": "program",
+        "topic": "program",
+        "term": "clock_reading_decomposition",
+        "level": null,
+        "source": "Session 7",
+        "thesis": "Observed time dilation has two separable components: the tick (K, monotonic Planck counter) and the reading depth (D, spatial position in soliton hierarchy). The sector splitting epsilon = kappa x |Delta_beta| x Delta_Phi/c^2 connects gauge coupling integers to gravitational clock rates.",
+        "status": "ACTIVE",
+        "tags": ["clock", "reading_depth", "sector_splitting", "decomposition", "EP"],
+        "scripts": [
+            {
+                "name": "sector_splitting_prediction_v0",
+                "description": "Predict Th-229 vs Sr-87 frequency ratio change from beta coefficient differences",
+                "stage": 1
+            },
+            {
+                "name": "static_vs_dynamic_classification_v0",
+                "description": "Classify 18 PHYS-42 tests as D-type, K-type, mixed, or structural",
+                "stage": 1
+            },
+            {
+                "name": "frozen_scan_completeness_v0",
+                "description": "Test whether frozen geometry predicts K-required tests",
+                "stage": 1
+            },
+            {
+                "name": "reading_hierarchy_scan_v0",
+                "description": "Compute Phi/c^2 at every hierarchy level from spatial inputs only",
+                "stage": 1
+            },
+            {
+                "name": "tick_observable_unique_v0",
+                "description": "Isolate K-unique contributions and D/K fractions for each test",
+                "stage": 1
+            }
+        ],
+        "kill_switches": [
+            {
+                "name": "clock_sector_agreement",
+                "condition": "Th-229 and Sr-87 frequency ratio constant to 10^-19 at >= 2 gravitational potentials",
+                "data_source": "PTB/JILA nuclear clock comparison (2028-2032)"
+            },
+            {
+                "name": "wep_per_sector_violation",
+                "condition": "MICROSCOPE-class WEP test with nuclear-dominated vs EM-dominated test masses shows eta > 10^-15",
+                "data_source": "Future WEP experiment"
+            },
+            {
+                "name": "classification_inconsistency",
+                "condition": "D-classified tests systematically show larger misses than K-classified tests in updated GR experiment",
+                "data_source": "Future PHYS-42 reruns with improved inputs"
+            }
+        ],
+        "program_connections": {
+            "program_gr_reading_depth": "shares gravitational potentials Phi/c^2 from PHYS-42",
+            "program_beta_unification": "shares beta coefficients that appear in sector splitting formula",
+            "program_parameter_reduction": "sector splitting connects gauge integers to gravitational observables"
+        }
     }
   ]
 }

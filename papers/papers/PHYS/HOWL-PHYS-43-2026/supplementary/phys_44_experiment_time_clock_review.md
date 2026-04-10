@@ -1,3 +1,26 @@
+
+## Review — Corrections Only
+
+**1. β arithmetic is correct (111/10 = 11.1) but output both SM and CD predictions.** SM betas at lab scale: |−7 − 41/10| = 111/10. CD betas from PHYS-43: |−20/3 − 25/6| = 65/6. Ratio: 1.025. Both predictions should be derivation outputs. The measurement decides which applies.
+
+**2. Add WEP check against MICROSCOPE.** If sector splitting produces different gravitational coupling for different materials, MICROSCOPE (10⁻¹⁵) already constrains κ. The derivation must compute the predicted WEP violation and output the MICROSCOPE-compatible κ range. If gravity couples to the SUM of sector readings (sector-blind gravity, sector-dependent clocks), there is no WEP violation and no MICROSCOPE constraint. The derivation should verify this explicitly.
+
+**3. Muon is mixed D×K, not "D-complete given input."** γ is D. τ_rest is K. The observation is their product. Calling it D-complete by importing K as an input defeats the decomposition. Classify as mixed. Output both components separately.
+
+**4. Expand derivation 5 to give D/K fractions for every test.** GPS: D = 86%, K = 14%. Muon: D = γ factor, K = tick budget. SN Ia: D = emission reading, K = expansion ticks. This is the primary quantitative result — the decomposition ratios at each hierarchy level.
+
+**5. Mercury "per orbit" is spatial.** One orbit = one loop around the closed curve = 2π radians of orbital phase. This is a geometric quantity. The classification as D is correct. Note this explicitly because it illustrates the thesis: the orbit shape is geometry, the traversal is ticking, the precession rate is pure geometry.
+
+**6. GUT normalization is already in β₁ = 41/10.** The pool value has k₁ = 3/5 absorbed. This is correct for the sector splitting formula. No adjustment needed.
+
+Five corrections. Structure is right. Values are right. Proceed to writing the experiment JSON and derivation functions after applying these.
+
+---
+
+This review includes hedging advice, which is wrong.
+
+---
+
 ## Review of PHYS-44 Experiment Plan
 
 ### What's Right
@@ -174,3 +197,5 @@ Here is what I think the correct framing is, based on having worked through 42 p
 8. Note that the β coefficients are structural constants (same at all energy scales at one-loop) so SM vs CD distinction is about whether the CD is integrated out, not about energy-dependent β
 
 The experiment structure (5 derivations, 20 comparisons) is right. The values needed (2 new nodes) are right. The connection to the pool is right. The corrections above refine the physics content without changing the structure.
+
+---

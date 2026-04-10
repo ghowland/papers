@@ -1,0 +1,299 @@
+{
+    "key": "experiment_clock_reading_decomposition_v0",
+    "canonical": "experiment_clock_reading_decomposition",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Separating the clock (K) from the reading (D). Five derivations decompose the GR dilation formula into tick and depth components. Central prediction: sector splitting between nuclear and optical clocks at epsilon = kappa x |Delta_beta| x Delta_Phi/c^2. PHYS-44.",
+    "purpose": "program_clock_reading_decomposition_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "beta_sm_u1_total": 0,
+            "beta_sm_su2_total": 0,
+            "beta_sm_su3_total": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "si_speed_of_light": 0,
+            "coupling_alpha_em_inverse": 0,
+            "coupling_alpha_s_mz": 0,
+            "astro_gravitational_constant": 0,
+            "astro_mass_earth": 0,
+            "astro_mass_sun": 0,
+            "astro_radius_earth": 0,
+            "astro_radius_sun": 0,
+            "astro_gps_orbit_radius": 0,
+            "astro_gps_satellite_velocity": 0,
+            "astro_muon_rest_lifetime": 0,
+            "geom_pi": 0,
+            "gr_muon_cosmic_ray_beta": 0,
+            "gr_planck_time_s": 0,
+            "gr_planck_length_m": 0,
+            "gr_ns_typical_mass_solar": 0,
+            "gr_ns_typical_radius_m": 0,
+            "gr_universe_age_s": 0,
+            "gr_sn1a_redshift": 0,
+            "gr_mercury_semi_major_au": 0,
+            "astro_au": 0,
+            "test_clock_altitude_difference": 0,
+            "test_clock_sensitivity_target": 0,
+            "test_microscope_eta_bound": 0,
+            "test_ti_nuclear_binding_fraction": 0,
+            "test_pt_nuclear_binding_fraction": 0,
+            "test_phys42_count": 0,
+            "test_seconds_per_day": 0,
+            "test_us_per_s": 0
+        },
+        "derivations": {
+            "sector_splitting_prediction": 0,
+            "static_vs_dynamic_classification": 0,
+            "frozen_scan_completeness": 0,
+            "reading_hierarchy_scan": 0,
+            "tick_observable_unique": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "sector_splitting_prediction_v0",
+        "static_vs_dynamic_classification_v0",
+        "frozen_scan_completeness_v0",
+        "reading_hierarchy_scan_v0",
+        "tick_observable_unique_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_sector_beta_diff_sm_v0",
+        "result_sector_beta_diff_cd_v0",
+        "result_sm_cd_ratio_v0",
+        "result_delta_phi_1000m_v0",
+        "result_splitting_kappa_1_sm_v0",
+        "result_splitting_kappa_1_cd_v0",
+        "result_splitting_kappa_alpha_v0",
+        "result_splitting_kappa_alpha2_v0",
+        "result_splitting_kappa_alpha_s_v0",
+        "result_splitting_kappa_phi_v0",
+        "result_splitting_detectable_kappa_1_v0",
+        "result_splitting_detectable_kappa_alpha_v0",
+        "result_max_kappa_for_null_v0",
+        "result_wep_sum_gravity_ok_v0",
+        "result_wep_persector_kappa_limit_v0",
+        "result_count_static_d_v0",
+        "result_count_dynamic_k_v0",
+        "result_count_mixed_v0",
+        "result_count_structural_v0",
+        "result_classification_total_v0",
+        "result_d_tests_all_pass_v0",
+        "result_k_tests_all_pass_v0",
+        "result_d_complete_count_v0",
+        "result_k_required_count_v0",
+        "result_mixed_partial_count_v0",
+        "result_frozen_scan_coverage_v0",
+        "result_hierarchy_depth_earth_v0",
+        "result_hierarchy_depth_sun_v0",
+        "result_hierarchy_depth_mercury_v0",
+        "result_hierarchy_depth_gps_v0",
+        "result_hierarchy_depth_ns_v0",
+        "result_hierarchy_matches_phys42_v0",
+        "result_frozen_scan_max_miss_v0",
+        "result_gps_d_component_us_v0",
+        "result_gps_k_component_us_v0",
+        "result_gps_k_fraction_v0",
+        "result_muon_d_factor_v0",
+        "result_muon_k_budget_s_v0",
+        "result_muon_tick_budget_v0",
+        "result_muon_tick_budget_log10_v0",
+        "result_sn1a_tick_count_v0",
+        "result_sn1a_tick_count_log10_v0",
+        "result_k_adds_information_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "C01: beta3-beta1 SM exact",
+            "output_key": "result_sector_beta_diff_sm_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "111", "den": "10"},
+            "reference_source": "SM_betas"
+        },
+        {
+            "label": "C02: beta3-beta1 CD exact",
+            "output_key": "result_sector_beta_diff_cd_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "65", "den": "6"},
+            "reference_source": "CD_betas"
+        },
+        {
+            "label": "C03: epsilon(kappa=1) detectable",
+            "output_key": "result_splitting_detectable_kappa_1_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "detection_threshold"
+        },
+        {
+            "label": "C04: epsilon(kappa=alpha) detectable",
+            "output_key": "result_splitting_detectable_kappa_alpha_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "detection_threshold"
+        },
+        {
+            "label": "C05: max kappa for null",
+            "output_key": "result_max_kappa_for_null_v0",
+            "match_mode": "range",
+            "lo": "0.00000001",
+            "hi": "0.00001",
+            "reference_source": "detection_threshold"
+        },
+        {
+            "label": "C06: WEP consistent (sum gravity)",
+            "output_key": "result_wep_sum_gravity_ok_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "MICROSCOPE_2022"
+        },
+        {
+            "label": "C07: D-type count",
+            "output_key": "result_count_static_d_v0",
+            "match_mode": "range",
+            "lo": "8",
+            "hi": "11",
+            "reference_source": "classification"
+        },
+        {
+            "label": "C08: K-type count",
+            "output_key": "result_count_dynamic_k_v0",
+            "match_mode": "range",
+            "lo": "1",
+            "hi": "3",
+            "reference_source": "classification"
+        },
+        {
+            "label": "C09: Mixed count",
+            "output_key": "result_count_mixed_v0",
+            "match_mode": "range",
+            "lo": "2",
+            "hi": "4",
+            "reference_source": "classification"
+        },
+        {
+            "label": "C10: All D tests passed in PHYS-42",
+            "output_key": "result_d_tests_all_pass_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C11: All K tests passed in PHYS-42",
+            "output_key": "result_k_tests_all_pass_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C12: Frozen scan coverage",
+            "output_key": "result_frozen_scan_coverage_v0",
+            "match_mode": "range",
+            "lo": "0.60",
+            "hi": "0.90",
+            "reference_source": "classification"
+        },
+        {
+            "label": "C13: K-required count",
+            "output_key": "result_k_required_count_v0",
+            "match_mode": "range",
+            "lo": "1",
+            "hi": "4",
+            "reference_source": "classification"
+        },
+        {
+            "label": "C14: Classification total = 18",
+            "output_key": "result_classification_total_v0",
+            "match_mode": "exact",
+            "expected": 18,
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C15: Earth Phi/c2 vs PHYS-42",
+            "output_key": "result_hierarchy_depth_earth_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.000000000696",
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C16: Sun Phi/c2 vs PHYS-42",
+            "output_key": "result_hierarchy_depth_sun_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.00000212",
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C17: All frozen readings match PHYS-42",
+            "output_key": "result_hierarchy_matches_phys42_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "PHYS-42"
+        },
+        {
+            "label": "C18: GPS K fraction",
+            "output_key": "result_gps_k_fraction_v0",
+            "match_mode": "range",
+            "lo": "0.10",
+            "hi": "0.25",
+            "reference_source": "GPS_decomposition"
+        },
+        {
+            "label": "C19: Muon tick budget log10",
+            "output_key": "result_muon_tick_budget_log10_v0",
+            "match_mode": "range",
+            "lo": "36",
+            "hi": "39",
+            "reference_source": "particle_physics"
+        },
+        {
+            "label": "C20: K adds information",
+            "output_key": "result_k_adds_information_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "decomposition"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_dk_decomposition_v0",
+            "title": "D/K decomposition of PHYS-42 tests",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "D-type (frozen geometry)", "predicted": "result_count_static_d_v0", "measured": "9"},
+                {"label": "K-type (ticking required)", "predicted": "result_count_dynamic_k_v0", "measured": "1"},
+                {"label": "Mixed (D x K)", "predicted": "result_count_mixed_v0", "measured": "3"},
+                {"label": "Structural (definitions)", "predicted": "result_count_structural_v0", "measured": "3"}
+            ],
+            "notes": "Most GR tests are pure geometry. Only SN Ia stretch is pure K."
+        },
+        {
+            "key": "diagram_sector_splitting_v0",
+            "title": "Sector splitting: SM vs CD betas",
+            "type": "comparison_table",
+            "rows": [
+                {"label": "|b3-b1| SM", "predicted": "result_sector_beta_diff_sm_v0", "measured": "111/10"},
+                {"label": "|b3-b1| CD", "predicted": "result_sector_beta_diff_cd_v0", "measured": "65/6"},
+                {"label": "epsilon(kappa=1) SM", "predicted": "result_splitting_kappa_1_sm_v0", "measured": "~1.21e-12"},
+                {"label": "epsilon(kappa=1) CD", "predicted": "result_splitting_kappa_1_cd_v0", "measured": "~1.18e-12"}
+            ],
+            "notes": "SM and CD predictions differ by 2.5% for (3,1) pair. The (2,1) pair differs by 2.4x — discriminating."
+        },
+        {
+            "key": "diagram_gps_decomposition_v0",
+            "title": "GPS net shift: D and K components",
+            "type": "bar",
+            "categories": ["D (gravitational)", "K (velocity)", "Net"],
+            "values_from": ["result_gps_d_component_us_v0", "result_gps_k_component_us_v0", "38.50"],
+            "notes": "D = +45.85 us/day, K = -7.21 us/day, Net = +38.50 us/day. D dominates at 86%."
+        }
+    ]
+}
