@@ -340,15 +340,19 @@ But reproducing the anomaly is itself a test. It confirms that the QED chain wor
 
 ### Layer 10: The Flavor Sector
 
-Quarks mix. The up quark doesn't only pair with the down quark, it also pairs (with smaller probability) with the strange quark and the bottom quark. The probabilities are encoded in the CKM matrix, a 3×3 unitary matrix whose elements give the coupling strength between each up-type quark and each down-type quark.
+Quarks mix. When a quark interacts through the weak force, it doesn't always stay the same type. An up quark most often pairs with a down quark, but sometimes it pairs with a strange quark, and very rarely with a bottom quark. The probabilities for each pairing are encoded in the CKM matrix, named after Cabibbo, Kobayashi, and Maskawa, who developed the framework. Think of it as a table of transition probabilities: each row is an up-type quark (up, charm, top), each column is a down-type quark (down, strange, bottom), and each entry tells you how likely that particular pairing is.
 
-The CKM matrix is parameterized by four numbers: three mixing angles (θ₁₂, θ₁₃, θ₂₃) and one CP-violating phase (δ). The Cabibbo angle θ₁₂ ≈ 13° is the largest mixing angle, it governs the coupling between up-down and up-strange quarks.
+Quantum mechanics requires that the probabilities in each row add up to exactly one. This is unitarity: if a quark must transition to some down-type partner, the chances of all possible partners must sum to 100%. Not approximately. Exactly. This is not a model assumption, it is a consequence of probability conservation, as fundamental as the requirement that all probabilities sum to one when you flip a coin.
 
-In the standard 3×3 CKM matrix, the first row should satisfy unitarity: |V_ud|² + |V_us|² + |V_ub|² = 1. The measured values give 0.99848 ± 0.00061. This is 2.5σ below unity, a small but persistent deficit.
+**The deficit.** When experimentalists add up the first row of the CKM matrix, the up quark's transition probabilities to the down, strange, and bottom quarks, the sum comes out slightly below one. The measured value is 0.99848, with an uncertainty of ±0.00061. That is 2.5 standard deviations below the required 1.00000. A small shortfall, but a persistent one. It has been measured with increasing precision for over a decade and has never gone away.
 
-The Cabibbo Doublet extends the CKM matrix to 4×4. The CD adds a fourth quark generation (vector-like, heavy, above 1.5 TeV). The first row of the 4×4 matrix has an extra term: |V_ud|² + |V_us|² + |V_ub|² + |V_u4|² = 1. The measured deficit (0.00152) is absorbed by |V_u4|² = sin²θ₁₄ = 0.002025, which requires a mixing angle θ₁₄ = 0.045 (about 2.6°).
+In a three-quark-generation world, this deficit has no explanation. The probabilities must sum to one, and they don't. Either the measurements are slightly off, or the theoretical corrections applied to extract the probabilities from nuclear decay experiments have an error, or the up quark has a fourth partner that nobody has accounted for.
 
-The tension between the predicted deficit (0.002025) and the measured deficit (0.00152 ± 0.00061) is 0.83σ, well within measurement uncertainty. The CD naturally explains the CKM unitarity deficit with a small mixing angle to the fourth generation.
+**The fourth column.** The Cabibbo Doublet provides that fourth partner. If the Cabibbo Doublet exists, the CKM matrix is not 3×3 but 3×4. The up quark can transition not only to the down, strange, and bottom quarks, but also to the Cabibbo Doublet's lower component. The first row gains a fourth entry, and the unitarity requirement becomes: the probabilities for down, strange, bottom, and the Cabibbo Doublet must sum to one.
+
+The measured deficit of 0.00152 is exactly what you would expect if a small fraction of the up quark's transitions are going to the Cabibbo Doublet instead of the three known quarks. The required mixing angle is about 2.6 degrees, comparable in size to the known mixing between the charm and bottom quarks. It is not anomalously large or small. It is a typical inter-generation mixing angle.
+
+The tension between the predicted deficit (0.002025, from the mixing angle) and the measured deficit (0.00152 ± 0.00061) is 0.83 standard deviations, well within measurement uncertainty. The Cabibbo Doublet naturally explains why the CKM first row falls short of one: the missing probability is leaking into a fourth quark that hasn't been directly observed yet. In every nuclear beta decay measured since the 1950s, in every kaon decay measured since the 1960s, approximately 0.2% of the transition amplitude has been flowing to the Cabibbo Doublet instead of the three known down-type quarks. The leakage was too small to notice until experimental precision reached the 0.04% level in the late 2010s.
 
 ---
 
