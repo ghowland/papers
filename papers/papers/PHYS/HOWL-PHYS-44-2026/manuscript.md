@@ -39,9 +39,13 @@ General relativity is 56% pure geometry. With the mixed tests (where D contribut
 
 Space and time are separated.
 
+![Fig. 6: Four bars — 10 readings, 1 tick, 4 mixed, 3 structural. General relativity is 56% pure geometry. Frozen scan covers 89%.](./figures/phys44_06_classification_bars.png)
+
 ---
 
 ## II. THE TEN READINGS
+
+![Fig. 2: All 18 tests classified as Reading (D), Tick (K), Mixed, or Structural. D dominates at 56%. Frozen scan covers 89%.](./figures/phys44_02_dk_classification.png)
 
 Ten of the eighteen PHYS-42 tests use only spatial quantities. Their prediction formulas contain masses, radii, potentials, and curvatures. No velocities. No lifetimes. No epoch comparisons. They are properties of the soliton hierarchy at a single frozen instant.
 
@@ -71,6 +75,8 @@ All ten are computable from a frozen snapshot. If you stopped the universe at on
 
 ## III. THE ONE TICK
 
+![Fig. 5: From photon transit (10^36 ticks) to proton lifetime (10^85 ticks). Three regimes: decay, orbital, cosmological. The counting machine spans 49 orders.](./figures/phys44_05_tick_budget.png)
+
 One test is pure K: the Type Ia supernova lightcurve stretch.
 
 At redshift z = 0.5, the stretch factor is (1+z) = 1.5. This number cannot be computed from a single frozen snapshot. It requires comparing two epochs — the emission epoch and the observation epoch. The stretch IS the ratio of scale factors at two different tick counts. How many Planck ticks elapsed between the supernova's explosion and our observation determines how much the lightcurve has stretched.
@@ -82,6 +88,8 @@ One test out of eighteen. The temporal process — the counting machine — is e
 ---
 
 ## IV. THE FOUR MIXTURES
+
+![Fig. 3: The muon observation is the product of a spatial factor (gamma=15.8, D) and a temporal factor (tick budget 4.08e37, K). Neither alone predicts the lab lifetime.](./figures/phys44_03_muon_dk_product.png)
 
 Four tests combine reading and tick.
 
@@ -96,6 +104,8 @@ The muon is the cleanest demonstration that D and K are multiplicative. The read
 **GPS velocity.** v²/(2c²) per second. This is the K sub-component of the GPS decomposition. It is listed separately because it is conceptually distinct: the velocity shift is capacity allocation. The satellite is moving, so it allocates some of its reading capacity to spatial displacement. What remains for temporal updates (clock ticks) is reduced by v²/(2c²). This is pure tick physics — it requires the satellite to be moving, which requires ticking.
 
 **Hulse-Taylor binary.** The instantaneous orbital decay rate (Pdot) is computable from the orbital geometry — the masses, the orbital period, the eccentricity. The quadrupole radiation formula is algebraic. The decay rate at any instant is a frozen-scan quantity. But the cumulative period change (the 76.5 μs/year that won the Nobel Prize) requires the system to evolve over time. Energy leaves the system as gravitational waves — each tick radiates a small amount of reading depth energy. The accumulated radiation over decades of ticking produces the observed period change. Instantaneous: D. Cumulative: K. Precision: 42 ppm.
+
+![Fig. 7: GPS net correction decomposed. Gravitational shift +45.85 us/day (D). Velocity shift -7.21 us/day (K). Every phone computes this 86/14 split.](./figures/phys44_07_gps_decomposition.png)
 
 ---
 
@@ -133,6 +143,8 @@ The RUM framework names this. The reading (D) is the geometry. The tick (K) is t
 
 ## VII. THE SECTOR SPLITTING
 
+![Fig. 1: Thirteen orders of detectable kappa range. Three sector pairs cross three detection thresholds. Natural suppression mechanisms all leave the signal visible.](./figures/phys44_01_kappa_sweep.png)
+
 The D/K decomposition produces one testable prediction that standard GR does not make.
 
 If the reading (D) is a spatial structure determined by position in the soliton hierarchy, and if different force sectors (strong, electromagnetic, weak) have different transformation laws across boundaries (which they do — the beta coefficients differ), then different clock types should read different depths at the same gravitational potential.
@@ -159,9 +171,13 @@ The sector splitting uses the same beta coefficients that predicted sin²θ_W = 
 
 The WEP consistency check: if gravity couples to the total reading depth (sum of all sectors), there is no violation of the weak equivalence principle. MICROSCOPE (η < 1.5 × 10⁻¹⁵ for titanium vs platinum) is not constraining because it tests free fall (total gravitational coupling), not clock rates (individual sector readings). The sector splitting appears in clocks, not in free fall. This is why the nuclear-vs-optical clock comparison is the right test, and why a century of same-sector EP tests (Eötvös through MICROSCOPE) did not detect it.
 
+![Fig. 8: Sum gravity (left) produces no WEP violation — all materials fall the same. Per-sector gravity (right) is constrained by MICROSCOPE. RUM predicts sum gravity: clocks split by sector, free fall does not.](./figures/phys44_08_wep_consistency.png)
+
 ---
 
 ## VIII. WHAT SPACE IS AND WHAT TIME IS
+
+![Fig. 4: Nested soliton boundaries labeled by D/K classification. Ten levels are pure reading. One is pure tick. The sector splitting test sits at the nuclear-atomic boundary.](./figures/phys44_04_hierarchy_dk.png)
 
 Space is the soliton hierarchy. It is a nested structure of boundaries — cosmological containing galactic containing stellar containing planetary containing atomic containing nuclear containing quark. At each level, the physical constants take values determined by the boundary transformation laws. The readings change with depth. The hierarchy is navigable: given the integers, you can scan from any depth to any other depth and predict what measurements will return. The scan requires no ticking. It requires structure.
 
