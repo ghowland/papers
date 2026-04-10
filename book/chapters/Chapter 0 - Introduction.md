@@ -8,7 +8,7 @@ This is either an important contribution to physics or an elaborate mistake. The
 
 ### Who Made This
 
-I am a software engineer. My background is in debugging complex systems, finding where things break and why. I came to physics not through a department but through a question: if the laws of physics are supposed to be exact, why are they written in a number system that can't express equality?
+I am a software and infrastructure engineer. My background is in debugging complex systems, finding where things break and why. I came to physics not through a department but through a question: if the laws of physics are supposed to be exact, why are they written in a number system that can't express equality?
 
 I have no physics degree. I have no academic appointment. I have never worked at a university, a national laboratory, or a particle physics experiment. I am an outsider, and this book is an outsider's work.
 
