@@ -270,31 +270,41 @@ One measurement of an electron wobbling in a magnetic trap at Harvard produces a
 
 ![Fig. 5: Two integers (11, 13) from the weak force beta function determine the primordial abundances of deuterium, helium, and lithium, three match, one reproduces the lithium problem.](../figures/book_05_cosmo_chain.png)
 
-The longest chain. From gauge integers to primordial chemistry in six links.
+The longest chain in the model. From gauge integers to the chemistry of the early universe in six steps.
 
-**Link 1: The gauge group.** SU(2) has a Yang-Mills coefficient of −11/3. The absolute value of the numerator is 11. The modified SU(2) beta coefficient (with the CD) is −13/6. The absolute value of the numerator is 13.
+The integers 11 and 13 have already appeared in this book. The integer 11 is the Yang-Mills coefficient, the universal number that governs how non-abelian forces interact with themselves. It sets the strong force running rate, it determines asymptotic freedom, and it appeared in the dark matter ratio in Chapter 2. The integer 13 appears in the weak force running rate after the Cabibbo Doublet is added: b₂ = −13/6. These two integers, both from the gauge group, both counted from the particle content, reach all the way to the abundances of the lightest elements forged in the first minutes after the Big Bang.
 
-**Link 2: Integer arithmetic.** 22 = 2 × 11. The ratio 22/13 is a Fraction of gauge integers. Multiply by π: (22/13)π = 5.3165.
+**Step 1: The dark matter ratio.** The ratio of dark matter to ordinary matter in the universe has been measured by the Planck satellite, which mapped the oldest light in the universe (the cosmic microwave background) with extraordinary precision. Planck's result: for every unit of ordinary matter, there are 5.320 units of dark matter.
 
-**Link 3: The dark matter ratio.** (22/13)π = 5.3165. Planck measures Ω_DM/Ω_b = 5.320. Miss: 725 ppm.
+The model produces this number from gauge integers. Take 11 (the Yang-Mills coefficient), double it to 22 (because the Cabibbo Doublet is vector-like, both hands contribute), and divide by 13 (from the modified weak running rate). Multiply by π. The result: (22/13) × π = 5.3165. The miss from Planck's measurement is 725 parts per million.
 
-**Link 4: Baryon density.** Ω_b = Ω_DM/5.3165 = 0.2607/5.3165 = 0.04904. Measured: 0.0490. Miss: 727 ppm.
+Two integers and π. One satellite measurement. Agreement to better than 0.1%.
 
-**Link 5: Baryon-to-photon ratio.** η₁₀ = 273.9 × Ω_b × h² = 6.090. Measured: 6.104. Miss: 0.24%.
+**Step 2: How much ordinary matter.** The Planck satellite also measures the total amount of dark matter in the universe: 26.07% of the total energy budget. If the dark matter ratio is 5.3165, then ordinary matter is 26.07% divided by 5.3165 = 4.904% of the total. Planck measures 4.90% directly. The two numbers agree to 727 parts per million.
 
-**Link 6: BBN.** The baryon-to-photon ratio determines when each nuclear reaction freezes out as the universe cools from its initial hot, dense state. Higher η means more baryons per photon, which means nuclear reactions proceed further before the universe becomes too cool and dilute:
+**Step 3: The baryon-to-photon ratio.** The fraction of ordinary matter, combined with the measured expansion rate of the universe and the temperature of the cosmic microwave background, determines a single number that controls all of primordial nuclear physics: the baryon-to-photon ratio. This number, called η, tells you how many protons and neutrons existed for every photon in the early universe. Our derived value: η = 6.090 (in standard units of 10⁻¹⁰). Planck measures 6.104. Miss: 0.24%.
 
-Deuterium: D/H = (2.57 − 0.44 × (η₁₀ − 6)) × 10⁻⁵ = 2.531 × 10⁻⁵. Measured: 2.527 × 10⁻⁵. Miss: 0.12σ.
+This one number is the key to everything that follows. It determines when each nuclear reaction in the early universe froze out as the cosmos cooled from its initial furnace state.
 
-Helium-4: Y_p = 0.2485 + 0.0016 × (η₁₀ − 6) = 0.2486. Measured: 0.2449. Miss: 0.94σ.
+**Step 4: The first elements.** In the first few minutes after the Big Bang, the universe was hot enough and dense enough for nuclear fusion to occur everywhere, not inside stars, but in open space. Protons and neutrons slammed together and built the lightest elements: hydrogen, deuterium (hydrogen with an extra neutron), helium-3, helium-4, and trace amounts of lithium-7. This process is called Big Bang nucleosynthesis, and its outcome depends almost entirely on one number: the baryon-to-photon ratio from Step 3.
 
-Helium-3: He-3/H = (1.04 − 0.14 × (η₁₀ − 6)) × 10⁻⁵ = 1.03 × 10⁻⁵. Measured: 1.10 × 10⁻⁵. Miss: 0.36σ.
+Higher η means more protons and neutrons per photon, which means nuclear reactions run longer before the expanding universe becomes too cool and dilute to sustain them. More reactions mean more of the heavier light elements and less leftover deuterium. The predictions, using standard nuclear physics applied to our derived η:
 
-Lithium-7: Li-7/H = (4.68 + 0.67 × (η₁₀ − 6)) × 10⁻¹⁰ = 4.74 × 10⁻¹⁰. Measured: 1.60 × 10⁻¹⁰. Miss: 2.96×, the lithium problem.
+Deuterium: predicted 2.531 parts per hundred thousand. Measured (from quasar absorption spectra, light that has traveled billions of years): 2.527 parts per hundred thousand. The miss is 0.12 standard deviations. Essentially perfect.
 
-Three matches within measurement uncertainty. One known unsolved problem. All from two integers (11 and 13) that come from the gauge group.
+Helium-4: predicted 24.86% of all ordinary matter by mass. Measured (from the most metal-poor galaxies, which best preserve the primordial composition): 24.49%. Miss: 0.94 standard deviations. Well within expectations.
 
-The lithium problem is real, it has persisted for 40 years and nobody has solved it. Our chain inherits it because we use standard BBN physics. The same η₁₀ that gets deuterium right at 0.12σ also overpredicts lithium by 3×. This is not a failure of the model. It's a failure of nuclear physics (wrong reaction rates for ⁷Be production) or stellar physics (lithium depletion in stellar atmospheres) or both. Our contribution is showing that the gauge integers produce the same problem the standard model has, confirming that we're doing the physics correctly.
+Helium-3: predicted 1.03 parts per hundred thousand. Measured: 1.10 parts per hundred thousand. Miss: 0.36 standard deviations.
+
+Lithium-7: predicted 4.74 parts per ten billion. Measured (from the oldest, most pristine stars in our galaxy): 1.60 parts per ten billion. Miss: the prediction is 2.96 times too high.
+
+Three matches within measurement uncertainty. One miss by a factor of three.
+
+**The lithium problem.** The lithium-7 overprediction is not a failure of this model. It is a famous unsolved problem that has persisted in standard cosmology for forty years. Every calculation that gets deuterium right also overpredicts lithium by roughly the same factor. The same baryon-to-photon ratio that matches deuterium at 0.12 standard deviations produces a lithium prediction three times too high. Nobody has solved this. The leading suspects are wrong nuclear reaction rates for beryllium-7 production (beryllium-7 decays into lithium-7) or lithium destruction inside the stellar atmospheres where it's measured, or both.
+
+Our chain reproduces this problem exactly, which confirms that the gauge integers are feeding into standard nuclear physics correctly. Getting the right answer for three elements and the right wrong answer for the fourth, matching the same pattern that every other calculation produces, is what correct physics looks like when one piece of the nuclear data is missing or wrong.
+
+Two integers from the gauge group. One satellite measurement of dark matter density. Three primordial element abundances matching within measurement uncertainty. One reproduction of a forty-year-old unsolved problem. The chain runs from the symmetry of the weak force to the deuterium in the oldest light in the universe, and it doesn't break.
 
 ---
 
