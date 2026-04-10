@@ -236,35 +236,31 @@ All of these numbers flow from the same few inputs: the electromagnetic force st
 
 ![Fig. 4: The QED chain, one measurement (a_e at Harvard) produces a spectroscopy prediction (f(1S-2S) at Garching) matching to eleven digits across five experimental groups on three continents.](../figures/book_04_qed_chain.png)
 
-The most precise chain in the model. Start with one measurement. End with six sub-ppb values.
+The most precise chain in the model. Start with one measurement. End with six values that match independent experiments to better than one part per billion.
 
-**Step 1: Measure a_e.** The electron anomalous magnetic moment, how much the electron's magnetic field exceeds the prediction of the Dirac equation. Measured by Fan et al. at Harvard in 2023 using a single electron in a Penning trap: a_e = 0.00115965218059 ± 0.00000000000013. Thirteen digits. The most precisely measured property of any particle.
+**Step 1: Measure the electron's wobble.** Every electron is a tiny magnet. Quantum mechanics predicts exactly how strong that magnet should be, but the actual measurement is slightly stronger than the basic prediction. The difference, called the anomalous magnetic moment (a_e), has been measured by Fan and colleagues at Harvard in 2023 using a single electron suspended in a magnetic trap. Their result has thirteen significant digits. It is the most precisely measured property of any particle in nature.
 
-**Step 2: Extract α.** The QED perturbation series relates a_e to α:
+**Step 2: Extract the force strength.** The electron's wobble is slightly larger than the basic prediction because the vacuum isn't empty. Virtual particles flicker in and out of existence around the electron, each one nudging its magnetic field by a tiny amount. The total nudge depends on the electromagnetic force strength, α. This relationship is expressed through a series, each term representing one additional layer of virtual particle activity. Each term is built from the same integers, the same transcendental constants (π, ζ(3), and the others from Chapter 2), and increasingly complex Feynman diagrams, from one diagram at the first layer to 12,672 at the fifth.
 
-a_e = A₁(α/π) + A₂(α/π)² + A₃(α/π)³ + A₄(α/π)⁴ + A₅(α/π)⁵ + ...
+The key: every coefficient in this series is exact. They are computed from the structure of the theory, not measured. The only measured number is the wobble itself. Given the wobble and the exact coefficients, you solve backward for α. The result: α⁻¹ = 137.035999207.
 
-Where A₁ = 1/2 (Schwinger 1948), A₂ = −0.3285... (Petermann 1957, exact in rationals + π² + ζ(3) + ln(2)), A₃ = 1.1812... (Laporta & Remiddi 1996, exact in rationals + π² + ζ(3) + ζ(5) + Li₄(1/2)), A₄ = −1.9122... (Laporta 2017, 4,900 digits), A₅ = 5.891 (Volkov 2019).
+This value matches an entirely independent measurement of α made by Morel and colleagues in Paris using rubidium atoms, a completely different experiment using completely different physics. The two numbers agree to twelve significant digits, a match of 0.007 parts per billion. Two labs, two continents, two methods. One answer.
 
-Given a_e and the five coefficients, solve for α. This is Newton's method applied to a fifth-degree polynomial, find the x = α/π that makes the series sum equal the measured a_e. The result: α⁻¹ = 137.035999207 (with 7 published non-QED corrections applied: hadronic vacuum polarization, hadronic light-by-light, electroweak, and mass-dependent terms at 2-loop, 3-loop, and 4-loop).
+**Step 3: Derive the atomic constants.** Once α is known, three fundamental atomic constants follow from it through the exact definitions adopted in the 2019 redefinition of the SI system (the international standard for measurement units). These aren't new measurements. They're consequences, values that are forced once α is determined:
 
-This value matches the rubidium recoil measurement (Morel et al., Paris, 2020) to 0.007 ppb, 12 digits of agreement between two completely independent experiments using completely different physics.
+The Rydberg constant, which governs the energy levels of every atom, is derived at 0.44 parts per billion from the standard reference value.
 
-**Step 3: Derive constants.** From α and exactly defined SI quantities (c, h, e):
+The Bohr radius, the characteristic size of a hydrogen atom, is derived at 0.22 parts per billion.
 
-Rydberg constant: R∞ = α²m_ec/(2h) = 10,973,731.563 m⁻¹ (miss 0.44 ppb from CODATA)
+The vacuum permeability, which sets the strength of magnetic fields, is derived at 0.22 parts per billion.
 
-Bohr radius: a₀ = ℏ/(m_ecα) = 5.2918 × 10⁻¹¹ m (miss 0.22 ppb)
+A pattern appears in the misses. Constants that depend on α directly miss by 0.22 parts per billion. Constants that depend on α squared miss by exactly double, 0.44 parts per billion. The uncertainty scales with the power of α. No exceptions. The precision of every derived quantity traces back to one source: how precisely we extracted α from the electron's wobble.
 
-Vacuum permeability: μ₀ = 2αh/(ce²) = 1.2566 × 10⁻⁶ N/A² (miss 0.22 ppb)
+**Step 4: Predict a laser frequency.** The hydrogen 1S-2S transition is the most precisely measured quantity in all of physics. It is the frequency of light absorbed when a hydrogen atom's electron jumps from its lowest energy level to its second level. Parthey and colleagues at the Max Planck Institute in Garching, Germany measured it in 2011 using laser spectroscopy.
 
-Each miss follows the α-power scaling: quantities proportional to α miss by 0.22 ppb, quantities proportional to α² miss by 0.44 ppb. No exceptions.
+Our prediction, derived from the Rydberg constant in Step 3: 2,466,061,412,094,700 Hz. Their measurement: 2,466,061,413,187,018 Hz. The two numbers agree to eleven significant digits. The miss is 0.44 parts per billion, exactly what the α-squared scaling predicts, because the Rydberg constant depends on α squared.
 
-**Step 4: Predict spectroscopy.** The hydrogen 1S-2S transition frequency, the most precisely measured quantity in all of physics, is determined by R∞. Our prediction: f(1S-2S) = 2,466,061,412,094,700 Hz. Measured (Parthey et al., Garching, 2011): 2,466,061,413,187,018 Hz. Miss: 1.09 MHz = 0.44 ppb.
-
-The entire 0.44 ppb miss traces to the R∞ precision, which traces to the α precision, which traces to the hadronic light-by-light uncertainty in the a_e corrections. Zero additional error from the spectroscopy bridge. The scaling absorbs all QED corrections, Dirac fine structure, Lamb shift, recoil, proton size, perfectly.
-
-One measurement (a_e in a Penning trap at Harvard) produces a prediction for a laser spectroscopy measurement (hydrogen 1S-2S at Garching) that matches to eleven significant digits. Two experiments separated by an ocean, using completely different physics, connected by integer arithmetic.
+One measurement of an electron wobbling in a magnetic trap at Harvard produces a prediction for a laser shining through hydrogen gas in Germany that matches to eleven digits. The two experiments use completely different physics (magnetic trapping versus laser spectroscopy), completely different equipment, completely different research groups. The only thing connecting them is the chain of integer arithmetic that runs from wobble to force strength to atomic constant to spectral line. The integers carry the prediction across the ocean without losing a single digit of precision.
 
 ![Fig. 11: Six sub-ppb values follow exact α-power scaling, quantities proportional to α miss by 0.22 ppb, quantities proportional to α² miss by 0.44 ppb, no exceptions.](../figures/book_11_alpha_scaling.png)
 
@@ -392,4 +388,4 @@ Twelve layers. One vocabulary. One principle: nested soliton boundaries with int
 
 Everything you've been taught as separate subjects, quantum mechanics, atomic physics, nuclear physics, particle physics, cosmology, astrophysics, is one subject. The readings change at the boundaries. The boundaries are nested. The transformation laws between readings are integer Fractions from the gauge group.
 
-This is the physics stack. This is how the universe is organized in this model.
+This is the physics soliton stack. This is how the universe is organized in this model.
