@@ -1,0 +1,136 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_count_static_d_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_count_static_d",
+      "version": 0,
+      "node_type": "value",
+      "value": 10,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_count_dynamic_k_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_count_dynamic_k",
+      "version": 0,
+      "node_type": "value",
+      "value": 1,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_count_mixed_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_count_mixed",
+      "version": 0,
+      "node_type": "value",
+      "value": 4,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_count_structural_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_count_structural",
+      "version": 0,
+      "node_type": "value",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_classification_total_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_classification_total",
+      "version": 0,
+      "node_type": "value",
+      "value": 18,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_d_tests_all_pass_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_d_tests_all_pass",
+      "version": 0,
+      "node_type": "value",
+      "value": "True",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_k_tests_all_pass_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_k_tests_all_pass",
+      "version": 0,
+      "node_type": "value",
+      "value": "True",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_d_complete_count_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_d_complete_count",
+      "version": 0,
+      "node_type": "value",
+      "value": 13,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_k_required_count_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_k_required_count",
+      "version": 0,
+      "node_type": "value",
+      "value": 2,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_mixed_partial_count_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_mixed_partial_count",
+      "version": 0,
+      "node_type": "value",
+      "value": 3,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_coverage_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_coverage",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.888888888888889",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_full_v0",
+      "canonical": "experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_full",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.722222222222222",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_clock_reading_decomposition_v0_run001"
+    }
+  ]
+}
