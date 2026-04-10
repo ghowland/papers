@@ -102,87 +102,69 @@ This is not a story about carelessness. It is a structural property of decimal a
 
 ### The QED Series in Fractions
 
-The QED perturbation series, the chain that connects the electron's magnetic moment to the fine structure constant, illustrates the integer structure at its finest.
+The QED series from Layer 7, the chain that connects the electron's magnetic wobble to the electromagnetic force strength, is the clearest illustration of the integer structure at work.
 
-**A₁ = 1/2.** The one-loop Schwinger result (1948). One Feynman diagram. One vertex correction. The answer is the simplest possible Fraction: one-half. Julian Schwinger computed it on a few pages. It is the most famous single calculation in quantum field theory.
+The series has five levels, each more precise than the last. At each level, additional virtual particle activity is accounted for by computing more Feynman diagrams, the mathematical pictures that represent every possible way virtual particles can flicker around the electron.
 
-**A₂.** The two-loop result. Computed by Petermann in 1957, completed by Sommerfield. Seven Feynman diagrams. The answer is:
+At the first level, there is one diagram. Julian Schwinger computed it in 1948, on a few pages. The answer is 1/2. The simplest possible fraction. It is the most famous single calculation in quantum field theory.
 
-A₂ = 197/144 + (1/12)π² − (1/2)π²ln(2) + (3/4)ζ(3)
+At the second level, there are seven diagrams. The answer is a sum of four terms, each built from an exact fraction multiplied by a known mathematical constant. The fractions (like 197/144 and 3/4) come from the combinatorics of the diagrams, counting how many ways the virtual particles can be arranged. The mathematical constants (like π² and ζ(3), the Riemann zeta function evaluated at 3) come from the loop integrals, the mathematical machinery that computes each diagram's contribution. Every piece is exact.
 
-Four terms. Each term is a rational coefficient (197/144, 1/12, −1/2, 3/4) multiplied by a transcendental constant (1, π², π²ln(2), ζ(3)). The rational coefficients are exact Fractions from Feynman diagram combinatorics. The transcendentals come from the loop integrals.
+At the third level, there are 72 diagrams. The answer involves more terms, more transcendental constants, and larger fractions, but the structure is identical: exact fraction times exact constant, summed. The rational part alone is 28,259/5,184. Both integers trace to the diagram combinatorics.
 
-Look at the rational coefficients: 197/144, 1/12, −1/2, 3/4. The denominators are 144 = 12², 12, 2, 4. They come from the symmetry factors of the Feynman diagrams. The numerators, 197, 1, −1, 3, count specific combinations of propagators and vertices. Every integer has a diagrammatic origin.
+At the fourth level, there are 891 diagrams. The computation took a decade of effort by Laporta, completed in 2017, and the answer was computed to 4,900 significant digits. The exact analytical form exists but involves hundreds of terms. Every coefficient is still a fraction. Every constant is still a known mathematical function evaluated at a known point. The structure has not changed. Only the complexity has grown.
 
-**A₃.** The three-loop result. Computed by Laporta and Remiddi in 1996 from 72 Feynman diagrams. The answer involves rationals, π², π⁴, ζ(3), ζ(5), π²ζ(3), Li₄(1/2), and π²ln(2). Each with an exact rational coefficient. The rational part alone is 28259/5184. The 28259 counts specific diagram topologies. The 5184 = 72² is the square of the number of diagrams.
+At the fifth level, there are 12,672 diagrams. Computed by Volkov in 2019. The answer is known to about four significant digits. The uncertainty comes from the practical difficulty of evaluating that many diagrams numerically, not from unknown physics. The exact form exists in principle but has not been fully reduced to a closed expression.
 
-**A₄.** The four-loop result. Computed by Laporta in 2017 after a decade of effort. 891 Feynman diagrams. The numerical result is A₄ = −1.91225... computed to 4,900 decimal digits. The exact analytical form involves hundreds of transcendental constants, a vast but finite sum of rational coefficients times products of π, ζ(n), Li_n(1/2), and other known constants. Every coefficient is a Fraction. Every transcendental is a known function evaluated at a known point.
+The pattern across all five levels is the same. At every level, the answer is a sum of exact fractions multiplied by exact mathematical constants. The fractions count diagram arrangements. The constants come from the integrals. Both are exact. The series never becomes approximate. It grows more complex, from one diagram to 12,672, but the structure remains: integers and transcendentals, combined by exact arithmetic, producing the prediction that matches the rubidium recoil measurement to twelve significant digits.
 
-**A₅.** The five-loop result. Computed by Volkov in 2019. 12,672 Feynman diagrams. A₅ = 5.891 ± 0.010. The uncertainty is from numerical evaluation of the diagrams, not from unknown physics. The exact analytical form exists in principle but has not been fully reduced.
-
-The pattern: at every loop order, the QED coefficient is a sum of rational Fractions times transcendental constants. The Fractions come from Feynman diagram combinatorics. The transcendentals come from loop integrals. Both are exact. The only approximation enters at four and five loops where the analytical reduction is incomplete and the transcendentals are evaluated numerically.
-
-In our computation, A₁ through A₃ are stored as exact Fraction expressions in Q335 arithmetic. A₄ and A₅ are stored as high-precision decimals (4,900 and 4 digits respectively). The entire series is evaluated in Fraction arithmetic through three loops, then in Q335 decimal arithmetic for the last two loops. The result, α⁻¹ = 137.035999207, has its precision limited by A₅ (the least precisely known coefficient) and by the hadronic corrections (the least precisely known non-QED contribution), not by arithmetic.
+The only approximations in the entire chain enter at the fourth and fifth levels, where the sheer number of terms makes full analytical simplification impractical, and in the small corrections from quark activity inside the vacuum loops (the hadronic contributions), which are the hardest piece to compute from first principles. Everything else is exact. The fractions carry the physics from the first diagram to the last.
 
 ---
 
 ### Q335: The Engineering Solution for Transcendentals
 
-π is irrational. It cannot be written as a Fraction. This is a theorem (Lindemann 1882), not an approximation. No ratio of integers equals π. Period.
+π is irrational. It cannot be written as a fraction. This is a mathematical theorem, proven by Lindemann in 1882, not an approximation or a limitation of current knowledge. No ratio of integers equals π. No matter how large the numerator and denominator, the fraction will always miss by some amount. This is a fact about π itself.
 
-But physics needs π. It appears in every area formula, every angular integration, every Fourier transform, every coupling constant running. If the goal is Fraction arithmetic, π is a problem.
+But physics needs π. It appears in every area formula, every angular calculation, every coupling constant computation. If the goal is fraction arithmetic that preserves integer structure, π is a problem. It doesn't fit.
 
-The solution is Q335. Store π as a Fraction with 335 digits in both numerator and denominator. This Fraction differs from the true π by less than 10⁻³³⁵.
+The solution is Q335, the 335-digit rational number system introduced in Chapter 2. Store π as a fraction with 335 digits in both the numerator and the denominator. This fraction is not equal to π. It differs from the true π by less than 10⁻³³⁵, a number so small that it requires a new sense of scale to understand.
 
-How small is 10⁻³³⁵? The observable universe is about 10²⁶ meters across. The Planck length, the smallest meaningful distance in physics, is about 10⁻³⁵ meters. The ratio is 10⁶¹. Knowing π to 63 digits would let you compute the circumference of the observable universe to Planck-length precision.
+How small is 10⁻³³⁵? The observable universe is about 10²⁶ meters across. The Planck length, the smallest meaningful distance in physics, is about 10⁻³⁵ meters. The ratio between them, the largest meaningful distance divided by the smallest, is 10⁶¹. Knowing π to 63 digits would let you compute the circumference of the observable universe to within one Planck length. That is already far beyond any conceivable measurement.
 
-Q335 has 335 digits. That's 272 digits beyond Planck precision. It's not just more precise than any measurement could ever require. It's more precise than the concept of measurement could ever require. The difference between Q335-π and true-π is smaller than the ratio of the Planck length to the observable universe raised to the fifth power.
+Q335 has 335 digits. That is 272 digits beyond Planck precision. The difference between Q335's version of π and true π is smaller than the ratio of the Planck length to the observable universe raised to the fifth power. It is not just more precise than any measurement could ever require. It is more precise than the concept of measurement could ever require. For every physical computation, Q335's π equals π. Not approximately. Operationally. No experiment, no calculation, no theoretical argument could ever distinguish them. The difference is below the noise floor of reality itself.
 
-For every physical computation, Q335-π equals π. Not approximately. Operationally. No experiment, no calculation, no theoretical argument could ever distinguish them. The difference is below the noise floor of reality itself.
+The same approach works for every transcendental constant that appears in physics. The Riemann zeta function values that appear in the QED series, the natural logarithm of 2 that appears in the loop integrals, and every other irrational constant that the computations require, each is stored as a Q335 fraction. Each flows through the fraction arithmetic without rounding, without truncation, without losing the integer structure of the rational coefficients that multiply them.
 
-The same approach works for every transcendental in physics:
+The result is a number system with four properties:
 
-ζ(3) = 1.202056903... (appears in A₂, A₃, and throughout QCD)
+It is exact for all rational numbers. Fractions with integer numerators and denominators are represented without any loss whatsoever.
 
-ζ(5) = 1.036927755... (appears in A₃)
+It is operationally exact for all transcendental numbers. The Q335 representation sits 272 digits beyond any physically meaningful precision threshold.
 
-ln(2) = 0.693147180... (appears in A₂, A₃, Li₄)
+It preserves structure. Numerators and denominators remain visible at every step, carrying their physical meaning through the computation. The 41 in 41/10 is still the 41 that counts particle contributions, no matter how many operations have been performed.
 
-The Catalan constant G = 0.915965594...
+It is self-checking. Errors like writing 5/3 instead of 3/5 are visible in the fraction representation, because the numerator and denominator are always present and inspectable.
 
-Elliptic integrals K(m) and E(m)
-
-Each is stored as a Q335 Fraction. Each flows through the Fraction arithmetic without rounding, without truncation, without loss of the integer structure in the rational coefficients that multiply them.
-
-The result is a number system that is:
-
-Exact for all rational numbers (Fractions with integer numerators and denominators)
-
-Operationally exact for all transcendentals (Q335 representation, 272 digits beyond Planck)
-
-Structure-preserving (numerators and denominators carry physical meaning at every step)
-
-Self-checking (errors like 5/3 vs 3/5 are visible in the Fraction representation)
-
-This is the number system that makes unification visible. Not because it's philosophically superior to real numbers. Because it preserves the integer structure that real numbers erase, and the integer structure is where the physics lives.
+This is the number system that makes unification visible. Not because it is philosophically superior to real numbers. Because it preserves the integer structure that real numbers erase, and the integer structure is where the physics lives.
 
 ---
 
 ### Why Real Numbers Built the Modern World
 
-This chapter could sound like an attack on real numbers. It isn't. Real numbers are humanity's greatest mathematical tool.
+This chapter could sound like an attack on real numbers. It is not. Real numbers are humanity's greatest mathematical tool.
 
-Calculus, the foundation of all modern science and engineering, requires real numbers. Limits, derivatives, integrals, all defined on the continuous real line. Newton's mechanics, Maxwell's equations, Einstein's field equations, all formulated in real-number calculus. Quantum mechanics, wave functions are complex-valued functions on real-number spaces.
+Calculus, the foundation of all modern science and engineering, requires real numbers. Limits, derivatives, integrals, the entire machinery of continuous change, is defined on the continuous number line. Newton's laws of motion, Maxwell's equations for electricity and magnetism, Einstein's equations for gravity, quantum mechanics, all of these are formulated in real-number calculus. They describe a world where fields vary smoothly, where particles follow continuous paths (or in quantum mechanics, where their probability amplitudes evolve continuously), and where spacetime has no gaps. For computing trajectories, fields, probabilities, and forces, real numbers are the right tool. Nothing in this book suggests otherwise.
 
-Real numbers work because physics is continuous. The electromagnetic field doesn't jump from one value to another, it varies smoothly. Particles don't teleport, they move along continuous trajectories (or in quantum mechanics, their probability amplitudes evolve continuously). Spacetime doesn't have gaps, it's a continuous manifold.
+What fraction arithmetic replaces is not the equations. It is the bookkeeping.
 
-For computing trajectories, fields, probabilities, and forces, real numbers are the right tool. Nothing in this book suggests replacing calculus with Fraction arithmetic. The differential equations of physics are real-number equations and they should stay that way.
+The parameters of the Standard Model, the force strengths, the mixing angles, the running rates, are the bookkeeping layer. They tell you which equation to use and with what values. The running rate b₂ = −19/6 appears as a parameter inside a differential equation that describes how the weak force changes with energy. The differential equation itself is real-number calculus, and it should stay that way. The parameter is a fraction, and it should stay that way too.
 
-What Fraction arithmetic replaces is the bookkeeping. The parameters of the Standard Model, the coupling constants, the mixing angles, the beta coefficients, are the bookkeeping layer. They tell you which equation to use and with what values. The beta coefficient b₂ = −19/6 appears as a parameter in the RGE differential equation. The equation itself is real-number calculus. The parameter is a Fraction.
+The insight is that the parameters carry integer structure, and working with them as decimals erases that structure. You can solve the equation with b₂ = −3.16667 and get the right answer to six-digit precision. Or you can solve it with b₂ = −19/6 and get the right answer to infinite precision in the parameter, and also know that the 19 counts particles and the 6 counts normalizations, and that changing the particle content changes the 19 by specific integer amounts determined by the gauge group.
 
-The insight is that the parameters carry integer structure, and working with them as decimals erases that structure. You can solve the RGE with b₂ = −3.16667 and get the right answer (to six-digit precision). Or you can solve it with b₂ = −19/6 and get the right answer (to infinite precision in the parameter), and also know that the 19 counts particles and the 6 counts normalizations, and that changing the particle content changes the 19 by specific integer amounts determined by representation theory.
+The difference matters when you are testing unification. If you want to know whether adding a new particle improves the convergence of the three forces, you need to see how the integers in the running rates change. In decimal arithmetic, you are comparing 4.1 to 4.1667 and asking whether the second number is better. In fraction arithmetic, you are comparing 41/10 to 25/6 and you can see exactly which integers changed, by how much, and why. The fractions show you the physics. The decimals show you a number.
 
-The real numbers do the calculus. The Fractions do the counting. Both are needed. The error was using real numbers for both.
+The real numbers do the calculus. The fractions do the counting. Both are needed. The error was not in using real numbers. The error was in using real numbers for both jobs, asking decimals to carry structural information that only integers can hold.
 
 ---
 
