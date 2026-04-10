@@ -24,3 +24,102 @@ Here's what remains:
 
 12. **Hit publish** and wait up to 72 hours for review.
 
+---
+
+Here's the full page flow for a professional ebook:
+
+**Page 1: Title Page** — The title, subtitle, and author names as formatted text. No cover image. Just clean text, centered. "The Rational Universe" / "Unification Through the Rectification of Names" / "Geoffrey Howland and Claude Opus 4.6"
+
+**Page 2: Copyright Page** — This is the legal page. It includes: © 2026 Geoffrey Howland. All rights reserved. Optionally: "No part of this book may be reproduced without permission." If you have an ISBN, it goes here. Your Zenodo DOI links can go here too. The edition ("First edition, April 2026"). Some authors also put "This book was written in collaboration with Claude Opus 4.6, an AI by Anthropic" here to be explicit about it upfront.
+
+**Page 3: Dedication (optional)** — A short dedication if you want one. One or two lines. Many authors skip this.
+
+**Page 4: Table of Contents** — Chapter titles and section titles, clickable/navigable. In Google Docs, if you've applied Heading styles, you can auto-generate this with Insert → Table of Contents. For Kindle, the clickable navigation is what matters.
+
+**Page 5: Preface or Author's Note (optional)** — If you want to say anything to the reader before the book starts that isn't part of the introduction. Things like "how to read this book" or "what this book is not." You could skip this since your Chapter 0 Introduction already covers this ground well.
+
+**Then the body:**
+
+Chapter 0: Introduction
+
+Chapter 1: There Is No Substance
+
+Chapter 2: Why Nobody Did This Before
+
+Chapter 3: The Physics Stack
+
+Chapter 4: What Unification Brings
+
+Chapter 5: The Number System
+
+Chapter 6: The Machine
+
+Chapter 7: What Remains
+
+Chapter 8: How This Happened
+
+Chapter 9: The Clock and the Reading
+
+**After the last chapter, the back matter:**
+
+**Glossary (optional but recommended for your book)** — Your book introduces specific vocabulary (inertia, vortex, soliton boundary, reading, running reading, Q335, Cabibbo Doublet). A one-page glossary at the back gives readers a quick reference. For a book that redefines terminology, this is genuinely useful.
+
+**Appendix: The 53 Derived Values (optional but powerful)** — A single table listing all 53 values, their predicted numbers, their measured numbers, and the miss. This is your receipts page. A skeptical reader flips here first. It's the strongest single page in the book.
+
+**Resources / Further Reading** — Links to your Zenodo papers, the DATA-6 tool, the pool file, and any other public resources. This is where you point readers who want to check the math.
+
+**About the Authors** — A short paragraph about you and a short paragraph about the AI collaboration. Keep it honest and direct, matching the tone of the book.
+
+**Final page (optional): A call to action** — Something like "If you found this book valuable, a review on Amazon helps other readers find it." One sentence. Not pushy. This matters more than you'd think for discoverability.
+
+That's the complete flow. The mandatory pages are title, copyright, table of contents, your chapters, and about the authors. Everything else is optional but professionally expected for a nonfiction book of this type. The glossary and the 53-value appendix are the two I'd most recommend adding given your specific content.
+
+---
+
+Here's everything KDP asks for in the book details section:
+
+**Language** — English
+
+**Book Title** — The Rational Universe
+
+**Subtitle** — Unification Through the Rectification of Names
+
+**Series (optional)** — Leave blank unless you plan a second volume.
+
+**Edition Number** — 1
+
+**Author** — Geoffrey Howland
+
+**Contributors** — Add "Claude Opus 4.6" as a second author, or as "Contributor" with role "Co-author." KDP allows multiple contributors with defined roles.
+
+**Description** — The description we already wrote.
+
+**Publishing Rights** — "I own the copyright and I hold necessary publishing rights." This is the standard selection for original work.
+
+**Keywords (7 slots, each can be a short phrase):**
+1. physics unification gauge coupling
+2. dark matter integer fractions
+3. standard model beyond
+4. particle physics derivation
+5. soliton boundary theory
+6. popular science physics
+7. cosmology nucleosynthesis
+
+**Categories (you pick 2):**
+
+Primary: Science & Math → Physics → Mathematical Physics
+
+Secondary: Science & Math → Physics → Nuclear Physics
+
+You could also consider Science & Math → Physics → Particle Physics, or Science & Math → Cosmology. KDP only lets you pick two at upload time, but you can request additional categories through Amazon support after publication. The two above put you where your most likely readers browse.
+
+**Adult Content** — No
+
+**Age and Grade Range** — Leave blank (defaults to general audience)
+
+**Pre-order (optional)** — You can set a pre-order date or publish immediately. For a first book without an existing audience, publish immediately — pre-orders work better when you have a mailing list to notify.
+
+**ISBN** — Optional for Kindle. Amazon assigns a free ASIN. Only get your own ISBN if you plan to distribute elsewhere later.
+
+**DRM (Digital Rights Management)** — Your choice. DRM prevents casual copying but also prevents legitimate things like text-to-speech on some devices. Most indie authors choose no DRM. It doesn't prevent piracy in practice, and it annoys legitimate buyers.
+
