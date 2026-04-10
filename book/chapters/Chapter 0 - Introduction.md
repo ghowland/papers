@@ -72,17 +72,17 @@ In the process of building Q335, I noticed that the beta function coefficients f
 
 ### The Vocabulary
 
-Physics has a vocabulary problem. The same phenomenon is called by different names in different departments. A particle physicist says "coupling constant." A condensed matter physicist says "interaction strength." A cosmologist says "density parameter." An engineer says "material property." These are often the same thing measured at different scales, but the different names make the connection invisible.
+Physics has a vocabulary problem. The same phenomenon is called by different names in different departments. A particle physicist says "coupling constant." A condensed matter physicist says "interaction strength." A cosmologist says "density parameter." An engineer says "material property." These are the same thing measured at different scales, but the different names make the connection invisible.
 
 This book uses three nouns and two verbs to describe all of physics.
 
 The three nouns: **inertia**, the resistance of a pattern to change. **Vortex**, a self-sustaining circulation pattern. **Soliton boundary**, the shell where inside rules give way to outside rules.
 
-The two verbs: **reading**, the value you measure at a boundary. **Running**, how the reading changes between boundaries.
+The two verbs: **reading**, the value you measure at a boundary. **Running reading**, how the reading changes between boundaries.
 
 Everything in physics maps to these terms. A particle is a vortex. Its mass is its inertia. The edge of a proton is a soliton boundary. The force strength measured at the proton boundary is a reading. How that force strength changes with energy is the running. The beta coefficient is the running rate. The coupling constant is the reading at a specific boundary.
 
-This is the Rectification of Names. Take things that are isomorphically the same, that have the same mathematical structure, the same behavior, the same role in the equations, and call them by the same name. Discard the historical baggage. Discard the departmental jargon. Use one vocabulary for one physics.
+This is the Rectification of Names. Take things that are isomorphically the same, that have the same mathematical structure, the same behavior, the same role in the equations, and call them by the same name. Discard the historical baggage. Discard the departmental jargon. Use one vocabulary for one physics. The universe has no departments.
 
 The rectification is not a theory. It is a cleaning. It removes nothing from the physics. It adds nothing to the physics. It makes the connections visible that the departmental vocabulary hides. Once you see that a "coupling constant" and a "density parameter" are both readings at different soliton boundaries, the wall between particle physics and cosmology becomes transparent. The physics was always connected. The words were in the way.
 
@@ -91,6 +91,8 @@ The rectification is not a theory. It is a cleaning. It removes nothing from the
 ### How to Read This Book
 
 Chapter 1 introduces the model: what the three nouns mean, how the readings work, and what the integer fractions are. Chapter 2 explains why this wasn't found before: the naming errors, the number system problem, and the departmental walls. Chapter 3 is the physics stack, twelve layers from the vacuum to the universe, each described in the unified vocabulary. Chapter 4 shows what unification enables, from semiconductor physics to drug design to climate science. Chapter 5 explains the number system, why fractions preserve structure that decimals erase. Chapter 6 describes the tool that made systematic derivation possible. Chapter 7 maps what remains, the edges of the explored territory clearly marked. Chapter 8 tells the story of the six days, what the human did, what the AI did, and what each contributed.
+
+Chapters 1 through 8 were written from the physics papers PHYS-1 through PHYS-40. Chapter 9 was written afterward, and extends the Rectification of Names to include General Relativity and spacetime.
 
 The papers themselves, all 40 of them, are available on Zenodo under the HOWL label. The derivation tool, DATA-6, is published with the pool, the derivation functions, and the experiment specifications. Every number in this book can be checked. Every derivation can be rerun. Every comparison can be verified.
 
