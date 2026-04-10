@@ -360,35 +360,55 @@ The tension between the predicted deficit (0.002025, from the mixing angle) and 
 
 Zoom out. Past atoms, past molecules, past planets and stars. The galaxy.
 
-The Milky Way contains ~200 billion stars arranged in a flat disc with spiral arms, a central bulge, and a vast halo extending far beyond the visible disc. Standard cosmology fills the halo with dark matter particles, weakly interacting massive particles (WIMPs), axions, or other exotic matter that provides the extra gravitational pull needed to explain the flat rotation curves.
+The Milky Way contains roughly 200 billion stars arranged in a flat disc with spiral arms, a central bulge, and a vast halo extending far beyond the visible disc. There is a well-established problem with galaxies: stars at the outer edges orbit at the same speed as stars near the center. In a simple gravitational system, outer stars should orbit slower, the way distant planets orbit the Sun more slowly than close ones. They don't. The rotation curves are flat. Something is providing extra gravitational pull that standard gravity from visible matter cannot account for.
 
-The toroidal model says: the halo is not filled with particles. The halo is the outer portion of a toroidal flow pattern. The galaxy is a self-sustaining vortex, a doughnut-shaped circulation pattern where matter flows through the disc, out along the poles, around the halo, and back through the disc. The "dark matter" is the kinetic and gravitational energy of this toroidal flow.
+The standard explanation is dark matter particles: invisible matter that fills the galactic halo and provides the missing gravity. Decades of searches for dark matter particles, in underground detectors, at particle colliders, and in space-based instruments, have found nothing. The gravitational effect is measured with high confidence. The particles responsible for it have never been detected.
 
-The flat rotation curves, the observation that stars at the outer edge of the galaxy orbit at the same speed as stars near the center, are a natural consequence of toroidal flow. In a simple point-mass gravitational system, orbital velocity decreases with distance (Keplerian falloff: v ∝ 1/√r). But in a toroidal flow, the velocity profile is flat because the entire torus is rotating as a coherent structure. The outer stars aren't moving "too fast", they're embedded in the flow.
+This model proposes a different picture. The galaxy is not a flat disc sitting inside a cloud of invisible particles. The galaxy is a donut. A self-sustaining toroidal (donut-shaped) flow pattern, where matter circulates through the disc, out along the poles, around through the halo, and back through the disc. The "missing gravity" is not from invisible particles. It is the kinetic and gravitational energy of this circulation pattern itself.
 
-The dark matter ratio (22/13)π = 5.3165 gives the ratio of total (visible + flow) gravitational content to visible content alone. Planck measures 5.320. The agreement to 725 ppm suggests that the dark matter is not a new particle but a reading of the gauge structure at the galactic boundary scale.
+In this picture, the flat rotation curves have a natural explanation. The outer stars aren't moving too fast for their distance from the center. They are embedded in the donut flow, carried along by a coherent circulation pattern that rotates as a whole structure. The velocity is flat because the flow is flat, not because invisible particles are tugging on the outer stars.
 
-The Hubble tension, the discrepancy between the local measurement of the expansion rate (H₀ = 73 km/s/Mpc from Cepheid-calibrated supernovae) and the early-universe measurement (H₀ = 67.4 km/s/Mpc from the CMB), may be a boundary reading effect. The local measurement is made inside the galaxy, inside the toroidal flow. The CMB measurement is made from the edge of the observable universe. Different boundaries, different readings. The tension is 5σ and growing. If it's real (not systematic error), the soliton boundary model predicts it: gravitational readings depend on which boundary you're inside.
+The dark matter ratio from Chapter 2 connects here. The gauge integers 11 and 13, combined with π, produce the ratio (22/13)π = 5.3165, which matches the Planck satellite's measurement of total gravitational content to visible content (5.320) at 725 parts per million. In the toroidal picture, this ratio measures how much of the galaxy's total gravitational budget is in the visible disc versus the circulating flow. The integers from the gauge group set the ratio. The satellite confirms it.
+
+**What is established and what is proposed.** The numerical match between (22/13)π and the Planck measurement is a derived result, computed from gauge integers and compared to data at 725 parts per million. It sits alongside the other derived results in this book, the weak mixing angle at 12 parts per million, the deuterium abundance at 0.12 standard deviations, and can be judged by the same standard.
+
+The toroidal flow interpretation is a structural proposal. It has not been tested at the precision level of the QED chain or the cosmological chain. It offers a physical picture for what the dark matter ratio means at the galactic scale, but that picture awaits the same kind of quantitative confrontation with data that the other chains have already passed. The shape is proposed. The ratio is derived.
+
+**The Hubble tension.** There is a growing discrepancy between two ways of measuring how fast the universe is expanding. Astronomers who measure nearby galaxies using well-calibrated standard candles (a type of supernova with known brightness) get one value: 73 kilometers per second per megaparsec. Cosmologists who extract the expansion rate from the cosmic microwave background (the oldest light in the universe) get a different value: 67.4. The disagreement has reached five standard deviations and has not gone away despite years of effort to find systematic errors in either measurement.
+
+The soliton boundary model offers a possible framing. The local measurement is made from inside the galaxy, inside the toroidal flow. The cosmic microwave background measurement is made from the edge of the observable universe. Different soliton boundaries, different readings. If gravitational readings depend on which boundary you are measuring from, the way force strengths depend on which energy scale you are measuring at, then the two measurements are not measuring the same quantity in the same conditions. They are readings from different positions in the nested soliton stack.
+
+This is speculative. It is included because the boundary reading framework naturally produces the expectation that measurements from different scales should differ, and the Hubble tension is the most prominent case where they do. But it has not been computed, it has not been compared to data at the precision of the other chains, and it may be wrong. The tension may have a mundane explanation in calibration systematics. It is an open question, noted here and not resolved.
 
 ---
 
 ### Layer 12: The Universe
 
-The outermost soliton. The vacuum.
+The outermost soliton. We end where we began: the vacuum.
 
-The universe is expanding. Every galaxy is receding from every other galaxy. The expansion rate is H₀, the Hubble constant. The total energy budget of the universe is:
+In Layer 0, we met the vacuum as the ground state, the lowest energy configuration of everything, trembling but not empty. Now, twelve layers later, we can say what the vacuum looks like from the inside when you account for everything nested within it.
 
-Visible matter (Ω_b): 4.9%
+**The expansion.** The universe is expanding. Every galaxy is receding from every other galaxy, not because the galaxies are flying apart through space, but because space itself is stretching. The rate of this stretching is measured by the Hubble constant, currently about 67.4 kilometers per second per megaparsec (a megaparsec is about 3.26 million light-years). This means that for every 3.26 million light-years of distance between two galaxies, they are moving apart at 67.4 kilometers per second. The farther apart, the faster the recession.
 
-Dark matter (Ω_DM): 26.1%
+**The energy budget.** The total energy content of the universe divides into three categories, measured by the Planck satellite with high precision:
 
-Dark energy (Ω_DE): 69.0%
+Ordinary matter, the atoms, the stars, the gas, the dust, everything made of protons, neutrons, and electrons: 4.9% of the total.
 
-These sum to 100.0%, the universe is flat. The flatness is not a coincidence, it's the inside reading of the outermost soliton boundary. Every soliton boundary reads flat from the inside. The universe, from inside, reads flat. Ω_total = 1.000.
+Dark matter, the gravitational content beyond what visible matter provides, which in this model is the toroidal flow energy of galactic circulation patterns: 26.1% of the total.
 
-The dark energy density, the cosmological constant Λ, is the vacuum energy density. It's 5.88 × 10⁻³⁰ g/cm³. In our chain: Ω_DE = 1 − Ω_m = 1 − (Ω_DM + Ω_b) = 1 − 0.3097 = 0.6903. Measured: 0.6889. Miss: 0.20%.
+Dark energy, the energy of empty space itself, the vacuum ground state: 69.0% of the total.
 
-The dark energy is not mysterious in this framework. It's the ground state energy of the vacuum, the outermost soliton boundary. It's small because the universe is the largest soliton. It's positive because the ground state has positive energy. It drives the acceleration of the expansion because the ground state energy acts as a repulsive pressure at the largest scales.
+These three fractions sum to 100.0%. The universe is flat. Not curved inward like a sphere, not curved outward like a saddle. Flat, like a table extending in every direction.
+
+**Flatness as a boundary reading.** In this model, the flatness is not a coincidence that requires a special explanation. It is the inside reading of the outermost soliton boundary. We met this principle in Chapter 1: every soliton boundary reads flat from the inside and curved from the outside. The surface of the Earth looks flat from a street corner and curved from orbit. The interior of a proton looks like a seething storm of quarks and gluons from inside but looks like a calm, compact sphere from outside. The universe, measured from inside, reads flat. The total energy fractions sum to exactly one because that is what the inside of a soliton boundary always gives you. The flatness is the reading, not an accident.
+
+**Where the numbers come from.** The cosmological chain in Layer 8 derived the ordinary matter fraction from the dark matter measurement and the gauge integer ratio (22/13)π. Once you know ordinary matter (4.904%) and dark matter (26.07%), the dark energy fraction follows from the flatness condition: dark energy is whatever is left over to make the total reach 100%. That gives 69.03%. The Planck satellite measures 68.89%. The miss is 0.20%.
+
+This connects back to Layer 0 and the cosmological constant, the vacuum energy density of 5.88 × 10⁻³⁰ grams per cubic centimeter. In Layer 0, we noted that this number has been called the worst prediction in physics, because quantum field theory naively predicts a vacuum energy 10¹²⁰ times larger than what is observed. The standard framework has no explanation for why the vacuum energy is so small.
+
+In this model, the vacuum energy is the ground state energy of the outermost soliton boundary. It is small because the universe is the largest soliton. Every soliton boundary has a ground state energy that depends on its scale, smaller solitons (protons, atoms) have higher ground state energies, larger solitons (galaxies, the universe) have lower ones. The vacuum energy is small for the same structural reason that the temperature of a large lake is more stable than the temperature of a cup of water: larger boundaries have less energetic ground states.
+
+**What is derived and what is interpreted.** The dark energy fraction at 0.20% from Planck is a derived result, following from the gauge integer ratio through the cosmological chain. It can be judged alongside the other numerical matches in this book. The interpretation of flatness as an inside reading, and of vacuum energy as a soliton ground state, are structural proposals from the model. They provide a framework for understanding why the numbers take the values they do, but they have not been tested at the quantitative precision of the QED chain or the electroweak chain. The numbers are derived. The interpretation is proposed.
 
 ---
 
@@ -398,19 +418,19 @@ Here is the list. Pin it to your wall.
 
 | Layer | What it is | Soliton boundary | Key reading | Integer source |
 |---|---|---|---|---|
-| 0 | Vacuum soliton | Universe (outermost) | Λ = 10⁻¹²² (Planck) |, |
-| 1 | Quantum field solitons |, (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group |
-| 2 | Stable solitons | Particle boundaries | Quantum numbers (exact integers) | Representation theory |
+| 0 | Vacuum | Universe (outermost) | Λ = 5.88 × 10⁻³⁰ g/cm³ | Ground state energy |
+| 1 | Quantum fields | Vacuum (substrate) | 17 fields, SU(3)×SU(2)×U(1) | Gauge group integers 3, 2, 1 |
+| 2 | Stable particles | Particle boundaries | Quantum numbers (exact integers) | Representation theory |
 | 3 | Boundary readings | Every soliton boundary | α, α_s, sin²θ_W (scale-dependent) | Beta coefficients |
-| 4 | Running | Between boundaries | β₁ = 41/10, β₂ = −19/6, β₃ = −7 | Particle counting |
+| 4 | Running | Between boundaries | b₁ = 41/10, b₂ = −19/6, b₃ = −7 | Particle counting |
 | 5 | Cabibbo Doublet | GUT boundary | Δb = (1/15, 1, 1/3), gap = 38/27 | (3,2,1/6) representation |
-| 6 | Electroweak | W/Z mass scale | M_W = 80354, Γ_Z = 2515, N_gen = 3 | sin²θ_W + α_s + M_Z |
-| 7 | QED chain | Atomic scale | α⁻¹ = 137.036 (12 digits) | A₁–A₅ series |
-| 8 | Cosmological chain | Galactic/universe scale | (22/13)π = 5.317, D/H = 2.53×10⁻⁵ | Integers 11, 13 |
-| 9 | Muon | Lepton scale | a_μ(SM), 6.5σ anomaly | Same QED series, heavier mass |
-| 10 | Flavor | Quark mixing | CKM deficit 0.83σ, θ₁₄ = 0.045 | 4×4 matrix |
+| 6 | Electroweak | W/Z mass scale | M_W = 80,354 MeV, N_gen = 3 | sin²θ_W + α_s + M_Z |
+| 7 | QED chain | Atomic scale | α⁻¹ = 137.036 (12 digits) | QED series coefficients |
+| 8 | Cosmological chain | Galactic/universe scale | (22/13)π = 5.317, D/H at 0.12σ | Integers 11, 13 |
+| 9 | Muon | Lepton scale | 6.5σ anomaly (hadronic dispute) | Same QED series, heavier mass |
+| 10 | Flavor | Quark mixing | CKM deficit 0.83σ, θ₁₄ = 0.045 | 4×4 extended CKM matrix |
 | 11 | Galaxy | Toroidal boundary | Flat rotation, DM ratio (22/13)π | Gauge integers |
-| 12 | Universe | Vacuum boundary | Ω_total = 1, H₀, Λ | Flatness (inside reading) |
+| 12 | Universe | Vacuum boundary | Ω_total = 1.000, Ω_DE = 69.0% | Flatness (inside reading) |
 
 Twelve layers. One vocabulary. One principle: nested soliton boundaries with integer readings.
 
