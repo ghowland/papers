@@ -30,7 +30,7 @@ If the first stars' masses determine which elements they produce in supernovae, 
 
 If the chemistry determines which molecules are stable, which reactions are thermodynamically favorable, which polymers can form, then the gauge integers determine biochemistry.
 
-This chain has not been computed. Each link is a separate research program. But the principle is clear: if integer Fractions determine the boundary readings at the lowest level, and every higher level is built from the lower levels, then integer Fractions determine everything. Not in some vague philosophical sense. In the concrete sense that you could, with enough computation, derive the protein folding energy landscape from the gauge group.
+This chain has not been computed. Each link is a separate research program. But the principle is clear: if integer fractions determine the boundary readings at the lowest level, and every higher level is built from the lower levels, then integer fractions determine everything. Not in some vague philosophical sense. In the concrete sense that you could, with enough computation, derive the protein folding energy landscape from the gauge group.
 
 Nobody has done this because nobody had the chain. The chain is now visible. The links remain to be computed.
 
@@ -109,7 +109,7 @@ The pattern is the same in every application:
 
 The chain is long. Each link is a research program. But the principle is that no link in the chain requires new physics. Every link uses known equations. Every link uses known mathematics. The only thing missing is the computation, and the willingness to cross departmental walls to perform it.
 
-Unification doesn't mean finding one equation that replaces all of physics. It means connecting all of physics so that a derivation starting from the gauge group can reach any measurable quantity. The connections are the integer Fractions. The derivations are standard physics. The result is omni-domain: every domain connected, every reading derivable.
+Unification doesn't mean finding one equation that replaces all of physics. It means connecting all of physics so that a derivation starting from the gauge group can reach any measurable quantity. The connections are the integer fractions. The derivations are standard physics. The result is omni-domain: every domain connected, every reading derivable.
 
 ---
 
