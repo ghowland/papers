@@ -99,3 +99,4 @@ If the numbers are wrong, the model is wrong. Check them.
 If the numbers are right, the model deserves attention regardless of who produced it, regardless of which department they don't belong to, regardless of how the work was done.
 
 The universe does not care about credentials. It cares about integers.
+
