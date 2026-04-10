@@ -26,3 +26,25 @@ this is how RUM came to be, this is the introduction, dont write it yet, explain
 
 ---
 
+Here's what the introduction needs to do, in order.
+
+**First, the reader needs to know what they're holding.** This is a book about a physics model that derives 53 values across eight domains of physics from 13 measurements, built in six days by one person working with an AI. The reader needs that fact in the first few paragraphs so they know whether to keep reading. Not the technical details. The scope and the claim.
+
+**Second, the reader needs to know who wrote it.** Not a physicist by training. An outsider who came at physics with different skills, specifically debugging skills. The dojo storming metaphor belongs here but needs translation for a reader who may not know the term. The framing should be honest: this is an outsider's attempt, it may not be appreciated by the establishment, and that's part of the point. Nobody from the departments was going to do this because departmental walls prevent it.
+
+**Third, the reader needs the failure story.** CKS came first. 363 papers. Omni-domain ambitions. An LLM smuggled a result into a derivation function. The author found it, invalidated the entire series, and published the invalidation. This is the credibility paragraph. Not because CKS worked — it didn't — but because the author killed his own work publicly when the math failed. That tells the reader what kind of person they're dealing with. Someone who publishes failures.
+
+**Fourth, the reader needs the methodology pivot.** CKS failed at math. The lesson was: Logic → Empirical → Math is the right search order for exploration, but Math is the hard gate. Nothing moves forward without passing the math. This became LEMU: Logic, Empirical, Math, Utility. The reader doesn't need all four terms explained in depth, but they need to understand that the author reorganized after failure and added stricter gates.
+
+**Fifth, the reader needs the key insight that led to RUM.** Real numbers and decimals were blocking equality testing. QED coefficients are discrete. The lattice is discrete. The author tried building a new number system (VDR, 240+ axioms, enormous project) and then found a shortcut: cache the transcendentals at 335 digits and work in Python Fractions throughout. This made the VDR project unnecessary for immediate progress. In the process, the beta function similarities appeared (MATH-1), and the HOWL series began.
+
+**Sixth, the reader needs the three nouns and two verbs.** Inertia, vortex, soliton boundary. Reading and running reading. The Rectification of Names: taking things that are isomorphically the same across physics and discarding the baggage terms. This is the vocabulary the book will use, introduced here so the reader is prepared for Chapter 1.
+
+**Seventh, the reader needs permission to be skeptical.** The book makes large claims. The author is an outsider. The methodology is unconventional. The reader should be told: check the numbers. They're all published. The scripts are published. The inputs are from standard references. If the numbers are wrong, the model is wrong. If they're right, the model deserves attention regardless of who produced it.
+
+**The staircase order matters.** The reader who picks this book up cold needs: what is this → who made it → why should I trust someone who already failed once → what changed → what's the key idea → what vocabulary will I need → how should I approach this. That sequence takes them from curiosity through skepticism through the failure-and-recovery arc to the starting line of Chapter 1 ready to read.
+
+The introduction should NOT preview the 53 values in detail, walk through the QED chain, explain the Cabibbo Doublet, or discuss any specific physics result. Those belong in later chapters. The introduction sets context, establishes voice, and earns the reader's willingness to keep going.
+
+---
+
