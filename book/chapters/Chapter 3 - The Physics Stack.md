@@ -240,6 +240,8 @@ The most precise chain in the model. Start with one measurement. End with six va
 
 **Step 1: Measure the electron's wobble.** Every electron is a tiny magnet. Quantum mechanics predicts exactly how strong that magnet should be, but the actual measurement is slightly stronger than the basic prediction. The difference, called the anomalous magnetic moment (a_e), has been measured by Fan and colleagues at Harvard in 2023 using a single electron suspended in a magnetic trap. Their result has thirteen significant digits. It is the most precisely measured property of any particle in nature.
 
+A magnetic moment is how strong a particle's magnet is. Every charged particle that spins acts like a tiny bar magnet, with a north pole and a south pole. In 1928, Paul Dirac wrote down the equation describing the electron, and his equation predicted exactly how strong the electron's magnet should be. But when experimentalists measured it, the magnet was slightly stronger than Dirac predicted, about 0.1% stronger. That extra 0.1% is the anomalous magnetic moment: the difference between what the basic equation says and what the vacuum's virtual particle activity actually produces. It is one of the most sensitive probes in physics, because every type of particle that can flicker through the vacuum contributes to that tiny excess, and measuring it precisely enough reveals what the vacuum contains.
+
 **Step 2: Extract the force strength.** The electron's wobble is slightly larger than the basic prediction because the vacuum isn't empty. Virtual particles flicker in and out of existence around the electron, each one nudging its magnetic field by a tiny amount. The total nudge depends on the electromagnetic force strength, α. This relationship is expressed through a series, each term representing one additional layer of virtual particle activity. Each term is built from the same integers, the same transcendental constants (π, ζ(3), and the others from Chapter 2), and increasingly complex Feynman diagrams, from one diagram at the first layer to 12,672 at the fifth.
 
 The key: every coefficient in this series is exact. They are computed from the structure of the theory, not measured. The only measured number is the wobble itself. Given the wobble and the exact coefficients, you solve backward for α. The result: α⁻¹ = 137.035999207.
@@ -274,7 +276,7 @@ The longest chain in the model. From gauge integers to the chemistry of the earl
 
 The integers 11 and 13 have already appeared in this book. The integer 11 is the Yang-Mills coefficient, the universal number that governs how non-abelian forces interact with themselves. It sets the strong force running rate, it determines asymptotic freedom, and it appeared in the dark matter ratio in Chapter 2. The integer 13 appears in the weak force running rate after the Cabibbo Doublet is added: b₂ = −13/6. These two integers, both from the gauge group, both counted from the particle content, reach all the way to the abundances of the lightest elements forged in the first minutes after the Big Bang.
 
-**Step 1: The dark matter ratio.** The ratio of dark matter to ordinary matter in the universe has been measured by the Planck satellite, which mapped the oldest light in the universe (the cosmic microwave background) with extraordinary precision. Planck's result: for every unit of ordinary matter, there are 5.320 units of dark matter.
+**Step 1: The dark matter ratio.** The ratio of dark matter to ordinary matter in the universe has been measured by the Planck satellite, which mapped the "oldest light" in the universe (the cosmic microwave background) with extraordinary precision. Planck's result: for every unit of ordinary matter, there are 5.320 units of dark matter.
 
 The model produces this number from gauge integers. Take 11 (the Yang-Mills coefficient), double it to 22 (because the Cabibbo Doublet is vector-like, both hands contribute), and divide by 13 (from the modified weak running rate). Multiply by π. The result: (22/13) × π = 5.3165. The miss from Planck's measurement is 725 parts per million.
 
@@ -286,9 +288,9 @@ Two integers and π. One satellite measurement. Agreement to better than 0.1%.
 
 This one number is the key to everything that follows. It determines when each nuclear reaction in the early universe froze out as the cosmos cooled from its initial furnace state.
 
-**Step 4: The first elements.** In the first few minutes after the Big Bang, the universe was hot enough and dense enough for nuclear fusion to occur everywhere, not inside stars, but in open space. Protons and neutrons slammed together and built the lightest elements: hydrogen, deuterium (hydrogen with an extra neutron), helium-3, helium-4, and trace amounts of lithium-7. This process is called Big Bang nucleosynthesis, and its outcome depends almost entirely on one number: the baryon-to-photon ratio from Step 3.
+**Step 4: The first elements.** In the first few minutes after the Big Bang, the universe was hot enough and dense enough for nuclear fusion to occur everywhere, not inside stars, but in open space. Protons and neutrons slammed together and built the lightest elements: hydrogen, deuterium (hydrogen with an extra neutron), helium-3, helium-4, and trace amounts of lithium-7. This process is called Big Bang nucleosynthesis (BBN), and its outcome depends almost entirely on one number: the baryon-to-photon ratio from Step 3.
 
-Higher η means more protons and neutrons per photon, which means nuclear reactions run longer before the expanding universe becomes too cool and dilute to sustain them. More reactions mean more of the heavier light elements and less leftover deuterium. The predictions, using standard nuclear physics applied to our derived η:
+Higher η (eta) means more protons and neutrons per photon, which means nuclear reactions run longer before the expanding universe becomes too cool and dilute to sustain them. More reactions mean more of the heavier light elements and less leftover deuterium. The predictions, using standard nuclear physics applied to our derived η:
 
 Deuterium: predicted 2.531 parts per hundred thousand. Measured (from quasar absorption spectra, light that has traveled billions of years): 2.527 parts per hundred thousand. The miss is 0.12 standard deviations. Essentially perfect.
 
@@ -310,17 +312,29 @@ Two integers from the gauge group. One satellite measurement of dark matter dens
 
 ### Layer 9: The Muon and the Anomaly
 
-The muon is the electron's heavier cousin, same charge, same spin, 207 times the inertia. It's a soliton with the same quantum numbers as the electron but a different vortex pattern, more energetic, with higher resistance to acceleration.
+The muon is the electron's heavier cousin. Same charge. Same spin. Same quantum numbers in every respect. But 207 times the inertia. It is the same type of soliton pattern as the electron, just more energetic, a higher mode of the same field, with greater resistance to acceleration.
 
-The muon anomalous magnetic moment a_μ is computed from the same QED series as a_e, but with the muon mass replacing the electron mass in the internal loops. The QED contribution is a_μ(QED) = 0.00116584719 (from our derived α). The total SM prediction includes hadronic contributions (the dominant uncertainty) and electroweak corrections: a_μ(SM) = 0.00116591741.
+The muon is unstable. Unlike the electron, which is permanent, the muon decays in about two millionths of a second into an electron and two neutrinos. But it lives long enough to measure its magnetic properties with extraordinary precision, and that measurement is one of the most important tests in particle physics.
 
-The measured value (Fermilab, 2023): a_μ = 0.00116592059.
+**The same chain, heavier particle.** The QED chain from Layer 7 works for any charged lepton, not just the electron. Replace the electron's inertia with the muon's inertia in the same series of calculations, and you get the muon's predicted magnetic wobble. The same integers, the same transcendental constants, the same structure. The only change is which particle's inertia appears inside the virtual loops.
 
-The difference: 318 × 10⁻¹¹. The tension: 6.5σ.
+But the muon is a harder test than the electron, precisely because it is heavier. A heavier particle is more sensitive to heavy virtual particles flickering in and out of the vacuum around it. The electron is so light that these heavy virtual contributions are negligible. The muon is heavy enough that they matter. In particular, quarks and gluons circulating inside the vacuum (the hadronic contribution) nudge the muon's magnetic field by an amount that is small but no longer ignorable. And that hadronic contribution is where the trouble lives.
 
-This is the muon g-2 anomaly, one of the most significant discrepancies in particle physics. Either the SM prediction is wrong (the hadronic vacuum polarization contribution is disputed between lattice QCD and dispersive approaches), or new physics contributes to the muon's magnetic moment.
+**The disagreement.** The Fermilab Muon g-2 experiment, which completed its measurement in 2023, found that the muon's magnetic wobble exceeds the Standard Model prediction by a significant amount. The discrepancy is 6.5 standard deviations, far beyond the threshold where physicists consider a result statistically meaningful. If the prediction is correct, the odds of the measurement being this far off by chance are less than one in a billion.
 
-Our framework reproduces the anomaly because we use the same hadronic inputs as the standard calculation. We don't resolve it, that requires resolving the hadronic VP dispute, which is an ongoing experimental and computational effort. But the fact that our derived α (from a_e via 5-loop QED) produces the standard SM prediction for a_μ at the correct value is a consistency check: the QED chain works for both leptons.
+Either the measurement has found evidence of new physics affecting the muon, or the prediction has an error in the hadronic piece.
+
+**The disputed piece.** The hadronic contribution to the muon's magnetic moment, the effect of quarks and gluons inside the vacuum loops, is the single hardest piece to calculate in the entire Standard Model. It cannot be computed from first principles using simple formulas. There are two methods, and they disagree with each other.
+
+The first method uses experimental data. When electrons and positrons collide at high enough energy, they destroy each other and their combined energy transforms into new particles, often hadrons (particles containing quarks). By measuring the rates at which different hadrons are produced across a range of collision energies, physicists can map out how quarks and gluons behave inside the vacuum and use that map to estimate their contribution to the muon's magnetic moment. This method has been the standard for decades and produces the prediction that disagrees with the Fermilab measurement by 6.5 standard deviations.
+
+The second method uses lattice QCD: simulate the quarks and gluons directly on a supercomputer by placing them on a grid (a lattice) and computing their behavior from the fundamental equations. Recent lattice results from the BMW collaboration (a large European supercomputer-based research group) produce a larger hadronic contribution, which would bring the prediction closer to the measurement and potentially dissolve the anomaly.
+
+The two methods disagree with each other by more than the muon anomaly itself. Until this dispute is resolved, nobody knows whether the 6.5 standard deviation tension is real new physics or a calculation error in the hardest piece of the prediction.
+
+**What our framework does.** Our chain reproduces the standard prediction exactly. The same α that gives twelve-digit agreement with the rubidium recoil measurement, fed through the same QED series with the muon's inertia, produces the standard muon prediction. The 6.5 standard deviation tension with the Fermilab measurement is inherited, not generated. Our framework does not resolve the anomaly because resolving it requires settling the hadronic dispute, which is an ongoing experimental and computational effort involving dozens of research groups worldwide.
+
+But reproducing the anomaly is itself a test. It confirms that the QED chain works for both leptons, that the derived α is consistent across particles with different inertias, and that the framework handles the muon sector correctly. Getting the same answer as the rest of the field, including the same unresolved tension, is what correct physics looks like when one piece of the input data is still being argued about.
 
 ---
 
