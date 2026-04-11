@@ -1,0 +1,260 @@
+{
+  "key": "result_experiment_bridge_bbn_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_bridge_bbn_v0",
+  "timestamp": "2026-04-11T06:48:40Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "bridge_omega_b_from_integers_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_omega_de_from_flatness_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_eta_from_omega_b_v0",
+      "status": "ok",
+      "output_count": 9
+    },
+    {
+      "key": "bridge_yp_from_eta_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "bridge_dh_from_eta_v0",
+      "status": "ok",
+      "output_count": 9
+    },
+    {
+      "key": "bridge_neff_consistency_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_vacuum_energy_v0",
+      "status": "ok",
+      "output_count": 10
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Omega_b from integers vs Planck",
+      "output_key": "result_omega_b_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.0490",
+      "got": "0.049035637966613",
+      "miss_pct": "0.07273",
+      "detail": "predicted 0.049035637966613 ref 0.0490 miss 0.07273%"
+    },
+    {
+      "label": "eta (baryon-to-photon) derived vs Planck",
+      "output_key": "result_eta_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "6.104e-10",
+      "got": "6.08953448897262e-10",
+      "miss_pct": "0.237",
+      "detail": "predicted 6.08953448897262e-10 ref 6.104e-10 miss 0.237%"
+    },
+    {
+      "label": "eta_10 derived vs Planck",
+      "output_key": "result_eta10_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "6.104",
+      "got": "6.08953448897262",
+      "miss_pct": "0.237",
+      "detail": "predicted 6.08953448897262 ref 6.104 miss 0.237%"
+    },
+    {
+      "label": "Y_p (primordial helium) from integers vs measured",
+      "output_key": "result_yp_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Aver_2015",
+      "status": "INFO",
+      "expected": "0.2449",
+      "got": "0.248643255182356",
+      "miss_pct": "1.528",
+      "detail": "predicted 0.248643255182356 ref 0.2449 miss 1.528%"
+    },
+    {
+      "label": "Y_p digits of agreement",
+      "output_key": "result_yp_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "Aver_2015",
+      "expected": "0.245",
+      "got": "0.248643255182356",
+      "digits": 2,
+      "miss_pct": "1.487",
+      "status": "FAIL",
+      "detail": "2 digits: expected 0.24 got 0.25 miss 1.487%"
+    },
+    {
+      "label": "D/H (primordial deuterium) from integers vs measured",
+      "output_key": "result_dh_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Cooke_2018",
+      "status": "INFO",
+      "expected": "2.527e-5",
+      "got": "2.53060482485205e-5",
+      "miss_pct": "0.1427",
+      "detail": "predicted 2.53060482485205e-5 ref 2.527e-5 miss 0.1427%"
+    },
+    {
+      "label": "D/H digits of agreement",
+      "output_key": "result_dh_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "Cooke_2018",
+      "expected": "2.53e-5",
+      "got": "2.53060482485205e-5",
+      "digits": 3,
+      "miss_pct": "0.02391",
+      "status": "PASS",
+      "detail": "3-digit match, miss 0.02391%"
+    },
+    {
+      "label": "N_eff consistency: derived Omega ratios consistent with N_eff = 3",
+      "output_key": "result_neff_check_v0",
+      "match_mode": "range",
+      "reference_source": "SM_prediction",
+      "got": "2.71206",
+      "lo": "2.5",
+      "hi": "3.5",
+      "status": "PASS",
+      "detail": "in [2.5, 3.5]"
+    },
+    {
+      "label": "N_eff derived vs standard 3.044",
+      "output_key": "result_neff_check_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "de_Salas_2016",
+      "status": "INFO",
+      "expected": "3.044",
+      "got": "2.71205729366492",
+      "miss_pct": "10.9",
+      "detail": "predicted 2.71205729366492 ref 3.044 miss 10.9%"
+    },
+    {
+      "label": "Vacuum energy density (GeV^4) derived vs observed",
+      "output_key": "result_rho_lambda_gev4_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "2.85e-47",
+      "got": "2.53821856816922e-47",
+      "miss_pct": "10.94",
+      "detail": "predicted 2.53821856816922e-47 ref 2.85e-47 miss 10.94%"
+    },
+    {
+      "label": "Vacuum energy density (g/cm^3) derived vs observed",
+      "output_key": "result_rho_lambda_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "5.88e-30",
+      "got": "5.88895985727292e-30",
+      "miss_pct": "0.1524",
+      "detail": "predicted 5.88895985727292e-30 ref 5.88e-30 miss 0.1524%"
+    },
+    {
+      "label": "Full chain: integers -> eta_10 -> Y_p within 1 sigma",
+      "output_key": "result_yp_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Aver_2015",
+      "got": "0.935814",
+      "lo": "0",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0, 2.0]"
+    },
+    {
+      "label": "Full chain: integers -> eta_10 -> D/H within 1 sigma",
+      "output_key": "result_dh_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Cooke_2018",
+      "got": "0.120161",
+      "lo": "0",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0, 2.0]"
+    }
+  ],
+  "outputs": {
+    "result_omega_b_derived_v0": "0.049035637966613",
+    "result_omega_b_measured_v0": "0.049",
+    "result_omega_b_miss_pct_v0": "0.0727305441080672",
+    "result_omega_m_derived_v0": "0.309735637966613",
+    "result_omega_m_measured_v0": "0.3111",
+    "result_omega_m_miss_pct_v0": "0.438560602181629",
+    "result_dm_baryon_ratio_used_v0": "5.31654141376734",
+    "result_omega_dm_input_v0": "0.2607",
+    "result_omega_de_derived_v0": "0.690264362033387",
+    "result_omega_de_measured_v0": "0.6889",
+    "result_omega_de_miss_pct_v0": "0.198049358889099",
+    "result_omega_b_component_v0": "0.049035637966613",
+    "result_omega_dm_component_v0": "0.2607",
+    "result_omega_de_component_v0": "0.690264362033387",
+    "result_flatness_sum_v0": "1.0",
+    "result_flatness_residual_v0": "0.0",
+    "result_eta_derived_v0": "6.08953448897262e-10",
+    "result_eta10_derived_v0": "6.08953448897262",
+    "result_eta_measured_v0": "6.104e-10",
+    "result_eta10_measured_v0": "6.104",
+    "result_eta_miss_pct_v0": "0.23698412561246",
+    "result_rho_crit_computed_v0": "8.53145574533961e-27",
+    "result_n_gamma_computed_v0": "410726847.924845",
+    "result_h0_si_v0": "2.18405703175632e-18",
+    "result_omega_b_used_v0": "0.049035637966613",
+    "result_yp_derived_v0": "0.248643255182356",
+    "result_yp_measured_v0": "0.2449",
+    "result_yp_miss_pct_v0": "1.52848312876937",
+    "result_yp_sigma_v0": "0.935813795589048",
+    "result_eta10_used_v0": "6.08953448897262",
+    "result_yp_a_used_v0": "0.2485",
+    "result_yp_b_used_v0": "0.0016",
+    "result_dh_derived_v0": "2.53060482485205e-5",
+    "result_dh_x1e5_derived_v0": "2.53060482485205",
+    "result_dh_measured_v0": "2.527e-5",
+    "result_dh_x1e5_measured_v0": "2.527",
+    "result_dh_miss_pct_v0": "0.142652348715758",
+    "result_dh_sigma_v0": "0.120160828401573",
+    "result_dh_a_used_v0": "2.57",
+    "result_dh_b_used_v0": "-0.44",
+    "result_neff_check_v0": "2.71205729366492",
+    "result_neff_standard_v0": "3.044",
+    "result_neff_planck_v0": "2.99",
+    "result_neff_miss_standard_pct_v0": "10.9048195248054",
+    "result_neff_miss_planck_pct_v0": "9.29574268679187",
+    "result_neff_sigma_v0": "1.63495709608869",
+    "result_yp_at_neff3_v0": "0.248643255182356",
+    "result_yp_measured_used_v0": "0.2449",
+    "result_rho_lambda_derived_v0": "5.88895985727292e-30",
+    "result_rho_lambda_gev4_derived_v0": "2.53821856816922e-47",
+    "result_rho_lambda_kgm3_derived_v0": "5.88895985727292e-27",
+    "result_rho_lambda_measured_gcm3_v0": "5.88e-30",
+    "result_rho_lambda_measured_gev4_v0": "2.85e-47",
+    "result_rho_lambda_miss_gcm3_pct_v0": "0.152378525049707",
+    "result_rho_lambda_miss_gev4_pct_v0": "10.9396993624835",
+    "result_omega_de_used_v0": "0.690264362033387",
+    "result_cc_problem_ratio_v0": "3.93977103682322e+54"
+  },
+  "summary": {
+    "derivations_ok": 7,
+    "derivations_err": 0,
+    "comparisons_pass": 4,
+    "comparisons_fail": 1,
+    "comparisons_info": 8,
+    "comparisons_skip": 0
+  }
+}
