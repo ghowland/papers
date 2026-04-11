@@ -48,6 +48,15 @@ class CKSRegistryScanner:
         abstract_match = abstract_pattern.search(content)
         abstract = abstract_match.group(1).strip() if abstract_match else ""
 
+        # Another Abstract pattern
+        if not abstract:
+            abstract_pattern = re.compile(
+                r"##\s+[A-Z]+\.\s+ABSTRACT\s*(?:---\s*)?(.*?)(?=\*\*Keywords:\*\*|---|##)",
+                re.DOTALL | re.IGNORECASE
+            )
+            abstract_match = abstract_pattern.search(content)
+            abstract = abstract_match.group(1).strip() if abstract_match else ""
+
         # Find ALL [HOWL-...] references for dependency mapping
         all_refs = set(self.id_pattern.findall(content))
         

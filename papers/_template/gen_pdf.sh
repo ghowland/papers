@@ -8,6 +8,8 @@ sed -i 's/\xEF\xB8\x8F//g' manuscript_fixed.md
 sed -i 's/^    //g' manuscript_fixed.md
 # sed -i 's/```//g' manuscript_fixed.md
 
+# Fix vars in tables, they dont wrap
+sed -i '/^|/s/_/ /g' manuscript_fixed.md
 
 # 3. Consolidated Symbol Replacement (Unicode to LaTeX Math)
 # This uses $...$ for everything to ensure the X symbol (times) renders as a glyph

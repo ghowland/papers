@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "A Versioned Node System for Integer Fraction Physics",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "DATA-6 is a versioned node-based system for physics research built on integer fraction arithmetic. Every entity \u2014 constant, derivation, connection, experiment, result, program \u2014 is a versioned node with a canonical key, provenance, and level classification. The system stores 414 value nodes across 24 JSON files, 57 derivation functions and 9 connection functions in two Python registries, 13 experiment definitions with 85+ comparisons, and 13 research programs with 26 kill switches.\n\nThe system is operational and has produced results. Three case studies demonstrate its capabilities: (1) the beta unification experiment with 29 comparisons covering gauge coupling extraction, gap ratio correction, Koide analysis, and cosmological predictions from integers, all passing; (2) a what-if BSM scan testing 5 of 15 candidates against the measured gap ratio, identifying the Cabibbo Doublet as the unique winner by a factor of 7; (3) a QED alpha extraction chain that derives four CODATA values (\u03b1\u207b\u00b9, R\u221e, a\u2080, \u03bc\u2080) from one measurement (a_e) plus integer transformation laws, matching independent measurements at 3.3-8.0 ppb with error propagation following exact \u03b1-power scaling.\n\nDATA-6 succeeds DATA-4 (146 entries, 38/38 checks) and DATA-5 (222 objects, 322/323 checks). It differs from both in architecture: where DATA-4 was a flat verified registry and DATA-5 was an object-oriented platform library, DATA-6 is an experiment-driven system where computation is declared in JSON, executed by a generic runner, and results are stored as versioned nodes with full provenance. Nothing is overwritten. Nothing is deleted. The database only grows.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "data",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DATA-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DATA/HOWL-DATA-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

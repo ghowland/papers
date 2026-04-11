@@ -674,19 +674,19 @@ From result_experiment_qed_derived_codata_v0_run003.json.
 
 | Paper | Registry | What DATA-6 Provides |
 |---|---|---|
-| MATH-1 | @HOWL-MATH-1 | Q335 constants as geom_* value nodes |
-| MATH-2 | @HOWL-MATH-2 | Q335 basis, 31 nodes at 100 digits |
-| MATH-6 | @HOWL-MATH-6 | PSLQ 82/82 null, integer pool nodes |
-| DATA-4 | @HOWL-DATA-4 | 146 entries migrated to value nodes |
-| PHYS-7 | @HOWL-PHYS-7 | theta_QCD = 0 in parameter_reduction program |
-| PHYS-8 | @HOWL-PHYS-8 | Koide K, a², m_τ in koide_analysis experiment |
-| PHYS-9 | @HOWL-PHYS-9 | A₁-A₄ in QED extraction, verified at 4.3 ppb |
-| PHYS-11 | @HOWL-PHYS-11 | R2 domains in r2_universality experiment |
-| PHYS-13 | @HOWL-PHYS-13 | Gap ratio in beta_unification experiment |
-| PHYS-15 | @HOWL-PHYS-15 | CD identification in whatif_scan experiments |
-| PHYS-17 | @HOWL-PHYS-17 | Generation democracy in beta_unification |
-| PHYS-20 | @HOWL-PHYS-20 | Proton decay in proton_decay experiment |
-| PHYS-36 | @HOWL-PHYS-36 | QED 5-loop chain in qed_derived_codata experiment |
+| MATH-1 | [@HOWL-MATH-1-2026] | Q335 constants as geom_* value nodes |
+| MATH-2 | [@HOWL-MATH-2-2026] | Q335 basis, 31 nodes at 100 digits |
+| MATH-6 | [@HOWL-MATH-6-2026] | PSLQ 82/82 null, integer pool nodes |
+| DATA-4 | [@HOWL-DATA-4-2026] | 146 entries migrated to value nodes |
+| PHYS-7 | [@HOWL-PHYS-7-2026] | theta_QCD = 0 in parameter_reduction program |
+| PHYS-8 | [@HOWL-PHYS-8-2026] | Koide K, a², m_τ in koide_analysis experiment |
+| PHYS-9 | [@HOWL-PHYS-9-2026] | A₁-A₄ in QED extraction, verified at 4.3 ppb |
+| PHYS-11 | [@HOWL-PHYS-11-2026] | R2 domains in r2_universality experiment |
+| PHYS-13 | [@HOWL-PHYS-13-2026] | Gap ratio in beta_unification experiment |
+| PHYS-15 | [@HOWL-PHYS-15-2026] | CD identification in whatif_scan experiments |
+| PHYS-17 | [@HOWL-PHYS-17-2026] | Generation democracy in beta_unification |
+| PHYS-20 | [@HOWL-PHYS-20-2026] | Proton decay in proton_decay experiment |
+| PHYS-36 | [@HOWL-PHYS-36-2026] | QED 5-loop chain in qed_derived_codata experiment |
 
 29 paper cross-references stored as connection nodes in connections_papers_v0.json.
 
