@@ -1,18 +1,22 @@
-# Paternal Operationalism
+# Gauge Coupling Unification and Minimal BSM Content
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+The one-loop beta coefficients of the Standard Model are exact rationals determined by the gauge group and particle content: b₁ = 41/10, b₂ = −19/6, b₃ = −7. From these three numbers, a single rational — the gap ratio (b₁−b₂)/(b₂−b₃) = 218/115 = 1.896 — predicts whether the three gauge couplings converge to a unified value at high energy. The measured gap ratio from DATA-3 couplings is 1.358. The SM overshoots by 40%. The Standard Model does not unify.
 
+A finite enumeration of 15 single-multiplet BSM extensions, verified by reproducing the known MSSM result (gap = 7/5 = 1.400, near-unification at M_GUT = 10^17.3 GeV, Δ(1/α₃) = −0.69), identifies one minimal solution: a vector-like quark doublet in the (3,2,1/6) representation — a single new particle with the quantum numbers of the left-handed quark doublet. Its gap ratio is 1.407 (distance 0.049 from measured), comparable to the full MSSM (distance 0.042), at M_GUT = 10^15.5 GeV on the proton decay boundary testable by Hyper-Kamiokande. No other single multiplet comes within 0.12 of the measured gap ratio.
+
+The MSSM gap ratio 7/5 — a ratio of single-digit integers — is strikingly simpler than the SM's 218/115. This simplification is itself a measure of how much supersymmetry improves the unification structure. But the VL quark doublet achieves comparable unification quality with one new particle instead of dozens, demonstrating that the MSSM's unification success is not unique to supersymmetry.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-13-2026,
+  title={ Gauge Coupling Unification and Minimal BSM Content },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-13-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

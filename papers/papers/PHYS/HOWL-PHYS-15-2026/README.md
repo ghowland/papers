@@ -1,18 +1,22 @@
-# Paternal Operationalism
+# Integer-Forced Identification of the Minimal Unification Extension
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+The Standard Model has three gauge couplings — one for each factor of SU(3)×SU(2)×U(1). Grand unification predicts that these three couplings converge to a single value at high energy. Whether they converge depends on the particle content of the theory, which determines the rate at which each coupling changes with energy. These rates are exact rational numbers: b₁ = 41/10 for U(1), b₂ = −19/6 for SU(2), b₃ = −7 for SU(3). The ratio (b₁−b₂)/(b₂−b₃) = 218/115 = 1.896, compared to the value 1.358 measured from the three couplings at the Z boson mass scale, tests whether the couplings converge. They do not. The Standard Model overshoots by 40%.
 
+This paper asks: what single new particle, added to the Standard Model, would fix the convergence? An exhaustive enumeration of 15 candidate particles — every scalar and vector-like fermion with gauge representations up to dimension 8 in SU(3), 4 in SU(2), and hypercharge |Y| ≤ 2 — is tested by computing each candidate's modified convergence ratio in exact rational arithmetic. Twelve candidates are eliminated because their ratios are more than 0.15 from the measured 1.358. One more is eliminated by the existing proton decay bound from Super-Kamiokande.
+
+Two survive. The full supersymmetric extension of the Standard Model (MSSM), with ratio 7/5 = 1.400 (distance 0.042 from measured) and dozens of new particles. And a vector-like quark doublet in the (3,2,1/6) representation — a single new particle with the quantum numbers of the left-handed quark doublet — with ratio 38/27 = 1.407 (distance 0.049 from measured). The vector-like doublet achieves convergence quality comparable to the full MSSM with one particle instead of dozens, at a unification scale of 10^15.5 GeV testable by the Hyper-Kamiokande proton decay experiment.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-15-2026,
+  title={ Integer-Forced Identification of the Minimal Unification Extension },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-15-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

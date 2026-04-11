@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "Cross-Domain Precision Data Inventory",
+    "registry_id": "HOWL-DATA-1-2026",
+    "series_path": "[@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper presents a curated reference database of precision-measured constants, defined standards, and analytical results from every domain where R\u2082 = \u03c0/4 appears in the governing equation. The inventory spans 17 domain categories and 250+ individual entries, each carrying the original measured or defined value, its source, and the R\u2082/R\u2084 equation it participates in. The database serves as the data foundation for the HOWL series: every claim, test, and computation in the series draws from values catalogued here. DATA-2 (forthcoming) will transform applicable entries into big-integer rational representations and test them against the Q335 basis.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# Cross-Domain Precision Data Inventory ## Raw Database  **Registry:** [@HOWL-DATA-1-2026]  **Series Path:** [@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026]  **DOI:** 10.5281/zenodo.zzz  **Date:** April 1 2..."
 }

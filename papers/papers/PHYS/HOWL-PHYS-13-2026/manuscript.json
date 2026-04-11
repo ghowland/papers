@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "Gauge Coupling Unification and Minimal BSM Content",
+    "registry_id": "HOWL-PHYS-13-2026",
+    "series_path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-6-2026] \u2192 [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "The one-loop beta coefficients of the Standard Model are exact rationals determined by the gauge group and particle content: b\u2081 = 41/10, b\u2082 = \u221219/6, b\u2083 = \u22127. From these three numbers, a single rational \u2014 the gap ratio (b\u2081\u2212b\u2082)/(b\u2082\u2212b\u2083) = 218/115 = 1.896 \u2014 predicts whether the three gauge couplings converge to a unified value at high energy. The measured gap ratio from DATA-3 couplings is 1.358. The SM overshoots by 40%. The Standard Model does not unify.\n\nA finite enumeration of 15 single-multiplet BSM extensions, verified by reproducing the known MSSM result (gap = 7/5 = 1.400, near-unification at M_GUT = 10^17.3 GeV, \u0394(1/\u03b1\u2083) = \u22120.69), identifies one minimal solution: a vector-like quark doublet in the (3,2,1/6) representation \u2014 a single new particle with the quantum numbers of the left-handed quark doublet. Its gap ratio is 1.407 (distance 0.049 from measured), comparable to the full MSSM (distance 0.042), at M_GUT = 10^15.5 GeV on the proton decay boundary testable by Hyper-Kamiokande. No other single multiplet comes within 0.12 of the measured gap ratio.\n\nThe MSSM gap ratio 7/5 \u2014 a ratio of single-digit integers \u2014 is strikingly simpler than the SM's 218/115. This simplification is itself a measure of how much supersymmetry improves the unification structure. But the VL quark doublet achieves comparable unification quality with one new particle instead of dozens, demonstrating that the MSSM's unification success is not unique to supersymmetry.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# Gauge Coupling Unification and Minimal BSM Content ## 218/115 meets the universe.  **Registry:** [@HOWL-PHYS-13-2026]  **Series Path:** [@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-6-2026..."
 }

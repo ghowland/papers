@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# Electroweak Integer Anatomy
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper extends the HOWL Fraction arithmetic framework from QED into the electroweak sector for the first time. Two computations expose the integer structure of the Standard Model at different magnifications.
 
+First, 11 LEP/SLD Z-pole observables are computed from 7 DATA-3 inputs (G_F, M_Z, α⁻¹, sin²θ_W, α_s, m_t, m_H) at tree level plus leading Δρ correction. Every coefficient in every formula traces to the gauge group SU(3)×SU(2)×U(1), the generation count, or the loop expansion order. The transcendental content is minimal: only π and √2 from the Q335 basis enter the electroweak computation. All 14 checks pass. The overconstrained system extracts sin²θ_W independently from two observables (A_l and A_FB^l), obtaining 0.23098 and 0.23102 — agreeing with each other to 3.9 × 10⁻⁵ and shifted from the MS-bar input by the expected one-loop correction of ~2 × 10⁻⁴. The M_W prediction at 80326 MeV (measured: 80369) demonstrates the top quark's radiative correction in exact arithmetic.
+
+Second, the QED 2-loop coefficient A₂ = 197/144 + (3/4)ζ(3) + R₄(8/3 − 16ln 2) is decomposed into rational, number-theoretic, and geometric pieces. The geometric piece (carried by R₄ = π²/32, the 4-ball remainder from MATH-5) dominates at magnitude 2.598 — nearly 8 times the net A₂ = −0.328 — and cancels 87.4% against the positive rational and number-theoretic pieces. A₂ is accidentally small because geometry nearly cancels arithmetic.
+
+Both computations demonstrate the PHYS-2 thesis quantitatively: the transformation laws of the Standard Model are built from integers. The measured values are the only non-integer content. The integer anatomy is the same thesis at two magnifications: at the level of observables (11 outputs from 7 inputs) and at the level of a single coefficient (three pieces from three sources).
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-12-2026,
+  title={ Electroweak Integer Anatomy },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-12-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

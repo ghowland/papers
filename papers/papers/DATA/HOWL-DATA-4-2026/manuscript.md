@@ -1,5 +1,5 @@
-# Verified Integer Rational Database with Cabibbo Doublet Extension
-# The Cabibbo Doublet is staged. The integers are verified. The foundation extends.
+# Verified Integer Rational Database 
+## Includes Cabibbo Doublet Extension
 
 **Registry:** [@HOWL-DATA-4-2026]
 
@@ -24,7 +24,7 @@
 DATA-4 is the verified successor to DATA-3. It inherits all 123 entries and all 32 consistency checks with zero numerical changes. It adds 23 new entries in two categories: 6 STAGED entries for the Cabibbo Doublet parameters (entries 124-129, Type G — bounded but not yet measured) and 17 GUT/unification parameters (Section N, Type D — derived from Level 1 exact Fraction arithmetic). It formalizes the lattice ratio independence annotation as Finding 15: the FLAG lattice QCD mass ratios (m_c/m_s, m_b/m_c, m_u/m_d) are independent measurements evaluated at a common renormalization scale, not derivable from the individual PDG quark masses evaluated at different scales, with discrepancies up to 28% from the scale mismatch. It adds 6 new GUT verification checks (Group G, all exact), bringing the total to 38/38 PASS. It adds a computation traceability map linking DATA-4 entries to every PHYS and MATH paper in the series. DATA-4 contains 146 entries total: 123 inherited from DATA-3, 6 staged Cabibbo Doublet, and 17 GUT parameters. DATA-4 is the sole data reference for all future HOWL computation. DATA-3 is retired.
 
 ---
-
+ 
 ## 1. Relationship to DATA-3
 
 DATA-3 collected 123 entries (107 original Q335 conversions from DATA-2 plus 16 Koide-derived quantities) and verified them with 32 internal consistency checks, all passing. DATA-3 also noted — in script output but not as a formal finding — that three lattice QCD mass ratios are independent of the individual PDG quark masses.

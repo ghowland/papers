@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# Remainder Structure Across Nine Physics Domains
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+Nine physics domains — theta vacuum, Bohr-Sommerfeld quantization, Berry phase, Brillouin zones, Aharonov-Bohm effect, flux quantization, AC Josephson effect, renormalization group running, and Chern-Simons theory — each decompose into an integer quotient and a fractional remainder under division by a domain-specific modulus. The integer is topologically protected or counts discrete quanta. The remainder is the physical observable. All decompositions are verified as exact rational identities in Python Fraction arithmetic.
 
+R₂ = π/4, the geometric remainder of a circle inscribed in its bounding square, is present in all nine domains: as the modular period 8R₂ × scale in seven, as the step size 1/(12R₂) per flavor in one, and in the exponential exp(i·8R₂·k·CS) of the ninth. R₄ = π²/32, the four-dimensional analog, enters specifically through energy eigenvalues (π² = 32R₄ in standing-wave and zone-boundary energies) and through the Chern class normalization (1/(8π²) = 1/(256R₄)).
+
+The nine domains fall into three subgroups: phase-periodic (seven domains, cosine energy on an 8R₂-periodic domain), monotonic accumulation (one domain, logarithmic staircase), and topological quantization (one domain, modulus 1). This classification is provably irreducible: no smooth change of variables can convert monotonic into periodic structure. Within the phase-periodic subgroup, a ground state principle holds: the minimum of −cos(φ) on an 8R₂-periodic domain gives remainder = 0, producing θ_QCD = 0 by energy minimization and flux quantization by topological single-valuedness — two independent mechanisms yielding the same mathematical result through different physics.
+
+Every domain exhibits a two-level remainder structure: a geometric level where R₂ (or R₄) sets the scale, and a domain-specific level where the physical remainder lives. The geometric level is universal. The domain-specific level varies: Maslov correction μ/4, Berry phase (1 − cosθ)/2, crystal momentum p/N, Chern-Simons invariant m²k/(2p) mod ℤ, flux ratio Φ/Φ₀, accumulated coupling running, or instantaneous Josephson phase.
+
+No SM parameter is derived. No prediction is made about parameter values. This paper classifies the remainder structure of physics equations across nine domains, proves the classification is irreducible, and identifies R₂ = π/4 as the universal geometric content.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-11-2026,
+  title={ Remainder Structure Across Nine Physics Domains },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-11-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

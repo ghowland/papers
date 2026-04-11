@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "Verified Integer Rational Database",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "DATA-3 is the verified successor to DATA-2. The same 123 entries (107 original Q335 conversions + 16 Koide-derived quantities) are carried forward with zero numerical changes. What DATA-3 adds is a certificate of internal consistency: 32 independent cross-checks covering mass ratios, analytical constant identities, physical relations, Koide derivations, and exact SI values. All 32 pass.\n\nOne structural finding emerged from the verification: the lattice QCD mass ratios (m_c/m_s, m_b/m_c, m_u/m_d) are independent data that cannot be derived from the individual PDG quark masses by division. The discrepancy (up to 28%) is the renormalization scale mismatch between PDG masses evaluated at different scales and lattice ratios evaluated at a common scale. These entries are annotated as independent measurements.\n\nDATA-3 is the sole data reference for all future HOWL computation. DATA-2 is retired.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "data",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DATA-3-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DATA/HOWL-DATA-3-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

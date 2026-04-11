@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Object-Oriented Platform",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "DATA-5 is the object-oriented database layer of the HOWL computational platform. It stores 222 physics objects across 9 types, backed by 7 verified libraries with 322/323 passing checks. Every coupling constant, every beta coefficient, every mass threshold, every R2 domain, every experiment result \u2014 typed, tagged, versioned, and exportable to JSON.\n\nThe system was built in Session 4 from the platform libraries established in Sessions 1-3. It does not replace those libraries. It wraps them in a queryable object layer so that any computation can trace its inputs back to their source: which DATA-4 entry, which Q335 basis constant, which representation theory formula.\n\nThe 1 FAIL in 30/31 is the Higgs representation count (6, not 7). The Higgs is a scalar, not a fermion representation. Its beta contributions are captured in the BetaCoefficient decomposition. Zero physics is missing.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "data",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DATA-5-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DATA/HOWL-DATA-5-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

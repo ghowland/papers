@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "Integer Rational Representations in Q335",
+    "registry_id": "HOWL-DATA-2-2026",
+    "series_path": "[@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper converts every entry from HOWL-DATA-1 into the Q335 = 2\u00b3\u00b3\u2075 integer rational basis established in MATH-4 and tests whether any alternative basis reveals hidden structure. 107 values spanning SI constants, measured fundamental parameters, electroweak observables, quark masses, hadron masses, atomic frequencies, analytical constants, and engineering data are converted. Each value v becomes the integer pair (numerator, 2\u00b3\u00b3\u2075) where numerator = round(v \u00d7 2\u00b3\u00b3\u2075), and the reconstruction v_recon = numerator/2\u00b3\u00b3\u2075 is verified against the original to all source digits.\n\nThree tests are performed. First, Q335 factorization: extract small prime factors from each numerator and measure the cofactor. Second, multi-base scan: repeat the conversion in 19 bases (primes 2 through 37 plus composites 6, 10, 12, 30, 42, 60, 210) and compare cofactor sizes. Third, control test: run 90 generic irrationals (\u221aprimes, \u221bprimes, ln primes, log ratios, special function values) through the same multi-base scan and compare to the physics constants.\n\nResults: Q335 faithfully represents all 107 entries. No measured fundamental constant has a compact Q335 numerator \u2014 all have 89-106 digit cofactors after small-prime extraction. The multi-base scan shows composite bases (60\u2075\u2070, 210\u00b3\u2078) give 13-15 digit average improvement over 2\u00b3\u00b3\u2075, but the control test (z-scores 0.77 and 1.80) confirms this improvement is a generic mathematical property of composite denominators, not specific to physics constants. Continued fraction analysis finds no anomalously simple rational approximation for any measured constant. The Koide ratio's CF partial quotient a\u2084 = 18050 quantifies the known proximity to 2/3.\n\nThe measured constants of the Standard Model have no preferred numerical base and no compact rational representation in any basis tested. Q335 = 2\u00b3\u00b3\u2075 is confirmed as the working basis for the HOWL series.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# Integer Rational Representations in Q335 ## Integer Rational Database  **Registry:** [@HOWL-DATA-2-2026]  **Series Path:** [@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026]  **DOI:** 10.5281/zenodo.zzz  **D..."
 }
