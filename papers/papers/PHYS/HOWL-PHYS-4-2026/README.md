@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# The Boundary Test Program
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper defines a testing program that connects three prior results: the coherent pattern boundaries and anomaly correlations of [@HOWL-PHYS-1-2026], the geometric invariant β = π/4 and unified equation Q = F · β · d² · Z of [@HOWL-MATH-1-2026], and the experimental gap in G measurements across Earth's Hill sphere documented in [@HOWL-PHYS-3-2026].
 
+The program asks one question: does the Q = F · β · d² · Z framework, proven for geometric cross-sections across nine domains, apply to the coherent pattern boundaries where measurement anomalies have been documented?
+
+The paper does not answer this question. It classifies which boundaries are geometric and which are not. It specifies seven tests ordered from immediately achievable to far future. It identifies three tests that are reanalyses of existing published data requiring no new experiments. It commits to a kill switch: if all three existing-data tests produce null results, the remaining tests are not motivated and the program stops.
+
+One test — the Hubble tension cumulative transit calculation — is identified as underspecified. The per-boundary transit correction magnitude is not provided by the prior papers and has not been derived. This missing piece is stated as a primary limitation. The test cannot be executed until the per-transit correction is established by theoretical work this paper does not attempt.
+
+Every premise is from the institution's own published literature or from the prior papers in this series. No new physics is proposed. No new mathematics is introduced. The contribution is the specification of a test program connecting established results that have not been connected.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-4-2026,
+  title={ The Boundary Test Program },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-4-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "There Are No Constants",
+    "registry_id": "HOWL-PHYS-2-2026",
+    "series_path": "[@HOWL-PHYS-2-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper documents a contradiction between the institution's label and the institution's data. The label is \"fundamental constant.\" The data shows that every fundamental coupling varies with measurement scale.\n\nThe fine structure constant \u03b1 is called a constant. It measures 1/137 at atomic energy scales and 1/127 at the Z boson mass scale \u2014 an 8% difference confirmed by multiple independent experiments at multiple colliders. The strong coupling constant \u03b1s is called a constant. It varies by orders of magnitude across the accessible energy range \u2014 weak at high energy, strong at low energy. The weak coupling is called a constant. It varies with energy and approaches the electromagnetic coupling at the electroweak unification scale. The institution models all of this through the renormalization group framework. The institution confirms it experimentally. The institution teaches it in every quantum field theory course. The institution calls these quantities \"constants.\"\n\nThe word \"constant\" means fixed, unchanging, universal. The institution's own data contradicts the word. The data shows scale-dependent readings that change value when the measurement crosses the boundary of a coherent structure \u2014 the vacuum polarization cloud around a charged particle, the confinement boundary of a hadron, the mass threshold of a heavy quark. Each crossing changes the reading. The institution models these crossings as \"flavor thresholds\" and \"running.\" The structural observation is that each crossing is a boundary transition between the interior and exterior of a coherent self-sustaining pattern, and the reading changes at each boundary because the measurement context changes.\n\nThis paper uses only the institution's own measurements, the institution's own models, and the institution's own terminology. No external framework is imported. No equations are changed. The paper organizes existing findings through the structural observation that scale-dependent readings across coherent structure boundaries are not constants \u2014 they are projections from specific measurement depths within a hierarchy of nested coherent structures.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# There Are No Constants ## The Institution's Own Evidence That Fundamental \"Constants\" Are Scale-Dependent Boundary Readings  **Registry:** [@HOWL-PHYS-2-2026]  **Series Path:** [@HOWL-PHYS-2-2026]  ..."
 }

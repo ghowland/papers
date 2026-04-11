@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "GUT Threshold Corrections \u2014 The Minimal SU(5) Limit",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "The two-loop running of the gauge couplings with the Cabibbo Doublet modified betas leaves a residual unification miss Delta = \u22120.40 (PHYS-24, PHYS-28). This paper computes the GUT threshold corrections in minimal SU(5) that could close this residual. In minimal SU(5), the superheavy spectrum has three components: the X,Y gauge bosons defining M_GUT, the colored Higgs triplet T(3,1,\u22121/3) with beta shift db\u2083 = 1/12, and the Sigma field remnants \u2014 an (8,1,0) color octet with db\u2083 = 1/2 and a (1,3,0) weak triplet with db\u2082 = 1/3. The threshold correction to Delta is delta_Delta = \u2212(1/12)ln(M_T/M_X)/(2\u03c0) \u2212 (1/6)ln(M_Sigma/M_X)/(2\u03c0). The combined coefficient C_total = \u22121/4. All coefficients are exact Fractions from representation theory. To close Delta = \u22120.40, even the best case (triplet and Sigma at the same mass below M_X) requires M_X/M = 23,228 \u2014 a mass splitting far beyond natural. The abort test fires: minimal SU(5) is disfavored as the GUT completion. The Cabibbo Doublet representation (3,2,1/6) and its Level 1 arithmetic survive intact \u2014 they are independent of the GUT completion. The proton lifetime prediction (10^34.5 yr) is unchanged.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-29-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-29-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# The QED Integer Chain at 5-Loop
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper demonstrates that two measured rational numbers — the electron anomalous magnetic moment a_e and the electron mass m_e — combined with the QED perturbative series through 5-loop and three exact SI constants, produce four CODATA values: the fine structure constant α, the Rydberg constant R∞, the Bohr radius a₀, and the vacuum permeability μ₀. All four agree with their independent measurements. The disagreement pattern follows exact α-power scaling: quantities proportional to α¹ disagree at 3.3 ppb, quantities proportional to α⁻¹ at 4.0 ppb, and quantities proportional to α² at 8.0 ppb. The residual is fully accounted for by known missing contributions (mass-dependent QED, hadronic vacuum polarization, electroweak corrections). The arithmetic is exact — Fraction and mpmath at 200 digits — introducing zero computational error, verified by a Newton round-trip residual of 10⁻²⁰⁴. The QED transformation law through 3-loop is exact rational combinations of Q335 transcendental pairs. At 4-loop it is numerical (Laporta, 30 digits). At 5-loop it is numerical (Volkov, 4 digits). The universe supplies two rationals. The integers supply the rest.
 
+This extends [@HOWL-PHYS-9-2026], which demonstrated the chain through 4-loop at 4.3 ppb for α alone. The present work adds the 5-loop coefficient (closing 1.0 ppb of the residual), derives three additional CODATA quantities from the extracted α, and proves the error propagation is exactly what the physics predicts — no anomalous disagreement, no computational artifact, no unexplained gap.
+
+All computation was performed within the DATA-6 versioned node system using experiment `experiment_qed_derived_codata_v0`, result `run003`, with 414 value nodes loaded, 3 derivations executed, 8 comparisons evaluated, 5 PASS, 3 INFO, 0 FAIL.
+
+![Fig. 8: Identity card — two measured rationals, five QED coefficients, five Q335 constants, four derived CODATA values.](./figures/phys36_08_identity_card.png)
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-36-2026,
+  title={ The QED Integer Chain at 5-Loop },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {},
+  url = {https://zenodo.org/record/[DOI:UNKNOWN]},
+  note={Howland Archive: HOWL-PHYS-36-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

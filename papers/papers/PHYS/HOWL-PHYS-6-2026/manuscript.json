@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The Confinement Boundary in Integer Arithmetic",
+    "registry_id": "HOWL-PHYS-6-2026",
+    "series_path": "[@HOWL-MATH-2-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-4-2026] \u2192 [@HOWL-PHYS-5-2026] \u2192 [@HOWL-PHYS-6-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "The 5/6 confinement correction reported in [@HOWL-PHYS-5-2026] is decomposed into two distinct regions: above the confinement scale (~2 GeV), where the perturbative calculation is correct and no correction is needed, and below the confinement scale, where the confinement boundary reduces the vacuum polarization to approximately 61% of the perturbative prediction. The overall 5/6 was the \u03b1_EM kernel's weighted average of these two regions: 0.54 \u00d7 1.0 + 0.46 \u00d7 0.61 = 0.82. The confinement correction is kernel-dependent, not universal. Four Standard Model observables \u2014 the three gauge couplings at every energy scale, the electron anomalous magnetic moment through 3-loop, and the muon anomalous magnetic moment QED sector \u2014 are computed in the same integer arithmetic established in PHYS-5.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The Confinement Boundary in Integer Arithmetic  ## The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic  **Registry:** [@HOWL-PHYS-6-2026]  **Ser..."
 }

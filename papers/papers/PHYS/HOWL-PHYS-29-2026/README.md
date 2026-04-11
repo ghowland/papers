@@ -1,18 +1,18 @@
-# Paternal Operationalism
+# GUT Threshold Corrections — The Minimal SU(5) Limit
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
-
+The two-loop running of the gauge couplings with the Cabibbo Doublet modified betas leaves a residual unification miss Delta = −0.40 (PHYS-24, PHYS-28). This paper computes the GUT threshold corrections in minimal SU(5) that could close this residual. In minimal SU(5), the superheavy spectrum has three components: the X,Y gauge bosons defining M_GUT, the colored Higgs triplet T(3,1,−1/3) with beta shift db₃ = 1/12, and the Sigma field remnants — an (8,1,0) color octet with db₃ = 1/2 and a (1,3,0) weak triplet with db₂ = 1/3. The threshold correction to Delta is delta_Delta = −(1/12)ln(M_T/M_X)/(2π) − (1/6)ln(M_Sigma/M_X)/(2π). The combined coefficient C_total = −1/4. All coefficients are exact Fractions from representation theory. To close Delta = −0.40, even the best case (triplet and Sigma at the same mass below M_X) requires M_X/M = 23,228 — a mass splitting far beyond natural. The abort test fires: minimal SU(5) is disfavored as the GUT completion. The Cabibbo Doublet representation (3,2,1/6) and its Level 1 arithmetic survive intact — they are independent of the GUT completion. The proton lifetime prediction (10^34.5 yr) is unchanged.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-29-2026,
+  title={ GUT Threshold Corrections — The Minimal SU(5) Limit },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-29-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

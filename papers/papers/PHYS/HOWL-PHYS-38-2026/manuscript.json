@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "Precision Frontier",
+    "registry_id": "HOWL-PHYS-38-2026",
+    "series_path": "[@HOWL-PHYS-9-2026] \u2192 [@HOWL-PHYS-36-2026] \u2192 [@HOWL-PHYS-37-2026] \u2192 [@HOWL-PHYS-38-2026]",
+    "doi": "",
+    "abstract": "This paper extends the derivation graph from 17 values across five physics domains (PHYS-37) to 38 values across seven domains, through five new experiments executed in the DATA-6 system. The principal results are: (1) the fine structure constant \u03b1\u207b\u00b9 = 137.035999207, matching the rubidium recoil measurement to 12 significant figures (0.007 ppb) after subtracting seven published corrections from the electron g-2 \u2014 an 18\u00d7 improvement over the uncorrected extraction; (2) the W boson mass derived from two independent paths (sin\u00b2\u03b8_W + \u03c1 parameter, and G_F + \u0394r) agreeing to 207 ppm, with the G_F path giving M_W = 80354 MeV at 195 ppm from the PDG value; (3) the Standard Model prediction of the muon anomalous magnetic moment a_\u03bc(SM) = 116591741 \u00d7 10\u207b\u00b9\u00b9, reproducing the 6.5\u03c3 anomaly with the Fermilab measurement; (4) the primordial lithium-7 abundance from gauge integers at 2.96\u00d7 the observed value, reproducing the cosmological lithium problem from the same \u03b7\u2081\u2080 that predicts deuterium at 0.12\u03c3; (5) the CKM first-row unitarity deficit explained by the Cabibbo Doublet mixing angle sin\u00b2\u03b8\u2081\u2084 = 0.002025 at 0.83\u03c3 from the measured deficit.\n\nThe derivation graph now spans QED, electroweak, cosmology, nuclear, muon, flavor, and mass (Koide) domains. From 15 measured inputs it produces 38 derived values \u2014 23 more outputs than inputs. Every value where the Standard Model agrees with experiment, the chain agrees. Every anomaly the Standard Model has (muon g-2, lithium problem, CKM deficit), the chain reproduces. The graph contains no free parameters beyond the measured inputs.\n\n![Fig. 8: Identity card \u2014 38 derived values across QED, electroweak, cosmology, BBN, muon, flavor, and mass domains from 15 measured inputs.](./figures/phys38_08_identity_card.png)",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# Precision Frontier ## 38 Derived Values from Sub-ppb QED to the Lithium Problem  **Registry:** [@HOWL-PHYS-38-2026]  **Series Path:** [@HOWL-PHYS-9-2026] \u2192 [@HOWL-PHYS-36-2026] \u2192 [@HOWL-PHYS-37-2026..."
 }

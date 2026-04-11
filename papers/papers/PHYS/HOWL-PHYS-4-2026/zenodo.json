@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Boundary Test Program",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper defines a testing program that connects three prior results: the coherent pattern boundaries and anomaly correlations of [@HOWL-PHYS-1-2026], the geometric invariant \u03b2 = \u03c0/4 and unified equation Q = F \u00b7 \u03b2 \u00b7 d\u00b2 \u00b7 Z of [@HOWL-MATH-1-2026], and the experimental gap in G measurements across Earth's Hill sphere documented in [@HOWL-PHYS-3-2026].\n\nThe program asks one question: does the Q = F \u00b7 \u03b2 \u00b7 d\u00b2 \u00b7 Z framework, proven for geometric cross-sections across nine domains, apply to the coherent pattern boundaries where measurement anomalies have been documented?\n\nThe paper does not answer this question. It classifies which boundaries are geometric and which are not. It specifies seven tests ordered from immediately achievable to far future. It identifies three tests that are reanalyses of existing published data requiring no new experiments. It commits to a kill switch: if all three existing-data tests produce null results, the remaining tests are not motivated and the program stops.\n\nOne test \u2014 the Hubble tension cumulative transit calculation \u2014 is identified as underspecified. The per-boundary transit correction magnitude is not provided by the prior papers and has not been derived. This missing piece is stated as a primary limitation. The test cannot be executed until the per-transit correction is established by theoretical work this paper does not attempt.\n\nEvery premise is from the institution's own published literature or from the prior papers in this series. No new physics is proposed. No new mathematics is introduced. The contribution is the specification of a test program connecting established results that have not been connected.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-4-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-4-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

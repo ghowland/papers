@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The QED Integer Chain at 5-Loop",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper demonstrates that two measured rational numbers \u2014 the electron anomalous magnetic moment a_e and the electron mass m_e \u2014 combined with the QED perturbative series through 5-loop and three exact SI constants, produce four CODATA values: the fine structure constant \u03b1, the Rydberg constant R\u221e, the Bohr radius a\u2080, and the vacuum permeability \u03bc\u2080. All four agree with their independent measurements. The disagreement pattern follows exact \u03b1-power scaling: quantities proportional to \u03b1\u00b9 disagree at 3.3 ppb, quantities proportional to \u03b1\u207b\u00b9 at 4.0 ppb, and quantities proportional to \u03b1\u00b2 at 8.0 ppb. The residual is fully accounted for by known missing contributions (mass-dependent QED, hadronic vacuum polarization, electroweak corrections). The arithmetic is exact \u2014 Fraction and mpmath at 200 digits \u2014 introducing zero computational error, verified by a Newton round-trip residual of 10\u207b\u00b2\u2070\u2074. The QED transformation law through 3-loop is exact rational combinations of Q335 transcendental pairs. At 4-loop it is numerical (Laporta, 30 digits). At 5-loop it is numerical (Volkov, 4 digits). The universe supplies two rationals. The integers supply the rest.\n\nThis extends [@HOWL-PHYS-9-2026], which demonstrated the chain through 4-loop at 4.3 ppb for \u03b1 alone. The present work adds the 5-loop coefficient (closing 1.0 ppb of the residual), derives three additional CODATA quantities from the extracted \u03b1, and proves the error propagation is exactly what the physics predicts \u2014 no anomalous disagreement, no computational artifact, no unexplained gap.\n\nAll computation was performed within the DATA-6 versioned node system using experiment `experiment_qed_derived_codata_v0`, result `run003`, with 414 value nodes loaded, 3 derivations executed, 8 comparisons evaluated, 5 PASS, 3 INFO, 0 FAIL.\n\n![Fig. 8: Identity card \u2014 two measured rationals, five QED coefficients, five Q335 constants, four derived CODATA values.](./figures/phys36_08_identity_card.png)",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-36-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-36-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

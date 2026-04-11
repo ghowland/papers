@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "\u03b1_s from Unification \u2014 The Strong Coupling as a Derived Quantity",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "The Standard Model has three independent gauge couplings: the electromagnetic coupling \u03b1_EM, the weak mixing angle sin\u00b2\u03b8_W, and the strong coupling \u03b1_s. If the gauge forces unify at a single scale M_GUT, the three couplings are related by one condition \u2014 only two are independent and the third follows from the running. This paper tests this prediction using the Cabibbo Doublet framework. The inputs are \u03b1_EM = 1/137.036 and sin\u00b2\u03b8_W = 0.23122 \u2014 two measured quantities from DATA-4. The output is \u03b1_s(M_Z), predicted from the unification condition with the CD modified betas (25/6, \u221213/6, \u221220/3). Six scenarios are computed at two perturbative levels (one-loop analytic, two-loop Euler integration) with two threshold treatments (no threshold, M_VL = 500 GeV). The best prediction is at two loops with the full SM+VL b_ij matrix and no threshold: \u03b1_s = 0.1184. The measured value is 0.1180 \u00b1 0.0009. The miss is 0.33% \u2014 within the 1\u03c3 measurement uncertainty. No free parameters are tuned. The same integers (13, 20, 22) from the Cabibbo Doublet that produce sub-percent cosmological predictions also produce a sub-percent strong coupling prediction.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-30-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-30-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -1,18 +1,18 @@
-# Paternal Operationalism
+# The Confinement Boundary in Integer Arithmetic
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
-
+The 5/6 confinement correction reported in [@HOWL-PHYS-5-2026] is decomposed into two distinct regions: above the confinement scale (~2 GeV), where the perturbative calculation is correct and no correction is needed, and below the confinement scale, where the confinement boundary reduces the vacuum polarization to approximately 61% of the perturbative prediction. The overall 5/6 was the α_EM kernel's weighted average of these two regions: 0.54 × 1.0 + 0.46 × 0.61 = 0.82. The confinement correction is kernel-dependent, not universal. Four Standard Model observables — the three gauge couplings at every energy scale, the electron anomalous magnetic moment through 3-loop, and the muon anomalous magnetic moment QED sector — are computed in the same integer arithmetic established in PHYS-5.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-6-2026,
+  title={ The Confinement Boundary in Integer Arithmetic },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-6-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

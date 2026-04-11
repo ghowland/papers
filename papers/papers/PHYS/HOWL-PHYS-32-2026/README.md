@@ -1,18 +1,18 @@
-# Paternal Operationalism
+# The A₃ Decomposition — Tracing the Integer 20 in the SU(3) Beta
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
-
+The modified SU(3) beta coefficient b₃' = −20/3 is one of the three numbers that control gauge coupling unification with the Cabibbo Doublet. The integer 20 in the numerator enters the gap ratio denominator (27/6), the α_s prediction (PHYS-30), and the cosmological integer inventory. This paper decomposes b₃' into its four exact Fraction constituents from first principles: the gauge self-coupling contributes −11 (from the SU(3) adjoint Casimir), three generations of SM quarks contribute +4 (from 12 Weyl color triplets), the Higgs contributes 0 (it is an SU(3) singlet), and the Cabibbo Doublet contributes +1/3 (from the Dynkin index formula). Over the common denominator 3: the numerator is −33 + 12 + 0 + 1 = −20. Every piece is an exact Fraction from the gauge group and particle content. The decomposition is verified by cross-checks against the SU(2) beta (−19/6, also decomposed), the two-loop diagonal entry db₃₃ = 40/9 from PHYS-28, and the gap ratio 38/27. All 14 checks pass exactly. This completes the integer traceability for all three gauge groups.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-32-2026,
+  title={ The A₃ Decomposition — Tracing the Integer 20 in the SU(3) Beta },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-32-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

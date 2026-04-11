@@ -1,5 +1,5 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "manuscript.md",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-25-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-46-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

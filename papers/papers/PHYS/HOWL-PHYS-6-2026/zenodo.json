@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Confinement Boundary in Integer Arithmetic",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "The 5/6 confinement correction reported in [@HOWL-PHYS-5-2026] is decomposed into two distinct regions: above the confinement scale (~2 GeV), where the perturbative calculation is correct and no correction is needed, and below the confinement scale, where the confinement boundary reduces the vacuum polarization to approximately 61% of the perturbative prediction. The overall 5/6 was the \u03b1_EM kernel's weighted average of these two regions: 0.54 \u00d7 1.0 + 0.46 \u00d7 0.61 = 0.82. The confinement correction is kernel-dependent, not universal. Four Standard Model observables \u2014 the three gauge couplings at every energy scale, the electron anomalous magnetic moment through 3-loop, and the muon anomalous magnetic moment QED sector \u2014 are computed in the same integer arithmetic established in PHYS-5.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The Koide Amplitude \u2014 m_tau from Two Masses and One Condition",
+    "registry_id": "HOWL-PHYS-33-2026",
+    "series_path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-33-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "The three charged lepton masses \u2014 electron (0.511 MeV), muon (105.66 MeV), tau (1776.86 MeV) \u2014 span four orders of magnitude with no explanation from the Standard Model. In 1981, Yoshio Koide observed that the ratio K = (m_e + m_\u03bc + m_\u03c4) / (\u221am_e + \u221am_\u03bc + \u221am_\u03c4)\u00b2 equals 2/3 to six significant figures. With current measured masses, K = 0.66666051, matching 2/3 to 0.00092%. The Koide parametrization writes \u221am_k = M(1 + a cos(\u03b8 + 2\u03c0k/3)), where the ratio K depends only on the amplitude a through K = (1 + a\u00b2/2)/3. At a\u00b2 = 2: K = 2/3 exactly. The measured amplitude is a\u00b2 = 1.9999631 \u2014 matching 2 to 18 parts per million. This paper computes the consequence: IF a\u00b2 = 2 exactly, THEN m_tau is determined by m_e and m_mu through a quadratic equation. The predicted value is 1776.969 MeV versus measured 1776.86 MeV \u2014 a miss of 0.006% (0.109 MeV), within the measurement uncertainty. Conditional on a\u00b2 = 2, the Standard Model parameter count reduces from 19 to 18. Combined with \u03b8_QCD = 0 and \u03b1_s from unification, the total is 19 \u2192 16.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The Koide Amplitude \u2014 m_tau from Two Masses and One Condition ## IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.  **Registry:** [@HOWL-PHYS-33-2026]  **Series Path:** [@HOW..."
 }

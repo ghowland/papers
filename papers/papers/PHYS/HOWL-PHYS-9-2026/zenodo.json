@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Electromagnetic Chain in Integer Arithmetic",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper demonstrates three claims, stated precisely.\n\nFirst: the QED perturbative series through 3-loop order, which relates the electron anomalous magnetic moment a_e to the fine structure constant \u03b1, is an integer transformation law. The coefficients A\u2081 through A\u2083 are exact rational linear combinations of five transcendental constants (\u03c0, ln(2), \u03b6(3), \u03b6(5), Li\u2084(1/2)), each represented as an exact ratio of two integers via [@HOWL-MATH-2-2026]. The 4-loop coefficient A\u2084 is a numerical constant computed to 1100 digits whose partial analytical structure involves the same transcendental families plus elliptic integrals, but whose full decomposition remains open. The law through 3-loop contains no measured input. At 4-loop, it contains numerical content (A\u2084) not yet fully decomposed into named transcendentals.\n\nSecond: inverting this law \u2014 solving for \u03b1 given the experimentally measured a_e \u2014 is performed entirely in exact Fraction arithmetic via Newton's method. The measured input is one rational number: a_e = 115965218059/10\u00b9\u2074. The output is \u03b1\u207b\u00b9 = 137.035998583, matching CODATA 2022 (137.035999177 \u00b1 0.000000021) to 4.3 parts per billion. The residual decomposes into known missing contributions at 5-loop and beyond, totaling approximately 4.2 ppb. The residual is accounted for.\n\nThird: combining the inversion with the vacuum polarization running from [@HOWL-PHYS-5-2026] produces the electromagnetic coupling at every energy scale from atomic to Z-boson, with the full chain executed in Fraction arithmetic. The endpoint \u03b1\u207b\u00b9(M_Z) is a prediction testable against the direct LEP measurement, limited by the hadronic VP uncertainty (\u00b173 ppm).\n\nThis paper demonstrates the integer structure of the electromagnetic transformation law. It does not claim parameter reduction. The relationship a_e \u2194 \u03b1 via QED is standard physics, used by the institution to extract \u03b1 from a_e measurements. What is shown here is that this extraction, and the subsequent running to all energy scales, can be expressed as integer operations on exact rationals \u2014 making explicit what the law IS (integers and transcendentals) versus what the universe supplies (one measured rational).",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-9-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-9-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

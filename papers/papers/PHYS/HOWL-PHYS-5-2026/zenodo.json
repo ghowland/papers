@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Running of \u03b1_EM in Integer Arithmetic",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "The QED running of the electromagnetic coupling constant \u03b1_EM from the Z boson mass to atomic scale is computed in exact rational arithmetic. Every intermediate value is a ratio of two integers. Seven measured rationals enter the computation; all transcendentals (\u03c0, ln) are represented as exact integer pairs at 100+ digit precision via [@HOWL-MATH-2-2026]. The result \u2014 1/\u03b1_EM = 137.0360025 \u2014 matches CODATA 2022 (137.0359992) to 0.02 parts per million.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-5-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-5-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

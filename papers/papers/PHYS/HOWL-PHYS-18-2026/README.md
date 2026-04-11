@@ -1,18 +1,18 @@
-# Paternal Operationalism
+# The Y = 1/6 Asymmetry
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
-
+The Cabibbo Doublet (3,2,1/6) fixes the Standard Model gap ratio with one particle because its hypercharge Y = 1/6 is the smallest nonzero value possible for a color triplet weak doublet with standard electric charges. The beta function contribution to b₁ (the hypercharge coupling) is proportional to Y², making Δb₁ = 1/15 — tiny. The contributions to b₂ (weak coupling) and b₃ (strong coupling) are independent of Y, giving Δb₂ = 1 and Δb₃ = 1/3. The resulting asymmetry ratio Δb₂/Δb₁ = 15 is the highest of any candidate in the 15-particle enumeration. This extreme asymmetry produces a double action on the gap ratio: the numerator (b₁ − b₂) shrinks by 13% because Δb₂ overwhelms Δb₁, while the denominator (b₂ − b₃) grows by 17% because Δb₂ exceeds Δb₃. Both effects push the gap ratio from 218/115 = 1.896 down to 38/27 = 1.407, within 0.049 of the measured 1.358. Increasing Y to any other value degrades the correction monotonically — at Y = 1/2, the gap ratio distance is already 3.4 times worse. The optimum at Y = 1/6 is sharp, not broad. The scalar version of (3,2,1/6) has the same asymmetry ratio but half the magnitude, reaching only 1.632 — five times worse. The Cabibbo Doublet is not merely a survivor of the elimination cascade. It is the uniquely optimal single-multiplet correction to the SM gap ratio, and the mechanism is exact rational arithmetic on the representation quantum numbers.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-18-2026,
+  title={ The Y = 1/6 Asymmetry },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-18-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

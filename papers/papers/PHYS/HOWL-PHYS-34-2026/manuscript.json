@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The sin\u00b2\u03b8_W Two-Loop Test \u2014 3/13 Is Not the Limit",
+    "registry_id": "HOWL-PHYS-34-2026",
+    "series_path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-13-2026] \u2192 [@HOWL-PHYS-27-2026] \u2192 [@HOWL-PHYS-28-2026] \u2192 [@HOWL-PHYS-30-2026] \u2192 [@HOWL-PHYS-34-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "The weak mixing angle sin\u00b2\u03b8_W is one of the most precisely measured quantities in particle physics (0.23122 at the Z mass). At the GUT scale, the SU(5) tree-level value is 3/8 = 0.375. One-loop running with the Cabibbo Doublet betas predicts sin\u00b2\u03b8_W = 0.22845, undershooting by 1.20% (PHYS-27). The value 3/13 = 0.23077 \u2014 the ratio of the number of fermion generations (3) to the absolute value of the modified SU(2) beta numerator (13) \u2014 sits between the one-loop prediction and measured, differing from measured by only 0.20%. This paper tests whether the two-loop running converges toward 3/13. It does not. The two-loop prediction with the full SM+VL b_ij matrix gives sin\u00b2\u03b8_W = 0.23133, which OVERSHOOTS both 3/13 and the measured value. The ordering is: one-loop (0.22845) < 3/13 (0.23077) < measured (0.23122) < two-loop (0.23133). The perturbative series crosses 3/13 between one-loop and two-loop, then continues past measured. The two-loop miss from measured is 0.048% \u2014 the most precise sin\u00b2\u03b8_W prediction in the series, but an overshoot, not an undershoot. 3/13 is not the perturbative limit. The convergence target is the measured value.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The sin\u00b2\u03b8_W Two-Loop Test \u2014 3/13 Is Not the Limit ## Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin\u00b2\u03b8_W = 0.23133, miss 0.048%.  **Registry:..."
 }

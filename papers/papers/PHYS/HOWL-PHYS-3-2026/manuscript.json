@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "G Has Never Been Tested Outside Earth's Soliton Boundary",
+    "registry_id": "HOWL-PHYS-3-2026",
+    "series_path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-3-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper documents a gap in the experimental record that the institution has not recognized because the concept required to recognize it has not been formulated within the institution's departmental structure.\n\nThe gravitational constant G has been measured by direct experiment exclusively on Earth's surface and in low Earth orbit. Every such measurement is performed inside Earth's Hill sphere \u2014 the gravitational sphere of influence defined by the institution's own orbital mechanics, located at approximately 1.5 million kilometers from Earth, where Earth's coherent gravitational structure ceases to dominate over the Sun's tidal forces. The ISS orbits at 400 kilometers. Every torsion balance ever built sits on Earth's surface. No direct measurement of G has ever been performed at or beyond the Hill sphere boundary.\n\nThe institution's claims for extra-terrestrial confirmation of G's universality rest on two indirect methods: pulsar timing and gravitational wave detection. Both methods receive signals at instruments inside Earth's Hill sphere. Both interpret signals using models that assume G is universal. Both are circular \u2014 the assumption does the work, and the consistent interpretation is cited as confirmation of the assumption.\n\nThe institution uses the Hill sphere concept in orbital mechanics without applying it to the question of whether G measurements are boundary-interior readings. The concept exists. The application has not been made. This paper makes it.\n\nThe reproducibility of G measurements across different laboratories on Earth's surface is reproducibility within one boundary configuration \u2014 not universality across boundary configurations. The persistent disagreement between G measurements from different experimental groups, which the institution attributes to unidentified systematic errors, is consistent with depth-dependent readings within Earth's single boundary. The disagreement may be signal rather than noise.\n\nThe experiment that would test G universality across a boundary has not been performed. Hardware capable of performing it \u2014 precision instruments aboard spacecraft at the L1 and L2 Lagrange points, located at Earth's Hill sphere boundary \u2014 already exists. The measurement has not been made because the question has not been framed. This paper frames it.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# G Has Never Been Tested Outside Earth's Soliton Boundary ## The Hill Sphere as the Unrecognized Constraint on Every Direct Measurement of the Gravitational Constant  **Registry:** [@HOWL-PHYS-3-2026..."
 }

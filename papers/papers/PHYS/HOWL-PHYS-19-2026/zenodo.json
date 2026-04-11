@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "Independent Anomaly Evidence for the Cabibbo Doublet",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "Three independent experimental anomalies \u2014 the CKM first-row unitarity deficit (2.5-4\u03c3), the forward-backward b-quark asymmetry at LEP (~3\u03c3), and the Higgs signal strength excess at the LHC (~2\u03c3) \u2014 each independently point to a vector-like quark doublet in the (3,2,1/6) representation at the TeV scale. These anomalies were identified by precision flavor physics groups between 2019 and 2024 using data from nuclear beta decays, the LEP electron-positron collider, and the LHC proton-proton collider \u2014 three different experiments at three different facilities across three different decades. Separately, exact rational arithmetic on gauge coupling beta coefficients (PHYS-15) identifies the same (3,2,1/6) representation as the minimal single-multiplet fix for gauge coupling unification. Neither community knew about the other's method. The gap ratio path determines the representation and the unification scale M_GUT = 10^15.5 GeV. The anomaly path determines the mass window (1.5-6 TeV) and the mixing structure (|V_ub'| \u2248 0.045). Together they specify a concrete particle \u2014 the Cabibbo Doublet \u2014 with testable predictions at both the energy frontier and the intensity frontier. This paper documents the anomaly evidence, the mass window, the extended CKM matrix, and the convergence of two independent roads on one particle. The data was already there. The connection was not.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-19-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-19-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

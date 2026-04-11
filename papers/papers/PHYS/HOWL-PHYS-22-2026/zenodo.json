@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The A\u2082 Geometric Cancellation \u2014 Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "The QED two-loop coefficient A\u2082 = \u22120.3285 decomposes into three pieces of distinct mathematical character: a rational piece 197/144 = +1.368, a number-theoretic piece (3/4)\u03b6(3) = +0.902, and a geometric piece R\u2084 \u00d7 (8/3 \u2212 16 ln 2) = \u22122.598, where R\u2084 = \u03c0\u00b2/32 is the 4-ball volume fraction established in MATH-5. Each piece is individually larger in magnitude than the net result. The geometric piece alone is 7.9 times the net. The positive content (rational + number-theoretic = +2.270) is cancelled by 87.4% by the negative geometric content (\u22122.598), leaving only 12.6% surviving as the physical coefficient. This cancellation is not required by any known symmetry or conservation law. It is an accident \u2014 a numerical coincidence of the specific coefficients that emerge from the seven two-loop Feynman diagrams. The R\u2084 = \u03c0\u00b2/32 substitution makes the 4-dimensional origin of the geometric piece visible: every \u03c0\u00b2 in the QED coefficient comes from the 4D loop momentum integration volume, and R\u2084 is the atomic unit of that geometric content. The decomposition is a specific instance of the Brown-Schnetz Galois coaction framework for Feynman integrals, where periods (geometric), motivic coefficients (arithmetic), and rational prefactors separate cleanly at each loop order. The method extends to A\u2083 but encounters a fundamental obstruction at A\u2084, where elliptic integrals break the multiple-zeta-value hierarchy.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "phys",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-22-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-22-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

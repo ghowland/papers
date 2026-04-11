@@ -1,18 +1,22 @@
-# Paternal Operationalism
+# Precision Frontier
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper extends the derivation graph from 17 values across five physics domains (PHYS-37) to 38 values across seven domains, through five new experiments executed in the DATA-6 system. The principal results are: (1) the fine structure constant α⁻¹ = 137.035999207, matching the rubidium recoil measurement to 12 significant figures (0.007 ppb) after subtracting seven published corrections from the electron g-2 — an 18× improvement over the uncorrected extraction; (2) the W boson mass derived from two independent paths (sin²θ_W + ρ parameter, and G_F + Δr) agreeing to 207 ppm, with the G_F path giving M_W = 80354 MeV at 195 ppm from the PDG value; (3) the Standard Model prediction of the muon anomalous magnetic moment a_μ(SM) = 116591741 × 10⁻¹¹, reproducing the 6.5σ anomaly with the Fermilab measurement; (4) the primordial lithium-7 abundance from gauge integers at 2.96× the observed value, reproducing the cosmological lithium problem from the same η₁₀ that predicts deuterium at 0.12σ; (5) the CKM first-row unitarity deficit explained by the Cabibbo Doublet mixing angle sin²θ₁₄ = 0.002025 at 0.83σ from the measured deficit.
 
+The derivation graph now spans QED, electroweak, cosmology, nuclear, muon, flavor, and mass (Koide) domains. From 15 measured inputs it produces 38 derived values — 23 more outputs than inputs. Every value where the Standard Model agrees with experiment, the chain agrees. Every anomaly the Standard Model has (muon g-2, lithium problem, CKM deficit), the chain reproduces. The graph contains no free parameters beyond the measured inputs.
+
+![Fig. 8: Identity card — 38 derived values across QED, electroweak, cosmology, BBN, muon, flavor, and mass domains from 15 measured inputs.](./figures/phys38_08_identity_card.png)
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-38-2026,
+  title={ Precision Frontier },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {},
+  url = {https://zenodo.org/record/[DOI:UNKNOWN]},
+  note={Howland Archive: HOWL-PHYS-38-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

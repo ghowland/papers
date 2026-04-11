@@ -1,0 +1,199 @@
+{
+  "key": "result_experiment_bridge_ew_cosmo_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_bridge_ew_cosmo_v0",
+  "timestamp": "2026-04-11T13:59:21Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "bridge_mw_from_weinberg_v0",
+      "status": "ok",
+      "output_count": 6
+    },
+    {
+      "key": "bridge_gamma_z_from_couplings_v0",
+      "status": "ok",
+      "output_count": 10
+    },
+    {
+      "key": "bridge_gf_from_mw_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "bridge_omega_b_from_integers_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "bridge_omega_de_from_flatness_v0",
+      "status": "ok",
+      "output_count": 8
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "M_W from Weinberg relation vs measured",
+      "output_key": "result_mw_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "80369.2",
+      "got": "79953.3792003491",
+      "miss_pct": "0.5174",
+      "detail": "predicted 79953.3792003491 ref 80369.2 miss 0.5174%"
+    },
+    {
+      "label": "M_W digits of agreement",
+      "output_key": "result_mw_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "PDG_2024",
+      "expected": "80360",
+      "got": "79953.3792003491",
+      "digits": 4,
+      "miss_pct": "0.506",
+      "status": "FAIL",
+      "detail": "4 digits: expected 8.036e+4 got 7.995e+4 miss 0.506%"
+    },
+    {
+      "label": "Gamma_Z total width vs measured",
+      "output_key": "result_gamma_z_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "LEP_EWWG",
+      "status": "INFO",
+      "expected": "2495.2",
+      "got": "2336.80780523693",
+      "miss_pct": "6.348",
+      "detail": "predicted 2336.80780523693 ref 2495.2 miss 6.348%"
+    },
+    {
+      "label": "G_F derived vs measured",
+      "output_key": "result_gf_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2022",
+      "status": "INFO",
+      "expected": "0.0000116638",
+      "got": "1.09673362736561e-5",
+      "miss_pct": "5.971",
+      "detail": "predicted 1.09673362736561e-5 ref 0.0000116638 miss 5.971%"
+    },
+    {
+      "label": "G_F digits of agreement",
+      "output_key": "result_gf_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "CODATA_2022",
+      "expected": "0.00001166",
+      "got": "1.09673362736561e-5",
+      "digits": 4,
+      "miss_pct": "5.941",
+      "status": "FAIL",
+      "detail": "4 digits: expected 1.166e-5 got 1.097e-5 miss 5.941%"
+    },
+    {
+      "label": "Omega_b from integers vs Planck",
+      "output_key": "result_omega_b_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.0490",
+      "got": "0.049035637966613",
+      "miss_pct": "0.07273",
+      "detail": "predicted 0.049035637966613 ref 0.0490 miss 0.07273%"
+    },
+    {
+      "label": "Omega_b digits of agreement",
+      "output_key": "result_omega_b_derived_v0",
+      "match_mode": "digits",
+      "reference_source": "Planck_2018",
+      "expected": "0.049",
+      "got": "0.049035637966613",
+      "digits": 3,
+      "miss_pct": "0.07273",
+      "status": "PASS",
+      "detail": "3-digit match, miss 0.07273%"
+    },
+    {
+      "label": "Omega_DE from flatness vs Planck",
+      "output_key": "result_omega_de_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.6889",
+      "got": "0.690264362033387",
+      "miss_pct": "0.198",
+      "detail": "predicted 0.690264362033387 ref 0.6889 miss 0.198%"
+    },
+    {
+      "label": "Omega_m derived vs Planck",
+      "output_key": "result_omega_m_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.3111",
+      "got": "0.309735637966613",
+      "miss_pct": "0.4386",
+      "detail": "predicted 0.309735637966613 ref 0.3111 miss 0.4386%"
+    },
+    {
+      "label": "sin2_tW used (input verification)",
+      "output_key": "result_sin2_tw_used_v0",
+      "match_mode": "digits",
+      "reference_source": "input_check",
+      "expected": "0.23122",
+      "got": "0.23122",
+      "digits": 5,
+      "miss_pct": "0.0",
+      "status": "PASS",
+      "detail": "5-digit match, miss 0.0%"
+    }
+  ],
+  "outputs": {
+    "result_mw_derived_v0": "79953.3792003491",
+    "result_mw_measured_v0": "80369.2",
+    "result_mw_miss_pct_v0": "0.517388252777084",
+    "result_mw_miss_mev_v0": "415.820799650921",
+    "result_sin2_tw_used_v0": "0.23122",
+    "result_cos_tw_v0": "0.876801003649061",
+    "result_gamma_z_derived_v0": "2336.80780523693",
+    "result_gamma_z_tree_v0": "2277.6705412779",
+    "result_gamma_z_measured_v0": "2495.2",
+    "result_gamma_z_miss_tree_pct_v0": "8.71791674904207",
+    "result_gamma_z_miss_qcd_pct_v0": "6.34787571188969",
+    "result_gamma_z_qcd_factor_v0": "1.03756056656969",
+    "result_gamma_z_neutrinos_v0": "467.932978892462",
+    "result_gamma_z_leptons_v0": "235.286765715293",
+    "result_gamma_z_up_quarks_v0": "536.721833397191",
+    "result_gamma_z_down_quarks_v0": "1037.72896327296",
+    "result_gf_derived_v0": "1.09673362736561e-5",
+    "result_gf_measured_v0": "1.1663788e-5",
+    "result_gf_miss_pct_v0": "5.97105954209683",
+    "result_gf_mw_used_v0": "79953.3792003491",
+    "result_gf_alpha_used_v0": "0.00729735256433143",
+    "result_omega_b_derived_v0": "0.049035637966613",
+    "result_omega_b_measured_v0": "0.049",
+    "result_omega_b_miss_pct_v0": "0.0727305441080672",
+    "result_omega_m_derived_v0": "0.309735637966613",
+    "result_omega_m_measured_v0": "0.3111",
+    "result_omega_m_miss_pct_v0": "0.438560602181629",
+    "result_dm_baryon_ratio_used_v0": "5.31654141376734",
+    "result_omega_dm_input_v0": "0.2607",
+    "result_omega_de_derived_v0": "0.690264362033387",
+    "result_omega_de_measured_v0": "0.6889",
+    "result_omega_de_miss_pct_v0": "0.198049358889099",
+    "result_omega_b_component_v0": "0.049035637966613",
+    "result_omega_dm_component_v0": "0.2607",
+    "result_omega_de_component_v0": "0.690264362033387",
+    "result_flatness_sum_v0": "1.0",
+    "result_flatness_residual_v0": "0.0"
+  },
+  "summary": {
+    "derivations_ok": 5,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 2,
+    "comparisons_info": 6,
+    "comparisons_skip": 0
+  }
+}

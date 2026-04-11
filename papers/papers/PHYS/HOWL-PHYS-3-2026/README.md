@@ -1,18 +1,28 @@
-# Paternal Operationalism
+# G Has Never Been Tested Outside Earth's Soliton Boundary
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper documents a gap in the experimental record that the institution has not recognized because the concept required to recognize it has not been formulated within the institution's departmental structure.
 
+The gravitational constant G has been measured by direct experiment exclusively on Earth's surface and in low Earth orbit. Every such measurement is performed inside Earth's Hill sphere — the gravitational sphere of influence defined by the institution's own orbital mechanics, located at approximately 1.5 million kilometers from Earth, where Earth's coherent gravitational structure ceases to dominate over the Sun's tidal forces. The ISS orbits at 400 kilometers. Every torsion balance ever built sits on Earth's surface. No direct measurement of G has ever been performed at or beyond the Hill sphere boundary.
+
+The institution's claims for extra-terrestrial confirmation of G's universality rest on two indirect methods: pulsar timing and gravitational wave detection. Both methods receive signals at instruments inside Earth's Hill sphere. Both interpret signals using models that assume G is universal. Both are circular — the assumption does the work, and the consistent interpretation is cited as confirmation of the assumption.
+
+The institution uses the Hill sphere concept in orbital mechanics without applying it to the question of whether G measurements are boundary-interior readings. The concept exists. The application has not been made. This paper makes it.
+
+The reproducibility of G measurements across different laboratories on Earth's surface is reproducibility within one boundary configuration — not universality across boundary configurations. The persistent disagreement between G measurements from different experimental groups, which the institution attributes to unidentified systematic errors, is consistent with depth-dependent readings within Earth's single boundary. The disagreement may be signal rather than noise.
+
+The experiment that would test G universality across a boundary has not been performed. Hardware capable of performing it — precision instruments aboard spacecraft at the L1 and L2 Lagrange points, located at Earth's Hill sphere boundary — already exists. The measurement has not been made because the question has not been framed. This paper frames it.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +56,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-PHYS-3-2026,
+  title={ G Has Never Been Tested Outside Earth's Soliton Boundary },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-PHYS-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-
