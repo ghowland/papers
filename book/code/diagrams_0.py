@@ -24,7 +24,7 @@ if True:
     BG      = '#ffffff'
     PAN     = '#f0ede8'
     GOLD    = '#a07820'
-    SILVER  = '#707880'
+    SILVER  = '#505860'
     CYAN    = '#1a8a80'
     MAG     = '#a03058'
     BLUE    = '#2855a0'
@@ -32,7 +32,7 @@ if True:
     RED     = '#b82020'
     ORANGE  = '#c06a18'
     WHITE   = '#1a1a22'
-    DIM     = '#c0beb8'
+    DIM     = '#908e88'
     PURPLE  = '#6040a0'
 else:
     # ── Global palette (D7.2) ──
@@ -164,14 +164,16 @@ for i, (r, name, reading, col, scale) in enumerate(levels):
                             linewidth=1.8, alpha=0.7, zorder=2 + i)
         ax.add_patch(circle)
 
-    # Labels — place to the right, staggered
-    lx = cx + r + 0.3
-    ly = cy + 0.15 * (i - 3.5)
+    # Labels — spread along right side, one row per level
+    lx = cx + max(r, 0.5) + 0.4
+    ly = cy - 3.5 + i * 1.1
     if lx > 14.5:
         lx = 14.5
-    ax.text(lx, ly + 0.2, name, color=col, fontsize=10, fontweight='bold', va='center')
-    ax.text(lx, ly - 0.15, reading, color=SILVER, fontsize=8, va='center')
-    ax.text(lx, ly - 0.45, scale, color=DIM, fontsize=7, va='center')
+    ax.annotate(name, xy=(cx + r * 0.9, cy), xytext=(lx, ly + 0.25),
+                color=col, fontsize=10, fontweight='bold', va='center',
+                arrowprops=dict(arrowstyle='-', color=col, lw=0.6, alpha=0.4))
+    ax.text(lx, ly - 0.05, reading, color=SILVER, fontsize=8, va='center')
+    ax.text(lx, ly - 0.35, scale, color=DIM, fontsize=7, va='center')
 
 # Title
 ax.text(8, 13.5, 'Nested Soliton Boundaries: Quark to Universe',

@@ -24,7 +24,7 @@ if True:
     BG      = '#ffffff'
     PAN     = '#f0ede8'
     GOLD    = '#a07820'
-    SILVER  = '#707880'
+    SILVER  = '#505860'
     CYAN    = '#1a8a80'
     MAG     = '#a03058'
     BLUE    = '#2855a0'
@@ -32,7 +32,7 @@ if True:
     RED     = '#b82020'
     ORANGE  = '#c06a18'
     WHITE   = '#1a1a22'
-    DIM     = '#c0beb8'
+    DIM     = '#908e88'
     PURPLE  = '#6040a0'
 else:
     # ── Global palette (D7.2) ──
@@ -49,7 +49,7 @@ else:
     WHITE   = '#e8e8f0'
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
-    
+
 
 def save(fig, name):
     path = os.path.join(outdir, name)
