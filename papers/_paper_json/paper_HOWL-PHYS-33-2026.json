@@ -9,9 +9,9 @@
   "skip": false,
   "subtitle": "IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.",
   "doi": {
-    "raw": "10.5281/zenodo.19528704",
+    "raw": "10.5281/zenodo.19532277",
     "is_stub": false,
-    "zenodo_id": 19528704,
+    "zenodo_id": 19532277,
     "status": "draft"
   },
   "frontmatter": {
