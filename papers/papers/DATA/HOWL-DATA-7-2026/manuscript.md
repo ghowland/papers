@@ -1,4 +1,7 @@
 
+**Skip:** True
+**Skip:** true
+
 **Registry:** [@HOWL-DATA-6-2026]
 
 **Series Path:** [@HOWL-DATA-4-2026] → [@HOWL-DATA-5-2026] → [@HOWL-DATA-6-2026]
