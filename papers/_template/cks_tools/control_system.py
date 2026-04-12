@@ -32,10 +32,10 @@ PAPER_SET = 'papers.json'
 PAPER_ZENODO_SET = 'papers_zenodo.json'
 
 # Scripts
-GEN_PDF = './_template/_old/gen_pdf.sh'
-SCAN = '../../../_template/_old/scan.py'
-GEN_BIBS = './_template/_old/create_bibs.py'
-README = '../../../_template/_old/readme_gen.py'
+GEN_PDF = './_template/gen_pdf.sh'
+SCAN = '../../../_template/scan.py'
+GEN_BIBS = './_template/create_bibs.py'
+README = '../../../_template/readme_gen.py'
 
 # Site
 README_SITE = "_template/data/README_site.md"
@@ -111,14 +111,15 @@ def Scan(args):
     if True:#item['doi']['is_stub']:
       directory = os.path.dirname(item['file_path'])
       os.chdir(directory)
+      print(f"Scan: {directory} - {original_dir} - {item['file_path']}")
 
       # Scan
       (status, output, error) = execute_command(SCAN)
-      print(f'  Result: {status}  Output: {output[:40]}')
+      print(f'  Result: {status}  Output: {output[:40]} CMD: {SCAN}')
 
       # Gen README
       (status, output, error) = execute_command(README)
-      print(f'  Result: {status}  Output: {output[:40]}')
+      print(f'  Result: {status}  Output: {output[:40]} CMD: {README}')
   
   # Back to original dir
   os.chdir(original_dir)
