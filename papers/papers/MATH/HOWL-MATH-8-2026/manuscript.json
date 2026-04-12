@@ -3,7 +3,7 @@
     "title": "Q335",
     "registry_id": "HOWL-MATH-8-2026",
     "series_path": "[@HOWL-MATH-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026] \u2192 [@HOWL-MATH-8-2026]",
-    "doi": "",
+    "doi": "10.5281/zenodo.19528621",
     "abstract": "",
     "dependencies": [],
     "raw_content_preview": "# Q335 ## An Operationally Exact Number System for Physical Computation  ### Registry: [@HOWL-MATH-8-2026]  **Series Path:** [@HOWL-MATH-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026] \u2192 [@HOWL-MA..."

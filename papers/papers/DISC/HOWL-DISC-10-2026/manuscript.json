@@ -3,7 +3,7 @@
     "title": "The Level 1 / Level 2 Boundary",
     "registry_id": "HOWL-DISC-10-2026",
     "series_path": "[@HOWL-DISC-6-2026] \u2192 Phase 1-4 Execution \u2192 [@HOWL-DISC-7-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.19528552",
     "abstract": "This paper documents the boundary between what the HOWL framework determines and what it does not. Twenty-four papers (MATH-1 through MATH-5, PHYS-1 through PHYS-14, DATA-1 through DATA-3, DISC-6 through DISC-8) have established that R\u2082 = \u03c0/4 appears in 9/9 physics domains across three irreducible subgroups, that transformation laws connecting observables are built from integers, and that parameter values are structureless in every basis tested. This paper collects the evidence, states the boundary, and maps every Standard Model parameter to one side or the other.\n\nThe boundary: the framework determines structure (which geometric constants appear, what the moduli are, where ground states sit, what the transformation law coefficients are). It does not determine values (couplings, masses, mixing angles). The evidence comes from both sides \u2014 positive results that derive structure, and null results that fail to derive values.",
     "dependencies": [],
     "raw_content_preview": "# The Level 1 / Level 2 Boundary ## Results of R\u2082 = \u03c0/4 appearring in 9 out of 9 physics domains tested  **Registry:** [@HOWL-DISC-10-2026]  **Series Path:** [@HOWL-DISC-6-2026] \u2192 Phase 1-4 Execution ..."

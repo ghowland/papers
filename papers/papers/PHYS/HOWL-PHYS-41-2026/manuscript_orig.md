@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-40-2026] → [@HOWL-PHYS-41-2026]
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Date:** April 9, 2026
 
 **Domain:** Interpretation / Gravitation / Cosmology

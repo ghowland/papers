@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "Session 3 established the operational ground: the SM does not unify (gap ratio 218/115 vs 1.358, 40% miss), the Cabibbo Doublet (3,2,1/6) fixes it (gap ratio 38/27, distance 0.049), and the two-loop correction improves the unification miss by 66%. Session 4 discovered that the same beta coefficient integers controlling unification also appear to control cosmological observables. Six formulas using only the electromagnetic coupling \u03b1, the beta-derived integers 13, 19, 20, and 22, and the geometric constant \u03c0 predict seven cosmological quantities \u2014 the cosmological constant scale, the dark matter to baryon ratio, the Hubble constant, and the four cosmic energy density fractions \u2014 at sub-percent precision with zero cosmological input. This paper documents the discovery, sets the working direction, and specifies the research program to determine whether the formulas are physics or coincidence. Three tracks: unification completion (PHYS-26 through PHYS-30), beta cosmology (PHYS-31 through PHYS-35, gated by statistical control), and structural foundations (PHYS-36, PHYS-37). Each paper has a backing script, a verification standard, and an abort condition. The direction is set without hedge. If it is wrong, we backtrack.",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [

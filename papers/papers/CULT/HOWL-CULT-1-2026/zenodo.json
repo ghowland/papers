@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "This paper identifies a structural mismatch between the institutional framework for medical validation and the category of intervention it is applied to. The requirement of large-sample statistical validation (N=1000) was developed for pharmaceutical and passive biological interventions. It has been extended, without modification, to evaluate skill-based interventions that operate through years of deliberate practice by trained practitioners. This extension constitutes a category error with measurable consequences: interventions that produce documented functional recovery are rendered institutionally invisible because the validation framework cannot accommodate them.\n\nWe demonstrate that the N=1000 requirement, when applied to skill-based neural rehabilitation, is logically equivalent to validating ballet instruction by testing 1000 untrained people who practice one hour per week for six weeks without a teacher. We trace the structural consequences of this mismatch through five domains: depth of observation, skill prerequisites, discovery lifecycle, resource impossibility, and institutional incentive alignment.\n\nThis paper does not argue that statistical validation is invalid. It argues that statistical validation is a tool, that tools have domains of applicability, and that applying a tool outside its domain does not produce rigor. It produces the appearance of rigor while structurally excluding the phenomenon under investigation.",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [

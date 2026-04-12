@@ -55,8 +55,8 @@ If you use this work in a pedagogical or research context, please cite:
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {},
-  url = {https://zenodo.org/record/[DOI:UNKNOWN]},
+  doi = {10.5281/zenodo.19528717},
+  url = {https://zenodo.org/record/19528717},
   note={Howland Archive: HOWL-PHYS-38-2026. Prerequisites: None (foundation paper) }
 }
 ```

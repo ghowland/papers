@@ -10,7 +10,7 @@
 
 **Domain:** Grand Unified Theories, Experimental Testability
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528671
 
 **Status:** Complete
 

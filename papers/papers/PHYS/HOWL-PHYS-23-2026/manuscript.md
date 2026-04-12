@@ -10,7 +10,7 @@
 
 **Domain:** Lepton Mass Structure, Path Closure
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528677
 
 **Status:** Complete
 

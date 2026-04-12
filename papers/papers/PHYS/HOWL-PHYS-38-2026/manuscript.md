@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026] → [@HOWL-PHYS-38-2026]
 
+**DOI:** 10.5281/zenodo.19528717
+
 **Date:** April 6, 2026
 
 **Domain:** QED / Electroweak / Cosmology / Nuclear / Muon / Flavor / DATA-6

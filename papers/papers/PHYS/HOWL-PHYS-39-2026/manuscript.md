@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026] → [@HOWL-PHYS-38-2026] → [@HOWL-PHYS-39-2026]
 
+**DOI:** 10.5281/zenodo.19528719
+
 **Date:** April 6, 2026
 
 **Domain:** GUT Unification / QED / Atomic Spectroscopy / DATA-6

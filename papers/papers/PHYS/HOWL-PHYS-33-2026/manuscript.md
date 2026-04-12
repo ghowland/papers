@@ -9,7 +9,7 @@
 
 **Domain:** Lepton Mass Relations, Conditional Parameter Reduction
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528704
 
 **Status:** Complete
 

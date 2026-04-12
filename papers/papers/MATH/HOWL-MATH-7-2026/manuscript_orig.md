@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-MATH-1-2026] → [@HOWL-MATH-6-2026] → [@HOWL-MATH-7-2026]
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Date:** April 9, 2026
 
 **Domain:** QED / Metrology / Precision Constants

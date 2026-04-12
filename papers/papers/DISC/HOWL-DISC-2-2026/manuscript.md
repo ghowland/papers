@@ -4,7 +4,7 @@
 
 **Registry:** [@HOWL-DISC-2-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528560
 
 **Date:** March 2026
 

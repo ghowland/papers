@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "This paper introduces **Partial Geometric Security**, a practical security model that significantly reduces attack surface in unsafe languages (e.g. C/C++) by enforcing **geometric invariants at system ingress**. Unlike full Geometric Security systems, which seal both interpretation and execution, Partial Geometric Security focuses on **structural closure at I/O boundaries**. By mapping all untrusted input into fixed\u2011shape memory structures\u2014or rejecting it outright\u2014this approach eliminates entire classes of exploits (buffer overflows, parser confusion, injection) while remaining compatible with existing software stacks. Partial Geometric Security is inexpensive to implement, deployable as a shim, and represents a decisive improvement over policy\u2011based defenses.",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [

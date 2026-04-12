@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "The gauge coupling beta functions of the Standard Model contain specific integers \u2014 41, 19, 7 from the SM betas, 25, 13, 20 from the Cabibbo Doublet modified betas, and derived quantities like 22 and 38. Earlier work observed that formulas constructed from these integers match measured cosmological values at sub-percent accuracy: the dark matter to baryon ratio equals (22/13)\u03c0 to 0.065%, the baryon density parameter equals (1/2)\u03c0\u00b2 to 0.097%, and the weak mixing angle equals 3/13 to 0.20%. Six of eight tested quantities were hit. This paper tests whether these matches are evidence of a deep connection or combinatorial coincidence. A Monte Carlo trial generates 10,000 random pools of 15 integers from [1,50] and scans each against the same eight targets using the same formula template (p/q)\u00d7\u03c0^b. The result: 81% of random pools score 6 or more hits \u2014 equal to or better than the beta pool. The beta pool sits at \u22120.24\u03c3 below the random mean of 6.2. The p-value is 0.81. The cosmological formulas are not statistically significant. The gate for cosmological investigation fires: Track B is parked. The unification program (Track A) is entirely unaffected \u2014 it rests on the dynamics of coupling running, not on integer formulas.",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [

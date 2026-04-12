@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026]
 
+**DOI:** 10.5281/zenodo.19528713
+
 **Date:** April 5, 2026
 
 **Domain:** Quantum Electrodynamics / Exact Arithmetic / Precision Physics / DATA-6

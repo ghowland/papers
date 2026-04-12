@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-DISC-1-2026] → [@HOWL-DISC-5-2026] → [@HOWL-SOPH-2-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528749
 
 **Date:** March 28 2026
 

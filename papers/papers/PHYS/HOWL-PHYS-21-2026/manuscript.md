@@ -10,7 +10,7 @@
 
 **Domain:** Epistemology of Physical Structure, Classification
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528673
 
 **Status:** Complete
 

@@ -9,7 +9,7 @@
 
 **Domain:** BSM Physics, Gauge Unification
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528651
 
 **Status:** Complete
 

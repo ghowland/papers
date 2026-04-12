@@ -9,7 +9,7 @@
 
 **Domain:** GUT Normalization, Integer Traceability, Representation Theory
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528685
 
 **Status:** Complete
 

@@ -8,7 +8,7 @@
 
 **Domain:** Gauge Coupling Unification, Beyond Standard Model
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528655
 
 **Status:** Complete
 

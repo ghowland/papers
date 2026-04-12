@@ -32,7 +32,7 @@ PAPER_SET = 'papers.json'
 PAPER_ZENODO_SET = 'papers_zenodo.json'
 
 # Scripts
-GEN_PDF = './_template/gen_pdf.sh'
+GEN_PDF = '../../../_template/gen_pdf.sh'
 SCAN = '../../../_template/scan.py'
 GEN_BIBS = './_template/create_bibs.py'
 README = '../../../_template/readme_gen.py'
@@ -84,20 +84,27 @@ def List(args):
 
 
 def Build(args):
-
   print(f"Build papers")
 
+  original_dir = os.getcwd()
+
   for item in args.papers:
+    os.chdir(original_dir)
+
     # Only do stubbed
-    if True:#item['doi']['is_stub'] and not item['skip']:
+    # if True:
+    if item['doi']['is_stub'] and not item['skip']:
+      # Go to the directory
       directory = os.path.dirname(item['file_path'])
-      cmd = f'{GEN_PDF} {directory}' 
-      print(cmd)
+      os.chdir(directory)
+
+      cmd = f'{GEN_PDF}' 
+      print(f"{cmd} - {item['paper_id']}")
 
     #   if item['paper_id'] != 'HOWL-0-2026': continue # Skip test
  
       (status, output, error) = execute_command(cmd)
-      print(f'  Result: {status}  Output: {output[:40]}')
+      print(f'  Result: {status}  Output: {output[:40]}  Error: {error[:40]}')
   
 
 def Scan(args):
@@ -186,7 +193,8 @@ def Cleanup(args):
   for item in args.papers:
 
     # Only do stubbed
-    if True:#item['doi']['is_stub']:
+    # if True:
+    if item['doi']['is_stub']:
       if item['skip']: continue
 
       print(f'Cleanup: {item["file_path"]}')
@@ -202,32 +210,32 @@ def Cleanup(args):
           end_line = line.split(':', 1)[1].strip()
           lines[count] = f'# {end_line}'
         
-        # Registry
-        if line.startswith('**Registry:**'):
-          lines[count] = f'**Registry:** [@{item["paper_id"]}]'
+        # # Registry
+        # if line.startswith('**Registry:**'):
+        #   lines[count] = f'**Registry:** [@{item["paper_id"]}]'
         
-        # Series Path
-        if line.startswith('**Series Path:**'):
-          topic_name = item["paper_id"].split('-')[1]
-          for topic_dict in TOPICS:
-            if list(topic_dict.keys())[0] == topic_name:
-              topic = topic_dict[topic_name]
-              print(f'TOPIC: {topic}')
+        # # Series Path
+        # if line.startswith('**Series Path:**'):
+        #   topic_name = item["paper_id"].split('-')[1]
+        #   for topic_dict in TOPICS:
+        #     if list(topic_dict.keys())[0] == topic_name:
+        #       topic = topic_dict[topic_name]
+        #       print(f'TOPIC: {topic}')
 
-          # Format series path
-          series_path = topic['path']
+        #   # Format series path
+        #   series_path = topic['path']
 
-          paper_id = int(item["paper_id"].split('-')[2])
-          if paper_id == 1:
-            series_path = series_path.replace('{{registry_last}}', f'') #TODO: Verify number, reduce and put the last item
-          else:
-            parts = item["paper_id"].split('-')
-            previous = f" → [@{parts[0]}-{parts[1]}-{paper_id - 1}-{parts[3]}]"
-            series_path = series_path.replace('{{registry_last}}', previous)
+        #   paper_id = int(item["paper_id"].split('-')[2])
+        #   if paper_id == 1:
+        #     series_path = series_path.replace('{{registry_last}}', f'') #TODO: Verify number, reduce and put the last item
+        #   else:
+        #     parts = item["paper_id"].split('-')
+        #     previous = f" → [@{parts[0]}-{parts[1]}-{paper_id - 1}-{parts[3]}]"
+        #     series_path = series_path.replace('{{registry_last}}', previous)
           
-          # Final Series path
-          series_path = series_path.replace('{{registry}}', f'[@{item["paper_id"]}]')
-          lines[count] = f'**Series Path:** {series_path}'
+        #   # Final Series path
+        #   series_path = series_path.replace('{{registry}}', f'[@{item["paper_id"]}]')
+        #   lines[count] = f'**Series Path:** {series_path}'
         
         # DOI
         if line.startswith('**DOI:**'):

@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-MATH-1-2026] → [@HOWL-MATH-7-2026] → [@HOWL-MATH-8-2026] → [@HOWL-MATH-9-2026] → [@HOWL-MATH-10-2026]
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Date:** April 9, 2026
 
 **Domain:** Methodology / Statistical Evidence / Philosophy of Science

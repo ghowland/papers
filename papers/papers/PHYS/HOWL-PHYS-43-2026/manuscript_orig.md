@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026] → [@HOWL-PHYS-43-2026]
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Date:** April 9, 2026
 
 **Domain:** Gravitation / Metrology / Fundamental Constants / Experimental Design

@@ -5,6 +5,8 @@
 
 **Series Path:** [@HOWL-DATA-4-2026] → [@HOWL-DATA-5-2026] → [@HOWL-DATA-6-2026]
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Date:** April 5, 2026
 
 **Domain:** Research Infrastructure / Versioned Database / Experiment System

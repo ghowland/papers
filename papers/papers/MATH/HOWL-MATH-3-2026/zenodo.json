@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "[@HOWL-MATH-2-2026] established integer pair representations for 17 transcendental constants. [@HOWL-PHYS-5-2026] and [@HOWL-PHYS-6-2026] used five of these \u2014 \u03c0, ln(2), \u03b6(3), \u03b6(5), Li\u2084(1/2) \u2014 to compute the electron anomalous magnetic moment through 3-loop order in exact rational arithmetic. At 4-loop, complete elliptic integrals appear and the integer pair framework stalls. This paper extends the MATH-2 basis in three directions: complete elliptic integrals at rational arguments as convergent rational series, accelerated rational series for odd zeta values, and identification of the transcendental hierarchy that governs which constants appear at which order of perturbation theory. The extended basis is applied to Laporta's numerically-known 4-loop master integrals via PSLQ integer relation detection.",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [

@@ -8,7 +8,7 @@
 
 **Parent Framework:** [@HOWL-INFO-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528585
 
 **Date:** March 27 2026
 

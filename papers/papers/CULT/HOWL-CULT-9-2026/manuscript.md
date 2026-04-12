@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026] → [@HOWL-CULT-6-2026] → [@HOWL-CULT-7-2026] → [@HOWL-CULT-8-2026] → [@HOWL-CULT-9-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528522
 
 **Date:** March 29 2026
 

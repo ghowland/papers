@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-DISC-6-2026] → Phase 1-4 Execution → [@HOWL-DISC-7-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528552
 
 **Date:** April 1 2026
 

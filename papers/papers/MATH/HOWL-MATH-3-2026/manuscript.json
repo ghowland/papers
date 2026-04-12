@@ -3,7 +3,7 @@
     "title": "The Transcendental Hierarchy",
     "registry_id": "HOWL-MATH-3-2026",
     "series_path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-2-2026] \u2192 [@HOWL-MATH-3-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.19528603",
     "abstract": "[@HOWL-MATH-2-2026] established integer pair representations for 17 transcendental constants. [@HOWL-PHYS-5-2026] and [@HOWL-PHYS-6-2026] used five of these \u2014 \u03c0, ln(2), \u03b6(3), \u03b6(5), Li\u2084(1/2) \u2014 to compute the electron anomalous magnetic moment through 3-loop order in exact rational arithmetic. At 4-loop, complete elliptic integrals appear and the integer pair framework stalls. This paper extends the MATH-2 basis in three directions: complete elliptic integrals at rational arguments as convergent rational series, accelerated rational series for odd zeta values, and identification of the transcendental hierarchy that governs which constants appear at which order of perturbation theory. The extended basis is applied to Laporta's numerically-known 4-loop master integrals via PSLQ integer relation detection.",
     "dependencies": [],
     "raw_content_preview": "# The Transcendental Hierarchy  ## Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary  **Registry:** [@HOWL-MATH-3-2026]  **Series Path:** [@HOWL-MATH-1-2026] \u2192 [@..."

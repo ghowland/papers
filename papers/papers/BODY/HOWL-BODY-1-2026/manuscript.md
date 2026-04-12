@@ -3,7 +3,7 @@
 
 **Registry:** [@HOWL-BODY-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19528490
 
 **Date:** March 27 2026
 
