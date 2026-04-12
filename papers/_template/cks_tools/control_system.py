@@ -24,7 +24,7 @@ ZENODO_CRED_PATH = "/mnt/c/Users/Geoff/.secure/zenodo.json"
 OUTPUT_JSON_PATH = "zenodo_master_manifest.json"
 
 # Working
-WORKING_DIR = '/mnt/c/Users/Geoff/cks/cks'
+WORKING_DIR = '/mnt/c/Users/Geoff/work/papers/papers'
 
 # Data
 ZENODO_SET = '_template/cks_tools/zenodo_master_manifest.json'
@@ -165,9 +165,12 @@ def Backup(args):
   print("Backup manuscript.md -> manuscript_orig.md, stub only")
 
   for item in args.papers:
+    # print(f"Backup: {item['paper_id']} - {item['doi']['is_stub']} - {item['doi']['zenodo_id']}")
+    # continue #Skip
 
     # Only do stubbed
-    if True:#item['doi']['is_stub']:
+    # if True:
+    if item['doi']['is_stub']:
       backup = item['file_path'].replace('.md', '_orig.md')
       print(f'Backup: {item["file_path"]} -> {backup}')
       shutil.copy2(item['file_path'], backup)
@@ -282,6 +285,11 @@ def Main(args):
 
   with open(PAPER_ZENODO_SET, "r", encoding="utf-8") as fp:
     args.papers_zenodo = json.load(fp)
+
+  # print(f'Papers: {args.papers}')
+  # print(WORKING_DIR)
+  # print(PAPER_SET)
+  # return
 
   if args.verbose:
     print(f"Verbosity is enabled.")
