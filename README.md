@@ -194,8 +194,8 @@
 
 ---
 
-## Music
-*Engineering music, for oneself.*
+## Lyrics
+*Engineering lyrics.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |

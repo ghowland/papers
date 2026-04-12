@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "Neural Territory",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper documents a systematic method for nervous system repair developed over 25 years of daily practice following catastrophic C5 spinal injury at age 11. The method addresses chronic neuromuscular dysfunction at the level of cortical body map degradation, inappropriate neural linking, and maladaptive motor patterning \u2014 problems that conventional rehabilitation does not target and cannot resolve through its available tools.\n\nThe method uses four unrestricted interfaces (eyes, breath, tongue, dan tien), seven drumming rudiments adapted for joint mobilization, controlled chaos through stochastic resonance, cranial nerve manipulation for brainstem-level motor control, systematic fibrosis release, and sustained interoceptive attention development. These tools combine through a generative combinatoric system that produces effectively unlimited training configurations at any difficulty level.\n\nDocumented outcomes for the primary practitioner (age 51, 25 years of practice): weight reduction from 140kg to 88kg competition weight, elimination of all chronic pain, return to competitive judo at age 50, order-of-magnitude improvement in cognitive interruption tolerance, and subjective 100x increase in interoceptive bandwidth from baseline. Raw cognitive capacity (IQ, pattern recognition, creative synthesis) did not change. The gains are interference reduction and resilience, not capability expansion.\n\nThis is a practice document. It describes what to do, how to progress, and what to expect. It does not claim to explain why these practices work at a theoretical level. The practices produce results when performed. The results are the validation.\n\nThere is no alternative to this level of work for this level of problem. Medication manages symptoms without addressing causes. Surgery addresses structure without addressing neural patterning. Generic physical therapy (\"foam roller, resistance band, do these exercises for six weeks\") addresses surface tissue without addressing cortical map degradation, system-wide compensation architecture, or 40 years of maladaptive reinforcement at 20,000 breaths and 8,000 steps per day. The gap between what conventional rehabilitation addresses and what this method addresses is not a gap in intensity. It is a gap in what is being treated.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "body",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-BODY-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/BODY/HOWL-BODY-1-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The Remainder Extraction Program: Execution and Results",
+    "registry_id": "HOWL-DISC-7-2026",
+    "series_path": "[@HOWL-DISC-6-2026] \u2192 Phase 1-4 Execution \u2192 [@HOWL-DISC-7-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "DISC-6 committed to a four-phase program: extraction, unification, synthesis, and parameter reduction, using exact integer arithmetic and the remainder-as-observable framework to attack the Standard Model free parameter count. This paper reports the execution of all four phases.\n\nPhases 1-3 delivered concrete results. Phase 1 extracted six physics domains into exact Fraction arithmetic, producing a verified extraction table with scripts where every assertion passes. Phase 2 tested six cross-domain questions, finding four confirmed connections, one structural parallel, and one informative null. Phase 3 synthesized the results into outcome (b) \u2014 partial collapse \u2014 identifying one universal constant (R\u2082 = \u03c0/4, present in all six domains), two modular types (phase-periodic and topological), three subgroups (cosine-periodic, monotonic accumulation, topological quantization), and one ground state principle (minimum of cosine on 8R\u2082-periodic domain gives remainder = 0, which is why \u03b8_QCD = 0).\n\nPhase 4 (parameter reduction) returned null. Nonlinear PSLQ (80 tests, 8 targets \u00d7 10 transforms, maxcoeff 1000) found no relation. Synthesis-informed modular search (11 targets \u00d7 18 moduli including R\u2082-multiples, R\u2084-multiples, and products of basis constants) produced 42 raw hits, most consistent with statistical noise. One candidate \u2014 \u03b1_s = \u03c0\u03b6(3)/32, matching the measured value to 0.01% \u2014 lies within the measurement uncertainty of \u00b10.0009 but cannot be tested without approximately 5\u00d7 improvement in \u03b1_s precision.\n\nThe confirmed parameter count remains: 19 \u2192 18 (\u03b8_QCD = 0, PHYS-7). The conditional reduction m_\u03c4 via Koide (PHYS-8, 0.91\u03c3) and the demonstrated transformation law \u03b1 from a_e (PHYS-9, 4.3 ppb) are unchanged. No new parameter was reduced.\n\nDISC-6 criterion F4 (parameter reduction) is falsified. Criteria F1, F2, F3, F5, and F6 are met. The framework and infrastructure are delivered. The application to free parameters returned null. Both are reported honestly.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The Remainder Extraction Program: Execution and Results ## Four Phases Delivered, Parameter Reduction Null  **Registry:** [@HOWL-DISC-7-2026]  **Series:** Discovery  **Series Path:** [@HOWL-DISC-6-2..."
 }

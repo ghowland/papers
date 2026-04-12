@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# The Remainder Extraction Program
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+The Remainder Extraction Program (DISC-6 through DISC-8) built a framework, executed four phases, ran three search strategies under statistical control, and produced a classification of nine physics domains into three subgroups with one universal constant R₂ = π/4. The program derived no new SM parameter values. This paper identifies why, and argues that the finding is itself the result.
 
+The framework determines Level 1 (geometric) structure: moduli, subgroup classification, which n-ball remainder R_n appears in which domain, and the ground state principle that produces θ_QCD = 0. This structure is universal — it follows from the geometry of circles and spheres and the mathematical properties of periodicity, monotonicity, and gauge invariance. It does not depend on which universe we live in.
+
+The framework does not determine Level 2 (domain-specific) continuous parameters: coupling constants, mass ratios, mixing angles. These are the remainders that populate the geometric framework. Three search strategies — linear PSLQ (17 targets, 35 constants, maxcoeff 10,000), nonlinear PSLQ (8 targets, 10 transforms, maxcoeff 1,000), and synthesis-informed modular search (13 targets, 18 moduli, formally controlled against random numbers) — all returned null. SM parameter values are not simple functions of the transcendental basis under any tested relationship.
+
+The three parameter reductions in the series (θ_QCD = 0, m_τ via Koide, α from a_e) all came from domain-specific physics — energy minimization, an empirical mass formula, QED perturbative series — not from the framework itself. The framework provided the language for expressing these reductions but did not generate them.
+
+The central finding: the geometric structure of physics equations is universal and determined. The specific parameter values that populate this structure are not determined by the structure. The boundary between these — between what the equations' form determines and what the universe's specific constants supply — is where the program arrived, and identifying this boundary precisely is the contribution.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-DISC-9-2026,
+  title={ The Remainder Extraction Program },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-DISC-9-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

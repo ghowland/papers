@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Platform Discovery",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper documents a methodology discovery. The HOWL series \u2014 6 MATH papers, 23 PHYS papers, 4 DATA papers, and 6 verified scripts \u2014 reached a complexity threshold where a software platform became necessary for continued coherent work. The platform consists of five components: a library containing every constant and computation helper (phys24_lib.py, 21/21 self-test), a comprehensive test verifying every value at source precision (phys24_lib_test.py, 148/148 checks), a 22-section script standard (phys24_script_rules.md), 8 demonstration scripts (62/62 checks), and a lexicon paper fixing the operational ground (PHYS-24). The total verification pyramid spans 367 checks across 17 components with zero failures. The discovery is not the physics \u2014 that was established in Sessions 1-3. The discovery is that a multi-session LLM research series requires executable, testable artifacts to maintain computational integrity across session boundaries where no memory persists. The platform pattern \u2014 library, test, standard, lexicon \u2014 may generalize to any LLM-assisted research program of sufficient complexity.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "disc",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DISC-12-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DISC/HOWL-DISC-12-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

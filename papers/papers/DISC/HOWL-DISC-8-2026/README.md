@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# The Remainder Extraction Program: Phase II Results
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+DISC-8 specified nine work items in three phases: statistical control, derivation, and extension. This paper reports the execution and results of all items.
 
+Phase 1 (control) delivered two decisive results. The formal control test — 13,000 random numbers through the identical DISC-7 modular scan protocol — established that SM parameters produce hits at the same rate as random numbers (47 SM hits versus 42.3 random mean, 0/13 targets significant at p < 0.05). The α_s = πζ(3)/32 candidate is killed: 3.72% of random numbers near 0.118 produce the same modular signature. The VP single-threshold closure proved that no smooth change of variables can make the VP running periodic, establishing the irreducibility of the three-subgroup structure as a mathematical theorem.
+
+Phase 2 (derivation) attempted both high-priority targets. The α_s derivation was cancelled after the control test killed its target — the candidate is noise, not physics. The Koide a = √2 derivation via frustrated graph topology produced a documented blockage: the Kuramoto model controls phase spacing while Koide requires fixed 120° spacing with variable amplitude. These are different degrees of freedom. A follow-up investigation found the midpoint reformulation: a² = 2 is the arithmetic midpoint of the positivity-allowed range [0, 4], equivalently CV(√m) = 1 is the midpoint of [0, √2], equivalently Koide = 2/3 is the midpoint of [1/3, 1]. All three are exact Fraction identities. Quarks do not satisfy the midpoint condition (up-type CV = 1.24, down-type CV = 1.09), constraining any future derivation to be lepton-specific.
+
+Phase 3 (extension) extracted three new physics domains — Aharonov-Bohm, flux quantization in superconductors, and the AC Josephson effect — into the remainder framework. All three confirm Subgroup A (phase-periodic, modulus 8R₂). The extraction table now covers 9 domains across 3 subgroups. R₂ = π/4 is present in 100% of domains. The α_s residual PSLQ scan (5 tests at maxcoeff up to 10,000) returned all null, closing the candidate from both statistical and algebraic directions.
+
+The parameter count is unchanged: 19 → 18 confirmed (θ_QCD = 0), 18 → 17 conditional (m_τ via Koide). No new parameter was reduced. The central lesson: derivation produced all three parameter reductions in the series; scanning produced none.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-DISC-8-2026,
+  title={ The Remainder Extraction Program: Phase II Results },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-DISC-8-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

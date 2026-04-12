@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# The Institutional Coherence Gap
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper applies the Triveritas framework — Logical Validity (L), Mathematical Coherence (M), and Empirical Anchoring (E) as independent dimensions — to the three pillars of modern physics: quantum mechanics, the Standard Model of particle physics, and general relativity. The evaluation uses no-hedge M-accounting: every point where a theory requires a measured value rather than deriving it from axioms is reported as M=0 at that point. Utility does not change the M-score. Engineering success does not change the M-score. 2.1 does not equal 2.
 
+The evaluation reveals that the institution's best theories have the same Triveritas profile as the CKS corpus documented in [@HOWL-INFO-5-2026]: high L, high E, M=0 at every foundational point where derivation from axioms is required. Quantum mechanics achieves L=95, E=98, and M that is bimodal — genuinely high where the substrate is discrete and integer-indexed, genuinely zero where the substrate goes continuous and requires renormalization insertions. The Standard Model achieves L=90, E=92, and M=0 at 19 foundational points where measured values are inserted because the theory cannot derive them. General relativity achieves L=88, E=90, and M=0 at every structural level — continuous substrate throughout, no operational equality, gravitational constant measured, cosmological constant off by 10^120, matter content input from measurement, quantum extension non-renormalizable.
+
+The coherence trap identified in [@HOWL-INFO-5-2026] and demonstrated at individual scale by the CKS corpus operates at civilizational scale in institutional physics. The mechanism is identical: high L and E produce a coherence signal that feels like verified truth, suppressing the M-check that would reveal that the derivation chain does not compile from axioms. The inverse verification law — P(detecting M-failure) inversely proportional to apparent M — explains why the M-check has not been applied at the foundational level for 100 years. The 19 free parameters of the Standard Model have been known for decades. They have not been treated as M-failures. They have been treated as features of current knowledge. The treatment is the trap.
+
+This paper uses only the institution's own data, the institution's own stated values, and the institution's own acknowledged open problems. No external framework is imposed beyond the Triveritas measurement tool. The measurements are reported without hedge.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-DISC-5-2026,
+  title={ The Institutional Coherence Gap },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-DISC-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# The Remainder Extraction Program: Execution and Results
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+DISC-6 committed to a four-phase program: extraction, unification, synthesis, and parameter reduction, using exact integer arithmetic and the remainder-as-observable framework to attack the Standard Model free parameter count. This paper reports the execution of all four phases.
 
+Phases 1-3 delivered concrete results. Phase 1 extracted six physics domains into exact Fraction arithmetic, producing a verified extraction table with scripts where every assertion passes. Phase 2 tested six cross-domain questions, finding four confirmed connections, one structural parallel, and one informative null. Phase 3 synthesized the results into outcome (b) — partial collapse — identifying one universal constant (R₂ = π/4, present in all six domains), two modular types (phase-periodic and topological), three subgroups (cosine-periodic, monotonic accumulation, topological quantization), and one ground state principle (minimum of cosine on 8R₂-periodic domain gives remainder = 0, which is why θ_QCD = 0).
+
+Phase 4 (parameter reduction) returned null. Nonlinear PSLQ (80 tests, 8 targets × 10 transforms, maxcoeff 1000) found no relation. Synthesis-informed modular search (11 targets × 18 moduli including R₂-multiples, R₄-multiples, and products of basis constants) produced 42 raw hits, most consistent with statistical noise. One candidate — α_s = πζ(3)/32, matching the measured value to 0.01% — lies within the measurement uncertainty of ±0.0009 but cannot be tested without approximately 5× improvement in α_s precision.
+
+The confirmed parameter count remains: 19 → 18 (θ_QCD = 0, PHYS-7). The conditional reduction m_τ via Koide (PHYS-8, 0.91σ) and the demonstrated transformation law α from a_e (PHYS-9, 4.3 ppb) are unchanged. No new parameter was reduced.
+
+DISC-6 criterion F4 (parameter reduction) is falsified. Criteria F1, F2, F3, F5, and F6 are met. The framework and infrastructure are delivered. The application to free parameters returned null. Both are reported honestly.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-DISC-7-2026,
+  title={ The Remainder Extraction Program: Execution and Results },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-DISC-7-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

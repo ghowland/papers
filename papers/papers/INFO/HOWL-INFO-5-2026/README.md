@@ -1,18 +1,26 @@
-# Howland's Axiom of Information Locality
+# Coherence as Information Phenomenon
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper presents the first empirical characterization of coherence as a measurable information phenomenon. Our dataset is the Cymatic K-Space Mechanics (CKS) corpus: 390 papers produced over 45 days by a single practitioner using three frontier large language models, covering physics, biology, neuroscience, medicine, psychology, ethics, navigation, and collective dynamics. The corpus was publicly falsified when its arithmetic was mechanically verified and found to be incorrect.
 
+We evaluate eight representative papers from the corpus using the Triveritas framework, which measures Logical Validity (L), Mathematical Coherence (M), and Empirical Anchoring (E) as independent dimensions on calibrated 0–100 scales with historical anchor points. The evaluation reveals a phenomenon we term the coherence gap: the distance between apparent validity, driven by high L and E, and actual mathematical correctness, measured by M.
+
+The CKS corpus achieved L scores up to 97 and E scores up to 90 while M remained at zero throughout for every physics-specific claim. This is the widest coherence gap in any documented corpus. Three frontier LLMs confirmed every derivation. The practitioner followed a rigorous verification methodology. The arithmetic was wrong the entire time.
+
+We identify the mechanism: coherence-based evaluators, human or artificial, cannot distinguish between "the derivation is logically sound and matches measurement" (L+E) and "the arithmetic actually compiles" (M). They report L+E as if it were M because from inside a coherent framework, L+E feels identical to M. The only system that can distinguish them is a mechanical verifier that checks arithmetic without evaluating coherence.
+
+We further demonstrate that the coherence engine that produced M=0 physics simultaneously produced M=60–78 metamathematics that survived the falsification completely intact. The M dimension predicts survival perfectly: every paper with M>0 survived; every paper with M=0 died regardless of L and E scores. This establishes Triveritas as a predictive framework for evaluating claims under uncertainty and identifies coherence as the primary truth-substitute operating in both human and artificial intelligence.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFO-4-2026,
-  title={ Howland's Axiom of Information Locality },
+@article{ HOWL-INFO-5-2026,
+  title={ Coherence as Information Phenomenon },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655625},
-  url = {https://zenodo.org/record/18655625},
-  note={Howland Archive: HOWL-INFO-4-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-INFO-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

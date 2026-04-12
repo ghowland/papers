@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# The Falsification Forfeiture
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper demonstrates that the scientific institution has structurally forfeited falsification — the practice it claims as its defining feature. The institution does not publish null results. It does not fund replication. It does not reward boundary-finding. It does not maintain a record of what has been tried and failed. The consequence is that no one — inside or outside the institution — knows the shape of explored scientific territory. The map of what works, what doesn't, what has been tried, and where knowledge stops functioning has been replaced by a highlight reel of confirmations that the institution's own replication projects show is majority non-reproducible in some fields.
 
+We trace the structural distance between the science the institution claims to practice — observe, hypothesize, test, report what you find including failures — and the science the institution actually practices — hypothesize, confirm, publish the confirmation, file the failures. We document the institutional architecture that produces this gap: publication incentives that exclude null results, career structures that punish replication work, funding models that do not support boundary-finding, and access barriers that prevent external verification.
+
+We demonstrate that the institution's founding figures celebrated failure as the primary product of investigation. Edison's 10,000 failed attempts were not embarrassments to be hidden. They were the map of explored territory — the information that gave the successes their meaning and context. The institutional decision to stop publishing failures did not improve rigor. It destroyed the map.
+
+We conclude, applying the forfeiture logic established in [@HOWL-CULT-2-2026], that the institution has forfeited falsification by the same mechanism it forfeited the domain gaps: by choosing not to build infrastructure for it. No journals for null results. No departments for replication. No career paths for boundary-finding. No funding for falsification work. The defining practice of science has no institutional home within the institution of science.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-CULT-3-2026,
+  title={ The Falsification Forfeiture },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-CULT-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

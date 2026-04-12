@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# The Universal Power-of-Two Basis
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+[@HOWL-MATH-2-2026] established that 17 transcendental constants can be represented as exact integer pairs (p, q) at 100-digit precision using convergent rational series in exact arithmetic. Each constant has a different denominator q, determined by the series used to compute it. Operations between constants — addition, subtraction, comparison — require computing least common denominators between large integers, which is computationally expensive and produces intermediate values with inflated digit counts.
 
+This paper shows that all 22 constants in the extended MATH-2/MATH-3 basis can be represented as single integers over a shared denominator 2³³⁵, verified at 100 digits against mpmath references. The choice of a power-of-two denominator is motivated by the continued fraction structure of Euler's number: 87/32 is the 5th convergent of e, the provably best rational approximation with denominator ≤ 32, and 32 = 2⁵. Extending to 2³³⁵ provides 100-digit precision for every constant in the basis.
+
+Under this representation, addition and subtraction of any two transcendental constants reduces to addition or subtraction of their integer numerators. No least common denominator computation is required. The shared denominator 2³³⁵ is stored once. The total storage for 22 constants is 2,238 digits plus the exponent 335 — compared to approximately 20,000 digits for the equivalent MATH-2 pairs. The compression ratio ranges from 2.3× for e to 1,280× for e^π.
+
+The representation is a change of encoding, not new mathematics. The constants are the same. The precision is the same. The sub-Planck threshold argument from MATH-2 applies identically. The contribution is the observation that a single power-of-two denominator serves the entire basis, and that this encoding optimizes the arithmetic operations most commonly performed in physics calculations: linear combinations of transcendentals with rational coefficients.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-MATH-4-2026,
+  title={ The Universal Power-of-Two Basis },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-MATH-4-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

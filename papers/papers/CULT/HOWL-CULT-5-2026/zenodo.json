@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "Falsification as Finding",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper establishes that a falsification is a complete scientific contribution requiring no replacement, no fix, no alternative framework, and no solution. The error is the finding. The finding stands alone.\n\nThe institutional demand for a replacement before accepting a falsification has no basis in the institution's own stated method. One counterexample kills a universal claim. The counterexample does not need to provide an alternative universal claim. The demand for replacement converts falsification from a finding into a prerequisite for a different finding, structurally ensuring that falsification is always more expensive than confirmation and that falsified frameworks are maintained indefinitely.\n\nWe identify the same-category trap as the deepest form of this suppression: when the falsification identifies a category error, the institution demands a replacement within the falsified category, requiring the falsifier to disprove their own falsification as a condition of its acceptance.\n\nWe demonstrate the mechanism at civilizational scale through the concrete case of the real number substrate. The institution's own best measurements say discrete \u2014 quantized energy, quantized charge, discrete shell orbits, discrete Planck units, discrete state transitions throughout nature. The description substrate \u2014 \u211d \u2014 is continuous, has no operational equality, and cannot terminate a comparison. The mismatch between observation and description tool is a falsification. It does not require a replacement number system to be valid. The mismatch is the finding. The demand to replicate all of calculus before acknowledging the mismatch is the same-category trap operating at the foundation of quantitative science.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "cult",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-5-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/CULT/HOWL-CULT-5-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

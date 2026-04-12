@@ -1,18 +1,28 @@
-# Paternal Operationalism
+# The Quadrium
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper proposes a single-axis extension to the Triveritas framework. The Triveritas, developed within the Veriphysics tradition, evaluates the truth of claims across three independent dimensions. This paper does not modify, redefine, or reinterpret any element of the Triveritas. Whatever the Triveritas is — however its author defines it, calibrates it, or revises it — this paper accepts as the truth evaluation engine.
 
+The extension is one axis: Utility (U).
+
+The Triveritas evaluates whether a claim is true. It does not evaluate whether a true claim is useful, or whether a useful claim is true. Without a dedicated axis for utility, utility has no home in the evaluation. When utility has no home, it leaks into the truth evaluation as apparent truth. The mechanism is structural: an evaluator encountering a framework with extraordinary engineering output perceives the utility as evidence of truth. The perception is not irrational — useful things often are true. But useful and true are different properties, and when they share an evaluation axis, the difference becomes invisible.
+
+The Quadrium is the Triveritas plus Utility. Three axes for truth — whatever those three axes are, as defined by the Triveritas author. One axis for utility — measuring demonstrated functional output independent of truth status. The truth axes are the Triveritas creator's domain. The utility axis is the extension proposed here.
+
+The proposal is motivated by a specific finding documented across thirteen papers in this archive: the Standard Model of particle physics has extraordinary utility (U≈99) and zero mathematical compilation from axioms at 19 identified points (M=0). Without a U axis, the utility leaks into perceived M, making the M-failures invisible. With a U axis, both scores are visible simultaneously. The theory is bounded, not killed. The engineering success is celebrated. The derivation failures are identified as research targets. Neither obscures the other.
+
+This paper is a proposal to the Triveritas author, not a unilateral modification of his framework. If the author determines that a utility axis is incompatible with the Triveritas architecture, this paper documents the boundary and the proposal is withdrawn. If the author accepts the extension, whatever form it takes under his hand supersedes this proposal.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +56,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-SOPH-2-2026,
+  title={ The Quadrium },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-SOPH-2-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

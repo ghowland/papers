@@ -25,7 +25,7 @@ def map_cks_to_zenodo(paper):
         "upload_type": "publication",
         "publication_type": "article",
         "description": description,
-        "creators": [{"name": "Cymatic K-Space Mechanics (CKS)", "affiliation": "CKS Research"}],
+        "creators": [{"name": "HOWL Archive", "affiliation": "HOWL Research"}],
         "notes": f"Paper ID: {paper['paper_id']}",
         "access_right": "open"
     }
@@ -58,7 +58,7 @@ def main():
         print(f"[{count}/{len(to_process)}] Processing: {paper_id}")
 
         # Path Logic: Resolve directory containing manuscript
-        # e.g., cks/papers/ADHM/CKS-ADHM-1-2026/
+        # e.g., cks/papers/ADHM/HOWL-ADHM-1-2026/
         dir_path = PAPERS_ROOT / Path(paper["file_path"]).parent
         
         # Define the specific files we want to sync

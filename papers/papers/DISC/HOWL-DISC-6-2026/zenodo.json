@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Remainder Extraction Program",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper publishes a research program, not results. It commits to four phases of computational work using the exact integer arithmetic framework developed in MATH-2 through MATH-5 and the remainder-as-observable principle from PHYS-10, with the goal of reducing the Standard Model free parameter count below 18.\n\nThe four phases are: extraction of concrete remainder computations from six physics domains in exact Fraction arithmetic; cross-domain unification searching for shared structure across the extracted equations; synthesis into a minimal framework of moduli, remainders, and transformation laws; and application to unmapped SM parameters using modular rather than linear search strategies.\n\nThe program builds on three established results: one confirmed parameter reduction (\u03b8_QCD = 0, PHYS-7), one conditional reduction (m_\u03c4 from m_e and m_\u03bc via Koide, PHYS-8, 0.91\u03c3), and one demonstrated transformation law (\u03b1 from a_e via QED series, PHYS-9, 4.3 ppb). A systematic PSLQ scan returned null for all 17 measured SM parameters against the 34-constant transcendental basis at maxcoeff 10,000, ruling out simple linear transcendental combinations and motivating the shift to modular (quotient-remainder) search strategies.\n\nEach phase has explicit deliverables and produces publishable output regardless of subsequent phases' outcomes. Six falsification criteria are stated, including falsification of the plan itself if it is not executed. Publishing the plan before executing it ensures the methodology is documented before results can bias its description.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "disc",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DISC-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DISC/HOWL-DISC-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

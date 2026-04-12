@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
+    "title": "The \u03b1-Power Scaling Law",
+    "registry_id": "HOWL-MATH-7-2026",
+    "series_path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-6-2026] \u2192 [@HOWL-MATH-7-2026]",
+    "doi": "",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The \u03b1-Power Scaling Law ## Single-Parameter Projection of the Derived Constant Tree  **Registry:** [@HOWL-MATH-7-2026]  **Series Path:** [@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-6-2026] \u2192 [@HOWL-MATH-7-202..."
 }

@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Remainder Extraction Program: Execution and Results",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "DISC-6 committed to a four-phase program: extraction, unification, synthesis, and parameter reduction, using exact integer arithmetic and the remainder-as-observable framework to attack the Standard Model free parameter count. This paper reports the execution of all four phases.\n\nPhases 1-3 delivered concrete results. Phase 1 extracted six physics domains into exact Fraction arithmetic, producing a verified extraction table with scripts where every assertion passes. Phase 2 tested six cross-domain questions, finding four confirmed connections, one structural parallel, and one informative null. Phase 3 synthesized the results into outcome (b) \u2014 partial collapse \u2014 identifying one universal constant (R\u2082 = \u03c0/4, present in all six domains), two modular types (phase-periodic and topological), three subgroups (cosine-periodic, monotonic accumulation, topological quantization), and one ground state principle (minimum of cosine on 8R\u2082-periodic domain gives remainder = 0, which is why \u03b8_QCD = 0).\n\nPhase 4 (parameter reduction) returned null. Nonlinear PSLQ (80 tests, 8 targets \u00d7 10 transforms, maxcoeff 1000) found no relation. Synthesis-informed modular search (11 targets \u00d7 18 moduli including R\u2082-multiples, R\u2084-multiples, and products of basis constants) produced 42 raw hits, most consistent with statistical noise. One candidate \u2014 \u03b1_s = \u03c0\u03b6(3)/32, matching the measured value to 0.01% \u2014 lies within the measurement uncertainty of \u00b10.0009 but cannot be tested without approximately 5\u00d7 improvement in \u03b1_s precision.\n\nThe confirmed parameter count remains: 19 \u2192 18 (\u03b8_QCD = 0, PHYS-7). The conditional reduction m_\u03c4 via Koide (PHYS-8, 0.91\u03c3) and the demonstrated transformation law \u03b1 from a_e (PHYS-9, 4.3 ppb) are unchanged. No new parameter was reduced.\n\nDISC-6 criterion F4 (parameter reduction) is falsified. Criteria F1, F2, F3, F5, and F6 are met. The framework and infrastructure are delivered. The application to free parameters returned null. Both are reported honestly.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "disc",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DISC-7-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DISC/HOWL-DISC-7-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

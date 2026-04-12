@@ -1,18 +1,26 @@
-# Paternal Operationalism
+# The Five Monkeys Problem
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper identifies inherited enforcement as the mechanism maintaining the six structural barriers documented in this series: category-misapplied validation (CULT-1), abandoned domain gaps (CULT-2), forfeited falsification (CULT-3), unpracticed standards (CULT-4), suppressed findings via the replacement demand (CULT-5), and retroactive infallibility through patching (CULT-6).
 
+Each barrier was maintained by a rule that was originally rational. Each rule was a rational response to a real problem — undisciplined speculation, premature framework abandonment, low-quality publishing, transition instability, insufficient focus. Each problem was real. Each rule was effective. The rules built the modern world.
+
+Each context then changed. The unsolved problems moved to domain boundaries. The replication crisis measured the cost of suppressed falsification. The file drawer grew larger than the literature. The replacement demand became a suppression mechanism. The departmental structure became the primary barrier to the remaining unsolved problems. Each context change inverted the rational response. The rules did not update.
+
+The mechanism by which outdated rules persist in the absence of their original justification is inherited enforcement — documented in behavioral science as the five monkeys experiment, documented in organizational behavior as institutional inertia, and studied by the institution in every institution except itself. The enforcement is peer-to-peer. No authority figure is required. New entrants are trained by the current population. The current population was trained by the previous population. No member of the current population experienced the original reason for the rules. Every member enforces them.
+
+This paper does not prescribe a cure. It describes the cage. The reader who sees the cage decides what to do about it. The reader who does not see the cage is exhibiting the mechanism the paper describes.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +54,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-CULT-7-2026,
+  title={ The Five Monkeys Problem },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-CULT-7-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

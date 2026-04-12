@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Falsification Forfeiture",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper demonstrates that the scientific institution has structurally forfeited falsification \u2014 the practice it claims as its defining feature. The institution does not publish null results. It does not fund replication. It does not reward boundary-finding. It does not maintain a record of what has been tried and failed. The consequence is that no one \u2014 inside or outside the institution \u2014 knows the shape of explored scientific territory. The map of what works, what doesn't, what has been tried, and where knowledge stops functioning has been replaced by a highlight reel of confirmations that the institution's own replication projects show is majority non-reproducible in some fields.\n\nWe trace the structural distance between the science the institution claims to practice \u2014 observe, hypothesize, test, report what you find including failures \u2014 and the science the institution actually practices \u2014 hypothesize, confirm, publish the confirmation, file the failures. We document the institutional architecture that produces this gap: publication incentives that exclude null results, career structures that punish replication work, funding models that do not support boundary-finding, and access barriers that prevent external verification.\n\nWe demonstrate that the institution's founding figures celebrated failure as the primary product of investigation. Edison's 10,000 failed attempts were not embarrassments to be hidden. They were the map of explored territory \u2014 the information that gave the successes their meaning and context. The institutional decision to stop publishing failures did not improve rigor. It destroyed the map.\n\nWe conclude, applying the forfeiture logic established in [@HOWL-CULT-2-2026], that the institution has forfeited falsification by the same mechanism it forfeited the domain gaps: by choosing not to build infrastructure for it. No journals for null results. No departments for replication. No career paths for boundary-finding. No funding for falsification work. The defining practice of science has no institutional home within the institution of science.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "cult",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-3-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/CULT/HOWL-CULT-3-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

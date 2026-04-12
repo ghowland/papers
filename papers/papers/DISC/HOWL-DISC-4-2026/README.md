@@ -1,18 +1,28 @@
-# Paternal Operationalism
+# The Real Number High-Utility Trap
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper identifies a structural mismatch between the observed properties of the physical universe and the mathematical substrate used to describe it. The universe produces discrete, integer-indexed observations at every scale where the question has been asked — quantized energy, quantized charge, discrete electron shells, boolean state transitions, Planck-scale discreteness floors. The description tool — the real number system ℝ — is continuous, requires infinite information per irrational value, and has no operational equality for the majority of its elements.
 
+This mismatch has two simultaneous consequences. Below a ceiling of application, ℝ is extraordinarily productive. It built the modern world — every bridge, chip, satellite, aircraft, and medical instrument. Calculus works. Differential equations work. Continuous analysis works. The engineering output of ℝ-based mathematics is the most successful intellectual achievement in human history. Nothing in this paper diminishes that contribution.
+
+Above the ceiling, ℝ blocks fundamental progress. Quantum mechanics and general relativity have not been unified in 100 years. Cross-domain exact equality is impossible on a substrate where equality is undecidable. The integer path — investigating whether a discrete exact substrate could resolve the failures that the continuous substrate cannot — is invisible because the continuous tools are incompatible with it and the continuous tools are the only tools anyone uses.
+
+Both are true simultaneously. ℝ yields high utility and a false sense of completeness. The utility is real. The incompleteness is real. The trap is that the utility makes the incompleteness invisible.
+
+We trace this trap through three layers: the number system itself, the sensor-to-float conversion pipeline, and the measurement context compression that produces error bars. At each layer, integer structure is discarded and replaced by real-valued approximation. The cumulative effect is a scientific measurement infrastructure that produces continuous outputs from a discrete universe, loses information at every stage, and then asks why cross-domain unification does not work.
+
+We propose that the answer may be structural: the information needed for unification was discarded during measurement by the very tool the institution trusts most. We present VDR — a three-slot exact finite discrete representation system — as the attempt to build the tool the integer path requires, with explicit abandonment conditions if the path proves to be a dead end.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +56,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-DISC-4-2026,
+  title={ The Real Number High-Utility Trap },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-DISC-4-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

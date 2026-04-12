@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Geometric Ratio \u03b2",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper identifies a structural observation: the ratio \u03b2 = \u03c0/4 appears across nine domains of applied mathematics and engineering as the invariant factor converting the rectilinear bounding area d\u00b2 of a circular cross-section into the circular area \u03c0d\u00b2/4 = \u03b2 \u00b7 d\u00b2. Every instance performs the same geometric operation. Each was derived independently within its own domain. The common structure has not been previously stated as a named observation.\n\nThe nine equations share a common skeleton: Q = F \u00b7 \u03b2 \u00b7 d\u00b2 \u00b7 Z, where Q is the output quantity, F is the driving term, \u03b2 \u00b7 d\u00b2 is the circular cross-section expressed as a ratio of the rectilinear bounding area, and Z is domain-specific impedance. The geometric factor \u03b2 \u00b7 d\u00b2 is isomorphic across all nine domains \u2014 structurally identical, performing the same role, preserving the same relationships. F and Z vary by domain. The separation of this geometric invariant from the domain-specific content has not been stated.\n\nTwo additional instances \u2014 Buffon's needle and Fourier square wave decomposition \u2014 produce \u03b2 or 1/\u03b2 through integration over circular domains rather than computation of physical cross-sections. A twelfth instance \u2014 the Leibniz series \u2014 converges to \u03b2 through analytic evaluation. These extensions are presented as related but mechanistically distinct from the nine cross-section cases.\n\nEvery equation examined is from the institution's published literature. No new mathematics is proposed. No equations are changed. The algebraic decomposition is identity. The contribution is the recognition that nine independently derived formulas across nine departments perform the same geometric operation under nine different names, and that stating this explicitly separates a geometric invariant from domain-specific content in a way that has not been done.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "math",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/MATH/HOWL-MATH-1-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

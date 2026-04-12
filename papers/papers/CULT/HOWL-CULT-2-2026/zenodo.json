@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Domain Boundary",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper examines the structural division between domain-specialized investigation and omni-domain investigation, and identifies the consequences of the academy's decision to credential domains while leaving the connections between domains uninstitutionalized. We demonstrate that reality operates across all domains simultaneously, that the unsolved problems of science all sit at domain boundaries, and that the institutional structure of the academy structurally prevents the cross-domain investigation these problems require.\n\nWe further demonstrate that three foundational claims of domain-specialized science \u2014 that the universe is indifferent, that entropy characterizes reality's trajectory, and that caring is a strategic anomaly rather than a fundamental feature \u2014 are each empirically contradicted by documented, repeatable observations available to anyone who looks.\n\nWe conclude that the academy, by refusing to credential, fund, or evaluate cross-domain investigation, has structurally forfeited authority over the gaps between domains. This forfeiture is not declared but constructed \u2014 it follows necessarily from the institutional choice to build departments without hallways. The gaps belong to whoever works them. The independent omni-domain researcher occupies territory the academy has abandoned.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "cult",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/CULT/HOWL-CULT-2-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

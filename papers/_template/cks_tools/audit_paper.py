@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-audit_papers.py - CKS Paper Repository Auditor
+audit_papers.py - HOWL Paper Repository Auditor
 
 Scans papers/ directory, extracts metadata from manuscript.md files,
 generates papers.json and report.md.
@@ -40,7 +40,7 @@ class PaperMetadata:
         self.validation = self._validate()
     
     def _parse_path(self):
-        """Extract metadata from path: papers/SUBJECT/CKS-SUBJECT-NUMBER-YEAR/manuscript.md"""
+        """Extract metadata from path: papers/SUBJECT/HOWL-SUBJECT-NUMBER-YEAR/manuscript.md"""
         parts = self.path.parts
         
         # Find papers/ index
@@ -57,11 +57,11 @@ class PaperMetadata:
         if papers_idx + 2 >= len(parts):
             return {'error': 'Path too short'}
         
-        paper_dir = parts[papers_idx + 2]  # CKS-SUBJECT-NUMBER-YEAR
+        paper_dir = parts[papers_idx + 2]  # HOWL-SUBJECT-NUMBER-YEAR
         subject_dir = parts[papers_idx + 1]  # SUBJECT
         
-        # Parse paper_dir: CKS-{SUBJECT}-{NUMBER}-{YEAR}
-        match = re.match(r'CKS-([A-Z]+)-([\dX]+)-(\d{4})', paper_dir)
+        # Parse paper_dir: HOWL-{SUBJECT}-{NUMBER}-{YEAR}
+        match = re.match(r'HOWL-([A-Z]+)-([\dX]+)-(\d{4})', paper_dir)
         
         if not match:
             return {
@@ -221,9 +221,9 @@ class PaperMetadata:
         return None
     
     def _extract_dependencies(self):
-        """Extract all [@CKS-...] citations from content, excluding self"""
+        """Extract all [@HOWL-...] citations from content, excluding self"""
         citations = set()
-        pattern = r'\[@(CKS-[A-Z]+-[\dX]+-\d{4})\]'
+        pattern = r'\[@(HOWL-[A-Z]+-[\dX]+-\d{4})\]'
         
         for match in re.finditer(pattern, self.raw_content):
             cited_id = match.group(1)
@@ -250,7 +250,7 @@ class PaperMetadata:
         
         # Validate registry ID matches path
         registry_raw = self.frontmatter.get('Registry', '')
-        registry_match = re.search(r'\[@(CKS-[A-Z]+-[\dX]+-\d{4})\]', registry_raw)
+        registry_match = re.search(r'\[@(HOWL-[A-Z]+-[\dX]+-\d{4})\]', registry_raw)
         
         if registry_match:
             registry_id = registry_match.group(1)
@@ -382,7 +382,7 @@ class PapersAuditor:
     def write_report(self, output_path):
         """Write report.md with statistics"""
         lines = [
-            '# CKS Papers Audit Report',
+            '# HOWL Papers Audit Report',
             '',
             '**Generated:** {}'.format(datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')),
             '',
@@ -459,7 +459,7 @@ def main():
     """Main entry point"""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Audit CKS papers repository')
+    parser = argparse.ArgumentParser(description='Audit HOWL papers repository')
     parser.add_argument('--papers-dir', type=str, default='papers',
                         help='Path to papers/ directory (default: ./papers)')
     

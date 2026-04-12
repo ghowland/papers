@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The Remainder Extraction Program",
+    "registry_id": "HOWL-DISC-9-2026",
+    "series_path": "[@HOWL-DISC-6-2026] \u2192 [@HOWL-DISC-7-2026] \u2192 [@HOWL-DISC-8-2026] \u2192 [@HOWL-DISC-9-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "The Remainder Extraction Program (DISC-6 through DISC-8) built a framework, executed four phases, ran three search strategies under statistical control, and produced a classification of nine physics domains into three subgroups with one universal constant R\u2082 = \u03c0/4. The program derived no new SM parameter values. This paper identifies why, and argues that the finding is itself the result.\n\nThe framework determines Level 1 (geometric) structure: moduli, subgroup classification, which n-ball remainder R_n appears in which domain, and the ground state principle that produces \u03b8_QCD = 0. This structure is universal \u2014 it follows from the geometry of circles and spheres and the mathematical properties of periodicity, monotonicity, and gauge invariance. It does not depend on which universe we live in.\n\nThe framework does not determine Level 2 (domain-specific) continuous parameters: coupling constants, mass ratios, mixing angles. These are the remainders that populate the geometric framework. Three search strategies \u2014 linear PSLQ (17 targets, 35 constants, maxcoeff 10,000), nonlinear PSLQ (8 targets, 10 transforms, maxcoeff 1,000), and synthesis-informed modular search (13 targets, 18 moduli, formally controlled against random numbers) \u2014 all returned null. SM parameter values are not simple functions of the transcendental basis under any tested relationship.\n\nThe three parameter reductions in the series (\u03b8_QCD = 0, m_\u03c4 via Koide, \u03b1 from a_e) all came from domain-specific physics \u2014 energy minimization, an empirical mass formula, QED perturbative series \u2014 not from the framework itself. The framework provided the language for expressing these reductions but did not generate them.\n\nThe central finding: the geometric structure of physics equations is universal and determined. The specific parameter values that populate this structure are not determined by the structure. The boundary between these \u2014 between what the equations' form determines and what the universe's specific constants supply \u2014 is where the program arrived, and identifying this boundary precisely is the contribution.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The Remainder Extraction Program ## What the Framework Determines and What It Doesn't  **Registry:** [@HOWL-DISC-9-2026]  **Series:** Discovery  **Series Path:** [@HOWL-DISC-6-2026] \u2192 [@HOWL-DISC-7-..."
 }

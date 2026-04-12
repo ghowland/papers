@@ -1,18 +1,24 @@
-# Paternal Operationalism
+# The Lyric Engine
 
-**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet.
+**AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
 ---
 
 ## Abstract
 
+This paper documents a systematic method for transforming dense technical, philosophical, or investigative source material into maximally information-dense songs using LLM collaboration, targeting Suno as the production platform. The method was developed through the production of two albums — Obvious and A Rational World — comprising 24 songs built from a corpus of cross-domain research papers spanning physics, mathematics, neuroscience, epistemology, and institutional analysis. The method was subsequently validated through a third album — Culture — comprising 9 songs built from the CULT paper series on institutional analysis.
 
+The method produces songs that operate on two simultaneous layers: a surface layer that functions as a complete song for any listener with zero source context, and a depth layer that compresses the source material's structural payload for informed listeners. Neither layer degrades the other. The method is documented from practice, validated against produced work, and reproducible by any practitioner with source material, an LLM, and access to Suno.
+
+Forty rules govern the construction. The original twenty-eight were derived from the first two albums. Six additional rules were derived from an independent external application by a different LLM instance. Six more were derived from the Culture album production. Each rule was derived from a specific failure observed during production — a line that didn't sing, a metaphor that broke, a word that flattened, a pattern that repeated across songs until it became invisible. The rules are the scar tissue of three albums. They prevent the failures that produced them.
+
+The rule set is open. Every production cycle will generate new failures the current rules don't catch. Each failure becomes a named, testable constraint. A completed song that required no new rules either had a lenient review or operated in a domain close enough to the existing corpus that the current rules already covered its failure modes.
 
 ---
 
 ## Howland Archive Context
 
-This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
+This publication is part of the **Howland Archive**, a collection of research spanning information theory, computational architecture, physics, and philosophy. All work unified by axiomatic methodology: derive complex systems from minimal constraint sets with zero free parameters.
 
 ### Series Position
 
@@ -46,52 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-SOPH-1-2026,
-  title={ Paternal Operationalism },
+@article{ HOWL-LYRIC-1-2026,
+  title={ The Lyric Engine },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-SOPH-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-LYRIC-1-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
-
-## FAQs
-
-### Q: How does this relate to CKS (Cymatic Substrate)?
-
-**A:** CKS demonstrates the axiomatic methodology applied to physics. This archive shows the same methodology applied to information theory, computational systems, and philosophy over 40 years. Whether CKS is empirically validated or falsified, the methodology is proven across domains.
-
-CKS: https://github.com/ghowland/cks/
-
-### Q: What is AI written and what is human written?
-
-**A:** The only human editing is the metadata, copyright, and this FAQ. The `manuscript.md` was written by Anthropic's Claude 4.5 Sonnet. Code implementations and architectural designs are human-authored; papers documenting them are LLM-generated for clarity and completeness.
-
-### Q: Can I implement these architectures myself?
-
-**A:** Yes. That's the point. Each paper includes complete structural specifications. Track-specific guidance:
-
-- **INFO Track:** Method definitions with measurement protocols
-- **COMP Track:** Complete data structures with reference implementations
-- **SOPH Track:** Operational frameworks with falsification criteria
-
-### Methodology: How to Work with Axiomatic Systems
-
-To reproduce or extend these findings:
-
-#### 1. Read the prerequisites
-Each paper lists dependencies. Start from foundational papers in the series.
-
-#### 2. Implement from structures
-COMP papers provide complete data structures. Build from those, not from prose descriptions.
-
-#### 3. Validate via falsification
-Each paper includes explicit failure conditions. Test those first.
-
-#### 4. Cross-validate
-If using LLMs for extension, run derivations independently in separate sessions to ensure consistency.
-
-

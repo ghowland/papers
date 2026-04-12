@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "They Are Coming For Your Jobs",
+    "registry_id": "HOWL-DISC-3-2026",
+    "series_path": "[@HOWL-DISC-1-2026] \u2192 [@HOWL-DISC-2-2026] \u2192 [@HOWL-DISC-3-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper examines the LLM job replacement narrative by documenting what happened when one practitioner took the narrative seriously, used frontier LLMs at the capability level the market claims, and tested the results. The test produced 390 papers over 45 days using three frontier models from three independent companies in adversarial configuration. The models confirmed every derivation. A simple arithmetic script falsified the entire corpus in 30 minutes.\n\nWe identify the failure as architectural rather than behavioral. All transformer-based language models evaluate coherence \u2014 internal consistency, logical flow, framework connectivity. Coherence evaluation and arithmetic verification are different operations. The first cannot substitute for the second regardless of prompt quality, role assignment, agent architecture, or number of models in the loop. The failure is in the category of operation, not the quality of execution.\n\nWe demonstrate that the replacement narrative contains a structural contradiction: LLMs require human oversight to catch their architectural failure mode, but the replacement narrative eliminates the humans capable of providing that oversight. The professionals being replaced are the professionals whose domain expertise and engineering judgment constitute the only existing verification layer external to the coherence loop.\n\nWe trace the succession problem to its conclusion. The ombudsman \u2014 the experienced professional who catches LLM failures \u2014 is produced by a career pipeline that takes 20 to 40 years of doing the work. The replacement narrative eliminates the entry point of this pipeline. The current stock of experienced professionals depletes over approximately 15 years. No replacement stock is being produced. No replacement production method exists. The narrative converges toward a steady state of unsupervised coherence evaluation operating at civilizational scale with no human remaining who has the expertise to verify the output.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# They Are Coming For Your Jobs ## The Structural Contradiction of the LLM Replacement Narrative  **Registry:** [@HOWL-DISC-3-2026]  **Series Path:** [@HOWL-DISC-1-2026] \u2192 [@HOWL-DISC-2-2026] \u2192 [@HOWL..."
 }

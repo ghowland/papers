@@ -1,8 +1,8 @@
 {
-  "title": "Paternal Operationalism",
+  "title": "The Lyric Engine II",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper documents a systematic method for refining existing song drafts using LLM collaboration. LYRIC-1 documented creation from dense source material. LYRIC-2 documents refinement from existing drafts \u2014 human-written, LLM-written, or hybrid. The method was developed through the refinement of three albums: Culture (9 tracks, LLM-written from source papers), Obvious (20 tracks, LLM-written from research corpus), and Dragon's Dice (14 tracks, 6 human-written + 8 LLM-written rock opera).\n\nThe primary finding: the LLM's most valuable refinement skill is knowing what to keep. The primary failure mode: adding material that isn't in the draft. The method produces consistent results at 85-90% quality, with the remaining 10-15% requiring human final pass for embodied experience, invented language, gap-shaping, and physical plausibility that the LLM cannot provide.\n\nTwelve new rules (41-52) were derived from specific failures observed during refinement. Six narrative album rules were derived from the Dragon's Dice production. Each rule is the scar tissue of a specific mistake \u2014 a character voice flattened, an object that teleported, a bridge that ran twenty lines when eight would hit harder, a vampire who sounded like a supportive girlfriend instead of a predator who loves her prey.\n\nThe rule set remains open. Every refinement cycle will generate new failures the current rules don't catch.",
   "version": "1.0",
   "publication_date": "2026-02",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "philosophy",
+    "lyric",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LYRIC-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/SOPH/HOWL-SOPH-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/LYRIC/HOWL-LYRIC-2-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -39,7 +39,7 @@
       "affiliation": "Independent Researcher"
     },
     {
-      "name": "Claude Sonnet 4.5",
+      "name": "Claude Opus 4.6",
       "type": "Researcher",
       "affiliation": "Anthropic PBC"
     }

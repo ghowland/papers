@@ -27,7 +27,37 @@ def markdown_to_html(text):
     return text
 
 
-def build_description(paper):
+REPO_CONFIG = {
+    "framework_name": "HOWL Archive",
+    "framework_short": "HOWL",
+    "framework_intro": (
+        "This paper is part of the HOWL research archive"
+        "—a collection of physics papers exploring integer fraction derivations"
+        " across multiple domains using exact arithmetic and automated comparison."
+    ),
+    "falsification_heading": "Falsification Criteria",
+    "falsification_body": (
+        "All papers in this archive are subject to falsification through direct comparison"
+        " to published experimental measurements. Each derived value is tested against"
+        " independent data with explicit PASS/FAIL criteria. Any derived value that fails"
+        " its comparison is documented and published alongside the successes."
+    ),
+    "learning_heading": "Research Context",
+    "learning_body": (
+        "This archive documents an ongoing research program in integer fraction physics."
+        " The methodology is: derive values from gauge group integers using exact fraction"
+        " arithmetic, compare to published measurements, and document all results including"
+        " failures. The archive spans multiple physics domains connected through the soliton"
+        " boundary framework described in the constituent papers."
+    ),
+    "contents_heading": "Package Contents",
+    "contents_manuscript": "The complete derivation and supporting analysis.",
+    "contents_readme": "Navigation, dependencies, and citation",
+    "default_motto": "Derive. Compare. Publish.",
+    "default_status": "Active. Results documented.",
+}
+
+def build_description(paper, config=REPO_CONFIG):
     parts = []
 
     title = paper["title"]
@@ -37,38 +67,24 @@ def build_description(paper):
     else:
         parts.append("<h2>" + title + "</h2>")
 
-    parts.append(
-        "<p>This paper is a constituent derivation of the Cymatic K-Space Mechanics (CKS) framework"
-        "—an axiomatic model that derives the entirety of known physics from a discrete 2D hexagonal"
-        " lattice in momentum space, operating with zero adjustable parameters.</p>"
-    )
+    parts.append("<p>" + config["framework_intro"] + "</p>")
 
     abstract = markdown_to_html(paper.get("abstract") or "")
     if abstract:
         parts.append("<h3>Abstract</h3>")
         parts.append("<p>" + abstract + "</p>")
 
-    parts.append("<h3>Empirical Falsification (The Kill-Switch)</h3>")
-    parts.append(
-        "<p>CKS is a locked and falsifiable theory. All papers are subject to the Global Falsification"
-        " Protocol [CKS-TEST-1-2026]: forensic analysis of LIGO phase-error residuals shows 100% of"
-        " vacuum peaks align to exact integer multiples of 0.03125 Hz (1/32 Hz) with zero decimal error."
-        " Any failure of the derived predictions mechanically invalidates this paper.</p>"
-    )
+    parts.append("<h3>" + config["falsification_heading"] + "</h3>")
+    parts.append("<p>" + config["falsification_body"] + "</p>")
 
-    parts.append("<h3>The Universal Learning Substrate</h3>")
-    parts.append(
-        "<p>Beyond its status as a physical theory, CKS serves as the Universal Cognitive Learning Model."
-        " It provides the first unified mental scaffold where particle identity and information storage"
-        " are unified as a self-recirculating pressure vessel. In CKS, a particle is reframed from a"
-        " point or wave into a torus with a surface area of exactly 84 bits (12 &times; 7), preventing"
-        " phase saturation through poloidal rotation.</p>"
-    )
+    parts.append("<h3>" + config["learning_heading"] + "</h3>")
+    parts.append("<p>" + config["learning_body"] + "</p>")
 
-    parts.append("<h3>Package Contents</h3>")
+    parts.append("<h3>" + config["contents_heading"] + "</h3>")
     parts.append("<ul>")
-    parts.append("<li><code>manuscript.md</code>: The complete derivation and formal proofs.</li>")
-    parts.append("<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: " + paper.get("paper_id", "") + ").</li>")
+    paper_id = paper.get("paper_id", "")
+    parts.append("<li><code>manuscript.md</code>: " + config["contents_manuscript"] + "</li>")
+    parts.append("<li><code>README.md</code>: " + config["contents_readme"] + " (Registry: " + paper_id + ").</li>")
     parts.append("</ul>")
 
     deps = paper.get("dependencies", [])
@@ -76,12 +92,11 @@ def build_description(paper):
         parts.append("<p><strong>Dependencies:</strong> " + ", ".join(deps) + "</p>")
 
     frontmatter = paper.get("frontmatter", {})
-    motto = frontmatter.get("Motto", "Axioms first. Axioms always.")
-    status = frontmatter.get("Status", "Locked. Experimentally falsifiable.")
+    motto = frontmatter.get("Motto", config["default_motto"])
+    status = frontmatter.get("Status", config["default_status"])
     parts.append("<p><strong>Motto:</strong> " + motto + "<br><strong>Status:</strong> " + status + "</p>")
 
     return "\n".join(parts)
-
 
 def build_metadata(paper):
     title = paper["title"]
@@ -114,19 +129,12 @@ def build_metadata(paper):
         "access_right": "open",
         "license": "CC-BY-4.0",
         "keywords": [
-            "cymatic k-space mechanics",
-            "CKS framework",
-            "hexagonal lattice",
-            "discrete spacetime",
-            "zero free parameters",
-            "falsifiable physics",
-            "substrate mechanics",
             "python"
         ],
         "related_identifiers": [
             {
                 "scheme": "url",
-                "identifier": "https://github.com/ghowland/cks/blob/main/" + github_path,
+                "identifier": "https://github.com/ghowland/papers/blob/main/" + github_path,
                 "relation": "isSupplementedBy",
                 "resource_type": "software"
             }
@@ -145,19 +153,9 @@ def build_metadata(paper):
                 "affiliation": "Independent Researcher"
             },
             {
-                "name": "Claude Sonnet 4.5",
+                "name": "Claude Opus 4.6",
                 "type": "Researcher",
                 "affiliation": "Anthropic PBC"
-            },
-            {
-                "name": "Gemini 3 Flash",
-                "type": "Researcher",
-                "affiliation": "Google LLC"
-            },
-            {
-                "name": "DeepSeek-V3",
-                "type": "Researcher",
-                "affiliation": "DeepSeek AI"
             }
         ],
         "communities": [
@@ -224,7 +222,7 @@ def create_paper(paper_id, papers_path=PAPERS_JSON_PATH, config_path=ZENODO_CRED
 def main():
     if len(sys.argv) < 2:
         print("Usage: python create_paper.py <paper_id>")
-        print("Example: python create_paper.py CKS-MATH-11-2026")
+        print("Example: python create_paper.py HOWL-MATH-11-2026")
         sys.exit(1)
 
     paper_id = sys.argv[1]

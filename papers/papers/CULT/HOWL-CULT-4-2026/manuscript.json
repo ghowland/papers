@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "What Falsification Actually Requires",
+    "registry_id": "HOWL-CULT-4-2026",
+    "series_path": "[@HOWL-BODY-1-2026] \u2192 [@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper states what the institution of science's own standard \u2014 falsification as the defining method \u2014 actually requires when practiced without softening. The requirements are not new proposals imposed from outside. They are the logical consequences of the standard the institution already claims. The institution teaches that one counterexample kills a universal claim. The institution does not practice this. It patches, extends, adds parameters, and adds dimensions. The standard and the practice have diverged. This paper describes the standard.\n\nPracticed honestly, falsification requires: null results published as first-class findings equal in status to positive results. Falsification chains \u2014 sequences in which claims are made, tested, killed, and replaced \u2014 celebrated as the mechanism by which science accelerates. Careers built on boundary-finding rewarded at the same level as careers built on territory-claiming. Falsified claims killed without patching \u2014 no epicycles, no inserted parameters, no added dimensions to save a framework that failed. Explicit publication of derivation boundaries \u2014 every point where a theory stops deriving and starts measuring, published as a research target. Open access to the full record as a structural prerequisite for external falsification. And a decision about scope: either the institution pursues omni-domain investigation and builds the infrastructure for it, or it declares domain-only scope and forfeits authority over the cross-domain territory it has chosen not to occupy.\n\nEach of these requirements follows from the standard the institution teaches. None require external justification. They require only that the institution do what it says it does.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# What Falsification Actually Requires ## The Structural Consequences of the Standard Science Claims but Does Not Practice  **Registry:** [@HOWL-CULT-4-2026]  **Series Path:** [@HOWL-BODY-1-2026] \u2192 [@..."
 }

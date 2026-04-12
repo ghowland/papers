@@ -1,23 +1,23 @@
-# CKS Papers Audit Report
+# HOWL Papers Audit Report
 
-**Generated:** 2026-04-11 14:21:32 UTC
+**Generated:** 2026-04-12 00:33:25 UTC
 
 ## Summary
 
-- **Total Papers:** 107
+- **Total Papers:** 105
 - **Valid:** 0
-- **Invalid:** 107
-- **Total Errors:** 119
-- **Total Warnings:** 344
+- **Invalid:** 105
+- **Total Errors:** 113
+- **Total Warnings:** 436
 
 ## By Subject
 
-- **UNKNOWN:** 107 papers
+- **UNKNOWN:** 105 papers
 
 ## By Status
 
 - **Published (has DOI):** 14
-- **Draft (stub .zzz):** 93
+- **Draft (stub .zzz):** 91
 
 ## Validation Issues
 
@@ -327,16 +327,6 @@
 
 **PHYS**
   - ❌ Invalid paper directory format: PHYS
-  - ❌ Missing title (H1)
-  - ❌ Missing Registry field in frontmatter
-
-**PHYS**
-  - ❌ Invalid paper directory format: PHYS
-  - ❌ Missing title (H1)
-  - ❌ Missing Registry field in frontmatter
-
-**PHYS**
-  - ❌ Invalid paper directory format: PHYS
 
 **PHYS**
   - ❌ Invalid paper directory format: PHYS
@@ -357,54 +347,46 @@
   - ❌ Invalid paper directory format: SOPH
 
 
-### Papers with Warnings (99 total)
+### Papers with Warnings (105 total)
 
 **BODY**
+  - ⚠️  Registry mismatch: path=BODY, content=HOWL-BODY-1-2026
   - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ... and 2 more
 
 **COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-1-2026
+
+**COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-2-2026
+
+**COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-3-2026
   - ⚠️  No abstract section found
 
 **COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-4-2026
   - ⚠️  No abstract section found
 
 **COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-5-2026
+
+**COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-6-2026
   - ⚠️  No abstract section found
 
 **COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-7-2026
   - ⚠️  No abstract section found
 
+**COMP**
+  - ⚠️  Registry mismatch: path=COMP, content=HOWL-COMP-8-2026
+
 **CULT**
+  - ⚠️  Registry mismatch: path=CULT, content=HOWL-CULT-1-2026
   - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ... and 2 more
 
-**CULT**
-  - ⚠️  DOI is missing
-  - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
-
-**CULT**
-  - ⚠️  DOI is stub (.zzz)
-  - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
-
-**CULT**
-  - ⚠️  DOI is stub (.zzz)
-  - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
-
-**CULT**
-  - ⚠️  DOI is stub (.zzz)
-  - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
-
-... and 89 more papers with warnings
+... and 95 more papers with warnings

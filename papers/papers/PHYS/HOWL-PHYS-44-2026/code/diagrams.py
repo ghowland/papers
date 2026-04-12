@@ -18,19 +18,38 @@ import os
 # GLOBAL STYLE
 # ================================================================
 
-BG      = '#0a0a12'
-PAN     = '#12121f'
-GOLD    = '#d4a843'
-SILVER  = '#a0a8b8'
-CYAN    = '#4ecdc4'
-MAG     = '#c74b7a'
-BLUE    = '#5b8def'
-GREEN   = '#6bcf7f'
-RED     = '#e05555'
-ORANGE  = '#e8944a'
-WHITE   = '#e8e8f0'
-DIM     = '#555570'
-PURPLE  = '#9b7bd4'
+# Light mode
+if True:
+    # ── Global palette (Kindle / light mode) ──
+    BG      = '#ffffff'
+    PAN     = '#f0ede8'
+    GOLD    = '#a07820'
+    SILVER  = '#505860'
+    CYAN    = '#1a8a80'
+    MAG     = '#a03058'
+    BLUE    = '#2855a0'
+    GREEN   = '#2a7a3a'
+    RED     = '#b82020'
+    ORANGE  = '#c06a18'
+    WHITE   = '#1a1a22'
+    DIM     = '#908e88'
+    PURPLE  = '#6040a0'
+else:
+    # ── Global palette (D7.2) ──
+    BG      = '#0a0a12'
+    PAN     = '#12121f'
+    GOLD    = '#d4a843'
+    SILVER  = '#a0a8b8'
+    CYAN    = '#4ecdc4'
+    MAG     = '#c74b7a'
+    BLUE    = '#5b8def'
+    GREEN   = '#6bcf7f'
+    RED     = '#e05555'
+    ORANGE  = '#e8944a'
+    WHITE   = '#e8e8f0'
+    DIM     = '#555570'
+    PURPLE  = '#9b7bd4'
+
 
 def setup_ax(ax, title='', xlabel='', ylabel=''):
     ax.set_facecolor(PAN)
@@ -331,6 +350,7 @@ levels = [
     (0.35, 'Nucleus', 'D', r'Strong sector: $\alpha_s$', CYAN, 0.60),
 ]
 
+count = 0
 for radius, name, cat, phi_label, color, alpha in levels:
     edgecolor = color
     circle = Circle((0, 0), radius, facecolor=color, alpha=alpha * 0.12,
@@ -344,12 +364,14 @@ for radius, name, cat, phi_label, color, alpha in levels:
 
     # Category tag
     tag_colors = {'D': CYAN, 'K': ORANGE, 'Mixed': GOLD}
-    ax.text(-radius - 0.15, 0, '[%s]' % cat, color=tag_colors[cat],
+    ax.text(-radius - 0.15, 0 + count * -0.25, '[%s]' % cat, color=tag_colors[cat],
             fontsize=8, fontweight='bold', ha='right', va='center')
 
     # Scale label at right
-    ax.text(radius + 0.15, 0, phi_label, color=color, fontsize=8,
+    ax.text(radius + 0.15, 0 + count * -0.25, phi_label, color=color, fontsize=8,
             ha='left', va='center', alpha=0.8)
+
+    count += 1
 
 # Center: Planck
 ax.text(0, -0.02, 'Planck\n[Structural]', color=SILVER, fontsize=8,

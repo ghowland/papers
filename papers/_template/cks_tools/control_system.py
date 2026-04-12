@@ -94,7 +94,7 @@ def Build(args):
       cmd = f'{GEN_PDF} {directory}' 
       print(cmd)
 
-    #   if item['paper_id'] != 'CKS-0-2026': continue # Skip test
+    #   if item['paper_id'] != 'HOWL-0-2026': continue # Skip test
  
       (status, output, error) = execute_command(cmd)
       print(f'  Result: {status}  Output: {output[:40]}')
@@ -194,7 +194,7 @@ def Cleanup(args):
       # Fix the special lines
       for count in range(0, len(lines)):
         line = lines[count]
-        if line.startswith('# CKS-') and item['title'] in line:
+        if line.startswith('# HOWL-') and item['title'] in line:
           end_line = line.split(':', 1)[1].strip()
           lines[count] = f'# {end_line}'
         

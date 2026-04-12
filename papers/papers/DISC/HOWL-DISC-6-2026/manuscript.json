@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Paternal Operationalism",
-    "registry_id": "HOWL-SOPH-1-2026",
-    "series_path": "",
-    "doi": "10.5281/zenodo.18655527",
-    "abstract": "",
+    "title": "The Remainder Extraction Program",
+    "registry_id": "HOWL-DISC-6-2026",
+    "series_path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-4-2026] \u2192 [@HOWL-PHYS-10-2026] \u2192 [@HOWL-MATH-5-2026] \u2192 [@HOWL-DISC-6-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This paper publishes a research program, not results. It commits to four phases of computational work using the exact integer arithmetic framework developed in MATH-2 through MATH-5 and the remainder-as-observable principle from PHYS-10, with the goal of reducing the Standard Model free parameter count below 18.\n\nThe four phases are: extraction of concrete remainder computations from six physics domains in exact Fraction arithmetic; cross-domain unification searching for shared structure across the extracted equations; synthesis into a minimal framework of moduli, remainders, and transformation laws; and application to unmapped SM parameters using modular rather than linear search strategies.\n\nThe program builds on three established results: one confirmed parameter reduction (\u03b8_QCD = 0, PHYS-7), one conditional reduction (m_\u03c4 from m_e and m_\u03bc via Koide, PHYS-8, 0.91\u03c3), and one demonstrated transformation law (\u03b1 from a_e via QED series, PHYS-9, 4.3 ppb). A systematic PSLQ scan returned null for all 17 measured SM parameters against the 34-constant transcendental basis at maxcoeff 10,000, ruling out simple linear transcendental combinations and motivating the shift to modular (quotient-remainder) search strategies.\n\nEach phase has explicit deliverables and produces publishable output regardless of subsequent phases' outcomes. Six falsification criteria are stated, including falsification of the plan itself if it is not executed. Publishing the plan before executing it ensures the methodology is documented before results can bias its description.",
     "dependencies": [],
-    "raw_content_preview": "# Paternal Operationalism ## A Philosophy Born from Necessity ## The Five Pillars and Their Distinction from Established Frameworks  **Registry:** [@HOWL-SOPH-1-2026]  **DOI:** 10.5281/zenodo.18655527..."
+    "raw_content_preview": "# The Remainder Extraction Program  ## A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic  **Registry:** [@HOWL-DISC-6-2026]  **Series Path:** [@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-..."
 }
