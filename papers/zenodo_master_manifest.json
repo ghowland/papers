@@ -6893,616 +6893,1408 @@
       "doi": "10.5281/zenodo.19532040",
       "status": "draft",
       "metadata_hash": "406d581e8019d3bae49f1823705a01f81fc1c25f8ed632170704f27210c7fd44",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "e298fb8abfbfb92b5c18f9606662d49d",
+          "size": 85811
+        },
+        "HOWL-BODY-1-2026.zip": {
+          "checksum": "c8f637772cd841e5e0af3290f7b8ee48",
+          "size": 189653
+        }
+      }
     },
     "HOWL-CULT-1-2026": {
       "zenodo_id": 19532042,
       "doi": "10.5281/zenodo.19532042",
       "status": "draft",
       "metadata_hash": "dd1bdd0ff3c54f34d197cab89595dccd9319d943ecae7db5ba2aeb56acd4a199",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "67ff71462df5801c9d52a11619716263",
+          "size": 64954
+        },
+        "HOWL-CULT-1-2026.zip": {
+          "checksum": "f55a389c76204698c97f1893d8248dac",
+          "size": 155380
+        }
+      }
     },
     "HOWL-CULT-10-2026": {
       "zenodo_id": 19532044,
       "doi": "10.5281/zenodo.19532044",
       "status": "draft",
       "metadata_hash": "232a10c17410812f535208cfe1336b2f3a6529dfa072f791c150f9e325f3bbad",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "ac639aa379757383e62cc9d4983b7ea3",
+          "size": 63079
+        },
+        "HOWL-CULT-10-2026.zip": {
+          "checksum": "7a76ecdf5b11a1c239b311e3cd0f2449",
+          "size": 162901
+        }
+      }
     },
     "HOWL-CULT-2-2026": {
       "zenodo_id": 19532046,
       "doi": "10.5281/zenodo.19532046",
       "status": "draft",
       "metadata_hash": "08d92eed28a02be695981cd6b4698ab2f81b3ca86f9086d522d941481c77d619",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "75819524c541b2f38e92d710056d436e",
+          "size": 64281
+        },
+        "HOWL-CULT-2-2026.zip": {
+          "checksum": "288919b3ee0645b1f0bad1a92cb2bb11",
+          "size": 154618
+        }
+      }
     },
     "HOWL-CULT-3-2026": {
       "zenodo_id": 19532048,
       "doi": "10.5281/zenodo.19532048",
       "status": "draft",
       "metadata_hash": "884c1709a0ccb645bd0b30a168604c2bd386b381b0b6cd4e64b5d7f38f49c3a2",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "44236412fe784027bbabdc4322297e62",
+          "size": 70422
+        },
+        "HOWL-CULT-3-2026.zip": {
+          "checksum": "0f0a71f1ed6be798d31045cb296f22b8",
+          "size": 164543
+        }
+      }
     },
     "HOWL-CULT-4-2026": {
       "zenodo_id": 19532050,
       "doi": "10.5281/zenodo.19532050",
       "status": "draft",
       "metadata_hash": "4b1f0fae0bd10976521899bde57c91bb07c6b1567423800561dcd13649cabff8",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "e55def28c036009734024460bbc40001",
+          "size": 59875
+        },
+        "HOWL-CULT-4-2026.zip": {
+          "checksum": "fdd5be0558980c2464fb54162bf6fd2f",
+          "size": 149548
+        }
+      }
     },
     "HOWL-CULT-5-2026": {
       "zenodo_id": 19532052,
       "doi": "10.5281/zenodo.19532052",
       "status": "draft",
       "metadata_hash": "c2da5b61275488805dbc7cbeb85ba35b3db0ef82de363968f9734ae342c16dc8",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "9f89e7a858434b04916413b49138576a",
+          "size": 60153
+        },
+        "HOWL-CULT-5-2026.zip": {
+          "checksum": "66f0ea219de0830fc2937e21ce04348a",
+          "size": 147878
+        }
+      }
     },
     "HOWL-CULT-6-2026": {
       "zenodo_id": 19532054,
       "doi": "10.5281/zenodo.19532054",
       "status": "draft",
       "metadata_hash": "c7fb0edbaf4c82cd8f8b0601f4f6fd8b43250c81c6c02dd12e1eb71f08ec87c8",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "d0e52a656ecf135615376380f6a7c7db",
+          "size": 54129
+        },
+        "HOWL-CULT-6-2026.zip": {
+          "checksum": "9f1375b7dce5d2c65dcf86d88840af3b",
+          "size": 140035
+        }
+      }
     },
     "HOWL-CULT-7-2026": {
       "zenodo_id": 19532057,
       "doi": "10.5281/zenodo.19532057",
       "status": "draft",
       "metadata_hash": "fbf07c442d07890ba80e2f902b6b2b342728ba9430df6e22120bc753a895fe9d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "9bf2e58a2512bcb122060018d1657772",
+          "size": 75465
+        },
+        "HOWL-CULT-7-2026.zip": {
+          "checksum": "5f5a5c3a9af77c5f82e651dc04be96e4",
+          "size": 169606
+        }
+      }
     },
     "HOWL-CULT-8-2026": {
       "zenodo_id": 19532061,
       "doi": "10.5281/zenodo.19532061",
       "status": "draft",
       "metadata_hash": "a8eff183d8540319dd525bd5ec2603fc518254bd19fb9c8174b8fd1a37da6e33",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "fba82f22be5c87a32d9c0dae98dc8eba",
+          "size": 79560
+        },
+        "HOWL-CULT-8-2026.zip": {
+          "checksum": "e775905fec0bb4a2e934878ceb24405c",
+          "size": 177207
+        }
+      }
     },
     "HOWL-CULT-9-2026": {
       "zenodo_id": 19532063,
       "doi": "10.5281/zenodo.19532063",
       "status": "draft",
       "metadata_hash": "231ebc2549dbeda9fd19cc0ae6d765bb05de10c26886d862826370601a0db861",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "6bd8057f0dfd5769d7d8a7ceccdead75",
+          "size": 84409
+        },
+        "HOWL-CULT-9-2026.zip": {
+          "checksum": "4f5d7a67ae1fd5e4d44ca8081b430dee",
+          "size": 181295
+        }
+      }
     },
     "HOWL-DATA-1-2026": {
       "zenodo_id": 19532067,
       "doi": "10.5281/zenodo.19532067",
       "status": "draft",
       "metadata_hash": "7a0c505f4d21e54de07c04f2aea9dab3346ae61fcd98b10a9597eee56402e6a3",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "751f5e259e13c593b15be5a80a694222",
+          "size": 92941
+        },
+        "HOWL-DATA-1-2026.zip": {
+          "checksum": "e0f361b2294e1f8e9005cd82ccdf113c",
+          "size": 173765
+        }
+      }
     },
     "HOWL-DATA-2-2026": {
       "zenodo_id": 19532069,
       "doi": "10.5281/zenodo.19532069",
       "status": "draft",
       "metadata_hash": "261dd30c8566ad45613d43bfb602c7bfc3d3a856fd3935648146a66a89e32199",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "21166cfb1be7094403106bceba715a24",
+          "size": 104247
+        },
+        "HOWL-DATA-2-2026.zip": {
+          "checksum": "063df4efc27af5567db5402b19cd6b53",
+          "size": 228823
+        }
+      }
     },
     "HOWL-DATA-3-2026": {
       "zenodo_id": 19532071,
       "doi": "10.5281/zenodo.19532071",
       "status": "draft",
       "metadata_hash": "64b2472b338e128589c009d1239ae57a83d37e5b50ffff475fda059968407477",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "1f6917d3ad7fc24c10a44146dd66df4b",
+          "size": 68613
+        },
+        "HOWL-DATA-3-2026.zip": {
+          "checksum": "456112c622b6e7a7ec14eacd794b7068",
+          "size": 115516
+        }
+      }
     },
     "HOWL-DATA-4-2026": {
       "zenodo_id": 19532073,
       "doi": "10.5281/zenodo.19532073",
       "status": "draft",
       "metadata_hash": "15bc68b3fd848e38bd8cdab70981279591c89c8a07c9ce13730930d472764d6e",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "128535cad2863e13460a4cf133093b3c",
+          "size": 84857
+        },
+        "HOWL-DATA-4-2026.zip": {
+          "checksum": "9ad236d386d7e3018fcbef60d1908d90",
+          "size": 124540
+        }
+      }
     },
     "HOWL-DATA-5-2026": {
       "zenodo_id": 19532075,
       "doi": "10.5281/zenodo.19532075",
       "status": "draft",
       "metadata_hash": "f5d6b99f123313d1c929f80f9878ac070a883d8aa0d0227959dd3f5b7a48dd71",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "6a67088a7b460bdb2a9049355146f2fb",
+          "size": 104794
+        },
+        "HOWL-DATA-5-2026.zip": {
+          "checksum": "1ffa203e2f2101862631bd9056af089e",
+          "size": 13596286
+        }
+      }
     },
     "HOWL-DATA-6-2026": {
       "zenodo_id": 19532077,
       "doi": "10.5281/zenodo.19532077",
       "status": "draft",
       "metadata_hash": "2e5d628a774127848e71ee3a8bd4763b77dab80c9e4c6c4fccc8283e6d653ebf",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "3f142e30406b3e3d78c6438e0bb7cf2c",
+          "size": 139440
+        },
+        "HOWL-DATA-6-2026.zip": {
+          "checksum": "e06fad5603975edb714e711632c4e5f5",
+          "size": 2231707
+        }
+      }
     },
     "HOWL-DISC-1-2026": {
       "zenodo_id": 19532079,
       "doi": "10.5281/zenodo.19532079",
       "status": "draft",
       "metadata_hash": "551409d4bceab52f843cc68759be0f5bef585a4cadc495393e1df05ab0fc6585",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "8ed7c6a5e48dc6c5e9cc16d3b5433c61",
+          "size": 82998
+        },
+        "HOWL-DISC-1-2026.zip": {
+          "checksum": "873821e807314ca9b364d1ae17e75c3b",
+          "size": 182180
+        }
+      }
     },
     "HOWL-DISC-10-2026": {
       "zenodo_id": 19532081,
       "doi": "10.5281/zenodo.19532081",
       "status": "draft",
       "metadata_hash": "7ead55e396124769655049618c5e0436f7871dd1186ecd4b43f1effdfd131a8d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "94107a2e89a9940a21793268ad7d125f",
+          "size": 63846
+        },
+        "HOWL-DISC-10-2026.zip": {
+          "checksum": "dcfef6435b5908ef02647bffbfdfb55d",
+          "size": 342573
+        }
+      }
     },
     "HOWL-DISC-11-2026": {
       "zenodo_id": 19532085,
       "doi": "10.5281/zenodo.19532085",
       "status": "draft",
       "metadata_hash": "ea3a17a8bbb4f66c6ee13d1f7dadbf00932e1059d2f5e1d72594d6b88f1cc2e2",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "a69a2a50e38018eafeb56de272aa4ce0",
+          "size": 66496
+        },
+        "HOWL-DISC-11-2026.zip": {
+          "checksum": "24da5b13acaae047dc001e45eaadaca1",
+          "size": 128806
+        }
+      }
     },
     "HOWL-DISC-12-2026": {
       "zenodo_id": 19532087,
       "doi": "10.5281/zenodo.19532087",
       "status": "draft",
       "metadata_hash": "39eb5a713fbacfae7742ac2f5f78fe532cddbf6523a9c0c18c4dfb2703ac08b3",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "fa57162d316ea5b875be8d9447a9e818",
+          "size": 146054
+        },
+        "HOWL-DISC-12-2026.zip": {
+          "checksum": "5bbb0d2d2e418d4526e7a5803284e2f7",
+          "size": 332935
+        }
+      }
     },
     "HOWL-DISC-2-2026": {
       "zenodo_id": 19532089,
       "doi": "10.5281/zenodo.19532089",
       "status": "draft",
       "metadata_hash": "db4f7b870bbee38855d06772ba77fc1a7aaa69dbf1d407eab06c7c6ea049f6c6",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "dc36abc2be5126581036b1a17f1937e3",
+          "size": 77252
+        },
+        "HOWL-DISC-2-2026.zip": {
+          "checksum": "9cc81e39d0d3ab119d8e40b66b3b0276",
+          "size": 172427
+        }
+      }
     },
     "HOWL-DISC-3-2026": {
       "zenodo_id": 19532095,
       "doi": "10.5281/zenodo.19532095",
       "status": "draft",
       "metadata_hash": "20f164e9b7653283d2304f15884c934d3d6be1141532a6ea0006d36999b7bf3d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "b72e76629e94044bcc4efef9f494ea3d",
+          "size": 70579
+        },
+        "HOWL-DISC-3-2026.zip": {
+          "checksum": "e5b5ee2cfc4d8df2068310f5be8180e1",
+          "size": 164176
+        }
+      }
     },
     "HOWL-DISC-4-2026": {
       "zenodo_id": 19532100,
       "doi": "10.5281/zenodo.19532100",
       "status": "draft",
       "metadata_hash": "d108a9c463f3b18019da826ae9dc365e84c478926364c66482ab8e36abbf0403",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "5b7fd66148e1007773c61f32b59a53a6",
+          "size": 68659
+        },
+        "HOWL-DISC-4-2026.zip": {
+          "checksum": "b212b8699f8f788b452835045ee48785",
+          "size": 162374
+        }
+      }
     },
     "HOWL-DISC-5-2026": {
       "zenodo_id": 19532102,
       "doi": "10.5281/zenodo.19532102",
       "status": "draft",
       "metadata_hash": "6f9ccce929adce0eedd986981476ecd4d11701b66bf19d21a697748e9e9be793",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "c34a2150db3b6fa3196b8f09c9372871",
+          "size": 74937
+        },
+        "HOWL-DISC-5-2026.zip": {
+          "checksum": "a27573b6ccf00912509aeb62e38b7768",
+          "size": 169113
+        }
+      }
     },
     "HOWL-DISC-6-2026": {
       "zenodo_id": 19532106,
       "doi": "10.5281/zenodo.19532106",
       "status": "draft",
       "metadata_hash": "53fc94ccc02c54968794df534ecce35d9fb58267d5b1f4b470fda1001cf7faf4",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "c013302a37c88e4611d04aeee947187c",
+          "size": 71349
+        },
+        "HOWL-DISC-6-2026.zip": {
+          "checksum": "3f1610a7e636a505aff09c066ec202e6",
+          "size": 107021
+        }
+      }
     },
     "HOWL-DISC-7-2026": {
       "zenodo_id": 19532108,
       "doi": "10.5281/zenodo.19532108",
       "status": "draft",
       "metadata_hash": "d807ebe28ae3dc914eef693ca8bae28416d1ae3f2de9cd4a12201242d5720f0e",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "92e6d78be9c28ad23c33e1e81aa745d8",
+          "size": 77810
+        },
+        "HOWL-DISC-7-2026.zip": {
+          "checksum": "e71cceca37a6b32b5817f6033e127c31",
+          "size": 143416
+        }
+      }
     },
     "HOWL-DISC-8-2026": {
       "zenodo_id": 19532110,
       "doi": "10.5281/zenodo.19532110",
       "status": "draft",
       "metadata_hash": "2f24b16f834b23f80f572aecc0bf31cb37468891fef4a831cef68bb6185d04a1",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "36d3912f794f6a12559528361cf97074",
+          "size": 96378
+        },
+        "HOWL-DISC-8-2026.zip": {
+          "checksum": "1cf87273d52bacf42192086162667c99",
+          "size": 133379
+        }
+      }
     },
     "HOWL-DISC-9-2026": {
       "zenodo_id": 19532112,
       "doi": "10.5281/zenodo.19532112",
       "status": "draft",
       "metadata_hash": "b8c3836285c17dfd41e67e89f9496ef8a4ea53ae29a46112855af84590b3393e",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "e4b885a908462c9f1d819e8b769fef00",
+          "size": 68069
+        },
+        "HOWL-DISC-9-2026.zip": {
+          "checksum": "17330080a5dc3aabf55102f0dba0305b",
+          "size": 131580
+        }
+      }
     },
     "HOWL-INFO-5-2026": {
       "zenodo_id": 19532120,
       "doi": "10.5281/zenodo.19532120",
       "status": "draft",
       "metadata_hash": "a6b17cad89cfc73d8cf882c803b21a482e25e4411901135c27567b01c36e040a",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "fe643e22d0eb9fc7d7937ecb9605f407",
+          "size": 98555
+        },
+        "HOWL-INFO-5-2026.zip": {
+          "checksum": "758fae72341a995af434288f654d47bc",
+          "size": 141506
+        }
+      }
     },
     "HOWL-LLM-1-2026": {
       "zenodo_id": 19532132,
       "doi": "10.5281/zenodo.19532132",
       "status": "draft",
       "metadata_hash": "68d154d4d0cba853446072d1a14b7d8ca4753a054edf873e91ed629cb5a50a09",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "fea99f195bde632f77736d11d27295a2",
+          "size": 134051
+        },
+        "HOWL-LLM-1-2026.zip": {
+          "checksum": "5304678685a57a1f1fa14449a80eab68",
+          "size": 241210
+        }
+      }
     },
     "HOWL-LYRIC-1-2026": {
       "zenodo_id": 19532140,
       "doi": "10.5281/zenodo.19532140",
       "status": "draft",
       "metadata_hash": "e394265ba51742643764cdd9209856b159abceddbb84161c085216127cc5b68d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "48a0251981fb9df6ae72e7b745ba327d",
+          "size": 102237
+        },
+        "HOWL-LYRIC-1-2026.zip": {
+          "checksum": "ff202dbdbffdd1dd4a09d8e860c8e4c7",
+          "size": 205680
+        }
+      }
     },
     "HOWL-LYRIC-2-2026": {
       "zenodo_id": 19532149,
       "doi": "10.5281/zenodo.19532149",
       "status": "draft",
       "metadata_hash": "53cdc2f2f10060f9f4b1892f3dc827ddad0d1160930f8d861c5ba741e6f54a44",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "49b32c9a7a63087c112739ada7d39acb",
+          "size": 98062
+        },
+        "HOWL-LYRIC-2-2026.zip": {
+          "checksum": "a454494bfeb9346214feb931078720ec",
+          "size": 201137
+        }
+      }
     },
     "HOWL-MATH-1-2026": {
       "zenodo_id": 19532161,
       "doi": "10.5281/zenodo.19532161",
       "status": "draft",
       "metadata_hash": "a459e9765cb0c92e542069694582fb9b30efbd5cbd38dbe0efb5a0fd1355e17b",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "d77a7a3b6d65913e579f784b4676ca8e",
+          "size": 1146241
+        },
+        "HOWL-MATH-1-2026.zip": {
+          "checksum": "2aafae65380ca78308aae5b1e6d4845b",
+          "size": 2044067
+        }
+      }
     },
     "HOWL-MATH-10-2026": {
       "zenodo_id": 19532171,
       "doi": "10.5281/zenodo.19532171",
       "status": "draft",
       "metadata_hash": "22fcffd5cc593316aa65af67288727e915221e0ab17c0676fbfb411f337d3222",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "6e41328b28b7e4681b9bb3834c8047e9",
+          "size": 85882
+        },
+        "HOWL-MATH-10-2026.zip": {
+          "checksum": "f2fa21394ad492a83eb50761385461a8",
+          "size": 1377449
+        }
+      }
     },
     "HOWL-MATH-2-2026": {
       "zenodo_id": 19532181,
       "doi": "10.5281/zenodo.19532181",
       "status": "draft",
       "metadata_hash": "ca286cd92933cb52a0bdc5d0eecad02417910d8767f0ec97ec368d12018b1550",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "70e42b51bd188cff34e57f50cdc5e591",
+          "size": 1231195
+        },
+        "HOWL-MATH-2-2026.zip": {
+          "checksum": "2b36e8dd85a2b83d32ec748008dffbca",
+          "size": 2225213
+        }
+      }
     },
     "HOWL-MATH-3-2026": {
       "zenodo_id": 19532189,
       "doi": "10.5281/zenodo.19532189",
       "status": "draft",
       "metadata_hash": "f40bbc69a6f508e1b517d1c7d99c012840ecb741c766e803e950743372b5f06a",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "977a2e5bf27892b7b5c16bade5d74da3",
+          "size": 1445552
+        },
+        "HOWL-MATH-3-2026.zip": {
+          "checksum": "8aa781c111d9b17880e042a28e628a18",
+          "size": 2694716
+        }
+      }
     },
     "HOWL-MATH-4-2026": {
       "zenodo_id": 19532191,
       "doi": "10.5281/zenodo.19532191",
       "status": "draft",
       "metadata_hash": "2047d8eb20589984e4b1be825a08af79729f062ee51bf16fb31ff75a808fe26d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "b99aeb5fd778cea295deeeb626f68a4e",
+          "size": 1242222
+        },
+        "HOWL-MATH-4-2026.zip": {
+          "checksum": "6c74a815b867bedd569c771c01cfb100",
+          "size": 2258390
+        }
+      }
     },
     "HOWL-MATH-5-2026": {
       "zenodo_id": 19532193,
       "doi": "10.5281/zenodo.19532193",
       "status": "draft",
       "metadata_hash": "27766d99b864d9f67cc372031fa94cf9e596149631aa7e3afd0e69e10d30a8d8",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "75faed29397423e4c8b8da1553141122",
+          "size": 1365917
+        },
+        "HOWL-MATH-5-2026.zip": {
+          "checksum": "b5e802366fccbc77542f70d757b45abc",
+          "size": 2512810
+        }
+      }
     },
     "HOWL-MATH-6-2026": {
       "zenodo_id": 19532199,
       "doi": "10.5281/zenodo.19532199",
       "status": "draft",
       "metadata_hash": "f9be445e438c1142184e9301cf9da02b8dfd17eb290a5d995cf9dd98b7967a91",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "1908e5f1971be0b25c40ae3bcded7520",
+          "size": 1297382
+        },
+        "HOWL-MATH-6-2026.zip": {
+          "checksum": "a86f1a26418baee82d89ef5935fc2542",
+          "size": 2374601
+        }
+      }
     },
     "HOWL-MATH-7-2026": {
       "zenodo_id": 19532201,
       "doi": "10.5281/zenodo.19532201",
       "status": "draft",
       "metadata_hash": "a1aa89652c97956650a866e0f2edb3b341f90bf6a970d71f9af1817c13222b3d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "21199361826b006f49b9da4b07127b9a",
+          "size": 1375575
+        },
+        "HOWL-MATH-7-2026.zip": {
+          "checksum": "3e9372881c0637c7dfba867d8ce5f52f",
+          "size": 2508928
+        }
+      }
     },
     "HOWL-MATH-8-2026": {
       "zenodo_id": 19532203,
       "doi": "10.5281/zenodo.19532203",
       "status": "draft",
       "metadata_hash": "2d96765c98c61c61f576086dba9e8fd1dd03049e4ba345c1b7c0cb25eb49a877",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "25f5f1744f77aee81f96439fcbb45819",
+          "size": 75058
+        },
+        "HOWL-MATH-8-2026.zip": {
+          "checksum": "bcb79cbad58dabb569b06812bd0effd4",
+          "size": 1358120
+        }
+      }
     },
     "HOWL-MATH-9-2026": {
       "zenodo_id": 19532205,
       "doi": "10.5281/zenodo.19532205",
       "status": "draft",
       "metadata_hash": "d8db9de7d6c8afd7c9eb991045e94ebc4d875a951d5221d7b0e36c8a0b6dc376",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "12af0b4b60163ae63698c9f09f475cda",
+          "size": 59725
+        },
+        "HOWL-MATH-9-2026.zip": {
+          "checksum": "2eb5d83bd32b04139dfb57b06475c1c7",
+          "size": 1340786
+        }
+      }
     },
     "HOWL-PHYS-1-2026": {
       "zenodo_id": 19532209,
       "doi": "10.5281/zenodo.19532209",
       "status": "draft",
       "metadata_hash": "09367bbdc518584ab3e067433cd546d9ab2ede17e65025e31c9c06f195c9ccec",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "25d2c86e4ab882b892bc15bc0363af7f",
+          "size": 1940652
+        },
+        "HOWL-PHYS-1-2026.zip": {
+          "checksum": "ed251250b6a1430fb20752aad8f45d59",
+          "size": 3660574
+        }
+      }
     },
     "HOWL-PHYS-10-2026": {
       "zenodo_id": 19532211,
       "doi": "10.5281/zenodo.19532211",
       "status": "draft",
       "metadata_hash": "fb6d84d5055a4eb5cb42630cc76b2e279b1e6b06e899debda057ab6e7ccb6617",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "528e666fea82b1f5c48b3cc3e9e53867",
+          "size": 1471177
+        },
+        "HOWL-PHYS-10-2026.zip": {
+          "checksum": "ab712f079a96bb086ec7689b9968c16a",
+          "size": 2667661
+        }
+      }
     },
     "HOWL-PHYS-11-2026": {
       "zenodo_id": 19532213,
       "doi": "10.5281/zenodo.19532213",
       "status": "draft",
       "metadata_hash": "3361f9938c1f9a401387cffbdd2b9ddc91badcb5cdb2729c767a82a9ff95a9a3",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "8d9e31648d9cf63aa3e78bc977178750",
+          "size": 1581860
+        },
+        "HOWL-PHYS-11-2026.zip": {
+          "checksum": "12bacbfea059464e23fec1e406402f12",
+          "size": 3061052
+        }
+      }
     },
     "HOWL-PHYS-12-2026": {
       "zenodo_id": 19532215,
       "doi": "10.5281/zenodo.19532215",
       "status": "draft",
       "metadata_hash": "70883f5540632f5f3df1d9542eeb84d331b248479c29e89d5b40e51c70a1200f",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "7ec950c89fa722c2d86a1a6eac01f295",
+          "size": 1304747
+        },
+        "HOWL-PHYS-12-2026.zip": {
+          "checksum": "32481d7cf37799faecb0d2269c7ef7da",
+          "size": 2572381
+        }
+      }
     },
     "HOWL-PHYS-13-2026": {
       "zenodo_id": 19532217,
       "doi": "10.5281/zenodo.19532217",
       "status": "draft",
       "metadata_hash": "04dea7c8d854b77501fd7ba953d7a00611c1dd306a43003aa2bee48b720ade66",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "7613faf4046148b09d3edc9efad96d4c",
+          "size": 1178883
+        },
+        "HOWL-PHYS-13-2026.zip": {
+          "checksum": "bd77ce457fc095e9ca5fc72e4040b131",
+          "size": 2316446
+        }
+      }
     },
     "HOWL-PHYS-14-2026": {
       "zenodo_id": 19532221,
       "doi": "10.5281/zenodo.19532221",
       "status": "draft",
       "metadata_hash": "382536a41dd173084ddf5507b72d979fa2c8acb1e65722a5619c3b6b56ecddbb",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "861b48a2b112be380c8b1ebfe025fb9c",
+          "size": 1107521
+        },
+        "HOWL-PHYS-14-2026.zip": {
+          "checksum": "2234df2161f92ce234f6cd007502bdfc",
+          "size": 1914588
+        }
+      }
     },
     "HOWL-PHYS-15-2026": {
       "zenodo_id": 19532223,
       "doi": "10.5281/zenodo.19532223",
       "status": "draft",
       "metadata_hash": "2996e368768f7645055a2ea1fcde688b96e1dfc163c3768e142db1ead4530420",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "2cdfa321978ca4d6e9534db791d2fa37",
+          "size": 1194265
+        },
+        "HOWL-PHYS-15-2026.zip": {
+          "checksum": "ead27b26bc7eb5edecf50aab4b7c95ea",
+          "size": 2089003
+        }
+      }
     },
     "HOWL-PHYS-16-2026": {
       "zenodo_id": 19532227,
       "doi": "10.5281/zenodo.19532227",
       "status": "draft",
       "metadata_hash": "b6cdbd2e4531f847ddd67898a70fd90ecfe98a097e133a980c0a19a9c541511a",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "582afeb657d3e5284e1cd4d52e6fd5c9",
+          "size": 1162162
+        },
+        "HOWL-PHYS-16-2026.zip": {
+          "checksum": "71f56e56ba5ee487bb5443468d0cd91d",
+          "size": 2177341
+        }
+      }
     },
     "HOWL-PHYS-17-2026": {
       "zenodo_id": 19532229,
       "doi": "10.5281/zenodo.19532229",
       "status": "draft",
       "metadata_hash": "18574fab753b567628e0d472331f02c0f38f901f85fc7d0f0d862c073491f0a9",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "889203af0e9972ccd032c78d84982926",
+          "size": 1256166
+        },
+        "HOWL-PHYS-17-2026.zip": {
+          "checksum": "cd4116276668061ec2bc30f6a37427e3",
+          "size": 3514653
+        }
+      }
     },
     "HOWL-PHYS-18-2026": {
       "zenodo_id": 19532231,
       "doi": "10.5281/zenodo.19532231",
       "status": "draft",
       "metadata_hash": "709ac8aff3d30845561df0cd263c7706b1566f114b900b580911a3e0716b486e",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "4002ddd2c7348f47708aed0cf8f4963f",
+          "size": 1240484
+        },
+        "HOWL-PHYS-18-2026.zip": {
+          "checksum": "ae5fd831788d78fb1ee4a6aee8ee8314",
+          "size": 3529844
+        }
+      }
     },
     "HOWL-PHYS-19-2026": {
       "zenodo_id": 19532233,
       "doi": "10.5281/zenodo.19532233",
       "status": "draft",
       "metadata_hash": "73cfaf674d859884ddea84499d47bbe58e3dbed425b5847b19c1b84b77bde5b0",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "5947291f87e700ca5929430eb6e4181d",
+          "size": 1221637
+        },
+        "HOWL-PHYS-19-2026.zip": {
+          "checksum": "360415428c3ff23ec9aa7964649d6853",
+          "size": 3561543
+        }
+      }
     },
     "HOWL-PHYS-2-2026": {
       "zenodo_id": 19532236,
       "doi": "10.5281/zenodo.19532236",
       "status": "draft",
       "metadata_hash": "fb69d2e55a9303c1ef06abb4cf8113b9476ad8d6e89fdce5ffa2675d785e61a4",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "7a1f8dc0a060dc3471a70ac64df59aa5",
+          "size": 1656896
+        },
+        "HOWL-PHYS-2-2026.zip": {
+          "checksum": "7a3e58e4bc989d0f943674374f632a02",
+          "size": 3095727
+        }
+      }
     },
     "HOWL-PHYS-20-2026": {
       "zenodo_id": 19532240,
       "doi": "10.5281/zenodo.19532240",
       "status": "draft",
       "metadata_hash": "6d16b169613b14de19d582b6a73e2e1a532dcc104c8e6ba87875254c7bc07871",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "a4bd3194aaffd8705f5fb3be26d23270",
+          "size": 1240044
+        },
+        "HOWL-PHYS-20-2026.zip": {
+          "checksum": "3f400509a7395ba1ff7a8528806e86d6",
+          "size": 3496796
+        }
+      }
     },
     "HOWL-PHYS-21-2026": {
       "zenodo_id": 19532244,
       "doi": "10.5281/zenodo.19532244",
       "status": "draft",
       "metadata_hash": "2fa8951701b8eb29297ec09b062f3279a420b43363f46d92c164f993b5b9b920",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "81fd9c631adbb72af9cfba95d4525df0",
+          "size": 1417531
+        },
+        "HOWL-PHYS-21-2026.zip": {
+          "checksum": "8eb6a5795f6317cced22508ed84642f1",
+          "size": 3831418
+        }
+      }
     },
     "HOWL-PHYS-22-2026": {
       "zenodo_id": 19532246,
       "doi": "10.5281/zenodo.19532246",
       "status": "draft",
       "metadata_hash": "379597041a73e889bc8cc21b696701fa64d2bda5f14ac19b1d891be1e628fdce",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "d2d22004909ca38958818f07235219e0",
+          "size": 1122210
+        },
+        "HOWL-PHYS-22-2026.zip": {
+          "checksum": "cf784cbbf7d6d7b1ab633d1decafed2a",
+          "size": 3268814
+        }
+      }
     },
     "HOWL-PHYS-23-2026": {
       "zenodo_id": 19532248,
       "doi": "10.5281/zenodo.19532248",
       "status": "draft",
       "metadata_hash": "0e1ef41b69d62cf523952fc6635e0d3ab692de379ff02fd5e6dc5f9e2c1016b4",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "4b2d8c0ccf37b474f76de0788237ef5f",
+          "size": 1260110
+        },
+        "HOWL-PHYS-23-2026.zip": {
+          "checksum": "7e8d8881452d45c0346bf0fc292781f0",
+          "size": 3571362
+        }
+      }
     },
     "HOWL-PHYS-24-2026": {
       "zenodo_id": 19532252,
       "doi": "10.5281/zenodo.19532252",
       "status": "draft",
       "metadata_hash": "6b2c8f418aecff41ba5d8456f2669662cff4228dda20a320cddf38e26b66d926",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "bd69c946552cb2b895c2ac6b46e152ae",
+          "size": 1286742
+        },
+        "HOWL-PHYS-24-2026.zip": {
+          "checksum": "39a977d4838c6109514907b4cea988df",
+          "size": 2410276
+        }
+      }
     },
     "HOWL-PHYS-25-2026": {
       "zenodo_id": 19532254,
       "doi": "10.5281/zenodo.19532254",
       "status": "draft",
       "metadata_hash": "c36a23ee5926b6b1f42b2c9f5be12d070ebc2a17a32149c18f537a340d5d63b0",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "106a1150ef5066a4bdd7f88093dd1b77",
+          "size": 93506
+        },
+        "HOWL-PHYS-25-2026.zip": {
+          "checksum": "1a64f72fcd30b3fed786b351a0e6118e",
+          "size": 7645794
+        }
+      }
     },
     "HOWL-PHYS-26-2026": {
       "zenodo_id": 19532257,
       "doi": "10.5281/zenodo.19532257",
       "status": "draft",
       "metadata_hash": "46f6d1831bc362f47b9e797460c43153916e0a6cb39694e418d726f9cf60ef4d",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "f2d36421c5f7b02dad8d2a253e5c69b8",
+          "size": 82233
+        },
+        "HOWL-PHYS-26-2026.zip": {
+          "checksum": "50c81ca0f35522f49d540bcbd0d2ac65",
+          "size": 172298
+        }
+      }
     },
     "HOWL-PHYS-27-2026": {
       "zenodo_id": 19532259,
       "doi": "10.5281/zenodo.19532259",
       "status": "draft",
       "metadata_hash": "3e2498fb92b64fa551c8c123d864994bdeccb14a5f2df5f483be28f3d22c5b10",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "1138beb4ca807963d44901c7dc0eed4c",
+          "size": 77701
+        },
+        "HOWL-PHYS-27-2026.zip": {
+          "checksum": "551973722a2b30aa6fda62e987e35a01",
+          "size": 157006
+        }
+      }
     },
     "HOWL-PHYS-28-2026": {
       "zenodo_id": 19532261,
       "doi": "10.5281/zenodo.19532261",
       "status": "draft",
       "metadata_hash": "919efe58539e689dc9fe12577cd810b77b5e258f9dae4f62582339af267da668",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "b0ae36b723f16faf376df2f2e8230d28",
+          "size": 80089
+        },
+        "HOWL-PHYS-28-2026.zip": {
+          "checksum": "dfc5d2e9cbb973caa0b51526aecef69e",
+          "size": 161026
+        }
+      }
     },
     "HOWL-PHYS-29-2026": {
       "zenodo_id": 19532265,
       "doi": "10.5281/zenodo.19532265",
       "status": "draft",
       "metadata_hash": "0f29c681a8611d11d9a425680ccbaa72d2046987d1b274ddf23259034029f9d7",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "2f6cb6a4e93a72575470d87e5e66333e",
+          "size": 63575
+        },
+        "HOWL-PHYS-29-2026.zip": {
+          "checksum": "d7c943655c801befebe5acbd78242d15",
+          "size": 2660946
+        }
+      }
     },
     "HOWL-PHYS-3-2026": {
       "zenodo_id": 19532267,
       "doi": "10.5281/zenodo.19532267",
       "status": "draft",
       "metadata_hash": "4869b199574ee0b770847bf6017603372b5c9ae8fb27502b3072806db0f60f83",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "0ef4ab95de1920174912f38cf86ad29e",
+          "size": 1290460
+        },
+        "HOWL-PHYS-3-2026.zip": {
+          "checksum": "05581da2cdff807cd83b58d6801777b6",
+          "size": 2312208
+        }
+      }
     },
     "HOWL-PHYS-30-2026": {
       "zenodo_id": 19532269,
       "doi": "10.5281/zenodo.19532269",
       "status": "draft",
       "metadata_hash": "3e2632ee00479cb8e0af02457e2d0d2f54ef0056b51007ef6a32cdc75c8b530c",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "d8dbe7439c2ecd0ce4cf1d49882fd2ed",
+          "size": 1451867
+        },
+        "HOWL-PHYS-30-2026.zip": {
+          "checksum": "35536592f2fa0393e41eeafda4c9e374",
+          "size": 2617703
+        }
+      }
     },
     "HOWL-PHYS-31-2026": {
       "zenodo_id": 19532271,
       "doi": "10.5281/zenodo.19532271",
       "status": "draft",
       "metadata_hash": "7ae711fd7231b904ea044cc593c9d8984279eac72777e8356802d310af28c2cb",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "04f694195ab37a036aa33d02d446d605",
+          "size": 1124953
+        },
+        "HOWL-PHYS-31-2026.zip": {
+          "checksum": "a95b97154a9004a91e630ef6c2493025",
+          "size": 2087270
+        }
+      }
     },
     "HOWL-PHYS-32-2026": {
       "zenodo_id": 19532273,
       "doi": "10.5281/zenodo.19532273",
       "status": "draft",
       "metadata_hash": "ed3cd51823fcef1fb22728d8c6792ad22611038b807f21650ac6470c8a77a3fe",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "244420ac624a7b50f7739743f85ca57a",
+          "size": 1161836
+        },
+        "HOWL-PHYS-32-2026.zip": {
+          "checksum": "d2128965636e83c416d9844d8391547f",
+          "size": 2038928
+        }
+      }
     },
     "HOWL-PHYS-33-2026": {
       "zenodo_id": 19532277,
       "doi": "10.5281/zenodo.19532277",
       "status": "draft",
       "metadata_hash": "8e1c731366c4fe8d46b0433daad37867a112cb709a129466759ff9043ade0383",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "bb653326762d1c512def5361f2e3cfba",
+          "size": 1216143
+        },
+        "HOWL-PHYS-33-2026.zip": {
+          "checksum": "b1ad1bcbf689368623826523473a409b",
+          "size": 2230487
+        }
+      }
     },
     "HOWL-PHYS-34-2026": {
       "zenodo_id": 19532281,
       "doi": "10.5281/zenodo.19532281",
       "status": "draft",
       "metadata_hash": "bed7fa0953d7a1236cfd09fbc58044850c2b1467a541920d5a63fcd8f353aa51",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "e7310d85c347b4baf80b22efeac91702",
+          "size": 1040500
+        },
+        "HOWL-PHYS-34-2026.zip": {
+          "checksum": "1ad4d514260d4b3de49b141ecd55e1de",
+          "size": 1836591
+        }
+      }
     },
     "HOWL-PHYS-35-2026": {
       "zenodo_id": 19532283,
       "doi": "10.5281/zenodo.19532283",
       "status": "draft",
       "metadata_hash": "316733ff51420b016110bdae9a3b797c58f8c5d9a67e1ecfb1cd186db9a60619",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "cbbff698c4377a1bea0c82a7bf443edc",
+          "size": 1361777
+        },
+        "HOWL-PHYS-35-2026.zip": {
+          "checksum": "35871d3ee95b11efa00cd9fd0c327095",
+          "size": 2444959
+        }
+      }
     },
     "HOWL-PHYS-36-2026": {
       "zenodo_id": 19532287,
       "doi": "10.5281/zenodo.19532287",
       "status": "draft",
       "metadata_hash": "edfe40f204fadb8e43609f190d5fb72465aa8d54f9b401d00e15f58e8f643279",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "0747e13dd20fd043af19b1b6858437aa",
+          "size": 1128533
+        },
+        "HOWL-PHYS-36-2026.zip": {
+          "checksum": "b3df998a49cb6b4833a2c2897cfceb5f",
+          "size": 2005508
+        }
+      }
     },
     "HOWL-PHYS-37-2026": {
       "zenodo_id": 19532291,
       "doi": "10.5281/zenodo.19532291",
       "status": "draft",
       "metadata_hash": "5c88ea794e68dc645069616724c5c23d6e4fed9453edbff05177d1c947cef19c",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "4bfd63200e61d3447667a9466ee3caeb",
+          "size": 1382079
+        },
+        "HOWL-PHYS-37-2026.zip": {
+          "checksum": "655341897a4f99e5cf252febc05c36c2",
+          "size": 2517043
+        }
+      }
     },
     "HOWL-PHYS-38-2026": {
       "zenodo_id": 19532295,
       "doi": "10.5281/zenodo.19532295",
       "status": "draft",
       "metadata_hash": "e51e7b22b18d7c33a387ff79b4e3eef1538474aef84756f6eb85a05f785e6ef6",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "e22dc7f1e4c275aeb43080d72ec4e769",
+          "size": 1389834
+        },
+        "HOWL-PHYS-38-2026.zip": {
+          "checksum": "1269a6f2b139475cd44d7fca6e515fdf",
+          "size": 2521534
+        }
+      }
     },
     "HOWL-PHYS-39-2026": {
       "zenodo_id": 19532299,
       "doi": "10.5281/zenodo.19532299",
       "status": "draft",
       "metadata_hash": "a27fab6e00fe20fb16d66123ef56c76601b0901f194d90328223fa66aef67b58",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "fd7253ec1732abf55bf01598b1c69277",
+          "size": 1357176
+        },
+        "HOWL-PHYS-39-2026.zip": {
+          "checksum": "6c9bbb39a2574793dd86ca8d8b20dfbb",
+          "size": 2490640
+        }
+      }
     },
     "HOWL-PHYS-4-2026": {
       "zenodo_id": 19532303,
       "doi": "10.5281/zenodo.19532303",
       "status": "draft",
       "metadata_hash": "38759375105663fe19fb9faf1a69105995cea293afa1addabe23bf67a43501ff",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "bb55609b6157ed8be33d15874ccc4ac0",
+          "size": 1464721
+        },
+        "HOWL-PHYS-4-2026.zip": {
+          "checksum": "aadbdf46f8b14b125267b2be9815f7e5",
+          "size": 2633176
+        }
+      }
     },
     "HOWL-PHYS-40-2026": {
       "zenodo_id": 19532307,
       "doi": "10.5281/zenodo.19532307",
       "status": "draft",
       "metadata_hash": "e700c89929b13ecc31dafb9673c5db23d5cc32568e96425e5ac60207df6cc4e8",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "1b95e816d14144688ade1361b6a36433",
+          "size": 1262407
+        },
+        "HOWL-PHYS-40-2026.zip": {
+          "checksum": "e75a32b02eaad16f400372861a98dc82",
+          "size": 2329426
+        }
+      }
     },
     "HOWL-PHYS-41-2026": {
       "zenodo_id": 19532312,
       "doi": "10.5281/zenodo.19532312",
       "status": "draft",
       "metadata_hash": "8e058912c4c2fca904716117841db76d0d6e76d3c807a7f4aa11684a3285b0b9",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "25a29c77ef15be5abf19ac14f4a1353c",
+          "size": 1837355
+        },
+        "HOWL-PHYS-41-2026.zip": {
+          "checksum": "024ec4836fed2e8f7064eaaf2ffc5fb0",
+          "size": 3462643
+        }
+      }
     },
     "HOWL-PHYS-42-2026": {
       "zenodo_id": 19532316,
       "doi": "10.5281/zenodo.19532316",
       "status": "draft",
       "metadata_hash": "1ee252073e623302a7b6fa70964f4fee017e327a43453bc317631932f78ba77c",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "ea05e4ac0fc557a9d897f4d5fab0cc09",
+          "size": 1914497
+        },
+        "HOWL-PHYS-42-2026.zip": {
+          "checksum": "c69255f4063519d9001d0f47ff3d0f11",
+          "size": 3725452
+        }
+      }
     },
     "HOWL-PHYS-43-2026": {
       "zenodo_id": 19532320,
       "doi": "10.5281/zenodo.19532320",
       "status": "draft",
       "metadata_hash": "e8ca652e74c340e781b89be7d1679a0363e846605db1a04dde00760986bd0876",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "7197237a65bedf93bc8dbbfc4946cf95",
+          "size": 1663643
+        },
+        "HOWL-PHYS-43-2026.zip": {
+          "checksum": "cf47a693d04c7d67e057b3211bcb10e3",
+          "size": 3123024
+        }
+      }
     },
     "HOWL-PHYS-44-2026": {
       "zenodo_id": 19532324,
       "doi": "10.5281/zenodo.19532324",
       "status": "draft",
       "metadata_hash": "1d02205af9f9d0291bec990d6b6fc5ab931d7009dce2fbfcee4e4b8ba318d676",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "3b5a02223f64fbae3098d38805eda306",
+          "size": 1341656
+        },
+        "HOWL-PHYS-44-2026.zip": {
+          "checksum": "25073baf6bdb78e56341db69fec25c4d",
+          "size": 2514665
+        }
+      }
     },
     "HOWL-PHYS-5-2026": {
       "zenodo_id": 19532329,
       "doi": "10.5281/zenodo.19532329",
       "status": "draft",
       "metadata_hash": "a0f407cdec814c67c2a360df16984dfbdd192734be55b5cf026b0c162e0ec80a",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "62f64958572b6647a89f7c9ad7a0fba8",
+          "size": 1224181
+        },
+        "HOWL-PHYS-5-2026.zip": {
+          "checksum": "5621f5737d2e97e534fbb7a75bfe521b",
+          "size": 2285726
+        }
+      }
     },
     "HOWL-PHYS-6-2026": {
       "zenodo_id": 19532335,
       "doi": "10.5281/zenodo.19532335",
       "status": "draft",
       "metadata_hash": "7a1731eba47f897778e6ea3741ff7a956a8b4c6c2a24c194b5694b7332499a0c",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "89f83cacf316a8cef79126cceb99e462",
+          "size": 1268641
+        },
+        "HOWL-PHYS-6-2026.zip": {
+          "checksum": "9940ef837f9bc701ca10cf4b8c03d435",
+          "size": 2288732
+        }
+      }
     },
     "HOWL-PHYS-7-2026": {
       "zenodo_id": 19532339,
       "doi": "10.5281/zenodo.19532339",
       "status": "draft",
       "metadata_hash": "ac5b5b6a75ffc8a9d9039fa154c1452072dc3583e0544157540ac8b849a86cbd",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "2cf6264fe2facc7669817ff02ea067b2",
+          "size": 1366868
+        },
+        "HOWL-PHYS-7-2026.zip": {
+          "checksum": "f5641c2801786fdc9c6d6bc49e60f661",
+          "size": 2481301
+        }
+      }
     },
     "HOWL-PHYS-8-2026": {
       "zenodo_id": 19532341,
       "doi": "10.5281/zenodo.19532341",
       "status": "draft",
       "metadata_hash": "1cf9a715ac604a283472ddf9094df81ae0de9c211d6548216060dcfc2bf3612b",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "5b6864c8513778f2426769a449541e75",
+          "size": 1326047
+        },
+        "HOWL-PHYS-8-2026.zip": {
+          "checksum": "45127b4fffaa7edc5d261c64ac7bd720",
+          "size": 2455935
+        }
+      }
     },
     "HOWL-PHYS-9-2026": {
       "zenodo_id": 19532348,
       "doi": "10.5281/zenodo.19532348",
       "status": "draft",
       "metadata_hash": "cd2afbb36578dca9e19c9e27292eae285e75cd5b6faf6874a5f9291f0971703b",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "3bb7d6601059f2a200c24cfd98eaa322",
+          "size": 1308994
+        },
+        "HOWL-PHYS-9-2026.zip": {
+          "checksum": "67c3d118846d834ae40b120ba082b8e1",
+          "size": 2377699
+        }
+      }
     },
     "HOWL-SOPH-2-2026": {
       "zenodo_id": 19532352,
       "doi": "10.5281/zenodo.19532352",
       "status": "draft",
       "metadata_hash": "e088c29986ca61feabae58542f6412c6a14c1e478be0376b3463eae75d47aaef",
-      "files": {}
+      "files": {
+        "!manuscript.pdf": {
+          "checksum": "1645d764a9dd2edbb90a61c83155af99",
+          "size": 63401
+        },
+        "HOWL-SOPH-2-2026.zip": {
+          "checksum": "934a404a28f4584cdae2dfa18da5e23d",
+          "size": 150709
+        }
+      }
     }
   },
   "last_full_sync": "2026-04-12T12:43:29Z"
