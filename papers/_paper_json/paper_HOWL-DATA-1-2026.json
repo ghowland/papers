@@ -1,0 +1,40 @@
+{
+  "file_path": "papers/DATA/HOWL-DATA-1-2026/manuscript.md",
+  "paper_id": "HOWL-DATA-1-2026",
+  "subject": "DATA",
+  "number": 1,
+  "year": 2026,
+  "title": "Cross-Domain Precision Data Inventory",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Raw Database",
+  "doi": {
+    "raw": "10.5281/zenodo.19528524",
+    "is_stub": false,
+    "zenodo_id": 19528524,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DATA-1-2026]",
+    "Series Path": "[@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "April 1 2026",
+    "Domain": "Cross Domain Data",
+    "Status": "Documentation",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": "This paper presents a curated reference database of precision-measured constants, defined standards, and analytical results from every domain where R\u2082 = \u03c0/4 appears in the governing equation. The inventory spans 17 domain categories and 250+ individual entries, each carrying the original measured or defined value, its source, and the R\u2082/R\u2084 equation it participates in. The database serves as the data foundation for the HOWL series: every claim, test, and computation in the series draws from values catalogued here. DATA-2 (forthcoming) will transform applicable entries into big-integer rational representations and test them against the Q335 basis.",
+  "dependencies": [
+    "HOWL-DATA-2-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274389+00:00"
+}

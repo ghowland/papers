@@ -1,0 +1,52 @@
+{
+  "file_path": "papers/CULT/HOWL-CULT-9-2026/manuscript.md",
+  "paper_id": "HOWL-CULT-9-2026",
+  "subject": "CULT",
+  "number": 9,
+  "year": 2026,
+  "title": "The Omni-Academy",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "A Structural Specification for the First Institution in the Hallways",
+  "doi": {
+    "raw": "10.5281/zenodo.19528522",
+    "is_stub": false,
+    "zenodo_id": 19528522,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-CULT-9-2026]",
+    "Series Path": "[@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026] \u2192 [@HOWL-CULT-5-2026] \u2192 [@HOWL-CULT-6-2026] \u2192 [@HOWL-CULT-7-2026] \u2192 [@HOWL-CULT-8-2026] \u2192 [@HOWL-CULT-9-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 29 2026",
+    "Domain": "Scientific Culture / Institutional Design / Cross-Domain Investigation",
+    "Status": "Specification",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-CULT-1-2026",
+    "HOWL-CULT-2-2026",
+    "HOWL-CULT-3-2026",
+    "HOWL-CULT-4-2026",
+    "HOWL-CULT-5-2026",
+    "HOWL-CULT-6-2026",
+    "HOWL-CULT-7-2026",
+    "HOWL-CULT-8-2026",
+    "HOWL-DISC-1-2026",
+    "HOWL-DISC-2-2026",
+    "HOWL-DISC-3-2026",
+    "HOWL-LLM-1-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274377+00:00"
+}

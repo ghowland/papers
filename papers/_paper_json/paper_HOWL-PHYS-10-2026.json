@@ -1,0 +1,44 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-10-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-10-2026",
+  "subject": "PHYS",
+  "number": 10,
+  "year": 2026,
+  "title": "Remainder as Observable",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Exact Quotient-Remainder Decomposition Across Six Domains of Quantum Physics",
+  "doi": {
+    "raw": "10.5281/zenodo.19528629",
+    "is_stub": false,
+    "zenodo_id": 19528629,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-10-2026]",
+    "Series Path": "[@HOWL-MATH-4-2026] \u2192 [@HOWL-PHYS-7-2026] \u2192 [@HOWL-PHYS-9-2026] \u2192 [@HOWL-PHYS-10-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 31 2026",
+    "Domain": "Mathematical Physics / Exact Arithmetic / Quantum Mechanics",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-4-2026",
+    "HOWL-PHYS-5-2026",
+    "HOWL-PHYS-7-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274924+00:00"
+}

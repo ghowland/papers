@@ -1,0 +1,43 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-8-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-8-2026",
+  "subject": "PHYS",
+  "number": 8,
+  "year": 2026,
+  "title": "The Koide Constant Decomposes",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Generation Count and Amplitude in the Charged Lepton Mass Relation",
+  "doi": {
+    "raw": "10.5281/zenodo.19528745",
+    "is_stub": false,
+    "zenodo_id": 19528745,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-8-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-5-2026] \u2192 [@HOWL-PHYS-7-2026] \u2192 [@HOWL-PHYS-8-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 2026",
+    "Domain": "Foundational Physics / Lepton Mass Structure",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-5-2026",
+    "HOWL-PHYS-7-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275456+00:00"
+}

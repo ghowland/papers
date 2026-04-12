@@ -1,0 +1,56 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-21-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-21-2026",
+  "subject": "PHYS",
+  "number": 21,
+  "year": 2026,
+  "title": "The Level 1 / Level 2 Boundary \u2014 From Observed Structure to Unobserved Particles",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "The integers tell you WHAT. The universe tells you HOW MUCH.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528673",
+    "is_stub": false,
+    "zenodo_id": 19528673,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-21-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-6-2026] \u2192 [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]\n -> [@HOWL-PHYS-21-2026]",
+    "Date": "April 1 2026",
+    "Domain": "Epistemology of Physical Structure, Classification",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks), all prior PHYS papers"
+  },
+  "abstract": "Every HOWL paper from PHYS-7 through PHYS-20 classifies its results as Level 1 (determined by the mathematical framework) or Level 2 (supplied by the universe through measurement). These classifications are scattered across individual appendices. This paper assembles them into a unified boundary map, states the principle explicitly, and documents its extension to an unobserved particle for the first time. The Cabibbo Doublet (3,2,1/6) is the first entity in the series where Level 1 arithmetic \u2014 exact Fraction computation on gauge group integers \u2014 identifies WHAT should exist before Level 2 measurement has confirmed WHETHER it exists. The representation, beta contributions, gap ratio, asymmetry mechanism, and scaling laws are all Level 1. The mass, mixing angles, CP phases, and the very existence of the particle are all Level 2. This extension from confirmed structure to unconfirmed identification is the same pattern that operated for every particle discovered since 1974: Level 1 mathematics identified the charm quark (GIM, 1970), the W and Z bosons (SU(2)\u00d7U(1), 1967), and the Higgs boson (symmetry breaking, 1964) before Level 2 experiments found them. The Cabibbo Doublet is at the same stage. Whether it follows the same path is for the universe to say.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-10-2026",
+    "HOWL-PHYS-11-2026",
+    "HOWL-PHYS-12-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-14-2026",
+    "HOWL-PHYS-15-2026",
+    "HOWL-PHYS-17-2026",
+    "HOWL-PHYS-18-2026",
+    "HOWL-PHYS-19-2026",
+    "HOWL-PHYS-2-2026",
+    "HOWL-PHYS-20-2026",
+    "HOWL-PHYS-6-2026",
+    "HOWL-PHYS-7-2026",
+    "HOWL-PHYS-8-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275109+00:00"
+}

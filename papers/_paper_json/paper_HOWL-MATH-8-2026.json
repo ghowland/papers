@@ -1,0 +1,42 @@
+{
+  "file_path": "papers/MATH/HOWL-MATH-8-2026/manuscript.md",
+  "paper_id": "HOWL-MATH-8-2026",
+  "subject": "MATH",
+  "number": 8,
+  "year": 2026,
+  "title": "Q335",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "An Operationally Exact Number System for Physical Computation",
+  "doi": {
+    "raw": "10.5281/zenodo.19528621",
+    "is_stub": false,
+    "zenodo_id": 19528621,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Series Path": "[@HOWL-MATH-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026] \u2192 [@HOWL-MATH-8-2026]",
+    "Date": "April 6, 2026",
+    "Domain": "Computational Mathematics / Number Systems",
+    "Status": "Complete"
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-2-2026",
+    "HOWL-MATH-3-2026",
+    "HOWL-MATH-4-2026"
+  ],
+  "validation": {
+    "is_valid": false,
+    "errors": [
+      "Missing Registry field in frontmatter"
+    ],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274875+00:00"
+}

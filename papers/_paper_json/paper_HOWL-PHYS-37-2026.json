@@ -1,0 +1,41 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-37-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-37-2026",
+  "subject": "PHYS",
+  "number": 37,
+  "year": 2026,
+  "title": "From Gauge Integers to Primordial Deuterium",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Seventeen Derived Values Across Five Physics Domains",
+  "doi": {
+    "raw": "10.5281/zenodo.19528715",
+    "is_stub": false,
+    "zenodo_id": 19528715,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-37-2026]",
+    "Series Path": "[@HOWL-PHYS-9-2026] \u2192 [@HOWL-PHYS-36-2026] \u2192 [@HOWL-PHYS-37-2026]",
+    "Date": "April 5, 2026",
+    "Domain": "Electroweak Physics / Cosmology / BBN / Precision Derivation / DATA-6",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-PHYS-36-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275313+00:00"
+}

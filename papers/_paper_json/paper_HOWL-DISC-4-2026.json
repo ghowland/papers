@@ -1,0 +1,45 @@
+{
+  "file_path": "papers/DISC/HOWL-DISC-4-2026/manuscript.md",
+  "paper_id": "HOWL-DISC-4-2026",
+  "subject": "DISC",
+  "number": 4,
+  "year": 2026,
+  "title": "The Real Number High-Utility Trap",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Why the Tool That Built the Modern World Cannot Build the Next Level of Understanding",
+  "doi": {
+    "raw": "10.5281/zenodo.19528566",
+    "is_stub": false,
+    "zenodo_id": 19528566,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DISC-4-2026]",
+    "Series Path": "[@HOWL-DISC-1-2026] \u2192 [@HOWL-DISC-2-2026] \u2192 [@HOWL-DISC-3-2026] \u2192 [@HOWL-DISC-4-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 2026",
+    "Domain": "Foundational Mathematics / Philosophy of Science / Measurement Theory",
+    "Status": "Working Methodology",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-CULT-6-2026",
+    "HOWL-DISC-1-2026",
+    "HOWL-DISC-2-2026",
+    "HOWL-DISC-3-2026",
+    "HOWL-INFO-5-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274579+00:00"
+}

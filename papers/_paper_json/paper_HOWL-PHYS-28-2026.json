@@ -1,0 +1,46 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-28-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-28-2026",
+  "subject": "PHYS",
+  "number": 28,
+  "year": 2026,
+  "title": "The VL Two-Loop Beta Matrix \u2014 Fermion Corrections to Gauge Coupling Unification",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528690",
+    "is_stub": false,
+    "zenodo_id": 19528690,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-28-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-13-2026] \u2192 [@HOWL-PHYS-21-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-25-2026] \u2192 [@HOWL-PHYS-26-2026] \u2192 [@HOWL-PHYS-27-2026] \u2192 [@HOWL-PHYS-28-2026]",
+    "Date": "April 2 2026",
+    "Two-Loop Running, Representation Theory, Unification\n\n**DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "phys28_vl_twoloop.py (11/11 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
+  },
+  "abstract": "The PHYS-24 two-loop unification calculation used the Standard Model two-loop beta matrix b_ij with a step-function threshold for the Cabibbo Doublet one-loop betas. This captured the dominant two-loop effect but omitted the Cabibbo Doublet's own two-loop contribution. This paper computes that contribution using the Machacek-Vaughn (1983-84) general formulas for fermion representations. The result is a 3\u00d73 matrix of nine exact Fractions, derived from the group theory of a single Dirac fermion in the (3,2,1/6) representation of SU(3)\u00d7SU(2)\u00d7U(1). The diagonal entries are (7/15, 15/4, 40/9) and the largest off-diagonal entry is 8/3. All entries are positive and all magnitudes are less than the corresponding SM values. The largest relative contribution is 64% for the SU(2) diagonal \u2014 the Cabibbo Doublet is not a small perturbation on SU(2) two-loop running. Adding the VL two-loop corrections to the unification calculation at M_VL = 500 GeV shifts the unification miss Delta from \u22120.490 (SM b_ij only) to \u22120.436 (SM + VL b_ij), a further 4.6% improvement beyond the SM-only two-loop result. The combined improvement over one-loop is 62.8%. The VL two-loop correction helps unification.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-21-2026",
+    "HOWL-PHYS-24-2026",
+    "HOWL-PHYS-25-2026",
+    "HOWL-PHYS-26-2026",
+    "HOWL-PHYS-27-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275194+00:00"
+}

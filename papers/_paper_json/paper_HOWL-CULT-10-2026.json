@@ -1,0 +1,38 @@
+{
+  "file_path": "papers/CULT/HOWL-CULT-10-2026/manuscript.md",
+  "paper_id": "HOWL-CULT-10-2026",
+  "subject": "CULT",
+  "number": 10,
+  "year": 2026,
+  "title": "The Geometric Remainder Across Departments",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "How Disciplinary Structure Prevented the Unification of a Four-Thousand-Year-Old Constant",
+  "doi": {
+    "raw": "10.5281/zenodo.19528498",
+    "is_stub": false,
+    "zenodo_id": 19528498,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-CULT-10-2026]",
+    "Series": "Culture",
+    "Date": "March 31 2026",
+    "Domain": "Methodology / Sociology of Science / Cross-Disciplinary Structure",
+    "Status": "Draft",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274276+00:00"
+}

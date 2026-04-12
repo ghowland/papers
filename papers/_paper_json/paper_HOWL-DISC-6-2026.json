@@ -1,0 +1,44 @@
+{
+  "file_path": "papers/DISC/HOWL-DISC-6-2026/manuscript.md",
+  "paper_id": "HOWL-DISC-6-2026",
+  "subject": "DISC",
+  "number": 6,
+  "year": 2026,
+  "title": "The Remainder Extraction Program",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic",
+  "doi": {
+    "raw": "10.5281/zenodo.19528571",
+    "is_stub": false,
+    "zenodo_id": 19528571,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DISC-6-2026]",
+    "Series Path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-4-2026] \u2192 [@HOWL-PHYS-10-2026] \u2192 [@HOWL-MATH-5-2026] \u2192 [@HOWL-DISC-6-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 31 2026",
+    "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
+    "Status": "Published Plan (not results)",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-1-2026",
+    "HOWL-MATH-4-2026",
+    "HOWL-MATH-5-2026",
+    "HOWL-PHYS-10-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274628+00:00"
+}

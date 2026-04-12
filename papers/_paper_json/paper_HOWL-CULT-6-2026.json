@@ -1,0 +1,47 @@
+{
+  "file_path": "papers/CULT/HOWL-CULT-6-2026/manuscript.md",
+  "paper_id": "HOWL-CULT-6-2026",
+  "subject": "CULT",
+  "number": 6,
+  "year": 2026,
+  "title": "Immutable and Mortal",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Publications as Timestamps and the Death of Patching",
+  "doi": {
+    "raw": "10.5281/zenodo.19528512",
+    "is_stub": false,
+    "zenodo_id": 19528512,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-CULT-6-2026]",
+    "Series Path": "[@HOWL-BODY-1-2026] \u2192 [@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026] \u2192 [@HOWL-CULT-5-2026] \u2192 [@HOWL-CULT-6-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 27 2026",
+    "Domain": "Epistemology / Philosophy of Science / Publication Standards",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-BODY-1-2026",
+    "HOWL-CULT-1-2026",
+    "HOWL-CULT-2-2026",
+    "HOWL-CULT-3-2026",
+    "HOWL-CULT-4-2026",
+    "HOWL-CULT-5-2026",
+    "HOWL-INFO-5-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274339+00:00"
+}

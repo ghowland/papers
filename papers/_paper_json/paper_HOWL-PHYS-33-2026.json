@@ -1,0 +1,42 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-33-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-33-2026",
+  "subject": "PHYS",
+  "number": 33,
+  "year": 2026,
+  "title": "The Koide Amplitude \u2014 m_tau from Two Masses and One Condition",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528704",
+    "is_stub": false,
+    "zenodo_id": 19528704,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-33-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-33-2026]",
+    "Date": "April 3 2026",
+    "Domain": "Lepton Mass Relations, Conditional Parameter Reduction",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "phys33_koide_amplitude.py (8/8 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
+  },
+  "abstract": "The three charged lepton masses \u2014 electron (0.511 MeV), muon (105.66 MeV), tau (1776.86 MeV) \u2014 span four orders of magnitude with no explanation from the Standard Model. In 1981, Yoshio Koide observed that the ratio K = (m_e + m_\u03bc + m_\u03c4) / (\u221am_e + \u221am_\u03bc + \u221am_\u03c4)\u00b2 equals 2/3 to six significant figures. With current measured masses, K = 0.66666051, matching 2/3 to 0.00092%. The Koide parametrization writes \u221am_k = M(1 + a cos(\u03b8 + 2\u03c0k/3)), where the ratio K depends only on the amplitude a through K = (1 + a\u00b2/2)/3. At a\u00b2 = 2: K = 2/3 exactly. The measured amplitude is a\u00b2 = 1.9999631 \u2014 matching 2 to 18 parts per million. This paper computes the consequence: IF a\u00b2 = 2 exactly, THEN m_tau is determined by m_e and m_mu through a quadratic equation. The predicted value is 1776.969 MeV versus measured 1776.86 MeV \u2014 a miss of 0.006% (0.109 MeV), within the measurement uncertainty. Conditional on a\u00b2 = 2, the Standard Model parameter count reduces from 19 to 18. Combined with \u03b8_QCD = 0 and \u03b1_s from unification, the total is 19 \u2192 16.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-24-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275265+00:00"
+}

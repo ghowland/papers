@@ -1,0 +1,43 @@
+{
+  "file_path": "papers/MATH/HOWL-MATH-10-2026/manuscript.md",
+  "paper_id": "HOWL-MATH-10-2026",
+  "subject": "MATH",
+  "number": 10,
+  "year": 2026,
+  "title": "The Derivation-as-Proof Principle",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "When Surplus Predictions Constitute Evidence",
+  "doi": {
+    "raw": "10.5281/zenodo.19528597",
+    "is_stub": false,
+    "zenodo_id": 19528597,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-MATH-10-2026]",
+    "Series Path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-7-2026] \u2192 [@HOWL-MATH-8-2026] \u2192 [@HOWL-MATH-9-2026] \u2192 [@HOWL-MATH-10-2026]",
+    "Date": "April 9, 2026",
+    "Domain": "Methodology / Statistical Evidence / Philosophy of Science",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-1-2026",
+    "HOWL-MATH-7-2026",
+    "HOWL-MATH-8-2026",
+    "HOWL-MATH-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274791+00:00"
+}

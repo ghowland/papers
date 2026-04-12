@@ -1,0 +1,43 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-4-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-4-2026",
+  "subject": "PHYS",
+  "number": 4,
+  "year": 2026,
+  "title": "The Boundary Test Program",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Applying Q = F \u00b7 \u03b2 \u00b7 d\u00b2 \u00b7 Z to Coherent Pattern Boundaries Across Scales",
+  "doi": {
+    "raw": "10.5281/zenodo.19528721",
+    "is_stub": false,
+    "zenodo_id": 19528721,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-4-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-MATH-1-2026] \u2192 [@HOWL-PHYS-3-2026] \u2192 [@HOWL-PHYS-4-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 2026",
+    "Domain": "Foundational Physics / Measurement Theory",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-1-2026",
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-3-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275350+00:00"
+}

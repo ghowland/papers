@@ -1,0 +1,49 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-30-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-30-2026",
+  "subject": "PHYS",
+  "number": 30,
+  "year": 2026,
+  "title": "\u03b1_s from Unification \u2014 The Strong Coupling as a Derived Quantity",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528698",
+    "is_stub": false,
+    "zenodo_id": 19528698,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-30-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-13-2026] \u2192 [@HOWL-PHYS-21-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-25-2026] \u2192 [@HOWL-PHYS-26-2026] \u2192 [@HOWL-PHYS-27-2026] \u2192 [@HOWL-PHYS-28-2026] \u2192 [@HOWL-PHYS-29-2026] \u2192 [@HOWL-PHYS-30-2026]",
+    "Date": "April 3 2026",
+    "Domain": "Electroweak-Strong Unification, Coupling Prediction",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "phys30_alpha_s.py (9/9 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
+  },
+  "abstract": "The Standard Model has three independent gauge couplings: the electromagnetic coupling \u03b1_EM, the weak mixing angle sin\u00b2\u03b8_W, and the strong coupling \u03b1_s. If the gauge forces unify at a single scale M_GUT, the three couplings are related by one condition \u2014 only two are independent and the third follows from the running. This paper tests this prediction using the Cabibbo Doublet framework. The inputs are \u03b1_EM = 1/137.036 and sin\u00b2\u03b8_W = 0.23122 \u2014 two measured quantities from DATA-4. The output is \u03b1_s(M_Z), predicted from the unification condition with the CD modified betas (25/6, \u221213/6, \u221220/3). Six scenarios are computed at two perturbative levels (one-loop analytic, two-loop Euler integration) with two threshold treatments (no threshold, M_VL = 500 GeV). The best prediction is at two loops with the full SM+VL b_ij matrix and no threshold: \u03b1_s = 0.1184. The measured value is 0.1180 \u00b1 0.0009. The miss is 0.33% \u2014 within the 1\u03c3 measurement uncertainty. No free parameters are tuned. The same integers (13, 20, 22) from the Cabibbo Doublet that produce sub-percent cosmological predictions also produce a sub-percent strong coupling prediction.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-21-2026",
+    "HOWL-PHYS-24-2026",
+    "HOWL-PHYS-25-2026",
+    "HOWL-PHYS-26-2026",
+    "HOWL-PHYS-27-2026",
+    "HOWL-PHYS-28-2026",
+    "HOWL-PHYS-29-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275229+00:00"
+}

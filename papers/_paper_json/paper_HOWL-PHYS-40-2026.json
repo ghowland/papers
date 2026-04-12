@@ -1,0 +1,45 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-40-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-40-2026",
+  "subject": "PHYS",
+  "number": 40,
+  "year": 2026,
+  "title": "You Are Here (II): The Derivation Map at 53 Values",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Eight Domains, Thirteen Inputs, and the Path to Full Unification",
+  "doi": {
+    "raw": "10.5281/zenodo.19528723",
+    "is_stub": false,
+    "zenodo_id": 19528723,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-40-2026]",
+    "Series Path": "[@HOWL-PHYS-9-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-36-2026] \u2192 [@HOWL-PHYS-37-2026] \u2192 [@HOWL-PHYS-38-2026] \u2192 [@HOWL-PHYS-39-2026] \u2192 [@HOWL-PHYS-40-2026]",
+    "Date": "April 6, 2026",
+    "Domain": "Unification / Operational Map / DATA-6",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-PHYS-24-2026",
+    "HOWL-PHYS-36-2026",
+    "HOWL-PHYS-37-2026",
+    "HOWL-PHYS-38-2026",
+    "HOWL-PHYS-39-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275361+00:00"
+}

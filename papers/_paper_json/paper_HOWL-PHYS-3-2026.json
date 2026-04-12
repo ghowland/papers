@@ -1,0 +1,42 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-3-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-3-2026",
+  "subject": "PHYS",
+  "number": 3,
+  "year": 2026,
+  "title": "G Has Never Been Tested Outside Earth's Soliton Boundary",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "The Hill Sphere as the Unrecognized Constraint on Every Direct Measurement of the Gravitational Constant",
+  "doi": {
+    "raw": "10.5281/zenodo.19528696",
+    "is_stub": false,
+    "zenodo_id": 19528696,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-3-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-3-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 2026",
+    "Domain": "Foundational Physics / Measurement Theory",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-2-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275218+00:00"
+}

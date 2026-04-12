@@ -1,0 +1,57 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-22-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-22-2026",
+  "subject": "PHYS",
+  "number": 22,
+  "year": 2026,
+  "title": "The A\u2082 Geometric Cancellation \u2014 Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Three pieces, 87% cancellation, the smallness is an accident.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528675",
+    "is_stub": false,
+    "zenodo_id": 19528675,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-22-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-6-2026] \u2192 [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]\n -> [@HOWL-PHYS-21-2026] -> [@HOWL-PHYS-22-2026]",
+    "Date": "April 1 2026",
+    "Domain": "QED Perturbative Structure, Mathematical Physics",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "a_2_decomposition_0.py (7/7 checks), DATA-3 (32/32 checks), MATH-5 (R\u2084 = \u03c0\u00b2/32)"
+  },
+  "abstract": "The QED two-loop coefficient A\u2082 = \u22120.3285 decomposes into three pieces of distinct mathematical character: a rational piece 197/144 = +1.368, a number-theoretic piece (3/4)\u03b6(3) = +0.902, and a geometric piece R\u2084 \u00d7 (8/3 \u2212 16 ln 2) = \u22122.598, where R\u2084 = \u03c0\u00b2/32 is the 4-ball volume fraction established in MATH-5. Each piece is individually larger in magnitude than the net result. The geometric piece alone is 7.9 times the net. The positive content (rational + number-theoretic = +2.270) is cancelled by 87.4% by the negative geometric content (\u22122.598), leaving only 12.6% surviving as the physical coefficient. This cancellation is not required by any known symmetry or conservation law. It is an accident \u2014 a numerical coincidence of the specific coefficients that emerge from the seven two-loop Feynman diagrams. The R\u2084 = \u03c0\u00b2/32 substitution makes the 4-dimensional origin of the geometric piece visible: every \u03c0\u00b2 in the QED coefficient comes from the 4D loop momentum integration volume, and R\u2084 is the atomic unit of that geometric content. The decomposition is a specific instance of the Brown-Schnetz Galois coaction framework for Feynman integrals, where periods (geometric), motivic coefficients (arithmetic), and rational prefactors separate cleanly at each loop order. The method extends to A\u2083 but encounters a fundamental obstruction at A\u2084, where elliptic integrals break the multiple-zeta-value hierarchy.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-10-2026",
+    "HOWL-PHYS-11-2026",
+    "HOWL-PHYS-12-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-14-2026",
+    "HOWL-PHYS-15-2026",
+    "HOWL-PHYS-17-2026",
+    "HOWL-PHYS-18-2026",
+    "HOWL-PHYS-19-2026",
+    "HOWL-PHYS-2-2026",
+    "HOWL-PHYS-20-2026",
+    "HOWL-PHYS-21-2026",
+    "HOWL-PHYS-6-2026",
+    "HOWL-PHYS-7-2026",
+    "HOWL-PHYS-8-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275122+00:00"
+}

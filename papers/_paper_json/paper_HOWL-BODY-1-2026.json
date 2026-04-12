@@ -1,0 +1,38 @@
+{
+  "file_path": "papers/BODY/HOWL-BODY-1-2026/manuscript.md",
+  "paper_id": "HOWL-BODY-1-2026",
+  "subject": "BODY",
+  "number": 1,
+  "year": 2026,
+  "title": "Neural Territory",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "A Systematic Method for Nervous System Repair Through Proprioceptive Retraining",
+  "doi": {
+    "raw": "10.5281/zenodo.19528490",
+    "is_stub": false,
+    "zenodo_id": 19528490,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-BODY-1-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 27 2026",
+    "Domain": "Proprioceptive Rehabilitation / Motor Learning / Neural Retraining",
+    "Status": "Practice Documentation \u2014 N=1 Primary, N=3 Partial",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet."
+  },
+  "abstract": null,
+  "dependencies": [],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274116+00:00"
+}

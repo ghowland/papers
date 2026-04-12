@@ -1,0 +1,49 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-14-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-14-2026",
+  "subject": "PHYS",
+  "number": 14,
+  "year": 2026,
+  "title": "The Unified Transformation Map",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Gauge Coupling Unification and Minimal BSM Content",
+  "doi": {
+    "raw": "10.5281/zenodo.19528649",
+    "is_stub": false,
+    "zenodo_id": 19528649,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-14-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-2-2026] \u2192 [@HOWL-PHYS-6-2026] \u2192 [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "April 1 2026",
+    "Domain": "Gauge Coupling Running, Unification Structure",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": "The Standard Model's gauge couplings run from atomic scales to grand unification through a sequence of domains separated by mass thresholds. At each threshold, one particle activates and the beta coefficients change by exact rationals determined by that particle's quantum numbers. This paper compiles the complete sequence \u2014 every domain, every threshold, every integer \u2014 into a single operational map from m_e to M_GUT.\n\nThe paper's finding is the cumulative gap ratio: starting from gauge bosons alone and adding particles one at a time, the gap ratio (the unification test from PHYS-13) evolves from 22/7 = 3.143 with no fermions to 218/115 = 1.896 with the full SM content. The trajectory reveals which particles drive the unification failure. The top quark pushes the gap ratio TOWARD the measured 1.358, while each quark generation's contribution to b\u2083 (the SU(3) beta function) pushes it AWAY. The Higgs doublet has negligible effect. The net overshoot of 218/115 vs 1.358 comes from the cumulative fermion contribution to b\u2081 (the U(1) beta function) outpacing the contribution to b\u2082 and b\u2083.\n\nThe map includes the confinement wall from PHYS-6 as the one domain where perturbative rules break down, the EW phase transition at M_W where the gauge structure changes from SU(3)\u00d7U(1)_em to SU(3)\u00d7SU(2)\u00d7U(1)_Y, and the VL quark doublet overlay from PHYS-13 showing how one additional threshold shifts the gap ratio from 1.896 to 1.407. An operational lookup function encodes the entire map for future sessions.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-10-2026",
+    "HOWL-PHYS-11-2026",
+    "HOWL-PHYS-12-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-2-2026",
+    "HOWL-PHYS-6-2026",
+    "HOWL-PHYS-7-2026",
+    "HOWL-PHYS-8-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275008+00:00"
+}

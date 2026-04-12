@@ -1,0 +1,37 @@
+{
+  "file_path": "papers/DISC/HOWL-DISC-2-2026/manuscript.md",
+  "paper_id": "HOWL-DISC-2-2026",
+  "subject": "DISC",
+  "number": 2,
+  "year": 2026,
+  "title": "Evaluation of the Discovery Process Through Triveritas Analysis",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties",
+  "doi": {
+    "raw": "10.5281/zenodo.19528560",
+    "is_stub": false,
+    "zenodo_id": 19528560,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DISC-2-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 2026",
+    "Domain": "Applied Philosophy",
+    "Status": "Working Methodology",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6."
+  },
+  "abstract": "| Sequence | Strength | Characteristic failure | Omni-domain compatible |\n|---|---|---|---|\n| LEM | Maximum discovery | Late M-catch (CKS) | Yes \u2014 the only one |\n| LME | Rigorous before testing | Misses unformalizable insights | No |\n| ELM | Reality-grounded | Wrong explanations persist | Partial |\n| EML | Data-anchored models | Prediction without understanding | No |\n| MLE | Rigorous from start | Beautiful math about nothing | No |\n| MEL | Powerful pattern search | Post-hoc rationalization | No |",
+  "dependencies": [],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274553+00:00"
+}

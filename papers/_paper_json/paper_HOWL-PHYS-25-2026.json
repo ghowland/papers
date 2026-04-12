@@ -1,0 +1,44 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-25-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-25-2026",
+  "subject": "PHYS",
+  "number": 25,
+  "year": 2026,
+  "title": "The Session 4 Operational Map \u2014 From Gauge Integers to Cosmological Predictions",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "The beta coefficients run further than expected. Here is where they go.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528681",
+    "is_stub": false,
+    "zenodo_id": 19528681,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-25-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-13-2026] \u2192 [@HOWL-PHYS-21-2026] \u2192 [@HOWL-PHYS-24-2026] \u2192 [@HOWL-PHYS-25-2026]",
+    "Date": "April 2 2026",
+    "Domain": "Operational Foundation + Research Program",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "phys25_platform.py (47/47 checks), phys24_lib.py (21/21 self-test, 148/148 platform test), beta_unification_test.py (15/15 checks), qed_predicts_gr.py (10/10), qed_gr_scan_2.py (10/10)"
+  },
+  "abstract": "Session 3 established the operational ground: the SM does not unify (gap ratio 218/115 vs 1.358, 40% miss), the Cabibbo Doublet (3,2,1/6) fixes it (gap ratio 38/27, distance 0.049), and the two-loop correction improves the unification miss by 66%. Session 4 discovered that the same beta coefficient integers controlling unification also appear to control cosmological observables. Six formulas using only the electromagnetic coupling \u03b1, the beta-derived integers 13, 19, 20, and 22, and the geometric constant \u03c0 predict seven cosmological quantities \u2014 the cosmological constant scale, the dark matter to baryon ratio, the Hubble constant, and the four cosmic energy density fractions \u2014 at sub-percent precision with zero cosmological input. This paper documents the discovery, sets the working direction, and specifies the research program to determine whether the formulas are physics or coincidence. Three tracks: unification completion (PHYS-26 through PHYS-30), beta cosmology (PHYS-31 through PHYS-35, gated by statistical control), and structural foundations (PHYS-36, PHYS-37). Each paper has a backing script, a verification standard, and an abort condition. The direction is set without hedge. If it is wrong, we backtrack.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-21-2026",
+    "HOWL-PHYS-24-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275157+00:00"
+}

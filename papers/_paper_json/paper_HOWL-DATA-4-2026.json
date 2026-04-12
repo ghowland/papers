@@ -1,0 +1,43 @@
+{
+  "file_path": "papers/DATA/HOWL-DATA-4-2026/manuscript.md",
+  "paper_id": "HOWL-DATA-4-2026",
+  "subject": "DATA",
+  "number": 4,
+  "year": 2026,
+  "title": "Verified Integer Rational Database",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Includes Cabibbo Doublet Extension",
+  "doi": {
+    "raw": "10.5281/zenodo.19528534",
+    "is_stub": false,
+    "zenodo_id": 19528534,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DATA-4-2026]",
+    "Series Path": "[@HOWL-DATA-1-2026] \u2192 [@HOWL-DATA-2-2026] \u2192 [@HOWL-DATA-3-2026] \u2192 [@HOWL-DATA-4-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "April 1 2026",
+    "Domain": "Cross Domain Data",
+    "Status": "Documentation",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "data_4.py (38/38 checks), DATA-3 (32/32 checks inherited)"
+  },
+  "abstract": "DATA-4 is the verified successor to DATA-3. It inherits all 123 entries and all 32 consistency checks with zero numerical changes. It adds 23 new entries in two categories: 6 STAGED entries for the Cabibbo Doublet parameters (entries 124-129, Type G \u2014 bounded but not yet measured) and 17 GUT/unification parameters (Section N, Type D \u2014 derived from Level 1 exact Fraction arithmetic). It formalizes the lattice ratio independence annotation as Finding 15: the FLAG lattice QCD mass ratios (m_c/m_s, m_b/m_c, m_u/m_d) are independent measurements evaluated at a common renormalization scale, not derivable from the individual PDG quark masses evaluated at different scales, with discrepancies up to 28% from the scale mismatch. It adds 6 new GUT verification checks (Group G, all exact), bringing the total to 38/38 PASS. It adds a computation traceability map linking DATA-4 entries to every PHYS and MATH paper in the series. DATA-4 contains 146 entries total: 123 inherited from DATA-3, 6 staged Cabibbo Doublet, and 17 GUT parameters. DATA-4 is the sole data reference for all future HOWL computation. DATA-3 is retired.",
+  "dependencies": [
+    "HOWL-DATA-1-2026",
+    "HOWL-DATA-2-2026",
+    "HOWL-DATA-3-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274426+00:00"
+}

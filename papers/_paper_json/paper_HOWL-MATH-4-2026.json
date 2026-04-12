@@ -1,0 +1,42 @@
+{
+  "file_path": "papers/MATH/HOWL-MATH-4-2026/manuscript.md",
+  "paper_id": "HOWL-MATH-4-2026",
+  "subject": "MATH",
+  "number": 4,
+  "year": 2026,
+  "title": "The Universal Power-of-Two Basis",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Transcendental Constants as Single Integers Over 2\u00b3\u00b3\u2075 at Sub-Planck Precision",
+  "doi": {
+    "raw": "10.5281/zenodo.19528609",
+    "is_stub": false,
+    "zenodo_id": 19528609,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-MATH-4-2026]",
+    "Series Path": "[@HOWL-MATH-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 31 2026",
+    "Domain": "Computational Mathematics / Exact Arithmetic / Number Theory",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-2-2026",
+    "HOWL-MATH-3-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274827+00:00"
+}

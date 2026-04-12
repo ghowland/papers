@@ -1,0 +1,44 @@
+{
+  "file_path": "papers/DISC/HOWL-DISC-9-2026/manuscript.md",
+  "paper_id": "HOWL-DISC-9-2026",
+  "subject": "DISC",
+  "number": 9,
+  "year": 2026,
+  "title": "The Remainder Extraction Program",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "What the Framework Determines and What It Doesn't",
+  "doi": {
+    "raw": "10.5281/zenodo.19528581",
+    "is_stub": false,
+    "zenodo_id": 19528581,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DISC-9-2026]",
+    "Series": "Discovery",
+    "Series Path": "[@HOWL-DISC-6-2026] \u2192 [@HOWL-DISC-7-2026] \u2192 [@HOWL-DISC-8-2026] \u2192 [@HOWL-DISC-9-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 31 2026",
+    "Domain": "Methodology / Mathematical Physics / SM Parameter Problem",
+    "Status": "Complete (Program Capstone)",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-DISC-6-2026",
+    "HOWL-DISC-7-2026",
+    "HOWL-DISC-8-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274670+00:00"
+}

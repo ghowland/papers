@@ -1,0 +1,43 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-24-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-24-2026",
+  "subject": "PHYS",
+  "number": 24,
+  "year": 2026,
+  "title": "The Session 3 Operational Lexicon",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "You are here. The ground is set until falsified.",
+  "doi": {
+    "raw": "10.5281/zenodo.19528679",
+    "is_stub": false,
+    "zenodo_id": 19528679,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-24-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-13-2026] \u2192 [@HOWL-PHYS-21-2026] \u2192 [@HOWL-PHYS-24-2026]",
+    "Date": "April 2 2026",
+    "Domain": "Operational Foundation",
+    "DOI": "10.5281/zenodo.zzz",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
+    "Backed by": "8 demonstration scripts (62/62 checks), phys24_lib.py (21/21 self-test, 148/148 platform test), 6 Session 3 scripts (98/98 checks), DATA-4 (146 entries, 38/38 checks)"
+  },
+  "abstract": "This paper presents no new computation. It records the operational status of the HOWL series after Session 3 and fixes the working lexicon for all subsequent work. The series now has enough verified structure that repeated re-argument of first principles is no longer productive. A boundary must be drawn between what is operationally fixed and what remains open. This paper draws that boundary. The standard is exact Fraction arithmetic, verified scripts with passing checks, explicit provenance, and bounded claims. Within that standard, the following are fixed as operational ground until falsified: the Level 1 / Level 2 boundary, the SM non-unification (gap ratio 218/115 vs measured 1.358, 40% miss), the generation democracy and boson problem, the Cabibbo Doublet (3,2,1/6) as the minimal single-multiplet survivor with gap ratio 38/27, the two-loop improvement from \u0394 = \u22121.17 to \u22120.40, the Koide C\u2083 closure with the amplitude as the open problem, the 82/82 PSLQ null, and DATA-4 as the sole data reference with 146 entries and 38/38 checks. Eight demonstration scripts totaling 62/62 checks and a platform library verified at 148/148 provide the computational foundation.",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-21-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275145+00:00"
+}

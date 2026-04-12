@@ -1,0 +1,41 @@
+{
+  "file_path": "papers/DISC/HOWL-DISC-10-2026/manuscript.md",
+  "paper_id": "HOWL-DISC-10-2026",
+  "subject": "DISC",
+  "number": 10,
+  "year": 2026,
+  "title": "The Level 1 / Level 2 Boundary",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Results of R\u2082 = \u03c0/4 appearring in 9 out of 9 physics domains tested",
+  "doi": {
+    "raw": "10.5281/zenodo.19528552",
+    "is_stub": false,
+    "zenodo_id": 19528552,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DISC-10-2026]",
+    "Series Path": "[@HOWL-DISC-6-2026] \u2192 Phase 1-4 Execution \u2192 [@HOWL-DISC-7-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "April 1 2026",
+    "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
+    "Status": "Complete (Retrospective)",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": "This paper documents the boundary between what the HOWL framework determines and what it does not. Twenty-four papers (MATH-1 through MATH-5, PHYS-1 through PHYS-14, DATA-1 through DATA-3, DISC-6 through DISC-8) have established that R\u2082 = \u03c0/4 appears in 9/9 physics domains across three irreducible subgroups, that transformation laws connecting observables are built from integers, and that parameter values are structureless in every basis tested. This paper collects the evidence, states the boundary, and maps every Standard Model parameter to one side or the other.\n\nThe boundary: the framework determines structure (which geometric constants appear, what the moduli are, where ground states sit, what the transformation law coefficients are). It does not determine values (couplings, masses, mixing angles). The evidence comes from both sides \u2014 positive results that derive structure, and null results that fail to derive values.",
+  "dependencies": [
+    "HOWL-DISC-6-2026",
+    "HOWL-DISC-7-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274490+00:00"
+}

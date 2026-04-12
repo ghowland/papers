@@ -1,0 +1,42 @@
+{
+  "file_path": "papers/MATH/HOWL-MATH-2-2026/manuscript.md",
+  "paper_id": "HOWL-MATH-2-2026",
+  "subject": "MATH",
+  "number": 2,
+  "year": 2026,
+  "title": "Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "A Tiered Classification",
+  "doi": {
+    "raw": "10.5281/zenodo.19528601",
+    "is_stub": false,
+    "zenodo_id": 19528601,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-MATH-2-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-2-2026]",
+    "DOI": "10.5281/zenodo.zzz",
+    "Date": "March 29 2026",
+    "Domain": "Computational Mathematics / Foundations of Arithmetic / Measurement Theory",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-1-2026",
+    "HOWL-PHYS-1-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274803+00:00"
+}

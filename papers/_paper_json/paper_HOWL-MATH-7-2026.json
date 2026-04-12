@@ -1,0 +1,41 @@
+{
+  "file_path": "papers/MATH/HOWL-MATH-7-2026/manuscript.md",
+  "paper_id": "HOWL-MATH-7-2026",
+  "subject": "MATH",
+  "number": 7,
+  "year": 2026,
+  "title": "The \u03b1-Power Scaling Law",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Single-Parameter Projection of the Derived Constant Tree",
+  "doi": {
+    "raw": "10.5281/zenodo.19528617",
+    "is_stub": false,
+    "zenodo_id": 19528617,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-MATH-7-2026]",
+    "Series Path": "[@HOWL-MATH-1-2026] \u2192 [@HOWL-MATH-6-2026] \u2192 [@HOWL-MATH-7-2026]",
+    "Date": "April 9, 2026",
+    "Domain": "QED / Metrology / Precision Constants",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-MATH-1-2026",
+    "HOWL-MATH-6-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274863+00:00"
+}

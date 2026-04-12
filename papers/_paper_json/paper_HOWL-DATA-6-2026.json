@@ -1,0 +1,53 @@
+{
+  "file_path": "papers/DATA/HOWL-DATA-6-2026/manuscript.md",
+  "paper_id": "HOWL-DATA-6-2026",
+  "subject": "DATA",
+  "number": 6,
+  "year": 2026,
+  "title": "A Versioned Node System for Integer Fraction Physics",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Physics Database and Experiment System",
+  "doi": {
+    "raw": "10.5281/zenodo.19528542",
+    "is_stub": false,
+    "zenodo_id": 19528542,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-DATA-6-2026]",
+    "Series Path": "[@HOWL-DATA-4-2026] \u2192 [@HOWL-DATA-5-2026] \u2192 [@HOWL-DATA-6-2026]",
+    "Date": "April 5, 2026",
+    "Domain": "Research Infrastructure / Versioned Database / Experiment System",
+    "Status": "Operational",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-DATA-4-2026",
+    "HOWL-DATA-5-2026",
+    "HOWL-MATH-1-2026",
+    "HOWL-MATH-2-2026",
+    "HOWL-MATH-6-2026",
+    "HOWL-PHYS-11-2026",
+    "HOWL-PHYS-13-2026",
+    "HOWL-PHYS-15-2026",
+    "HOWL-PHYS-17-2026",
+    "HOWL-PHYS-20-2026",
+    "HOWL-PHYS-36-2026",
+    "HOWL-PHYS-7-2026",
+    "HOWL-PHYS-8-2026",
+    "HOWL-PHYS-9-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.274450+00:00"
+}

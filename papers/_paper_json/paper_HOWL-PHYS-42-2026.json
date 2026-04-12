@@ -1,0 +1,41 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-42-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-42-2026",
+  "subject": "PHYS",
+  "number": 42,
+  "year": 2026,
+  "title": "Reading Depth Across the Soliton Hierarchy",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "18 Tests from Meters to Gigaparsecs",
+  "doi": {
+    "raw": "10.5281/zenodo.19528727",
+    "is_stub": false,
+    "zenodo_id": 19528727,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-42-2026]",
+    "Series Path": "[@HOWL-PHYS-1-2026] \u2192 [@HOWL-PHYS-40-2026] \u2192 [@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026]",
+    "Date": "April 9, 2026",
+    "Domain": "Gravitation / Relativity / Cosmology / Interpretation",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": "OF REQUIRED CORRECTIONS BEFORE PUBLICATION\n\n| Priority | Erratum | Impact |\n|---|---|---|\n| **CRITICAL** | E8/A8: Mercury is 2.8 ppm not 2.8 ppb | Precision claim off by 1000\u00d7 |\n| **HIGH** | E1: Muon \u03b3 = 15.8 vs 29.3 inconsistency | Wrong physics in Section IV |\n| **HIGH** | E3: SN Ia z = 0.5 in pool but z = 1 in paper | Result 1.5 not 2.0 |\n| **MEDIUM** | E2: Pound-Rebka date/uncertainty attribution | Incorrect citation |\n| **MEDIUM** | A5: GM_S 12-digit claim needs verification | Precision budget may be wrong |\n| **LOW** | E5: 30 vs 34 pool constants | Minor count error |\n| **LOW** | E6: 53/13 clarification | Ambiguous without context |\n| **LOW** | A2: Derivation key mismatch | Runner issue, not paper issue |",
+  "dependencies": [
+    "HOWL-PHYS-1-2026",
+    "HOWL-PHYS-40-2026",
+    "HOWL-PHYS-41-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is missing",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter"
+    ]
+  },
+  "extracted_at": "2026-04-12T05:04:11.275385+00:00"
+}
