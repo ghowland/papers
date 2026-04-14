@@ -1,0 +1,65 @@
+{
+  "key": "result_experiment_whatif_scan_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_whatif_scan_v0",
+  "timestamp": "2026-04-13T08:47:37Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "coupling_whatif_rep_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "What-if gap ratio computed",
+      "output_key": "result_whatif_gap_ratio_v0",
+      "match_mode": "range",
+      "reference_source": "scan",
+      "got": "1.40741",
+      "lo": "1.0",
+      "hi": "3.0",
+      "status": "PASS",
+      "detail": "in [1.0, 3.0]"
+    }
+  ],
+  "outputs": {
+    "result_whatif_db1_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "15"
+    },
+    "result_whatif_db2_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "1"
+    },
+    "result_whatif_db3_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "3"
+    },
+    "result_whatif_gap_ratio_v0": {
+      "_type": "Fraction",
+      "num": "38",
+      "den": "27"
+    },
+    "result_whatif_distance_v0": "0.0492147232625634",
+    "result_whatif_asymmetry_v0": {
+      "_type": "Fraction",
+      "num": "15",
+      "den": "1"
+    }
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}

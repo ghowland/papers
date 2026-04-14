@@ -1,0 +1,250 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_qed_a1_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_qed_a1",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "2"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_qed_a2_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_qed_a2",
+      "version": 0,
+      "node_type": "value",
+      "value": "-0.328478965579194",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_qed_a3_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_qed_a3",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.1812414565872",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_qed_a4_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_qed_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "-1.91224576492645",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_qed_a5_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_qed_a5",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.891",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_from_known_alpha_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_from_known_alpha",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00115965217597119",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual",
+      "version": 0,
+      "node_type": "value",
+      "value": "-4.61880502023806e-12",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual_rel_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual_rel",
+      "version": 0,
+      "node_type": "value",
+      "value": "-3.98292272247368e-9",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_known_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_known",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999177",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035998630375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_alpha_from_ae_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_alpha_from_ae",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00729735259343996",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae_full_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae_full",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035998630374672067213142569",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_x_alpha_over_pi_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_x_alpha_over_pi",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00232281947346086",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_newton_iterations_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_newton_iterations",
+      "version": 0,
+      "node_type": "value",
+      "value": 6,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_newton_residual_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_newton_residual",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.59475119217561e-204",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_cs_ppb_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_cs_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.03296455549078",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_rb_ppb_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_rb_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.20054096199551",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_codata_ppb_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_diff_vs_codata_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.31026395228253",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_ae_input_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_ae_input",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00115965218059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_ae_recovered_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_ae_recovered",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00115965218059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_a4_used_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_a4_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "-1.91224576492645",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    },
+    {
+      "key": "experiment_qed_alpha_extraction_v0_run007_result_a5_used_v0",
+      "canonical": "experiment_qed_alpha_extraction_v0_run007_result_a5_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.891",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_alpha_extraction_v0_run007"
+    }
+  ]
+}
