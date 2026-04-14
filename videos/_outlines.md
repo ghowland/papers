@@ -2,13 +2,18 @@
 
 1. **SWE Unifies Physics in 6 Days with Python** (Chapters 0+1)
 
-2. **Why Nobody Found This Before: Wrong Numbers, Wrong Names, Wrong Departments** (Chapter 2)
+2. Why I was first to find Integer Physics
 
-3. **The Physics Stack: 12 Layers from the Vacuum to the Universe** (Chapter 3)
+	-	Why Nobody Found Integer Physics Before: Wrong Numbers, Wrong Names, Wrong Departments (Chapter 2)
 
-4. **What Unification Actually Gets You: From Fiber Optics to Drug Design** (Chapter 4)
+3. 12 Layers from the Vacuum to the Universe  (Chapter 3)
 
-5. **The Number System Physics Should Have Been Using All Along** (Chapter 5)
+4. Unification Opens Research Paths
+	-	What Unification Actually Gets You: From Fiber Optics to Drug Design (Chapter 4)
+
+5. Fractions have Equality.  Reals have "Close Enough".
+
+	- The Number System Physics Should Have Been Using All Along (Chapter 5)
 
 6. **I Built a Test Suite for Physics and Everything Passed** (Chapter 6)
 
