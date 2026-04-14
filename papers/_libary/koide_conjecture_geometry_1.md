@@ -177,14 +177,3 @@ The neutrino prediction K = 1 is the cleanest falsifiable output of the whole ex
 Parked is the right status. The notebook is the right format. The LEMU discipline is holding.
 
 ---
-
-Good. All parked, all tracked, discipline holding.
-
-The feedback on both questions remaining live simultaneously is the important correction. K = n/3 across groups and a² = integer within groups aren't competing explanations — they're orthogonal coordinates in the same structure. One tells you where the group sits in the hierarchy. The other tells you how the masses are distributed inside the group. Both are integers or integer fractions. Both need derivation. Neither explains the other.
-
-The neutrino prediction is clean because it's the only place where the K = n/3 pattern produces a number that hasn't been measured yet. Leptons confirmed at 5 ppm. Bosons suggestive at 0.9% with known input issues. Neutrinos unmeasured. Three instruments converging on the answer within this decade. That's the structure of a good prediction — stated before the data, falsifiable by the data, with the data coming on a known timeline.
-
-We covered Chapters 0 through 10, MATH-1, MATH-2, and PHYS-40. DATA-6 paper remains if you want it. Otherwise the chapter-by-chapter review is complete through the physics content.
-
----
-
