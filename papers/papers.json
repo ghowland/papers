@@ -10,14 +10,14 @@
     "skip": false,
     "subtitle": "A Systematic Method for Nervous System Repair Through Proprioceptive Retraining",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528490",
+      "is_stub": false,
+      "zenodo_id": "19528490",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-BODY-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528490",
       "Date": "March 27 2026",
       "Domain": "Proprioceptive Rehabilitation / Motor Learning / Neural Retraining",
       "Status": "Practice Documentation — N=1 Primary, N=3 Partial",
@@ -29,13 +29,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274116+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548518+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-1-2026/manuscript.md",
@@ -75,7 +74,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274156+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548565+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-2-2026/manuscript.md",
@@ -115,7 +114,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274171+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548581+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-3-2026/manuscript.md",
@@ -157,7 +156,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274185+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548595+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-4-2026/manuscript.md",
@@ -199,7 +198,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274199+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548608+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-5-2026/manuscript.md",
@@ -239,7 +238,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274212+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548620+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-6-2026/manuscript.md",
@@ -282,7 +281,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274225+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548633+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-7-2026/manuscript.md",
@@ -326,7 +325,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274237+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548681+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-8-2026/manuscript.md",
@@ -369,7 +368,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274250+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548708+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-1-2026/manuscript.md",
@@ -382,15 +381,15 @@
     "skip": false,
     "subtitle": "Statistical Breadth as Institutional Substitute for Functional Depth",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528496",
+      "is_stub": false,
+      "zenodo_id": "19528496",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-1-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528496",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Institutional Analysis / Methodology Critique",
       "Status": "Complete",
@@ -404,13 +403,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274264+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548724+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-10-2026/manuscript.md",
@@ -423,16 +421,17 @@
     "skip": false,
     "subtitle": "How Disciplinary Structure Prevented the Unification of a Four-Thousand-Year-Old Constant",
     "doi": {
-      "raw": "",
+      "raw": "10.5281/zenodo.zzz",
       "is_stub": true,
       "zenodo_id": null,
-      "status": "missing"
+      "status": "draft"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-10-2026]",
       "Series": "Culture",
       "Date": "March 31 2026",
       "Domain": "Methodology / Sociology of Science / Cross-Disciplinary Structure",
+      "DOI": "10.5281/zenodo.zzz",
       "Status": "Draft",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
     },
@@ -442,13 +441,13 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
+        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274276+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548737+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-2-2026/manuscript.md",
@@ -461,15 +460,15 @@
     "skip": false,
     "subtitle": "Why Omni-Domain Investigation Exists and Who Owns the Gaps",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528500",
+      "is_stub": false,
+      "zenodo_id": "19528500",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-2-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528500",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Philosophy of Science / Institutional Analysis",
       "Status": "Complete",
@@ -484,13 +483,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274289+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548750+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-3-2026/manuscript.md",
@@ -503,15 +501,15 @@
     "skip": false,
     "subtitle": "How the Institution That Defined Itself by Falsification Structurally Ceased Practicing It",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528502",
+      "is_stub": false,
+      "zenodo_id": "19528502",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-3-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528502",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Philosophy of Science / Institutional Analysis",
       "Status": "Complete",
@@ -528,13 +526,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274301+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548763+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-4-2026/manuscript.md",
@@ -547,15 +544,15 @@
     "skip": false,
     "subtitle": "The Structural Consequences of the Standard Science Claims but Does Not Practice",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528506",
+      "is_stub": false,
+      "zenodo_id": "19528506",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-4-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528506",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Philosophy of Science / Institutional Reform Analysis",
       "Status": "Complete",
@@ -573,13 +570,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274314+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548775+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-5-2026/manuscript.md",
@@ -592,15 +588,15 @@
     "skip": false,
     "subtitle": "Why the Error Is the Error and No Replacement Is Required",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528510",
+      "is_stub": false,
+      "zenodo_id": "19528510",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-5-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528510",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Philosophy of Science / Falsification Theory",
       "Status": "Complete",
@@ -619,13 +615,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274326+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548787+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-6-2026/manuscript.md",
@@ -638,15 +633,15 @@
     "skip": false,
     "subtitle": "Publications as Timestamps and the Death of Patching",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528512",
+      "is_stub": false,
+      "zenodo_id": "19528512",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-6-2026]",
       "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026] → [@HOWL-CULT-6-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528512",
       "Date": "March 27 2026",
       "Domain": "Epistemology / Philosophy of Science / Publication Standards",
       "Status": "Complete",
@@ -666,13 +661,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274339+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548799+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-7-2026/manuscript.md",
@@ -685,15 +679,15 @@
     "skip": false,
     "subtitle": "How Inherited Enforcement Maintains Structural Barriers in Institutional Science",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528516",
+      "is_stub": false,
+      "zenodo_id": "19528516",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-7-2026]",
       "Series Path": "[@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026] → [@HOWL-CULT-6-2026] → [@HOWL-CULT-7-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528516",
       "Date": "March 29 2026",
       "Domain": "Epistemology / Philosophy of Science / Institutional Analysis",
       "Status": "Complete",
@@ -715,13 +709,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274351+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548811+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-8-2026/manuscript.md",
@@ -734,15 +727,15 @@
     "skip": false,
     "subtitle": "How to Enter the Space Between Departments",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528518",
+      "is_stub": false,
+      "zenodo_id": "19528518",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-8-2026]",
       "Series Path": "[@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026] → [@HOWL-CULT-6-2026] → [@HOWL-CULT-7-2026] → [@HOWL-CULT-8-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528518",
       "Date": "March 29 2026",
       "Domain": "Scientific Culture / Methodology / Cross-Domain Investigation",
       "Status": "Complete",
@@ -766,13 +759,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274365+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548823+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-9-2026/manuscript.md",
@@ -785,15 +777,15 @@
     "skip": false,
     "subtitle": "A Structural Specification for the First Institution in the Hallways",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528522",
+      "is_stub": false,
+      "zenodo_id": "19528522",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-CULT-9-2026]",
       "Series Path": "[@HOWL-CULT-1-2026] → [@HOWL-CULT-2-2026] → [@HOWL-CULT-3-2026] → [@HOWL-CULT-4-2026] → [@HOWL-CULT-5-2026] → [@HOWL-CULT-6-2026] → [@HOWL-CULT-7-2026] → [@HOWL-CULT-8-2026] → [@HOWL-CULT-9-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528522",
       "Date": "March 29 2026",
       "Domain": "Scientific Culture / Institutional Design / Cross-Domain Investigation",
       "Status": "Specification",
@@ -818,13 +810,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274377+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548835+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-1-2026/manuscript.md",
@@ -837,15 +828,15 @@
     "skip": false,
     "subtitle": "Raw Database",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528524",
+      "is_stub": false,
+      "zenodo_id": "19528524",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DATA-1-2026]",
       "Series Path": "[@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528524",
       "Date": "April 1 2026",
       "Domain": "Cross Domain Data",
       "Status": "Documentation",
@@ -859,12 +850,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274389+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548848+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-2-2026/manuscript.md",
@@ -877,15 +867,15 @@
     "skip": false,
     "subtitle": "Integer Rational Database",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528528",
+      "is_stub": false,
+      "zenodo_id": "19528528",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DATA-2-2026]",
       "Series Path": "[@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528528",
       "Date": "April 1 2026",
       "Domain": "Cross Domain Data",
       "Status": "Documentation",
@@ -899,12 +889,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274402+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548860+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-3-2026/manuscript.md",
@@ -917,15 +906,15 @@
     "skip": false,
     "subtitle": "Round Three",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528532",
+      "is_stub": false,
+      "zenodo_id": "19528532",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DATA-3-2026]",
       "Series Path": "[@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026] → [@HOWL-DATA-3-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528532",
       "Date": "April 1 2026",
       "Domain": "Cross Domain Data",
       "Status": "Documentation",
@@ -940,12 +929,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274414+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548872+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-4-2026/manuscript.md",
@@ -958,15 +946,15 @@
     "skip": false,
     "subtitle": "Includes Cabibbo Doublet Extension",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528534",
+      "is_stub": false,
+      "zenodo_id": "19528534",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DATA-4-2026]",
       "Series Path": "[@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026] → [@HOWL-DATA-3-2026] → [@HOWL-DATA-4-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528534",
       "Date": "April 1 2026",
       "Domain": "Cross Domain Data",
       "Status": "Documentation",
@@ -983,12 +971,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274426+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548884+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-5-2026/manuscript.md",
@@ -1001,15 +988,15 @@
     "skip": false,
     "subtitle": "222 Objects, One Integer Set",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528538",
+      "is_stub": false,
+      "zenodo_id": "19528538",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DATA-5-2026]",
       "Series Path": "[@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026] → [@HOWL-DATA-3-2026] → [@HOWL-DATA-4-2026] → [@HOWL-DATA-5-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528538",
       "Date": "April 4 2026",
       "Domain": "Cross Domain Data",
       "Status": "Documentation",
@@ -1026,12 +1013,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274438+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548896+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-6-2026/manuscript.md",
@@ -1084,7 +1070,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274450+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548908+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-7-2026/manuscript.md",
@@ -1122,7 +1108,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274462+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548920+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-1-2026/manuscript.md",
@@ -1135,14 +1121,14 @@
     "skip": false,
     "subtitle": "A Systematic Method for Omni-Domain Investigation, Construction, and Verification",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528546",
+      "is_stub": false,
+      "zenodo_id": "19528546",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528546",
       "Date": "March 2026",
       "Domain": "Applied Philosophy",
       "Status": "Working Methodology",
@@ -1154,13 +1140,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274475+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548932+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-10-2026/manuscript.md",
@@ -1173,15 +1158,15 @@
     "skip": false,
     "subtitle": "Results of R₂ = π/4 appearring in 9 out of 9 physics domains tested",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528552",
+      "is_stub": false,
+      "zenodo_id": "19528552",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-10-2026]",
       "Series Path": "[@HOWL-DISC-6-2026] → Phase 1-4 Execution → [@HOWL-DISC-7-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528552",
       "Date": "April 1 2026",
       "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
       "Status": "Complete (Retrospective)",
@@ -1196,12 +1181,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274490+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548945+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-11-2026/manuscript.md",
@@ -1214,15 +1198,15 @@
     "skip": false,
     "subtitle": "One mismatch. One particle. Sixteen findings. The integers spoke.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528556",
+      "is_stub": false,
+      "zenodo_id": "19528556",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-11-2026]",
       "Series Path": "[@HOWL-DISC-6-2026] → [@HOWL-DISC-7-2026] → [@HOWL-DISC-8-2026] → [@HOWL-DISC-11-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528556",
       "Date": "April 2 2026",
       "Domain": "Session Documentation, Capstone",
       "Status": "Complete",
@@ -1238,12 +1222,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274502+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548957+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-12-2026/manuscript.md",
@@ -1256,15 +1239,15 @@
     "skip": false,
     "subtitle": "How a Physics Series Became a Software System",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528558",
+      "is_stub": false,
+      "zenodo_id": "19528558",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-12-2026]",
       "Series Path": "[@HOWL-DISC-6-2026] → [@HOWL-DISC-7-2026] → [@HOWL-DISC-8-2026] → [@HOWL-DISC-11-2026] → [@HOWL-DISC-12-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528558",
       "Date": "April 2 2026",
       "Domain": "Methodology / Series Infrastructure",
       "Status": "Complete",
@@ -1282,12 +1265,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274515+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548970+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-13-2026/manuscript.md",
@@ -1327,7 +1309,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274528+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548982+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-14-2026/manuscript.md",
@@ -1368,7 +1350,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274540+00:00"
+    "extracted_at": "2026-04-14T15:03:42.548995+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-2-2026/manuscript.md",
@@ -1381,14 +1363,14 @@
     "skip": false,
     "subtitle": "Structural Compatibility, Natural LEM Ordering, and Self-Updating Properties",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528560",
+      "is_stub": false,
+      "zenodo_id": "19528560",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528560",
       "Date": "March 2026",
       "Domain": "Applied Philosophy",
       "Status": "Working Methodology",
@@ -1400,12 +1382,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274553+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549007+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-3-2026/manuscript.md",
@@ -1418,15 +1399,15 @@
     "skip": false,
     "subtitle": "The Structural Contradiction of the LLM Replacement Narrative",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528562",
+      "is_stub": false,
+      "zenodo_id": "19528562",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-3-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-DISC-2-2026] → [@HOWL-DISC-3-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528562",
       "Date": "March 2026",
       "Domain": "Applied Epistemology / Institutional Analysis / AI Capability Assessment",
       "Status": "Working Methodology",
@@ -1442,13 +1423,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274566+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549020+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-4-2026/manuscript.md",
@@ -1461,15 +1441,15 @@
     "skip": false,
     "subtitle": "Why the Tool That Built the Modern World Cannot Build the Next Level of Understanding",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528566",
+      "is_stub": false,
+      "zenodo_id": "19528566",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-4-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-DISC-2-2026] → [@HOWL-DISC-3-2026] → [@HOWL-DISC-4-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528566",
       "Date": "March 2026",
       "Domain": "Foundational Mathematics / Philosophy of Science / Measurement Theory",
       "Status": "Working Methodology",
@@ -1487,13 +1467,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274579+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549032+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-5-2026/manuscript.md",
@@ -1506,15 +1485,15 @@
     "skip": false,
     "subtitle": "Triveritas Assessment of the Three Pillars of Modern Physics",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528568",
+      "is_stub": false,
+      "zenodo_id": "19528568",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-5-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-DISC-2-2026] → [@HOWL-DISC-3-2026] → [@HOWL-DISC-4-2026] → [@HOWL-DISC-5-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528568",
       "Date": "March 2026",
       "Domain": "Applied Epistemology / Foundational Physics Assessment",
       "Status": "Working Methodology",
@@ -1532,13 +1511,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274591+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549044+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-6-2026/manuscript.md",
@@ -1551,15 +1529,15 @@
     "skip": false,
     "subtitle": "A Four-Phase Plan for SM Parameter Reduction via Exact Integer Arithmetic",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528571",
+      "is_stub": false,
+      "zenodo_id": "19528571",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-6-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-4-2026] → [@HOWL-PHYS-10-2026] → [@HOWL-MATH-5-2026] → [@HOWL-DISC-6-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528571",
       "Date": "March 31 2026",
       "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
       "Status": "Published Plan (not results)",
@@ -1576,13 +1554,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274628+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549056+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-7-2026/manuscript.md",
@@ -1595,16 +1572,16 @@
     "skip": false,
     "subtitle": "Four Phases Delivered, Parameter Reduction Null",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528575",
+      "is_stub": false,
+      "zenodo_id": "19528575",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-7-2026]",
       "Series": "Discovery",
       "Series Path": "[@HOWL-DISC-6-2026] → Phase 1-4 Execution → [@HOWL-DISC-7-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528575",
       "Date": "March 31 2026",
       "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
       "Status": "Complete (Retrospective)",
@@ -1618,13 +1595,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274644+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549068+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-8-2026/manuscript.md",
@@ -1637,16 +1613,16 @@
     "skip": false,
     "subtitle": "Statistical Control, Koide Blockage, and Domain Extension",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528579",
+      "is_stub": false,
+      "zenodo_id": "19528579",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-8-2026]",
       "Series": "Discovery",
       "Series Path": "[@HOWL-DISC-6-2026] → [@HOWL-DISC-7-2026] → [@HOWL-DISC-8-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528579",
       "Date": "March 31 2026",
       "Domain": "Research Program / Mathematical Physics / SM Parameter Reduction",
       "Status": "Complete (Final Report)",
@@ -1661,13 +1637,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274657+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549081+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-9-2026/manuscript.md",
@@ -1680,16 +1655,16 @@
     "skip": false,
     "subtitle": "What the Framework Determines and What It Doesn't",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528581",
+      "is_stub": false,
+      "zenodo_id": "19528581",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-DISC-9-2026]",
       "Series": "Discovery",
       "Series Path": "[@HOWL-DISC-6-2026] → [@HOWL-DISC-7-2026] → [@HOWL-DISC-8-2026] → [@HOWL-DISC-9-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528581",
       "Date": "March 31 2026",
       "Domain": "Methodology / Mathematical Physics / SM Parameter Problem",
       "Status": "Complete (Program Capstone)",
@@ -1705,13 +1680,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274670+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549094+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-1-2026/manuscript.md",
@@ -1750,7 +1724,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274683+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549108+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-2-2026/manuscript.md",
@@ -1789,7 +1763,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274695+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549120+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-3-2026/manuscript.md",
@@ -1867,7 +1841,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.274707+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549132+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-4-2026/manuscript.md",
@@ -1907,7 +1881,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274718+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549143+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-5-2026/manuscript.md",
@@ -1920,16 +1894,16 @@
     "skip": false,
     "subtitle": "How the CKS Corpus Achieved Maximum Logical Validity at Zero Mathematical Coherence",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528585",
+      "is_stub": false,
+      "zenodo_id": "19528585",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-INFO-5-2026]",
       "Series Path": "[@HOWL-INFO-1-2026] → [@HOWL-INFO-2-2026] → [@HOWL-INFO-3-2026] → [@HOWL-INFO-4-2026] → [@HOWL-INFO-5-2026]",
       "Parent Framework": "[@HOWL-INFO-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528585",
       "Date": "March 27 2026",
       "Domain": "Information Theory / Epistemology / Coherence Analysis",
       "Status": "Complete",
@@ -1946,13 +1920,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274730+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549155+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-1-2026/manuscript.md",
@@ -1965,14 +1938,14 @@
     "skip": false,
     "subtitle": "Bidirectional Neural-Symbolic Architecture for Provenanced Generation",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528587",
+      "is_stub": false,
+      "zenodo_id": "19528587",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-LLM-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528587",
       "Date": "March 29 2026",
       "Domain": "Machine Learning / Knowledge Representation / Neural-Symbolic Systems",
       "Status": "Architecture Specification",
@@ -1991,13 +1964,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274742+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549167+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-1-2026/manuscript.md",
@@ -2010,15 +1982,15 @@
     "skip": false,
     "subtitle": "A Systematic Method for AI-Assisted Song Construction from Dense Source Material",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528591",
+      "is_stub": false,
+      "zenodo_id": "19528591",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-LYRIC-1-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-LYRIC-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528591",
       "Date": "March 29 2026",
       "Domain": "Applied Methodology / AI-Assisted Creative Production",
       "Status": "Complete",
@@ -2032,13 +2004,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274755+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549180+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md",
@@ -2051,15 +2022,15 @@
     "skip": false,
     "subtitle": "A Systematic Method for LLM-Assisted Song Refinement from Existing Draft Material",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528593",
+      "is_stub": false,
+      "zenodo_id": "19528593",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-LYRIC-2-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-LYRIC-1-2026] → [@HOWL-LYRIC-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528593",
       "Date": "March 30 2026",
       "Domain": "Applied Methodology / AI-Assisted Creative Production",
       "Status": "Complete",
@@ -2074,13 +2045,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274767+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549192+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-1-2026/manuscript.md",
@@ -2093,15 +2063,15 @@
     "skip": false,
     "subtitle": "π/4 as the Cross-Section Invariant Between Circular and Rectilinear Measurement",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528595",
+      "is_stub": false,
+      "zenodo_id": "19528595",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-1-2026]",
       "Companion Paper": "[@HOWL-PHYS-1-2026] — The Inertial Vortex",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528595",
       "Date": "March 29 2026",
       "Domain": "Foundational Mathematics",
       "Status": "Complete",
@@ -2115,13 +2085,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274779+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549205+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-10-2026/manuscript.md",
@@ -2134,14 +2103,15 @@
     "skip": false,
     "subtitle": "When Surplus Predictions Constitute Evidence",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528597",
+      "is_stub": false,
+      "zenodo_id": "19528597",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-10-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-7-2026] → [@HOWL-MATH-8-2026] → [@HOWL-MATH-9-2026] → [@HOWL-MATH-10-2026]",
+      "DOI": "10.5281/zenodo.19528597",
       "Date": "April 9, 2026",
       "Domain": "Methodology / Statistical Evidence / Philosophy of Science",
       "Status": "Complete",
@@ -2158,13 +2128,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274791+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549217+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-2-2026/manuscript.md",
@@ -2177,15 +2146,15 @@
     "skip": false,
     "subtitle": "A Tiered Classification",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528601",
+      "is_stub": false,
+      "zenodo_id": "19528601",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-2-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-MATH-1-2026] → [@HOWL-MATH-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528601",
       "Date": "March 29 2026",
       "Domain": "Computational Mathematics / Foundations of Arithmetic / Measurement Theory",
       "Status": "Complete",
@@ -2200,13 +2169,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274803+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549229+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-3-2026/manuscript.md",
@@ -2219,16 +2187,16 @@
     "skip": false,
     "subtitle": "Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528603",
+      "is_stub": false,
+      "zenodo_id": "19528603",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-3-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-2-2026] → [@HOWL-MATH-3-2026]",
       "Physics Path": "MATH-3 feeds [@HOWL-PHYS-5-2026] and [@HOWL-PHYS-6-2026] by extending the integer pair basis toward the 4-loop electron g-2.",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528603",
       "Date": "March 29 2026",
       "Domain": "Pure Mathematics / Transcendental Number Theory / Computational Algebra",
       "Status": "Complete",
@@ -2245,13 +2213,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274815+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549241+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-4-2026/manuscript.md",
@@ -2264,15 +2231,15 @@
     "skip": false,
     "subtitle": "Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528609",
+      "is_stub": false,
+      "zenodo_id": "19528609",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-4-2026]",
       "Series Path": "[@HOWL-MATH-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528609",
       "Date": "March 31 2026",
       "Domain": "Computational Mathematics / Exact Arithmetic / Number Theory",
       "Status": "Complete",
@@ -2287,13 +2254,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274827+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549253+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-5-2026/manuscript.md",
@@ -2306,15 +2272,15 @@
     "skip": false,
     "subtitle": "Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528613",
+      "is_stub": false,
+      "zenodo_id": "19528613",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-5-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-4-2026] → [@HOWL-PHYS-10-2026] → [@HOWL-MATH-5-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528613",
       "Date": "March 31 2026",
       "Domain": "Geometry / Number Theory / Mathematical Physics",
       "Status": "Complete",
@@ -2330,13 +2296,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274839+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549265+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-6-2026/manuscript.md",
@@ -2349,15 +2314,15 @@
     "skip": false,
     "subtitle": "82 tests, zero relations, derivation beats search.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528615",
+      "is_stub": false,
+      "zenodo_id": "19528615",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-6-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-4-2026] → [@HOWL-PHYS-10-2026] → [@HOWL-MATH-5-2026] → [@HOWL-MATH-6-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528615",
       "Date": "April 1 2026",
       "Domain": "Transcendental Number Theory, Integer Relation Search",
       "Status": "Complete",
@@ -2375,12 +2340,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274851+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549277+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-7-2026/manuscript.md",
@@ -2393,14 +2357,15 @@
     "skip": false,
     "subtitle": "Single-Parameter Projection of the Derived Constant Tree",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528617",
+      "is_stub": false,
+      "zenodo_id": "19528617",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-7-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-6-2026] → [@HOWL-MATH-7-2026]",
+      "DOI": "10.5281/zenodo.19528617",
       "Date": "April 9, 2026",
       "Domain": "QED / Metrology / Precision Constants",
       "Status": "Complete",
@@ -2415,13 +2380,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274863+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549289+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-8-2026/manuscript.md",
@@ -2434,13 +2398,14 @@
     "skip": false,
     "subtitle": "An Operationally Exact Number System for Physical Computation",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528621",
+      "is_stub": false,
+      "zenodo_id": "19528621",
+      "status": "published"
     },
     "frontmatter": {
       "Series Path": "[@HOWL-MATH-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026] → [@HOWL-MATH-8-2026]",
+      "DOI": "10.5281/zenodo.19528621",
       "Date": "April 6, 2026",
       "Domain": "Computational Mathematics / Number Systems",
       "Status": "Complete"
@@ -2457,13 +2422,12 @@
         "Missing Registry field in frontmatter"
       ],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274875+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549301+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-9-2026/manuscript.md",
@@ -2476,14 +2440,15 @@
     "skip": false,
     "subtitle": "Why sin²θ_W Cannot Be Predicted from One-Loop Gauge Coupling Unification",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528625",
+      "is_stub": false,
+      "zenodo_id": "19528625",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-MATH-9-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-7-2026] → [@HOWL-MATH-8-2026] → [@HOWL-MATH-9-2026]",
+      "DOI": "10.5281/zenodo.19528625",
       "Date": "April 9, 2026",
       "Domain": "Gauge Unification / Renormalization Group / Mathematical Physics",
       "Status": "Complete",
@@ -2499,13 +2464,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274887+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549314+00:00"
   },
   {
     "file_path": "papers/NEURO/HOWL-NEURO-1-2026/manuscript.md",
@@ -2541,7 +2505,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274899+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549326+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-1-2026/manuscript.md",
@@ -2554,14 +2518,14 @@
     "skip": false,
     "subtitle": "Mass as Pattern Resistance, Soliton Boundaries as Unmodeled Measurement Elements, and the Anomaly Correlation",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528627",
+      "is_stub": false,
+      "zenodo_id": "19528627",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-1-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528627",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Measurement Theory",
       "Status": "Complete",
@@ -2573,13 +2537,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274912+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549338+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-10-2026/manuscript.md",
@@ -2592,15 +2555,15 @@
     "skip": false,
     "subtitle": "Exact Quotient-Remainder Decomposition Across Six Domains of Quantum Physics",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528629",
+      "is_stub": false,
+      "zenodo_id": "19528629",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-10-2026]",
       "Series Path": "[@HOWL-MATH-4-2026] → [@HOWL-PHYS-7-2026] → [@HOWL-PHYS-9-2026] → [@HOWL-PHYS-10-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528629",
       "Date": "March 31 2026",
       "Domain": "Mathematical Physics / Exact Arithmetic / Quantum Mechanics",
       "Status": "Complete",
@@ -2617,13 +2580,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274924+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549350+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-11-2026/manuscript.md",
@@ -2636,15 +2598,15 @@
     "skip": false,
     "subtitle": "Three Subgroups and a Universal Geometric Constant",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528635",
+      "is_stub": false,
+      "zenodo_id": "19528635",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-11-2026]",
       "Series Path": "[@HOWL-MATH-1-2026] → [@HOWL-MATH-5-2026] → [@HOWL-PHYS-10-2026] → [@HOWL-PHYS-11-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528635",
       "Date": "March 31 2026",
       "Domain": "Mathematical Physics / Classification / Exact Arithmetic",
       "Status": "Complete",
@@ -2664,13 +2626,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274937+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549362+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-12-2026/manuscript.md",
@@ -2683,17 +2644,17 @@
     "skip": false,
     "subtitle": "The transformation laws are integers. The values are not.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528639",
+      "is_stub": false,
+      "zenodo_id": "19528639",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-12-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026]",
       "Date": "April 1 2026",
       "Domain": "Electroweak Physics, QED Coefficient Structure",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528639",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
     },
@@ -2712,12 +2673,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274973+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549374+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-13-2026/manuscript.md",
@@ -2730,17 +2690,17 @@
     "skip": false,
     "subtitle": "218/115 meets the universe.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528641",
+      "is_stub": false,
+      "zenodo_id": "19528641",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-13-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026]",
       "Date": "April 1 2026",
       "Domain": "Gauge Unification, BSM Physics",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528641",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
     },
@@ -2760,12 +2720,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.274995+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549386+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-14-2026/manuscript.md",
@@ -2778,15 +2737,15 @@
     "skip": false,
     "subtitle": "Gauge Coupling Unification and Minimal BSM Content",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528649",
+      "is_stub": false,
+      "zenodo_id": "19528649",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-14-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528649",
       "Date": "April 1 2026",
       "Domain": "Gauge Coupling Running, Unification Structure",
       "Status": "Complete",
@@ -2809,12 +2768,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275008+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549398+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-15-2026/manuscript.md",
@@ -2827,17 +2785,17 @@
     "skip": false,
     "subtitle": "We did not choose this particle. The integers chose it.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528651",
+      "is_stub": false,
+      "zenodo_id": "19528651",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-15-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-15-2026]",
       "Date": "April 1 2026",
       "Domain": "BSM Physics, Gauge Unification",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528651",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
     },
@@ -2858,12 +2816,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275021+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549410+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-16-2026/manuscript.md",
@@ -2876,17 +2833,17 @@
     "skip": false,
     "subtitle": null,
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528655",
+      "is_stub": false,
+      "zenodo_id": "19528655",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-16-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-16-2026]",
       "Date": "April 1 2026",
       "Domain": "Gauge Coupling Unification, Beyond Standard Model",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528655",
       "Status": "Complete",
       "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks), web-verified citations",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
@@ -2910,12 +2867,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275034+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549422+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-17-2026/manuscript.md",
@@ -2928,17 +2884,17 @@
     "skip": false,
     "subtitle": null,
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528657",
+      "is_stub": false,
+      "zenodo_id": "19528657",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-17-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026]",
       "Date": "April 1 2026",
       "Domain": "Gauge Coupling Unification, Beta Function Structure",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528657",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks)"
@@ -2962,12 +2918,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275046+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549434+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-18-2026/manuscript.md",
@@ -2980,17 +2935,17 @@
     "skip": false,
     "subtitle": "Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528659",
+      "is_stub": false,
+      "zenodo_id": "19528659",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-18-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026]",
       "Date": "April 1 2026",
       "Domain": "Gauge Coupling Unification, Representation Theory",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528659",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks), new Fraction computation verified in paper"
@@ -3015,12 +2970,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275058+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549446+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-19-2026/manuscript.md",
@@ -3033,17 +2987,17 @@
     "skip": false,
     "subtitle": "Three experiments, two roads, one particle. The data was already there. The connection was not.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528665",
+      "is_stub": false,
+      "zenodo_id": "19528665",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-19-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026]",
       "Date": "April 1 2026",
       "Domain": "Precision Flavor Physics, Beyond Standard Model Evidence",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528665",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "Anomaly data matrix (web-search verified), sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks)"
@@ -3069,12 +3023,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275071+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549458+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-2-2026/manuscript.md",
@@ -3087,15 +3040,15 @@
     "skip": false,
     "subtitle": "The Institution's Own Evidence That Fundamental \"Constants\" Are Scale-Dependent Boundary Readings",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528669",
+      "is_stub": false,
+      "zenodo_id": "19528669",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-2-2026]",
       "Series Path": "[@HOWL-PHYS-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528669",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Measurement Theory",
       "Status": "Complete",
@@ -3107,13 +3060,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275084+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549470+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-20-2026/manuscript.md",
@@ -3126,17 +3078,17 @@
     "skip": false,
     "subtitle": "M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528671",
+      "is_stub": false,
+      "zenodo_id": "19528671",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-20-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]",
       "Date": "April 1 2026",
       "Domain": "Grand Unified Theories, Experimental Testability",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528671",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks), web-verified experimental parameters"
@@ -3163,12 +3115,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275097+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549483+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-21-2026/manuscript.md",
@@ -3181,17 +3132,17 @@
     "skip": false,
     "subtitle": "The integers tell you WHAT. The universe tells you HOW MUCH.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528673",
+      "is_stub": false,
+      "zenodo_id": "19528673",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-21-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]\n -> [@HOWL-PHYS-21-2026]",
       "Date": "April 1 2026",
       "Domain": "Epistemology of Physical Structure, Classification",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528673",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "sin2_theta_w_1.py (9/9 checks), DATA-3 (32/32 checks), all prior PHYS papers"
@@ -3219,12 +3170,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275109+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549495+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-22-2026/manuscript.md",
@@ -3237,17 +3187,17 @@
     "skip": false,
     "subtitle": "Three pieces, 87% cancellation, the smallness is an accident.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528675",
+      "is_stub": false,
+      "zenodo_id": "19528675",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-22-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]\n -> [@HOWL-PHYS-21-2026] -> [@HOWL-PHYS-22-2026]",
       "Date": "April 1 2026",
       "Domain": "QED Perturbative Structure, Mathematical Physics",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528675",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "a_2_decomposition_0.py (7/7 checks), DATA-3 (32/32 checks), MATH-5 (R₄ = π²/32)"
@@ -3276,12 +3226,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275122+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549508+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-23-2026/manuscript.md",
@@ -3294,17 +3243,17 @@
     "skip": false,
     "subtitle": "The spacing is automatic. The potential is a saddle. The amplitude is the question.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528677",
+      "is_stub": false,
+      "zenodo_id": "19528677",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-23-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026] -> [@HOWL-PHYS-8-2026] -> [@HOWL-PHYS-9-2026] -> [@HOWL-PHYS-10-2026] -> [@HOWL-PHYS-11-2026] -> [@HOWL-PHYS-12-2026] -> [@HOWL-PHYS-13-2026] -> [@HOWL-PHYS-14-2026] -> [@HOWL-PHYS-15-2026] -> [@HOWL-PHYS-17-2026] -> [@HOWL-PHYS-18-2026] -> [@HOWL-PHYS-19-2026] -> [@HOWL-PHYS-20-2026]\n -> [@HOWL-PHYS-21-2026] -> [@HOWL-PHYS-22-2026] -> [@HOWL-PHYS-23-2026]",
       "Date": "April 1 2026",
       "Domain": "Lepton Mass Structure, Path Closure",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528677",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "DATA-3 (32/32 checks), PHYS-8 (Koide parametrization), inline computation"
@@ -3334,12 +3283,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275133+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549519+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-24-2026/manuscript.md",
@@ -3352,17 +3300,17 @@
     "skip": false,
     "subtitle": "You are here. The ground is set until falsified.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528679",
+      "is_stub": false,
+      "zenodo_id": "19528679",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-24-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026]",
       "Date": "April 2 2026",
       "Domain": "Operational Foundation",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528679",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "8 demonstration scripts (62/62 checks), phys24_lib.py (21/21 self-test, 148/148 platform test), 6 Session 3 scripts (98/98 checks), DATA-4 (146 entries, 38/38 checks)"
@@ -3377,12 +3325,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275145+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549532+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-25-2026/manuscript.md",
@@ -3395,17 +3342,17 @@
     "skip": false,
     "subtitle": "The beta coefficients run further than expected. Here is where they go.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528681",
+      "is_stub": false,
+      "zenodo_id": "19528681",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-25-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026]",
       "Date": "April 2 2026",
       "Domain": "Operational Foundation + Research Program",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528681",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys25_platform.py (47/47 checks), phys24_lib.py (21/21 self-test, 148/148 platform test), beta_unification_test.py (15/15 checks), qed_predicts_gr.py (10/10), qed_gr_scan_2.py (10/10)"
@@ -3421,12 +3368,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275157+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549544+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-26-2026/manuscript.md",
@@ -3439,17 +3385,17 @@
     "skip": false,
     "subtitle": "From SU(5) embedding to cosmological predictions in seven exact links.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528685",
+      "is_stub": false,
+      "zenodo_id": "19528685",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-26-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026]",
       "Date": "April 2 2026",
       "Domain": "GUT Normalization, Integer Traceability, Representation Theory",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528685",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys26_normalization.py (20/20 checks, all EXACT), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3466,12 +3412,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275169+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549557+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-27-2026/manuscript.md",
@@ -3484,17 +3429,17 @@
     "skip": false,
     "subtitle": "Two inputs, one prediction. The correction is 15/104.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528688",
+      "is_stub": false,
+      "zenodo_id": "19528688",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-27-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026] → [@HOWL-PHYS-27-2026]",
       "Date": "April 2 2026",
       "Domain": "Electroweak Prediction, GUT Running",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528688",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys27_sin2tw.py (13/13 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3512,12 +3457,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275182+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549569+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-28-2026/manuscript.md",
@@ -3539,7 +3483,7 @@
       "Registry": "[@HOWL-PHYS-28-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026] → [@HOWL-PHYS-27-2026] → [@HOWL-PHYS-28-2026]",
       "Date": "April 2 2026",
-      "Two-Loop Running, Representation Theory, Unification\n\n**DOI": "10.5281/zenodo.zzz",
+      "Two-Loop Running, Representation Theory, Unification\n\n**DOI": "10.5281/zenodo.19528690",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys28_vl_twoloop.py (11/11 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3563,7 +3507,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275194+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549581+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-29-2026/manuscript.md",
@@ -3576,17 +3520,17 @@
     "skip": false,
     "subtitle": "The threshold coefficients are too small. Minimal SU(5) is disfavored.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528692",
+      "is_stub": false,
+      "zenodo_id": "19528692",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-29-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026] → [@HOWL-PHYS-27-2026] → [@HOWL-PHYS-28-2026] → [@HOWL-PHYS-29-2026]",
       "Date": "April 2 2026",
       "Domain": "GUT Completion, Threshold Corrections, Null Result",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528692",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys29_gut_thresholds.py (10/11 checks, 1 FAIL is the abort test firing), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3606,12 +3550,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275206+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549593+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-3-2026/manuscript.md",
@@ -3624,15 +3567,15 @@
     "skip": false,
     "subtitle": "The Hill Sphere as the Unrecognized Constraint on Every Direct Measurement of the Gravitational Constant",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528696",
+      "is_stub": false,
+      "zenodo_id": "19528696",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-3-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-3-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528696",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Measurement Theory",
       "Status": "Complete",
@@ -3647,13 +3590,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275218+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549605+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-30-2026/manuscript.md",
@@ -3666,17 +3608,17 @@
     "skip": false,
     "subtitle": "Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528698",
+      "is_stub": false,
+      "zenodo_id": "19528698",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-30-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-26-2026] → [@HOWL-PHYS-27-2026] → [@HOWL-PHYS-28-2026] → [@HOWL-PHYS-29-2026] → [@HOWL-PHYS-30-2026]",
       "Date": "April 3 2026",
       "Domain": "Electroweak-Strong Unification, Coupling Prediction",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528698",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys30_alpha_s.py (9/9 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3697,12 +3639,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275229+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549617+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-31-2026/manuscript.md",
@@ -3715,17 +3656,17 @@
     "skip": false,
     "subtitle": "p = 0.81. Random integers do equally well. Track B is parked.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528700",
+      "is_stub": false,
+      "zenodo_id": "19528700",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-31-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-21-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-25-2026] → [@HOWL-PHYS-30-2026] → [@HOWL-PHYS-31-2026]",
       "Date": "April 3 2026",
       "Domain": "Statistical Methodology, Null Result, Cosmological Formula Validation",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528700",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys31_statistical_control.py (9/10 checks, 1 FAIL is the gate firing), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3743,12 +3684,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275241+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549629+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-32-2026/manuscript.md",
@@ -3761,17 +3701,17 @@
     "skip": false,
     "subtitle": "Four pieces, one sum. −33 + 12 + 0 + 1 = −20. Every piece exact.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528702",
+      "is_stub": false,
+      "zenodo_id": "19528702",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-32-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-26-2026] → [@HOWL-PHYS-32-2026]",
       "Date": "April 3 2026",
       "Domain": "Representation Theory, Beta Function Structure, Integer Traceability",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528702",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys32_a3_decomposition.py (14/14 checks, ALL EXACT), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3787,12 +3727,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275253+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549641+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-33-2026/manuscript.md",
@@ -3805,17 +3744,17 @@
     "skip": false,
     "subtitle": "IF a² = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528704",
+      "is_stub": false,
+      "zenodo_id": "19528704",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-33-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-33-2026]",
       "Date": "April 3 2026",
       "Domain": "Lepton Mass Relations, Conditional Parameter Reduction",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528704",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys33_koide_amplitude.py (8/8 checks), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3829,12 +3768,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275265+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549684+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-34-2026/manuscript.md",
@@ -3847,17 +3785,17 @@
     "skip": false,
     "subtitle": "Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin²θ_W = 0.23133, miss 0.048%.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528707",
+      "is_stub": false,
+      "zenodo_id": "19528707",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-34-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-27-2026] → [@HOWL-PHYS-28-2026] → [@HOWL-PHYS-30-2026] → [@HOWL-PHYS-34-2026]",
       "Date": "April 3 2026",
       "Domain": "Electroweak Precision, Two-Loop Running, Perturbative Convergence",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528707",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys34_sin2tw_twoloop.py (8/10 checks, 2 FAIL are informative findings), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3874,12 +3812,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275277+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549706+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-35-2026/manuscript.md",
@@ -3892,17 +3829,17 @@
     "skip": false,
     "subtitle": "No-threshold beats hard threshold by 12×. Soft threshold is worse. The CD contribution is needed at all scales.",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528709",
+      "is_stub": false,
+      "zenodo_id": "19528709",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-35-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-13-2026] → [@HOWL-PHYS-27-2026] → [@HOWL-PHYS-30-2026] → [@HOWL-PHYS-35-2026]",
       "Date": "April 3 2026",
       "Domain": "Threshold Physics, Decoupling, Renormalization Group Running",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528709",
       "Status": "Complete",
       "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.",
       "Backed by": "phys35_no_threshold_puzzle.py (9/10 checks, 1 FAIL is an informative finding), phys24_lib.py (21/21 self-test, 148/148 platform test)"
@@ -3918,12 +3855,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275289+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549719+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-36-2026/manuscript.md",
@@ -3936,14 +3872,15 @@
     "skip": false,
     "subtitle": "Four CODATA Values from One Measurement",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528713",
+      "is_stub": false,
+      "zenodo_id": "19528713",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-36-2026]",
       "Series Path": "[@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026]",
+      "DOI": "10.5281/zenodo.19528713",
       "Date": "April 5, 2026",
       "Domain": "Quantum Electrodynamics / Exact Arithmetic / Precision Physics / DATA-6",
       "Status": "Complete",
@@ -3957,13 +3894,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275301+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549733+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-37-2026/manuscript.md",
@@ -3976,14 +3912,15 @@
     "skip": false,
     "subtitle": "Seventeen Derived Values Across Five Physics Domains",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528715",
+      "is_stub": false,
+      "zenodo_id": "19528715",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-37-2026]",
       "Series Path": "[@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026]",
+      "DOI": "10.5281/zenodo.19528715",
       "Date": "April 5, 2026",
       "Domain": "Electroweak Physics / Cosmology / BBN / Precision Derivation / DATA-6",
       "Status": "Complete",
@@ -3998,13 +3935,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275313+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549746+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-38-2026/manuscript.md",
@@ -4017,14 +3953,15 @@
     "skip": false,
     "subtitle": "38 Derived Values from Sub-ppb QED to the Lithium Problem",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528717",
+      "is_stub": false,
+      "zenodo_id": "19528717",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-38-2026]",
       "Series Path": "[@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026] → [@HOWL-PHYS-38-2026]",
+      "DOI": "10.5281/zenodo.19528717",
       "Date": "April 6, 2026",
       "Domain": "QED / Electroweak / Cosmology / Nuclear / Muon / Flavor / DATA-6",
       "Status": "Complete",
@@ -4040,13 +3977,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275324+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549759+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-39-2026/manuscript.md",
@@ -4059,14 +3995,15 @@
     "skip": false,
     "subtitle": "Two-Loop Unification, the k₁ Bug, and Eight Connected Domains",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528719",
+      "is_stub": false,
+      "zenodo_id": "19528719",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-39-2026]",
       "Series Path": "[@HOWL-PHYS-9-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026] → [@HOWL-PHYS-38-2026] → [@HOWL-PHYS-39-2026]",
+      "DOI": "10.5281/zenodo.19528719",
       "Date": "April 6, 2026",
       "Domain": "GUT Unification / QED / Atomic Spectroscopy / DATA-6",
       "Status": "Complete",
@@ -4083,13 +4020,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275337+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549772+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-4-2026/manuscript.md",
@@ -4102,15 +4038,15 @@
     "skip": false,
     "subtitle": "Applying Q = F · β · d² · Z to Coherent Pattern Boundaries Across Scales",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528721",
+      "is_stub": false,
+      "zenodo_id": "19528721",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-4-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-MATH-1-2026] → [@HOWL-PHYS-3-2026] → [@HOWL-PHYS-4-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528721",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Measurement Theory",
       "Status": "Complete",
@@ -4126,13 +4062,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275350+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549785+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-40-2026/manuscript.md",
@@ -4145,14 +4080,15 @@
     "skip": false,
     "subtitle": "Eight Domains, Thirteen Inputs, and the Path to Full Unification",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528723",
+      "is_stub": false,
+      "zenodo_id": "19528723",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-40-2026]",
       "Series Path": "[@HOWL-PHYS-9-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-36-2026] → [@HOWL-PHYS-37-2026] → [@HOWL-PHYS-38-2026] → [@HOWL-PHYS-39-2026] → [@HOWL-PHYS-40-2026]",
+      "DOI": "10.5281/zenodo.19528723",
       "Date": "April 6, 2026",
       "Domain": "Unification / Operational Map / DATA-6",
       "Status": "Complete",
@@ -4171,13 +4107,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275361+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549797+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-41-2026/manuscript.md",
@@ -4190,13 +4125,14 @@
     "skip": false,
     "subtitle": "The Fourth Coordinate Reinterpreted",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528725",
+      "is_stub": false,
+      "zenodo_id": "19528725",
+      "status": "published"
     },
     "frontmatter": {
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-24-2026] → [@HOWL-PHYS-40-2026] → [@HOWL-PHYS-41-2026]",
+      "DOI": "10.5281/zenodo.19528725",
       "Date": "April 9, 2026",
       "Domain": "Interpretation / Gravitation / Cosmology",
       "Status": "Complete",
@@ -4214,13 +4150,12 @@
         "Missing Registry field in frontmatter"
       ],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275373+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549810+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-42-2026/manuscript.md",
@@ -4233,14 +4168,15 @@
     "skip": false,
     "subtitle": "18 Tests from Meters to Gigaparsecs",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528727",
+      "is_stub": false,
+      "zenodo_id": "19528727",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-42-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-40-2026] → [@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026]",
+      "DOI": "10.5281/zenodo.19528727",
       "Date": "April 9, 2026",
       "Domain": "Gravitation / Relativity / Cosmology / Interpretation",
       "Status": "Complete",
@@ -4256,12 +4192,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275385+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549823+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-43-2026/manuscript.md",
@@ -4274,14 +4209,15 @@
     "skip": false,
     "subtitle": "Five Tests That Decompose Time Dilation",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528729",
+      "is_stub": false,
+      "zenodo_id": "19528729",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-43-2026]",
       "Series Path": "[@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026] → [@HOWL-PHYS-43-2026]",
+      "DOI": "10.5281/zenodo.19528729",
       "Date": "April 9, 2026",
       "Domain": "Gravitation / Metrology / Fundamental Constants / Experimental Design",
       "Status": "Complete",
@@ -4296,13 +4232,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275397+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549835+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-44-2026/manuscript.md",
@@ -4315,14 +4250,15 @@
     "skip": false,
     "subtitle": "Separating Time from Space in the Soliton Hierarchy",
     "doi": {
-      "raw": "",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "missing"
+      "raw": "10.5281/zenodo.19528733",
+      "is_stub": false,
+      "zenodo_id": "19528733",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-44-2026]",
       "Series Path": "[@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026] → [@HOWL-PHYS-43-2026] → [@HOWL-PHYS-44-2026]",
+      "DOI": "10.5281/zenodo.19528733",
       "Date": "April 10, 2026",
       "Domain": "Gravitation / Metrology / Foundations of Physics",
       "Status": "Complete",
@@ -4338,13 +4274,94 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
+        "Missing ## References section",
+        "Missing ::: {#refs} ::: delimiter",
+        "No abstract section found"
+      ]
+    },
+    "extracted_at": "2026-04-14T15:03:42.549847+00:00"
+  },
+  {
+    "file_path": "papers/PHYS/HOWL-PHYS-45-2026/manuscript.md",
+    "paper_id": "HOWL-PHYS-45-2026",
+    "subject": "PHYS",
+    "number": 45,
+    "year": 2026,
+    "title": "The Confinement Boundary",
+    "key_result": null,
+    "skip": false,
+    "subtitle": "Where Integers Become Matter",
+    "doi": {
+      "raw": "10.5281/zenodo.19572093",
+      "is_stub": false,
+      "zenodo_id": "19572093",
+      "status": "published"
+    },
+    "frontmatter": {
+      "Registry": "[@HOWL-PHYS-45-2026]",
+      "Series Path": "[@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026] → [@HOWL-PHYS-43-2026] → [@HOWL-PHYS-44-2026] → [@HOWL-PHYS-45-2026]",
+      "Date": "April 14, 2026",
+      "DOI": "10.5281/zenodo.19572093",
+      "Domain": "QCD / Confinement / Hadron Physics / Soliton Structure",
+      "Status": "Complete",
+      "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+    },
+    "abstract": null,
+    "dependencies": [
+      "HOWL-PHYS-41-2026",
+      "HOWL-PHYS-42-2026",
+      "HOWL-PHYS-43-2026",
+      "HOWL-PHYS-44-2026"
+    ],
+    "validation": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": [
+        "Missing ## References section",
+        "Missing ::: {#refs} ::: delimiter",
+        "No abstract section found"
+      ]
+    },
+    "extracted_at": "2026-04-14T15:03:42.549860+00:00"
+  },
+  {
+    "file_path": "papers/PHYS/HOWL-PHYS-46-2026/manuscript.md",
+    "paper_id": "HOWL-PHYS-46-2026",
+    "subject": "PHYS",
+    "number": 46,
+    "year": 2026,
+    "title": null,
+    "key_result": null,
+    "skip": false,
+    "subtitle": null,
+    "doi": {
+      "raw": "",
+      "is_stub": true,
+      "zenodo_id": null,
+      "status": "missing"
+    },
+    "frontmatter": {},
+    "abstract": null,
+    "dependencies": [
+      "HOWL-PHYS-41-2026",
+      "HOWL-PHYS-42-2026",
+      "HOWL-PHYS-43-2026",
+      "HOWL-PHYS-44-2026"
+    ],
+    "validation": {
+      "is_valid": false,
+      "errors": [
+        "Missing title (H1)",
+        "Missing Registry field in frontmatter"
+      ],
+      "warnings": [
         "DOI is missing",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275408+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549872+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-5-2026/manuscript.md",
@@ -4357,15 +4374,15 @@
     "skip": false,
     "subtitle": "The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528735",
+      "is_stub": false,
+      "zenodo_id": "19528735",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-5-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-MATH-1-2026] → [@HOWL-MATH-2-2026] → [@HOWL-PHYS-3-2026] → [@HOWL-PHYS-4-2026] → [@HOWL-PHYS-5-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528735",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Computational QED",
       "Status": "Complete",
@@ -4383,13 +4400,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275421+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549885+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-6-2026/manuscript.md",
@@ -4402,15 +4418,15 @@
     "skip": false,
     "subtitle": "The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528737",
+      "is_stub": false,
+      "zenodo_id": "19528737",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-6-2026]",
       "Series Path": "[@HOWL-MATH-2-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-4-2026] → [@HOWL-PHYS-5-2026] → [@HOWL-PHYS-6-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528737",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Computational QED / Confinement Structure",
       "Status": "Complete",
@@ -4429,13 +4445,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275432+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549897+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-7-2026/manuscript.md",
@@ -4448,15 +4463,15 @@
     "skip": false,
     "subtitle": "θ_QCD = 0 as the Ground State of an Integer-Topological System",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528739",
+      "is_stub": false,
+      "zenodo_id": "19528739",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-7-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-2-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-7-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528739",
       "Date": "March 2026",
       "Domain": "Foundational Physics / QCD / Measurement Theory",
       "Status": "Complete",
@@ -4472,13 +4487,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275445+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549909+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-8-2026/manuscript.md",
@@ -4491,15 +4505,15 @@
     "skip": false,
     "subtitle": "Generation Count and Amplitude in the Charged Lepton Mass Relation",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528745",
+      "is_stub": false,
+      "zenodo_id": "19528745",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-8-2026]",
       "Series Path": "[@HOWL-PHYS-1-2026] → [@HOWL-PHYS-5-2026] → [@HOWL-PHYS-7-2026] → [@HOWL-PHYS-8-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528745",
       "Date": "March 2026",
       "Domain": "Foundational Physics / Lepton Mass Structure",
       "Status": "Complete",
@@ -4515,13 +4529,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275456+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549921+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-9-2026/manuscript.md",
@@ -4534,15 +4547,15 @@
     "skip": false,
     "subtitle": "One Measurement, Three Transformation Laws, Every Scale",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528747",
+      "is_stub": false,
+      "zenodo_id": "19528747",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-9-2026]",
       "Series Path": "[@HOWL-MATH-2-2026] → [@HOWL-PHYS-5-2026] → [@HOWL-PHYS-6-2026] → [@HOWL-PHYS-9-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528747",
       "Date": "March 31 2026",
       "Domain": "Quantum Electrodynamics / Exact Arithmetic / Precision Physics",
       "Status": "Complete",
@@ -4560,13 +4573,12 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275468+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549933+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-1-2026/manuscript.md",
@@ -4599,7 +4611,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-12T05:04:11.275479+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549945+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-2-2026/manuscript.md",
@@ -4612,15 +4624,15 @@
     "skip": false,
     "subtitle": "Truth and Utility as Independent Measurements: A Sidecar Extension to the Triveritas",
     "doi": {
-      "raw": "10.5281/zenodo.zzz",
-      "is_stub": true,
-      "zenodo_id": null,
-      "status": "draft"
+      "raw": "10.5281/zenodo.19528749",
+      "is_stub": false,
+      "zenodo_id": "19528749",
+      "status": "published"
     },
     "frontmatter": {
       "Registry": "[@HOWL-SOPH-2-2026]",
       "Series Path": "[@HOWL-DISC-1-2026] → [@HOWL-DISC-5-2026] → [@HOWL-SOPH-2-2026]",
-      "DOI": "10.5281/zenodo.zzz",
+      "DOI": "10.5281/zenodo.19528749",
       "Date": "March 28 2026",
       "Domain": "Applied Philosophy / Epistemology",
       "Status": "Proposal",
@@ -4637,12 +4649,11 @@
       "is_valid": true,
       "errors": [],
       "warnings": [
-        "DOI is stub (.zzz)",
         "Missing ## References section",
         "Missing ::: {#refs} ::: delimiter",
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-12T05:04:11.275491+00:00"
+    "extracted_at": "2026-04-14T15:03:42.549957+00:00"
   }
 ]

@@ -7,7 +7,7 @@
 
 **Date:** April 14, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19572093
 
 **Domain:** QCD / Confinement / Hadron Physics / Soliton Structure
 

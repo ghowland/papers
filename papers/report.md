@@ -1,14 +1,14 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-04-12 05:04:11 UTC
+**Generated:** 2026-04-14 15:03:42 UTC
 
 ## Summary
 
-- **Total Papers:** 105
-- **Valid:** 100
-- **Invalid:** 5
-- **Total Errors:** 8
-- **Total Warnings:** 336
+- **Total Papers:** 107
+- **Valid:** 101
+- **Invalid:** 6
+- **Total Errors:** 10
+- **Total Warnings:** 258
 
 ## By Subject
 
@@ -22,13 +22,13 @@
 - **LYRIC:** 2 papers
 - **MATH:** 10 papers
 - **NEURO:** 1 papers
-- **PHYS:** 44 papers
+- **PHYS:** 46 papers
 - **SOPH:** 2 papers
 
 ## By Status
 
-- **Published (has DOI):** 14
-- **Draft (stub .zzz):** 91
+- **Published (has DOI):** 100
+- **Draft (stub .zzz):** 7
 
 ## Validation Issues
 
@@ -52,14 +52,17 @@
 **HOWL-PHYS-41-2026**
   - ❌ Missing Registry field in frontmatter
 
+**HOWL-PHYS-46-2026**
+  - ❌ Missing title (H1)
+  - ❌ Missing Registry field in frontmatter
 
-### Papers with Warnings (97 total)
+
+### Papers with Warnings (99 total)
 
 **HOWL-BODY-1-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
 **HOWL-COMP-3-2026**
   - ⚠️  No abstract section found
@@ -74,33 +77,29 @@
   - ⚠️  No abstract section found
 
 **HOWL-CULT-1-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
 **HOWL-CULT-10-2026**
-  - ⚠️  DOI is missing
+  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
   - ... and 1 more
 
 **HOWL-CULT-2-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
 **HOWL-CULT-3-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
 **HOWL-CULT-4-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
-... and 87 more papers with warnings
+... and 89 more papers with warnings

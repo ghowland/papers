@@ -13,12 +13,14 @@ ZENODO_CRED_PATH = "/mnt/c/Users/Geoff/.secure/zenodo.json"
 DELAY = 0.5
 
 #NOTE: If NO_OP_MODE == True, then we wont make any papers, just print the messaegs
-NO_OP_MODE = False
-# NO_OP_MODE = True
+# NO_OP_MODE = False
+NO_OP_MODE = True
 
 def get_stub_papers(papers):
     stubs = []
     for paper in papers:
+        if 'HOWL-PHYS-45-2026' not in paper.get('paper_id'): continue
+            
         if paper.get("skip"):
             continue
         doi = paper.get("doi", {})

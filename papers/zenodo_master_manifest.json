@@ -8295,6 +8295,13 @@
           "size": 150709
         }
       }
+    },
+    "HOWL-PHYS-45-2026": {
+      "zenodo_id": 19572093,
+      "doi": "10.5281/zenodo.19572093",
+      "status": "draft",
+      "metadata_hash": "89ac1e23c92f32d456097beddcb9205a461153e49fedcc362da81f279bc78d59",
+      "files": {}
     }
   },
   "last_full_sync": "2026-04-12T12:43:29Z"

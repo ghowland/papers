@@ -1,0 +1,44 @@
+{
+  "file_path": "papers/PHYS/HOWL-PHYS-45-2026/manuscript.md",
+  "paper_id": "HOWL-PHYS-45-2026",
+  "subject": "PHYS",
+  "number": 45,
+  "year": 2026,
+  "title": "The Confinement Boundary",
+  "key_result": null,
+  "skip": false,
+  "subtitle": "Where Integers Become Matter",
+  "doi": {
+    "raw": "10.5281/zenodo.19572093",
+    "is_stub": false,
+    "zenodo_id": 19572093,
+    "status": "draft"
+  },
+  "frontmatter": {
+    "Registry": "[@HOWL-PHYS-45-2026]",
+    "Series Path": "[@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026] \u2192 [@HOWL-PHYS-45-2026]",
+    "Date": "April 14, 2026",
+    "DOI": "10.5281/zenodo.zzz",
+    "Domain": "QCD / Confinement / Hadron Physics / Soliton Structure",
+    "Status": "Complete",
+    "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6."
+  },
+  "abstract": null,
+  "dependencies": [
+    "HOWL-PHYS-41-2026",
+    "HOWL-PHYS-42-2026",
+    "HOWL-PHYS-43-2026",
+    "HOWL-PHYS-44-2026"
+  ],
+  "validation": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "DOI is stub (.zzz)",
+      "Missing ## References section",
+      "Missing ::: {#refs} ::: delimiter",
+      "No abstract section found"
+    ]
+  },
+  "extracted_at": "2026-04-14T14:59:06.902780+00:00"
+}
