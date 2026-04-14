@@ -139,6 +139,7 @@
 | **[[@HOWL-PHYS-42-2026]](papers/papers/PHYS/HOWL-PHYS-42-2026/manuscript.md)** | **Reading Depth Across the Soliton Hierarchy** | 18 Tests from Meters to Gigaparsecs. |
 | **[[@HOWL-PHYS-43-2026]](papers/papers/PHYS/HOWL-PHYS-43-2026/manuscript.md)** | **Separating Clock from Reading** | Five Tests That Decompose Time Dilation. |
 | **[[@HOWL-PHYS-44-2026]](papers/papers/PHYS/HOWL-PHYS-44-2026/manuscript.md)** | **The Clock and the Reading** | Separating Time from Space in the Soliton Hierarchy. |
+| **[[@HOWL-PHYS-45-2026]](papers/papers/PHYS/HOWL-PHYS-45-2026/manuscript.md)** | **The Confinement Boundary** | Where Integers Become Matter. |
 
 ---
 
