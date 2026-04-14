@@ -1,0 +1,44 @@
+{
+    "key": "connection_confinement_boundary_v0",
+    "canonical": "connection_confinement_boundary",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Connects the gauge unification domain (beta coefficients, CD representation) to the hadron physics domain (proton mass, pion mass, nuclear force) through the confinement boundary. The CD shifts b3 by 1/3, repositioning the confinement scale Lambda_QCD, which propagates to all hadron properties.",
+    "paper": "confinement_notebook",
+    "domains_connected": ["gauge_unification", "confinement", "hadron_physics", "nuclear"],
+    "thesis": "The confinement boundary is a soliton boundary positioned by the exact fractional beta coefficient b3. The CD modifies b3 from -7 to -20/3, shifting the boundary and all readings at it. The proton mass is 99% confinement energy, making it a derived quantity up to the lattice factor C = m_p / Lambda_QCD.",
+    "formula": "Lambda_QCD = M_Z * exp(2*pi / (b3 * alpha_s(M_Z))), with threshold matching at m_t, m_b, m_c",
+    "input_values": [
+        "coupling_alpha_s_mz_v0",
+        "mass_z_boson_v0",
+        "mass_top_quark_v0",
+        "mass_bottom_quark_v0",
+        "mass_charm_quark_v0",
+        "mass_strange_quark_v0",
+        "mass_up_quark_v0",
+        "mass_down_quark_v0",
+        "beta_sm_su3_total_v0",
+        "beta_modified_su3_total_v0",
+        "beta_cabibbo_doublet_su3_shift_v0",
+        "cd_mass_reference_v0",
+        "conf_lattice_factor_proton_v0",
+        "conf_pion_decay_constant_v0",
+        "conf_b3_formula_gluon_v0",
+        "conf_b3_per_flavor_v0",
+        "geom_pi_v0"
+    ],
+    "output_values": [
+        "result_lambda_qcd_sm_v0",
+        "result_lambda_qcd_cd_v0",
+        "result_lambda_qcd_ratio_v0",
+        "result_proton_mass_predicted_v0",
+        "result_pion_charged_predicted_v0",
+        "result_boundary_thickness_sm_v0",
+        "result_boundary_thickness_cd_v0"
+    ],
+    "derivation_functions": [
+        "lambda_qcd_from_running_v0",
+        "proton_mass_from_lambda_v0",
+        "pion_mass_from_chpt_v0"
+    ]
+}

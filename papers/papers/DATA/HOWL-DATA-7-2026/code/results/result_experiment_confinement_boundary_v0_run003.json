@@ -1,0 +1,281 @@
+{
+  "key": "result_experiment_confinement_boundary_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_confinement_boundary_v0",
+  "timestamp": "2026-04-14T14:28:09Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "lambda_qcd_from_running_v0",
+      "status": "ok",
+      "output_count": 16
+    },
+    {
+      "key": "proton_mass_from_lambda_v0",
+      "status": "ok",
+      "output_count": 9
+    },
+    {
+      "key": "pion_mass_from_chpt_v0",
+      "status": "ok",
+      "output_count": 12
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "C01: Lambda_QCD SM in physical range",
+      "output_key": "result_lambda_qcd_sm_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_2024",
+      "got": "142.538",
+      "lo": "100",
+      "hi": "400",
+      "status": "PASS",
+      "detail": "in [100, 400]"
+    },
+    {
+      "label": "C02: Lambda_QCD CD in physical range",
+      "output_key": "result_lambda_qcd_cd_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_2024",
+      "got": "145.415",
+      "lo": "100",
+      "hi": "400",
+      "status": "PASS",
+      "detail": "in [100, 400]"
+    },
+    {
+      "label": "C03: Lambda shift < 50%",
+      "output_key": "result_lambda_qcd_shift_pct_v0",
+      "match_mode": "range",
+      "reference_source": "self_consistency",
+      "got": "2.01888",
+      "lo": "0",
+      "hi": "50",
+      "status": "PASS",
+      "detail": "in [0, 50]"
+    },
+    {
+      "label": "C04: alpha_s at m_b in perturbative range",
+      "output_key": "result_alpha_s_at_mb_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_2024",
+      "got": "0.21213",
+      "lo": "0.18",
+      "hi": "0.25",
+      "status": "PASS",
+      "detail": "in [0.18, 0.25]"
+    },
+    {
+      "label": "C05: alpha_s at m_c in perturbative range",
+      "output_key": "result_alpha_s_at_mc_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_2024",
+      "got": "0.318851",
+      "lo": "0.30",
+      "hi": "0.45",
+      "status": "PASS",
+      "detail": "in [0.30, 0.45]"
+    },
+    {
+      "label": "C06: alpha_s at 1 GeV approaching non-perturbative",
+      "output_key": "result_alpha_s_at_1gev_v0",
+      "match_mode": "range",
+      "reference_source": "lattice_QCD",
+      "got": "0.358356",
+      "lo": "0.3",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0.3, 1.0]"
+    },
+    {
+      "label": "C07: b3(nf=5) exact check",
+      "output_key": "result_b3_nf5_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-23/3",
+      "got": "-23/3"
+    },
+    {
+      "label": "C08: b3(nf=4) exact check",
+      "output_key": "result_b3_nf4_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-25/3",
+      "got": "-25/3"
+    },
+    {
+      "label": "C09: b3(nf=3) exact check",
+      "output_key": "result_b3_nf3_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "-9",
+      "got": "-9"
+    },
+    {
+      "label": "C10: proton mass predicted vs measured",
+      "output_key": "result_proton_mass_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "938.272",
+      "got": "669.926253181176",
+      "miss_pct": "28.6",
+      "detail": "predicted 669.926253181176 ref 938.272 miss 28.6%"
+    },
+    {
+      "label": "C11: proton mass within 10%",
+      "output_key": "result_proton_mass_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "lattice_precision",
+      "got": "28.6",
+      "lo": "0",
+      "hi": "10",
+      "status": "FAIL",
+      "detail": "28.6 not in [0, 10]"
+    },
+    {
+      "label": "C12: confinement fraction > 95%",
+      "output_key": "result_proton_confinement_fraction_v0",
+      "match_mode": "range",
+      "reference_source": "QCD",
+      "got": "0.990387",
+      "lo": "0.95",
+      "hi": "1.00",
+      "status": "PASS",
+      "detail": "in [0.95, 1.00]"
+    },
+    {
+      "label": "C13: pion charged mass vs measured",
+      "output_key": "result_pion_charged_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "139.57",
+      "got": "68.3585343737887",
+      "miss_pct": "51.02",
+      "detail": "predicted 68.3585343737887 ref 139.57 miss 51.02%"
+    },
+    {
+      "label": "C14: pion charged within 30%",
+      "output_key": "result_pion_charged_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "ChPT_LO_precision",
+      "got": "51.0222",
+      "lo": "0",
+      "hi": "30",
+      "status": "FAIL",
+      "detail": "51.0222 not in [0, 30]"
+    },
+    {
+      "label": "C15: pion neutral mass vs measured",
+      "output_key": "result_pion_neutral_predicted_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "134.977",
+      "got": "68.3585343737887",
+      "miss_pct": "49.36",
+      "detail": "predicted 68.3585343737887 ref 134.977 miss 49.36%"
+    },
+    {
+      "label": "C16: boundary thickness SM",
+      "output_key": "result_boundary_thickness_sm_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "1/7",
+      "got": "1/7"
+    },
+    {
+      "label": "C17: boundary thickness CD",
+      "output_key": "result_boundary_thickness_cd_v0",
+      "match_mode": "exact",
+      "reference_source": "group_theory",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "3/20",
+      "got": "3/20"
+    }
+  ],
+  "outputs": {
+    "result_lambda_qcd_sm_v0": "142.537500676846",
+    "result_lambda_qcd_cd_v0": "145.415166052649",
+    "result_lambda_qcd_ratio_v0": "1.02018883004219",
+    "result_lambda_qcd_shift_pct_v0": "2.01888300421855",
+    "result_alpha_s_at_mb_v0": "0.21212996869316",
+    "result_alpha_s_at_mc_v0": "0.318850541475554",
+    "result_alpha_s_at_1gev_v0": "0.358356207990307",
+    "result_b3_nf6_v0": {
+      "_type": "Fraction",
+      "num": "-7",
+      "den": "1"
+    },
+    "result_b3_nf5_v0": {
+      "_type": "Fraction",
+      "num": "-23",
+      "den": "3"
+    },
+    "result_b3_nf4_v0": {
+      "_type": "Fraction",
+      "num": "-25",
+      "den": "3"
+    },
+    "result_b3_nf3_v0": {
+      "_type": "Fraction",
+      "num": "-9",
+      "den": "1"
+    },
+    "result_boundary_thickness_sm_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "7"
+    },
+    "result_boundary_thickness_cd_v0": {
+      "_type": "Fraction",
+      "num": "3",
+      "den": "20"
+    },
+    "result_b3_sm_check_v0": "-7.0",
+    "result_b3_cd_check_v0": "-6.66666666666667",
+    "result_alpha_s_inv_mz_used_v0": "8.47457627118644",
+    "result_proton_mass_predicted_v0": "669.926253181176",
+    "result_proton_mass_miss_pct_v0": "28.6000019900244",
+    "result_proton_confinement_fraction_v0": "0.990386583911411",
+    "result_proton_confinement_energy_v0": "929.25208943",
+    "result_proton_valence_mass_v0": "9.02",
+    "result_nuclear_force_range_predicted_v0": "1.41381693065413",
+    "result_lambda_sm_used_v0": "142.537500676846",
+    "result_lattice_factor_used_v0": "4.7",
+    "result_m_p_measured_used_v0": "938.27208943",
+    "result_pion_charged_predicted_v0": "68.3585343737887",
+    "result_pion_charged_miss_pct_v0": "51.0221800098225",
+    "result_pion_neutral_predicted_v0": "68.3585343737887",
+    "result_pion_neutral_miss_pct_v0": "49.3554202762036",
+    "result_pion_mass_sq_v0": "4672.88922173245",
+    "result_chiral_condensate_B0_v0": "340.589593420732",
+    "result_pi_mass_diff_measured_v0": "4.59339",
+    "result_m_u_used_v0": "2.16",
+    "result_m_d_used_v0": "4.7",
+    "result_m_q_sum_used_v0": "6.86",
+    "result_f_pi_used_v0": "92.21",
+    "result_lambda_used_v0": "142.537500676846"
+  },
+  "summary": {
+    "derivations_ok": 3,
+    "derivations_err": 0,
+    "comparisons_pass": 12,
+    "comparisons_fail": 2,
+    "comparisons_info": 3,
+    "comparisons_skip": 0
+  }
+}

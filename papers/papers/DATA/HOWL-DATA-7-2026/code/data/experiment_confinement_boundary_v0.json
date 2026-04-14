@@ -1,0 +1,231 @@
+{
+    "key": "experiment_confinement_boundary_v0",
+    "canonical": "experiment_confinement_boundary",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Compute Lambda_QCD by running alpha_s from M_Z downward through flavor thresholds (t, b, c) with appropriate b3 at each stage. Compare SM vs CD-modified running. Compute proton mass from lattice factor. Compute pion mass from ChPT. Test the confinement boundary as a soliton boundary positioned by exact fractional beta coefficients.",
+    "purpose": "program_confinement_boundary_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_s_mz": 0,
+            "mass_z_boson": 0,
+            "mass_top_quark": 0,
+            "mass_bottom_quark": 0,
+            "mass_charm_quark": 0,
+            "mass_strange_quark": 0,
+            "mass_up_quark": 0,
+            "mass_down_quark": 0,
+            "mass_proton": 0,
+            "mass_neutron": 0,
+            "mass_pion_charged": 0,
+            "mass_pion_neutral": 0,
+            "mass_neutron_proton_diff": 0,
+            "beta_sm_su3_total": 0,
+            "beta_modified_su3_total": 0,
+            "beta_cabibbo_doublet_su3_shift": 0,
+            "geom_pi": 0,
+            "spectro_proton_charge_radius": 0,
+            "conf_lattice_factor_proton": 0,
+            "conf_lattice_factor_proton_unc": 0,
+            "conf_pion_decay_constant": 0,
+            "conf_pion_decay_constant_unc": 0,
+            "conf_b3_formula_gluon": 0,
+            "conf_b3_per_flavor": 0,
+            "conf_cd_mass_reference": 0,
+            "conf_hbar_c_mev_fm": 0,
+            "conf_alpha_s_cd_predicted": 0
+        },
+        "derivations": {
+            "lambda_qcd_from_running": 0,
+            "proton_mass_from_lambda": 0,
+            "pion_mass_from_chpt": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "lambda_qcd_from_running_v0",
+        "proton_mass_from_lambda_v0",
+        "pion_mass_from_chpt_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_lambda_qcd_sm_v0",
+        "result_lambda_qcd_cd_v0",
+        "result_lambda_qcd_ratio_v0",
+        "result_lambda_qcd_shift_pct_v0",
+        "result_alpha_s_at_mb_v0",
+        "result_alpha_s_at_mc_v0",
+        "result_alpha_s_at_1gev_v0",
+        "result_b3_nf6_v0",
+        "result_b3_nf5_v0",
+        "result_b3_nf4_v0",
+        "result_b3_nf3_v0",
+        "result_proton_mass_predicted_v0",
+        "result_proton_mass_miss_pct_v0",
+        "result_proton_confinement_fraction_v0",
+        "result_pion_charged_predicted_v0",
+        "result_pion_charged_miss_pct_v0",
+        "result_pion_neutral_predicted_v0",
+        "result_pion_neutral_miss_pct_v0",
+        "result_nuclear_force_range_predicted_v0",
+        "result_boundary_thickness_sm_v0",
+        "result_boundary_thickness_cd_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "C01: Lambda_QCD SM in physical range",
+            "output_key": "result_lambda_qcd_sm_v0",
+            "match_mode": "range",
+            "lo": "100",
+            "hi": "400",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C02: Lambda_QCD CD in physical range",
+            "output_key": "result_lambda_qcd_cd_v0",
+            "match_mode": "range",
+            "lo": "100",
+            "hi": "400",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C03: Lambda shift < 50%",
+            "output_key": "result_lambda_qcd_shift_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "50",
+            "reference_source": "self_consistency"
+        },
+        {
+            "label": "C04: alpha_s at m_b in perturbative range",
+            "output_key": "result_alpha_s_at_mb_v0",
+            "match_mode": "range",
+            "lo": "0.18",
+            "hi": "0.25",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C05: alpha_s at m_c in perturbative range",
+            "output_key": "result_alpha_s_at_mc_v0",
+            "match_mode": "range",
+            "lo": "0.30",
+            "hi": "0.45",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C06: alpha_s at 1 GeV approaching non-perturbative",
+            "output_key": "result_alpha_s_at_1gev_v0",
+            "match_mode": "range",
+            "lo": "0.3",
+            "hi": "1.0",
+            "reference_source": "lattice_QCD"
+        },
+        {
+            "label": "C07: b3(nf=5) exact check",
+            "output_key": "result_b3_nf5_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-23", "den": "3"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "C08: b3(nf=4) exact check",
+            "output_key": "result_b3_nf4_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-25", "den": "3"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "C09: b3(nf=3) exact check",
+            "output_key": "result_b3_nf3_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "-9", "den": "1"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "C10: proton mass predicted vs measured",
+            "output_key": "result_proton_mass_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "938.272",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C11: proton mass within 10%",
+            "output_key": "result_proton_mass_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "10",
+            "reference_source": "lattice_precision"
+        },
+        {
+            "label": "C12: confinement fraction > 95%",
+            "output_key": "result_proton_confinement_fraction_v0",
+            "match_mode": "range",
+            "lo": "0.95",
+            "hi": "1.00",
+            "reference_source": "QCD"
+        },
+        {
+            "label": "C13: pion charged mass vs measured",
+            "output_key": "result_pion_charged_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "139.57",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C14: pion charged within 30%",
+            "output_key": "result_pion_charged_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "30",
+            "reference_source": "ChPT_LO_precision"
+        },
+        {
+            "label": "C15: pion neutral mass vs measured",
+            "output_key": "result_pion_neutral_predicted_v0",
+            "match_mode": "miss_pct",
+            "expected": "134.977",
+            "reference_source": "PDG_2024"
+        },
+        {
+            "label": "C16: boundary thickness SM",
+            "output_key": "result_boundary_thickness_sm_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "1", "den": "7"},
+            "reference_source": "group_theory"
+        },
+        {
+            "label": "C17: boundary thickness CD",
+            "output_key": "result_boundary_thickness_cd_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "3", "den": "20"},
+            "reference_source": "group_theory"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_alpha_s_running_to_confinement_v0",
+            "title": "alpha_s running from M_Z through flavor thresholds to Lambda_QCD",
+            "type": "running_chart",
+            "notes": "Shows alpha_s increasing as energy decreases, with step changes at each flavor threshold."
+        },
+        {
+            "key": "diagram_proton_inertia_budget_v0",
+            "title": "Proton inertia: 1% quark mass, 99% confinement energy",
+            "type": "bar",
+            "notes": "Two bars: valence quark mass contribution (~9 MeV) vs confinement energy (~929 MeV)."
+        },
+        {
+            "key": "diagram_boundary_hierarchy_v0",
+            "title": "Soliton boundary thresholds from Planck to molecular",
+            "type": "scale_landscape",
+            "notes": "Log energy axis with all boundaries marked and their governing couplings labeled."
+        }
+    ]
+}

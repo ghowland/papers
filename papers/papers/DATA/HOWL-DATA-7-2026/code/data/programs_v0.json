@@ -666,6 +666,64 @@
             "program_beta_unification": "shares beta coefficients that appear in sector splitting formula",
             "program_parameter_reduction": "sector splitting connects gauge integers to gravitational observables"
         }
+    },
+
+    {
+        "key": "program_confinement_boundary_v0",
+        "canonical": "program_confinement_boundary",
+        "version": 0,
+        "node_type": "program",
+        "topic": "program",
+        "term": "confinement_boundary",
+        "level": null,
+        "source": "Session 7",
+        "thesis": "The confinement boundary is a soliton boundary positioned by the exact fractional beta coefficient b3. The CD shifts b3 from -7 to -20/3, repositioning Lambda_QCD and all hadron readings. Every soliton boundary in the hierarchy is a threshold where a coupling reaches criticality, positioned by exact fractional beta coefficients.",
+        "status": "ACTIVE",
+        "tags": ["confinement", "soliton", "boundary", "QCD", "proton", "pion", "lambda_qcd"],
+        "scripts": [
+            {
+                "name": "lambda_qcd_from_running_v0",
+                "description": "Run alpha_s from M_Z through flavor thresholds to confinement. SM and CD compared.",
+                "stage": 1
+            },
+            {
+                "name": "proton_mass_from_lambda_v0",
+                "description": "Proton mass = lattice factor C x Lambda_QCD. Partial derivation.",
+                "stage": 2
+            },
+            {
+                "name": "pion_mass_from_chpt_v0",
+                "description": "Pion mass from chiral perturbation theory using running quark masses at Lambda_QCD.",
+                "stage": 2
+            }
+        ],
+        "kill_switches": [
+            {
+                "name": "lambda_qcd_out_of_range",
+                "condition": "Computed Lambda_QCD(SM) outside [100, 400] MeV",
+                "data_source": "Stage 1 computation"
+            },
+            {
+                "name": "proton_mass_miss",
+                "condition": "Proton mass from C x Lambda_QCD misses measured by > 10%",
+                "data_source": "Stage 2 computation"
+            },
+            {
+                "name": "cd_shift_too_large",
+                "condition": "Lambda_QCD(CD) differs from Lambda_QCD(SM) by > 50%",
+                "data_source": "Stage 1 computation"
+            },
+            {
+                "name": "lhc_no_cd",
+                "condition": "LHC excludes CD at all masses up to 6 TeV",
+                "data_source": "LHC Run 3 + HL-LHC direct search"
+            }
+        ],
+        "program_connections": {
+            "program_beta_unification": "shares beta coefficients b3, CD representation, alpha_s running",
+            "program_clock_reading_decomposition": "confinement boundary is a soliton boundary, sector splitting probes it",
+            "program_gr_reading_depth": "proton mass enters gravitational tests as input, partially derived here"
+        }
     }
   ]
 }

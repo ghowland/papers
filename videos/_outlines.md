@@ -15,15 +15,23 @@
 
 	- The Number System Physics Should Have Been Using All Along (Chapter 5)
 
-6. **I Built a Test Suite for Physics and Everything Passed** (Chapter 6)
+6. The Integer Physics Experiment Machine (Chapter 6)
 
-7. **The Map Has Edges: What We Don't Know and Where They Are** (Chapter 7)
+7. Integer Physics: What's Done and Remaining
 
-8. **What the Human Did, What the AI Did, and Why It Took Both** (Chapter 8)
+	- The Map Has Edges: What We Don't Know and Where They Are (Chapter 7)
 
-9. **Gravity Is Not What You Think: Time as Reading Depth** (Chapter 9)
+8. Integer Physics was Created using AI
 
-10. **A New Naming System for Every Particle in the Universe** (Chapter 10)
+	What the Human Did, What the AI Did, and Why It Took Both (Chapter 8)
+
+9. Space and Time in Integer Physics
+
+	Gravity Is Not What You Think: Time as Reading Depth (Chapter 9)
+
+10. Integer Physics Lexicon v0
+
+	- A New Naming System for Every Particle in the Universe (Chapter 10)
 
 Each one works as a standalone click. Each one promises something specific. Each one can be understood without watching the others. And each one has a natural live demonstration built in — terminal runs for 5 and 6, the taxonomy tree for 10, the derivation map for 7, the GR experiment output for 9.
 

@@ -1,0 +1,153 @@
+{
+  "key": "result_experiment_confinement_boundary_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_confinement_boundary_v0",
+  "timestamp": "2026-04-14T14:21:41Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "lambda_qcd_from_running_v0",
+      "status": "skip"
+    },
+    {
+      "key": "proton_mass_from_lambda_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pion_mass_from_chpt_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "C01: Lambda_QCD SM in physical range",
+      "output_key": "result_lambda_qcd_sm_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C02: Lambda_QCD CD in physical range",
+      "output_key": "result_lambda_qcd_cd_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C03: Lambda shift < 50%",
+      "output_key": "result_lambda_qcd_shift_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C04: alpha_s at m_b in perturbative range",
+      "output_key": "result_alpha_s_at_mb_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C05: alpha_s at m_c in perturbative range",
+      "output_key": "result_alpha_s_at_mc_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C06: alpha_s at 1 GeV approaching non-perturbative",
+      "output_key": "result_alpha_s_at_1gev_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C07: b3(nf=5) exact check",
+      "output_key": "result_b3_nf5_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C08: b3(nf=4) exact check",
+      "output_key": "result_b3_nf4_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C09: b3(nf=3) exact check",
+      "output_key": "result_b3_nf3_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C10: proton mass predicted vs measured",
+      "output_key": "result_proton_mass_predicted_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C11: proton mass within 10%",
+      "output_key": "result_proton_mass_miss_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C12: confinement fraction > 95%",
+      "output_key": "result_proton_confinement_fraction_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C13: pion charged mass vs measured",
+      "output_key": "result_pion_charged_predicted_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C14: pion charged within 20%",
+      "output_key": "result_pion_charged_miss_pct_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C15: pion neutral mass vs measured",
+      "output_key": "result_pion_neutral_predicted_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C16: boundary thickness SM",
+      "output_key": "result_boundary_thickness_sm_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "C17: boundary thickness CD",
+      "output_key": "result_boundary_thickness_cd_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 3,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 17
+  }
+}

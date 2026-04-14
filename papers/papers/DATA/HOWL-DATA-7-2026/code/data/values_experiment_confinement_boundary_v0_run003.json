@@ -1,0 +1,435 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_sm_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_sm",
+      "version": 0,
+      "node_type": "value",
+      "value": "142.537500676846",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_cd_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_cd",
+      "version": 0,
+      "node_type": "value",
+      "value": "145.415166052649",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_ratio_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.02018883004219",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_shift_pct_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_qcd_shift_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.01888300421855",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_mb_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_mb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.21212996869316",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_mc_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_mc",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.318850541475554",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_1gev_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_alpha_s_at_1gev",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.358356207990307",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_nf6_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_nf6",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-7",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_nf5_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_nf5",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-23",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_nf4_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_nf4",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-25",
+        "den": "3"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_nf3_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_nf3",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "-9",
+        "den": "1"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_boundary_thickness_sm_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_boundary_thickness_sm",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "1",
+        "den": "7"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_boundary_thickness_cd_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_boundary_thickness_cd",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "3",
+        "den": "20"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_sm_check_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_sm_check",
+      "version": 0,
+      "node_type": "value",
+      "value": "-7.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_b3_cd_check_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_b3_cd_check",
+      "version": 0,
+      "node_type": "value",
+      "value": "-6.66666666666667",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_alpha_s_inv_mz_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_alpha_s_inv_mz_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.47457627118644",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_proton_mass_predicted_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_proton_mass_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "669.926253181176",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_proton_mass_miss_pct_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_proton_mass_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "28.6000019900244",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_proton_confinement_fraction_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_proton_confinement_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.990386583911411",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_proton_confinement_energy_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_proton_confinement_energy",
+      "version": 0,
+      "node_type": "value",
+      "value": "929.25208943",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_proton_valence_mass_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_proton_valence_mass",
+      "version": 0,
+      "node_type": "value",
+      "value": "9.02",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_nuclear_force_range_predicted_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_nuclear_force_range_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.41381693065413",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_sm_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_sm_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "142.537500676846",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lattice_factor_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lattice_factor_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.7",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_m_p_measured_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_m_p_measured_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "938.27208943",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pion_charged_predicted_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pion_charged_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "68.3585343737887",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pion_charged_miss_pct_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pion_charged_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "51.0221800098225",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pion_neutral_predicted_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pion_neutral_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "68.3585343737887",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pion_neutral_miss_pct_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pion_neutral_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "49.3554202762036",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pion_mass_sq_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pion_mass_sq",
+      "version": 0,
+      "node_type": "value",
+      "value": "4672.88922173245",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_chiral_condensate_B0_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_chiral_condensate_B0",
+      "version": 0,
+      "node_type": "value",
+      "value": "340.589593420732",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_pi_mass_diff_measured_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_pi_mass_diff_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.59339",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_m_u_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_m_u_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.16",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_m_d_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_m_d_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.7",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_m_q_sum_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_m_q_sum_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "6.86",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_f_pi_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_f_pi_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "92.21",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    },
+    {
+      "key": "experiment_confinement_boundary_v0_run003_result_lambda_used_v0",
+      "canonical": "experiment_confinement_boundary_v0_run003_result_lambda_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "142.537500676846",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_confinement_boundary_v0_run003"
+    }
+  ]
+}
