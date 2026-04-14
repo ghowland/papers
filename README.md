@@ -174,6 +174,7 @@
 | **[[@HOWL-DISC-10-2026]](papers/papers/DISC/HOWL-DISC-10-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary** | Results of R₂ = π/4 appearring in 9 out of 9 physics domains tested. |
 | **[[@HOWL-DISC-11-2026]](papers/papers/DISC/HOWL-DISC-11-2026/manuscript.md)** | **From the Gap Ratio to the Cabibbo Doublet and Beyond** | One mismatch. One particle. Sixteen findings. The integers spoke. |
 | **[[@HOWL-DISC-12-2026]](papers/papers/DISC/HOWL-DISC-12-2026/manuscript.md)** | **The Platform Discovery** | How a Physics Series Became a Software System. |
+| **[[@HOWL-DISC-13-2026]](papers/papers/DISC/HOWL-DISC-13-2026/manuscript.md)** | **The Creation Machine** | How a Book Became a Platform and a Platform Became a Discovery Engine. |
 
 ---
 
