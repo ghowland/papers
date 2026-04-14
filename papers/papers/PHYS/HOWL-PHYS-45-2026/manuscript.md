@@ -35,6 +35,8 @@ The prototype is the confinement boundary. The coupling is α_s. The beta coeffi
 
 ## II. WHAT A SOLITON BOUNDARY IS
 
+![Fig. 8: The four components of a soliton boundary: coupling, beta coefficient, threshold, and soliton. The confinement boundary as the prototype for all boundaries in the hierarchy.](./figures/phys45_08_boundary_identity.png)
+
 A soliton boundary has four components.
 
 **The coupling.** Each boundary is governed by a specific gauge coupling. The confinement boundary is governed by α_s, the strong coupling. It describes how strongly quarks and gluons interact. At high energies (short distances), α_s is small — quarks are nearly free. At low energies (large distances), α_s grows without bound — quarks are confined. The energy where the transition occurs is the boundary.
@@ -61,6 +63,8 @@ This is not a free parameter. It is computed from three inputs: a reference scal
 
 ## III. RUNNING TO CONFINEMENT
 
+![Fig. 1: α_s running from M_Z through three flavor thresholds to Λ_QCD. The coupling triples from 0.118 to 0.358 then diverges at 142.5 MeV.](./figures/phys45_01_alpha_s_running.png)
+
 The experiment `experiment_confinement_boundary_v0` ran α_s from M_Z downward through three flavor thresholds to the confinement scale. Three derivation functions. 17 comparisons. All three derivations succeeded. 12 PASS, 2 FAIL, 3 INFO.
 
 The running begins at M_Z with α_s = 0.118 (α_s⁻¹ = 8.475). The one-loop formula:
@@ -85,9 +89,13 @@ Every step uses exact Fractions for the beta coefficients. The threshold matchin
 
 The CD comparison: using the CD-predicted α_s(M_Z) = 0.1184 (from the one-loop crossing, Fraction 1184/10000), the same running gives Λ_QCD(CD) = 145.4 MeV. The shift: +2.88 MeV, or +2.0%. The CD makes confinement occur at a slightly higher energy scale. The boundary moves upward by 2%.
 
+![Fig. 7: α_s⁻¹ approaching zero for SM and CD theories. The 2% gap between divergence points — 142.5 vs 145.4 MeV — is the CD's fingerprint on confinement.](./figures/phys45_07_sm_cd_lambda.png)
+
 ---
 
 ## IV. THE PROTON AS A SOLITON
+
+![Fig. 2: The proton is 99% boundary. Valence quarks contribute 9 MeV. Confinement energy contributes 929 MeV.](./figures/phys45_02_proton_inertia.png)
 
 The proton has mass 938.272 MeV. Of this, 9.02 MeV comes from the valence quarks (two up quarks at 2.16 MeV each plus one down quark at 4.70 MeV). The remaining 929.25 MeV — 99.04% of the total — comes from the energy stored in the gluon field configuration that maintains confinement.
 
@@ -106,6 +114,8 @@ The proton mass is partially derived: exact Fractions (the beta coefficients) de
 ---
 
 ## V. THE PION AS THE BOUNDARY MESSENGER
+
+![Fig. 6: The pion lives ON the confinement boundary — not fully inside like the proton, not fully outside like free quarks. It is the boundary messenger that mediates the nuclear force.](./figures/phys45_06_pion_boundary.png)
 
 The pion is the lightest hadron. The charged pion has mass 139.57 MeV. The neutral pion has mass 134.98 MeV. The pion is not fully inside the confinement boundary (it is not a stable three-quark soliton) and not fully outside (it carries confined color charge). It lives on the boundary. It is the boundary mode.
 
@@ -126,6 +136,8 @@ The pion mass determines the nuclear force range, which determines nuclear bindi
 ---
 
 ## VI. BOUNDARY THICKNESS
+
+![Fig. 5](./figures/phys45_05_boundary_thickness.png)
 
 The boundary thickness is a new quantity — the first computed property of a soliton boundary in the RUM framework. It measures how sharply the coupling transitions from perturbative to non-perturbative. A thinner boundary means a sharper transition. A thicker boundary means a more gradual one.
 
@@ -151,6 +163,8 @@ These are structural properties of the boundaries — properties of the boundary
 
 ## VII. THE CD'S FINGERPRINT ON CONFINEMENT
 
+![Fig. 4: The CD's Δb₃ = 1/3 propagates through five decades of energy and three flavor thresholds to produce a 2% shift in all hadron masses.](./figures/phys45_04_cd_propagation.png)
+
 The Cabibbo Doublet lives at M_CD > 1500 GeV, far above the confinement scale at ~150 MeV. Four decades of energy separate them. Three flavor thresholds intervene. Yet the CD's fingerprint reaches confinement through the running of α_s.
 
 The chain:
@@ -170,6 +184,8 @@ One Fraction — 1/3, the CD's contribution to b₃ — propagates from the TeV 
 ---
 
 ## VIII. EVERY BOUNDARY IS A Λ
+
+![Fig. 3: The soliton boundary hierarchy from molecular binding to the Planck scale. Each boundary is positioned by its governing coupling and beta coefficient.](./figures/phys45_03_boundary_hierarchy.png)
 
 The confinement boundary is the prototype. The same four-component structure — coupling, beta coefficient, threshold, soliton — appears at every level of the hierarchy.
 

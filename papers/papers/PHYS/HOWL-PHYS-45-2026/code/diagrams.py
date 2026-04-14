@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-HOWL PHYS-44 Diagrams — The Clock and the Reading
-8 figures covering D/K decomposition, sector splitting, tick budgets,
-GPS decomposition, muon product, soliton hierarchy, and WEP consistency.
+HOWL PHYS-45 Diagrams — The Confinement Boundary
+8 figures covering alpha_s running, proton inertia, boundary hierarchy,
+CD propagation, boundary thickness, pion at boundary, SM vs CD Lambda,
+and soliton boundary identity card.
 Output: PNG files to ../figures/
 """
 
@@ -10,7 +11,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, Circle
+from matplotlib.patches import FancyBboxPatch, Circle, FancyArrowPatch
 import numpy as np
 import os
 
@@ -73,622 +74,555 @@ def save(fig, filename):
 outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
 os.makedirs(outdir, exist_ok=True)
 
-print("PHYS-44 Diagram Script")
+print("PHYS-45 Diagram Script")
 print("=" * 50)
 
 
 # ================================================================
-# FIG 1: KAPPA SWEEP — SECTOR SPLITTING DETECTION THRESHOLD
-# Type: Threshold/Region (D5.3)
-# Shows: 13 orders of detectable kappa range. Three sector pairs
-#        with different intercepts. Detection thresholds as bands.
+# FIG 1: ALPHA_S RUNNING FROM M_Z TO LAMBDA_QCD
+# Type: Running/Convergence (D5.1)
+# Shows: alpha_s growing as energy decreases, with step changes
+#        in slope at each flavor threshold. The coupling diverges
+#        at Lambda_QCD.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
-setup_ax(ax, '', r'$\log_{10}(\kappa)$',
-         r'$\log_{10}(\epsilon_{ij})$ at $\Delta h = 1000$ m')
+setup_ax(ax, '', r'Energy $\mu$ (MeV)', r'$\alpha_s(\mu)$')
 
-log_kappa = np.linspace(-9, 1, 500)
-delta_phi = 9.82 * 1000.0 / (2.998e8)**2
+# Thresholds and b3 values
+M_Z = 91187.6
+m_t = 172570.0
+m_b = 4183.0
+m_c = 1273.0
+lam_sm = 142.5
 
-pairs = [
-    (r'Strong$-$EM: $|\Delta\beta| = 111/10$', 111.0/10.0, CYAN),
-    (r'Weak$-$EM: $|\Delta\beta| = 79/30$', 79.0/30.0, GREEN),
-    (r'Strong$-$Weak: $|\Delta\beta| = 23/6$', 23.0/6.0, MAG),
-]
+# b3 at each range (nf=5,4,3)
+b3_nf5 = -23.0/3.0
+b3_nf4 = -25.0/3.0
+b3_nf3 = -9.0
 
-for label, db, color in pairs:
-    log_eps = log_kappa + np.log10(db * delta_phi)
-    ax.plot(log_kappa, log_eps, color=color, lw=2.5, label=label)
+alpha_inv_mz = 1.0/0.118
+two_pi = 2.0 * np.pi
 
-thresholds = [
-    (-18, r'Current optical clock ($10^{-18}$)', GREEN, '--'),
-    (-19, r'Projected Th-229 ($10^{-19}$)', CYAN, '--'),
-    (-21, r'Space clocks ($10^{-21}$)', PURPLE, ':'),
-]
-for val, label, color, ls in thresholds:
-    ax.axhline(val, color=color, lw=1.5, ls=ls, alpha=0.6)
-    ax.text(0.8, val + 0.3, label, color=color, fontsize=9, ha='right')
+def run_segment(mu_start, mu_end, alpha_inv_start, b3, n=200):
+    mus = np.logspace(np.log10(mu_end), np.log10(mu_start), n)
+    alpha_inv = alpha_inv_start - b3/two_pi * np.log(mus/mu_start)
+    alpha_inv = np.maximum(alpha_inv, 0.01)
+    alpha_s = 1.0 / alpha_inv
+    return mus, alpha_s, alpha_inv[-1]
 
-ax.fill_between(log_kappa, -18, -8, color=GREEN, alpha=0.04)
-ax.text(-4, -9.5, 'DETECTABLE', color=GREEN, fontsize=14,
-        fontweight='bold', ha='center', alpha=0.4)
-ax.fill_between(log_kappa, -22, -18, color=RED, alpha=0.03)
-ax.text(-4, -20, 'BELOW THRESHOLD', color=RED, fontsize=11,
-        ha='center', alpha=0.3)
+# Segment 1: M_Z down to m_b (nf=5)
+mus1, as1, ainv_mb = run_segment(M_Z, m_b, alpha_inv_mz, b3_nf5, 300)
+ax.plot(mus1, as1, color=CYAN, lw=2.5, label=r'$n_f=5$, $b_3=-23/3$')
 
-# Mark suppression mechanisms
-suppress = [
-    (0, r'$\kappa = 1$', GOLD),
-    (np.log10(0.118), r'$\kappa = \alpha_s$', ORANGE),
-    (np.log10(1.0/137.036), r'$\kappa = \alpha_{em}$', BLUE),
-    (-4.28, r'$\kappa = \alpha_{em}^2$', PURPLE),
-]
-for xv, lab, col in suppress:
-    eps_31 = xv + np.log10(111.0/10.0 * delta_phi)
-    ax.plot(xv, eps_31, 'o', color=col, markersize=10,
-            linewidth=1.5, zorder=5)
-    ax.annotate(lab, xy=(xv, eps_31), xytext=(xv - 0.8, eps_31 + 1.0),
-                color=col, fontsize=9, fontweight='bold',
-                arrowprops=dict(arrowstyle='->', color=col, lw=1.2))
+# Segment 2: m_b down to m_c (nf=4)
+mus2, as2, ainv_mc = run_segment(m_b, m_c, ainv_mb, b3_nf4, 300)
+ax.plot(mus2, as2, color=GREEN, lw=2.5, label=r'$n_f=4$, $b_3=-25/3$')
 
-ax.set_xlim(-9.5, 1.5)
-ax.set_ylim(-22, -8)
+# Segment 3: m_c down to Lambda (nf=3)
+mus3, as3, _ = run_segment(m_c, lam_sm + 5, ainv_mc, b3_nf3, 500)
+ax.plot(mus3, as3, color=RED, lw=2.5, label=r'$n_f=3$, $b_3=-9$')
+
+# Threshold markers
+for mu_val, label, col in [(m_b, r'$m_b = 4.18$ GeV', GREEN),
+                             (m_c, r'$m_c = 1.27$ GeV', ORANGE),
+                             (lam_sm, r'$\Lambda_{QCD} = 142.5$ MeV', RED)]:
+    ax.axvline(mu_val, color=col, lw=1.5, ls='--', alpha=0.5)
+    ax.text(mu_val * 1.15, 0.85, label, color=col, fontsize=9, rotation=90,
+            va='bottom')
+
+# M_Z marker
+ax.axvline(M_Z, color=GOLD, lw=1.5, ls='--', alpha=0.5)
+ax.text(M_Z * 0.85, 0.15, r'$M_Z = 91.2$ GeV', color=GOLD, fontsize=9,
+        ha='right')
+ax.plot(M_Z, 0.118, '*', color=GOLD, markersize=18, zorder=6)
+ax.text(M_Z * 0.7, 0.135, r'$\alpha_s = 0.118$', color=GOLD, fontsize=10)
+
+# Confinement region
+ax.axvspan(100, lam_sm + 20, color=RED, alpha=0.05)
+ax.text(120, 0.6, 'CONFINEMENT', color=RED, fontsize=12,
+        fontweight='bold', alpha=0.4, rotation=90)
+
+ax.set_xscale('log')
+ax.set_xlim(120, 200000)
+ax.set_ylim(0, 1.0)
 ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=10,
-          loc='upper left')
+          loc='upper right')
 
-ax.set_title(r'Sector Splitting vs $\kappa$: 13 Orders of Detectable Range',
+ax.set_title(r'$\alpha_s$ Running from $M_Z$ to $\Lambda_{QCD}$: Three Flavor Thresholds',
              color=GOLD, fontsize=15, fontweight='bold', pad=12)
 
-save(fig, 'phys44_01_kappa_sweep.png')
+save(fig, 'phys45_01_alpha_s_running.png')
 
 
 # ================================================================
-# FIG 2: D/K CLASSIFICATION OF 18 TESTS — LANDSCAPE
+# FIG 2: PROTON INERTIA BUDGET — 99% BOUNDARY, 1% QUARKS
+# Type: Comparison Bar (D5.6)
+# Shows: Two bars — valence quarks (9 MeV) vs confinement energy
+#        (929 MeV). The confinement bar dominates completely.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
+setup_ax(ax, '', '', 'Inertia (MeV)')
+
+components = ['Valence quarks\n(u + u + d)', 'Confinement\nenergy']
+values = [9.02, 929.25]
+colors_bars = [CYAN, RED]
+
+bars = ax.bar(range(2), values, color=colors_bars, alpha=0.7,
+              edgecolor=colors_bars, linewidth=2, width=0.55)
+
+# Value labels
+ax.text(0, 9.02 + 25, '9.02 MeV\n(0.96%)', color=CYAN, fontsize=14,
+        fontweight='bold', ha='center')
+ax.text(1, 929.25 + 25, '929.25 MeV\n(99.04%)', color=RED, fontsize=14,
+        fontweight='bold', ha='center')
+
+# Total
+ax.axhline(938.27, color=GOLD, lw=2, ls='--', alpha=0.6)
+ax.text(1.4, 945, r'Total: $m_p = 938.27$ MeV', color=GOLD, fontsize=12,
+        fontweight='bold')
+
+# Quark breakdown inside the small bar
+ax.text(0, 4.5, r'$2m_u + m_d$', color=BG, fontsize=8, ha='center',
+        fontweight='bold')
+
+# Confinement breakdown
+ax.text(1, 750, 'Gluon fields\nSea quarks\nKinetic energy', color=BG,
+        fontsize=10, ha='center', fontweight='bold', alpha=0.7)
+
+ax.set_xticks(range(2))
+ax.set_xticklabels(components, color=WHITE, fontsize=12)
+ax.set_ylim(0, 1050)
+
+ax.text(0.5, 1000, 'The proton is 99% boundary',
+        color=GOLD, fontsize=16, fontweight='bold', ha='center',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD))
+
+ax.set_title('Proton Inertia Budget: Quarks vs Confinement',
+             color=GOLD, fontsize=15, fontweight='bold', pad=12)
+
+save(fig, 'phys45_02_proton_inertia.png')
+
+
+# ================================================================
+# FIG 3: BOUNDARY HIERARCHY — LOG ENERGY SCALE
 # Type: Scale/Landscape (D5.2)
-# Shows: All 18 PHYS-42 tests arranged by category, colored by D/K
-#        classification. The reader sees the dominance of D at a glance.
+# Shows: All soliton boundaries from molecular to Planck on a log
+#        energy axis, with governing couplings labeled.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(18, 10))
 fig.patch.set_facecolor(BG)
-ax.set_facecolor(PAN)
+setup_ax(ax, '', r'$\log_{10}(E / \mathrm{MeV})$', '')
 
-tests = [
-    ('Pound-\nRebka', 'D', 'static gradient'),
-    ('GPS\ngrav', 'D', 'static potential'),
-    ('Gravity\nProbe A', 'D', 'static potential'),
-    ('Solar\nredshift', 'D', 'static potential'),
-    ('Mercury\nperihelion', 'D', 'geometric curvature'),
-    ('Shapiro\nPPN '+r'$\gamma$', 'D', 'structural ratio'),
-    ('g\nsurface', 'D', 'static gradient'),
-    ('Earth\n'+r'$\Phi/c^2$', 'D', 'static potential'),
-    ('Sun\n'+r'$\Phi/c^2$', 'D', 'static potential'),
-    ('Earth\n'+r'$r_s$', 'D', 'static radius'),
-    ('GPS\nvelocity', 'K', r'$v^2/2c^2$'),
-    ('SN Ia\nstretch', 'K', 'epoch comparison'),
-    ('GPS\nnet', 'M', 'D + K sum'),
-    ('Muon\ndilation', 'M', r'$\gamma \times \tau_{rest}$'),
-    ('Hulse-\nTaylor', 'M', 'instant D + cumul K'),
-    ('Planck\ntime', 'S', 'tick step def'),
-    ('Planck\nlength', 'S', 'spatial res def'),
-    (r'$c = l_P/t_P$', 'S', 'ratio identity'),
+boundaries = [
+    (-6.0, 'Molecular', r'$\alpha_{em}$, ~eV', SILVER),
+    (-4.9, 'Atomic', r'$\alpha_{em}$, 13.6 eV', BLUE),
+    (0.9, 'Nuclear', r'Residual strong, ~8 MeV', GREEN),
+    (2.15, 'Confinement', r'$\alpha_s \to \infty$, 142.5 MeV', RED),
+    (3.1, 'Charm threshold', r'$n_f: 4 \to 3$, 1.27 GeV', DIM),
+    (3.6, 'Bottom threshold', r'$n_f: 5 \to 4$, 4.18 GeV', DIM),
+    (5.2, 'Top threshold', r'$n_f: 6 \to 5$, 173 GeV', DIM),
+    (5.4, 'Electroweak', r'$\alpha_2$, $v = 246$ GeV', CYAN),
+    (6.5, 'CD threshold', r'$M_{CD} > 1.5$ TeV', MAG),
+    (15.5, 'GUT', r'$\alpha_{GUT}$, $10^{15.5}$ GeV', ORANGE),
+    (22.1, 'Planck', r'All couplings, $10^{19}$ GeV', GOLD),
 ]
 
-# note: GPS velocity listed separately from GPS net for visual clarity
-# but in the paper GPS velocity is part of the mixed GPS net discussion
+ax.axhline(0.5, color=DIM, lw=2, alpha=0.2)
 
-colors_map = {'D': CYAN, 'K': ORANGE, 'M': GOLD, 'S': SILVER}
-labels_map = {'D': 'Reading (D)', 'K': 'Tick (K)', 'M': 'Mixed (D'+r'$\times$'+'K)', 'S': 'Structural'}
-
-# Group by category for visual clustering
-order = [i for i in range(len(tests)) if tests[i][1] == 'D'] + \
-        [i for i in range(len(tests)) if tests[i][1] == 'K'] + \
-        [i for i in range(len(tests)) if tests[i][1] == 'M'] + \
-        [i for i in range(len(tests)) if tests[i][1] == 'S']
-
-x_positions = np.arange(len(order))
-bar_height = 0.8
-
-for idx, oi in enumerate(order):
-    name, cat, desc = tests[oi]
-    col = colors_map[cat]
-    ax.barh(idx, 1, height=bar_height, color=col, alpha=0.6,
-            edgecolor=col, linewidth=1.5)
-    ax.text(-0.15, idx, name, color=WHITE, fontsize=9, ha='right',
-            va='center', fontweight='bold')
-    ax.text(1.1, idx, desc, color=col, fontsize=8, ha='left',
-            va='center', alpha=0.8)
-
-# Category dividers
-d_count = sum(1 for t in tests if t[1] == 'D')
-k_count = sum(1 for t in tests if t[1] == 'K')
-m_count = sum(1 for t in tests if t[1] == 'M')
-
-ax.axhline(d_count - 0.5, color=DIM, lw=1, ls='--', alpha=0.5)
-ax.axhline(d_count + k_count - 0.5, color=DIM, lw=1, ls='--', alpha=0.5)
-ax.axhline(d_count + k_count + m_count - 0.5, color=DIM, lw=1, ls='--', alpha=0.5)
-
-# Category labels on right
-ax.text(3.5, d_count/2 - 0.5, 'READING (D)\n10 tests = 56%',
-        color=CYAN, fontsize=13, fontweight='bold', ha='center', va='center')
-ax.text(3.5, d_count + k_count/2 - 0.5, 'TICK (K)\n2 tests = 11%',
-        color=ORANGE, fontsize=13, fontweight='bold', ha='center', va='center')
-ax.text(3.5, d_count + k_count + m_count/2 - 0.5, 'MIXED\n3 tests = 17%',
-        color=GOLD, fontsize=13, fontweight='bold', ha='center', va='center')
-ax.text(3.5, d_count + k_count + m_count + 1, 'STRUCTURAL\n3 tests = 17%',
-        color=SILVER, fontsize=13, fontweight='bold', ha='center', va='center')
-
-ax.set_xlim(-3, 5)
-ax.set_ylim(-1, len(order))
-ax.set_xticks([])
-ax.set_yticks([])
-for spine in ax.spines.values():
-    spine.set_visible(False)
-
-ax.set_title('D/K Classification of All 18 PHYS-42 Tests',
-             color=GOLD, fontsize=16, fontweight='bold', pad=15)
-
-# Bottom annotation
-ax.text(1.5, -0.8, 'Frozen scan coverage: 89% of tests predictable from spatial geometry alone',
-        color=GOLD, fontsize=11, ha='center', style='italic')
-
-save(fig, 'phys44_02_dk_classification.png')
-
-
-# ================================================================
-# FIG 3: MUON D x K PRODUCT — READING TIMES TICKING
-# Type: Progression/Sequence (D5.7)
-# Shows: Left panel = spatial (gamma from trajectory), right panel =
-#        temporal (tick budget), bottom = their product = observation.
-# ================================================================
-
-fig, axes = plt.subplots(1, 3, figsize=(18, 9),
-                          gridspec_kw={'wspace': 0.35, 'width_ratios': [1, 1, 1.2]})
-fig.patch.set_facecolor(BG)
-
-# Panel 1: D factor (gamma)
-ax1 = axes[0]
-setup_ax(ax1, '', r'$\beta = v/c$', r'$\gamma = 1/\sqrt{1-\beta^2}$')
-beta = np.linspace(0.0, 0.999, 500)
-gamma = 1.0 / np.sqrt(1.0 - beta**2)
-ax1.plot(beta, gamma, color=CYAN, lw=2.5)
-ax1.axhline(15.82, color=GOLD, lw=1.5, ls='--', alpha=0.6)
-ax1.axvline(0.998, color=GOLD, lw=1.5, ls='--', alpha=0.6)
-ax1.plot(0.998, 15.82, '*', color=GOLD, markersize=18, zorder=6)
-ax1.annotate(r'Cosmic muon' + '\n' + r'$\beta = 0.998$' + '\n' + r'$\gamma = 15.8$',
-             xy=(0.998, 15.82), xytext=(0.7, 22),
-             color=GOLD, fontsize=10, fontweight='bold',
-             arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5))
-ax1.set_xlim(0, 1.02)
-ax1.set_ylim(0, 35)
-ax1.set_title('D Factor: Spatial Reading', color=CYAN, fontsize=13,
-              fontweight='bold', pad=10)
-ax1.text(0.5, 32, 'Frozen geometry\nNo ticking needed',
-         color=CYAN, fontsize=9, ha='center', style='italic')
-
-# Panel 2: K factor (tick budget)
-ax2 = axes[1]
-setup_ax(ax2, '', '', 'Planck ticks')
-ax2.set_facecolor(PAN)
-categories = [r'$\tau_{rest}$' + '\n2.197 '+r'$\mu$'+'s', r'$\tau_{lab}$' + '\n34.7 '+r'$\mu$'+'s']
-values = [4.08e37, 6.44e38]
-colors_b = [ORANGE, GOLD]
-bars = ax2.bar([0, 1], values, color=colors_b, alpha=0.7,
-               edgecolor=colors_b, linewidth=1.5, width=0.6)
-ax2.set_yscale('log')
-ax2.set_ylim(1e36, 1e40)
-ax2.set_xticks([0, 1])
-ax2.set_xticklabels(categories, color=WHITE, fontsize=10)
-for i, v in enumerate(values):
-    ax2.text(i, v * 1.5, '%.2e' % v, color=colors_b[i],
-             fontsize=10, ha='center', fontweight='bold')
-ax2.set_title('K Factor: Tick Budget', color=ORANGE, fontsize=13,
-              fontweight='bold', pad=10)
-ax2.text(0.5, 3e39, 'Internal counting\nRequires ticking',
-         color=ORANGE, fontsize=9, ha='center', style='italic')
-
-# Panel 3: The product
-ax3 = axes[2]
-ax3.set_facecolor(PAN)
-for spine in ax3.spines.values():
-    spine.set_color(GOLD)
-    spine.set_linewidth(2)
-ax3.set_xlim(0, 10)
-ax3.set_ylim(0, 10)
-ax3.set_xticks([])
-ax3.set_yticks([])
-
-ax3.text(5, 8.5, 'THE OBSERVATION', color=GOLD, fontsize=14,
-         fontweight='bold', ha='center')
-ax3.text(5, 7.0, r'$\tau_{lab} = \gamma \times \tau_{rest}$',
-         color=WHITE, fontsize=18, ha='center',
-         bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
-ax3.text(5, 5.2, '= 15.82  ' + r'$\times$' + '  2.197 ' + r'$\mu$' + 's',
-         color=WHITE, fontsize=14, ha='center')
-ax3.text(5, 4.0, '= 34.7 ' + r'$\mu$' + 's',
-         color=GOLD, fontsize=16, ha='center', fontweight='bold')
-
-ax3.text(2.5, 2.2, 'D', color=CYAN, fontsize=20, fontweight='bold', ha='center')
-ax3.text(3.8, 2.2, r'$\times$', color=WHITE, fontsize=20, ha='center')
-ax3.text(5.0, 2.2, 'K', color=ORANGE, fontsize=20, fontweight='bold', ha='center')
-ax3.text(6.3, 2.2, '=', color=WHITE, fontsize=20, ha='center')
-ax3.text(7.8, 2.2, 'Observed', color=GOLD, fontsize=16, fontweight='bold', ha='center')
-
-ax3.text(5, 0.8, 'Miss: 0.044%', color=GREEN, fontsize=12, ha='center')
-
-ax3.set_title(r'$D \times K$ Product', color=GOLD, fontsize=13,
-              fontweight='bold', pad=10)
-
-save(fig, 'phys44_03_muon_dk_product.png')
-
-
-# ================================================================
-# FIG 4: SOLITON HIERARCHY WITH D/K LABELS
-# Type: Geometric Cross-Section (D5.4)
-# Shows: Nested boundaries with D/K classification at each level.
-#        Ten D levels in cyan, K level in orange, mixed in gold.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 14))
-fig.patch.set_facecolor(BG)
-ax.set_facecolor(BG)
-ax.set_xlim(-8, 8)
-ax.set_ylim(-8, 8)
-ax.axis('off')
-
-levels = [
-    (7.0, 'Cosmos', 'K', r'SN Ia: $(1+z)$', ORANGE, 0.12),
-    (5.8, 'Galaxy', 'D', r'$\Phi/c^2 \sim 10^{-6}$', CYAN, 0.15),
-    (4.6, 'Heliosphere', 'D', r'$\Phi/c^2 \sim 10^{-8}$', CYAN, 0.18),
-    (3.8, 'Star (Sun)', 'D', r'$\Phi/c^2 = 2.12 \times 10^{-6}$', CYAN, 0.22),
-    (2.8, 'Planet (Earth)', 'D', r'$\Phi/c^2 = 6.96 \times 10^{-10}$', CYAN, 0.28),
-    (2.0, 'GPS orbit', 'Mixed', r'D: $+45.85$ / K: $-7.21$ $\mu$s/day', GOLD, 0.33),
-    (1.4, 'Laboratory', 'D', r'$\Delta\Phi/c^2 \sim 10^{-13}$/km', CYAN, 0.40),
-    (0.8, 'Atom', 'D', r'EM sector: $\alpha_{em}$', CYAN, 0.50),
-    (0.35, 'Nucleus', 'D', r'Strong sector: $\alpha_s$', CYAN, 0.60),
-]
-
-count = 0
-for radius, name, cat, phi_label, color, alpha in levels:
-    edgecolor = color
-    circle = Circle((0, 0), radius, facecolor=color, alpha=alpha * 0.12,
-                     edgecolor=edgecolor, linewidth=2.0 if cat != 'D' else 1.5,
-                     linestyle='-' if cat == 'D' else '--')
-    ax.add_patch(circle)
-
-    # Name at top of circle
-    ax.text(0, radius + 0.12, name, color=color, fontsize=10,
-            fontweight='bold', ha='center', va='bottom')
-
-    # Category tag
-    tag_colors = {'D': CYAN, 'K': ORANGE, 'Mixed': GOLD}
-    ax.text(-radius - 0.15, 0 + count * -0.25, '[%s]' % cat, color=tag_colors[cat],
-            fontsize=8, fontweight='bold', ha='right', va='center')
-
-    # Scale label at right
-    ax.text(radius + 0.15, 0 + count * -0.25, phi_label, color=color, fontsize=8,
-            ha='left', va='center', alpha=0.8)
-
-    count += 1
-
-# Center: Planck
-ax.text(0, -0.02, 'Planck\n[Structural]', color=SILVER, fontsize=8,
-        ha='center', va='center', fontweight='bold')
-ax.text(0, -0.25, r'$t_P, l_P, c=l_P/t_P$', color=SILVER, fontsize=7,
-        ha='center')
-
-# Sector splitting marker between nucleus and atom
-ax.annotate('SECTOR\nSPLITTING\nTEST', xy=(0.6, 0.6), xytext=(3.5, 1.5),
-            color=GOLD, fontsize=11, fontweight='bold', ha='center',
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2))
-ax.text(3.5, 0.8, r'$\epsilon = \kappa |\Delta\beta| \Delta\Phi/c^2$',
-        color=GOLD, fontsize=10, ha='center',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD))
-
-# Legend
-ax.text(-7.5, 7.5, 'Reading (D) — frozen geometry', color=CYAN, fontsize=10)
-ax.text(-7.5, 7.0, 'Tick (K) — epoch comparison', color=ORANGE, fontsize=10)
-ax.text(-7.5, 6.5, 'Mixed — D + K combined', color=GOLD, fontsize=10)
-ax.text(-7.5, 6.0, 'Structural — definitions', color=SILVER, fontsize=10)
-
-ax.text(0, 7.7, 'The Soliton Hierarchy: Reading vs Ticking at Each Level',
-        color=GOLD, fontsize=16, fontweight='bold', ha='center')
-
-save(fig, 'phys44_04_hierarchy_dk.png')
-
-
-# ================================================================
-# FIG 5: TICK BUDGET LANDSCAPE — 49 ORDERS OF MAGNITUDE
-# Type: Scale/Landscape (D5.2)
-# Shows: Log-scale axis from 10^36 to 10^85 Planck ticks with
-#        landmarks. Three regimes visible: decay, orbital, cosmological.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 8))
-fig.patch.set_facecolor(BG)
-setup_ax(ax, '', r'$\log_{10}(N_{ticks})$  [Planck ticks]', '')
-
-landmarks = [
-    (36.1, 'Photon\n22.5 m transit', SILVER, 'D traversal'),
-    (37.6, 'Muon\nrest lifetime', ORANGE, 'K budget'),
-    (47.7, 'Hulse-Taylor\norbital period', MAG, 'K orbital'),
-    (47.9, 'GPS\norbital period', GREEN, 'K orbital'),
-    (50.1, 'Mercury\norbital period', CYAN, 'K orbital'),
-    (60.5, 'SN Ia\nlookback z=0.5', PURPLE, 'K cosmological'),
-    (60.9, 'Universe\nage', GOLD, 'K cosmological'),
-    (85.3, 'Proton\nlifetime (GUT)', RED, 'K decay'),
-]
-
-# Draw the scale line
-ax.axhline(0.5, color=DIM, lw=2, alpha=0.3)
-
-for x, label, color, category in landmarks:
+for x, name, desc, color in boundaries:
     ax.plot(x, 0.5, 'o', color=color, markersize=14,
             linewidth=1.8, zorder=5)
-    # Alternate labels above and below
-    idx = landmarks.index((x, label, color, category))
+    idx = boundaries.index((x, name, desc, color))
     if idx % 2 == 0:
-        ax.annotate(label, xy=(x, 0.5), xytext=(x, 0.75),
-                    color=color, fontsize=9, fontweight='bold',
+        ax.annotate('%s\n%s' % (name, desc), xy=(x, 0.5),
+                    xytext=(x, 0.78),
+                    color=color, fontsize=8, fontweight='bold',
                     ha='center', va='bottom',
                     arrowprops=dict(arrowstyle='->', color=color, lw=1))
     else:
-        ax.annotate(label, xy=(x, 0.5), xytext=(x, 0.25),
-                    color=color, fontsize=9, fontweight='bold',
+        ax.annotate('%s\n%s' % (name, desc), xy=(x, 0.5),
+                    xytext=(x, 0.22),
+                    color=color, fontsize=8, fontweight='bold',
                     ha='center', va='top',
                     arrowprops=dict(arrowstyle='->', color=color, lw=1))
 
 # Regime shading
-ax.axvspan(36, 38, color=ORANGE, alpha=0.05)
-ax.axvspan(47, 51, color=GREEN, alpha=0.05)
-ax.axvspan(59, 62, color=PURPLE, alpha=0.05)
-ax.axvspan(84, 86, color=RED, alpha=0.05)
+ax.axvspan(-7, 1.5, color=BLUE, alpha=0.03)
+ax.axvspan(1.5, 4.0, color=RED, alpha=0.03)
+ax.axvspan(4.0, 7.0, color=CYAN, alpha=0.03)
+ax.axvspan(7.0, 16, color=ORANGE, alpha=0.03)
+ax.axvspan(16, 23, color=GOLD, alpha=0.03)
 
-ax.text(37, 0.92, 'Decay\nticks', color=ORANGE, fontsize=9,
-        ha='center', style='italic', alpha=0.7)
-ax.text(49, 0.92, 'Orbital\nticks', color=GREEN, fontsize=9,
-        ha='center', style='italic', alpha=0.7)
-ax.text(60.5, 0.08, 'Cosmological\nticks', color=PURPLE, fontsize=9,
-        ha='center', style='italic', alpha=0.7)
-ax.text(85, 0.92, 'GUT\ndecay', color=RED, fontsize=9,
-        ha='center', style='italic', alpha=0.7)
+ax.text(-3, 0.92, 'EM bound\nstates', color=BLUE, fontsize=9,
+        ha='center', style='italic', alpha=0.6)
+ax.text(2.5, 0.08, 'QCD\nconfinement', color=RED, fontsize=9,
+        ha='center', style='italic', alpha=0.6)
+ax.text(5.5, 0.92, 'Electroweak', color=CYAN, fontsize=9,
+        ha='center', style='italic', alpha=0.6)
+ax.text(11, 0.08, 'Desert', color=ORANGE, fontsize=9,
+        ha='center', style='italic', alpha=0.6)
+ax.text(19, 0.92, 'Quantum\ngravity', color=GOLD, fontsize=9,
+        ha='center', style='italic', alpha=0.6)
 
-ax.set_xlim(34, 88)
+ax.set_xlim(-7.5, 23.5)
 ax.set_ylim(0, 1)
 ax.set_yticks([])
 for spine in ['top', 'right', 'left']:
     ax.spines[spine].set_visible(False)
 
-ax.set_title('Tick Budgets: 49 Orders of Magnitude in the Counting Machine',
+ax.set_title('The Soliton Boundary Hierarchy: 29 Orders of Magnitude',
              color=GOLD, fontsize=15, fontweight='bold', pad=12)
 
-# Span annotation
-ax.annotate('', xy=(85.3, 0.5), xytext=(36.1, 0.5),
-            arrowprops=dict(arrowstyle='<->', color=DIM, lw=1, alpha=0.3))
-ax.text(60, 0.55, '49 orders of magnitude', color=DIM, fontsize=10,
-        ha='center', alpha=0.5)
-
-save(fig, 'phys44_05_tick_budget.png')
+save(fig, 'phys45_03_boundary_hierarchy.png')
 
 
 # ================================================================
-# FIG 6: THE 10/1/4/3 CLASSIFICATION BAR CHART
+# FIG 4: CD PROPAGATION CHAIN — 1/3 THROUGH 5 DECADES
+# Type: Progression/Sequence (D5.7)
+# Shows: The exact Fraction 1/3 entering at TeV scale and propagating
+#        through threshold after threshold to a 2% shift at confinement.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 9))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+ax.set_xlim(0, 18)
+ax.set_ylim(0, 10)
+ax.axis('off')
+
+def draw_box(ax, x, y, w, h, text, color, fontsize=9):
+    rect = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.15',
+                           facecolor=BG, edgecolor=color, linewidth=2)
+    ax.add_patch(rect)
+    ax.text(x + w/2, y + h/2, text, color=color, fontsize=fontsize,
+            ha='center', va='center', linespacing=1.4)
+
+def draw_arrow_h(ax, x1, y1, x2, y2, color, label=''):
+    ax.annotate('', xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle='->', color=color, lw=2.5))
+    if label:
+        mx = (x1 + x2) / 2
+        my = (y1 + y2) / 2
+        ax.text(mx, my + 0.35, label, color=color, fontsize=8,
+                ha='center', va='bottom')
+
+# Step 0: CD representation
+draw_box(ax, 0.2, 7.5, 3.0, 1.8,
+         'Cabibbo Doublet\n(3, 2, 1/6)\nVector-like', GOLD, 10)
+
+# Step 1: Delta b3
+draw_box(ax, 4.5, 7.5, 2.5, 1.8,
+         r'$\Delta b_3 = +1/3$' + '\nExact Fraction', MAG, 10)
+draw_arrow_h(ax, 3.2, 8.4, 4.5, 8.4, GOLD, 'group theory')
+
+# Step 2: alpha_s shift at M_Z
+draw_box(ax, 8.2, 7.5, 3.0, 1.8,
+         r'$\alpha_s(M_Z)$' + '\n0.1180 ' + r'$\to$' + ' 0.1184\n+0.34%', CYAN, 10)
+draw_arrow_h(ax, 7.0, 8.4, 8.2, 8.4, MAG, 'crossing')
+
+# Step 3: Propagation through thresholds
+draw_box(ax, 12.5, 7.5, 3.0, 1.8,
+         'Through 3 thresholds\n' + r'$m_t, m_b, m_c$' + '\n5 decades', GREEN, 10)
+draw_arrow_h(ax, 11.2, 8.4, 12.5, 8.4, CYAN, 'running')
+
+# Step 4: Lambda shift
+draw_box(ax, 5.0, 3.5, 3.5, 2.0,
+         r'$\Lambda_{QCD}$' + '\n142.5 ' + r'$\to$' + ' 145.4 MeV\n+2.0%', RED, 11)
+draw_arrow_h(ax, 14.0, 7.5, 6.75, 5.5, GREEN, 'amplification 6'+r'$\times$')
+
+# Step 5: Proton mass
+draw_box(ax, 10.0, 3.5, 3.5, 2.0,
+         r'$m_p = C \times \Lambda$' + '\n670 ' + r'$\to$' + ' 684 MeV\n+2.0%', ORANGE, 11)
+draw_arrow_h(ax, 8.5, 4.5, 10.0, 4.5, RED, r'$C = 4.7$')
+
+# Step 6: Everything downstream
+draw_box(ax, 10.0, 0.8, 3.5, 2.0,
+         r'$m_\pi, r_{nuclear}, E_{bind}$' + '\n+3%, +3%, +6%\nAll from 1/3', PURPLE, 10)
+draw_arrow_h(ax, 11.75, 3.5, 11.75, 2.8, ORANGE, 'ChPT')
+
+# Title
+ax.text(9, 9.7, 'CD Propagation: One Fraction Through Five Decades',
+        color=GOLD, fontsize=16, fontweight='bold', ha='center')
+
+# Annotation
+ax.text(2.5, 1.5,
+        'Input: 1/3\n(exact, from group theory)\n\nOutput: 2% shift in\nall hadron masses',
+        color=GOLD, fontsize=10, ha='center',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
+
+save(fig, 'phys45_04_cd_propagation.png')
+
+
+# ================================================================
+# FIG 5: BOUNDARY THICKNESS — SM vs CD FOR 3 GAUGE SECTORS
 # Type: Comparison Bar (D5.6)
-# Shows: Four bars for D/K/Mixed/Structural. The D bar dominates.
-#        Each bar labeled with count and test names.
+# Shows: Paired bars for each sector. SU(2) change is dramatic.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
-setup_ax(ax, '', '', 'Number of PHYS-42 tests')
+setup_ax(ax, '', '', r'Boundary thickness $1/|b|$')
 
-categories = ['Reading\n(D)', 'Tick\n(K)', 'Mixed\n(D'+r'$\times$'+'K)', 'Structural']
-counts = [10, 1, 4, 3]
-colors_bars = [CYAN, ORANGE, GOLD, SILVER]
+sectors = ['SU(3)\nConfinement', 'SU(2)\nWeak', 'U(1)\nEM']
+sm_vals = [1.0/7.0, 6.0/19.0, 10.0/41.0]
+cd_vals = [3.0/20.0, 6.0/13.0, 6.0/25.0]
+sm_fracs = ['1/7', '6/19', '10/41']
+cd_fracs = ['3/20', '6/13', '6/25']
+changes = ['+5.0%', '+46.2%', r'$-$1.6%']
+change_colors = [GREEN, RED, CYAN]
 
-bars = ax.bar(range(4), counts, color=colors_bars, alpha=0.7,
-              edgecolor=colors_bars, linewidth=2, width=0.65)
+x = np.array([0, 1.5, 3.0])
+w = 0.35
 
-# Count labels on bars
-for i, (c, col) in enumerate(zip(counts, colors_bars)):
-    ax.text(i, c + 0.3, str(c), color=col, fontsize=22,
-            fontweight='bold', ha='center')
+bars_sm = ax.bar(x - w/2 - 0.02, sm_vals, width=w, color=CYAN, alpha=0.7,
+                  edgecolor=CYAN, linewidth=1.5, label='SM')
+bars_cd = ax.bar(x + w/2 + 0.02, cd_vals, width=w, color=GOLD, alpha=0.7,
+                  edgecolor=GOLD, linewidth=1.5, label='CD')
 
-# Test name labels inside bars
-d_tests = 'Pound-Rebka, GPS grav,\nGPA, Solar, Mercury,\nShapiro, g, Earth '+r'$\Phi$'+',\nSun '+r'$\Phi$'+', Earth '+r'$r_s$'
-k_tests = 'SN Ia\nstretch'
-m_tests = 'GPS net,\nGPS vel,\nMuon,\nHulse-Taylor'
-s_tests = r'$t_P$'+', '+r'$l_P$'+',\n'+r'$c = l_P/t_P$'
+# Labels on bars
+for i in range(3):
+    ax.text(x[i] - w/2 - 0.02, sm_vals[i] + 0.01, sm_fracs[i],
+            color=CYAN, fontsize=11, ha='center', fontweight='bold')
+    ax.text(x[i] + w/2 + 0.02, cd_vals[i] + 0.01, cd_fracs[i],
+            color=GOLD, fontsize=11, ha='center', fontweight='bold')
+    ax.text(x[i], max(sm_vals[i], cd_vals[i]) + 0.04, changes[i],
+            color=change_colors[i], fontsize=12, ha='center', fontweight='bold')
 
-test_labels = [d_tests, k_tests, m_tests, s_tests]
-for i, (label, col) in enumerate(zip(test_labels, colors_bars)):
-    y_pos = counts[i] / 2
-    ax.text(i, y_pos, label, color=BG, fontsize=7,
-            ha='center', va='center', fontweight='bold')
+ax.set_xticks(x)
+ax.set_xticklabels(sectors, color=WHITE, fontsize=12)
+ax.set_ylim(0, 0.6)
+ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=11,
+          loc='upper left')
 
-ax.set_xticks(range(4))
-ax.set_xticklabels(categories, color=WHITE, fontsize=12)
-ax.set_ylim(0, 13)
+ax.text(1.5, 0.55, 'The CD makes SU(2) 46% thicker, SU(3) 5% thicker, U(1) barely thinner',
+        color=SILVER, fontsize=10, ha='center', style='italic')
 
-# Percentage annotations
-percentages = ['56%', '6%', '22%', '17%']
-for i, (pct, col) in enumerate(zip(percentages, colors_bars)):
-    ax.text(i, counts[i] + 0.9, pct, color=col, fontsize=12,
-            ha='center', style='italic')
+ax.set_title('Soliton Boundary Thickness: SM vs CD',
+             color=GOLD, fontsize=15, fontweight='bold', pad=12)
 
-# The 89% line
-ax.text(3.3, 12, 'Frozen scan coverage: 89%',
-        color=GOLD, fontsize=13, fontweight='bold', ha='right',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD))
-
-ax.set_title('The 10 / 1 / 4 / 3 Decomposition',
-             color=GOLD, fontsize=16, fontweight='bold', pad=12)
-
-save(fig, 'phys44_06_classification_bars.png')
+save(fig, 'phys45_05_boundary_thickness.png')
 
 
 # ================================================================
-# FIG 7: GPS DECOMPOSITION — 86% READING, 14% TICK
-# Type: Comparison Bar (D5.6)
-# Shows: Three bars: D component, K component, net. The asymmetry
-#        between D and K is immediately visible. Signs shown.
+# FIG 6: PION AT THE BOUNDARY — CONFINEMENT TRANSITION ZONE
+# Type: Geometric Cross-Section (D5.4)
+# Shows: The confinement boundary as a transition zone. Proton fully
+#        inside. Free quarks fully outside. Pion ON the boundary.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
-setup_ax(ax, '', '', r'$\mu$s / day')
+ax.set_facecolor(PAN)
+ax.set_xlim(0, 16)
+ax.set_ylim(0, 10)
+ax.axis('off')
 
-components = ['D: Gravitational\n(reading depth)', 'K: Velocity\n(tick allocation)',
-              'Net\n(D + K)']
-values_gps = [45.85, -7.21, 38.64]
-colors_gps = [CYAN, ORANGE, GOLD]
+# Confinement region (left = confined, right = free)
+# Gradient from red to blue
+for i in range(100):
+    x_start = 2 + i * 0.12
+    alpha_val = 0.15 * (1 - i/100.0)
+    ax.axvspan(x_start, x_start + 0.12, color=RED, alpha=alpha_val)
 
-bars = ax.bar(range(3), values_gps, color=colors_gps, alpha=0.7,
-              edgecolor=colors_gps, linewidth=2, width=0.55)
+# Boundary zone
+ax.axvspan(6.5, 9.5, color=ORANGE, alpha=0.08)
+ax.text(8.0, 9.2, 'BOUNDARY ZONE', color=ORANGE, fontsize=14,
+        fontweight='bold', ha='center')
+ax.text(8.0, 8.7, r'Thickness = $1/|b_3| = 1/7$', color=ORANGE,
+        fontsize=10, ha='center')
 
-for i, (v, col) in enumerate(zip(values_gps, colors_gps)):
-    sign = '+' if v > 0 else ''
-    y_pos = v + 1.5 if v > 0 else v - 2.5
-    ax.text(i, y_pos, '%s%.2f' % (sign, v), color=col, fontsize=16,
-            fontweight='bold', ha='center')
+# Labels
+ax.text(3.5, 9.2, 'CONFINED', color=RED, fontsize=16,
+        fontweight='bold', ha='center')
+ax.text(3.5, 8.7, r'$\alpha_s > 1$', color=RED, fontsize=11, ha='center')
+ax.text(12.5, 9.2, 'FREE', color=CYAN, fontsize=16,
+        fontweight='bold', ha='center')
+ax.text(12.5, 8.7, r'$\alpha_s < 1$', color=CYAN, fontsize=11, ha='center')
 
-ax.axhline(0, color=DIM, lw=1, alpha=0.5)
+# Proton (fully inside)
+circle_p = Circle((3.5, 5), 1.8, facecolor=RED, alpha=0.2,
+                   edgecolor=RED, linewidth=2.5)
+ax.add_patch(circle_p)
+ax.text(3.5, 5, 'PROTON\n938 MeV\n(99% boundary)', color=WHITE,
+        fontsize=10, ha='center', va='center', fontweight='bold')
 
-ax.set_xticks(range(3))
-ax.set_xticklabels(components, color=WHITE, fontsize=11)
-ax.set_ylim(-12, 55)
+# Three quarks inside proton
+for qx, qy, ql in [(2.8, 5.8, 'u'), (4.2, 5.8, 'u'), (3.5, 4.2, 'd')]:
+    ax.plot(qx, qy, 'o', color=CYAN, markersize=10,
+            linewidth=1.5, zorder=5)
+    ax.text(qx, qy - 0.35, ql, color=CYAN, fontsize=9, ha='center')
 
-# Percentage breakdown
-ax.text(0, 50, '86.4%', color=CYAN, fontsize=18, fontweight='bold', ha='center')
-ax.text(1, -10, '13.6%', color=ORANGE, fontsize=18, fontweight='bold', ha='center')
-ax.text(2, 43, '100%', color=GOLD, fontsize=18, fontweight='bold', ha='center')
+# Pion (ON the boundary)
+circle_pi = Circle((8.0, 5), 1.2, facecolor=ORANGE, alpha=0.2,
+                    edgecolor=ORANGE, linewidth=2.5, linestyle='--')
+ax.add_patch(circle_pi)
+ax.text(8.0, 5, 'PION\n140 MeV\n(boundary mode)', color=WHITE,
+        fontsize=10, ha='center', va='center', fontweight='bold')
 
-# Explanation
-ax.text(0, 42, 'Shallower depth\n= faster updates',
-        color=CYAN, fontsize=9, ha='center', style='italic')
-ax.text(1, -8, 'Spatial displacement\n= fewer updates',
-        color=ORANGE, fontsize=9, ha='center', style='italic')
+# Quark-antiquark in pion
+ax.plot(7.5, 5.3, 'o', color=CYAN, markersize=8, linewidth=1.5)
+ax.plot(8.5, 5.3, 'o', color=MAG, markersize=8,  linewidth=1.5)
+ax.text(7.5, 4.7, 'q', color=CYAN, fontsize=8, ha='center')
+ax.text(8.5, 4.7, r'$\bar{q}$', color=MAG, fontsize=8, ha='center')
 
-# Formula
-ax.text(1, 52, r'GPS net $= \frac{GM}{c^2}\left(\frac{1}{R_E} - \frac{1}{r_{gps}}\right) - \frac{v^2}{2c^2}$',
-        color=WHITE, fontsize=11, ha='center',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD))
+# Free quarks (outside)
+for qx, qy in [(11.5, 6), (12.5, 4.5), (13.5, 5.5), (12, 3.5)]:
+    ax.plot(qx, qy, 'o', color=CYAN, markersize=8, 
+            linewidth=1.5, zorder=5)
+ax.text(12.5, 2.5, 'Free quarks\nand gluons', color=CYAN, fontsize=10,
+        ha='center', style='italic')
 
-ax.set_title('GPS: 86% Reading, 14% Ticking',
-             color=GOLD, fontsize=16, fontweight='bold', pad=12)
+# Energy scale
+ax.annotate('', xy=(2, 1.2), xytext=(14, 1.2),
+            arrowprops=dict(arrowstyle='<->', color=DIM, lw=1.5))
+ax.text(8, 0.7, r'Energy scale $\mu$  (low $\leftarrow$ $\rightarrow$ high)',
+        color=DIM, fontsize=10, ha='center')
+ax.text(2, 0.7, r'$\mu < \Lambda_{QCD}$', color=RED, fontsize=9, ha='center')
+ax.text(14, 0.7, r'$\mu > \Lambda_{QCD}$', color=CYAN, fontsize=9, ha='center')
 
-save(fig, 'phys44_07_gps_decomposition.png')
+ax.set_title('The Pion Lives ON the Confinement Boundary',
+             color=GOLD, fontsize=15, fontweight='bold', pad=10)
+
+save(fig, 'phys45_06_pion_boundary.png')
 
 
 # ================================================================
-# FIG 8: WEP CONSISTENCY — SUM GRAVITY VS PER-SECTOR
+# FIG 7: SM vs CD LAMBDA_QCD — TWO CURVES APPROACHING DIVERGENCE
 # Type: Threshold/Region (D5.3)
-# Shows: Two scenarios for how gravity couples to sector readings.
-#        Sum gravity = no WEP violation. Per-sector = possible violation.
-#        MICROSCOPE bound shown as threshold.
+# Shows: alpha_s^-1 approaching zero for both SM and CD theories.
+#        The 2% gap between divergence points is visible.
 # ================================================================
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9),
-                                gridspec_kw={'wspace': 0.30})
+fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
+setup_ax(ax, '', r'Energy $\mu$ (MeV)', r'$\alpha_s^{-1}(\mu)$')
 
-# Left panel: Sum gravity (RUM prediction)
-setup_ax(ax1, '', '', '')
-ax1.set_xlim(0, 10)
-ax1.set_ylim(0, 10)
-ax1.set_xticks([])
-ax1.set_yticks([])
+# Run both SM and CD from m_c downward with nf=3
+mu_range = np.logspace(np.log10(130), np.log10(1300), 500)
+b3_3 = -9.0
 
-ax1.set_title('Sum Gravity (RUM)', color=GREEN, fontsize=14,
-              fontweight='bold', pad=10)
+# SM
+ainv_mc_sm = 3.136
+ainv_sm = ainv_mc_sm - b3_3/two_pi * np.log(mu_range/m_c)
 
-# Draw three sector bars stacking into one gravitational coupling
-sectors_left = [
-    (1.5, 'EM', BLUE, 3.0),
-    (1.5, 'Weak', GREEN, 2.0),
-    (1.5, 'Strong', RED, 4.0),
-]
-y_base = 1.5
-for i, (x, label, color, height) in enumerate(sectors_left):
-    rect = FancyBboxPatch((x + i*2.2, y_base), 1.8, height,
-                           boxstyle='round,pad=0.1',
-                           facecolor=color, alpha=0.3, edgecolor=color,
-                           linewidth=1.5)
-    ax1.add_patch(rect)
-    ax1.text(x + i*2.2 + 0.9, y_base + height/2, label,
-             color=color, fontsize=10, ha='center', va='center',
-             fontweight='bold')
+# CD (slightly different starting point)
+ainv_mc_cd = 3.112  # from CD alpha_s = 0.3213 at m_c
+ainv_cd = ainv_mc_cd - b3_3/two_pi * np.log(mu_range/m_c)
 
-# Sum arrow
-ax1.annotate('', xy=(4.5, 8.5), xytext=(4.5, 6.5),
-             arrowprops=dict(arrowstyle='->', color=GOLD, lw=2.5))
-ax1.text(4.5, 7.5, 'SUM', color=GOLD, fontsize=12, fontweight='bold',
-         ha='center')
+ax.plot(mu_range, ainv_sm, color=CYAN, lw=2.5, label=r'SM: $\Lambda = 142.5$ MeV')
+ax.plot(mu_range, ainv_cd, color=GOLD, lw=2.5, label=r'CD: $\Lambda = 145.4$ MeV')
 
-# Result
-ax1.text(4.5, 9.0, r'$g = g_{EM} + g_{Weak} + g_{Strong}$',
-         color=WHITE, fontsize=11, ha='center')
-ax1.text(4.5, 8.5, 'Same total for all materials',
-         color=GREEN, fontsize=10, ha='center')
+# Zero line
+ax.axhline(0, color=RED, lw=1.5, ls='--', alpha=0.6)
+ax.text(135, 0.15, r'$\alpha_s^{-1} = 0$ (confinement)', color=RED, fontsize=10)
 
-# WEP result
-rect_result = FancyBboxPatch((1.5, 0.3), 6, 0.8,
-                              boxstyle='round,pad=0.1',
-                              facecolor=BG, edgecolor=GREEN, linewidth=2)
-ax1.add_patch(rect_result)
-ax1.text(4.5, 0.7, r'WEP: $\Delta g / g = 0$  — No violation',
-         color=GREEN, fontsize=11, ha='center', fontweight='bold')
+# Lambda markers
+ax.axvline(142.5, color=CYAN, lw=1.5, ls=':', alpha=0.6)
+ax.axvline(145.4, color=GOLD, lw=1.5, ls=':', alpha=0.6)
 
-# Right panel: Per-sector gravity (alternative)
-setup_ax(ax2, '', '', '')
-ax2.set_xlim(0, 10)
-ax2.set_ylim(0, 10)
-ax2.set_xticks([])
-ax2.set_yticks([])
+# Gap annotation
+ax.annotate('', xy=(145.4, -0.3), xytext=(142.5, -0.3),
+            arrowprops=dict(arrowstyle='<->', color=WHITE, lw=1.5))
+ax.text(144, -0.55, '+2.0%', color=WHITE, fontsize=11, fontweight='bold',
+        ha='center')
 
-ax2.set_title('Per-Sector Gravity (alternative)', color=RED, fontsize=14,
-              fontweight='bold', pad=10)
+# Shaded confinement region
+ax.axvspan(130, 146, color=RED, alpha=0.05)
 
-# Draw sectors with DIFFERENT gravitational couplings
-sectors_right = [
-    (1.5, 'EM', BLUE, 3.0),
-    (1.5, 'Weak', GREEN, 2.5),
-    (1.5, 'Strong', RED, 4.5),
-]
-for i, (x, label, color, height) in enumerate(sectors_right):
-    rect = FancyBboxPatch((x + i*2.2, y_base), 1.8, height,
-                           boxstyle='round,pad=0.1',
-                           facecolor=color, alpha=0.3, edgecolor=color,
-                           linewidth=1.5)
-    ax2.add_patch(rect)
-    ax2.text(x + i*2.2 + 0.9, y_base + height/2, label,
-             color=color, fontsize=10, ha='center', va='center',
-             fontweight='bold')
+ax.set_xscale('log')
+ax.set_xlim(130, 1300)
+ax.set_ylim(-0.8, 3.5)
+ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=11,
+          loc='upper right')
 
-# Different heights → different g
-ax2.text(4.5, 7.5, 'Different sector\nweights per material',
-         color=RED, fontsize=10, ha='center')
+ax.set_title(r'SM vs CD: The 2% Gap at Confinement',
+             color=GOLD, fontsize=15, fontweight='bold', pad=12)
 
-# MICROSCOPE bound
-rect_micro = FancyBboxPatch((1.5, 0.3), 6, 0.8,
-                             boxstyle='round,pad=0.1',
-                             facecolor=BG, edgecolor=ORANGE, linewidth=2)
-ax2.add_patch(rect_micro)
-ax2.text(4.5, 0.7, r'MICROSCOPE: $\eta < 1.5 \times 10^{-15}$  — constrains $\kappa < 1.2$',
-         color=ORANGE, fontsize=10, ha='center', fontweight='bold')
+save(fig, 'phys45_07_sm_cd_lambda.png')
 
-# Arrow showing the difference
-ax2.annotate('', xy=(7.5, 6.0), xytext=(7.5, 4.5),
-             arrowprops=dict(arrowstyle='<->', color=RED, lw=1.5))
-ax2.text(8.2, 5.2, r'$\Delta g$', color=RED, fontsize=12, fontweight='bold')
 
-# Overall title
-fig.suptitle('WEP Consistency: Clocks Split, Free Fall Does Not',
-             color=GOLD, fontsize=16, fontweight='bold', y=0.98)
+# ================================================================
+# FIG 8: SOLITON BOUNDARY IDENTITY CARD
+# Type: Identity Card (D5.8)
+# Shows: The four components of a soliton boundary as a visual
+#        reference card with the confinement boundary as example.
+# ================================================================
 
-save(fig, 'phys44_08_wep_consistency.png')
+fig, ax = plt.subplots(figsize=(16, 12))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.set_xlim(0, 16)
+ax.set_ylim(0, 12)
+ax.axis('off')
+
+# Title
+ax.text(8, 11.3, 'SOLITON BOUNDARY', color=GOLD, fontsize=20,
+        fontweight='bold', ha='center')
+ax.text(8, 10.7, 'Four Components — Confinement as Prototype',
+        color=SILVER, fontsize=12, ha='center')
+
+# Four quadrants
+def card_box(ax, x, y, w, h, title, content, color, num):
+    rect = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.2',
+                           facecolor=BG, edgecolor=color, linewidth=2.5)
+    ax.add_patch(rect)
+    ax.text(x + 0.3, y + h - 0.4, '%d. %s' % (num, title), color=color,
+            fontsize=13, fontweight='bold', va='top')
+    ax.text(x + w/2, y + h/2 - 0.3, content, color=WHITE, fontsize=10,
+            ha='center', va='center', linespacing=1.5)
+
+# Component 1: Coupling
+card_box(ax, 0.5, 5.8, 7, 4.2,
+         'THE COUPLING', r'$\alpha_s$ (strong coupling)' + '\n\n' +
+         'Small at high energy (free quarks)\n' +
+         'Large at low energy (confinement)\n' +
+         r'At $M_Z$: $\alpha_s = 0.118$',
+         RED, 1)
+
+# Component 2: Beta coefficient
+card_box(ax, 8.5, 5.8, 7, 4.2,
+         'THE BETA COEFFICIENT',
+         r'$b_3 = -11 + \frac{2}{3} n_f$' + '\n\n' +
+         'SM: ' + r'$b_3 = -7$' + '   (exact Fraction)\n' +
+         'CD: ' + r'$b_3 = -20/3$' + '   (exact Fraction)\n' +
+         'Shift: ' + r'$\Delta b_3 = +1/3$',
+         MAG, 2)
+
+# Component 3: Threshold
+card_box(ax, 0.5, 0.8, 7, 4.2,
+         'THE THRESHOLD',
+         r'$\Lambda_{QCD}$: where $\alpha_s \to \infty$' + '\n\n' +
+         'SM: 142.5 MeV (one-loop)\n' +
+         'CD: 145.4 MeV (+2.0%)\n' +
+         'Two-loop: ~210 MeV (estimated)',
+         ORANGE, 3)
+
+# Component 4: Soliton
+card_box(ax, 8.5, 0.8, 7, 4.2,
+         'THE SOLITON',
+         'Proton: 938.3 MeV (99% boundary)\n' +
+         'Neutron: 939.6 MeV (99% boundary)\n' +
+         'Pion: 139.6 MeV (boundary mode)\n\n' +
+         r'Thickness: SM = $1/7$, CD = $3/20$',
+         GREEN, 4)
+
+# Central connection arrows
+ax.annotate('', xy=(8.2, 7.9), xytext=(7.7, 7.9),
+            arrowprops=dict(arrowstyle='->', color=DIM, lw=1.5))
+ax.annotate('', xy=(4, 5.6), xytext=(4, 5.1),
+            arrowprops=dict(arrowstyle='->', color=DIM, lw=1.5))
+ax.annotate('', xy=(12, 5.6), xytext=(12, 5.1),
+            arrowprops=dict(arrowstyle='->', color=DIM, lw=1.5))
+
+# Central label
+ax.text(8, 5.35, 'determines', color=DIM, fontsize=9, ha='center')
+
+save(fig, 'phys45_08_boundary_identity.png')
 
 
 # ================================================================
@@ -696,12 +630,12 @@ save(fig, 'phys44_08_wep_consistency.png')
 # ================================================================
 print("=" * 50)
 print("All 8 figures saved:")
-print("  phys44_01_kappa_sweep.png")
-print("  phys44_02_dk_classification.png")
-print("  phys44_03_muon_dk_product.png")
-print("  phys44_04_hierarchy_dk.png")
-print("  phys44_05_tick_budget.png")
-print("  phys44_06_classification_bars.png")
-print("  phys44_07_gps_decomposition.png")
-print("  phys44_08_wep_consistency.png")
+print("  phys45_01_alpha_s_running.png")
+print("  phys45_02_proton_inertia.png")
+print("  phys45_03_boundary_hierarchy.png")
+print("  phys45_04_cd_propagation.png")
+print("  phys45_05_boundary_thickness.png")
+print("  phys45_06_pion_boundary.png")
+print("  phys45_07_sm_cd_lambda.png")
+print("  phys45_08_boundary_identity.png")
 print("=" * 50)
