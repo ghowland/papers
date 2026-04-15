@@ -546,7 +546,7 @@ for i, (result, miss, col) in enumerate(results):
             ha='left', va='center', fontsize=7, color=DIM)
 
 # Central message
-ax.text(5, 3.5, "The numbers match or they don't.\nThe AI on the cover doesn't change the fractions.\nThe fractions are checkable regardless\nof who or what produced them.",
+ax.text(5, 3, "The numbers match or they don't.\nThe AI on the cover doesn't change the fractions.\nThe fractions are checkable regardless\nof who or what produced them.",
         ha='center', va='center', fontsize=13, color=GOLD, fontweight='bold',
         linespacing=1.6)
 
@@ -639,4 +639,3 @@ filenames = [
 ]
 for f in filenames:
     print("  %s" % f)
-    
