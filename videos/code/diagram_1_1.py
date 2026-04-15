@@ -65,11 +65,11 @@ ax.text(5.0, 6.0, "From 22/13 to Deuterium in 4 Steps",
 
 # Chain boxes
 chain = [
-    (1.0, 3.5, "(22/13)" + r"$\pi$" + "\n= 5.3165", "DM/baryon\nratio", GOLD, "725 ppm"),
-    (3.25, 3.5, r"$\Omega_b$" + "\n= 0.04904", "baryon\ndensity", CYAN, "727 ppm"),
-    (5.5, 3.5, r"$\eta_{10}$" + "\n= 6.090", "baryon-to-photon\nratio", GREEN, "0.24%"),
+    (1.0, 3.5, "(22/13)" + r"$\pi$" + "\n= 5.3165", "DM/baryon\nratio", GOLD, "miss: 725 ppm"),
+    (3.25, 3.5, r"$\Omega_b$" + "\n= 0.04904", "baryon\ndensity", CYAN, "miss: 727 ppm"),
+    (5.5, 3.5, r"$\eta_{10}$" + "\n= 6.090", "baryon-to-photon\nratio", GREEN, "miss: 0.24%"),
     (7.75, 3.5, "BBN\nnuclear\nreactions", "standard\nnucleosynthesis", ORANGE, "textbook"),
-    (10.0, 3.5, "D/H\n= 2.531" + r"$\times 10^{-5}$", "deuterium\nabundance", MAG, "0.12" + r"$\sigma$"),
+    (10.0, 3.5, "D/H\n= 2.531" + r"$\times 10^{-5}$", "deuterium\nabundance", MAG, "miss: 0.12" + r"$\sigma$"),
 ]
 
 for i, (cx, cy, main, sub, col, miss) in enumerate(chain):
@@ -77,7 +77,7 @@ for i, (cx, cy, main, sub, col, miss) in enumerate(chain):
     ax.text(cx, cy + 0.35, main, ha='center', va='center', fontsize=11,
             color=WHITE, fontweight='bold')
     ax.text(cx, cy - 0.55, sub, ha='center', va='center', fontsize=8, color=SILVER)
-    ax.text(cx, cy - 0.95, "miss: %s" % miss, ha='center', va='center',
+    ax.text(cx, cy - 0.95, "%s" % miss, ha='center', va='center',
             fontsize=8, color=col, fontstyle='italic')
     # Arrow to next
     if i < len(chain) - 1:

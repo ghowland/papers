@@ -22,15 +22,55 @@ It took 6 working days.
 
 ### NON-TECHNICAL VERSION
 
-Hi, I'm Geoff. I've been writing software for about 30 years. I'm not a physicist — no degree, no university, never worked in a lab. I build systems that have to work, the kind where if you get it wrong, you get a phone call at 3 in the morning.
+Hi, I'm Geoff. I've been writing software for over 40 years. I'm not a physicist — no degree, no university, never worked in a lab. I build systems that have to work, the kind where if you get it wrong, you get a phone call at 3 in the morning.
 
-In March 2026, I built something with AI that I wasn't expecting. Using published physics equations — the same ones in every textbook — I connected 13 measured values to 53 predictions across 9 different areas of physics. I didn't invent any new physics. I didn't change any equations. I changed how the numbers are stored and how the results are tested.
+In March 2026, I built something with AI that I wasn't expecting. Using published physics equations — the same ones in every textbook — I connected 13 measured values to 53 predictions across 9 different areas of physics. I didn't invent any new physics. I didn't change any equations. I changed how the numbers are stored and how the results are tested, and I reduced the required languages down to 3 nouns and 2 verbs to explain everything.
 
 It took 6 days.
 
 ### MERGE NOTES
 
 You'll probably deliver something like the non-technical version but with the domain count and the "fraction arithmetic" phrase from the technical version. The key line is "I didn't change any physics, I changed the number format." That's true, you understand it, and it's the hook.
+
+---
+
+## SECTION 3: The Insight — Fractions Not Decimals (3 minutes)
+
+**SLIDE: talk1_03_decimals_destroy.png** — Show during the 41/10 vs 4.1 comparison
+
+**SLIDE: talk1_04_q335_precision.png** — Show during Q335 explanation
+
+*[Terminal demo: show Q335 pi]*
+
+### TECHNICAL VERSION
+
+The one-loop beta coefficients of the Standard Model gauge groups are b₁ = 41/10, b₂ = −19/6, b₃ = −7. These are exact rational numbers derived from group theory — they count the quantum numbers of every particle species weighted by their representations. 41 is the sum of all U(1) hypercharge-squared contributions. 19 is the SU(2) Casimir sum. 7 equals 11 (the Yang-Mills self-coupling for SU(3)) minus 4 (the contribution of 6 quark flavors in the fundamental representation, each contributing 2/3).
+
+These numbers are exact. They're not measured — they're counted. But the first thing every physics computation does is convert them to floating point: 4.1, −3.1667, −7.0. At that moment, the integers 41, 10, 19, 6 are gone. You can't recover them from 4.1. You can't factor 4.1. You can't ask "what does the numerator count?" The information is destroyed.
+
+Python's Fraction class stores 41/10 as the pair (41, 10) and performs all arithmetic — addition, multiplication, division — on the numerator and denominator separately. The result of any sequence of rational operations on rational inputs is exactly rational. No rounding, no truncation, no accumulated error.
+
+Transcendental constants like π, ζ(3), and ln 2 cannot be represented as exact fractions. For these, I use Q335: each constant is stored as a large integer divided by 2³³⁵, giving 101 decimal digits of precision. The Planck length — the smallest meaningful distance in physics — requires about 35 digits. Q335 overshoots by 65 digits. No experiment, even in principle, could detect the difference between Q335 π and true π. The division by a power of 2 is a single bit shift in hardware — it's free.
+
+### NON-TECHNICAL VERSION
+
+Here's the insight that changed everything.
+
+Physics runs on specific numbers, and those numbers are integer fractions, and not reals  QED tells us this, quanta are discrete and countable, they not reals, they are integers and the relationships between them are integer fractions. 
+
+The three forces — electromagnetism, the weak force, the strong force — each have a number that controls how fast they change with energy. These numbers are 41/10, negative 19/6, and negative 7. They're not measured — they're counted. 41 is the total of all particle charges added up a certain way. 19 counts something specific about the weak force. 7 is 11 gluons minus 4 quarks.
+
+These are fractions. Exact fractions. Integers on top, integers on bottom.
+
+But every physics computation immediately converts them to decimals. 41/10 becomes 4.1. And at that moment, the 41 is gone. You can't look at 4.1 and know it used to be 41 over 10. The information is destroyed.
+
+Python has a built-in Fraction type. It stores 41/10 as two numbers: 41 and 10. Every calculation keeps both numbers. You never lose the integers.
+
+Now, some numbers — like pi — genuinely can't be fractions. For those, I use something called Q335. It stores pi as a huge integer divided by 2 to the 335th power. That gives 101 digits of precision. The smallest meaningful distance in physics — the Planck length — only needs about 35 digits. Q335 overshoots by 65 digits. No experiment that could ever be built, even in theory, could tell the difference between Q335 pi and real pi.
+
+### MERGE NOTES
+
+You understand the core insight perfectly: fractions keep the integers, decimals destroy them. You can explain Python's Fraction type from direct experience. For the beta coefficient counting (41 counts charges, 19 counts weak contributions, 7 = 11 − 4), you can say "the equations count specific things" without needing to explain Casimir operators. The Q335 explanation is engineering — you built it, you understand it.
 
 ---
 
@@ -72,43 +112,6 @@ What I learned: the problem was how numbers were stored. Real numbers — decima
 
 You understand this section completely. This is your story. Tell it naturally. The key details: 363 papers, the AI's comment in the code, you found it yourself, you killed it publicly. The emotional beat is "I failed first, and the failure taught me." Don't rush through it — this is where you earn trust.
 
----
-
-## SECTION 3: The Insight — Fractions Not Decimals (3 minutes)
-
-**SLIDE: talk1_03_decimals_destroy.png** — Show during the 41/10 vs 4.1 comparison
-
-**SLIDE: talk1_04_q335_precision.png** — Show during Q335 explanation
-
-*[Terminal demo: show Q335 pi]*
-
-### TECHNICAL VERSION
-
-The one-loop beta coefficients of the Standard Model gauge groups are b₁ = 41/10, b₂ = −19/6, b₃ = −7. These are exact rational numbers derived from group theory — they count the quantum numbers of every particle species weighted by their representations. 41 is the sum of all U(1) hypercharge-squared contributions. 19 is the SU(2) Casimir sum. 7 equals 11 (the Yang-Mills self-coupling for SU(3)) minus 4 (the contribution of 6 quark flavors in the fundamental representation, each contributing 2/3).
-
-These numbers are exact. They're not measured — they're counted. But the first thing every physics computation does is convert them to floating point: 4.1, −3.1667, −7.0. At that moment, the integers 41, 10, 19, 6 are gone. You can't recover them from 4.1. You can't factor 4.1. You can't ask "what does the numerator count?" The information is destroyed.
-
-Python's Fraction class stores 41/10 as the pair (41, 10) and performs all arithmetic — addition, multiplication, division — on the numerator and denominator separately. The result of any sequence of rational operations on rational inputs is exactly rational. No rounding, no truncation, no accumulated error.
-
-Transcendental constants like π, ζ(3), and ln 2 cannot be represented as exact fractions. For these, I use Q335: each constant is stored as a large integer divided by 2³³⁵, giving 101 decimal digits of precision. The Planck length — the smallest meaningful distance in physics — requires about 35 digits. Q335 overshoots by 65 digits. No experiment, even in principle, could detect the difference between Q335 π and true π. The division by a power of 2 is a single bit shift in hardware — it's free.
-
-### NON-TECHNICAL VERSION
-
-Here's the insight that changed everything.
-
-Physics runs on specific numbers. The three forces — electromagnetism, the weak force, the strong force — each have a number that controls how fast they change with energy. These numbers are 41/10, negative 19/6, and negative 7. They're not measured — they're counted. 41 is the total of all particle charges added up a certain way. 19 counts something specific about the weak force. 7 is 11 gluons minus 4 quarks.
-
-These are fractions. Exact fractions. Integers on top, integers on bottom.
-
-But every physics computation immediately converts them to decimals. 41/10 becomes 4.1. And at that moment, the 41 is gone. You can't look at 4.1 and know it used to be 41 over 10. The information is destroyed.
-
-Python has a built-in Fraction type. It stores 41/10 as two numbers: 41 and 10. Every calculation keeps both numbers. You never lose the integers.
-
-Now, some numbers — like pi — genuinely can't be fractions. For those, I use something called Q335. It stores pi as a huge integer divided by 2 to the 335th power. That gives 101 digits of precision. The smallest meaningful distance in physics — the Planck length — only needs about 35 digits. Q335 overshoots by 65 digits. No experiment that could ever be built, even in theory, could tell the difference between Q335 pi and real pi.
-
-### MERGE NOTES
-
-You understand the core insight perfectly: fractions keep the integers, decimals destroy them. You can explain Python's Fraction type from direct experience. For the beta coefficient counting (41 counts charges, 19 counts weak contributions, 7 = 11 − 4), you can say "the equations count specific things" without needing to explain Casimir operators. The Q335 explanation is engineering — you built it, you understand it.
 
 ---
 
@@ -146,6 +149,8 @@ The two verbs: a **reading** is a value at one place. The strong force equals 0.
 
 These five words replace the entire language of physics. Not because the old words are wrong, but because they hide the connections. When you call the four forces "four separate things," you can't see that they're four readings of one thing at four different boundaries.
 
+Don't stop saying "electron", but know that every particle, and planet, and organ, can use these 5 words to describe them isomorphically with existing science literature.
+
 ### MERGE NOTES
 
 You understand inertia (resistance, not substance) and the reading/running reading distinction. The vortex concept — patterns that persist — is intuitive and you can explain it with the whirlpool analogy. The soliton boundary is the key concept: inside reads one way, outside reads another. You can deliver the non-technical version with full conviction. For the technical version, the mapping α_s = 1 inside vs 0.118 outside is a specific example you can cite.
@@ -176,6 +181,8 @@ And here's the pattern: the inside always reads flat. The outside always reads c
 
 Stand on Earth. Look around. Flat. Now orbit Earth. Look down. Curved. Same surface. Different reading. You get a different answer depending on which side of the boundary you're on.
 
+This is currently a "conspiracy theory" of local observation versus external observation, but in the RUM soliton hierarchy, this is normal.  A proton is a "point-like" outside, and has structure inside.  An electron has an interior and exterior reading that are different, and the interior reading is flat.
+
 This is why the universe reads flat. Cosmologists have spent decades asking "why is the universe so precisely flat? Is it fine-tuned? Did inflation make it flat?" The answer in this framework is simpler: you're inside it. Insides read flat. That's what boundaries do. It's not a coincidence that needs explaining — it's a structural property of being inside.
 
 ### MERGE NOTES
@@ -204,11 +211,11 @@ Important caveat: the statistical analysis shows p = 0.81 — random integer pai
 
 ### NON-TECHNICAL VERSION
 
-The headline number.
+What does integer physics get us?  Why use integers over the real numbers that everyone always uses?
 
 The Planck satellite — a billion-dollar European space telescope — measured the ratio of dark matter to ordinary matter as 5.320. That's how much more dark matter there is compared to regular matter.
 
-The model says it should be 22 over 13, times pi. Let me break that down.
+The RUM model says it should be 22 over 13, times pi. Let me break that down.
 
 11 is the Yang-Mills coefficient. It counts how gluons interact with themselves. This has been in textbooks since the 1970s. Multiply by 2 because the predicted particle — I'll get to it — interacts with both hands, left and right. That gives 22.
 
@@ -218,7 +225,9 @@ The model says it should be 22 over 13, times pi. Let me break that down.
 
 22 over 13 times pi equals 5.3165. Planck measures 5.3204. The miss is 725 parts per million. That's like being off by one meter in a kilometer and a half.
 
-Now, I have to be honest about something. My own system has a statistical test that asks: could random integers do this well by accident? The answer is: yes, 81% of the time. So my own framework is blocking this claim from being confirmed. The number is real, the match is real, but I can't prove it isn't a coincidence yet. I'm showing you the block alongside the result because that's how honest testing works.
+Could it be random chance that 22/13*pi is very close to the Planck measure? I created a statistical test that asks: could random integers do this well by accident? The answer is: yes, 81% of the time. So my own framework is blocking this claim from being confirmed. The number is real, the match is real, but I haven't prove it isn't a coincidence yet.
+
+Why?  Because I dont think statistical tests are proof.  What I consider evidence of a strong model is being able to do derivations, in the domain and across domains.  If you can't do that, you can't get to unification, and there is no other point to do fundamental physics than to unify it, so it can be properly used for domain engineering.
 
 ### MERGE NOTES
 
@@ -252,7 +261,7 @@ The chain spans five physics departments: mathematical physics (beta coefficient
 
 ### NON-TECHNICAL VERSION
 
-That dark matter ratio isn't the end. It's the first link in a chain.
+That dark matter ratio isn't the end. It's the first link in a chain.  This is what I mean by cross domain derivations being better than stastical tests for proving a models strength:
 
 From the dark matter ratio, you get the density of ordinary matter — how much regular stuff there is in the universe. Our number: 0.04904. Planck measures 0.04897. Close.
 
@@ -264,7 +273,9 @@ These calculations use the same nuclear physics equations that every group in th
 
 Results: Deuterium — predicted 2.531, measured 2.527, basically identical, within the noise. Helium — predicted 24.86%, measured 24.49%, within one standard deviation. Lithium — predicted 4.74, measured 1.60. Off by a factor of 3. This is called the lithium problem, and every model in cosmology has it. We get the same wrong answer for lithium because we use the same nuclear physics. Getting the right wrong answer is actually a sign that the chain is doing correct physics.
 
-Here's what's remarkable: one integer ratio — 22 over 13 — predicts how much deuterium the Big Bang made. The chain crosses five different physics departments. No single department would ever draw this connection because no single department works in all five areas.
+Here's what's remarkable: one integer ratio — 22 over 13 — predicts how much deuterium the Big Bang made. The chain crosses five different physics departments. No single department would ever draw this connection because no single department works in all five areas.  
+
+22/13 would be invisible as real numbers, but when they are kept as integer fractions, they keep being useful in new places, because the universal physical system has no departments.  It is temporally continuous at all times.
 
 ### MERGE NOTES
 
@@ -294,7 +305,7 @@ One electron in Massachusetts. One laser in Germany. Connected by integer arithm
 
 ### NON-TECHNICAL VERSION
 
-Now let me show you precision.
+Now let me show you a precision result using integer fraction.  We saw one that looks amazing (Dark Matter), but it could just be random.  Could this one also be random?
 
 At Harvard, a physicist trapped a single electron in a magnetic field and measured how it wobbles. That measurement — the electron's magnetic moment — has 13 digits of precision. It's one of the most precisely measured numbers in all of science.
 
@@ -334,17 +345,17 @@ The predicted mass range is 1.5-6 TeV. Proton decay via the unified gauge bosons
 
 ### NON-TECHNICAL VERSION
 
-The model predicts one new particle. Just one.
+The model predicts one new particle. Just one particle was predicted by forced math derivation.  This model doesn't preference this particle, it is the only fit possible by the rules of particle physics.
 
-I didn't choose it. The integers chose it.
+I didn't choose it. The integers we already have as standard model values chose it.
 
 The requirement is simple: when you add a particle to the Standard Model, the three force strengths change their running rates by specific amounts. For the math to work — for the gap ratio to be an exact fraction with small integers — only one particle out of 15 candidates works.
 
 Its quantum numbers are 3, 2, 1/6. If that means nothing to you, don't worry. What matters is that these three numbers completely determine everything about how the particle interacts. There are no free parameters to tune. The three numbers fix the three shifts: 1/15, 1, and 1/3. The gap ratio goes from 218/115 — big messy numbers — to 38/27 — small clean numbers. 38 is 2 times 19. 27 is 3 cubed. Every integer counts something specific.
 
-I named it the Cabibbo Doublet, after Nicola Cabibbo. He figured out how quarks mix between generations in 1963. When the Nobel Prize was given for related work in 2008, he was left out. He died two years later. I think a particle named after you is worth more than any prize.
+I named it the Cabibbo Doublet, after Nicola Cabibbo. He figured out how quarks mix between generations in 1963. When the Nobel Prize was given for related work in 2008, he was left out. He died two years later. I think a particle named after you is worth more than any prize.  It's original naming reason was because it solves the problem referred to as the Cabibbo Angle, and it is a vector-type doublet, so I named it descriptively the "Cabibbo Doublet".  You'll note I didn't name this after myself, even though I have every right to by current science rules, but that is not my interest in this project. 
 
-The prediction is testable. The Hyper-Kamiokande experiment in Japan starts operating in 2027. If protons decay at the predicted rate, it will see them. If protons don't decay at the predicted rate, the prediction is wrong and I'll say so.
+The Cabibbo Doublet prediction is testable. The Hyper-Kamiokande experiment in Japan starts operating in 2027. If protons decay at the predicted rate, it will see them. If protons don't decay at the predicted rate, the prediction is wrong and I'll falsify the prediction.
 
 ### MERGE NOTES
 
@@ -380,7 +391,7 @@ I built the same system for physics. 36 experiments. 253 total comparisons. Each
 
 The results: about 220 PASS. About 5 FAIL. About 20 INFO. And here's the important part: the FAILs are right there in the output, same font size as the PASSes. There's one GR test — Gravity Probe A — that fails at 2.47% because I used a round number for the altitude instead of the actual trajectory. The failure is published. The diagnosis is published. Nothing is hidden.
 
-This is what software engineers do. We show the test results. All of them. Green and red. If you hide the red, nobody trusts the green.
+This is what software engineers do. We show the test results. All of them. Green and red. If you hide the red, nobody trusts the green, and you can't learn from your mistakes, and you may miss successes that just needed the proper change from a failure.
 
 ### MERGE NOTES
 
