@@ -352,7 +352,7 @@ for group_name, items in examples:
 
     y_start -= len(items) * 0.7 + 1.0
 
-ax.text(6, 0.5, "Same function word, different level prefix.\nNo collision. The prefix disambiguates.\nA proton donut and a galaxy donut are structurally related\nbut live at different addresses.",
+ax.text(6, -0.8, "Same function word, different level prefix.\nNo collision. The prefix disambiguates.\nA proton donut and a galaxy donut are structurally related\nbut live at different addresses.",
         ha='center', va='center', fontsize=10, color=SILVER, fontstyle='italic',
         bbox=dict(boxstyle='round,pad=0.4', facecolor=PAN))
 
@@ -697,4 +697,3 @@ filenames = [
 ]
 for f in filenames:
     print("  %s" % f)
-    
