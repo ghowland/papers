@@ -85,7 +85,7 @@ boxes = [
 for bx, title, color, content in boxes:
     rect = FancyBboxPatch((bx - 1.3, 3), 2.6, 3.5,
                            boxstyle='round,pad=0.15',
-                           facecolor=BG, edgecolor=color, linewidth=2)
+                           facecolor=BG,  linewidth=2)
     ax.add_patch(rect)
     ax.text(bx, 5.8, title, color=color, fontsize=11,
             fontweight='bold', ha='center')
@@ -130,7 +130,7 @@ values = [100, 430, 600]
 colors_b = [CYAN, GREEN, GOLD]
 
 bars = ax.bar(range(3), values, color=colors_b, alpha=0.7,
-              edgecolor=colors_b, linewidth=2, width=0.55)
+              linewidth=2, width=0.55)
 
 for i, (v, c) in enumerate(zip(values, colors_b)):
     ax.text(i, v + 15, '%d Tbps' % v, color=c, fontsize=16,
@@ -189,7 +189,7 @@ chain = [
 for bx, text, color, subtitle in chain:
     rect = FancyBboxPatch((bx - 1.2, 3.5), 2.4, 3,
                            boxstyle='round,pad=0.15',
-                           facecolor=BG, edgecolor=color, linewidth=2)
+                           facecolor=BG, linewidth=2)
     ax.add_patch(rect)
     ax.text(bx, 5.5, text, color=color, fontsize=9,
             fontweight='bold', ha='center')
@@ -278,7 +278,7 @@ colors_m = [RED, ORANGE, MAG, GREEN]
 savings = ['+2% throughput', '+5% spectrum', '+1 dB range', 'enables 4096-QAM']
 
 bars = ax.bar(range(4), values_m, color=colors_m, alpha=0.7,
-              edgecolor=colors_m, linewidth=2, width=0.55)
+              linewidth=2, width=0.55)
 
 for i, (v, c, s) in enumerate(zip(values_m, colors_m, savings)):
     if v > 0.01:
@@ -1000,7 +1000,7 @@ readings = [
 for ry, label, color in readings:
     ax2.plot([4.5, 5.5], [ry, ry], color=color, lw=2.5)
     ax2.plot(5, ry, 'o', color=color, markersize=10,
-             edgecolors=WHITE, linewidth=1.5, zorder=5)
+              linewidth=1.5, zorder=5)
     ax2.text(6, ry, label, color=color, fontsize=10,
              fontweight='bold', va='center')
 
@@ -1069,7 +1069,7 @@ for sx, title, color, items in sections:
 # Bottom
 rect = FancyBboxPatch((2, 0.3), 12, 1.2,
                        boxstyle='round,pad=0.15',
-                       facecolor=BG, edgecolor=GOLD, linewidth=2)
+                       facecolor=BG, linewidth=2)
 ax.add_patch(rect)
 ax.text(8, 0.9,
         'Unification connects the gauge group to your internet bandwidth '
