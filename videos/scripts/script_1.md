@@ -567,14 +567,17 @@ From alpha, the framework derives several other constants, and then predicts the
 One electron in Massachusetts. One laser in Germany. Connected by integer arithmetic. Different continents, different experiments, different decades. The numbers agree to eleven digits.
 
 
+
+
+
 # List - Technical
 
 
-- So far we've seen a pretty good match to the Dark Matter ratio, and some more very close matches to the BBN Deuterium and hydrogen and reprodcuing the standard model 3x on Lithium-7.  Let's see how precise Integer Physics can get to a measured value that has a lot of precision already.  After all, I can only match Integer Fractions to decimal digits with precision, if there are a lot of decimal digits recorded, and not all CODATA has a lot of digits.
+- So far we've seen a pretty good match to the Dark Matter ratio, and some more very close matches to the Big Bang nucleosynthesis Deuterium and hydrogen and reprodcuing the standard model 3x on Lithium-7.  Let's see how precise Integer Physics can get to a measured value that has a lot of precision already.  After all, I can only match Integer Fractions to decimal digits with precision, if there are a lot of decimal digits recorded, and not all CODATA has a lot of digits.
 
 - At Harvard, a physicist team trapped a single erectron in a magnetic field and measured how it wobbles.  Their measurement of the electron's "magnetic moment" is about 13 digits of precision.  It is one of the most precisely measured numbers in all of science.
 
-- There is a QED formula, 70 years old and developed over that time with thousands of terms, that connects the electron's magnetic moment to Alpha.  Alpha is the number that controls how strongly electricity and magnetism work, about 1 over 137.
+- There is a QED formula, 70 years old and developed over that time with thousands of terms, that connects the electron's magnetic moment to Alpha EM.  Alpha EM is the number that controls how strongly electricity and magnetism work, about 1 over 137.
 
 - This framework takes the Harvard magnetic moment measurement, inverts the QED formula, and extracts Alpha^-1 as 137.035999207, twelve digits.  That matches an independent measurement called "RB Recoil", done with rubidium atoms in France, to 7 ppt (0.007 ppb).
 
@@ -640,6 +643,28 @@ I named it the Cabibbo Doublet, after Nicola Cabibbo. He figured out how quarks 
 
 The Cabibbo Doublet prediction is testable. The Hyper-Kamiokande experiment in Japan starts operating in 2027. If protons decay at the predicted rate, it will see them. If protons don't decay at the predicted rate, the prediction is wrong and I'll falsify the prediction.
 
+
+# List - Technical
+
+
+- This model predicts 1 new particle.  Not by choice, it was a mathematically forced selection, as the only set of integer fractions that met all the requirements to complete the standard model GUT unification.
+
+- I repeat, I did not choose this particle to create a new particle, I did an experiment where I tried to derive all the integers that could make close GUT unification, while being small, and having compositions that match particle physics requirements with valid gauge group representations.  This is a lot of constraints, not a numerology search, but a constraint driven search that produced a vector-like two-handed (left and right chirality) doublet, that I have named the "Cabibbo Doublet".
+
+- This was named after the Cabibbo Angle, for quark mixing which he discovered in 1963.  After I named after his mixing angle and the "doublet" for "the gauge groups SU(2) representation, under the weak force group", I learned more about Nicola Cabibbo's history and that he was not included in a nobel prize that extended his original research.  Now I think it's a fitting name, if the predicted particle is confirmed by experiment, his work gets its legacy.
+
+- The Cabibbo Doublet prediction is testable, and the Hyper-Kamiokande experiment in Japan starts in 2027.  If protons decay at the predicted 3 × 10^34 to 10^35 years in the p → e⁺π⁰ channel.  
+
+- A proton (p) decays by breaking into a positron (e⁺, an anti-electron) and a neutral pion (π⁰, a short-lived particle made of a quark and antiquark), with the arrow meaning "decays into" and the whole expression describing one specific break pattern — the "channel" — out of several possible patterns different unification models predict.
+
+
+- If it isn't confirmed, then I will falsify the prediction, and invalidate any paths of the series that relied on it.  The same way I did with CKS.
+
+
+
+
+
+
 ### MERGE NOTES
 
 You understand the selection process: 15 candidates, one survivor, chosen by the integers not by you. The naming story — Cabibbo and the Nobel — is yours and you tell it well. "A particle name lasts longer than any prize" is a great line. The testability via Hyper-K is concrete and falsifiable — you can state it simply. For the quantum numbers (3, 2, 1/6), you can say "these three numbers fix everything, no free parameters" without needing to explain representation theory.
@@ -675,6 +700,13 @@ I built the same system for physics. 36 experiments. 253 total comparisons. Each
 The results: about 220 PASS. About 5 FAIL. About 20 INFO. And here's the important part: the FAILs are right there in the output, same font size as the PASSes. There's one GR test — Gravity Probe A — that fails at 2.47% because I used a round number for the altitude instead of the actual trajectory. The failure is published. The diagnosis is published. Nothing is hidden.
 
 This is what software engineers do. We show the test results. All of them. Green and red. If you hide the red, nobody trusts the green, and you can't learn from your mistakes, and you may miss successes that just needed the proper change from a failure.
+
+
+
+
+
+
+
 
 ### MERGE NOTES
 
@@ -713,6 +745,10 @@ The code is on GitHub — you can run it yourself. The papers are on Zenodo — 
 I'm not asking you to believe me. I'm asking you to check the numbers. If they're wrong, the model is wrong, and I want to know. If they're right, the model deserves attention regardless of who produced it.
 
 Links are in the pinned comment. Next week: why nobody found this before.
+
+
+
+
 
 ### MERGE NOTES
 
