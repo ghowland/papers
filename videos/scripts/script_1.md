@@ -272,7 +272,10 @@ These five words replace the entire language of physics. Not because the old wor
 Don't stop saying "electron", but know that every particle, and planet, and organ, can use these 5 words to describe them isomorphically with existing science literature.
 
 
+
+
 # List - Technical
+
 
 - This model uses 5 words to describe everything in Physics
 
@@ -295,6 +298,9 @@ Don't stop saying "electron", but know that every particle, and planet, and orga
 You can make a temporal running reading, but standing on a scale and jumping, until it settles, the reading runs over time.  Thats different than a running reading in an ocean frozen in time for measurements collected at an exact moment in different locations and depths.
 
 - Readings are given in real numbers, not integer fractions.
+
+
+
 
 
 
@@ -329,9 +335,38 @@ This is currently a "conspiracy theory" of local observation versus external obs
 
 This is why the universe reads flat. Cosmologists have spent decades asking "why is the universe so precisely flat? Is it fine-tuned? Did inflation make it flat?" The answer in this framework is simpler: you're inside it. Insides read flat. That's what boundaries do. It's not a coincidence that needs explaining — it's a structural property of being inside.
 
-### MERGE NOTES
 
-You understand this deeply — it's one of your key insights. The Earth analogy (stand on it: flat; orbit it: curved) is yours. The flatness problem dissolving because "you're inside" is something you can say with full conviction. The technical version's reference to Gauss's theorem you can skip or say "the math confirms this."
+
+# List - Technical
+
+
+- Everything is inside something else.  All solitons are nested, starting with the Universe soliton, which is the Vacuum, lowest layer, and also the most outer layer.
+
+- 3 quarks are nested inside a proton. Protons are nested inside atoms.  Atoms are nested in molecules.  Molecules inside of organs.  Organs make up your body.  You are standing on a planet soliton, circling a star soliton, inside a galaxy solition, inside the universe soliton.
+
+- Inside a soliton is a different reading than outside it.  Inside every solition, there is a "flat" reading and outside of every soliton is a "curved reading".
+
+- There is currently a "conspiracy theory" about just this tension, where local observations say the Earth reads flat.  1000s of miles of train tracks run flat, they are level at every point.  How can the earth curve 8" per mile, if that is the case?
+
+- In a soliton hierarchy, this is expected and it is the same at every layer.
+
+- If you say "the earth is flat" you are wrong.  If you say "the earth is a sphere or spheroid" you are also wrong, it is both depending on your reading position.  Inside it reads flat, outside it reads curved.  Both have always been true, and the simplication to a single stance has created this unecessary tension.
+
+- Comologists have spent decades asking "why is the Universe so precisely flat?  what made it this way?".  In this framework, it is simple.  You are inside the universe, and the inner reading will be flat.  When you look at a boundary you are outside of, it will read as curved.
+
+- This is not a dispute of observations, it is 2 different position of observing the same thing.
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
