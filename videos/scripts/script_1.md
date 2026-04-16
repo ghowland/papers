@@ -10,23 +10,56 @@ The rule: when you understand it, say it in your own words. When you're presenti
 
 ## SECTION 1: Opening — Who I Am (2 minutes)
 
-*[In frame, talking to camera. No slides.]*
 
-### TECHNICAL VERSION
 
-Hi, I'm Geoff. I'm a software engineer with about 30 years of production experience — SRE, infrastructure, the kind of work where if your system is wrong, pages go off at 3 AM and real money is lost. I have no physics degree, no academic appointment, no university affiliation. I've never taken a physics class beyond high school.
 
-In March 2026, working with Claude, Anthropic's AI, I built a computational framework that derives 53 measurable physics values from 13 measured inputs using integer fraction arithmetic and standard published equations. The framework spans 9 physics domains — quantum electrodynamics, electroweak theory, grand unification, cosmology, Big Bang nucleosynthesis, the muon anomalous magnetic moment, quark flavor mixing, mass relations, and general relativity. Every derivation uses equations that have been in textbooks for decades. I didn't change any physics. I changed the number format and the testing methodology.
 
-It took 6 working days.
 
-### NON-TECHNICAL VERSION
+Hi, I'm Geoffrey Howland. 
 
-Hi, I'm Geoff. I've been writing software for over 40 years. I'm not a physicist — no degree, no university, never worked in a lab. I build systems that have to work, the kind where if you get it wrong, you get a phone call at 3 in the morning.
+I've been writing software for over 40 years. I'm not a physicist — I don't have a degree, I didn't go to university. I build systems that have to work in the internet infrastructure space, the kind where if you get it wrong, you get a phone call at 3 in the morning.
 
-In March 2026, I built something with AI that I wasn't expecting. Using published physics equations — the same ones in every textbook — I connected 13 measured values to 53 predictions across 9 different areas of physics. I didn't invent any new physics. I didn't change any equations. I changed how the numbers are stored and how the results are tested, and I reduced the required languages down to 3 nouns and 2 verbs to explain everything.
+In March 2026, I built something with AI and only using published physics equations — the same ones in every textbook — I connected 13 measured values to 53 predictions across 9 different areas of physics. 
 
-It took 6 days.
+I didn't invent any new physics. I didn't change any equations. 
+
+Instead, I only used Integer Fractions and I reduced the required languages down to 3 nouns and 2 verbs to explain everything.
+
+It took 6 days of work and produced over 50 papers on Zenodo and a book, and this video series will explain that work.
+
+
+# List
+
+
+
+
+- Over 40 years coding
+
+- Dont have degree
+
+- I build systems that have to work through physical failures, Infrastructure engineering
+
+- In March 2026, I used AI to explore a path to Physics unification using Integer Fractions.  Quantum Mechanics says the universe runs on discrete numbers, and so I put it to the test.
+
+- With 13 measured values, converted to integer fractions, I produced 53 derivations across 9 domains of physics, using the Python Fraction library it took 6 days
+
+- I reduced the physics terminology set to 3 nouns and 2 verbs to describe the entire system, and then video series will explain that work
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### MERGE NOTES
 
@@ -68,9 +101,67 @@ Python has a built-in Fraction type. It stores 41/10 as two numbers: 41 and 10. 
 
 Now, some numbers — like pi — genuinely can't be fractions. For those, I use something called Q335. It stores pi as a huge integer divided by 2 to the 335th power. That gives 101 digits of precision. The smallest meaningful distance in physics — the Planck length — only needs about 35 digits. Q335 overshoots by 65 digits. No experiment that could ever be built, even in theory, could tell the difference between Q335 pi and real pi.
 
-### MERGE NOTES
 
-You understand the core insight perfectly: fractions keep the integers, decimals destroy them. You can explain Python's Fraction type from direct experience. For the beta coefficient counting (41 counts charges, 19 counts weak contributions, 7 = 11 − 4), you can say "the equations count specific things" without needing to explain Casimir operators. The Q335 explanation is engineering — you built it, you understand it.
+# List - Technical
+
+
+- Physics runs on specific numbers, which are integer fractions and not real numbers.
+
+- QED tells us this, quanta are discrete and countable, not real numbers.  They are integers and their relationships create integer fractions.
+
+- 3 forces: EM, weak and strong.  Each have their own number that controls how fast they change with energy injected into them through physics experiments.
+
+- The numbers are 41/10, 19/6 and -7.  They are counted, not measured.
+
+- 41 is the total of all particle charges added up by particle physics rules
+
+- 10 comes from rescaling, The raw U(1) arithmetic produces a 6 in the denominator. You multiply by 5/3 to make electromagnetism comparable to the other forces: 6 × 5/3 = 10.
+
+- 19 counts specifics of the weak force, the 3 lepton generations: electron/muon/tau and their quark partners, plus the Higgs
+
+- 6 is the gauge groups SU(2) theory normalization, It's not counting particles — it's a scaling factor baked into the group theory
+
+- -7 is 11 from gluon self-interaction minus 4 from quark contributions, with the math yielding -7.  The sign convention is negative, so the 7 becomes -7.
+
+- They are exact fractions using integers
+
+- Every physics process immediately converts these to reals, losing the meaning.  4.1 doesnt show the 41 and the 10.
+
+- Some numbers like Pi cant be pure fractions, but they can be converted to fractions so large, that they equal Pi in every calculation possible in Physics.  I invented Q335 for this, which is 2^335 as denominator, and yields over 100 digit matches on Pi, making it operationally equal to Pi in any physics expriment.
+
+
+# List - Layman
+
+
+- Physics runs on specific numbers, which are integer fractions and not real numbers.
+
+- QED tells us this, quanta are discrete and countable, not real numbers.  They are integers and their relationships create integer fractions.
+
+- 3 forces: EM, weak and strong.  Each have their own number that controls how fast they change with energy injected into them through physics experiments.
+
+- The numbers are 41/10, 19/6 and -7.  They are counted, not measured.
+
+- 41 is the total of all particle charges added up by particle physics rules
+
+- 10 comes from rescaling, There is a math system called the Gauge group, and when you follow it's process, it gives you 6 in the denominator. You multiply by 5/3 to make electromagnetism comparable to the other forces: 6 × 5/3 = 10.
+
+- 19 counts specific contributions to the weak force, the 3 lepton generations: electron/muon/tau and their quark partners, plus the Higgs
+
+- 6 is the gauge groups SU(2) theory normalization, different than the first 6 we saw, It's not counting particles — it's a scaling factor baked into the group theory
+
+- -7 is 11 from gluon self-interaction minus 4 from quark contributions, with the math yielding 7.  The sign convention is negative, so the 7 becomes -7.
+
+- They are exact fractions using integers
+
+- Every physics process immediately converts these to reals, losing the meaning.  4.1 doesnt show the 41 and the 10.
+
+
+- Some numbers like Pi cant be pure fractions, but they can be converted to fractions so large, that they equal Pi in every calculation possible in Physics.  I invented Q335 for this, which is 2^335 as denominator, and yields over 100 digit matches on Pi, making it operationally equal to Pi in any physics expriment.
+
+
+
+
+
 
 ---
 
@@ -108,9 +199,38 @@ The next day I killed all 363 papers. Published the kill notice right next to th
 
 What I learned: the problem was how numbers were stored. Real numbers — decimals — throw away the structure. That insight drove everything that came next.
 
-### MERGE NOTES
+## List - Techincal
 
-You understand this section completely. This is your story. Tell it naturally. The key details: 363 papers, the AI's comment in the code, you found it yourself, you killed it publicly. The emotional beat is "I failed first, and the failure taught me." Don't rush through it — this is where you earn trust.
+
+
+- Before I created this Integer Physics model, I created another model with was a failure.
+
+- My first attempt was called CKS, or Cymatic K-Space Mechanics, and I created it over 45 days using 3 AI systems, based on the question, "What if everything is based on Cymatics?"
+
+- The AI couldnt do the math properly for this, but it said that it could, and hid a key value inside a derivation function, which I didnt verify properly until day 46, and when I found it I killed the entire published series.  363 papers
+
+- What I learned was that while you need to start with logical propositions to search, you need need to gate any progress on math, and so this new model only uses Python fractions to work from, so I can ensure that the inputs are correct and arent cheating any of the outputs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
@@ -151,9 +271,33 @@ These five words replace the entire language of physics. Not because the old wor
 
 Don't stop saying "electron", but know that every particle, and planet, and organ, can use these 5 words to describe them isomorphically with existing science literature.
 
-### MERGE NOTES
 
-You understand inertia (resistance, not substance) and the reading/running reading distinction. The vortex concept — patterns that persist — is intuitive and you can explain it with the whirlpool analogy. The soliton boundary is the key concept: inside reads one way, outside reads another. You can deliver the non-technical version with full conviction. For the technical version, the mapping α_s = 1 inside vs 0.118 outside is a specific example you can cite.
+# List - Technical
+
+- This model uses 5 words to describe everything in Physics
+
+- Inertia is resistance.  When you push something, it resists movement, thats inertia.  F=ma can be rewrite m=F/a, which is the same thing.  
+
+- Notice in F=ma and m=F/a there is no mention of substance.  Its "mass" or inertia in my new terms, is Force divided by acceleration, which is inertia.  No substance.  If it is F=ma, it is Force is mass times acceleration.  No substance.  
+
+- Where is the substance?  It was never in the equation, we just assume we are made of substance and so claimed "mass" is substance, but it never has been that, because it is equivalent to "inertia" and inertia has no substance claim.
+
+- Vortex is a pattern that sustains itself.  A smoke ring is a donut shape (toroid) vortex.  When you flush a toilet, you see a vortex form until all the water is gone.  In physics, an Electron and a Proton are also equivolent to vortices.  A vortex is a pattern.  It can also be called a Standing Wave, or a Field.  But Vortex makes clear what Field and Standing Wave do not, there is an interior and exterior reading that are different.
+
+- Soliton is the boundary where reading change.  Inside is 1 vortex, and outside is a different vortex, and their readings are different.  You see different values if you look in different places.
+
+- The 2 verbs I use with the 3 above nouns are: Reading and Running Reading.
+
+- Reading just means looking at a value, like if you step on a scale, it gives your weight, and that is a reading.
+
+- Running reading is a reading at different locations or depths.  If you measure an ocean temperature near the surface, in the middle and at the bottom, the temperature will be different in all 3 areas, and there will be a curve between them.  This is a running reading.
+
+You can make a temporal running reading, but standing on a scale and jumping, until it settles, the reading runs over time.  Thats different than a running reading in an ocean frozen in time for measurements collected at an exact moment in different locations and depths.
+
+- Readings are given in real numbers, not integer fractions.
+
+
+
 
 ---
 
