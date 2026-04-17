@@ -628,7 +628,7 @@ ax.text(5.0, 8.0, "Check the Numbers", ha='center', va='center',
 
 # Three resource boxes
 resources = [
-    (2.0, 5.5, "Code", "github.com/ghowland/rum", CYAN),
+    (2.0, 5.5, "Code", "github.com/ghowland/papers", CYAN),
     (5.0, 5.5, "Papers", "zenodo.org (45+ papers)", GREEN),
     (8.0, 5.5, "Book", "The Rational Universe\namazon.com — $3", GOLD),
 ]

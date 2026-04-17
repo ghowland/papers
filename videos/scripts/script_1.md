@@ -768,6 +768,7 @@ Links are in the pinned comment. Next week: why nobody found this before.
 
 # List - Technical
 
+
 - By the end of the book, around April 10th, here's what the project had achieved:
 
 - 53 values prediction through derivation, from 13 integer fraction inputs across 9 areas of physics.  253 comparisons, all documented and reprodicble and public on Gitub and published on Zenodo.  In the code on Github, you can read the derivations, they are from the standard model.  The Kindle book is out for $2.99, the minimum price I could set for the widest distribution channels.
@@ -775,6 +776,21 @@ Links are in the pinned comment. Next week: why nobody found this before.
 - This model is replicatable, extendible, and it's simple.  It's not new physics, even the newly predicted particle is forced from existing physics rules, not something I have added.  
 
 - Next week we start the second chapter, why nobody found this before.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
