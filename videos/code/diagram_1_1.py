@@ -630,7 +630,7 @@ ax.text(5.0, 8.0, "Check the Numbers", ha='center', va='center',
 resources = [
     (2.0, 5.5, "Code", "github.com/ghowland/papers", CYAN),
     (5.0, 5.5, "Papers", "zenodo.org (45+ papers)", GREEN),
-    (8.0, 5.5, "Book", "The Rational Universe\namazon.com — $3", GOLD),
+    (8.0, 5.5, "Book", "The Rational Universe\namazon.com — $2.99", GOLD),
 ]
 
 for cx, cy, label, detail, col in resources:
