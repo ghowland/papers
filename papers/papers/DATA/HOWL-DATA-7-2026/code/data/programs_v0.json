@@ -801,6 +801,68 @@
             "program_confinement_boundary": "shares lattice factor C, Lambda_QCD, proton mass derivation",
             "program_toroidal_dm": "shares DM/baryon ratio (22/13)*pi = (22/13)*4*beta"
         }
+    },
+    {
+        "key": "program_laporta_constants_v0",
+        "canonical": "program_laporta_constants",
+        "version": 0,
+        "node_type": "program",
+        "topic": "program",
+        "term": "laporta_constants",
+        "level": null,
+        "source": "Session 8",
+        "thesis": "The six Laporta four-loop master integrals (C81a-c, C83a-c) are genuinely new transcendental constants, independent of all known constants in the Q335 basis extended with MZVs and alternating Euler sums. If confirmed, these are the first new transcendental constants identified in physics since the MZVs in the 1990s. If falsified (closed forms found), the closed forms themselves are a discovery solving an 8-year open problem.",
+        "status": "ACTIVE",
+        "tags": ["laporta", "PSLQ", "QED", "4-loop", "master_integral", "transcendental", "independence"],
+        "scripts": [
+            {
+                "name": "laporta_pslq_individual_v0",
+                "description": "PSLQ scan of each integral individually against 66-element extended basis at 1000 digits.",
+                "stage": 1
+            },
+            {
+                "name": "laporta_pslq_crossrel_v0",
+                "description": "PSLQ scan of pairs and triples of integrals for cross-relations.",
+                "stage": 1
+            },
+            {
+                "name": "laporta_pslq_summary_v0",
+                "description": "Summarize individual and cross-relation results. Count independent constants.",
+                "stage": 1
+            }
+        ],
+        "kill_switches": [
+            {
+                "name": "any_found_individual",
+                "condition": "PSLQ finds a relation for any integral at 1000 digits / maxcoeff 100000",
+                "data_source": "Attack 1 scan"
+            },
+            {
+                "name": "all_found",
+                "condition": "All six integrals have closed forms in the extended basis",
+                "data_source": "Attack 1-4 combined"
+            },
+            {
+                "name": "external_resolution",
+                "condition": "Multi-loop community publishes closed forms independently",
+                "data_source": "arXiv / journals"
+            },
+            {
+                "name": "elliptic_identification",
+                "condition": "Any integral expressed using elliptic periods K(k), E(k)",
+                "data_source": "Attack 3 scan"
+            },
+            {
+                "name": "modular_identification",
+                "condition": "Any integral expressed using L-function values of modular forms",
+                "data_source": "Attack 4 scan"
+            }
+        ],
+        "program_connections": {
+            "program_q335_basis": "New constants would extend the Q335 basis from 29 to up to 35 entries",
+            "program_qed_extraction": "A4 coefficient decomposes into typed pieces if integrals are resolved",
+            "program_beta_metric_conversion": "Beta-content decomposition of A4 requires knowing the analytical structure"
+        }
     }
 
   ]
