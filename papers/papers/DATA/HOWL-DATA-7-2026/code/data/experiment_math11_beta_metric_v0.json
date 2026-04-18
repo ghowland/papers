@@ -1,0 +1,272 @@
+{
+    "key": "experiment_math11_beta_metric_v0",
+    "canonical": "experiment_math11_beta_metric",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Test beta = pi/4 as the L1/L2 metric conversion factor on circular geometry. Verify the foundation integral, the Lp family at known endpoints, the dimensional regularization decomposition, the QED A2 beta-content decomposition, the Fourier normalization identity, the lattice factor hypothesis C = 6*beta, and the cosmological prediction Omega_DM = pi/12.",
+    "purpose": "program_beta_metric_conversion_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "geom_pi": 0,
+            "geom_sqrt2": 0,
+            "geom_zeta3": 0,
+            "geom_ln2": 0,
+            "metric_l1_circumference_unit_circle": 0,
+            "metric_l2_circumference_unit_circle": 0,
+            "metric_beta_l2_over_l1": 0,
+            "metric_l1_quadrant_integral": 0,
+            "metric_lp_circumference_p_inf": 0,
+            "metric_beta_p_inf": 0,
+            "qed_a2_rational_piece": 0,
+            "qed_a2_pi2_piece_coeff": 0,
+            "qed_a2_pi2_ln2_piece_coeff": 0,
+            "qed_a2_zeta3_piece_coeff": 0,
+            "conf_lattice_factor_proton": 0,
+            "conf_lattice_factor_proton_unc": 0,
+            "cosmo_omega_dm_planck": 0,
+            "cosmo_omega_dm_planck_unc": 0,
+            "cosmo_omega_b_planck": 0,
+            "cosmo_omega_b_planck_unc": 0,
+            "cosmo_omega_lambda_planck": 0,
+            "cosmo_omega_lambda_planck_unc": 0,
+            "mass_proton": 0,
+            "coupling_alpha_em_inverse": 0
+        },
+        "derivations": {
+            "beta_foundation_integral": 0,
+            "beta_lp_family": 0,
+            "beta_dim_reg_decomposition": 0,
+            "beta_qed_a2_decomposition": 0,
+            "beta_fourier_identity": 0,
+            "beta_lattice_factor_test": 0,
+            "beta_cosmic_budget": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "beta_foundation_integral_v0",
+        "beta_lp_family_v0",
+        "beta_dim_reg_decomposition_v0",
+        "beta_qed_a2_decomposition_v0",
+        "beta_fourier_identity_v0",
+        "beta_lattice_factor_test_v0",
+        "beta_cosmic_budget_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_l1_circumference_v0",
+        "result_l2_circumference_v0",
+        "result_beta_computed_v0",
+        "result_quadrant_integral_v0",
+        "result_beta_p1_v0",
+        "result_beta_p2_v0",
+        "result_beta_p_inf_v0",
+        "result_beta_p_1p5_v0",
+        "result_beta_p_3_v0",
+        "result_beta_p_4_v0",
+        "result_beta_monotonic_v0",
+        "result_dim_reg_4pi_d2_at_d2_v0",
+        "result_dim_reg_4beta_d_at_d2_v0",
+        "result_dim_reg_match_d2_v0",
+        "result_dim_reg_4pi_d2_at_d4_v0",
+        "result_dim_reg_4beta_d_at_d4_v0",
+        "result_dim_reg_match_d4_v0",
+        "result_a2_rational_v0",
+        "result_a2_pi2_term_v0",
+        "result_a2_pi2_ln2_term_v0",
+        "result_a2_zeta3_term_v0",
+        "result_a2_sum_v0",
+        "result_a2_beta0_total_v0",
+        "result_a2_beta2_total_v0",
+        "result_a2_cancellation_pct_v0",
+        "result_fourier_2pi_v0",
+        "result_fourier_8beta_v0",
+        "result_fourier_match_v0",
+        "result_hbar_from_h_8beta_v0",
+        "result_leibniz_partial_50_v0",
+        "result_leibniz_partial_500_v0",
+        "result_leibniz_converges_to_beta_v0",
+        "result_lattice_c_pred_v0",
+        "result_lattice_c_meas_v0",
+        "result_lattice_c_tension_sigma_v0",
+        "result_lattice_c_consistent_v0",
+        "result_omega_dm_pred_v0",
+        "result_omega_b_pred_v0",
+        "result_omega_lambda_pred_v0",
+        "result_omega_dm_tension_sigma_v0",
+        "result_omega_b_tension_sigma_v0",
+        "result_omega_lambda_tension_sigma_v0",
+        "result_omega_total_pred_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "M01: L1 circumference of unit circle = 8",
+            "output_key": "result_l1_circumference_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "8", "den": "1"},
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M02: Each quadrant integral = 2",
+            "output_key": "result_quadrant_integral_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "2", "den": "1"},
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M03: beta = pi/4 computed from L2/L1",
+            "output_key": "result_beta_computed_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.7853981633974483",
+            "reference_source": "definition"
+        },
+        {
+            "label": "M04: beta(1) = pi/4",
+            "output_key": "result_beta_p1_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.7853981633974483",
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M05: beta(2) = 1 exactly",
+            "output_key": "result_beta_p2_v0",
+            "match_mode": "range",
+            "lo": "0.9999",
+            "hi": "1.0001",
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M06: beta(inf) = pi*sqrt(2)/4",
+            "output_key": "result_beta_p_inf_v0",
+            "match_mode": "miss_pct",
+            "expected": "1.1107207345395915",
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M07: beta(p) is monotonically increasing",
+            "output_key": "result_beta_monotonic_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "conjecture"
+        },
+        {
+            "label": "M08: (4*pi)^(d/2) = (4*beta)^d at d=2",
+            "output_key": "result_dim_reg_match_d2_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "algebra"
+        },
+        {
+            "label": "M09: (4*pi)^(d/2) vs (4*beta)^d at d=4",
+            "output_key": "result_dim_reg_match_d4_v0",
+            "match_mode": "bool",
+            "expected": false,
+            "reference_source": "algebra"
+        },
+        {
+            "label": "M10: A2 sum matches known value",
+            "output_key": "result_a2_sum_v0",
+            "match_mode": "miss_pct",
+            "expected": "-0.328478965579194",
+            "reference_source": "Schwinger_Petermann"
+        },
+        {
+            "label": "M11: A2 cancellation > 80%",
+            "output_key": "result_a2_cancellation_pct_v0",
+            "match_mode": "range",
+            "lo": "80",
+            "hi": "95",
+            "reference_source": "computed"
+        },
+        {
+            "label": "M12: 2*pi = 8*beta identity",
+            "output_key": "result_fourier_match_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "algebra"
+        },
+        {
+            "label": "M13: Leibniz series converges to beta",
+            "output_key": "result_leibniz_converges_to_beta_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "theorem"
+        },
+        {
+            "label": "M14: Lattice C = 3*pi/2 within 1 sigma of BMW",
+            "output_key": "result_lattice_c_consistent_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "BMW_2008"
+        },
+        {
+            "label": "M15: Lattice C tension in sigma",
+            "output_key": "result_lattice_c_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "BMW_2008"
+        },
+        {
+            "label": "M16: Omega_DM = pi/12 vs Planck",
+            "output_key": "result_omega_dm_pred_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.2607",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "M17: Omega_DM tension < 1 sigma",
+            "output_key": "result_omega_dm_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "M18: Omega_b = 13/264 vs Planck",
+            "output_key": "result_omega_b_pred_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.0490",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "M19: Omega_Lambda tension < 1 sigma",
+            "output_key": "result_omega_lambda_tension_sigma_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1.0",
+            "reference_source": "Planck_2018"
+        },
+        {
+            "label": "M20: Omega_total = 1 (flatness)",
+            "output_key": "result_omega_total_pred_v0",
+            "match_mode": "exact",
+            "expected": {"_type": "Fraction", "num": "1", "den": "1"},
+            "reference_source": "flatness"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_beta_foundation_v0",
+            "title": "The L1 circumference integral: four quadrants, each = 2, total = 8",
+            "type": "running_chart"
+        },
+        {
+            "key": "diagram_beta_lp_family_v0",
+            "title": "beta(p) from p=1 to p=inf: lattice to continuum transition",
+            "type": "running_chart"
+        },
+        {
+            "key": "diagram_cosmic_budget_v0",
+            "title": "Cosmic budget from beta: Omega_DM = pi/12, Omega_b = 13/264, Omega_Lambda = remainder",
+            "type": "comparison_table"
+        }
+    ]
+}

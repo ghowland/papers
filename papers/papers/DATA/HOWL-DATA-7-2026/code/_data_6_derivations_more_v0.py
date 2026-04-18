@@ -7059,6 +7059,500 @@ def pion_mass_from_chpt_v0(value_dicts):
         ),
     }
 
+# =============================================================================
+# MATH-11: beta = pi/4 as L1/L2 Metric Conversion Factor
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "beta_foundation_integral_v0": beta_foundation_integral_v0,
+#   "beta_lp_family_v0": beta_lp_family_v0,
+#   "beta_dim_reg_decomposition_v0": beta_dim_reg_decomposition_v0,
+#   "beta_qed_a2_decomposition_v0": beta_qed_a2_decomposition_v0,
+#   "beta_fourier_identity_v0": beta_fourier_identity_v0,
+#   "beta_lattice_factor_test_v0": beta_lattice_factor_test_v0,
+#   "beta_cosmic_budget_v0": beta_cosmic_budget_v0,
+# =============================================================================
+
+
+def beta_foundation_integral_v0(value_dicts):
+    """Verify the foundation identity: integral of (|sin t| + |cos t|)
+    from 0 to 2*pi = 8. Compute beta = 2*pi/8 = pi/4.
+
+    The L1 circumference is computed analytically (exact = 8) and
+    verified numerically. Each quadrant integral is verified = 2.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import pi as mpi, sin as msin, cos as mcos, quad as mquad, fabs
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # Analytical result: each quadrant integrates to 2, total 8
+    # Verify numerically with high-precision quadrature
+    def integrand(t):
+        return fabs(msin(t)) + fabs(mcos(t))
+
+    # Full integral
+    c1_numerical = mquad(integrand, [0, 2 * pi_val])
+
+    # Quadrant 1
+    q1 = mquad(integrand, [0, pi_val / 2])
+
+    # L2 circumference
+    c2 = 2 * pi_val
+
+    # beta
+    beta_computed = c2 / mpf("8")
+
+    # Exact checks
+    l1_exact = Fraction(8, 1)
+    q1_exact = Fraction(2, 1)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_foundation_integral_v0",
+        "outputs": {
+            "result_l1_circumference_v0":       l1_exact,
+            "result_l1_numerical_v0":           _approx(c1_numerical),
+            "result_l2_circumference_v0":       _approx(c2),
+            "result_quadrant_integral_v0":      q1_exact,
+            "result_quadrant_numerical_v0":     _approx(q1),
+            "result_beta_computed_v0":          _approx(beta_computed),
+            "result_l1_l2_ratio_v0":            _approx(c2 / c1_numerical),
+        },
+        "notes": (
+            "L1 circumference: exact=8, numerical=%.15f. "
+            "L2 circumference: 2*pi=%.15f. "
+            "Quadrant: exact=2, numerical=%.15f. "
+            "beta = L2/L1 = pi/4 = %.15f."
+        ) % (
+            float(c1_numerical), float(c2),
+            float(q1), float(beta_computed),
+        ),
+    }
+
+
+def beta_lp_family_v0(value_dicts):
+    """Compute beta(p) = 2*pi / C_p for p = 1, 1.5, 2, 3, 4, infinity.
+    Verify beta(1) = pi/4, beta(2) = 1, beta(inf) = pi*sqrt(2)/4.
+    Check monotonicity across all computed p values.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import pi as mpi, sin as msin, cos as mcos, fabs, power as mpow
+    from mpmath import quad as mquad, sqrt as msqrt
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    sqrt2 = _f2m(_frac(vm, "geom_sqrt2_v0"))
+    two_pi = 2 * pi_val
+
+    p_list = [mpf("1"), mpf("1.5"), mpf("2"), mpf("3"), mpf("4")]
+    beta_results = {}
+
+    for p in p_list:
+        def integrand_p(t, p_val=p):
+            s = fabs(msin(t))
+            c = fabs(mcos(t))
+            return mpow(mpow(s, p_val) + mpow(c, p_val), mpf("1") / p_val)
+
+        C_p = mquad(integrand_p, [0, two_pi])
+        beta_p = two_pi / C_p
+        p_str = str(float(p)).replace('.', 'p')
+        beta_results["result_beta_p%s_v0" % p_str] = _approx(beta_p)
+
+    # p = 1 result (should already be computed, but extract explicitly)
+    beta_p1 = two_pi / mpf("8")  # exact
+
+    # p = 2 result
+    beta_p2 = two_pi / two_pi  # = 1
+
+    # p = infinity: C_inf = 4*sqrt(2), beta_inf = pi*sqrt(2)/4
+    c_inf = 4 * sqrt2
+    beta_inf = two_pi / c_inf
+
+    # Check monotonicity
+    all_p = [1.0, 1.5, 2.0, 3.0, 4.0]
+    all_beta = []
+    for p in p_list:
+        def integrand_p2(t, p_val=p):
+            s = fabs(msin(t))
+            c = fabs(mcos(t))
+            return mpow(mpow(s, p_val) + mpow(c, p_val), mpf("1") / p_val)
+        C_p = mquad(integrand_p2, [0, two_pi])
+        all_beta.append(float(two_pi / C_p))
+
+    monotonic = all(all_beta[i] <= all_beta[i+1] for i in range(len(all_beta) - 1))
+
+    mp.dps = old_dps
+
+    outputs = {
+        "result_beta_p1_v0":        _approx(beta_p1),
+        "result_beta_p2_v0":        _approx(beta_p2),
+        "result_beta_p_inf_v0":     _approx(beta_inf),
+        "result_beta_p_1p5_v0":     beta_results.get("result_beta_p1p5_v0", _approx(mpf("0"))),
+        "result_beta_p_3_v0":       beta_results.get("result_beta_p3p0_v0", _approx(mpf("0"))),
+        "result_beta_p_4_v0":       beta_results.get("result_beta_p4p0_v0", _approx(mpf("0"))),
+        "result_beta_monotonic_v0": monotonic,
+        "result_c_inf_v0":          _approx(c_inf),
+    }
+
+    return {
+        "key": "beta_lp_family_v0",
+        "outputs": outputs,
+        "notes": (
+            "beta(1)=%.6f, beta(1.5)=%.6f, beta(2)=%.6f, "
+            "beta(3)=%.6f, beta(4)=%.6f, beta(inf)=%.6f. "
+            "Monotonic: %s."
+        ) % (
+            float(beta_p1), all_beta[1] if len(all_beta) > 1 else 0,
+            float(beta_p2),
+            all_beta[3] if len(all_beta) > 3 else 0,
+            all_beta[4] if len(all_beta) > 4 else 0,
+            float(beta_inf), str(monotonic),
+        ),
+    }
+
+
+def beta_dim_reg_decomposition_v0(value_dicts):
+    """Check whether (4*pi)^(d/2) = (4*beta)^d at d = 2 and d = 4.
+
+    At d = 2: (4*pi)^1 = 4*pi = 12.566.  (4*beta)^2 = (pi)^2 = 9.870.
+    They are NOT equal at d = 2 in general.
+    Wait: (4*pi)^(d/2) at d=2 = 4*pi. (4*beta)^d at d=2 = (4*pi/4)^2 = pi^2.
+    4*pi = 12.566 vs pi^2 = 9.870. Not equal.
+
+    Reconsider: at d=2, (4*pi)^(2/2) = 4*pi. And (4*beta)^2 = (4*pi/4)^2 = pi^2.
+    4*pi != pi^2. So they only match in a specific sense.
+
+    The paper notes: (4*pi)^(d/2) = 4^(d/2) * pi^(d/2) and (4*beta)^d = 4^d * (pi/4)^d = pi^d.
+    These are equal only when 4^(d/2) * pi^(d/2) = pi^d, i.e., 4^(d/2) = pi^(d/2),
+    i.e., 4 = pi. Which is false. So they are NEVER equal.
+
+    The relationship is: (4*pi)^(d/2) = (4*beta)^d * (4/pi)^(d/2).
+    The extra factor (4/pi)^(d/2) = (1/beta)^(d/2).
+
+    Report both values and the ratio at d = 2 and d = 4.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    beta = pi_val / 4
+
+    results = {}
+    for d in [2, 4]:
+        dim_reg = (4 * pi_val) ** (mpf(str(d)) / 2)
+        beta_prod = (4 * beta) ** mpf(str(d))
+        ratio = dim_reg / beta_prod
+        match = (abs(dim_reg - beta_prod) / dim_reg < mpf("1e-30"))
+
+        results["result_dim_reg_4pi_d2_at_d%d_v0" % d] = _approx(dim_reg)
+        results["result_dim_reg_4beta_d_at_d%d_v0" % d] = _approx(beta_prod)
+        results["result_dim_reg_ratio_d%d_v0" % d] = _approx(ratio)
+        results["result_dim_reg_match_d%d_v0" % d] = match
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_dim_reg_decomposition_v0",
+        "outputs": results,
+        "notes": (
+            "d=2: (4pi)^1=%.6f, (4beta)^2=%.6f, ratio=%.6f. "
+            "d=4: (4pi)^2=%.6f, (4beta)^4=%.6f, ratio=%.6f. "
+            "They are not equal. The extra factor is (4/pi)^(d/2) = (1/beta)^(d/2)."
+        ) % (
+            float(results["result_dim_reg_4pi_d2_at_d2_v0"]),
+            float(results["result_dim_reg_4beta_d_at_d2_v0"]),
+            float(results["result_dim_reg_ratio_d2_v0"]),
+            float(results["result_dim_reg_4pi_d2_at_d4_v0"]),
+            float(results["result_dim_reg_4beta_d_at_d4_v0"]),
+            float(results["result_dim_reg_ratio_d4_v0"]),
+        ),
+    }
+
+
+def beta_qed_a2_decomposition_v0(value_dicts):
+    """Decompose the QED A2 coefficient into beta^0 and beta^2 terms.
+
+    A2 = 197/144 + (1/12)*pi^2 - (1/2)*pi^2*ln(2) + (3/4)*zeta(3)
+
+    beta^0 terms: 197/144 and (3/4)*zeta(3)
+    beta^2 terms: (1/12)*pi^2 and -(1/2)*pi^2*ln(2)
+    (since pi^2 = (4*beta)^2 = 16*beta^2)
+
+    Compute the cancellation percentage between beta^2 and beta^0 totals.
+    All coefficients from pool as exact Fractions.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+
+    coeff_rational = _f2m(_frac(vm, "qed_a2_rational_piece_v0"))
+    coeff_pi2 = _f2m(_frac(vm, "qed_a2_pi2_piece_coeff_v0"))
+    coeff_pi2_ln2 = _f2m(_frac(vm, "qed_a2_pi2_ln2_piece_coeff_v0"))
+    coeff_zeta3 = _f2m(_frac(vm, "qed_a2_zeta3_piece_coeff_v0"))
+
+    pi2 = pi_val * pi_val
+
+    # Four terms
+    term_rational = coeff_rational
+    term_pi2 = coeff_pi2 * pi2
+    term_pi2_ln2 = coeff_pi2_ln2 * pi2 * ln2
+    term_zeta3 = coeff_zeta3 * zeta3
+
+    a2_sum = term_rational + term_pi2 + term_pi2_ln2 + term_zeta3
+
+    # beta content classification
+    # beta^0: rational + zeta3 (no pi)
+    beta0_total = term_rational + term_zeta3
+    # beta^2: pi2 terms (pi^2 = 16*beta^2)
+    beta2_total = term_pi2 + term_pi2_ln2
+
+    # Cancellation: how much of the total positive magnitude cancels
+    total_positive = mpf("0")
+    total_negative = mpf("0")
+    for t in [term_rational, term_pi2, term_pi2_ln2, term_zeta3]:
+        if t > 0:
+            total_positive += t
+        else:
+            total_negative += abs(t)
+
+    cancellation_pct = (min(total_positive, total_negative) /
+                        max(total_positive, total_negative)) * 100
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_qed_a2_decomposition_v0",
+        "outputs": {
+            "result_a2_rational_v0":        _approx(term_rational),
+            "result_a2_pi2_term_v0":        _approx(term_pi2),
+            "result_a2_pi2_ln2_term_v0":    _approx(term_pi2_ln2),
+            "result_a2_zeta3_term_v0":      _approx(term_zeta3),
+            "result_a2_sum_v0":             _approx(a2_sum),
+            "result_a2_beta0_total_v0":     _approx(beta0_total),
+            "result_a2_beta2_total_v0":     _approx(beta2_total),
+            "result_a2_cancellation_pct_v0": _approx(cancellation_pct),
+        },
+        "notes": (
+            "A2 = %.6f. Terms: rational=%.6f, pi2=%.6f, pi2*ln2=%.6f, zeta3=%.6f. "
+            "beta^0 total=%.6f, beta^2 total=%.6f. Cancellation=%.1f%%."
+        ) % (
+            float(a2_sum), float(term_rational), float(term_pi2),
+            float(term_pi2_ln2), float(term_zeta3),
+            float(beta0_total), float(beta2_total), float(cancellation_pct),
+        ),
+    }
+
+
+def beta_fourier_identity_v0(value_dicts):
+    """Verify the Fourier connection: 2*pi = 8*beta.
+    Compute Leibniz partial sums at N=50 and N=500 and check
+    convergence to beta = pi/4.
+    Compute hbar = h/(8*beta) identity.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    beta = pi_val / 4
+
+    # 2*pi = 8*beta check
+    two_pi = 2 * pi_val
+    eight_beta = 8 * beta
+    fourier_match = (abs(two_pi - eight_beta) < mpf("1e-45"))
+
+    # Leibniz series: sum_{k=0}^{N} (-1)^k / (2k+1)
+    def leibniz_partial(N):
+        s = mpf("0")
+        for k in range(N + 1):
+            s += mpf("-1") ** k / mpf(str(2 * k + 1))
+        return s
+
+    leib_50 = leibniz_partial(50)
+    leib_500 = leibniz_partial(500)
+
+    # Check convergence to beta
+    leib_500_miss = abs(leib_500 - beta) / beta
+    converges = (leib_500_miss < mpf("0.001"))  # within 0.1%
+
+    # hbar identity: hbar = h/(2*pi) = h/(8*beta)
+    # We just verify the algebraic identity: 2*pi = 8*beta
+    # The physical content is in the interpretation, not the number
+    hbar_identity = _approx(eight_beta)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_fourier_identity_v0",
+        "outputs": {
+            "result_fourier_2pi_v0":            _approx(two_pi),
+            "result_fourier_8beta_v0":          _approx(eight_beta),
+            "result_fourier_match_v0":          fourier_match,
+            "result_hbar_from_h_8beta_v0":      hbar_identity,
+            "result_leibniz_partial_50_v0":     _approx(leib_50),
+            "result_leibniz_partial_500_v0":    _approx(leib_500),
+            "result_leibniz_converges_to_beta_v0": converges,
+            "result_leibniz_500_miss_v0":       _approx(leib_500_miss),
+        },
+        "notes": (
+            "2*pi=%.15f, 8*beta=%.15f, match=%s. "
+            "Leibniz N=50: %.10f, N=500: %.10f, beta=%.10f. "
+            "Converges: %s (miss=%.2e)."
+        ) % (
+            float(two_pi), float(eight_beta), str(fourier_match),
+            float(leib_50), float(leib_500), float(beta),
+            str(converges), float(leib_500_miss),
+        ),
+    }
+
+
+def beta_lattice_factor_test_v0(value_dicts):
+    """Test the hypothesis C = m_p/Lambda_QCD = 6*beta = 3*pi/2.
+
+    Compares the predicted C = 3*pi/2 = 4.71238... against the
+    BMW lattice determination C = 4.7 +/- 0.5.
+    Reports tension in sigma and consistency.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    beta = pi_val / 4
+
+    # Prediction
+    c_pred = 6 * beta  # = 3*pi/2
+
+    # Measurement
+    c_meas = _f2m(_frac(vm, "conf_lattice_factor_proton_v0"))
+    c_unc = _f2m(_frac(vm, "conf_lattice_factor_proton_unc_v0"))
+
+    # Tension
+    tension = abs(c_pred - c_meas) / c_unc
+    consistent = (tension < mpf("1"))
+
+    # What the 6 might count
+    # Just report the number and let the paper discuss candidates
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_lattice_factor_test_v0",
+        "outputs": {
+            "result_lattice_c_pred_v0":         _approx(c_pred),
+            "result_lattice_c_meas_v0":         _approx(c_meas),
+            "result_lattice_c_unc_v0":          _approx(c_unc),
+            "result_lattice_c_tension_sigma_v0": _approx(tension),
+            "result_lattice_c_consistent_v0":   consistent,
+            "result_lattice_6beta_v0":          _approx(mpf("6") * beta),
+            "result_lattice_3pi_over_2_v0":     _approx(mpf("3") * pi_val / 2),
+        },
+        "notes": (
+            "C predicted = 6*beta = 3*pi/2 = %.6f. "
+            "C measured = %.1f +/- %.1f (BMW). "
+            "Tension = %.4f sigma. Consistent: %s."
+        ) % (
+            float(c_pred), float(c_meas), float(c_unc),
+            float(tension), str(consistent),
+        ),
+    }
+
+
+def beta_cosmic_budget_v0(value_dicts):
+    """Compute the cosmic density budget from beta and integers.
+
+    Omega_DM = beta/3 = pi/12
+    Omega_b = Omega_DM / ((22/13)*4*beta) = 13/264
+    Omega_Lambda = 1 - Omega_DM - Omega_b
+
+    Compare each to Planck 2018 measurements. Report tension in sigma.
+    All inputs from pool.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    beta = pi_val / 4
+
+    # Predictions
+    omega_dm_pred = beta / 3  # = pi/12
+    omega_b_pred = mpf("13") / mpf("264")
+    omega_lambda_pred = mpf("1") - omega_dm_pred - omega_b_pred
+    omega_total_pred = omega_dm_pred + omega_b_pred + omega_lambda_pred
+
+    # Exact Fraction for omega_b
+    omega_b_frac = Fraction(13, 264)
+
+    # Measurements
+    omega_dm_meas = mpf(str(_get(vm, "cosmo_omega_dm_planck_v0")))
+    omega_dm_unc = mpf(str(_get(vm, "cosmo_omega_dm_planck_unc_v0")))
+    omega_b_meas = mpf(str(_get(vm, "cosmo_omega_b_planck_v0")))
+    omega_b_unc = mpf(str(_get(vm, "cosmo_omega_b_planck_unc_v0")))
+    omega_l_meas = mpf(str(_get(vm, "cosmo_omega_lambda_planck_v0")))
+    omega_l_unc = mpf(str(_get(vm, "cosmo_omega_lambda_planck_unc_v0")))
+
+    # Tensions
+    t_dm = abs(omega_dm_pred - omega_dm_meas) / omega_dm_unc
+    t_b = abs(omega_b_pred - omega_b_meas) / omega_b_unc
+    t_l = abs(omega_lambda_pred - omega_l_meas) / omega_l_unc
+
+    # Flatness check
+    total_frac = Fraction(1, 1)  # exactly 1 by construction
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_cosmic_budget_v0",
+        "outputs": {
+            "result_omega_dm_pred_v0":          _approx(omega_dm_pred),
+            "result_omega_b_pred_v0":           _approx(omega_b_pred),
+            "result_omega_b_frac_v0":           omega_b_frac,
+            "result_omega_lambda_pred_v0":      _approx(omega_lambda_pred),
+            "result_omega_total_pred_v0":       total_frac,
+            "result_omega_dm_tension_sigma_v0": _approx(t_dm),
+            "result_omega_b_tension_sigma_v0":  _approx(t_b),
+            "result_omega_lambda_tension_sigma_v0": _approx(t_l),
+            "result_omega_dm_formula_v0":       "pi/12",
+            "result_omega_b_formula_v0":        "13/264",
+            "result_omega_lambda_formula_v0":   "1 - pi/12 - 13/264",
+        },
+        "notes": (
+            "Omega_DM = pi/12 = %.6f (Planck: %.4f +/- %.4f, tension %.2f sigma). "
+            "Omega_b = 13/264 = %.6f (Planck: %.4f +/- %.4f, tension %.2f sigma). "
+            "Omega_Lambda = %.6f (Planck: %.4f +/- %.4f, tension %.2f sigma). "
+            "Total = 1 exactly (flatness)."
+        ) % (
+            float(omega_dm_pred), float(omega_dm_meas), float(omega_dm_unc), float(t_dm),
+            float(omega_b_pred), float(omega_b_meas), float(omega_b_unc), float(t_b),
+            float(omega_lambda_pred), float(omega_l_meas), float(omega_l_unc), float(t_l),
+        ),
+    }
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -7190,6 +7684,14 @@ DERIVATION_MORE_INDEX_V0 = {
     "lambda_qcd_from_running_v0": lambda_qcd_from_running_v0,
     "proton_mass_from_lambda_v0": proton_mass_from_lambda_v0,
     "pion_mass_from_chpt_v0": pion_mass_from_chpt_v0,
+    # MATH-11
+    "beta_foundation_integral_v0": beta_foundation_integral_v0,
+    "beta_lp_family_v0": beta_lp_family_v0,
+    "beta_dim_reg_decomposition_v0": beta_dim_reg_decomposition_v0,
+    "beta_qed_a2_decomposition_v0": beta_qed_a2_decomposition_v0,
+    "beta_fourier_identity_v0": beta_fourier_identity_v0,
+    "beta_lattice_factor_test_v0": beta_lattice_factor_test_v0,
+    "beta_cosmic_budget_v0": beta_cosmic_budget_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {

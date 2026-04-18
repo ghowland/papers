@@ -724,6 +724,84 @@
             "program_clock_reading_decomposition": "confinement boundary is a soliton boundary, sector splitting probes it",
             "program_gr_reading_depth": "proton mass enters gravitational tests as input, partially derived here"
         }
+    },
+    {
+        "key": "program_beta_metric_conversion_v0",
+        "canonical": "program_beta_metric_conversion",
+        "version": 0,
+        "node_type": "program",
+        "topic": "program",
+        "term": "beta_metric_conversion",
+        "level": null,
+        "source": "Session 8",
+        "thesis": "beta = pi/4 is the unique L1/L2 metric conversion factor on circular geometry. It appears universally because all computation is performed in L1 coordinates on L2 physics. This identity explains the nine-domain appearance documented in MATH-1, generates testable predictions for the proton lattice factor (C = 6*beta) and the dark matter density (Omega_DM = pi/12), and decomposes factors of pi in physical formulas into countable metric conversions.",
+        "status": "ACTIVE",
+        "tags": ["beta", "metric", "L1", "L2", "conversion", "pi_over_4", "lattice", "cosmology"],
+        "scripts": [
+            {
+                "name": "beta_foundation_integral_v0",
+                "description": "Verify the L1 circumference integral = 8, compute beta = pi/4, verify quadrant symmetry.",
+                "stage": 1
+            },
+            {
+                "name": "beta_lp_family_v0",
+                "description": "Compute beta(p) for p = 1, 1.5, 2, 3, 4, inf. Verify endpoints and monotonicity.",
+                "stage": 1
+            },
+            {
+                "name": "beta_dim_reg_decomposition_v0",
+                "description": "Check (4*pi)^(d/2) vs (4*beta)^d at d = 2 and d = 4.",
+                "stage": 1
+            },
+            {
+                "name": "beta_qed_a2_decomposition_v0",
+                "description": "Decompose A2 into beta^0 and beta^2 terms. Compute cancellation percentage.",
+                "stage": 2
+            },
+            {
+                "name": "beta_fourier_identity_v0",
+                "description": "Verify 2*pi = 8*beta. Compute Leibniz partial sums converging to beta.",
+                "stage": 1
+            },
+            {
+                "name": "beta_lattice_factor_test_v0",
+                "description": "Compare C = 3*pi/2 against BMW lattice C = 4.7 +/- 0.5. Report tension in sigma.",
+                "stage": 2
+            },
+            {
+                "name": "beta_cosmic_budget_v0",
+                "description": "Compute Omega_DM = pi/12, Omega_b = 13/264, Omega_Lambda = remainder. Compare to Planck.",
+                "stage": 3
+            }
+        ],
+        "kill_switches": [
+            {
+                "name": "lattice_c_exclusion",
+                "condition": "3+ independent lattice determinations exclude C = 3*pi/2 at 2 sigma",
+                "data_source": "FLAG review / BMW / RBC-UKQCD / PACS-CS"
+            },
+            {
+                "name": "omega_dm_cmb_s4",
+                "condition": "CMB-S4 measures Omega_DM > 3 sigma from pi/12 = 0.26180",
+                "data_source": "CMB-S4 (2028-2030)"
+            },
+            {
+                "name": "omega_dm_statistical_control",
+                "condition": "Combinatoric p-value for a*beta/b hitting 0.261 +/- 0.002 exceeds 0.1",
+                "data_source": "Internal computation (BLOCKING until computed)"
+            },
+            {
+                "name": "beta_p_non_monotonic",
+                "condition": "Numerical computation finds beta(p) non-monotonic on [1, inf]",
+                "data_source": "Internal computation"
+            }
+        ],
+        "program_connections": {
+            "program_beta_unification": "shares beta coefficients, cosmological integers 22 and 13",
+            "program_confinement_boundary": "shares lattice factor C, Lambda_QCD, proton mass derivation",
+            "program_toroidal_dm": "shares DM/baryon ratio (22/13)*pi = (22/13)*4*beta"
+        }
     }
+
   ]
 }
