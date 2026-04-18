@@ -1,0 +1,301 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81a",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81a",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81a",
+      "version": 0,
+      "node_type": "value",
+      "value": "116.694585791187",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81b",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81b",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81b",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.74832032381463",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81c",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81c",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81c",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23608527712034",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83a",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83a",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83a_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83a",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.77119198614552",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83b",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83b",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83b_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83b",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.807847353263828",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83c",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83c",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.91113154431228e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83c_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83c",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.434702618543809",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_most_sensitive_integral_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_most_sensitive_integral",
+      "version": 0,
+      "node_type": "value",
+      "value": "C81a",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_per_unit_a4_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_per_unit_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "25.1412721456686",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_ae_contribution_a4_total_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_ae_contribution_a4_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679896675494e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_a4_contribution_vs_harvard_unc_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_a4_contribution_vs_harvard_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.8215305134996",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_with_a4_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_with_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035998868254",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_without_a4_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_without_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.036005456436",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_ppb_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "-48.076287875881",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_absolute_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_absolute",
+      "version": 0,
+      "node_type": "value",
+      "value": "-6.58818213094906e-6",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_a4_decomposition_v0_run001_result_ae_from_a4_v0",
+      "canonical": "experiment_laporta_a4_decomposition_v0_run001_result_ae_from_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679896675494e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_a4_decomposition_v0_run001"
+    }
+  ]
+}

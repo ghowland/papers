@@ -1,0 +1,154 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_laporta_a4_decomposition_v0
+======================================================================
+DATA-6 RUNNER: experiment_laporta_a4_decomposition_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_laporta_a4_decomposition_v0.json
+  Mode:   standard
+  Purpose: program_laporta_constants_v0
+
+Loaded 3269 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 2 derivations
+----------------------------------------------------------------------
+  [OK] laporta_a4_sensitivity_v0                               22 outputs
+  [OK] laporta_a4_alpha_impact_v0                               6 outputs
+
+Derivations: 2 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 7 checks
+----------------------------------------------------------------------
+
+  [PASS] D01: A4 total contribution to a_e (order 10^-11)   range           in [-1e-9, -1e-13]
+  [PASS] D02: C81a sensitivity nonzero                      range           in [-100, 100]
+  [PASS] D03: C81b sensitivity nonzero                      range           in [-100, 100]
+  [PASS] D04: C83a sensitivity nonzero                      range           in [-100, 100]
+  [INFO] D05: Alpha_inv with full A4 matches extraction     miss_pct        predicted 137.035998868254 ref 137.035998630 miss 1.739e-7%
+  [FAIL] D06: A4 shift in ppb is order 1                    range           -48.0763 not in [-10, 10]
+  [PASS] D07: A4 contribution vs Harvard uncertainty ratio  range           in [0.1, 1000]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_laporta_sensitivity_v0                     Sensitivity of alpha to each Laporta constant (ppb per unit change)
+
+Result written: result_experiment_laporta_a4_decomposition_v0_run001.json
+Values written: values_experiment_laporta_a4_decomposition_v0_run001.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  2 / 2
+  Connections:  0 / 0
+
+  PASS: 5
+  FAIL: 1
+  INFO: 1
+  SKIP: 0
+
+  STATUS: 1 FAILURES
+
+======================================================================
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_laporta_a4_decomposition_v0
+
+======================================================================
+DATA-6 REPORT: experiment_laporta_a4_decomposition_v0
+======================================================================
+
+  Result file:  result_experiment_laporta_a4_decomposition_v0_run001.json
+  Timestamp:    2026-04-18T15:40:03Z
+  Status:       partial
+  Mode:         standard
+  Purpose:      program_laporta_constants_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 27 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_a4_contribution_vs_harvard_unc_v0                42.8215305134996
+    result_a4_shift_absolute_v0                             -6.58818213094906e-6
+    result_a4_shift_ppb_v0                                  -48.076287875881
+    result_ae_contribution_a4_total_v0                      -5.56679896675494e-11
+    result_ae_from_a4_v0                                    -5.56679896675494e-11
+    result_alpha_inv_with_a4_v0                             137.035998868254
+    result_alpha_inv_without_a4_v0                          137.036005456436
+    result_dae_per_unit_C81a_v0                             2.91113154431228e-11
+    result_dae_per_unit_C81b_v0                             2.91113154431228e-11
+    result_dae_per_unit_C81c_v0                             2.91113154431228e-11
+    result_dae_per_unit_C83a_v0                             2.91113154431228e-11
+    result_dae_per_unit_C83b_v0                             2.91113154431228e-11
+    result_dae_per_unit_C83c_v0                             2.91113154431228e-11
+    result_dalpha_ppb_C81a_v0                               25.1412721456686
+    result_dalpha_ppb_C81b_v0                               25.1412721456686
+    result_dalpha_ppb_C81c_v0                               25.1412721456686
+    result_dalpha_ppb_C83a_v0                               25.1412721456686
+    result_dalpha_ppb_C83b_v0                               25.1412721456686
+    result_dalpha_ppb_C83c_v0                               25.1412721456686
+    result_dalpha_ppb_per_unit_a4_v0                        25.1412721456686
+    result_magnitude_C81a_v0                                116.694585791187
+    result_magnitude_C81b_v0                                8.74832032381463
+    result_magnitude_C81c_v0                                0.23608527712034
+    result_magnitude_C83a_v0                                2.77119198614552
+    result_magnitude_C83b_v0                                0.807847353263828
+    result_magnitude_C83c_v0                                0.434702618543809
+    result_most_sensitive_integral_v0                       C81a
+
+----------------------------------------------------------------------
+COMPARISONS: 7 checks
+----------------------------------------------------------------------
+
+  [PASS] D01: A4 total contribution to a_e (order 10^-11)
+    got:      -5.5668e-11
+    range:    [-1e-9, -1e-13]
+
+  [PASS] D02: C81a sensitivity nonzero
+    got:      25.1413
+    range:    [-100, 100]
+
+  [PASS] D03: C81b sensitivity nonzero
+    got:      25.1413
+    range:    [-100, 100]
+
+  [PASS] D04: C83a sensitivity nonzero
+    got:      25.1413
+    range:    [-100, 100]
+
+  [INFO] D05: Alpha_inv with full A4 matches extraction
+    predicted:  137.035998868254
+    measured:   137.035998630
+    agree:      9 of 12 digits
+    diverge:    position 10: '8' vs '6'
+    miss:       1.739 ppb
+    status:     INFO
+
+  [FAIL] D06: A4 shift in ppb is order 1
+    expected: ?
+    got:      -48.0763
+    diverge:  position 0: '-' vs '?'
+    status:   FAIL
+
+  [PASS] D07: A4 contribution vs Harvard uncertainty ratio
+    got:      42.8215
+    range:    [0.1, 1000]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  2
+  Derivations err: 0
+
+  PASS: 5
+  FAIL: 1
+  INFO: 1
+  SKIP: 0
+
+  EXPERIMENT: PARTIAL
+
+======================================================================
+

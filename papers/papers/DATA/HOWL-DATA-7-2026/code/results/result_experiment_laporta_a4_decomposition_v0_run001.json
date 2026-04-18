@@ -1,0 +1,137 @@
+{
+  "key": "result_experiment_laporta_a4_decomposition_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_laporta_a4_decomposition_v0",
+  "timestamp": "2026-04-18T15:40:03Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "laporta_a4_sensitivity_v0",
+      "status": "ok",
+      "output_count": 22
+    },
+    {
+      "key": "laporta_a4_alpha_impact_v0",
+      "status": "ok",
+      "output_count": 6
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "D01: A4 total contribution to a_e (order 10^-11)",
+      "output_key": "result_ae_contribution_a4_total_v0",
+      "match_mode": "range",
+      "reference_source": "QED_series",
+      "got": "-5.5668e-11",
+      "lo": "-1e-9",
+      "hi": "-1e-13",
+      "status": "PASS",
+      "detail": "in [-1e-9, -1e-13]"
+    },
+    {
+      "label": "D02: C81a sensitivity nonzero",
+      "output_key": "result_dalpha_ppb_C81a_v0",
+      "match_mode": "range",
+      "reference_source": "perturbation",
+      "got": "25.1413",
+      "lo": "-100",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [-100, 100]"
+    },
+    {
+      "label": "D03: C81b sensitivity nonzero",
+      "output_key": "result_dalpha_ppb_C81b_v0",
+      "match_mode": "range",
+      "reference_source": "perturbation",
+      "got": "25.1413",
+      "lo": "-100",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [-100, 100]"
+    },
+    {
+      "label": "D04: C83a sensitivity nonzero",
+      "output_key": "result_dalpha_ppb_C83a_v0",
+      "match_mode": "range",
+      "reference_source": "perturbation",
+      "got": "25.1413",
+      "lo": "-100",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [-100, 100]"
+    },
+    {
+      "label": "D05: Alpha_inv with full A4 matches extraction",
+      "output_key": "result_alpha_inv_with_a4_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "qed_alpha_extraction_run011",
+      "status": "INFO",
+      "expected": "137.035998630",
+      "got": "137.035998868254",
+      "miss_pct": "1.739e-7",
+      "detail": "predicted 137.035998868254 ref 137.035998630 miss 1.739e-7%"
+    },
+    {
+      "label": "D06: A4 shift in ppb is order 1",
+      "output_key": "result_a4_shift_ppb_v0",
+      "match_mode": "range",
+      "reference_source": "QED_series",
+      "got": "-48.0763",
+      "lo": "-10",
+      "hi": "10",
+      "status": "FAIL",
+      "detail": "-48.0763 not in [-10, 10]"
+    },
+    {
+      "label": "D07: A4 contribution vs Harvard uncertainty ratio",
+      "output_key": "result_a4_contribution_vs_harvard_unc_v0",
+      "match_mode": "range",
+      "reference_source": "Harvard_precision",
+      "got": "42.8215",
+      "lo": "0.1",
+      "hi": "1000",
+      "status": "PASS",
+      "detail": "in [0.1, 1000]"
+    }
+  ],
+  "outputs": {
+    "result_dalpha_ppb_C81a_v0": "25.1412721456686",
+    "result_dae_per_unit_C81a_v0": "2.91113154431228e-11",
+    "result_magnitude_C81a_v0": "116.694585791187",
+    "result_dalpha_ppb_C81b_v0": "25.1412721456686",
+    "result_dae_per_unit_C81b_v0": "2.91113154431228e-11",
+    "result_magnitude_C81b_v0": "8.74832032381463",
+    "result_dalpha_ppb_C81c_v0": "25.1412721456686",
+    "result_dae_per_unit_C81c_v0": "2.91113154431228e-11",
+    "result_magnitude_C81c_v0": "0.23608527712034",
+    "result_dalpha_ppb_C83a_v0": "25.1412721456686",
+    "result_dae_per_unit_C83a_v0": "2.91113154431228e-11",
+    "result_magnitude_C83a_v0": "2.77119198614552",
+    "result_dalpha_ppb_C83b_v0": "25.1412721456686",
+    "result_dae_per_unit_C83b_v0": "2.91113154431228e-11",
+    "result_magnitude_C83b_v0": "0.807847353263828",
+    "result_dalpha_ppb_C83c_v0": "25.1412721456686",
+    "result_dae_per_unit_C83c_v0": "2.91113154431228e-11",
+    "result_magnitude_C83c_v0": "0.434702618543809",
+    "result_most_sensitive_integral_v0": "C81a",
+    "result_dalpha_ppb_per_unit_a4_v0": "25.1412721456686",
+    "result_ae_contribution_a4_total_v0": "-5.56679896675494e-11",
+    "result_a4_contribution_vs_harvard_unc_v0": "42.8215305134996",
+    "result_alpha_inv_with_a4_v0": "137.035998868254",
+    "result_alpha_inv_without_a4_v0": "137.036005456436",
+    "result_a4_shift_ppb_v0": "-48.076287875881",
+    "result_a4_shift_absolute_v0": "-6.58818213094906e-6",
+    "result_ae_from_a4_v0": "-5.56679896675494e-11"
+  },
+  "summary": {
+    "derivations_ok": 2,
+    "derivations_err": 0,
+    "comparisons_pass": 5,
+    "comparisons_fail": 1,
+    "comparisons_info": 1,
+    "comparisons_skip": 0
+  }
+}
