@@ -1,50 +1,3 @@
-### MATH-11 Diagram Candidates — 20 Enumerated
-
-| # | Candidate | Type (D5) | What physics it shows that text cannot | Score |
-|---|---|---|---|---|
-| 1 | The staircase paradox — L1 staircase on L2 circle, both measured | Geometric Cross-Section (D5.4) | The visual of a staircase that never converges to the circle, two perimeters coexisting on one shape | +2 geometry, +2 impossible in text = 4 |
-| 2 | The foundation integral — |sin θ| + |cos θ| plotted over [0, 2π] with quadrant areas | Running/Convergence (D5.1) | The SHAPE of the integrand — four identical humps, each integrating to 2, total 8 | +2 curve, +2 impossible in text = 4 |
-| 3 | β(p) family curve from p=1 to p=∞ | Running/Convergence (D5.1) | The smooth monotonic rise from π/4 through 1 to π√2/4 — the lattice-to-continuum transition IS the curve | +2 curve, +1 connects sections, +1 quantitative = 4 |
-| 4 | Nine domains — L1/L2 mechanism at each | Connection/Integer Map (D5.5) | How one identity (L2/L1 = β) propagates through 9 domains with specific formulas | +1 connects, +1 quantitative, −1 similar to MATH-1 = 1 |
-| 5 | Fourier: square wave decomposition converging to β | Running/Convergence (D5.1) | Partial sums of the Leibniz series approaching β — the convergence shape IS the L1→L2 conversion | +2 curve, +2 impossible in text = 4 |
-| 6 | The QED A₂ coefficient — four terms with β content tagged | Comparison Bar (D5.6) | The 87% cancellation between β² and β⁰ terms — bar heights show the near-destruction visually | +2 impossible in text, +1 quantitative = 3 |
-| 7 | ℏ = h/(8β) — L1 vs L2 phase space cells | Geometric Cross-Section (D5.4) | Rectangular cell (area h) vs circular cell (area ℏ) — the two phase space geometries side by side | +2 geometry, +2 impossible in text = 4 |
-| 8 | Lattice factor C = 6β — predicted vs lattice data | Threshold/Region (D5.3) | Prediction band at 3π/2 = 4.712 against lattice measurement range — the dot inside the band | +2 impossible in text, +1 quantitative, +1 connects = 4 |
-| 9 | String tension σ^{1/2}/Λ vs 2π/3 | Threshold/Region (D5.3) | Same as #8 but for string tension — predicted ratio against lattice range | +1 quantitative, +1 connects, −1 similar to #8 = 1 |
-| 10 | Cosmic budget — Ω_DM = β/3, Ω_b = 13/264, Ω_Λ = remainder | Comparison Bar (D5.6) | Three segments of a stacked bar, all from β and integers, matching Planck at < 1σ | +2 impossible in text, +1 quantitative, +1 connects = 4 |
-| 11 | β power catalog — formulas sorted by β⁰, β¹, β², β³, β⁵ | Scale/Landscape (D5.2) | The hierarchy of β powers across physics — which formulas carry how many metric conversions | +2 scale, +1 connects = 3 |
-| 12 | (4π)^{d/2} = (4β)^d verification at d = 2,3,4 | Comparison Bar (D5.6) | Visual check that the two expressions match — bars at each dimension | +1 quantitative, −2 essentially a table = −1 |
-| 13 | Constants audit — β content vs no β, classified | Comparison Bar (D5.6) | Two groups of constants separated by β content — the classification IS the finding | +1 connects, −2 essentially a table = −1 |
-| 14 | L1 vs L2 distance on straight lines vs circular arcs | Geometric Cross-Section (D5.4) | The contrast: L1/L2 ratio depends on path for straight lines but is constant (β) for circles | +2 geometry, +2 impossible in text = 4 |
-| 15 | Wallis product partial convergents approaching β | Running/Convergence (D5.1) | The slow oscillating convergence of the infinite product — each factor overshoots then undershoots | +2 curve, +1 connects = 3 |
-| 16 | DM/baryon chain with β entering at the toroid step | Progression/Sequence (D5.7) | The physical sequence from integers through β to Planck measurement — where exactly the L1/L2 conversion enters | +1 connects, +1 quantitative, −1 similar to prior paper = 1 |
-| 17 | Proton mass from 6β × Λ_QCD — the derivation chain | Progression/Sequence (D5.7) | From b₃ through Λ through β to m_p — the chain with β marked at its entry point | +1 connects, +1 quantitative = 2 |
-| 18 | Lattice staircase artifact — Wilson loop on a grid vs continuum | Geometric Cross-Section (D5.4) | A circular Wilson loop drawn on a square lattice — the staircase IS the lattice artifact | +2 geometry, +2 impossible in text = 4 |
-| 19 | Identity card — β as metric conversion factor, all properties | Identity Card (D5.8) | Central reference: the integral, the value, the Lp family, the predictions, all on one card | +1 connects, +1 quantitative = 2 |
-| 20 | Ω_DM = π/12 on the Planck measurement axis | Threshold/Region (D5.3) | Predicted value sitting inside the measurement band — the visual precision match | +2 impossible in text, +1 quantitative = 3 |
-
----
-
-### SELECTION — Top 8 (at least 4 different types)
-
-| Fig | # | Candidate | Type | Justification |
-|---|---|---|---|---|
-| 1 | 1 | Staircase paradox — L1 on L2 | Geometric Cross-Section | The core visual. Two metrics on one circle. Score 4. |
-| 2 | 2 | Foundation integral |sin θ|+|cos θ| | Running/Convergence | The shape of the integrand proves C₁ = 8. Score 4. |
-| 3 | 3 | β(p) family curve | Running/Convergence | The Lp generalization as a curve from lattice to continuum. Score 4. |
-| 4 | 7 | Phase space cells — h vs ℏ | Geometric Cross-Section | Two geometries of phase space. Score 4. |
-| 5 | 6 | QED A₂ decomposition by β content | Comparison Bar | The 87% cancellation visualized. Score 3. |
-| 6 | 8 | Lattice factor C = 6β vs data | Threshold/Region | Prediction against measurement. Score 4. |
-| 7 | 10 | Cosmic budget from β | Comparison Bar | Three cosmic fractions from one conversion factor. Score 4. |
-| 8 | 18 | Wilson loop on lattice — staircase artifact | Geometric Cross-Section | The lattice staircase IS the physics. Score 4. |
-
-**Type coverage:** Geometric Cross-Section (3), Running/Convergence (2), Comparison Bar (2), Threshold/Region (1). Four types represented. ✓
-
----
-
-### THE SCRIPT
-
-```python
 #!/usr/bin/env python3
 """
 HOWL MATH-11 Diagrams — beta = pi/4 as L1/L2 Metric Conversion Factor
@@ -66,19 +19,38 @@ import os
 # GLOBAL STYLE
 # ================================================================
 
-BG      = '#0a0a12'
-PAN     = '#12121f'
-GOLD    = '#d4a843'
-SILVER  = '#a0a8b8'
-CYAN    = '#4ecdc4'
-MAG     = '#c74b7a'
-BLUE    = '#5b8def'
-GREEN   = '#6bcf7f'
-RED     = '#e05555'
-ORANGE  = '#e8944a'
-WHITE   = '#e8e8f0'
-DIM     = '#555570'
-PURPLE  = '#9b7bd4'
+# Light mode
+if True:
+    # ── Global palette (Kindle / light mode) ──
+    BG      = '#ffffff'
+    PAN     = '#f0ede8'
+    GOLD    = '#a07820'
+    SILVER  = '#505860'
+    CYAN    = '#1a8a80'
+    MAG     = '#a03058'
+    BLUE    = '#2855a0'
+    GREEN   = '#2a7a3a'
+    RED     = '#b82020'
+    ORANGE  = '#c06a18'
+    WHITE   = '#1a1a22'
+    DIM     = '#908e88'
+    PURPLE  = '#6040a0'
+else:
+    # ── Global palette (D7.2) ──
+    BG      = '#0a0a12'
+    PAN     = '#12121f'
+    GOLD    = '#d4a843'
+    SILVER  = '#a0a8b8'
+    CYAN    = '#4ecdc4'
+    MAG     = '#c74b7a'
+    BLUE    = '#5b8def'
+    GREEN   = '#6bcf7f'
+    RED     = '#e05555'
+    ORANGE  = '#e8944a'
+    WHITE   = '#e8e8f0'
+    DIM     = '#555570'
+    PURPLE  = '#9b7bd4'
+
 
 def setup_ax(ax, title='', xlabel='', ylabel=''):
     ax.set_facecolor(PAN)
@@ -760,19 +732,3 @@ print("  math11_06_lattice_factor.png")
 print("  math11_07_cosmic_budget.png")
 print("  math11_08_wilson_loop_lattice.png")
 print("=" * 50)
-```
-
----
-
-### Placement Table
-
-| Fig | Filename | Title | Section | Markdown |
-|-----|----------|-------|---------|----------|
-| 1 | math11_01_staircase_paradox.png | The Staircase Paradox: Two Metrics, One Circle | §I | `![Fig. 1: Two metrics on one circle. The L1 staircase measures 4d regardless of refinement. The L2 circumference is πd. Their ratio is β = π/4.](./figures/math11_01_staircase_paradox.png)` |
-| 2 | math11_02_foundation_integral.png | The Foundation Integral | §II | `![Fig. 2: The integrand |sin θ| + |cos θ| over [0, 2π]. Four identical quadrant humps, each integrating to 2, total 8. This IS the L1 circumference.](./figures/math11_02_foundation_integral.png)` |
-| 3 | math11_03_beta_p_family.png | β(p) Family Curve | §VII | `![Fig. 3: The generalized β(p) from p=1 (lattice, π/4) through p=2 (Euclidean, 1) to p=∞ (Chebyshev, π√2/4). The lattice-to-continuum transition is the curve.](./figures/math11_03_beta_p_family.png)` |
-| 4 | math11_04_phase_space_cells.png | Phase Space Cells: h vs ℏ | §V | `![Fig. 4: Two phase-space cells. Rectangular (L1) has area h. Circular (L2) has area ℏ = h/(8β). The conversion is one L1/L2 factor per circular period.](./figures/math11_04_phase_space_cells.png)` |
-| 5 | math11_05_qed_a2_decomposition.png | QED A₂ by β Content | §VI | `![Fig. 5: The four terms of A₂ tagged by β content. The β² terms (angular integration) nearly cancel the β⁰ terms (topology + number theory). 87% cancellation.](./figures/math11_05_qed_a2_decomposition.png)` |
-| 6 | math11_06_lattice_factor.png | Lattice Factor C = 6β | §IX | `![Fig. 6: The predicted C = 3π/2 = 4.712 sits inside the BMW lattice measurement C = 4.7 ± 0.5 at 0.02σ.](./figures/math11_06_lattice_factor.png)` |
-| 7 | math11_07_cosmic_budget.png | Cosmic Budget from β | §X | `![Fig. 7: Three cosmic fractions from β and integers. Ω_DM = π/12, Ω_b = 13/264, Ω_Λ = remainder. All match Planck within 1σ. Statistical control pending.](./figures/math11_07_cosmic_budget.png)` |
-| 8 | math11_08_wilson_loop_lattice.png | Wilson Loop Lattice Artifact | §IX | `![Fig. 8: A circular Wilson loop on a square lattice. The lattice path is the staircase. The continuum path is the circle. The ratio is β. The staircase paradox IS the lattice artifact.](./figures/math11_08_wilson_loop_lattice.png)` |
