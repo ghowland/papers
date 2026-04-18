@@ -1,0 +1,38 @@
+{
+    "key": "connection_laporta_toroidal_v0",
+    "canonical": "connection_laporta_toroidal",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Tests the toroidal geometry hypothesis for the Laporta constants from three directions: (1) beta-content classification using PSLQ null results confirms all six are beta^0 (no pi content), (2) elliptic magnitude scan checks whether |C_i| matches rational multiples of K(k) or E(k) at any modulus, (3) ratio analysis checks whether inter-integral ratios match simple geometric numbers.",
+    "paper": "PHYS-47",
+    "domains_connected": ["qed", "laporta", "metric_geometry", "elliptic_curves", "toroidal"],
+    "thesis": "The Laporta integrals are beta^0 (no spherical angular content) but may carry toroidal angular content expressible as elliptic periods. Their magnitudes and ratios should constrain the moduli of the underlying elliptic curves.",
+    "formula": "C_i =? (p/q) * K(k_topology) or (p/q) * K(k)^a * E(k)^b for rational p/q and specific modulus k",
+    "input_values": [
+        "laporta_C81a_v0",
+        "laporta_C81b_v0",
+        "laporta_C81c_v0",
+        "laporta_C83a_v0",
+        "laporta_C83b_v0",
+        "laporta_C83c_v0",
+        "geom_pi_v0",
+        "geom_elliptic_k_half_v0",
+        "geom_elliptic_k_quarter_v0",
+        "geom_elliptic_k_threequarter_v0",
+        "geom_elliptic_e_half_v0",
+        "geom_elliptic_e_quarter_v0",
+        "geom_elliptic_e_threequarter_v0"
+    ],
+    "output_values": [
+        "result_all_beta0_v0",
+        "result_best_k_for_C81a_v0",
+        "result_best_k_for_C83a_v0",
+        "result_ratio_81a_83a_v0",
+        "result_nearest_simple_81a_83a_v0"
+    ],
+    "derivation_functions": [
+        "laporta_beta_classification_v0",
+        "laporta_elliptic_magnitude_scan_v0",
+        "laporta_ratio_analysis_v0"
+    ]
+}

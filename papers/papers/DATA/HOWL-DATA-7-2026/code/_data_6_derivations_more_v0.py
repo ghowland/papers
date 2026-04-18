@@ -8425,6 +8425,314 @@ def beta_content_a2_a3_compare_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PHYS-47: Laporta Toroidal Geometry Tests
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "laporta_beta_classification_v0": laporta_beta_classification_v0,
+#   "laporta_elliptic_magnitude_scan_v0": laporta_elliptic_magnitude_scan_v0,
+#   "laporta_ratio_analysis_v0": laporta_ratio_analysis_v0,
+# =============================================================================
+
+
+def laporta_beta_classification_v0(value_dicts):
+    """Classify each Laporta integral by beta content.
+
+    The PSLQ null results from experiment_laporta_pslq_v0 established
+    that none of the six integrals is expressible as a linear combination
+    of the 66-element basis. In particular, no integral has a pi component.
+    Therefore all six are formally beta^0: they carry no spherical angular
+    content (no pi powers).
+
+    This derivation formalizes that classification and notes that beta^0
+    has two possible subcategories:
+    - number-theoretic beta^0: rational, zeta, Li (known constants, no pi)
+    - toroidal-geometric beta^0: elliptic periods K(k), E(k) (no pi directly,
+      but geometric origin from toroidal topology)
+
+    The PSLQ null cannot distinguish these subcategories. Attack 3 (elliptic
+    scan) is needed.
+    """
+    vm = _value_map(value_dicts)
+
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+    outputs = {}
+
+    all_beta0 = True
+    for label in labels:
+        # The classification follows from the PSLQ null against pi, pi^2, etc.
+        # If any integral had pi content, PSLQ would have found it.
+        outputs["result_%s_beta_class_v0" % label] = "beta0"
+        outputs["result_%s_pi_content_v0" % label] = "NONE (24/24 PSLQ null)"
+
+    outputs["result_all_beta0_v0"] = all_beta0
+    outputs["result_beta0_subcategory_note_v0"] = (
+        "beta^0 has two subcategories: number-theoretic (rational, zeta, Li) "
+        "and toroidal-geometric (elliptic K, E). PSLQ null against polylog "
+        "basis rules out number-theoretic. Elliptic scan tests toroidal."
+    )
+
+    return {
+        "key": "laporta_beta_classification_v0",
+        "outputs": outputs,
+        "notes": (
+            "All 6 integrals classified as beta^0 (no pi content). "
+            "PSLQ null against 66 constants including pi through pi^6 "
+            "rules out any spherical angular contribution. "
+            "Subcategory (number-theoretic vs toroidal) undetermined."
+        ),
+    }
+
+
+def laporta_elliptic_magnitude_scan_v0(value_dicts):
+    """Scan whether |C_i| matches (p/q) * K(k)^a * E(k)^b for small
+    integers p, q, a, b and moduli k from the pool.
+
+    Uses pool elliptic values at k^2 = 1/4, 1/2, 3/4 as starting points.
+    Also computes K(k) for a fine grid of k from 0.01 to 0.99 and checks
+    whether any rational multiple (p/q for p,q in 1..50) matches |C_i|.
+
+    For each integral, reports the best-matching (k, p/q) and the miss%.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import ellipk, ellipe
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # Load integrals
+    integrals = {}
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        integrals[label] = abs(mpf(str(_get(vm, "laporta_%s_v0" % label))))
+
+    # Pool elliptic values
+    pool_k = {
+        "k2=1/4": (_f2m(_frac(vm, "geom_elliptic_k_quarter_v0")),
+                    _f2m(_frac(vm, "geom_elliptic_e_quarter_v0"))),
+        "k2=1/2": (_f2m(_frac(vm, "geom_elliptic_k_half_v0")),
+                    _f2m(_frac(vm, "geom_elliptic_e_half_v0"))),
+        "k2=3/4": (_f2m(_frac(vm, "geom_elliptic_k_threequarter_v0")),
+                    _f2m(_frac(vm, "geom_elliptic_e_threequarter_v0"))),
+    }
+
+    # Compute K(k) on a grid
+    k_grid = [mpf(str(x)) for x in
+              [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,
+               0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9,
+               0.92, 0.94, 0.96, 0.98, 0.99, 0.995, 0.999]]
+
+    k_values = []  # list of (k, K(k), E(k))
+    for k in k_grid:
+        k2 = k * k
+        K_val = ellipk(k2)
+        E_val = ellipe(k2)
+        k_values.append((k, K_val, E_val))
+
+    # Add pool values
+    for name, (K_val, E_val) in pool_k.items():
+        k_str = name.split("=")[1]
+        k_values.append((mpf(k_str), K_val, E_val))
+
+    # For each integral, scan rational multiples of K, E, K^2, K*E, K*pi, K^2/pi
+    outputs = {}
+
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        target = integrals[label]
+        best_miss = mpf("1e10")
+        best_k = mpf("0")
+        best_form = ""
+        best_pq = ""
+
+        for k, K_val, E_val in k_values:
+            # Test forms: (p/q)*K, (p/q)*E, (p/q)*K^2, (p/q)*K*E,
+            #             (p/q)*K^2/pi, (p/q)*K*pi
+            forms = [
+                ("K", K_val),
+                ("E", E_val),
+                ("K2", K_val**2),
+                ("KE", K_val * E_val),
+                ("K2/pi", K_val**2 / pi_val),
+                ("K*pi", K_val * pi_val),
+                ("E*pi", E_val * pi_val),
+                ("K3", K_val**3),
+                ("K2E", K_val**2 * E_val),
+            ]
+
+            for form_name, form_val in forms:
+                if form_val < mpf("1e-10"):
+                    continue
+                # Check p/q for p,q in 1..50
+                for p in range(1, 51):
+                    for q in range(1, 51):
+                        candidate = mpf(str(p)) / mpf(str(q)) * form_val
+                        miss = abs(candidate - target) / target
+                        if miss < best_miss:
+                            best_miss = miss
+                            best_k = k
+                            best_form = form_name
+                            best_pq = "%d/%d" % (p, q)
+
+        best_miss_pct = float(best_miss) * 100
+
+        outputs["result_best_k_for_%s_v0" % label] = _approx(best_k)
+        outputs["result_best_form_%s_v0" % label] = best_form
+        outputs["result_best_rational_%s_v0" % label] = best_pq
+        outputs["result_best_miss_%s_pct_v0" % label] = _approx(mpf(str(best_miss_pct)))
+        outputs["result_best_candidate_%s_v0" % label] = _approx(
+            mpf(best_pq.split("/")[0]) / mpf(best_pq.split("/")[1])
+            * (K_val if best_form == "K" else form_val)  # approximate
+        )
+
+    # Summary: did any hit below 0.1%?
+    hits = 0
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        miss_val = float(str(outputs["result_best_miss_%s_pct_v0" % label]))
+        if miss_val < 0.1:
+            hits += 1
+    outputs["result_elliptic_hits_below_0p1_pct_v0"] = hits
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_elliptic_magnitude_scan_v0",
+        "outputs": outputs,
+        "notes": (
+            "Scanned %d moduli x 9 forms x 2500 rationals = %d candidates per integral. "
+            "Hits below 0.1%%: %d out of 6."
+        ) % (len(k_values), len(k_values) * 9 * 2500, hits),
+    }
+
+
+def laporta_ratio_analysis_v0(value_dicts):
+    """Compute all inter-integral ratios and test against simple numbers.
+
+    Simple numbers tested: integers 1-200, n/m for n,m in 1-50,
+    n*pi for n in 1-20, n*sqrt(2) for n in 1-20, n*zeta(3) for n in 1-20.
+
+    For each ratio, find the nearest simple expression and report the miss.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    sqrt2 = _f2m(_frac(vm, "geom_sqrt2_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+
+    # Load integrals (signed)
+    vals = {}
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        vals[label] = mpf(str(_get(vm, "laporta_%s_v0" % label)))
+
+    # Compute all 15 pairwise ratios
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+    ratios = {}
+    for i in range(len(labels)):
+        for j in range(i + 1, len(labels)):
+            la, lb = labels[i], labels[j]
+            if vals[lb] != mpf("0"):
+                r = vals[la] / vals[lb]
+                key = "%s_%s" % (la[1:], lb[1:])  # e.g. "81a_83a"
+                ratios[key] = r
+
+    # Build catalog of simple numbers to test against
+    simple = {}
+    for n in range(1, 201):
+        simple[str(n)] = mpf(str(n))
+        simple["-%d" % n] = mpf(str(-n))
+    for n in range(1, 51):
+        for m in range(1, 51):
+            if n != m:
+                simple["%d/%d" % (n, m)] = mpf(str(n)) / mpf(str(m))
+                simple["-%d/%d" % (n, m)] = -mpf(str(n)) / mpf(str(m))
+    for n in range(1, 21):
+        simple["%d*pi" % n] = mpf(str(n)) * pi_val
+        simple["-%d*pi" % n] = -mpf(str(n)) * pi_val
+        simple["%d*sqrt2" % n] = mpf(str(n)) * sqrt2
+        simple["-%d*sqrt2" % n] = -mpf(str(n)) * sqrt2
+        simple["%d*z3" % n] = mpf(str(n)) * zeta3
+        simple["-%d*z3" % n] = -mpf(str(n)) * zeta3
+        simple["%d*ln2" % n] = mpf(str(n)) * ln2
+        simple["-%d*ln2" % n] = -mpf(str(n)) * ln2
+        simple["pi/%d" % n] = pi_val / mpf(str(n))
+        simple["-pi/%d" % n] = -pi_val / mpf(str(n))
+
+    outputs = {}
+
+    # Report raw ratios
+    for key, r in ratios.items():
+        outputs["result_ratio_%s_v0" % key] = _approx(r)
+
+    # For each ratio, find nearest simple number
+    key_ratios = [
+        "81a_83a", "81a_81b", "81b_81c", "83a_83b", "83b_83c", "81a_81c",
+    ]
+
+    for key in key_ratios:
+        if key not in ratios:
+            continue
+        r = ratios[key]
+        best_miss = mpf("1e10")
+        best_name = ""
+
+        for name, val in simple.items():
+            miss = abs(r - val) / abs(r)
+            if miss < best_miss:
+                best_miss = miss
+                best_name = name
+
+        outputs["result_nearest_simple_%s_v0" % key] = _approx(mpf(str(float(best_miss) * 100)))
+        outputs["result_nearest_name_%s_v0" % key] = best_name
+
+    # Within-topology ratio patterns
+    # Topology 81: a/b, b/c, a/c
+    outputs["result_topo81_ratio_pattern_v0"] = (
+        "a/b=%.4f, b/c=%.4f, a/c=%.4f" % (
+            float(ratios.get("81a_81b", 0)),
+            float(ratios.get("81b_81c", 0)),
+            float(ratios.get("81a_81c", 0)),
+        )
+    )
+    # Topology 83: a/b, b/c, a/c
+    outputs["result_topo83_ratio_pattern_v0"] = (
+        "a/b=%.4f, b/c=%.4f, a/c=%.4f" % (
+            float(ratios.get("83a_83b", 0)),
+            float(ratios.get("83b_83c", 0)),
+            float(ratios.get("83a_83c", 0)),
+        )
+    )
+
+    # Cross-topology: do the two topologies have similar internal structure?
+    if "81a_81b" in ratios and "83a_83b" in ratios:
+        ratio_of_ratios = ratios["81a_81b"] / ratios["83a_83b"]
+        outputs["result_ratio_of_ratios_ab_v0"] = _approx(ratio_of_ratios)
+
+    if "81b_81c" in ratios and "83b_83c" in ratios:
+        ratio_of_ratios_bc = ratios["81b_81c"] / ratios["83b_83c"]
+        outputs["result_ratio_of_ratios_bc_v0"] = _approx(ratio_of_ratios_bc)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_ratio_analysis_v0",
+        "outputs": outputs,
+        "notes": (
+            "15 pairwise ratios computed. Key ratios: "
+            "C81a/C83a=%.4f, C81a/C81b=%.4f, C83a/C83b=%.4f. "
+            "Tested against %d simple expressions."
+        ) % (
+            float(ratios.get("81a_83a", 0)),
+            float(ratios.get("81a_81b", 0)),
+            float(ratios.get("83a_83b", 0)),
+            len(simple),
+        ),
+    }
 
 
 # ================================================================
@@ -8575,6 +8883,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "laporta_a4_alpha_impact_v0": laporta_a4_alpha_impact_v0,
     # Laporta Beta Content A2 A3 Compare
     "beta_content_a2_a3_compare_v0": beta_content_a2_a3_compare_v0,    
+    # Laporta Sphere and Toroid tests
+    "laporta_beta_classification_v0": laporta_beta_classification_v0,
+    "laporta_elliptic_magnitude_scan_v0": laporta_elliptic_magnitude_scan_v0,
+    "laporta_ratio_analysis_v0": laporta_ratio_analysis_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

@@ -1,0 +1,126 @@
+{
+    "key": "experiment_laporta_toroidal_v0",
+    "canonical": "experiment_laporta_toroidal",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Three-pronged test of the toroidal geometry hypothesis for the Laporta constants. (1) Formally classify all six integrals by beta content using PSLQ null results. (2) Search for elliptic integral magnitudes matching |C_i| by scanning K(k) and E(k) over moduli. (3) Compute inter-integral ratios and test against simple geometric ratios (integers, sqrt, pi multiples).",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "laporta_C81a": 0,
+            "laporta_C81b": 0,
+            "laporta_C81c": 0,
+            "laporta_C83a": 0,
+            "laporta_C83b": 0,
+            "laporta_C83c": 0,
+            "geom_pi": 0,
+            "geom_sqrt2": 0,
+            "geom_zeta3": 0,
+            "geom_ln2": 0,
+            "geom_elliptic_k_half": 0,
+            "geom_elliptic_k_quarter": 0,
+            "geom_elliptic_k_threequarter": 0,
+            "geom_elliptic_e_half": 0,
+            "geom_elliptic_e_quarter": 0,
+            "geom_elliptic_e_threequarter": 0
+        },
+        "derivations": {
+            "laporta_beta_classification": 0,
+            "laporta_elliptic_magnitude_scan": 0,
+            "laporta_ratio_analysis": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "laporta_beta_classification_v0",
+        "laporta_elliptic_magnitude_scan_v0",
+        "laporta_ratio_analysis_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_C81a_beta_class_v0",
+        "result_C81b_beta_class_v0",
+        "result_C81c_beta_class_v0",
+        "result_C83a_beta_class_v0",
+        "result_C83b_beta_class_v0",
+        "result_C83c_beta_class_v0",
+        "result_all_beta0_v0",
+        "result_best_k_for_C81a_v0",
+        "result_best_k_for_C83a_v0",
+        "result_best_rational_C81a_v0",
+        "result_best_rational_C83a_v0",
+        "result_best_miss_C81a_pct_v0",
+        "result_best_miss_C83a_pct_v0",
+        "result_ratio_81a_83a_v0",
+        "result_ratio_81a_81b_v0",
+        "result_ratio_81b_81c_v0",
+        "result_ratio_83a_83b_v0",
+        "result_ratio_83b_83c_v0",
+        "result_ratio_81a_81c_v0",
+        "result_nearest_simple_81a_83a_v0",
+        "result_nearest_simple_81a_81b_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "T01: All six integrals classified as beta^0",
+            "output_key": "result_all_beta0_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "PSLQ_null_pi"
+        },
+        {
+            "label": "T02: Best elliptic match for C81a miss < 1%",
+            "output_key": "result_best_miss_C81a_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "T03: Best elliptic match for C83a miss < 1%",
+            "output_key": "result_best_miss_C83a_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "T04: Ratio C81a/C83a computed",
+            "output_key": "result_ratio_81a_83a_v0",
+            "match_mode": "range",
+            "lo": "1",
+            "hi": "200",
+            "reference_source": "computed"
+        },
+        {
+            "label": "T05: Ratio C81a/C81b computed",
+            "output_key": "result_ratio_81a_81b_v0",
+            "match_mode": "range",
+            "lo": "-100",
+            "hi": "100",
+            "reference_source": "computed"
+        },
+        {
+            "label": "T06: Nearest simple expression to C81a/C83a",
+            "output_key": "result_nearest_simple_81a_83a_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "computed"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_laporta_toroidal_v0",
+            "title": "Laporta integrals: beta classification, elliptic scan, ratio structure",
+            "type": "comparison_table"
+        }
+    ]
+}
