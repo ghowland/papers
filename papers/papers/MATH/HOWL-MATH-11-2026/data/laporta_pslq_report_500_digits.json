@@ -1,0 +1,116 @@
+{
+  "C81a": {
+    "label": "C81a",
+    "digits_available": 4926,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  },
+  "C81b": {
+    "label": "C81b",
+    "digits_available": 4926,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  },
+  "C81c": {
+    "label": "C81c",
+    "digits_available": 4931,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  },
+  "C83a": {
+    "label": "C83a",
+    "digits_available": 4926,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  },
+  "C83b": {
+    "label": "C83b",
+    "digits_available": 4927,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  },
+  "C83c": {
+    "label": "C83c",
+    "digits_available": 4931,
+    "digits_used": 500,
+    "tiers": {
+      "tier1_small": {
+        "status": "NULL",
+        "basis_size": 9
+      },
+      "tier2_medium": {
+        "status": "NULL",
+        "basis_size": 18
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 36
+      }
+    }
+  }
+}
