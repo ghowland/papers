@@ -1,0 +1,158 @@
+{
+    "key": "experiment_laporta_muon_electron_v0",
+    "canonical": "experiment_laporta_muon_electron",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Compare the A4 (Laporta) contribution to the electron and muon anomalous magnetic moments. Same A4 coefficient, different (alpha/pi)^4 weight, different mass-dependent corrections. Compute whether the muon g-2 tension (~5 sigma) is affected by the four-loop Laporta piece. Test the ratio of sensitivities as a probe of how toroidal geometry scales with lepton mass.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_a1_schwinger": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a4_laporta": 0,
+            "qed_a5_volkov": 0,
+            "qed_ae_electron_measured": 0,
+            "qed_ae_hadronic_lo": 0,
+            "qed_ae_hadronic_nlo": 0,
+            "qed_ae_hadronic_lbl": 0,
+            "qed_ae_electroweak": 0,
+            "qed_ae_mass_dep_2loop": 0,
+            "qed_ae_mass_dep_3loop": 0,
+            "qed_ae_mass_dep_4loop": 0,
+            "qed_amu_measured": 0,
+            "qed_amu_measured_unc": 0,
+            "qed_amu_qed_published": 0,
+            "qed_amu_hadronic_lo": 0,
+            "qed_amu_hadronic_lo_unc": 0,
+            "qed_amu_hadronic_nlo": 0,
+            "qed_amu_hadronic_lbl": 0,
+            "qed_amu_hadronic_lbl_unc": 0,
+            "qed_amu_ew": 0,
+            "qed_alpha_inv_rb_recoil": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0,
+            "mass_muon": 0,
+            "ratio_muon_electron": 0
+        },
+        "derivations": {
+            "laporta_electron_muon_sensitivity": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "laporta_electron_muon_sensitivity_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_ae_a4_contribution_v0",
+        "result_ae_a4_x1e11_v0",
+        "result_ae_a4_vs_harvard_unc_v0",
+        "result_amu_a4_contribution_v0",
+        "result_amu_a4_x1e11_v0",
+        "result_amu_a4_vs_fnal_unc_v0",
+        "result_amu_a4_vs_tension_v0",
+        "result_sensitivity_ratio_muon_electron_v0",
+        "result_amu_sm_with_a4_v0",
+        "result_amu_sm_without_a4_v0",
+        "result_amu_a4_shift_x1e11_v0",
+        "result_amu_tension_with_a4_sigma_v0",
+        "result_amu_tension_without_a4_sigma_v0",
+        "result_amu_tension_change_sigma_v0",
+        "result_mass_ratio_squared_v0",
+        "result_toroidal_scaling_test_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "E01: A4 contribution to a_e order 10^-11",
+            "output_key": "result_ae_a4_x1e11_v0",
+            "match_mode": "range",
+            "lo": "-100",
+            "hi": "-0.01",
+            "reference_source": "QED_series"
+        },
+        {
+            "label": "E02: A4 contribution to a_mu order 10^-11",
+            "output_key": "result_amu_a4_x1e11_v0",
+            "match_mode": "range",
+            "lo": "-100",
+            "hi": "-0.01",
+            "reference_source": "QED_series"
+        },
+        {
+            "label": "E03: Sensitivity ratio muon/electron is ~1",
+            "output_key": "result_sensitivity_ratio_muon_electron_v0",
+            "match_mode": "range",
+            "lo": "0.5",
+            "hi": "2.0",
+            "reference_source": "mass_independent_A4"
+        },
+        {
+            "label": "E04: A4 shifts muon tension by < 1 sigma",
+            "output_key": "result_amu_tension_change_sigma_v0",
+            "match_mode": "range",
+            "lo": "-5",
+            "hi": "5",
+            "reference_source": "computed"
+        },
+        {
+            "label": "E05: Muon tension with A4 is ~5 sigma",
+            "output_key": "result_amu_tension_with_a4_sigma_v0",
+            "match_mode": "range",
+            "lo": "3",
+            "hi": "10",
+            "reference_source": "FNAL_BNL"
+        },
+        {
+            "label": "E06: Muon tension without A4 computed",
+            "output_key": "result_amu_tension_without_a4_sigma_v0",
+            "match_mode": "range",
+            "lo": "3",
+            "hi": "10",
+            "reference_source": "computed"
+        },
+        {
+            "label": "E07: A4 vs muon tension fraction",
+            "output_key": "result_amu_a4_vs_tension_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "computed"
+        },
+        {
+            "label": "E08: Toroidal scaling test computed",
+            "output_key": "result_toroidal_scaling_test_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1000",
+            "reference_source": "computed"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_electron_muon_a4_v0",
+            "title": "A4 Laporta contribution: electron vs muon g-2",
+            "type": "comparison_table"
+        }
+    ]
+}
