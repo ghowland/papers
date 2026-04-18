@@ -1,0 +1,228 @@
+{
+    "key": "experiment_laporta_pslq_v0",
+    "canonical": "experiment_laporta_pslq",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "PSLQ scan of six Laporta four-loop master integrals (C81a-c, C83a-c) against the extended transcendental basis. Attack 1: high-precision scan at 1000 digits with maxcoeff 100000. Attack 2: cross-relation scan between pairs of integrals. Tests whether the integrals are expressible in known constants or represent genuinely new transcendental constants.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "laporta_C81a": 0,
+            "laporta_C81b": 0,
+            "laporta_C81c": 0,
+            "laporta_C83a": 0,
+            "laporta_C83b": 0,
+            "laporta_C83c": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_zeta7": 0,
+            "geom_zeta9": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0,
+            "geom_li5_half": 0,
+            "geom_li6_half": 0,
+            "geom_li7_half": 0,
+            "pslq_working_digits": 0,
+            "pslq_max_coefficient": 0
+        },
+        "derivations": {
+            "laporta_pslq_individual": 0,
+            "laporta_pslq_crossrel": 0,
+            "laporta_pslq_summary": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "laporta_pslq_individual_v0",
+        "laporta_pslq_crossrel_v0",
+        "laporta_pslq_summary_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_C81a_status_v0",
+        "result_C81b_status_v0",
+        "result_C81c_status_v0",
+        "result_C83a_status_v0",
+        "result_C83b_status_v0",
+        "result_C83c_status_v0",
+        "result_C81a_basis_size_v0",
+        "result_C81b_basis_size_v0",
+        "result_C81c_basis_size_v0",
+        "result_C83a_basis_size_v0",
+        "result_C83b_basis_size_v0",
+        "result_C83c_basis_size_v0",
+        "result_crossrel_81ab_status_v0",
+        "result_crossrel_81ac_status_v0",
+        "result_crossrel_81bc_status_v0",
+        "result_crossrel_83ab_status_v0",
+        "result_crossrel_83ac_status_v0",
+        "result_crossrel_83bc_status_v0",
+        "result_crossrel_81a_83a_status_v0",
+        "result_crossrel_81b_83b_status_v0",
+        "result_crossrel_81c_83c_status_v0",
+        "result_crossrel_triple_81_status_v0",
+        "result_crossrel_triple_83_status_v0",
+        "result_null_count_individual_v0",
+        "result_found_count_individual_v0",
+        "result_null_count_crossrel_v0",
+        "result_found_count_crossrel_v0",
+        "result_independent_count_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "L01: C81a PSLQ status (expect NULL)",
+            "output_key": "result_C81a_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L02: C81b PSLQ status (expect NULL)",
+            "output_key": "result_C81b_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L03: C81c PSLQ status (expect NULL)",
+            "output_key": "result_C81c_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L04: C83a PSLQ status (expect NULL)",
+            "output_key": "result_C83a_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L05: C83b PSLQ status (expect NULL)",
+            "output_key": "result_C83b_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L06: C83c PSLQ status (expect NULL)",
+            "output_key": "result_C83c_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_scan"
+        },
+        {
+            "label": "L07: All 6 individual scans completed",
+            "output_key": "result_null_count_individual_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "6",
+            "reference_source": "completeness"
+        },
+        {
+            "label": "L08: Cross-relation C81a-C81b",
+            "output_key": "result_crossrel_81ab_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L09: Cross-relation C81a-C81c",
+            "output_key": "result_crossrel_81ac_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L10: Cross-relation C81b-C81c",
+            "output_key": "result_crossrel_81bc_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L11: Cross-relation C83a-C83b",
+            "output_key": "result_crossrel_83ab_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L12: Cross-relation C83a-C83c",
+            "output_key": "result_crossrel_83ac_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L13: Cross-relation C83b-C83c",
+            "output_key": "result_crossrel_83bc_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L14: Cross-topology C81a-C83a",
+            "output_key": "result_crossrel_81a_83a_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L15: Cross-topology C81b-C83b",
+            "output_key": "result_crossrel_81b_83b_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L16: Cross-topology C81c-C83c",
+            "output_key": "result_crossrel_81c_83c_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L17: Triple relation topology 81",
+            "output_key": "result_crossrel_triple_81_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L18: Triple relation topology 83",
+            "output_key": "result_crossrel_triple_83_status_v0",
+            "match_mode": "exact",
+            "expected": "NULL",
+            "reference_source": "PSLQ_crossrel"
+        },
+        {
+            "label": "L19: Independent count (expect 6 if all null)",
+            "output_key": "result_independent_count_v0",
+            "match_mode": "range",
+            "lo": "1",
+            "hi": "6",
+            "reference_source": "PSLQ_combined"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_laporta_pslq_status_v0",
+            "title": "Six Laporta integrals: PSLQ scan status across tiers",
+            "type": "comparison_table"
+        },
+        {
+            "key": "diagram_laporta_crossrel_v0",
+            "title": "Cross-relation matrix: which integrals are related",
+            "type": "comparison_table"
+        }
+    ]
+}
