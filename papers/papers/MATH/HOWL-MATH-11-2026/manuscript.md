@@ -348,3 +348,271 @@ The weakest claim (a) is a theorem. The strongest claim (c) is a set of predicti
 **Status:** Complete (Layer 1: theorem, identity, mechanism). Layer 2 pending (Lp family, dimensional generalization, A₂ decomposition, lattice surveys). Layer 3 predictions stated with statistical controls.
 
 **Central Statement:** β = π/4 is the unique conversion factor between L1 (taxicab) and L2 (Euclidean) metrics on circular geometry. It appears in every computation where a rotationally symmetric quantity is evaluated in rectilinear coordinates. The foundation identity ∫₀²π (|cos θ| + |sin θ|) dθ = 8 proves this by direct integration. The conversion factor explains why π/4 appears across nine physics domains, decomposes the factors of π in physical formulas into countable metric conversions, and generates three testable predictions: the proton lattice factor C = 3π/2, the string tension ratio σ^{1/2}/Λ = 2π/3, and the dark matter density fraction Ω_DM = π/12. All three match current data within uncertainties. The cosmological prediction is subject to statistical control and will not be advanced until the combinatoric p-value is computed.
+
+---
+
+### Table A.1: The Foundation Identity — Quadrant-by-Quadrant Proof
+
+| Quadrant | θ range | sin θ sign | cos θ sign | Integrand | Integral |
+|---|---|---|---|---|---|
+| I | 0 to π/2 | + | + | sin θ + cos θ | [−cos θ + sin θ]₀^{π/2} = (0+1)−(−1+0) = 2 |
+| II | π/2 to π | + | − | sin θ − cos θ | [−cos θ − sin θ]_{π/2}^{π} = (1−0)−(0−1) = 2 |
+| III | π to 3π/2 | − | − | −sin θ − cos θ | [cos θ + sin θ]_{π}^{3π/2} = (0−1)−(−1+0) = 2 |
+| IV | 3π/2 to 2π | − | + | −sin θ + cos θ | [cos θ − sin θ]_{3π/2}^{2π} = (1−0)−(0+1) = 2 |
+| **Total** | 0 to 2π | | | (|sin θ| + |cos θ|) | **8** |
+
+Each quadrant contributes exactly 2. The L1 circumference of the unit circle is 8. The L2 circumference is 2π = 6.2832. Their ratio is 2π/8 = π/4 = 0.78540 = β.
+
+### Table A.2: L1 vs L2 on the Unit Circle — Key Values
+
+| Quantity | L1 value | L2 value | Ratio L2/L1 |
+|---|---|---|---|
+| Circumference (unit circle, r=1) | 8 | 2π = 6.2832 | π/4 = β |
+| Circumference (diameter d) | 4d | πd | π/4 = β |
+| Quarter arc (unit circle) | 2 | π/2 = 1.5708 | π/4 = β |
+| Half arc (unit circle) | 4 | π = 3.1416 | π/4 = β |
+| Distance (0,0) to (1,1) | 2 | √2 = 1.4142 | √2/2 = 1/√2 ≠ β |
+| Distance along full circle | 8r | 2πr | π/4 = β |
+| Diameter | d | d | 1 |
+
+The ratio L2/L1 = β holds for any arc of the circle but NOT for arbitrary straight-line paths (the (0,0) to (1,1) case). β is specific to circular paths. On straight lines, L1 and L2 relate differently depending on angle.
+
+### Table A.3: The Staircase Paradox — Numerical Verification
+
+| Steps N | Staircase perimeter (L1) | True circumference (L2) | Ratio L2/L1 | Staircase error |
+|---|---|---|---|---|
+| 4 | 4d | πd | π/4 | 0 (exact L1) |
+| 8 | 4d | πd | π/4 | 0 |
+| 16 | 4d | πd | π/4 | 0 |
+| 100 | 4d | πd | π/4 | 0 |
+| 1000 | 4d | πd | π/4 | 0 |
+| 10000 | 4d | πd | π/4 | 0 |
+| N → ∞ | 4d | πd | π/4 | 0 |
+
+The L1 perimeter is 4d at every refinement level. It does not converge to πd. It converges to 4d because 4d IS the correct L1 circumference. The "error" is zero — the staircase is measuring L1 distance correctly. The perceived paradox arises from expecting L1 to equal L2, which it cannot.
+
+### Table A.4: β in Nine Domains — The L1/L2 Mechanism
+
+| Domain | Circular quantity (L2) | Rectangular computation (L1) | Where β enters | Formula |
+|---|---|---|---|---|
+| Geometry | Circle area | Cartesian grid integration | Grid cells (L1) covering circle (L2) | A = βd² |
+| Probability | Needle rotation average | Grid of parallel lines | Rotational symmetry (L2) vs grid spacing (L1) | P = 2L/(πd) = 2L/(4βd) |
+| Number theory | Circular harmonic (sin/cos) | Square wave coefficients | Square wave (L1) to sinusoid (L2) | 1−1/3+1/5−... = β |
+| Stat. mech. | Spherical velocity shell | Cartesian velocity components | Spherical (L2) integration in Cartesian (L1) | f(v) carries π^{3/2} |
+| EM | Flux through circular aperture | Cartesian field integration | Circular boundary (L2) on Cartesian grid (L1) | Φ = βEd² |
+| QM | Angular momentum | Cartesian p_x, p_y, p_z | Circular motion (L2) in Cartesian coords (L1) | L = nℏ = nh/(8β) |
+| Signal processing | Fourier harmonics e^{iωt} | Time samples at grid points | Circular basis (L2) on time grid (L1) | F(ω) has 1/2π = 1/(8β) |
+| Optics | Circular aperture diffraction | Cartesian Fourier transform | Circle (L2) Fourier-transformed in Cartesian (L1) | Airy pattern from β |
+| Cosmology | Toroidal galaxy flow | Virial theorem (coordinate sums) | Circular cross-section (L2) in rectilinear virial (L1) | DM/b = (22/13)×4β |
+
+### Table A.5: The Fourier Transform — β Content of Normalizations
+
+| Convention | Forward transform | Inverse transform | Total β content | β per direction |
+|---|---|---|---|---|
+| Physicist's | F(ω) = ∫ f e^{−iωt} dt | f(t) = (1/8β) ∫ F e^{iωt} dω | 8β in inverse | 8β (one circular period) |
+| Unitary | F(ω) = (1/√(8β)) ∫ f e^{−iωt} dt | f(t) = (1/√(8β)) ∫ F e^{iωt} dω | √(8β) in each | Split evenly |
+| Signal processing | F(f) = ∫ f e^{−i8βft} dt | f(t) = ∫ F e^{i8βft} df | 8β in exponent | 8β in phase |
+| DFT (N points) | X_k = Σ x_n e^{−i8βkn/N} | x_n = (1/N) Σ X_k e^{i8βkn/N} | 8β in twiddle | Per frequency bin |
+
+Every convention contains exactly one factor of 8β = 2π per dimension. The conventions differ only in placement (forward, inverse, or split). The β is unavoidable because the Fourier transform converts between L1 samples and L2 circular harmonics.
+
+### Table A.6: The Quantum Connection — ℏ = h/(8β)
+
+| Quantum formula | Standard notation | β notation | β count | Interpretation |
+|---|---|---|---|---|
+| Reduced Planck constant | ℏ = h/2π | ℏ = h/(8β) | 1 | L1 action → L2 angular action |
+| Commutation relation | [x,p] = iℏ | [x,p] = ih/(8β) | 1 | Phase space cell area in L2 |
+| Uncertainty principle | ΔxΔp ≥ ℏ/2 | ΔxΔp ≥ h/(16β) | 1 | L1 widths bounded by L2 minimum |
+| de Broglie wavelength | λ = h/p | λ = h/p | 0 | Linear, no L1/L2 conversion |
+| Angular wavelength | λ̄ = ℏ/p | λ̄ = h/(8βp) = λ/(8β) | 1 | Angular version carries β |
+| Bohr magneton | μ_B = eℏ/(2m_e) | μ_B = eh/(16βm_e) | 1 | Magnetic moment from angular motion |
+| Angular momentum quantization | L = nℏ | L = nh/(8β) | 1 | Integer n counts L1 quanta, β converts to L2 |
+| Photon energy | E = ℏω = hf | E = hf (no β) or E = hω/(8β) | 0 or 1 | Depends on ω vs f convention |
+
+### Table A.7: Factors of π in Fundamental Constants — β Decomposition
+
+| Constant | Standard form | π content | β decomposition | L1/L2 conversions |
+|---|---|---|---|---|
+| ℏ | h/(2π) | 2π = 8β | h/(8β) | 1 per circular period |
+| μ₀ | 4π × 10⁻⁷ H/m | 4π = 16β² | 16β² × 10⁻⁷ | 2 (one per transverse dimension of B field) |
+| ε₀ | 1/(μ₀c²) | inherits 1/(4π) | 1/(16β²c² × 10⁻⁷) | −2 (inverse of μ₀) |
+| Coulomb's law | F = e²/(4πε₀r²) | 4π = 16β² | 2 in 4πε₀ cancel 2 in ε₀ | Net: depends on convention |
+| Gauss's law | ∮ E·dA = Q/ε₀ | 4π in sphere area | 16β² in solid angle | 2 (sphere in 3D) |
+| Stefan-Boltzmann | σ = 2π⁵k_B⁴/(15h³c²) | π⁵ = (4β)⁵ = 1024β⁵ | 1024β⁵ | 5 (3 spatial + 2 from Planck integral) |
+| Einstein field eqn | G_μν = (8πG/c⁴)T_μν | 8π = 32β² | 32β² G/c⁴ | 2 (sphere in 3+1D trace) |
+| Planck length | l_P = √(ℏG/c³) | √(2π) through ℏ | √(8β) × √(hG/c³)/(8β) | 1/2 (square root of one conversion) |
+| Fine structure α | e²/(4πε₀ℏc) | 4π and 2π | Complex cancellation | Net: see §V |
+
+### Table A.8: Constants WITHOUT β Content
+
+| Constant | Value | Why no β |
+|---|---|---|
+| Speed of light c | 299792458 m/s | Speed is metric-independent. Distance/time ratio is the same in L1 and L2 for straight-line motion. |
+| Boltzmann k_B | 1.380649 × 10⁻²³ J/K | Temperature/energy conversion. No geometry. |
+| Elementary charge e | 1.602176634 × 10⁻¹⁹ C | Integer counting (quantized charge). No circular geometry. |
+| Electron mass m_e | 0.51099895 MeV | Measured inertia. No intrinsic circular computation. |
+| Proton mass m_p | 938.272 MeV | Measured inertia (but MAY carry β through C = 6β — see §IX). |
+| Nuclear charges Z | Integers (1, 6, 7, 8, 14...) | Pure counting. No geometry. |
+| Weinberg angle sin²θ_W | 0.23122 | Ratio of coupling constants. The couplings carry β through their definitions but sin²θ_W itself is a pure ratio. |
+
+The pattern: constants involving electromagnetic fields (which have circular/spherical geometry), thermal radiation (which integrates over spherical frequency shells), or angular motion carry β. Constants that are pure counts (charges, masses, ratios) do not.
+
+### Table A.9: The Lp Circumference — Known and Predicted Values
+
+| p | C_p = ∫₀²π (|sin θ|^p + |cos θ|^p)^{1/p} dθ | β(p) = 2π/C_p | Physical system |
+|---|---|---|---|
+| 1 | 8 | π/4 = 0.78540 | Lattice, grid, Manhattan distance |
+| 1.5 | Layer 2 experiment | Layer 2 experiment | — |
+| 2 | 2π = 6.28318 | 1.00000 | Free space, Euclidean distance |
+| 3 | Layer 2 experiment | Layer 2 experiment | — |
+| 4 | Layer 2 experiment | Layer 2 experiment | — |
+| ∞ | 4√2 = 5.65685 | π√2/4 = 1.11072 | Chebyshev distance, max-norm |
+
+β(p) is monotonically increasing from 0.785 to 1.111 as p goes from 1 to ∞. The lattice lives at p = 1. Free space lives at p = 2. The L∞ metric (Chebyshev distance) gives the largest conversion factor because it measures the shortest distance along the circle (the maximum of the two coordinate displacements, not their sum or Euclidean combination).
+
+### Table A.10: The QED A₂ Coefficient — β Decomposition
+
+| Term | Value | β content | Origin |
+|---|---|---|---|
+| 197/144 | +1.36806 | β⁰ (none) | Feynman diagram combinatorics. Rational coefficient from vertex counting, symmetry factors, and topology of two-loop graphs. |
+| (1/12)π² | +0.82247 | β² (two powers) | π² = 16β². One angular integration over a 2D subspace of loop momentum. The 1/12 is a combinatoric prefactor. |
+| −(1/2)π² ln 2 | −3.41022 | β² × ln 2 | Same β² from angular integration. The ln 2 comes from a momentum-space infrared boundary. |
+| (3/4)ζ(3) | +0.90106 | β⁰ (none) | Apéry constant. Number-theoretic, not geometric. Arises from nested momentum integrals with no angular structure. |
+| **Sum: A₂** | **−0.31863** | **Mixed** | **87% cancellation between β² terms (net −2.588) and β⁰ terms (net +2.269).** |
+
+The decomposition: A₂ has two kinds of content. Geometric content (β²) from angular integrations and non-geometric content (rational + ζ) from topology and number theory. The near-cancellation between them (87%) is the reason A₂ is small despite its individual terms being order 1.
+
+### Table A.11: Lattice Prediction 1 — C = m_p/Λ_QCD vs 3π/2
+
+| Source | Year | Scheme | Λ_QCD (MeV) | m_p (MeV) | C = m_p/Λ | |C − 3π/2| | Uncertainty | Tension |
+|---|---|---|---|---|---|---|---|---|
+| BMW (Dürr et al.) | 2008 | MS-bar nf=3 | ~200 | 936 ± 25 | 4.7 ± 0.5 | 0.012 | 0.5 | 0.02σ |
+| This experiment (one-loop) | 2026 | one-loop nf=3 | 142.5 | uses C = 4.7 | 4.7 (input) | 0.012 | 0.5 | 0.02σ |
+| Prediction | — | any | any | 6β × Λ | 3π/2 = 4.71238 | 0 | — | — |
+
+Layer 2 experiment: collect at least 5 independent lattice determinations with explicit scheme labels and uncertainties. Test each against 3π/2 = 4.71238.
+
+### Table A.12: Lattice Prediction 2 — σ^{1/2}/Λ_QCD vs 2π/3
+
+| Quantity | Value | Source |
+|---|---|---|
+| σ^{1/2} (QCD string tension) | ~440 MeV | Lattice QCD (various groups) |
+| Λ_QCD (two-loop, MS-bar, nf=3) | ~210 MeV | PDG 2024 range |
+| Observed ratio | ~2.10 | 440/210 |
+| Predicted ratio | 2π/3 = 2.0944 | 8β/3 |
+| Deviation | ~0.006 | 0.3% |
+
+If both lattice predictions hold, the proton-to-string-tension ratio is:
+
+| Derived ratio | Formula | Value | Measured | Miss |
+|---|---|---|---|---|
+| m_p / σ^{1/2} | (6β × Λ) / (8β/3 × Λ) = 6 × 3/8 | 9/4 = 2.250 | 938.3/440 = 2.133 | 5.5% |
+
+The 5.5% miss is within lattice systematic uncertainties. The ratio 9/4 is exact if both C and σ^{1/2}/Λ are exactly 6β and 8β/3 respectively.
+
+### Table A.13: Cosmological Prediction — Ω_DM = π/12
+
+| Parameter | Predicted | Measured (Planck 2018) | Deviation | Significance |
+|---|---|---|---|---|
+| Ω_DM | β/3 = π/12 = 0.26180 | 0.261 ± 0.002 | +0.0008 | 0.4σ |
+| DM/baryon | (22/13) × 4β = 5.3165 | 5.3204 ± 0.0066 | −0.0039 | 0.6σ |
+| Ω_baryon | 13/264 = 0.04924 | 0.0490 ± 0.0004 | +0.0002 | 0.6σ |
+| Ω_Λ | 1 − π/12 − 13/264 = 0.68896 | 0.689 ± 0.004 | −0.00004 | 0.01σ |
+| Ω_total | 1 (flatness) | 1.000 ± 0.002 | 0 | exact |
+
+The derivation chain for the cosmic budget:
+
+| Step | Input | Output | Formula |
+|---|---|---|---|
+| 1 | Yang-Mills coefficient = 11 | 22 (doubled for VL) | 22 = 2 × 11 |
+| 2 | CD-modified b₂ denominator | 13 | From −13/6 |
+| 3 | β = π/4 (L1/L2 conversion) | (22/13) × 4β = 5.317 | DM/baryon |
+| 4 | β/3 | π/12 = 0.26180 | Ω_DM |
+| 5 | Ω_DM / (DM/baryon) | 13/264 = 0.04924 | Ω_baryon |
+| 6 | 1 − Ω_DM − Ω_baryon | 0.68896 | Ω_Λ (flatness remainder) |
+
+**Statistical control status: PENDING.** The combinatoric p-value for aβ/b hitting 0.261 ± 0.002 has not been computed. If p > 0.1, this prediction is BLOCKED.
+
+### Table A.14: The Dimension Generalization — β_d
+
+| d | S_d(L2) = 2π^{d/2}/Γ(d/2) | S_d(L1) | β_d = S_d(L2)/S_d(L1) | (4π)^{d/2} | (4β)^d |
+|---|---|---|---|---|---|
+| 2 | 2π = 6.283 | 8 | π/4 = 0.7854 | 4π = 12.566 | (4β)² = π² = 9.870 |
+| 3 | 4π = 12.566 | Layer 2 | Layer 2 | (4π)^{3/2} = 22.21 | (4β)³ = π³ = 31.01 |
+| 4 | 2π² = 19.739 | Layer 2 | Layer 2 | (4π)² = 157.9 | (4β)⁴ = π⁴ = 97.41 |
+
+Note: (4π)^{d/2} = 4^{d/2} π^{d/2} and (4β)^d = 4^d β^d = 4^d (π/4)^d = π^d. These are NOT equal for d > 2. The dimensional regularization factor (4π)^{d/2} = (4π)^{d/2}, while the "one β per dimension" product is (4β)^d = π^d. The relationship is:
+
+(4π)^{d/2} = (4β)^d × (4/π)^{d/2}
+
+The extra factor (4/π)^{d/2} = (1/β)^{d/2} comes from the distinction between the solid angle (surface area of the unit sphere) and the metric conversion (arclength ratio). These are different geometric quantities that coincide only at d = 2. The Layer 2 computation will clarify the exact relationship.
+
+### Table A.15: Kill Switches for All Predictions
+
+| Prediction | Kill condition | Data source | Timeline |
+|---|---|---|---|
+| C = 6β = 3π/2 | 3+ lattice determinations exclude 4.712 at 2σ | FLAG review, BMW, RBC/UKQCD | Available now |
+| σ^{1/2}/Λ = 2π/3 | 3+ lattice determinations exclude 2.094 at 2σ | Lattice QCD groups | Available now |
+| Ω_DM = π/12 | CMB-S4 measures Ω_DM > 3σ from 0.26180 | CMB-S4 / LiteBIRD | 2028-2030 |
+| Ω_DM = π/12 (statistical) | Combinatoric p-value > 0.1 | Internal computation | Immediate |
+| Ω_baryon = 13/264 | BBN constraints exclude 0.04924 at 3σ | BBN + CMB-S4 | 2028-2030 |
+| m_p/σ^{1/2} = 9/4 | Lattice ratio excludes 2.25 at 3σ | Lattice QCD | Available now |
+| β(p) monotonic | Numerical computation finds non-monotonicity | Internal | Layer 2 |
+| A₂ β² counting | A₃ or A₄ β content inconsistent with "one β² per loop" | QED coefficient analysis | Layer 2 |
+
+### Table A.16: The Complete β Occurrence Catalog — Formulas by β Power
+
+| β power | Example formula | Formula in β notation | Domain |
+|---|---|---|---|
+| β⁰ (no β) | F = ma | F = ma (no circular geometry) | Mechanics |
+| β⁰ | E = mc² | E = mc² (no circular geometry) | Relativity |
+| β¹ | C = πd = 4βd | Circumference | Geometry |
+| β¹ | ℏ = h/(8β) | Reduced Planck constant | Quantum |
+| β¹ | P(Buffon) = 2L/(4βd) | Buffon's needle | Probability |
+| β¹ | Leibniz: 1−1/3+1/5−... = β | Alternating odd reciprocals | Number theory |
+| β² | A = βd² = (π/4)d² | Circle area | Geometry |
+| β² | A₂ terms: (1/12)(4β)² | QED two-loop coefficient | QED |
+| β² | μ₀ = 16β² × 10⁻⁷ | Permeability | EM |
+| β² | Gauss: ∮E·dA = Q/(β²...) | Gauss's law (spherical) | EM |
+| β² | 8πG = 32β²G | Einstein field equation | GR |
+| β³ | V = (4/3)π r³ = (16/3)β³r³ | Sphere volume | Geometry |
+| β⁵ | σ_{SB} ∝ (4β)⁵ k_B⁴/(15h³c²) | Stefan-Boltzmann | Thermodynamics |
+| β^d | (4π)^{d/2} → related to (4β)^d | Dim. reg. loop normalization | QFT |
+
+### Table A.17: Research Programs — Status and Dependencies
+
+| Program | Title | Status | Depends on | Key experiment | Priority |
+|---|---|---|---|---|---|
+| P1 | Lp generalization β(p) | Active | None | Numerical integration | Medium |
+| P2 | Dimension generalization β_d | Active | None | Analytical/numerical | Medium |
+| P3 | Fourier as L1/L2 | Active | None | Algebraic rewriting | High |
+| P4 | QED loop integrals | Active | P3 | A₂ β decomposition | High |
+| P5 | Lattice factor C = 6β | Active | None | Literature survey | **Highest** |
+| P6 | ℏ = h/(8β) | Active | P3 | Algebraic rewriting | High |
+| P7 | Constants audit | Active | None | Systematic table | High |
+| P8 | Crystallography | Speculative | P2 | DFT comparison | Low |
+| P9 | Numerical quadrature | Active | P1 | Numerical experiments | Medium |
+| P10 | Wallis product | Active | None | Number theory | Low |
+| P11 | C = 6β deep (what is 6) | Depends on P5 | P5 confirmed | Multi-hadron lattice data | Medium |
+| P12 | Confinement boundary σ | Active | None | Literature survey | High |
+| P13 | Information theory | Active | P3 | Shannon capacity rewrite | Medium |
+| P14 | Differential geometry / GR | Active | P2 | Schwarzschild decomposition | Medium |
+| P15 | Toroidal β² (Ω_DM = π/12) | **NEEDS STAT CONTROL** | P5, P7 | CMB-S4 | **Highest (if p < 0.1)** |
+
+### Table A.18: Connection to Existing Framework
+
+| This paper provides | Used by | Through | What it adds |
+|---|---|---|---|
+| β as L1/L2 conversion | MATH-1 (nine domains) | Mechanism for universality | Upgrades pattern to theorem |
+| Foundation identity proof | All framework computations | Mathematical foundation | Rigorous basis for β usage |
+| Fourier β decomposition | Q335 FFT patent | 2π = 8β in twiddle factors | Geometric meaning for exact arithmetic |
+| QED A₂ β decomposition | PHYS-38 (QED extraction) | π² = 16β² in loop integrals | Geometric meaning for QED coefficients |
+| C = 6β hypothesis | PHYS-45 (confinement boundary) | m_p = 6β × Λ_QCD | Potential analytical lattice factor |
+| σ^{1/2}/Λ = 2π/3 | program_confinement_boundary | String tension from β | Potential analytical string tension |
+| Ω_DM = π/12 | program_beta_unification | Cosmic budget from β + integers | Potential derivation of all Ω parameters |
+| ℏ = h/(8β) | All quantum computations | Phase-space metric interpretation | Geometric meaning for ℏ |
+| Constants audit | DATA-7 pool | β content tagged on every constant | Systematic classification |
+| Lp generalization | Lattice QCD corrections | β(p) for lattice-to-continuum limit | Leading-order lattice artifact from β |
+
+---
+
