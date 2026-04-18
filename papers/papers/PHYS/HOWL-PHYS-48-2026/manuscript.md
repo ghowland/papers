@@ -17,7 +17,8 @@
 
 ---
 
-## I. COUNTING ANGULAR INTEGRATIONS
+## I. ABSTRACT
+### Counting Angular Integrations
 
 MATH-11 established that β = π/4 is the unique conversion factor between L1 (taxicab) and L2 (Euclidean) metrics on circular geometry. Every factor of π in a physics formula traces to this conversion — an angular integration over a circular or spherical subspace performed in rectilinear coordinates.
 
@@ -34,6 +35,8 @@ The classification counts how many times the computation converted from rectangu
 ---
 
 ## II. THE PROGRESSION: ONE LOOP THROUGH THREE
+
+![Fig. 1: The β budget at loops 1-3. β⁰ (number theory) grows from 47% to 51%. β² and β⁴ (spherical geometry) total 49%. At loop 4, toroidal β⁰ appears for the first time.](./figures/phys48_01_beta_budget_staircase.png)
 
 **A₁ = 1/2 (Schwinger, 1948).**
 
@@ -76,6 +79,8 @@ The cancellation: 99.5%. Terms spanning from −226.5 to +208.4 cancel to leave 
 
 The pattern from A₂ to A₃: individual terms grew by two orders of magnitude (from order 1-3 to order 5-230). The cancellation tightened by 9.1 percentage points (from 90.4% to 99.5%). The net result stayed order 1. The system is under increasing strain.
 
+![Fig. 2: Cancellation tightens from 0% at one loop to 90.4% at two loops to 99.5% at three loops. At four loops, the Laporta constants break the spherical cancellation machinery.](./figures/phys48_02_cancellation_staircase.png)
+
 ---
 
 ## III. THE BREAK AT FOUR LOOPS
@@ -104,6 +109,8 @@ At loops 1 through 3, every β⁰ term was either rational (diagram counting) or
 
 ## IV. TWO KINDS OF β⁰
 
+![Fig. 3: β⁰ splits into two subcategories. Number-theoretic (rational, ζ, Li) — exhausted by 24/24 PSLQ null. Toroidal-geometric (Laporta, elliptic?) — the new subcategory appearing at loop 4.](./figures/phys48_03_beta0_subcategory_tree.png)
+
 The MATH-11 framework classified terms by their spherical angular content (π powers). Terms without π were lumped together as β⁰. The Laporta constants force a refinement.
 
 **Number-theoretic β⁰.** Rational numbers (197/144, 28259/5184), zeta values (ζ(3), ζ(5)), polylogarithms (Li₄(½)), and their products. These arise from the topological structure of Feynman diagrams (how many ways the lines can be drawn) and from the radial structure of loop integrations (how momentum magnitudes nest). They carry no angular information. They are the counting and nesting content of the diagrams.
@@ -124,6 +131,8 @@ The match is not statistically conclusive from magnitude alone (562,500 candidat
 
 ## V. THE MUON PROVES THE GEOMETRY SCALES
 
+![Fig. 4: The toroidal sector scales as (m/mₑ)². Electron: 0.054% (spherical dominates). Muon: 2304% (toroidal dominates). Crossover at 43 mₑ ≈ 22 MeV.](./figures/phys48_04_toroidal_scaling.png)
+
 The A₄ coefficient is mass-independent. The same six Laporta constants contribute to both the electron and muon anomalous magnetic moments. The sensitivity ratio is exactly 1.000. The Laporta constants describe the topology of the vacuum, not the properties of the lepton probing it.
 
 But the mass-dependent four-loop corrections are different. They scale as (m_l/m_e)².
@@ -142,6 +151,10 @@ The crossover occurs at m_l ≈ 43 m_e ≈ 22 MeV. Below this mass, the spherica
 The physical interpretation: the mass-dependent corrections arise from virtual loops where the lepton mass sets the infrared scale. A heavier lepton has a shorter Compton wavelength (ℏ/mc), which probes shorter distance scales in the vacuum. If the four-loop topology has toroidal structure, the minor radius of the momentum-space torus is set by ℏ/mc. A heavier lepton wraps tighter around the torus, amplifying the toroidal contribution quadratically.
 
 The (m_μ/m_e)² scaling is standard QED. What is new is the geometric interpretation: the scaling measures how strongly the lepton probe couples to the toroidal sector of the vacuum topology. The electron, being light, couples weakly (0.054%). The muon, being heavy, couples strongly (2304%). The tau would couple even more strongly: (m_τ/m_e)² = 12,066,569, ratio ≈ 65,000%. For heavy leptons, the toroidal geometry IS the four-loop physics.
+
+![Fig. 5: Same A₄ = −1.912, opposite impact. Electron: 43× above Harvard precision (dominant). Muon: 0.25× below FNAL precision (invisible).](./figures/phys48_05_a4_vs_measurements.png)
+
+![Fig. 7: The dominance inversion. For the electron, the universal (spherical) sector is 1800× the mass-dependent. For the muon, the mass-dependent (toroidal) sector is 23× the universal. Same physics, different geometry dominates.](./figures/phys48_07_sector_flip.png)
 
 ---
 
@@ -180,6 +193,8 @@ The four-loop coefficient A₄ = −1.912 is of order 1, consistent with the pat
 
 ## VIII. THE DUAL GEOMETRY
 
+![Fig. 8: The proton has both spherical structure (confinement boundary, charge radius) and toroidal structure (gluon flux tubes, color circulation). 99% of its mass is toroidal circulation energy. The same dual geometry appears in QED at four loops.](./figures/phys48_08_dual_geometry_proton.png)
+
 The two-sector structure of QED at four loops mirrors a pattern visible at every scale of the soliton hierarchy.
 
 **At the proton:** The spherical confinement boundary (radius ~0.84 fm, charge distribution approximately radial) coexists with toroidal gluon flux tubes (color field lines circulating inside the boundary). The proton's mass is 99% confinement energy — energy stored in the toroidal circulation within the spherical boundary. The lattice factor C = m_p/Λ_QCD = 3π/2 = 6β carries spherical β through the angular integration that defines the lattice computation.
@@ -197,6 +212,8 @@ The dual geometry is not a metaphor. It is a structural observation: at every sc
 ---
 
 ## IX. THE GENUS PROGRESSION
+
+![Fig. 6: Each loop order discovers deeper topology. Loops 1-3: genus 0 (sphere, polylogarithmic). Loop 4: genus 1 (torus, Laporta). Loop 5+: genus 2+ (hyperelliptic?).](./figures/phys48_06_genus_progression.png)
 
 The topological interpretation assigns a genus to each loop order's contribution:
 
