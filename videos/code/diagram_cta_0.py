@@ -97,8 +97,6 @@ for i, (result, match, domain, color) in enumerate(results):
 y_foot = y_top - 0.045 - len(results) * 0.065 - 0.04
 ax.plot([0.04, 0.96], [y_foot + 0.025, y_foot + 0.025],
         transform=ax.transAxes, color=DIM, linewidth=0.8, alpha=0.5)
-ax.text(0.50, y_foot, '253 comparisons.  252 pass.  1 fail.',
-        transform=ax.transAxes, ha='center', fontsize=12, color=GOLD)
 ax.text(0.50, y_foot - 0.04,
         'All arithmetic: Python Fraction.  Zero floating point.',
         transform=ax.transAxes, ha='center', fontsize=11, color=SILVER)

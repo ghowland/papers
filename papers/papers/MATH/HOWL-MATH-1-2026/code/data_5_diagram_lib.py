@@ -83,7 +83,7 @@ def print_provenance():
 # ================================================================
 
 # Light mode
-if True:
+if False:
     # ── Global palette (Kindle / light mode) ──
     BG      = '#ffffff'
     PAN     = '#f0ede8'

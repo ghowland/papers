@@ -1,0 +1,268 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_sin2_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_sin2_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.231222764946095",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_sin2_miss_pct_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_sin2_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00119580749721487",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.118384375944315",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_miss_pct_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.325742325690491",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_gut_inv_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_gut_inv",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.1349625508559",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_t_cross_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_t_cross",
+      "version": 0,
+      "node_type": "value",
+      "value": "31.4298737454464",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_m_gut_log10_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_m_gut_log10",
+      "version": 0,
+      "node_type": "value",
+      "value": "15.6097565200659",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_gap_at_cross_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_gap_at_cross",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0269437887127664",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "63.2105638074136",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "31.6858426268567",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.44706061947209",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_measured_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "63.2103212683764",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_measured_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "31.6854637297059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_measured_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.47457627118644",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_sin2_measured_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_sin2_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.23122",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_measured_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_s_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.118",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_forward_check_12_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_forward_check_12",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.47002418249423e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_forward_check_gap_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_forward_check_gap",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.50679302061041e-5",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_1_gut_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_1_gut",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.1349298330466",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_2_gut_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_2_gut",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.1349051328048",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_3_gut_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_3_gut",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.1350413765632",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_cos2_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_cos2_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.768777235053905",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check",
+      "version": 0,
+      "node_type": "value",
+      "value": "63.210093930086",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    },
+    {
+      "key": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check_vs_predicted_v0",
+      "canonical": "experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check_vs_predicted",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.000469877327677126",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_sin2_from_two_loop_v0_run005"
+    }
+  ]
+}
