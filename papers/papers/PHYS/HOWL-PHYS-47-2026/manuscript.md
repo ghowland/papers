@@ -37,9 +37,13 @@ For eight years, the multi-loop community — Broadhurst, Schnetz, Panzer, Brown
 
 This paper reports the results of a systematic numerical investigation: 24 PSLQ integer relation scans against the known transcendental basis, a complete cross-relation analysis proving mutual independence, and a sensitivity analysis showing that these constants contribute 43 times the measurement precision to the most precisely measured quantity in physics.
 
+![Fig. 8: Identity card. Six constants, two topologies, 4925 digits each, 24/24 PSLQ null, 43× Harvard precision, 48 ppb α shift, 11/11 mutually independent.](./figures/phys47_08_identity_card.png)
+
 ---
 
 ## II. THE SEARCH: 24 SCANS, 24 NULL
+
+![Fig. 7: Every completed PSLQ scan (green dots) sits above the theoretical precision requirement curve. All null results are mathematically valid. Future attacks (gold diamonds) have even larger margins.](./figures/phys47_07_precision_validity.png)
 
 We applied the PSLQ integer relation detection algorithm to each of the six integrals, testing whether any integer linear combination of the integral and a set of known constants equals zero. If PSLQ finds such a combination, the integral has a closed form. If PSLQ returns null after exhausting feasible coefficient bounds, no such combination exists.
 
@@ -64,6 +68,8 @@ Total across all campaigns: 24 PSLQ scans, 24 null, 0 found.
 ---
 
 ## III. THE BASIS: WHAT IS COVERED AND WHAT IS NOT
+
+![Fig. 4: The 66-element basis by transcendental weight. Coverage is dense at weights 4-8. The elliptic/modular region is empty — the gap where the Laporta integrals may live.](./figures/phys47_04_basis_landscape.png)
 
 The 66-element basis is organized by mathematical class:
 
@@ -131,6 +137,8 @@ The cross-topology independence is less surprising but still informative. Topolo
 
 ## V. SENSITIVITY: 43 TIMES THE MEASUREMENT
 
+![Fig. 2: The QED series contributions to a_e. A₄ is the last term above the Harvard measurement precision. A₅ is below. The Laporta constants live in the last term that matters.](./figures/phys47_02_qed_series_terms.png)
+
 The A₄ coefficient enters the QED prediction of the electron anomalous magnetic moment at fourth order in (α/π):
 
 a_e = A₁(α/π) + A₂(α/π)² + A₃(α/π)³ + A₄(α/π)⁴ + A₅(α/π)⁵ + ...
@@ -168,9 +176,13 @@ C81a dominates by a factor of 16 over the next largest integral. If the unknown 
 
 Without the individual rational coefficients c₁ through c₆ (which would require extracting data from Laporta's paper), we cannot determine each integral's individual contribution to α. The sensitivity analysis treats A₄ as a single number and reports the total four-loop impact. The per-integral decomposition is defined as future work contingent on obtaining the coefficients.
 
+![Fig. 3: The A₄ contribution to a_e (55.7 × 10⁻¹²) towers 43× above the Harvard measurement uncertainty (1.3 × 10⁻¹²). These constants are deep inside the measurement.](./figures/phys47_03_a4_vs_harvard.png)
+
 ---
 
 ## VI. WHY THEY RESIST: THE DUAL GEOMETRY HYPOTHESIS
+
+![Fig. 5: The dual geometry hypothesis. Polylogarithmic constants live on the sphere (genus 0). Elliptic constants live on the torus (genus 1). The Laporta integrals are not on the sphere. Are they on the torus?](./figures/phys47_05_genus0_vs_genus1.png)
 
 The 24/24 null result establishes a negative: the Laporta integrals are not in the polylogarithmic basis. Why not? The prevailing hypothesis in the multi-loop community is that topologies 81 and 83 involve elliptic structures — mathematical objects from a fundamentally different branch than the polylogarithms that handle all simpler Feynman integrals.
 
@@ -199,6 +211,8 @@ If this interpretation is correct, the Laporta constants are the readings of tor
 The MATH-11 β decomposition provides a quantitative handle. Spherical geometry carries β through 4π = 16β² (the solid angle of the sphere). Toroidal geometry carries β through 4π² = 64β² (the surface area of the torus, two circular cross-sections). The β power is the same (β²) but the numerical prefactor differs by a factor of 4. If the Laporta integrals are elliptic, their β-content analysis should reveal this factor of 4 relative to the polylogarithmic terms.
 
 This is a testable prediction. Attack 3 in the PHYS-46 program (PSLQ with elliptic basis) tests it directly. If the integrals are expressible in elliptic periods, the dual geometry hypothesis is confirmed for four-loop QED. If they are not — if they resist the elliptic basis too — the hypothesis may need modification, or the toroidal structure may involve modular forms rather than simple elliptic curves.
+
+![Fig. 6: Every soliton has both spherical boundaries (gravity, concentric shells) and toroidal boundaries (magnetic field, dipole loops). Two geometries, one object.](./figures/phys47_06_dual_geometry.png)
 
 ---
 
