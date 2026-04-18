@@ -19,7 +19,8 @@
 
 ---
 
-## I. THE PARKED REMAINDER
+## I. ABSTRACT
+### The Parked Remainder
 
 Through four sessions and fifteen papers, the modulus/remainder framework decomposed every physical computation into two pieces. The modulus — R₂ = π/4 = β, the circle-to-square conversion — appeared in 22 engineering domains, in every loop integral, in every gauge coupling running equation, in every angular integration. It was the geometric bridge between circular physics and rectilinear measurement. It was understood.
 
@@ -32,6 +33,8 @@ This paper un-parks it.
 ---
 
 ## II. THE MODULUS IS SPHERICAL
+
+![Fig. 3: The A₂ coefficient as a waterfall. β⁰ terms (silver) build to +2.27. β² terms (cyan) destroy to −2.60. The residual −0.328 is the thin gap between modulus and remainder.](./figures/phys49_03_a2_waterfall.png)
 
 MATH-11 established that β = π/4 is the unique conversion factor between L1 (taxicab) and L2 (Euclidean) metrics on circular geometry. Every factor of π in a QED coefficient traces to an angular integration over a circular or spherical subspace of loop momentum — one L1/L2 conversion per angular coordinate.
 
@@ -67,6 +70,8 @@ This assumption was wrong. The remainder is not one thing. It is two.
 ---
 
 ## IV. LAYER 1: NUMBER-THEORETIC β⁰
+
+![Fig. 1: The three-layer decomposition at each loop order. Modulus (cyan), Layer 1 (silver), Layer 2 (gold). Layer 2 is zero at loops 1-3 and appears for the first time at loop 4.](./figures/phys49_01_three_layer_bars.png)
 
 The first layer of the remainder is what Sessions 1-4 already identified:
 
@@ -116,6 +121,8 @@ Layer 2 is NOT present at loops 1-3. Every β⁰ term in A₂ and A₃ is purely
 
 ## VI. THE CONTROL EXPERIMENT
 
+![Fig. 2: Subtracting ζ content reveals elliptic structure. All six Laporta integrals improve by 7×-266× after removing integer×ζ(3) or integer×ζ(5). The integrals contain BOTH number-theoretic and toroidal layers.](./figures/phys49_02_subtraction_improvement.png)
+
 The dual geometry hypothesis makes a testable prediction: the β⁰ remainder should be closer to elliptic forms than the β² modulus, because the remainder contains toroidal content and the modulus is purely spherical.
 
 We tested this on A₂, where both the remainder and the modulus are known exactly:
@@ -135,6 +142,8 @@ The A₃ remainder is even more striking. The β⁰ total +23.015 matches (20/3)
 
 ## VII. A₄ = −(13/8) × K(0.995)/π
 
+![Fig. 5: A₄ ≈ −(13/8)×K(0.995)/π. The K(k)/π function rises toward infinity as k→1. A₄ sits at k = 0.995 with gauge group integer 13/8.](./figures/phys49_05_a4_on_kpi_curve.png)
+
 The total four-loop coefficient A₄ = −1.91225 matches (−13/8) × K(0.995)/π to 0.00125% — 12.5 parts per million.
 
 The form is significant: K(k)/π is the ratio of the elliptic period to the circular period. It is literally the ratio of toroidal to spherical geometry. The four-loop coefficient IS a ratio of toroidal to spherical periods, weighted by −13/8.
@@ -144,6 +153,8 @@ The integers: 13 is the modified SU(2) beta coefficient numerator (b₂' = −13
 The modulus k = 0.995 is near the elliptic divergence (K(k) → ∞ as k → 1). The four-loop contribution sits at a nearly singular point — the torus is almost infinitely elongated. This is consistent with topology 81's internal ratio structure: C81a/C81c = −494, a spread of nearly 500× between the largest and smallest integral within one topology. An elongated torus has one period much larger than the other.
 
 Whether −13/8 × K(0.995)/π is the true analytical form of A₄ or a coincidental magnitude match is unknown. Confirming it requires PSLQ at high precision with K(0.995) in the basis — Attack 3 of the PHYS-46 program.
+
+![Fig. 6: Both A₃ remainder (k=0.99) and A₄ (k=0.995) sit near the elliptic divergence. The perturbation series approaches the toroidal singularity at k→1.](./figures/phys49_06_kpi_divergence.png)
 
 ---
 
@@ -189,6 +200,8 @@ The crossover at 43 m_e ≈ 22 MeV marks where the two sectors balance. Below, t
 
 ## X. THE DUAL GEOMETRY IS THE MODULUS/REMAINDER
 
+![Fig. 7: Every soliton has spherical modulus + toroidal remainder. Proton (confinement + flux tubes), Earth (atmosphere + Van Allen), Galaxy (halo + disk), QED (π terms + Laporta).](./figures/phys49_07_dual_geometry_scales.png)
+
 The modulus/remainder decomposition from Sessions 1-4 is the same structure that appears at every scale of the soliton hierarchy:
 
 **The proton.** The spherical confinement boundary (modulus: C = 6β = 3π/2, the lattice factor) contains toroidal gluon flux tubes (remainder: 99% of the proton's mass is circulation energy). The modulus is the boundary. The remainder is the flow inside.
@@ -204,6 +217,8 @@ At every scale: the modulus is spherical, analytical, and understood. The remain
 ---
 
 ## XI. THE COMPLETE DECOMPOSITION TABLE
+
+![Fig. 8: The complete decomposition. A₁ through A₄, each with three layers. Layer 2 appears at loop 4. The resolution of the parked framework.](./figures/phys49_08_identity_card.png)
 
 | Coefficient | Spherical modulus (β²+) | Layer 1: number-theoretic β⁰ | Layer 2: toroidal-geometric β⁰ | Net value |
 |---|---|---|---|---|
@@ -221,6 +236,8 @@ The decomposition is blocked for A₄ because we don't have the rational coeffic
 ---
 
 ## XII. THE PARKED FRAMEWORK IS UN-PARKED
+
+![Fig. 4: The parked framework un-parked. Sessions 1-4: modulus known, remainder opaque. Session 8: modulus = spherical, remainder = number-theoretic + toroidal. The Laporta analysis resolved it.](./figures/phys49_04_framework_bridge.png)
 
 Sessions 1-4 established:
 - The modulus R₂ = β appears universally (22+ domains, all loop integrals)
