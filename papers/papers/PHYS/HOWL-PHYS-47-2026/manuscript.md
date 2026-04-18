@@ -17,7 +17,8 @@
 
 ---
 
-## I. SIX NUMBERS WITHOUT NAMES
+## I. ABSTRACT
+### Six Numbers Without Names
 
 In 2017, Stefano Laporta published the complete four-loop contribution to the electron anomalous magnetic moment. The calculation — reduction of 891 Feynman diagrams to master integrals via integration-by-parts identities, followed by numerical evaluation using difference equations — produced the coefficient A₄ = −1.91224576492645 to 1100 digits of precision.
 
@@ -95,6 +96,8 @@ The gap matters. If the Laporta integrals live in the elliptic or modular world,
 ---
 
 ## IV. MUTUAL INDEPENDENCE: THE STRONGEST FINDING
+
+![Fig. 1: Six integrals, 17 PSLQ tests, all NULL. Diagonal: individual scans. Off-diagonal: pair and triple tests. No relation found between any subset.](./figures/phys47_01_cross_relation_matrix.png)
 
 The individual scans establish that each integral is independent of the known constants. The cross-relation scans establish something stronger: the integrals are independent of EACH OTHER.
 
