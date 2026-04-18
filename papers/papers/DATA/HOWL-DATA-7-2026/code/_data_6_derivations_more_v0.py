@@ -8015,6 +8015,355 @@ def laporta_pslq_summary_v0(value_dicts):
     }
 
 
+#aoeu
+# =============================================================================
+# PHYS-46 Supplement: Laporta A4 Decomposition and Sensitivity
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "laporta_a4_reconstruct_v0": laporta_a4_reconstruct_v0,
+#   "laporta_a4_sensitivity_v0": laporta_a4_sensitivity_v0,
+#   "laporta_a4_alpha_impact_v0": laporta_a4_alpha_impact_v0,
+# =============================================================================
+
+
+def laporta_a4_reconstruct_v0(value_dicts):
+    """Reconstruct A4 from the known analytic piece plus the six
+    Laporta master integral contributions.
+
+    A4 = A4_known + c1*C81a + c2*C81b + c3*C81c + c4*C83a + c5*C83b + c6*C83c
+
+    Verify that the reconstruction matches the published A4 value.
+    Compute the fraction of A4 that is analytically known vs Laporta.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    # Published A4 total
+    a4_published = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+
+    # Known analytic piece
+    a4_known_str = str(_get(vm, "laporta_a4_known_piece_v0"))
+    if a4_known_str.startswith("NEEDS"):
+        # Cannot run without the coefficients — return diagnostic
+        mp.dps = old_dps
+        return {
+            "key": "laporta_a4_reconstruct_v0",
+            "outputs": {
+                "result_a4_known_piece_v0":          "BLOCKED",
+                "result_a4_laporta_piece_v0":        "BLOCKED",
+                "result_a4_reconstructed_v0":        _approx(a4_published),
+                "result_a4_reconstruction_residual_v0": _approx(mpf("0")),
+                "result_a4_known_fraction_v0":       "BLOCKED",
+                "result_a4_laporta_fraction_v0":     "BLOCKED",
+            },
+            "notes": "BLOCKED: Laporta A4 rational coefficients (c1-c6) and known piece not yet extracted from paper.",
+        }
+
+    a4_known = mpf(a4_known_str)
+
+    # Six Laporta integrals and their coefficients
+    integrals = []
+    coeffs = []
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+    for label in labels:
+        int_val = mpf(str(_get(vm, "laporta_%s_v0" % label)))
+        coeff_str = str(_get(vm, "laporta_a4_coeff_%s_v0" % label))
+        if coeff_str.startswith("NEEDS"):
+            mp.dps = old_dps
+            return {
+                "key": "laporta_a4_reconstruct_v0",
+                "outputs": {
+                    "result_a4_known_piece_v0":          "BLOCKED",
+                    "result_a4_laporta_piece_v0":        "BLOCKED",
+                    "result_a4_reconstructed_v0":        _approx(a4_published),
+                    "result_a4_reconstruction_residual_v0": _approx(mpf("0")),
+                    "result_a4_known_fraction_v0":       "BLOCKED",
+                    "result_a4_laporta_fraction_v0":     "BLOCKED",
+                },
+                "notes": "BLOCKED: coefficient for %s not yet extracted." % label,
+            }
+        coeff = mpf(coeff_str)
+        integrals.append(int_val)
+        coeffs.append(coeff)
+
+    # Laporta piece
+    a4_laporta = mpf("0")
+    for c, v in zip(coeffs, integrals):
+        a4_laporta += c * v
+
+    # Reconstruction
+    a4_reconstructed = a4_known + a4_laporta
+    residual = abs(a4_reconstructed - a4_published)
+
+    # Fractions
+    known_fraction = abs(a4_known) / abs(a4_published)
+    laporta_fraction = abs(a4_laporta) / abs(a4_published)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_a4_reconstruct_v0",
+        "outputs": {
+            "result_a4_known_piece_v0":          _approx(a4_known),
+            "result_a4_laporta_piece_v0":        _approx(a4_laporta),
+            "result_a4_reconstructed_v0":        _approx(a4_reconstructed),
+            "result_a4_reconstruction_residual_v0": _approx(residual),
+            "result_a4_known_fraction_v0":       _approx(known_fraction),
+            "result_a4_laporta_fraction_v0":     _approx(laporta_fraction),
+        },
+        "notes": (
+            "A4 = %.6f (known) + %.6f (Laporta) = %.6f (reconstructed). "
+            "Published: %.6f. Residual: %.2e. "
+            "Known fraction: %.1f%%. Laporta fraction: %.1f%%."
+        ) % (
+            float(a4_known), float(a4_laporta), float(a4_reconstructed),
+            float(a4_published), float(residual),
+            float(known_fraction) * 100, float(laporta_fraction) * 100,
+        ),
+    }
+
+
+def laporta_a4_sensitivity_v0(value_dicts):
+    """Compute the sensitivity of a_e and alpha to each individual
+    Laporta constant.
+
+    For each constant C_i with coefficient c_i:
+    - Contribution to A4: c_i * C_i
+    - Contribution to a_e: c_i * C_i * (alpha/pi)^4
+    - Shift in alpha_inv if C_i were zero: delta_alpha_inv
+
+    Also compute the total Laporta contribution to a_e and compare
+    to the Harvard measurement uncertainty.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    ae_measured = mpf(str(_get(vm, "qed_ae_electron_measured_v0")))
+    ae_unc = mpf("1.3e-12")  # Harvard uncertainty
+
+    # alpha/pi from the existing extraction
+    alpha_inv = mpf(str(_get(vm, "qed_alpha_inv_rb_recoil_v0")))
+    alpha = mpf("1") / alpha_inv
+    x = alpha / pi_val  # alpha/pi
+
+    x4 = x ** 4  # (alpha/pi)^4
+
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+    outputs = {}
+    total_laporta_ae = mpf("0")
+
+    for label in labels:
+        int_val_str = str(_get(vm, "laporta_%s_v0" % label))
+        coeff_str = str(_get(vm, "laporta_a4_coeff_%s_v0" % label))
+
+        if coeff_str.startswith("NEEDS") or int_val_str.startswith("PLACEHOLDER"):
+            outputs["result_sensitivity_%s_v0" % label] = "BLOCKED"
+            outputs["result_ae_from_%s_v0" % label] = "BLOCKED"
+            continue
+
+        int_val = mpf(int_val_str)
+        coeff = mpf(coeff_str)
+
+        # Contribution to A4
+        a4_contribution = coeff * int_val
+
+        # Contribution to a_e
+        ae_contribution = a4_contribution * x4
+
+        total_laporta_ae += ae_contribution
+
+        # Sensitivity: d(a_e)/d(C_i) = c_i * (alpha/pi)^4
+        sensitivity = coeff * x4
+
+        outputs["result_sensitivity_%s_v0" % label] = _approx(sensitivity)
+        outputs["result_ae_from_%s_v0" % label] = _approx(ae_contribution)
+        outputs["result_a4_from_%s_v0" % label] = _approx(a4_contribution)
+
+    # Total Laporta contribution to a_e
+    outputs["result_ae_contribution_laporta_v0"] = _approx(total_laporta_ae)
+
+    # Ratio to measurement uncertainty
+    if total_laporta_ae != mpf("0"):
+        ratio_to_unc = abs(total_laporta_ae) / ae_unc
+    else:
+        ratio_to_unc = mpf("0")
+    outputs["result_laporta_vs_measurement_precision_v0"] = _approx(ratio_to_unc)
+
+    # Total A4 contribution
+    a4_total = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+    ae_a4_total = a4_total * x4
+    outputs["result_ae_contribution_a4_v0"] = _approx(ae_a4_total)
+
+    # Known piece contribution
+    a4_known_str = str(_get(vm, "laporta_a4_known_piece_v0"))
+    if not a4_known_str.startswith("NEEDS"):
+        a4_known = mpf(a4_known_str)
+        ae_known = a4_known * x4
+        outputs["result_ae_contribution_known_a4_v0"] = _approx(ae_known)
+    else:
+        outputs["result_ae_contribution_known_a4_v0"] = "BLOCKED"
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_a4_sensitivity_v0",
+        "outputs": outputs,
+        "notes": (
+            "A4 total contribution to a_e: %.3e. "
+            "Laporta piece contribution: %.3e. "
+            "Harvard uncertainty: %.1e. "
+            "Ratio Laporta/uncertainty: %.2f."
+        ) % (
+            float(ae_a4_total), float(total_laporta_ae),
+            float(ae_unc), float(ratio_to_unc),
+        ),
+    }
+
+
+def laporta_a4_alpha_impact_v0(value_dicts):
+    """Compute alpha_inv two ways:
+    1. Using the full A4 = -1.91224... (as currently done)
+    2. Using only the known analytic piece of A4 (setting Laporta = 0)
+
+    The difference shows how much the Laporta constants shift alpha.
+
+    Uses the same Newton inversion as qed_alpha_from_ae but with
+    modified A4 values.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+
+    ae_measured = mpf(str(_get(vm, "qed_ae_electron_measured_v0")))
+    alpha_inv_rb = mpf(str(_get(vm, "qed_alpha_inv_rb_recoil_v0")))
+
+    # Assemble A1-A3 from pool (same as qed_alpha_from_ae)
+    a1 = _f2m(_frac(vm, "qed_a1_schwinger_v0"))
+
+    # A2
+    a2_rat = _f2m(_frac(vm, "qed_a2_rational_term_v0"))
+    a2_pi2c = _f2m(_frac(vm, "qed_a2_pi2_coeff_v0"))
+    a2_pi2ln2c = _f2m(_frac(vm, "qed_a2_pi2ln2_coeff_v0"))
+    a2_z3c = _f2m(_frac(vm, "qed_a2_zeta3_coeff_v0"))
+    a2 = a2_rat + a2_pi2c * pi_val**2 + a2_pi2ln2c * pi_val**2 * ln2 + a2_z3c * zeta3
+
+    # A3
+    a3_rat = _f2m(_frac(vm, "qed_a3_rational_term_v0"))
+    a3_pi2c = _f2m(_frac(vm, "qed_a3_pi2_coeff_v0"))
+    a3_pi2ln2c = _f2m(_frac(vm, "qed_a3_pi2ln2_coeff_v0"))
+    a3_pi4c = _f2m(_frac(vm, "qed_a3_pi4_coeff_v0"))
+    a3_z3c = _f2m(_frac(vm, "qed_a3_z3_coeff_v0"))
+    a3_z5c = _f2m(_frac(vm, "qed_a3_z5_coeff_v0"))
+    a3_pi2z3c = _f2m(_frac(vm, "qed_a3_pi2z3_coeff_v0"))
+    a3_li4c = _f2m(_frac(vm, "qed_a3_li4_coeff_v0"))
+    li4h = mpf(str(_get(vm, "geom_li4_half_v0")))
+
+    a3 = (a3_rat + a3_pi2c * pi_val**2 + a3_pi2ln2c * pi_val**2 * ln2
+           + a3_pi4c * pi_val**4 + a3_z3c * zeta3 + a3_z5c * zeta5
+           + a3_pi2z3c * pi_val**2 * zeta3
+           + a3_li4c * (li4h + ln2**4 / 24 - pi_val**2 * ln2**2 / 24))
+
+    # A4 full
+    a4_full = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+
+    # A4 known only
+    a4_known_str = str(_get(vm, "laporta_a4_known_piece_v0"))
+    if a4_known_str.startswith("NEEDS"):
+        mp.dps = old_dps
+        return {
+            "key": "laporta_a4_alpha_impact_v0",
+            "outputs": {
+                "result_alpha_inv_full_v0":             "BLOCKED",
+                "result_alpha_inv_no_laporta_v0":       "BLOCKED",
+                "result_alpha_shift_from_laporta_v0":   "BLOCKED",
+                "result_alpha_shift_ppb_v0":            "BLOCKED",
+            },
+            "notes": "BLOCKED: A4 known piece not yet extracted.",
+        }
+
+    a4_known = mpf(a4_known_str)
+
+    # A5
+    a5 = mpf(str(_get(vm, "qed_a5_volkov_v0")))
+
+    # Hadronic and EW corrections
+    ae_had_lo = mpf(str(_get(vm, "qed_ae_hadronic_lo_v0")))
+    ae_had_nlo = mpf(str(_get(vm, "qed_ae_hadronic_nlo_v0")))
+    ae_had_lbl = mpf(str(_get(vm, "qed_ae_hadronic_lbl_v0")))
+    ae_ew = mpf(str(_get(vm, "qed_ae_electroweak_v0")))
+    ae_non_qed = ae_had_lo + ae_had_nlo + ae_had_lbl + ae_ew
+
+    # Newton inversion: solve a_e(x) = ae_measured for x = alpha/pi
+    def ae_from_x(x, a4_val):
+        return (a1 * x + a2 * x**2 + a3 * x**3
+                + a4_val * x**4 + a5 * x**5 + ae_non_qed)
+
+    def dae_dx(x, a4_val):
+        return (a1 + 2 * a2 * x + 3 * a3 * x**2
+                + 4 * a4_val * x**3 + 5 * a5 * x**4)
+
+    def newton_solve(a4_val, x0=None):
+        if x0 is None:
+            x0 = ae_measured / a1  # first-order guess
+        x = x0
+        for _ in range(20):
+            fx = ae_from_x(x, a4_val) - ae_measured
+            fpx = dae_dx(x, a4_val)
+            dx = fx / fpx
+            x = x - dx
+            if abs(dx) < mpf(10) ** (-45):
+                break
+        return x
+
+    # Solve with full A4
+    x_full = newton_solve(a4_full)
+    alpha_full = x_full * pi_val
+    alpha_inv_full = mpf("1") / alpha_full
+
+    # Solve with known A4 only (no Laporta piece)
+    x_no_lap = newton_solve(a4_known)
+    alpha_no_lap = x_no_lap * pi_val
+    alpha_inv_no_lap = mpf("1") / alpha_no_lap
+
+    # Shift
+    shift = alpha_inv_full - alpha_inv_no_lap
+    shift_ppb = shift / alpha_inv_full * mpf("1e9")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_a4_alpha_impact_v0",
+        "outputs": {
+            "result_alpha_inv_full_v0":             _approx(alpha_inv_full),
+            "result_alpha_inv_no_laporta_v0":       _approx(alpha_inv_no_lap),
+            "result_alpha_shift_from_laporta_v0":   _approx(shift),
+            "result_alpha_shift_ppb_v0":            _approx(shift_ppb),
+        },
+        "notes": (
+            "alpha_inv with full A4: %.12f. "
+            "alpha_inv without Laporta: %.12f. "
+            "Shift: %.6e (%.3f ppb)."
+        ) % (
+            float(alpha_inv_full), float(alpha_inv_no_lap),
+            float(shift), float(shift_ppb),
+        ),
+    }
+    
+
+
+
 
 # ================================================================
 # REGISTRIES
@@ -8159,6 +8508,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "laporta_pslq_individual_v0": laporta_pslq_individual_v0,
     "laporta_pslq_crossrel_v0": laporta_pslq_crossrel_v0,
     "laporta_pslq_summary_v0": laporta_pslq_summary_v0,    
+    # Laporta A4
+    "laporta_a4_reconstruct_v0": laporta_a4_reconstruct_v0,
+    "laporta_a4_sensitivity_v0": laporta_a4_sensitivity_v0,
+    "laporta_a4_alpha_impact_v0": laporta_a4_alpha_impact_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

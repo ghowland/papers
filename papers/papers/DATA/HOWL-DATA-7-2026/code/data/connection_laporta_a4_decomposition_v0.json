@@ -1,0 +1,40 @@
+{
+    "key": "connection_laporta_a4_decomposition_v0",
+    "canonical": "connection_laporta_a4_decomposition",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Connects the Laporta master integrals (PHYS-46 independence program) to the QED alpha extraction chain (PHYS-38) through the A4 coefficient decomposition. The six Laporta constants contribute to a_e at the 10^-11 level, which is at or just above the Harvard measurement precision of 10^-12. Decomposing A4 shows how much of alpha depends on these potentially new constants.",
+    "paper": "PHYS-46",
+    "domains_connected": ["qed", "laporta", "alpha_extraction", "precision_measurement"],
+    "thesis": "The A4 QED coefficient decomposes into analytically known terms plus six Laporta master integral contributions. The Laporta piece shifts alpha_inv by order 1 ppb. The Harvard measurement constrains but does not determine the individual Laporta constants.",
+    "formula": "A4 = A4_known + c1*C81a + c2*C81b + c3*C81c + c4*C83a + c5*C83b + c6*C83c",
+    "input_values": [
+        "qed_a4_laporta_v0",
+        "laporta_C81a_v0",
+        "laporta_C81b_v0",
+        "laporta_C81c_v0",
+        "laporta_C83a_v0",
+        "laporta_C83b_v0",
+        "laporta_C83c_v0",
+        "laporta_a4_coeff_C81a_v0",
+        "laporta_a4_coeff_C81b_v0",
+        "laporta_a4_coeff_C81c_v0",
+        "laporta_a4_coeff_C83a_v0",
+        "laporta_a4_coeff_C83b_v0",
+        "laporta_a4_coeff_C83c_v0",
+        "laporta_a4_known_piece_v0",
+        "qed_ae_electron_measured_v0",
+        "qed_alpha_inv_rb_recoil_v0"
+    ],
+    "output_values": [
+        "result_a4_reconstructed_v0",
+        "result_a4_known_fraction_v0",
+        "result_alpha_shift_ppb_v0",
+        "result_laporta_vs_measurement_precision_v0"
+    ],
+    "derivation_functions": [
+        "laporta_a4_reconstruct_v0",
+        "laporta_a4_sensitivity_v0",
+        "laporta_a4_alpha_impact_v0"
+    ]
+}

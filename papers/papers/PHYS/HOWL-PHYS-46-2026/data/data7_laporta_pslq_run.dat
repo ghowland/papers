@@ -1,0 +1,285 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_laporta_pslq_v0
+======================================================================
+DATA-6 RUNNER: experiment_laporta_pslq_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_laporta_pslq_v0.json
+  Mode:   standard
+  Purpose: program_laporta_constants_v0
+
+Loaded 3233 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 3 derivations
+----------------------------------------------------------------------
+  [OK] laporta_pslq_individual_v0                              15 outputs
+  [OK] laporta_pslq_crossrel_v0                                13 outputs
+  [OK] laporta_pslq_summary_v0                                  8 outputs
+
+Derivations: 3 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 19 checks
+----------------------------------------------------------------------
+
+  [PASS] L01: C81a PSLQ status (expect NULL)                exact           exact match
+  [PASS] L02: C81b PSLQ status (expect NULL)                exact           exact match
+  [PASS] L03: C81c PSLQ status (expect NULL)                exact           exact match
+  [PASS] L04: C83a PSLQ status (expect NULL)                exact           exact match
+  [PASS] L05: C83b PSLQ status (expect NULL)                exact           exact match
+  [PASS] L06: C83c PSLQ status (expect NULL)                exact           exact match
+  [PASS] L07: All 6 individual scans completed              range           in [0, 6]
+  [PASS] L08: Cross-relation C81a-C81b                      exact           exact match
+  [PASS] L09: Cross-relation C81a-C81c                      exact           exact match
+  [PASS] L10: Cross-relation C81b-C81c                      exact           exact match
+  [PASS] L11: Cross-relation C83a-C83b                      exact           exact match
+  [PASS] L12: Cross-relation C83a-C83c                      exact           exact match
+  [PASS] L13: Cross-relation C83b-C83c                      exact           exact match
+  [PASS] L14: Cross-topology C81a-C83a                      exact           exact match
+  [PASS] L15: Cross-topology C81b-C83b                      exact           exact match
+  [PASS] L16: Cross-topology C81c-C83c                      exact           exact match
+  [PASS] L17: Triple relation topology 81                   exact           exact match
+  [PASS] L18: Triple relation topology 83                   exact           exact match
+  [PASS] L19: Independent count (expect 6 if all null)      range           in [1, 6]
+
+----------------------------------------------------------------------
+DIAGRAMS: 2 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_laporta_pslq_status_v0                     Six Laporta integrals: PSLQ scan status across tiers
+  [SPEC] diagram_laporta_crossrel_v0                        Cross-relation matrix: which integrals are related
+
+Result written: result_experiment_laporta_pslq_v0_run002.json
+Values written: values_experiment_laporta_pslq_v0_run002.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  3 / 3
+  Connections:  0 / 0
+
+  PASS: 19
+  FAIL: 0
+  INFO: 0
+  SKIP: 0
+
+  STATUS: ALL COMPARISONS PASSED
+
+======================================================================
+
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_laporta_pslq_v0
+
+======================================================================
+DATA-6 REPORT: experiment_laporta_pslq_v0
+======================================================================
+
+  Result file:  result_experiment_laporta_pslq_v0_run002.json
+  Timestamp:    2026-04-18T14:50:29Z
+  Status:       complete
+  Mode:         standard
+  Purpose:      program_laporta_constants_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 36 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_C81a_basis_size_v0                               66
+    result_C81a_status_v0                                   NULL
+    result_C81b_basis_size_v0                               66
+    result_C81b_status_v0                                   NULL
+    result_C81c_basis_size_v0                               66
+    result_C81c_status_v0                                   NULL
+    result_C83a_basis_size_v0                               66
+    result_C83a_status_v0                                   NULL
+    result_C83b_basis_size_v0                               66
+    result_C83b_status_v0                                   NULL
+    result_C83c_basis_size_v0                               66
+    result_C83c_status_v0                                   NULL
+    result_crossrel_81a_83a_status_v0                       NULL
+    result_crossrel_81ab_status_v0                          NULL
+    result_crossrel_81ac_status_v0                          NULL
+    result_crossrel_81b_83b_status_v0                       NULL
+    result_crossrel_81bc_status_v0                          NULL
+    result_crossrel_81c_83c_status_v0                       NULL
+    result_crossrel_83ab_status_v0                          NULL
+    result_crossrel_83ac_status_v0                          NULL
+    result_crossrel_83bc_status_v0                          NULL
+    result_crossrel_found_v0                                0
+    result_crossrel_null_v0                                 11
+    result_crossrel_triple_81_status_v0                     NULL
+    result_crossrel_triple_83_status_v0                     NULL
+    result_found_count_crossrel_v0                          0
+    result_found_count_individual_v0                        0
+    result_independent_count_v0                             6
+    result_individual_found_v0                              0
+    result_individual_null_v0                               6
+    result_null_count_crossrel_v0                           11
+    result_null_count_individual_v0                         6
+    result_skip_count_individual_v0                         0
+    result_total_found_v0                                   0
+    result_total_null_v0                                    17
+    result_total_scans_v0                                   17
+
+----------------------------------------------------------------------
+COMPARISONS: 19 checks
+----------------------------------------------------------------------
+
+  [PASS] L01: C81a PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L02: C81b PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L03: C81c PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L04: C83a PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L05: C83b PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L06: C83c PSLQ status (expect NULL)
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L07: All 6 individual scans completed
+    got:      6.0
+    range:    [0, 6]
+
+  [PASS] L08: Cross-relation C81a-C81b
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L09: Cross-relation C81a-C81c
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L10: Cross-relation C81b-C81c
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L11: Cross-relation C83a-C83b
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L12: Cross-relation C83a-C83c
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L13: Cross-relation C83b-C83c
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L14: Cross-topology C81a-C83a
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L15: Cross-topology C81b-C83b
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L16: Cross-topology C81c-C83c
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L17: Triple relation topology 81
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L18: Triple relation topology 83
+    expected: NULL
+    got:      NULL
+    status:   PASS (exact Fraction match)
+
+  [PASS] L19: Independent count (expect 6 if all null)
+    got:      6.0
+    range:    [1, 6]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  3
+  Derivations err: 0
+
+  PASS: 19
+  FAIL: 0
+  INFO: 0
+  SKIP: 0
+
+  EXPERIMENT: ALL COMPARISONS PASSED
+
+======================================================================
+
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py search laporta_pslq
+======================================================================
+SEARCH: 'laporta_pslq'
+======================================================================
+
+  [derivation  ] laporta_pslq_crossrel_v0
+  [derivation  ] laporta_pslq_individual_v0
+  [derivation  ] laporta_pslq_summary_v0
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81a_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81a_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81b_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81b_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81c_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C81c_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83a_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83a_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83b_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83b_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83c_basis_size_v0 66
+  [value       ] experiment_laporta_pslq_v0_run002_result_C83c_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81a_83a_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81ab_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81ac_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81b_83b_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81bc_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_81c_83c_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_83ab_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_83ac_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_83bc_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_found_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_null_v0 11
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_triple_81_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_crossrel_triple_83_status_v0 NULL
+  [value       ] experiment_laporta_pslq_v0_run002_result_found_count_crossrel_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_found_count_individual_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_independent_count_v0 6
+  [value       ] experiment_laporta_pslq_v0_run002_result_individual_found_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_individual_null_v0 6
+  [value       ] experiment_laporta_pslq_v0_run002_result_null_count_crossrel_v0 11
+  [value       ] experiment_laporta_pslq_v0_run002_result_null_count_individual_v0 6
+  [value       ] experiment_laporta_pslq_v0_run002_result_skip_count_individual_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_total_found_v0 0
+  [value       ] experiment_laporta_pslq_v0_run002_result_total_null_v0 17
+  [value       ] experiment_laporta_pslq_v0_run002_result_total_scans_v0 17
+
+  39 matches
+
+======================================================================

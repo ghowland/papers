@@ -1,0 +1,171 @@
+{
+    "key": "experiment_laporta_a4_decomposition_v0",
+    "canonical": "experiment_laporta_a4_decomposition",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Decompose the QED A4 coefficient into its analytically known terms plus the six Laporta master integral contributions. Compute the sensitivity of alpha_inv to each Laporta constant individually. Test whether the Harvard a_e measurement constrains the Laporta constants.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_a1_schwinger": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a4_laporta": 0,
+            "qed_a5_volkov": 0,
+            "qed_ae_electron_measured": 0,
+            "qed_alpha_inv_rb_recoil": 0,
+            "qed_alpha_inv_cs_recoil": 0,
+            "qed_alpha_inv_codata_2018": 0,
+            "qed_hadronic_vp_delta": 0,
+            "qed_ae_hadronic_lo": 0,
+            "qed_ae_hadronic_nlo": 0,
+            "qed_ae_hadronic_lbl": 0,
+            "qed_ae_electroweak": 0,
+            "laporta_C81a": 0,
+            "laporta_C81b": 0,
+            "laporta_C81c": 0,
+            "laporta_C83a": 0,
+            "laporta_C83b": 0,
+            "laporta_C83c": 0,
+            "laporta_a4_coeff_C81a": 0,
+            "laporta_a4_coeff_C81b": 0,
+            "laporta_a4_coeff_C81c": 0,
+            "laporta_a4_coeff_C83a": 0,
+            "laporta_a4_coeff_C83b": 0,
+            "laporta_a4_coeff_C83c": 0,
+            "laporta_a4_known_piece": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0
+        },
+        "derivations": {
+            "laporta_a4_reconstruct": 0,
+            "laporta_a4_sensitivity": 0,
+            "laporta_a4_alpha_impact": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "laporta_a4_reconstruct_v0",
+        "laporta_a4_sensitivity_v0",
+        "laporta_a4_alpha_impact_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_a4_known_piece_v0",
+        "result_a4_laporta_piece_v0",
+        "result_a4_reconstructed_v0",
+        "result_a4_reconstruction_residual_v0",
+        "result_a4_known_fraction_v0",
+        "result_a4_laporta_fraction_v0",
+        "result_sensitivity_C81a_v0",
+        "result_sensitivity_C81b_v0",
+        "result_sensitivity_C81c_v0",
+        "result_sensitivity_C83a_v0",
+        "result_sensitivity_C83b_v0",
+        "result_sensitivity_C83c_v0",
+        "result_alpha_inv_full_v0",
+        "result_alpha_inv_no_laporta_v0",
+        "result_alpha_shift_from_laporta_v0",
+        "result_alpha_shift_ppb_v0",
+        "result_ae_contribution_a4_v0",
+        "result_ae_contribution_laporta_v0",
+        "result_ae_contribution_known_a4_v0",
+        "result_laporta_vs_measurement_precision_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "D01: A4 reconstructed matches Laporta value",
+            "output_key": "result_a4_reconstruction_residual_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.0001",
+            "reference_source": "self_consistency"
+        },
+        {
+            "label": "D02: A4 known fraction (expect ~60-90%)",
+            "output_key": "result_a4_known_fraction_v0",
+            "match_mode": "range",
+            "lo": "0.1",
+            "hi": "1.0",
+            "reference_source": "decomposition"
+        },
+        {
+            "label": "D03: Total A4 contribution to a_e (order 10^-11)",
+            "output_key": "result_ae_contribution_a4_v0",
+            "match_mode": "range",
+            "lo": "-1e-9",
+            "hi": "-1e-13",
+            "reference_source": "QED_series"
+        },
+        {
+            "label": "D04: Laporta piece contribution to a_e",
+            "output_key": "result_ae_contribution_laporta_v0",
+            "match_mode": "range",
+            "lo": "-1e-9",
+            "hi": "1e-9",
+            "reference_source": "QED_series"
+        },
+        {
+            "label": "D05: Alpha shift from Laporta in ppb",
+            "output_key": "result_alpha_shift_ppb_v0",
+            "match_mode": "range",
+            "lo": "-10",
+            "hi": "10",
+            "reference_source": "QED_series"
+        },
+        {
+            "label": "D06: Laporta contribution vs measurement precision",
+            "output_key": "result_laporta_vs_measurement_precision_v0",
+            "match_mode": "range",
+            "lo": "0.01",
+            "hi": "100",
+            "reference_source": "Harvard_precision"
+        },
+        {
+            "label": "D07: Alpha_inv with full A4",
+            "output_key": "result_alpha_inv_full_v0",
+            "match_mode": "miss_pct",
+            "expected": "137.035999206",
+            "reference_source": "Rb_recoil"
+        },
+        {
+            "label": "D08: Alpha_inv without Laporta piece",
+            "output_key": "result_alpha_inv_no_laporta_v0",
+            "match_mode": "miss_pct",
+            "expected": "137.035999206",
+            "reference_source": "Rb_recoil"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_a4_decomposition_v0",
+            "title": "A4 decomposed: known analytic terms vs six Laporta constants",
+            "type": "comparison_table"
+        },
+        {
+            "key": "diagram_sensitivity_v0",
+            "title": "Sensitivity of alpha to each Laporta constant",
+            "type": "comparison_table"
+        }
+    ]
+}
