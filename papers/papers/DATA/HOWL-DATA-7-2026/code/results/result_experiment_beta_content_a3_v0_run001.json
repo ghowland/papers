@@ -1,0 +1,161 @@
+{
+  "key": "result_experiment_beta_content_a3_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_beta_content_a3_v0",
+  "timestamp": "2026-04-18T17:08:17Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "beta_content_a2_a3_compare_v0",
+      "status": "ok",
+      "output_count": 23
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "B01: A2 sum matches known value",
+      "output_key": "result_a2_sum_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Schwinger_Petermann",
+      "status": "INFO",
+      "expected": "-0.328478965579194",
+      "got": "-0.328478965579194",
+      "miss_pct": "0.0",
+      "detail": "predicted -0.328478965579194 ref -0.328478965579194 miss 0.0%"
+    },
+    {
+      "label": "B02: A3 sum matches known value",
+      "output_key": "result_a3_sum_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Laporta_Remiddi",
+      "status": "INFO",
+      "expected": "1.181241456587",
+      "got": "1.1812414565872",
+      "miss_pct": "1.693e-11",
+      "detail": "predicted 1.1812414565872 ref 1.181241456587 miss 1.693e-11%"
+    },
+    {
+      "label": "B03: A2 cancellation ~90%",
+      "output_key": "result_a2_cancel_pct_v0",
+      "match_mode": "range",
+      "reference_source": "MATH-11_run002",
+      "got": "90.3969",
+      "lo": "85",
+      "hi": "95",
+      "status": "PASS",
+      "detail": "in [85, 95]"
+    },
+    {
+      "label": "B04: A3 cancellation computed",
+      "output_key": "result_a3_cancel_pct_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "99.5356",
+      "lo": "0",
+      "hi": "99.9",
+      "status": "PASS",
+      "detail": "in [0, 99.9]"
+    },
+    {
+      "label": "B05: A3 has beta^4 content (from pi^4 term)",
+      "output_key": "result_a3_beta4_total_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "-10.7781",
+      "lo": "-100",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [-100, 100]"
+    },
+    {
+      "label": "B06: A3 has beta^2 content",
+      "output_key": "result_a3_beta2_total_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "-11.0551",
+      "lo": "-1000",
+      "hi": "1000",
+      "status": "PASS",
+      "detail": "in [-1000, 1000]"
+    },
+    {
+      "label": "B07: Cancellation trend (A3 vs A2)",
+      "output_key": "result_cancel_trend_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "9.13871",
+      "lo": "-50",
+      "hi": "50",
+      "status": "PASS",
+      "detail": "in [-50, 50]"
+    },
+    {
+      "label": "B08: A3 beta^0 fraction",
+      "output_key": "result_a3_beta0_fraction_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "0.513169",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    },
+    {
+      "label": "B09: A3 beta^2 fraction",
+      "output_key": "result_a3_beta2_fraction_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "0.246503",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    },
+    {
+      "label": "B10: A3 beta^4 fraction",
+      "output_key": "result_a3_beta4_fraction_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "0.240327",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    }
+  ],
+  "outputs": {
+    "result_a2_sum_v0": "-0.328478965579194",
+    "result_a2_beta0_total_v0": "2.26959823292525",
+    "result_a2_beta2_total_v0": "-2.59807719850445",
+    "result_a2_cancel_pct_v0": "90.3968800487052",
+    "result_a3_term_rational_v0": "5.45119598765432",
+    "result_a3_term_pi2_v0": "208.3704998309",
+    "result_a3_term_pi2ln2_v0": "-226.516040247713",
+    "result_a3_term_pi4_v0": "-10.7781355357068",
+    "result_a3_term_z3_v0": "9.28255052995464",
+    "result_a3_term_z5_v0": "-9.28914447315936",
+    "result_a3_term_pi2z3_v0": "13.6763550895563",
+    "result_a3_term_li4_combo_v0": "10.9839602751013",
+    "result_a3_li4_beta0_part_v0": "17.5699063593843",
+    "result_a3_li4_beta2_part_v0": "-6.58594608428296",
+    "result_a3_sum_v0": "1.1812414565872",
+    "result_a3_beta0_total_v0": "23.0145084038339",
+    "result_a3_beta2_total_v0": "-11.0551314115399",
+    "result_a3_beta4_total_v0": "-10.7781355357068",
+    "result_a3_cancel_pct_v0": "99.5355851785726",
+    "result_a3_beta0_fraction_v0": "0.513169454307824",
+    "result_a3_beta2_fraction_v0": "0.246503451397474",
+    "result_a3_beta4_fraction_v0": "0.240327094294702",
+    "result_cancel_trend_v0": "9.13870512986737"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 8,
+    "comparisons_fail": 0,
+    "comparisons_info": 2,
+    "comparisons_skip": 0
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a2_sum_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a2_sum",
+      "version": 0,
+      "node_type": "value",
+      "value": "-0.328478965579194",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a2_beta0_total_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a2_beta0_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.26959823292525",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a2_beta2_total_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a2_beta2_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "-2.59807719850445",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a2_cancel_pct_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a2_cancel_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "90.3968800487052",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_rational_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_rational",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.45119598765432",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2",
+      "version": 0,
+      "node_type": "value",
+      "value": "208.3704998309",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2ln2_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2ln2",
+      "version": 0,
+      "node_type": "value",
+      "value": "-226.516040247713",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_pi4_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_pi4",
+      "version": 0,
+      "node_type": "value",
+      "value": "-10.7781355357068",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_z3_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_z3",
+      "version": 0,
+      "node_type": "value",
+      "value": "9.28255052995464",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_z5_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_z5",
+      "version": 0,
+      "node_type": "value",
+      "value": "-9.28914447315936",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2z3_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_pi2z3",
+      "version": 0,
+      "node_type": "value",
+      "value": "13.6763550895563",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_term_li4_combo_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_term_li4_combo",
+      "version": 0,
+      "node_type": "value",
+      "value": "10.9839602751013",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_li4_beta0_part_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_li4_beta0_part",
+      "version": 0,
+      "node_type": "value",
+      "value": "17.5699063593843",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_li4_beta2_part_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_li4_beta2_part",
+      "version": 0,
+      "node_type": "value",
+      "value": "-6.58594608428296",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_sum_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_sum",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.1812414565872",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta0_total_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta0_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "23.0145084038339",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta2_total_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta2_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "-11.0551314115399",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta4_total_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta4_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "-10.7781355357068",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_cancel_pct_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_cancel_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "99.5355851785726",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta0_fraction_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta0_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.513169454307824",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta2_fraction_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta2_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.246503451397474",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_a3_beta4_fraction_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_a3_beta4_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.240327094294702",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    },
+    {
+      "key": "experiment_beta_content_a3_v0_run001_result_cancel_trend_v0",
+      "canonical": "experiment_beta_content_a3_v0_run001_result_cancel_trend",
+      "version": 0,
+      "node_type": "value",
+      "value": "9.13870512986737",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_beta_content_a3_v0_run001"
+    }
+  ]
+}

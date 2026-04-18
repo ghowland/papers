@@ -8252,6 +8252,179 @@ def laporta_a4_alpha_impact_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PHYS-47: Beta Content Decomposition A2 vs A3
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "beta_content_a2_a3_compare_v0": beta_content_a2_a3_compare_v0,
+# =============================================================================
+
+
+def beta_content_a2_a3_compare_v0(value_dicts):
+    """Decompose A2 and A3 into beta^0, beta^2, and beta^4 terms.
+
+    Classification rules:
+    - beta^0: terms with no pi content (rational, zeta(n), Li4(1/2) combo)
+    - beta^2: terms with pi^2 (since pi^2 = 16*beta^2)
+    - beta^4: terms with pi^4 (since pi^4 = 256*beta^4)
+    - mixed beta^2: terms with pi^2 * zeta (geometric * number-theoretic)
+
+    The Li4(1/2) combination (100/3)*(Li4(1/2) + ln^4(2)/24 - pi^2*ln^2(2)/24)
+    contains BOTH beta^0 (Li4 + ln^4 part) and beta^2 (pi^2*ln^2 part).
+    We split it into its components.
+
+    Compute cancellation percentage for both A2 and A3.
+    Report the trend: is cancellation increasing toward 4 loops?
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+    li4h = _f2m(_frac(vm, "geom_li4_half_v0"))
+
+    pi2 = pi_val ** 2
+    pi4 = pi_val ** 4
+
+    # ============================================================
+    # A2 DECOMPOSITION (4 terms, same as MATH-11)
+    # ============================================================
+
+    a2_rational = _f2m(_frac(vm, "qed_a2_rational_term_v0"))
+    a2_pi2c = _f2m(_frac(vm, "qed_a2_pi2_coeff_v0"))
+    a2_pi2ln2c = _f2m(_frac(vm, "qed_a2_pi2ln2_coeff_v0"))
+    a2_z3c = _f2m(_frac(vm, "qed_a2_zeta3_coeff_v0"))
+
+    a2_term_rational = a2_rational                      # beta^0
+    a2_term_pi2 = a2_pi2c * pi2                         # beta^2
+    a2_term_pi2ln2 = a2_pi2ln2c * pi2 * ln2             # beta^2
+    a2_term_z3 = a2_z3c * zeta3                          # beta^0
+
+    a2_sum = a2_term_rational + a2_term_pi2 + a2_term_pi2ln2 + a2_term_z3
+
+    a2_beta0 = a2_term_rational + a2_term_z3
+    a2_beta2 = a2_term_pi2 + a2_term_pi2ln2
+
+    a2_pos = sum(t for t in [a2_term_rational, a2_term_pi2, a2_term_pi2ln2, a2_term_z3] if t > 0)
+    a2_neg = sum(abs(t) for t in [a2_term_rational, a2_term_pi2, a2_term_pi2ln2, a2_term_z3] if t < 0)
+    a2_cancel = min(a2_pos, a2_neg) / max(a2_pos, a2_neg) * 100
+
+    # ============================================================
+    # A3 DECOMPOSITION (8 terms from Laporta-Remiddi formula)
+    # ============================================================
+
+    a3_rat_c = _f2m(_frac(vm, "qed_a3_rational_term_v0"))
+    a3_pi2c = _f2m(_frac(vm, "qed_a3_pi2_coeff_v0"))
+    a3_pi2ln2c = _f2m(_frac(vm, "qed_a3_pi2ln2_coeff_v0"))
+    a3_pi4c = _f2m(_frac(vm, "qed_a3_pi4_coeff_v0"))
+    a3_z3c = _f2m(_frac(vm, "qed_a3_z3_coeff_v0"))
+    a3_z5c = _f2m(_frac(vm, "qed_a3_z5_coeff_v0"))
+    a3_pi2z3c = _f2m(_frac(vm, "qed_a3_pi2z3_coeff_v0"))
+    a3_li4c = _f2m(_frac(vm, "qed_a3_li4_coeff_v0"))
+
+    # Individual terms
+    a3_term_rational = a3_rat_c                          # beta^0
+    a3_term_pi2 = a3_pi2c * pi2                          # beta^2
+    a3_term_pi2ln2 = a3_pi2ln2c * pi2 * ln2             # beta^2
+    a3_term_pi4 = a3_pi4c * pi4                          # beta^4
+    a3_term_z3 = a3_z3c * zeta3                          # beta^0
+    a3_term_z5 = a3_z5c * zeta5                          # beta^0
+    a3_term_pi2z3 = a3_pi2z3c * pi2 * zeta3             # mixed: beta^2 * zeta
+
+    # The Li4 combination: (100/3)*(Li4(1/2) + ln^4(2)/24 - pi^2*ln^2(2)/24)
+    # Split into beta^0 part and beta^2 part:
+    a3_li4_beta0 = a3_li4c * (li4h + ln2**4 / 24)       # beta^0
+    a3_li4_beta2 = a3_li4c * (- pi2 * ln2**2 / 24)      # beta^2
+
+    a3_sum = (a3_term_rational + a3_term_pi2 + a3_term_pi2ln2 + a3_term_pi4
+              + a3_term_z3 + a3_term_z5 + a3_term_pi2z3
+              + a3_li4_beta0 + a3_li4_beta2)
+
+    # Classify by beta power
+    # beta^0: rational, z3, z5, Li4+ln^4 part
+    a3_beta0 = a3_term_rational + a3_term_z3 + a3_term_z5 + a3_li4_beta0
+
+    # beta^2: pi^2, pi^2*ln2, pi^2*z3, Li4 pi^2*ln^2 part
+    a3_beta2 = a3_term_pi2 + a3_term_pi2ln2 + a3_term_pi2z3 + a3_li4_beta2
+
+    # beta^4: pi^4
+    a3_beta4 = a3_term_pi4
+
+    # Cancellation: positive vs negative
+    all_a3_terms = [a3_term_rational, a3_term_pi2, a3_term_pi2ln2, a3_term_pi4,
+                    a3_term_z3, a3_term_z5, a3_term_pi2z3,
+                    a3_li4_beta0, a3_li4_beta2]
+
+    a3_pos = sum(t for t in all_a3_terms if t > 0)
+    a3_neg = sum(abs(t) for t in all_a3_terms if t < 0)
+    a3_cancel = min(a3_pos, a3_neg) / max(a3_pos, a3_neg) * 100
+
+    # Fractions of total |A3| by beta power
+    a3_abs = abs(a3_sum)
+    a3_beta0_frac = abs(a3_beta0) / (abs(a3_beta0) + abs(a3_beta2) + abs(a3_beta4))
+    a3_beta2_frac = abs(a3_beta2) / (abs(a3_beta0) + abs(a3_beta2) + abs(a3_beta4))
+    a3_beta4_frac = abs(a3_beta4) / (abs(a3_beta0) + abs(a3_beta2) + abs(a3_beta4))
+
+    # Trend: positive = cancellation increased from A2 to A3
+    cancel_trend = float(a3_cancel) - float(a2_cancel)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "beta_content_a2_a3_compare_v0",
+        "outputs": {
+            # A2 results
+            "result_a2_sum_v0":             _approx(a2_sum),
+            "result_a2_beta0_total_v0":     _approx(a2_beta0),
+            "result_a2_beta2_total_v0":     _approx(a2_beta2),
+            "result_a2_cancel_pct_v0":      _approx(a2_cancel),
+
+            # A3 individual terms
+            "result_a3_term_rational_v0":   _approx(a3_term_rational),
+            "result_a3_term_pi2_v0":        _approx(a3_term_pi2),
+            "result_a3_term_pi2ln2_v0":     _approx(a3_term_pi2ln2),
+            "result_a3_term_pi4_v0":        _approx(a3_term_pi4),
+            "result_a3_term_z3_v0":         _approx(a3_term_z3),
+            "result_a3_term_z5_v0":         _approx(a3_term_z5),
+            "result_a3_term_pi2z3_v0":      _approx(a3_term_pi2z3),
+            "result_a3_term_li4_combo_v0":  _approx(a3_li4_beta0 + a3_li4_beta2),
+            "result_a3_li4_beta0_part_v0":  _approx(a3_li4_beta0),
+            "result_a3_li4_beta2_part_v0":  _approx(a3_li4_beta2),
+
+            # A3 grouped by beta power
+            "result_a3_sum_v0":             _approx(a3_sum),
+            "result_a3_beta0_total_v0":     _approx(a3_beta0),
+            "result_a3_beta2_total_v0":     _approx(a3_beta2),
+            "result_a3_beta4_total_v0":     _approx(a3_beta4),
+            "result_a3_cancel_pct_v0":      _approx(a3_cancel),
+
+            # Fractions
+            "result_a3_beta0_fraction_v0":  _approx(a3_beta0_frac),
+            "result_a3_beta2_fraction_v0":  _approx(a3_beta2_frac),
+            "result_a3_beta4_fraction_v0":  _approx(a3_beta4_frac),
+
+            # Trend
+            "result_cancel_trend_v0":       _approx(mpf(str(cancel_trend))),
+        },
+        "notes": (
+            "A2: sum=%.6f, beta0=%.4f, beta2=%.4f, cancel=%.1f%%. "
+            "A3: sum=%.6f, beta0=%.4f, beta2=%.4f, beta4=%.4f, cancel=%.1f%%. "
+            "Trend: %+.1f pp (positive = more cancellation at 3 loops). "
+            "Beta fractions: beta0=%.1f%%, beta2=%.1f%%, beta4=%.1f%%."
+        ) % (
+            float(a2_sum), float(a2_beta0), float(a2_beta2), float(a2_cancel),
+            float(a3_sum), float(a3_beta0), float(a3_beta2), float(a3_beta4),
+            float(a3_cancel), cancel_trend,
+            float(a3_beta0_frac)*100, float(a3_beta2_frac)*100, float(a3_beta4_frac)*100,
+        ),
+    }
+
+
 
 
 # ================================================================
@@ -8400,6 +8573,8 @@ DERIVATION_MORE_INDEX_V0 = {
     # Laporta A4
     "laporta_a4_sensitivity_v0": laporta_a4_sensitivity_v0,
     "laporta_a4_alpha_impact_v0": laporta_a4_alpha_impact_v0,
+    # Laporta Beta Content A2 A3 Compare
+    "beta_content_a2_a3_compare_v0": beta_content_a2_a3_compare_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

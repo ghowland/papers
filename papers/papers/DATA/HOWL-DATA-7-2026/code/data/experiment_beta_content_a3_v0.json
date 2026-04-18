@@ -1,0 +1,154 @@
+{
+    "key": "experiment_beta_content_a3_v0",
+    "canonical": "experiment_beta_content_a3",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Decompose the QED A3 coefficient into beta^0, beta^2, and beta^4 terms using the analytical Laporta-Remiddi formula. Compare cancellation percentage to A2 (90.4%). Test whether the spherical/toroidal tension builds from two to three loops toward the four-loop breaking point where genus-1 (Laporta) integrals appear.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_a3_rational_term": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0
+        },
+        "derivations": {
+            "beta_content_a2_a3_compare": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "beta_content_a2_a3_compare_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_a2_sum_v0",
+        "result_a2_beta0_total_v0",
+        "result_a2_beta2_total_v0",
+        "result_a2_cancel_pct_v0",
+        "result_a3_sum_v0",
+        "result_a3_beta0_total_v0",
+        "result_a3_beta2_total_v0",
+        "result_a3_beta4_total_v0",
+        "result_a3_cancel_pct_v0",
+        "result_a3_beta0_fraction_v0",
+        "result_a3_beta2_fraction_v0",
+        "result_a3_beta4_fraction_v0",
+        "result_cancel_trend_v0",
+        "result_a3_term_rational_v0",
+        "result_a3_term_pi2_v0",
+        "result_a3_term_pi2ln2_v0",
+        "result_a3_term_pi4_v0",
+        "result_a3_term_z3_v0",
+        "result_a3_term_z5_v0",
+        "result_a3_term_pi2z3_v0",
+        "result_a3_term_li4_combo_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "B01: A2 sum matches known value",
+            "output_key": "result_a2_sum_v0",
+            "match_mode": "miss_pct",
+            "expected": "-0.328478965579194",
+            "reference_source": "Schwinger_Petermann"
+        },
+        {
+            "label": "B02: A3 sum matches known value",
+            "output_key": "result_a3_sum_v0",
+            "match_mode": "miss_pct",
+            "expected": "1.181241456587",
+            "reference_source": "Laporta_Remiddi"
+        },
+        {
+            "label": "B03: A2 cancellation ~90%",
+            "output_key": "result_a2_cancel_pct_v0",
+            "match_mode": "range",
+            "lo": "85",
+            "hi": "95",
+            "reference_source": "MATH-11_run002"
+        },
+        {
+            "label": "B04: A3 cancellation computed",
+            "output_key": "result_a3_cancel_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "99.9",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B05: A3 has beta^4 content (from pi^4 term)",
+            "output_key": "result_a3_beta4_total_v0",
+            "match_mode": "range",
+            "lo": "-100",
+            "hi": "100",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B06: A3 has beta^2 content",
+            "output_key": "result_a3_beta2_total_v0",
+            "match_mode": "range",
+            "lo": "-1000",
+            "hi": "1000",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B07: Cancellation trend (A3 vs A2)",
+            "output_key": "result_cancel_trend_v0",
+            "match_mode": "range",
+            "lo": "-50",
+            "hi": "50",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B08: A3 beta^0 fraction",
+            "output_key": "result_a3_beta0_fraction_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B09: A3 beta^2 fraction",
+            "output_key": "result_a3_beta2_fraction_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "computed"
+        },
+        {
+            "label": "B10: A3 beta^4 fraction",
+            "output_key": "result_a3_beta4_fraction_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "computed"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_beta_content_a2_a3_v0",
+            "title": "Beta content decomposition: A2 (2-loop) vs A3 (3-loop)",
+            "type": "comparison_table"
+        }
+    ]
+}

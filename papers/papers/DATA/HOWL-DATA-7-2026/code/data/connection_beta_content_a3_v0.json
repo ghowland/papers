@@ -1,0 +1,41 @@
+{
+    "key": "connection_beta_content_a3_v0",
+    "canonical": "connection_beta_content_a3",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Extends the MATH-11 beta-content decomposition from A2 to A3. At two loops, A2 decomposes into beta^0 (rational + zeta) and beta^2 (pi^2 terms) with 90.4% cancellation. At three loops, A3 adds beta^4 content (pi^4 term) and a mixed beta^2*zeta term. Tracking how the cancellation evolves from 2 to 3 loops tests whether the spherical/toroidal tension builds toward the 4-loop breaking point where genus-1 Laporta integrals appear.",
+    "paper": "PHYS-47",
+    "domains_connected": ["qed", "metric_geometry", "number_theory", "multi_loop"],
+    "thesis": "The cancellation between beta-powered (angular/geometric) and beta-free (topological/number-theoretic) terms grows from A2 to A3, building tension that breaks at A4 where genuinely new (toroidal/elliptic) constants enter.",
+    "formula": "A_n = sum of terms classified as beta^0 (rational, zeta) + beta^2 (pi^2 content) + beta^4 (pi^4 content) + mixed (pi^2 * zeta)",
+    "input_values": [
+        "qed_a2_rational_term_v0",
+        "qed_a2_pi2_coeff_v0",
+        "qed_a2_pi2ln2_coeff_v0",
+        "qed_a2_zeta3_coeff_v0",
+        "qed_a3_rational_term_v0",
+        "qed_a3_pi2_coeff_v0",
+        "qed_a3_pi2ln2_coeff_v0",
+        "qed_a3_pi4_coeff_v0",
+        "qed_a3_z3_coeff_v0",
+        "qed_a3_z5_coeff_v0",
+        "qed_a3_pi2z3_coeff_v0",
+        "qed_a3_li4_coeff_v0",
+        "geom_pi_v0",
+        "geom_zeta3_v0",
+        "geom_zeta5_v0",
+        "geom_ln2_v0",
+        "geom_li4_half_v0"
+    ],
+    "output_values": [
+        "result_a2_cancel_pct_v0",
+        "result_a3_cancel_pct_v0",
+        "result_cancel_trend_v0",
+        "result_a3_beta0_fraction_v0",
+        "result_a3_beta2_fraction_v0",
+        "result_a3_beta4_fraction_v0"
+    ],
+    "derivation_functions": [
+        "beta_content_a2_a3_compare_v0"
+    ]
+}

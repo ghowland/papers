@@ -1,0 +1,163 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_beta_content_a3_v0
+======================================================================
+DATA-6 RUNNER: experiment_beta_content_a3_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_beta_content_a3_v0.json
+  Mode:   standard
+  Purpose: program_laporta_constants_v0
+
+Loaded 3296 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 1 derivations
+----------------------------------------------------------------------
+  [OK] beta_content_a2_a3_compare_v0                           23 outputs
+
+Derivations: 1 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 10 checks
+----------------------------------------------------------------------
+
+  [INFO] B01: A2 sum matches known value                    miss_pct        predicted -0.328478965579194 ref -0.328478965579194 miss 0.0%
+  [INFO] B02: A3 sum matches known value                    miss_pct        predicted 1.1812414565872 ref 1.181241456587 miss 1.693e-11%
+  [PASS] B03: A2 cancellation ~90%                          range           in [85, 95]
+  [PASS] B04: A3 cancellation computed                      range           in [0, 99.9]
+  [PASS] B05: A3 has beta^4 content (from pi^4 term)        range           in [-100, 100]
+  [PASS] B06: A3 has beta^2 content                         range           in [-1000, 1000]
+  [PASS] B07: Cancellation trend (A3 vs A2)                 range           in [-50, 50]
+  [PASS] B08: A3 beta^0 fraction                            range           in [0, 1]
+  [PASS] B09: A3 beta^2 fraction                            range           in [0, 1]
+  [PASS] B10: A3 beta^4 fraction                            range           in [0, 1]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_beta_content_a2_a3_v0                      Beta content decomposition: A2 (2-loop) vs A3 (3-loop)
+
+Result written: result_experiment_beta_content_a3_v0_run001.json
+Values written: values_experiment_beta_content_a3_v0_run001.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  1 / 1
+  Connections:  0 / 0
+
+  PASS: 8
+  FAIL: 0
+  INFO: 2
+  SKIP: 0
+
+  STATUS: ALL COMPARISONS PASSED
+
+======================================================================
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_beta_content_a3_v0
+
+======================================================================
+DATA-6 REPORT: experiment_beta_content_a3_v0
+======================================================================
+
+  Result file:  result_experiment_beta_content_a3_v0_run001.json
+  Timestamp:    2026-04-18T17:08:17Z
+  Status:       complete
+  Mode:         standard
+  Purpose:      program_laporta_constants_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 23 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_a2_beta0_total_v0                                2.26959823292525
+    result_a2_beta2_total_v0                                -2.59807719850445
+    result_a2_cancel_pct_v0                                 90.3968800487052
+    result_a2_sum_v0                                        -0.328478965579194
+    result_a3_beta0_fraction_v0                             0.513169454307824
+    result_a3_beta0_total_v0                                23.0145084038339
+    result_a3_beta2_fraction_v0                             0.246503451397474
+    result_a3_beta2_total_v0                                -11.0551314115399
+    result_a3_beta4_fraction_v0                             0.240327094294702
+    result_a3_beta4_total_v0                                -10.7781355357068
+    result_a3_cancel_pct_v0                                 99.5355851785726
+    result_a3_li4_beta0_part_v0                             17.5699063593843
+    result_a3_li4_beta2_part_v0                             -6.58594608428296
+    result_a3_sum_v0                                        1.1812414565872
+    result_a3_term_li4_combo_v0                             10.9839602751013
+    result_a3_term_pi2_v0                                   208.3704998309
+    result_a3_term_pi2ln2_v0                                -226.516040247713
+    result_a3_term_pi2z3_v0                                 13.6763550895563
+    result_a3_term_pi4_v0                                   -10.7781355357068
+    result_a3_term_rational_v0                              5.45119598765432
+    result_a3_term_z3_v0                                    9.28255052995464
+    result_a3_term_z5_v0                                    -9.28914447315936
+    result_cancel_trend_v0                                  9.13870512986737
+
+----------------------------------------------------------------------
+COMPARISONS: 10 checks
+----------------------------------------------------------------------
+
+  [INFO] B01: A2 sum matches known value
+    predicted:  -0.328478965579194
+    measured:   -0.328478965579194
+    agree:      16 of 16 digits
+    miss:       0.0 ppb
+    status:     INFO
+
+  [INFO] B02: A3 sum matches known value
+    predicted:  1.1812414565872
+    measured:   1.181241456587
+    agree:      13 of 13 digits
+    miss:       0.0001693 ppb
+    status:     INFO
+
+  [PASS] B03: A2 cancellation ~90%
+    got:      90.3969
+    range:    [85, 95]
+
+  [PASS] B04: A3 cancellation computed
+    got:      99.5356
+    range:    [0, 99.9]
+
+  [PASS] B05: A3 has beta^4 content (from pi^4 term)
+    got:      -10.7781
+    range:    [-100, 100]
+
+  [PASS] B06: A3 has beta^2 content
+    got:      -11.0551
+    range:    [-1000, 1000]
+
+  [PASS] B07: Cancellation trend (A3 vs A2)
+    got:      9.13871
+    range:    [-50, 50]
+
+  [PASS] B08: A3 beta^0 fraction
+    got:      0.513169
+    range:    [0, 1]
+
+  [PASS] B09: A3 beta^2 fraction
+    got:      0.246503
+    range:    [0, 1]
+
+  [PASS] B10: A3 beta^4 fraction
+    got:      0.240327
+    range:    [0, 1]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  1
+  Derivations err: 0
+
+  PASS: 8
+  FAIL: 0
+  INFO: 2
+  SKIP: 0
+
+  EXPERIMENT: ALL COMPARISONS PASSED
+
+======================================================================
