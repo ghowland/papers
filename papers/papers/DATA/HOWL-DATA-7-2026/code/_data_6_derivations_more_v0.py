@@ -8934,6 +8934,402 @@ def laporta_electron_muon_sensitivity_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PHYS-48: Remainder/Elliptic Connection — Modulus = Spherical, Remainder = Toroidal?
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "remainder_beta0_extraction_v0": remainder_beta0_extraction_v0,
+#   "remainder_elliptic_scan_v0": remainder_elliptic_scan_v0,
+#   "remainder_a4_laporta_elliptic_v0": remainder_a4_laporta_elliptic_v0,
+# =============================================================================
+
+
+def remainder_beta0_extraction_v0(value_dicts):
+    """Extract the beta^0 remainders from A2 and A3.
+
+    The modulus is the spherical content (beta^2, beta^4 terms).
+    The remainder is the beta^0 content (rational + zeta + Li).
+
+    Also compute A4's beta content: since A4 = -1.912 total and
+    we don't have the decomposition, we estimate the beta^2 modulus
+    from the pattern at A2 and A3 (spherical fraction ~49%) and
+    compute the beta^0 remainder as A4 - estimated_modulus.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+    li4h = _f2m(_frac(vm, "geom_li4_half_v0"))
+
+    pi2 = pi_val ** 2
+    pi4 = pi_val ** 4
+
+    # ============================================================
+    # A2 decomposition
+    # ============================================================
+    a2_rational = _f2m(_frac(vm, "qed_a2_rational_term_v0"))
+    a2_pi2c = _f2m(_frac(vm, "qed_a2_pi2_coeff_v0"))
+    a2_pi2ln2c = _f2m(_frac(vm, "qed_a2_pi2ln2_coeff_v0"))
+    a2_z3c = _f2m(_frac(vm, "qed_a2_zeta3_coeff_v0"))
+
+    a2_beta0 = a2_rational + a2_z3c * zeta3
+    a2_beta2 = a2_pi2c * pi2 + a2_pi2ln2c * pi2 * ln2
+    a2_total = a2_beta0 + a2_beta2
+
+    # ============================================================
+    # A3 decomposition
+    # ============================================================
+    a3_rat = _f2m(_frac(vm, "qed_a3_rational_term_v0"))
+    a3_pi2c = _f2m(_frac(vm, "qed_a3_pi2_coeff_v0"))
+    a3_pi2ln2c = _f2m(_frac(vm, "qed_a3_pi2ln2_coeff_v0"))
+    a3_pi4c = _f2m(_frac(vm, "qed_a3_pi4_coeff_v0"))
+    a3_z3c = _f2m(_frac(vm, "qed_a3_z3_coeff_v0"))
+    a3_z5c = _f2m(_frac(vm, "qed_a3_z5_coeff_v0"))
+    a3_pi2z3c = _f2m(_frac(vm, "qed_a3_pi2z3_coeff_v0"))
+    a3_li4c = _f2m(_frac(vm, "qed_a3_li4_coeff_v0"))
+
+    a3_beta0 = (a3_rat + a3_z3c * zeta3 + a3_z5c * zeta5
+                + a3_li4c * (li4h + ln2**4 / 24))
+    a3_beta2 = (a3_pi2c * pi2 + a3_pi2ln2c * pi2 * ln2
+                + a3_pi2z3c * pi2 * zeta3
+                + a3_li4c * (-pi2 * ln2**2 / 24))
+    a3_beta4 = a3_pi4c * pi4
+    a3_total = a3_beta0 + a3_beta2 + a3_beta4
+
+    # ============================================================
+    # A4 estimate: use spherical fraction trend to estimate modulus
+    # ============================================================
+    a4_total = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+
+    # Spherical fractions: A2 = 53.4%, A3 = 48.7%
+    # Trend: declining ~4.7 pp per loop. Extrapolate to A4: ~44%
+    # But this is VERY rough. Report as estimate.
+    a4_spherical_frac_estimate = mpf("0.44")
+    a4_beta2_estimate = a4_total * a4_spherical_frac_estimate
+    a4_beta0_estimate = a4_total - a4_beta2_estimate
+
+    # Also compute: what if the Laporta piece IS the entire beta^0?
+    # Then beta^0 = A4 - (known analytical beta^2 terms)
+    # We don't have the known beta^2 terms, so we can't compute this exactly.
+    # Report the estimate and flag it.
+
+    mp.dps = old_dps
+
+    return {
+        "key": "remainder_beta0_extraction_v0",
+        "outputs": {
+            # A2
+            "result_a2_beta0_remainder_v0":     _approx(a2_beta0),
+            "result_a2_beta2_modulus_v0":        _approx(a2_beta2),
+            "result_a2_total_v0":               _approx(a2_total),
+            "result_a2_spherical_frac_v0":       _approx(abs(a2_beta2) / (abs(a2_beta0) + abs(a2_beta2))),
+
+            # A3
+            "result_a3_beta0_remainder_v0":     _approx(a3_beta0),
+            "result_a3_beta2_modulus_v0":        _approx(a3_beta2),
+            "result_a3_beta4_modulus_v0":        _approx(a3_beta4),
+            "result_a3_total_v0":               _approx(a3_total),
+            "result_a3_spherical_frac_v0":       _approx(
+                (abs(a3_beta2) + abs(a3_beta4)) /
+                (abs(a3_beta0) + abs(a3_beta2) + abs(a3_beta4))),
+
+            # A4 (estimated)
+            "result_a4_total_v0":               _approx(a4_total),
+            "result_a4_beta2_modulus_v0":        _approx(a4_beta2_estimate),
+            "result_a4_beta0_remainder_v0":      _approx(a4_beta0_estimate),
+            "result_a4_spherical_frac_estimate_v0": _approx(a4_spherical_frac_estimate),
+
+            # The trend
+            "result_spherical_frac_trend_v0":   "A2=53.4%, A3=48.7%, A4~44% (extrapolated)",
+        },
+        "notes": (
+            "A2: beta0=%.4f, beta2=%.4f, spherical=%.1f%%. "
+            "A3: beta0=%.4f, beta2=%.4f, beta4=%.4f, spherical=%.1f%%. "
+            "A4: total=%.4f, beta0~%.4f (estimated), spherical~44%%."
+        ) % (
+            float(a2_beta0), float(a2_beta2),
+            float(abs(a2_beta2) / (abs(a2_beta0) + abs(a2_beta2))) * 100,
+            float(a3_beta0), float(a3_beta2), float(a3_beta4),
+            float((abs(a3_beta2) + abs(a3_beta4)) /
+                  (abs(a3_beta0) + abs(a3_beta2) + abs(a3_beta4))) * 100,
+            float(a4_total), float(a4_beta0_estimate),
+        ),
+    }
+
+
+def _scan_elliptic_match(target, k_values, pi_val, max_pq=30):
+    """Scan a target value against elliptic expressions.
+    Returns (best_k, best_form, best_pq, best_miss_pct).
+    """
+    from mpmath import ellipk, ellipe
+
+    best_miss = mpf("1e10")
+    best_k = mpf("0")
+    best_form = ""
+    best_pq = ""
+
+    abs_target = abs(target)
+    if abs_target < mpf("1e-30"):
+        return (mpf("0"), "ZERO", "0/1", mpf("0"))
+
+    for k in k_values:
+        k2 = k * k
+        K_val = ellipk(k2)
+        E_val = ellipe(k2)
+
+        forms = [
+            ("K", K_val),
+            ("E", E_val),
+            ("K2", K_val**2),
+            ("KE", K_val * E_val),
+            ("K2/pi", K_val**2 / pi_val),
+            ("K*pi", K_val * pi_val),
+            ("E*pi", E_val * pi_val),
+            ("K3", K_val**3),
+            ("K2E", K_val**2 * E_val),
+            ("K/pi", K_val / pi_val),
+            ("E/pi", E_val / pi_val),
+        ]
+
+        for form_name, form_val in forms:
+            if form_val < mpf("1e-30"):
+                continue
+            for p in range(1, max_pq + 1):
+                for q in range(1, max_pq + 1):
+                    for sign in [1, -1]:
+                        candidate = sign * mpf(str(p)) / mpf(str(q)) * form_val
+                        miss = abs(candidate - target) / abs_target
+                        if miss < best_miss:
+                            best_miss = miss
+                            best_k = k
+                            best_form = form_name
+                            best_pq = "%s%d/%d" % ("" if sign > 0 else "-", p, q)
+
+    return (best_k, best_form, best_pq, float(best_miss) * 100)
+
+
+def remainder_elliptic_scan_v0(value_dicts):
+    """Scan the beta^0 remainders of A2 and A3 against elliptic
+    integral expressions. Also scan A4_total.
+
+    The hypothesis: if the remainder IS toroidal geometry, it should
+    match elliptic forms better than a random number of similar
+    magnitude.
+
+    Control: also scan the beta^2 modulus of A2 against elliptic.
+    Since the modulus IS spherical (pi content), it should NOT match
+    elliptic well. If the remainder matches better than the modulus,
+    the pattern supports the dual geometry hypothesis.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import ellipk, ellipe
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+    li4h = _f2m(_frac(vm, "geom_li4_half_v0"))
+
+    pi2 = pi_val ** 2
+    pi4 = pi_val ** 4
+
+    # Recompute beta^0 remainders
+    a2_rational = _f2m(_frac(vm, "qed_a2_rational_term_v0"))
+    a2_z3c = _f2m(_frac(vm, "qed_a2_zeta3_coeff_v0"))
+    a2_pi2c = _f2m(_frac(vm, "qed_a2_pi2_coeff_v0"))
+    a2_pi2ln2c = _f2m(_frac(vm, "qed_a2_pi2ln2_coeff_v0"))
+
+    a2_beta0 = a2_rational + a2_z3c * zeta3
+    a2_beta2 = a2_pi2c * pi2 + a2_pi2ln2c * pi2 * ln2
+
+    a3_rat = _f2m(_frac(vm, "qed_a3_rational_term_v0"))
+    a3_z3c = _f2m(_frac(vm, "qed_a3_z3_coeff_v0"))
+    a3_z5c = _f2m(_frac(vm, "qed_a3_z5_coeff_v0"))
+    a3_li4c = _f2m(_frac(vm, "qed_a3_li4_coeff_v0"))
+
+    a3_beta0 = (a3_rat + a3_z3c * zeta3 + a3_z5c * zeta5
+                + a3_li4c * (li4h + ln2**4 / 24))
+
+    a4_total = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+
+    # Build k grid
+    k_grid = [mpf(str(x)) for x in
+              [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,
+               0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9,
+               0.92, 0.94, 0.96, 0.98, 0.99, 0.995, 0.999]]
+
+    # Scan targets
+    targets = {
+        "a2_remainder": a2_beta0,
+        "a2_modulus": a2_beta2,     # control: spherical should NOT match
+        "a3_remainder": a3_beta0,
+        "a4_total": a4_total,
+    }
+
+    outputs = {}
+    for name, target in targets.items():
+        best_k, best_form, best_pq, best_miss = _scan_elliptic_match(
+            target, k_grid, pi_val, max_pq=30)
+
+        outputs["result_%s_best_k_v0" % name] = _approx(best_k)
+        outputs["result_%s_best_form_v0" % name] = best_form
+        outputs["result_%s_best_pq_v0" % name] = best_pq
+        outputs["result_%s_best_miss_pct_v0" % name] = _approx(mpf(str(best_miss)))
+
+    # Pattern test: is the remainder closer to elliptic than the modulus?
+    a2_rem_miss = float(str(outputs["result_a2_remainder_best_miss_pct_v0"]))
+    a2_mod_miss = float(str(outputs["result_a2_modulus_best_miss_pct_v0"]))
+
+    # Ratio: modulus_miss / remainder_miss. If > 1, remainder matches better.
+    if a2_rem_miss > 0:
+        pattern_ratio = a2_mod_miss / a2_rem_miss
+    else:
+        pattern_ratio = 0
+
+    outputs["result_pattern_beta0_elliptic_v0"] = _approx(mpf(str(pattern_ratio)))
+    outputs["result_pattern_interpretation_v0"] = (
+        "ratio > 1: remainder matches elliptic BETTER than modulus (supports dual geometry). "
+        "ratio < 1: modulus matches better (contradicts). ratio ~ 1: inconclusive."
+    )
+
+    mp.dps = old_dps
+
+    return {
+        "key": "remainder_elliptic_scan_v0",
+        "outputs": outputs,
+        "notes": (
+            "A2 remainder miss: %.4f%%, A2 modulus miss: %.4f%% (control). "
+            "A3 remainder miss: %.4f%%. A4 total miss: %.4f%%. "
+            "Pattern ratio (modulus/remainder): %.2f."
+        ) % (
+            a2_rem_miss, a2_mod_miss,
+            float(str(outputs["result_a3_remainder_best_miss_pct_v0"])),
+            float(str(outputs["result_a4_total_best_miss_pct_v0"])),
+            pattern_ratio,
+        ),
+    }
+
+
+def remainder_a4_laporta_elliptic_v0(value_dicts):
+    """Scan all six Laporta integrals and the total A4 coefficient
+    against elliptic expressions. This extends the toroidal experiment
+    scan with the additional context of the remainder framework.
+
+    For each Laporta integral, also test combinations:
+    C_i - (rational * zeta3) and C_i - (rational * zeta5)
+    to see if subtracting known beta^0 content reveals a cleaner
+    elliptic match underneath.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import ellipk, ellipe
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+
+    k_grid = [mpf(str(x)) for x in
+              [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45,
+               0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9,
+               0.92, 0.94, 0.96, 0.98, 0.99, 0.995, 0.999]]
+
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+    outputs = {}
+
+    for label in labels:
+        c_val = mpf(str(_get(vm, "laporta_%s_v0" % label)))
+
+        # Raw scan
+        best_k, best_form, best_pq, best_miss = _scan_elliptic_match(
+            c_val, k_grid, pi_val, max_pq=30)
+
+        outputs["result_laporta_%s_best_k_v0" % label] = _approx(best_k)
+        outputs["result_laporta_%s_best_form_v0" % label] = best_form
+        outputs["result_laporta_%s_best_pq_v0" % label] = best_pq
+        outputs["result_laporta_%s_best_miss_pct_v0" % label] = _approx(mpf(str(best_miss)))
+
+        # Subtract known beta^0 and rescan
+        # Try: C_i - n*zeta3 for n in -5..5
+        best_sub_miss = best_miss
+        best_sub_form = "raw"
+        best_sub_n = 0
+        best_sub_const = "none"
+
+        for const_name, const_val in [("z3", zeta3), ("z5", zeta5)]:
+            for n in range(-5, 6):
+                if n == 0:
+                    continue
+                remainder = c_val - mpf(str(n)) * const_val
+                if abs(remainder) < mpf("1e-10"):
+                    continue
+                sub_k, sub_form, sub_pq, sub_miss = _scan_elliptic_match(
+                    remainder, k_grid, pi_val, max_pq=20)
+                if sub_miss < best_sub_miss:
+                    best_sub_miss = sub_miss
+                    best_sub_form = sub_form
+                    best_sub_n = n
+                    best_sub_const = const_name
+
+        outputs["result_laporta_%s_sub_miss_pct_v0" % label] = _approx(mpf(str(best_sub_miss)))
+        outputs["result_laporta_%s_sub_form_v0" % label] = best_sub_form
+        if best_sub_const != "none":
+            outputs["result_laporta_%s_sub_detail_v0" % label] = (
+                "%s - %d*%s then %s" % (label, best_sub_n, best_sub_const, best_sub_form))
+        else:
+            outputs["result_laporta_%s_sub_detail_v0" % label] = "raw best"
+
+    # A4 total scan
+    a4_total = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+    a4_k, a4_form, a4_pq, a4_miss = _scan_elliptic_match(
+        a4_total, k_grid, pi_val, max_pq=30)
+
+    outputs["result_a4_total_best_k_v0"] = _approx(a4_k)
+    outputs["result_a4_total_best_form_v0"] = a4_form
+    outputs["result_a4_total_best_pq_v0"] = a4_pq
+    outputs["result_a4_total_best_miss_pct_v0"] = _approx(mpf(str(a4_miss)))
+
+    # Summary: how many integrals improved by subtracting known beta^0?
+    improved = 0
+    for label in labels:
+        raw = float(str(outputs["result_laporta_%s_best_miss_pct_v0" % label]))
+        sub = float(str(outputs["result_laporta_%s_sub_miss_pct_v0" % label]))
+        if sub < raw * 0.5:  # improved by at least 50%
+            improved += 1
+
+    outputs["result_laporta_improved_by_subtraction_v0"] = improved
+    outputs["result_laporta_improvement_note_v0"] = (
+        "%d of 6 integrals improved elliptic match by >50%% after subtracting "
+        "known beta^0 constants (zeta3, zeta5). If >0, the integrals contain "
+        "BOTH number-theoretic and toroidal-geometric beta^0 content." % improved)
+
+    mp.dps = old_dps
+
+    return {
+        "key": "remainder_a4_laporta_elliptic_v0",
+        "outputs": outputs,
+        "notes": (
+            "6 Laporta integrals scanned raw and after subtracting zeta content. "
+            "%d of 6 improved by >50%% after subtraction. "
+            "A4 total: best form %s at k=%s, miss %.4f%%."
+        ) % (
+            improved, a4_form, str(float(a4_k)), a4_miss,
+        ),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -9088,6 +9484,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "laporta_ratio_analysis_v0": laporta_ratio_analysis_v0,    
     # Laporta Electron Muon
     "laporta_electron_muon_sensitivity_v0": laporta_electron_muon_sensitivity_v0,
+    # Remainder and Modulus Tests.  Includes but not just Laporta
+    "remainder_beta0_extraction_v0": remainder_beta0_extraction_v0,
+    "remainder_elliptic_scan_v0": remainder_elliptic_scan_v0,
+    "remainder_a4_laporta_elliptic_v0": remainder_a4_laporta_elliptic_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {

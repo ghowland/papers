@@ -1,0 +1,211 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_remainder_elliptic_v0
+======================================================================
+DATA-6 RUNNER: experiment_remainder_elliptic_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_remainder_elliptic_v0.json
+  Mode:   standard
+  Purpose: program_laporta_constants_v0
+
+Loaded 3416 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 3 derivations
+----------------------------------------------------------------------
+  [OK] remainder_beta0_extraction_v0                           14 outputs
+  [OK] remainder_elliptic_scan_v0                              18 outputs
+  [OK] remainder_a4_laporta_elliptic_v0                        48 outputs
+
+Derivations: 3 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 8 checks
+----------------------------------------------------------------------
+
+  [INFO] R01: A2 beta^0 remainder computed                  miss_pct        predicted 2.26959823292525 ref 2.2696 miss 7.786e-5%
+  [INFO] R02: A3 beta^0 remainder computed                  miss_pct        predicted 23.0145084038339 ref 23.015 miss 0.002136%
+  [PASS] R03: A2 remainder elliptic scan completed          range           in [0, 100]
+  [PASS] R04: A3 remainder elliptic scan completed          range           in [0, 100]
+  [PASS] R05: A4 total elliptic scan completed              range           in [0, 100]
+  [PASS] R06: C81a elliptic scan (cross-check with toroidal experiment) range           in [0, 100]
+  [PASS] R07: C83a elliptic scan (cross-check)              range           in [0, 100]
+  [PASS] R08: Pattern test — are beta^0 remainders closer to elliptic than random? range           in [0, 100]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_remainder_elliptic_v0                      Modulus/Remainder decomposition: spherical modulus + toroidal remainder?
+
+Result written: result_experiment_remainder_elliptic_v0_run001.json
+Values written: values_experiment_remainder_elliptic_v0_run001.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  3 / 3
+  Connections:  0 / 0
+
+  PASS: 6
+  FAIL: 0
+  INFO: 2
+  SKIP: 0
+
+  STATUS: ALL COMPARISONS PASSED
+
+======================================================================
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_remainder_elliptic_v
+0
+
+======================================================================
+DATA-6 REPORT: experiment_remainder_elliptic_v0
+======================================================================
+
+  Result file:  result_experiment_remainder_elliptic_v0_run001.json
+  Timestamp:    2026-04-18T19:20:32Z
+  Status:       complete
+  Mode:         standard
+  Purpose:      program_laporta_constants_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 76 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_a2_beta0_remainder_v0                            2.26959823292525
+    result_a2_beta2_modulus_v0                              -2.59807719850445
+    result_a2_modulus_best_form_v0                          KE
+    result_a2_modulus_best_k_v0                             0.3
+    result_a2_modulus_best_miss_pct_v0                      0.00350475733907923
+    result_a2_modulus_best_pq_v0                            -20/19
+    result_a2_remainder_best_form_v0                        K2/pi
+    result_a2_remainder_best_k_v0                           0.15
+    result_a2_remainder_best_miss_pct_v0                    0.00171332983879915
+    result_a2_remainder_best_pq_v0                          20/7
+    result_a2_spherical_frac_v0                             0.53374084511246
+    result_a2_total_v0                                      -0.328478965579194
+    result_a3_beta0_remainder_v0                            23.0145084038339
+    result_a3_beta2_modulus_v0                              -11.0551314115399
+    result_a3_beta4_modulus_v0                              -10.7781355357068
+    result_a3_remainder_best_form_v0                        KE
+    result_a3_remainder_best_k_v0                           0.99
+    result_a3_remainder_best_miss_pct_v0                    0.00017896755154045
+    result_a3_remainder_best_pq_v0                          20/3
+    result_a3_spherical_frac_v0                             0.486830545692176
+    result_a3_total_v0                                      1.1812414565872
+    result_a4_beta0_remainder_v0                            -1.07085762835881
+    result_a4_beta2_modulus_v0                              -0.841388136567636
+    result_a4_spherical_frac_estimate_v0                    0.44
+    result_a4_total_best_form_v0                            K/pi
+    result_a4_total_best_k_v0                               0.995
+    result_a4_total_best_miss_pct_v0                        0.00125240276030577
+    result_a4_total_best_pq_v0                              -13/8
+    result_a4_total_v0                                      -1.91224576492645
+    result_laporta_C81a_best_form_v0                        K2E
+    result_laporta_C81a_best_k_v0                           0.999
+    result_laporta_C81a_best_miss_pct_v0                    0.0177142068694184
+    result_laporta_C81a_best_pq_v0                          23/4
+    result_laporta_C81a_sub_detail_v0                       C81a - -2*z3 then K*pi
+    result_laporta_C81a_sub_form_v0                         K*pi
+    result_laporta_C81a_sub_miss_pct_v0                     0.00121144435389558
+    result_laporta_C81b_best_form_v0                        E*pi
+    result_laporta_C81b_best_k_v0                           0.8
+    result_laporta_C81b_best_miss_pct_v0                    0.00311223896709806
+    result_laporta_C81b_best_pq_v0                          -24/11
+    result_laporta_C81b_sub_detail_v0                       C81b - 5*z5 then K3
+    result_laporta_C81b_sub_form_v0                         K3
+    result_laporta_C81b_sub_miss_pct_v0                     1.16708181976118e-5
+    result_laporta_C81c_best_form_v0                        K2E
+    result_laporta_C81c_best_k_v0                           0.55
+    result_laporta_C81c_best_miss_pct_v0                    0.00156091701512313
+    result_laporta_C81c_best_pq_v0                          -1/18
+    result_laporta_C81c_sub_detail_v0                       C81c - -2*z5 then K
+    result_laporta_C81c_sub_form_v0                         K
+    result_laporta_C81c_sub_miss_pct_v0                     2.0776114205536e-5
+    result_laporta_C83a_best_form_v0                        K2
+    result_laporta_C83a_best_k_v0                           0.35
+    result_laporta_C83a_best_miss_pct_v0                    0.00132721136893333
+    result_laporta_C83a_best_pq_v0                          20/19
+    result_laporta_C83a_sub_detail_v0                       C83a - 3*z3 then K2/pi
+    result_laporta_C83a_sub_form_v0                         K2/pi
+    result_laporta_C83a_sub_miss_pct_v0                     0.000199980675681588
+    result_laporta_C83b_best_form_v0                        K2/pi
+    result_laporta_C83b_best_k_v0                           0.45
+    result_laporta_C83b_best_miss_pct_v0                    0.00266609537823121
+    result_laporta_C83b_best_pq_v0                          -23/25
+    result_laporta_C83b_sub_detail_v0                       C83b - -4*z3 then E*pi
+    result_laporta_C83b_sub_form_v0                         E*pi
+    result_laporta_C83b_sub_miss_pct_v0                     1.63355585288407e-5
+    result_laporta_C83c_best_form_v0                        E
+    result_laporta_C83c_best_k_v0                           0.92
+    result_laporta_C83c_best_miss_pct_v0                    0.000825665026813544
+    result_laporta_C83c_best_pq_v0                          -11/29
+    result_laporta_C83c_sub_detail_v0                       C83c - 2*z5 then K3
+    result_laporta_C83c_sub_form_v0                         K3
+    result_laporta_C83c_sub_miss_pct_v0                     2.2611937025661e-5
+    result_laporta_improved_by_subtraction_v0               6
+    result_laporta_improvement_note_v0                      6 of 6 integrals improved elliptic match by >50% after subtracting known beta^0 constants (zeta3, zeta5). If >0, the integrals contain BOTH number-theoretic and toroidal-geometric beta^0 content.
+    result_pattern_beta0_elliptic_v0                        2.0455823856635
+    result_pattern_interpretation_v0                        ratio > 1: remainder matches elliptic BETTER than modulus (supports dual geometry). ratio < 1: modulus matches better (contradicts). ratio ~ 1: inconclusive.
+    result_spherical_frac_trend_v0                          A2=53.4%, A3=48.7%, A4~44% (extrapolated)
+
+----------------------------------------------------------------------
+COMPARISONS: 8 checks
+----------------------------------------------------------------------
+
+  [INFO] R01: A2 beta^0 remainder computed
+    predicted:  2.26959823292525
+    measured:   2.2696
+    agree:      4 of 5 digits
+    diverge:    position 5: '5' vs '6'
+    miss:       778.6 ppb
+    status:     INFO
+
+  [INFO] R02: A3 beta^0 remainder computed
+    predicted:  23.0145084038339
+    measured:   23.015
+    agree:      4 of 5 digits
+    diverge:    position 5: '4' vs '5'
+    miss:       21.36 ppm
+    status:     INFO
+
+  [PASS] R03: A2 remainder elliptic scan completed
+    got:      0.00171333
+    range:    [0, 100]
+
+  [PASS] R04: A3 remainder elliptic scan completed
+    got:      0.000178968
+    range:    [0, 100]
+
+  [PASS] R05: A4 total elliptic scan completed
+    got:      0.0012524
+    range:    [0, 100]
+
+  [PASS] R06: C81a elliptic scan (cross-check with toroidal experiment)
+    got:      0.0177142
+    range:    [0, 100]
+
+  [PASS] R07: C83a elliptic scan (cross-check)
+    got:      0.00132721
+    range:    [0, 100]
+
+  [PASS] R08: Pattern test — are beta^0 remainders closer to elliptic than random?
+    got:      2.04558
+    range:    [0, 100]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  3
+  Derivations err: 0
+
+  PASS: 6
+  FAIL: 0
+  INFO: 2
+  SKIP: 0
+
+  EXPERIMENT: ALL COMPARISONS PASSED
+
+======================================================================

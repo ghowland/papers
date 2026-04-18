@@ -1,0 +1,152 @@
+{
+    "key": "experiment_remainder_elliptic_v0",
+    "canonical": "experiment_remainder_elliptic",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Test whether the beta^0 remainders from the modulus/remainder framework contain elliptic structure. Strip the spherical (pi-powered) content from A2, A3, and A4, then scan the beta^0 remainders against elliptic integral expressions K(k) and E(k). Also test the Laporta integrals directly. If the remainders match elliptic forms, the modulus/remainder decomposition becomes modulus(spherical) + remainder(toroidal) — completing the dual geometry hypothesis.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a4_laporta": 0,
+            "laporta_C81a": 0,
+            "laporta_C81b": 0,
+            "laporta_C81c": 0,
+            "laporta_C83a": 0,
+            "laporta_C83b": 0,
+            "laporta_C83c": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0,
+            "geom_elliptic_k_half": 0,
+            "geom_elliptic_k_quarter": 0,
+            "geom_elliptic_k_threequarter": 0,
+            "geom_elliptic_e_half": 0,
+            "geom_elliptic_e_quarter": 0,
+            "geom_elliptic_e_threequarter": 0
+        },
+        "derivations": {
+            "remainder_beta0_extraction": 0,
+            "remainder_elliptic_scan": 0,
+            "remainder_a4_laporta_elliptic": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "remainder_beta0_extraction_v0",
+        "remainder_elliptic_scan_v0",
+        "remainder_a4_laporta_elliptic_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_a2_beta0_remainder_v0",
+        "result_a3_beta0_remainder_v0",
+        "result_a2_beta2_modulus_v0",
+        "result_a3_beta2_modulus_v0",
+        "result_a3_beta4_modulus_v0",
+        "result_a2_remainder_best_form_v0",
+        "result_a2_remainder_best_miss_pct_v0",
+        "result_a3_remainder_best_form_v0",
+        "result_a3_remainder_best_miss_pct_v0",
+        "result_a4_total_best_form_v0",
+        "result_a4_total_best_miss_pct_v0",
+        "result_a4_beta2_modulus_v0",
+        "result_a4_beta0_remainder_v0",
+        "result_laporta_C81a_best_form_v0",
+        "result_laporta_C81a_best_miss_pct_v0",
+        "result_laporta_C83a_best_form_v0",
+        "result_laporta_C83a_best_miss_pct_v0",
+        "result_pattern_beta0_elliptic_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "R01: A2 beta^0 remainder computed",
+            "output_key": "result_a2_beta0_remainder_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.2696",
+            "reference_source": "beta_content_experiment"
+        },
+        {
+            "label": "R02: A3 beta^0 remainder computed",
+            "output_key": "result_a3_beta0_remainder_v0",
+            "match_mode": "miss_pct",
+            "expected": "23.015",
+            "reference_source": "beta_content_experiment"
+        },
+        {
+            "label": "R03: A2 remainder elliptic scan completed",
+            "output_key": "result_a2_remainder_best_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "R04: A3 remainder elliptic scan completed",
+            "output_key": "result_a3_remainder_best_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "R05: A4 total elliptic scan completed",
+            "output_key": "result_a4_total_best_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "R06: C81a elliptic scan (cross-check with toroidal experiment)",
+            "output_key": "result_laporta_C81a_best_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "R07: C83a elliptic scan (cross-check)",
+            "output_key": "result_laporta_C83a_best_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "elliptic_scan"
+        },
+        {
+            "label": "R08: Pattern test — are beta^0 remainders closer to elliptic than random?",
+            "output_key": "result_pattern_beta0_elliptic_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "computed"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_remainder_elliptic_v0",
+            "title": "Modulus/Remainder decomposition: spherical modulus + toroidal remainder?",
+            "type": "comparison_table"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "key": "connection_remainder_elliptic_v0",
+    "canonical": "connection_remainder_elliptic",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Connects the modulus/remainder framework (Sessions 1-4) to the dual geometry hypothesis (Session 8). The modulus is the spherical beta content (pi powers from angular integrations). The remainder is the beta^0 piece — previously treated as opaque number theory. This experiment tests whether the remainders contain elliptic structure (toroidal geometry), which would complete the decomposition: every QED coefficient = spherical modulus + toroidal remainder.",
+    "paper": "PHYS-48",
+    "domains_connected": ["modulus_remainder", "beta_classification", "elliptic_curves", "qed", "toroidal"],
+    "thesis": "The modulus/remainder decomposition is the spherical/toroidal decomposition. The modulus (beta^2, beta^4) is the spherical angular content. The remainder (beta^0) contains both number-theoretic constants (zeta, Li — known) and toroidal-geometric constants (elliptic K, E — the Laporta integrals). At loops 1-3, the remainder is entirely number-theoretic. At loop 4, the remainder includes toroidal-geometric content for the first time.",
+    "formula": "A_n = modulus(beta^2k terms) + remainder(beta^0 terms) = spherical + (number-theoretic + toroidal)",
+    "input_values": [
+        "qed_a2_rational_term_v0",
+        "qed_a2_zeta3_coeff_v0",
+        "qed_a3_rational_term_v0",
+        "qed_a3_z3_coeff_v0",
+        "qed_a3_z5_coeff_v0",
+        "qed_a3_li4_coeff_v0",
+        "qed_a4_laporta_v0",
+        "laporta_C81a_v0",
+        "laporta_C83a_v0",
+        "geom_elliptic_k_half_v0",
+        "geom_elliptic_e_half_v0"
+    ],
+    "output_values": [
+        "result_a2_beta0_remainder_v0",
+        "result_a3_beta0_remainder_v0",
+        "result_a4_beta0_remainder_v0",
+        "result_pattern_beta0_elliptic_v0"
+    ],
+    "derivation_functions": [
+        "remainder_beta0_extraction_v0",
+        "remainder_elliptic_scan_v0",
+        "remainder_a4_laporta_elliptic_v0"
+    ]
+}
