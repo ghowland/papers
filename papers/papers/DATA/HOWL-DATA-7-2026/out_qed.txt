@@ -1,0 +1,156 @@
+======================================================================
+SEARCH: 'qed_'
+======================================================================
+
+  [derivation  ] beta_qed_a2_decomposition_v0                       
+  [derivation  ] muon_g2_qed_from_alpha_v0                          
+  [derivation  ] qed_alpha_from_ae_v0                               
+  [derivation  ] qed_alpha_full_corrections_v0                      
+  [derivation  ] qed_coefficients_assemble_v0                       
+  [derivation  ] qed_derived_codata_corrected_v0                    
+  [derivation  ] qed_derived_codata_v0                              
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_alpha_shift_v0 -2.53184773123028e-13
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_alpha_shift_x1e11_v0 -0.0253184773123028
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_from_alpha_v0 0.00116584718874682
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_miss_vs_published_pct_v0 2.17168060713168e-8
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_published_v0 0.001165847189
+  [value       ] experiment_muon_g2_v0_run001_result_amu_qed_x1e11_v0 116584718.874682
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_alpha_shift_v0 -2.53184773123028e-13
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_alpha_shift_x1e11_v0 -0.0253184773123028
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_from_alpha_v0 0.00116584718874682
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_miss_vs_published_pct_v0 2.17168060713168e-8
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_published_v0 0.001165847189
+  [value       ] experiment_muon_g2_v0_run002_result_amu_qed_x1e11_v0 116584718.874682
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_v0 -2.53184773123028e-13
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_x1e11_v0 -0.0253184773123028
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_from_alpha_v0 0.00116584718874682
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_miss_vs_published_pct_v0 2.17168060713168e-8
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_published_v0 0.001165847189
+  [value       ] experiment_muon_g2_v0_run003_result_amu_qed_x1e11_v0 116584718.874682
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_a4_used_v0 -1.91224576492645
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_a5_used_v0 5.891
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_ae_forward_residual_v0 -4.61880502023806e-12
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_ae_input_v0 0.00115965218059
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_ae_recovered_v0 0.00115965218059
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_alpha_from_ae_v0 0.00729735259343996
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_from_ae_full_v0 137.035998630374672067213142569
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_from_ae_v0 137.035998630375
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_known_v0 137.035999177
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_diff_vs_codata_ppb_v0 3.31026395228253
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_diff_vs_cs_ppb_v0 3.03296455549078
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_diff_vs_rb_ppb_v0 4.20054096199551
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_newton_iterations_v0 6
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_newton_residual_v0 1.59475119217561e-204
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_qed_a1_v0 1/2  (= 0.5)
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_qed_a2_v0 -0.328478965579194
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_qed_a3_v0 1.1812414565872
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_qed_a4_v0 -1.91224576492645
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_qed_a5_v0 5.891
+  [value       ] experiment_qed_alpha_extraction_v0_run011_result_x_alpha_over_pi_v0 0.00232281947346086
+  [value       ] experiment_qed_derived_codata_v0_run005_result_a4_used_v0 -1.91224576492645
+  [value       ] experiment_qed_derived_codata_v0_run005_result_a5_used_v0 5.891
+  [value       ] experiment_qed_derived_codata_v0_run005_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  [value       ] experiment_qed_derived_codata_v0_run005_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  [value       ] experiment_qed_derived_codata_v0_run005_result_ae_forward_residual_v0 -4.61880502023806e-12
+  [value       ] experiment_qed_derived_codata_v0_run005_result_ae_input_v0 0.00115965218059
+  [value       ] experiment_qed_derived_codata_v0_run005_result_ae_recovered_v0 0.00115965218059
+  [value       ] experiment_qed_derived_codata_v0_run005_result_alpha_from_ae_v0 0.00729735259343996
+  [value       ] experiment_qed_derived_codata_v0_run005_result_alpha_inv_from_ae_full_v0 137.035998630374672067213142569
+  [value       ] experiment_qed_derived_codata_v0_run005_result_alpha_inv_from_ae_v0 137.035998630375
+  [value       ] experiment_qed_derived_codata_v0_run005_result_alpha_inv_known_v0 137.035999177
+  [value       ] experiment_qed_derived_codata_v0_run005_result_alpha_used_v0 0.00729735259343995
+  [value       ] experiment_qed_derived_codata_v0_run005_result_bohr_digits_v0 19.3408257187396
+  [value       ] experiment_qed_derived_codata_v0_run005_result_bohr_from_derived_alpha_v0 5.29177208435434e-11
+  [value       ] experiment_qed_derived_codata_v0_run005_result_bohr_miss_pct_v0 3.98461270059113e-7
+  [value       ] experiment_qed_derived_codata_v0_run005_result_diff_vs_codata_ppb_v0 3.31026395228253
+  [value       ] experiment_qed_derived_codata_v0_run005_result_diff_vs_cs_ppb_v0 3.03296455549078
+  [value       ] experiment_qed_derived_codata_v0_run005_result_diff_vs_rb_ppb_v0 4.20054096199551
+  [value       ] experiment_qed_derived_codata_v0_run005_result_m_e_kg_used_v0 9.10938371386875e-31
+  [value       ] experiment_qed_derived_codata_v0_run005_result_mu0_from_derived_alpha_v0 1.25663706628085e-6
+  [value       ] experiment_qed_derived_codata_v0_run005_result_newton_iterations_v0 6
+  [value       ] experiment_qed_derived_codata_v0_run005_result_newton_residual_v0 1.59475119217561e-204
+  [value       ] experiment_qed_derived_codata_v0_run005_result_qed_a1_v0 1/2  (= 0.5)
+  [value       ] experiment_qed_derived_codata_v0_run005_result_qed_a2_v0 -0.328478965579194
+  [value       ] experiment_qed_derived_codata_v0_run005_result_qed_a3_v0 1.1812414565872
+  [value       ] experiment_qed_derived_codata_v0_run005_result_qed_a4_v0 -1.91224576492645
+  [value       ] experiment_qed_derived_codata_v0_run005_result_qed_a5_v0 5.891
+  [value       ] experiment_qed_derived_codata_v0_run005_result_rydberg_digits_v0 18.6473036521135
+  [value       ] experiment_qed_derived_codata_v0_run005_result_rydberg_from_derived_alpha_v0 10973731.6556419
+  [value       ] experiment_qed_derived_codata_v0_run005_result_rydberg_miss_pct_v0 7.97221351280856e-7
+  [value       ] experiment_qed_derived_codata_v0_run005_result_x_alpha_over_pi_v0 0.00232281947346086
+  [value       ] experiment_qed_full_corrections_v0_run012_result_ae_measured_v0 0.00115965218059
+  [value       ] experiment_qed_full_corrections_v0_run012_result_ae_qed_pure_v0 0.001159652175718
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_corrected_miss_ppb_v0 0.218665639820526
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_corrected_v0 137.035999206965
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_improvement_ppb_v0 3.77025209769434
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_miss_vs_cs_ppb_v0 1.17461882687082
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_miss_vs_rb_ppb_v0 0.00704241545342421
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_uncorrected_miss_ppb_v0 3.98891773751487
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_uncorrected_v0 137.035998630375
+  [value       ] experiment_qed_full_corrections_v0_run012_result_alpha_inv_used_v0 137.035999206965
+  [value       ] experiment_qed_full_corrections_v0_run012_result_bohr_radius_corrected_v0 5.29177210661989e-11
+  [value       ] experiment_qed_full_corrections_v0_run012_result_bohr_radius_miss_ppb_v0 0.218665169590191
+  [value       ] experiment_qed_full_corrections_v0_run012_result_forward_residual_v0 1.28552893601276e-200
+  [value       ] experiment_qed_full_corrections_v0_run012_result_mu0_corrected_v0 1.25663706099344e-6
+  [value       ] experiment_qed_full_corrections_v0_run012_result_mu0_miss_ppb_v0 0.218665169542377
+  [value       ] experiment_qed_full_corrections_v0_run012_result_rydberg_corrected_v0 10973731.5632962
+  [value       ] experiment_qed_full_corrections_v0_run012_result_rydberg_miss_ppb_v0 0.437330339036939
+  [value       ] experiment_qed_full_corrections_v0_run012_result_total_correction_v0 4.872e-12
+  [value       ] qed_a1_schwinger_v0                                1/2  (= 0.5)
+  [value       ] qed_a2_petermann_analytical_v0                     197/144 + pi^2/12 + 3*zeta(3)/4 - pi^2*ln(2)/2
+  [value       ] qed_a2_pi2_coeff_v0                                1/12  (= 0.0833333333333333)
+  [value       ] qed_a2_pi2_ln2_piece_coeff_v0                      -1/2  (= -0.5)
+  [value       ] qed_a2_pi2_piece_coeff_v0                          1/12  (= 0.0833333333333333)
+  [value       ] qed_a2_pi2ln2_coeff_v0                             -1/2  (= -0.5)
+  [value       ] qed_a2_rational_piece_v0                           197/144  (= 1.36805555555556)
+  [value       ] qed_a2_rational_term_v0                            197/144  (= 1.36805555555556)
+  [value       ] qed_a2_zeta3_coeff_v0                              3/4  (= 0.75)
+  [value       ] qed_a2_zeta3_piece_coeff_v0                        3/4  (= 0.75)
+  [value       ] qed_a3_laporta_remiddi_analytical_v0               (83/72)*pi^2*zeta(3) - (215/24)*zeta(5) + (100/3)*(Li4(1/2) + ln(2)^4/24 - pi^2*ln(2)^2/24) - (239/2160)*pi^4 + (139/18)*zeta(3) - (298/9)*pi^2*ln(2) + (17101/810)*pi^2 + 28259/5184
+  [value       ] qed_a3_li4_coeff_v0                                100/3  (= 33.3333333333333)
+  [value       ] qed_a3_pi2_coeff_v0                                17101/810  (= 21.1123456790123)
+  [value       ] qed_a3_pi2ln2_coeff_v0                             -298/9  (= -33.1111111111111)
+  [value       ] qed_a3_pi2z3_coeff_v0                              83/72  (= 1.15277777777778)
+  [value       ] qed_a3_pi4_coeff_v0                                -239/2160  (= -0.110648148148148)
+  [value       ] qed_a3_rational_term_v0                            28259/5184  (= 5.45119598765432)
+  [value       ] qed_a3_z3_coeff_v0                                 139/18  (= 7.72222222222222)
+  [value       ] qed_a3_z5_coeff_v0                                 -215/24  (= -8.95833333333333)
+  [value       ] qed_a4_laporta_v0                                  -1.912245764926445574152647167440
+  [value       ] qed_a5_ahkn_v0                                     6.678
+  [value       ] qed_a5_volkov_v0                                   5.891
+  [value       ] qed_ae_electron_measured_v0                        0.00115965218059
+  [value       ] qed_ae_electroweak_v0                              0.000000000000030
+  [value       ] qed_ae_hadronic_lbl_v0                             0.000000000000340
+  [value       ] qed_ae_hadronic_lo_v0                              0.000000000001860
+  [value       ] qed_ae_hadronic_nlo_v0                             -0.000000000000220
+  [value       ] qed_ae_mass_dep_2loop_v0                           0.000000000002721
+  [value       ] qed_ae_mass_dep_3loop_v0                           0.000000000000111
+  [value       ] qed_ae_mass_dep_4loop_v0                           0.000000000000030
+  [value       ] qed_alpha_inv_codata_2018_v0                       137.035999084
+  [value       ] qed_alpha_inv_cs_recoil_v0                         137.035999046
+  [value       ] qed_alpha_inv_from_ae_phys9_v0                     137.035998583
+  [value       ] qed_alpha_inv_rb_recoil_v0                         137.035999206
+  [value       ] qed_amu_ew_v0                                      0.00000000154
+  [value       ] qed_amu_hadronic_lbl_unc_v0                        0.00000000018
+  [value       ] qed_amu_hadronic_lbl_v0                            0.00000000920
+  [value       ] qed_amu_hadronic_lo_unc_v0                         0.00000000040
+  [value       ] qed_amu_hadronic_lo_v0                             0.00000006931
+  [value       ] qed_amu_hadronic_nlo_v0                            -0.00000000983
+  [value       ] qed_amu_measured_unc_v0                            0.00000000022
+  [value       ] qed_amu_measured_v0                                0.00116592059
+  [value       ] qed_amu_qed_published_v0                           0.00116584718900
+  [value       ] qed_c10_total_v0                                   1.5286420143378834089916925178692229500967094339466
+  [value       ] qed_c81a_v0                                        116.69458579118660052633251098765281803418334445000
+  [value       ] qed_c81b_v0                                        -8.748320323814631572671010051472284815363744046727
+  [value       ] qed_c81c_v0                                        -0.236085277120339887503638687666535683262879819585
+  [value       ] qed_c83a_v0                                        2.7711919861455201468106183632184972162640376439818
+  [value       ] qed_c83b_v0                                        -0.807847353263827557176395243854200179257226624050
+  [value       ] qed_c83c_v0                                        -0.434702618543809180642530601495074086910101585984
+  [value       ] qed_c8_total_v0                                    107.71018019025162906615786224851399753555672058369
+  [value       ] qed_hadronic_vp_delta_v0                           220393/50000  (= 4.40786)
+
+  406 matches
+
+======================================================================
