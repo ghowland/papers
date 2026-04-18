@@ -1,0 +1,21 @@
+{
+  "C81a": {
+    "label": "C81a",
+    "digits_available": 4926,
+    "digits_used": 400,
+    "tiers": {
+      "tier1_standard": {
+        "status": "NULL",
+        "basis_size": 52
+      },
+      "tier2_with_mzv": {
+        "status": "NULL",
+        "basis_size": 58
+      },
+      "tier3_full": {
+        "status": "NULL",
+        "basis_size": 66
+      }
+    }
+  }
+}
