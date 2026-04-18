@@ -142,8 +142,7 @@
 | **[[@HOWL-PHYS-44-2026]](papers/papers/PHYS/HOWL-PHYS-44-2026/manuscript.md)** | **The Clock and the Reading** | Separating Time from Space in the Soliton Hierarchy. |
 | **[[@HOWL-PHYS-45-2026]](papers/papers/PHYS/HOWL-PHYS-45-2026/manuscript.md)** | **The Confinement Boundary** | Where Integers Become Matter. |
 | **[[@HOWL-PHYS-46-2026]](papers/papers/PHYS/HOWL-PHYS-46-2026/manuscript.md)** | **The Laporta Constants** | Six Numbers at the Frontier of Physics and Mathematics. |
-| **[[@HOWL-PHYS-47-2026]](papers/papers/PHYS/HOWL-PHYS-47-2026/manuscript.md)** | ** Constants** | Six Numbers at the Frontier of Physics and Mathematics. |
-
+| **[[@HOWL-PHYS-47-2026]](papers/papers/PHYS/HOWL-PHYS-47-2026/manuscript.md)** | **The Laporta Constants II** | Independence, Sensitivity, and the Boundary Between Known and Unknown Mathematics. |
 
 
 ---

@@ -1,4 +1,4 @@
-# The Laporta Constants
+# The Laporta Constants II
 ## Independence, Sensitivity, and the Boundary Between Known and Unknown Mathematics
 
 **Registry:** [@HOWL-PHYS-47-2026]
