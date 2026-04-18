@@ -1,0 +1,202 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999206965",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035998630375",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected_miss_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.218665639820526",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected_miss_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.98891773751487",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_improvement_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_improvement_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.77025209769434",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_rb_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_rb_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00704241545342421",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_cs_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_cs_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.17461882687082",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_total_correction_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_total_correction",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.872e-12",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_ae_qed_pure_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_ae_qed_pure",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.001159652175718",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_ae_measured_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_ae_measured",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00115965218059",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_forward_residual_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_forward_residual",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.28552893601276e-200",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_rydberg_corrected_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_rydberg_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "10973731.5632962",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_bohr_radius_corrected_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_bohr_radius_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.29177210661989e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_mu0_corrected_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_mu0_corrected",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.25663706099344e-6",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_rydberg_miss_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_rydberg_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.437330339036939",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_bohr_radius_miss_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_bohr_radius_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.218665169590191",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_mu0_miss_ppb_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_mu0_miss_ppb",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.218665169542377",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    },
+    {
+      "key": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_used_v0",
+      "canonical": "experiment_qed_full_corrections_v0_run011_result_alpha_inv_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999206965",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_qed_full_corrections_v0_run011"
+    }
+  ]
+}

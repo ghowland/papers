@@ -1,5 +1,30 @@
 
 
+
+
+
+
+
+-------------- Name change:   The First Integer Physics Model
+
+	- Not the "6 days" thing, this is the first integer physics
+		- Make new cover art, its a better lead in, less inflammatory
+		- Its still a big claim, First Integre Physics
+		- And I pay it off, I show how its possible
+
+		- Two problems to solve.  
+			1. Why bother?  Keep the data, dont lose precision, get there fast
+			2. Pi?  Transcendentals, etc?  Q335
+
+
+		- Reshoot this, the CKS part is totally fine, the current ones may be ok for a different part of the series or trash them, doesnt matter
+
+		- Write a new script for this
+
+
+
+
+
 # 1 - 1 minute
 ## Book cover only
 
@@ -31,7 +56,7 @@
 
 - 3 forces: EM, weak and strong.  Each have their own number that controls how fast they change with energy injected into them through physics experiments.
 
-- The numbers are 41/10, 19/6 and -7.  They are counted, not measured.
+- The numbers are 41/10, -19/6 and -7.  They are counted, not measured.
 
 - 41 is the total of all particle charges added up by particle physics rules
 
@@ -53,13 +78,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # 3 - 3 minute
 ## Figures: 1, 2
 
 
 
 
-- Before I created this Integer Physics model, I created another model with was a failure.
+- Before I created this Integer Physics model, I created another model which was a failure.
 
 - My first attempt was called CKS, or Cymatic K-Space Mechanics, and I created it over 45 days using 3 AI systems, based on the question, "What if everything is based on Cymatics?"
 
@@ -67,11 +104,10 @@
 
 - What I learned was that while you need to start with logical propositions to search, you need need to gate any progress on math, and so this new model only uses Python fractions to work from, so I can ensure that the inputs are correct and arent cheating any of the outputs.
 
-
-
-
-
 # Next
 
-Next video we will cover
+In the next video, we will cover how this model collapses all domains of physics being describable with 3 nouns and 2 verbs.
 
+
+
+ 

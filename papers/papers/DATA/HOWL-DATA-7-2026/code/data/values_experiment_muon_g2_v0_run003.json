@@ -1,0 +1,268 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_from_alpha_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_from_alpha",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00116584718874682",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_published_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_published",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.001165847189",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift",
+      "version": 0,
+      "node_type": "value",
+      "value": "-2.53184773123028e-13",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "-0.0253184773123028",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_miss_vs_published_pct_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_miss_vs_published_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.17168060713168e-8",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_alpha_inv_ours_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_alpha_inv_ours",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999206965",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_alpha_inv_codata_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_alpha_inv_codata",
+      "version": 0,
+      "node_type": "value",
+      "value": "137.035999177",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_delta_alpha_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_delta_alpha",
+      "version": 0,
+      "node_type": "value",
+      "value": "-1.59567683569003e-12",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_sm_total_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_sm_total",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00116591740874682",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_difference_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_difference",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.18125318e-9",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_difference_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_difference_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "318.125318",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_tension_sigma_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_tension_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "6.48291000040409",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_miss_pct_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_miss_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.000272853332146746",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_theory_unc_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_theory_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.38634243989226e-10",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_total_unc_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_total_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.90713765855412e-10",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_had_lo_fraction_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_had_lo_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.831600831600832",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_had_lo_used_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_had_lo_used",
+      "version": 0,
+      "node_type": "value",
+      "value": "6.931e-8",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_qed_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_qed_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "116584718.874682",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_had_lo_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_had_lo_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "6931.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_had_nlo_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_had_nlo_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "-983.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_had_lbl_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_had_lbl_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "920.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_ew_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_ew_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "154.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_sm_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_sm_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "116591740.874682",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    },
+    {
+      "key": "experiment_muon_g2_v0_run003_result_amu_meas_x1e11_v0",
+      "canonical": "experiment_muon_g2_v0_run003_result_amu_meas_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "116592059.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_muon_g2_v0_run003"
+    }
+  ]
+}
