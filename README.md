@@ -144,6 +144,7 @@
 | **[[@HOWL-PHYS-46-2026]](papers/papers/PHYS/HOWL-PHYS-46-2026/manuscript.md)** | **The Laporta Constants** | Six Numbers at the Frontier of Physics and Mathematics. |
 | **[[@HOWL-PHYS-47-2026]](papers/papers/PHYS/HOWL-PHYS-47-2026/manuscript.md)** | **The Laporta Constants II** | Independence, Sensitivity, and the Boundary Between Known and Unknown Mathematics. |
 | **[[@HOWL-PHYS-48-2026]](papers/papers/PHYS/HOWL-PHYS-48-2026/manuscript.md)** | **The β⁰ Frontier** | Non-Spherical Geometry in QED at Four Loops. |
+| **[[@HOWL-PHYS-49-2026]](papers/papers/PHYS/HOWL-PHYS-49-2026/manuscript.md)** | **Spherical Modulus, Toroidal Remainder** | The Complete Decomposition and the Resolution of a Parked Framework. |
 
 ---
 
