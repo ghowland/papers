@@ -1,148 +1,782 @@
-## PHYS-44 Diagram Candidates — Enumeration of 20
+### PHYS-48 Diagram Candidates — 20 Enumerated
 
-### Candidate 1: The 10/1/4/3 bar chart
-Four bars: D=10, K=1, Mixed=4, Structural=3. Color-coded. Each bar labeled with the test names. Threshold line at total=18.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The reader SEES the dominance of D. The one lonely K bar communicates "time is the minority" instantly.
-- **Score:** +2 (bars with structure) +1 (quantitative) +1 (central result) = **+4**
-
-### Candidate 2: The 89/11 pie or stacked bar
-Frozen scan coverage: 89% spatial, 11% temporal. Two-segment bar or ring chart.
-- **Type:** Comparison Bar (D5.6)
-- **Score:** −2 (two numbers, better as a sentence) = **−2**
-
-### Candidate 3: GPS D/K decomposition — stacked bar
-Three bars: D component (+45.85), K component (−7.21), Net (+38.51). The D bar towers over the K bar. Labeled with percentages 86/14.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The asymmetry between D and K magnitudes is visual. The sign difference (D positive, K negative) communicates that they work in opposite directions.
-- **Score:** +2 (bars with structure) +1 (quantitative) +1 (connects sections) = **+4**
-
-### Candidate 4: Sector splitting vs κ — detection threshold
-Y-axis: log₁₀(ε). X-axis: log₁₀(κ). Three diagonal lines for three sector pairs (3-1, 3-2, 2-1). Horizontal thresholds at 10⁻¹⁸ and 10⁻¹⁹. Shaded detectable region. κ=1, κ=α, κ=α² marked as points.
-- **Type:** Threshold/Region (D5.3)
-- **Physics:** 13 orders of detectable range. The shape shows which suppression mechanisms still leave the effect visible. Three pairs have different intercepts from different |Δβ|.
-- **Score:** +2 (curves with thresholds) +2 (impossible in text) +1 (quantitative) +1 (central prediction) = **+6**
-
-### Candidate 5: The D/K classification of all 18 tests — horizontal layout
-18 tests arranged along a horizontal axis. Each colored by classification: D=cyan, K=orange, Mixed=gold, Structural=silver. Grouped into four clusters. Labels with test names and miss values. The reader sees the landscape of what is geometry and what is ticking.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** The spatial distribution of D vs K across the test suite. The reader sees that D dominates the left (laboratory scale) through the middle (solar scale) and K only appears at cosmological and velocity scales.
-- **Score:** +2 (scale layout) +2 (impossible in text — pattern is spatial) +1 (quantitative) = **+5**
-
-### Candidate 6: Frozen scan coverage at each hierarchy level
-Y-axis: hierarchy level (lab → Earth → Sun → compact → cosmological). X-axis: fraction covered by frozen scan (0 to 100%). Horizontal bars at each level showing how much the frozen scan predicts. The cosmological level has a short bar. All others are long.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The reader sees that the frozen scan works everywhere except cosmological epoch comparisons. The coverage drops only at the largest scale.
-- **Score:** +2 (bars with structure) +1 (quantitative) = **+3**
-
-### Candidate 7: Muon D×K product diagram
-Left panel: spatial trajectory with γ=15.8 labeled (D factor). Right panel: internal tick budget τ_rest = 4.08×10³⁷ ticks (K factor). Bottom: product = lab lifetime 34.7 μs. The multiplication IS the combination of space and time.
-- **Type:** Progression/Sequence (D5.7)
-- **Physics:** The multiplicative D×K structure is impossible to convey in a sentence. The left panel is spatial (a path). The right panel is temporal (a counter). The product is the observation.
-- **Score:** +2 (two panels with physical meaning) +2 (impossible in text) +1 (quantitative) = **+5**
-
-### Candidate 8: The soliton hierarchy with D/K labels
-Nested circles (Planck → nuclear → atomic → lab → planet → star → galaxy → cosmos). Each level labeled with Φ/c² and whether it is D or K. The ten D levels are one color. The one K level (cosmological epoch comparison) is another. Mixed levels have split coloring.
-- **Type:** Geometric Cross-Section (D5.4)
-- **Physics:** The hierarchy IS the reading. The nesting IS depth. Labeling each level with its D/K classification shows where the decomposition lives in the spatial structure.
-- **Score:** +2 (geometric) +2 (impossible in text) +1 (connects all tests) = **+5**
-
-### Candidate 9: EP test landscape with cross-sector prediction
-Y-axis: log sensitivity. X-axis: year (1920-2035). Historical same-sector tests as dim points trending downward. The PHYS-44 cross-sector prediction as a star at 2030, 10⁻¹². The detection threshold band at 10⁻¹⁸.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** A century of same-sector, then one cross-sector leap. Already in PHYS-43 diagrams.
-- **Score:** +2 (curve) +1 (quantitative) −1 (similar to PHYS-43 Fig 6) = **+2**
-
-### Candidate 10: Integer chain — β coefficients to sector splitting
-Connection map: Cabibbo Doublet → β coefficients → |Δβ| → ε formula ← Φ/c² from GR. Same β values also → sin²θ_W and α_s. Each arrow carries a Fraction.
-- **Type:** Connection/Integer Map (D5.5)
-- **Physics:** The same integers in three predictions. Already in PHYS-43 diagrams.
-- **Score:** +2 (formulas on arrows) −1 (similar to PHYS-43 Fig 7) = **+1**
-
-### Candidate 11: The reading vs the tick — conceptual D-K plane
-Two orthogonal axes: D (horizontal, reading depth) and K (vertical, tick count). The GR dilation as a diagonal vector. The five PHYS-43 tests as projections.
-- **Type:** Geometric Cross-Section (D5.4)
-- **Physics:** Already in PHYS-43 Fig 1.
-- **Score:** +2 (geometric) −2 (duplicate of PHYS-43 Fig 1) = **0**
-
-### Candidate 12: WEP consistency — sum gravity vs per-sector gravity
-Two-panel diagram. Left: sum gravity (all sectors contribute equally to free fall, no WEP violation). Right: per-sector gravity (sectors contribute differently, WEP violation). MICROSCOPE bound shown as threshold. The reader sees why clock tests detect the splitting but free fall tests do not.
-- **Type:** Threshold/Region (D5.3)
-- **Physics:** The distinction between sum-gravity (no violation) and per-sector gravity (violation) is conceptual but the MICROSCOPE threshold makes it quantitative. The reader sees that sum gravity is consistent.
-- **Score:** +2 (threshold with regions) +1 (quantitative) +1 (connects to MICROSCOPE) = **+4**
-
-### Candidate 13: Kill condition flowchart
-Decision tree: Test 1 → agree or disagree → consequences. Test 2 → etc.
-- **Type:** Text-in-boxes
-- **Score:** −2 (flowchart) = **−2**
-
-### Candidate 14: Tick budget landscape
-Log-scale axis from 10³⁶ to 10⁸⁵ Planck ticks. Landmarks: photon transit (36), muon lifetime (37.6), GPS period (47.9), Mercury period (50.1), SN Ia lookback (60.5), universe age (60.9), proton lifetime (85.3). The span communicates scale.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** The tick budget spans 49 orders of magnitude. The reader sees where each process sits on the counting machine's scale. The clustering of GPS/Mercury/Hulse-Taylor around 10⁴⁸ (orbital ticks) vs muon at 10³⁸ (decay ticks) vs cosmological at 10⁶¹ shows three regimes.
-- **Score:** +2 (scale with landmarks) +2 (impossible in text — the span is visual) +1 (quantitative) = **+5**
-
-### Candidate 15: SM vs CD beta differences for three pairs
-Three pairs of bars: (3,1), (3,2), (2,1). Each pair has an SM bar and a CD bar. The (3,1) pair nearly matches. The (2,1) pair differs by 2.4×. Labeled with exact Fractions.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The discriminating power of the (2,1) pair is VISUAL — the bars are dramatically different heights. A table says "2.4×" but the bars show it.
-- **Score:** +2 (bars with quantitative contrast) +1 (connects to measurement) = **+3**
-
-### Candidate 16: The frozen scan — reading profile across hierarchy
-X-axis: log₁₀(Φ/c²) from 10⁻¹⁰ to 10⁰. Y-axis: hierarchy level (labeled). Points at each level with Φ/c² values. All computed from frozen spatial inputs. No temporal input needed. The plot IS the frozen scan output.
-- **Type:** Running/Convergence (D5.1)
-- **Physics:** The reading depth increases monotonically from GPS (10⁻¹⁰) through Earth, Mercury, Sun, to neutron star (10⁻¹). The monotonicity IS the hierarchy. The reader sees the soliton nesting as a curve.
-- **Score:** +2 (curve with physical meaning) +1 (quantitative) +1 (central concept) = **+4**
-
-### Candidate 17: The three structural identities
-t_P, l_P, c = l_P/t_P arranged as a triangle. Each vertex labeled with value and meaning (tick step, spatial resolution, resolution ratio). The triangle encodes the relationship between D and K at the most fundamental level.
-- **Type:** Identity Card (D5.8)
-- **Physics:** The three Planck quantities and their relationship define the D/K connection. The triangle is geometric. The ratio is the speed limit.
-- **Score:** +2 (visual reference with geometry) +1 (quantitative) = **+3**
-
-### Candidate 18: Classification consistency — miss values by category
-Scatter plot: x-axis = D/K/Mixed category, y-axis = miss (log scale). Points for each test colored by category. If D tests cluster at low miss and K tests at high miss (or vice versa), there's a systematic difference. If they intermix, the decomposition is consistent.
-- **Type:** Running/Convergence variant (scatter)
-- **Physics:** Tests whether the D/K classification correlates with prediction quality. If it doesn't, both components work equally well. The reader sees the scatter.
-- **Score:** +2 (scatter with pattern) +1 (quantitative) = **+3**
-
-### Candidate 19: The counting machine — N ticks since beginning
-Vertical log scale from 0 to 10⁶¹. Marked with cosmic epochs: inflation end, BBN, recombination, first stars, solar system formation, now. Each epoch labeled with its tick count.
-- **Type:** Scale/Landscape (D5.2)
-- **Score:** +1 (scale) −1 (essentially a timeline as a number line) = **0**
-
-### Candidate 20: Altitude scan — splitting vs height for three κ values
-X-axis: altitude (0-3000 m). Y-axis: ε (log scale). Three curves for κ=1, α, α². Detection threshold band. Already in PHYS-43 Fig 4.
-- **Type:** Threshold/Region (D5.3)
-- **Score:** +2 (curves) −2 (duplicate of PHYS-43 Fig 4) = **0**
+| # | Candidate | Type (D5) | What physics it shows that text cannot | Score |
+|---|---|---|---|---|
+| 1 | β budget staircase: A₁ through A₃ stacked bars | Comparison Bar (D5.6) | Three groups showing β⁰/β²/β⁴ fractions evolving. The shift from geometry-dominant to number-theory-dominant. | +2 impossible in text, +1 quantitative, +1 connects = 4 |
+| 2 | Cancellation staircase: 0% → 90.4% → 99.5% → ? | Running/Convergence (D5.1) | The curve tightening toward 100%. The breaking point at loop 4 marked with a question mark. The SHAPE is the finding. | +2 curve, +2 impossible in text = 4 |
+| 3 | β⁰ subcategory tree | Geometric Cross-Section (D5.4) | β⁰ splits into number-theoretic (known, PSLQ exhausted) and toroidal-geometric (Laporta, new). The branch point. | +2 geometry, +2 impossible in text = 4 |
+| 4 | Electron vs muon: sector dominance flip | Comparison Bar (D5.6) | Two side-by-side stacked bars. Electron: universal huge, mass-dep tiny. Muon: mass-dep huge, universal tiny. The flip. | +2 impossible in text, +1 quantitative, +1 connects = 4 |
+| 5 | Toroidal scaling curve: mass-dep fraction vs lepton mass | Running/Convergence (D5.1) | Curve rising as (m/m_e)². Electron at bottom, muon in middle, tau off the chart. Crossover at 43 m_e marked. | +2 curve, +1 quantitative, +1 connects = 4 |
+| 6 | A₃ term magnitudes — the two giants canceling | Comparison Bar (D5.6) | Nine bars from −227 to +208. The near-cancellation to 1.18 visible as the tiny residual. | +2 impossible in text, +1 quantitative = 3 |
+| 7 | The genus progression: sphere → torus → ? | Scale/Landscape (D5.2) | Loop 1-3 on a sphere. Loop 4 on a torus. Loop 5+ with question mark on higher genus. Visual progression. | +2 scale, +2 impossible in text = 4 |
+| 8 | ζ(3) vs ζ(5) near-cancellation at A₃ | Comparison Bar (D5.6) | Two bars: +9.283 and −9.289. 99.97% cancellation. The near-coincidence is visual. | +2 impossible in text, +1 quantitative, −1 narrow scope = 2 |
+| 9 | Dual geometry on proton | Geometric Cross-Section (D5.4) | Spherical confinement boundary + toroidal gluon flux tubes on one proton. Two geometries. | +2 geometry, +2 impossible in text = 4 |
+| 10 | A₄ contribution vs Harvard and FNAL | Threshold/Region (D5.3) | One A₄ bar, two measurement bands (Harvard tight, FNAL wide). A₄ above Harvard, below FNAL. | +2 impossible in text, +1 quantitative, +1 connects = 4 |
+| 11 | The six Laporta integrals by magnitude | Comparison Bar (D5.6) | Six bars, C81a dominating. Color by topology. | +1 quantitative, −1 done in PHYS-47 = 0 |
+| 12 | Net A_n values: 0.5, −0.33, 1.18, −1.91 | Running/Convergence (D5.1) | The oscillating series, alternating sign, growing slightly. | +2 curve, +1 quantitative = 3 |
+| 13 | Spherical fraction declining: 0% → 53% → 49% → ? | Running/Convergence (D5.1) | Curve of spherical fraction vs loop order, declining. | +2 curve, +1 connects = 3 |
+| 14 | The crossover mass diagram | Threshold/Region (D5.3) | Mass axis from electron to tau. Crossover at 22 MeV marked. Universal dominant below, toroidal above. | +2 impossible in text, +1 quantitative = 3 |
+| 15 | Complete PSLQ exclusion diagram | Scale/Landscape (D5.2) | 66 basis constants stacked, with "NOT HERE" for all classes, pointing to empty elliptic region. | +1 connects, −1 done in PHYS-47 = 0 |
+| 16 | Identity card: the β⁰ frontier | Identity Card (D5.8) | Summary card: β classification, cancellation staircase, six constants, scaling law. | +1 connects, +1 quantitative = 2 |
+| 17 | Mass-dependent correction amplification | Comparison Bar (D5.6) | Three bars: electron (tiny), muon (medium), tau (huge). The (m/m_e)² scaling visible as height. | +1 quantitative, −1 similar to #4 = 0 |
+| 18 | Muon tension: with vs without A₄ | Comparison Bar (D5.6) | Two bars nearly identical: 6.48σ vs 6.37σ. The 0.11σ difference barely visible. Point: A₄ doesn't matter for muon. | +1 quantitative, −1 similar to PHYS-47 = 0 |
+| 19 | The term growth staircase | Running/Convergence (D5.1) | Largest term at each loop: 0.5, 3.4, 226.5, ?. Two orders of magnitude per loop. | +2 curve, +1 quantitative = 3 |
+| 20 | The two-sector QED diagram | Geometric Cross-Section (D5.4) | QED vacuum split into spherical half (polylog, known) and toroidal half (Laporta, unknown). A₄ straddles both. | +2 geometry, +2 impossible in text = 4 |
 
 ---
 
-## SCORING SUMMARY
+### SELECTION — Top 8 (at least 4 types)
 
-| Rank | # | Candidate | Score | Type |
-|---|---|---|---|---|
-| 1 | 4 | κ sweep — sector splitting vs detection | +6 | Threshold/Region |
-| 2 | 5 | D/K classification landscape — 18 tests | +5 | Scale/Landscape |
-| 3 | 7 | Muon D×K product — two panels | +5 | Progression/Sequence |
-| 4 | 8 | Soliton hierarchy with D/K labels | +5 | Geometric Cross-Section |
-| 5 | 14 | Tick budget landscape — 49 orders | +5 | Scale/Landscape |
-| 6 | 1 | 10/1/4/3 bar chart | +4 | Comparison Bar |
-| 7 | 3 | GPS D/K decomposition bars | +4 | Comparison Bar |
-| 8 | 12 | WEP sum vs per-sector | +4 | Threshold/Region |
-| 9 | 16 | Frozen scan reading profile | +4 | Running/Convergence |
+| Fig | # | Candidate | Type | Score | Justification |
+|---|---|---|---|---|---|
+| 1 | 1 | β budget staircase A₁-A₃ | Comparison Bar | 4 | The core data. Three loop orders, three β distributions. |
+| 2 | 2 | Cancellation staircase 0→90→99.5→? | Running/Convergence | 4 | The breaking point. The shape IS the thesis. |
+| 3 | 3 | β⁰ subcategory tree | Geometric Cross-Section | 4 | The new classification. The branch is the discovery. |
+| 4 | 5 | Toroidal scaling curve vs mass | Running/Convergence | 4 | The (m/m_e)² curve. Electron→muon→tau. Crossover marked. |
+| 5 | 10 | A₄ vs Harvard and FNAL | Threshold/Region | 4 | 43× above electron floor, below muon floor. The asymmetry. |
+| 6 | 7 | Genus progression: sphere→torus→? | Scale/Landscape | 4 | The geometric phase transition at loop 4. |
+| 7 | 4 | Electron vs muon sector flip | Comparison Bar | 4 | The dominance inversion. Same A₄, different physics. |
+| 8 | 9 | Dual geometry on proton | Geometric Cross-Section | 4 | Physical anchor. Both geometries on one soliton. |
 
-## TOP 8 SELECTION
+**Type coverage:** Comparison Bar (3), Running/Convergence (2), Geometric Cross-Section (2), Threshold/Region (1), Scale/Landscape (1). Five types. ✓
 
-| Fig | # | Title | Type |
-|---|---|---|---|
-| 1 | 4 | **κ Sweep — Sector Splitting Detection Threshold** | Threshold/Region |
-| 2 | 5 | **D/K Classification of 18 Tests** | Scale/Landscape |
-| 3 | 7 | **Muon D×K Product — Reading Times Ticking** | Progression/Sequence |
-| 4 | 8 | **Soliton Hierarchy with D/K Labels** | Geometric Cross-Section |
-| 5 | 14 | **Tick Budget Landscape — 49 Orders of Magnitude** | Scale/Landscape |
-| 6 | 1 | **The 10/1/4/3 Classification Bar Chart** | Comparison Bar |
-| 7 | 3 | **GPS Decomposition — 86% Reading, 14% Tick** | Comparison Bar |
-| 8 | 12 | **WEP Consistency — Sum Gravity vs Per-Sector** | Threshold/Region |
+---
 
-**Type coverage:** Threshold/Region (2), Scale/Landscape (2), Comparison Bar (2), Progression/Sequence (1), Geometric Cross-Section (1) = 5 types. Satisfies ≥ 4 requirement.
+### THE SCRIPT
+
+```python
+#!/usr/bin/env python3
+"""
+HOWL PHYS-48 Diagrams — The beta-zero Frontier
+8 figures covering beta budget staircase, cancellation curve,
+beta-0 subcategory tree, toroidal scaling, A4 vs measurements,
+genus progression, electron/muon sector flip, dual geometry.
+Output: PNG files to ../figures/
+"""
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.patches import FancyBboxPatch, Circle, Arc, Wedge, Ellipse
+import numpy as np
+import os
+
+# ================================================================
+# GLOBAL STYLE
+# ================================================================
+
+BG      = '#0a0a12'
+PAN     = '#12121f'
+GOLD    = '#d4a843'
+SILVER  = '#a0a8b8'
+CYAN    = '#4ecdc4'
+MAG     = '#c74b7a'
+BLUE    = '#5b8def'
+GREEN   = '#6bcf7f'
+RED     = '#e05555'
+ORANGE  = '#e8944a'
+WHITE   = '#e8e8f0'
+DIM     = '#555570'
+PURPLE  = '#9b7bd4'
+
+def setup_ax(ax, title='', xlabel='', ylabel=''):
+    ax.set_facecolor(PAN)
+    for spine in ax.spines.values():
+        spine.set_color(DIM)
+        spine.set_linewidth(0.5)
+    ax.tick_params(colors=DIM, labelsize=9)
+    if title:
+        ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=12)
+    if xlabel:
+        ax.set_xlabel(xlabel, color=SILVER, fontsize=11)
+    if ylabel:
+        ax.set_ylabel(ylabel, color=SILVER, fontsize=11)
+
+def save(fig, filename):
+    path = os.path.join(outdir, filename)
+    fig.savefig(path, dpi=180, facecolor=BG, bbox_inches='tight', pad_inches=0.3)
+    plt.close(fig)
+    print("  Saved: %s" % filename)
+
+outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
+os.makedirs(outdir, exist_ok=True)
+
+print("PHYS-48 Diagram Script")
+print("=" * 50)
+
+
+# ================================================================
+# FIG 1: BETA BUDGET STAIRCASE — A1 THROUGH A3
+# Type: Comparison Bar (D5.6)
+# Shows: Three groups of stacked bars showing beta^0/beta^2/beta^4
+#        fractions at each loop order. The shift from geometry-
+#        dominant (A2) to number-theory-dominant (A3).
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
+setup_ax(ax, '', 'Loop Order', r'Fraction of $|A_n|$ by $\beta$ class')
+
+loops = [1, 2, 3]
+x_pos = np.array([0, 1.5, 3.0])
+bar_w = 0.8
+
+# Data
+beta0_frac = [1.000, 0.466, 0.513]
+beta2_frac = [0.000, 0.534, 0.247]
+beta4_frac = [0.000, 0.000, 0.240]
+
+# Stacked bars
+bars_b0 = ax.bar(x_pos, beta0_frac, bar_w, color=SILVER, alpha=0.7,
+                  edgecolor=SILVER, linewidth=2, label=r'$\beta^0$ (number theory)')
+bars_b2 = ax.bar(x_pos, beta2_frac, bar_w, bottom=beta0_frac,
+                  color=CYAN, alpha=0.7, edgecolor=CYAN, linewidth=2,
+                  label=r'$\beta^2$ (one angular)')
+b4_bottom = [a + b for a, b in zip(beta0_frac, beta2_frac)]
+bars_b4 = ax.bar(x_pos, beta4_frac, bar_w, bottom=b4_bottom,
+                  color=PURPLE, alpha=0.7, edgecolor=PURPLE, linewidth=2,
+                  label=r'$\beta^4$ (two angular)')
+
+# Percentage labels
+for i, x in enumerate(x_pos):
+    if beta0_frac[i] > 0.05:
+        ax.text(x, beta0_frac[i] / 2, '%.1f%%' % (beta0_frac[i] * 100),
+                color=WHITE, fontsize=11, ha='center', va='center', fontweight='bold')
+    if beta2_frac[i] > 0.05:
+        ax.text(x, beta0_frac[i] + beta2_frac[i] / 2,
+                '%.1f%%' % (beta2_frac[i] * 100),
+                color=WHITE, fontsize=11, ha='center', va='center', fontweight='bold')
+    if beta4_frac[i] > 0.05:
+        ax.text(x, b4_bottom[i] + beta4_frac[i] / 2,
+                '%.1f%%' % (beta4_frac[i] * 100),
+                color=WHITE, fontsize=11, ha='center', va='center', fontweight='bold')
+
+# Loop 4 placeholder
+ax.bar(4.5, 0.15, bar_w, color=RED, alpha=0.3, edgecolor=RED, linewidth=2)
+ax.text(4.5, 0.08, '?', color=RED, fontsize=24, ha='center', va='center',
+        fontweight='bold')
+ax.text(4.5, -0.08, 'Loop 4\n+ Laporta', color=RED, fontsize=9,
+        ha='center', fontweight='bold')
+
+# Labels
+ax.set_xticks(list(x_pos) + [4.5])
+ax.set_xticklabels([r'$A_1$ (1 loop)', r'$A_2$ (2 loops)',
+                     r'$A_3$ (3 loops)', r'$A_4$ (4 loops)'],
+                    color=WHITE, fontsize=10)
+
+ax.axhline(1.0, color=DIM, lw=0.5, ls=':', alpha=0.3)
+
+# Cancellation annotation
+cancel_data = [(0, '0%'), (1.5, '90.4%'), (3.0, '99.5%'), (4.5, '?')]
+for x, c in cancel_data:
+    color = GOLD if c != '?' else RED
+    ax.text(x, 1.05, 'Cancel: %s' % c, color=color, fontsize=9,
+            ha='center', fontweight='bold')
+
+ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=10,
+          loc='upper right')
+
+ax.set_xlim(-0.7, 5.5)
+ax.set_ylim(-0.15, 1.2)
+
+ax.set_title(r'The $\beta$ Budget: From Pure Number Theory to the Toroidal Frontier',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_01_beta_budget_staircase.png')
+
+
+# ================================================================
+# FIG 2: CANCELLATION STAIRCASE — 0% to 99.5% to ?
+# Type: Running/Convergence (D5.1)
+# Shows: Cancellation percentage vs loop order. The curve rises
+#        toward 100% but the question mark at loop 4 marks the
+#        breaking point where Laporta constants escape.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
+setup_ax(ax, '', 'Loop Order', 'Cancellation (%)')
+
+loops = [1, 2, 3]
+cancel = [0, 90.4, 99.5]
+
+ax.plot(loops, cancel, 'o-', color=CYAN, lw=2.5, markersize=14, zorder=5)
+
+# Labels on each point
+for l, c in zip(loops, cancel):
+    ax.text(l + 0.12, c - 3, '%.1f%%' % c, color=CYAN, fontsize=12,
+            fontweight='bold')
+
+# Loop 4 question mark
+ax.plot(4, 99.9, 'o', color=RED, markersize=14, zorder=5)
+ax.text(4 + 0.12, 99.9 - 2, '?', color=RED, fontsize=18, fontweight='bold')
+
+# Asymptote at 100%
+ax.axhline(100, color=GOLD, lw=1.5, ls='--', alpha=0.5)
+ax.text(4.5, 100.3, '100% (exact cancellation)', color=GOLD, fontsize=10)
+
+# The breaking zone
+ax.fill_between([3.5, 4.5], 99, 101, color=RED, alpha=0.06)
+ax.text(4.0, 96, 'BREAKING\nPOINT', color=RED, fontsize=12,
+        ha='center', fontweight='bold', style='italic')
+
+# Annotation: what breaks
+ax.text(1.0, 60,
+        'Spherical cancellation tightens\n'
+        'by ~10 pp per loop order.\n\n'
+        'At loop 4, Laporta constants\n'
+        'cannot participate in exact\n'
+        'cancellation with known constants.',
+        color=SILVER, fontsize=10,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, linewidth=1))
+
+# Term growth annotation
+ax.text(2.5, 30,
+        'Largest term per loop:\n'
+        r'$A_1$: 0.5   $A_2$: 3.4   $A_3$: 227',
+        color=ORANGE, fontsize=10,
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=ORANGE, linewidth=1))
+
+ax.set_xlim(0.5, 5)
+ax.set_ylim(-5, 105)
+ax.set_xticks([1, 2, 3, 4])
+ax.set_xticklabels(['1 loop', '2 loops', '3 loops', '4 loops'],
+                    color=WHITE, fontsize=10)
+
+ax.set_title(r'The Cancellation Staircase: Approaching 100% Until It Breaks',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_02_cancellation_staircase.png')
+
+
+# ================================================================
+# FIG 3: BETA-0 SUBCATEGORY TREE
+# Type: Geometric Cross-Section (D5.4)
+# Shows: beta^0 splits into number-theoretic (rational, zeta, Li)
+#        and toroidal-geometric (Laporta, elliptic). The branch
+#        point is the discovery.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 12))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+
+# Root node
+root_x, root_y = 0.5, 0.88
+ax.text(root_x, root_y, r'$\beta^0$ (no $\pi$ content)',
+        color=WHITE, fontsize=16, fontweight='bold', ha='center',
+        transform=ax.transAxes,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=WHITE, linewidth=2))
+
+# Left branch: number-theoretic
+left_x, left_y = 0.25, 0.65
+ax.annotate('', xy=(left_x, left_y + 0.06), xytext=(root_x - 0.05, root_y - 0.05),
+            arrowprops=dict(arrowstyle='->', color=CYAN, lw=2),
+            transform=ax.transAxes)
+ax.text(left_x, left_y, 'Number-Theoretic', color=CYAN, fontsize=14,
+        fontweight='bold', ha='center', transform=ax.transAxes,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=CYAN, linewidth=2))
+
+# Left sub-branches
+left_items = [
+    (0.08, 0.45, 'Rational\n197/144, 28259/5184', 'Loops 1+'),
+    (0.22, 0.45, r'$\zeta$ values' + '\n' + r'$\zeta(3), \zeta(5)$', 'Loops 2+'),
+    (0.36, 0.45, 'Polylog / MZV\nLi' + r'$_4(\frac{1}{2})$' + r', $\zeta(3,5)$', 'Loops 3+'),
+]
+for lx, ly, text, loop_text in left_items:
+    ax.annotate('', xy=(lx, ly + 0.06), xytext=(left_x, left_y - 0.04),
+                arrowprops=dict(arrowstyle='->', color=CYAN, lw=1.5),
+                transform=ax.transAxes)
+    ax.text(lx, ly, text, color=CYAN, fontsize=9, ha='center',
+            transform=ax.transAxes,
+            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=CYAN, linewidth=1))
+    ax.text(lx, ly - 0.08, loop_text, color=DIM, fontsize=8, ha='center',
+            transform=ax.transAxes)
+
+# PSLQ exhausted label
+ax.text(0.22, 0.30, '24/24 PSLQ NULL\n(exhausted)', color=GREEN,
+        fontsize=11, ha='center', transform=ax.transAxes, fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GREEN, linewidth=1.5))
+
+# Right branch: toroidal-geometric
+right_x, right_y = 0.75, 0.65
+ax.annotate('', xy=(right_x, right_y + 0.06), xytext=(root_x + 0.05, root_y - 0.05),
+            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2.5),
+            transform=ax.transAxes)
+ax.text(right_x, right_y, 'Toroidal-Geometric\n(NEW)', color=GOLD, fontsize=14,
+        fontweight='bold', ha='center', transform=ax.transAxes,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD, linewidth=2.5))
+
+# Right sub-branches
+right_items = [
+    (0.62, 0.45, 'Laporta Constants\nC81a-c, C83a-c', 'Loop 4 (first time)'),
+    (0.88, 0.45, 'Elliptic Periods?\nK(k), E(k)', 'Attack 3 will test'),
+]
+for rx, ry, text, note in right_items:
+    ax.annotate('', xy=(rx, ry + 0.06), xytext=(right_x, right_y - 0.04),
+                arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5),
+                transform=ax.transAxes)
+    ax.text(rx, ry, text, color=GOLD, fontsize=10, ha='center',
+            transform=ax.transAxes,
+            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD, linewidth=1.5))
+    ax.text(rx, ry - 0.08, note, color=RED, fontsize=9, ha='center',
+            transform=ax.transAxes, fontweight='bold')
+
+# Evidence summary
+ax.text(0.75, 0.28, 'Evidence:', color=WHITE, fontsize=11,
+        transform=ax.transAxes, fontweight='bold')
+evidence = [
+    r'$\bullet$ No $\pi$ content (24/24 null)',
+    r'$\bullet$ Not $\zeta$, Li, MZV (24/24 null)',
+    r'$\bullet$ Match elliptic forms < 0.006%',
+    r'$\bullet$ Mutually independent (11/11 null)',
+    r'$\bullet$ Scale as $(m/m_e)^2$ (toroidal)',
+]
+for i, e in enumerate(evidence):
+    ax.text(0.75, 0.24 - i * 0.04, e, color=GOLD, fontsize=9,
+            transform=ax.transAxes)
+
+# Sphere vs torus labels at bottom
+ax.text(0.22, 0.15, r'SPHERE (genus 0)', color=CYAN, fontsize=13,
+        ha='center', transform=ax.transAxes, fontweight='bold')
+ax.text(0.22, 0.11, r'Constants carry $\pi = 4\beta$', color=CYAN,
+        fontsize=10, ha='center', transform=ax.transAxes)
+
+ax.text(0.75, 0.15, 'TORUS (genus 1)', color=GOLD, fontsize=13,
+        ha='center', transform=ax.transAxes, fontweight='bold')
+ax.text(0.75, 0.11, 'Constants carry K(k), E(k)', color=GOLD,
+        fontsize=10, ha='center', transform=ax.transAxes)
+
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 1)
+ax.set_xticks([])
+ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(False)
+
+ax.set_title(r'The $\beta^0$ Subcategory Split: Number Theory vs Toroidal Geometry',
+             color=GOLD, fontsize=15, fontweight='bold', pad=12)
+
+save(fig, 'phys48_03_beta0_subcategory_tree.png')
+
+
+# ================================================================
+# FIG 4: TOROIDAL SCALING CURVE — MASS-DEP FRACTION vs MASS
+# Type: Running/Convergence (D5.1)
+# Shows: The (m/m_e)^2 curve of toroidal/universal ratio.
+#        Electron at bottom left, muon in middle, tau off chart.
+#        Crossover at 43 m_e marked.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
+setup_ax(ax, '', r'Lepton mass / $m_e$', 'Toroidal / Universal ratio (%)')
+
+mass_ratio = np.logspace(0, 4, 500)
+toroidal_pct = mass_ratio**2 * 0.054  # electron baseline 0.054%
+
+ax.plot(mass_ratio, toroidal_pct, color=GOLD, lw=2.5)
+
+# Key points
+points = [
+    (1.0, 0.054, 'Electron\n0.054%', CYAN),
+    (43, 100, 'Crossover\n43 ' + r'$m_e$' + '\n(~22 MeV)', ORANGE),
+    (206.77, 2304, 'Muon\n2304%', MAG),
+    (3477, 650000, 'Tau\n650,000%', RED),
+]
+
+for m, t, label, color in points:
+    if t < 1e6:
+        ax.plot(m, t, 'o', color=color, markersize=12, zorder=6)
+        y_off = t * 1.8 if t > 10 else t + 0.3
+        ax.annotate(label, xy=(m, t), xytext=(m * 1.5, y_off),
+                    color=color, fontsize=10, fontweight='bold',
+                    arrowprops=dict(arrowstyle='->', color=color, lw=1.5))
+
+# Crossover line
+ax.axhline(100, color=ORANGE, lw=1.5, ls='--', alpha=0.5)
+ax.text(5000, 130, 'Universal = Toroidal', color=ORANGE, fontsize=9)
+
+# Regions
+ax.fill_between(mass_ratio, 0.01, 100, where=mass_ratio < 43,
+                color=CYAN, alpha=0.03)
+ax.fill_between(mass_ratio, 100, 1e7, where=mass_ratio > 43,
+                color=GOLD, alpha=0.03)
+
+ax.text(5, 0.03, 'Spherical sector\ndominates', color=CYAN,
+        fontsize=11, style='italic')
+ax.text(500, 5e4, 'Toroidal sector\ndominates', color=GOLD,
+        fontsize=11, style='italic')
+
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlim(0.8, 1e4)
+ax.set_ylim(0.01, 1e7)
+
+ax.set_title(r'Toroidal Scaling: $(m/m_e)^2$ Amplification of the Non-Spherical Sector',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_04_toroidal_scaling.png')
+
+
+# ================================================================
+# FIG 5: A4 vs HARVARD AND FNAL
+# Type: Threshold/Region (D5.3)
+# Shows: One A4 contribution bar against two measurement bands.
+#        A4 towers above Harvard (electron), sits below FNAL (muon).
+# ================================================================
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9),
+                                gridspec_kw={'wspace': 0.35})
+fig.patch.set_facecolor(BG)
+
+# Left panel: Electron
+setup_ax(ax1, '', '', r'Magnitude ($\times 10^{-12}$)')
+ae_a4 = 55.67  # in units of 1e-12
+ae_unc = 1.3
+
+ax1.bar(0.5, ae_a4, 0.6, color=GOLD, alpha=0.7, edgecolor=GOLD, linewidth=2)
+ax1.text(0.5, ae_a4 + 2, '%.1f' % ae_a4, color=GOLD, fontsize=14,
+         ha='center', fontweight='bold')
+
+ax1.axhspan(0, ae_unc, color=MAG, alpha=0.15)
+ax1.axhline(ae_unc, color=MAG, lw=2, ls='--')
+ax1.text(1.1, ae_unc + 1, r'Harvard $\pm$%.1f' % ae_unc,
+         color=MAG, fontsize=10, fontweight='bold')
+
+ax1.text(0.5, ae_a4 / 2, r'$43\times$' + '\nabove', color=WHITE,
+         fontsize=16, ha='center', va='center', fontweight='bold')
+
+ax1.set_xlim(-0.2, 1.5)
+ax1.set_ylim(0, 70)
+ax1.set_xticks([0.5])
+ax1.set_xticklabels(['Electron'], color=WHITE, fontsize=12)
+ax1.set_title(r'$A_4$ DOMINATES for electron', color=CYAN,
+              fontsize=13, fontweight='bold', pad=10)
+
+# Right panel: Muon
+setup_ax(ax2, '', '', r'Magnitude ($\times 10^{-10}$)')
+amu_a4 = 0.557  # in units of 1e-10
+amu_unc = 2.2    # FNAL unc in 1e-10
+
+ax2.bar(0.5, amu_a4, 0.6, color=GOLD, alpha=0.7, edgecolor=GOLD, linewidth=2)
+ax2.text(0.5, amu_a4 + 0.1, '%.2f' % amu_a4, color=GOLD, fontsize=14,
+         ha='center', fontweight='bold')
+
+ax2.axhspan(0, amu_unc, color=MAG, alpha=0.15)
+ax2.axhline(amu_unc, color=MAG, lw=2, ls='--')
+ax2.text(1.1, amu_unc + 0.1, r'FNAL $\pm$%.1f' % amu_unc,
+         color=MAG, fontsize=10, fontweight='bold')
+
+ax2.text(0.5, amu_unc / 2, r'$0.25\times$' + '\nbelow', color=WHITE,
+         fontsize=16, ha='center', va='center', fontweight='bold')
+
+ax2.set_xlim(-0.2, 1.5)
+ax2.set_ylim(0, 3.5)
+ax2.set_xticks([0.5])
+ax2.set_xticklabels(['Muon'], color=WHITE, fontsize=12)
+ax2.set_title(r'$A_4$ INVISIBLE for muon', color=MAG,
+              fontsize=13, fontweight='bold', pad=10)
+
+fig.suptitle(r'Same $A_4$, Different Impact: Electron (43$\times$) vs Muon (0.25$\times$)',
+             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
+
+save(fig, 'phys48_05_a4_vs_measurements.png')
+
+
+# ================================================================
+# FIG 6: GENUS PROGRESSION — SPHERE to TORUS to ?
+# Type: Scale/Landscape (D5.2)
+# Shows: Loop 1-3 on spheres, loop 4 on a torus, loop 5+ unknown.
+#        Visual progression of topological complexity.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+ax.set_aspect('equal')
+
+# Five positions along x
+positions = [1.5, 4.5, 7.5, 10.5, 13.5]
+labels_top = ['Loop 1', 'Loop 2', 'Loop 3', 'Loop 4', 'Loop 5+']
+labels_bot = ['trivial', 'genus 0', 'genus 0', 'genus 0+1', 'genus 0+1+2?']
+colors_list = [DIM, CYAN, CYAN, GOLD, RED]
+
+for i, (px, lt, lb, col) in enumerate(zip(positions, labels_top, labels_bot, colors_list)):
+    # Draw the shape
+    if i == 0:
+        # Point
+        ax.plot(px, 3, 'o', color=col, markersize=20, zorder=5)
+        ax.text(px, 2.2, 'Point', color=col, fontsize=10, ha='center')
+    elif i <= 2:
+        # Sphere
+        circle = Circle((px, 3), 1.0, facecolor=col, alpha=0.12,
+                          edgecolor=col, linewidth=2)
+        ax.add_patch(circle)
+        ax.text(px, 2.2, 'Sphere', color=col, fontsize=10, ha='center')
+    elif i == 3:
+        # Torus
+        outer = Ellipse((px, 3), 2.5, 1.6, facecolor='none',
+                          edgecolor=col, linewidth=2.5)
+        inner = Ellipse((px, 3.1), 0.8, 0.4, facecolor=PAN,
+                          edgecolor=col, linewidth=1.5, linestyle='--')
+        ax.add_patch(outer)
+        ax.add_patch(inner)
+        ax.text(px, 1.8, 'Torus', color=col, fontsize=10,
+                ha='center', fontweight='bold')
+    else:
+        # Question mark — higher genus
+        ax.text(px, 3, '?', color=col, fontsize=40, ha='center',
+                va='center', fontweight='bold')
+        ax.text(px, 1.8, 'Higher genus?', color=col, fontsize=10,
+                ha='center', style='italic')
+
+    # Top label
+    ax.text(px, 5.2, lt, color=WHITE, fontsize=12, ha='center',
+            fontweight='bold')
+    # Bottom label
+    ax.text(px, 1.0, lb, color=col, fontsize=9, ha='center')
+
+# Arrows between
+for i in range(4):
+    ax.annotate('', xy=(positions[i+1] - 1.2, 3),
+                xytext=(positions[i] + 1.2, 3),
+                arrowprops=dict(arrowstyle='->', color=DIM, lw=1.5))
+
+# Constants produced labels
+const_labels = [
+    r'$\frac{1}{2}$',
+    r'$\pi, \zeta(3), \ln 2$',
+    r'$\pi^4, \zeta(5), \mathrm{Li}_4$',
+    'Laporta\nC81, C83',
+    '???',
+]
+const_colors = [DIM, CYAN, CYAN, GOLD, RED]
+for px, cl, cc in zip(positions, const_labels, const_colors):
+    ax.text(px, 4.3, cl, color=cc, fontsize=9, ha='center',
+            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
+                      edgecolor=cc, linewidth=0.8))
+
+# The transition annotation
+ax.annotate('GEOMETRIC\nPHASE\nTRANSITION',
+            xy=(9, 3), xytext=(9, 5.8),
+            color=GOLD, fontsize=11, fontweight='bold', ha='center',
+            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2))
+
+ax.set_xlim(-0.5, 15.5)
+ax.set_ylim(0.3, 6.5)
+ax.set_xticks([])
+ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(False)
+
+ax.set_title('The Genus Progression: Each Loop Order Discovers Deeper Topology',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_06_genus_progression.png')
+
+
+# ================================================================
+# FIG 7: ELECTRON vs MUON SECTOR FLIP
+# Type: Comparison Bar (D5.6)
+# Shows: Two side-by-side stacked bars. Electron: universal huge,
+#        mass-dep tiny. Muon: mass-dep huge, universal tiny.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
+setup_ax(ax, '', '', 'Relative contribution (log scale)')
+
+# Data (normalized: universal = 1.0 for both, mass-dep scaled)
+x_e = 0.8
+x_mu = 2.2
+bar_w = 0.7
+
+# Electron
+ax.bar(x_e - 0.18, 1.0, bar_w * 0.45, color=CYAN, alpha=0.7,
+       edgecolor=CYAN, linewidth=2, label='Universal (Laporta)')
+ax.bar(x_e + 0.18, 0.00054, bar_w * 0.45, color=GOLD, alpha=0.7,
+       edgecolor=GOLD, linewidth=2, label='Mass-dependent')
+
+# Muon
+ax.bar(x_mu - 0.18, 1.0, bar_w * 0.45, color=CYAN, alpha=0.7,
+       edgecolor=CYAN, linewidth=2)
+ax.bar(x_mu + 0.18, 23.04, bar_w * 0.45, color=GOLD, alpha=0.7,
+       edgecolor=GOLD, linewidth=2)
+
+# Labels
+ax.text(x_e - 0.18, 1.3, '1.0', color=CYAN, fontsize=11, ha='center',
+        fontweight='bold')
+ax.text(x_e + 0.18, 0.003, '0.0005', color=GOLD, fontsize=9, ha='center',
+        fontweight='bold')
+ax.text(x_e, 0.00015, r'$\times 1800$', color=WHITE, fontsize=10,
+        ha='center', fontweight='bold')
+
+ax.text(x_mu - 0.18, 1.3, '1.0', color=CYAN, fontsize=11, ha='center',
+        fontweight='bold')
+ax.text(x_mu + 0.18, 28, '23.0', color=GOLD, fontsize=11, ha='center',
+        fontweight='bold')
+ax.text(x_mu, 0.3, r'$\times 23$', color=WHITE, fontsize=10,
+        ha='center', fontweight='bold')
+
+# Dominance arrows
+ax.annotate('SPHERICAL\nDOMINATES', xy=(x_e - 0.18, 0.6),
+            xytext=(x_e - 0.6, 0.1),
+            color=CYAN, fontsize=10, fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=CYAN, lw=1.5))
+
+ax.annotate('TOROIDAL\nDOMINATES', xy=(x_mu + 0.18, 15),
+            xytext=(x_mu + 0.6, 8),
+            color=GOLD, fontsize=10, fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5))
+
+ax.set_yscale('log')
+ax.set_xlim(0, 3.2)
+ax.set_ylim(0.0001, 50)
+ax.set_xticks([x_e, x_mu])
+ax.set_xticklabels(['Electron\n(0.511 MeV)', 'Muon\n(105.7 MeV)'],
+                    color=WHITE, fontsize=11)
+
+ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=10,
+          loc='upper left')
+
+ax.set_title('The Sector Flip: Same Physics, Different Dominant Geometry',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_07_sector_flip.png')
+
+
+# ================================================================
+# FIG 8: DUAL GEOMETRY ON THE PROTON
+# Type: Geometric Cross-Section (D5.4)
+# Shows: A proton with spherical confinement boundary and
+#        toroidal gluon flux tubes. Two geometries on one object.
+#        Labels connect to the QED parallel.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 14))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+ax.set_aspect('equal')
+
+cx, cy = 0, 0
+
+# Spherical confinement boundary
+conf = Circle((cx, cy), 3.0, facecolor=CYAN, alpha=0.06,
+               edgecolor=CYAN, linewidth=2.5, linestyle='-')
+ax.add_patch(conf)
+
+# Inner charge distribution (roughly spherical)
+charge = Circle((cx, cy), 1.5, facecolor=CYAN, alpha=0.08,
+                  edgecolor=CYAN, linewidth=1.5, linestyle='--')
+ax.add_patch(charge)
+
+# Three quarks (as points)
+quark_angles = [np.pi/2, np.pi/2 + 2*np.pi/3, np.pi/2 + 4*np.pi/3]
+quark_colors = [RED, GREEN, BLUE]
+quark_labels = ['u', 'd', 'u']
+for angle, qc, ql in zip(quark_angles, quark_colors, quark_labels):
+    qx = cx + 0.8 * np.cos(angle)
+    qy = cy + 0.8 * np.sin(angle)
+    ax.plot(qx, qy, 'o', color=qc, markersize=16, zorder=6)
+    ax.text(qx, qy, ql, color=WHITE, fontsize=9, ha='center',
+            va='center', fontweight='bold', zorder=7)
+
+# Gluon flux tubes (toroidal — draw as curved lines between quarks)
+for i in range(3):
+    a1 = quark_angles[i]
+    a2 = quark_angles[(i + 1) % 3]
+    t = np.linspace(0, 1, 50)
+    # Curved path between quarks (bulging outward)
+    mid_angle = (a1 + a2) / 2
+    r_mid = 1.8
+    path_x = cx + (0.8 * np.cos(a1) * (1 - t) + 0.8 * np.cos(a2) * t
+                    + 0.5 * np.sin(np.pi * t) * r_mid * np.cos(mid_angle))
+    path_y = cy + (0.8 * np.sin(a1) * (1 - t) + 0.8 * np.sin(a2) * t
+                    + 0.5 * np.sin(np.pi * t) * r_mid * np.sin(mid_angle))
+
+    # Draw with wavy line (gluon-like)
+    wave = 0.08 * np.sin(20 * np.pi * t)
+    path_x += wave * np.cos(mid_angle + np.pi/2)
+    path_y += wave * np.sin(mid_angle + np.pi/2)
+
+    ax.plot(path_x, path_y, color=GOLD, lw=2, alpha=0.6)
+
+# Labels
+ax.text(3.5, 2.5, 'SPHERICAL:', color=CYAN, fontsize=13,
+        fontweight='bold')
+ax.text(3.5, 2.0, 'Confinement boundary', color=CYAN, fontsize=11)
+ax.text(3.5, 1.5, r'$r \approx 0.84$ fm', color=CYAN, fontsize=10)
+ax.text(3.5, 1.0, r'Constants: $\pi, \zeta(3)$', color=CYAN, fontsize=10)
+ax.text(3.5, 0.5, r'$C = 6\beta = 3\pi/2$', color=CYAN, fontsize=10)
+ax.text(3.5, 0.0, r'$\beta$ content: $\beta^2$', color=CYAN, fontsize=10)
+
+ax.text(3.5, -1.5, 'TOROIDAL:', color=GOLD, fontsize=13,
+        fontweight='bold')
+ax.text(3.5, -2.0, 'Gluon flux tubes', color=GOLD, fontsize=11)
+ax.text(3.5, -2.5, 'Color circulation within boundary', color=GOLD,
+        fontsize=10)
+ax.text(3.5, -3.0, 'Constants: Laporta C81, C83?', color=GOLD,
+        fontsize=10)
+ax.text(3.5, -3.5, r'$\beta$ content: $\beta^0$ (toroidal)', color=GOLD,
+        fontsize=10)
+
+# QED parallel annotation
+ax.text(-4.5, -3.5,
+        'Same dual geometry in QED:\n'
+        r'Angular integrals $\to \pi$ (spherical)' + '\n'
+        r'Topology 81/83 $\to$ Laporta (toroidal)',
+        color=WHITE, fontsize=10,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                  edgecolor=WHITE, linewidth=1.5))
+
+# 99% label
+ax.text(cx, cy - 2.2, '99% of proton mass\nis confinement energy\n(toroidal circulation)',
+        color=GOLD, fontsize=10, ha='center', style='italic',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                  edgecolor=GOLD, linewidth=1))
+
+ax.set_xlim(-5.5, 7.5)
+ax.set_ylim(-5, 4.5)
+ax.set_xticks([])
+ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(False)
+
+ax.set_title('Dual Geometry: The Proton Has Both Spherical and Toroidal Structure',
+             color=GOLD, fontsize=14, fontweight='bold', pad=12)
+
+save(fig, 'phys48_08_dual_geometry_proton.png')
+
+
+# ================================================================
+# SUMMARY
+# ================================================================
+print("=" * 50)
+print("All 8 figures saved:")
+print("  phys48_01_beta_budget_staircase.png")
+print("  phys48_02_cancellation_staircase.png")
+print("  phys48_03_beta0_subcategory_tree.png")
+print("  phys48_04_toroidal_scaling.png")
+print("  phys48_05_a4_vs_measurements.png")
+print("  phys48_06_genus_progression.png")
+print("  phys48_07_sector_flip.png")
+print("  phys48_08_dual_geometry_proton.png")
+print("=" * 50)
+```
+
+---
+
+### Placement Table
+
+| Fig | Filename | Title | Section | Markdown |
+|-----|----------|-------|---------|----------|
+| 1 | phys48_01_beta_budget_staircase.png | β Budget Staircase | §II | `![Fig. 1: The β budget at loops 1-3. β⁰ (number theory) grows from 47% to 51%. β² and β⁴ (spherical geometry) total 49%. At loop 4, toroidal β⁰ appears for the first time.](./figures/phys48_01_beta_budget_staircase.png)` |
+| 2 | phys48_02_cancellation_staircase.png | Cancellation Staircase | §II | `![Fig. 2: Cancellation tightens from 0% at one loop to 90.4% at two loops to 99.5% at three loops. At four loops, the Laporta constants break the spherical cancellation machinery.](./figures/phys48_02_cancellation_staircase.png)` |
+| 3 | phys48_03_beta0_subcategory_tree.png | β⁰ Subcategory Tree | §IV | `![Fig. 3: β⁰ splits into two subcategories. Number-theoretic (rational, ζ, Li) — exhausted by 24/24 PSLQ null. Toroidal-geometric (Laporta, elliptic?) — the new subcategory appearing at loop 4.](./figures/phys48_03_beta0_subcategory_tree.png)` |
+| 4 | phys48_04_toroidal_scaling.png | Toroidal Scaling | §V | `![Fig. 4: The toroidal sector scales as (m/mₑ)². Electron: 0.054% (spherical dominates). Muon: 2304% (toroidal dominates). Crossover at 43 mₑ ≈ 22 MeV.](./figures/phys48_04_toroidal_scaling.png)` |
+| 5 | phys48_05_a4_vs_measurements.png | A₄ vs Measurements | §V | `![Fig. 5: Same A₄ = −1.912, opposite impact. Electron: 43× above Harvard precision (dominant). Muon: 0.25× below FNAL precision (invisible).](./figures/phys48_05_a4_vs_measurements.png)` |
+| 6 | phys48_06_genus_progression.png | Genus Progression | §IX | `![Fig. 6: Each loop order discovers deeper topology. Loops 1-3: genus 0 (sphere, polylogarithmic). Loop 4: genus 1 (torus, Laporta). Loop 5+: genus 2+ (hyperelliptic?).](./figures/phys48_06_genus_progression.png)` |
+| 7 | phys48_07_sector_flip.png | Sector Flip | §V | `![Fig. 7: The dominance inversion. For the electron, the universal (spherical) sector is 1800× the mass-dependent. For the muon, the mass-dependent (toroidal) sector is 23× the universal. Same physics, different geometry dominates.](./figures/phys48_07_sector_flip.png)` |
+| 8 | phys48_08_dual_geometry_proton.png | Dual Geometry: Proton | §VIII | `![Fig. 8: The proton has both spherical structure (confinement boundary, charge radius) and toroidal structure (gluon flux tubes, color circulation). 99% of its mass is toroidal circulation energy. The same dual geometry appears in QED at four loops.](./figures/phys48_08_dual_geometry_proton.png)` |
