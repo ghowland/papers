@@ -1,5 +1,5 @@
 ======================================================================
-VALUES: 2261 nodes
+VALUES: 3416 nodes
 ======================================================================
   astro_au_v0                                             149600000000
   astro_gps_orbit_radius_v0                               26556000
@@ -73,6 +73,15 @@ VALUES: 2261 nodes
   ckm_vud_measured_v0                                     0.97373
   ckm_vud_unc_v0                                          0.00031
   ckm_vus_measured_v0                                     0.2243
+  conf_alpha_s_cd_predicted_v0                            1184/10000
+  conf_b3_formula_gluon_v0                                -11/1
+  conf_b3_per_flavor_v0                                   2/3
+  conf_cd_mass_reference_v0                               3000000/1
+  conf_hbar_c_mev_fm_v0                                   1973269804/10000000
+  conf_lattice_factor_proton_unc_v0                       5/10
+  conf_lattice_factor_proton_v0                           47/10
+  conf_pion_decay_constant_unc_v0                         14/100
+  conf_pion_decay_constant_v0                             9221/100
   config_euler_dps_v0                                     100
   config_euler_step_count_v0                              10000
   cosmo_dh_measured_v0                                    2.527e-5
@@ -97,12 +106,16 @@ VALUES: 2261 nodes
   cosmo_neff_planck_v0                                    2.99
   cosmo_neff_standard_v0                                  3.044
   cosmo_omega_b_planck2018_v0                             0.0490
+  cosmo_omega_b_planck_unc_v0                             0.0004
   cosmo_omega_b_planck_v0                                 0.0490
   cosmo_omega_de_planck2018_v0                            0.6889
   cosmo_omega_de_planck_v0                                0.6889
   cosmo_omega_dm_planck2018_v0                            0.2607
+  cosmo_omega_dm_planck_unc_v0                            0.002
   cosmo_omega_dm_planck_v0                                0.2607
   cosmo_omega_dm_r2_prefactor_v0                          44/169
+  cosmo_omega_lambda_planck_unc_v0                        0.004
+  cosmo_omega_lambda_planck_v0                            0.6889
   cosmo_omega_m_planck_v0                                 0.3111
   cosmo_omega_matter_planck2018_v0                        0.3111
   cosmo_rho_crit_v0                                       8.53e-30
@@ -326,6 +339,97 @@ VALUES: 2261 nodes
   experiment_bbn_extended_v0_run004_result_omega_m_measured_v0 0.3111
   experiment_bbn_extended_v0_run004_result_omega_m_miss_pct_v0 0.438560602181629
   experiment_bbn_extended_v0_run004_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_bbn_extended_v0_run005_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bbn_extended_v0_run005_result_eta10_derived_v0 6.08953448897262
+  experiment_bbn_extended_v0_run005_result_eta10_li7_tension_v0 4.68654941434575
+  experiment_bbn_extended_v0_run005_result_eta10_measured_v0 6.104
+  experiment_bbn_extended_v0_run005_result_eta10_needed_for_li7_v0 1.40298507462687
+  experiment_bbn_extended_v0_run005_result_eta10_used_v0  6.08953448897262
+  experiment_bbn_extended_v0_run005_result_eta_derived_v0 6.08953448897262e-10
+  experiment_bbn_extended_v0_run005_result_eta_measured_v0 6.104e-10
+  experiment_bbn_extended_v0_run005_result_eta_miss_pct_v0 0.23698412561246
+  experiment_bbn_extended_v0_run005_result_h0_si_v0       2.18405703175632e-18
+  experiment_bbn_extended_v0_run005_result_he3_derived_v0 1.02746517154383e-5
+  experiment_bbn_extended_v0_run005_result_he3_measured_v0 1.1e-5
+  experiment_bbn_extended_v0_run005_result_he3_miss_pct_v0 6.59407531419698
+  experiment_bbn_extended_v0_run005_result_he3_sigma_v0   0.362674142280834
+  experiment_bbn_extended_v0_run005_result_he3_x1e5_derived_v0 1.02746517154383
+  experiment_bbn_extended_v0_run005_result_li7_derived_v0 4.73998810761166e-10
+  experiment_bbn_extended_v0_run005_result_li7_measured_v0 1.6e-10
+  experiment_bbn_extended_v0_run005_result_li7_miss_pct_v0 196.249256725728
+  experiment_bbn_extended_v0_run005_result_li7_observed_v0 1.6e-10
+  experiment_bbn_extended_v0_run005_result_li7_predicted_v0 4.73998810761166e-10
+  experiment_bbn_extended_v0_run005_result_li7_problem_is_real_v0 True
+  experiment_bbn_extended_v0_run005_result_li7_problem_ratio_v0 2.96249256725729
+  experiment_bbn_extended_v0_run005_result_li7_sigma_v0   10.4666270253722
+  experiment_bbn_extended_v0_run005_result_li7_x1e10_derived_v0 4.73998810761166
+  experiment_bbn_extended_v0_run005_result_n_gamma_computed_v0 410726847.924845
+  experiment_bbn_extended_v0_run005_result_omega_b_derived_v0 0.049035637966613
+  experiment_bbn_extended_v0_run005_result_omega_b_measured_v0 0.049
+  experiment_bbn_extended_v0_run005_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bbn_extended_v0_run005_result_omega_b_used_v0 0.049035637966613
+  experiment_bbn_extended_v0_run005_result_omega_dm_input_v0 0.2607
+  experiment_bbn_extended_v0_run005_result_omega_m_derived_v0 0.309735637966613
+  experiment_bbn_extended_v0_run005_result_omega_m_measured_v0 0.3111
+  experiment_bbn_extended_v0_run005_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bbn_extended_v0_run005_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_bbn_extended_v0_run006_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bbn_extended_v0_run006_result_eta10_derived_v0 6.08953448897262
+  experiment_bbn_extended_v0_run006_result_eta10_li7_tension_v0 4.68654941434575
+  experiment_bbn_extended_v0_run006_result_eta10_measured_v0 6.104
+  experiment_bbn_extended_v0_run006_result_eta10_needed_for_li7_v0 1.40298507462687
+  experiment_bbn_extended_v0_run006_result_eta10_used_v0  6.08953448897262
+  experiment_bbn_extended_v0_run006_result_eta_derived_v0 6.08953448897262e-10
+  experiment_bbn_extended_v0_run006_result_eta_measured_v0 6.104e-10
+  experiment_bbn_extended_v0_run006_result_eta_miss_pct_v0 0.23698412561246
+  experiment_bbn_extended_v0_run006_result_h0_si_v0       2.18405703175632e-18
+  experiment_bbn_extended_v0_run006_result_he3_derived_v0 1.02746517154383e-5
+  experiment_bbn_extended_v0_run006_result_he3_measured_v0 1.1e-5
+  experiment_bbn_extended_v0_run006_result_he3_miss_pct_v0 6.59407531419698
+  experiment_bbn_extended_v0_run006_result_he3_sigma_v0   0.362674142280834
+  experiment_bbn_extended_v0_run006_result_he3_x1e5_derived_v0 1.02746517154383
+  experiment_bbn_extended_v0_run006_result_li7_derived_v0 4.73998810761166e-10
+  experiment_bbn_extended_v0_run006_result_li7_measured_v0 1.6e-10
+  experiment_bbn_extended_v0_run006_result_li7_miss_pct_v0 196.249256725728
+  experiment_bbn_extended_v0_run006_result_li7_observed_v0 1.6e-10
+  experiment_bbn_extended_v0_run006_result_li7_predicted_v0 4.73998810761166e-10
+  experiment_bbn_extended_v0_run006_result_li7_problem_is_real_v0 True
+  experiment_bbn_extended_v0_run006_result_li7_problem_ratio_v0 2.96249256725729
+  experiment_bbn_extended_v0_run006_result_li7_sigma_v0   10.4666270253722
+  experiment_bbn_extended_v0_run006_result_li7_x1e10_derived_v0 4.73998810761166
+  experiment_bbn_extended_v0_run006_result_n_gamma_computed_v0 410726847.924845
+  experiment_bbn_extended_v0_run006_result_omega_b_derived_v0 0.049035637966613
+  experiment_bbn_extended_v0_run006_result_omega_b_measured_v0 0.049
+  experiment_bbn_extended_v0_run006_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bbn_extended_v0_run006_result_omega_b_used_v0 0.049035637966613
+  experiment_bbn_extended_v0_run006_result_omega_dm_input_v0 0.2607
+  experiment_bbn_extended_v0_run006_result_omega_m_derived_v0 0.309735637966613
+  experiment_bbn_extended_v0_run006_result_omega_m_measured_v0 0.3111
+  experiment_bbn_extended_v0_run006_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bbn_extended_v0_run006_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_beta_content_a3_v0_run001_result_a2_beta0_total_v0 2.26959823292525
+  experiment_beta_content_a3_v0_run001_result_a2_beta2_total_v0 -2.59807719850445
+  experiment_beta_content_a3_v0_run001_result_a2_cancel_pct_v0 90.3968800487052
+  experiment_beta_content_a3_v0_run001_result_a2_sum_v0   -0.328478965579194
+  experiment_beta_content_a3_v0_run001_result_a3_beta0_fraction_v0 0.513169454307824
+  experiment_beta_content_a3_v0_run001_result_a3_beta0_total_v0 23.0145084038339
+  experiment_beta_content_a3_v0_run001_result_a3_beta2_fraction_v0 0.246503451397474
+  experiment_beta_content_a3_v0_run001_result_a3_beta2_total_v0 -11.0551314115399
+  experiment_beta_content_a3_v0_run001_result_a3_beta4_fraction_v0 0.240327094294702
+  experiment_beta_content_a3_v0_run001_result_a3_beta4_total_v0 -10.7781355357068
+  experiment_beta_content_a3_v0_run001_result_a3_cancel_pct_v0 99.5355851785726
+  experiment_beta_content_a3_v0_run001_result_a3_li4_beta0_part_v0 17.5699063593843
+  experiment_beta_content_a3_v0_run001_result_a3_li4_beta2_part_v0 -6.58594608428296
+  experiment_beta_content_a3_v0_run001_result_a3_sum_v0   1.1812414565872
+  experiment_beta_content_a3_v0_run001_result_a3_term_li4_combo_v0 10.9839602751013
+  experiment_beta_content_a3_v0_run001_result_a3_term_pi2_v0 208.3704998309
+  experiment_beta_content_a3_v0_run001_result_a3_term_pi2ln2_v0 -226.516040247713
+  experiment_beta_content_a3_v0_run001_result_a3_term_pi2z3_v0 13.6763550895563
+  experiment_beta_content_a3_v0_run001_result_a3_term_pi4_v0 -10.7781355357068
+  experiment_beta_content_a3_v0_run001_result_a3_term_rational_v0 5.45119598765432
+  experiment_beta_content_a3_v0_run001_result_a3_term_z3_v0 9.28255052995464
+  experiment_beta_content_a3_v0_run001_result_a3_term_z5_v0 -9.28914447315936
+  experiment_beta_content_a3_v0_run001_result_cancel_trend_v0 9.13870512986737
   experiment_beta_unification_v0_run003_beta_cabibbo_doublet_vectorlike_su2_shift_derived_v0 1/1
   experiment_beta_unification_v0_run003_beta_cabibbo_doublet_vectorlike_su3_shift_derived_v0 1/3
   experiment_beta_unification_v0_run003_beta_cabibbo_doublet_vectorlike_u1_shift_derived_v0 1/15
@@ -453,6 +557,177 @@ VALUES: 2261 nodes
   experiment_bridge_bbn_v0_run005_result_yp_measured_v0   0.2449
   experiment_bridge_bbn_v0_run005_result_yp_miss_pct_v0   1.52848312876937
   experiment_bridge_bbn_v0_run005_result_yp_sigma_v0      0.935813795589048
+  experiment_bridge_bbn_v0_run006_result_cc_problem_ratio_v0 3.93977103682322e+54
+  experiment_bridge_bbn_v0_run006_result_dh_a_used_v0     2.57
+  experiment_bridge_bbn_v0_run006_result_dh_b_used_v0     -0.44
+  experiment_bridge_bbn_v0_run006_result_dh_derived_v0    2.53060482485205e-5
+  experiment_bridge_bbn_v0_run006_result_dh_measured_v0   2.527e-5
+  experiment_bridge_bbn_v0_run006_result_dh_miss_pct_v0   0.142652348715758
+  experiment_bridge_bbn_v0_run006_result_dh_sigma_v0      0.120160828401573
+  experiment_bridge_bbn_v0_run006_result_dh_x1e5_derived_v0 2.53060482485205
+  experiment_bridge_bbn_v0_run006_result_dh_x1e5_measured_v0 2.527
+  experiment_bridge_bbn_v0_run006_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bridge_bbn_v0_run006_result_eta10_derived_v0 6.08953448897262
+  experiment_bridge_bbn_v0_run006_result_eta10_measured_v0 6.104
+  experiment_bridge_bbn_v0_run006_result_eta10_used_v0    6.08953448897262
+  experiment_bridge_bbn_v0_run006_result_eta_derived_v0   6.08953448897262e-10
+  experiment_bridge_bbn_v0_run006_result_eta_measured_v0  6.104e-10
+  experiment_bridge_bbn_v0_run006_result_eta_miss_pct_v0  0.23698412561246
+  experiment_bridge_bbn_v0_run006_result_flatness_residual_v0 0.0
+  experiment_bridge_bbn_v0_run006_result_flatness_sum_v0  1.0
+  experiment_bridge_bbn_v0_run006_result_h0_si_v0         2.18405703175632e-18
+  experiment_bridge_bbn_v0_run006_result_n_gamma_computed_v0 410726847.924845
+  experiment_bridge_bbn_v0_run006_result_neff_check_v0    2.71205729366492
+  experiment_bridge_bbn_v0_run006_result_neff_miss_planck_pct_v0 9.29574268679187
+  experiment_bridge_bbn_v0_run006_result_neff_miss_standard_pct_v0 10.9048195248054
+  experiment_bridge_bbn_v0_run006_result_neff_planck_v0   2.99
+  experiment_bridge_bbn_v0_run006_result_neff_sigma_v0    1.63495709608869
+  experiment_bridge_bbn_v0_run006_result_neff_standard_v0 3.044
+  experiment_bridge_bbn_v0_run006_result_omega_b_component_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run006_result_omega_b_derived_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run006_result_omega_b_measured_v0 0.049
+  experiment_bridge_bbn_v0_run006_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bridge_bbn_v0_run006_result_omega_b_used_v0  0.049035637966613
+  experiment_bridge_bbn_v0_run006_result_omega_de_component_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run006_result_omega_de_derived_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run006_result_omega_de_measured_v0 0.6889
+  experiment_bridge_bbn_v0_run006_result_omega_de_miss_pct_v0 0.198049358889099
+  experiment_bridge_bbn_v0_run006_result_omega_de_used_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run006_result_omega_dm_component_v0 0.2607
+  experiment_bridge_bbn_v0_run006_result_omega_dm_input_v0 0.2607
+  experiment_bridge_bbn_v0_run006_result_omega_m_derived_v0 0.309735637966613
+  experiment_bridge_bbn_v0_run006_result_omega_m_measured_v0 0.3111
+  experiment_bridge_bbn_v0_run006_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bridge_bbn_v0_run006_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_derived_v0 5.88895985727292e-30
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_gev4_derived_v0 2.53821856816922e-47
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_kgm3_derived_v0 5.88895985727292e-27
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_measured_gcm3_v0 5.88e-30
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_measured_gev4_v0 2.85e-47
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_miss_gcm3_pct_v0 0.152378525049707
+  experiment_bridge_bbn_v0_run006_result_rho_lambda_miss_gev4_pct_v0 10.9396993624835
+  experiment_bridge_bbn_v0_run006_result_yp_a_used_v0     0.2485
+  experiment_bridge_bbn_v0_run006_result_yp_at_neff3_v0   0.248643255182356
+  experiment_bridge_bbn_v0_run006_result_yp_b_used_v0     0.0016
+  experiment_bridge_bbn_v0_run006_result_yp_derived_v0    0.248643255182356
+  experiment_bridge_bbn_v0_run006_result_yp_measured_used_v0 0.2449
+  experiment_bridge_bbn_v0_run006_result_yp_measured_v0   0.2449
+  experiment_bridge_bbn_v0_run006_result_yp_miss_pct_v0   1.52848312876937
+  experiment_bridge_bbn_v0_run006_result_yp_sigma_v0      0.935813795589048
+  experiment_bridge_bbn_v0_run007_result_cc_problem_ratio_v0 3.93977103682322e+54
+  experiment_bridge_bbn_v0_run007_result_dh_a_used_v0     2.57
+  experiment_bridge_bbn_v0_run007_result_dh_b_used_v0     -0.44
+  experiment_bridge_bbn_v0_run007_result_dh_derived_v0    2.53060482485205e-5
+  experiment_bridge_bbn_v0_run007_result_dh_measured_v0   2.527e-5
+  experiment_bridge_bbn_v0_run007_result_dh_miss_pct_v0   0.142652348715758
+  experiment_bridge_bbn_v0_run007_result_dh_sigma_v0      0.120160828401573
+  experiment_bridge_bbn_v0_run007_result_dh_x1e5_derived_v0 2.53060482485205
+  experiment_bridge_bbn_v0_run007_result_dh_x1e5_measured_v0 2.527
+  experiment_bridge_bbn_v0_run007_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bridge_bbn_v0_run007_result_eta10_derived_v0 6.08953448897262
+  experiment_bridge_bbn_v0_run007_result_eta10_measured_v0 6.104
+  experiment_bridge_bbn_v0_run007_result_eta10_used_v0    6.08953448897262
+  experiment_bridge_bbn_v0_run007_result_eta_derived_v0   6.08953448897262e-10
+  experiment_bridge_bbn_v0_run007_result_eta_measured_v0  6.104e-10
+  experiment_bridge_bbn_v0_run007_result_eta_miss_pct_v0  0.23698412561246
+  experiment_bridge_bbn_v0_run007_result_flatness_residual_v0 0.0
+  experiment_bridge_bbn_v0_run007_result_flatness_sum_v0  1.0
+  experiment_bridge_bbn_v0_run007_result_h0_si_v0         2.18405703175632e-18
+  experiment_bridge_bbn_v0_run007_result_n_gamma_computed_v0 410726847.924845
+  experiment_bridge_bbn_v0_run007_result_neff_check_v0    2.71205729366492
+  experiment_bridge_bbn_v0_run007_result_neff_miss_planck_pct_v0 9.29574268679187
+  experiment_bridge_bbn_v0_run007_result_neff_miss_standard_pct_v0 10.9048195248054
+  experiment_bridge_bbn_v0_run007_result_neff_planck_v0   2.99
+  experiment_bridge_bbn_v0_run007_result_neff_sigma_v0    1.63495709608869
+  experiment_bridge_bbn_v0_run007_result_neff_standard_v0 3.044
+  experiment_bridge_bbn_v0_run007_result_omega_b_component_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run007_result_omega_b_derived_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run007_result_omega_b_measured_v0 0.049
+  experiment_bridge_bbn_v0_run007_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bridge_bbn_v0_run007_result_omega_b_used_v0  0.049035637966613
+  experiment_bridge_bbn_v0_run007_result_omega_de_component_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run007_result_omega_de_derived_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run007_result_omega_de_measured_v0 0.6889
+  experiment_bridge_bbn_v0_run007_result_omega_de_miss_pct_v0 0.198049358889099
+  experiment_bridge_bbn_v0_run007_result_omega_de_used_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run007_result_omega_dm_component_v0 0.2607
+  experiment_bridge_bbn_v0_run007_result_omega_dm_input_v0 0.2607
+  experiment_bridge_bbn_v0_run007_result_omega_m_derived_v0 0.309735637966613
+  experiment_bridge_bbn_v0_run007_result_omega_m_measured_v0 0.3111
+  experiment_bridge_bbn_v0_run007_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bridge_bbn_v0_run007_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_derived_v0 5.88895985727292e-30
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_gev4_derived_v0 2.53821856816922e-47
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_kgm3_derived_v0 5.88895985727292e-27
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_measured_gcm3_v0 5.88e-30
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_measured_gev4_v0 2.85e-47
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_miss_gcm3_pct_v0 0.152378525049707
+  experiment_bridge_bbn_v0_run007_result_rho_lambda_miss_gev4_pct_v0 10.9396993624835
+  experiment_bridge_bbn_v0_run007_result_yp_a_used_v0     0.2485
+  experiment_bridge_bbn_v0_run007_result_yp_at_neff3_v0   0.248643255182356
+  experiment_bridge_bbn_v0_run007_result_yp_b_used_v0     0.0016
+  experiment_bridge_bbn_v0_run007_result_yp_derived_v0    0.248643255182356
+  experiment_bridge_bbn_v0_run007_result_yp_measured_used_v0 0.2449
+  experiment_bridge_bbn_v0_run007_result_yp_measured_v0   0.2449
+  experiment_bridge_bbn_v0_run007_result_yp_miss_pct_v0   1.52848312876937
+  experiment_bridge_bbn_v0_run007_result_yp_sigma_v0      0.935813795589048
+  experiment_bridge_bbn_v0_run008_result_cc_problem_ratio_v0 3.93977103682322e+54
+  experiment_bridge_bbn_v0_run008_result_dh_a_used_v0     2.57
+  experiment_bridge_bbn_v0_run008_result_dh_b_used_v0     -0.44
+  experiment_bridge_bbn_v0_run008_result_dh_derived_v0    2.53060482485205e-5
+  experiment_bridge_bbn_v0_run008_result_dh_measured_v0   2.527e-5
+  experiment_bridge_bbn_v0_run008_result_dh_miss_pct_v0   0.142652348715758
+  experiment_bridge_bbn_v0_run008_result_dh_sigma_v0      0.120160828401573
+  experiment_bridge_bbn_v0_run008_result_dh_x1e5_derived_v0 2.53060482485205
+  experiment_bridge_bbn_v0_run008_result_dh_x1e5_measured_v0 2.527
+  experiment_bridge_bbn_v0_run008_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bridge_bbn_v0_run008_result_eta10_derived_v0 6.08953448897262
+  experiment_bridge_bbn_v0_run008_result_eta10_measured_v0 6.104
+  experiment_bridge_bbn_v0_run008_result_eta10_used_v0    6.08953448897262
+  experiment_bridge_bbn_v0_run008_result_eta_derived_v0   6.08953448897262e-10
+  experiment_bridge_bbn_v0_run008_result_eta_measured_v0  6.104e-10
+  experiment_bridge_bbn_v0_run008_result_eta_miss_pct_v0  0.23698412561246
+  experiment_bridge_bbn_v0_run008_result_flatness_residual_v0 0.0
+  experiment_bridge_bbn_v0_run008_result_flatness_sum_v0  1.0
+  experiment_bridge_bbn_v0_run008_result_h0_si_v0         2.18405703175632e-18
+  experiment_bridge_bbn_v0_run008_result_n_gamma_computed_v0 410726847.924845
+  experiment_bridge_bbn_v0_run008_result_neff_check_v0    2.71205729366492
+  experiment_bridge_bbn_v0_run008_result_neff_miss_planck_pct_v0 9.29574268679187
+  experiment_bridge_bbn_v0_run008_result_neff_miss_standard_pct_v0 10.9048195248054
+  experiment_bridge_bbn_v0_run008_result_neff_planck_v0   2.99
+  experiment_bridge_bbn_v0_run008_result_neff_sigma_v0    1.63495709608869
+  experiment_bridge_bbn_v0_run008_result_neff_standard_v0 3.044
+  experiment_bridge_bbn_v0_run008_result_omega_b_component_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run008_result_omega_b_derived_v0 0.049035637966613
+  experiment_bridge_bbn_v0_run008_result_omega_b_measured_v0 0.049
+  experiment_bridge_bbn_v0_run008_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bridge_bbn_v0_run008_result_omega_b_used_v0  0.049035637966613
+  experiment_bridge_bbn_v0_run008_result_omega_de_component_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run008_result_omega_de_derived_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run008_result_omega_de_measured_v0 0.6889
+  experiment_bridge_bbn_v0_run008_result_omega_de_miss_pct_v0 0.198049358889099
+  experiment_bridge_bbn_v0_run008_result_omega_de_used_v0 0.690264362033387
+  experiment_bridge_bbn_v0_run008_result_omega_dm_component_v0 0.2607
+  experiment_bridge_bbn_v0_run008_result_omega_dm_input_v0 0.2607
+  experiment_bridge_bbn_v0_run008_result_omega_m_derived_v0 0.309735637966613
+  experiment_bridge_bbn_v0_run008_result_omega_m_measured_v0 0.3111
+  experiment_bridge_bbn_v0_run008_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bridge_bbn_v0_run008_result_rho_crit_computed_v0 8.53145574533961e-27
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_derived_v0 5.88895985727292e-30
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_gev4_derived_v0 2.53821856816922e-47
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_kgm3_derived_v0 5.88895985727292e-27
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_measured_gcm3_v0 5.88e-30
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_measured_gev4_v0 2.85e-47
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_miss_gcm3_pct_v0 0.152378525049707
+  experiment_bridge_bbn_v0_run008_result_rho_lambda_miss_gev4_pct_v0 10.9396993624835
+  experiment_bridge_bbn_v0_run008_result_yp_a_used_v0     0.2485
+  experiment_bridge_bbn_v0_run008_result_yp_at_neff3_v0   0.248643255182356
+  experiment_bridge_bbn_v0_run008_result_yp_b_used_v0     0.0016
+  experiment_bridge_bbn_v0_run008_result_yp_derived_v0    0.248643255182356
+  experiment_bridge_bbn_v0_run008_result_yp_measured_used_v0 0.2449
+  experiment_bridge_bbn_v0_run008_result_yp_measured_v0   0.2449
+  experiment_bridge_bbn_v0_run008_result_yp_miss_pct_v0   1.52848312876937
+  experiment_bridge_bbn_v0_run008_result_yp_sigma_v0      0.935813795589048
   experiment_bridge_ew_cosmo_v0_run002_result_cos_tw_v0   0.876801003649061
   experiment_bridge_ew_cosmo_v0_run002_result_dm_baryon_ratio_used_v0 5.31654141376734
   experiment_bridge_ew_cosmo_v0_run002_result_flatness_residual_v0 0.0
@@ -490,6 +765,43 @@ VALUES: 2261 nodes
   experiment_bridge_ew_cosmo_v0_run002_result_omega_m_measured_v0 0.3111
   experiment_bridge_ew_cosmo_v0_run002_result_omega_m_miss_pct_v0 0.438560602181629
   experiment_bridge_ew_cosmo_v0_run002_result_sin2_tw_used_v0 0.23122
+  experiment_bridge_ew_cosmo_v0_run003_result_cos_tw_v0   0.876801003649061
+  experiment_bridge_ew_cosmo_v0_run003_result_dm_baryon_ratio_used_v0 5.31654141376734
+  experiment_bridge_ew_cosmo_v0_run003_result_flatness_residual_v0 0.0
+  experiment_bridge_ew_cosmo_v0_run003_result_flatness_sum_v0 1.0
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_derived_v0 2336.80780523693
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_down_quarks_v0 1037.72896327296
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_leptons_v0 235.286765715293
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_measured_v0 2495.2
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_miss_qcd_pct_v0 6.34787571188969
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_miss_tree_pct_v0 8.71791674904207
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_neutrinos_v0 467.932978892462
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_qcd_factor_v0 1.03756056656969
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_tree_v0 2277.6705412779
+  experiment_bridge_ew_cosmo_v0_run003_result_gamma_z_up_quarks_v0 536.721833397191
+  experiment_bridge_ew_cosmo_v0_run003_result_gf_alpha_used_v0 0.00729735256433143
+  experiment_bridge_ew_cosmo_v0_run003_result_gf_derived_v0 1.09673362736561e-5
+  experiment_bridge_ew_cosmo_v0_run003_result_gf_measured_v0 1.1663788e-5
+  experiment_bridge_ew_cosmo_v0_run003_result_gf_miss_pct_v0 5.97105954209683
+  experiment_bridge_ew_cosmo_v0_run003_result_gf_mw_used_v0 79953.3792003491
+  experiment_bridge_ew_cosmo_v0_run003_result_mw_derived_v0 79953.3792003491
+  experiment_bridge_ew_cosmo_v0_run003_result_mw_measured_v0 80369.2
+  experiment_bridge_ew_cosmo_v0_run003_result_mw_miss_mev_v0 415.820799650921
+  experiment_bridge_ew_cosmo_v0_run003_result_mw_miss_pct_v0 0.517388252777084
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_b_component_v0 0.049035637966613
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_b_derived_v0 0.049035637966613
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_b_measured_v0 0.049
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_b_miss_pct_v0 0.0727305441080672
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_de_component_v0 0.690264362033387
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_de_derived_v0 0.690264362033387
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_de_measured_v0 0.6889
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_de_miss_pct_v0 0.198049358889099
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_dm_component_v0 0.2607
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_dm_input_v0 0.2607
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_m_derived_v0 0.309735637966613
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_m_measured_v0 0.3111
+  experiment_bridge_ew_cosmo_v0_run003_result_omega_m_miss_pct_v0 0.438560602181629
+  experiment_bridge_ew_cosmo_v0_run003_result_sin2_tw_used_v0 0.23122
   experiment_ckm_cd_mixing_v0_run001_result_3x3_deficit_v0 0.0015248047
   experiment_ckm_cd_mixing_v0_run001_result_3x3_unitarity_sum_v0 0.9984751953
   experiment_ckm_cd_mixing_v0_run001_result_4x4_unitarity_residual_v0 0.0005001953
@@ -546,6 +858,79 @@ VALUES: 2261 nodes
   experiment_ckm_cd_mixing_v0_run002_result_vud_tension_sigma_v0 0.828641454135592
   experiment_ckm_cd_mixing_v0_run002_result_vud_used_v0   0.97373
   experiment_ckm_cd_mixing_v0_run002_result_vus_used_v0   0.2243
+  experiment_clock_reading_decomposition_v0_run001_result_classification_total_v0 18
+  experiment_clock_reading_decomposition_v0_run001_result_count_dynamic_k_v0 1
+  experiment_clock_reading_decomposition_v0_run001_result_count_mixed_v0 4
+  experiment_clock_reading_decomposition_v0_run001_result_count_static_d_v0 10
+  experiment_clock_reading_decomposition_v0_run001_result_count_structural_v0 3
+  experiment_clock_reading_decomposition_v0_run001_result_d_complete_count_v0 13
+  experiment_clock_reading_decomposition_v0_run001_result_d_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_coverage_v0 0.888888888888889
+  experiment_clock_reading_decomposition_v0_run001_result_frozen_scan_full_v0 0.722222222222222
+  experiment_clock_reading_decomposition_v0_run001_result_k_required_count_v0 2
+  experiment_clock_reading_decomposition_v0_run001_result_k_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run001_result_mixed_partial_count_v0 3
+  experiment_clock_reading_decomposition_v0_run002_result_classification_total_v0 18
+  experiment_clock_reading_decomposition_v0_run002_result_count_dynamic_k_v0 1
+  experiment_clock_reading_decomposition_v0_run002_result_count_mixed_v0 4
+  experiment_clock_reading_decomposition_v0_run002_result_count_static_d_v0 10
+  experiment_clock_reading_decomposition_v0_run002_result_count_structural_v0 3
+  experiment_clock_reading_decomposition_v0_run002_result_d_complete_count_v0 13
+  experiment_clock_reading_decomposition_v0_run002_result_d_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run002_result_frozen_scan_coverage_v0 0.888888888888889
+  experiment_clock_reading_decomposition_v0_run002_result_frozen_scan_full_v0 0.722222222222222
+  experiment_clock_reading_decomposition_v0_run002_result_k_required_count_v0 2
+  experiment_clock_reading_decomposition_v0_run002_result_k_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run002_result_mixed_partial_count_v0 3
+  experiment_clock_reading_decomposition_v0_run003_result_classification_total_v0 18
+  experiment_clock_reading_decomposition_v0_run003_result_count_dynamic_k_v0 1
+  experiment_clock_reading_decomposition_v0_run003_result_count_mixed_v0 4
+  experiment_clock_reading_decomposition_v0_run003_result_count_static_d_v0 10
+  experiment_clock_reading_decomposition_v0_run003_result_count_structural_v0 3
+  experiment_clock_reading_decomposition_v0_run003_result_d_complete_count_v0 13
+  experiment_clock_reading_decomposition_v0_run003_result_d_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run003_result_frozen_scan_coverage_v0 0.888888888888889
+  experiment_clock_reading_decomposition_v0_run003_result_frozen_scan_full_v0 0.722222222222222
+  experiment_clock_reading_decomposition_v0_run003_result_k_required_count_v0 2
+  experiment_clock_reading_decomposition_v0_run003_result_k_tests_all_pass_v0 True
+  experiment_clock_reading_decomposition_v0_run003_result_mixed_partial_count_v0 3
+  experiment_confinement_boundary_v0_run003_result_alpha_s_at_1gev_v0 0.358356207990307
+  experiment_confinement_boundary_v0_run003_result_alpha_s_at_mb_v0 0.21212996869316
+  experiment_confinement_boundary_v0_run003_result_alpha_s_at_mc_v0 0.318850541475554
+  experiment_confinement_boundary_v0_run003_result_alpha_s_inv_mz_used_v0 8.47457627118644
+  experiment_confinement_boundary_v0_run003_result_b3_cd_check_v0 -6.66666666666667
+  experiment_confinement_boundary_v0_run003_result_b3_nf3_v0 -9/1
+  experiment_confinement_boundary_v0_run003_result_b3_nf4_v0 -25/3
+  experiment_confinement_boundary_v0_run003_result_b3_nf5_v0 -23/3
+  experiment_confinement_boundary_v0_run003_result_b3_nf6_v0 -7/1
+  experiment_confinement_boundary_v0_run003_result_b3_sm_check_v0 -7.0
+  experiment_confinement_boundary_v0_run003_result_boundary_thickness_cd_v0 3/20
+  experiment_confinement_boundary_v0_run003_result_boundary_thickness_sm_v0 1/7
+  experiment_confinement_boundary_v0_run003_result_chiral_condensate_B0_v0 340.589593420732
+  experiment_confinement_boundary_v0_run003_result_f_pi_used_v0 92.21
+  experiment_confinement_boundary_v0_run003_result_lambda_qcd_cd_v0 145.415166052649
+  experiment_confinement_boundary_v0_run003_result_lambda_qcd_ratio_v0 1.02018883004219
+  experiment_confinement_boundary_v0_run003_result_lambda_qcd_shift_pct_v0 2.01888300421855
+  experiment_confinement_boundary_v0_run003_result_lambda_qcd_sm_v0 142.537500676846
+  experiment_confinement_boundary_v0_run003_result_lambda_sm_used_v0 142.537500676846
+  experiment_confinement_boundary_v0_run003_result_lambda_used_v0 142.537500676846
+  experiment_confinement_boundary_v0_run003_result_lattice_factor_used_v0 4.7
+  experiment_confinement_boundary_v0_run003_result_m_d_used_v0 4.7
+  experiment_confinement_boundary_v0_run003_result_m_p_measured_used_v0 938.27208943
+  experiment_confinement_boundary_v0_run003_result_m_q_sum_used_v0 6.86
+  experiment_confinement_boundary_v0_run003_result_m_u_used_v0 2.16
+  experiment_confinement_boundary_v0_run003_result_nuclear_force_range_predicted_v0 1.41381693065413
+  experiment_confinement_boundary_v0_run003_result_pi_mass_diff_measured_v0 4.59339
+  experiment_confinement_boundary_v0_run003_result_pion_charged_miss_pct_v0 51.0221800098225
+  experiment_confinement_boundary_v0_run003_result_pion_charged_predicted_v0 68.3585343737887
+  experiment_confinement_boundary_v0_run003_result_pion_mass_sq_v0 4672.88922173245
+  experiment_confinement_boundary_v0_run003_result_pion_neutral_miss_pct_v0 49.3554202762036
+  experiment_confinement_boundary_v0_run003_result_pion_neutral_predicted_v0 68.3585343737887
+  experiment_confinement_boundary_v0_run003_result_proton_confinement_energy_v0 929.25208943
+  experiment_confinement_boundary_v0_run003_result_proton_confinement_fraction_v0 0.990386583911411
+  experiment_confinement_boundary_v0_run003_result_proton_mass_miss_pct_v0 28.6000019900244
+  experiment_confinement_boundary_v0_run003_result_proton_mass_predicted_v0 669.926253181176
+  experiment_confinement_boundary_v0_run003_result_proton_valence_mass_v0 9.02
   experiment_cosmology_chain_v0_run001_cosmo_dm_to_baryon_ratio_predicted_derived_v0 5.31654141377
   experiment_cosmology_chain_v0_run001_cosmo_dm_to_baryon_ratio_prefactor_derived_v0 22/13
   experiment_cosmology_chain_v0_run001_cosmo_omega_dm_predicted_derived_v0 0.204482362068
@@ -554,6 +939,14 @@ VALUES: 2261 nodes
   experiment_cosmology_chain_v0_run001_result_cosmo_omega_b_v0 0.0384615384615385
   experiment_cosmology_chain_v0_run001_result_cosmo_omega_de_v0 0.757056099470487
   experiment_cosmology_chain_v0_run001_result_cosmo_omega_matter_v0 0.242943900529513
+  experiment_cosmology_chain_v0_run002_cosmo_dm_to_baryon_ratio_predicted_derived_v0 5.31654141377
+  experiment_cosmology_chain_v0_run002_cosmo_dm_to_baryon_ratio_prefactor_derived_v0 22/13
+  experiment_cosmology_chain_v0_run002_cosmo_omega_dm_predicted_derived_v0 0.204482362068
+  experiment_cosmology_chain_v0_run002_cosmo_omega_dm_r2_prefactor_derived_v0 44/169
+  experiment_cosmology_chain_v0_run002_result_cosmo_flatness_sum_v0 1.0
+  experiment_cosmology_chain_v0_run002_result_cosmo_omega_b_v0 0.0384615384615385
+  experiment_cosmology_chain_v0_run002_result_cosmo_omega_de_v0 0.757056099470487
+  experiment_cosmology_chain_v0_run002_result_cosmo_omega_matter_v0 0.242943900529513
   experiment_electroweak_anatomy_v0_run001_coupling_alpha_1_inverse_gut_normalized_mz_v0 15802580317094109/250000000000000
   experiment_electroweak_anatomy_v0_run001_coupling_alpha_2_inverse_mz_v0 1584273186485297/50000000000000
   experiment_electroweak_anatomy_v0_run001_coupling_alpha_3_inverse_mz_v0 500/59
@@ -926,6 +1319,138 @@ VALUES: 2261 nodes
   experiment_ew_v2_v0_run008_result_sin2_eff_used_v0      0.230979916390127
   experiment_ew_v2_v0_run008_result_sin2_os_from_gf_v0    0.223505538370818
   experiment_ew_v2_v0_run008_result_sin2_os_v0            0.223505538370819
+  experiment_gr_time_dilation_v0_run001_result_c_from_planck_v0 299792458.0
+  experiment_gr_time_dilation_v0_run001_result_c_miss_pct_v0 0.0
+  experiment_gr_time_dilation_v0_run001_result_c_used_v0  299792458.0
+  experiment_gr_time_dilation_v0_run001_result_earth_phi_over_c2_v0 6.96127458659185e-10
+  experiment_gr_time_dilation_v0_run001_result_earth_schwarzschild_radius_v0 0.00887005607823534
+  experiment_gr_time_dilation_v0_run001_result_g_derived_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run001_result_g_surface_from_gm_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run001_result_g_surface_miss_pct_v0 0.138686371634844
+  experiment_gr_time_dilation_v0_run001_result_gm_earth_used_v0 398600441800000.0
+  experiment_gr_time_dilation_v0_run001_result_gm_sun_used_v0 1.32712440018e+20
+  experiment_gr_time_dilation_v0_run001_result_gpa_miss_pct_v0 2.47250555227925
+  experiment_gr_time_dilation_v0_run001_result_gpa_predicted_v0 4.25219875792062e-10
+  experiment_gr_time_dilation_v0_run001_result_gps_grav_shift_v0 5.29145981282767e-10
+  experiment_gr_time_dilation_v0_run001_result_gps_net_miss_pct_v0 0.350790104947939
+  experiment_gr_time_dilation_v0_run001_result_gps_net_shift_v0 3.85044547034481e-5
+  experiment_gr_time_dilation_v0_run001_result_gps_velocity_shift_v0 -8.34925703632288e-11
+  experiment_gr_time_dilation_v0_run001_result_ht_pdot_miss_pct_v0 0.00416215766253226
+  experiment_gr_time_dilation_v0_run001_result_ht_pdot_ratio_v0 0.999958378423375
+  experiment_gr_time_dilation_v0_run001_result_mercury_miss_pct_v0 0.000278135625187979
+  experiment_gr_time_dilation_v0_run001_result_mercury_perihelion_predicted_v0 42.9800195424136
+  experiment_gr_time_dilation_v0_run001_result_muon_dilated_lifetime_v0 6.437154623e-5
+  experiment_gr_time_dilation_v0_run001_result_muon_miss_pct_v0 0.0441828726708075
+  experiment_gr_time_dilation_v0_run001_result_planck_length_from_constants_v0 1.61625502392855e-35
+  experiment_gr_time_dilation_v0_run001_result_planck_length_miss_pct_v0 1.48049348962168e-6
+  experiment_gr_time_dilation_v0_run001_result_planck_time_from_constants_v0 5.39124644666194e-44
+  experiment_gr_time_dilation_v0_run001_result_planck_time_miss_pct_v0 1.02636376356069e-5
+  experiment_gr_time_dilation_v0_run001_result_pound_rebka_miss_pct_v0 4.33996080347249
+  experiment_gr_time_dilation_v0_run001_result_pound_rebka_predicted_v0 2.45846300735076e-15
+  experiment_gr_time_dilation_v0_run001_result_shapiro_gamma_predicted_v0 1.0
+  experiment_gr_time_dilation_v0_run001_result_sn1a_stretch_predicted_v0 2.0
+  experiment_gr_time_dilation_v0_run001_result_solar_miss_pct_v0 0.00161287152250672
+  experiment_gr_time_dilation_v0_run001_result_solar_redshift_predicted_v0 636.310262701498
+  experiment_gr_time_dilation_v0_run001_result_sun_phi_over_c2_v0 2.12250257043324e-6
+  experiment_gr_time_dilation_v0_run002_result_c_from_planck_v0 299792458.0
+  experiment_gr_time_dilation_v0_run002_result_c_miss_pct_v0 0.0
+  experiment_gr_time_dilation_v0_run002_result_c_used_v0  299792458.0
+  experiment_gr_time_dilation_v0_run002_result_earth_phi_over_c2_v0 6.96127458659185e-10
+  experiment_gr_time_dilation_v0_run002_result_earth_schwarzschild_radius_v0 0.00887005607823534
+  experiment_gr_time_dilation_v0_run002_result_g_derived_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run002_result_g_surface_from_gm_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run002_result_g_surface_miss_pct_v0 0.138686371634844
+  experiment_gr_time_dilation_v0_run002_result_gm_earth_used_v0 398600441800000.0
+  experiment_gr_time_dilation_v0_run002_result_gm_sun_used_v0 1.32712440018e+20
+  experiment_gr_time_dilation_v0_run002_result_gpa_miss_pct_v0 2.47250555227925
+  experiment_gr_time_dilation_v0_run002_result_gpa_predicted_v0 4.25219875792062e-10
+  experiment_gr_time_dilation_v0_run002_result_gps_grav_shift_v0 5.29145981282767e-10
+  experiment_gr_time_dilation_v0_run002_result_gps_net_miss_pct_v0 0.350790104947939
+  experiment_gr_time_dilation_v0_run002_result_gps_net_shift_v0 3.85044547034481e-5
+  experiment_gr_time_dilation_v0_run002_result_gps_velocity_shift_v0 -8.34925703632288e-11
+  experiment_gr_time_dilation_v0_run002_result_ht_pdot_miss_pct_v0 0.00416215766253226
+  experiment_gr_time_dilation_v0_run002_result_ht_pdot_ratio_v0 0.999958378423375
+  experiment_gr_time_dilation_v0_run002_result_mercury_miss_pct_v0 0.000278135625187979
+  experiment_gr_time_dilation_v0_run002_result_mercury_perihelion_predicted_v0 42.9800195424136
+  experiment_gr_time_dilation_v0_run002_result_muon_dilated_lifetime_v0 6.437154623e-5
+  experiment_gr_time_dilation_v0_run002_result_muon_miss_pct_v0 0.0441828726708075
+  experiment_gr_time_dilation_v0_run002_result_planck_length_from_constants_v0 1.61625502392855e-35
+  experiment_gr_time_dilation_v0_run002_result_planck_length_miss_pct_v0 1.48049348962168e-6
+  experiment_gr_time_dilation_v0_run002_result_planck_time_from_constants_v0 5.39124644666194e-44
+  experiment_gr_time_dilation_v0_run002_result_planck_time_miss_pct_v0 1.02636376356069e-5
+  experiment_gr_time_dilation_v0_run002_result_pound_rebka_miss_pct_v0 4.33996080347249
+  experiment_gr_time_dilation_v0_run002_result_pound_rebka_predicted_v0 2.45846300735076e-15
+  experiment_gr_time_dilation_v0_run002_result_shapiro_gamma_predicted_v0 1.0
+  experiment_gr_time_dilation_v0_run002_result_sn1a_stretch_predicted_v0 2.0
+  experiment_gr_time_dilation_v0_run002_result_solar_miss_pct_v0 0.00161287152250672
+  experiment_gr_time_dilation_v0_run002_result_solar_redshift_predicted_v0 636.310262701498
+  experiment_gr_time_dilation_v0_run002_result_sun_phi_over_c2_v0 2.12250257043324e-6
+  experiment_gr_time_dilation_v0_run003_result_c_from_planck_v0 299792458.0
+  experiment_gr_time_dilation_v0_run003_result_c_miss_pct_v0 0.0
+  experiment_gr_time_dilation_v0_run003_result_c_used_v0  299792458.0
+  experiment_gr_time_dilation_v0_run003_result_earth_phi_over_c2_v0 6.96127458659185e-10
+  experiment_gr_time_dilation_v0_run003_result_earth_schwarzschild_radius_v0 0.00887005607823534
+  experiment_gr_time_dilation_v0_run003_result_g_derived_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run003_result_g_surface_from_gm_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run003_result_g_surface_miss_pct_v0 0.138686371634844
+  experiment_gr_time_dilation_v0_run003_result_gm_earth_used_v0 398600441800000.0
+  experiment_gr_time_dilation_v0_run003_result_gm_sun_used_v0 1.32712440018e+20
+  experiment_gr_time_dilation_v0_run003_result_gpa_miss_pct_v0 2.47250555227925
+  experiment_gr_time_dilation_v0_run003_result_gpa_predicted_v0 4.25219875792062e-10
+  experiment_gr_time_dilation_v0_run003_result_gps_grav_shift_v0 5.29145981282767e-10
+  experiment_gr_time_dilation_v0_run003_result_gps_net_miss_pct_v0 0.350790104947939
+  experiment_gr_time_dilation_v0_run003_result_gps_net_shift_v0 3.85044547034481e-5
+  experiment_gr_time_dilation_v0_run003_result_gps_velocity_shift_v0 -8.34925703632288e-11
+  experiment_gr_time_dilation_v0_run003_result_ht_pdot_miss_pct_v0 0.00416215766253226
+  experiment_gr_time_dilation_v0_run003_result_ht_pdot_ratio_v0 0.999958378423375
+  experiment_gr_time_dilation_v0_run003_result_mercury_miss_pct_v0 0.000278135625187979
+  experiment_gr_time_dilation_v0_run003_result_mercury_perihelion_predicted_v0 42.9800195424136
+  experiment_gr_time_dilation_v0_run003_result_muon_dilated_lifetime_v0 6.437154623e-5
+  experiment_gr_time_dilation_v0_run003_result_muon_miss_pct_v0 0.0441828726708075
+  experiment_gr_time_dilation_v0_run003_result_planck_length_from_constants_v0 1.61625502392855e-35
+  experiment_gr_time_dilation_v0_run003_result_planck_length_miss_pct_v0 1.48049348962168e-6
+  experiment_gr_time_dilation_v0_run003_result_planck_time_from_constants_v0 5.39124644666194e-44
+  experiment_gr_time_dilation_v0_run003_result_planck_time_miss_pct_v0 1.02636376356069e-5
+  experiment_gr_time_dilation_v0_run003_result_pound_rebka_miss_pct_v0 4.33996080347249
+  experiment_gr_time_dilation_v0_run003_result_pound_rebka_predicted_v0 2.45846300735076e-15
+  experiment_gr_time_dilation_v0_run003_result_shapiro_gamma_predicted_v0 1.0
+  experiment_gr_time_dilation_v0_run003_result_sn1a_stretch_predicted_v0 2.0
+  experiment_gr_time_dilation_v0_run003_result_solar_miss_pct_v0 0.00161287152250672
+  experiment_gr_time_dilation_v0_run003_result_solar_redshift_predicted_v0 636.310262701498
+  experiment_gr_time_dilation_v0_run003_result_sun_phi_over_c2_v0 2.12250257043324e-6
+  experiment_gr_time_dilation_v0_run004_result_c_from_planck_v0 299792458.0
+  experiment_gr_time_dilation_v0_run004_result_c_miss_pct_v0 0.0
+  experiment_gr_time_dilation_v0_run004_result_c_used_v0  299792458.0
+  experiment_gr_time_dilation_v0_run004_result_earth_phi_over_c2_v0 6.96127458659185e-10
+  experiment_gr_time_dilation_v0_run004_result_earth_schwarzschild_radius_v0 0.00887005607823534
+  experiment_gr_time_dilation_v0_run004_result_g_derived_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run004_result_g_surface_from_gm_v0 9.82025048706393
+  experiment_gr_time_dilation_v0_run004_result_g_surface_miss_pct_v0 0.138686371634844
+  experiment_gr_time_dilation_v0_run004_result_gm_earth_used_v0 398600441800000.0
+  experiment_gr_time_dilation_v0_run004_result_gm_sun_used_v0 1.32712440018e+20
+  experiment_gr_time_dilation_v0_run004_result_gpa_miss_pct_v0 2.47250555227925
+  experiment_gr_time_dilation_v0_run004_result_gpa_predicted_v0 4.25219875792062e-10
+  experiment_gr_time_dilation_v0_run004_result_gps_grav_shift_v0 5.29145981282767e-10
+  experiment_gr_time_dilation_v0_run004_result_gps_net_miss_pct_v0 0.350790104947939
+  experiment_gr_time_dilation_v0_run004_result_gps_net_shift_v0 3.85044547034481e-5
+  experiment_gr_time_dilation_v0_run004_result_gps_velocity_shift_v0 -8.34925703632288e-11
+  experiment_gr_time_dilation_v0_run004_result_ht_pdot_miss_pct_v0 0.00416215766253226
+  experiment_gr_time_dilation_v0_run004_result_ht_pdot_ratio_v0 0.999958378423375
+  experiment_gr_time_dilation_v0_run004_result_mercury_miss_pct_v0 0.000278135625187979
+  experiment_gr_time_dilation_v0_run004_result_mercury_perihelion_predicted_v0 42.9800195424136
+  experiment_gr_time_dilation_v0_run004_result_muon_dilated_lifetime_v0 6.437154623e-5
+  experiment_gr_time_dilation_v0_run004_result_muon_miss_pct_v0 0.0441828726708075
+  experiment_gr_time_dilation_v0_run004_result_planck_length_from_constants_v0 1.61625502392855e-35
+  experiment_gr_time_dilation_v0_run004_result_planck_length_miss_pct_v0 1.48049348962168e-6
+  experiment_gr_time_dilation_v0_run004_result_planck_time_from_constants_v0 5.39124644666194e-44
+  experiment_gr_time_dilation_v0_run004_result_planck_time_miss_pct_v0 1.02636376356069e-5
+  experiment_gr_time_dilation_v0_run004_result_pound_rebka_miss_pct_v0 4.33996080347249
+  experiment_gr_time_dilation_v0_run004_result_pound_rebka_predicted_v0 2.45846300735076e-15
+  experiment_gr_time_dilation_v0_run004_result_shapiro_gamma_predicted_v0 1.0
+  experiment_gr_time_dilation_v0_run004_result_sn1a_stretch_predicted_v0 2.0
+  experiment_gr_time_dilation_v0_run004_result_solar_miss_pct_v0 0.00161287152250672
+  experiment_gr_time_dilation_v0_run004_result_solar_redshift_predicted_v0 636.310262701498
+  experiment_gr_time_dilation_v0_run004_result_sun_phi_over_c2_v0 2.12250257043324e-6
   experiment_hubble_vp_prediction_v0_run001_result_best_integer_n_miss_pct_v0 40.5323109430901
   experiment_hubble_vp_prediction_v0_run001_result_best_integer_n_v0 1.0
   experiment_hubble_vp_prediction_v0_run001_result_best_rational_frac_den_v0 365.0
@@ -1142,6 +1667,223 @@ VALUES: 2261 nodes
   experiment_koide_analysis_v0_run001_koide_charged_leptons_a2_minus_two_derived_v0 -3.69312068681e-5
   experiment_koide_analysis_v0_run001_koide_charged_leptons_k_derived_v0 0.666660511466
   experiment_koide_analysis_v0_run001_result_tau_mass_koide_two_thirds_derived_v0 1776.96902729
+  experiment_laporta_a4_decomposition_v0_run001_result_a4_contribution_vs_harvard_unc_v0 42.8215305134996
+  experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_absolute_v0 -6.58818213094906e-6
+  experiment_laporta_a4_decomposition_v0_run001_result_a4_shift_ppb_v0 -48.076287875881
+  experiment_laporta_a4_decomposition_v0_run001_result_ae_contribution_a4_total_v0 -5.56679896675494e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_ae_from_a4_v0 -5.56679896675494e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_with_a4_v0 137.035998868254
+  experiment_laporta_a4_decomposition_v0_run001_result_alpha_inv_without_a4_v0 137.036005456436
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81a_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81b_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C81c_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83a_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83b_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dae_per_unit_C83c_v0 2.91113154431228e-11
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81a_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81b_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C81c_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83a_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83b_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_C83c_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_dalpha_ppb_per_unit_a4_v0 25.1412721456686
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81a_v0 116.694585791187
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81b_v0 8.74832032381463
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C81c_v0 0.23608527712034
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83a_v0 2.77119198614552
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83b_v0 0.807847353263828
+  experiment_laporta_a4_decomposition_v0_run001_result_magnitude_C83c_v0 0.434702618543809
+  experiment_laporta_a4_decomposition_v0_run001_result_most_sensitive_integral_v0 C81a
+  experiment_laporta_muon_electron_v0_run001_result_ae_a4_contribution_v0 -5.56679891187402e-11
+  experiment_laporta_muon_electron_v0_run001_result_ae_a4_vs_harvard_unc_v0 42.8215300913386
+  experiment_laporta_muon_electron_v0_run001_result_ae_a4_x1e11_v0 -5.56679891187402
+  experiment_laporta_muon_electron_v0_run001_result_ae_mass_dep_4loop_v0 3.0e-14
+  experiment_laporta_muon_electron_v0_run001_result_amu_a4_contribution_v0 -5.56679891187402e-11
+  experiment_laporta_muon_electron_v0_run001_result_amu_a4_shift_x1e11_v0 -5.56679891187402
+  experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_fnal_unc_v0 0.253036314176092
+  experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_tension_v0 1.75001537625716
+  experiment_laporta_muon_electron_v0_run001_result_amu_a4_x1e11_v0 -5.56679891187402
+  experiment_laporta_muon_electron_v0_run001_result_amu_diff_with_a4_v0 3.181e-9
+  experiment_laporta_muon_electron_v0_run001_result_amu_diff_without_a4_v0 3.12533201088126e-9
+  experiment_laporta_muon_electron_v0_run001_result_amu_mass_dep_4loop_estimated_v0 1.28259368202626e-9
+  experiment_laporta_muon_electron_v0_run001_result_amu_sm_with_a4_v0 0.001165917409
+  experiment_laporta_muon_electron_v0_run001_result_amu_sm_without_a4_v0 0.00116591746466799
+  experiment_laporta_muon_electron_v0_run001_result_amu_tension_change_sigma_v0 0.113442892766009
+  experiment_laporta_muon_electron_v0_run001_result_amu_tension_with_a4_sigma_v0 6.48239405808167
+  experiment_laporta_muon_electron_v0_run001_result_amu_tension_without_a4_sigma_v0 6.36895116531566
+  experiment_laporta_muon_electron_v0_run001_result_amu_total_unc_v0 4.90713765855412e-10
+  experiment_laporta_muon_electron_v0_run001_result_mass_ratio_squared_v0 42753.1227342086
+  experiment_laporta_muon_electron_v0_run001_result_sensitivity_ratio_muon_electron_v0 1.0
+  experiment_laporta_muon_electron_v0_run001_result_toroidal_scaling_test_v0 2304.00577123502
+  experiment_laporta_pslq_v0_run002_result_C81a_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C81a_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_C81b_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C81b_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_C81c_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C81c_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_C83a_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C83a_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_C83b_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C83b_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_C83c_basis_size_v0 66
+  experiment_laporta_pslq_v0_run002_result_C83c_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81a_83a_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81ab_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81ac_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81b_83b_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81bc_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_81c_83c_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_83ab_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_83ac_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_83bc_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_found_v0 0
+  experiment_laporta_pslq_v0_run002_result_crossrel_null_v0 11
+  experiment_laporta_pslq_v0_run002_result_crossrel_triple_81_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_crossrel_triple_83_status_v0 NULL
+  experiment_laporta_pslq_v0_run002_result_found_count_crossrel_v0 0
+  experiment_laporta_pslq_v0_run002_result_found_count_individual_v0 0
+  experiment_laporta_pslq_v0_run002_result_independent_count_v0 6
+  experiment_laporta_pslq_v0_run002_result_individual_found_v0 0
+  experiment_laporta_pslq_v0_run002_result_individual_null_v0 6
+  experiment_laporta_pslq_v0_run002_result_null_count_crossrel_v0 11
+  experiment_laporta_pslq_v0_run002_result_null_count_individual_v0 6
+  experiment_laporta_pslq_v0_run002_result_skip_count_individual_v0 0
+  experiment_laporta_pslq_v0_run002_result_total_found_v0 0
+  experiment_laporta_pslq_v0_run002_result_total_null_v0  17
+  experiment_laporta_pslq_v0_run002_result_total_scans_v0 17
+  experiment_laporta_toroidal_v0_run001_result_C81a_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C81a_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_C81b_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C81b_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_C81c_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C81c_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_C83a_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C83a_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_C83b_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C83b_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_C83c_beta_class_v0 beta0
+  experiment_laporta_toroidal_v0_run001_result_C83c_pi_content_v0 NONE (24/24 PSLQ null)
+  experiment_laporta_toroidal_v0_run001_result_all_beta0_v0 True
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C81a_v0 264.708154901712
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C81b_v0 19.9683134258545
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C81c_v0 0.312893800120226
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C83a_v0 5.92851410754113
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C83b_v0 1.70272440065426
+  experiment_laporta_toroidal_v0_run001_result_best_candidate_C83c_v0 0.682677382080494
+  experiment_laporta_toroidal_v0_run001_result_best_form_C81a_v0 KE
+  experiment_laporta_toroidal_v0_run001_result_best_form_C81b_v0 KE
+  experiment_laporta_toroidal_v0_run001_result_best_form_C81c_v0 K2E
+  experiment_laporta_toroidal_v0_run001_result_best_form_C83a_v0 K2
+  experiment_laporta_toroidal_v0_run001_result_best_form_C83b_v0 KE
+  experiment_laporta_toroidal_v0_run001_result_best_form_C83c_v0 K2/pi
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C81a_v0 0.6
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C81b_v0 0.15
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C81c_v0 0.55
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C83a_v0 0.35
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C83b_v0 0.9
+  experiment_laporta_toroidal_v0_run001_result_best_k_for_C83c_v0 0.99
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C81a_pct_v0 0.00598630523295671
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C81b_pct_v0 0.00137514314494841
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C81c_pct_v0 0.00156091701512313
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C83a_pct_v0 0.00132721136893333
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C83b_pct_v0 8.3381030702384e-5
+  experiment_laporta_toroidal_v0_run001_result_best_miss_C83c_pct_v0 0.000745666599346577
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C81a_v0 47/1
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C81b_v0 39/11
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C81c_v0 1/18
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C83a_v0 20/19
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C83b_v0 13/43
+  experiment_laporta_toroidal_v0_run001_result_best_rational_C83c_v0 4/33
+  experiment_laporta_toroidal_v0_run001_result_beta0_subcategory_note_v0 beta^0 has two subcategorie...
+  experiment_laporta_toroidal_v0_run001_result_elliptic_hits_below_0p1_pct_v0 6
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_81a_81b_v0 -40/3
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_81a_81c_v0 -200
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_81a_83a_v0 42
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_81b_81c_v0 37
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_83a_83b_v0 -24/7
+  experiment_laporta_toroidal_v0_run001_result_nearest_name_83b_83c_v0 13/7
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_81a_81b_v0 0.0431166593123234
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_81a_81c_v0 59.5379210578302
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_81a_83a_v0 0.260956728206454
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_81b_81c_v0 0.150486834898099
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_83a_83b_v0 0.051589067277142
+  experiment_laporta_toroidal_v0_run001_result_nearest_simple_83b_83c_v0 0.067152569319498
+  experiment_laporta_toroidal_v0_run001_result_ratio_81a_81b_v0 -13.3390847010393
+  experiment_laporta_toroidal_v0_run001_result_ratio_81a_81c_v0 -494.289975277466
+  experiment_laporta_toroidal_v0_run001_result_ratio_81a_83a_v0 42.1098885875093
+  experiment_laporta_toroidal_v0_run001_result_ratio_81a_83b_v0 -144.451281940484
+  experiment_laporta_toroidal_v0_run001_result_ratio_81a_83c_v0 -268.446935475329
+  experiment_laporta_toroidal_v0_run001_result_ratio_81b_81c_v0 37.0557640464608
+  experiment_laporta_toroidal_v0_run001_result_ratio_81b_83a_v0 -3.15687991577327
+  experiment_laporta_toroidal_v0_run001_result_ratio_81b_83b_v0 10.8291749530033
+  experiment_laporta_toroidal_v0_run001_result_ratio_81b_83c_v0 20.1248392593544
+  experiment_laporta_toroidal_v0_run001_result_ratio_81c_83a_v0 -0.0851926818136889
+  experiment_laporta_toroidal_v0_run001_result_ratio_81c_83b_v0 0.292239958658674
+  experiment_laporta_toroidal_v0_run001_result_ratio_81c_83c_v0 0.543096054749317
+  experiment_laporta_toroidal_v0_run001_result_ratio_83a_83b_v0 -3.43034110955427
+  experiment_laporta_toroidal_v0_run001_result_ratio_83a_83c_v0 -6.3749144079891
+  experiment_laporta_toroidal_v0_run001_result_ratio_83b_83c_v0 1.85839081432267
+  experiment_laporta_toroidal_v0_run001_result_ratio_of_ratios_ab_v0 3.88855926423378
+  experiment_laporta_toroidal_v0_run001_result_ratio_of_ratios_bc_v0 19.9397046955199
+  experiment_laporta_toroidal_v0_run001_result_topo81_ratio_pattern_v0 a/b=-13.3391, b/c=37.0558, ...
+  experiment_laporta_toroidal_v0_run001_result_topo83_ratio_pattern_v0 a/b=-3.4303, b/c=1.8584, a/...
+  experiment_math11_beta_metric_v0_run002_result_a2_beta0_total_v0 2.26959823292525
+  experiment_math11_beta_metric_v0_run002_result_a2_beta2_total_v0 -2.59807719850445
+  experiment_math11_beta_metric_v0_run002_result_a2_cancellation_pct_v0 90.3968800487052
+  experiment_math11_beta_metric_v0_run002_result_a2_pi2_ln2_term_v0 -3.42054423192856
+  experiment_math11_beta_metric_v0_run002_result_a2_pi2_term_v0 0.822467033424113
+  experiment_math11_beta_metric_v0_run002_result_a2_rational_v0 1.36805555555556
+  experiment_math11_beta_metric_v0_run002_result_a2_sum_v0 -0.328478965579194
+  experiment_math11_beta_metric_v0_run002_result_a2_zeta3_term_v0 0.901542677369696
+  experiment_math11_beta_metric_v0_run002_result_beta_computed_v0 0.785398163397448
+  experiment_math11_beta_metric_v0_run002_result_beta_monotonic_v0 True
+  experiment_math11_beta_metric_v0_run002_result_beta_p1_v0 0.785398163397448
+  experiment_math11_beta_metric_v0_run002_result_beta_p2_v0 1.0
+  experiment_math11_beta_metric_v0_run002_result_beta_p_1p5_v0 0.93153349853966
+  experiment_math11_beta_metric_v0_run002_result_beta_p_3_v0 1.05788902990047
+  experiment_math11_beta_metric_v0_run002_result_beta_p_4_v0 1.08039614489734
+  experiment_math11_beta_metric_v0_run002_result_beta_p_inf_v0 1.11072073453959
+  experiment_math11_beta_metric_v0_run002_result_c_inf_v0 5.65685424949238
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_4beta_d_at_d2_v0 9.86960440108936
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_4beta_d_at_d4_v0 97.4090910340024
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_4pi_d2_at_d2_v0 12.5663706143592
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_4pi_d2_at_d4_v0 157.91367041743
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_match_d2_v0 False
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_match_d4_v0 False
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_ratio_d2_v0 1.27323954473516
+  experiment_math11_beta_metric_v0_run002_result_dim_reg_ratio_d4_v0 1.6211389382774
+  experiment_math11_beta_metric_v0_run002_result_fourier_2pi_v0 6.28318530717959
+  experiment_math11_beta_metric_v0_run002_result_fourier_8beta_v0 6.28318530717959
+  experiment_math11_beta_metric_v0_run002_result_fourier_match_v0 True
+  experiment_math11_beta_metric_v0_run002_result_hbar_from_h_8beta_v0 6.28318530717959
+  experiment_math11_beta_metric_v0_run002_result_l1_circumference_v0 8/1
+  experiment_math11_beta_metric_v0_run002_result_l1_l2_ratio_v0 0.785404321540139
+  experiment_math11_beta_metric_v0_run002_result_l1_numerical_v0 7.99993727416545
+  experiment_math11_beta_metric_v0_run002_result_l2_circumference_v0 6.28318530717959
+  experiment_math11_beta_metric_v0_run002_result_lattice_3pi_over_2_v0 4.71238898038469
+  experiment_math11_beta_metric_v0_run002_result_lattice_6beta_v0 4.71238898038469
+  experiment_math11_beta_metric_v0_run002_result_lattice_c_consistent_v0 True
+  experiment_math11_beta_metric_v0_run002_result_lattice_c_meas_v0 4.7
+  experiment_math11_beta_metric_v0_run002_result_lattice_c_pred_v0 4.71238898038469
+  experiment_math11_beta_metric_v0_run002_result_lattice_c_tension_sigma_v0 0.0247779607693797
+  experiment_math11_beta_metric_v0_run002_result_lattice_c_unc_v0 0.5
+  experiment_math11_beta_metric_v0_run002_result_leibniz_500_miss_v0 0.000635348441407013
+  experiment_math11_beta_metric_v0_run002_result_leibniz_converges_to_beta_v0 True
+  experiment_math11_beta_metric_v0_run002_result_leibniz_partial_500_v0 0.785897164896447
+  experiment_math11_beta_metric_v0_run002_result_leibniz_partial_50_v0 0.790299653246763
+  experiment_math11_beta_metric_v0_run002_result_omega_b_formula_v0 13/264
+  experiment_math11_beta_metric_v0_run002_result_omega_b_frac_v0 13/264
+  experiment_math11_beta_metric_v0_run002_result_omega_b_pred_v0 0.0492424242424242
+  experiment_math11_beta_metric_v0_run002_result_omega_b_tension_sigma_v0 0.606060606060606
+  experiment_math11_beta_metric_v0_run002_result_omega_dm_formula_v0 pi/12
+  experiment_math11_beta_metric_v0_run002_result_omega_dm_pred_v0 0.261799387799149
+  experiment_math11_beta_metric_v0_run002_result_omega_dm_tension_sigma_v0 0.549693899574718
+  experiment_math11_beta_metric_v0_run002_result_omega_lambda_formula_v0 1 - pi/12 - 13/264
+  experiment_math11_beta_metric_v0_run002_result_omega_lambda_pred_v0 0.688958187958426
+  experiment_math11_beta_metric_v0_run002_result_omega_lambda_tension_sigma_v0 0.0145469896065803
+  experiment_math11_beta_metric_v0_run002_result_omega_total_pred_v0 1/1
+  experiment_math11_beta_metric_v0_run002_result_quadrant_integral_v0 2/1
+  experiment_math11_beta_metric_v0_run002_result_quadrant_numerical_v0 2.0
   experiment_muon_g2_v0_run001_result_alpha_inv_codata_v0 137.035999177
   experiment_muon_g2_v0_run001_result_alpha_inv_ours_v0   137.035999206965
   experiment_muon_g2_v0_run001_result_amu_difference_v0   3.18125318e-9
@@ -1190,6 +1932,30 @@ VALUES: 2261 nodes
   experiment_muon_g2_v0_run002_result_amu_theory_unc_v0   4.38634243989226e-10
   experiment_muon_g2_v0_run002_result_amu_total_unc_v0    4.90713765855412e-10
   experiment_muon_g2_v0_run002_result_delta_alpha_v0      -1.59567683569003e-12
+  experiment_muon_g2_v0_run003_result_alpha_inv_codata_v0 137.035999177
+  experiment_muon_g2_v0_run003_result_alpha_inv_ours_v0   137.035999206965
+  experiment_muon_g2_v0_run003_result_amu_difference_v0   3.18125318e-9
+  experiment_muon_g2_v0_run003_result_amu_difference_x1e11_v0 318.125318
+  experiment_muon_g2_v0_run003_result_amu_ew_x1e11_v0     154.0
+  experiment_muon_g2_v0_run003_result_amu_had_lbl_x1e11_v0 920.0
+  experiment_muon_g2_v0_run003_result_amu_had_lo_fraction_v0 0.831600831600832
+  experiment_muon_g2_v0_run003_result_amu_had_lo_used_v0  6.931e-8
+  experiment_muon_g2_v0_run003_result_amu_had_lo_x1e11_v0 6931.0
+  experiment_muon_g2_v0_run003_result_amu_had_nlo_x1e11_v0 -983.0
+  experiment_muon_g2_v0_run003_result_amu_meas_x1e11_v0   116592059.0
+  experiment_muon_g2_v0_run003_result_amu_miss_pct_v0     0.000272853332146746
+  experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_v0 -2.53184773123028e-13
+  experiment_muon_g2_v0_run003_result_amu_qed_alpha_shift_x1e11_v0 -0.0253184773123028
+  experiment_muon_g2_v0_run003_result_amu_qed_from_alpha_v0 0.00116584718874682
+  experiment_muon_g2_v0_run003_result_amu_qed_miss_vs_published_pct_v0 2.17168060713168e-8
+  experiment_muon_g2_v0_run003_result_amu_qed_published_v0 0.001165847189
+  experiment_muon_g2_v0_run003_result_amu_qed_x1e11_v0    116584718.874682
+  experiment_muon_g2_v0_run003_result_amu_sm_total_v0     0.00116591740874682
+  experiment_muon_g2_v0_run003_result_amu_sm_x1e11_v0     116591740.874682
+  experiment_muon_g2_v0_run003_result_amu_tension_sigma_v0 6.48291000040409
+  experiment_muon_g2_v0_run003_result_amu_theory_unc_v0   4.38634243989226e-10
+  experiment_muon_g2_v0_run003_result_amu_total_unc_v0    4.90713765855412e-10
+  experiment_muon_g2_v0_run003_result_delta_alpha_v0      -1.59567683569003e-12
   experiment_parameter_reduction_v0_run001_koide_charged_leptons_a2_derived_v0 1.99996306879
   experiment_parameter_reduction_v0_run001_koide_charged_leptons_a2_minus_two_derived_v0 -3.69312068681e-5
   experiment_parameter_reduction_v0_run001_koide_charged_leptons_k_derived_v0 0.666660511466
@@ -1252,6 +2018,116 @@ VALUES: 2261 nodes
   experiment_qed_alpha_extraction_v0_run006_result_qed_a4_v0 -1.91224576492645
   experiment_qed_alpha_extraction_v0_run006_result_qed_a5_v0 5.891
   experiment_qed_alpha_extraction_v0_run006_result_x_alpha_over_pi_v0 0.00232281947346086
+  experiment_qed_alpha_extraction_v0_run007_result_a4_used_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run007_result_a5_used_v0 5.891
+  experiment_qed_alpha_extraction_v0_run007_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  experiment_qed_alpha_extraction_v0_run007_result_ae_forward_residual_v0 -4.61880502023806e-12
+  experiment_qed_alpha_extraction_v0_run007_result_ae_input_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run007_result_ae_recovered_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run007_result_alpha_from_ae_v0 0.00729735259343996
+  experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae_full_v0 137.03599863037467206721314...
+  experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_from_ae_v0 137.035998630375
+  experiment_qed_alpha_extraction_v0_run007_result_alpha_inv_known_v0 137.035999177
+  experiment_qed_alpha_extraction_v0_run007_result_diff_vs_codata_ppb_v0 3.31026395228253
+  experiment_qed_alpha_extraction_v0_run007_result_diff_vs_cs_ppb_v0 3.03296455549078
+  experiment_qed_alpha_extraction_v0_run007_result_diff_vs_rb_ppb_v0 4.20054096199551
+  experiment_qed_alpha_extraction_v0_run007_result_newton_iterations_v0 6
+  experiment_qed_alpha_extraction_v0_run007_result_newton_residual_v0 1.59475119217561e-204
+  experiment_qed_alpha_extraction_v0_run007_result_qed_a1_v0 1/2
+  experiment_qed_alpha_extraction_v0_run007_result_qed_a2_v0 -0.328478965579194
+  experiment_qed_alpha_extraction_v0_run007_result_qed_a3_v0 1.1812414565872
+  experiment_qed_alpha_extraction_v0_run007_result_qed_a4_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run007_result_qed_a5_v0 5.891
+  experiment_qed_alpha_extraction_v0_run007_result_x_alpha_over_pi_v0 0.00232281947346086
+  experiment_qed_alpha_extraction_v0_run008_result_a4_used_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run008_result_a5_used_v0 5.891
+  experiment_qed_alpha_extraction_v0_run008_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  experiment_qed_alpha_extraction_v0_run008_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  experiment_qed_alpha_extraction_v0_run008_result_ae_forward_residual_v0 -4.61880502023806e-12
+  experiment_qed_alpha_extraction_v0_run008_result_ae_input_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run008_result_ae_recovered_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run008_result_alpha_from_ae_v0 0.00729735259343996
+  experiment_qed_alpha_extraction_v0_run008_result_alpha_inv_from_ae_full_v0 137.03599863037467206721314...
+  experiment_qed_alpha_extraction_v0_run008_result_alpha_inv_from_ae_v0 137.035998630375
+  experiment_qed_alpha_extraction_v0_run008_result_alpha_inv_known_v0 137.035999177
+  experiment_qed_alpha_extraction_v0_run008_result_diff_vs_codata_ppb_v0 3.31026395228253
+  experiment_qed_alpha_extraction_v0_run008_result_diff_vs_cs_ppb_v0 3.03296455549078
+  experiment_qed_alpha_extraction_v0_run008_result_diff_vs_rb_ppb_v0 4.20054096199551
+  experiment_qed_alpha_extraction_v0_run008_result_newton_iterations_v0 6
+  experiment_qed_alpha_extraction_v0_run008_result_newton_residual_v0 1.59475119217561e-204
+  experiment_qed_alpha_extraction_v0_run008_result_qed_a1_v0 1/2
+  experiment_qed_alpha_extraction_v0_run008_result_qed_a2_v0 -0.328478965579194
+  experiment_qed_alpha_extraction_v0_run008_result_qed_a3_v0 1.1812414565872
+  experiment_qed_alpha_extraction_v0_run008_result_qed_a4_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run008_result_qed_a5_v0 5.891
+  experiment_qed_alpha_extraction_v0_run008_result_x_alpha_over_pi_v0 0.00232281947346086
+  experiment_qed_alpha_extraction_v0_run009_result_a4_used_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run009_result_a5_used_v0 5.891
+  experiment_qed_alpha_extraction_v0_run009_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  experiment_qed_alpha_extraction_v0_run009_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  experiment_qed_alpha_extraction_v0_run009_result_ae_forward_residual_v0 -4.61880502023806e-12
+  experiment_qed_alpha_extraction_v0_run009_result_ae_input_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run009_result_ae_recovered_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run009_result_alpha_from_ae_v0 0.00729735259343996
+  experiment_qed_alpha_extraction_v0_run009_result_alpha_inv_from_ae_full_v0 137.03599863037467206721314...
+  experiment_qed_alpha_extraction_v0_run009_result_alpha_inv_from_ae_v0 137.035998630375
+  experiment_qed_alpha_extraction_v0_run009_result_alpha_inv_known_v0 137.035999177
+  experiment_qed_alpha_extraction_v0_run009_result_diff_vs_codata_ppb_v0 3.31026395228253
+  experiment_qed_alpha_extraction_v0_run009_result_diff_vs_cs_ppb_v0 3.03296455549078
+  experiment_qed_alpha_extraction_v0_run009_result_diff_vs_rb_ppb_v0 4.20054096199551
+  experiment_qed_alpha_extraction_v0_run009_result_newton_iterations_v0 6
+  experiment_qed_alpha_extraction_v0_run009_result_newton_residual_v0 1.59475119217561e-204
+  experiment_qed_alpha_extraction_v0_run009_result_qed_a1_v0 1/2
+  experiment_qed_alpha_extraction_v0_run009_result_qed_a2_v0 -0.328478965579194
+  experiment_qed_alpha_extraction_v0_run009_result_qed_a3_v0 1.1812414565872
+  experiment_qed_alpha_extraction_v0_run009_result_qed_a4_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run009_result_qed_a5_v0 5.891
+  experiment_qed_alpha_extraction_v0_run009_result_x_alpha_over_pi_v0 0.00232281947346086
+  experiment_qed_alpha_extraction_v0_run010_result_a4_used_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run010_result_a5_used_v0 5.891
+  experiment_qed_alpha_extraction_v0_run010_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  experiment_qed_alpha_extraction_v0_run010_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  experiment_qed_alpha_extraction_v0_run010_result_ae_forward_residual_v0 -4.61880502023806e-12
+  experiment_qed_alpha_extraction_v0_run010_result_ae_input_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run010_result_ae_recovered_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run010_result_alpha_from_ae_v0 0.00729735259343996
+  experiment_qed_alpha_extraction_v0_run010_result_alpha_inv_from_ae_full_v0 137.03599863037467206721314...
+  experiment_qed_alpha_extraction_v0_run010_result_alpha_inv_from_ae_v0 137.035998630375
+  experiment_qed_alpha_extraction_v0_run010_result_alpha_inv_known_v0 137.035999177
+  experiment_qed_alpha_extraction_v0_run010_result_diff_vs_codata_ppb_v0 3.31026395228253
+  experiment_qed_alpha_extraction_v0_run010_result_diff_vs_cs_ppb_v0 3.03296455549078
+  experiment_qed_alpha_extraction_v0_run010_result_diff_vs_rb_ppb_v0 4.20054096199551
+  experiment_qed_alpha_extraction_v0_run010_result_newton_iterations_v0 6
+  experiment_qed_alpha_extraction_v0_run010_result_newton_residual_v0 1.59475119217561e-204
+  experiment_qed_alpha_extraction_v0_run010_result_qed_a1_v0 1/2
+  experiment_qed_alpha_extraction_v0_run010_result_qed_a2_v0 -0.328478965579194
+  experiment_qed_alpha_extraction_v0_run010_result_qed_a3_v0 1.1812414565872
+  experiment_qed_alpha_extraction_v0_run010_result_qed_a4_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run010_result_qed_a5_v0 5.891
+  experiment_qed_alpha_extraction_v0_run010_result_x_alpha_over_pi_v0 0.00232281947346086
+  experiment_qed_alpha_extraction_v0_run011_result_a4_used_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run011_result_a5_used_v0 5.891
+  experiment_qed_alpha_extraction_v0_run011_result_ae_forward_from_known_alpha_v0 0.00115965217597119
+  experiment_qed_alpha_extraction_v0_run011_result_ae_forward_residual_rel_v0 -3.98292272247368e-9
+  experiment_qed_alpha_extraction_v0_run011_result_ae_forward_residual_v0 -4.61880502023806e-12
+  experiment_qed_alpha_extraction_v0_run011_result_ae_input_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run011_result_ae_recovered_v0 0.00115965218059
+  experiment_qed_alpha_extraction_v0_run011_result_alpha_from_ae_v0 0.00729735259343996
+  experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_from_ae_full_v0 137.03599863037467206721314...
+  experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_from_ae_v0 137.035998630375
+  experiment_qed_alpha_extraction_v0_run011_result_alpha_inv_known_v0 137.035999177
+  experiment_qed_alpha_extraction_v0_run011_result_diff_vs_codata_ppb_v0 3.31026395228253
+  experiment_qed_alpha_extraction_v0_run011_result_diff_vs_cs_ppb_v0 3.03296455549078
+  experiment_qed_alpha_extraction_v0_run011_result_diff_vs_rb_ppb_v0 4.20054096199551
+  experiment_qed_alpha_extraction_v0_run011_result_newton_iterations_v0 6
+  experiment_qed_alpha_extraction_v0_run011_result_newton_residual_v0 1.59475119217561e-204
+  experiment_qed_alpha_extraction_v0_run011_result_qed_a1_v0 1/2
+  experiment_qed_alpha_extraction_v0_run011_result_qed_a2_v0 -0.328478965579194
+  experiment_qed_alpha_extraction_v0_run011_result_qed_a3_v0 1.1812414565872
+  experiment_qed_alpha_extraction_v0_run011_result_qed_a4_v0 -1.91224576492645
+  experiment_qed_alpha_extraction_v0_run011_result_qed_a5_v0 5.891
+  experiment_qed_alpha_extraction_v0_run011_result_x_alpha_over_pi_v0 0.00232281947346086
   experiment_qed_derived_codata_v0_run005_result_a4_used_v0 -1.91224576492645
   experiment_qed_derived_codata_v0_run005_result_a5_used_v0 5.891
   experiment_qed_derived_codata_v0_run005_result_ae_forward_from_known_alpha_v0 0.00115965217597119
@@ -1373,6 +2249,60 @@ VALUES: 2261 nodes
   experiment_qed_full_corrections_v0_run009_result_rydberg_corrected_v0 10973731.5632962
   experiment_qed_full_corrections_v0_run009_result_rydberg_miss_ppb_v0 0.437330339036939
   experiment_qed_full_corrections_v0_run009_result_total_correction_v0 4.872e-12
+  experiment_qed_full_corrections_v0_run010_result_ae_measured_v0 0.00115965218059
+  experiment_qed_full_corrections_v0_run010_result_ae_qed_pure_v0 0.001159652175718
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_corrected_miss_ppb_v0 0.218665639820526
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_corrected_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_improvement_ppb_v0 3.77025209769434
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_miss_vs_cs_ppb_v0 1.17461882687082
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_miss_vs_rb_ppb_v0 0.00704241545342421
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_uncorrected_miss_ppb_v0 3.98891773751487
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_uncorrected_v0 137.035998630375
+  experiment_qed_full_corrections_v0_run010_result_alpha_inv_used_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run010_result_bohr_radius_corrected_v0 5.29177210661989e-11
+  experiment_qed_full_corrections_v0_run010_result_bohr_radius_miss_ppb_v0 0.218665169590191
+  experiment_qed_full_corrections_v0_run010_result_forward_residual_v0 1.28552893601276e-200
+  experiment_qed_full_corrections_v0_run010_result_mu0_corrected_v0 1.25663706099344e-6
+  experiment_qed_full_corrections_v0_run010_result_mu0_miss_ppb_v0 0.218665169542377
+  experiment_qed_full_corrections_v0_run010_result_rydberg_corrected_v0 10973731.5632962
+  experiment_qed_full_corrections_v0_run010_result_rydberg_miss_ppb_v0 0.437330339036939
+  experiment_qed_full_corrections_v0_run010_result_total_correction_v0 4.872e-12
+  experiment_qed_full_corrections_v0_run011_result_ae_measured_v0 0.00115965218059
+  experiment_qed_full_corrections_v0_run011_result_ae_qed_pure_v0 0.001159652175718
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected_miss_ppb_v0 0.218665639820526
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_corrected_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_improvement_ppb_v0 3.77025209769434
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_cs_ppb_v0 1.17461882687082
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_miss_vs_rb_ppb_v0 0.00704241545342421
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected_miss_ppb_v0 3.98891773751487
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_uncorrected_v0 137.035998630375
+  experiment_qed_full_corrections_v0_run011_result_alpha_inv_used_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run011_result_bohr_radius_corrected_v0 5.29177210661989e-11
+  experiment_qed_full_corrections_v0_run011_result_bohr_radius_miss_ppb_v0 0.218665169590191
+  experiment_qed_full_corrections_v0_run011_result_forward_residual_v0 1.28552893601276e-200
+  experiment_qed_full_corrections_v0_run011_result_mu0_corrected_v0 1.25663706099344e-6
+  experiment_qed_full_corrections_v0_run011_result_mu0_miss_ppb_v0 0.218665169542377
+  experiment_qed_full_corrections_v0_run011_result_rydberg_corrected_v0 10973731.5632962
+  experiment_qed_full_corrections_v0_run011_result_rydberg_miss_ppb_v0 0.437330339036939
+  experiment_qed_full_corrections_v0_run011_result_total_correction_v0 4.872e-12
+  experiment_qed_full_corrections_v0_run012_result_ae_measured_v0 0.00115965218059
+  experiment_qed_full_corrections_v0_run012_result_ae_qed_pure_v0 0.001159652175718
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_corrected_miss_ppb_v0 0.218665639820526
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_corrected_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_improvement_ppb_v0 3.77025209769434
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_miss_vs_cs_ppb_v0 1.17461882687082
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_miss_vs_rb_ppb_v0 0.00704241545342421
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_uncorrected_miss_ppb_v0 3.98891773751487
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_uncorrected_v0 137.035998630375
+  experiment_qed_full_corrections_v0_run012_result_alpha_inv_used_v0 137.035999206965
+  experiment_qed_full_corrections_v0_run012_result_bohr_radius_corrected_v0 5.29177210661989e-11
+  experiment_qed_full_corrections_v0_run012_result_bohr_radius_miss_ppb_v0 0.218665169590191
+  experiment_qed_full_corrections_v0_run012_result_forward_residual_v0 1.28552893601276e-200
+  experiment_qed_full_corrections_v0_run012_result_mu0_corrected_v0 1.25663706099344e-6
+  experiment_qed_full_corrections_v0_run012_result_mu0_miss_ppb_v0 0.218665169542377
+  experiment_qed_full_corrections_v0_run012_result_rydberg_corrected_v0 10973731.5632962
+  experiment_qed_full_corrections_v0_run012_result_rydberg_miss_ppb_v0 0.437330339036939
+  experiment_qed_full_corrections_v0_run012_result_total_correction_v0 4.872e-12
   experiment_r2_universality_v0_run001_result_bcs_gap_ratio_v0 1.76387698886205
   experiment_r2_universality_v0_run001_result_capacitance_120mm_1mm_pf_v0 100.138504990308
   experiment_r2_universality_v0_run001_result_disc_bluray_area_um2_v0 0.265388278747938
@@ -1494,6 +2424,54 @@ VALUES: 2261 nodes
   experiment_sin2_from_two_loop_v0_run003_result_sin2_miss_pct_v0 0.00119580749721487
   experiment_sin2_from_two_loop_v0_run003_result_sin2_predicted_v0 0.231222764946095
   experiment_sin2_from_two_loop_v0_run003_result_t_cross_v0 31.4298737454464
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_1_check_v0 63.210093930086
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_1_check_vs_predicted_v0 0.000469877327677126
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_1_inv_mz_measured_v0 63.2103212683764
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_1_inv_mz_predicted_v0 63.2105638074136
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_2_inv_mz_measured_v0 31.6854637297059
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_2_inv_mz_predicted_v0 31.6858426268567
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_3_inv_mz_measured_v0 8.47457627118644
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_3_inv_mz_predicted_v0 8.44706061947209
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_gut_inv_v0 42.1349625508559
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_s_measured_v0 0.118
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_s_miss_pct_v0 0.325742325690491
+  experiment_sin2_from_two_loop_v0_run004_result_alpha_s_predicted_v0 0.118384375944315
+  experiment_sin2_from_two_loop_v0_run004_result_cos2_predicted_v0 0.768777235053905
+  experiment_sin2_from_two_loop_v0_run004_result_forward_alpha_1_gut_v0 42.1349298330466
+  experiment_sin2_from_two_loop_v0_run004_result_forward_alpha_2_gut_v0 42.1349051328048
+  experiment_sin2_from_two_loop_v0_run004_result_forward_alpha_3_gut_v0 42.1350413765632
+  experiment_sin2_from_two_loop_v0_run004_result_forward_check_12_v0 2.47002418249423e-5
+  experiment_sin2_from_two_loop_v0_run004_result_forward_check_gap_v0 4.50679302061041e-5
+  experiment_sin2_from_two_loop_v0_run004_result_gap_at_cross_v0 0.0269437887127664
+  experiment_sin2_from_two_loop_v0_run004_result_m_gut_log10_v0 15.6097565200659
+  experiment_sin2_from_two_loop_v0_run004_result_sin2_measured_v0 0.23122
+  experiment_sin2_from_two_loop_v0_run004_result_sin2_miss_pct_v0 0.00119580749721487
+  experiment_sin2_from_two_loop_v0_run004_result_sin2_predicted_v0 0.231222764946095
+  experiment_sin2_from_two_loop_v0_run004_result_t_cross_v0 31.4298737454464
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check_v0 63.210093930086
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_1_check_vs_predicted_v0 0.000469877327677126
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_measured_v0 63.2103212683764
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_1_inv_mz_predicted_v0 63.2105638074136
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_measured_v0 31.6854637297059
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_2_inv_mz_predicted_v0 31.6858426268567
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_measured_v0 8.47457627118644
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_3_inv_mz_predicted_v0 8.44706061947209
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_gut_inv_v0 42.1349625508559
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_s_measured_v0 0.118
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_s_miss_pct_v0 0.325742325690491
+  experiment_sin2_from_two_loop_v0_run005_result_alpha_s_predicted_v0 0.118384375944315
+  experiment_sin2_from_two_loop_v0_run005_result_cos2_predicted_v0 0.768777235053905
+  experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_1_gut_v0 42.1349298330466
+  experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_2_gut_v0 42.1349051328048
+  experiment_sin2_from_two_loop_v0_run005_result_forward_alpha_3_gut_v0 42.1350413765632
+  experiment_sin2_from_two_loop_v0_run005_result_forward_check_12_v0 2.47002418249423e-5
+  experiment_sin2_from_two_loop_v0_run005_result_forward_check_gap_v0 4.50679302061041e-5
+  experiment_sin2_from_two_loop_v0_run005_result_gap_at_cross_v0 0.0269437887127664
+  experiment_sin2_from_two_loop_v0_run005_result_m_gut_log10_v0 15.6097565200659
+  experiment_sin2_from_two_loop_v0_run005_result_sin2_measured_v0 0.23122
+  experiment_sin2_from_two_loop_v0_run005_result_sin2_miss_pct_v0 0.00119580749721487
+  experiment_sin2_from_two_loop_v0_run005_result_sin2_predicted_v0 0.231222764946095
+  experiment_sin2_from_two_loop_v0_run005_result_t_cross_v0 31.4298737454464
   experiment_sin2_from_unification_v0_run001_result_alpha_1_inv_mz_v0 51.388499691375
   experiment_sin2_from_unification_v0_run001_result_alpha_2_inv_mz_v0 51.388499691375
   experiment_sin2_from_unification_v0_run001_result_alpha_3_inv_mz_v0 51.388499691375
@@ -1563,6 +2541,56 @@ VALUES: 2261 nodes
   experiment_sin2_from_unification_v0_run003_result_sin2_measured_v0 0.23122
   experiment_sin2_from_unification_v0_run003_result_sin2_miss_pct_v0 0.0
   experiment_sin2_from_unification_v0_run003_result_sin2_predicted_v0 0.23122
+  experiment_sin2_from_unification_v0_run004_result_alpha_1_inv_mz_v0 63.2103212683764
+  experiment_sin2_from_unification_v0_run004_result_alpha_2_inv_mz_v0 31.6854637297059
+  experiment_sin2_from_unification_v0_run004_result_alpha_3_inv_mz_measured_v0 8.47457627118644
+  experiment_sin2_from_unification_v0_run004_result_alpha_3_inv_mz_predicted_v0 9.28622284696638
+  experiment_sin2_from_unification_v0_run004_result_alpha_3_inv_mz_v0 9.28622284696638
+  experiment_sin2_from_unification_v0_run004_result_alpha_em_inv_used_v0 137.035999177
+  experiment_sin2_from_unification_v0_run004_result_alpha_gut_inv_v0 42.470283413988
+  experiment_sin2_from_unification_v0_run004_result_alpha_s_measured_v0 0.118
+  experiment_sin2_from_unification_v0_run004_result_alpha_s_miss_pct_v0 8.740330586026
+  experiment_sin2_from_unification_v0_run004_result_alpha_s_predicted_v0 0.107686409908489
+  experiment_sin2_from_unification_v0_run004_result_b1_used_v0 4.16666666666667
+  experiment_sin2_from_unification_v0_run004_result_b2_used_v0 -2.16666666666667
+  experiment_sin2_from_unification_v0_run004_result_b3_used_v0 -6.66666666666667
+  experiment_sin2_from_unification_v0_run004_result_convergence_v0 0.0
+  experiment_sin2_from_unification_v0_run004_result_delta_l_pct_v0 3.62354501221234
+  experiment_sin2_from_unification_v0_run004_result_iterations_v0 1
+  experiment_sin2_from_unification_v0_run004_result_l_12_v0 4.97760908505324
+  experiment_sin2_from_unification_v0_run004_result_l_23_v0 5.15797499078211
+  experiment_sin2_from_unification_v0_run004_result_l_gut_predicted_v0 4.97760908505324
+  experiment_sin2_from_unification_v0_run004_result_m_gut_log10_predicted_v0 15.5426000541325
+  experiment_sin2_from_unification_v0_run004_result_m_gut_mev_v0 3.48818936885793e+18
+  experiment_sin2_from_unification_v0_run004_result_sin2_formula_check_v0 3.34095588761524e-52
+  experiment_sin2_from_unification_v0_run004_result_sin2_measured_v0 0.23122
+  experiment_sin2_from_unification_v0_run004_result_sin2_miss_pct_v0 0.0
+  experiment_sin2_from_unification_v0_run004_result_sin2_predicted_v0 0.23122
+  experiment_sin2_from_unification_v0_run005_result_alpha_1_inv_mz_v0 63.2103212683764
+  experiment_sin2_from_unification_v0_run005_result_alpha_2_inv_mz_v0 31.6854637297059
+  experiment_sin2_from_unification_v0_run005_result_alpha_3_inv_mz_measured_v0 8.47457627118644
+  experiment_sin2_from_unification_v0_run005_result_alpha_3_inv_mz_predicted_v0 9.28622284696638
+  experiment_sin2_from_unification_v0_run005_result_alpha_3_inv_mz_v0 9.28622284696638
+  experiment_sin2_from_unification_v0_run005_result_alpha_em_inv_used_v0 137.035999177
+  experiment_sin2_from_unification_v0_run005_result_alpha_gut_inv_v0 42.470283413988
+  experiment_sin2_from_unification_v0_run005_result_alpha_s_measured_v0 0.118
+  experiment_sin2_from_unification_v0_run005_result_alpha_s_miss_pct_v0 8.740330586026
+  experiment_sin2_from_unification_v0_run005_result_alpha_s_predicted_v0 0.107686409908489
+  experiment_sin2_from_unification_v0_run005_result_b1_used_v0 4.16666666666667
+  experiment_sin2_from_unification_v0_run005_result_b2_used_v0 -2.16666666666667
+  experiment_sin2_from_unification_v0_run005_result_b3_used_v0 -6.66666666666667
+  experiment_sin2_from_unification_v0_run005_result_convergence_v0 0.0
+  experiment_sin2_from_unification_v0_run005_result_delta_l_pct_v0 3.62354501221234
+  experiment_sin2_from_unification_v0_run005_result_iterations_v0 1
+  experiment_sin2_from_unification_v0_run005_result_l_12_v0 4.97760908505324
+  experiment_sin2_from_unification_v0_run005_result_l_23_v0 5.15797499078211
+  experiment_sin2_from_unification_v0_run005_result_l_gut_predicted_v0 4.97760908505324
+  experiment_sin2_from_unification_v0_run005_result_m_gut_log10_predicted_v0 15.5426000541325
+  experiment_sin2_from_unification_v0_run005_result_m_gut_mev_v0 3.48818936885793e+18
+  experiment_sin2_from_unification_v0_run005_result_sin2_formula_check_v0 3.34095588761524e-52
+  experiment_sin2_from_unification_v0_run005_result_sin2_measured_v0 0.23122
+  experiment_sin2_from_unification_v0_run005_result_sin2_miss_pct_v0 0.0
+  experiment_sin2_from_unification_v0_run005_result_sin2_predicted_v0 0.23122
   experiment_sin2_theta_w_unification_v0_run001_result_alpha_1_inv_mz_derived_v0 1.31096063092124e+24
   experiment_sin2_theta_w_unification_v0_run001_result_alpha_2_inv_mz_derived_v0 -7.86576378552745e+23
   experiment_sin2_theta_w_unification_v0_run001_result_alpha_3_inv_mz_derived_v0 -2.27693162212637e+24
@@ -1642,6 +2670,35 @@ VALUES: 2261 nodes
   experiment_sin2_theta_w_unification_v0_run003_result_unification_check_12_v0 6.84227765783602e-49
   experiment_sin2_theta_w_unification_v0_run003_result_unification_check_13_v0 6.84227765783602e-49
   experiment_sin2_theta_w_unification_v0_run003_result_unification_check_23_v0 0.0
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_1_inv_gut_v0 83.3089260548844
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_1_inv_mz_derived_v0 130.080394669696
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_2_inv_gut_v0 83.3089260548844
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_2_inv_mz_derived_v0 58.9877623751826
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_3_inv_gut_v0 83.3089260548844
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_3_inv_mz_derived_v0 8.47457627118644
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_em_inv_used_v0 137.035999177
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_gut_inv_derived_v0 83.3089260548844
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_s_input_used_v0 0.118
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_s_measured_v0 0.118
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_s_miss_pct_v0 0.0
+  experiment_sin2_theta_w_unification_v0_run004_result_alpha_s_one_loop_derived_v0 0.118
+  experiment_sin2_theta_w_unification_v0_run004_result_b12_v0 6.33333333333333
+  experiment_sin2_theta_w_unification_v0_run004_result_b1_mod_used_v0 25/6
+  experiment_sin2_theta_w_unification_v0_run004_result_b23_v0 4.5
+  experiment_sin2_theta_w_unification_v0_run004_result_b2_mod_used_v0 -13/6
+  experiment_sin2_theta_w_unification_v0_run004_result_b3_mod_used_v0 -20/3
+  experiment_sin2_theta_w_unification_v0_run004_result_converged_v0 True
+  experiment_sin2_theta_w_unification_v0_run004_result_iteration_count_v0 1
+  experiment_sin2_theta_w_unification_v0_run004_result_iteration_delta_v0 0.0
+  experiment_sin2_theta_w_unification_v0_run004_result_l_gut_derived_v0 11.2251524675547
+  experiment_sin2_theta_w_unification_v0_run004_result_m_gut_gev_derived_v0 3.89583877253658e+32
+  experiment_sin2_theta_w_unification_v0_run004_result_m_gut_log10_derived_v0 32.5906009755047
+  experiment_sin2_theta_w_unification_v0_run004_result_sin2_measured_v0 0.23122
+  experiment_sin2_theta_w_unification_v0_run004_result_sin2_theta_w_derived_v0 0.430454499032711
+  experiment_sin2_theta_w_unification_v0_run004_result_sin2_theta_w_miss_pct_v0 86.1666374157562
+  experiment_sin2_theta_w_unification_v0_run004_result_unification_check_12_v0 6.84227765783602e-49
+  experiment_sin2_theta_w_unification_v0_run004_result_unification_check_13_v0 6.84227765783602e-49
+  experiment_sin2_theta_w_unification_v0_run004_result_unification_check_23_v0 0.0
   experiment_toroidal_dm_v0_run002_cosmo_amplification_formula_text_v0 (44/13) * pi * (c/v)^2
   experiment_toroidal_dm_v0_run002_cosmo_amplification_reduced_factor_v0 44/13
   experiment_toroidal_dm_v0_run002_cosmo_dm_to_baryon_ratio_predicted_derived_v0 5.31654141377
@@ -1674,6 +2731,38 @@ VALUES: 2261 nodes
   experiment_toroidal_dm_v0_run002_result_tf_v4_scaling_test_v0 16.0
   experiment_toroidal_dm_v0_run002_result_virial_mass_solar_v0 168776336979.549
   experiment_toroidal_dm_v0_run002_result_virial_ratio_v0 2.81293894965915
+  experiment_toroidal_dm_v0_run003_cosmo_amplification_formula_text_v0 (44/13) * pi * (c/v)^2
+  experiment_toroidal_dm_v0_run003_cosmo_amplification_reduced_factor_v0 44/13
+  experiment_toroidal_dm_v0_run003_cosmo_dm_to_baryon_ratio_predicted_derived_v0 5.31654141377
+  experiment_toroidal_dm_v0_run003_cosmo_dm_to_baryon_ratio_prefactor_derived_v0 22/13
+  experiment_toroidal_dm_v0_run003_result_dwarf_carina_dark_fraction_v0 0.988125
+  experiment_toroidal_dm_v0_run003_result_dwarf_carina_dm_vis_ratio_v0 84.2105263157895
+  experiment_toroidal_dm_v0_run003_result_dwarf_draco_cosmic_ratio_v0 35.024065846555
+  experiment_toroidal_dm_v0_run003_result_dwarf_draco_dark_fraction_v0 0.99462962962963
+  experiment_toroidal_dm_v0_run003_result_dwarf_draco_dm_vis_ratio_v0 186.206896551724
+  experiment_toroidal_dm_v0_run003_result_dwarf_fornax_cosmic_ratio_v0 1.50473764377792
+  experiment_toroidal_dm_v0_run003_result_dwarf_fornax_dark_fraction_v0 0.875
+  experiment_toroidal_dm_v0_run003_result_dwarf_fornax_dm_vis_ratio_v0 8.0
+  experiment_toroidal_dm_v0_run003_result_dwarf_sculptor_cosmic_ratio_v0 5.72454538393774
+  experiment_toroidal_dm_v0_run003_result_dwarf_sculptor_dark_fraction_v0 0.967142857142857
+  experiment_toroidal_dm_v0_run003_result_dwarf_sculptor_dm_vis_ratio_v0 30.4347826086957
+  experiment_toroidal_dm_v0_run003_result_dwarf_segue1_dark_fraction_v0 0.999738461538462
+  experiment_toroidal_dm_v0_run003_result_dwarf_segue1_dm_vis_ratio_v0 3823.52941176471
+  experiment_toroidal_dm_v0_run003_result_dwarf_sextans_dark_fraction_v0 0.996615384615385
+  experiment_toroidal_dm_v0_run003_result_dwarf_sextans_dm_vis_ratio_v0 295.454545454545
+  experiment_toroidal_dm_v0_run003_result_fj_draco_mass_solar_v0 495723.804926766
+  experiment_toroidal_dm_v0_run003_result_fj_fornax_mass_solar_v0 1354620.52649917
+  experiment_toroidal_dm_v0_run003_result_fj_sculptor_mass_solar_v0 517875.677616424
+  experiment_toroidal_dm_v0_run003_result_frame_dragging_negligible_v0 True
+  experiment_toroidal_dm_v0_run003_result_frame_dragging_ratio_v0 2.06194748710125e-13
+  experiment_toroidal_dm_v0_run003_result_mond_a0_match_pct_v0 13.1592504502674
+  experiment_toroidal_dm_v0_run003_result_mond_a0_v0      1.04208899459679e-10
+  experiment_toroidal_dm_v0_run003_result_mond_transition_earth_au_v0 13.0728116035403
+  experiment_toroidal_dm_v0_run003_result_mond_transition_sun_au_v0 7544.43106237327
+  experiment_toroidal_dm_v0_run003_result_tf_mw_mass_solar_v0 169342095064.297
+  experiment_toroidal_dm_v0_run003_result_tf_v4_scaling_test_v0 16.0
+  experiment_toroidal_dm_v0_run003_result_virial_mass_solar_v0 168776336979.549
+  experiment_toroidal_dm_v0_run003_result_virial_ratio_v0 2.81293894965915
   experiment_two_loop_diagnostic_v0_run001_result_alpha_1_gut_2l_v0 109.967002192494
   experiment_two_loop_diagnostic_v0_run001_result_alpha_1_gut_cd_2l_v0 108.878544985755
   experiment_two_loop_diagnostic_v0_run001_result_alpha_1_inv_mz_v0 175.58422574549
@@ -1920,6 +3009,12 @@ VALUES: 2261 nodes
   experiment_whatif_scan_v0_run007_result_whatif_db3_v0   1/3
   experiment_whatif_scan_v0_run007_result_whatif_distance_v0 0.0492147232625634
   experiment_whatif_scan_v0_run007_result_whatif_gap_ratio_v0 38/27
+  experiment_whatif_scan_v0_run008_result_whatif_asymmetry_v0 15/1
+  experiment_whatif_scan_v0_run008_result_whatif_db1_v0   1/15
+  experiment_whatif_scan_v0_run008_result_whatif_db2_v0   1/1
+  experiment_whatif_scan_v0_run008_result_whatif_db3_v0   1/3
+  experiment_whatif_scan_v0_run008_result_whatif_distance_v0 0.0492147232625634
+  experiment_whatif_scan_v0_run008_result_whatif_gap_ratio_v0 38/27
   experiment_whatif_vl_d_singlet_v0_run004_result_whatif_vl_d_singlet_asymmetry_v0 0/1
   experiment_whatif_vl_d_singlet_v0_run004_result_whatif_vl_d_singlet_db1_v0 2/15
   experiment_whatif_vl_d_singlet_v0_run004_result_whatif_vl_d_singlet_db2_v0 0/1
@@ -1962,9 +3057,13 @@ VALUES: 2261 nodes
   geom_elliptic_k_quarter_v0                              29497269482936561667384115902142876032840145833256810808222626759184797693582415354332848438406428643/17498005798264095394980017816940970922825355447145699491406164851279623993595007385788105416184430592
   geom_elliptic_k_threequarter_v0                         150938893215984029553377685418519737141065147186163571808125275365154423280994971525495673821397923285/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
   geom_golden_ratio_v0                                    28312368116934042151124187502710525443392672568951722204720120388182684519013253177837652952287797353/17498005798264095394980017816940970922825355447145699491406164851279623993595007385788105416184430592
+  geom_li4_half_v0                                        0.51747906167389938633
   geom_li4_half_v0                                        36219406486600619537883622883703292936779255100080725994962678520983767482244581297270363585520219323/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
+  geom_li5_half_v0                                        0.50840057924226870746
   geom_li5_half_v0                                        8895996283422042541576509293790732160731405904215574688380818756597592758602253037823861613329592825/17498005798264095394980017816940970922825355447145699491406164851279623993595007385788105416184430592
+  geom_li6_half_v0                                        0.50409539780398855069
   geom_li6_half_v0                                        17641328387304874801381408583054604271851276690523779976614433426175564909777356154156741408936184349/34996011596528190789960035633881941845650710894291398982812329702559247987190014771576210832368861184
+  geom_li7_half_v0                                        0.50201456332470849850
   geom_li7_half_v0                                        35137014959475068515954957014616125661516964672001297075936753763641708154735402197723626031134809681/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
   geom_ln2_v0                                             48514773537953331556699584584828624926234404478840896710102416707062925979128257345653169777835518667/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
   geom_ln3_v0                                             76894096788635086096158790585166115140009649181250777410832538562395270797691729322128736655820466233/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
@@ -1973,6 +3072,7 @@ VALUES: 2261 nodes
   geom_pi_v0                                              109943212936596175505913298521620533097335915961174408408712911656578469374718859347550214371967627157/34996011596528190789960035633881941845650710894291398982812329702559247987190014771576210832368861184
   geom_r2_v0                                              109943212936596175505913298521620533097335915961174408408712911656578469374718859347550214371967627157/139984046386112763159840142535527767382602843577165595931249318810236991948760059086304843329475444736
   geom_r4_v0                                              86349197518417215850534705935543346292365169267374313500359044054441174219474549995586922953208571997/279968092772225526319680285071055534765205687154331191862498637620473983897520118172609686658950889472
+  geom_sqrt2_v0                                           1.4142135623730950488
   geom_sqrt2_v0                                           49491834228776278184956125696820890771744969197585208765758758088799687892174679424301140747386737753/34996011596528190789960035633881941845650710894291398982812329702559247987190014771576210832368861184
   geom_sqrt3_v0                                           60614870147456447617288330876079848321480578590871232358831957736599382843398903696571176392904895077/34996011596528190789960035633881941845650710894291398982812329702559247987190014771576210832368861184
   geom_sqrt5_v0                                           156506921742415955629073428753920319855839958763030979672136303700342980177725995879548801953564656455/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
@@ -1983,6 +3083,35 @@ VALUES: 2261 nodes
   geom_zeta5_v0                                           72576671487518636549061590533542457287978428544763113598602740326685645428855657003519154452098433211/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
   geom_zeta7_v0                                           70576406009217185140477287997534501576465097090915039072079935823330498368871276340729511665245547897/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
   geom_zeta9_v0                                           70132594670320295983139855937304501893252881833203086513273190166429397615458038473270078404250783123/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368
+  gr_g_surface_earth_v0                                   9.80665
+  gr_gm_earth_v0                                          3.986004418e14
+  gr_gm_sun_v0                                            1.32712440018e20
+  gr_gps_net_shift_measured_v0                            38.64e-6
+  gr_gps_orbit_radius_v0                                  26560000
+  gr_gps_orbit_velocity_v0                                3874
+  gr_gravity_probe_a_altitude_v0                          10000000
+  gr_gravity_probe_a_measured_v0                          4.36e-10
+  gr_hulse_taylor_pdot_gr_v0                              -2.4026e-12
+  gr_hulse_taylor_pdot_measured_v0                        -2.4025e-12
+  gr_mass_earth_v0                                        5.9722e24
+  gr_mercury_eccentricity_v0                              0.20563
+  gr_mercury_perihelion_measured_v0                       42.9799
+  gr_mercury_period_v0                                    7600521.6
+  gr_mercury_semimajor_v0                                 5.791e10
+  gr_muon_lifetime_dilated_measured_v0                    64.4e-6
+  gr_muon_lifetime_rest_v0                                2.1969811e-6
+  gr_muon_lorentz_gamma_v0                                29.3
+  gr_newton_g_v0                                          6.67430e-11
+  gr_planck_length_v0                                     1.616255e-35
+  gr_planck_time_v0                                       5.391247e-44
+  gr_pound_rebka_height_v0                                22.5
+  gr_pound_rebka_measured_shift_v0                        2.57e-15
+  gr_radius_earth_v0                                      6371000
+  gr_radius_sun_v0                                        6.957e8
+  gr_shapiro_cassini_gamma_v0                             1.000021
+  gr_si_hbar_v0                                           1.054571817e-34
+  gr_sn1a_stretch_factor_z1_v0                            2.0
+  gr_solar_redshift_measured_v0                           636.3
   group_c2_adj_su2_v0                                     2/1
   group_c2_adj_su3_v0                                     3/1
   group_c2_fund_su2_v0                                    3/4
@@ -2011,6 +3140,12 @@ VALUES: 2261 nodes
   koide_charged_leptons_k_v0                              1333321023/2000000000
   koide_down_quarks_a2_v0                                 2387725461/1000000000
   koide_up_quarks_a2_v0                                   6185522571/2000000000
+  laporta_C81a_v0                                         116.69458579118660052633251...
+  laporta_C81b_v0                                         -8.748320323814631572671010...
+  laporta_C81c_v0                                         -0.236085277120339887503638...
+  laporta_C83a_v0                                         2.7711919861455201468106183...
+  laporta_C83b_v0                                         -0.807847353263827557176395...
+  laporta_C83c_v0                                         -0.434702618543809180642530...
   mass_bottom_quark_v0                                    4183/1
   mass_charm_quark_v0                                     1273/1
   mass_deuteron_v0                                        375122589/200000
@@ -2036,6 +3171,12 @@ VALUES: 2261 nodes
   math_bessel_j0_first_zero_v0                            None
   math_bessel_j1_first_zero_v0                            None
   math_euler_mascheroni_v0                                0.5772156649015329
+  metric_beta_l2_over_l1_v0                               0.7853981633974483
+  metric_beta_p_inf_v0                                    1.1107207345395915
+  metric_l1_circumference_unit_circle_v0                  8/1
+  metric_l1_quadrant_integral_v0                          2/1
+  metric_l2_circumference_unit_circle_v0                  6.283185307179586
+  metric_lp_circumference_p_inf_v0                        5.656854249492381
   obs_carina_core_radius_v0                               200
   obs_carina_half_light_radius_v0                         250
   obs_carina_mass_dynamical_v0                            32000000
@@ -2113,12 +3254,18 @@ VALUES: 2261 nodes
   obs_ursaminor_velocity_dispersion_v0                    9.5
   proton_tau_hyperk_sensitivity_v0                        100000000000000000000000000...
   proton_tau_superk_bound_v0                              160000000000000000000000000...
+  pslq_max_coefficient_v0                                 100000
+  pslq_working_digits_v0                                  1000
   qed_a1_schwinger_v0                                     1/2
   qed_a2_petermann_analytical_v0                          197/144 + pi^2/12 + 3*zeta(...
   qed_a2_pi2_coeff_v0                                     1/12
+  qed_a2_pi2_ln2_piece_coeff_v0                           -1/2
+  qed_a2_pi2_piece_coeff_v0                               1/12
   qed_a2_pi2ln2_coeff_v0                                  -1/2
+  qed_a2_rational_piece_v0                                197/144
   qed_a2_rational_term_v0                                 197/144
   qed_a2_zeta3_coeff_v0                                   3/4
+  qed_a2_zeta3_piece_coeff_v0                             3/4
   qed_a3_laporta_remiddi_analytical_v0                    (83/72)*pi^2*zeta(3) - (215...
   qed_a3_li4_coeff_v0                                     100/3
   qed_a3_pi2_coeff_v0                                     17101/810
@@ -2262,3 +3409,11 @@ VALUES: 2261 nodes
   spectro_lamb_shift_1s_total_v0                          8172837.0
   spectro_lamb_shift_2s_total_v0                          1045328.0
   spectro_proton_charge_radius_v0                         0.0000000000000008414
+  test_clock_altitude_difference_v0                       1000/1
+  test_clock_sensitivity_target_v0                        0.000000000000000001
+  test_microscope_eta_bound_v0                            0.0000000000000015
+  test_phys42_count_v0                                    18
+  test_pt_nuclear_binding_fraction_v0                     85/10000
+  test_seconds_per_day_v0                                 86400/1
+  test_ti_nuclear_binding_fraction_v0                     94/10000
+  test_us_per_s_v0                                        1000000/1
