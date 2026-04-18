@@ -1,0 +1,167 @@
+{
+  "key": "result_experiment_laporta_pslq_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_laporta_pslq_v0",
+  "timestamp": "2026-04-18T14:45:42Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "laporta_pslq_individual_v0",
+      "status": "skip"
+    },
+    {
+      "key": "laporta_pslq_crossrel_v0",
+      "status": "skip"
+    },
+    {
+      "key": "laporta_pslq_summary_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "L01: C81a PSLQ status (expect NULL)",
+      "output_key": "result_C81a_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L02: C81b PSLQ status (expect NULL)",
+      "output_key": "result_C81b_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L03: C81c PSLQ status (expect NULL)",
+      "output_key": "result_C81c_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L04: C83a PSLQ status (expect NULL)",
+      "output_key": "result_C83a_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L05: C83b PSLQ status (expect NULL)",
+      "output_key": "result_C83b_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L06: C83c PSLQ status (expect NULL)",
+      "output_key": "result_C83c_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L07: All 6 individual scans completed",
+      "output_key": "result_null_count_individual_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L08: Cross-relation C81a-C81b",
+      "output_key": "result_crossrel_81ab_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L09: Cross-relation C81a-C81c",
+      "output_key": "result_crossrel_81ac_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L10: Cross-relation C81b-C81c",
+      "output_key": "result_crossrel_81bc_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L11: Cross-relation C83a-C83b",
+      "output_key": "result_crossrel_83ab_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L12: Cross-relation C83a-C83c",
+      "output_key": "result_crossrel_83ac_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L13: Cross-relation C83b-C83c",
+      "output_key": "result_crossrel_83bc_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L14: Cross-topology C81a-C83a",
+      "output_key": "result_crossrel_81a_83a_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L15: Cross-topology C81b-C83b",
+      "output_key": "result_crossrel_81b_83b_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L16: Cross-topology C81c-C83c",
+      "output_key": "result_crossrel_81c_83c_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L17: Triple relation topology 81",
+      "output_key": "result_crossrel_triple_81_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L18: Triple relation topology 83",
+      "output_key": "result_crossrel_triple_83_status_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "L19: Independent count (expect 6 if all null)",
+      "output_key": "result_independent_count_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 3,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 19
+  }
+}

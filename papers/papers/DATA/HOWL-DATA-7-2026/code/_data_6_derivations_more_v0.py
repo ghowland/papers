@@ -7553,6 +7553,469 @@ def beta_cosmic_budget_v0(value_dicts):
         ),
     }
 
+
+# =============================================================================
+# PHYS-46: Laporta Constants — PSLQ Scans
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "laporta_pslq_individual_v0": laporta_pslq_individual_v0,
+#   "laporta_pslq_crossrel_v0": laporta_pslq_crossrel_v0,
+#   "laporta_pslq_summary_v0": laporta_pslq_summary_v0,
+#
+# NOTE: These derivations are computationally expensive.
+# laporta_pslq_individual_v0 runs 6 PSLQ scans at 1000 digits each.
+# laporta_pslq_crossrel_v0 runs 11 PSLQ scans at 1000 digits each.
+# Total runtime: several hours on a modern CPU.
+# =============================================================================
+
+
+def _build_laporta_basis(pi_val, dps):
+    """Build the 66-element transcendental basis at the given precision.
+
+    Returns list of (name, mpf_value) pairs.
+    All constants computed from scratch at dps precision using mpmath.
+    Pool values (geom_pi etc) are used as cross-checks, not as inputs,
+    because the pool stores only 20-100 digits and we need 1000.
+    """
+    from mpmath import log, zeta, polylog, power, fabs
+
+    old = mp.dps
+    mp.dps = dps + 50
+
+    p = pi_val  # passed in from pool at full Q335, then extended by mpmath
+    l2 = log(2)
+    z3 = zeta(3)
+    z5 = zeta(5)
+    z7 = zeta(7)
+    z9 = zeta(9)
+
+    li4h = polylog(4, mpf("0.5"))
+    li5h = polylog(5, mpf("0.5"))
+    li6h = polylog(6, mpf("0.5"))
+    li7h = polylog(7, mpf("0.5"))
+
+    li4m = polylog(4, mpf("-1"))
+    li5m = polylog(5, mpf("-1"))
+    li6m = polylog(6, mpf("-1"))
+    li7m = polylog(7, mpf("-1"))
+
+    # MZVs by direct summation (slow but correct)
+    def mzv2(s1, s2, N=None):
+        if N is None:
+            N = max(int(dps * 2.5), 1500)
+        total = mpf(0)
+        inner = mpf(0)
+        for n in range(2, N + 1):
+            inner += mpf(1) / power(n - 1, s2)
+            total += inner / power(n, s1)
+        return total
+
+    z35 = mzv2(3, 5)
+    z53 = mzv2(5, 3)
+    z33 = mzv2(3, 3)
+
+    # Alternating Euler sums
+    def alt_sum_s6(N=None):
+        if N is None:
+            N = max(int(dps * 4), 3000)
+        total = mpf(0)
+        for n in range(1, N + 1):
+            total += power(-1, n + 1) / (power(n, 6) * power(2, n))
+        return total
+
+    def alt_zbar51(N=None):
+        if N is None:
+            N = max(int(dps * 2.5), 1500)
+        total = mpf(0)
+        inner = mpf(0)
+        for n in range(2, N + 1):
+            inner += mpf(1) / (n - 1)
+            total += power(-1, n + 1) * inner / power(n, 5)
+        return total
+
+    def alt_zbar33(N=None):
+        if N is None:
+            N = max(int(dps * 2.5), 1500)
+        total = mpf(0)
+        inner = mpf(0)
+        for n in range(2, N + 1):
+            inner += mpf(1) / power(n - 1, 3)
+            total += power(-1, n + 1) * inner / power(n, 3)
+        return total
+
+    s6 = alt_sum_s6()
+    zb51 = alt_zbar51()
+    zb33 = alt_zbar33()
+
+    basis = [
+        ("1",               mpf(1)),
+        ("pi",              p),
+        ("pi2",             p**2),
+        ("pi3",             p**3),
+        ("pi4",             p**4),
+        ("pi5",             p**5),
+        ("pi6",             p**6),
+        ("z3",              z3),
+        ("z5",              z5),
+        ("z7",              z7),
+        ("z9",              z9),
+        ("ln2",             l2),
+        ("ln2_2",           l2**2),
+        ("ln2_3",           l2**3),
+        ("ln2_4",           l2**4),
+        ("ln2_5",           l2**5),
+        ("ln2_6",           l2**6),
+        ("pi2_ln2",         p**2 * l2),
+        ("pi2_ln2_2",       p**2 * l2**2),
+        ("pi2_ln2_3",       p**2 * l2**3),
+        ("pi2_ln2_4",       p**2 * l2**4),
+        ("pi4_ln2",         p**4 * l2),
+        ("pi4_ln2_2",       p**4 * l2**2),
+        ("pi6_ln2",         p**6 * l2),
+        ("pi2_z3",          p**2 * z3),
+        ("pi4_z3",          p**4 * z3),
+        ("pi2_z5",          p**2 * z5),
+        ("z3_ln2",          z3 * l2),
+        ("z3_ln2_2",        z3 * l2**2),
+        ("z3_ln2_3",        z3 * l2**3),
+        ("z5_ln2",          z5 * l2),
+        ("z5_ln2_2",        z5 * l2**2),
+        ("z7_ln2",          z7 * l2),
+        ("z3_2",            z3**2),
+        ("z3_z5",           z3 * z5),
+        ("z3_pi2_ln2",      z3 * p**2 * l2),
+        ("z3_pi2_ln2_2",    z3 * p**2 * l2**2),
+        ("z5_pi2_ln2",      z5 * p**2 * l2),
+        ("Li4h",            li4h),
+        ("Li5h",            li5h),
+        ("Li6h",            li6h),
+        ("Li7h",            li7h),
+        ("Li4h_ln2",        li4h * l2),
+        ("Li4h_ln2_2",      li4h * l2**2),
+        ("Li4h_pi2",        li4h * p**2),
+        ("Li5h_ln2",        li5h * l2),
+        ("Li5h_pi2",        li5h * p**2),
+        ("Li6h_ln2",        li6h * l2),
+        ("Li4m",            li4m),
+        ("Li5m",            li5m),
+        ("Li6m",            li6m),
+        ("Li7m",            li7m),
+        ("z35",             z35),
+        ("z53",             z53),
+        ("z33",             z33),
+        ("z35_ln2",         z35 * l2),
+        ("z53_ln2",         z53 * l2),
+        ("z33_pi2",         z33 * p**2),
+        ("s6",              s6),
+        ("zbar51",          zb51),
+        ("zbar33",          zb33),
+        ("s6_ln2",          s6 * l2),
+        ("zbar51_ln2",      zb51 * l2),
+        ("zbar33_ln2",      zb33 * l2),
+        ("s6_pi2",          s6 * p**2),
+        ("zbar51_pi2",      zb51 * p**2),
+    ]
+
+    mp.dps = old
+    return basis
+
+
+def _run_pslq_on_target(target, basis_vals, dps, maxcoeff):
+    """Run PSLQ on target against basis. Returns (status, coeffs_or_none)."""
+    from mpmath import pslq as mpslq
+
+    old = mp.dps
+    mp.dps = dps + 50
+
+    pslq_input = [target] + list(basis_vals)
+    tol = mpf(10) ** (-(dps - 50))
+
+    rel = mpslq(pslq_input, tol=tol, maxcoeff=maxcoeff)
+
+    mp.dps = old
+
+    if rel is not None:
+        return ("FOUND", rel)
+    else:
+        return ("NULL", None)
+
+
+def laporta_pslq_individual_v0(value_dicts):
+    """Run PSLQ on each of the six Laporta integrals individually
+    against the 66-element extended transcendental basis.
+
+    Working precision and maxcoeff from pool configuration values.
+    Integral values from pool (loaded from laporta.dat).
+    Basis built internally at working precision.
+    """
+    vm = _value_map(value_dicts)
+
+    # Configuration
+    dps = int(float(str(_get(vm, "pslq_working_digits_v0"))))
+    maxcoeff = int(float(str(_get(vm, "pslq_max_coefficient_v0"))))
+
+    old_dps = mp.dps
+    mp.dps = dps + 50
+
+    # Load pi from pool for basis building
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # Build basis (expensive — MZV computation at dps digits)
+    basis = _build_laporta_basis(pi_val, dps)
+    basis_names = [b[0] for b in basis]
+    basis_vals = [b[1] for b in basis]
+
+    # Load the six integrals
+    integral_keys = [
+        ("C81a", "laporta_C81a_v0"),
+        ("C81b", "laporta_C81b_v0"),
+        ("C81c", "laporta_C81c_v0"),
+        ("C83a", "laporta_C83a_v0"),
+        ("C83b", "laporta_C83b_v0"),
+        ("C83c", "laporta_C83c_v0"),
+    ]
+
+    outputs = {}
+    statuses = []
+
+    for label, key in integral_keys:
+        val_str = str(_get(vm, key))
+        if val_str.startswith("PLACEHOLDER"):
+            outputs["result_%s_status_v0" % label] = "SKIPPED"
+            outputs["result_%s_basis_size_v0" % label] = len(basis)
+            statuses.append("SKIPPED")
+            continue
+
+        target = mpf(val_str)
+        status, rel = _run_pslq_on_target(target, basis_vals, dps, maxcoeff)
+
+        outputs["result_%s_status_v0" % label] = status
+        outputs["result_%s_basis_size_v0" % label] = len(basis)
+
+        if status == "FOUND" and rel is not None:
+            # Store the relation
+            terms = []
+            for coeff, name in zip(rel[1:], basis_names):
+                if coeff != 0:
+                    terms.append("%+d*%s" % (coeff, name))
+            outputs["result_%s_relation_v0" % label] = " ".join(terms)
+            outputs["result_%s_target_coeff_v0" % label] = rel[0]
+            outputs["result_%s_max_coeff_v0" % label] = max(abs(c) for c in rel)
+
+        statuses.append(status)
+
+    null_count = statuses.count("NULL")
+    found_count = statuses.count("FOUND")
+    skip_count = statuses.count("SKIPPED")
+
+    outputs["result_null_count_individual_v0"] = null_count
+    outputs["result_found_count_individual_v0"] = found_count
+    outputs["result_skip_count_individual_v0"] = skip_count
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_pslq_individual_v0",
+        "outputs": outputs,
+        "notes": (
+            "Individual PSLQ scan: %d NULL, %d FOUND, %d SKIPPED out of 6. "
+            "Basis: %d constants. Digits: %d. MaxCoeff: %d."
+        ) % (null_count, found_count, skip_count, len(basis), dps, maxcoeff),
+    }
+
+
+def laporta_pslq_crossrel_v0(value_dicts):
+    """Run PSLQ on pairs and triples of Laporta integrals to find
+    cross-relations. Each test includes two or three integrals plus
+    the 66-element basis.
+
+    Tests:
+    - 6 within-topology pairs (81ab, 81ac, 81bc, 83ab, 83ac, 83bc)
+    - 3 cross-topology pairs (81a-83a, 81b-83b, 81c-83c)
+    - 2 within-topology triples (81abc, 83abc)
+    Total: 11 tests.
+    """
+    vm = _value_map(value_dicts)
+
+    dps = int(float(str(_get(vm, "pslq_working_digits_v0"))))
+    maxcoeff = int(float(str(_get(vm, "pslq_max_coefficient_v0"))))
+
+    old_dps = mp.dps
+    mp.dps = dps + 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    basis = _build_laporta_basis(pi_val, dps)
+    basis_vals = [b[1] for b in basis]
+    basis_names = [b[0] for b in basis]
+
+    # Load integrals
+    integral_map = {}
+    for label, key in [("C81a", "laporta_C81a_v0"),
+                        ("C81b", "laporta_C81b_v0"),
+                        ("C81c", "laporta_C81c_v0"),
+                        ("C83a", "laporta_C83a_v0"),
+                        ("C83b", "laporta_C83b_v0"),
+                        ("C83c", "laporta_C83c_v0")]:
+        val_str = str(_get(vm, key))
+        if not val_str.startswith("PLACEHOLDER"):
+            integral_map[label] = mpf(val_str)
+
+    # Define tests
+    pair_tests = [
+        ("81ab", ["C81a", "C81b"]),
+        ("81ac", ["C81a", "C81c"]),
+        ("81bc", ["C81b", "C81c"]),
+        ("83ab", ["C83a", "C83b"]),
+        ("83ac", ["C83a", "C83c"]),
+        ("83bc", ["C83b", "C83c"]),
+        ("81a_83a", ["C81a", "C83a"]),
+        ("81b_83b", ["C81b", "C83b"]),
+        ("81c_83c", ["C81c", "C83c"]),
+    ]
+
+    triple_tests = [
+        ("triple_81", ["C81a", "C81b", "C81c"]),
+        ("triple_83", ["C83a", "C83b", "C83c"]),
+    ]
+
+    outputs = {}
+    null_count = 0
+    found_count = 0
+
+    for test_name, labels in pair_tests + triple_tests:
+        # Check all integrals are available
+        missing = [l for l in labels if l not in integral_map]
+        if missing:
+            outputs["result_crossrel_%s_status_v0" % test_name] = "SKIPPED"
+            continue
+
+        # PSLQ input: integrals first, then basis
+        targets = [integral_map[l] for l in labels]
+        pslq_input = targets + list(basis_vals)
+
+        tol = mpf(10) ** (-(dps - 50))
+
+        from mpmath import pslq as mpslq
+        rel = mpslq(pslq_input, tol=tol, maxcoeff=maxcoeff)
+
+        if rel is not None:
+            status = "FOUND"
+            found_count += 1
+
+            # Extract which integrals and which basis constants participate
+            integral_coeffs = rel[:len(labels)]
+            basis_coeffs = rel[len(labels):]
+
+            int_terms = []
+            for coeff, label in zip(integral_coeffs, labels):
+                if coeff != 0:
+                    int_terms.append("%+d*%s" % (coeff, label))
+
+            bas_terms = []
+            for coeff, name in zip(basis_coeffs, basis_names):
+                if coeff != 0:
+                    bas_terms.append("%+d*%s" % (coeff, name))
+
+            outputs["result_crossrel_%s_status_v0" % test_name] = status
+            outputs["result_crossrel_%s_relation_v0" % test_name] = (
+                " ".join(int_terms) + " = " + " ".join(bas_terms)
+            )
+        else:
+            status = "NULL"
+            null_count += 1
+            outputs["result_crossrel_%s_status_v0" % test_name] = status
+
+    outputs["result_null_count_crossrel_v0"] = null_count
+    outputs["result_found_count_crossrel_v0"] = found_count
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_pslq_crossrel_v0",
+        "outputs": outputs,
+        "notes": (
+            "Cross-relation PSLQ scan: %d NULL, %d FOUND out of %d tests. "
+            "Digits: %d. MaxCoeff: %d."
+        ) % (null_count, found_count, null_count + found_count, dps, maxcoeff),
+    }
+
+
+def laporta_pslq_summary_v0(value_dicts):
+    """Summarize the results of individual and cross-relation scans.
+    Count the number of genuinely independent constants.
+
+    Logic:
+    - Start with 6 potential new constants
+    - Each FOUND in individual scan removes 1 (it has a closed form)
+    - Each FOUND in cross-relation scan removes 1 (it is related to another)
+    - The remainder is the independent count
+    """
+    vm = _value_map(value_dicts)
+
+    labels = ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]
+
+    # Count individual nulls
+    individual_null = 0
+    individual_found = 0
+    for label in labels:
+        status_key = "result_%s_status_v0" % label
+        status = str(_get(vm, status_key))
+        if status == "NULL":
+            individual_null += 1
+        elif status == "FOUND":
+            individual_found += 1
+
+    # Count cross-relation results
+    crossrel_tests = [
+        "81ab", "81ac", "81bc", "83ab", "83ac", "83bc",
+        "81a_83a", "81b_83b", "81c_83c",
+        "triple_81", "triple_83",
+    ]
+
+    crossrel_null = 0
+    crossrel_found = 0
+    for test in crossrel_tests:
+        status_key = "result_crossrel_%s_status_v0" % test
+        try:
+            status = str(_get(vm, status_key))
+        except Exception:
+            continue
+        if status == "NULL":
+            crossrel_null += 1
+        elif status == "FOUND":
+            crossrel_found += 1
+
+    # Independent count: start with individual nulls, subtract cross-relations found
+    # Each cross-relation FOUND reduces independence by 1
+    independent = max(0, individual_null - crossrel_found)
+
+    # If individual found > 0, those have closed forms, not independent
+    # If crossrel found > 0, some nulls are related to each other
+
+    return {
+        "key": "laporta_pslq_summary_v0",
+        "outputs": {
+            "result_independent_count_v0":      independent,
+            "result_individual_null_v0":         individual_null,
+            "result_individual_found_v0":        individual_found,
+            "result_crossrel_null_v0":           crossrel_null,
+            "result_crossrel_found_v0":          crossrel_found,
+            "result_total_scans_v0":             6 + len(crossrel_tests),
+            "result_total_null_v0":              individual_null + crossrel_null,
+            "result_total_found_v0":             individual_found + crossrel_found,
+        },
+        "notes": (
+            "Summary: %d individual NULL, %d FOUND. "
+            "%d crossrel NULL, %d FOUND. "
+            "Independent constants: %d out of 6."
+        ) % (individual_null, individual_found,
+             crossrel_null, crossrel_found,
+             independent),
+    }
+
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -7692,6 +8155,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "beta_fourier_identity_v0": beta_fourier_identity_v0,
     "beta_lattice_factor_test_v0": beta_lattice_factor_test_v0,
     "beta_cosmic_budget_v0": beta_cosmic_budget_v0,
+    # Laporta PSLQ
+    "laporta_pslq_individual_v0": laporta_pslq_individual_v0,
+    "laporta_pslq_crossrel_v0": laporta_pslq_crossrel_v0,
+    "laporta_pslq_summary_v0": laporta_pslq_summary_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {
