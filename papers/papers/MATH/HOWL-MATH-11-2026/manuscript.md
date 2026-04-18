@@ -17,7 +17,8 @@
 
 ---
 
-## I. THE STAIRCASE PARADOX
+## I. ABSTRACT
+### The Staircase Paradox
 
 A circle of diameter d has circumference πd. Inscribe the circle in a square of side d. The square's perimeter is 4d. Now approximate the circle with a staircase — a rectilinear path that follows the circle ever more closely, each step smaller than the last. At every level of refinement the staircase perimeter remains exactly 4d. In the limit of infinitely fine steps, the staircase converges pointwise to the circle but its perimeter never converges to πd. It stays at 4d.
 
@@ -33,9 +34,13 @@ This ratio is independent of d. It depends only on the geometry (circle) and the
 
 The staircase paradox is not a paradox. It is a measurement of the L1 circumference of a circle. The paradox dissolves when you recognize that two metrics are in play and their ratio is β = π/4.
 
+![Fig. 1: Two metrics on one circle. The L1 staircase measures 4d regardless of refinement. The L2 circumference is πd. Their ratio is β = π/4.](./figures/math11_01_staircase_paradox.png)
+
 ---
 
 ## II. THE FOUNDATION IDENTITY
+
+![Fig. 2: The Foundation Integral](./figures/math11_02_foundation_integral.png)
 
 **Theorem.** The L1 circumference of the unit circle is 8.
 
@@ -133,6 +138,8 @@ The DFT normalization inherits this directly. The twiddle factor e^{−i2πk/N} 
 
 ## V. THE QUANTUM CONNECTION
 
+![Fig. 4: Two phase-space cells. Rectangular (L1) has area h. Circular (L2) has area ℏ = h/(8β). The conversion is one L1/L2 factor per circular period.](./figures/math11_04_phase_space_cells.png)
+
 Planck discovered the quantum of action h in 1900. It is the smallest unit of action — energy × time — that nature allows. Dirac introduced ℏ = h/2π in the 1920s for angular quantities. The two are related by:
 
 ℏ = h/(2π) = h/(8β)
@@ -152,6 +159,8 @@ Whether this rewriting reveals new structure or merely relabels known factors is
 ---
 
 ## VI. THE QED LOOP INTEGRAL CONNECTION
+
+![Fig. 5: The four terms of A₂ tagged by β content. The β² terms (angular integration) nearly cancel the β⁰ terms (topology + number theory). 87% cancellation.](./figures/math11_05_qed_a2_decomposition.png)
 
 Every loop integral in quantum electrodynamics has the form:
 
@@ -186,6 +195,8 @@ Whether this decomposition holds systematically at higher loop orders — one ad
 ---
 
 ## VII. THE Lp GENERALIZATION
+
+![Fig. 3: The generalized β(p) from p=1 (lattice, π/4) through p=2 (Euclidean, 1) to p=∞ (Chebyshev, π√2/4). The lattice-to-continuum transition is the curve.](./figures/math11_03_beta_p_family.png)
 
 The L1/L2 conversion factor β = π/4 is one member of a continuous family. The Lp norm in ℝ² is:
 
@@ -241,6 +252,8 @@ This identity is algebraic and exact. Its physical content is that the (4π)^{d/
 
 ## IX. THE LATTICE PREDICTIONS
 
+![Fig. 6: The predicted C = 3π/2 = 4.712 sits inside the BMW lattice measurement C = 4.7 ± 0.5 at 0.02σ.](./figures/math11_06_lattice_factor.png)
+
 The metric conversion framework generates two numerical predictions testable against lattice QCD data.
 
 **Prediction 1: The proton lattice factor C = 6β = 3π/2.**
@@ -279,9 +292,13 @@ Measured: 938.3/440 = 2.133. Miss: 5.5%. Within lattice systematic uncertainties
 
 Both predictions require validation against multiple independent lattice determinations with explicit scheme labels and uncertainties. This is a Layer 2 literature survey.
 
+![Fig. 8: A circular Wilson loop on a square lattice. The lattice path is the staircase. The continuum path is the circle. The ratio is β. The staircase paradox IS the lattice artifact.](./figures/math11_08_wilson_loop_lattice.png)
+
 ---
 
 ## X. THE COSMOLOGICAL PREDICTION
+
+![Fig. 7: Three cosmic fractions from β and integers. Ω_DM = π/12, Ω_b = 13/264, Ω_Λ = remainder. All match Planck within 1σ. Statistical control pending.](./figures/math11_07_cosmic_budget.png)
 
 The metric conversion framework generates one prediction for cosmological density parameters, subject to statistical control.
 
