@@ -1,0 +1,336 @@
+{
+  "key": "result_experiment_math11_beta_metric_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_math11_beta_metric_v0",
+  "timestamp": "2026-04-18T13:35:32Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "beta_foundation_integral_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "beta_lp_family_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "beta_dim_reg_decomposition_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "beta_qed_a2_decomposition_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "beta_fourier_identity_v0",
+      "status": "ok",
+      "output_count": 8
+    },
+    {
+      "key": "beta_lattice_factor_test_v0",
+      "status": "ok",
+      "output_count": 7
+    },
+    {
+      "key": "beta_cosmic_budget_v0",
+      "status": "ok",
+      "output_count": 11
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "M01: L1 circumference of unit circle = 8",
+      "output_key": "result_l1_circumference_v0",
+      "match_mode": "exact",
+      "reference_source": "theorem",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "8",
+      "got": "8"
+    },
+    {
+      "label": "M02: Each quadrant integral = 2",
+      "output_key": "result_quadrant_integral_v0",
+      "match_mode": "exact",
+      "reference_source": "theorem",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "2",
+      "got": "2"
+    },
+    {
+      "label": "M03: beta = pi/4 computed from L2/L1",
+      "output_key": "result_beta_computed_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "definition",
+      "status": "INFO",
+      "expected": "0.7853981633974483",
+      "got": "0.785398163397448",
+      "miss_pct": "3.82e-14",
+      "detail": "predicted 0.785398163397448 ref 0.7853981633974483 miss 3.82e-14%"
+    },
+    {
+      "label": "M04: beta(1) = pi/4",
+      "output_key": "result_beta_p1_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "theorem",
+      "status": "INFO",
+      "expected": "0.7853981633974483",
+      "got": "0.785398163397448",
+      "miss_pct": "3.82e-14",
+      "detail": "predicted 0.785398163397448 ref 0.7853981633974483 miss 3.82e-14%"
+    },
+    {
+      "label": "M05: beta(2) = 1 exactly",
+      "output_key": "result_beta_p2_v0",
+      "match_mode": "range",
+      "reference_source": "theorem",
+      "got": "1.0",
+      "lo": "0.9999",
+      "hi": "1.0001",
+      "status": "PASS",
+      "detail": "in [0.9999, 1.0001]"
+    },
+    {
+      "label": "M06: beta(inf) = pi*sqrt(2)/4",
+      "output_key": "result_beta_p_inf_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "theorem",
+      "status": "INFO",
+      "expected": "1.1107207345395915",
+      "got": "1.11072073453959",
+      "miss_pct": "1.35e-13",
+      "detail": "predicted 1.11072073453959 ref 1.1107207345395915 miss 1.35e-13%"
+    },
+    {
+      "label": "M07: beta(p) is monotonically increasing",
+      "output_key": "result_beta_monotonic_v0",
+      "match_mode": "bool",
+      "reference_source": "conjecture",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "M08: (4*pi)^(d/2) = (4*beta)^d at d=2",
+      "output_key": "result_dim_reg_match_d2_v0",
+      "match_mode": "bool",
+      "reference_source": "algebra",
+      "got": "False",
+      "status": "FAIL",
+      "detail": "expected True got False"
+    },
+    {
+      "label": "M09: (4*pi)^(d/2) vs (4*beta)^d at d=4",
+      "output_key": "result_dim_reg_match_d4_v0",
+      "match_mode": "bool",
+      "reference_source": "algebra",
+      "got": "False",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "M10: A2 sum matches known value",
+      "output_key": "result_a2_sum_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Schwinger_Petermann",
+      "status": "INFO",
+      "expected": "-0.328478965579194",
+      "got": "-0.328478965579194",
+      "miss_pct": "0.0",
+      "detail": "predicted -0.328478965579194 ref -0.328478965579194 miss 0.0%"
+    },
+    {
+      "label": "M11: A2 cancellation > 80%",
+      "output_key": "result_a2_cancellation_pct_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "90.3969",
+      "lo": "80",
+      "hi": "95",
+      "status": "PASS",
+      "detail": "in [80, 95]"
+    },
+    {
+      "label": "M12: 2*pi = 8*beta identity",
+      "output_key": "result_fourier_match_v0",
+      "match_mode": "bool",
+      "reference_source": "algebra",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "M13: Leibniz series converges to beta",
+      "output_key": "result_leibniz_converges_to_beta_v0",
+      "match_mode": "bool",
+      "reference_source": "theorem",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "M14: Lattice C = 3*pi/2 within 1 sigma of BMW",
+      "output_key": "result_lattice_c_consistent_v0",
+      "match_mode": "bool",
+      "reference_source": "BMW_2008",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "M15: Lattice C tension in sigma",
+      "output_key": "result_lattice_c_tension_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "BMW_2008",
+      "got": "0.024778",
+      "lo": "0",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0, 1.0]"
+    },
+    {
+      "label": "M16: Omega_DM = pi/12 vs Planck",
+      "output_key": "result_omega_dm_pred_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.2607",
+      "got": "0.261799387799149",
+      "miss_pct": "0.4217",
+      "detail": "predicted 0.261799387799149 ref 0.2607 miss 0.4217%"
+    },
+    {
+      "label": "M17: Omega_DM tension < 1 sigma",
+      "output_key": "result_omega_dm_tension_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Planck_2018",
+      "got": "0.549694",
+      "lo": "0",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0, 1.0]"
+    },
+    {
+      "label": "M18: Omega_b = 13/264 vs Planck",
+      "output_key": "result_omega_b_pred_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.0490",
+      "got": "0.0492424242424242",
+      "miss_pct": "0.4947",
+      "detail": "predicted 0.0492424242424242 ref 0.0490 miss 0.4947%"
+    },
+    {
+      "label": "M19: Omega_Lambda tension < 1 sigma",
+      "output_key": "result_omega_lambda_tension_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "Planck_2018",
+      "got": "0.014547",
+      "lo": "0",
+      "hi": "1.0",
+      "status": "PASS",
+      "detail": "in [0, 1.0]"
+    },
+    {
+      "label": "M20: Omega_total = 1 (flatness)",
+      "output_key": "result_omega_total_pred_v0",
+      "match_mode": "exact",
+      "reference_source": "flatness",
+      "status": "PASS",
+      "detail": "exact match",
+      "expected": "1",
+      "got": "1"
+    }
+  ],
+  "outputs": {
+    "result_l1_circumference_v0": {
+      "_type": "Fraction",
+      "num": "8",
+      "den": "1"
+    },
+    "result_l1_numerical_v0": "7.99993727416545",
+    "result_l2_circumference_v0": "6.28318530717959",
+    "result_quadrant_integral_v0": {
+      "_type": "Fraction",
+      "num": "2",
+      "den": "1"
+    },
+    "result_quadrant_numerical_v0": "2.0",
+    "result_beta_computed_v0": "0.785398163397448",
+    "result_l1_l2_ratio_v0": "0.785404321540139",
+    "result_beta_p1_v0": "0.785398163397448",
+    "result_beta_p2_v0": "1.0",
+    "result_beta_p_inf_v0": "1.11072073453959",
+    "result_beta_p_1p5_v0": "0.93153349853966",
+    "result_beta_p_3_v0": "1.05788902990047",
+    "result_beta_p_4_v0": "1.08039614489734",
+    "result_beta_monotonic_v0": true,
+    "result_c_inf_v0": "5.65685424949238",
+    "result_dim_reg_4pi_d2_at_d2_v0": "12.5663706143592",
+    "result_dim_reg_4beta_d_at_d2_v0": "9.86960440108936",
+    "result_dim_reg_ratio_d2_v0": "1.27323954473516",
+    "result_dim_reg_match_d2_v0": false,
+    "result_dim_reg_4pi_d2_at_d4_v0": "157.91367041743",
+    "result_dim_reg_4beta_d_at_d4_v0": "97.4090910340024",
+    "result_dim_reg_ratio_d4_v0": "1.6211389382774",
+    "result_dim_reg_match_d4_v0": false,
+    "result_a2_rational_v0": "1.36805555555556",
+    "result_a2_pi2_term_v0": "0.822467033424113",
+    "result_a2_pi2_ln2_term_v0": "-3.42054423192856",
+    "result_a2_zeta3_term_v0": "0.901542677369696",
+    "result_a2_sum_v0": "-0.328478965579194",
+    "result_a2_beta0_total_v0": "2.26959823292525",
+    "result_a2_beta2_total_v0": "-2.59807719850445",
+    "result_a2_cancellation_pct_v0": "90.3968800487052",
+    "result_fourier_2pi_v0": "6.28318530717959",
+    "result_fourier_8beta_v0": "6.28318530717959",
+    "result_fourier_match_v0": true,
+    "result_hbar_from_h_8beta_v0": "6.28318530717959",
+    "result_leibniz_partial_50_v0": "0.790299653246763",
+    "result_leibniz_partial_500_v0": "0.785897164896447",
+    "result_leibniz_converges_to_beta_v0": true,
+    "result_leibniz_500_miss_v0": "0.000635348441407013",
+    "result_lattice_c_pred_v0": "4.71238898038469",
+    "result_lattice_c_meas_v0": "4.7",
+    "result_lattice_c_unc_v0": "0.5",
+    "result_lattice_c_tension_sigma_v0": "0.0247779607693797",
+    "result_lattice_c_consistent_v0": true,
+    "result_lattice_6beta_v0": "4.71238898038469",
+    "result_lattice_3pi_over_2_v0": "4.71238898038469",
+    "result_omega_dm_pred_v0": "0.261799387799149",
+    "result_omega_b_pred_v0": "0.0492424242424242",
+    "result_omega_b_frac_v0": {
+      "_type": "Fraction",
+      "num": "13",
+      "den": "264"
+    },
+    "result_omega_lambda_pred_v0": "0.688958187958426",
+    "result_omega_total_pred_v0": {
+      "_type": "Fraction",
+      "num": "1",
+      "den": "1"
+    },
+    "result_omega_dm_tension_sigma_v0": "0.549693899574718",
+    "result_omega_b_tension_sigma_v0": "0.606060606060606",
+    "result_omega_lambda_tension_sigma_v0": "0.0145469896065803",
+    "result_omega_dm_formula_v0": "pi/12",
+    "result_omega_b_formula_v0": "13/264",
+    "result_omega_lambda_formula_v0": "1 - pi/12 - 13/264"
+  },
+  "summary": {
+    "derivations_ok": 7,
+    "derivations_err": 0,
+    "comparisons_pass": 13,
+    "comparisons_fail": 1,
+    "comparisons_info": 6,
+    "comparisons_skip": 0
+  }
+}
