@@ -1,0 +1,137 @@
+{
+  "key": "result_experiment_laporta_muon_electron_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_laporta_muon_electron_v0",
+  "timestamp": "2026-04-18T18:02:12Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "laporta_electron_muon_sensitivity_v0",
+      "status": "ok",
+      "output_count": 21
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "E01: A4 contribution to a_e order 10^-11",
+      "output_key": "result_ae_a4_x1e11_v0",
+      "match_mode": "range",
+      "reference_source": "QED_series",
+      "got": "-5.5668",
+      "lo": "-100",
+      "hi": "-0.01",
+      "status": "PASS",
+      "detail": "in [-100, -0.01]"
+    },
+    {
+      "label": "E02: A4 contribution to a_mu order 10^-11",
+      "output_key": "result_amu_a4_x1e11_v0",
+      "match_mode": "range",
+      "reference_source": "QED_series",
+      "got": "-5.5668",
+      "lo": "-100",
+      "hi": "-0.01",
+      "status": "PASS",
+      "detail": "in [-100, -0.01]"
+    },
+    {
+      "label": "E03: Sensitivity ratio muon/electron is ~1",
+      "output_key": "result_sensitivity_ratio_muon_electron_v0",
+      "match_mode": "range",
+      "reference_source": "mass_independent_A4",
+      "got": "1.0",
+      "lo": "0.5",
+      "hi": "2.0",
+      "status": "PASS",
+      "detail": "in [0.5, 2.0]"
+    },
+    {
+      "label": "E04: A4 shifts muon tension by < 1 sigma",
+      "output_key": "result_amu_tension_change_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "0.113443",
+      "lo": "-5",
+      "hi": "5",
+      "status": "PASS",
+      "detail": "in [-5, 5]"
+    },
+    {
+      "label": "E05: Muon tension with A4 is ~5 sigma",
+      "output_key": "result_amu_tension_with_a4_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "FNAL_BNL",
+      "got": "6.48239",
+      "lo": "3",
+      "hi": "10",
+      "status": "PASS",
+      "detail": "in [3, 10]"
+    },
+    {
+      "label": "E06: Muon tension without A4 computed",
+      "output_key": "result_amu_tension_without_a4_sigma_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "6.36895",
+      "lo": "3",
+      "hi": "10",
+      "status": "PASS",
+      "detail": "in [3, 10]"
+    },
+    {
+      "label": "E07: A4 vs muon tension fraction",
+      "output_key": "result_amu_a4_vs_tension_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "1.75002",
+      "lo": "0",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [0, 100]"
+    },
+    {
+      "label": "E08: Toroidal scaling test computed",
+      "output_key": "result_toroidal_scaling_test_v0",
+      "match_mode": "range",
+      "reference_source": "computed",
+      "got": "2304.01",
+      "lo": "0",
+      "hi": "1000",
+      "status": "FAIL",
+      "detail": "2304.01 not in [0, 1000]"
+    }
+  ],
+  "outputs": {
+    "result_ae_a4_contribution_v0": "-5.56679891187402e-11",
+    "result_ae_a4_x1e11_v0": "-5.56679891187402",
+    "result_ae_a4_vs_harvard_unc_v0": "42.8215300913386",
+    "result_amu_a4_contribution_v0": "-5.56679891187402e-11",
+    "result_amu_a4_x1e11_v0": "-5.56679891187402",
+    "result_amu_a4_vs_fnal_unc_v0": "0.253036314176092",
+    "result_amu_a4_vs_tension_v0": "1.75001537625716",
+    "result_amu_sm_with_a4_v0": "0.001165917409",
+    "result_amu_sm_without_a4_v0": "0.00116591746466799",
+    "result_amu_a4_shift_x1e11_v0": "-5.56679891187402",
+    "result_amu_tension_with_a4_sigma_v0": "6.48239405808167",
+    "result_amu_tension_without_a4_sigma_v0": "6.36895116531566",
+    "result_amu_tension_change_sigma_v0": "0.113442892766009",
+    "result_amu_diff_with_a4_v0": "3.181e-9",
+    "result_amu_diff_without_a4_v0": "3.12533201088126e-9",
+    "result_amu_total_unc_v0": "4.90713765855412e-10",
+    "result_sensitivity_ratio_muon_electron_v0": "1.0",
+    "result_mass_ratio_squared_v0": "42753.1227342086",
+    "result_ae_mass_dep_4loop_v0": "3.0e-14",
+    "result_amu_mass_dep_4loop_estimated_v0": "1.28259368202626e-9",
+    "result_toroidal_scaling_test_v0": "2304.00577123502"
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 7,
+    "comparisons_fail": 1,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}

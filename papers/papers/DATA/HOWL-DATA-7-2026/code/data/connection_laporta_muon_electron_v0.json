@@ -1,0 +1,34 @@
+{
+    "key": "connection_laporta_muon_electron_v0",
+    "canonical": "connection_laporta_muon_electron",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Connects the Laporta constants to both electron and muon anomalous magnetic moments through the same A4 coefficient. The universal (mass-independent) A4 enters both a_e and a_mu at (alpha/pi)^4. The muon g-2 has a ~5 sigma tension. This derivation chain tests whether A4's contribution is large enough to affect the tension and whether the ratio of sensitivities (muon/electron) reveals toroidal scaling with lepton mass.",
+    "paper": "PHYS-47",
+    "domains_connected": ["qed", "laporta", "electron_g2", "muon_g2", "toroidal"],
+    "thesis": "The same six Laporta constants contribute to both a_e and a_mu. The ratio of contributions probes how four-loop toroidal geometry scales between the two leptons. If the mass-dependent corrections at four loops differ significantly from the universal piece, the toroidal structure has mass-dependent moduli.",
+    "formula": "a_l(A4) = A4 * (alpha/pi)^4 + mass_dependent_4loop_corrections",
+    "input_values": [
+        "qed_a4_laporta_v0",
+        "qed_ae_electron_measured_v0",
+        "qed_amu_measured_v0",
+        "qed_amu_measured_unc_v0",
+        "qed_amu_hadronic_lo_v0",
+        "qed_amu_hadronic_nlo_v0",
+        "qed_amu_hadronic_lbl_v0",
+        "qed_amu_ew_v0",
+        "qed_amu_qed_published_v0",
+        "qed_alpha_inv_rb_recoil_v0",
+        "ratio_muon_electron_v0"
+    ],
+    "output_values": [
+        "result_ae_a4_contribution_v0",
+        "result_amu_a4_contribution_v0",
+        "result_sensitivity_ratio_muon_electron_v0",
+        "result_amu_tension_change_sigma_v0",
+        "result_toroidal_scaling_test_v0"
+    ],
+    "derivation_functions": [
+        "laporta_electron_muon_sensitivity_v0"
+    ]
+}

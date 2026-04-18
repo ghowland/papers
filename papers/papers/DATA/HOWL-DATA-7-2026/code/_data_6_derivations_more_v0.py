@@ -8735,6 +8735,205 @@ def laporta_ratio_analysis_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PHYS-47: Laporta A4 — Electron vs Muon Sensitivity
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "laporta_electron_muon_sensitivity_v0": laporta_electron_muon_sensitivity_v0,
+# =============================================================================
+
+
+def laporta_electron_muon_sensitivity_v0(value_dicts):
+    """Compare A4 contribution to electron and muon g-2.
+
+    The universal (mass-independent) A4 coefficient is the same for
+    both leptons. But:
+    - The electron uses alpha extracted from a_e itself (self-consistent)
+    - The muon uses alpha from Rb/Cs recoil (independent measurement)
+    - The muon has mass-dependent 4-loop corrections we don't decompose
+
+    This derivation:
+    1. Computes A4 * (alpha/pi)^4 for both leptons
+    2. Computes the muon SM prediction with and without A4
+    3. Computes the muon tension (sigma) with and without A4
+    4. Reports the ratio of A4 contributions (muon/electron)
+    5. Tests toroidal scaling: does the ratio relate to (m_mu/m_e)?
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    zeta3 = _f2m(_frac(vm, "geom_zeta3_v0"))
+    zeta5 = _f2m(_frac(vm, "geom_zeta5_v0"))
+    ln2 = _f2m(_frac(vm, "geom_ln2_v0"))
+    li4h = _f2m(_frac(vm, "geom_li4_half_v0"))
+
+    # Alpha from Rb recoil (used for muon prediction)
+    alpha_inv_rb = mpf(str(_get(vm, "qed_alpha_inv_rb_recoil_v0")))
+    alpha_rb = mpf("1") / alpha_inv_rb
+    x_rb = alpha_rb / pi_val  # alpha/pi from Rb
+
+    # A4
+    a4 = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+
+    # ============================================================
+    # ELECTRON: A4 contribution
+    # ============================================================
+
+    # For the electron, alpha comes from a_e itself. Use the Rb alpha
+    # as a proxy (the difference is ~4 ppb, negligible for this purpose)
+    x_e = x_rb  # alpha/pi
+    x4_e = x_e ** 4
+
+    ae_a4 = a4 * x4_e
+    ae_harvard_unc = mpf("1.3e-12")
+    ae_a4_vs_unc = abs(ae_a4) / ae_harvard_unc
+
+    # ============================================================
+    # MUON: A4 contribution and tension analysis
+    # ============================================================
+
+    # The muon uses the same alpha/pi (to leading order, A4 is
+    # mass-independent — the mass-dependent 4-loop corrections
+    # are separate and small)
+    x_mu = x_rb  # same alpha/pi for mass-independent piece
+    x4_mu = x_mu ** 4
+
+    amu_a4 = a4 * x4_mu  # same as ae_a4 for mass-independent A4
+
+    # Muon measurements and corrections
+    amu_measured = mpf(str(_get(vm, "qed_amu_measured_v0")))
+    amu_meas_unc = mpf(str(_get(vm, "qed_amu_measured_unc_v0")))
+    amu_qed_published = mpf(str(_get(vm, "qed_amu_qed_published_v0")))
+    amu_had_lo = mpf(str(_get(vm, "qed_amu_hadronic_lo_v0")))
+    amu_had_nlo = mpf(str(_get(vm, "qed_amu_hadronic_nlo_v0")))
+    amu_had_lbl = mpf(str(_get(vm, "qed_amu_hadronic_lbl_v0")))
+    amu_had_lo_unc = mpf(str(_get(vm, "qed_amu_hadronic_lo_unc_v0")))
+    amu_had_lbl_unc = mpf(str(_get(vm, "qed_amu_hadronic_lbl_unc_v0")))
+    amu_ew = mpf(str(_get(vm, "qed_amu_ew_v0")))
+
+    # SM prediction WITH full A4 (standard)
+    amu_sm_with = amu_qed_published + amu_had_lo + amu_had_nlo + amu_had_lbl + amu_ew
+
+    # SM prediction WITHOUT A4: subtract A4*(alpha/pi)^4 from QED published
+    amu_qed_no_a4 = amu_qed_published - amu_a4
+    amu_sm_without = amu_qed_no_a4 + amu_had_lo + amu_had_nlo + amu_had_lbl + amu_ew
+
+    # Theory uncertainty (hadronic dominated)
+    theory_unc = (amu_had_lo_unc**2 + amu_had_lbl_unc**2) ** mpf("0.5")
+    total_unc = (amu_meas_unc**2 + theory_unc**2) ** mpf("0.5")
+
+    # Tensions
+    diff_with = amu_measured - amu_sm_with
+    diff_without = amu_measured - amu_sm_without
+    tension_with = abs(diff_with) / total_unc
+    tension_without = abs(diff_without) / total_unc
+    tension_change = tension_with - tension_without
+
+    # A4 shift in units of 10^-11
+    amu_a4_x1e11 = amu_a4 * mpf("1e11")
+    ae_a4_x1e11 = ae_a4 * mpf("1e11")
+
+    # A4 as fraction of muon tension
+    amu_a4_vs_tension = abs(amu_a4) / abs(diff_with) * 100 if diff_with != 0 else mpf("0")
+
+    # FNAL measurement uncertainty
+    amu_a4_vs_fnal_unc = abs(amu_a4) / amu_meas_unc
+
+    # ============================================================
+    # SENSITIVITY RATIO: muon/electron
+    # ============================================================
+
+    # For mass-independent A4, both get the same contribution
+    # (same alpha, same A4). The ratio should be ~1.
+    # Any deviation from 1 comes from using slightly different alpha
+    # or from mass-dependent corrections.
+    sensitivity_ratio = abs(amu_a4) / abs(ae_a4) if ae_a4 != 0 else mpf("0")
+
+    # ============================================================
+    # TOROIDAL SCALING TEST
+    # ============================================================
+
+    # If the toroidal geometry has mass-dependent moduli, the
+    # mass-dependent 4-loop corrections should scale with mass ratio.
+    # We have the mass-dep corrections for the electron:
+    ae_mass_dep_4loop = mpf(str(_get(vm, "qed_ae_mass_dep_4loop_v0")))
+    mass_ratio = mpf(str(_get(vm, "ratio_muon_electron_v0")))
+    mass_ratio_sq = mass_ratio ** 2
+
+    # The mass-dependent correction for the muon at 4-loop is contained
+    # within amu_qed_published but not broken out separately.
+    # We can estimate: if mass-dep scales as (m_mu/m_e)^2, then
+    # amu_mass_dep_4loop ~ ae_mass_dep_4loop * (m_mu/m_e)^2
+    amu_mass_dep_4loop_estimated = ae_mass_dep_4loop * mass_ratio_sq
+
+    # The toroidal scaling test: what fraction of the muon A4
+    # contribution could come from mass-dependent (toroidal) effects?
+    toroidal_scaling = abs(amu_mass_dep_4loop_estimated) / abs(amu_a4) * 100 if amu_a4 != 0 else mpf("0")
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_electron_muon_sensitivity_v0",
+        "outputs": {
+            # Electron
+            "result_ae_a4_contribution_v0":             _approx(ae_a4),
+            "result_ae_a4_x1e11_v0":                    _approx(ae_a4_x1e11),
+            "result_ae_a4_vs_harvard_unc_v0":           _approx(ae_a4_vs_unc),
+
+            # Muon
+            "result_amu_a4_contribution_v0":            _approx(amu_a4),
+            "result_amu_a4_x1e11_v0":                   _approx(amu_a4_x1e11),
+            "result_amu_a4_vs_fnal_unc_v0":             _approx(amu_a4_vs_fnal_unc),
+            "result_amu_a4_vs_tension_v0":              _approx(amu_a4_vs_tension),
+
+            # SM predictions
+            "result_amu_sm_with_a4_v0":                 _approx(amu_sm_with),
+            "result_amu_sm_without_a4_v0":              _approx(amu_sm_without),
+            "result_amu_a4_shift_x1e11_v0":             _approx(amu_a4_x1e11),
+
+            # Tensions
+            "result_amu_tension_with_a4_sigma_v0":      _approx(tension_with),
+            "result_amu_tension_without_a4_sigma_v0":   _approx(tension_without),
+            "result_amu_tension_change_sigma_v0":       _approx(tension_change),
+            "result_amu_diff_with_a4_v0":               _approx(diff_with),
+            "result_amu_diff_without_a4_v0":            _approx(diff_without),
+            "result_amu_total_unc_v0":                  _approx(total_unc),
+
+            # Ratio
+            "result_sensitivity_ratio_muon_electron_v0": _approx(sensitivity_ratio),
+
+            # Toroidal scaling
+            "result_mass_ratio_squared_v0":             _approx(mass_ratio_sq),
+            "result_ae_mass_dep_4loop_v0":              _approx(ae_mass_dep_4loop),
+            "result_amu_mass_dep_4loop_estimated_v0":   _approx(amu_mass_dep_4loop_estimated),
+            "result_toroidal_scaling_test_v0":          _approx(toroidal_scaling),
+        },
+        "notes": (
+            "A4 contribution: electron %.3e (%.1f x Harvard unc), "
+            "muon %.3e (%.3f x FNAL unc). "
+            "Sensitivity ratio mu/e: %.6f. "
+            "Muon tension: %.2f sigma (with A4), %.2f sigma (without). "
+            "Change: %.4f sigma. "
+            "A4 is %.2f%% of the muon tension. "
+            "Toroidal scaling: mass-dep 4-loop estimated %.3e "
+            "(%.1f%% of A4 contribution)."
+        ) % (
+            float(ae_a4), float(ae_a4_vs_unc),
+            float(amu_a4), float(amu_a4_vs_fnal_unc),
+            float(sensitivity_ratio),
+            float(tension_with), float(tension_without),
+            float(tension_change),
+            float(amu_a4_vs_tension),
+            float(amu_mass_dep_4loop_estimated),
+            float(toroidal_scaling),
+        ),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -8887,6 +9086,8 @@ DERIVATION_MORE_INDEX_V0 = {
     "laporta_beta_classification_v0": laporta_beta_classification_v0,
     "laporta_elliptic_magnitude_scan_v0": laporta_elliptic_magnitude_scan_v0,
     "laporta_ratio_analysis_v0": laporta_ratio_analysis_v0,    
+    # Laporta Electron Muon
+    "laporta_electron_muon_sensitivity_v0": laporta_electron_muon_sensitivity_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {

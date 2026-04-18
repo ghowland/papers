@@ -1,0 +1,235 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_contribution_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_contribution",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679891187402e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_x1e11_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679891187402",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_vs_harvard_unc_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_ae_a4_vs_harvard_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "42.8215300913386",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_contribution_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_contribution",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679891187402e-11",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_x1e11_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679891187402",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_fnal_unc_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_fnal_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.253036314176092",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_tension_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_vs_tension",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.75001537625716",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_sm_with_a4_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_sm_with_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.001165917409",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_sm_without_a4_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_sm_without_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.00116591746466799",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_shift_x1e11_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_a4_shift_x1e11",
+      "version": 0,
+      "node_type": "value",
+      "value": "-5.56679891187402",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_with_a4_sigma_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_with_a4_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "6.48239405808167",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_without_a4_sigma_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_without_a4_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "6.36895116531566",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_change_sigma_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_tension_change_sigma",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.113442892766009",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_diff_with_a4_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_diff_with_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.181e-9",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_diff_without_a4_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_diff_without_a4",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.12533201088126e-9",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_total_unc_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_total_unc",
+      "version": 0,
+      "node_type": "value",
+      "value": "4.90713765855412e-10",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_sensitivity_ratio_muon_electron_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_sensitivity_ratio_muon_electron",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_mass_ratio_squared_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_mass_ratio_squared",
+      "version": 0,
+      "node_type": "value",
+      "value": "42753.1227342086",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_ae_mass_dep_4loop_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_ae_mass_dep_4loop",
+      "version": 0,
+      "node_type": "value",
+      "value": "3.0e-14",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_amu_mass_dep_4loop_estimated_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_amu_mass_dep_4loop_estimated",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.28259368202626e-9",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    },
+    {
+      "key": "experiment_laporta_muon_electron_v0_run001_result_toroidal_scaling_test_v0",
+      "canonical": "experiment_laporta_muon_electron_v0_run001_result_toroidal_scaling_test",
+      "version": 0,
+      "node_type": "value",
+      "value": "2304.00577123502",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_laporta_muon_electron_v0_run001"
+    }
+  ]
+}
