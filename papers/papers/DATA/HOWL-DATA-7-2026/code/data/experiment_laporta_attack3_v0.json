@@ -1,0 +1,131 @@
+{
+    "key": "experiment_laporta_attack3_v0",
+    "canonical": "experiment_laporta_attack3",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Attack 3: Combined zeta + elliptic PSLQ. Extract topology-specific moduli from the subtraction results, check consistency within each topology, then run PSLQ with the combined {C_i, 1, zeta(3), zeta(5), K(k), E(k), K^2, KE, K^3, K*pi, K/pi, E*pi, K^2/pi} basis at the extracted moduli. The consistency check is the critical gate: if three integrals within one topology yield the same k, the elliptic hypothesis is strongly supported before PSLQ even runs.",
+    "purpose": "program_laporta_constants_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "laporta_C81a": 0,
+            "laporta_C81b": 0,
+            "laporta_C81c": 0,
+            "laporta_C83a": 0,
+            "laporta_C83b": 0,
+            "laporta_C83c": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0
+        },
+        "derivations": {
+            "laporta_modulus_extraction": 0,
+            "laporta_pslq_elliptic": 0,
+            "laporta_closed_form_verify": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "laporta_modulus_extraction_v0",
+        "laporta_pslq_elliptic_v0",
+        "laporta_closed_form_verify_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_k81_from_C81a_v0",
+        "result_k81_from_C81b_v0",
+        "result_k81_from_C81c_v0",
+        "result_k83_from_C83a_v0",
+        "result_k83_from_C83b_v0",
+        "result_k83_from_C83c_v0",
+        "result_k81_consistent_v0",
+        "result_k83_consistent_v0",
+        "result_k81_spread_v0",
+        "result_k83_spread_v0",
+        "result_pslq_C81a_status_v0",
+        "result_pslq_C81b_status_v0",
+        "result_pslq_C81c_status_v0",
+        "result_pslq_C83a_status_v0",
+        "result_pslq_C83b_status_v0",
+        "result_pslq_C83c_status_v0",
+        "result_pslq_found_count_v0",
+        "result_constants_reduced_to_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "A01: Topology 81 moduli extracted",
+            "output_key": "result_k81_from_C81a_v0",
+            "match_mode": "range",
+            "lo": "0.01",
+            "hi": "0.9999",
+            "reference_source": "modulus_extraction"
+        },
+        {
+            "label": "A02: Topology 83 moduli extracted",
+            "output_key": "result_k83_from_C83a_v0",
+            "match_mode": "range",
+            "lo": "0.01",
+            "hi": "0.9999",
+            "reference_source": "modulus_extraction"
+        },
+        {
+            "label": "A03: Topology 81 consistency — three integrals give same k",
+            "output_key": "result_k81_consistent_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "consistency_check"
+        },
+        {
+            "label": "A04: Topology 83 consistency — three integrals give same k",
+            "output_key": "result_k83_consistent_v0",
+            "match_mode": "bool",
+            "expected": true,
+            "reference_source": "consistency_check"
+        },
+        {
+            "label": "A05: Topology 81 spread < 1%",
+            "output_key": "result_k81_spread_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "consistency_check"
+        },
+        {
+            "label": "A06: Topology 83 spread < 1%",
+            "output_key": "result_k83_spread_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "consistency_check"
+        },
+        {
+            "label": "A07: PSLQ found count",
+            "output_key": "result_pslq_found_count_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "6",
+            "reference_source": "pslq"
+        },
+        {
+            "label": "A08: Constants reduced from 6 to fewer",
+            "output_key": "result_constants_reduced_to_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "6",
+            "reference_source": "pslq"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_attack3_results_v0",
+            "title": "Attack 3: Modulus extraction, consistency, and PSLQ results",
+            "type": "comparison_table"
+        }
+    ]
+}

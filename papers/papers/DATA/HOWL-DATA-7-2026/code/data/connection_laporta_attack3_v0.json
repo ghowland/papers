@@ -1,0 +1,33 @@
+{
+    "key": "connection_laporta_attack3_v0",
+    "canonical": "connection_laporta_attack3",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Attack 3 from the PHYS-46 program. Uses the subtraction results from experiment_remainder_elliptic_v0 to extract topology-specific elliptic moduli, check consistency within each topology, and run PSLQ with the combined zeta + elliptic basis. If the three integrals within each topology yield the same modulus k and PSLQ finds relations, the six Laporta constants reduce to 2-4 elliptic periods at identified moduli — the first closed forms for four-loop master integrals.",
+    "paper": "PHYS-49",
+    "domains_connected": ["laporta", "elliptic_curves", "number_theory", "qed", "modulus_remainder"],
+    "thesis": "Each Laporta integral decomposes as C_i = n_i * zeta(k_i) + r_i * f(K(k_topo), E(k_topo), pi) where k_topo is a topology-specific modulus shared by all three integrals within each topology. The consistency of k within each topology is the critical gate.",
+    "formula": "C_i = n_i * zeta(m) + (p/q) * K(k)^a * E(k)^b * pi^c for topology-specific k",
+    "input_values": [
+        "laporta_C81a_v0",
+        "laporta_C81b_v0",
+        "laporta_C81c_v0",
+        "laporta_C83a_v0",
+        "laporta_C83b_v0",
+        "laporta_C83c_v0",
+        "geom_pi_v0",
+        "geom_zeta3_v0",
+        "geom_zeta5_v0"
+    ],
+    "output_values": [
+        "result_k81_consistent_v0",
+        "result_k83_consistent_v0",
+        "result_pslq_found_count_v0",
+        "result_constants_reduced_to_v0"
+    ],
+    "derivation_functions": [
+        "laporta_modulus_extraction_v0",
+        "laporta_pslq_elliptic_v0",
+        "laporta_closed_form_verify_v0"
+    ]
+}
