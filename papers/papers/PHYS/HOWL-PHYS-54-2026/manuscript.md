@@ -98,6 +98,8 @@ Both are needed. PCTRM-1 grounds the model in structural primitives. PHYS-54 mak
 
 ### 3.1 The substrate commitments
 
+![Fig. 6: Coherence Tax — Higgs coupling drains per-tick budget via pattern maintenance. Photon (no tax) moves 1 cell/tick at c; electron (95% tax) moves 1 cell per 20 ticks at 0.05c.](./figures/phys54_06_coherence_tax.png)
+
 PCTRM asserts that the universe operates on a discrete substrate at the Planck scale. Space consists of Planck-sized cells. Time advances in Planck ticks. State updates occur at each tick. Between ticks, nothing happens.
 
 The seven axioms (Table S1) specify:
@@ -148,6 +150,8 @@ At each Planck tick, for each soliton in the universe (Table S5):
 
 ### 3.4 The soliton hierarchy
 
+![Fig. 1: The Soliton Hierarchy — 45 orders of magnitude span from quarks to observable universe. Six PCTRM test levels marked in gold.](./figures/phys54_01_hierarchy_levels.png)
+
 The universe is organized into a nested hierarchy (Table S4). Each level has a parent (the level above) and children (the levels below). Each level has its own implementation of the shared interface:
 
 - Level 12: observable universe (CMB is inner boundary and substrate from which Level 0 children emerge)
@@ -181,6 +185,8 @@ PCTRM specifies seven primary channel types (Table S3):
 Each channel has a specific throughput (remainder exchanged per tick), a specific direction in the soliton's frame, and specific activation conditions. The total vector remainder at each tick is the sum across all active channels.
 
 ### 3.6 The direction-conditional topology
+
+![Fig. 3: Direction-Conditional Full-Mesh vs Standard Lattice — full-mesh removes the staircase artifact and eliminates preferred axes, preserving isotropy at the substrate level.](./figures/phys54_03_topology_comparison.png)
 
 Space in PCTRM has a "nearest-neighbor full mesh" topology. Each cell is adjacent to another cell at exactly 1 Planck-distance in any direction. Direction is continuous (a unit vector in 3D). Position is discrete (integer cell indices). Adjacency is direction-conditional: which cell is "next" depends on which direction you are traveling.
 
@@ -221,6 +227,8 @@ The analogy: thermodynamics and statistical mechanics. Thermodynamics is the eff
 PCTRM aspires to the same relationship with SM. SM is the effective theory at accessible scales. PCTRM provides the substrate at Planck scales. Both are used for their appropriate computations. They do not interfere.
 
 ### 4.3 Isomorphic: same observables from different primitives
+
+![Fig. 2: Parallel Isomorphism — SM and PCTRM primitives produce identical observables. PCTRM fails if any observable disagrees with CODATA at measurement precision.](./figures/phys54_02_isomorphism_map.png)
 
 The isomorphism map (Table S23) explicitly connects PCTRM primitives to SM observables:
 
@@ -290,6 +298,8 @@ The claim is not that PCTRM is new physics. The claim is that PCTRM is the subst
 **What failing means**: The Higgs-coupling-as-coherence-tax mechanism is insufficient to reproduce observed particle masses. The substrate picture needs revision at its most fundamental level, or mass generation requires a different mechanism than PCTRM specifies.
 
 ### 5.2 Level 2 — Atomic
+
+![Fig. 5: Orbital Closure Produces Atomic Shells — stable orbits exist only where remainder accumulated per orbit equals integer multiple of modulus. Shell quantization emerges from integer closure.](./figures/phys54_05_shell_closure.png)
 
 **Scope**: Hydrogen spectrum, atomic orbital shells, spectroscopic transitions, fine structure.
 
@@ -366,6 +376,8 @@ The claim is not that PCTRM is new physics. The claim is that PCTRM is the subst
 
 ### 5.5 Level 5 — Macroscopic and gravitational
 
+![Fig. 4: 1/r² Gravity from Spherical Channel Spreading — the Newtonian law emerges from channels distributed over sphere surface area. Measurements from Earth surface to Moon match predicted curve.](./figures/phys54_04_gravity_channel_spread.png)
+
 **Scope**: Classical mechanics, orbits, general relativity tests, gravitational waves.
 
 **Pre-registered predictions** (Table S10):
@@ -392,6 +404,8 @@ The claim is not that PCTRM is new physics. The claim is that PCTRM is the subst
 **What failing means**: Either the substrate cannot produce 1/r² gravity from channel counting, or the higher-order corrections (GR) cannot emerge from the mechanism. The substrate picture is incomplete for gravitational physics.
 
 ### 5.6 Level 6 — Cosmological
+
+![Fig. 8: The Universal Soliton — CMB and accelerating expansion are the same surface read from two positions inside. Child solitons emerge from the vacuum; Ω_Λ = (251-22π)/264 is the outer boundary reading.](./figures/phys54_08_universal_double_boundary.png)
 
 **Scope**: CMB structure, cosmological parameters, large-scale dynamics, primordial abundances.
 
@@ -538,6 +552,8 @@ None of these are hidden. Each is priority-ranked. Each either advances as the p
 ---
 
 ## VIII. KILL SWITCHES AND FAILURE MODES
+
+![Fig. 7: The Falsification Program — sixteen kill switches distributed across six hierarchy levels, plotted at their required precisions. Each fires independently. Critical switches (gold) must hold for framework consistency.](./figures/phys54_07_kill_switch_map.png)
 
 ### 8.1 Sixteen specific kill switches
 
