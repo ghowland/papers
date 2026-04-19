@@ -1,6 +1,3 @@
-======================================================================
-VALUES: 3646 nodes
-======================================================================
   astro_au_v0                                             149600000000
   astro_gps_orbit_radius_v0                               26556000
   astro_gps_satellite_velocity_v0                         3874
@@ -142,47 +139,6 @@ VALUES: 3646 nodes
   coupling_z_width_v0                                     24952/10
   coupling_z_width_v0                                     24952/10
   energy_deuteron_binding_v0                              111228307/50000000
-  eng_arf_wavelength_v0                                   0.000000193
-  eng_awg_0_diameter_v0                                   0.008251
-  eng_awg_10_diameter_v0                                  0.002588
-  eng_awg_12_diameter_v0                                  0.002053
-  eng_awg_14_diameter_v0                                  0.001628
-  eng_awg_18_diameter_v0                                  0.001024
-  eng_awg_22_diameter_v0                                  0.000644
-  eng_awg_24_diameter_v0                                  0.000511
-  eng_awg_30_diameter_v0                                  0.000255
-  eng_awg_36_diameter_v0                                  0.000127
-  eng_awg_4_0_diameter_v0                                 0.011684
-  eng_awg_4_diameter_v0                                   0.005189
-  eng_awg_8_diameter_v0                                   0.003264
-  eng_copper_resistivity_v0                               0.000000017241
-  eng_euv_wavelength_v0                                   0.0000000135
-  eng_hbar_c_mev_fm_v0                                    197.3269804
-  eng_just_intonation_major_sixth_v0                      5/3
-  eng_just_intonation_major_third_v0                      5/4
-  eng_just_intonation_minor_seventh_v0                    9/5
-  eng_just_intonation_minor_third_v0                      6/5
-  eng_just_intonation_octave_v0                           2/1
-  eng_just_intonation_perfect_fifth_v0                    3/2
-  eng_just_intonation_perfect_fourth_v0                   4/3
-  eng_rf_5g_120khz_freq_v0                                120000.0
-  eng_rf_5g_15khz_freq_v0                                 15000.0
-  eng_rf_5g_30khz_freq_v0                                 30000.0
-  eng_rf_5g_60khz_freq_v0                                 60000.0
-  eng_rf_gps_base_freq_v0                                 10230000.0
-  eng_rf_gps_l1_freq_v0                                   1575420000.0
-  eng_rf_gps_l2_freq_v0                                   1227600000.0
-  eng_sample_rate_CD_v0                                   44100/1
-  eng_sample_rate_high_res_v0                             96000/1
-  eng_sample_rate_studio_v0                               48000/1
-  eng_sample_rate_ultra_v0                                192000/1
-  eng_silicon_lattice_v0                                  5.431020511e-10
-  eng_speed_of_sound_air_v0                               343
-  eng_stefan_boltzmann_v0                                 0.00000005670374419
-  eng_vacuum_permittivity_v0                              0.0000000000088541878128
-  eng_wafer_300mm_diameter_v0                             0.3
-  eng_wgs84_inverse_flattening_v0                         298257223563/1000000000
-  eng_wgs84_semimajor_v0                                  6378137/1
   ew_alpha_mz_measured_v0                                 127.952
   ew_delta_alpha_had_v0                                   0.02766
   ew_delta_alpha_lep_v0                                   0.03150
@@ -341,81 +297,6 @@ VALUES: 3646 nodes
   metric_l1_quadrant_integral_v0                          2/1
   metric_l2_circumference_unit_circle_v0                  6.283185307179586
   metric_lp_circumference_p_inf_v0                        5.656854249492381
-  obs_carina_core_radius_v0                               200
-  obs_carina_half_light_radius_v0                         250
-  obs_carina_mass_dynamical_v0                            32000000
-  obs_carina_mass_visible_v0                              380000
-  obs_carina_velocity_dispersion_v0                       6.6
-  obs_disc_blu_ray_diameter_v0                            0.12
-  obs_disc_blu_ray_na_v0                                  0.85
-  obs_disc_blu_ray_track_pitch_v0                         0.00000032
-  obs_disc_blu_ray_wavelength_v0                          0.000000405
-  obs_disc_cd_diameter_v0                                 0.12
-  obs_disc_cd_na_v0                                       0.45
-  obs_disc_cd_track_pitch_v0                              0.0000016
-  obs_disc_cd_wavelength_v0                               0.00000078
-  obs_disc_dvd_diameter_v0                                0.12
-  obs_disc_dvd_na_v0                                      0.6
-  obs_disc_dvd_track_pitch_v0                             0.00000074
-  obs_disc_dvd_wavelength_v0                              0.00000065
-  obs_draco_core_radius_v0                                150
-  obs_draco_half_light_radius_v0                          221
-  obs_draco_mass_dynamical_v0                             54000000
-  obs_draco_mass_visible_v0                               290000
-  obs_draco_velocity_dispersion_v0                        9.1
-  obs_fiber_smf_28_cutoff_v0                              0.00000126
-  obs_fiber_smf_28_loss_1550_v0                           0.18
-  obs_fiber_smf_28_mfd_1310_v0                            0.0000092
-  obs_fiber_smf_28_mfd_1550_v0                            0.0000104
-  obs_fiber_smf_28_na_v0                                  0.14
-  obs_fornax_core_radius_v0                               400
-  obs_fornax_half_light_radius_v0                         710
-  obs_fornax_mass_dynamical_v0                            160000000
-  obs_fornax_mass_visible_v0                              20000000
-  obs_fornax_velocity_dispersion_v0                       11.7
-  obs_leoi_core_radius_v0                                 200
-  obs_leoi_half_light_radius_v0                           251
-  obs_leoi_mass_dynamical_v0                              63000000
-  obs_leoi_mass_visible_v0                                5500000
-  obs_leoi_velocity_dispersion_v0                         9.2
-  obs_leoii_core_radius_v0                                150
-  obs_leoii_half_light_radius_v0                          176
-  obs_leoii_mass_dynamical_v0                             23000000
-  obs_leoii_mass_visible_v0                               740000
-  obs_leoii_velocity_dispersion_v0                        6.6
-  obs_reticulumii_half_light_radius_v0                    32
-  obs_reticulumii_mass_dynamical_v0                       1000000
-  obs_reticulumii_mass_visible_v0                         2600
-  obs_reticulumii_velocity_dispersion_v0                  3.3
-  obs_sculptor_core_radius_v0                             200
-  obs_sculptor_half_light_radius_v0                       283
-  obs_sculptor_mass_dynamical_v0                          70000000
-  obs_sculptor_mass_visible_v0                            2300000
-  obs_sculptor_velocity_dispersion_v0                     9.2
-  obs_segue1_half_light_radius_v0                         29
-  obs_segue1_mass_dynamical_v0                            1300000
-  obs_segue1_mass_visible_v0                              340
-  obs_segue1_velocity_dispersion_v0                       3.9
-  obs_sextans_core_radius_v0                              400
-  obs_sextans_half_light_radius_v0                        695
-  obs_sextans_mass_dynamical_v0                           130000000
-  obs_sextans_mass_visible_v0                             440000
-  obs_sextans_velocity_dispersion_v0                      7.9
-  obs_speaker_10inch_deff_v0                              0.254
-  obs_speaker_12inch_deff_v0                              0.305
-  obs_speaker_1inch_deff_v0                               0.025
-  obs_speaker_5inch_deff_v0                               0.127
-  obs_speaker_6inch_deff_v0                               0.152
-  obs_speaker_8inch_deff_v0                               0.203
-  obs_tucanaii_half_light_radius_v0                       165
-  obs_tucanaii_mass_dynamical_v0                          36000000
-  obs_tucanaii_mass_visible_v0                            3000
-  obs_tucanaii_velocity_dispersion_v0                     8.6
-  obs_ursaminor_core_radius_v0                            150
-  obs_ursaminor_half_light_radius_v0                      181
-  obs_ursaminor_mass_dynamical_v0                         48000000
-  obs_ursaminor_mass_visible_v0                           290000
-  obs_ursaminor_velocity_dispersion_v0                    9.5
   proton_tau_hyperk_sensitivity_v0                        100000000000000000000000000...
   proton_tau_superk_bound_v0                              160000000000000000000000000...
   pslq_max_coefficient_v0                                 100000
@@ -581,4 +462,3 @@ VALUES: 3646 nodes
   test_seconds_per_day_v0                                 86400/1
   test_ti_nuclear_binding_fraction_v0                     94/10000
   test_us_per_s_v0                                        1000000/1
-
