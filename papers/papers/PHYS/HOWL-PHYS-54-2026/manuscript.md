@@ -1,4 +1,4 @@
-# Planck Cell-Tick Remainder Momentum model
+# Planck Cell-Tick Remainder Momentum Model
 ## A Parallel Discrete Substrate Model Aligned with the Standard Model
 
 **Registry:** HOWL-PHYS-54-2026

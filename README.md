@@ -150,6 +150,7 @@
 | **[[@HOWL-PHYS-51-2026]](papers/papers/PHYS/HOWL-PHYS-51-2026/manuscript.md)** | **You Are Here III** | The α_EM Derivation Tree and the Operationalization of the Laporta Constants. |
 | **[[@HOWL-PHYS-52-2026]](papers/papers/PHYS/HOWL-PHYS-52-2026/manuscript.md)** | **The Remainder Program** | Inertial Decomposition at Seven Hierarchy Levels. |
 | **[[@HOWL-PHYS-53-2026]](papers/papers/PHYS/HOWL-PHYS-53-2026/manuscript.md)** | **Modulus and Remainder at Every Scale** | The Giga Remainder Test. |
+| **[[@HOWL-PHYS-54-2026]](papers/papers/PHYS/HOWL-PHYS-54-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum Model** | A Parallel Discrete Substrate Model Aligned with the Standard Model. |
 
 ---
 
