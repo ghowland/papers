@@ -148,6 +148,7 @@
 | **[[@HOWL-PHYS-49-2026]](papers/papers/PHYS/HOWL-PHYS-49-2026/manuscript.md)** | **Spherical Modulus, Toroidal Remainder** | The Complete Decomposition and the Resolution of a Parked Framework. |
 | **[[@HOWL-PHYS-50-2026]](papers/papers/PHYS/HOWL-PHYS-50-2026/manuscript.md)** | **Koide K = R₃/R₂ and the Uniquely Rational Transition** | The Dimensional Ratio. |
 | **[[@HOWL-PHYS-51-2026]](papers/papers/PHYS/HOWL-PHYS-51-2026/manuscript.md)** | **You Are Here III** | The α_EM Derivation Tree and the Operationalization of the Laporta Constants. |
+| **[[@HOWL-PHYS-52-2026]](papers/papers/PHYS/HOWL-PHYS-52-2026/manuscript.md)** | **The Remainder Program** | Inertial Decomposition at Seven Hierarchy Levels. |
 
 ---
 
