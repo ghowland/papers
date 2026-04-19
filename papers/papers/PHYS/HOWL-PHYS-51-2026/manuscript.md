@@ -350,3 +350,225 @@ This is where we are.
 
 ---
 
+### Table A.1: The Input Reduction — PHYS-24 → PHYS-40 → PHYS-51
+
+| Parameter | PHYS-24 | PHYS-40 | PHYS-51 | How derived in PHYS-51 | Miss |
+|---|---|---|---|---|---|
+| α_EM | Input | Input | **Input (root)** | — | — |
+| sin²θ_W | Input | Input | **Derived** | Two-loop unification Euler + down-run | 12 ppm |
+| α_s | Input | Input | **Derived** | Two-loop unification Euler + down-run | 0.33% |
+| m_e | Input | Input | Input | No derivation path | — |
+| m_μ | Input | Input | Input | No derivation path | — |
+| m_τ | Input | Input | **Derived** | Koide K = R₃/R₂ = 2/3 from m_e, m_μ | 61 ppm |
+| G_F | Input | Input | Input | In principle derivable from M_W, sin²θ_W | — |
+| M_Z | Input | Input | Input (partially derived) | EW + Δr gives 1.2% miss — needs scheme fix | — |
+| m_H | Input | Input | Input | No derivation path | — |
+| CKM angles | Input | Input | Input | No derivation path | — |
+| Mass ratios | Input | Input | Input | Used in specific chains | — |
+| Hadronic params | Input | Input | Input | For a_μ chain | — |
+| **Total inputs** | **~15** | **13** | **~10** | **−3 derived** | |
+| **Total outputs** | **35** | **53** | **60+** | **+7 new** | |
+| **Surplus** | **+20** | **+40** | **+50** | **+10** | |
+
+### Table A.2: The α_EM Derivation Tree — All 10 Chains
+
+| # | Output | Predicted | Measured | Miss | Chain | Key constants | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | a_e | 0.00115965218084 | 0.00115965218059 | 0.22 ppb | QED A₁-A₅ | π, ζ(3), ζ(5), ln 2, Li₄, A₄ | **PASS** |
+| 2 | sin²θ_W | 0.231223 | 0.231220 | 12 ppm | Two-loop unification | b'_i, b_ij, db_ij, k₁ | **PASS** |
+| 3 | a_μ | 0.00116591741 | 0.00116592059 | 2.7 ppm | SM prediction | QED published, hadronic, EW | **PASS** |
+| 4 | m_τ | 1776.97 MeV | 1776.86 MeV | 61 ppm | Koide R₃/R₂ | K = 2/3, m_e, m_μ | **PASS** |
+| 5 | α_s | 0.11838 | 0.11800 | 0.33% | Two-loop unification | Same as sin²θ_W | **PASS** |
+| 6 | Ω_DM | 0.2618 | 0.2607 | 0.42% | β/3 = π/12 | β = π/4 | **PASS** |
+| 7 | Ω_b | 0.04924 | 0.0490 | 0.49% | 13/264 | Ω_DM, (22/13)π | **PASS** |
+| 8 | M_Z | 90,102 MeV | 91,188 MeV | 1.19% | EW + Δr | G_F, sin²θ_W, Δr | FAIL |
+| 9 | M_W | 79,002 MeV | 80,369 MeV | 1.70% | M_Z cos θ_W | Predicted M_Z, sin²θ_W | FAIL |
+| 10 | m_p/Λ_QCD | 10.68 | 4.71 | 127% | C = 6β | α_s, M_Z, b₃(nf=5) | FAIL |
+
+### Table A.3: The Precision Ladder
+
+| Tier | Miss range | Count | Quantities |
+|---|---|---|---|
+| Ultra-precision | < 1 ppm | 1 | a_e (0.22 ppb) |
+| High precision | 1-100 ppm | 3 | sin²θ_W (12 ppm), a_μ (2.7 ppm), m_τ (61 ppm) |
+| Sub-percent | 0.01-1% | 3 | α_s (0.33%), Ω_DM (0.42%), Ω_b (0.49%) |
+| Percent | 1-5% | 2 | M_Z (1.19%), M_W (1.70%) |
+| Broken | >10% | 1 | m_p/Λ_QCD (127%) |
+| **Total sub-percent** | | **7** | |
+| **Total sub-0.01%** | | **4** | |
+
+### Table A.4: The Three Failures — Diagnosis and Fix Path
+
+| Chain | Predicted | Measured | Miss | Root cause | Fix needed | Expected miss after fix |
+|---|---|---|---|---|---|---|
+| M_Z | 90,102 MeV | 91,188 MeV | 1.19% | MS-bar vs on-shell sin²θ_W mismatch; missing higher-order EW | On-shell sin²θ_W or full two-loop EW | ~0.1% |
+| M_W | 79,002 MeV | 80,369 MeV | 1.70% | Inherited from M_Z; tree-level M_W formula | Fix M_Z first; add ρ parameter | ~0.1% |
+| m_p/Λ_QCD | 10.68 | 4.71 (C = 6β) | 127% | One-loop Λ formula at nf=5 without threshold matching | Full QCD running nf=6→5→4→3 with matching at quark thresholds | ~10% (lattice-limited) |
+
+### Table A.5: Laporta Operationalization — Before and After Session 8
+
+| Property | Before Session 8 | After Session 8 |
+|---|---|---|
+| Status in framework | Not present | **Operational** |
+| A₄ value | −1.912 (numerical) | −1.912 (operational in a_e chain) |
+| β classification | Unknown | **β⁰** (24/24 PSLQ null vs π through π⁶) |
+| Number-theoretic status | Unknown | **Not number-theoretic** (24/24 null vs ζ, Li, MZV) |
+| Mutual independence | Unknown | **6 independent** (11/11 cross-relation null) |
+| Geometric interpretation | None | **Toroidal-geometric β⁰** |
+| Topology 81 modulus | Unknown | **k₈₁ = 0.999994** (167 ppb consistency) |
+| Topology 83 modulus | Unknown | **k₈₃ = 0.99713** (25 ppm consistency) |
+| ζ subtraction | Not attempted | **6/6 improved 7-266×** |
+| Post-subtraction forms | Unknown | K×π, K³, K, K²/π, E×π, K³ |
+| Control ratio (rem/mod) | Not computed | **2.05** (remainder closer to elliptic) |
+| Contribution to a_e | Not quantified | **−5.57 × 10⁻¹¹** (43× Harvard unc) |
+| α shift | Not quantified | **48 ppb** |
+| Muon sensitivity ratio | Not computed | **1.000 exactly** (mass-independent) |
+| Toroidal scaling | Not computed | **(m_μ/m_e)² = 42,753** → 2304% for muon |
+| Crossover mass | Not computed | **43 m_e ≈ 22 MeV** |
+| Impact on a_e precision | Not assessed | Without A₄: ~48 ppb miss. With A₄: **0.22 ppb** |
+
+### Table A.6: The Three-Layer Decomposition
+
+| Coefficient | Modulus (spherical β²+) | Layer 1 (number-theoretic β⁰) | Layer 2 (toroidal β⁰) | Net | Cancellation |
+|---|---|---|---|---|---|
+| A₁ = +0.500 | 0 | +0.500 (rational ½) | 0 | +0.500 | 0% |
+| A₂ = −0.328 | −2.598 (π² terms) | +2.270 (197/144 + ¾ζ(3)) | 0 | −0.328 | 90.4% |
+| A₃ = +1.181 | −21.833 (π² + π⁴ terms) | +23.015 (rational + ζ + Li₄) | 0 | +1.181 | 99.5% |
+| A₄ = −1.912 | unknown (need c₁-c₆) | unknown (ζ pieces) | present (Laporta) | −1.912 | ? |
+
+Layer 2 is zero through three loops and nonzero starting at four loops. The cancellation between modulus and layer 1 tightens by ~10 pp per loop. At loop 4, layer 2 (Laporta) escapes the cancellation.
+
+### Table A.7: Topology-Specific Moduli — The Consistency Check
+
+| Topology | Integral | ζ subtracted | Form | p/q | k extracted | Deviation from mean |
+|---|---|---|---|---|---|---|
+| **81** | C81a + 2ζ(3) | K×π | 27/5 | 0.9999936 | −1.67 × 10⁻⁶ |
+| | C81b − 5ζ(5) | K³ | −1/25 | 0.9999938 | +2.9 × 10⁻⁸ |
+| | C81c + 2ζ(5) | K | 6/23 | 0.9999939 | +1.37 × 10⁻⁶ |
+| | **Mean k₈₁** | | | **0.999993780** | **Spread: 167 ppb** |
+| **83** | C83a − 3ζ(3) | K²/π | −1/6 | 0.9971057 | −2.47 × 10⁻⁴ |
+| | C83b + 4ζ(3) | E×π | 29/23 | 0.9971460 | +1.57 × 10⁻⁴ |
+| | C83c − 2ζ(5) | K³ | −1/25 | 0.9971393 | +9.0 × 10⁻⁵ |
+| | **Mean k₈₃** | | | **0.997130** | **Spread: 25 ppm** |
+
+Three independent processing chains per topology converge to the same modulus. The strongest non-PSLQ evidence for elliptic structure.
+
+### Table A.8: The ζ Subtraction Results
+
+| Integral | Raw miss (%) | Post-sub form | Post-sub miss (%) | Improvement | What removed |
+|---|---|---|---|---|---|
+| C81a | 0.01771 | K×π | 0.00121 | 14.6× | +2ζ(3) |
+| C81b | 0.00311 | K³ | 0.0000117 | 266× | −5ζ(5) |
+| C81c | 0.00156 | K | 0.0000208 | 75× | +2ζ(5) |
+| C83a | 0.00133 | K²/π | 0.000200 | 6.6× | −3ζ(3) |
+| C83b | 0.00267 | E×π | 0.0000163 | 164× | +4ζ(3) |
+| C83c | 0.000826 | K³ | 0.0000226 | 37× | −2ζ(5) |
+| **All 6** | | | | **Average: 94×** | **6/6 improved >50%** |
+
+### Table A.9: The MATH Framework — Sessions 7-8
+
+| Paper | Title | Central result | Impact on PHYS-51 |
+|---|---|---|---|
+| MATH-7 | α-power scaling | Power law structure in physical constants | Foundation for scaling analysis |
+| MATH-8 | Q335 number system | Exact Fraction arithmetic for transcendentals | Precision infrastructure |
+| MATH-9 | One-loop degeneracy | Algebraic proof of generation democracy | Structural constraint on unification |
+| MATH-10 | Derivation-as-proof | Framework for computational proofs | Methodology |
+| **MATH-11** | **β = π/4 as L1/L2** | **Spherical metric conversion; A₂ decomposition** | **β framework; 90.4% cancellation** |
+| **MATH-12** | **β⁰ has two geometries** | **Toroidal K(k)/π extension; one family parametrized by k** | **Completes the geometric language** |
+
+### Table A.10: The Koide Update — Eight Equivalent Formulations
+
+| # | Formulation | Expression | Value | Source |
+|---|---|---|---|---|
+| 1 | Koide ratio | K = Σm/(Σ√m)² | 2/3 | PHYS-8 |
+| 2 | Amplitude squared | a² = 2(3K − 1) | 2 | PHYS-8 |
+| 3 | Coefficient of variation | CV(√m) = σ/μ | 1 | PHYS-8 |
+| 4 | Variance-mean relation | Var(√m) = mean(√m)² | equality | PHYS-8 |
+| 5 | Midpoint | K = (K_min + K_max)/2 | 2/3 | PHYS-8 |
+| 6 | Critical amplitude | a = √2 | √2 | PHYS-8 |
+| 7 | Equipartition | σ² = μ² | equality | PHYS-8 |
+| **8** | **Dimensional ratio** | **R₃/R₂ = (π/6)/(π/4)** | **2/3** | **PHYS-50** |
+
+Miss from 2/3: 9.2 ppm (within tau mass uncertainty of 67 ppm). Four-loop correction: +0.054 ppm toward 2/3. Boson K ≈ 1/3 (a ≈ 0, equal-mass limit). Elliptic Koide at k = 0.984: ⟨cn²⟩ = 0.31 ≠ 0.50 — Koide is circular (k = 0), not toroidal.
+
+### Table A.11: The GR and Spacetime Papers (Referenced)
+
+| Paper | Title | Key result | Domain |
+|---|---|---|---|
+| PHYS-41 | Time as reading depth | D/K separation: clock time ≠ reading depth | Spacetime |
+| PHYS-42 | GR reading depth | 18 GR tests verified as D-readings | GR |
+| PHYS-43 | Clock/reading decomposition | Operational distinction K vs D | Spacetime |
+| PHYS-44 | Spacetime separation | GPS: 86% D + 14% K = 38.6 μs/day | GR |
+| PHYS-45 | Confinement boundary | Λ_QCD as soliton boundary | QCD/soliton |
+
+### Table A.12: Session 8 Experiment Catalog
+
+| # | Experiment | Run | Derivations | Outputs | PASS | FAIL | INFO | Domain |
+|---|---|---|---|---|---|---|---|---|
+| 1 | experiment_math11_beta_metric_v0 | run002 | 7 | 57 | 14 | 0 | 6 | MATH-11 |
+| 2 | experiment_beta_content_a3_v0 | run001 | 1 | 23 | 8 | 0 | 2 | QED |
+| 3 | experiment_laporta_pslq_v0 | run002 | 3 | 36 | 19 | 0 | 0 | Laporta |
+| 4 | experiment_laporta_a4_decomposition_v0 | run001 | 2 | 27 | 5 | 1 | 1 | Laporta |
+| 5 | experiment_laporta_toroidal_v0 | run001 | 3 | 76 | 6 | 0 | 0 | Laporta |
+| 6 | experiment_laporta_muon_electron_v0 | run001 | 1 | 21 | 7 | 1 | 0 | Laporta |
+| 7 | experiment_remainder_elliptic_v0 | run001 | 3 | 76 | 6 | 0 | 2 | Mod/Rem |
+| 8 | experiment_laporta_attack3_v0 | run002 | 3 | 49 | 8 | 0 | 0 | Laporta |
+| 9 | experiment_koide_r3r2_v0 | run001 | 3 | 56 | 6 | 0 | 2 | Koide |
+| 10 | experiment_alpha_em_killing_spree_v0 | run001 | 1 | 31 | 5 | 5 | 0 | All |
+| 11 | experiment_alpha_em_killing_spree_round_two_v0 | run001 | 1 | 29 | 7 | 3 | 0 | All |
+| **Total Session 8** | | | **28** | **481** | **91** | **10** | **13** | |
+
+### Table A.13: The Complete Value Catalog by Domain
+
+| Domain | Values derived | Precision range | Key chains |
+|---|---|---|---|
+| QED | a_e, a_μ, A₂ decomposition, A₃ decomposition, A₄ contribution, α shift | 0.22 ppb — 2.7 ppm | QED series A₁-A₅ with Laporta |
+| Gauge unification | sin²θ_W, α_s, M_GUT, α_GUT, gap ratio match | 12 ppm — 0.33% | Two-loop Euler + down-run with CD |
+| Lepton masses | m_τ, Koide K, a², R₃/R₂ match | 9.2 ppm — 61 ppm | Koide quadratic |
+| Electroweak | M_Z, M_W (partial) | 1.2% — 1.7% | EW tree + Δr |
+| Confinement | m_p/Λ_QCD (partial), lattice factor | broken (127%) | Needs full QCD running |
+| Cosmology | Ω_DM, Ω_b, DM/baryon ratio | 0.42% — 0.49% | β/3, 13/264 |
+| Laporta | 6 moduli, consistency, ζ subtraction, control ratio, scaling | 167 ppb — 25 ppm | Subtraction + consistency check |
+| GR/Spacetime | GPS splitting, 18 GR tests, D/K separation | Sub-percent | Referenced from prior papers |
+
+### Table A.14: The Irreducible Inputs
+
+| Input | Value | Why irreducible | Could it be derived? |
+|---|---|---|---|
+| α_EM | 1/137.036 | Root of the derivation tree | Unknown — deepest input |
+| m_e | 0.511 MeV | Yukawa coupling y_e | Requires Yukawa derivation — no geometric path known |
+| m_μ | 105.658 MeV | Yukawa coupling y_μ | Same — Koide gives m_τ FROM m_μ, not m_μ itself |
+| m_H | 125,200 MeV | Quartic coupling λ | Requires Higgs potential derivation — no path known |
+| G_F | 1.166 × 10⁻⁵ GeV⁻² | Fermi constant | In principle: G_F = πα/(√2 M_W² sin²θ_W). Circular with M_Z chain. |
+| CKM angles | θ₁₂, θ₁₃, θ₂₃ | Mixing parameters | No geometric derivation known |
+| Hadronic params | a_μ^had, etc. | Non-perturbative QCD | Would require lattice QCD derivation chain |
+
+The first four (α_EM, m_e, m_μ, m_H) are the irreducible core. The rest are auxiliary inputs for specific chains.
+
+### Table A.15: What Changed — PHYS-40 vs PHYS-51
+
+| Category | PHYS-40 (Session 7) | PHYS-51 (Session 8) | Change |
+|---|---|---|---|
+| **Inputs** | 13 measured | ~10 measured | −3 derived |
+| **Outputs** | 53 | 60+ | +7 new |
+| **Surplus** | +40 | +50 | +10 |
+| **Math papers** | MATH-1 through MATH-10 | MATH-1 through MATH-12 | +2 (β framework + toroidal) |
+| **Physics papers** | PHYS-1 through PHYS-40 | PHYS-1 through PHYS-51 | +11 |
+| **Experiments** | ~15 | ~26 | +11 |
+| **Experiment outputs** | ~500 | ~1000+ | +500 |
+| **Laporta constants** | Not in framework | **Operational** (classified, characterized, contributing) | New capability |
+| **β framework** | β = π/4 (spherical only) | β + K(k)/π (spherical + toroidal) | Extended |
+| **Modulus/remainder** | Parked (remainder opaque) | **Resolved** (three layers identified) | Un-parked |
+| **Koide** | K = 2/3 (seven formulations) | K = R₃/R₂ = 2/3 (**eight** formulations) | Deepened |
+| **sin²θ_W** | Input | **Derived at 12 ppm** | Freed |
+| **α_s** | Input | **Derived at 0.33%** | Freed |
+| **m_τ** | Input | **Derived at 61 ppm** | Freed |
+| **a_e precision** | ~ppb (without Laporta detail) | **0.22 ppb** (with A₄ operational) | Sharpened |
+| **GR framework** | Tests verified | D/K split + spacetime separation | Deepened |
+| **Best single prediction** | H 1S-2S at 0.44 ppb | a_e at 0.22 ppb | Improved |
+| **Geometric constants used** | β, gap ratio 38/27 | β, K(k)/π, R₃/R₂, C = 6β, 13/264 | Expanded |
+| **Outputs per input** | 53/13 = 4.1 | 60/10 = 6.0 | More efficient |
+| **Irreducible core** | Not enumerated | **4: α_EM, m_e, m_μ, m_H** | Identified |
+
+---
+
