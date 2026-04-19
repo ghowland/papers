@@ -597,3 +597,115 @@ The dichotomy is amplitude (a), not manifold (k). Both sectors are k = 0 (circul
 
 ---
 
+## Addendum: Errata and Correction to the Uniqueness Claim
+
+### §XVI. The Uniqueness Claim Is Wrong
+
+Sections I, II, IV, and X state that R₃/R₂ = 2/3 is the only simple rational in the consecutive filling fraction ratio sequence R_{n+1}/R_n. Tables A.1, A.2, and A.3 support this claim with specific exact expressions. Figure 1 highlights R₃/R₂ as "THE ONLY SIMPLE FRACTION." Figure 4 shows "π survives" for R₅/R₄.
+
+This is wrong. R₃/R₂ is not unique. The correct pattern is: every even-to-odd transition R_{2k+1}/R_{2k} is rational.
+
+### §XVI-A. The Correct Sequence
+
+The general formula for consecutive ratios:
+
+R_{n+1}/R_n = (√π / 2) · Γ(n/2 + 1) / Γ(n/2 + 3/2)
+
+Evaluating for each transition:
+
+| Transition | Exact form | Decimal | Rational? |
+|---|---|---|---|
+| 1D → 2D | π/4 | 0.78540 | No |
+| **2D → 3D** | **2/3** | **0.66667** | **Yes** |
+| 3D → 4D | 3π/16 | 0.58905 | No |
+| **4D → 5D** | **8/15** | **0.53333** | **Yes** |
+| 5D → 6D | 5π/32 | 0.49087 | No |
+| **6D → 7D** | **16/35** | **0.45714** | **Yes** |
+| 7D → 8D | 35π/256 | 0.42932 | No |
+| **8D → 9D** | **128/315** | **0.40635** | **Yes** |
+| 9D → 10D | 63π/512 | 0.38651 | No |
+
+Rationality alternates. At even n (transitions from an even-dimensional ball to an odd-dimensional ball), the Γ-function's √π factor cancels the √π from the ratio of π powers AND no additional π is introduced, because both R_n and R_{n+1} contain the same integer power of π after Γ simplification. At odd n, the cancellation is partial: √π cancels but one factor of π or 1/π remains.
+
+### §XVI-B. Corrections to Specific Claims and Tables
+
+**Table A.1 (R_n exact forms).** R₅ is given as π²/120 and R₇ as π³/630. These are wrong. The correct values are R₅ = π²/60 and R₇ = π³/840. The decimal values in the table are correct; the symbolic forms are not.
+
+Corrected:
+
+| n | R_n exact (original, wrong) | R_n exact (correct) | R_n decimal |
+|---|---|---|---|
+| 5 | 8π²/960 = π²/120 | π²/60 | 0.16449 |
+| 7 | 16π³/10080 = π³/630 | π³/840 | 0.03691 |
+
+The decimals in the original Table A.1 (0.164493, 0.036913) match the correct exact forms, confirming the error is in the symbolic representation only.
+
+**Table A.2 (Consecutive ratios).** The exact expressions for R_{n+1}/R_n at n = 4, 6, 8 are wrong and the "Rational?" column is wrong for those rows. Corrected table:
+
+| Transition | Exact (original) | Exact (correct) | Rational? (correct) |
+|---|---|---|---|
+| 4D → 5D | 8/(5π) | 8/15 | **Yes** |
+| 5D → 6D | 5π²/192 | 5π/32 | No |
+| 6D → 7D | 16/(7π) | 16/35 | **Yes** |
+| 7D → 8D | 7π²/640 | 35π/256 | No |
+| 8D → 9D | 128/(9×16×π) | 128/315 | **Yes** |
+| 9D → 10D | 9π²/2560 | 63π/512 | No |
+
+**Table A.3 (Gamma function mechanism).** The row for n=5 states "π² remains" and the row for n=7 would state the same. The correct statement is that √π cancels at every even-to-odd transition and no additional π is introduced, because R_{2k} has π^k and R_{2k+1} has π^k after Γ simplification (not π^(k+1/2)). The mechanism applies to 4→5, 6→7, 8→9, etc., not only to 2→3.
+
+Corrected row for n=4 (the 4→5 transition):
+
+| Step | n = 4 → 5 (corrected) |
+|---|---|
+| π power in R_n | π² |
+| π power in R_{n+1} after Γ simplification | π² |
+| Γ at n+1 | Γ(7/2) = 15√π/8 |
+| √π from Γ | cancels √π in ratio |
+| Remaining expression | 8/15 |
+| π in result? | **No** (fully cancelled) |
+
+**Figure 1 caption and annotation.** The annotation "THE ONLY SIMPLE FRACTION" is wrong. R₃/R₂ is the first simple fraction in the sequence; it is not the only one. The correct annotation would be "THE FIRST SIMPLE FRACTION" with a note that simple fractions recur at every even-to-odd transition.
+
+**Figure 4.** The "π survives!" annotation for R₅/R₄ is wrong. R₅/R₄ = 8/15, with no π. The mechanism diagram should show n=4 (not n=5) as the example of "π cancels but π remains" — but this example does not exist in the sequence. The correct picture is that π cancels completely at every even n (transitions 2→3, 4→5, 6→7, ...) and remains at every odd n (transitions 1→2, 3→4, 5→6, ...). The dichotomy is odd vs even starting dimension, not "only at 2→3."
+
+### §XVI-C. What This Changes for the Paper's Main Claim
+
+The paper's central argument is that K_lepton = R₃/R₂ = 2/3 at 9.2 ppm, and that this match is structurally meaningful because R₃/R₂ is uniquely positioned as the only rational in the dimensional ratio sequence. With uniqueness removed, the structural argument weakens.
+
+What survives:
+- K_lepton = 0.666660511, within 9.2 ppm of 2/3. Unchanged.
+- a² = 1.99996, within 18.5 ppm of 2. Unchanged.
+- The four-loop radiative correction shifts K toward 2/3 by 0.054 ppm. Unchanged.
+- Boson K ≈ 1/3 explained by a ≈ 0. Unchanged.
+- Elliptic Koide at k = 0.984 does not preserve a² = 2. Unchanged.
+- E(k)/K(k) = 2/3 at k = 0.774. Unchanged.
+- The Γ-function mechanism that produces rational ratios at even-to-odd transitions. The mechanism is correctly identified; its scope was mischaracterized.
+
+What weakens:
+- The claim that R₃/R₂ is structurally unique.
+- The argument that matching a "uniquely rational point" is more constrained than matching an arbitrary 2/3.
+
+What replaces it:
+- R₃/R₂ = 2/3 is the first rational in an infinite sequence of rational transitions R_{2k+1}/R_{2k} = 2/3, 8/15, 16/35, 128/315, ...
+- The 2D→3D transition is the simplest nontrivial rational in the dimensional ladder, which is a weaker but still defensible structural position.
+- The other rationals in the sequence (8/15, 16/35, 128/315, ...) are candidates to search for in other physics ratios. If any match a measured ratio at comparable precision, the pattern "physics uses rational filling-fraction transitions" is extensible. If none match, the 2/3 appearance is isolated and the structural claim reduces further.
+
+### §XVI-D. Added Predictions
+
+**Prediction 9.** If physics uses rational filling-fraction transitions systematically, then 8/15, 16/35, 128/315, or other even-to-odd rationals should appear in some measured ratio at precision comparable to the 9.2 ppm of K_lepton. Candidates to check: mass ratios in other sectors (neutrino sector when measured, quark sector at specific scales), cosmological density ratios beyond Ω_DM and Ω_baryon, coupling constant ratios in extensions beyond the SM. Kill switch: exhaustive search of existing pool ratios against the rational sequence returns no match below 1% miss.
+
+**Prediction 10.** The "first rational" framing predicts that K_lepton = 2/3 because 2D→3D is the simplest nontrivial rational, and that no other Koide-like relation will match 8/15 or 16/35 unless it corresponds to a 4D→5D or 6D→7D embedding in some physics context. Kill switch: a Koide-like relation is found matching 8/15 at high precision in a sector that does not have an obvious 4D→5D interpretation.
+
+### §XVI-E. How The Error Occurred
+
+The experiment code computed R_n and R_{n+1}/R_n numerically. The decimal values in Table A.1 and Table A.2 are correct (π²/60 = 0.164493, and 8/15 = 0.533333). The symbolic exact forms in the tables (π²/120, 8/(5π)) were generated separately and not cross-checked against the decimals. A symbolic-vs-numerical cross-check would have caught the error immediately.
+
+The error propagated into Section II's narrative (claiming π survives at higher transitions), into Figure 4's annotation, and into the uniqueness framing throughout. The main quantitative claim — K_lepton matches 2/3 at 9.2 ppm — was computed correctly from measured masses and is not affected by the symbolic error.
+
+For future experiments: symbolic and numerical outputs should be cross-verified before narrative claims are built on symbolic forms. The experiment_koide_r3r2_v0 pipeline should be extended with a symbolic verification step that reduces R_n and R_{n+1}/R_n to exact form and checks agreement with decimal outputs.
+
+### §XVI-F. Summary of the Correction
+
+The paper's mathematical claim about uniqueness of R₃/R₂ in the dimensional ratio sequence is wrong. The correct pattern is that rationals occur at every even-to-odd transition. The paper's physical claim that K_lepton = R₃/R₂ at 9.2 ppm is unaffected. The structural argument for why this match is meaningful is weakened from "uniqueness" to "first rational in the sequence" and requires either finding other rationals in the sequence appearing in physics ratios, or a functional derivation of the Koide form from the 2D→3D embedding independent of uniqueness.
+
+The errata stand as published. Future papers in the series will work from the corrected sequence. The paper is not withdrawn or edited; this addendum is the correction.
