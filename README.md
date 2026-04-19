@@ -88,6 +88,7 @@
 | **[[@HOWL-MATH-9-2026]](papers/papers/MATH/HOWL-MATH-9-2026/manuscript.md)** | **The One-Loop Degeneracy Theorem** | Why sin²θ_W Cannot Be Predicted from One-Loop Gauge Coupling Unification. |
 | **[[@HOWL-MATH-10-2026]](papers/papers/MATH/HOWL-MATH-10-2026/manuscript.md)** | **The Derivation-as-Proof Principle** | When Surplus Predictions Constitute Evidence. |
 | **[[@HOWL-MATH-11-2026]](papers/papers/MATH/HOWL-MATH-11-2026/manuscript.md)** | **β = π/4** | The Metric Conversion Factor Between L1 and L2 on Circular Geometry. |
+| **[[@HOWL-MATH-12-2026]](papers/papers/MATH/HOWL-MATH-12-2026/manuscript.md)** | **β⁰ Has Two Geometries** | The Toroidal Extension of the L1/L2 Framework. |
 
 ---
 
