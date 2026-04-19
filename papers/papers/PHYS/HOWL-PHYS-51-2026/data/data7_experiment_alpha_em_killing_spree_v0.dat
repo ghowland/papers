@@ -1,0 +1,176 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_alpha_em_killing_spree_v0
+======================================================================
+DATA-6 RUNNER: experiment_alpha_em_killing_spree_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_alpha_em_killing_spree_v0.json
+  Mode:   standard
+  Purpose: program_beta_metric_conversion_v0
+
+Loaded 3646 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 1 derivations
+----------------------------------------------------------------------
+  [OK] alpha_em_killing_spree_v0                               31 outputs
+
+Derivations: 1 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 10 checks
+----------------------------------------------------------------------
+
+  [FAIL] S01: alpha_s from unification                      range           112.193 not in [0, 1]
+  [FAIL] S02: sin2_theta_W from unification                 range           312.91 not in [0, 0.1]
+  [PASS] S03: a_e from QED series                           range           in [0, 0.001]
+  [PASS] S04: a_mu SM prediction                            range           in [0, 0.001]
+  [PASS] S05: m_tau from Koide                              range           in [0, 0.01]
+  [FAIL] S06: M_Z from EW                                   range           3.03148 not in [0, 0.1]
+  [FAIL] S07: M_W from sin2thetaW                           range           0.517388 not in [0, 0.5]
+  [FAIL] S08: m_p/Lambda_QCD lattice factor                 range           99.2673 not in [0, 15]
+  [PASS] S09: Omega_DM from beta/3                          range           in [0, 1]
+  [PASS] S10: Omega_b from DM/baryon ratio                  range           in [0, 5]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_killing_spree_v0                           10 quantities derived from alpha_EM: the killing spree
+
+Result written: result_experiment_alpha_em_killing_spree_v0_run001.json
+Values written: values_experiment_alpha_em_killing_spree_v0_run001.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  1 / 1
+  Connections:  0 / 0
+
+  PASS: 5
+  FAIL: 5
+  INFO: 0
+  SKIP: 0
+
+  STATUS: 5 FAILURES
+
+======================================================================
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_alpha_em_killing_spr
+ee_v0
+
+======================================================================
+DATA-6 REPORT: experiment_alpha_em_killing_spree_v0
+======================================================================
+
+  Result file:  result_experiment_alpha_em_killing_spree_v0_run001.json
+  Timestamp:    2026-04-19T07:27:21Z
+  Status:       partial
+  Mode:         standard
+  Purpose:      program_beta_metric_conversion_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 31 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_ae_miss_pct_v0                                   2.1833700238947e-8
+    result_ae_predicted_v0                                  0.00115965218084319
+    result_alpha_s_miss_pct_v0                              112.192787645073
+    result_alpha_s_predicted_v0                             -0.0143874894211859
+    result_amu_miss_pct_v0                                  0.000272831617117252
+    result_amu_predicted_v0                                 0.001165917409
+    result_dm_baryon_measured_v0                            5.3204
+    result_dm_baryon_predicted_v0                           5.31654141376734
+    result_hits_sub_001pct_v0                               3
+    result_hits_sub_01pct_v0                                3
+    result_hits_sub_1pct_v0                                 6
+    result_input_alpha_em_inv_v0                            137.035999177
+    result_lambda_qcd_v0                                    27174.1232641298
+    result_mp_over_lambda_actual_v0                         0.0345281457771457
+    result_mp_over_lambda_miss_pct_v0                       99.267289989836
+    result_mp_over_lambda_predicted_v0                      4.71238898038469
+    result_mtau_miss_pct_v0                                 0.00613595292579862
+    result_mtau_predicted_v0                                1776.96902729316
+    result_mw_miss_pct_v0                                   0.517388252777084
+    result_mw_predicted_v0                                  79953.3792003491
+    result_mz_miss_pct_v0                                   3.03147909867697
+    result_mz_predicted_v0                                  88423.2669654148
+    result_omega_b_miss_pct_v0                              0.494743351886209
+    result_omega_b_predicted_fraction_v0                    13/264
+    result_omega_b_predicted_v0                             0.0492424242424242
+    result_omega_dm_miss_pct_v0                             0.421706098638065
+    result_omega_dm_predicted_v0                            0.261799387799149
+    result_sin2_theta_w_miss_pct_v0                         312.909799386806
+    result_sin2_theta_w_predicted_v0                        0.954730038142173
+    result_summary_v0                                       alpha_s: pred=-0.014387489 meas=0.118 miss=112.1928% via two-loop unification; sin2_theta_W: pred=0.95473004 meas=0.23122 miss=312.9098% via two-loop unification; a_e: pred=0.0011596522 meas=0.0011596522 miss=0.0000% via QED series + Laporta A4; a_mu: pred=0.0011659174 meas=0.0011659206 miss=0.0003% via SM prediction; m_tau: pred=1776.969 meas=1776.86 miss=0.0061% via Koide K = R3/R2 = 2/3; M_Z: pred=88423.267 meas=91187.6 miss=3.0315% via EW tree-level; M_W: pred=79953.379 meas=80369.2 miss=0.5174% via M_Z * cos(theta_W); m_p/Lambda: pred=0.034528146 meas=4.712389 miss=99.2673% via C = 6*beta; Omega_DM: pred=0.26179939 meas=0.2607 miss=0.4217% via beta/3 = pi/12; Omega_b: pred=0.049242424 meas=0.049 miss=0.4947% via 13/264
+    result_total_derived_v0                                 10
+
+----------------------------------------------------------------------
+COMPARISONS: 10 checks
+----------------------------------------------------------------------
+
+  [FAIL] S01: alpha_s from unification
+    expected: ?
+    got:      112.193
+    diverge:  position 0: '1' vs '?'
+    status:   FAIL
+
+  [FAIL] S02: sin2_theta_W from unification
+    expected: ?
+    got:      312.91
+    diverge:  position 0: '3' vs '?'
+    status:   FAIL
+
+  [PASS] S03: a_e from QED series
+    got:      2.18337e-8
+    range:    [0, 0.001]
+
+  [PASS] S04: a_mu SM prediction
+    got:      0.000272832
+    range:    [0, 0.001]
+
+  [PASS] S05: m_tau from Koide
+    got:      0.00613595
+    range:    [0, 0.01]
+
+  [FAIL] S06: M_Z from EW
+    expected: ?
+    got:      3.03148
+    diverge:  position 0: '3' vs '?'
+    status:   FAIL
+
+  [FAIL] S07: M_W from sin2thetaW
+    expected: ?
+    got:      0.517388
+    diverge:  position 0: '0' vs '?'
+    status:   FAIL
+
+  [FAIL] S08: m_p/Lambda_QCD lattice factor
+    expected: ?
+    got:      99.2673
+    diverge:  position 0: '9' vs '?'
+    status:   FAIL
+
+  [PASS] S09: Omega_DM from beta/3
+    got:      0.421706
+    range:    [0, 1]
+
+  [PASS] S10: Omega_b from DM/baryon ratio
+    got:      0.494743
+    range:    [0, 5]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  1
+  Derivations err: 0
+
+  PASS: 5
+  FAIL: 5
+  INFO: 0
+  SKIP: 0
+
+  EXPERIMENT: PARTIAL
+
+======================================================================
