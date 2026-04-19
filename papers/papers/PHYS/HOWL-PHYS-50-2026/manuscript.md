@@ -1,4 +1,5 @@
-## The Dimensional Ratio: Koide K = R₃/R₂ and the Uniquely Rational Transition
+# Koide K = R₃/R₂ and the Uniquely Rational Transition
+## The Dimensional Ratio
 
 **Registry:** [@HOWL-PHYS-50-2026]
 
