@@ -1,128 +1,346 @@
-[
-  {
-    "key": "hadron_mass_lambda_v0",
-    "value": "1115683/1000",
-    "description": "Lambda baryon mass in MeV (PDG 2024)",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_sigma_plus_v0",
-    "value": "1189370/1000",
-    "description": "Sigma+ baryon mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_sigma_zero_v0",
-    "value": "1192642/1000",
-    "description": "Sigma0 baryon mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_sigma_minus_v0",
-    "value": "1197449/1000",
-    "description": "Sigma- baryon mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_xi_zero_v0",
-    "value": "1314860/1000",
-    "description": "Xi0 baryon mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_omega_minus_v0",
-    "value": "1672450/1000",
-    "description": "Omega- baryon mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_rho_v0",
-    "value": "77526/100",
-    "description": "Rho meson mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_kstar_v0",
-    "value": "89166/100",
-    "description": "K*(892) meson mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_phi_v0",
-    "value": "101946/100",
-    "description": "Phi meson mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_eta_v0",
-    "value": "547862/1000",
-    "description": "Eta meson mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_d_plus_v0",
-    "value": "186966/100",
-    "description": "D+ meson mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_upsilon_1s_v0",
-    "value": "946030/100",
-    "description": "Upsilon(1S) mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_upsilon_2s_v0",
-    "value": "1002326/100",
-    "description": "Upsilon(2S) mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "hadron_mass_upsilon_3s_v0",
-    "value": "1035520/100",
-    "description": "Upsilon(3S) mass in MeV",
-    "source": "PDG 2024"
-  },
-  {
-    "key": "cosmo_h0_shoes_exact_v0",
-    "value": "7304/100",
-    "description": "SH0ES H0 measurement in km/s/Mpc",
-    "source": "Riess et al 2022"
-  },
-  {
-    "key": "cosmo_h0_planck_exact_v0",
-    "value": "674/10",
-    "description": "Planck CMB H0 in km/s/Mpc",
-    "source": "Planck 2018"
-  },
-  {
-    "key": "nuclear_magic_numbers_v0",
-    "value": "[2, 8, 20, 28, 50, 82, 126]",
-    "description": "Nuclear magic numbers",
-    "source": "Nuclear physics"
-  },
-  {
-    "key": "nuclear_binding_av_v0",
-    "value": "1556/100",
-    "description": "Semi-empirical mass formula volume coefficient MeV",
-    "source": "Nuclear physics"
-  },
-  {
-    "key": "nuclear_binding_as_v0",
-    "value": "1723/100",
-    "description": "Semi-empirical mass formula surface coefficient MeV",
-    "source": "Nuclear physics"
-  },
-  {
-    "key": "nuclear_binding_ac_v0",
-    "value": "697/1000",
-    "description": "Semi-empirical mass formula Coulomb coefficient MeV",
-    "source": "Nuclear physics"
-  },
-  {
-    "key": "nuclear_binding_aa_v0",
-    "value": "2329/100",
-    "description": "Semi-empirical mass formula asymmetry coefficient MeV",
-    "source": "Nuclear physics"
-  }
-]
+{
+  "nodes": [
+    {
+      "key": "hadron_mass_lambda_v0",
+      "canonical": "hadron_mass_lambda",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_lambda",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1115683",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_sigma_plus_v0",
+      "canonical": "hadron_mass_sigma_plus",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_sigma_plus",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1189370",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_sigma_zero_v0",
+      "canonical": "hadron_mass_sigma_zero",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_sigma_zero",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1192642",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_sigma_minus_v0",
+      "canonical": "hadron_mass_sigma_minus",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_sigma_minus",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1197449",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_xi_zero_v0",
+      "canonical": "hadron_mass_xi_zero",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_xi_zero",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1314860",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_omega_minus_v0",
+      "canonical": "hadron_mass_omega_minus",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_omega_minus",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1672450",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_rho_v0",
+      "canonical": "hadron_mass_rho",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_rho",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "77526",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_kstar_v0",
+      "canonical": "hadron_mass_kstar",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_kstar",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "89166",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_phi_v0",
+      "canonical": "hadron_mass_phi",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_phi",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "101946",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_eta_v0",
+      "canonical": "hadron_mass_eta",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_eta",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "547862",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_d_plus_v0",
+      "canonical": "hadron_mass_d_plus",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_d_plus",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "186966",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_upsilon_1s_v0",
+      "canonical": "hadron_mass_upsilon_1s",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_upsilon_1s",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "946030",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_upsilon_2s_v0",
+      "canonical": "hadron_mass_upsilon_2s",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_upsilon_2s",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1002326",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "hadron_mass_upsilon_3s_v0",
+      "canonical": "hadron_mass_upsilon_3s",
+      "version": 0,
+      "node_type": "value",
+      "topic": "hadron",
+      "term": "mass_upsilon_3s",
+      "level": 2,
+      "source": "PDG 2024",
+      "value": {
+        "_type": "Fraction",
+        "num": "1035520",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "hadron",
+      "tags": ["Level2", "mass"]
+    },
+    {
+      "key": "nuclear_binding_av_v0",
+      "canonical": "nuclear_binding_av",
+      "version": 0,
+      "node_type": "value",
+      "topic": "nuclear",
+      "term": "binding_av",
+      "level": 2,
+      "source": "Semi-empirical mass formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1556",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "nuclear",
+      "tags": ["Level2", "binding"]
+    },
+    {
+      "key": "nuclear_binding_as_v0",
+      "canonical": "nuclear_binding_as",
+      "version": 0,
+      "node_type": "value",
+      "topic": "nuclear",
+      "term": "binding_as",
+      "level": 2,
+      "source": "Semi-empirical mass formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "1723",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "nuclear",
+      "tags": ["Level2", "binding"]
+    },
+    {
+      "key": "nuclear_binding_ac_v0",
+      "canonical": "nuclear_binding_ac",
+      "version": 0,
+      "node_type": "value",
+      "topic": "nuclear",
+      "term": "binding_ac",
+      "level": 2,
+      "source": "Semi-empirical mass formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "697",
+        "den": "1000"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "nuclear",
+      "tags": ["Level2", "binding"]
+    },
+    {
+      "key": "nuclear_binding_aa_v0",
+      "canonical": "nuclear_binding_aa",
+      "version": 0,
+      "node_type": "value",
+      "topic": "nuclear",
+      "term": "binding_aa",
+      "level": 2,
+      "source": "Semi-empirical mass formula",
+      "value": {
+        "_type": "Fraction",
+        "num": "2329",
+        "den": "100"
+      },
+      "value_type": "exact_fraction",
+      "unit": "MeV",
+      "section": "nuclear",
+      "tags": ["Level2", "binding"]
+    }
+  ]
+}
