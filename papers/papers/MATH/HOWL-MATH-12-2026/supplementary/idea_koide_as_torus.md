@@ -105,3 +105,12 @@ For Koide specifically: 2/3 is structurally the arithmetic midpoint of Koide's r
 Tell me what "value 2 at one power level of Koide" refers to in your pool — the specific derivation where 2 appears. That's where the toroidal reinterpretation would be most directly testable. If "2" is something like "the number of fundamental cycles of a manifold" or "the dimension of an angular subspace," the toroidal reading is natural. If "2" is "two generations in a mixing matrix" or "two loops in a diagram," it's a counting quantity, not a geometric period.
 
 The K(k) interpretation lives or dies on whether the specific 2 in question has the structural role of a topological count of cycles or the arithmetic role of integer counting. The two roles produce the same number but very different meanings.
+
+---
+
+let me give you old notebooks on koide and see if that connects anything
+
+[attached docs]
+
+---
+
