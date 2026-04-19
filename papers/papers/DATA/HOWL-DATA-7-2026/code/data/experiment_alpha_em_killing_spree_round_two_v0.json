@@ -1,0 +1,208 @@
+{
+    "key": "experiment_alpha_em_killing_spree_round_two_v0",
+    "canonical": "experiment_alpha_em_killing_spree_round_two",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Round two of the killing spree. Fixes the 5 failures from run001: (1) alpha_s and sin2_theta_W use the validated two-loop Euler integration from sin2_from_two_loop_crossing_v0, (2) M_Z includes the delta_r radiative correction, (3) M_W uses the corrected M_Z, (4) Lambda_QCD uses the correct formula with 2pi and nf=5. Preserves exact Fraction arithmetic throughout until transcendental multiplication.",
+    "purpose": "program_beta_metric_conversion_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "coupling_alpha_em_inverse": 0,
+            "coupling_sin2_weak_mixing": 0,
+            "coupling_alpha_s_mz": 0,
+            "coupling_electron_anomalous_moment": 0,
+            "coupling_muon_anomalous_moment": 0,
+            "coupling_fermi_constant": 0,
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau_lepton": 0,
+            "mass_z_boson": 0,
+            "mass_w_boson": 0,
+            "mass_proton": 0,
+            "geom_pi": 0,
+            "geom_zeta3": 0,
+            "geom_zeta5": 0,
+            "geom_ln2": 0,
+            "geom_li4_half": 0,
+            "qed_a1_schwinger": 0,
+            "qed_a2_rational_term": 0,
+            "qed_a2_pi2_coeff": 0,
+            "qed_a2_pi2ln2_coeff": 0,
+            "qed_a2_zeta3_coeff": 0,
+            "qed_a3_rational_term": 0,
+            "qed_a3_pi2_coeff": 0,
+            "qed_a3_pi2ln2_coeff": 0,
+            "qed_a3_pi4_coeff": 0,
+            "qed_a3_z3_coeff": 0,
+            "qed_a3_z5_coeff": 0,
+            "qed_a3_pi2z3_coeff": 0,
+            "qed_a3_li4_coeff": 0,
+            "qed_a4_laporta": 0,
+            "qed_a5_volkov": 0,
+            "qed_ae_hadronic_lo": 0,
+            "qed_ae_hadronic_nlo": 0,
+            "qed_ae_hadronic_lbl": 0,
+            "qed_ae_electroweak": 0,
+            "qed_ae_mass_dep_2loop": 0,
+            "qed_ae_mass_dep_3loop": 0,
+            "qed_ae_mass_dep_4loop": 0,
+            "qed_amu_qed_published": 0,
+            "qed_amu_hadronic_lo": 0,
+            "qed_amu_hadronic_nlo": 0,
+            "qed_amu_hadronic_lbl": 0,
+            "qed_amu_ew": 0,
+            "beta_modified_u1_total": 0,
+            "beta_modified_su2_total": 0,
+            "beta_modified_su3_total": 0,
+            "beta_two_loop_sm_bij_u1_u1": 0,
+            "beta_two_loop_sm_bij_u1_su2": 0,
+            "beta_two_loop_sm_bij_u1_su3": 0,
+            "beta_two_loop_sm_bij_su2_u1": 0,
+            "beta_two_loop_sm_bij_su2_su2": 0,
+            "beta_two_loop_sm_bij_su2_su3": 0,
+            "beta_two_loop_sm_bij_su3_u1": 0,
+            "beta_two_loop_sm_bij_su3_su2": 0,
+            "beta_two_loop_sm_bij_su3_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_u1_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su2_su3": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_u1": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su2": 0,
+            "beta_two_loop_cabibbo_doublet_dbij_su3_su3": 0,
+            "group_k1_gut_normalization": 0,
+            "cosmo_omega_dm_planck2018": 0,
+            "cosmo_omega_b_planck2018": 0,
+            "cosmo_dm_to_baryon_planck": 0,
+            "ew_delta_r_total": 0
+        },
+        "derivations": {
+            "killing_spree_round_two": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "killing_spree_round_two_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_alpha_s_predicted_v0",
+        "result_alpha_s_miss_pct_v0",
+        "result_sin2_theta_w_predicted_v0",
+        "result_sin2_theta_w_miss_pct_v0",
+        "result_ae_predicted_v0",
+        "result_ae_miss_pct_v0",
+        "result_amu_predicted_v0",
+        "result_amu_miss_pct_v0",
+        "result_mtau_predicted_v0",
+        "result_mtau_miss_pct_v0",
+        "result_mz_predicted_v0",
+        "result_mz_miss_pct_v0",
+        "result_mw_predicted_v0",
+        "result_mw_miss_pct_v0",
+        "result_mp_over_lambda_predicted_v0",
+        "result_mp_over_lambda_miss_pct_v0",
+        "result_omega_dm_predicted_v0",
+        "result_omega_dm_miss_pct_v0",
+        "result_omega_b_predicted_v0",
+        "result_omega_b_miss_pct_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "S01: alpha_s from two-loop unification",
+            "output_key": "result_alpha_s_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "PDG_alpha_s"
+        },
+        {
+            "label": "S02: sin2_theta_W from two-loop unification",
+            "output_key": "result_sin2_theta_w_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.1",
+            "reference_source": "PDG_sin2thetaW"
+        },
+        {
+            "label": "S03: a_e from QED series",
+            "output_key": "result_ae_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.001",
+            "reference_source": "Harvard_ae"
+        },
+        {
+            "label": "S04: a_mu SM prediction",
+            "output_key": "result_amu_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.001",
+            "reference_source": "FNAL_amu"
+        },
+        {
+            "label": "S05: m_tau from Koide",
+            "output_key": "result_mtau_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.01",
+            "reference_source": "PDG_mtau"
+        },
+        {
+            "label": "S06: M_Z from EW with delta_r",
+            "output_key": "result_mz_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.5",
+            "reference_source": "PDG_MZ"
+        },
+        {
+            "label": "S07: M_W from corrected M_Z",
+            "output_key": "result_mw_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.5",
+            "reference_source": "PDG_MW"
+        },
+        {
+            "label": "S08: m_p/Lambda_QCD lattice factor",
+            "output_key": "result_mp_over_lambda_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "25",
+            "reference_source": "lattice_QCD"
+        },
+        {
+            "label": "S09: Omega_DM from beta/3",
+            "output_key": "result_omega_dm_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "Planck2018"
+        },
+        {
+            "label": "S10: Omega_b from 13/264",
+            "output_key": "result_omega_b_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "5",
+            "reference_source": "Planck2018"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_killing_spree_round_two_v0",
+            "title": "10 quantities from alpha_EM: round two with fixes",
+            "type": "comparison_table"
+        }
+    ]
+}

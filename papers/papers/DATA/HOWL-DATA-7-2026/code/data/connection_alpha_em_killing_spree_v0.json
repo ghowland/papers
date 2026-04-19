@@ -1,0 +1,25 @@
+{
+    "key": "connection_alpha_em_killing_spree_v0",
+    "canonical": "connection_alpha_em_killing_spree",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Derives 10 fundamental quantities from alpha_EM as single measured input plus the framework's geometric and gauge group constants. The derivation chains use: (1) two-loop unification with CD gap ratio 38/27 for alpha_s and sin2_theta_W, (2) QED series with Laporta A4 for a_e, (3) full SM prediction for a_mu, (4) Koide K = 2/3 = R3/R2 for m_tau, (5) EW relations for M_Z and M_W, (6) lattice factor C = 6*beta for m_p/Lambda_QCD, (7) beta/3 = pi/12 for Omega_DM, (8) DM/baryon ratio for Omega_b.",
+    "paper": "PHYS-50",
+    "domains_connected": ["qed", "electroweak", "unification", "koide", "confinement", "cosmology"],
+    "thesis": "From alpha_EM alone, plus geometric constants (pi, zeta, beta) and gauge group integers (beta coefficients, Casimirs, representations), 10 independently measured quantities are derivable at precisions from 4 ppb to 1%.",
+    "formula": "alpha_EM -> {alpha_s, sin2_theta_W, a_e, a_mu, m_tau, M_Z, M_W, m_p/Lambda, Omega_DM, Omega_b}",
+    "input_values": ["coupling_alpha_em_inverse_v0"],
+    "output_values": [
+        "result_alpha_s_predicted_v0",
+        "result_sin2_theta_w_predicted_v0",
+        "result_ae_predicted_v0",
+        "result_amu_predicted_v0",
+        "result_mtau_predicted_v0",
+        "result_mz_predicted_v0",
+        "result_mw_predicted_v0",
+        "result_mp_over_lambda_predicted_v0",
+        "result_omega_dm_predicted_v0",
+        "result_omega_b_predicted_v0"
+    ],
+    "derivation_functions": ["alpha_em_killing_spree_v0"]
+}

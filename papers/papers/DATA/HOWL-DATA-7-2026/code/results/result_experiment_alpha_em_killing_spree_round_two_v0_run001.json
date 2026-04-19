@@ -1,0 +1,167 @@
+{
+  "key": "result_experiment_alpha_em_killing_spree_round_two_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_alpha_em_killing_spree_round_two_v0",
+  "timestamp": "2026-04-19T07:38:55Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "killing_spree_round_two_v0",
+      "status": "ok",
+      "output_count": 29
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "S01: alpha_s from two-loop unification",
+      "output_key": "result_alpha_s_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_alpha_s",
+      "got": "0.325742",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    },
+    {
+      "label": "S02: sin2_theta_W from two-loop unification",
+      "output_key": "result_sin2_theta_w_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_sin2thetaW",
+      "got": "0.00119581",
+      "lo": "0",
+      "hi": "0.1",
+      "status": "PASS",
+      "detail": "in [0, 0.1]"
+    },
+    {
+      "label": "S03: a_e from QED series",
+      "output_key": "result_ae_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "Harvard_ae",
+      "got": "2.18337e-8",
+      "lo": "0",
+      "hi": "0.001",
+      "status": "PASS",
+      "detail": "in [0, 0.001]"
+    },
+    {
+      "label": "S04: a_mu SM prediction",
+      "output_key": "result_amu_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "FNAL_amu",
+      "got": "0.000272832",
+      "lo": "0",
+      "hi": "0.001",
+      "status": "PASS",
+      "detail": "in [0, 0.001]"
+    },
+    {
+      "label": "S05: m_tau from Koide",
+      "output_key": "result_mtau_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_mtau",
+      "got": "0.00613595",
+      "lo": "0",
+      "hi": "0.01",
+      "status": "PASS",
+      "detail": "in [0, 0.01]"
+    },
+    {
+      "label": "S06: M_Z from EW with delta_r",
+      "output_key": "result_mz_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_MZ",
+      "got": "1.1903",
+      "lo": "0",
+      "hi": "0.5",
+      "status": "FAIL",
+      "detail": "1.1903 not in [0, 0.5]"
+    },
+    {
+      "label": "S07: M_W from corrected M_Z",
+      "output_key": "result_mw_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "PDG_MW",
+      "got": "1.70153",
+      "lo": "0",
+      "hi": "0.5",
+      "status": "FAIL",
+      "detail": "1.70153 not in [0, 0.5]"
+    },
+    {
+      "label": "S08: m_p/Lambda_QCD lattice factor",
+      "output_key": "result_mp_over_lambda_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "lattice_QCD",
+      "got": "126.704",
+      "lo": "0",
+      "hi": "25",
+      "status": "FAIL",
+      "detail": "126.704 not in [0, 25]"
+    },
+    {
+      "label": "S09: Omega_DM from beta/3",
+      "output_key": "result_omega_dm_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "Planck2018",
+      "got": "0.421706",
+      "lo": "0",
+      "hi": "1",
+      "status": "PASS",
+      "detail": "in [0, 1]"
+    },
+    {
+      "label": "S10: Omega_b from 13/264",
+      "output_key": "result_omega_b_miss_pct_v0",
+      "match_mode": "range",
+      "reference_source": "Planck2018",
+      "got": "0.494743",
+      "lo": "0",
+      "hi": "5",
+      "status": "PASS",
+      "detail": "in [0, 5]"
+    }
+  ],
+  "outputs": {
+    "result_sin2_theta_w_predicted_v0": "0.231222764946095",
+    "result_sin2_theta_w_miss_pct_v0": "0.00119580749721487",
+    "result_alpha_s_predicted_v0": "0.118384375944315",
+    "result_alpha_s_miss_pct_v0": "0.325742325690491",
+    "result_alpha_gut_inv_v0": "42.1349625508559",
+    "result_m_gut_log10_v0": "15.6097565200659",
+    "result_ae_predicted_v0": "0.00115965218084319",
+    "result_ae_miss_pct_v0": "2.1833700238947e-8",
+    "result_amu_predicted_v0": "0.001165917409",
+    "result_amu_miss_pct_v0": "0.000272831617117252",
+    "result_mtau_predicted_v0": "1776.96902729316",
+    "result_mtau_miss_pct_v0": "0.00613595292579862",
+    "result_mz_predicted_v0": "90102.195747311",
+    "result_mz_miss_pct_v0": "1.19029808075765",
+    "result_mw_predicted_v0": "79001.6956622264",
+    "result_mw_miss_pct_v0": "1.70152787109187",
+    "result_mp_over_lambda_predicted_v0": "4.71238898038469",
+    "result_mp_over_lambda_actual_v0": "10.6831752561436",
+    "result_mp_over_lambda_miss_pct_v0": "126.704019990971",
+    "result_lambda_qcd_gev_v0": "0.0878270801455236",
+    "result_omega_dm_predicted_v0": "0.261799387799149",
+    "result_omega_dm_miss_pct_v0": "0.421706098638065",
+    "result_omega_b_predicted_v0": "0.0492424242424242",
+    "result_omega_b_miss_pct_v0": "0.494743351886209",
+    "result_summary_v0": "alpha_s: pred=0.11838438 meas=0.118 miss=0.3257% via two-loop unification (Euler); sin2_theta_W: pred=0.23122276 meas=0.23122 miss=0.0012% via two-loop unification (Euler); a_e: pred=0.0011596522 meas=0.0011596522 miss=0.0000% via QED A1-A5 + Laporta; a_mu: pred=0.0011659174 meas=0.0011659206 miss=0.0003% via SM prediction; m_tau: pred=1776.969 meas=1776.86 miss=0.0061% via Koide K = R3/R2; M_Z: pred=90102.196 meas=91187.6 miss=1.1903% via EW + delta_r; M_W: pred=79001.696 meas=80369.2 miss=1.7015% via M_Z*cos(theta_W); m_p/Lambda: pred=10.683175 meas=4.712389 miss=126.7040% via C = 6*beta, nf=5; Omega_DM: pred=0.26179939 meas=0.2607 miss=0.4217% via beta/3 = pi/12; Omega_b: pred=0.049242424 meas=0.049 miss=0.4947% via 13/264",
+    "result_hits_sub_1pct_v0": 7,
+    "result_hits_sub_01pct_v0": 4,
+    "result_hits_sub_001pct_v0": 4,
+    "result_total_derived_v0": 10
+  },
+  "summary": {
+    "derivations_ok": 1,
+    "derivations_err": 0,
+    "comparisons_pass": 7,
+    "comparisons_fail": 3,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}
