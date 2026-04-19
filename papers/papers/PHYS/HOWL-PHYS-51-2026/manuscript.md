@@ -42,8 +42,6 @@ The change from PHYS-40 to PHYS-51:
 
 ![Fig. 2: Input count drops from 15 to 10 across three position papers. Surplus grows from +20 to +50. Three parameters moved from input to derived in Session 8.](./figures/phys51_02_input_reduction.png)
 
-![Fig. 7: The surplus grows from +20 (PHYS-24) to +40 (PHYS-40) to +50 (PHYS-51). Input count drops from 15 to 10. Outputs per input: 2.3 → 4.1 → 6.0.](./figures/phys51_07_surplus_growth.png)
-
 ---
 
 ## II. THE THREE PARAMETERS THAT MOVED
