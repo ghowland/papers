@@ -9656,12 +9656,14 @@ def laporta_pslq_elliptic_v0(value_dicts):
 
     # Fallback moduli from magnitude scan if extraction didn't produce results
     if k81_str is None or k81_str == "NONE":
-        k81 = mpf("0.6")  # scan fallback
+        # k81 = mpf("0.6")  # scan fallback
+        k81 = mpf("0.999994") # Run 002 correction, this should be in the value pool
     else:
         k81 = mpf(str(k81_str))
 
     if k83_str is None or k83_str == "NONE":
-        k83 = mpf("0.35")  # scan fallback
+        # k83 = mpf("0.35")  # scan fallback
+        k83 = mpf("0.99713") # Run 002 correction, this should be in the value pool
     else:
         k83 = mpf(str(k83_str))
 

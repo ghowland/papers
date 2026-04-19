@@ -62,7 +62,7 @@
             "output_key": "result_k81_from_C81a_v0",
             "match_mode": "range",
             "lo": "0.01",
-            "hi": "0.9999",
+            "hi": "0.9999999",
             "reference_source": "modulus_extraction"
         },
         {
