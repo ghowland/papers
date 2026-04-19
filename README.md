@@ -146,7 +146,8 @@
 | **[[@HOWL-PHYS-47-2026]](papers/papers/PHYS/HOWL-PHYS-47-2026/manuscript.md)** | **The Laporta Constants II** | Independence, Sensitivity, and the Boundary Between Known and Unknown Mathematics. |
 | **[[@HOWL-PHYS-48-2026]](papers/papers/PHYS/HOWL-PHYS-48-2026/manuscript.md)** | **The β⁰ Frontier** | Non-Spherical Geometry in QED at Four Loops. |
 | **[[@HOWL-PHYS-49-2026]](papers/papers/PHYS/HOWL-PHYS-49-2026/manuscript.md)** | **Spherical Modulus, Toroidal Remainder** | The Complete Decomposition and the Resolution of a Parked Framework. |
-| **[[@HOWL-PHYS-50-2026]](papers/papers/PHYS/HOWL-PHYS-49-2026/manuscript.md)** | **Koide K = R₃/R₂ and the Uniquely Rational Transition** | The Dimensional Ratio. |
+| **[[@HOWL-PHYS-50-2026]](papers/papers/PHYS/HOWL-PHYS-50-2026/manuscript.md)** | **Koide K = R₃/R₂ and the Uniquely Rational Transition** | The Dimensional Ratio. |
+| **[[@HOWL-PHYS-51-2026]](papers/papers/PHYS/HOWL-PHYS-51-2026/manuscript.md)** | **You Are Here III** | The α_EM Derivation Tree and the Operationalization of the Laporta Constants. |
 
 ---
 
