@@ -13,7 +13,7 @@
 
 **Status:** Program specification for falsification. No computational results claimed. Kill switches and precision thresholds pre-registered.
 
-**AI Usage Disclosure:** Only top metadata, figure captions, references, and copyright sections edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.7 in collaboration with Geoff Howland based on sustained discussion of the model's structural commitments.
+**AI Usage Disclosure:** Only top metadata, figure captions, references, and copyright sections edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.7.
 
 ---
 
