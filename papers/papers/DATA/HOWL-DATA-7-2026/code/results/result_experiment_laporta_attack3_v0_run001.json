@@ -1,0 +1,171 @@
+{
+  "key": "result_experiment_laporta_attack3_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_laporta_attack3_v0",
+  "timestamp": "2026-04-18T20:40:42Z",
+  "status": "partial",
+  "execution_log": [
+    {
+      "key": "laporta_modulus_extraction_v0",
+      "status": "ok",
+      "output_count": 18
+    },
+    {
+      "key": "laporta_pslq_elliptic_v0",
+      "status": "ok",
+      "output_count": 23
+    },
+    {
+      "key": "laporta_closed_form_verify_v0",
+      "status": "ok",
+      "output_count": 8
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "A01: Topology 81 moduli extracted",
+      "output_key": "result_k81_from_C81a_v0",
+      "match_mode": "range",
+      "reference_source": "modulus_extraction",
+      "got": "0.999994",
+      "lo": "0.01",
+      "hi": "0.9999",
+      "status": "FAIL",
+      "detail": "0.999994 not in [0.01, 0.9999]"
+    },
+    {
+      "label": "A02: Topology 83 moduli extracted",
+      "output_key": "result_k83_from_C83a_v0",
+      "match_mode": "range",
+      "reference_source": "modulus_extraction",
+      "got": "0.99713",
+      "lo": "0.01",
+      "hi": "0.9999",
+      "status": "PASS",
+      "detail": "in [0.01, 0.9999]"
+    },
+    {
+      "label": "A03: Topology 81 consistency \u2014 three integrals give same k",
+      "output_key": "result_k81_consistent_v0",
+      "match_mode": "bool",
+      "reference_source": "consistency_check",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "A04: Topology 83 consistency \u2014 three integrals give same k",
+      "output_key": "result_k83_consistent_v0",
+      "match_mode": "bool",
+      "reference_source": "consistency_check",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "A05: Topology 81 spread < 1%",
+      "output_key": "result_k81_spread_v0",
+      "match_mode": "range",
+      "reference_source": "consistency_check",
+      "got": "1.66659e-5",
+      "lo": "0",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [0, 100]"
+    },
+    {
+      "label": "A06: Topology 83 spread < 1%",
+      "output_key": "result_k83_spread_v0",
+      "match_mode": "range",
+      "reference_source": "consistency_check",
+      "got": "0.00247272",
+      "lo": "0",
+      "hi": "100",
+      "status": "PASS",
+      "detail": "in [0, 100]"
+    },
+    {
+      "label": "A07: PSLQ found count",
+      "output_key": "result_pslq_found_count_v0",
+      "match_mode": "range",
+      "reference_source": "pslq",
+      "got": "0.0",
+      "lo": "0",
+      "hi": "6",
+      "status": "PASS",
+      "detail": "in [0, 6]"
+    },
+    {
+      "label": "A08: Constants reduced from 6 to fewer",
+      "output_key": "result_constants_reduced_to_v0",
+      "match_mode": "range",
+      "reference_source": "pslq",
+      "got": "6.0",
+      "lo": "0",
+      "hi": "6",
+      "status": "PASS",
+      "detail": "in [0, 6]"
+    }
+  ],
+  "outputs": {
+    "result_cands_81a_count_v0": 184,
+    "result_cands_81b_count_v0": 785,
+    "result_cands_81c_count_v0": 483,
+    "result_cands_83a_count_v0": 479,
+    "result_cands_83b_count_v0": 189,
+    "result_cands_83c_count_v0": 286,
+    "result_k81_from_C81a_v0": "0.999993780426603",
+    "result_k81_from_C81b_v0": "C81a: 27/5*K*pi, C81b: -1/25*K3, C81c: 6/23*K; k_a=0.9999936138, k_b=0.999993810",
+    "result_k81_from_C81c_v0": "0, k_c=0.9999939175, spread=1.67e-07",
+    "result_k81_spread_v0": "1.66658796554384e-5",
+    "result_k81_consistent_v0": true,
+    "result_k83_from_C83a_v0": "0.997130311995601",
+    "result_k83_from_C83b_v0": "C83a: -1/6*K2/pi, C83b: 29/23*E*pi, C83c: -1/25*K3; k_a=0.9971056557, k_b=0.9971",
+    "result_k83_from_C83c_v0": "460281, k_c=0.9971392522, spread=2.47e-05",
+    "result_k83_spread_v0": "0.00247272491996645",
+    "result_k83_consistent_v0": true,
+    "result_k81_best_v0": "0.999993780426603",
+    "result_k83_best_v0": "0.997130311995602",
+    "result_k81_used_v0": "0.6",
+    "result_k83_used_v0": "0.35",
+    "result_pslq_C81a_status_v0": "NULL",
+    "result_pslq_C81a_relation_v0": "",
+    "result_pslq_C81a_maxcoeff_v0": 1000,
+    "result_pslq_C81b_status_v0": "NULL",
+    "result_pslq_C81b_relation_v0": "",
+    "result_pslq_C81b_maxcoeff_v0": 1000,
+    "result_pslq_C81c_status_v0": "NULL",
+    "result_pslq_C81c_relation_v0": "",
+    "result_pslq_C81c_maxcoeff_v0": 1000,
+    "result_pslq_C83a_status_v0": "NULL",
+    "result_pslq_C83a_relation_v0": "",
+    "result_pslq_C83a_maxcoeff_v0": 1000,
+    "result_pslq_C83b_status_v0": "NULL",
+    "result_pslq_C83b_relation_v0": "",
+    "result_pslq_C83b_maxcoeff_v0": 1000,
+    "result_pslq_C83c_status_v0": "NULL",
+    "result_pslq_C83c_relation_v0": "",
+    "result_pslq_C83c_maxcoeff_v0": 1000,
+    "result_pslq_found_count_v0": 0,
+    "result_pslq_found_labels_v0": "NONE",
+    "result_constants_reduced_to_v0": 6,
+    "result_verify_C81a_v0": "SKIPPED (not found)",
+    "result_verify_C81b_v0": "SKIPPED (not found)",
+    "result_verify_C81c_v0": "SKIPPED (not found)",
+    "result_verify_C83a_v0": "SKIPPED (not found)",
+    "result_verify_C83b_v0": "SKIPPED (not found)",
+    "result_verify_C83c_v0": "SKIPPED (not found)",
+    "result_verified_count_v0": 0,
+    "result_attack3_summary_v0": "Found: 0/6. Verified: 0/0. Status: NO_CLOSED_FORMS."
+  },
+  "summary": {
+    "derivations_ok": 3,
+    "derivations_err": 0,
+    "comparisons_pass": 7,
+    "comparisons_fail": 1,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}

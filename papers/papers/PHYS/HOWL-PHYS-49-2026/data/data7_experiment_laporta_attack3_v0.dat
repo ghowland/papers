@@ -1,0 +1,56 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_laporta_attack3_v0
+======================================================================
+DATA-6 RUNNER: experiment_laporta_attack3_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_laporta_attack3_v0.json
+  Mode:   standard
+  Purpose: program_laporta_constants_v0
+
+Loaded 3492 value nodes.
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 3 derivations
+----------------------------------------------------------------------
+  [OK] laporta_modulus_extraction_v0                           18 outputs
+  [OK] laporta_pslq_elliptic_v0                                23 outputs
+  [OK] laporta_closed_form_verify_v0                            8 outputs
+
+Derivations: 3 OK, 0 errors
+
+----------------------------------------------------------------------
+COMPARISONS: 8 checks
+----------------------------------------------------------------------
+
+  [FAIL] A01: Topology 81 moduli extracted                  range           0.999994 not in [0.01, 0.9999]
+  [PASS] A02: Topology 83 moduli extracted                  range           in [0.01, 0.9999]
+  [PASS] A03: Topology 81 consistency — three integrals give same k bool            bool match
+  [PASS] A04: Topology 83 consistency — three integrals give same k bool            bool match
+  [PASS] A05: Topology 81 spread < 1%                       range           in [0, 100]
+  [PASS] A06: Topology 83 spread < 1%                       range           in [0, 100]
+  [PASS] A07: PSLQ found count                              range           in [0, 6]
+  [PASS] A08: Constants reduced from 6 to fewer             range           in [0, 6]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_attack3_results_v0                         Attack 3: Modulus extraction, consistency, and PSLQ results
+
+Result written: result_experiment_laporta_attack3_v0_run001.json
+Values written: values_experiment_laporta_attack3_v0_run001.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  3 / 3
+  Connections:  0 / 0
+
+  PASS: 7
+  FAIL: 1
+  INFO: 0
+  SKIP: 0
+
+  STATUS: 1 FAILURES
+
+======================================================================

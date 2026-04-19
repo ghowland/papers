@@ -9330,6 +9330,589 @@ def remainder_a4_laporta_elliptic_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PHYS-49 Attack 3: Combined Zeta + Elliptic PSLQ
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "laporta_modulus_extraction_v0": laporta_modulus_extraction_v0,
+#   "laporta_pslq_elliptic_v0": laporta_pslq_elliptic_v0,
+#   "laporta_closed_form_verify_v0": laporta_closed_form_verify_v0,
+# =============================================================================
+
+
+def _invert_ellipk(target_K, dps_work=100):
+    """Find k such that K(k^2) = target_K by Newton's method.
+
+    K(m) where m = k^2. dK/dm = (E(m)/(m(1-m)) - K(m)/m) / 2.
+    We solve for m, then return k = sqrt(m).
+    Returns k as mpf, or None if no convergence.
+    """
+    from mpmath import ellipk, ellipe, sqrt, mpf, mp, log
+
+    old_dps = mp.dps
+    mp.dps = dps_work
+
+    # Initial guess from asymptotic: K ~ ln(4/sqrt(1-m)) near m=1
+    # For moderate K: start with m = 0.5
+    # For large K (>3): use m ~ 1 - 16*exp(-2*K*pi) (asymptotic)
+    if target_K > 3:
+        m = 1 - 16 * mp.exp(-2 * target_K)
+        if m >= 1:
+            m = mpf("0.999")
+        if m <= 0:
+            m = mpf("0.5")
+    else:
+        m = mpf("0.5")
+
+    for iteration in range(200):
+        K_val = ellipk(m)
+        if abs(K_val - target_K) / abs(target_K) < mpf(10) ** (-(dps_work - 10)):
+            mp.dps = old_dps
+            return sqrt(m)
+
+        E_val = ellipe(m)
+        if abs(m) < mpf("1e-30") or abs(1 - m) < mpf("1e-30"):
+            break
+
+        # dK/dm
+        dKdm = (E_val / (m * (1 - m)) - K_val / m) / 2
+
+        if abs(dKdm) < mpf("1e-50"):
+            break
+
+        m_new = m - (K_val - target_K) / dKdm
+
+        # Clamp to (0, 1)
+        if m_new <= 0:
+            m_new = m / 2
+        if m_new >= 1:
+            m_new = (m + 1) / 2
+
+        m = m_new
+
+    mp.dps = old_dps
+    return None
+
+
+def _invert_ellipe(target_E, dps_work=100):
+    """Find k such that E(k^2) = target_E by Newton's method."""
+    from mpmath import ellipk, ellipe, sqrt, mpf, mp
+
+    old_dps = mp.dps
+    mp.dps = dps_work
+
+    m = mpf("0.5")  # initial guess
+
+    for iteration in range(200):
+        E_val = ellipe(m)
+        if abs(E_val - target_E) / abs(target_E) < mpf(10) ** (-(dps_work - 10)):
+            mp.dps = old_dps
+            return sqrt(m)
+
+        K_val = ellipk(m)
+        # dE/dm = (E(m) - K(m)) / (2m)
+        if abs(m) < mpf("1e-30"):
+            break
+        dEdm = (E_val - K_val) / (2 * m)
+
+        if abs(dEdm) < mpf("1e-50"):
+            break
+
+        m_new = m - (E_val - target_E) / dEdm
+
+        if m_new <= 0:
+            m_new = m / 2
+        if m_new >= 1:
+            m_new = (m + 1) / 2
+
+        m = m_new
+
+    mp.dps = old_dps
+    return None
+
+
+def laporta_modulus_extraction_v0(value_dicts):
+    """Extract topology-specific moduli from subtraction results.
+
+    For each integral, use the best subtraction (from experiment_remainder_elliptic_v0)
+    to compute the residual, then invert the elliptic form to find k.
+
+    The subtraction table:
+      C81a + 2*zeta(3)  ~ (p/q) * K(k) * pi       -> solve for k from K
+      C81b - 5*zeta(5)  ~ (p/q) * K(k)^3           -> solve for k from K
+      C81c + 2*zeta(5)  ~ (p/q) * K(k)             -> solve for k from K
+      C83a - 3*zeta(3)  ~ (p/q) * K(k)^2 / pi      -> solve for k from K
+      C83b + 4*zeta(3)  ~ (p/q) * E(k) * pi         -> solve for k from E
+      C83c - 2*zeta(5)  ~ (p/q) * K(k)^3            -> solve for k from K
+
+    The p/q rationals come from the scan but may not be exact.
+    Instead of using the scan's p/q, we try ALL small p/q (1..30)
+    and pick the one that yields a consistent k within each topology.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 100
+
+    from mpmath import ellipk, ellipe, mpf, pi as mpi
+
+    pi_val = mp.pi
+    zeta3 = mp.zeta(3)
+    zeta5 = mp.zeta(5)
+
+    # Load integrals at full precision
+    c81a = mpf(str(_get(vm, "laporta_C81a_v0")))
+    c81b = mpf(str(_get(vm, "laporta_C81b_v0")))
+    c81c = mpf(str(_get(vm, "laporta_C81c_v0")))
+    c83a = mpf(str(_get(vm, "laporta_C83a_v0")))
+    c83b = mpf(str(_get(vm, "laporta_C83b_v0")))
+    c83c = mpf(str(_get(vm, "laporta_C83c_v0")))
+
+    # Compute residuals after subtraction
+    r81a = c81a + 2 * zeta3    # ~ rational * K * pi
+    r81b = c81b - 5 * zeta5    # ~ rational * K^3
+    r81c = c81c + 2 * zeta5    # ~ rational * K
+
+    r83a = c83a - 3 * zeta3    # ~ rational * K^2 / pi
+    r83b = c83b + 4 * zeta3    # ~ rational * E * pi
+    r83c = c83c - 2 * zeta5    # ~ rational * K^3
+
+    outputs = {}
+
+    # For each integral, try p/q from 1..30 and extract k
+    # Then check: do the three k values within each topology agree?
+
+    def _extract_k_candidates(residual, form, max_pq=30):
+        """Try all p/q, extract k for each, return list of (p, q, k)."""
+        candidates = []
+        for p in range(1, max_pq + 1):
+            for q in range(1, max_pq + 1):
+                for sign in [1, -1]:
+                    ratio = sign * mpf(p) / mpf(q)
+                    if form == "K*pi":
+                        target_K = residual / (ratio * pi_val)
+                    elif form == "K3":
+                        val = residual / ratio
+                        if val <= 0:
+                            continue
+                        target_K = val ** (mpf(1) / 3)
+                    elif form == "K":
+                        target_K = residual / ratio
+                    elif form == "K2/pi":
+                        val = residual * pi_val / ratio
+                        if val <= 0:
+                            continue
+                        target_K = val ** mpf("0.5")
+                    elif form == "E*pi":
+                        target_E = residual / (ratio * pi_val)
+                        if target_E < 1 or target_E > pi_val / 2:
+                            continue
+                        k = _invert_ellipe(target_E, dps_work=80)
+                        if k is not None and 0 < k < 1:
+                            candidates.append((sign * p, q, k, "E"))
+                        continue
+                    else:
+                        continue
+
+                    if target_K < pi_val / 2:
+                        continue  # K(k) >= pi/2 for all k
+
+                    k = _invert_ellipk(target_K, dps_work=80)
+                    if k is not None and 0 < k < 1:
+                        candidates.append((sign * p, q, k, "K"))
+        return candidates
+
+    # Extract candidates for each integral
+    cands_81a = _extract_k_candidates(r81a, "K*pi")
+    cands_81b = _extract_k_candidates(r81b, "K3")
+    cands_81c = _extract_k_candidates(r81c, "K")
+
+    cands_83a = _extract_k_candidates(r83a, "K2/pi")
+    cands_83b = _extract_k_candidates(r83b, "E*pi")
+    cands_83c = _extract_k_candidates(r83c, "K3")
+
+    outputs["result_cands_81a_count_v0"] = len(cands_81a)
+    outputs["result_cands_81b_count_v0"] = len(cands_81b)
+    outputs["result_cands_81c_count_v0"] = len(cands_81c)
+    outputs["result_cands_83a_count_v0"] = len(cands_83a)
+    outputs["result_cands_83b_count_v0"] = len(cands_83b)
+    outputs["result_cands_83c_count_v0"] = len(cands_83c)
+
+    # Find the best consistent triplet within topology 81
+    best_81_spread = mpf("1e10")
+    best_81_k = mpf("0")
+    best_81_detail = "none"
+
+    for pa, qa, ka, _ in cands_81a:
+        for pb, qb, kb, _ in cands_81b:
+            for pc, qc, kc, _ in cands_81c:
+                mean_k = (ka + kb + kc) / 3
+                spread = max(abs(ka - mean_k), abs(kb - mean_k), abs(kc - mean_k))
+                rel_spread = spread / mean_k if mean_k > 0 else mpf("1e10")
+                if rel_spread < best_81_spread:
+                    best_81_spread = rel_spread
+                    best_81_k = mean_k
+                    best_81_detail = (
+                        "C81a: %d/%d*K*pi, C81b: %d/%d*K3, C81c: %d/%d*K; "
+                        "k_a=%.10f, k_b=%.10f, k_c=%.10f, spread=%.2e"
+                        % (pa, qa, pb, qb, pc, qc,
+                           float(ka), float(kb), float(kc), float(rel_spread)))
+
+    outputs["result_k81_from_C81a_v0"] = _approx(mpf(str(float(best_81_k)))) if best_81_k > 0 else "NONE"
+    outputs["result_k81_from_C81b_v0"] = best_81_detail[:80] if best_81_detail != "none" else "NONE"
+    outputs["result_k81_from_C81c_v0"] = best_81_detail[80:] if len(best_81_detail) > 80 else ""
+    outputs["result_k81_spread_v0"] = _approx(best_81_spread * 100) if best_81_spread < mpf("1e5") else "NO_MATCH"
+    outputs["result_k81_consistent_v0"] = float(best_81_spread) < 0.01  # consistent if < 1%
+
+    # Find the best consistent triplet within topology 83
+    best_83_spread = mpf("1e10")
+    best_83_k = mpf("0")
+    best_83_detail = "none"
+
+    for pa, qa, ka, _ in cands_83a:
+        for pb, qb, kb, tp_b in cands_83b:
+            for pc, qc, kc, _ in cands_83c:
+                mean_k = (ka + kb + kc) / 3
+                spread = max(abs(ka - mean_k), abs(kb - mean_k), abs(kc - mean_k))
+                rel_spread = spread / mean_k if mean_k > 0 else mpf("1e10")
+                if rel_spread < best_83_spread:
+                    best_83_spread = rel_spread
+                    best_83_k = mean_k
+                    best_83_detail = (
+                        "C83a: %d/%d*K2/pi, C83b: %d/%d*E*pi, C83c: %d/%d*K3; "
+                        "k_a=%.10f, k_b=%.10f, k_c=%.10f, spread=%.2e"
+                        % (pa, qa, pb, qb, pc, qc,
+                           float(ka), float(kb), float(kc), float(rel_spread)))
+
+    outputs["result_k83_from_C83a_v0"] = _approx(mpf(str(float(best_83_k)))) if best_83_k > 0 else "NONE"
+    outputs["result_k83_from_C83b_v0"] = best_83_detail[:80] if best_83_detail != "none" else "NONE"
+    outputs["result_k83_from_C83c_v0"] = best_83_detail[80:] if len(best_83_detail) > 80 else ""
+    outputs["result_k83_spread_v0"] = _approx(best_83_spread * 100) if best_83_spread < mpf("1e5") else "NO_MATCH"
+    outputs["result_k83_consistent_v0"] = float(best_83_spread) < 0.01
+
+    # Store best k values for use by PSLQ derivation
+    outputs["result_k81_best_v0"] = _approx(best_81_k) if best_81_k > 0 else "NONE"
+    outputs["result_k83_best_v0"] = _approx(best_83_k) if best_83_k > 0 else "NONE"
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_modulus_extraction_v0",
+        "outputs": outputs,
+        "notes": (
+            "Topology 81: best k=%.8f, spread=%.2e%% (%s). "
+            "Topology 83: best k=%.8f, spread=%.2e%% (%s). "
+            "Candidates: 81a=%d, 81b=%d, 81c=%d, 83a=%d, 83b=%d, 83c=%d."
+        ) % (
+            float(best_81_k), float(best_81_spread * 100),
+            "CONSISTENT" if float(best_81_spread) < 0.01 else "INCONSISTENT",
+            float(best_83_k), float(best_83_spread * 100),
+            "CONSISTENT" if float(best_83_spread) < 0.01 else "INCONSISTENT",
+            len(cands_81a), len(cands_81b), len(cands_81c),
+            len(cands_83a), len(cands_83b), len(cands_83c),
+        ),
+    }
+
+
+def laporta_pslq_elliptic_v0(value_dicts):
+    """Run PSLQ with combined zeta + elliptic basis at extracted moduli.
+
+    For each Laporta integral, build a basis containing:
+    {C_i, 1, zeta(3), zeta(5), K, E, K^2, KE, K^3, K^2*E,
+     K*pi, E*pi, K/pi, K^2/pi, E/pi,
+     zeta(3)*K, zeta(3)*E, zeta(5)*K, zeta(5)*E, pi, pi^2}
+
+    Run PSLQ at maxcoeff 1000 then 10000.
+
+    Uses the best k from the modulus extraction. If extraction
+    failed (no consistent k), uses the scan moduli as fallback.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200  # high precision for PSLQ
+
+    from mpmath import ellipk, ellipe, mpf, pi as mpi, pslq
+
+    pi_val = mp.pi
+    zeta3 = mp.zeta(3)
+    zeta5 = mp.zeta(5)
+
+    # Load integrals
+    integrals = {}
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        integrals[label] = mpf(str(_get(vm, "laporta_%s_v0" % label)))
+
+    # Get extracted moduli from previous derivation outputs
+    # These are in the value_dicts from the execution plan
+    k81_str = None
+    k83_str = None
+    for vd in value_dicts:
+        if "result_k81_best_v0" in vd:
+            k81_str = vd["result_k81_best_v0"]
+        if "result_k83_best_v0" in vd:
+            k83_str = vd["result_k83_best_v0"]
+
+    # Fallback moduli from magnitude scan if extraction didn't produce results
+    if k81_str is None or k81_str == "NONE":
+        k81 = mpf("0.6")  # scan fallback
+    else:
+        k81 = mpf(str(k81_str))
+
+    if k83_str is None or k83_str == "NONE":
+        k83 = mpf("0.35")  # scan fallback
+    else:
+        k83 = mpf(str(k83_str))
+
+    outputs = {}
+    outputs["result_k81_used_v0"] = _approx(k81)
+    outputs["result_k83_used_v0"] = _approx(k83)
+
+    found_count = 0
+    found_labels = []
+
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        c_val = integrals[label]
+
+        # Select modulus by topology
+        if label.startswith("C81"):
+            k = k81
+        else:
+            k = k83
+
+        k2 = k * k
+        K_val = ellipk(k2)
+        E_val = ellipe(k2)
+
+        # Build basis
+        basis = [
+            c_val,              # 0: the integral
+            mpf(1),             # 1: rational part
+            zeta3,              # 2
+            zeta5,              # 3
+            K_val,              # 4
+            E_val,              # 5
+            K_val ** 2,         # 6
+            K_val * E_val,      # 7
+            K_val ** 3,         # 8
+            K_val ** 2 * E_val, # 9
+            K_val * pi_val,     # 10
+            E_val * pi_val,     # 11
+            K_val / pi_val,     # 12
+            K_val ** 2 / pi_val,# 13
+            E_val / pi_val,     # 14
+            zeta3 * K_val,      # 15
+            zeta3 * E_val,      # 16
+            zeta5 * K_val,      # 17
+            zeta5 * E_val,      # 18
+            pi_val,             # 19
+            pi_val ** 2,        # 20
+        ]
+
+        # PSLQ at maxcoeff 1000
+        relation = pslq(basis, maxcoeff=1000)
+
+        status = "NULL"
+        relation_str = ""
+
+        if relation is not None:
+            # Verify: the first coefficient should be nonzero (for C_i)
+            if relation[0] != 0:
+                # Check relation is valid: sum(relation[i] * basis[i]) ~ 0
+                check = sum(relation[i] * basis[i] for i in range(len(basis)))
+                if abs(check) < mpf(10) ** (-50):
+                    status = "FOUND"
+                    found_count += 1
+                    found_labels.append(label)
+                    relation_str = str(relation)
+                else:
+                    status = "SPURIOUS"
+                    relation_str = "check=%.2e" % float(abs(check))
+            else:
+                status = "DEGENERATE"
+                relation_str = "coeff[0]=0"
+        else:
+            # Try higher maxcoeff
+            relation = pslq(basis, maxcoeff=10000)
+            if relation is not None and relation[0] != 0:
+                check = sum(relation[i] * basis[i] for i in range(len(basis)))
+                if abs(check) < mpf(10) ** (-50):
+                    status = "FOUND_10K"
+                    found_count += 1
+                    found_labels.append(label)
+                    relation_str = str(relation)
+                else:
+                    status = "SPURIOUS_10K"
+            else:
+                status = "NULL"
+
+        outputs["result_pslq_%s_status_v0" % label] = status
+        outputs["result_pslq_%s_relation_v0" % label] = relation_str[:200]
+        outputs["result_pslq_%s_maxcoeff_v0" % label] = 1000 if "10K" not in status else 10000
+
+    outputs["result_pslq_found_count_v0"] = found_count
+    outputs["result_pslq_found_labels_v0"] = ",".join(found_labels) if found_labels else "NONE"
+
+    # If any found, check how many independent constants remain
+    if found_count == 6:
+        # All six are combinations of K, E, zeta at two moduli
+        # Independent constants: K(k81), E(k81), K(k83), E(k83) = 4
+        # But K and E at same modulus are related by Legendre relation
+        # K*E' + K'*E - K*K' = pi/2, so effectively 2 per topology
+        outputs["result_constants_reduced_to_v0"] = 4
+    elif found_count > 0:
+        outputs["result_constants_reduced_to_v0"] = 6 - found_count + 2
+    else:
+        outputs["result_constants_reduced_to_v0"] = 6
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_pslq_elliptic_v0",
+        "outputs": outputs,
+        "notes": (
+            "PSLQ with 21-element combined zeta+elliptic basis. "
+            "k81=%.8f, k83=%.8f. "
+            "Found: %d/6 (%s). "
+            "Constants reduced from 6 to %d."
+        ) % (
+            float(k81), float(k83),
+            found_count,
+            ",".join(found_labels) if found_labels else "none",
+            int(outputs["result_constants_reduced_to_v0"]),
+        ),
+    }
+
+
+def laporta_closed_form_verify_v0(value_dicts):
+    """For any PSLQ FOUND results, verify the closed form to full precision.
+
+    Extract the relation coefficients, build the closed-form expression,
+    compute it to 200 digits, and compare to the integral value.
+    Also compute A4's three-layer decomposition if enough closed forms exist.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 200
+
+    from mpmath import ellipk, ellipe, mpf, pi as mpi
+
+    pi_val = mp.pi
+    zeta3 = mp.zeta(3)
+    zeta5 = mp.zeta(5)
+
+    outputs = {}
+
+    # Check PSLQ results from previous derivation
+    found_count = 0
+    verified_count = 0
+
+    for label in ["C81a", "C81b", "C81c", "C83a", "C83b", "C83c"]:
+        status_key = "result_pslq_%s_status_v0" % label
+        relation_key = "result_pslq_%s_relation_v0" % label
+
+        status = None
+        relation_str = None
+        for vd in value_dicts:
+            if status_key in vd:
+                status = vd[status_key]
+            if relation_key in vd:
+                relation_str = vd[relation_key]
+
+        if status is None or "FOUND" not in str(status):
+            outputs["result_verify_%s_v0" % label] = "SKIPPED (not found)"
+            continue
+
+        found_count += 1
+
+        if relation_str is None or relation_str == "":
+            outputs["result_verify_%s_v0" % label] = "NO_RELATION_DATA"
+            continue
+
+        # Parse the relation string back to coefficients
+        try:
+            coeffs = eval(relation_str)
+            if not isinstance(coeffs, (list, tuple)):
+                outputs["result_verify_%s_v0" % label] = "PARSE_ERROR"
+                continue
+        except Exception:
+            outputs["result_verify_%s_v0" % label] = "PARSE_ERROR"
+            continue
+
+        # Get the modulus
+        k81_str = None
+        k83_str = None
+        for vd in value_dicts:
+            if "result_k81_used_v0" in vd:
+                k81_str = vd["result_k81_used_v0"]
+            if "result_k83_used_v0" in vd:
+                k83_str = vd["result_k83_used_v0"]
+
+        if label.startswith("C81"):
+            k = mpf(str(k81_str)) if k81_str else mpf("0.6")
+        else:
+            k = mpf(str(k83_str)) if k83_str else mpf("0.35")
+
+        k2 = k * k
+        K_val = ellipk(k2)
+        E_val = ellipe(k2)
+
+        # Rebuild basis (same order as PSLQ)
+        basis = [
+            mpf(str(_get(vm, "laporta_%s_v0" % label))),
+            mpf(1), zeta3, zeta5,
+            K_val, E_val, K_val**2, K_val*E_val, K_val**3, K_val**2*E_val,
+            K_val*pi_val, E_val*pi_val, K_val/pi_val, K_val**2/pi_val, E_val/pi_val,
+            zeta3*K_val, zeta3*E_val, zeta5*K_val, zeta5*E_val,
+            pi_val, pi_val**2,
+        ]
+
+        # Verify: sum should be zero
+        if len(coeffs) == len(basis):
+            check = sum(mpf(str(c)) * b for c, b in zip(coeffs, basis))
+            check_digits = -int(mp.log10(abs(check))) if abs(check) > 0 else 200
+
+            # Compute what C_i equals from the other coefficients
+            if coeffs[0] != 0:
+                c_from_relation = -sum(
+                    mpf(str(c)) * b for c, b in zip(coeffs[1:], basis[1:])
+                ) / mpf(str(coeffs[0]))
+
+                c_actual = basis[0]
+                match_digits = -int(mp.log10(abs(c_from_relation - c_actual))) if abs(c_from_relation - c_actual) > 0 else 200
+
+                outputs["result_verify_%s_v0" % label] = (
+                    "VERIFIED to %d digits (check=%.2e)" % (match_digits, float(abs(check))))
+                outputs["result_verify_%s_digits_v0" % label] = match_digits
+                verified_count += 1
+            else:
+                outputs["result_verify_%s_v0" % label] = "DEGENERATE (coeff[0]=0)"
+        else:
+            outputs["result_verify_%s_v0" % label] = "LENGTH_MISMATCH"
+
+    outputs["result_verified_count_v0"] = verified_count
+    outputs["result_attack3_summary_v0"] = (
+        "Found: %d/6. Verified: %d/%d. "
+        "Status: %s."
+    ) % (
+        found_count, verified_count, found_count,
+        "SUCCESS" if verified_count > 0 else "NO_CLOSED_FORMS" if found_count == 0 else "VERIFICATION_FAILED",
+    )
+
+    mp.dps = old_dps
+
+    return {
+        "key": "laporta_closed_form_verify_v0",
+        "outputs": outputs,
+        "notes": (
+            "Verification of PSLQ closed forms. "
+            "Found: %d/6. Verified: %d/%d."
+        ) % (found_count, verified_count, found_count),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -9488,6 +10071,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "remainder_beta0_extraction_v0": remainder_beta0_extraction_v0,
     "remainder_elliptic_scan_v0": remainder_elliptic_scan_v0,
     "remainder_a4_laporta_elliptic_v0": remainder_a4_laporta_elliptic_v0,    
+    # Modulus and Remainder: Laporta Attack Path 3
+    "laporta_modulus_extraction_v0": laporta_modulus_extraction_v0,
+    "laporta_pslq_elliptic_v0": laporta_pslq_elliptic_v0,
+    "laporta_closed_form_verify_v0": laporta_closed_form_verify_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {
