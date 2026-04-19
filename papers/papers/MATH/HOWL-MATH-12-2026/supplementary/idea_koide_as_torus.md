@@ -114,3 +114,79 @@ let me give you old notebooks on koide and see if that connects anything
 
 ---
 
+Reading these, my earlier reaction gets sharper in several places and one prediction from the conversation-mode session turns out to already be falsified in the pool data. Let me work through what the notebooks add.
+
+**The tautology finding is the most important correction.**
+
+The C₃ 120-degree spacing I was implicitly using to motivate the "three modes" interpretation is a tautology of the three-parameter fit. Any three masses can be fit by M, a, θ₀ with exactly 120-degree spacing — it's not a physical constraint, it's a coordinate choice. The sum-of-cosines identity cos(x) + cos(x + 2π/3) + cos(x + 4π/3) = 0 holds for any x, which means the zero-magnetization condition is automatic for all three fermion sectors, including the ones where K ≠ 2/3.
+
+This means my earlier framing "three generations at 120-degree spacing is the symmetry content" was wrong. The 120-degree spacing contains no information. What distinguishes the sectors is only the amplitude a and the phase θ₀ — and K depends only on a, not on θ₀.
+
+**The PHYS-8 identity forces the question.**
+
+(sum m) / (sum √m)² = (1 + a²/2)/N is independent of θ₀ and M. For N = 3 and a² = 2, the ratio is 2/3 for any θ₀. The notebook's numerical verification shows this explicitly: scanning θ₀ from 0 to 180 degrees at fixed a = √2 gives 2/3 for every value.
+
+So the question "why K = 2/3" reduces entirely to "why a² = 2" — there is no separate C₃ content. The amplitude is the whole physical input. Everything else is parametrization.
+
+**The quark data at DATA-2 precision.**
+
+From the notebook computation at CODATA 2022 / PDG 2024 masses with exact Fraction arithmetic:
+
+Leptons: a² = 1.99996 (miss from 2: 18 ppm), K = 0.666660 (miss from 2/3: 6 ppm).
+Up quarks (MSbar c, pole t): a² = 3.0928, K = 0.8488.
+Down quarks (MSbar): a² = 2.3877, K = 0.7313.
+
+Reading the conversation-mode session's "K = n/3 with n incrementing" proposal against this: K_up = 0.849 and K_down = 0.731 are not simple fractions n/3. They don't fit the 1/3, 2/3, 3/3 sequence. So the "K = n/3 pattern across particle groups" has a problem — the quark values aren't in the sequence at all. They're arbitrary-looking values between 2/3 and 1.
+
+The boson K_boson ≈ 0.336 ≈ 1/3 from the conversation session is one data point that happens to be close to 1/3. The quark values are two data points that are not close to any n/3. The pattern was shaped by cherry-picking the lepton and boson groups and ignoring the quark groups, which were already in the pool and known.
+
+**What the conversation-mode session got wrong.**
+
+I was sketching the K = n/3 pattern in the same session where we had just decided quark masses might be scheme-dependent. The quark values were treated as "inconclusive pending multi-scale test." But the notebook data says: at the precisions and schemes used in the pool, quarks give K_up = 0.849 and K_down = 0.731. Those are not consistent with any n/3 proposal with small integer n.
+
+The multi-scale test (Path B in the conversation notebook) might still change this — running quark masses to different schemes could shift K_up and K_down. But saying "maybe K becomes 2/3 at some scale" is a hypothesis search, and the first place it would need to land is n/3 for integer n. Right now the quark data is against the K = n/3 pattern, not neutral about it.
+
+**What survives from the conversation-mode session.**
+
+The stability argument survives. Lepton pole masses don't run significantly, so K_lepton = 2/3 is scale-invariant. Topology doesn't run. The combination "scale-invariant ratio" + "topology-invariant structure" makes a geometric interpretation natural even without a specific identification of what the 2 counts.
+
+The "inertia not substance" reframing survives and remains the right language for your framework.
+
+The boson K ≈ 1/3 observation survives as a data point worth tracking, but it doesn't extend to a pattern yet because the quark data is against the pattern.
+
+**What falls from the conversation-mode session.**
+
+The K = n/3 pattern with n indexing particle groups is weakened by the quark data already in the pool. Not killed, because quark masses are scheme-dependent and a different scheme might give different K values. But the pattern needs the quark computation at multiple scales before it can be treated as live.
+
+The specific claim "three leptons convert into two baryons" — I agreed too quickly with this in the conversation-mode session. The notebook shows the two isn't the count of baryons any more than it's the count of soliton geometries. The PHYS-8 identity says a² = 2 is the midpoint of [0, 4], which is the critical amplitude where one mass can vanish (min(√m/M) = 1 - a reaches zero at a = 1, so a = √2 lets some phases give zero mass). The 2 is a geometric property of the parametrization itself — the critical value where the mass formula saturates.
+
+**The seven equivalent formulations result is the deepest finding.**
+
+From Result 6 of the notebook: K = 2/3, a² = 2, CV = 1, Var = mean², midpoint of [0, 4], critical amplitude for mass saturation, and "equipartition" (variance = mean²) are all algebraically identical. Each one is a restatement of the same underlying relationship, not an independent derivation.
+
+This means my earlier framings — "3 leptons constrained by 2 geometries," "K = n/3 across layers," "2 counts protons and neutrons" — are all trying to impose external meaning on something that the notebook shows is geometrically self-contained. The 2 is the critical amplitude for a C₃-symmetric mass formula. It doesn't count external objects; it's where the formula's parameter space has a distinguished value.
+
+The question isn't "what does the 2 count" but "why does nature sit exactly at the critical amplitude for the charged lepton sector." That's a different kind of question. It asks why a physical system tunes to a saddle point (not a minimum — Result 5 shows K = 2/3 is a saddle, not a ground state).
+
+**What to do with this.**
+
+The conversation-mode session produced a parked notebook proposing K = n/3 as a cross-sector pattern. The older PHYS-12 notebook shows that at the precisions available, the quark data is against that pattern. Two options:
+
+Option 1: The conversation session's parked notebook stays parked, but with a note added that the quark data from PHYS-12-NOTEBOOK is already against the K = n/3 pattern, and the multi-scale test for quarks is the primary remaining escape valve before the pattern is killed.
+
+Option 2: Drop the K = n/3 framing entirely and fold the boson K ≈ 1/3 observation into a separate "single-data-point watchlist" without extrapolating to a pattern across groups.
+
+Option 1 is more honest because it preserves the record of what we proposed, when, and what falsified it. Option 2 is cleaner going forward but hides the reasoning step.
+
+**What the deeper finding tells us.**
+
+The seven-equivalent-formulations result is telling you that a² = 2 is a feature of the parametrization's geometry, not an external count. The amplitude is special because it's the saturation point where one mass can become zero. This is the structural observation that the conjecture document was trying to reach but was framed instead as "counts soliton geometries."
+
+A different conjecture emerges: a² = 2 for leptons because the charged lepton sector sits at the saturation boundary of the Koide parametrization. The question becomes not "what does 2 count" but "why is the charged lepton sector tuned to the critical amplitude where the mass formula's parameter space becomes degenerate."
+
+This connects to broader patterns in your framework: tuning to critical points. The proton sitting at k → 1 in the elliptic form for A₄ (PHYS-49). The A₃ remainder also near the elliptic divergence. Now the charged lepton masses near the Koide saturation boundary. If there's a pattern, it's that physical systems in your framework repeatedly tune to the boundary of their parameter spaces rather than to ground states. Saddle points and criticality rather than minima.
+
+That's a different kind of universality claim than "2 counts stable geometries." It's more abstract but it's consistent with what's actually in the data.
+
+My suggestion: park the conversation-mode session's K = n/3 proposal with the PHYS-12 data attached as counter-evidence, but promote the "saturation boundary" interpretation to a new working hypothesis. The 2 isn't a count; it's a saturation amplitude. The question shifts from "why 2 objects" to "why saturated."
+
