@@ -17,7 +17,8 @@
 
 ---
 
-## I. THE FILLING FRACTION SEQUENCE
+## I. ABSTRACT
+### The Filling Fraction Sequence
 
 The n-ball filling fraction R_n measures how much of its bounding n-cube an n-dimensional ball occupies:
 

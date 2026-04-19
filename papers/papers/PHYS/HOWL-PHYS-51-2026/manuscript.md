@@ -17,7 +17,8 @@
 
 ---
 
-## I. THE INPUT COUNT
+## I. ABSTRACT
+### The Input Count
 
 Three position papers track the framework's growth:
 
@@ -39,9 +40,15 @@ The change from PHYS-40 to PHYS-51:
 | Experiments | ~15 | ~26 | +11 |
 | Total experiment outputs | ~500 | ~1000+ | +500 |
 
+![Fig. 2: Input count drops from 15 to 10 across three position papers. Surplus grows from +20 to +50. Three parameters moved from input to derived in Session 8.](./figures/phys51_02_input_reduction.png)
+
+![Fig. 7: The surplus grows from +20 (PHYS-24) to +40 (PHYS-40) to +50 (PHYS-51). Input count drops from 15 to 10. Outputs per input: 2.3 → 4.1 → 6.0.](./figures/phys51_07_surplus_growth.png)
+
 ---
 
 ## II. THE THREE PARAMETERS THAT MOVED
+
+![Fig. 1: The α_EM derivation tree. One root, seven working branches at sub-percent, three partial branches. Precisions from 0.22 ppb (a_e) to 0.49% (Ω_b).](./figures/phys51_01_derivation_tree.png)
 
 Three quantities that PHYS-40 treated as measured inputs are now derived from α_EM:
 
@@ -92,6 +99,8 @@ Three additional chains exist but need refinement:
 
 ## IV. THE PRECISION LADDER
 
+![Fig. 3: The precision ladder on a log scale. Seven quantities below 1%. Four below 0.01%. The a_e prediction at 0.22 ppb is the most precise in the framework.](./figures/phys51_03_precision_ladder.png)
+
 | Tier | Miss range | Quantities | Count |
 |---|---|---|---|
 | Ultra-precision | < 1 ppm | a_e (0.22 ppb) | 1 |
@@ -105,6 +114,8 @@ Seven of ten sub-percent. Four sub-0.01%. The ultra-precision tier exists becaus
 ---
 
 ## V. THE LAPORTA OPERATIONALIZATION
+
+![Fig. 4: The Laporta constants went from opaque numbers to classified structure to operational contributions. Without A₄: 48 ppb miss. With A₄: 0.22 ppb.](./figures/phys51_04_laporta_operationalization.png)
 
 Before Session 8, the Laporta constants were six opaque numbers inside A₄ = −1.912. They contributed to a_e but their structure was unknown. After Session 8, they are classified, characterized, and operational.
 
@@ -124,6 +135,8 @@ The operationalization means A₄ is no longer a black box. It enters the a_e de
 ---
 
 ## VI. THE THREE-LAYER DECOMPOSITION
+
+![Fig. 5: The three-layer decomposition at each loop order. Cancellation staircase from 0% to 99.5%. At loop 4, Layer 2 (Laporta, toroidal) appears and the cancellation breaks.](./figures/phys51_05_three_layer_decomposition.png)
 
 The modulus/remainder framework from Sessions 1-4 decomposed every computation into modulus (β = π/4, the geometric conversion) and remainder (everything else, parked). Session 8 resolved the remainder:
 
@@ -189,6 +202,8 @@ These papers establish the framework's treatment of gravity and spacetime. They 
 ---
 
 ## X. THE EXPERIMENT RECORD
+
+![Fig. 6: Session 8 produced 11 experiments with 481 outputs. 91 PASS, 10 FAIL. Domains: MATH, QED, Laporta, Mod/Rem, Koide, All.](./figures/phys51_06_experiment_map.png)
 
 Session 8 produced 11 new experiments:
 
@@ -323,6 +338,8 @@ Listed in order of significance:
 ---
 
 ## XV. THE PLATFORM
+
+![Fig. 8: You Are Here III. The complete position: 4 irreducible inputs, 60+ outputs, surplus +50. Session 8 discoveries, precision tiers, and what's still missing.](./figures/phys51_08_identity_card.png)
 
 The framework stands on:
 
