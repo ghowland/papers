@@ -1,148 +1,268 @@
-## PHYS-44 Diagram Candidates — Enumeration of 20
+# PHYS-54 Diagram Candidates
 
-### Candidate 1: The 10/1/4/3 bar chart
-Four bars: D=10, K=1, Mixed=4, Structural=3. Color-coded. Each bar labeled with the test names. Threshold line at total=18.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The reader SEES the dominance of D. The one lonely K bar communicates "time is the minority" instantly.
-- **Score:** +2 (bars with structure) +1 (quantitative) +1 (central result) = **+4**
+**Registry:** HOWL-PHYS-54-2026 (Diagram Script Selection)
+**Date:** April 19, 2026
+**Source:** PHYS-54 main paper + appendix tables
+**Purpose:** Enumerate 20 diagram candidates, score them, propose top 8 for the diagram script
 
-### Candidate 2: The 89/11 pie or stacked bar
-Frozen scan coverage: 89% spatial, 11% temporal. Two-segment bar or ring chart.
-- **Type:** Comparison Bar (D5.6)
-- **Score:** −2 (two numbers, better as a sentence) = **−2**
-
-### Candidate 3: GPS D/K decomposition — stacked bar
-Three bars: D component (+45.85), K component (−7.21), Net (+38.51). The D bar towers over the K bar. Labeled with percentages 86/14.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The asymmetry between D and K magnitudes is visual. The sign difference (D positive, K negative) communicates that they work in opposite directions.
-- **Score:** +2 (bars with structure) +1 (quantitative) +1 (connects sections) = **+4**
-
-### Candidate 4: Sector splitting vs κ — detection threshold
-Y-axis: log₁₀(ε). X-axis: log₁₀(κ). Three diagonal lines for three sector pairs (3-1, 3-2, 2-1). Horizontal thresholds at 10⁻¹⁸ and 10⁻¹⁹. Shaded detectable region. κ=1, κ=α, κ=α² marked as points.
-- **Type:** Threshold/Region (D5.3)
-- **Physics:** 13 orders of detectable range. The shape shows which suppression mechanisms still leave the effect visible. Three pairs have different intercepts from different |Δβ|.
-- **Score:** +2 (curves with thresholds) +2 (impossible in text) +1 (quantitative) +1 (central prediction) = **+6**
-
-### Candidate 5: The D/K classification of all 18 tests — horizontal layout
-18 tests arranged along a horizontal axis. Each colored by classification: D=cyan, K=orange, Mixed=gold, Structural=silver. Grouped into four clusters. Labels with test names and miss values. The reader sees the landscape of what is geometry and what is ticking.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** The spatial distribution of D vs K across the test suite. The reader sees that D dominates the left (laboratory scale) through the middle (solar scale) and K only appears at cosmological and velocity scales.
-- **Score:** +2 (scale layout) +2 (impossible in text — pattern is spatial) +1 (quantitative) = **+5**
-
-### Candidate 6: Frozen scan coverage at each hierarchy level
-Y-axis: hierarchy level (lab → Earth → Sun → compact → cosmological). X-axis: fraction covered by frozen scan (0 to 100%). Horizontal bars at each level showing how much the frozen scan predicts. The cosmological level has a short bar. All others are long.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The reader sees that the frozen scan works everywhere except cosmological epoch comparisons. The coverage drops only at the largest scale.
-- **Score:** +2 (bars with structure) +1 (quantitative) = **+3**
-
-### Candidate 7: Muon D×K product diagram
-Left panel: spatial trajectory with γ=15.8 labeled (D factor). Right panel: internal tick budget τ_rest = 4.08×10³⁷ ticks (K factor). Bottom: product = lab lifetime 34.7 μs. The multiplication IS the combination of space and time.
-- **Type:** Progression/Sequence (D5.7)
-- **Physics:** The multiplicative D×K structure is impossible to convey in a sentence. The left panel is spatial (a path). The right panel is temporal (a counter). The product is the observation.
-- **Score:** +2 (two panels with physical meaning) +2 (impossible in text) +1 (quantitative) = **+5**
-
-### Candidate 8: The soliton hierarchy with D/K labels
-Nested circles (Planck → nuclear → atomic → lab → planet → star → galaxy → cosmos). Each level labeled with Φ/c² and whether it is D or K. The ten D levels are one color. The one K level (cosmological epoch comparison) is another. Mixed levels have split coloring.
-- **Type:** Geometric Cross-Section (D5.4)
-- **Physics:** The hierarchy IS the reading. The nesting IS depth. Labeling each level with its D/K classification shows where the decomposition lives in the spatial structure.
-- **Score:** +2 (geometric) +2 (impossible in text) +1 (connects all tests) = **+5**
-
-### Candidate 9: EP test landscape with cross-sector prediction
-Y-axis: log sensitivity. X-axis: year (1920-2035). Historical same-sector tests as dim points trending downward. The PHYS-44 cross-sector prediction as a star at 2030, 10⁻¹². The detection threshold band at 10⁻¹⁸.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** A century of same-sector, then one cross-sector leap. Already in PHYS-43 diagrams.
-- **Score:** +2 (curve) +1 (quantitative) −1 (similar to PHYS-43 Fig 6) = **+2**
-
-### Candidate 10: Integer chain — β coefficients to sector splitting
-Connection map: Cabibbo Doublet → β coefficients → |Δβ| → ε formula ← Φ/c² from GR. Same β values also → sin²θ_W and α_s. Each arrow carries a Fraction.
-- **Type:** Connection/Integer Map (D5.5)
-- **Physics:** The same integers in three predictions. Already in PHYS-43 diagrams.
-- **Score:** +2 (formulas on arrows) −1 (similar to PHYS-43 Fig 7) = **+1**
-
-### Candidate 11: The reading vs the tick — conceptual D-K plane
-Two orthogonal axes: D (horizontal, reading depth) and K (vertical, tick count). The GR dilation as a diagonal vector. The five PHYS-43 tests as projections.
-- **Type:** Geometric Cross-Section (D5.4)
-- **Physics:** Already in PHYS-43 Fig 1.
-- **Score:** +2 (geometric) −2 (duplicate of PHYS-43 Fig 1) = **0**
-
-### Candidate 12: WEP consistency — sum gravity vs per-sector gravity
-Two-panel diagram. Left: sum gravity (all sectors contribute equally to free fall, no WEP violation). Right: per-sector gravity (sectors contribute differently, WEP violation). MICROSCOPE bound shown as threshold. The reader sees why clock tests detect the splitting but free fall tests do not.
-- **Type:** Threshold/Region (D5.3)
-- **Physics:** The distinction between sum-gravity (no violation) and per-sector gravity (violation) is conceptual but the MICROSCOPE threshold makes it quantitative. The reader sees that sum gravity is consistent.
-- **Score:** +2 (threshold with regions) +1 (quantitative) +1 (connects to MICROSCOPE) = **+4**
-
-### Candidate 13: Kill condition flowchart
-Decision tree: Test 1 → agree or disagree → consequences. Test 2 → etc.
-- **Type:** Text-in-boxes
-- **Score:** −2 (flowchart) = **−2**
-
-### Candidate 14: Tick budget landscape
-Log-scale axis from 10³⁶ to 10⁸⁵ Planck ticks. Landmarks: photon transit (36), muon lifetime (37.6), GPS period (47.9), Mercury period (50.1), SN Ia lookback (60.5), universe age (60.9), proton lifetime (85.3). The span communicates scale.
-- **Type:** Scale/Landscape (D5.2)
-- **Physics:** The tick budget spans 49 orders of magnitude. The reader sees where each process sits on the counting machine's scale. The clustering of GPS/Mercury/Hulse-Taylor around 10⁴⁸ (orbital ticks) vs muon at 10³⁸ (decay ticks) vs cosmological at 10⁶¹ shows three regimes.
-- **Score:** +2 (scale with landmarks) +2 (impossible in text — the span is visual) +1 (quantitative) = **+5**
-
-### Candidate 15: SM vs CD beta differences for three pairs
-Three pairs of bars: (3,1), (3,2), (2,1). Each pair has an SM bar and a CD bar. The (3,1) pair nearly matches. The (2,1) pair differs by 2.4×. Labeled with exact Fractions.
-- **Type:** Comparison Bar (D5.6)
-- **Physics:** The discriminating power of the (2,1) pair is VISUAL — the bars are dramatically different heights. A table says "2.4×" but the bars show it.
-- **Score:** +2 (bars with quantitative contrast) +1 (connects to measurement) = **+3**
-
-### Candidate 16: The frozen scan — reading profile across hierarchy
-X-axis: log₁₀(Φ/c²) from 10⁻¹⁰ to 10⁰. Y-axis: hierarchy level (labeled). Points at each level with Φ/c² values. All computed from frozen spatial inputs. No temporal input needed. The plot IS the frozen scan output.
-- **Type:** Running/Convergence (D5.1)
-- **Physics:** The reading depth increases monotonically from GPS (10⁻¹⁰) through Earth, Mercury, Sun, to neutron star (10⁻¹). The monotonicity IS the hierarchy. The reader sees the soliton nesting as a curve.
-- **Score:** +2 (curve with physical meaning) +1 (quantitative) +1 (central concept) = **+4**
-
-### Candidate 17: The three structural identities
-t_P, l_P, c = l_P/t_P arranged as a triangle. Each vertex labeled with value and meaning (tick step, spatial resolution, resolution ratio). The triangle encodes the relationship between D and K at the most fundamental level.
-- **Type:** Identity Card (D5.8)
-- **Physics:** The three Planck quantities and their relationship define the D/K connection. The triangle is geometric. The ratio is the speed limit.
-- **Score:** +2 (visual reference with geometry) +1 (quantitative) = **+3**
-
-### Candidate 18: Classification consistency — miss values by category
-Scatter plot: x-axis = D/K/Mixed category, y-axis = miss (log scale). Points for each test colored by category. If D tests cluster at low miss and K tests at high miss (or vice versa), there's a systematic difference. If they intermix, the decomposition is consistent.
-- **Type:** Running/Convergence variant (scatter)
-- **Physics:** Tests whether the D/K classification correlates with prediction quality. If it doesn't, both components work equally well. The reader sees the scatter.
-- **Score:** +2 (scatter with pattern) +1 (quantitative) = **+3**
-
-### Candidate 19: The counting machine — N ticks since beginning
-Vertical log scale from 0 to 10⁶¹. Marked with cosmic epochs: inflation end, BBN, recombination, first stars, solar system formation, now. Each epoch labeled with its tick count.
-- **Type:** Scale/Landscape (D5.2)
-- **Score:** +1 (scale) −1 (essentially a timeline as a number line) = **0**
-
-### Candidate 20: Altitude scan — splitting vs height for three κ values
-X-axis: altitude (0-3000 m). Y-axis: ε (log scale). Three curves for κ=1, α, α². Detection threshold band. Already in PHYS-43 Fig 4.
-- **Type:** Threshold/Region (D5.3)
-- **Score:** +2 (curves) −2 (duplicate of PHYS-43 Fig 4) = **0**
+Following diagram_script_rules.md. Filter test per D3.2: does it need a curve, geometry, scale, nesting, or spatial relationship? Score per D14.2.
 
 ---
 
-## SCORING SUMMARY
+## The 20 Candidates
 
-| Rank | # | Candidate | Score | Type |
-|---|---|---|---|---|
-| 1 | 4 | κ sweep — sector splitting vs detection | +6 | Threshold/Region |
-| 2 | 5 | D/K classification landscape — 18 tests | +5 | Scale/Landscape |
-| 3 | 7 | Muon D×K product — two panels | +5 | Progression/Sequence |
-| 4 | 8 | Soliton hierarchy with D/K labels | +5 | Geometric Cross-Section |
-| 5 | 14 | Tick budget landscape — 49 orders | +5 | Scale/Landscape |
-| 6 | 1 | 10/1/4/3 bar chart | +4 | Comparison Bar |
-| 7 | 3 | GPS D/K decomposition bars | +4 | Comparison Bar |
-| 8 | 12 | WEP sum vs per-sector | +4 | Threshold/Region |
-| 9 | 16 | Frozen scan reading profile | +4 | Running/Convergence |
+### C1: The Six-Level Hierarchy with Scale Spacing
 
-## TOP 8 SELECTION
+**Type:** Scale/Landscape (Type 2)
+**Shows:** The 13 soliton hierarchy levels (Level 0 through Level 12) with characteristic scales from 10⁻¹⁸ m to 10²⁷ m, with the six testing levels highlighted. Log-scale vertical axis; each level labeled with example (quark, atom, planet, galaxy, universe).
+**Physics text cannot convey:** The 45 orders of magnitude spanned and where the test levels sit in the stack.
+**Score:** +2 (geometric structure) +2 (scale impossible in text) +1 (quantitative) +1 (connects levels to tests) = **+6**
 
-| Fig | # | Title | Type |
+### C2: The Parallel Isomorphism Map — SM vs PCTRM
+
+**Type:** Connection/Integer Map (Type 5)
+**Shows:** Left column: SM primitives (quantum fields, loop integrals, Lagrangian terms). Right column: PCTRM primitives (cells, ticks, modulus, remainder, channels). Middle column: shared observables (m_e, α, Ω_Λ, H 1S-2S). Arrows show isomorphism mapping with actual formulas.
+**Physics text cannot convey:** The specific mapping between two very different sets of primitives producing the same observables.
+**Score:** +2 (structural) +1 (quantitative with formulas) +1 (cross-section connections) = **+4**
+
+### C3: The Per-Tick Update Eight-Phase Cycle
+
+**Type:** Progression/Sequence (Type 7)
+**Shows:** Eight phases of the update cycle (budget generation → coherence tax → channel enumeration → exchange → vector sum → modulus check → state update → tick advance). Each phase has concrete data (e.g., "photon: B=M, tax=0" vs "electron: B=0.5M, tax=0.5M").
+**Physics text cannot convey:** The sequence of operations and the per-phase data flow.
+**Score:** +2 (structural) +2 (physical sequence) +1 (quantitative) = **+5**
+
+### C4: The Cancellation Staircase Across Loops (reuse from MATH-12)
+
+**Type:** Running/Convergence (Type 1)
+**Shows:** Loop order (1, 2, 3, 4) on x-axis; cancellation percentage and β⁰ fraction on y-axis. Shows cancellation tightening from 0% → 90.4% → 99.5% and then breaking at loop 4 where toroidal content enters.
+**Physics text cannot convey:** The tightening and then breaking pattern. Already in MATH-12 series.
+**Score:** +2 (curve shape) +1 (quantitative) −1 (similar diagram in prior paper) = **+2**
+
+### C5: RUM Predictions Already Validated — Precision Map
+
+**Type:** Comparison Bar Chart (Type 6)
+**Shows:** Predictions like Koide, Ω_Λ, V_us, V_cb, bridge formula, plotted as bars showing their measured-to-predicted precision (9 ppm, 44 ppm, 85 ppm, 300 ppm, etc.). Threshold lines at 10⁻⁶, 10⁻⁴, 10⁻². The reader sees the tight range where RUM has already matched.
+**Physics text cannot convey:** Visual sense of how precise RUM's existing matches are and which are tight vs. loose.
+**Score:** +1 (quantitative comparison) +1 (connects predictions) = **+2**
+
+### C6: The Six-Level Test Matrix with Kill Switches
+
+**Type:** Threshold/Region Chart (Type 3)
+**Shows:** 6 levels (x-axis) × precision range (y-axis, log scale). Each kill switch plotted as a horizontal band at its required precision. Shaded regions showing "must match here or fail." Visual representation of the falsification program.
+**Physics text cannot convey:** The precision stack across levels and where each kill switch sits.
+**Score:** +2 (geometric structure) +1 (quantitative) +1 (cross-connects) = **+4**
+
+### C7: The Direction-Conditional Full-Mesh Topology vs. Standard Lattice
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** Side-by-side comparison. Left: standard cubic lattice with 6 neighbors and staircase path. Right: direction-conditional full mesh with arbitrary continuous direction and 1-cell step. Both show a photon at 30° traversing space.
+**Physics text cannot convey:** Why lattice anisotropy is a problem and how full-mesh solves it geometrically.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (cross-section) = **+5**
+
+### C8: A Photon's Trajectory Through Nested Soliton Boundaries
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** CMB emission → galactic filaments → clusters → Milky Way → solar system → Earth atmosphere → detector. Each boundary labeled with its nesting level. Photon path shown crossing each. Transit count accumulates. Connects to Hubble tension reading.
+**Physics text cannot convey:** The nesting topology and how light transits multiple boundaries.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (cross-section) = **+5**
+
+### C9: Orbits from Per-Tick Vector Balance
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** Moon orbiting Earth. At each tick, two vectors drawn from Moon's current position: tangential motion budget (cyan) and radial pull (red). Vector sum (gold) rotates the Moon's direction. Multiple ticks shown around the orbit. Final trajectory closes on itself.
+**Physics text cannot convey:** How the per-tick vector balance produces closed orbits. Shows the mechanism.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (quantitative) = **+5**
+
+### C10: The 1/r² Gravitational Falloff from Spherical Channel Spreading
+
+**Type:** Running/Convergence (Type 1)
+**Shows:** Distance r (x-axis, log scale) vs. channel density (y-axis, log scale). Starting at Earth center, channels distributed over sphere of radius r have density N/(4πr²). Line has slope -2 on log-log. Actual measurements of g vs. r at various altitudes plotted for comparison.
+**Physics text cannot convey:** How geometric spreading on spheres produces 1/r² as a derivable consequence.
+**Score:** +2 (curve shape) +2 (geometric consequence) +1 (quantitative comparison) = **+5**
+
+### C11: The Orbital Closure Integer Condition (Shell Quantization Mechanism)
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** Three orbits at radii r₁, r₂, r₃. For each, show the remainder accumulated per orbit. Only specific radii (r_Bohr, 2r_Bohr, 3r_Bohr) produce integer multiples of modulus (1M, 4M, 9M for n=1,2,3). Other radii don't close. Shell quantization emerges from integer closure.
+**Physics text cannot convey:** Why quantum shells exist at specific radii. The closure mechanism.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (quantitative) = **+5**
+
+### C12: Priority Order Timeline for the Research Program
+
+**Type:** Progression/Sequence (Type 7)
+**Shows:** 24-month timeline (x-axis). 12 priority tests (y-axis) plotted as horizontal bars showing expected development and execution time. Dependencies shown with arrows. Resource bottlenecks (QM extension, GR derivation) marked.
+**Physics text cannot convey:** The temporal sequence and dependencies of the program.
+**Score:** +1 (quantitative) +1 (cross-connects) = **+2** (could be table)
+
+### C13: The Coherence Tax Mechanism — Photon vs. Massive Particle
+
+**Type:** Progression/Sequence (Type 7)
+**Shows:** Side-by-side comparison. Left: photon's per-tick budget (full M), moves 1 cell per tick, v=c. Right: electron's per-tick budget (reduced by Higgs tax), accumulates remainder over 20 ticks, then moves 1 cell, v=0.05c. The Higgs tax bar reduces the usable budget.
+**Physics text cannot convey:** How Higgs coupling operationally determines particle velocity.
+**Score:** +2 (structural) +2 (physical mechanism) +1 (quantitative) = **+5**
+
+### C14: RUM's Integer Alphabet in the Soliton Hierarchy
+
+**Type:** Connection/Integer Map (Type 5)
+**Shows:** Boxes showing where each integer in {2, 3, 5, 8, 11, 13, 22, 264} appears across the hierarchy. 8 in gluon count, 3 in generations, 11 in Yang-Mills, 13 in modified SU(2), 22 in vector-like doubling, 264 in cosmological denominator. Arrows show propagation up the hierarchy.
+**Physics text cannot convey:** The unified role of these integers across levels.
+**Score:** +2 (structural) +1 (formulas with numbers) +1 (cross-section connects) = **+4**
+
+### C15: Sixteen Kill Switches Grid
+
+**Type:** Threshold/Region Chart (Type 3)
+**Shows:** 16 kill switches as cells in a grid. Each cell colored by its current status (not yet attempted / partial / foundational commitment). Precision requirements shown inside each cell. Level of the hierarchy on one axis, priority on the other.
+**Physics text cannot convey:** The overall coverage and status of the program.
+**Score:** +1 (structural) +1 (cross-section) = **+2** (could be table)
+
+### C16: Toroidal Modulus Family — β(k) from Circle to Torus
+
+**Type:** Running/Convergence (Type 1)
+**Shows:** Modulus k (x-axis, 0 to 1) vs. K(k) and E(k) (y-axis). Shows degenerate circle at k=0, toroidal moduli at k₈₁ = 0.999994 (topology 81) and k₈₃ = 0.99713 (topology 83). QED transitions from k=0 (loops 1-3) to k>0 (loop 4) marked.
+**Physics text cannot convey:** The family structure and where QED transitions occur.
+**Score:** +2 (curve shape) +1 (quantitative) −1 (similar in MATH-12) = **+2**
+
+### C17: Refraction Through a Prism in PCTRM
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** Light entering prism at angle θ_i, direction updated by medium's channel structure, continuing at new angle inside, exiting at θ_r. Chromatic dispersion shown as red/blue splitting. Full-mesh topology advantage noted: arbitrary refraction angles natural.
+**Physics text cannot convey:** How refraction works in discrete substrate.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (quantitative) = **+5**
+
+### C18: The SM Lagrangian's Three ¼ Terms → Gauge Sectors
+
+**Type:** Connection/Integer Map (Type 5)
+**Shows:** The three kinetic terms of the SM Lagrangian (−¼F² for SU(3), SU(2), U(1)) connected to the integer dimensions of each group (8, 3, 1). Bosons counted. Connects to gauge integer alphabet {8, 3}.
+**Physics text cannot convey:** Why three specific terms for three specific group counts.
+**Score:** +1 (structural) +1 (formulas) = **+2**
+
+### C19: RUM's Loop — Conjecture to Re-Conjecture Applied to PCTRM
+
+**Type:** Progression/Sequence (Type 7)
+**Shows:** The six-step research loop (conjecture → path → script → run → read → re-conjecture) applied to PCTRM. Each step labeled with its PCTRM-specific content ("conjecture: PCTRM substrate exists" → "path: PHYS-54 falsification program" → "script: Level-specific implementations" → ...).
+**Physics text cannot convey:** How the framework's loop applies here.
+**Score:** +1 (sequence) −2 (program flowchart) = **−1** (prohibited type D6.1)
+
+### C20: Observable Universe as Double Boundary — CMB and Expansion
+
+**Type:** Geometric Cross-Section (Type 4)
+**Shows:** Universal soliton as single surface with two readings. From inside looking inward: CMB at 2.7255 K. From inside looking outward: accelerating expansion. Both are the same surface. Shows where children (galaxies, stars, particles) are born from this substrate.
+**Physics text cannot convey:** The universal soliton's double-boundary nature.
+**Score:** +2 (geometric) +2 (impossible in text) +1 (connects cosmological observables) = **+5**
+
+---
+
+## Scoring Summary
+
+| # | Candidate | Type | Score |
 |---|---|---|---|
-| 1 | 4 | **κ Sweep — Sector Splitting Detection Threshold** | Threshold/Region |
-| 2 | 5 | **D/K Classification of 18 Tests** | Scale/Landscape |
-| 3 | 7 | **Muon D×K Product — Reading Times Ticking** | Progression/Sequence |
-| 4 | 8 | **Soliton Hierarchy with D/K Labels** | Geometric Cross-Section |
-| 5 | 14 | **Tick Budget Landscape — 49 Orders of Magnitude** | Scale/Landscape |
-| 6 | 1 | **The 10/1/4/3 Classification Bar Chart** | Comparison Bar |
-| 7 | 3 | **GPS Decomposition — 86% Reading, 14% Tick** | Comparison Bar |
-| 8 | 12 | **WEP Consistency — Sum Gravity vs Per-Sector** | Threshold/Region |
+| C1 | Six-Level Hierarchy Scale | Type 2 | +6 |
+| C7 | Direction-Conditional Topology vs Lattice | Type 4 | +5 |
+| C8 | Photon Through Nested Boundaries | Type 4 | +5 |
+| C9 | Orbits from Vector Balance | Type 4 | +5 |
+| C10 | 1/r² from Spherical Channel Spreading | Type 1 | +5 |
+| C11 | Orbital Closure → Shell Quantization | Type 4 | +5 |
+| C13 | Coherence Tax Mechanism | Type 7 | +5 |
+| C17 | Refraction Through Prism | Type 4 | +5 |
+| C20 | Universal Soliton Double Boundary | Type 4 | +5 |
+| C3 | Eight-Phase Update Cycle | Type 7 | +5 |
+| C2 | Parallel Isomorphism Map | Type 5 | +4 |
+| C6 | Six-Level Test Matrix w/ Kill Switches | Type 3 | +4 |
+| C14 | Integer Alphabet in Hierarchy | Type 5 | +4 |
+| C4 | Cancellation Staircase | Type 1 | +2 |
+| C5 | RUM Predictions Precision Map | Type 6 | +2 |
+| C12 | Priority Timeline | Type 7 | +2 |
+| C15 | Kill Switches Grid | Type 3 | +2 |
+| C16 | Toroidal Modulus Family | Type 1 | +2 |
+| C18 | SM Lagrangian Three ¼ Terms | Type 5 | +2 |
+| C19 | RUM Loop Applied to PCTRM | Type 7 | −1 (prohibited) |
 
-**Type coverage:** Threshold/Region (2), Scale/Landscape (2), Comparison Bar (2), Progression/Sequence (1), Geometric Cross-Section (1) = 5 types. Satisfies ≥ 4 requirement.
+---
+
+## Top 8 Selection with Type Diversity Check
+
+Requirement per D3.3: at least 4 different types from D5 across the 8.
+
+**Selection (scores 5+, ensuring type diversity):**
+
+1. **C1 (+6)** — Six-Level Hierarchy Scale Landscape — **Type 2** (Scale/Landscape)
+2. **C7 (+5)** — Direction-Conditional Full-Mesh vs Lattice — **Type 4** (Geometric)
+3. **C10 (+5)** — 1/r² from Spherical Channel Spreading — **Type 1** (Running/Convergence)
+4. **C11 (+5)** — Orbital Closure → Shell Quantization — **Type 4** (Geometric)
+5. **C13 (+5)** — Coherence Tax: Photon vs Massive Particle — **Type 7** (Progression/Sequence)
+6. **C20 (+5)** — Universal Soliton Double Boundary — **Type 4** (Geometric)
+7. **C6 (+4)** — Six-Level Test Matrix with Kill Switches — **Type 3** (Threshold/Region)
+8. **C2 (+4)** — Parallel Isomorphism SM↔PCTRM Map — **Type 5** (Connection/Integer Map)
+
+**Type diversity check:**
+- Type 1 (Running): 1 (C10)
+- Type 2 (Scale): 1 (C1)
+- Type 3 (Threshold): 1 (C6)
+- Type 4 (Geometric): 3 (C7, C11, C20)
+- Type 5 (Connection): 1 (C2)
+- Type 7 (Progression): 1 (C13)
+
+**Six different types used.** Passes D3.3.
+
+---
+
+## Rejected Strong Candidates and Why
+
+**C8 (Photon Through Nested Boundaries, +5):** Strong candidate but overlaps structurally with C20 (Universal Soliton Double Boundary). C20 shows the universal case more dramatically; C8 is redundant if C20 is selected.
+
+**C9 (Orbits from Vector Balance, +5):** Strong candidate. Excluded because three Type 4 diagrams are already selected (C7, C11, C20), and C11 already shows closed-orbit mechanism (just at shell level rather than planetary). Keep in reserve as alternate.
+
+**C17 (Refraction Through Prism, +5):** Strong candidate. Similar reasoning — Type 4 already has three representatives. Keep in reserve as alternate.
+
+**C3 (Eight-Phase Update Cycle, +5):** Strong candidate. Type 7 already has one (C13). Could swap C13 for C3 if desired, but C13 compares two particle types which is more immediately informative about the coherence-tax mechanism.
+
+**C14 (Integer Alphabet in Hierarchy, +4):** Good candidate. Type 5 already has C2. C14 could replace C2 if prefer seeing integers across levels, but C2's isomorphism map is more central to the paper's main claim.
+
+---
+
+## Proposed Final 8 Figures
+
+| # | Title | Type | File Name |
+|---|---|---|---|
+| 1 | The Soliton Hierarchy: 45 Orders of Magnitude, Six Test Levels | Scale/Landscape | phys54_01_hierarchy_levels.png |
+| 2 | Parallel Isomorphism: SM Primitives to PCTRM Substrate | Connection Map | phys54_02_isomorphism_map.png |
+| 3 | Direction-Conditional Full-Mesh Topology vs Standard Lattice | Geometric Cross-Section | phys54_03_topology_comparison.png |
+| 4 | 1/r² Gravity from Spherical Channel Spreading | Running/Convergence | phys54_04_gravity_channel_spread.png |
+| 5 | Orbital Closure Produces Atomic Shells | Geometric Cross-Section | phys54_05_shell_closure.png |
+| 6 | Coherence Tax: How Higgs Coupling Sets Particle Velocity | Progression/Sequence | phys54_06_coherence_tax.png |
+| 7 | The Falsification Program: Six Levels, Sixteen Kill Switches | Threshold/Region | phys54_07_kill_switch_map.png |
+| 8 | The Universal Soliton: CMB as Vacuum and Expansion as Outer Boundary | Geometric Cross-Section | phys54_08_universal_double_boundary.png |
+
+---
+
+## Descriptions Before Writing the Script
+
+**Fig 1:** Log-vertical axis spanning 10⁻¹⁸ m to 10²⁷ m. Each of 13 hierarchy levels labeled (quark, nucleon, nucleus, atom, molecule, etc.). The six PCTRM test levels highlighted in GOLD. Readers immediately see the scale span and where the tests focus.
+
+**Fig 2:** Three columns. Left: SM field-theoretic primitives (Lagrangian, operators, loop integrals). Right: PCTRM substrate primitives (cells, ticks, modulus, channels, remainder). Middle: shared observables (m_e, α, Ω_Λ, etc.). Arrows with formula labels connect left-to-middle and right-to-middle showing they produce the same observables.
+
+**Fig 3:** Side-by-side panels. Left: standard cubic lattice with 6 neighbors, photon at 30° showing staircase path. Right: full-mesh topology with arbitrary continuous direction, photon at 30° showing direct path. Caption explains how full-mesh removes lattice anisotropy.
+
+**Fig 4:** Log-log plot. Distance r (10⁶ to 10⁹ m) on x-axis. Channel density (with labeled units) on y-axis. Line with slope -2. Annotated at Earth surface, low orbit, geostationary, Moon. Actual g values from measurement shown as points for comparison.
+
+**Fig 5:** Central nucleus with three concentric closed orbits at radii r_Bohr, 2r_Bohr, 3r_Bohr. For each orbit, the accumulated remainder per full orbit shown as 1M, 4M, 9M (integer multiples of modulus). Forbidden non-closing orbits shown dashed. Visual proof of shell quantization from integer closure.
+
+**Fig 6:** Two horizontal tracks side by side. Top: photon (no Higgs tax, full M per tick, advances 1 cell per tick, v=c). Bottom: electron (Higgs tax reduces to 0.05M per tick, needs 20 ticks to accumulate M, advances 1 cell per 20 ticks, v=0.05c). Visual showing how the tax directly produces the velocity.
+
+**Fig 7:** Grid 6 rows (levels) × precision axis. Each of 16 kill switches plotted as a band at its required precision level. Color-coded: critical (red/GOLD), high (ORANGE), medium (SILVER). Readers see where the program's strictest tests sit (Level 6 Ω_Λ at 85 ppm) and where it's most tolerant (Level 4 at 10⁻²).
+
+**Fig 8:** Universal soliton shown as a single surface. Inside: labeled as "vacuum / CMB 2.7255 K" with child solitons (galaxies, stars, particles) emerging. Outside: labeled as "accelerating expansion / Ω_Λ = (251-22π)/264". Arrow showing both readings are the same surface from different positions.
+
+---
+
+## Recommendation
+
+Proceed with these eight. The selection:
+- Covers six different diagram types (satisfies D3.3)
+- All candidates scored +4 or higher
+- Each shows physics that text cannot convey
+- Mix of scale, structure, mechanism, and test-specification diagrams
+- Avoids prohibited types (no program flowcharts, no success-failure box lists, no verification ledgers)
+
+Ready to write the Python script following D12 structure once you confirm the eight selections. Alternates in reserve: C9 (Orbits from Vector Balance), C17 (Refraction Through Prism), C3 (Eight-Phase Update Cycle), C14 (Integer Alphabet in Hierarchy).
