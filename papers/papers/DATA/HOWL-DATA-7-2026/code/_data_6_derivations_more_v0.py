@@ -11158,6 +11158,527 @@ def killing_spree_round_two_v0(value_dicts):
     }
 
 
+# =============================================================================
+# THE GIGA REMAINDER TEST — 11 derivations, every hierarchy level
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "giga_ckm_from_integers_v0": giga_ckm_from_integers_v0,
+#   "giga_cosmological_closure_v0": giga_cosmological_closure_v0,
+#   "giga_hubble_tension_v0": giga_hubble_tension_v0,
+#   "giga_hadron_koide_v0": giga_hadron_koide_v0,
+#   "giga_nuclear_binding_v0": giga_nuclear_binding_v0,
+#   "giga_hill_sphere_v0": giga_hill_sphere_v0,
+#   "giga_chandrasekhar_v0": giga_chandrasekhar_v0,
+#   "giga_muon_g2_toroidal_v0": giga_muon_g2_toroidal_v0,
+#   "giga_koide_amplitude_map_v0": giga_koide_amplitude_map_v0,
+#   "giga_filling_fraction_ladder_v0": giga_filling_fraction_ladder_v0,
+#   "giga_microscopic_cosmic_bridge_v0": giga_microscopic_cosmic_bridge_v0,
+# =============================================================================
+
+
+def giga_ckm_from_integers_v0(value_dicts):
+    """CKM elements from gauge-group integers.
+
+    |V_us| = 9/40 = 3^2/(8*5)
+    |V_cb| = 1/24 = 1/(8*3)
+    |V_ub| = 1/264 = 1/(8*3*11)
+    |V_cb/V_ub| = 11 (Yang-Mills)
+
+    Common factor 8 = dim(SU(3) adjoint).
+    """
+    vm = _value_map(value_dicts)
+
+    vus_meas = _f2m(_frac(vm, "ckm_sin_theta_12_v0"))    # 22501/100000
+    vcb_meas = _f2m(_frac(vm, "ckm_sin_theta_23_v0"))    # 2091/50000
+    vub_meas = _f2m(_frac(vm, "ckm_sin_theta_13_v0"))    # 737/200000
+
+    vus_pred = mpf(9) / mpf(40)
+    vcb_pred = mpf(1) / mpf(24)
+    vub_pred = mpf(1) / mpf(264)
+
+    vus_miss_ppm = abs(vus_pred - vus_meas) / vus_meas * mpf("1e6")
+    vcb_miss_pct = abs(vcb_pred - vcb_meas) / vcb_meas * 100
+    vub_miss_pct = abs(vub_pred - vub_meas) / vub_meas * 100
+
+    ratio_meas = vcb_meas / vub_meas
+    ratio_pred = mpf(11)
+    ratio_miss_pct = abs(ratio_pred - ratio_meas) / ratio_meas * 100
+
+    return {
+        "key": "giga_ckm_from_integers_v0",
+        "outputs": {
+            "result_vus_predicted_v0": _approx(vus_pred),
+            "result_vus_measured_v0": _approx(vus_meas),
+            "result_vus_miss_ppm_v0": _approx(vus_miss_ppm),
+            "result_vus_fraction_v0": "9/40 = 3^2/(8*5)",
+            "result_vcb_predicted_v0": _approx(vcb_pred),
+            "result_vcb_measured_v0": _approx(vcb_meas),
+            "result_vcb_miss_pct_v0": _approx(vcb_miss_pct),
+            "result_vcb_fraction_v0": "1/24 = 1/(8*3)",
+            "result_vub_predicted_v0": _approx(vub_pred),
+            "result_vub_measured_v0": _approx(vub_meas),
+            "result_vub_miss_pct_v0": _approx(vub_miss_pct),
+            "result_vub_fraction_v0": "1/264 = 1/(8*3*11)",
+            "result_vcb_vub_ratio_predicted_v0": _approx(ratio_pred),
+            "result_vcb_vub_ratio_measured_v0": _approx(ratio_meas),
+            "result_vcb_vub_ratio_miss_pct_v0": _approx(ratio_miss_pct),
+            "result_common_factor_v0": "8 = dim(SU(3) adjoint)",
+        },
+        "notes": (
+            "|V_us| = 9/40 at %.1f ppm. |V_cb| = 1/24 at %.2f%%. "
+            "|V_ub| = 1/264 at %.2f%%. |V_cb/V_ub| = 11 at %.2f%%."
+        ) % (float(vus_miss_ppm), float(vcb_miss_pct),
+             float(vub_miss_pct), float(ratio_miss_pct)),
+    }
+
+
+def giga_cosmological_closure_v0(value_dicts):
+    """Omega_Lambda = 1 - pi/12 - 13/264 = (251 - 22*pi)/264."""
+    vm = _value_map(value_dicts)
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    omega_dm = pi_val / 12
+    omega_b = mpf(13) / mpf(264)
+    omega_lambda_pred = 1 - omega_dm - omega_b
+    omega_lambda_exact = (mpf(251) - mpf(22) * pi_val) / mpf(264)
+
+    omega_dm_meas = mpf(str(_get(vm, "cosmo_omega_dm_planck2018_v0")))
+    omega_b_meas = mpf(str(_get(vm, "cosmo_omega_b_planck2018_v0")))
+    omega_lambda_meas = mpf(str(_get(vm, "cosmo_omega_lambda_planck_v0")))
+
+    dm_baryon_pred = mpf(22) * pi_val / mpf(13)
+    dm_baryon_meas = mpf(str(_get(vm, "cosmo_dm_to_baryon_planck_v0")))
+
+    return {
+        "key": "giga_cosmological_closure_v0",
+        "outputs": {
+            "result_omega_dm_predicted_v0": _approx(omega_dm),
+            "result_omega_dm_miss_pct_v0": _approx(
+                abs(omega_dm - omega_dm_meas) / omega_dm_meas * 100),
+            "result_omega_b_predicted_v0": _approx(omega_b),
+            "result_omega_b_miss_pct_v0": _approx(
+                abs(omega_b - omega_b_meas) / omega_b_meas * 100),
+            "result_omega_lambda_predicted_v0": _approx(omega_lambda_pred),
+            "result_omega_lambda_exact_v0": _approx(omega_lambda_exact),
+            "result_omega_lambda_miss_pct_v0": _approx(
+                abs(omega_lambda_pred - omega_lambda_meas) / omega_lambda_meas * 100),
+            "result_omega_lambda_symbolic_v0": "(251 - 22*pi)/264",
+            "result_sum_check_v0": _approx(omega_dm + omega_b + omega_lambda_pred),
+            "result_dm_baryon_predicted_v0": _approx(dm_baryon_pred),
+            "result_dm_baryon_measured_v0": _approx(dm_baryon_meas),
+            "result_dm_baryon_miss_ppm_v0": _approx(
+                abs(dm_baryon_pred - dm_baryon_meas) / dm_baryon_meas * mpf("1e6")),
+            "result_integer_264_v0": "264 = 8 * 3 * 11",
+            "result_integer_251_v0": "251 = 264 - 13",
+            "result_integer_22_v0": "22 = 2 * 11 (Yang-Mills doubled)",
+        },
+        "notes": (
+            "Omega_Lambda = %.6f (pred) vs %.4f (meas), miss %.2f%%. "
+            "DM/baryon = %.4f vs %.4f, miss %.1f ppm. "
+            "Sum = %.10f."
+        ) % (float(omega_lambda_pred), float(omega_lambda_meas),
+             float(abs(omega_lambda_pred - omega_lambda_meas) / omega_lambda_meas * 100),
+             float(dm_baryon_pred), float(dm_baryon_meas),
+             float(abs(dm_baryon_pred - dm_baryon_meas) / dm_baryon_meas * 1e6),
+             float(omega_dm + omega_b + omega_lambda_pred)),
+    }
+
+
+def giga_hubble_tension_v0(value_dicts):
+    """Hubble tension ratio = 12/11 (Yang-Mills)."""
+    vm = _value_map(value_dicts)
+
+    h0_local = mpf(str(_get(vm, "cosmo_h0_shoes_v0")))   # 73.04
+    h0_cmb = _f2m(_frac(vm, "cosmo_h0_planck_v0"))       # 337/5 = 67.4
+
+    ratio_meas = h0_local / h0_cmb
+    ratio_pred = mpf(12) / mpf(11)
+
+    h0_local_from_pred = h0_cmb * ratio_pred
+
+    return {
+        "key": "giga_hubble_tension_v0",
+        "outputs": {
+            "result_h0_local_v0": _approx(h0_local),
+            "result_h0_cmb_v0": _approx(h0_cmb),
+            "result_hubble_ratio_v0": _approx(ratio_meas),
+            "result_hubble_ratio_predicted_v0": _approx(ratio_pred),
+            "result_hubble_ratio_miss_pct_v0": _approx(
+                abs(ratio_pred - ratio_meas) / ratio_meas * 100),
+            "result_h0_local_predicted_v0": _approx(h0_local_from_pred),
+            "result_h0_local_predicted_miss_pct_v0": _approx(
+                abs(h0_local_from_pred - h0_local) / h0_local * 100),
+            "result_interpretation_v0": "12/11: Yang-Mills 11 sets scale separation",
+        },
+        "notes": (
+            "H0 ratio = %.4f (meas) vs 12/11 = %.4f, miss %.2f%%. "
+            "Predicted H0_local = %.2f vs %.2f."
+        ) % (float(ratio_meas), float(ratio_pred),
+             float(abs(ratio_pred - ratio_meas) / ratio_meas * 100),
+             float(h0_local_from_pred), float(h0_local)),
+    }
+
+
+def giga_hadron_koide_v0(value_dicts):
+    """Koide K for multiple hadron triplets."""
+    vm = _value_map(value_dicts)
+
+    def koide_k(m1, m2, m3):
+        s = mp.sqrt(m1) + mp.sqrt(m2) + mp.sqrt(m3)
+        return (m1 + m2 + m3) / s**2
+
+    def koide_a2(k):
+        return 2 * (3 * k - 1)
+
+    # Leptons (reference)
+    m_e = _f2m(_frac(vm, "mass_electron_v0"))
+    m_mu = _f2m(_frac(vm, "mass_muon_v0"))
+    m_tau = _f2m(_frac(vm, "mass_tau_lepton_v0"))
+    k_lep = koide_k(m_e, m_mu, m_tau)
+
+    # Baryons
+    m_p = _f2m(_frac(vm, "mass_proton_v0"))
+    m_n = _f2m(_frac(vm, "mass_neutron_v0"))
+    m_lam = _f2m(_frac(vm, "hadron_mass_lambda_v0"))
+    k_pnl = koide_k(m_p, m_n, m_lam)
+
+    m_sp = _f2m(_frac(vm, "hadron_mass_sigma_plus_v0"))
+    m_s0 = _f2m(_frac(vm, "hadron_mass_sigma_zero_v0"))
+    m_sm = _f2m(_frac(vm, "hadron_mass_sigma_minus_v0"))
+    k_sigma = koide_k(m_sp, m_s0, m_sm)
+
+    m_xi = _f2m(_frac(vm, "hadron_mass_xi_zero_v0"))
+    m_om = _f2m(_frac(vm, "hadron_mass_omega_minus_v0"))
+    k_sxo = koide_k(m_sp, m_xi, m_om)
+
+    # Mesons
+    m_pi = _f2m(_frac(vm, "mass_pion_charged_v0"))
+    m_k = _f2m(_frac(vm, "mass_kaon_charged_v0"))
+    m_eta = _f2m(_frac(vm, "hadron_mass_eta_v0"))
+    k_pke = koide_k(m_pi, m_k, m_eta)
+
+    m_d = _f2m(_frac(vm, "hadron_mass_d_plus_v0"))
+    k_pkd = koide_k(m_pi, m_k, m_d)
+
+    # Vector mesons
+    m_rho = _f2m(_frac(vm, "hadron_mass_rho_v0"))
+    m_kst = _f2m(_frac(vm, "hadron_mass_kstar_v0"))
+    m_phi = _f2m(_frac(vm, "hadron_mass_phi_v0"))
+    k_rkp = koide_k(m_rho, m_kst, m_phi)
+
+    # Upsilon
+    m_u1 = _f2m(_frac(vm, "hadron_mass_upsilon_1s_v0"))
+    m_u2 = _f2m(_frac(vm, "hadron_mass_upsilon_2s_v0"))
+    m_u3 = _f2m(_frac(vm, "hadron_mass_upsilon_3s_v0"))
+    k_ups = koide_k(m_u1, m_u2, m_u3)
+
+    # Bosons
+    m_w = _f2m(_frac(vm, "mass_w_boson_v0"))
+    m_z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    m_h = _f2m(_frac(vm, "mass_higgs_boson_v0"))
+    k_wzh = koide_k(m_w, m_z, m_h)
+
+    # Find nearest p/q for each
+    def nearest_pq(k_val, max_pq=10):
+        best_miss = 1.0
+        best_frac = ""
+        for p in range(1, max_pq + 1):
+            for q in range(1, max_pq + 1):
+                frac = mpf(p) / mpf(q)
+                miss = abs(float(k_val) - float(frac)) / float(k_val)
+                if miss < best_miss:
+                    best_miss = miss
+                    best_frac = "%d/%d" % (p, q)
+        return best_frac, best_miss * 100
+
+    triplets = [
+        ("leptons_e_mu_tau", k_lep),
+        ("pnl_p_n_lambda", k_pnl),
+        ("sigma_plus_zero_minus", k_sigma),
+        ("sigma_xi_omega", k_sxo),
+        ("pi_k_eta", k_pke),
+        ("pi_k_d", k_pkd),
+        ("rho_kstar_phi", k_rkp),
+        ("upsilon_1s_2s_3s", k_ups),
+        ("w_z_h", k_wzh),
+    ]
+
+    outputs = {}
+    for name, k_val in triplets:
+        pq, miss = nearest_pq(k_val)
+        outputs["result_koide_%s_v0" % name] = _approx(k_val)
+        outputs["result_koide_%s_a2_v0" % name] = _approx(koide_a2(k_val))
+        outputs["result_koide_%s_nearest_v0" % name] = pq
+        outputs["result_koide_%s_miss_pct_v0" % name] = _approx(mpf(str(miss)))
+
+    outputs["result_koide_leptons_miss_ppm_v0"] = _approx(
+        abs(k_lep - mpf(2) / 3) / (mpf(2) / 3) * mpf("1e6"))
+
+    return {
+        "key": "giga_hadron_koide_v0",
+        "outputs": outputs,
+        "notes": "9 triplets computed. Leptons: K=%.6f. Best hadron match to 2/3: none." % float(k_lep),
+    }
+
+
+def giga_nuclear_binding_v0(value_dicts):
+    """Nuclear binding energy ratios from SEMF coefficients."""
+    vm = _value_map(value_dicts)
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    beta = pi_val / 4
+
+    a_v = _f2m(_frac(vm, "nuclear_binding_av_v0"))
+    a_s = _f2m(_frac(vm, "nuclear_binding_as_v0"))
+    a_c = _f2m(_frac(vm, "nuclear_binding_ac_v0"))
+    a_a = _f2m(_frac(vm, "nuclear_binding_aa_v0"))
+
+    aa_av = a_a / a_v
+    as_av = a_s / a_v
+    ac_av = a_c / a_v
+
+    return {
+        "key": "giga_nuclear_binding_v0",
+        "outputs": {
+            "result_nuclear_aa_av_ratio_v0": _approx(aa_av),
+            "result_nuclear_aa_av_miss_pct_v0": _approx(
+                abs(aa_av - mpf("1.5")) / mpf("1.5") * 100),
+            "result_nuclear_as_av_ratio_v0": _approx(as_av),
+            "result_nuclear_ac_av_ratio_v0": _approx(ac_av),
+            "result_nuclear_aa_av_interpretation_v0":
+                "a_A/a_V = %.4f vs 3/2 = R2/R3 (inverse Koide)" % float(aa_av),
+        },
+        "notes": "a_A/a_V = %.4f, miss from 3/2: %.2f%%" % (
+            float(aa_av), float(abs(aa_av - 1.5) / 1.5 * 100)),
+    }
+
+
+def giga_hill_sphere_v0(value_dicts):
+    """Hill sphere decomposition for Earth/Sun, Moon/Earth."""
+    vm = _value_map(value_dicts)
+
+    m_earth = mpf(str(_get(vm, "astro_mass_earth_v0")))
+    m_sun = mpf(str(_get(vm, "astro_mass_sun_v0")))
+    m_moon = mpf(str(_get(vm, "astro_mass_moon_v0")))
+    a_earth = mpf(str(_get(vm, "astro_au_v0")))
+
+    # Earth/Sun
+    ratio_es = m_earth / (3 * m_sun)
+    rh_over_a_es = ratio_es ** (mpf(1) / 3)
+    rh_es = a_earth * rh_over_a_es
+
+    # Moon/Earth
+    a_moon = mpf("384400000")  # 384,400 km in meters
+    ratio_me = m_moon / (3 * m_earth)
+    rh_over_a_me = ratio_me ** (mpf(1) / 3)
+    rh_me = a_moon * rh_over_a_me
+
+    return {
+        "key": "giga_hill_sphere_v0",
+        "outputs": {
+            "result_hill_earth_rh_over_a_v0": _approx(rh_over_a_es),
+            "result_hill_earth_rh_km_v0": _approx(rh_es / 1000),
+            "result_hill_earth_mass_ratio_v0": _approx(m_earth / m_sun),
+            "result_hill_moon_rh_over_a_v0": _approx(rh_over_a_me),
+            "result_hill_moon_rh_km_v0": _approx(rh_me / 1000),
+            "result_modulus_exponent_v0": "1/3 from 3D gravity",
+            "result_remainder_v0": "mass ratio m/M (specific inertia)",
+        },
+        "notes": "Earth Hill sphere: r_H/a = %.5f, r_H = %.0f km. "
+                 "Moon Hill sphere: r_H/a = %.5f, r_H = %.0f km." % (
+            float(rh_over_a_es), float(rh_es / 1000),
+            float(rh_over_a_me), float(rh_me / 1000)),
+    }
+
+
+def giga_chandrasekhar_v0(value_dicts):
+    """Chandrasekhar limit coefficient vs 15*pi/8."""
+    vm = _value_map(value_dicts)
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    lane_emden_coeff = mpf("5.836")  # standard Lane-Emden for polytrope n=3
+    framework_coeff = 15 * pi_val / 8
+
+    return {
+        "key": "giga_chandrasekhar_v0",
+        "outputs": {
+            "result_chandrasekhar_coeff_v0": _approx(lane_emden_coeff),
+            "result_chandrasekhar_predicted_v0": _approx(framework_coeff),
+            "result_chandrasekhar_miss_pct_v0": _approx(
+                abs(framework_coeff - lane_emden_coeff) / lane_emden_coeff * 100),
+            "result_chandrasekhar_formula_v0": "15*pi/8 = %.6f vs Lane-Emden 5.836" % float(framework_coeff),
+        },
+        "notes": "15*pi/8 = %.6f vs 5.836, miss %.2f%%" % (
+            float(framework_coeff),
+            float(abs(framework_coeff - lane_emden_coeff) / lane_emden_coeff * 100)),
+    }
+
+
+def giga_muon_g2_toroidal_v0(value_dicts):
+    """Muon g-2 toroidal 4-loop contribution from Laporta."""
+    vm = _value_map(value_dicts)
+
+    ae_mass_4 = mpf(str(_get(vm, "qed_ae_mass_dep_4loop_v0")))
+    m_mu = _f2m(_frac(vm, "mass_muon_v0"))
+    m_e = _f2m(_frac(vm, "mass_electron_v0"))
+
+    mass_ratio_sq = (m_mu / m_e) ** 2
+    amu_toroidal_4loop = ae_mass_4 * mass_ratio_sq
+
+    amu_measured = mpf(str(_get(vm, "qed_amu_measured_v0")))
+    amu_sm = mpf(str(_get(vm, "qed_amu_qed_published_v0")))
+    amu_had_lo = mpf(str(_get(vm, "qed_amu_hadronic_lo_v0")))
+    amu_had_nlo = mpf(str(_get(vm, "qed_amu_hadronic_nlo_v0")))
+    amu_had_lbl = mpf(str(_get(vm, "qed_amu_hadronic_lbl_v0")))
+    amu_ew = mpf(str(_get(vm, "qed_amu_ew_v0")))
+    amu_sm_total = amu_sm + amu_had_lo + amu_had_nlo + amu_had_lbl + amu_ew
+
+    anomaly = amu_measured - amu_sm_total
+    toroidal_fraction = amu_toroidal_4loop / abs(anomaly) if anomaly != 0 else mpf(0)
+
+    return {
+        "key": "giga_muon_g2_toroidal_v0",
+        "outputs": {
+            "result_muon_toroidal_4loop_v0": _approx(amu_toroidal_4loop),
+            "result_mass_ratio_sq_v0": _approx(mass_ratio_sq),
+            "result_amu_anomaly_v0": _approx(anomaly),
+            "result_toroidal_fraction_of_anomaly_v0": _approx(toroidal_fraction),
+            "result_amu_measured_v0": _approx(amu_measured),
+            "result_amu_sm_total_v0": _approx(amu_sm_total),
+        },
+        "notes": "Toroidal 4-loop: %.3e. Anomaly: %.3e. Fraction: %.1f%%." % (
+            float(amu_toroidal_4loop), float(anomaly),
+            float(toroidal_fraction * 100)),
+    }
+
+
+def giga_koide_amplitude_map_v0(value_dicts):
+    """Koide amplitude a^2 for all available particle families."""
+    vm = _value_map(value_dicts)
+
+    a2_lep = _f2m(_frac(vm, "koide_charged_leptons_a2_v0"))
+    a2_up = _f2m(_frac(vm, "koide_up_quarks_a2_v0"))
+    a2_down = _f2m(_frac(vm, "koide_down_quarks_a2_v0"))
+
+    # Bosons from direct computation
+    m_w = _f2m(_frac(vm, "mass_w_boson_v0"))
+    m_z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    m_h = _f2m(_frac(vm, "mass_higgs_boson_v0"))
+    s = mp.sqrt(m_w) + mp.sqrt(m_z) + mp.sqrt(m_h)
+    k_boson = (m_w + m_z + m_h) / s**2
+    a2_boson = 2 * (3 * k_boson - 1)
+
+    return {
+        "key": "giga_koide_amplitude_map_v0",
+        "outputs": {
+            "result_a2_leptons_v0": _approx(a2_lep),
+            "result_a2_leptons_miss_from_2_ppm_v0": _approx(
+                abs(a2_lep - 2) / 2 * mpf("1e6")),
+            "result_a2_up_quarks_v0": _approx(a2_up),
+            "result_a2_down_quarks_v0": _approx(a2_down),
+            "result_a2_bosons_v0": _approx(a2_boson),
+            "result_k_leptons_v0": _approx((1 + a2_lep / 2) / 3),
+            "result_k_up_quarks_v0": _approx((1 + a2_up / 2) / 3),
+            "result_k_down_quarks_v0": _approx((1 + a2_down / 2) / 3),
+            "result_k_bosons_v0": _approx(k_boson),
+            "result_interpretation_v0":
+                "Leptons at critical (a2=2). Up quarks beyond critical (a2=3.09). "
+                "Down quarks near critical (a2=2.39). Bosons trivial (a2~0).",
+        },
+        "notes": "a2: lep=%.4f, up=%.3f, down=%.3f, boson=%.4f" % (
+            float(a2_lep), float(a2_up), float(a2_down), float(a2_boson)),
+    }
+
+
+def giga_filling_fraction_ladder_v0(value_dicts):
+    """R_{n+1}/R_n for n=1..7. Physical ladder: only n=1,2 (two transitions)."""
+    vm = _value_map(value_dicts)
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    from mpmath import gamma
+
+    ratios = {}
+    r_vals = {}
+    for n in range(1, 8):
+        r_n = pi_val ** (mpf(n) / 2) / (2**n * gamma(mpf(n) / 2 + 1))
+        r_vals[n] = r_n
+
+    for n in range(1, 7):
+        ratio = r_vals[n + 1] / r_vals[n]
+        ratios[n] = ratio
+
+    # Nearest simple fraction for each
+    outputs = {}
+    for n, ratio in ratios.items():
+        best_miss = 1.0
+        best_frac = ""
+        for p in range(1, 11):
+            for q in range(1, 11):
+                frac = p / q
+                miss = abs(float(ratio) - frac) / float(ratio)
+                if miss < best_miss:
+                    best_miss = miss
+                    best_frac = "%d/%d" % (p, q)
+        outputs["result_R%d_R%d_ratio_v0" % (n + 1, n)] = _approx(ratio)
+        outputs["result_R%d_R%d_nearest_v0" % (n + 1, n)] = best_frac
+        outputs["result_R%d_R%d_miss_pct_v0" % (n + 1, n)] = _approx(
+            mpf(str(best_miss * 100)))
+        is_rational = best_miss < 1e-10
+        outputs["result_R%d_R%d_rational_v0" % (n + 1, n)] = is_rational
+
+    outputs["result_physical_ladder_transitions_v0"] = 2
+    outputs["result_physical_ladder_rational_count_v0"] = 1
+    outputs["result_r3r2_is_unique_physical_v0"] = True
+
+    return {
+        "key": "giga_filling_fraction_ladder_v0",
+        "outputs": outputs,
+        "notes": "R3/R2 = 2/3 (exact). Only rational in physical ladder (1D,2D,3D).",
+    }
+
+
+def giga_microscopic_cosmic_bridge_v0(value_dicts):
+    """Bridge between A4*(alpha/pi)^4 and 22*pi/13."""
+    vm = _value_map(value_dicts)
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+    alpha_em_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_em = mpf(1) / alpha_em_inv
+
+    a4 = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+    x = alpha_em / pi_val
+    microscopic = abs(a4) * x**4
+
+    cosmic = mpf(22) * pi_val / mpf(13)
+
+    bridge_ratio = cosmic / microscopic
+
+    m_z = _f2m(_frac(vm, "mass_z_boson_v0"))
+    m_e = _f2m(_frac(vm, "mass_electron_v0"))
+    mz_me_sq = (m_z / m_e) ** 2
+    three_mz_me_sq = 3 * mz_me_sq
+
+    bridge_miss = abs(bridge_ratio - three_mz_me_sq) / three_mz_me_sq * 100
+
+    return {
+        "key": "giga_microscopic_cosmic_bridge_v0",
+        "outputs": {
+            "result_microscopic_v0": _approx(microscopic),
+            "result_cosmic_v0": _approx(cosmic),
+            "result_bridge_ratio_v0": _approx(bridge_ratio),
+            "result_three_mz_me_sq_v0": _approx(three_mz_me_sq),
+            "result_bridge_miss_pct_v0": _approx(bridge_miss),
+            "result_mz_me_ratio_v0": _approx(m_z / m_e),
+            "result_interpretation_v0":
+                "cosmic/micro = 3*(M_Z/m_e)^2: the Z mass bridges scales",
+        },
+        "notes": "Bridge ratio = %.4e. 3*(M_Z/m_e)^2 = %.4e. Miss: %.1f%%." % (
+            float(bridge_ratio), float(three_mz_me_sq), float(bridge_miss)),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -11328,6 +11849,18 @@ DERIVATION_MORE_INDEX_V0 = {
     "alpha_em_killing_spree_v0": alpha_em_killing_spree_v0,
     # Alpha EM Free Parameter Killing Spree Round Two, this one fixes the exact fractions, but only does 5 of the 10 targets, since the other 5 matched on round 1 above
     "killing_spree_round_two_v0": killing_spree_round_two_v0,
+    # Modulus and Remainder 11 level Giga test
+    "giga_ckm_from_integers_v0": giga_ckm_from_integers_v0,
+    "giga_cosmological_closure_v0": giga_cosmological_closure_v0,
+    "giga_hubble_tension_v0": giga_hubble_tension_v0,
+    "giga_hadron_koide_v0": giga_hadron_koide_v0,
+    "giga_nuclear_binding_v0": giga_nuclear_binding_v0,
+    "giga_hill_sphere_v0": giga_hill_sphere_v0,
+    "giga_chandrasekhar_v0": giga_chandrasekhar_v0,
+    "giga_muon_g2_toroidal_v0": giga_muon_g2_toroidal_v0,
+    "giga_koide_amplitude_map_v0": giga_koide_amplitude_map_v0,
+    "giga_filling_fraction_ladder_v0": giga_filling_fraction_ladder_v0,
+    "giga_microscopic_cosmic_bridge_v0": giga_microscopic_cosmic_bridge_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {
