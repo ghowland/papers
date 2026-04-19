@@ -48,6 +48,8 @@ The eleven derivations:
 
 ## II. CKM FROM GAUGE INTEGERS
 
+![Fig. 2: CKM matrix elements as gauge-group fractions.](./figures/phys53_02_ckm_integers.png)
+
 The CKM matrix elements — the quark mixing parameters that the Standard Model treats as free parameters — match simple fractions built from gauge-group integers.
 
 | Element | PDG value | Prediction | Expression | Miss |
@@ -72,6 +74,8 @@ The ratio \|V_cb/V_ub\| = 11 fails at 3.07%, driven by the \|V_ub\| miss. If \|V
 ---
 
 ## III. THE COSMOLOGICAL PARTITION
+
+![Fig. 3: The cosmological inertial partition. π/12 + 13/264 + (251−22π)/264 = 1 exactly. Ω_Λ at 85 ppm from Planck. Gauge integers 8, 3, 11, 13 control the budget.](./figures/phys53_03_cosmological_partition.png)
 
 The framework predicts the complete cosmic energy budget from β = π/4 and gauge integers:
 
@@ -103,6 +107,8 @@ The 10¹²⁰ cosmological constant problem (QFT vacuum energy vs observed Λ) d
 
 ## IV. THE HUBBLE TENSION AS 12/11
 
+![Fig. 6: The Hubble tension predicted as 12/11. CMB H₀ = 67.4 × 12/11 = 73.53, matching SH0ES at 0.67%. The 11 is Yang-Mills. The tension is a scale-dependent inertial partition.](./figures/phys53_06_hubble_tension.png)
+
 | Quantity | Value |
 |---|---|
 | H₀ (CMB, Planck 2018) | 67.4 km/s/Mpc |
@@ -124,6 +130,8 @@ If both measurements are correct (CMB gives 67 and local gives 73), the framewor
 ---
 
 ## V. HADRON KOIDE CLUSTERING — THE TWO-POSITION MAP
+
+![Fig. 4: The two-position Koide map. Leptons at K = 2/3 (critical, 9.2 ppm). Hadrons and bosons at K = 1/3 (pole, 1.9 ppm for Σ). Two occupied positions, not a continuum. Quarks beyond critical.](./figures/phys53_04_koide_two_position.png)
 
 Nine particle triplets were computed. The result is not a continuum of K values across the parameter space. It is two-position clustering:
 
@@ -239,6 +247,8 @@ The mathematical sequence has additional rationals at even-to-odd transitions (8
 
 ## XI. THE MICROSCOPIC-COSMIC BRIDGE
 
+![Fig. 5: The microscopic-cosmic bridge. Laporta A₄ at sub-fm connects to DM/baryon at Hubble scale through 3(M_Z/m_e)². Five quantities, three domains, one formula at 300 ppm.](./figures/phys53_05_bridge.png)
+
 The strongest cross-scale result in the framework.
 
 | Quantity | Value | Domain |
@@ -273,6 +283,8 @@ Both quantities are toroidal in the framework. Both involve π (the spherical mo
 
 ## XII. THE COMPLETE RESULTS TABLE
 
+![Fig. 1: The giga remainder scoreboard. 15 results ranked by precision on a log scale. Six sub-0.1%, four more sub-1%, two failures at ~3%, one informational. Color-coded by hierarchy level.](./figures/phys53_01_scoreboard.png)
+
 All fifteen results ranked by precision:
 
 | Rank | Test | Level | Predicted | Measured | Miss | Status |
@@ -299,6 +311,8 @@ Six results at sub-0.1%. Four more at sub-1%. Two failures at ~3%. One informati
 
 ## XIII. THE SOLITON READING
 
+![Fig. 7: The universal soliton. CMB is the vacuum (inner surface). Accelerating expansion is the boundary (outer surface). The inertial partition distributes across concentric soliton levels.](./figures/phys53_07_soliton_hierarchy.png)
+
 In the framework, every hierarchy level is a soliton boundary. The modulus is the geometry of the boundary. The remainder is the inertial content that drives transitions.
 
 The cosmic level is the outermost soliton — the universal soliton. It has two surfaces:
@@ -318,6 +332,8 @@ The inertial partition 1 = π/12 + 13/264 + (251−22π)/264 distributes the tot
 ---
 
 ## XIV. PREDICTIONS AND KILL SWITCHES
+
+![Fig. 8: Identity card. 8 PASS, 2 FAIL, 7 levels, 4 sub-100-ppm. The bridge formula, CKM integers, cosmological partition, two-position Koide map. The inertial partition is not falsified.](./figures/phys53_08_identity_card.png)
 
 | # | Prediction | Test | Kill condition | Timeline |
 |---|---|---|---|---|
