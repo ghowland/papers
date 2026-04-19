@@ -1,0 +1,147 @@
+{
+    "key": "experiment_giga_remainder_test_v0",
+    "canonical": "experiment_giga_remainder_test",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "The giga remainder test: 15 derivation chains testing the modulus/remainder decomposition at every accessible hierarchy level simultaneously. CKM from gauge integers, cosmological closure, Hubble tension ratio, hadron Koide triplets, nuclear binding energy ratios, Hill sphere decomposition, Chandrasekhar limit coefficient, filling fraction sequence, muon g2 toroidal contribution, Koide amplitude map across families, R3/R2 uniqueness in physical ladder, DM/baryon ratio verification, and the microscopic-cosmic bridge.",
+    "purpose": "program_remainder_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {},
+        "derivations": {
+            "giga_remainder_test": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "giga_ckm_from_integers_v0",
+        "giga_cosmological_closure_v0",
+        "giga_hubble_tension_v0",
+        "giga_hadron_koide_v0",
+        "giga_nuclear_binding_v0",
+        "giga_hill_sphere_v0",
+        "giga_chandrasekhar_v0",
+        "giga_muon_g2_toroidal_v0",
+        "giga_koide_amplitude_map_v0",
+        "giga_filling_fraction_ladder_v0",
+        "giga_microscopic_cosmic_bridge_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_vus_miss_ppm_v0",
+        "result_vcb_miss_pct_v0",
+        "result_vub_miss_pct_v0",
+        "result_vcb_vub_ratio_miss_pct_v0",
+        "result_omega_lambda_predicted_v0",
+        "result_omega_lambda_miss_pct_v0",
+        "result_hubble_ratio_v0",
+        "result_hubble_ratio_miss_pct_v0",
+        "result_koide_leptons_v0",
+        "result_koide_pnl_v0",
+        "result_koide_sigma_v0",
+        "result_koide_rho_kstar_phi_v0",
+        "result_koide_pi_k_d_v0",
+        "result_nuclear_aa_av_ratio_v0",
+        "result_nuclear_aa_av_miss_pct_v0",
+        "result_hill_earth_rh_over_a_v0",
+        "result_chandrasekhar_coeff_v0",
+        "result_chandrasekhar_miss_pct_v0",
+        "result_muon_toroidal_4loop_v0",
+        "result_bridge_ratio_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "G01: |V_us| = 9/40 at sub-10 ppm",
+            "output_key": "result_vus_miss_ppm_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "50",
+            "reference_source": "PDG_CKM"
+        },
+        {
+            "label": "G02: |V_cb| = 1/24 at sub-1%",
+            "output_key": "result_vcb_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "PDG_CKM"
+        },
+        {
+            "label": "G03: |V_ub| = 1/264 at sub-2%",
+            "output_key": "result_vub_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2",
+            "reference_source": "PDG_CKM"
+        },
+        {
+            "label": "G04: |V_cb/V_ub| = 11 (Yang-Mills)",
+            "output_key": "result_vcb_vub_ratio_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "PDG_CKM"
+        },
+        {
+            "label": "G05: Omega_Lambda = (251-22pi)/264",
+            "output_key": "result_omega_lambda_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2",
+            "reference_source": "Planck2018"
+        },
+        {
+            "label": "G06: Hubble ratio = 12/11",
+            "output_key": "result_hubble_ratio_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2",
+            "reference_source": "SH0ES_Planck"
+        },
+        {
+            "label": "G07: Lepton Koide K = 2/3",
+            "output_key": "result_koide_leptons_miss_ppm_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "20",
+            "reference_source": "PDG_leptons"
+        },
+        {
+            "label": "G08: Nuclear a_A/a_V ~ 3/2",
+            "output_key": "result_nuclear_aa_av_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1",
+            "reference_source": "nuclear_SEMF"
+        },
+        {
+            "label": "G09: Chandrasekhar coeff ~ 15pi/8",
+            "output_key": "result_chandrasekhar_miss_pct_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "2",
+            "reference_source": "stellar_physics"
+        },
+        {
+            "label": "G10: DM/baryon = 22pi/13",
+            "output_key": "result_dm_baryon_miss_ppm_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "1000",
+            "reference_source": "Planck2018"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_giga_remainder_v0",
+            "title": "The giga remainder test: 15 chains across 7 hierarchy levels",
+            "type": "comparison_table"
+        }
+    ]
+}

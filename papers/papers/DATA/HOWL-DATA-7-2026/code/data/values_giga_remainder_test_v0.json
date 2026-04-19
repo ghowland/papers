@@ -1,0 +1,128 @@
+[
+  {
+    "key": "hadron_mass_lambda_v0",
+    "value": "1115683/1000",
+    "description": "Lambda baryon mass in MeV (PDG 2024)",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_sigma_plus_v0",
+    "value": "1189370/1000",
+    "description": "Sigma+ baryon mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_sigma_zero_v0",
+    "value": "1192642/1000",
+    "description": "Sigma0 baryon mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_sigma_minus_v0",
+    "value": "1197449/1000",
+    "description": "Sigma- baryon mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_xi_zero_v0",
+    "value": "1314860/1000",
+    "description": "Xi0 baryon mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_omega_minus_v0",
+    "value": "1672450/1000",
+    "description": "Omega- baryon mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_rho_v0",
+    "value": "77526/100",
+    "description": "Rho meson mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_kstar_v0",
+    "value": "89166/100",
+    "description": "K*(892) meson mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_phi_v0",
+    "value": "101946/100",
+    "description": "Phi meson mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_eta_v0",
+    "value": "547862/1000",
+    "description": "Eta meson mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_d_plus_v0",
+    "value": "186966/100",
+    "description": "D+ meson mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_upsilon_1s_v0",
+    "value": "946030/100",
+    "description": "Upsilon(1S) mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_upsilon_2s_v0",
+    "value": "1002326/100",
+    "description": "Upsilon(2S) mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "hadron_mass_upsilon_3s_v0",
+    "value": "1035520/100",
+    "description": "Upsilon(3S) mass in MeV",
+    "source": "PDG 2024"
+  },
+  {
+    "key": "cosmo_h0_shoes_exact_v0",
+    "value": "7304/100",
+    "description": "SH0ES H0 measurement in km/s/Mpc",
+    "source": "Riess et al 2022"
+  },
+  {
+    "key": "cosmo_h0_planck_exact_v0",
+    "value": "674/10",
+    "description": "Planck CMB H0 in km/s/Mpc",
+    "source": "Planck 2018"
+  },
+  {
+    "key": "nuclear_magic_numbers_v0",
+    "value": "[2, 8, 20, 28, 50, 82, 126]",
+    "description": "Nuclear magic numbers",
+    "source": "Nuclear physics"
+  },
+  {
+    "key": "nuclear_binding_av_v0",
+    "value": "1556/100",
+    "description": "Semi-empirical mass formula volume coefficient MeV",
+    "source": "Nuclear physics"
+  },
+  {
+    "key": "nuclear_binding_as_v0",
+    "value": "1723/100",
+    "description": "Semi-empirical mass formula surface coefficient MeV",
+    "source": "Nuclear physics"
+  },
+  {
+    "key": "nuclear_binding_ac_v0",
+    "value": "697/1000",
+    "description": "Semi-empirical mass formula Coulomb coefficient MeV",
+    "source": "Nuclear physics"
+  },
+  {
+    "key": "nuclear_binding_aa_v0",
+    "value": "2329/100",
+    "description": "Semi-empirical mass formula asymmetry coefficient MeV",
+    "source": "Nuclear physics"
+  }
+]
