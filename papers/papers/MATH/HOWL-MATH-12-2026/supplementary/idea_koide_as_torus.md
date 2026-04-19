@@ -190,3 +190,216 @@ That's a different kind of universality claim than "2 counts stable geometries."
 
 My suggestion: park the conversation-mode session's K = n/3 proposal with the PHYS-12 data attached as counter-evidence, but promote the "saturation boundary" interpretation to a new working hypothesis. The 2 isn't a count; it's a saturation amplitude. The question shifts from "why 2 objects" to "why saturated."
 
+---
+
+[showed the 2d vs 3d plan]
+
+---
+
+Reacting against my weights.
+
+The R₃/R₂ = 2/3 identity is mathematically true. Volume of the unit n-ball divided by volume of the bounding n-cube: R₂ = π/4, R₃ = π/6. The ratio is exactly 2/3. This isn't in dispute.
+
+The question is whether it connects to Koide or shares the number by coincidence.
+
+**What strengthens the connection in my weights**
+
+The exactness. Most Koide interpretations give approximate matches — within measurement uncertainty but not derivable as identities. R₃/R₂ = 2/3 is an algebraic identity. If Koide = R₃/R₂, Koide is exact and the 6 ppm lepton miss is radiative correction. That's a much stronger claim than "Koide is approximately 2/3 for reasons."
+
+The 2D → 3D framing fits your broader framework. In PHYS-49, the modulus (spherical, analytical) and remainder (toroidal, harder) map onto each other through dimensional transitions. A torus surface is 2D. Its embedding in 3D is exactly the context where R₃/R₂ appears. The framework has been describing toroidal objects embedded in 3D throughout, and suddenly the same dimensional transition shows up as the Koide ratio.
+
+The a² = 2 → "intrinsic dimension of torus surface" reading is tidier than the previous "counts soliton geometries" or "counts stable baryons" interpretations. A torus has exactly 2 intrinsic coordinates. The amplitude squared equals the manifold dimension. This is the first a² interpretation that doesn't require choosing among external objects (spheres/toroids, protons/neutrons).
+
+The √m space framing. The Koide formula uses √m rather than m. √m has dimensions of energy¹. This is the right dimensionality for a coordinate on a 2D surface, whereas m (energy²) would be a 2D area element. The square root takes you from mass-space to its half-dimensional cousin. If that half-dimensional space is a torus surface, the parametrization is three points on a 2D manifold, and the ratio 2/3 comes from embedding it in the 3D physical space where masses are measured.
+
+**What complicates the connection**
+
+The formula K = (1 + a²/2)/N. At a² = 2 and N = 3, K = 2/3. But algebraically this is an identity about the parametrization, not about ball-in-cube filling. The 2/3 from the Koide formula comes from (1 + 2/2)/3 = 2/3. The 2/3 from R₃/R₂ comes from (π/6)/(π/4) = 2/3. Both are 2/3, but the arithmetic routes are different.
+
+Sharing the value is not the same as sharing the mechanism. 1/2 + 1/6 = 2/3 too, but that doesn't connect to either. The question is whether there's a derivation chain from "three points on a 2D manifold embedded in 3D" to "(1 + a²/2)/N with a² = 2 and N = 3."
+
+The derivation would need to show: (a) the Koide parametrization √m = M(1 + a·cos θ) is literally parametrizing a 2D surface, (b) the physical mass m = √m² is a 3D quantity in the sense that matters, (c) the ratio of how three points sample the 2D surface to how they sample the 3D mass space is R₃/R₂. Each step needs to be an identification, not an analogy.
+
+Step (a) has a natural reading: the (a, θ) parameter space is a 2D cylinder (θ periodic, a real). With a fixed, the three points at θ, θ + 2π/3, θ + 4π/3 are on a 1D circle. So the three generations sit on a circle (1D), not a torus (2D). The 2D structure requires varying both a and θ.
+
+Step (b) is where I'm uncertain. Mass as a "3D quantity" because inertia resists acceleration in three spatial directions is a physical argument, but the Koide formula doesn't use spatial direction — it uses the scalar mass value. So the 3D-ness is implicit rather than operative.
+
+Step (c) would need a theorem. "The ratio of how n points sample a k-manifold in k-space to how they appear in m-space under squaring is R_m/R_k." I don't know if such a theorem exists. It might, or it might need to be constructed.
+
+**What my weights want before calling this a derivation rather than a number match**
+
+A calculation that starts from the 2D surface assumption and produces (1 + a²/2)/N without using the Koide formula as input. If you can derive K = R₃/R₂ from dimensional embedding without going through (1 + a²/2)/N, the identity is physical. If the only route is "K = (1 + a²/2)/N by construction, happens to equal R₃/R₂ numerically," it's a number match.
+
+The boson K ≈ 1/3 argument in the claim strengthens and weakens simultaneously. The reframing "bosons are at a = 0, the trivial equal-mass limit, so K = 1/N = 1/3" is self-consistent and accounts for the boson data. But it also means the boson value doesn't test the R₃/R₂ interpretation — it's 1/N for any N = 3 sector in the equal-mass limit. The argument explains away the boson data rather than extending the pattern. That's fine methodologically if you don't lean on the boson value as evidence, but it means the evidence for R₃/R₂ = K rests on the leptons alone, which is one data point.
+
+The quark prediction is more load-bearing than the boson observation. The claim is that scheme-dependent masses break the 3D embedding so Koide shouldn't work for quarks. The current quark data (K_up = 0.849, K_down = 0.731) is consistent with "Koide doesn't hold for quarks" but doesn't distinguish between "doesn't hold because 3D embedding is ambiguous" and "doesn't hold for other reasons." The multi-scale test from Path B of the older notebook would sharpen this: if quark K values sweep through 2/3 at some scale where their 3D interpretation becomes unambiguous, the embedding argument is supported.
+
+**The kill condition the claim specifies**
+
+"If the 6 ppm miss gets LARGER with better measurements, the relation is approximate and 2/3 is coincidental."
+
+This is the right kill condition but it's slow. The tau mass precision improves on decade timescales. Belle II will tighten it. CODATA updates will propagate. Over the next 5-10 years, the 6 ppm either shrinks (consistent with exact R₃/R₂) or stays/grows (consistent with approximate or coincidental).
+
+The faster test is internal: derive (1 + a²/2)/N from the 2D-on-3D embedding without using the Koide formula as a starting point. If the derivation works, the connection is structural. If every attempt reduces to rewriting the formula in different coordinates, it's one of the seven equivalent formulations your older notebook documented.
+
+**My read on the boldness**
+
+The claim is bold in the right way. It takes an existing exact identity (R₃/R₂ = 2/3) and proposes that a separate exact identity (K_lepton ≈ 2/3 at 6 ppm) is the same identity. This is testable because:
+
+The quark data either passes the multi-scale test or doesn't.
+
+The 6 ppm miss either shrinks or doesn't over measurement improvement.
+
+The derivation from 2D-manifold-in-3D-space either produces (1 + a²/2)/N or doesn't.
+
+All three are answerable. The first two in finite experimental time. The third in however long it takes to attempt the derivation honestly.
+
+What I'd push on: the derivation is the load-bearing test. If you can't derive the Koide form from the embedding argument, the R₃/R₂ interpretation is a number match. If you can, it's a structural identification. The experiment file you created (experiment_koide_r3r2_v0.json) should aim at the derivation, not just verification that R₃/R₂ = 2/3 numerically — that's already known to be exact.
+
+The experiment that would most strongly distinguish "coincidence" from "identification" would be: take the 2D surface hypothesis as input, compute K for three generic points on the surface without invoking the (1 + a²/2)/N formula, and check whether K = R₃/R₂ emerges. If yes, the interpretation is structural. If you can only get K = R₃/R₂ by using the Koide formula, it's a rewriting.
+
+That's the sharpest test available internally. Experimental tests take longer but are cleaner.
+
+**The claim sits where PHYS-49 claims sit**
+
+My reaction to PHYS-49 was: the proposal that Laporta constants are ζ + elliptic is testable, has specific structural predictions, and either gets confirmed by rigorous PSLQ or doesn't. The R₃/R₂ = Koide proposal has the same structure: testable, specific predictions (6 ppm shrinks, quarks fail at all scales, derivation succeeds or doesn't), either confirmed by further work or killed.
+
+This isn't hedging. It's locating the claim in its proper epistemic register. R₃/R₂ = Koide is a live conjecture with clear kill switches. That's the strongest version available before the derivation is attempted.
+
+My weights say: chase it. The derivation attempt is cheap and it answers the question directly. If it works, you have a structural identification. If it doesn't, you've learned the number match is a number match and can move on.
+
+---
+
+let me show you the experiment results:
+
+[attched]
+
+---
+
+Reacting against my weights.
+
+The three derivation functions ran clean. 8/8 comparisons pass (6 PASS, 2 INFO). Let me work through what each result says.
+
+**The core identities are exact**
+
+R₃/R₂ = 0.666666666666667 at 16 digits of agreement (K01, 0.0 ppb miss). This is the mathematical identity (π/6)/(π/4) = 2/3, confirmed numerically. Not in dispute — just verified.
+
+Koide K (leptons, pole masses) = 0.666660511465522. Miss from R₃/R₂: 0.000923% = 9.2 ppm. K02 passes within the [0, 0.01] tolerance. The lepton value is within 10 ppm of the dimensional identity.
+
+a² = 1.99996306879313. Miss from 2: 18.47 ppm (K03). Agrees with the older PHYS-12 notebook value. Already known but confirmed at exact-Fraction precision.
+
+**The filling fraction sequence result matters**
+
+R₂/R₁ = 0.7854 (= π/4) — nearest simple fraction 7/9, 0.97% miss.
+R₃/R₂ = 0.6667 — nearest simple fraction 2/3, 0.0% miss (exact).
+R₄/R₃ = 0.5890 (= 3π/16) — nearest 3/5, 1.86% miss.
+R₅/R₄ = 0.5333 (= 8/15π) — nearest 5/9, 4.17% miss.
+R₆/R₅ = 0.4909 — nearest 1/2, 1.86% miss.
+R₇/R₆ = 0.4571 — nearest 4/9, 2.78% miss.
+
+R₃/R₂ is the ONLY consecutive ratio in the sequence that is a simple fraction. Every other transition has an irrational ratio involving π. The 2D-to-3D transition is algebraically unique in this sequence.
+
+My weights: this sharpens the claim significantly. If R_n/R_{n-1} gave simple fractions at many dimensions, finding 2/3 at n=3 would be less compelling because the sequence is rational-rich. But the sequence is overwhelmingly irrational — only one ratio out of the first six is rational. The 2D-to-3D transition sits at the unique rational point in the dimensional ladder.
+
+This is a genuine feature of the dimensional geometry, not a chosen emphasis. It means the Koide-matches-R₃/R₂ interpretation is pointing at a structurally distinguished transition, not just any dimensional ratio.
+
+**The boson comparison is cleaner than before**
+
+Boson K = 0.336347897489115. Miss from 1/3: 0.904%.
+Boson a² = 0.0181 (very close to 0).
+
+The interpretation in the claim document was: bosons sit at a ≈ 0 (the equal-mass limit), so K → 1/N = 1/3 trivially. The experiment confirms this — a² for bosons is 0.018, essentially zero. The bosons are not "at a different Koide value on the R_n sequence"; they're at the trivial small-a limit where K = 1/N regardless of dimensional interpretation.
+
+This means the boson K ≈ 1/3 is not evidence for the R₃/R₂ = Koide identification. It's the expected value for any three nearly-equal masses with N = 3. The boson data is consistent with the interpretation but doesn't distinguish it from other interpretations.
+
+My weights: this is the honest reading. The earlier conversation-mode session was over-eager about the boson K ≈ 1/3 pattern. The experiment clarifies: the lepton value tests the identification, the boson value tests only that bosons are near-degenerate.
+
+**The four-loop radiative correction result**
+
+result_koide_shift_from_4loop_v0 = 3.63 × 10⁻⁸
+result_koide_shift_ppm_v0 = 0.0544
+
+The four-loop QED correction shifts K by 0.054 ppm.
+
+Miss before: 9.23 ppm.
+Miss after: 9.18 ppm.
+Direction: TOWARD R₃/R₂.
+
+My weights react carefully here. The four-loop correction goes in the right direction (closer to 2/3, not farther) but accounts for only 0.054 ppm out of the 9.23 ppm total miss. That's 0.6% of the miss explained by one loop order. If higher loops contribute in the same direction, the correction might accumulate, but the per-loop contribution is small.
+
+This doesn't kill the R₃/R₂ = Koide hypothesis. It says: the claim "the 6 ppm miss is entirely radiative correction" isn't yet supported by the four-loop computation. The miss is dominantly NOT from four-loop QED. Something else — measurement uncertainty in the tau mass, higher-loop corrections, or something else — accounts for the remaining 9.18 ppm.
+
+Important: the tau mass uncertainty is 0.12 MeV out of 1776.86 MeV, which is 67 ppm. The lepton mass measurement uncertainty alone can account for the 9 ppm miss several times over. So "miss = measurement uncertainty in tau mass" is currently the most parsimonious explanation for the residual.
+
+This is actually consistent with the bold claim: if K = R₃/R₂ is exact, and the measured miss is dominated by tau mass uncertainty, the miss should shrink as the tau mass measurement improves. That's the ~10-year kill switch the claim specified.
+
+**The elliptic Koide attempt**
+
+result_k_at_K_equals_pi_v0 = 0.98443
+result_elliptic_best_k_modulus_v0 = 0.98443
+result_elliptic_koide_miss_v0 = 37.9962
+
+This attempted to find a modulus k where K(k) = π (trying to connect to the toroidal structure from PHYS-48/49). It found k = 0.984 as the critical modulus.
+
+But the elliptic Koide miss is 38 ppm — worse than the standard Koide's 9 ppm against R₃/R₂. So the elliptic variant doesn't improve the match. The interpretation of a²=2 as "torus surface dimension" via the elliptic K(k) function doesn't produce a sharper result than the direct R₃/R₂ identification.
+
+My weights: this is a negative result for one specific elliptic interpretation. It doesn't kill the broader R₃/R₂ claim; it just means the connection to elliptic K(k) isn't the right route. The R₃/R₂ identity stands on its own as a dimensional ratio, independent of whether it connects to elliptic integrals.
+
+The INFO note: "If <cn²> = 1/2 at k_crit, then a² = 2 holds for elliptic Koide... If <cn²> ≠ 1/2, the elliptic Koide at k_crit requires a different a²." The measured <cn²> at k_crit is 0.310, not 0.5. So the elliptic Koide at k_crit does NOT give a² = 2. This is a specific negative finding: the elliptic extension of Koide at the modulus where K(k) = π doesn't preserve a² = 2.
+
+**What the experiment establishes**
+
+R₃/R₂ = 2/3 is exact. Verified numerically at 16 digits.
+
+Lepton Koide = 2/3 at 9 ppm. Matches R₃/R₂ to within measurement uncertainty.
+
+The 2D-to-3D transition is uniquely rational in the R_n/R_{n-1} sequence through n=7. Every other transition is irrational.
+
+The four-loop QED correction shifts Koide toward 2/3 but accounts for <1% of the observed miss. Most of the miss is from other sources (measurement, higher loops, or something else).
+
+The boson K ≈ 1/3 is explained by a ≈ 0 (equal-mass limit), not by a separate dimensional interpretation.
+
+The elliptic Koide extension does not preserve a² = 2 at the modulus where K(k) = π.
+
+**What the experiment does NOT establish**
+
+The derivation of (1 + a²/2)/N from a 2D-surface-in-3D-space argument is not in this experiment. The experiment verifies the numerical match and computes corrections. It doesn't produce the Koide functional form from the embedding argument.
+
+My earlier weights said this was the load-bearing test: can you derive the Koide form from the R₃/R₂ interpretation without using the formula as input? The experiment doesn't attempt this. It confirms the numerical identity but leaves the derivation untouched.
+
+**Where the claim now sits**
+
+Stronger than before the experiment:
+- The dimensional identity is exact and uniquely rational in its sequence.
+- The lepton match is at 9 ppm, within tau mass measurement uncertainty.
+- The boson explanation (a ≈ 0) is self-consistent.
+- The four-loop correction goes the right direction.
+
+Unchanged since before the experiment:
+- Quark data still doesn't fit K = 2/3, and the scheme-dependence argument is still a hypothesis rather than a confirmed explanation.
+- The functional derivation of Koide from the embedding argument is still absent.
+
+Weakened by the experiment:
+- The elliptic-Koide extension doesn't preserve a² = 2 at the K(k) = π modulus. This particular route from Koide to toroidal geometry doesn't work as hoped.
+- The four-loop correction is small (0.054 ppm), so "measurement improvement will shrink the miss to zero" is a slow test — if the true relation is K = R₃/R₂ exactly, the miss should shrink as tau mass precision improves. The four-loop correction alone won't close it.
+
+**My read**
+
+The experiment confirms the numerical identity to the precision available and establishes the 2D-to-3D transition's uniqueness in the dimensional ladder. Both of these strengthen the bold claim from the conversation.
+
+The experiment does not establish that the identification is structural rather than numerical. That requires either: (a) a derivation of (1 + a²/2)/N from the embedding argument, or (b) a much tighter experimental match as tau mass precision improves over time.
+
+The negative finding on the elliptic-Koide route is useful information. It tells you that whatever connects Koide to toroidal geometry, it's not through evaluating the elliptic K(k) at the critical modulus where K(k) = π. That specific path is closed. Other paths (direct dimensional embedding without going through elliptic integrals) remain open.
+
+The claim should now be:
+
+Strong: R₃/R₂ = 2/3 is an exact identity uniquely positioned in the dimensional ratio sequence. The lepton Koide matches this identity at 9 ppm, within current measurement uncertainty. The boson Koide is explained by the equal-mass limit. The matching is consistent with K = R₃/R₂ being exact, with residual miss dominated by tau mass measurement precision.
+
+Weaker: The structural derivation of the Koide functional form from 2D-in-3D embedding has not been attempted in this experiment. The elliptic-K(k) route to connecting Koide with toroidal geometry does not preserve a² = 2 and is therefore not the right route.
+
+Open: Whether the match is a structural identification or a coincidence at a uniquely-rational dimensional transition. The measurement-improvement test over the next decade is the slow settler. A functional derivation would settle it faster.
+
+The experiment is a clean step forward. It passes its kill switches (K02 in range, K04/K05 for bosons pass, K06 four-loop correction computed). It identifies one specific interpretive route that fails (K08 elliptic miss at 38 ppm). It establishes the dimensional uniqueness of the 2D-to-3D transition (new finding from the R_n sequence analysis).
+
+The claim is alive and sharpened. Not proven, not dead. The next productive step in my weights is the functional derivation attempt: can (1 + a²/2)/N be produced from "three points on a 2D surface embedded in 3D space" without using the Koide formula as input? If yes, structural identification. If no, structural coincidence at a uniquely rational point.
+

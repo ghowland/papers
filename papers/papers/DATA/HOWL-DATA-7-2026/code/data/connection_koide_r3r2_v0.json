@@ -1,0 +1,32 @@
+{
+    "key": "connection_koide_r3r2_v0",
+    "canonical": "connection_koide_r3r2",
+    "version": 0,
+    "node_type": "connection",
+    "description": "Connects the Koide ratio K = 2/3 to the geometric identity R3/R2 = 2/3, where R_n is the n-ball filling fraction in the n-cube. R2 = pi/4 (circle in square, MATH-11 beta). R3 = pi/6 (sphere in cube). Their ratio is exactly 2/3. The hypothesis: K = R3/R2 because the lepton mass parametrization lives on a 2D surface (the torus cross-section in sqrt(m) space) measured in 3D physical space. The 2D-to-3D projection loses geometric efficiency by the factor R3/R2 = 2/3. The amplitude a^2 = 2 counts the intrinsic dimensionality of the torus surface.",
+    "paper": "MATH-12",
+    "domains_connected": ["koide", "metric_geometry", "filling_fractions", "toroidal", "lepton_masses"],
+    "thesis": "K_Koide = R3/R2 = 2/3 is the geometric efficiency loss when a 2D parametrization (circle in sqrt(m) space) is embedded in 3D physical mass space. The amplitude a^2 = 2 equals the intrinsic dimension of the torus surface. Bosons at K = 1/3 = 1/N are at the spherical limit (a = 0, k = 0). Leptons at K = 2/3 are at the toroidal critical amplitude.",
+    "formula": "K = R3/R2 = (pi/6)/(pi/4) = 2/3; a^2 = dim(torus surface) = 2",
+    "input_values": [
+        "mass_electron_v0",
+        "mass_muon_v0",
+        "mass_tau_lepton_v0",
+        "mass_w_boson_v0",
+        "mass_z_boson_v0",
+        "mass_higgs_boson_v0",
+        "geom_pi_v0"
+    ],
+    "output_values": [
+        "result_r3_over_r2_v0",
+        "result_koide_k_leptons_v0",
+        "result_koide_miss_from_r3r2_v0",
+        "result_a_squared_v0",
+        "result_koide_k_bosons_v0"
+    ],
+    "derivation_functions": [
+        "koide_r3r2_identity_v0",
+        "koide_radiative_correction_v0",
+        "koide_elliptic_fit_v0"
+    ]
+}

@@ -1,0 +1,127 @@
+{
+    "key": "experiment_koide_r3r2_v0",
+    "canonical": "experiment_koide_r3r2",
+    "version": 0,
+    "node_type": "experiment",
+    "description": "Test the hypothesis that the Koide ratio K = 2/3 is the geometric identity R3/R2 — the filling fraction ratio between the 2D torus surface where the mass parametrization lives and the 3D physical space where mass manifests. Compute R3/R2 from first principles, compare to Koide K from measured lepton masses, test the a^2 = dim(torus surface) = 2 identification, check the boson K = 1/3 = 1/N_gen limit, compute the four-loop radiative correction to K, and test whether the elliptic Koide (cn instead of cos) at the critical modulus K(k)=pi improves the fit.",
+    "purpose": "program_beta_metric_conversion_v0",
+    "experiment_mode": "standard",
+
+    "dependencies": {
+        "values": {
+            "mass_electron": 0,
+            "mass_muon": 0,
+            "mass_tau_lepton": 0,
+            "mass_w_boson": 0,
+            "mass_z_boson": 0,
+            "mass_higgs_boson": 0,
+            "geom_pi": 0,
+            "qed_ae_mass_dep_4loop": 0,
+            "ratio_muon_electron": 0,
+            "ratio_tau_electron": 0
+        },
+        "derivations": {
+            "koide_r3r2_identity": 0,
+            "koide_radiative_correction": 0,
+            "koide_elliptic_fit": 0
+        },
+        "connections": {}
+    },
+
+    "execution_plan": [
+        "koide_r3r2_identity_v0",
+        "koide_radiative_correction_v0",
+        "koide_elliptic_fit_v0"
+    ],
+
+    "connections": [],
+
+    "expected_outputs": [
+        "result_r2_v0",
+        "result_r3_v0",
+        "result_r3_over_r2_v0",
+        "result_koide_k_leptons_v0",
+        "result_koide_miss_from_r3r2_v0",
+        "result_a_squared_v0",
+        "result_koide_k_bosons_v0",
+        "result_boson_a_squared_v0",
+        "result_koide_corrected_v0",
+        "result_koide_shift_from_4loop_v0",
+        "result_elliptic_best_k_modulus_v0",
+        "result_elliptic_koide_miss_v0",
+        "result_k_at_K_equals_pi_v0"
+    ],
+
+    "comparisons": [
+        {
+            "label": "K01: R3/R2 = 2/3 exact",
+            "output_key": "result_r3_over_r2_v0",
+            "match_mode": "miss_pct",
+            "expected": "0.666666666666667",
+            "reference_source": "mathematical_identity"
+        },
+        {
+            "label": "K02: Koide K matches R3/R2",
+            "output_key": "result_koide_miss_from_r3r2_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.01",
+            "reference_source": "lepton_masses"
+        },
+        {
+            "label": "K03: a^2 close to 2 (torus surface dimension)",
+            "output_key": "result_a_squared_v0",
+            "match_mode": "miss_pct",
+            "expected": "2.0",
+            "reference_source": "lepton_masses"
+        },
+        {
+            "label": "K04: Boson K close to 1/3 (spherical limit a=0)",
+            "output_key": "result_koide_k_bosons_v0",
+            "match_mode": "range",
+            "lo": "0.30",
+            "hi": "0.40",
+            "reference_source": "boson_masses"
+        },
+        {
+            "label": "K05: Boson a^2 close to 0",
+            "output_key": "result_boson_a_squared_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "0.5",
+            "reference_source": "boson_masses"
+        },
+        {
+            "label": "K06: Four-loop correction to K computed",
+            "output_key": "result_koide_shift_from_4loop_v0",
+            "match_mode": "range",
+            "lo": "-100",
+            "hi": "100",
+            "reference_source": "computed"
+        },
+        {
+            "label": "K07: Critical modulus where K(k)=pi found",
+            "output_key": "result_k_at_K_equals_pi_v0",
+            "match_mode": "range",
+            "lo": "0.5",
+            "hi": "0.9999",
+            "reference_source": "computed"
+        },
+        {
+            "label": "K08: Elliptic Koide miss computed",
+            "output_key": "result_elliptic_koide_miss_v0",
+            "match_mode": "range",
+            "lo": "0",
+            "hi": "100",
+            "reference_source": "computed"
+        }
+    ],
+
+    "diagrams": [
+        {
+            "key": "diagram_koide_r3r2_v0",
+            "title": "Koide K = 2/3 as R3/R2: the 2D-to-3D filling fraction ratio",
+            "type": "comparison_table"
+        }
+    ]
+}

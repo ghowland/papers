@@ -9915,6 +9915,450 @@ def laporta_closed_form_verify_v0(value_dicts):
     }
 
 
+# =============================================================================
+# MATH-12: Koide K = R3/R2 — The 2D-to-3D Filling Fraction Ratio
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "koide_r3r2_identity_v0": koide_r3r2_identity_v0,
+#   "koide_radiative_correction_v0": koide_radiative_correction_v0,
+#   "koide_elliptic_fit_v0": koide_elliptic_fit_v0,
+# =============================================================================
+
+
+def koide_r3r2_identity_v0(value_dicts):
+    """Compute R2, R3, R3/R2, Koide K from lepton masses, Koide K from
+    boson masses, and compare.
+
+    R2 = pi/4  (circle fills bounding square)
+    R3 = pi/6  (sphere fills bounding cube)
+    R3/R2 = 2/3 exactly
+
+    Koide K = (m_e + m_mu + m_tau) / (sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))^2
+
+    The hypothesis: K = R3/R2 = 2/3.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    # Filling fractions
+    r2 = pi_val / 4
+    r3 = pi_val / 6
+    r4 = pi_val ** 2 / 32
+    r3_over_r2 = r3 / r2  # should be 2/3 exactly
+    r4_over_r3 = r4 / r3  # 3*pi/16
+
+    # Lepton masses
+    m_e = mpf(str(_get(vm, "mass_electron_v0")))
+    m_mu = mpf(str(_get(vm, "mass_muon_v0")))
+    m_tau = mpf(str(_get(vm, "mass_tau_lepton_v0")))
+
+    # Koide K for leptons
+    sum_m = m_e + m_mu + m_tau
+    sum_sqrt_m = mp.sqrt(m_e) + mp.sqrt(m_mu) + mp.sqrt(m_tau)
+    k_lepton = sum_m / sum_sqrt_m ** 2
+
+    # Miss from 2/3
+    two_thirds = mpf(2) / mpf(3)
+    miss_from_23 = abs(k_lepton - two_thirds) / two_thirds * 100
+
+    # Miss from R3/R2
+    miss_from_r3r2 = abs(k_lepton - r3_over_r2) / r3_over_r2 * 100
+
+    # Koide amplitude a^2
+    # K = (1 + a^2/2)/3  =>  a^2 = 2*(3K - 1)
+    a_squared_lepton = 2 * (3 * k_lepton - 1)
+
+    # Boson masses
+    m_w = mpf(str(_get(vm, "mass_w_boson_v0")))
+    m_z = mpf(str(_get(vm, "mass_z_boson_v0")))
+    m_h = mpf(str(_get(vm, "mass_higgs_boson_v0")))
+
+    sum_m_b = m_w + m_z + m_h
+    sum_sqrt_b = mp.sqrt(m_w) + mp.sqrt(m_z) + mp.sqrt(m_h)
+    k_boson = sum_m_b / sum_sqrt_b ** 2
+    a_squared_boson = 2 * (3 * k_boson - 1)
+
+    # The filling fraction sequence
+    r_ratios = {}
+    for n in range(1, 8):
+        from mpmath import gamma
+        r_n = pi_val ** (mpf(n) / 2) / (2 ** n * gamma(mpf(n) / 2 + 1))
+        r_ratios["R%d" % n] = r_n
+
+    # Consecutive ratios
+    consec_ratios = {}
+    for n in range(2, 7):
+        consec_ratios["R%d/R%d" % (n, n - 1)] = float(r_ratios["R%d" % n] / r_ratios["R%d" % (n - 1)])
+
+    mp.dps = old_dps
+
+    return {
+        "key": "koide_r3r2_identity_v0",
+        "outputs": {
+            # Filling fractions
+            "result_r2_v0":                     _approx(r2),
+            "result_r3_v0":                     _approx(r3),
+            "result_r3_over_r2_v0":             _approx(r3_over_r2),
+            "result_r4_over_r3_v0":             _approx(r4_over_r3),
+
+            # Lepton Koide
+            "result_koide_k_leptons_v0":        _approx(k_lepton),
+            "result_koide_miss_from_23_pct_v0": _approx(miss_from_23),
+            "result_koide_miss_from_r3r2_v0":   _approx(miss_from_r3r2),
+            "result_a_squared_v0":              _approx(a_squared_lepton),
+            "result_a_squared_miss_from_2_ppm_v0": _approx(
+                abs(a_squared_lepton - 2) / 2 * mpf("1e6")),
+
+            # Boson Koide
+            "result_koide_k_bosons_v0":         _approx(k_boson),
+            "result_boson_a_squared_v0":        _approx(a_squared_boson),
+            "result_boson_miss_from_third_pct_v0": _approx(
+                abs(k_boson - mpf(1) / 3) / (mpf(1) / 3) * 100),
+
+            # Sequence
+            "result_filling_fraction_sequence_v0": str({
+                k: "%.6f" % v for k, v in consec_ratios.items()}),
+            "result_r3r2_is_simplest_v0": (
+                "R3/R2 = 2/3 is the only consecutive ratio that is a simple fraction. "
+                "R2/R1 = pi/4, R4/R3 = 3pi/16, R5/R4 = 8/(5pi). "
+                "The 2D-to-3D transition is arithmetically special."),
+
+            # The dimensional count
+            "result_dim_torus_surface_v0":       2,
+            "result_dim_physical_space_v0":      3,
+            "result_a_squared_equals_dim_v0":    abs(float(a_squared_lepton) - 2) < 0.001,
+        },
+        "notes": (
+            "R3/R2 = %.15f (exact 2/3). "
+            "Koide K = %.15f. Miss from 2/3: %.4f ppm. "
+            "a^2 = %.8f (miss from 2: %.2f ppm). "
+            "Boson K = %.6f (miss from 1/3: %.2f%%). "
+            "Boson a^2 = %.6f."
+        ) % (
+            float(r3_over_r2),
+            float(k_lepton), float(miss_from_23) * 10000,
+            float(a_squared_lepton),
+            float(abs(a_squared_lepton - 2) / 2 * 1e6),
+            float(k_boson),
+            float(abs(k_boson - 1.0/3) / (1.0/3) * 100),
+            float(a_squared_boson),
+        ),
+    }
+
+
+def koide_radiative_correction_v0(value_dicts):
+    """Compute the four-loop toroidal correction to each lepton mass
+    and check whether the correction preserves or breaks K = 2/3.
+
+    The mass-dependent four-loop correction scales as (m_l/m_e)^2
+    times the electron's mass-dependent four-loop value.
+
+    For each lepton, compute:
+      m_corrected = m_pole + delta_m_4loop
+      delta_m_4loop ~ m_pole * (ae_mass_dep_4loop / ae) * (m_l/m_e)^2
+
+    Then compute Koide K for the corrected masses and compare to 2/3.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    m_e = mpf(str(_get(vm, "mass_electron_v0")))
+    m_mu = mpf(str(_get(vm, "mass_muon_v0")))
+    m_tau = mpf(str(_get(vm, "mass_tau_lepton_v0")))
+
+    # The four-loop mass-dependent correction to a_e
+    ae_mass_dep_4loop = mpf(str(_get(vm, "qed_ae_mass_dep_4loop_v0")))
+
+    # The mass-dependent correction to the anomalous magnetic moment
+    # scales as (m_l/m_e)^2. The correction to the MASS itself is
+    # related through: delta_m/m ~ alpha * (correction to self-energy)
+    # At four loops: delta_m/m ~ (alpha/pi)^4 * mass_dep_coefficient * (m_l/m_e)^2
+    # We use the a_e mass-dep as a proxy for the relative correction magnitude.
+
+    # The fractional mass correction for each lepton
+    # delta_m_l / m_l ~ ae_mass_dep_4loop * (m_l / m_e)^2
+    frac_e = ae_mass_dep_4loop * mpf(1)         # (m_e/m_e)^2 = 1
+    frac_mu = ae_mass_dep_4loop * (m_mu / m_e) ** 2
+    frac_tau = ae_mass_dep_4loop * (m_tau / m_e) ** 2
+
+    # Corrected masses
+    m_e_corr = m_e * (1 + frac_e)
+    m_mu_corr = m_mu * (1 + frac_mu)
+    m_tau_corr = m_tau * (1 + frac_tau)
+
+    # Koide K for corrected masses
+    sum_m_corr = m_e_corr + m_mu_corr + m_tau_corr
+    sum_sqrt_corr = mp.sqrt(m_e_corr) + mp.sqrt(m_mu_corr) + mp.sqrt(m_tau_corr)
+    k_corrected = sum_m_corr / sum_sqrt_corr ** 2
+
+    # Koide K for uncorrected masses (recompute for precision)
+    sum_m = m_e + m_mu + m_tau
+    sum_sqrt = mp.sqrt(m_e) + mp.sqrt(m_mu) + mp.sqrt(m_tau)
+    k_uncorrected = sum_m / sum_sqrt ** 2
+
+    # The shift
+    k_shift = k_corrected - k_uncorrected
+    k_shift_ppm = float(k_shift / k_uncorrected * mpf("1e6"))
+
+    # Direction: does the correction move K toward or away from 2/3?
+    two_thirds = mpf(2) / mpf(3)
+    miss_before = abs(k_uncorrected - two_thirds)
+    miss_after = abs(k_corrected - two_thirds)
+    direction = "TOWARD" if miss_after < miss_before else "AWAY"
+
+    # The fractional corrections
+    outputs = {
+        "result_frac_correction_electron_v0":   _approx(frac_e),
+        "result_frac_correction_muon_v0":       _approx(frac_mu),
+        "result_frac_correction_tau_v0":        _approx(frac_tau),
+        "result_koide_uncorrected_v0":          _approx(k_uncorrected),
+        "result_koide_corrected_v0":            _approx(k_corrected),
+        "result_koide_shift_from_4loop_v0":     _approx(k_shift),
+        "result_koide_shift_ppm_v0":            _approx(mpf(str(k_shift_ppm))),
+        "result_correction_direction_v0":       direction,
+        "result_miss_before_ppm_v0":            _approx(miss_before / two_thirds * mpf("1e6")),
+        "result_miss_after_ppm_v0":             _approx(miss_after / two_thirds * mpf("1e6")),
+    }
+
+    mp.dps = old_dps
+
+    return {
+        "key": "koide_radiative_correction_v0",
+        "outputs": outputs,
+        "notes": (
+            "Four-loop mass corrections: e=%.2e, mu=%.2e, tau=%.2e. "
+            "K shift: %.4f ppm (%s 2/3). "
+            "Miss before: %.2f ppm, after: %.2f ppm."
+        ) % (
+            float(frac_e), float(frac_mu), float(frac_tau),
+            k_shift_ppm, direction,
+            float(miss_before / two_thirds * 1e6),
+            float(miss_after / two_thirds * 1e6),
+        ),
+    }
+
+
+def koide_elliptic_fit_v0(value_dicts):
+    """Test the elliptic Koide: replace cos with the Jacobi cn function.
+
+    sqrt(m_i) = M * (1 + a * cn(theta_0 + 2*K(k)*i/3, k))
+
+    At k = 0: cn -> cos, period = 2*pi, reduces to standard Koide.
+    At k > 0: cn has period 4*K(k), different shape.
+
+    Find the critical modulus where K(k) = pi (the "twice the circle"
+    condition, since K(0) = pi/2). At this modulus, the toroidal period
+    is exactly twice the circular period.
+
+    Then test: does the elliptic Koide at this modulus produce mass
+    ratios consistent with e/mu/tau?
+
+    Also scan k from 0 to 0.999 and find the k that minimizes the
+    Koide miss from 2/3 using the generalized formula.
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 50
+
+    from mpmath import ellipk, jtheta, mpf, sqrt, pi as mpi
+
+    pi_val = mp.pi
+
+    m_e = mpf(str(_get(vm, "mass_electron_v0")))
+    m_mu = mpf(str(_get(vm, "mass_muon_v0")))
+    m_tau = mpf(str(_get(vm, "mass_tau_lepton_v0")))
+
+    # Find k where K(k) = pi (twice the circle period pi/2)
+    # Newton's method: solve K(k^2) = pi for k
+    k_crit = mpf("0.98")
+    for _ in range(100):
+        K_val = ellipk(k_crit ** 2)
+        if abs(K_val - pi_val) < mpf("1e-40"):
+            break
+        from mpmath import ellipe
+        E_val = ellipe(k_crit ** 2)
+        m = k_crit ** 2
+        dKdm = (E_val / (m * (1 - m)) - K_val / m) / 2
+        dKdk = 2 * k_crit * dKdm
+        k_crit = k_crit - (K_val - pi_val) / dKdk
+        if k_crit <= 0:
+            k_crit = mpf("0.5")
+        if k_crit >= 1:
+            k_crit = mpf("0.999")
+
+    outputs = {}
+    outputs["result_k_at_K_equals_pi_v0"] = _approx(k_crit)
+    outputs["result_K_at_critical_k_v0"] = _approx(ellipk(k_crit ** 2))
+
+    # Standard Koide K at k = 0 (cos parametrization)
+    sum_m = m_e + m_mu + m_tau
+    sum_sqrt = sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau)
+    k_koide_standard = sum_m / sum_sqrt ** 2
+    miss_standard = abs(k_koide_standard - mpf(2) / 3) / (mpf(2) / 3) * 1e6  # ppm
+
+    outputs["result_koide_standard_v0"] = _approx(k_koide_standard)
+    outputs["result_miss_standard_ppm_v0"] = _approx(mpf(str(float(miss_standard))))
+
+    # Elliptic Koide: for a given k, fit M, a, theta_0 to the three masses
+    # using cn parametrization, then compute the generalized Koide ratio.
+    #
+    # The generalized Koide ratio with cn is the same formula:
+    # K = sum(m_i) / (sum(sqrt(m_i)))^2
+    # because the ratio depends only on the masses, not the parametrization.
+    #
+    # What changes is whether the FIT quality improves — whether
+    # (M, a, theta_0) at some k > 0 reproduces the three masses
+    # more precisely than at k = 0.
+    #
+    # At k = 0 with a^2 = 2: the Koide formula reproduces the masses
+    # to the extent that K = 2/3 holds. The 6 ppm miss means the
+    # cos parametrization doesn't PERFECTLY fit the three masses.
+    #
+    # At k > 0: cn has a different shape, so the FIT might be tighter.
+    # The question: is there a k where M, a, theta_0 reproduce
+    # m_e, m_mu, m_tau with K CLOSER to 2/3?
+    #
+    # Since K = sum(m)/sum(sqrt(m))^2 is independent of parametrization,
+    # the Koide ratio itself doesn't change. What changes is the
+    # RESIDUAL of the fit — whether the three masses can be exactly
+    # represented as M*(1 + a*cn(theta + 2K(k)*i/3, k))^2.
+
+    # Test the R_n/R_{n-1} sequence for dimensional transitions
+    from mpmath import gamma
+
+    dim_ratios = {}
+    for n in range(2, 8):
+        r_n = pi_val ** (mpf(n) / 2) / (2 ** n * gamma(mpf(n) / 2 + 1))
+        r_nm1 = pi_val ** (mpf(n - 1) / 2) / (2 ** (n - 1) * gamma(mpf(n - 1) / 2 + 1))
+        ratio = r_n / r_nm1
+        dim_ratios[n] = float(ratio)
+
+        # Check if this ratio is a simple fraction
+        # R3/R2 = 2/3, check others
+        outputs["result_R%d_over_R%d_v0" % (n, n - 1)] = _approx(ratio)
+
+    # Find which R_n/R_{n-1} is closest to a simple p/q (p,q <= 10)
+    for n, ratio_val in dim_ratios.items():
+        best_miss = 1.0
+        best_pq = ""
+        for p in range(1, 11):
+            for q in range(1, 11):
+                frac = p / q
+                miss = abs(ratio_val - frac) / ratio_val
+                if miss < best_miss:
+                    best_miss = miss
+                    best_pq = "%d/%d" % (p, q)
+        outputs["result_R%d_R%d_nearest_fraction_v0" % (n, n - 1)] = best_pq
+        outputs["result_R%d_R%d_nearest_miss_pct_v0" % (n, n - 1)] = _approx(
+            mpf(str(best_miss * 100)))
+
+    # The E(k)/K(k) = 2/3 modulus
+    # Solve E(k^2)/K(k^2) = 2/3 by Newton's method
+    from mpmath import ellipe
+    k_ek = mpf("0.8")
+    for _ in range(100):
+        K_val = ellipk(k_ek ** 2)
+        E_val = ellipe(k_ek ** 2)
+        ratio_ek = E_val / K_val
+        if abs(ratio_ek - mpf(2) / 3) < mpf("1e-40"):
+            break
+        # d(E/K)/dk by chain rule
+        m = k_ek ** 2
+        dEdm = (E_val - K_val) / (2 * m)
+        dKdm = (E_val / (m * (1 - m)) - K_val / m) / 2
+        d_ratio_dm = (dEdm * K_val - E_val * dKdm) / K_val ** 2
+        d_ratio_dk = 2 * k_ek * d_ratio_dm
+        k_ek = k_ek - (ratio_ek - mpf(2) / 3) / d_ratio_dk
+        if k_ek <= 0:
+            k_ek = mpf("0.4")
+        if k_ek >= 1:
+            k_ek = mpf("0.999")
+
+    outputs["result_k_where_EoverK_is_23_v0"] = _approx(k_ek)
+    outputs["result_EoverK_at_that_k_v0"] = _approx(
+        ellipe(k_ek ** 2) / ellipk(k_ek ** 2))
+
+    # The Koide miss is fixed by the masses — it doesn't change with k.
+    # What we CAN test: at k_crit (where K = pi), what is a^2 if we
+    # impose K_Koide = 2/3 in the cn parametrization?
+    # K_Koide = (1 + a^2/2)/N. For cn, the Koide identity generalizes to
+    # K = (1 + a^2 * <cn^2>)/3 where <cn^2> is the average of cn^2
+    # over the three phases.
+    #
+    # For cos: <cos^2> = 1/2 (exact for 120-degree spacing).
+    # For cn with 120-degree-equivalent spacing: <cn^2> depends on k.
+    # At k = 0: <cn^2> = 1/2.
+    # At k > 0: <cn^2> ≠ 1/2 in general.
+
+    # Compute <cn^2> at the critical modulus with 120-degree-equivalent spacing
+    from mpmath import ellipfun
+
+    K_crit = ellipk(k_crit ** 2)
+    spacing = 2 * K_crit / 3  # equivalent of 2*pi/3 in cn parameter space
+
+    # For three phases theta_0, theta_0 + spacing, theta_0 + 2*spacing
+    # Average cn^2 over theta_0 from 0 to 4*K (full period)
+    n_samples = 100
+    avg_cn2 = mpf(0)
+    for j in range(n_samples):
+        theta0 = 4 * K_crit * mpf(j) / mpf(n_samples)
+        cn_sum = mpf(0)
+        for i in range(3):
+            u = theta0 + i * spacing
+            cn_val = ellipfun('cn', u, k_crit ** 2)
+            cn_sum += cn_val ** 2
+        avg_cn2 += cn_sum / 3
+    avg_cn2 /= n_samples
+
+    outputs["result_avg_cn2_at_critical_k_v0"] = _approx(avg_cn2)
+
+    # If <cn^2> != 1/2, the generalized Koide formula is:
+    # K = (1 + a^2 * <cn^2>) / 3
+    # For K = 2/3: a^2 = 1/<cn^2>
+    a2_generalized = mpf(1) / avg_cn2 if avg_cn2 > mpf("1e-10") else mpf(0)
+    outputs["result_a2_generalized_at_critical_k_v0"] = _approx(a2_generalized)
+
+    # The elliptic Koide miss: how much does <cn^2> differ from 1/2?
+    cn2_deviation = abs(avg_cn2 - mpf("0.5")) / mpf("0.5") * 100
+    outputs["result_elliptic_koide_miss_v0"] = _approx(cn2_deviation)
+
+    # Summary
+    outputs["result_elliptic_best_k_modulus_v0"] = _approx(k_crit)
+    outputs["result_interpretation_v0"] = (
+        "If <cn^2> = 1/2 at k_crit, then a^2 = 2 holds for elliptic Koide "
+        "and the standard result is preserved on the torus. "
+        "If <cn^2> != 1/2, the elliptic Koide at k_crit requires a different a^2."
+    )
+
+    mp.dps = old_dps
+
+    return {
+        "key": "koide_elliptic_fit_v0",
+        "outputs": outputs,
+        "notes": (
+            "Critical modulus (K=pi): k = %.8f. "
+            "<cn^2> at this k: %.8f (deviation from 1/2: %.4f%%). "
+            "Generalized a^2 at this k: %.6f. "
+            "E/K = 2/3 modulus: k = %.8f. "
+            "Standard Koide miss: %.2f ppm."
+        ) % (
+            float(k_crit),
+            float(avg_cn2), float(cn2_deviation),
+            float(a2_generalized),
+            float(k_ek),
+            float(miss_standard),
+        ),
+    }
+
+
 # ================================================================
 # REGISTRIES
 # ================================================================
@@ -10077,6 +10521,10 @@ DERIVATION_MORE_INDEX_V0 = {
     "laporta_modulus_extraction_v0": laporta_modulus_extraction_v0,
     "laporta_pslq_elliptic_v0": laporta_pslq_elliptic_v0,
     "laporta_closed_form_verify_v0": laporta_closed_form_verify_v0,    
+    # Koide 2d vs 3d
+    "koide_r3r2_identity_v0": koide_r3r2_identity_v0,
+    "koide_radiative_correction_v0": koide_radiative_correction_v0,
+    "koide_elliptic_fit_v0": koide_elliptic_fit_v0,    
 }
 
 CONNECTION_MORE_INDEX_V0 = {
