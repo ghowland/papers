@@ -343,3 +343,232 @@ The inertial partition 1 = π/12 + 13/264 + (251−22π)/264 distributes the tot
 **Central Statement:** The modulus/remainder decomposition, tested at seven hierarchy levels in one experiment, produces eight passes and two failures out of ten pre-registered comparisons. Four predictions match at sub-100-ppm across four independent hierarchy levels: Σ triplet K = 1/3 (1.9 ppm, hadron), lepton K = 2/3 (9.2 ppm, lepton), \|V_us\| = 9/40 (44 ppm, particle), Ω_Λ = (251−22π)/264 (85 ppm, cosmos). The microscopic-cosmic bridge connects QED Laporta content to cosmic DM/baryon ratio through 3(M_Z/m_e)² at 300 ppm. The Hubble tension is predicted as 12/11 at 0.67%. Hadron Koide triplets cluster at K = 1/3 (symmetric pole), confirming a two-position map with leptons at 2/3 (critical) and everything else at 1/3 (trivial). The cosmological partition π/12 + 13/264 + (251−22π)/264 = 1 predicts all three cosmic density parameters at sub-1% from β and gauge integers, with Ω_Λ at 85 ppm. The CKM matrix elements \|V_us\| = 3²/(8×5) and \|V_cb\| = 1/(8×3) pass; \|V_ub\| = 1/(8×3×11) fails at 2.79% pending improved measurements.
 
 ---
+
+### Table A.1: The Eleven Derivations — Inputs, Outputs, Level
+
+| # | Derivation | Hierarchy level | Pool inputs used | Outputs | Key prediction |
+|---|---|---|---|---|---|
+| 1 | giga_ckm_from_integers_v0 | Particle | ckm_sin_theta_12, _23, _13 | 16 | CKM = gauge fractions |
+| 2 | giga_cosmological_closure_v0 | Cosmos | cosmo_omega_dm/b/lambda_planck, geom_pi, cosmo_dm_to_baryon | 15 | Ω_Λ = (251−22π)/264 |
+| 3 | giga_hubble_tension_v0 | Cosmos | cosmo_h0_shoes, cosmo_h0_planck | 8 | H₀ ratio = 12/11 |
+| 4 | giga_hadron_koide_v0 | Hadron | 14 particle masses | 37 | K for 9 triplets |
+| 5 | giga_nuclear_binding_v0 | Nuclear | nuclear_binding_av/as/ac/aa, geom_pi | 5 | a_A/a_V = 3/2 |
+| 6 | giga_hill_sphere_v0 | Planetary | astro_mass_earth/sun/moon, astro_au | 7 | Hill sphere = modulus + remainder |
+| 7 | giga_chandrasekhar_v0 | Stellar | geom_pi | 4 | Lane-Emden = 15π/8 |
+| 8 | giga_muon_g2_toroidal_v0 | Lepton | qed_ae_mass_dep_4loop, mass_muon/electron, qed_amu_* | 6 | Toroidal = 40% of anomaly |
+| 9 | giga_koide_amplitude_map_v0 | All families | koide_a2 values, boson masses | 10 | Four-family amplitude map |
+| 10 | giga_filling_fraction_ladder_v0 | Math | geom_pi | 27 | R₃/R₂ unique rational |
+| 11 | giga_microscopic_cosmic_bridge_v0 | QED↔Cosmos | qed_a4_laporta, coupling_alpha_em, mass_z/electron, geom_pi | 7 | 3(M_Z/m_e)² at 300 ppm |
+| | **Total** | **7 levels** | | **140** | |
+
+### Table A.2: CKM Elements — Predicted, Measured, Fraction, Common Factor
+
+| Element | PDG value | PDG uncertainty | Predicted | Fraction | Denominator factors | Miss | Status |
+|---|---|---|---|---|---|---|---|
+| \|V_us\| | 0.22501 | ±0.00068 | 0.22500 | 9/40 | 8 × 5 | **44 ppm** | PASS |
+| \|V_cb\| | 0.04182 | ±0.00076 | 0.04167 | 1/24 | 8 × 3 | **0.37%** | PASS |
+| \|V_ub\| | 0.003685 | ±0.00020 | 0.003788 | 1/264 | 8 × 3 × 11 | 2.79% | FAIL |
+| \|V_cb/V_ub\| | 11.349 | ±0.6 | 11.000 | 11 | Yang-Mills | 3.07% | FAIL |
+
+Common factor across all denominators: **8 = dim(SU(3) adjoint)**. Other factors: 5 (possibly SU(5) fundamental), 3 (generations or spatial dimensions), 11 (Yang-Mills coefficient).
+
+The numerator structure: \|V_us\| has 9 = 3² in the numerator. \|V_cb\| and \|V_ub\| have 1. The Cabibbo angle carries the squared generation count; the other elements do not.
+
+### Table A.3: Cosmological Partition — Complete Budget
+
+| Component | Expression | Numerical | Planck 2018 | Planck unc | Miss | σ from Planck |
+|---|---|---|---|---|---|---|
+| Ω_DM | β/3 = π/12 | 0.26180 | 0.2607 | ±0.002 | 0.42% | 0.55σ |
+| Ω_b | 13/264 | 0.04924 | 0.0490 | ±0.0004 | 0.49% | 0.61σ |
+| DM/baryon | 22π/13 | 5.3165 | 5.3204 | ~±0.03 | 725 ppm | ~0.13σ |
+| Ω_Λ | (251−22π)/264 | 0.68896 | 0.6889 | ±0.0073 | 0.0084% | 0.008σ |
+| Ω_matter | π/12 + 13/264 | 0.31104 | 0.3111 | ±0.006 | 0.02% | 0.01σ |
+| **Sum** | **1** | **1.00000** | **~1.000** | | **exact** | |
+
+All components within 1σ of Planck 2018. The Ω_Λ prediction sits 0.008σ from the Planck central value — essentially indistinguishable from the measurement.
+
+### Table A.4: Gauge Integers in (251−22π)/264
+
+| Integer | Value | Gauge origin | Where it appears in the partition |
+|---|---|---|---|
+| 11 | Yang-Mills | b₃ = −11/3 (pure SU(3) one-loop) | In 22 = 2×11 (DM) and 264 = 24×11 (denominator) |
+| 13 | Modified SU(2) | b₂' = −13/6 (with Cabibbo Doublet) | In 251 = 264−13 (Ω_Λ numerator) and 13/264 (Ω_b) |
+| 8 | SU(3) adjoint | dim(adjoint of SU(3)) = 8 gluons | In 264/33 = 8 and CKM denominators |
+| 3 | Generations | N_gen = 3 | In 264/(8×11) = 3 |
+| 22 | 2 × Yang-Mills | Vector-like doubling of 11 | In DM/baryon prefactor 22/13 |
+| 264 | 8 × 3 × 11 | Product of gauge dimensions | Universal denominator |
+| 251 | 264 − 13 | Denominator minus SU(2) shift | Ω_Λ numerator |
+| 44 | 4 × 11 | In Ω_DM R₂ prefactor 44/169 | Cross-check: 44/169 = (4×11)/(13²) |
+| 169 | 13² | SU(2) numerator squared | In 44/169 prefactor |
+
+The integers 8, 11, 13 control the entire cosmic budget. They also appear in the CKM matrix (Table A.2) and in the microscopic-cosmic bridge (Table A.12). Three integers, three physics domains.
+
+### Table A.5: Hubble Tension — 12/11 Prediction
+
+| Quantity | Value | Source |
+|---|---|---|
+| H₀ (CMB) | 67.4 ± 0.5 km/s/Mpc | Planck 2018 |
+| H₀ (local) | 73.04 ± 1.04 km/s/Mpc | SH0ES (Riess 2022) |
+| H₀ (CCHP) | 69.8 ± 1.7 km/s/Mpc | CCHP (Freedman 2021) |
+| Measured ratio (SH0ES/Planck) | 1.0837 | |
+| Predicted ratio | 12/11 = 1.0909 | Framework |
+| Miss | 0.67% | |
+| Predicted H₀(local) | 67.4 × 12/11 = 73.53 | Framework |
+| Miss from SH0ES | 0.67% | |
+| Miss from CCHP | 5.3% | (CCHP is lower, doesn't match 12/11 from Planck) |
+
+The 12/11 prediction specifically matches the SH0ES measurement. If CCHP's lower value (69.8) is correct instead, the ratio is 69.8/67.4 = 1.036, which is not 12/11. The prediction is falsifiable: it requires the local H₀ to be near 73.5, not near 70.
+
+### Table A.6: Hadron Koide Triplets — Complete Results
+
+| Triplet | Particles | Masses (MeV) | K | a² | Nearest p/q | Miss from p/q | Position |
+|---|---|---|---|---|---|---|---|
+| **Charged leptons** | e, μ, τ | 0.511, 105.7, 1776.9 | **0.66666** | **2.0000** | **2/3** | **9.2 ppm** | **Critical** |
+| Sigma baryons | Σ⁺, Σ⁰, Σ⁻ | 1189.4, 1192.6, 1197.4 | 0.33333 | 0.000004 | 1/3 | **1.9 ppm** | Pole |
+| Upsilon | Υ(1S), Υ(2S), Υ(3S) | 9460.3, 10023.3, 10355.2 | 0.33345 | 0.00069 | 1/3 | 0.035% | Pole |
+| Nucleon+Λ | p, n, Λ | 938.3, 939.6, 1115.7 | 0.33390 | 0.0034 | 1/3 | 0.17% | Pole |
+| Vector mesons | ρ, K*, φ | 775.3, 891.7, 1019.5 | 0.33437 | 0.0062 | 1/3 | 0.31% | Pole |
+| Cascade+Omega | Σ⁺, Ξ⁰, Ω⁻ | 1189.4, 1314.9, 1672.5 | 0.33509 | 0.0105 | 1/3 | 0.52% | Pole |
+| EW bosons | W, Z, H | 80369, 91188, 125200 | 0.33635 | 0.0181 | 1/3 | 0.90% | Pole |
+| Light mesons | π, K, η | 139.6, 493.7, 547.9 | 0.35799 | 0.1479 | 3/8 | 4.75% | Outlier |
+| Charm mesons | π, K, D | 139.6, 493.7, 1869.7 | 0.41918 | 0.5151 | 3/7 | 2.24% | Outlier |
+
+### Table A.7: The Two-Position Koide Map
+
+| Position | K value | a² value | Occupants | Mass ratio range | Character |
+|---|---|---|---|---|---|
+| **Critical (equator)** | 2/3 | 2.000 | Charged leptons (e, μ, τ) | 3477:1 | R₃/R₂ dimensional embedding |
+| **Symmetric (pole)** | 1/3 | ≈ 0 | Σ baryons, Υ, p-n-Λ, ρ-K*-φ, Σ-Ξ-Ω, W-Z-H | 1.007:1 to 1.56:1 | Equal-mass limit, 1/N for N=3 |
+| **Outlier** | 0.36-0.42 | 0.15-0.52 | π-K-η, π-K-D | 3.9:1 to 13.4:1 | Mixed-generation, no pole |
+| **Beyond critical** | 0.73-0.85 | 2.39-3.09 | Down quarks, up quarks | 890:1 to 79,800:1 | Past saturation boundary |
+
+Two occupied positions with sub-10-ppm precision (lepton K = 2/3 at 9.2 ppm, Σ K = 1/3 at 1.9 ppm). Not a continuum.
+
+### Table A.8: Nuclear SEMF Ratios
+
+| Coefficient | Value (MeV) | Ratio to a_V | Framework candidate | Expression | Miss |
+|---|---|---|---|---|---|
+| a_V (volume) | 15.56 | 1.000 | — | — | — |
+| a_S (surface) | 17.23 | 1.107 | 1 + 1/9 = 10/9? | — | 0.3% from 10/9 |
+| a_C (Coulomb) | 0.697 | 0.04479 | — | — | — |
+| **a_A (asymmetry)** | **23.29** | **1.4968** | **3/2 = R₂/R₃** | **(π/4)/(π/6)** | **0.21%** |
+
+The asymmetry term is 3/2 of the volume term to 0.21%. The 3/2 is the inverse of the Koide ratio R₃/R₂ = 2/3 — the filling fraction ratio going from 3D→2D instead of 2D→3D. In nuclear physics, asymmetry is a surface-like (2D) effect penalizing N≠Z imbalance. Volume is a bulk (3D) effect. The ratio encodes the dimensional transition.
+
+### Table A.9: Chandrasekhar Coefficient
+
+| Quantity | Value | Source |
+|---|---|---|
+| Lane-Emden coefficient (n=3 polytrope) | 5.836 | Standard stellar physics |
+| Framework prediction | 15π/8 = 5.8905 | 15 = 3×5, 8 = dim(SU(3) adj) |
+| Miss | **0.93%** | |
+| M_Ch formula | (coeff) × (ℏc/G)^(3/2) / m_p² | Standard |
+| M_Ch ≈ 1.44 M_sun | For μ_e = 2 (C/O white dwarf) | Measured |
+
+The sub-percent match places a framework prediction in stellar astrophysics. The integers 15 and 8 appear elsewhere: 8 is the CKM common factor and the SU(3) adjoint dimension. 15 = 3×5 where 3 is generations and 5 could be the SU(5) fundamental dimension.
+
+### Table A.10: Muon g-2 Toroidal Contribution
+
+| Quantity | Value | Source |
+|---|---|---|
+| ae mass-dep 4-loop (electron) | 3.0 × 10⁻¹⁴ | Pool |
+| (m_μ/m_e)² | 42,753 | Computed |
+| Toroidal 4-loop for muon | 1.283 × 10⁻⁹ | Computed |
+| SM QED published | 0.00116584718900 | Pool |
+| SM hadronic LO | 6.931 × 10⁻⁸ | Pool |
+| SM hadronic NLO | −9.83 × 10⁻⁹ | Pool |
+| SM hadronic LBL | 9.20 × 10⁻⁹ | Pool |
+| SM EW | 1.54 × 10⁻⁹ | Pool |
+| SM total | 0.001165917409 | Computed |
+| Measured a_μ | 0.001165920590 | FNAL |
+| **Anomaly** | **3.181 × 10⁻⁹** | **Measured − SM** |
+| **Toroidal fraction** | **40.3%** | **1.283/3.181** |
+
+The toroidal four-loop contribution from (m_μ/m_e)² amplification of the Laporta sector is 40% of the measured anomaly. The anomaly itself depends on which hadronic method is used (R-ratio gives ~5σ anomaly, BMW lattice gives ~1.5σ). The toroidal contribution exists regardless — it's a standard QED effect that the framework identifies as toroidal.
+
+### Table A.11: Koide Amplitude Map — Four Families
+
+| Family | Particles | a² | K | Miss from K_ref | Regime | Notes |
+|---|---|---|---|---|---|---|
+| Charged leptons | e, μ, τ | 1.99996 | 0.66666 | 9.2 ppm from 2/3 | Critical | a² = dim(2D surface) |
+| Down quarks | d, s, b | 2.3877 | 0.73129 | — | Beyond critical | Past saturation |
+| Up quarks | u, c, t | 3.0928 | 0.84879 | — | Far beyond | u nearly massless vs t |
+| EW bosons | W, Z, H | 0.0181 | 0.33635 | 0.90% from 1/3 | Pole | Near-degenerate |
+
+The lepton sector occupies the geometrically distinguished critical amplitude a² = 2, where K = R₃/R₂ = 2/3. No other sector is at a² = 2. The boson sector and all hadron triplets (Table A.6) are at a² ≈ 0 (the pole). The quark sectors are past critical (a² > 2), meaning the lightest quark in each family is nearly massless relative to the heaviest.
+
+### Table A.12: Microscopic-Cosmic Bridge — Five Quantities, One Formula
+
+| Quantity | Symbol | Value | Domain | How measured |
+|---|---|---|---|---|
+| QED 4-loop coefficient | \|A₄\| | 1.912 | QED (sub-fm) | Laporta computation (4925 digits) |
+| Fine structure constant | α | 1/137.036 | Atomic (pm) | Cs/Rb recoil or a_e matching |
+| Z boson mass | M_Z | 91,188 MeV | Electroweak (10⁻¹⁸ m) | LEP e⁺e⁻ |
+| Electron mass | m_e | 0.511 MeV | Atomic (pm) | Penning trap |
+| DM/baryon ratio | 22π/13 | 5.317 | Cosmological (Gpc) | Planck CMB |
+
+**The formula:** 22π/13 = \|A₄\| × (α/π)⁴ × 3 × (M_Z/m_e)²
+
+**Computed:**
+
+| Side | Value |
+|---|---|
+| Left: 22π/13 | 5.31654 |
+| Right: \|A₄\| × (α/π)⁴ × 3 × (M_Z/m_e)² | 5.31670 |
+| Miss | **300 ppm** |
+| Bridge ratio: cosmic/microscopic | 9.550 × 10¹⁰ |
+| 3 × (M_Z/m_e)² | 9.553 × 10¹⁰ |
+| Bridge miss | **0.030%** |
+
+Five quantities from three domains connected at 300 ppm. The Z mass bridges QED loop topology (Laporta constants) to cosmic dark matter ratio (Planck CMB). The factor 3 is the spatial dimension count.
+
+### Table A.13: The Complete Results — Ranked by Precision
+
+| Rank | Test | Level | Miss | Status | Pre-registered? |
+|---|---|---|---|---|---|
+| 1 | Σ triplet K = 1/3 | Hadron | 1.9 ppm | PASS | No (supplementary) |
+| 2 | Lepton K = 2/3 | Lepton | 9.2 ppm | PASS | Yes (G07) |
+| 3 | \|V_us\| = 9/40 | Particle | 44 ppm | PASS | Yes (G01) |
+| 4 | Ω_Λ = (251−22π)/264 | Cosmos | 85 ppm | PASS | Yes (G05) |
+| 5 | Bridge = 3(M_Z/m_e)² | QED↔Cosmos | 300 ppm | PASS | No (supplementary) |
+| 6 | DM/baryon = 22π/13 | Cosmos | 725 ppm | PASS | Yes (G10) |
+| 7 | a_A/a_V = 3/2 | Nuclear | 0.21% | PASS | Yes (G08) |
+| 8 | \|V_cb\| = 1/24 | Particle | 0.37% | PASS | Yes (G02) |
+| 9 | Ω_DM = π/12 | Cosmos | 0.42% | PASS | No (supplementary) |
+| 10 | Ω_b = 13/264 | Cosmos | 0.49% | PASS | No (supplementary) |
+| 11 | H₀ ratio = 12/11 | Cosmos | 0.67% | PASS | Yes (G06) |
+| 12 | Chandrasekhar = 15π/8 | Stellar | 0.93% | PASS | Yes (G09) |
+| 13 | \|V_ub\| = 1/264 | Particle | 2.79% | FAIL | Yes (G03) |
+| 14 | \|V_cb/V_ub\| = 11 | Particle | 3.07% | FAIL | Yes (G04) |
+| 15 | Muon toroidal | Lepton | 40% of anomaly | INFO | No |
+
+### Table A.14: The Soliton Hierarchy — Seven Levels Tested
+
+| Level | Scale | Modulus | Remainder tested | Result | Miss range |
+|---|---|---|---|---|---|
+| QED loop | sub-fm | β², β⁴ (angular) | A₄ toroidal content → bridge | PASS | 300 ppm |
+| Particle (CKM) | fm | Gauge group dims | V_us=9/40, V_cb=1/24, V_ub=1/264 | 2 PASS, 2 FAIL | 44 ppm — 3.07% |
+| Lepton (Koide) | fm | Mass scale M | K=2/3, a²=2, muon toroidal | PASS + INFO | 9.2 ppm |
+| Hadron (Koide) | fm | Mass similarity | K≈1/3 for all natural triplets | PASS (negative for 2/3) | 1.9 ppm — 0.90% |
+| Nuclear | fm-pm | Shell potential | a_A/a_V = 3/2 | PASS | 0.21% |
+| Stellar | km | Polytrope structure | Chandrasekhar = 15π/8 | PASS | 0.93% |
+| Planetary | km-AU | Schwarzschild r_s | Hill sphere = 1/3 exponent + m/M | INFO | — |
+| Cosmic | Mpc+ | β in densities | Ω_DM, Ω_b, Ω_Λ, DM/baryon, H₀ | PASS | 85 ppm — 0.67% |
+
+### Table A.15: Predictions and Kill Switches
+
+| # | Prediction | Current status | Kill condition | Timeline | What kills it |
+|---|---|---|---|---|---|
+| 1 | Ω_Λ = 0.689 | 85 ppm from Planck | CMB-S4 excludes at >2σ | 3-5 yr | Ω_Λ measured at 0.682 or 0.696 with ±0.001 |
+| 2 | \|V_us\| = 9/40 | 44 ppm from PDG | Belle II/LHCb exclude at >3σ | 2-5 yr | V_us confirmed at 0.2255 or 0.2245 |
+| 3 | \|V_cb/V_ub\| = 11 | 3.07% miss (FAIL) | V_ub confirmed below 0.0037 | 2-3 yr | Already strained; needs V_ub to rise |
+| 4 | DM/baryon = 22π/13 | 725 ppm from Planck | Improved Planck/CMB-S4 exclude | 2-3 yr | Ratio measured at 5.28 or 5.36 with ±0.01 |
+| 5 | H₀ ratio = 12/11 | 0.67% miss | Both measurements converge to one value | 3-5 yr | Tension resolves to H₀ = 70 ± 0.5 |
+| 6 | Bridge = 3(M_Z/m_e)² | 300 ppm | Improved A₄ precision changes bridge | Years | Bridge miss exceeds 1% |
+| 7 | No hadron K = 2/3 | Confirmed negative | Hadron triplet found with K = 2/3 at <100 ppm | Any time | Would break lepton-specific claim |
+| 8 | a_A/a_V = 3/2 | 0.21% | Improved SEMF fit confirms ratio away from 3/2 | Available | Ratio at 1.49 ± 0.001, excluding 1.500 |
+| 9 | Chandrasekhar = 15π/8 | 0.93% | Precise Lane-Emden excludes 5.890 | Computation | Coefficient confirmed at 5.836 ± 0.001 |
+| 10 | Koide 4-loop toward 2/3 | Confirmed (0.054 ppm toward) | Any loop shifts K away from 2/3 | Years | Higher-loop computation |
+
+---
+
