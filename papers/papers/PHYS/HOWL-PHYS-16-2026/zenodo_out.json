@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:57:15.046838+00:00",
+  "modified": "2026-04-20T15:57:15.510125+00:00",
+  "id": 19666247,
+  "conceptrecid": "19532226",
+  "conceptdoi": "10.5281/zenodo.19532226",
+  "metadata": {
+    "title": "The Cabibbo Doublet \u2014 Complete Specification of the Integer-Forced Minimal Unification Extension",
+    "description": "<h2>The Cabibbo Doublet &mdash; Complete Specification of the Integer-Forced Minimal Unification Extension</h2>\n<p>This paper is part of the HOWL research archive&mdash;a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>This paper specifies a single particle: the Cabibbo Doublet, a vector-like quark doublet in the (3,2,1/6) representation of the Standard Model gauge group SU(3)&times;SU(2)&times;U(1). It is named for the Cabibbo Angle Anomaly &mdash; a measured 4&sigma; violation of CKM matrix unitarity &mdash; which it resolves. Two independent research paths arrive at the same particle. The first path (this series, PHYS-15) begins with three measured coupling constants, computes an exact rational gap ratio 218/115 from the Standard Model beta coefficients, compares it to the measured ratio 1.358, enumerates 15 single-multiplet extensions in exact Fraction arithmetic, and eliminates 13, leaving two survivors: the Cabibbo Doublet (gap ratio 38/27 = 1.407, distance 0.049 from measured) and the full MSSM (gap ratio 7/5 = 1.400, distance 0.042). The second path (Belfatto, Berezhiani 2020; Cheung, Keung, Lu, Tseng 2020) begins with three experimental anomalies &mdash; the CKM unitarity deficit, the forward-backward b-quark asymmetry at LEP, and the Higgs signal strength excess at the LHC &mdash; and shows that a single vector-like quark doublet at 1.5&ndash;6 TeV resolves all three. Neither path knew about the other. This paper is the complete specification: what the Cabibbo Doublet is, why it is needed, how it was found, what it fixes, what it predicts, how to test it, and what it connects to. A reader who finishes this paper knows everything about the Cabibbo Doublet without having read any other paper.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-16-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-16-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666247",
+      "recid": 19666247
+    }
+  },
+  "title": "The Cabibbo Doublet \u2014 Complete Specification of the Integer-Forced Minimal Unification Extension",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666247",
+    "html": "https://zenodo.org/deposit/19666247",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666247/files",
+    "bucket": "https://zenodo.org/api/files/bd2f421a-eef2-40c3-8b90-f004c8c77982",
+    "thumb250": "https://zenodo.org/record/19666247/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666247/thumb10",
+      "50": "https://zenodo.org/record/19666247/thumb50",
+      "100": "https://zenodo.org/record/19666247/thumb100",
+      "250": "https://zenodo.org/record/19666247/thumb250",
+      "750": "https://zenodo.org/record/19666247/thumb750",
+      "1200": "https://zenodo.org/record/19666247/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666247",
+    "latest_draft_html": "https://zenodo.org/deposit/19666247",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666247/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666247/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666247/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666247/actions/newversion"
+  },
+  "record_id": 19666247,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "afd088f6-528d-468c-83ea-1231c1bf9a41",
+      "filename": "!manuscript.pdf",
+      "filesize": 1162162,
+      "checksum": "582afeb657d3e5284e1cd4d52e6fd5c9",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666247/files/afd088f6-528d-468c-83ea-1231c1bf9a41",
+        "download": "https://zenodo.org/api/records/19666247/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "08135b68-bd6c-4327-8b57-76a22b31aba8",
+      "filename": "HOWL-PHYS-16-2026.zip",
+      "filesize": 2177341,
+      "checksum": "71f56e56ba5ee487bb5443468d0cd91d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666247/files/08135b68-bd6c-4327-8b57-76a22b31aba8",
+        "download": "https://zenodo.org/api/records/19666247/draft/files/HOWL-PHYS-16-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,4 +1,5 @@
-# PHYS-16: The Cabibbo Doublet — Complete Specification of the Integer-Forced Minimal Unification Extension
+# The Cabibbo Doublet
+# Complete Specification of the Integer-Forced Minimal Unification Extension
 
 **Registry:** [@HOWL-PHYS-16-2026]
 
@@ -8,7 +9,7 @@
 
 **Domain:** Gauge Coupling Unification, Beyond Standard Model
 
-**DOI:** 10.5281/zenodo.19528655
+**DOI:** 10.5281/zenodo.19666247
 
 **Status:** Complete
 
