@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "key": "connection_pctrm_substrate_identities_v0",
+      "canonical": "connection_pctrm_substrate_identities",
+      "version": 0,
+      "node_type": "connection",
+      "connection_type": "substrate",
+      "topic": "connection",
+      "term": "pctrm_substrate_identities",
+      "level": null,
+      "source": "PHYS-54-2026, PCTRM-1-2026, Session 9 round 0",
+      "description": "PCTRM Round 0 substrate consistency bundle. Tests whether the RUM vocabulary (soliton, modulus, remainder, channel, interface/implementation) reproduces validated cross-domain identities from integer and transcendental arithmetic: cosmological partition (pi/12, 13/264, (251-22pi)/264), DM/baryon ratio (22pi/13), H0 transit ratio (12/11), Koide lepton closure (2/3), CKM integer channels (9/40, 1/24), gap ratio (38/27), proton lattice factor (3pi/2), microscopic-cosmic bridge, plus structural substrate identities (beta = pi/4, L1 circumference = 8, generation democracy = 4/3, cosmic flatness, photon budget).",
+      "inputs": [
+        "geom_pi_v0",
+        "metric_beta_l2_over_l1_v0",
+        "metric_l1_circumference_unit_circle_v0",
+        "cosmo_omega_dm_planck_v0",
+        "cosmo_omega_b_planck_v0",
+        "cosmo_omega_lambda_planck_v0",
+        "cosmo_dm_to_baryon_planck_v0",
+        "cosmo_h0_planck_v0",
+        "cosmo_h0_sh0es_v0",
+        "mass_electron_v0",
+        "mass_muon_v0",
+        "mass_tau_lepton_v0",
+        "mass_z_boson_v0",
+        "rep_sm_generation_democracy_db1_sum_v0",
+        "rep_sm_generation_democracy_db2_sum_v0",
+        "rep_sm_generation_democracy_db3_sum_v0",
+        "gap_cabibbo_doublet_ratio_v0",
+        "gap_measured_ratio_v0",
+        "ckm_vus_measured_v0",
+        "ckm_sin_theta_23_v0",
+        "conf_lattice_factor_proton_v0",
+        "qed_a4_laporta_v0",
+        "coupling_alpha_em_inverse_v0",
+        "si_speed_of_light_v0"
+      ],
+      "tags": ["PCTRM", "substrate", "round_0", "falsification", "cross_domain"],
+      "notes": "All inputs exist in pool. No new values created. Round 0 baseline sweep covering Level 1 (subatomic), Level 2 (atomic), Level 3 (nuclear lattice), Level 5 (gravity structural), Level 6 (cosmological) predictions simultaneously."
+    }
+  ]
+}

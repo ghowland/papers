@@ -1,0 +1,269 @@
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py run experiment_pctrm_b_round_0_v0
+======================================================================
+DATA-6 RUNNER: experiment_pctrm_b_round_0_v0
+======================================================================
+
+  Source: /mnt/c/Users/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code/data/experiment_pctrm_b_round_0_v0.json
+  Mode:   standard
+  Purpose: program_pctrm_substrate_v0
+
+Loaded 4022 value nodes.
+
+----------------------------------------------------------------------
+PRE-FLIGHT WARNINGS: 25
+----------------------------------------------------------------------
+  [WARN] value missing: geom_pi_v0_v0
+  [WARN] value missing: metric_beta_l2_over_l1_v0_v0
+  [WARN] value missing: metric_l1_circumference_unit_circle_v0_v0
+  [WARN] value missing: cosmo_omega_dm_planck_v0_v0
+  [WARN] value missing: cosmo_omega_b_planck_v0_v0
+  [WARN] value missing: cosmo_omega_lambda_planck_v0_v0
+  [WARN] value missing: cosmo_dm_to_baryon_planck_v0_v0
+  [WARN] value missing: cosmo_h0_planck_v0_v0
+  [WARN] value missing: cosmo_h0_sh0es_v0_v0
+  [WARN] value missing: mass_electron_v0_v0
+  [WARN] value missing: mass_muon_v0_v0
+  [WARN] value missing: mass_tau_lepton_v0_v0
+  [WARN] value missing: mass_z_boson_v0_v0
+  [WARN] value missing: rep_sm_generation_democracy_db1_sum_v0_v0
+  [WARN] value missing: rep_sm_generation_democracy_db2_sum_v0_v0
+  [WARN] value missing: rep_sm_generation_democracy_db3_sum_v0_v0
+  [WARN] value missing: gap_cabibbo_doublet_ratio_v0_v0
+  [WARN] value missing: gap_measured_ratio_v0_v0
+  [WARN] value missing: ckm_vus_measured_v0_v0
+  [WARN] value missing: ckm_sin_theta_23_v0_v0
+  [WARN] value missing: conf_lattice_factor_proton_v0_v0
+  [WARN] value missing: qed_a4_laporta_v0_v0
+  [WARN] value missing: coupling_alpha_em_inverse_v0_v0
+  [WARN] value missing: si_speed_of_light_v0_v0
+  [WARN] connection missing: connection_pctrm_substrate_identities_v0
+
+----------------------------------------------------------------------
+EXECUTION PLAN: 1 derivations
+----------------------------------------------------------------------
+  [OK] pctrm_round_zero_v0                                     46 outputs
+
+Derivations: 1 OK, 0 errors
+
+----------------------------------------------------------------------
+CONNECTIONS: 1 bundles
+----------------------------------------------------------------------
+  [SKIP] connection_pctrm_substrate_identities_v0                not found
+
+----------------------------------------------------------------------
+COMPARISONS: 17 checks
+----------------------------------------------------------------------
+
+  [PASS] beta substrate invariant = pi/4 (ppm threshold)    range           in [0, 1.0]
+  [INFO] Omega_DM = pi/12 from universal partition          miss_pct        predicted 0.261799387799149 ref 0.2607 miss 0.4217%
+  [INFO] Omega_b = 13/264 from gauge integer counts         miss_pct        predicted 0.0492424242424242 ref 0.0490 miss 0.4947%
+  [PASS] Omega_Lambda = (251-22pi)/264 at 85 ppm target     range           in [0, 200.0]
+  [PASS] Cosmic flatness residual (sum of three partition terms minus 1) range           in [0, 0.001]
+  [PASS] DM/baryon = 22pi/13 at 725 ppm target              range           in [0, 1000.0]
+  [INFO] H0 tension ratio 12/11 from transit counting       miss_pct        predicted 1.09090909090909 ref 1.0909090909 miss 8.332e-10%
+  [PASS] Koide K = 2/3 from lepton channel closure at 9.2 ppm target range           in [0, 50.0]
+  [PASS] Generation democracy: all three db sums equal 4/3  bool            bool match
+  [INFO] Gap ratio 38/27 from CD channel structure          miss_pct        predicted 1.40740740740741 ref 1.35820168 miss 3.623%
+  [FAIL] V_us = 9/40 from integer channel structure at 44 ppm target range           3120.82 not in [0, 100.0]
+  [PASS] V_cb = 1/24 from integer channel structure at 0.37% range           in [0, 1.0]
+  [INFO] Proton lattice factor = 3pi/2                      miss_pct        predicted 4.71238898038469 ref 4.7 miss 0.2636%
+  [PASS] Microscopic-cosmic bridge at 300 ppm target        range           in [0, 500.0]
+  [PASS] Photon budget identity: c equals exact SI integer  bool            bool match
+  [PASS] L1 circumference of unit circle = 8 exactly        bool            bool match
+  [PASS] Round 0 pass count (expect 10+ of 16)              range           in [10, 16]
+
+----------------------------------------------------------------------
+DIAGRAMS: 1 specs (use 'data6.py diagram' to render)
+----------------------------------------------------------------------
+  [SPEC] diagram_pctrm_round_0_v0                           PCTRM Round 0: substrate consistency sweep
+
+Result written: result_experiment_pctrm_b_round_0_v0_run002.json
+Values written: values_experiment_pctrm_b_round_0_v0_run002.json
+
+======================================================================
+EXPERIMENT SUMMARY
+======================================================================
+
+  Derivations:  1 / 1
+  Connections:  0 / 1
+
+  PASS: 11
+  FAIL: 1
+  INFO: 5
+  SKIP: 0
+
+  STATUS: 1 FAILURES
+
+======================================================================
+geoff@LAPTOP-7TKDV18T:~/Geoff/work/papers/papers/papers/DATA/HOWL-DATA-7-2026/code$ ./data7.py report experiment_pctrm_b_round_0_v0
+
+======================================================================
+DATA-6 REPORT: experiment_pctrm_b_round_0_v0
+======================================================================
+
+  Result file:  result_experiment_pctrm_b_round_0_v0_run002.json
+  Timestamp:    2026-04-20T00:47:57Z
+  Status:       partial
+  Mode:         standard
+  Purpose:      program_pctrm_substrate_v0
+
+----------------------------------------------------------------------
+DERIVATION OUTPUTS: 46 values
+----------------------------------------------------------------------
+
+  (unassigned)
+  ------------
+    result_pctrm_beta_derived_v0                            0.785398163397448
+    result_pctrm_beta_measured_v0                           0.785398163397448
+    result_pctrm_beta_miss_ppm_v0                           1.22430396376594e-11
+    result_pctrm_bridge_lhs_v0                              5.31654141376734
+    result_pctrm_bridge_miss_ppm_v0                         297.404408022513
+    result_pctrm_bridge_rhs_v0                              5.31812257661923
+    result_pctrm_democracy_all_match_v0                     True
+    result_pctrm_democracy_db1_v0                           4/3
+    result_pctrm_democracy_db2_v0                           4/3
+    result_pctrm_democracy_db3_v0                           4/3
+    result_pctrm_dm_baryon_derived_v0                       5.31654141376734
+    result_pctrm_dm_baryon_measured_v0                      5.3204
+    result_pctrm_dm_baryon_miss_ppm_v0                      725.243634436809
+    result_pctrm_flatness_residual_v0                       0.0
+    result_pctrm_flatness_sum_v0                            1.0
+    result_pctrm_gap_ratio_derived_v0                       1.40740740740741
+    result_pctrm_gap_ratio_measured_v0                      1.35819268414484
+    result_pctrm_gap_ratio_miss_pct_v0                      3.62354501221234
+    result_pctrm_h0_ratio_derived_v0                        1.09090909090909
+    result_pctrm_h0_ratio_measured_v0                       1.08308605341246
+    result_pctrm_h0_ratio_miss_pct_v0                       0.722291407222914
+    result_pctrm_koide_k_derived_v0                         0.666660511465522
+    result_pctrm_koide_k_target_v0                          0.666666666666667
+    result_pctrm_koide_miss_ppm_v0                          9.23280171701454
+    result_pctrm_l1_circ_matches_v0                         True
+    result_pctrm_omega_b_derived_v0                         0.0492424242424242
+    result_pctrm_omega_b_measured_v0                        0.049
+    result_pctrm_omega_b_miss_pct_v0                        0.494743351886209
+    result_pctrm_omega_dm_derived_v0                        0.261799387799149
+    result_pctrm_omega_dm_measured_v0                       0.2607
+    result_pctrm_omega_dm_miss_pct_v0                       0.421706098638065
+    result_pctrm_omega_lambda_derived_v0                    0.688958187958426
+    result_pctrm_omega_lambda_measured_v0                   0.6889
+    result_pctrm_omega_lambda_miss_ppm_v0                   84.4650289248382
+    result_pctrm_photon_speed_identity_v0                   True
+    result_pctrm_proton_lattice_derived_v0                  4.71238898038469
+    result_pctrm_proton_lattice_measured_v0                 4.7
+    result_pctrm_proton_lattice_miss_pct_v0                 0.263595327333827
+    result_pctrm_tests_passed_v0                            15
+    result_pctrm_tests_total_v0                             16
+    result_pctrm_vcb_derived_v0                             0.0416666666666667
+    result_pctrm_vcb_measured_v0                            0.04182
+    result_pctrm_vcb_miss_pct_v0                            0.366650725330783
+    result_pctrm_vus_derived_v0                             0.225
+    result_pctrm_vus_measured_v0                            0.2243
+    result_pctrm_vus_miss_ppm_v0                            3120.82032991529
+
+----------------------------------------------------------------------
+COMPARISONS: 17 checks
+----------------------------------------------------------------------
+
+  [PASS] beta substrate invariant = pi/4 (ppm threshold)
+    got:      1.2243e-11
+    range:    [0, 1.0]
+
+  [INFO] Omega_DM = pi/12 from universal partition
+    predicted:  0.261799387799149
+    measured:   0.2607
+    agree:      3 of 5 digits
+    diverge:    position 4: '1' vs '0'
+    miss:       4217.0 ppm
+    status:     INFO
+
+  [INFO] Omega_b = 13/264 from gauge integer counts
+    predicted:  0.0492424242424242
+    measured:   0.0490
+    agree:      4 of 5 digits
+    diverge:    position 5: '2' vs '0'
+    miss:       4947.0 ppm
+    status:     INFO
+
+  [PASS] Omega_Lambda = (251-22pi)/264 at 85 ppm target
+    got:      84.465
+    range:    [0, 200.0]
+
+  [PASS] Cosmic flatness residual (sum of three partition terms minus 1)
+    got:      0.0
+    range:    [0, 0.001]
+
+  [PASS] DM/baryon = 22pi/13 at 725 ppm target
+    got:      725.244
+    range:    [0, 1000.0]
+
+  [INFO] H0 tension ratio 12/11 from transit counting
+    predicted:  1.09090909090909
+    measured:   1.0909090909
+    agree:      11 of 11 digits
+    miss:       0.008332 ppb
+    status:     INFO
+
+  [PASS] Koide K = 2/3 from lepton channel closure at 9.2 ppm target
+    got:      9.2328
+    range:    [0, 50.0]
+
+  [PASS] Generation democracy: all three db sums equal 4/3
+    got:      True
+    status:   PASS (bool match)
+
+  [INFO] Gap ratio 38/27 from CD channel structure
+    predicted:  1.40740740740741
+    measured:   1.35820168
+    agree:      1 of 9 digits
+    diverge:    position 2: '4' vs '3'
+    miss:       3.623%
+    status:     INFO
+
+  [FAIL] V_us = 9/40 from integer channel structure at 44 ppm target
+    expected: ?
+    got:      3120.82
+    diverge:  position 0: '3' vs '?'
+    status:   FAIL
+
+  [PASS] V_cb = 1/24 from integer channel structure at 0.37%
+    got:      0.366651
+    range:    [0, 1.0]
+
+  [INFO] Proton lattice factor = 3pi/2
+    predicted:  4.71238898038469
+    measured:   4.7
+    agree:      2 of 2 digits
+    miss:       2636.0 ppm
+    status:     INFO
+
+  [PASS] Microscopic-cosmic bridge at 300 ppm target
+    got:      297.404
+    range:    [0, 500.0]
+
+  [PASS] Photon budget identity: c equals exact SI integer
+    got:      True
+    status:   PASS (bool match)
+
+  [PASS] L1 circumference of unit circle = 8 exactly
+    got:      True
+    status:   PASS (bool match)
+
+  [PASS] Round 0 pass count (expect 10+ of 16)
+    got:      15.0
+    range:    [10, 16]
+
+======================================================================
+SUMMARY
+======================================================================
+
+  Derivations OK:  1
+  Derivations err: 0
+
+  PASS: 11
+  FAIL: 1
+  INFO: 5
+  SKIP: 0
+
+  EXPERIMENT: PARTIAL
+
+======================================================================

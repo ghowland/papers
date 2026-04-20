@@ -879,25 +879,25 @@
         "tags": ["substrate", "PCTRM", "Planck", "falsification", "six-level"],
         "scripts": [
             {
-            "name": "experiment_pctrm_b_round_0_v0",
-            "description": "Baseline sweep — all immediately testable predictions in one pass",
-            "stage": 0
+                "name": "experiment_pctrm_b_round_0_v0",
+                "description": "Baseline sweep — all immediately testable predictions in one pass",
+                "stage": 0
             }
         ],
         "kill_switches": [
-            {"name": "K14_omega_lambda", "condition": "Ω_Λ miss > 85 ppm", "data_source": "Planck_2018"},
-            {"name": "K14b_omega_dm",   "condition": "Ω_DM miss substantial vs π/12", "data_source": "Planck_2018"},
-            {"name": "F9_koide",        "condition": "Koide K miss > 9.2 ppm", "data_source": "CODATA_2018"},
-            {"name": "F10_vus",         "condition": "V_us miss > 44 ppm", "data_source": "PDG_2024"},
-            {"name": "K10_gravity_inv_square", "condition": "1/r² residual > 0.001", "data_source": "geometric_identity"},
-            {"name": "K12_lorentz",     "condition": "topology consistency returns False", "data_source": "topology_structure"}
+            {"name": "K14_omega_lambda",       "condition": "Ω_Λ miss > 85 ppm",                         "data_source": "Planck_2018"},
+            {"name": "K14b_omega_dm",          "condition": "Ω_DM miss substantial vs π/12",             "data_source": "Planck_2018"},
+            {"name": "F9_koide",               "condition": "Koide K miss > 9.2 ppm",                    "data_source": "CODATA_2018"},
+            {"name": "F10_vus",                "condition": "V_us miss > 44 ppm",                        "data_source": "PDG_2024"},
+            {"name": "K10_gravity_inv_square", "condition": "1/r² residual > 0.001",                     "data_source": "geometric_identity"},
+            {"name": "K12_lorentz",            "condition": "topology consistency returns False",        "data_source": "topology_structure"}
         ],
         "program_connections": {
-            "program_beta_unification": "PCTRM claims substrate for the integer alphabet",
-            "program_toroidal_dm":      "PCTRM must produce toroidal channel structure at cosmic scale",
-            "program_hubble_running":   "PCTRM claims 12/11 ratio from transit counting"
+            "connection_pctrm_substrate_identities_v0": "PCTRM connections",
+            "program_beta_unification_v0": "PCTRM claims substrate for the integer alphabet",
+            "program_toroidal_dm_v0":      "PCTRM must produce toroidal channel structure at cosmic scale",
+            "program_hubble_running_v0":   "PCTRM claims 12/11 ratio from transit counting"
         }
     }
-
   ]
 }

@@ -143,7 +143,7 @@ def preflight(experiment, pool, data_dir):
 
     for canonical, version in deps.get("values", {}).items():
         versioned = "%s_v%d" % (canonical, version)
-        if versioned not in by_key:
+        if versioned not in by_key and canonical not in by_key:
             warnings.append("value missing: %s" % versioned)
 
     for deriv_key in experiment.get("execution_plan", []):

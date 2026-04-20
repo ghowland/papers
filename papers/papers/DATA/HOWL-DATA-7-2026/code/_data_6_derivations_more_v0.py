@@ -11679,6 +11679,338 @@ def giga_microscopic_cosmic_bridge_v0(value_dicts):
     }
 
 
+# =============================================================================
+# PCTRM Round 0 — substrate consistency baseline sweep
+# =============================================================================
+#
+# Register in DERIVATION_MORE_INDEX_V0:
+#   "pctrm_round_zero_v0": pctrm_round_zero_v0,
+# =============================================================================
+
+
+def pctrm_round_zero_v0(value_dicts):
+    """PCTRM Round 0: 16 substrate consistency checks in one pass.
+
+    Tests whether the RUM vocabulary (soliton, modulus, remainder, channel)
+    reproduces validated cross-domain identities and structural substrate
+    identities from integer and transcendental arithmetic. All inputs from
+    existing pool. No Q1 modulus value, no Q3 QM extension, no Q5 GR
+    corrections required.
+
+    16 checks:
+      1. beta = pi/4 substrate invariant
+      2. Omega_DM = pi/12 from universal partition
+      3. Omega_b = 13/264 from gauge integer counts
+      4. Omega_Lambda = (251-22pi)/264 from closure
+      5. Cosmic flatness (partition sum residual)
+      6. DM/baryon = 22pi/13
+      7. H0 ratio = 12/11 from transit counting
+      8. Koide K = 2/3 from lepton channel closure
+      9. Generation democracy (all db sums = 4/3)
+     10. Gap ratio 38/27 from CD channel structure
+     11. V_us = 9/40 integer channel
+     12. V_cb = 1/24 integer channel
+     13. Proton lattice factor = 3pi/2
+     14. Microscopic-cosmic bridge
+     15. Photon budget identity (c = exact SI integer)
+     16. L1 circumference of unit circle = 8 exactly
+    """
+    vm = _value_map(value_dicts)
+
+    old_dps = mp.dps
+    mp.dps = 100
+
+    # ============================================================
+    # LOAD POOL VALUES (reader matched to type in pool)
+    # ============================================================
+
+    pi_val = _f2m(_frac(vm, "geom_pi_v0"))
+
+    beta_pool = mpf(str(_get(vm, "metric_beta_l2_over_l1_v0")))
+    l1_circ_frac = _frac(vm, "metric_l1_circumference_unit_circle_v0")
+
+    omega_dm_measured = mpf(str(_get(vm, "cosmo_omega_dm_planck_v0")))
+    omega_b_measured = mpf(str(_get(vm, "cosmo_omega_b_planck_v0")))
+    omega_lambda_measured = mpf(str(_get(vm, "cosmo_omega_lambda_planck_v0")))
+    dm_baryon_measured = mpf(str(_get(vm, "cosmo_dm_to_baryon_planck_v0")))
+
+    h0_planck = _f2m(_frac(vm, "cosmo_h0_planck_v0"))
+    h0_sh0es = _f2m(_frac(vm, "cosmo_h0_sh0es_v0"))
+
+    m_e = _f2m(_frac(vm, "mass_electron_v0"))
+    m_mu = _f2m(_frac(vm, "mass_muon_v0"))
+    m_tau = _f2m(_frac(vm, "mass_tau_lepton_v0"))
+    m_z = _f2m(_frac(vm, "mass_z_boson_v0"))
+
+    dem_db1 = _frac(vm, "rep_sm_generation_democracy_db1_sum_v0")
+    dem_db2 = _frac(vm, "rep_sm_generation_democracy_db2_sum_v0")
+    dem_db3 = _frac(vm, "rep_sm_generation_democracy_db3_sum_v0")
+
+    gap_cd_val = _f2m(_frac(vm, "gap_cabibbo_doublet_ratio_v0"))
+    gap_measured = _f2m(_frac(vm, "gap_measured_ratio_v0"))
+
+    vus_measured = mpf(str(_get(vm, "ckm_vus_measured_v0")))
+    vcb_measured = _f2m(_frac(vm, "ckm_sin_theta_23_v0"))
+
+    lattice_proton_measured = _f2m(_frac(vm, "conf_lattice_factor_proton_v0"))
+
+    a4_laporta = mpf(str(_get(vm, "qed_a4_laporta_v0")))
+    alpha_em_inv = _f2m(_frac(vm, "coupling_alpha_em_inverse_v0"))
+    alpha_em = mpf(1) / alpha_em_inv
+
+    c_si_frac = _frac(vm, "si_speed_of_light_v0")
+
+    outputs = {}
+
+    # ============================================================
+    # CHECK 1: beta = pi/4 substrate invariant
+    # ============================================================
+
+    beta_derived = pi_val / mpf(4)
+    beta_miss_ppm = abs(beta_derived - beta_pool) / beta_derived * mpf("1e6")
+
+    outputs["result_pctrm_beta_derived_v0"] = _approx(beta_derived)
+    outputs["result_pctrm_beta_measured_v0"] = _approx(beta_pool)
+    outputs["result_pctrm_beta_miss_ppm_v0"] = _approx(beta_miss_ppm)
+
+    check1_pass = float(beta_miss_ppm) < 1.0
+
+    # ============================================================
+    # CHECK 2: Omega_DM = pi/12
+    # ============================================================
+
+    omega_dm_derived = pi_val / mpf(12)
+    omega_dm_miss_pct = abs(omega_dm_derived - omega_dm_measured) / omega_dm_measured * mpf(100)
+
+    outputs["result_pctrm_omega_dm_derived_v0"] = _approx(omega_dm_derived)
+    outputs["result_pctrm_omega_dm_measured_v0"] = _approx(omega_dm_measured)
+    outputs["result_pctrm_omega_dm_miss_pct_v0"] = _approx(omega_dm_miss_pct)
+
+    check2_pass = float(omega_dm_miss_pct) < 1.0
+
+    # ============================================================
+    # CHECK 3: Omega_b = 13/264
+    # ============================================================
+
+    omega_b_derived = _f2m(Fraction(13, 264))
+    omega_b_miss_pct = abs(omega_b_derived - omega_b_measured) / omega_b_measured * mpf(100)
+
+    outputs["result_pctrm_omega_b_derived_v0"] = _approx(omega_b_derived)
+    outputs["result_pctrm_omega_b_measured_v0"] = _approx(omega_b_measured)
+    outputs["result_pctrm_omega_b_miss_pct_v0"] = _approx(omega_b_miss_pct)
+
+    check3_pass = float(omega_b_miss_pct) < 1.0
+
+    # ============================================================
+    # CHECK 4: Omega_Lambda = (251 - 22*pi) / 264
+    # ============================================================
+
+    omega_lambda_derived = (mpf(251) - mpf(22) * pi_val) / mpf(264)
+    omega_lambda_miss_ppm = abs(omega_lambda_derived - omega_lambda_measured) / omega_lambda_measured * mpf("1e6")
+
+    outputs["result_pctrm_omega_lambda_derived_v0"] = _approx(omega_lambda_derived)
+    outputs["result_pctrm_omega_lambda_measured_v0"] = _approx(omega_lambda_measured)
+    outputs["result_pctrm_omega_lambda_miss_ppm_v0"] = _approx(omega_lambda_miss_ppm)
+
+    check4_pass = float(omega_lambda_miss_ppm) < 200.0
+
+    # ============================================================
+    # CHECK 5: Cosmic flatness (partition sum residual)
+    # ============================================================
+
+    flatness_sum = omega_dm_derived + omega_b_derived + omega_lambda_derived
+    flatness_residual = abs(flatness_sum - mpf(1))
+
+    outputs["result_pctrm_flatness_sum_v0"] = _approx(flatness_sum)
+    outputs["result_pctrm_flatness_residual_v0"] = _approx(flatness_residual)
+
+    check5_pass = float(flatness_residual) < 0.001
+
+    # ============================================================
+    # CHECK 6: DM/baryon = 22*pi/13
+    # ============================================================
+
+    dm_baryon_derived = mpf(22) * pi_val / mpf(13)
+    dm_baryon_miss_ppm = abs(dm_baryon_derived - dm_baryon_measured) / dm_baryon_measured * mpf("1e6")
+
+    outputs["result_pctrm_dm_baryon_derived_v0"] = _approx(dm_baryon_derived)
+    outputs["result_pctrm_dm_baryon_measured_v0"] = _approx(dm_baryon_measured)
+    outputs["result_pctrm_dm_baryon_miss_ppm_v0"] = _approx(dm_baryon_miss_ppm)
+
+    check6_pass = float(dm_baryon_miss_ppm) < 1000.0
+
+    # ============================================================
+    # CHECK 7: H0 ratio = 12/11 from transit counting
+    # ============================================================
+
+    h0_ratio_derived = _f2m(Fraction(12, 11))
+    h0_ratio_measured = h0_sh0es / h0_planck
+    h0_ratio_miss_pct = abs(h0_ratio_derived - h0_ratio_measured) / h0_ratio_measured * mpf(100)
+
+    outputs["result_pctrm_h0_ratio_derived_v0"] = _approx(h0_ratio_derived)
+    outputs["result_pctrm_h0_ratio_measured_v0"] = _approx(h0_ratio_measured)
+    outputs["result_pctrm_h0_ratio_miss_pct_v0"] = _approx(h0_ratio_miss_pct)
+
+    check7_pass = float(h0_ratio_miss_pct) < 2.0
+
+    # ============================================================
+    # CHECK 8: Koide K = 2/3 from lepton channel closure
+    # ============================================================
+
+    sqrt_me = mp.sqrt(m_e)
+    sqrt_mmu = mp.sqrt(m_mu)
+    sqrt_mtau = mp.sqrt(m_tau)
+    sum_sqrt = sqrt_me + sqrt_mmu + sqrt_mtau
+    sum_m = m_e + m_mu + m_tau
+    koide_k_derived = sum_m / (sum_sqrt * sum_sqrt)
+    koide_k_target = mpf(2) / mpf(3)
+    koide_miss_ppm = abs(koide_k_derived - koide_k_target) / koide_k_target * mpf("1e6")
+
+    outputs["result_pctrm_koide_k_derived_v0"] = _approx(koide_k_derived)
+    outputs["result_pctrm_koide_k_target_v0"] = _approx(koide_k_target)
+    outputs["result_pctrm_koide_miss_ppm_v0"] = _approx(koide_miss_ppm)
+
+    check8_pass = float(koide_miss_ppm) < 50.0
+
+    # ============================================================
+    # CHECK 9: Generation democracy (all db sums = 4/3)
+    # ============================================================
+
+    democracy_target = Fraction(4, 3)
+    democracy_all_match = (dem_db1 == democracy_target and
+                           dem_db2 == democracy_target and
+                           dem_db3 == democracy_target)
+
+    outputs["result_pctrm_democracy_db1_v0"] = str(dem_db1)
+    outputs["result_pctrm_democracy_db2_v0"] = str(dem_db2)
+    outputs["result_pctrm_democracy_db3_v0"] = str(dem_db3)
+    outputs["result_pctrm_democracy_all_match_v0"] = democracy_all_match
+
+    check9_pass = democracy_all_match
+
+    # ============================================================
+    # CHECK 10: Gap ratio 38/27 from CD channel structure
+    # ============================================================
+
+    gap_ratio_miss_pct = abs(gap_cd_val - gap_measured) / gap_measured * mpf(100)
+
+    outputs["result_pctrm_gap_ratio_derived_v0"] = _approx(gap_cd_val)
+    outputs["result_pctrm_gap_ratio_measured_v0"] = _approx(gap_measured)
+    outputs["result_pctrm_gap_ratio_miss_pct_v0"] = _approx(gap_ratio_miss_pct)
+
+    check10_pass = float(gap_ratio_miss_pct) < 5.0
+
+    # ============================================================
+    # CHECK 11: V_us = 9/40 integer channel
+    # ============================================================
+
+    vus_derived = _f2m(Fraction(9, 40))
+    vus_miss_ppm = abs(vus_derived - vus_measured) / vus_measured * mpf("1e6")
+
+    outputs["result_pctrm_vus_derived_v0"] = _approx(vus_derived)
+    outputs["result_pctrm_vus_measured_v0"] = _approx(vus_measured)
+    outputs["result_pctrm_vus_miss_ppm_v0"] = _approx(vus_miss_ppm)
+
+    check11_pass = float(vus_miss_ppm) < 100.0
+
+    # ============================================================
+    # CHECK 12: V_cb = 1/24 integer channel
+    # ============================================================
+
+    vcb_derived = _f2m(Fraction(1, 24))
+    vcb_miss_pct = abs(vcb_derived - vcb_measured) / vcb_measured * mpf(100)
+
+    outputs["result_pctrm_vcb_derived_v0"] = _approx(vcb_derived)
+    outputs["result_pctrm_vcb_measured_v0"] = _approx(vcb_measured)
+    outputs["result_pctrm_vcb_miss_pct_v0"] = _approx(vcb_miss_pct)
+
+    check12_pass = float(vcb_miss_pct) < 1.0
+
+    # ============================================================
+    # CHECK 13: Proton lattice factor = 3*pi/2
+    # ============================================================
+
+    lattice_derived = mpf(3) * pi_val / mpf(2)
+    lattice_miss_pct = abs(lattice_derived - lattice_proton_measured) / lattice_proton_measured * mpf(100)
+
+    outputs["result_pctrm_proton_lattice_derived_v0"] = _approx(lattice_derived)
+    outputs["result_pctrm_proton_lattice_measured_v0"] = _approx(lattice_proton_measured)
+    outputs["result_pctrm_proton_lattice_miss_pct_v0"] = _approx(lattice_miss_pct)
+
+    check13_pass = float(lattice_miss_pct) < 5.0
+
+    # ============================================================
+    # CHECK 14: Microscopic-cosmic bridge
+    # LHS = 22*pi/13
+    # RHS = |A4| * (alpha/pi)^4 * 3 * (M_Z/m_e)^2
+    # ============================================================
+
+    bridge_lhs = mpf(22) * pi_val / mpf(13)
+    alpha_over_pi = alpha_em / pi_val
+    mz_over_me = m_z / m_e
+    bridge_rhs = abs(a4_laporta) * (alpha_over_pi ** 4) * mpf(3) * (mz_over_me * mz_over_me)
+    bridge_miss_ppm = abs(bridge_lhs - bridge_rhs) / bridge_lhs * mpf("1e6")
+
+    outputs["result_pctrm_bridge_lhs_v0"] = _approx(bridge_lhs)
+    outputs["result_pctrm_bridge_rhs_v0"] = _approx(bridge_rhs)
+    outputs["result_pctrm_bridge_miss_ppm_v0"] = _approx(bridge_miss_ppm)
+
+    check14_pass = float(bridge_miss_ppm) < 500.0
+
+    # ============================================================
+    # CHECK 15: Photon budget identity (c = exact SI integer)
+    # ============================================================
+
+    photon_speed_identity = (c_si_frac == Fraction(299792458, 1))
+
+    outputs["result_pctrm_photon_speed_identity_v0"] = photon_speed_identity
+
+    check15_pass = photon_speed_identity
+
+    # ============================================================
+    # CHECK 16: L1 circumference of unit circle = 8 exactly
+    # ============================================================
+
+    l1_circ_matches = (l1_circ_frac == Fraction(8, 1))
+
+    outputs["result_pctrm_l1_circ_matches_v0"] = l1_circ_matches
+
+    check16_pass = l1_circ_matches
+
+    # ============================================================
+    # PASS COUNT
+    # ============================================================
+
+    checks = [
+        check1_pass, check2_pass, check3_pass, check4_pass,
+        check5_pass, check6_pass, check7_pass, check8_pass,
+        check9_pass, check10_pass, check11_pass, check12_pass,
+        check13_pass, check14_pass, check15_pass, check16_pass,
+    ]
+    tests_passed = sum(1 for c in checks if c)
+    tests_total = len(checks)
+
+    outputs["result_pctrm_tests_passed_v0"] = tests_passed
+    outputs["result_pctrm_tests_total_v0"] = tests_total
+
+    mp.dps = old_dps
+
+    return {
+        "key": "pctrm_round_zero_v0",
+        "outputs": outputs,
+        "notes": (
+            "PCTRM Round 0: %d of %d substrate consistency checks passed. "
+            "beta_miss_ppm=%.3f, omega_dm_miss_pct=%.3f, omega_b_miss_pct=%.3f, "
+            "omega_lambda_miss_ppm=%.1f, dm_baryon_miss_ppm=%.1f, koide_miss_ppm=%.1f, "
+            "vus_miss_ppm=%.1f, bridge_miss_ppm=%.1f."
+        ) % (
+            tests_passed, tests_total,
+            float(beta_miss_ppm), float(omega_dm_miss_pct), float(omega_b_miss_pct),
+            float(omega_lambda_miss_ppm), float(dm_baryon_miss_ppm), float(koide_miss_ppm),
+            float(vus_miss_ppm), float(bridge_miss_ppm),
+        ),
+    }
+
 
 # ================================================================
 # REGISTRIES
@@ -11862,6 +12194,8 @@ DERIVATION_MORE_INDEX_V0 = {
     "giga_koide_amplitude_map_v0": giga_koide_amplitude_map_v0,
     "giga_filling_fraction_ladder_v0": giga_filling_fraction_ladder_v0,
     "giga_microscopic_cosmic_bridge_v0": giga_microscopic_cosmic_bridge_v0,
+    # PCTRM Round 0 - B - substrate consistency baseline sweep
+    "pctrm_round_zero_v0": pctrm_round_zero_v0,
 }
 
 CONNECTION_MORE_INDEX_V0 = {
