@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:23:13.748337+00:00",
+  "modified": "2026-04-20T16:23:14.089280+00:00",
+  "id": 19666529,
+  "conceptrecid": "19532286",
+  "conceptdoi": "10.5281/zenodo.19532286",
+  "metadata": {
+    "title": "The QED Integer Chain at 5-Loop: Four CODATA Values from One Measurement",
+    "description": "<h2>The QED Integer Chain at 5-Loop: Four CODATA Values from One Measurement</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-36-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666529",
+      "recid": 19666529
+    }
+  },
+  "title": "The QED Integer Chain at 5-Loop: Four CODATA Values from One Measurement",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666529",
+    "html": "https://zenodo.org/deposit/19666529",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666529/files",
+    "bucket": "https://zenodo.org/api/files/94f69a04-8eb3-498d-8a4a-d2d42675fae0",
+    "thumb250": "https://zenodo.org/record/19666529/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666529/thumb10",
+      "50": "https://zenodo.org/record/19666529/thumb50",
+      "100": "https://zenodo.org/record/19666529/thumb100",
+      "250": "https://zenodo.org/record/19666529/thumb250",
+      "750": "https://zenodo.org/record/19666529/thumb750",
+      "1200": "https://zenodo.org/record/19666529/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666529",
+    "latest_draft_html": "https://zenodo.org/deposit/19666529",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666529/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666529/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666529/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666529/actions/newversion"
+  },
+  "record_id": 19666529,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "4a92fab7-f2ba-4fc0-99ed-0f289994ac1b",
+      "filename": "HOWL-PHYS-36-2026.zip",
+      "filesize": 2005508,
+      "checksum": "b3df998a49cb6b4833a2c2897cfceb5f",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666529/files/4a92fab7-f2ba-4fc0-99ed-0f289994ac1b",
+        "download": "https://zenodo.org/api/records/19666529/draft/files/HOWL-PHYS-36-2026.zip/content"
+      }
+    },
+    {
+      "id": "9f7b20da-40a3-48c3-8b56-132d06f49fdf",
+      "filename": "!manuscript.pdf",
+      "filesize": 1128533,
+      "checksum": "0747e13dd20fd043af19b1b6858437aa",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666529/files/9f7b20da-40a3-48c3-8b56-132d06f49fdf",
+        "download": "https://zenodo.org/api/records/19666529/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

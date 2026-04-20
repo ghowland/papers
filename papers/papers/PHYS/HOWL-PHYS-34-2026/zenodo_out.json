@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:20:34.181211+00:00",
+  "modified": "2026-04-20T16:20:34.424137+00:00",
+  "id": 19666503,
+  "conceptrecid": "19532280",
+  "conceptdoi": "10.5281/zenodo.19532280",
+  "metadata": {
+    "title": "The sin\u00b2\u03b8_W Two-Loop Test \u2014 3/13 Is Not the Limit: Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin\u00b2\u03b8_W = 0.23133, miss 0.048%.",
+    "description": "<h2>The sin\u00b2\u03b8_W Two-Loop Test \u2014 3/13 Is Not the Limit: Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin\u00b2\u03b8_W = 0.23133, miss 0.048%.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The weak mixing angle sin\u00b2\u03b8_W is one of the most precisely measured quantities in particle physics (0.23122 at the Z mass). At the GUT scale, the SU(5) tree-level value is 3/8 = 0.375. One-loop running with the Cabibbo Doublet betas predicts sin\u00b2\u03b8_W = 0.22845, undershooting by 1.20% (PHYS-27). The value 3/13 = 0.23077 \u2014 the ratio of the number of fermion generations (3) to the absolute value of the modified SU(2) beta numerator (13) \u2014 sits between the one-loop prediction and measured, differing from measured by only 0.20%. This paper tests whether the two-loop running converges toward 3/13. It does not. The two-loop prediction with the full SM+VL b_ij matrix gives sin\u00b2\u03b8_W = 0.23133, which OVERSHOOTS both 3/13 and the measured value. The ordering is: one-loop (0.22845) &lt; 3/13 (0.23077) &lt; measured (0.23122) &lt; two-loop (0.23133). The perturbative series crosses 3/13 between one-loop and two-loop, then continues past measured. The two-loop miss from measured is 0.048% \u2014 the most precise sin\u00b2\u03b8_W prediction in the series, but an overshoot, not an undershoot. 3/13 is not the perturbative limit. The convergence target is the measured value.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-34-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-27-2026, HOWL-PHYS-28-2026, HOWL-PHYS-30-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666503",
+      "recid": 19666503
+    }
+  },
+  "title": "The sin\u00b2\u03b8_W Two-Loop Test \u2014 3/13 Is Not the Limit: Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin\u00b2\u03b8_W = 0.23133, miss 0.048%.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666503",
+    "html": "https://zenodo.org/deposit/19666503",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666503/files",
+    "bucket": "https://zenodo.org/api/files/2a137385-808d-4bc1-b7e8-d29a2606dd64",
+    "thumb250": "https://zenodo.org/record/19666503/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666503/thumb10",
+      "50": "https://zenodo.org/record/19666503/thumb50",
+      "100": "https://zenodo.org/record/19666503/thumb100",
+      "250": "https://zenodo.org/record/19666503/thumb250",
+      "750": "https://zenodo.org/record/19666503/thumb750",
+      "1200": "https://zenodo.org/record/19666503/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666503",
+    "latest_draft_html": "https://zenodo.org/deposit/19666503",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666503/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666503/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666503/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666503/actions/newversion"
+  },
+  "record_id": 19666503,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "75d223e4-0770-4f8a-841e-b2d269c23cbe",
+      "filename": "!manuscript.pdf",
+      "filesize": 1040500,
+      "checksum": "e7310d85c347b4baf80b22efeac91702",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666503/files/75d223e4-0770-4f8a-841e-b2d269c23cbe",
+        "download": "https://zenodo.org/api/records/19666503/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "201016e5-1d30-46d1-b187-eba0cb2cb0b3",
+      "filename": "HOWL-PHYS-34-2026.zip",
+      "filesize": 1836591,
+      "checksum": "1ad4d514260d4b3de49b141ecd55e1de",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666503/files/201016e5-1d30-46d1-b187-eba0cb2cb0b3",
+        "download": "https://zenodo.org/api/records/19666503/draft/files/HOWL-PHYS-34-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

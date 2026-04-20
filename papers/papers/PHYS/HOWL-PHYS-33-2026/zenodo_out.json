@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:19:52.828758+00:00",
+  "modified": "2026-04-20T16:19:53.089210+00:00",
+  "id": 19666485,
+  "conceptrecid": "19532276",
+  "conceptdoi": "10.5281/zenodo.19532276",
+  "metadata": {
+    "title": "The Koide Amplitude \u2014 m_tau from Two Masses and One Condition: IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.",
+    "description": "<h2>The Koide Amplitude \u2014 m_tau from Two Masses and One Condition: IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The three charged lepton masses \u2014 electron (0.511 MeV), muon (105.66 MeV), tau (1776.86 MeV) \u2014 span four orders of magnitude with no explanation from the Standard Model. In 1981, Yoshio Koide observed that the ratio K = (m_e + m_\u03bc + m_\u03c4) / (\u221am_e + \u221am_\u03bc + \u221am_\u03c4)\u00b2 equals 2/3 to six significant figures. With current measured masses, K = 0.66666051, matching 2/3 to 0.00092%. The Koide parametrization writes \u221am_k = M(1 + a cos(\u03b8 + 2\u03c0k/3)), where the ratio K depends only on the amplitude a through K = (1 + a\u00b2/2)/3. At a\u00b2 = 2: K = 2/3 exactly. The measured amplitude is a\u00b2 = 1.9999631 \u2014 matching 2 to 18 parts per million. This paper computes the consequence: IF a\u00b2 = 2 exactly, THEN m_tau is determined by m_e and m_mu through a quadratic equation. The predicted value is 1776.969 MeV versus measured 1776.86 MeV \u2014 a miss of 0.006% (0.109 MeV), within the measurement uncertainty. Conditional on a\u00b2 = 2, the Standard Model parameter count reduces from 19 to 18. Combined with \u03b8_QCD = 0 and \u03b1_s from unification, the total is 19 \u2192 16.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-33-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-24-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666485",
+      "recid": 19666485
+    }
+  },
+  "title": "The Koide Amplitude \u2014 m_tau from Two Masses and One Condition: IF a\u00b2 = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666485",
+    "html": "https://zenodo.org/deposit/19666485",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666485/files",
+    "bucket": "https://zenodo.org/api/files/ae52af82-bb51-4ac4-9698-4850161d2cc3",
+    "thumb250": "https://zenodo.org/record/19666485/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666485/thumb10",
+      "50": "https://zenodo.org/record/19666485/thumb50",
+      "100": "https://zenodo.org/record/19666485/thumb100",
+      "250": "https://zenodo.org/record/19666485/thumb250",
+      "750": "https://zenodo.org/record/19666485/thumb750",
+      "1200": "https://zenodo.org/record/19666485/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666485",
+    "latest_draft_html": "https://zenodo.org/deposit/19666485",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666485/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666485/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666485/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666485/actions/newversion"
+  },
+  "record_id": 19666485,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "b8806aee-9b5a-43e1-acd1-8597f9c680a8",
+      "filename": "HOWL-PHYS-33-2026.zip",
+      "filesize": 2230487,
+      "checksum": "b1ad1bcbf689368623826523473a409b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666485/files/b8806aee-9b5a-43e1-acd1-8597f9c680a8",
+        "download": "https://zenodo.org/api/records/19666485/draft/files/HOWL-PHYS-33-2026.zip/content"
+      }
+    },
+    {
+      "id": "2dd4539c-9db1-45a1-bb2c-024541dfaac7",
+      "filename": "!manuscript.pdf",
+      "filesize": 1216143,
+      "checksum": "bb653326762d1c512def5361f2e3cfba",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666485/files/2dd4539c-9db1-45a1-bb2c-024541dfaac7",
+        "download": "https://zenodo.org/api/records/19666485/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
