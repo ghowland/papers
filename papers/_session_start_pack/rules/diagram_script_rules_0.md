@@ -394,3 +394,9 @@ D17.2.12. **For dual-panel "before vs after" or "method A vs method B" figures, 
 
 *End of addendum D17. These lessons are from building and debugging the PHYS-30 and PHYS-31 diagram scripts. Each rule addresses a specific failure or success observed in practice.*
 
+---
+
+Operational rule: Do not use edgecolor.  It does not work on Python 3.8 base modules, and I have to remove them manually.
+
+---
+
