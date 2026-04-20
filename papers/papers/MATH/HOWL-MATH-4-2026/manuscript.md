@@ -1,12 +1,11 @@
 # The Universal Power-of-Two Basis
 ## Transcendental Constants as Single Integers Over 2³³⁵ at Sub-Planck Precision
 
-
 **Registry:** [@HOWL-MATH-4-2026]
 
 **Series Path:** [@HOWL-MATH-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]
 
-**DOI:** 10.5281/zenodo.19532191
+**DOI:** 10.5281/zenodo.19665679
 
 **Date:** March 31 2026
 
