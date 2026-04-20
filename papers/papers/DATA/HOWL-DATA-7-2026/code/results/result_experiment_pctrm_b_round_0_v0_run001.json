@@ -1,0 +1,341 @@
+{
+  "key": "result_experiment_pctrm_b_round_0_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_pctrm_b_round_0_v0",
+  "timestamp": "2026-04-20T00:20:49Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "pctrm_b_omega_dm_substrate_v0",
+      "status": "error",
+      "error": "cosmo_omega_dm_planck_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_omega_b_substrate_v0",
+      "status": "error",
+      "error": "cosmo_omega_b_planck_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_omega_lambda_substrate_v0",
+      "status": "error",
+      "error": "cosmo_omega_lambda_planck_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_dm_to_baryon_substrate_v0",
+      "status": "error",
+      "error": "cosmo_dm_baryon_ratio_planck2018_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_h0_tension_ratio_substrate_v0",
+      "status": "error",
+      "error": "cosmo_h0_shoes_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_koide_substrate_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "pctrm_b_vus_substrate_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "pctrm_b_mu_to_e_mass_ratio_structural_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "pctrm_b_tau_to_mu_mass_ratio_structural_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "pctrm_b_alpha_s_from_cd_substrate_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "pctrm_b_proton_lattice_factor_substrate_v0",
+      "status": "error",
+      "error": "metric_beta_l2_over_l1_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_bohr_closure_substrate_v0",
+      "status": "ok",
+      "output_count": 4
+    },
+    {
+      "key": "pctrm_b_h_1s2s_substrate_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "pctrm_b_newtonian_gravity_closure_check_v0",
+      "status": "ok",
+      "output_count": 3
+    },
+    {
+      "key": "pctrm_b_kepler_earth_moon_v0",
+      "status": "error",
+      "error": "astro_gravitational_constant_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_mercury_precession_weak_field_v0",
+      "status": "error",
+      "error": "astro_gravitational_constant_v0 is not Fraction: <class 'str'>"
+    },
+    {
+      "key": "pctrm_b_lorentz_invariance_topology_check_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "pctrm_b_electron_mass_structural_placeholder_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "pctrm_b_quark_mass_generation_structure_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "pctrm_b_round_0_summary_v0",
+      "status": "error",
+      "error": "'missing value: result_pctrm_omega_dm_miss_pct_v0'"
+    }
+  ],
+  "connections_resolved": [
+    "connection_soliton_hierarchy_v0",
+    "connection_boundary_adjacency_v0",
+    "connection_r2_cancellation_registry_v0"
+  ],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "K14: \u03a9_DM = \u03c0/12 from universal soliton partition",
+      "output_key": "result_pctrm_omega_dm_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "K14b: \u03a9_b = 13/264 from gauge integer structure",
+      "output_key": "result_pctrm_omega_b_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "K14c: \u03a9_\u039b = (251-22\u03c0)/264 from closure (85 ppm target)",
+      "output_key": "result_pctrm_omega_lambda_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "F5: DM/baryon = 22\u03c0/13 ratio at 725 ppm",
+      "output_key": "result_pctrm_dm_baryon_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "H0 tension ratio 12/11 from transit counting",
+      "output_key": "result_pctrm_h0_ratio_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "F9: Koide K = 2/3 at 9.2 ppm",
+      "output_key": "result_pctrm_koide_k_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Koide_relation",
+      "status": "INFO",
+      "expected": "0.6666666666",
+      "got": "1.50001384933044",
+      "miss_pct": "125.0",
+      "detail": "predicted 1.50001384933044 ref 0.6666666666 miss 125.0%"
+    },
+    {
+      "label": "F10: V_us = 9/40 at 44 ppm",
+      "output_key": "result_pctrm_vus_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.22501",
+      "got": "0.225",
+      "miss_pct": "0.004444",
+      "detail": "predicted 0.225 ref 0.22501 miss 0.004444%"
+    },
+    {
+      "label": "K2: m_mu/m_e ratio integer structure test (expect FAIL at Round 0 \u2014 needs Q1,Q10)",
+      "output_key": "result_pctrm_mu_e_ratio_structural_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "CODATA_2018",
+      "status": "INFO",
+      "expected": "206.7683",
+      "got": "207.0",
+      "miss_pct": "0.1121",
+      "detail": "predicted 207.0 ref 206.7683 miss 0.1121%"
+    },
+    {
+      "label": "K2b: m_tau/m_mu ratio integer structure test (expect FAIL at Round 0 \u2014 needs Q1,Q10)",
+      "output_key": "result_pctrm_tau_mu_ratio_structural_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "16.817",
+      "got": "17.0",
+      "miss_pct": "1.088",
+      "detail": "predicted 17.0 ref 16.817 miss 1.088%"
+    },
+    {
+      "label": "\u03b1_s(M_Z) from CD shift structure at 1%",
+      "output_key": "result_pctrm_alpha_s_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "PDG_2024",
+      "status": "INFO",
+      "expected": "0.118",
+      "got": "0.118",
+      "miss_pct": "0.0",
+      "detail": "predicted 0.118 ref 0.118 miss 0.0%"
+    },
+    {
+      "label": "Proton lattice factor C = 6\u03b2 (MATH-11 reproduction)",
+      "output_key": "result_pctrm_proton_lattice_factor_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "K11: Bohr radius closure condition consistency (structural check, bool)",
+      "output_key": "result_pctrm_bohr_closure_valid_v0",
+      "match_mode": "bool",
+      "reference_source": "atomic_physics",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "K5 Round 0 proxy: H 1S-2S within substrate precision target",
+      "output_key": "result_pctrm_h_1s2s_ratio_check_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "spectro_hydrogen_1s2s",
+      "status": "INFO",
+      "expected": "1.0",
+      "got": "1.00053528958906",
+      "miss_pct": "0.05353",
+      "detail": "predicted 1.00053528958906 ref 1.0 miss 0.05353%"
+    },
+    {
+      "label": "Q4: 1/r\u00b2 derivation residual from channel count (should be zero structurally)",
+      "output_key": "result_pctrm_gravity_inverse_square_residual_v0",
+      "match_mode": "range",
+      "reference_source": "geometric_channel_spread",
+      "got": "0.0",
+      "lo": "-0.001",
+      "hi": "0.001",
+      "status": "PASS",
+      "detail": "in [-0.001, 0.001]"
+    },
+    {
+      "label": "Kepler third law Earth-Moon residual (Newton + channel closure)",
+      "output_key": "result_pctrm_kepler_third_law_residual_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "K11/F4: Mercury precession from weak-field substrate correction (expect FAIL until Q5 \u2014 Round 0 records gap)",
+      "output_key": "result_pctrm_mercury_precession_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "K12/F6: Lorentz invariance topology consistency check (bool)",
+      "output_key": "result_pctrm_lorentz_topology_consistent_v0",
+      "match_mode": "bool",
+      "reference_source": "direction_conditional_topology",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "K1/F1: Electron mass status flag (expect PENDING at Round 0, needs Q10 + Higgs vev)",
+      "output_key": "result_pctrm_electron_mass_status_v0",
+      "match_mode": "bool",
+      "reference_source": "Higgs_mechanism_open_Q10",
+      "got": "False",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "Three-generation democracy db_1+db_2+db_3 = 4/3 (structural)",
+      "output_key": "result_pctrm_quark_generation_structure_valid_v0",
+      "match_mode": "bool",
+      "reference_source": "rep_sm_generation_democracy",
+      "got": "True",
+      "status": "PASS",
+      "detail": "bool match"
+    },
+    {
+      "label": "Round 0 pass count (Round 0 expectation: 8-12 PASS out of 20)",
+      "output_key": "result_pctrm_round_0_pass_count_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {
+    "result_pctrm_koide_k_derived_v0": "1.50001384933044",
+    "result_pctrm_koide_k_target_v0": "0.666666666666667",
+    "result_pctrm_koide_k_miss_pct_v0": "125.002077399567",
+    "result_pctrm_vus_derived_v0": "0.225",
+    "result_pctrm_vus_measured_v0": "0.22501",
+    "result_pctrm_vus_miss_pct_v0": "0.00444424692235901",
+    "result_pctrm_mu_e_ratio_structural_v0": "207.0",
+    "result_pctrm_mu_e_ratio_measured_v0": "206.768282708467",
+    "result_pctrm_mu_e_ratio_miss_pct_v0": "0.112066168223455",
+    "result_pctrm_mu_e_requires_q1_q10_v0": true,
+    "result_pctrm_tau_mu_ratio_structural_v0": "17.0",
+    "result_pctrm_tau_mu_ratio_measured_v0": "16.8170293324262",
+    "result_pctrm_tau_mu_ratio_miss_pct_v0": "1.08800825613723",
+    "result_pctrm_tau_mu_requires_q1_q10_v0": true,
+    "result_pctrm_alpha_s_derived_v0": "0.118",
+    "result_pctrm_alpha_s_pdg_v0": "0.1179",
+    "result_pctrm_alpha_s_miss_pct_v0": "0.0848176420695505",
+    "result_pctrm_bohr_closure_valid_v0": true,
+    "result_pctrm_bohr_radius_derived_v0": "5.29177210546277e-11",
+    "result_pctrm_bohr_radius_measured_v0": "5.29177210544e-11",
+    "result_pctrm_bohr_closure_rel_err_v0": "4.30264490370246e-12",
+    "result_pctrm_h_1s2s_ratio_check_v0": "1.00053528958906",
+    "result_pctrm_h_1s2s_predicted_v0": "2.46738147018749e+15",
+    "result_pctrm_h_1s2s_measured_v0": "2.46606141318702e+15",
+    "result_pctrm_h_1s2s_miss_pct_v0": "0.0535289589062663",
+    "result_pctrm_h_1s2s_requires_q3_v0": true,
+    "result_pctrm_gravity_inverse_square_residual_v0": "0.0",
+    "result_pctrm_gravity_density_v0": "0.0795774715459477",
+    "result_pctrm_gravity_density_expected_v0": "0.0795774715459477",
+    "result_pctrm_lorentz_topology_consistent_v0": true,
+    "result_pctrm_lorentz_requires_q2_v0": true,
+    "result_pctrm_electron_mass_status_v0": false,
+    "result_pctrm_electron_mass_requires_q10_v0": true,
+    "result_pctrm_quark_generation_structure_valid_v0": true,
+    "result_pctrm_democracy_db1_v0": "4/3",
+    "result_pctrm_democracy_db2_v0": "4/3",
+    "result_pctrm_democracy_db3_v0": "4/3",
+    "result_pctrm_democracy_target_v0": "4/3"
+  },
+  "summary": {
+    "derivations_ok": 11,
+    "derivations_err": 9,
+    "comparisons_pass": 5,
+    "comparisons_fail": 0,
+    "comparisons_info": 6,
+    "comparisons_skip": 9
+  }
+}

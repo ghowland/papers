@@ -1,0 +1,227 @@
+{
+  "key": "result_experiment_pctrm_a_round_0_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_pctrm_a_round_0_v0",
+  "timestamp": "2026-04-20T00:19:40Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "pctrm_beta_substrate_invariant_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_l1_circumference_identity_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_photon_budget_identity_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_koide_closure_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_generation_democracy_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_gap_ratio_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_vus_integer_channel_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_vcb_integer_channel_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_proton_lattice_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_omega_dm_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_omega_b_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_omega_lambda_closure_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_closure_identity_13_22pi_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_cosmic_flatness_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_dm_baryon_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_h0_ratio_substrate_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_microscopic_cosmic_bridge_v0",
+      "status": "skip"
+    },
+    {
+      "key": "pctrm_interface_universality_v0",
+      "status": "skip"
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "PCTRM beta substrate invariant = pi/4 (L2/L1 per MATH-11)",
+      "output_key": "result_pctrm_beta_derived_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM L1 circumference of unit circle = 8 (substrate integer identity)",
+      "output_key": "result_pctrm_l1_circ_derived_v0",
+      "match_mode": "exact",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM photon budget identity: c = 1 cell per tick (full modulus budget, zero Higgs tax)",
+      "output_key": "result_pctrm_photon_speed_identity_v0",
+      "match_mode": "bool",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM Koide K = 2/3 from lepton channel closure",
+      "output_key": "result_pctrm_koide_k_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM generation democracy (all db sums equal 4/3)",
+      "output_key": "result_pctrm_generation_democracy_check_v0",
+      "match_mode": "bool",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM gap ratio 38/27 from CD channel structure",
+      "output_key": "result_pctrm_gap_ratio_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM V_us = 9/40 from integer channel structure",
+      "output_key": "result_pctrm_vus_integer_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM V_cb = 1/24 from integer channel structure",
+      "output_key": "result_pctrm_vcb_integer_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM proton lattice factor C = 6*beta = 3*pi/2",
+      "output_key": "result_pctrm_proton_lattice_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM Omega_DM = pi/12 from universal soliton partition",
+      "output_key": "result_pctrm_omega_dm_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM Omega_b = 13/264 from gauge integer counts",
+      "output_key": "result_pctrm_omega_b_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM Omega_Lambda = (251 - 22*pi)/264 from closure",
+      "output_key": "result_pctrm_omega_lambda_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM substrate closure identity: 13 + 22*pi vs 251/12 * 12",
+      "output_key": "result_pctrm_closure_13_22pi_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM cosmic flatness: Omega_DM + Omega_b + Omega_Lambda = 1",
+      "output_key": "result_pctrm_flatness_sum_v0",
+      "match_mode": "digits",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM DM/baryon = 22*pi/13 from cosmic channel arithmetic",
+      "output_key": "result_pctrm_dm_baryon_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM H0 ratio = 12/11 from transit-count ratio",
+      "output_key": "result_pctrm_h0_ratio_derived_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM microscopic-cosmic bridge: 22*pi/13 = |A4|*(alpha/pi)^4 * 3 * (M_Z/m_e)^2",
+      "output_key": "result_pctrm_bridge_lhs_v0",
+      "match_mode": "miss_pct",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM interface universality: shared vocabulary operational at all tested levels",
+      "output_key": "result_pctrm_interface_check_v0",
+      "match_mode": "bool",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    },
+    {
+      "label": "PCTRM round 0 pass count (out of total)",
+      "output_key": "result_pctrm_tests_passed_count_v0",
+      "match_mode": "range",
+      "status": "SKIP",
+      "detail": "output not found in pool"
+    }
+  ],
+  "outputs": {},
+  "summary": {
+    "derivations_ok": 0,
+    "derivations_err": 18,
+    "comparisons_pass": 0,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 19
+  }
+}
