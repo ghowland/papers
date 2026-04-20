@@ -4,47 +4,6 @@ import json
 import os
 import shutil
 
-# def generate_bib_entry(manuscript_data, folder_id):
-#     """
-#     Creates a BibTeX entry. Prefers the registry_id from JSON, 
-#     but falls back to folder name if JSON contains placeholders.
-#     """
-#     # Use the folder name as the source of truth if JSON is generic
-#     full_id = manuscript_data.get("registry_id", "").strip("[]")
-#     if full_id == "CKS-0-2026" and folder_id.startswith("CKS-"):
-#         full_id = folder_id
-
-#     long_title = manuscript_data.get("title", "Untitled CKS Paper")
-#     parts = full_id.split('-')
-    
-#     # Pattern CKS-0-2026 (3 parts) -> _CKS
-#     # Pattern CKS-MATH-0-2026 (4 parts) -> MATH
-#     if len(parts) == 3:
-#         topic_folder = "_CKS"
-#         year = parts[2]
-#     elif len(parts) >= 4:
-#         topic_folder = parts[1]
-#         year = parts[3]
-#     else:
-#         topic_folder = "UNKNOWN"
-#         year = "2026"
-
-#     github_url = f"https://github.com/ghowland/papers/tree/main/papers/{topic_folder}/{full_id}"
-    
-#     # BibTeX Mapping:
-#     # 1. Double braces protect exact casing.
-#     # 2. publisher contains the ID for the pass-through CSL.
-#     entry = f"""@article{{{full_id},
-#   author = {{Howland, Geoffrey}},
-#   title = {{{{{long_title}}}}},
-#   publisher = {{{{{full_id}}}}},
-#   year = {{{year}}},
-#   url = {{https://zenodo.org/record/YOUR_ID_HERE}},
-#   note = {{Github: {github_url} }}
-# }}
-# """
-#     return (full_id, entry)
-
 def generate_bib_entry(manuscript_data, folder_id):
     # Use folder name to get the correct unique ID
     full_id = folder_id.strip("[]")
