@@ -1,0 +1,130 @@
+{
+  "created": "2026-04-12T07:18:29.565045+00:00",
+  "modified": "2026-04-12T07:18:30.066079+00:00",
+  "id": 19532077,
+  "conceptrecid": "19532076",
+  "doi": "10.5281/zenodo.19532077",
+  "conceptdoi": "10.5281/zenodo.19532076",
+  "doi_url": "https://doi.org/10.5281/zenodo.19532077",
+  "metadata": {
+    "title": "A Versioned Node System for Integer Fraction Physics: Physics Database and Experiment System",
+    "doi": "10.5281/zenodo.19532077",
+    "publication_date": "2026-04",
+    "description": "<h2>A Versioned Node System for Integer Fraction Physics: Physics Database and Experiment System</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-DATA-6-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-DATA-4-2026, HOWL-DATA-5-2026, HOWL-MATH-1-2026, HOWL-MATH-2-2026, HOWL-MATH-6-2026, HOWL-PHYS-11-2026, HOWL-PHYS-13-2026, HOWL-PHYS-15-2026, HOWL-PHYS-17-2026, HOWL-PHYS-20-2026, HOWL-PHYS-36-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Operational</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/DATA/HOWL-DATA-6-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19532077",
+      "recid": 19532077
+    }
+  },
+  "title": "A Versioned Node System for Integer Fraction Physics: Physics Database and Experiment System",
+  "links": {
+    "self": "https://zenodo.org/api/records/19532077",
+    "html": "https://zenodo.org/records/19532077",
+    "doi": "https://doi.org/10.5281/zenodo.19532077",
+    "parent_doi": "https://doi.org/10.5281/zenodo.19532076",
+    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532077.svg",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532076.svg",
+    "files": "https://zenodo.org/api/records/19532077/files",
+    "bucket": "https://zenodo.org/api/files/769531ce-5956-4689-8cb6-c5f68b517b23",
+    "thumb250": "https://zenodo.org/record/19532077/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19532077/thumb10",
+      "50": "https://zenodo.org/record/19532077/thumb50",
+      "100": "https://zenodo.org/record/19532077/thumb100",
+      "250": "https://zenodo.org/record/19532077/thumb250",
+      "750": "https://zenodo.org/record/19532077/thumb750",
+      "1200": "https://zenodo.org/record/19532077/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532077",
+    "latest_draft_html": "https://zenodo.org/deposit/19532077",
+    "publish": "https://zenodo.org/api/deposit/depositions/19532077/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19532077/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19532077/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19532077/actions/newversion",
+    "record": "https://zenodo.org/api/records/19532077",
+    "record_html": "https://zenodo.org/record/19532077",
+    "latest": "https://zenodo.org/api/records/19532077/versions/latest",
+    "latest_html": "https://zenodo.org/records/19532077/latest"
+  },
+  "record_id": 19532077,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "e828e1cf-876e-402a-9fb3-79602760d04e",
+      "filename": "!manuscript.pdf",
+      "filesize": 139440,
+      "checksum": "3f142e30406b3e3d78c6438e0bb7cf2c",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532077/files/e828e1cf-876e-402a-9fb3-79602760d04e",
+        "download": "https://zenodo.org/api/records/19532077/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "0ab10984-239b-456b-bd86-b743de016d5e",
+      "filename": "HOWL-DATA-6-2026.zip",
+      "filesize": 2231707,
+      "checksum": "e06fad5603975edb714e711632c4e5f5",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532077/files/0ab10984-239b-456b-bd86-b743de016d5e",
+        "download": "https://zenodo.org/api/records/19532077/draft/files/HOWL-DATA-6-2026.zip/content"
+      }
+    }
+  ],
+  "state": "done",
+  "submitted": true
+}
