@@ -396,7 +396,7 @@ D17.2.12. **For dual-panel "before vs after" or "method A vs method B" figures, 
 
 ---
 
-Operational rule: Do not use edgecolor.  It does not work on Python 3.8 base modules, and I have to remove them manually.
+Operational rule: Python 3.8 only, only use `edgecolor` on proper functions, do not over-use.
 
 ---
 
