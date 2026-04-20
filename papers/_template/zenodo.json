@@ -26,7 +26,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/<<PATH>>",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/<<PATH>>",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

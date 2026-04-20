@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:06:38.641466+00:00",
+  "modified": "2026-04-20T15:06:38.986847+00:00",
+  "id": 19665611,
+  "conceptrecid": "19532188",
+  "conceptdoi": "10.5281/zenodo.19532188",
+  "metadata": {
+    "title": "The Transcendental Hierarchy: Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary",
+    "description": "<h2>The Transcendental Hierarchy: Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-3-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-2-2026, HOWL-PHYS-5-2026, HOWL-PHYS-6-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/MATH/HOWL-MATH-3-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19665611",
+      "recid": 19665611
+    }
+  },
+  "title": "The Transcendental Hierarchy: Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19665611",
+    "html": "https://zenodo.org/deposit/19665611",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665611/files",
+    "bucket": "https://zenodo.org/api/files/31d32b3c-5c76-4b96-88d5-784b1fe75c7e",
+    "thumb250": "https://zenodo.org/record/19665611/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19665611/thumb10",
+      "50": "https://zenodo.org/record/19665611/thumb50",
+      "100": "https://zenodo.org/record/19665611/thumb100",
+      "250": "https://zenodo.org/record/19665611/thumb250",
+      "750": "https://zenodo.org/record/19665611/thumb750",
+      "1200": "https://zenodo.org/record/19665611/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665611",
+    "latest_draft_html": "https://zenodo.org/deposit/19665611",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665611/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665611/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665611/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665611/actions/newversion"
+  },
+  "record_id": 19665611,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "aac04598-e236-459d-8404-057730dd3b6a",
+      "filename": "HOWL-MATH-3-2026.zip",
+      "filesize": 2694716,
+      "checksum": "8aa781c111d9b17880e042a28e628a18",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/aac04598-e236-459d-8404-057730dd3b6a",
+        "download": "https://zenodo.org/api/records/19665611/draft/files/HOWL-MATH-3-2026.zip/content"
+      }
+    },
+    {
+      "id": "7ec840eb-1e41-4146-9bb3-47f68b187147",
+      "filename": "!manuscript.pdf",
+      "filesize": 1445552,
+      "checksum": "977a2e5bf27892b7b5c16bade5d74da3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/7ec840eb-1e41-4146-9bb3-47f68b187147",
+        "download": "https://zenodo.org/api/records/19665611/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

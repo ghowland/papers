@@ -8,7 +8,7 @@
 
 **Physics Path:** MATH-3 feeds [@HOWL-PHYS-5-2026] and [@HOWL-PHYS-6-2026] by extending the integer pair basis toward the 4-loop electron g-2.
 
-**DOI:** 10.5281/zenodo.19528603
+**DOI:** 10.5281/zenodo.19665611
 
 **Date:** March 29 2026
 
