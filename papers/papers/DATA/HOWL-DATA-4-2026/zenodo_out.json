@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:08:54.742526+00:00",
-  "modified": "2026-04-12T07:08:55.401742+00:00",
-  "id": 19532073,
+  "created": "2026-04-20T15:29:23.524972+00:00",
+  "modified": "2026-04-20T15:29:23.749284+00:00",
+  "id": 19665894,
   "conceptrecid": "19532072",
-  "doi": "10.5281/zenodo.19532073",
   "conceptdoi": "10.5281/zenodo.19532072",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532073",
   "metadata": {
     "title": "Verified Integer Rational Database: Includes Cabibbo Doublet Extension",
-    "doi": "10.5281/zenodo.19532073",
-    "publication_date": "2026-04",
     "description": "<h2>Verified Integer Rational Database: Includes Cabibbo Doublet Extension</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>DATA-4 is the verified successor to DATA-3. It inherits all 123 entries and all 32 consistency checks with zero numerical changes. It adds 23 new entries in two categories: 6 STAGED entries for the Cabibbo Doublet parameters (entries 124-129, Type G \u2014 bounded but not yet measured) and 17 GUT/unification parameters (Section N, Type D \u2014 derived from Level 1 exact Fraction arithmetic). It formalizes the lattice ratio independence annotation as Finding 15: the FLAG lattice QCD mass ratios (m_c/m_s, m_b/m_c, m_u/m_d) are independent measurements evaluated at a common renormalization scale, not derivable from the individual PDG quark masses evaluated at different scales, with discrepancies up to 28% from the scale mismatch. It adds 6 new GUT verification checks (Group G, all exact), bringing the total to 38/38 PASS. It adds a computation traceability map linking DATA-4 entries to every PHYS and MATH paper in the series. DATA-4 contains 146 entries total: 123 inherited from DATA-3, 6 staged Cabibbo Doublet, and 17 GUT parameters. DATA-4 is the sole data reference for all future HOWL computation. DATA-3 is retired.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-DATA-4-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-DATA-1-2026, HOWL-DATA-2-2026, HOWL-DATA-3-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Documentation</p>",
     "access_right": "open",
     "creators": [
@@ -49,59 +45,51 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "cks"
-      },
-      {
         "identifier": "rum"
       },
       {
         "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
       }
     ],
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532073",
-      "recid": 19532073
+      "doi": "10.5281/zenodo.19665894",
+      "recid": 19665894
     }
   },
   "title": "Verified Integer Rational Database: Includes Cabibbo Doublet Extension",
   "links": {
-    "self": "https://zenodo.org/api/records/19532073",
-    "html": "https://zenodo.org/records/19532073",
-    "doi": "https://doi.org/10.5281/zenodo.19532073",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532072",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532073.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532072.svg",
-    "files": "https://zenodo.org/api/records/19532073/files",
-    "bucket": "https://zenodo.org/api/files/678a04df-6048-44e5-a09c-aa3a4e02963f",
-    "thumb250": "https://zenodo.org/record/19532073/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19665894",
+    "html": "https://zenodo.org/deposit/19665894",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665894/files",
+    "bucket": "https://zenodo.org/api/files/0fa48ac3-80ae-4fb0-a87d-b1de4aaf98db",
+    "thumb250": "https://zenodo.org/record/19665894/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532073/thumb10",
-      "50": "https://zenodo.org/record/19532073/thumb50",
-      "100": "https://zenodo.org/record/19532073/thumb100",
-      "250": "https://zenodo.org/record/19532073/thumb250",
-      "750": "https://zenodo.org/record/19532073/thumb750",
-      "1200": "https://zenodo.org/record/19532073/thumb1200"
+      "10": "https://zenodo.org/record/19665894/thumb10",
+      "50": "https://zenodo.org/record/19665894/thumb50",
+      "100": "https://zenodo.org/record/19665894/thumb100",
+      "250": "https://zenodo.org/record/19665894/thumb250",
+      "750": "https://zenodo.org/record/19665894/thumb750",
+      "1200": "https://zenodo.org/record/19665894/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532073",
-    "latest_draft_html": "https://zenodo.org/deposit/19532073",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532073/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532073/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532073/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532073/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532073",
-    "record_html": "https://zenodo.org/record/19532073",
-    "latest": "https://zenodo.org/api/records/19532073/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532073/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665894",
+    "latest_draft_html": "https://zenodo.org/deposit/19665894",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665894/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665894/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665894/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665894/actions/newversion"
   },
-  "record_id": 19532073,
+  "record_id": 19665894,
   "owner": 1539729,
   "files": [
     {
@@ -110,8 +98,8 @@
       "filesize": 124540,
       "checksum": "9ad236d386d7e3018fcbef60d1908d90",
       "links": {
-        "self": "https://zenodo.org/api/records/19532073/files/fcc3e0bf-ac03-431f-95d5-f70b02bca154",
-        "download": "https://zenodo.org/api/records/19532073/draft/files/HOWL-DATA-4-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665894/files/fcc3e0bf-ac03-431f-95d5-f70b02bca154",
+        "download": "https://zenodo.org/api/records/19665894/draft/files/HOWL-DATA-4-2026.zip/content"
       }
     },
     {
@@ -120,11 +108,11 @@
       "filesize": 84857,
       "checksum": "128535cad2863e13460a4cf133093b3c",
       "links": {
-        "self": "https://zenodo.org/api/records/19532073/files/aae79a68-2c07-4ef7-aa31-9e0e132f1a3b",
-        "download": "https://zenodo.org/api/records/19532073/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665894/files/aae79a68-2c07-4ef7-aa31-9e0e132f1a3b",
+        "download": "https://zenodo.org/api/records/19665894/draft/files/!manuscript.pdf/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }
