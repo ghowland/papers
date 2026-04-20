@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:18:56.013096+00:00",
-  "modified": "2026-04-12T07:18:56.381261+00:00",
-  "id": 19532067,
+  "created": "2026-04-20T15:23:54.789952+00:00",
+  "modified": "2026-04-20T15:23:55.020377+00:00",
+  "id": 19665835,
   "conceptrecid": "19532066",
-  "doi": "10.5281/zenodo.19532067",
   "conceptdoi": "10.5281/zenodo.19532066",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532067",
   "metadata": {
     "title": "Cross-Domain Precision Data Inventory: Raw Database",
-    "doi": "10.5281/zenodo.19532067",
-    "publication_date": "2026-04",
     "description": "<h2>Cross-Domain Precision Data Inventory: Raw Database</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>This paper presents a curated reference database of precision-measured constants, defined standards, and analytical results from every domain where R\u2082 = \u03c0/4 appears in the governing equation. The inventory spans 17 domain categories and 250+ individual entries, each carrying the original measured or defined value, its source, and the R\u2082/R\u2084 equation it participates in. The database serves as the data foundation for the HOWL series: every claim, test, and computation in the series draws from values catalogued here. DATA-2 (forthcoming) will transform applicable entries into big-integer rational representations and test them against the Q335 basis.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-DATA-1-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-DATA-2-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Documentation</p>",
     "access_right": "open",
     "creators": [
@@ -49,59 +45,51 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "rum"
-      },
-      {
         "identifier": "cks"
       },
       {
         "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
       }
     ],
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532067",
-      "recid": 19532067
+      "doi": "10.5281/zenodo.19665835",
+      "recid": 19665835
     }
   },
   "title": "Cross-Domain Precision Data Inventory: Raw Database",
   "links": {
-    "self": "https://zenodo.org/api/records/19532067",
-    "html": "https://zenodo.org/records/19532067",
-    "doi": "https://doi.org/10.5281/zenodo.19532067",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532066",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532067.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532066.svg",
-    "files": "https://zenodo.org/api/records/19532067/files",
-    "bucket": "https://zenodo.org/api/files/428ed236-1a69-4478-86aa-28edebc38168",
-    "thumb250": "https://zenodo.org/record/19532067/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19665835",
+    "html": "https://zenodo.org/deposit/19665835",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665835/files",
+    "bucket": "https://zenodo.org/api/files/b2e28845-71cd-42cc-b92d-df7bfbb4a2e3",
+    "thumb250": "https://zenodo.org/record/19665835/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532067/thumb10",
-      "50": "https://zenodo.org/record/19532067/thumb50",
-      "100": "https://zenodo.org/record/19532067/thumb100",
-      "250": "https://zenodo.org/record/19532067/thumb250",
-      "750": "https://zenodo.org/record/19532067/thumb750",
-      "1200": "https://zenodo.org/record/19532067/thumb1200"
+      "10": "https://zenodo.org/record/19665835/thumb10",
+      "50": "https://zenodo.org/record/19665835/thumb50",
+      "100": "https://zenodo.org/record/19665835/thumb100",
+      "250": "https://zenodo.org/record/19665835/thumb250",
+      "750": "https://zenodo.org/record/19665835/thumb750",
+      "1200": "https://zenodo.org/record/19665835/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532067",
-    "latest_draft_html": "https://zenodo.org/deposit/19532067",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532067/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532067/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532067/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532067/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532067",
-    "record_html": "https://zenodo.org/record/19532067",
-    "latest": "https://zenodo.org/api/records/19532067/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532067/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665835",
+    "latest_draft_html": "https://zenodo.org/deposit/19665835",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665835/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665835/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665835/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665835/actions/newversion"
   },
-  "record_id": 19532067,
+  "record_id": 19665835,
   "owner": 1539729,
   "files": [
     {
@@ -110,8 +98,8 @@
       "filesize": 92941,
       "checksum": "751f5e259e13c593b15be5a80a694222",
       "links": {
-        "self": "https://zenodo.org/api/records/19532067/files/d4605083-4140-42f7-938c-3ec605537d89",
-        "download": "https://zenodo.org/api/records/19532067/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665835/files/d4605083-4140-42f7-938c-3ec605537d89",
+        "download": "https://zenodo.org/api/records/19665835/draft/files/!manuscript.pdf/content"
       }
     },
     {
@@ -120,11 +108,11 @@
       "filesize": 173765,
       "checksum": "e0f361b2294e1f8e9005cd82ccdf113c",
       "links": {
-        "self": "https://zenodo.org/api/records/19532067/files/ee07bac7-5e35-4eaa-96a9-633dde1b0496",
-        "download": "https://zenodo.org/api/records/19532067/draft/files/HOWL-DATA-1-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665835/files/ee07bac7-5e35-4eaa-96a9-633dde1b0496",
+        "download": "https://zenodo.org/api/records/19665835/draft/files/HOWL-DATA-1-2026.zip/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }
