@@ -1,0 +1,130 @@
+{
+  "created": "2026-04-12T07:15:19.594345+00:00",
+  "modified": "2026-04-12T07:15:20.247858+00:00",
+  "id": 19532193,
+  "conceptrecid": "19532192",
+  "doi": "10.5281/zenodo.19532193",
+  "conceptdoi": "10.5281/zenodo.19532192",
+  "doi_url": "https://doi.org/10.5281/zenodo.19532193",
+  "metadata": {
+    "title": "The n-Ball Remainder Sequence: Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime",
+    "doi": "10.5281/zenodo.19532193",
+    "publication_date": "2026-04",
+    "description": "<h2>The n-Ball Remainder Sequence: Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-5-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-4-2026, HOWL-PHYS-10-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/MATH/HOWL-MATH-5-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19532193",
+      "recid": 19532193
+    }
+  },
+  "title": "The n-Ball Remainder Sequence: Geometric Invariant Separation from 2D Cross-Sections to 4D Spacetime",
+  "links": {
+    "self": "https://zenodo.org/api/records/19532193",
+    "html": "https://zenodo.org/records/19532193",
+    "doi": "https://doi.org/10.5281/zenodo.19532193",
+    "parent_doi": "https://doi.org/10.5281/zenodo.19532192",
+    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532193.svg",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532192.svg",
+    "files": "https://zenodo.org/api/records/19532193/files",
+    "bucket": "https://zenodo.org/api/files/7f107f2f-9e45-4154-9aae-c2422e44c860",
+    "thumb250": "https://zenodo.org/record/19532193/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19532193/thumb10",
+      "50": "https://zenodo.org/record/19532193/thumb50",
+      "100": "https://zenodo.org/record/19532193/thumb100",
+      "250": "https://zenodo.org/record/19532193/thumb250",
+      "750": "https://zenodo.org/record/19532193/thumb750",
+      "1200": "https://zenodo.org/record/19532193/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532193",
+    "latest_draft_html": "https://zenodo.org/deposit/19532193",
+    "publish": "https://zenodo.org/api/deposit/depositions/19532193/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19532193/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19532193/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19532193/actions/newversion",
+    "record": "https://zenodo.org/api/records/19532193",
+    "record_html": "https://zenodo.org/record/19532193",
+    "latest": "https://zenodo.org/api/records/19532193/versions/latest",
+    "latest_html": "https://zenodo.org/records/19532193/latest"
+  },
+  "record_id": 19532193,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "cd63c4a6-08ab-42af-83cf-4870a4c69a15",
+      "filename": "HOWL-MATH-5-2026.zip",
+      "filesize": 2512810,
+      "checksum": "b5e802366fccbc77542f70d757b45abc",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532193/files/cd63c4a6-08ab-42af-83cf-4870a4c69a15",
+        "download": "https://zenodo.org/api/records/19532193/draft/files/HOWL-MATH-5-2026.zip/content"
+      }
+    },
+    {
+      "id": "a3511d4b-f89d-4bdd-bf08-8a206b49c085",
+      "filename": "!manuscript.pdf",
+      "filesize": 1365917,
+      "checksum": "75faed29397423e4c8b8da1553141122",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532193/files/a3511d4b-f89d-4bdd-bf08-8a206b49c085",
+        "download": "https://zenodo.org/api/records/19532193/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "done",
+  "submitted": true
+}
