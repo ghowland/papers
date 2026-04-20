@@ -1111,51 +1111,6 @@ This would strengthen the test by including a distinctly different quantum mecha
 
 ---
 
-## Section V — Ambiguities and Open Questions
-
-### AMB-1: What counts as "multi-path convergence" precisely
-
-**Open question:** The threshold for multi-path convergence is stated as "at measurement precision." This should be more precise:
-
-- Do all paths need to agree within measurement precision of each other?
-- Or do all paths need to agree with measurement at measurement precision?
-- Or both?
-
-**Recommendation:** Clarify that "multi-path convergence at measurement precision" means:
-1. Each path's derivation lands within measurement precision of the measured value
-2. Each path's derivation agrees with the other paths within measurement precision (they are "convergent")
-
-This means paths must be consistent with each other AND consistent with measurement. Both conditions.
-
-### AMB-2: Round 1 execution timeline
-
-**Open question:** The document doesn't state when Round 1 is expected to execute.
-
-**Recommendation:** Add Section XIII or appendix: "Round 1 Execution Timeline":
-- T1-T5 (Priority 1 mechanism tests): Expected execution within 2-4 weeks of PHYS-56 publication
-- T6-T10 (Priority 2 cascade completion): Execution within 1-3 months
-- T11-T20 (Priority 3-4 systematic coverage): Execution within 3-12 months
-- T21-T25 (Priority 5 future experiments): Pre-registered; execution depends on external experimental timelines
-
-### AMB-3: What happens if Round 1 falls partially?
-
-**Open question:** If 4 of 5 Priority 1 tests pass but T1 (Bell correlation) fails, does the framework fall globally or mechanism-specifically?
-
-**Recommendation:** Clarify: "Partial Round 1 failure at Priority 1 triggers mechanism-specific revision for the failing test, not global framework retraction. Specifically:
-- T1 Bell failure → re-specify §XIII.F channel-sharing; do not retract §XIII.A-E
-- T2 Light bending failure → re-specify §XII.F toroidal sector; do not retract other §XII content
-- T3 Direct-detection finds particles → retract §XII.H no-particle DM commitment
-- T4 Casimir failure → re-specify §IV quiver mechanism
-- T5 Complex amplitude failure → re-specify §XIII.M amplitude structure"
-
-### AMB-4: The 0.022 GPA discrepancy handling
-
-**Open question:** K23 GPS at 0.35% and Gravity Probe A at 2.47% are both partially validated. What's the threshold for these to be considered "cleared" vs "partial"?
-
-**Recommendation:** Specify: "K23 (GPS) status: PARTIAL at 0.35% precision. Framework commits to reaching 10⁻¹⁰ precision in refined Round 2+. GPA (K55 or separate switch) status: PARTIAL at 2.47% — attributed to measurement uncertainty, not framework mechanism. Both are considered validated at the precision attainable with current experimental infrastructure."
-
----
-
 # PHYS-56 Supporting Appendix Tables
 
 **Registry:** [@HOWL-PHYS-56-APPENDIX-2026]
