@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:15:17.008746+00:00",
-  "modified": "2026-04-12T07:15:17.342083+00:00",
-  "id": 19532199,
+  "created": "2026-04-20T15:14:35.791876+00:00",
+  "modified": "2026-04-20T15:14:36.052970+00:00",
+  "id": 19665709,
   "conceptrecid": "19532198",
-  "doi": "10.5281/zenodo.19532199",
   "conceptdoi": "10.5281/zenodo.19532198",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532199",
   "metadata": {
     "title": "The 82/82 Independence Record: 82 tests, zero relations, derivation beats search.",
-    "doi": "10.5281/zenodo.19532199",
-    "publication_date": "2026-04",
     "description": "<h2>The 82/82 Independence Record: 82 tests, zero relations, derivation beats search.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The PSLQ integer relation algorithm, applied to 82 constants from three categories \u2014 physical (SM parameters, clock ratios, mass ratios), dynamical (Feigenbaum constants, BCS gap), and analytical (Bessel zeros) \u2014 finds zero compact relations against a 20-constant standard transcendental basis at precisions from 4 to 100 digits with maxcoeff 10,000. The 10 new Bessel zero tests from this session operate at 100-digit precision \u2014 70 orders of magnitude more discriminating than the SM parameter tests and the highest-precision PSLQ in the series. The sanity check confirms the algorithm is operational: PSLQ finds the known relation \u03c0\u00b2 = 6\u03b6(2) as the integer vector [1, 0, \u22126]. The methodological conclusion across the full series: every parameter reduction came from physical derivation (\u03b8_QCD = 0 from energy minimization in PHYS-7, \u03b1 \u2194 a_e at 4.3 ppb from QED perturbation theory in PHYS-9, Koide K = 2/3 conditional from a trigonometric identity in PHYS-8), while every PSLQ search returned noise indistinguishable from control irrationals. Derivation beats search. The 82/82 null establishes that the standard transcendental basis is genuinely minimal \u2014 no tested constant collapses to a formula involving the others \u2014 and redirects future effort toward derivation rather than numerical pattern hunting.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-6-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-4-2026, HOWL-MATH-5-2026, HOWL-PHYS-10-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
     "access_right": "open",
     "creators": [
@@ -49,16 +45,15 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "rum"
+        "identifier": "cks"
       },
       {
-        "identifier": "cks"
+        "identifier": "rum"
       },
       {
         "identifier": "zenodo"
@@ -67,41 +62,34 @@
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532199",
-      "recid": 19532199
+      "doi": "10.5281/zenodo.19665709",
+      "recid": 19665709
     }
   },
   "title": "The 82/82 Independence Record: 82 tests, zero relations, derivation beats search.",
   "links": {
-    "self": "https://zenodo.org/api/records/19532199",
-    "html": "https://zenodo.org/records/19532199",
-    "doi": "https://doi.org/10.5281/zenodo.19532199",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532198",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532199.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532198.svg",
-    "files": "https://zenodo.org/api/records/19532199/files",
-    "bucket": "https://zenodo.org/api/files/4bb0b41d-8f4f-4070-94cf-c7596a387bbf",
-    "thumb250": "https://zenodo.org/record/19532199/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19665709",
+    "html": "https://zenodo.org/deposit/19665709",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665709/files",
+    "bucket": "https://zenodo.org/api/files/ff102604-8167-427e-8b1f-f7e14c27684c",
+    "thumb250": "https://zenodo.org/record/19665709/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532199/thumb10",
-      "50": "https://zenodo.org/record/19532199/thumb50",
-      "100": "https://zenodo.org/record/19532199/thumb100",
-      "250": "https://zenodo.org/record/19532199/thumb250",
-      "750": "https://zenodo.org/record/19532199/thumb750",
-      "1200": "https://zenodo.org/record/19532199/thumb1200"
+      "10": "https://zenodo.org/record/19665709/thumb10",
+      "50": "https://zenodo.org/record/19665709/thumb50",
+      "100": "https://zenodo.org/record/19665709/thumb100",
+      "250": "https://zenodo.org/record/19665709/thumb250",
+      "750": "https://zenodo.org/record/19665709/thumb750",
+      "1200": "https://zenodo.org/record/19665709/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532199",
-    "latest_draft_html": "https://zenodo.org/deposit/19532199",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532199/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532199/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532199/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532199/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532199",
-    "record_html": "https://zenodo.org/record/19532199",
-    "latest": "https://zenodo.org/api/records/19532199/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532199/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665709",
+    "latest_draft_html": "https://zenodo.org/deposit/19665709",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665709/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665709/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665709/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665709/actions/newversion"
   },
-  "record_id": 19532199,
+  "record_id": 19665709,
   "owner": 1539729,
   "files": [
     {
@@ -110,8 +98,8 @@
       "filesize": 2374601,
       "checksum": "a86f1a26418baee82d89ef5935fc2542",
       "links": {
-        "self": "https://zenodo.org/api/records/19532199/files/e94c07da-f2f1-4ca1-97ac-fb0ac332eb69",
-        "download": "https://zenodo.org/api/records/19532199/draft/files/HOWL-MATH-6-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665709/files/e94c07da-f2f1-4ca1-97ac-fb0ac332eb69",
+        "download": "https://zenodo.org/api/records/19665709/draft/files/HOWL-MATH-6-2026.zip/content"
       }
     },
     {
@@ -120,11 +108,11 @@
       "filesize": 1297382,
       "checksum": "1908e5f1971be0b25c40ae3bcded7520",
       "links": {
-        "self": "https://zenodo.org/api/records/19532199/files/d3531827-9cd9-4e6d-9ea8-9a729a75a466",
-        "download": "https://zenodo.org/api/records/19532199/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665709/files/d3531827-9cd9-4e6d-9ea8-9a729a75a466",
+        "download": "https://zenodo.org/api/records/19665709/draft/files/!manuscript.pdf/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }
