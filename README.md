@@ -152,6 +152,8 @@
 | **[[@HOWL-PHYS-53-2026]](papers/papers/PHYS/HOWL-PHYS-53-2026/manuscript.md)** | **Modulus and Remainder at Every Scale** | The Giga Remainder Test. |
 | **[[@HOWL-PHYS-54-2026]](papers/papers/PHYS/HOWL-PHYS-54-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum Model** | A Parallel Discrete Substrate Model Aligned with the Standard Model. |
 | **[[@HOWL-PHYS-55-2026]](papers/papers/PHYS/HOWL-PHYS-55-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum Spec** | Substrate Specification, Dual-Geometry Integration, and Coordinated Falsification Program. |
+| **[[@HOWL-PHYS-56-2026]](papers/papers/PHYS/HOWL-PHYS-56-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum III** | The Coordinated Falsification Program for PCTRM. |
+
 
 ---
 
