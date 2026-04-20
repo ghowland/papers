@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:06:37.830285+00:00",
+  "modified": "2026-04-20T16:06:38.016080+00:00",
+  "id": 19666324,
+  "conceptrecid": "19532251",
+  "conceptdoi": "10.5281/zenodo.19532251",
+  "metadata": {
+    "title": "The Session 3 Operational Lexicon: You are here. The ground is set until falsified.",
+    "description": "<h2>The Session 3 Operational Lexicon: You are here. The ground is set until falsified.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>This paper presents no new computation. It records the operational status of the HOWL series after Session 3 and fixes the working lexicon for all subsequent work. The series now has enough verified structure that repeated re-argument of first principles is no longer productive. A boundary must be drawn between what is operationally fixed and what remains open. This paper draws that boundary. The standard is exact Fraction arithmetic, verified scripts with passing checks, explicit provenance, and bounded claims. Within that standard, the following are fixed as operational ground until falsified: the Level 1 / Level 2 boundary, the SM non-unification (gap ratio 218/115 vs measured 1.358, 40% miss), the generation democracy and boson problem, the Cabibbo Doublet (3,2,1/6) as the minimal single-multiplet survivor with gap ratio 38/27, the two-loop improvement from \u0394 = \u22121.17 to \u22120.40, the Koide C\u2083 closure with the amplitude as the open problem, the 82/82 PSLQ null, and DATA-4 as the sole data reference with 146 entries and 38/38 checks. Eight demonstration scripts totaling 62/62 checks and a platform library verified at 148/148 provide the computational foundation.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-24-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-24-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666324",
+      "recid": 19666324
+    }
+  },
+  "title": "The Session 3 Operational Lexicon: You are here. The ground is set until falsified.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666324",
+    "html": "https://zenodo.org/deposit/19666324",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666324/files",
+    "bucket": "https://zenodo.org/api/files/df099418-1e35-4cae-acc8-5ceffa8c0e13",
+    "thumb250": "https://zenodo.org/record/19666324/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666324/thumb10",
+      "50": "https://zenodo.org/record/19666324/thumb50",
+      "100": "https://zenodo.org/record/19666324/thumb100",
+      "250": "https://zenodo.org/record/19666324/thumb250",
+      "750": "https://zenodo.org/record/19666324/thumb750",
+      "1200": "https://zenodo.org/record/19666324/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666324",
+    "latest_draft_html": "https://zenodo.org/deposit/19666324",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666324/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666324/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666324/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666324/actions/newversion"
+  },
+  "record_id": 19666324,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "c783c681-c5dd-45bf-a94b-70f537dda5cc",
+      "filename": "!manuscript.pdf",
+      "filesize": 1286742,
+      "checksum": "bd69c946552cb2b895c2ac6b46e152ae",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666324/files/c783c681-c5dd-45bf-a94b-70f537dda5cc",
+        "download": "https://zenodo.org/api/records/19666324/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "081aaf81-8263-490c-9b40-f21b554b4734",
+      "filename": "HOWL-PHYS-24-2026.zip",
+      "filesize": 2410276,
+      "checksum": "39a977d4838c6109514907b4cea988df",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666324/files/081aaf81-8263-490c-9b40-f21b554b4734",
+        "download": "https://zenodo.org/api/records/19666324/draft/files/HOWL-PHYS-24-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

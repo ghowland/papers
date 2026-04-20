@@ -10,7 +10,7 @@
 
 **Domain:** QED Perturbative Structure, Mathematical Physics
 
-**DOI:** 10.5281/zenodo.19528675
+**DOI:** 10.5281/zenodo.19666310
 
 **Status:** Complete
 

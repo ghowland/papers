@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:04:41.943914+00:00",
+  "modified": "2026-04-20T16:04:42.177036+00:00",
+  "id": 19666310,
+  "conceptrecid": "19532245",
+  "conceptdoi": "10.5281/zenodo.19532245",
+  "metadata": {
+    "title": "The A\u2082 Geometric Cancellation \u2014 Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient: Three pieces, 87% cancellation, the smallness is an accident.",
+    "description": "<h2>The A\u2082 Geometric Cancellation \u2014 Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient: Three pieces, 87% cancellation, the smallness is an accident.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The QED two-loop coefficient A\u2082 = \u22120.3285 decomposes into three pieces of distinct mathematical character: a rational piece 197/144 = +1.368, a number-theoretic piece (3/4)\u03b6(3) = +0.902, and a geometric piece R\u2084 \u00d7 (8/3 \u2212 16 ln 2) = \u22122.598, where R\u2084 = \u03c0\u00b2/32 is the 4-ball volume fraction established in MATH-5. Each piece is individually larger in magnitude than the net result. The geometric piece alone is 7.9 times the net. The positive content (rational + number-theoretic = +2.270) is cancelled by 87.4% by the negative geometric content (\u22122.598), leaving only 12.6% surviving as the physical coefficient. This cancellation is not required by any known symmetry or conservation law. It is an accident \u2014 a numerical coincidence of the specific coefficients that emerge from the seven two-loop Feynman diagrams. The R\u2084 = \u03c0\u00b2/32 substitution makes the 4-dimensional origin of the geometric piece visible: every \u03c0\u00b2 in the QED coefficient comes from the 4D loop momentum integration volume, and R\u2084 is the atomic unit of that geometric content. The decomposition is a specific instance of the Brown-Schnetz Galois coaction framework for Feynman integrals, where periods (geometric), motivic coefficients (arithmetic), and rational prefactors separate cleanly at each loop order. The method extends to A\u2083 but encounters a fundamental obstruction at A\u2084, where elliptic integrals break the multiple-zeta-value hierarchy.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-22-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-17-2026, HOWL-PHYS-18-2026, HOWL-PHYS-19-2026, HOWL-PHYS-2-2026, HOWL-PHYS-20-2026, HOWL-PHYS-21-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666310",
+      "recid": 19666310
+    }
+  },
+  "title": "The A\u2082 Geometric Cancellation \u2014 Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient: Three pieces, 87% cancellation, the smallness is an accident.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666310",
+    "html": "https://zenodo.org/deposit/19666310",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666310/files",
+    "bucket": "https://zenodo.org/api/files/05c74bd9-9f24-44c6-a41a-f056a68a883b",
+    "thumb250": "https://zenodo.org/record/19666310/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666310/thumb10",
+      "50": "https://zenodo.org/record/19666310/thumb50",
+      "100": "https://zenodo.org/record/19666310/thumb100",
+      "250": "https://zenodo.org/record/19666310/thumb250",
+      "750": "https://zenodo.org/record/19666310/thumb750",
+      "1200": "https://zenodo.org/record/19666310/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666310",
+    "latest_draft_html": "https://zenodo.org/deposit/19666310",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666310/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666310/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666310/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666310/actions/newversion"
+  },
+  "record_id": 19666310,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "4d03c674-e1ef-4935-91cd-c71995a5b995",
+      "filename": "!manuscript.pdf",
+      "filesize": 1122210,
+      "checksum": "d2d22004909ca38958818f07235219e0",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666310/files/4d03c674-e1ef-4935-91cd-c71995a5b995",
+        "download": "https://zenodo.org/api/records/19666310/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "4ef9f068-2cff-4296-847d-b74220cf45ad",
+      "filename": "HOWL-PHYS-22-2026.zip",
+      "filesize": 3268814,
+      "checksum": "cf784cbbf7d6d7b1ab633d1decafed2a",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666310/files/4ef9f068-2cff-4296-847d-b74220cf45ad",
+        "download": "https://zenodo.org/api/records/19666310/draft/files/HOWL-PHYS-22-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
