@@ -13,6 +13,10 @@ DOMAIN_NAMES = {
     'COMP': 'Computation',
     'INFO': 'Information',
     'SOPH': 'Philosophy',
+    'MATH': 'Mathematics',
+    'PHYS': 'Physics',
+    'CULT': 'Culture',
+    'DATA': 'Data',
 }
 
 

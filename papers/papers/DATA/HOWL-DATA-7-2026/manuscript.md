@@ -9,6 +9,8 @@
 
 **Date:** April 5, 2026
 
+**DOI:** 10.5281/zenodo.zzz
+
 **Domain:** Research Infrastructure / Versioned Database / Experiment System
 
 **Status:** Operational

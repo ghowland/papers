@@ -3,6 +3,7 @@
 import os
 import re
 import json
+from pathlib import Path
 
 class CKSRegistryScanner:
     def __init__(self, directory="."):
@@ -80,6 +81,9 @@ class CKSRegistryScanner:
     def run(self):
         # Scan for .md files
         files = [f for f in os.listdir(self.directory) if f.endswith('.md')]
+
+        print(f"Dir: {Path.cwd()}")
+
         print(f"Scanning {len(files)} files in '{self.directory}'...")
 
         for file in files:
