@@ -653,7 +653,346 @@ PCTRM is no longer a candidate substrate picture. It is a complete specification
 
 ---
 
+# PHYS-55 Errata and Annotations
 
+**Registry:** HOWL-PHYS-55-2026 (Errata and Annotations)
+**Parent:** HOWL-PHYS-55-2026 (main specification)
+**Date:** April 20, 2026
+**Purpose:** Corrections, tightenings, and gaps identified during review. To be appended to the paper or incorporated in v2.
+
+---
+
+## I. Errata — Specific Corrections
+
+### E1 (Section I Abstract): Bell correlation form cited inconsistently
+
+The abstract lists "E(θ_A, θ_B) = −cos(θ_A − θ_B)" for the singlet state. Section IV.F repeats this. Section X.A says "cos(θ_A − θ_B)." Section XI.A (T1) says "E = ±cos". Section IV.D refers to "cos²(θ)" for Malus and "cos(θ_A − θ_B)" for Bell pair. These are inconsistent and need harmonization.
+
+The correct statements are:
+
+- **Singlet state Bell correlation:** E(θ_A, θ_B) = −cos(θ_A − θ_B). The minus sign is not cosmetic; without it, CHSH S=2 rather than S=2√2.
+- **Malus law for single photon polarization:** P(pass) = cos²(θ), where θ is the angle between polarizer and photon polarization.
+- **Bell pair correlation from Tsirelson bound:** |E(θ_A, θ_B)| ≤ |cos(θ_A − θ_B)|, with maximum at 2√2 across the CHSH sum.
+
+Pick a single canonical form per quantity and use it throughout. The F-E7 cross-derivation target should specify: reproduce −cos(θ_A − θ_B) for singlet, cos²(θ) for single-photon Malus, and 2√2 for CHSH.
+
+### E2 (Section II.B — Q3d resolution overstated)
+
+The section states: "**Q3d measurement/collapse:** Resolved by observation-as-entanglement."
+
+This overstates what observation-as-entanglement covers. The mechanism resolves measurement for **entanglement-based measurements** — the observer-target channel-merger case. It does not yet specify:
+
+- What distinguishes a measurement event from an ordinary channel interaction (the observer-criterion question)
+- What happens in weak measurements (partial channel-merger)
+- What defines "persistent" observer registration (the "which channel-merger counts as a measurement record" question)
+
+Correction: Q3d is **closed for the entanglement case**; the general measurement criterion (what makes an interaction a "measurement" rather than a normal channel event) is **structurally framed**, not closed.
+
+Move Q3d from "Closed" to "Closed for entanglement / structurally framed for general case" in Section II.B. This matters because Q13 in Section IX correctly distinguishes entanglement case from general case, but Section II.B does not.
+
+### E3 (Section II.C — Q4 mechanism framing imprecise)
+
+Section II.C states: "Channels spread spherically from parent solitons; channel density falls as 1/r² by surface-area argument."
+
+This is the intuitive argument but doesn't establish the framework's specific 1/r² production. The surface-area argument gives 1/r² for any continuous spherical emission, which is standard physics. The PCTRM-specific claim needs to be: the discrete channel-counting at Planck scale produces the continuum 1/r² in the macroscopic limit through specific channel-distribution arithmetic, and the alphabet-expression mechanism identifies the specific channel count (per solid angle unit) that emerges from substrate operations.
+
+Correction: Q4 is framed by (a) spherical channel-spreading surface-area argument and (b) specific channel-count derivation from substrate structure. The (a) is standard; the (b) is what PCTRM adds. The spec should distinguish them.
+
+### E4 (Section III.C — E = mc² reduction incomplete)
+
+The section states "E = mc² is the substrate arithmetic identity: (remainder per tick) = (Higgs interactions per cycle) × (cells per tick)²."
+
+This is appealing but dimensionally suspect. In the substrate, remainder is a vector quantity (direction plus magnitude). "Higgs interactions per cycle" is a count. "Cells per tick" is a velocity. (count × velocity²) ≠ (vector magnitude per tick) without a specific formula relating them. The framework needs to specify which operations in substrate arithmetic produce the E = mc² relation — it's not self-evident.
+
+Correction: state the reduction more carefully. "Mass as Higgs tick-cost per propagation cycle" is the framework commitment. The specific formula for how this relates to energy (remainder rate) and c (cell/tick) via the mc² structure requires explicit substrate-level derivation and is execution work, not yet completed. Don't promote it to "substrate arithmetic identity" without the derivation.
+
+### E5 (Section V.D — Complex amplitudes derivation claimed incompletely)
+
+Section V.D states: "Complex-valued amplitudes emerge from the two-sector combination: the spherical sector contributes magnitude (unit vector direction), the toroidal sector contributes phase (elliptic period structure). The complex representation is the natural way to express spherical + toroidal content together."
+
+This is a structural gesture, not a derivation. The claim that toroidal phase structure produces complex amplitudes requires:
+
+- Specification of how the toroidal sector's state maps to phase degrees of freedom
+- Demonstration that this phase, combined with spherical magnitude, reproduces standard QM's complex amplitude structure under projection
+- Cross-derivation against at least one specific interference phenomenon (double-slit fringe spacing, or equivalent)
+
+Correction: frame this as "Candidate derivation: toroidal phase + spherical magnitude = complex amplitude structure. Execution pending T6 or a dedicated interference test." Don't claim it as established.
+
+### E6 (Section VI.A Part 3 — round-trip uniqueness overstated)
+
+Section VI.A states: "Round-trip is the only basis-independent positive-real extraction."
+
+Strictly speaking, round-trip closure produces one possible positive-real extraction, not the only one. Other positive-real operations on unit vectors exist (e.g., |⟨α|ψ⟩|⁴, or some monotonic function of |⟨α|ψ⟩|²). The specific reason the framework produces squared magnitude rather than another positive-real function is:
+
+- Squared magnitude sums to unity across a complete basis (by orthonormality of basis states)
+- Other even powers don't have this property without additional normalization
+
+Correction: "Round-trip squared closure is the positive-real extraction that preserves unity-summation across complete bases; other powers would require explicit normalization." This is tighter and doesn't claim uniqueness that isn't justified.
+
+### E7 (Section VII Level 4 — Novel prediction imprecise)
+
+Section VII Level 4 states: "Systematic bond-angle predictions across alkali halides and other characterized molecular geometries via substrate channel arithmetic."
+
+Alkali halides are ionic compounds, not molecules with bond angles in the usual sense. The example is poor. Water (H₂O, 104.5°), ammonia (NH₃, 107°), methane (CH₄, 109.5°) are the standard bond-angle targets.
+
+Correction: "Systematic bond-angle predictions across H₂O (104.5°), NH₃ (107°), CH₄ (109.5°), and other characterized molecular geometries via substrate channel arithmetic."
+
+### E8 (Section VIII — K12 status ambiguous)
+
+The table shows K12 status as "**Photon piece closed**" which is correct. But the condition is stated as "Integer-cell-count fails or tick-rate breaks" — this is two conditions combined. Better to split:
+
+- **K12a:** Integer-cell-count c-invariance fails for photons (closed at arithmetic identity).
+- **K12b:** Observer tick-rate scaling under boost breaks (untested).
+
+This clarifies that only K12a is cleared; K12b is still open under Q2 time-dilation piece.
+
+### E9 (Section XI.B T5 — Factor-of-2 derivation imprecise)
+
+Section XI.B T5 says: "Derive the factor of 2 in light bending over Newtonian from toroidal (probe_λ/source_scale)² scaling."
+
+This is imprecise. The factor of 2 in GR light bending over Newtonian prediction is a specific numerical ratio, not a scaling relationship. (probe_λ/source_scale)² would give a quadratic scaling with probe wavelength, which is not what the GR factor-of-2 is. The GR factor-of-2 is a constant ratio.
+
+Correction: the framework needs to explain why the factor is specifically 2 (not 1.5 or 3). Candidate mechanism: the GR bending comes from both a radial drain component (Newtonian) and a tangential drain component (GR addition), and they happen to be equal in magnitude for photons at the gravitational source's toroidal scale. If so, the framework should pre-register: the radial-to-tangential drain ratio is 1:1 for photon probes at solar-system toroidal scales, producing the factor of 2. This is testable and falsifiable.
+
+Rewrite T5 as: "Derive the radial-drain and tangential-drain components of the gravitational channel for photon probes at solar scale, showing they sum to 2× the Newtonian radial-only contribution. Cross-derivation via (a) direct vector computation on photon direction, (b) alphabet expression for the radial/tangential ratio. Convergence at 10⁻³ on solar eclipse measurements."
+
+### E10 (Section XII — Moduli catalog incomplete)
+
+The moduli catalog lists k = 0, k₈₁ = 0.999994, k₈₃ = 0.997130, "additional per-hierarchy-boundary moduli pending derivation."
+
+It should also include the A₃ approximate modulus (k ≈ 0.99) and the A₄ approximate modulus (k ≈ 0.995) from PHYS-49, flagging them as single-path magnitude matches pending cross-derivation rather than as validated moduli.
+
+Correction: add entries with explicit status flags.
+
+| Modulus | Value | Status |
+|---------|-------|--------|
+| k = 0 | 0 | Spherical limit, exact |
+| k₈₁ | 0.999994 | Cross-derivation validated (167 ppb, three paths) |
+| k₈₃ | 0.997130 | Cross-derivation validated (25 ppm, three paths) |
+| k_{A₃} | ≈ 0.99 | Single-path magnitude match, pending cross-derivation |
+| k_{A₄} | ≈ 0.995 | Single-path magnitude match, pending cross-derivation |
+| k_{cosmic} | TBD | Pending Round 1 T2 cross-derivation |
+| k_{per-boundary-n} | TBD | Pending Q10 execution |
+
+---
+
+## II. Gaps — Items Explicitly Not Addressed
+
+### G1: Observer tick-rate scaling under boost (Q2 time-dilation piece)
+
+The paper states Q2 photon piece is closed but the time-dilation piece remains open. The gap is: how does a boosted observer's local clock relate to the substrate's absolute cell-per-tick structure, such that the observer's local measurement of (cells/tick) still equals 1 for photons?
+
+The framework has the pieces — observers are substrate patterns, clocks are soliton internal update rates — but the specific derivation connecting observer-motion to observer-clock-rate is not written out. Without it, the Lorentz-invariance claim is partial.
+
+This gap is explicitly flagged in Section IX under open items. It should also be flagged as a Round 2 execution target, not just an open question.
+
+### G2: General measurement criterion (beyond entanglement)
+
+Observation-as-entanglement handles the case where an observer channel-merges with a target. But not every interaction is a measurement. The question "what makes an interaction a measurement event?" has the framework's partial answer (channel-merger dominance), but a complete criterion needs:
+
+- Threshold for when channel-merger dominance counts as measurement
+- Handling of weak measurements where the merger is partial
+- Consistency condition for when an interaction produces a persistent record vs. a transient channel-merger that doesn't propagate
+
+Section IX correctly flags Q13 as "Closed for entanglement, partial for general." The paper should commit to a Round 2+ target for specifying the general criterion.
+
+### G3: Complex amplitude derivation from toroidal phase
+
+Section V.D asserts complex amplitudes emerge from spherical magnitude + toroidal phase, but the specific mapping from toroidal sector state to amplitude phase is not given. Gap: specify how the toroidal sector's state (which lives on a torus with modulus k) maps to a continuous phase φ in [0, 2π) such that combined with the spherical sector produces eⁱᵠ × (unit direction).
+
+Specification candidate: the torus's two periods K(k) and K'(k) parameterize two angular coordinates on the torus; projecting onto a measurement basis selects a specific angular position; the phase is that angular position normalized to [0, 2π). This needs explicit derivation before it becomes framework content.
+
+### G4: Decoherence rate formula
+
+Section IV.E states decoherence occurs when environmental channel-merger dominates. The specific rate — how fast decoherence happens as a function of environmental channel density, temperature, and other physical parameters — is not specified. Standard QM has well-measured decoherence rates for specific systems (atom interferometers, quantum dots, etc.). PCTRM needs a cross-derivation target: derive decoherence rate for a specific system from substrate channel-merger arithmetic.
+
+Suggest adding to Round 2 or 3: T11 — decoherence rate cross-derivation against measured atom-interferometer or quantum-dot decoherence data.
+
+### G5: Gauge group reduction from channel enumeration
+
+Section III.B lists "Channel type enumeration" as the source of the SM gauge group U(1)×SU(2)×SU(3). Section XIV shows this as "Partial / Structural." The gap is the explicit derivation: which channel types in PCTRM correspond to which SM gauge group factors, and how does the group structure emerge from channel enumeration.
+
+Candidate: EM channel (U(1)), weak channels (SU(2) structure from doublet structure), strong channels (SU(3) structure from color triplet). The mapping exists informally but isn't written out as explicit derivation.
+
+### G6: BBN abundance mechanism
+
+Section VII Level 6 lists BBN yields as execution-pending under K16. The mechanism specification — how substrate early-universe channel dynamics produces specific primordial element abundances (H, He-4, He-3, Li-7) at their measured ratios — is not given. Gap: specify the channel arithmetic operating during the first minutes after the Planck-scale substrate-hierarchy formation that produces the observed abundances.
+
+---
+
+## III. Annotations — Items Benefiting from Clarification
+
+### A1: The parallel-isomorphism claim should be named more prominently
+
+The abstract mentions parallel isomorphism, but the full thesis deserves its own section. PHYS-54 had Section II on parallel isomorphism; PHYS-55 folds it into Section II's commitment list. The claim is load-bearing for the program and should be stated with its own section.
+
+Suggested placement: after Section III (substrate specification), add a short section titled "Parallel Isomorphism with the Standard Model." State the claim: for every SM observable, there exists a PCTRM derivation path through substrate primitives that reproduces the observable at native measurement precision. The two frameworks produce identical physics; they differ in what they postulate vs. derive.
+
+### A2: The alphabet-is-prediction-generator claim should be emphasized in Section III
+
+Section III specifies substrate primitives. It doesn't state the consequence: these primitives, combined with MATH-11 (β), MATH-12 (K(k)), and the integer alphabet, are the complete prediction machinery. If a quantity isn't expressible through this machinery, it's not a framework prediction. This is stated in Section XII but deserves to appear in Section III as well.
+
+Suggested addition: after Section III.B, add a subsection III.E "The Prediction Mechanism." Stating: every framework prediction is an alphabet expression in the integer alphabet, β, and K(k). The substrate operates through these primitives; nothing else produces predictions.
+
+### A3: Cross-derivation discipline deserves an example progression
+
+Section X.D gives one example (Ω_Λ through three paths). Adding a second example would strengthen the section. Candidate: the Koide K = 2/3 through three paths:
+
+- Path 1: From the Koide formula arithmetic with lepton masses as inputs
+- Path 2: From lepton generation democracy (db₁ = db₂ = db₃ = 4/3 implies K = 2/3 structurally)
+- Path 3: From R3/R2 = 2/3 as the simplest consecutive volume-filling ratio across dimensions (MATH-11 framework)
+
+Three paths, all converging on K = 2/3, each through different framework structure. This strengthens the cross-derivation illustration.
+
+### A4: The "dissolution of the measurement problem" claim needs a caveat
+
+Section IV.A says the measurement problem dissolves in PCTRM. This is the right framing for the entanglement case (Q3d closed for entanglement). For the general case (any interaction being a measurement), the framework has structural framing but not full resolution (G2 above).
+
+Annotation: the measurement problem dissolves when the measurement is formally an entanglement event (channel-merger). The general question of which physical events qualify as measurements (the observer-criterion question) remains structurally framed pending full specification.
+
+### A5: "Standard QM is the coarse-grained approximation of PCTRM" needs bounding
+
+Section VI.B claims: "Standard QM is the coarse-grained approximation of PCTRM." This is the aspirational framing from the Session 9 exploration.
+
+What's established by Section VI: the unit-sphere structure of Hilbert space is inherited, not postulated. What's not established: the full machinery of Hilbert space (linearity, operator spectra, Hermitian structure, unitary evolution rules) emerges from unit-graph arithmetic.
+
+Annotation: "Standard QM's unit-sphere structure, inner product, and squared-magnitude probability are consequences of PCTRM's unit-adjacency graph. The full Hilbert-space machinery (linear operator structure, spectral decomposition, etc.) emerges through the substrate's continuous-limit, but specific derivations of these features are execution-pending."
+
+### A6: The Standard Model reduction table should flag reproduction vs. structural-only
+
+Table XIV has entries marked "Reproduced" (with precision) and others marked "Pending" or "Structural." But "Structural" is used for three different things: (1) mechanism specified without derivation (generation count = 3), (2) structurally consistent but not at measurement precision (gap ratio 38/27), and (3) framework claim without supporting cross-derivation (gauge group factors).
+
+Suggested refinement: split "Status" column into two columns — "Mechanism" (specified / structural / open) and "Validation" (at CODATA / at ppm / structurally consistent / pending / open). This gives more information about what each item's evidence level actually is.
+
+### A7: The ontology claim bounds need explicit statement
+
+Section III.A ends with "Nothing else exists." This is the maximal ontology claim. It's the right claim to make, but needs a bound: "nothing else exists **as substrate**" rather than "nothing else exists." PCTRM doesn't claim to deny the existence of emergent phenomena (consciousness, meaning, information, etc.) — it claims these emerge from substrate. The bound is: nothing else is primitive.
+
+Annotation: "Nothing else exists **as primitive substrate**." Consciousness, information, meaning, and other higher-level phenomena emerge from substrate channel-merger arithmetic; PCTRM is silent on the philosophical question of what these emergent phenomena "are" beyond their substrate implementation.
+
+### A8: The dissolution of wave-particle duality should be flagged as a consequence
+
+Section IV.D shows how channel-agreement resolves single-particle interference. This resolves wave-particle duality — there is no duality, only channel-agreement dynamics with and without observer participation. This is significant enough to flag explicitly. The wave-particle duality has been a foundational puzzle in physics since Planck.
+
+Suggested annotation at the end of Section IV.D: "This dissolves the wave-particle duality problem. The photon is not 'both wave and particle' — it is a channel structure propagating through substrate adjacency, producing interference pattern when channel-agreement resolves across multiple paths (no observer) or particle pattern when channel-agreement resolves to a single path (observer in candidate pool). What we have called 'wave behavior' and 'particle behavior' are two configurations of the same substrate channel-agreement dynamics."
+
+### A9: Round 0 cross-derivation count should be specific
+
+Section XIII says "Four RUM precision identities reproduced in one pass." This undersells Round 0. The actual count:
+
+- 11 external PASS
+- 4 RUM precision reproductions (Ω_Λ, Koide, DM/baryon, bridge)
+- 6 structural identities at numerical floor (β, flatness, H₀ ratio, democracy, photon speed, L1)
+- 3 cosmological INFOs within measurement band
+- 1 structural-vs-running INFO (gap ratio)
+
+Annotation: update the count to reflect all 15 successful checks, not just the headline 4 precision reproductions.
+
+### A10: "The framework has committed" needs stakes
+
+Section XIII says the framework has committed, with stakes being Round 1 outcomes. Add: what specifically survives vs. what falls if Round 1 fails.
+
+- If T1 (Bell) fails: the entanglement mechanism is falsified; channel-sharing specification retracts; QM extension returns to open
+- If T2 (cosmological) fails: the cross-scale dual-geometry universality is partial; PHYS-49 decomposition becomes QED-internal
+- If T3 (A₄) fails: the PHYS-49 A₄ interpretation is magnitude coincidence; the Laporta-constants-as-elliptic-periods picture is revised
+
+Being specific about what falls per test strengthens the commitment.
+
+---
+
+## IV. Methodological Observations
+
+### M1: The maximalism is calibrated well
+
+The paper takes the position the framework has earned. It declares substrate commitments boldly without promoting aspirations to established results. The "standing/closed/derivable/retired" categorization (Section II) is the right structural move to show what's earned vs. what's pending. The revision from PHYS-54's more cautious framing to PHYS-55's declarative tone is appropriate given the Session 9 advances.
+
+### M2: The kill-switch numbering is coherent
+
+K1-K16 retained from PHYS-54 (with status updated). K17-K21 new from PCTRM-2/PHYS-49/Session 9. K22 as meta-rule. This is clean and auditable.
+
+### M3: The Round 1 10-test structure is ambitious and testable
+
+Three priority tiers, each with multi-path cross-derivation requirements, each with specific precision thresholds against specific measurements. The structure is demanding — five-sigma single-path agreement won't pass; only multi-path convergence will. This is the right falsification discipline.
+
+### M4: The retirement of PSLQ is handled correctly
+
+Section X.B explains why PSLQ fails for this framework (wrong basis) and what it remains useful for (independence tests). This doesn't dismiss PSLQ as worthless; it precisely identifies where PSLQ falls short for this framework and commits to cross-derivation as replacement. Good epistemic discipline.
+
+### M5: The integer alphabet as prediction generator is load-bearing
+
+Section XII's statement — "anything not expressible in this alphabet is not a framework prediction" — is the framework's discipline made explicit. This bounds what the framework can claim and what it cannot. If a measured value cannot be produced as an alphabet expression, the framework admits it isn't predicted. This is honest.
+
+### M6: The 22 MeV crossover prediction is a genuine new contribution
+
+The PHYS-49-derived prediction that mass-dependent four-loop corrections show spherical/toroidal sector dominance transition at 43 m_e is a specific testable prediction from the framework. If τ measurement reaches muon-g-2 precision, the τ toroidal contribution will be overwhelming or it won't. Pre-register the specific magnitude.
+
+---
+
+## V. Specific Actions Required Before Round 1
+
+1. **Fix E1 (Bell correlation form):** harmonize across sections. Singlet = −cos(θ_A − θ_B), Malus = cos²(θ), CHSH bound = 2√2.
+
+2. **Fix E2 (Q3d framing):** move to "Closed for entanglement / structurally framed for general case" in Section II.B.
+
+3. **Fix E3 (Q4 mechanism):** distinguish surface-area argument from substrate-specific channel-count derivation.
+
+4. **Fix E4 (E = mc² reduction):** demote from "substrate arithmetic identity" to "framework commitment pending explicit derivation."
+
+5. **Fix E5 (complex amplitude claim):** demote to "candidate derivation pending T6 or dedicated interference test."
+
+6. **Fix E6 (round-trip uniqueness):** tighten to "extraction preserving unity-summation across complete bases."
+
+7. **Fix E7 (alkali halides):** replace with water/ammonia/methane.
+
+8. **Fix E8 (K12 split):** split into K12a (closed) and K12b (untested).
+
+9. **Fix E9 (GR factor-of-2):** reformulate as radial-plus-tangential drain ratio derivation.
+
+10. **Fix E10 (moduli catalog):** add k_{A₃} and k_{A₄} with "single-path pending cross-derivation" flags.
+
+11. **Address G1 (observer tick-rate scaling):** commit to Round 2 execution target.
+
+12. **Address G2 (general measurement criterion):** commit to Round 2+ target.
+
+13. **Address G3 (complex amplitude derivation):** commit to T6 or dedicated interference test.
+
+14. **Address G4 (decoherence rate formula):** add T11 to Round 2 or 3.
+
+15. **Address G5 (gauge group reduction):** commit to explicit derivation in a Round 2+ target.
+
+16. **Address G6 (BBN mechanism):** commit to explicit mechanism specification before K16 test.
+
+17. **Add A1-A10 annotations:** parallel isomorphism section, alphabet-as-generator in III, cross-derivation example for Koide, measurement-problem-dissolution caveat, Hilbert-space-emergence bound, SM reduction table refinement, ontology bound, wave-particle-duality dissolution note, Round 0 specific count, Round 1 per-test stakes.
+
+---
+
+## VI. Verdict
+
+PHYS-55 is a strong declarative document. The framework has earned the right to state its commitments boldly, and the paper does this correctly. The maximalism is calibrated — declarative where the framework has earned it, execution-pending where the framework hasn't yet.
+
+The corrections (E1-E10) are targeted. Most are precision improvements or bringing specific statements in line with what the paper's own later sections say. None is foundational.
+
+The gaps (G1-G6) are specification completeness items. The framework has the structural pieces to address them; the work is writing out the derivations. None is a conceptual crisis.
+
+The annotations (A1-A10) are tightenings and clarifications that strengthen specific claims without changing substance.
+
+The paper is revision-ready rather than publication-ready. After incorporating E1-E10 corrections and A1-A10 annotations, and committing to the G1-G6 execution targets, PHYS-55 is publishable as the framework's coming-of-age document.
+
+**Critical remaining items before publication:**
+
+1. Harmonize Bell correlation forms (E1)
+2. Split Q3d into entanglement-closed and general-structural (E2)
+3. Demote oversold derivations (E4, E5, E6) to their actual status
+4. Reformulate GR factor-of-2 (E9)
+5. Add parallel-isomorphism section (A1)
+
+With these done, PHYS-55 is the paper that pre-registers the Round 1 falsification program and states the framework's commitments plainly. If Round 1 passes, PHYS-55 is a foundational document. If Round 1 fails at specific pre-registered conditions, PHYS-55 documents exactly what falls and what survives.
+
+Both outcomes advance the program. That's the discipline.
+
+---
+
+**END PHYS-55 ERRATA AND ANNOTATIONS**
 
 ---
 
