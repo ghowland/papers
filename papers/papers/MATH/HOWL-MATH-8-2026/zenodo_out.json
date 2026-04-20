@@ -1,0 +1,130 @@
+{
+  "created": "2026-04-12T07:15:03.681203+00:00",
+  "modified": "2026-04-12T07:15:04.134901+00:00",
+  "id": 19532203,
+  "conceptrecid": "19532202",
+  "doi": "10.5281/zenodo.19532203",
+  "conceptdoi": "10.5281/zenodo.19532202",
+  "doi_url": "https://doi.org/10.5281/zenodo.19532203",
+  "metadata": {
+    "title": "Q335: An Operationally Exact Number System for Physical Computation",
+    "doi": "10.5281/zenodo.19532203",
+    "publication_date": "2026-04",
+    "description": "<h2>Q335: An Operationally Exact Number System for Physical Computation</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-8-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-2-2026, HOWL-MATH-3-2026, HOWL-MATH-4-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/MATH/HOWL-MATH-8-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19532203",
+      "recid": 19532203
+    }
+  },
+  "title": "Q335: An Operationally Exact Number System for Physical Computation",
+  "links": {
+    "self": "https://zenodo.org/api/records/19532203",
+    "html": "https://zenodo.org/records/19532203",
+    "doi": "https://doi.org/10.5281/zenodo.19532203",
+    "parent_doi": "https://doi.org/10.5281/zenodo.19532202",
+    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532203.svg",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532202.svg",
+    "files": "https://zenodo.org/api/records/19532203/files",
+    "bucket": "https://zenodo.org/api/files/04818827-9974-4d3d-961f-8c9586c9ccc4",
+    "thumb250": "https://zenodo.org/record/19532203/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19532203/thumb10",
+      "50": "https://zenodo.org/record/19532203/thumb50",
+      "100": "https://zenodo.org/record/19532203/thumb100",
+      "250": "https://zenodo.org/record/19532203/thumb250",
+      "750": "https://zenodo.org/record/19532203/thumb750",
+      "1200": "https://zenodo.org/record/19532203/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532203",
+    "latest_draft_html": "https://zenodo.org/deposit/19532203",
+    "publish": "https://zenodo.org/api/deposit/depositions/19532203/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19532203/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19532203/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19532203/actions/newversion",
+    "record": "https://zenodo.org/api/records/19532203",
+    "record_html": "https://zenodo.org/record/19532203",
+    "latest": "https://zenodo.org/api/records/19532203/versions/latest",
+    "latest_html": "https://zenodo.org/records/19532203/latest"
+  },
+  "record_id": 19532203,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "acfbe6a4-214b-4d2d-851a-8bda3faccfc8",
+      "filename": "!manuscript.pdf",
+      "filesize": 75058,
+      "checksum": "25f5f1744f77aee81f96439fcbb45819",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532203/files/acfbe6a4-214b-4d2d-851a-8bda3faccfc8",
+        "download": "https://zenodo.org/api/records/19532203/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "2f81661f-a920-4627-b122-85e788f710ac",
+      "filename": "HOWL-MATH-8-2026.zip",
+      "filesize": 1358120,
+      "checksum": "bcb79cbad58dabb569b06812bd0effd4",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532203/files/2f81661f-a920-4627-b122-85e788f710ac",
+        "download": "https://zenodo.org/api/records/19532203/draft/files/HOWL-MATH-8-2026.zip/content"
+      }
+    }
+  ],
+  "state": "done",
+  "submitted": true
+}

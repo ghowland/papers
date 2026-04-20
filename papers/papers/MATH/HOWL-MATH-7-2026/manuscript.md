@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-MATH-1-2026] → [@HOWL-MATH-6-2026] → [@HOWL-MATH-7-2026]
 
-**DOI:** 10.5281/zenodo.19532201
+**DOI:** 10.5281/zenodo.19665747
 
 **Date:** April 9, 2026
 

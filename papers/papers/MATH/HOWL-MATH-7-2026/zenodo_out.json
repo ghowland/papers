@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:15:10.197565+00:00",
-  "modified": "2026-04-12T07:15:10.791685+00:00",
-  "id": 19532201,
+  "created": "2026-04-20T15:16:28.398869+00:00",
+  "modified": "2026-04-20T15:16:28.584269+00:00",
+  "id": 19665747,
   "conceptrecid": "19532200",
-  "doi": "10.5281/zenodo.19532201",
   "conceptdoi": "10.5281/zenodo.19532200",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532201",
   "metadata": {
     "title": "The \u03b1-Power Scaling Law: Single-Parameter Projection of the Derived Constant Tree",
-    "doi": "10.5281/zenodo.19532201",
-    "publication_date": "2026-04",
     "description": "<h2>The \u03b1-Power Scaling Law: Single-Parameter Projection of the Derived Constant Tree</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-7-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-6-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
     "access_right": "open",
     "creators": [
@@ -49,7 +45,6 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
@@ -58,50 +53,43 @@
         "identifier": "cks"
       },
       {
-        "identifier": "rum"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "rum"
       }
     ],
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532201",
-      "recid": 19532201
+      "doi": "10.5281/zenodo.19665747",
+      "recid": 19665747
     }
   },
   "title": "The \u03b1-Power Scaling Law: Single-Parameter Projection of the Derived Constant Tree",
   "links": {
-    "self": "https://zenodo.org/api/records/19532201",
-    "html": "https://zenodo.org/records/19532201",
-    "doi": "https://doi.org/10.5281/zenodo.19532201",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532200",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532201.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532200.svg",
-    "files": "https://zenodo.org/api/records/19532201/files",
-    "bucket": "https://zenodo.org/api/files/889f513e-5d16-4071-bfca-5ecec0ceea3a",
-    "thumb250": "https://zenodo.org/record/19532201/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19665747",
+    "html": "https://zenodo.org/deposit/19665747",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665747/files",
+    "bucket": "https://zenodo.org/api/files/9134d166-4988-4054-9a3e-e5a1b951e418",
+    "thumb250": "https://zenodo.org/record/19665747/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532201/thumb10",
-      "50": "https://zenodo.org/record/19532201/thumb50",
-      "100": "https://zenodo.org/record/19532201/thumb100",
-      "250": "https://zenodo.org/record/19532201/thumb250",
-      "750": "https://zenodo.org/record/19532201/thumb750",
-      "1200": "https://zenodo.org/record/19532201/thumb1200"
+      "10": "https://zenodo.org/record/19665747/thumb10",
+      "50": "https://zenodo.org/record/19665747/thumb50",
+      "100": "https://zenodo.org/record/19665747/thumb100",
+      "250": "https://zenodo.org/record/19665747/thumb250",
+      "750": "https://zenodo.org/record/19665747/thumb750",
+      "1200": "https://zenodo.org/record/19665747/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532201",
-    "latest_draft_html": "https://zenodo.org/deposit/19532201",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532201/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532201/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532201/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532201/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532201",
-    "record_html": "https://zenodo.org/record/19532201",
-    "latest": "https://zenodo.org/api/records/19532201/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532201/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665747",
+    "latest_draft_html": "https://zenodo.org/deposit/19665747",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665747/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665747/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665747/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665747/actions/newversion"
   },
-  "record_id": 19532201,
+  "record_id": 19665747,
   "owner": 1539729,
   "files": [
     {
@@ -110,8 +98,8 @@
       "filesize": 2508928,
       "checksum": "3e9372881c0637c7dfba867d8ce5f52f",
       "links": {
-        "self": "https://zenodo.org/api/records/19532201/files/161e6078-d284-497f-b101-8f7571040e2f",
-        "download": "https://zenodo.org/api/records/19532201/draft/files/HOWL-MATH-7-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665747/files/161e6078-d284-497f-b101-8f7571040e2f",
+        "download": "https://zenodo.org/api/records/19665747/draft/files/HOWL-MATH-7-2026.zip/content"
       }
     },
     {
@@ -120,11 +108,11 @@
       "filesize": 1375575,
       "checksum": "21199361826b006f49b9da4b07127b9a",
       "links": {
-        "self": "https://zenodo.org/api/records/19532201/files/e6af1e05-f98d-49e6-93f7-034288c7ff32",
-        "download": "https://zenodo.org/api/records/19532201/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665747/files/e6af1e05-f98d-49e6-93f7-034288c7ff32",
+        "download": "https://zenodo.org/api/records/19665747/draft/files/!manuscript.pdf/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }
