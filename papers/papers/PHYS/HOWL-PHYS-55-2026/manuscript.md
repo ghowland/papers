@@ -93,6 +93,8 @@ The six-level hierarchy (Level 0 substrate through Level 6 cosmological) is reta
 
 ### III.A The Minimal Ontology
 
+![Fig. 1: PCTRM substrate — direction-conditional unit adjacency vs. Cartesian lattice. The topology that produces c-invariance by arithmetic identity.](./figures/phys55_01_unit_graph_adjacency.png)
+
 The substrate is a unit-adjacency graph on Planck cells at Planck ticks. Every physical operation is graph arithmetic. Nothing exists below this level. No additional structure is posited beyond:
 
 1. **Planck cells** — discrete spatial positions
@@ -141,6 +143,8 @@ This produces the Born rule as structural consequence (Section VI).
 
 ## IV. ENTANGLEMENT, MEASUREMENT, AND THE DISSOLUTION OF THE MEASUREMENT PROBLEM
 
+![Fig. 8: Three-panel sequence showing measurement as channel-merger dominance. Observer forms new merger with target, prior entanglement dissolves. No second dynamics.](./figures/phys55_08_measurement_merger_dominance.png)
+
 ### IV.A The Measurement Problem Does Not Exist
 
 Standard quantum mechanics has two dynamics. Between measurements, states evolve unitarily (Schrödinger equation). At measurement, the state collapses discontinuously into an eigenstate. The collapse rule is not unitary, not reversible, not derivable from the evolution rule. It is a second kind of dynamics glued onto the first.
@@ -168,6 +172,8 @@ The observer has no special status. A photographic plate, a thermometer, a consc
 The Copenhagen, many-worlds, Bohmian, and QBist interpretations disagree about what measurement "really is." In PCTRM, these interpretations are descriptions of the same substrate event (channel-merger) at different levels of abstraction or with different philosophical commitments about what "really" means. None is privileged because the substrate doesn't care which interpretation observers use; it just runs channel-merger arithmetic.
 
 ### IV.D Single-Particle Interference via Channel-Agreement
+
+![Fig. 6: Channel-agreement dynamics produces interference (no observer) and particle (observer) patterns. Wave-particle duality dissolved.](./figures/phys55_06_channel_agreement_slit.png)
 
 The double-slit experiment is not mysterious in PCTRM. The photon's channel structure propagates through the substrate toward the screen. Without an observer at the slits, the channel agreement process — the substrate's resolution of which cells the photon next occupies given its direction state — has multiple candidate paths. Agreement resolves through all available paths because nothing forces a choice. Contributions from both slits accumulate in the channel structure, producing the interference pattern at the termination event (absorption at the screen).
 
@@ -206,6 +212,8 @@ If any of these fires, the entanglement specification is falsified at the indica
 ---
 
 ## V. DUAL-GEOMETRY SECTORS
+
+![Fig. 3: Spherical modulus + toroidal remainder at proton, atom, Earth, and galaxy scales. Universal structural decomposition.](./figures/phys55_03_dual_geometry_scales.png)
 
 ### V.A Every Soliton Has Two Geometric Sectors
 
@@ -257,6 +265,8 @@ Complex-valued amplitudes emerge from the two-sector combination: the spherical 
 
 ### V.E Probe-Dependent Sector Dominance
 
+![Fig. 5: Spherical and toroidal sector contributions to four-loop corrections vs. lepton mass. Crossover at 22 MeV. Tau prediction.](./figures/phys55_05_mass_scaling_sectors.png)
+
 The electron-muon separation in four-loop QED is not a curiosity. It is the framework's prediction that different-scale probes resolve different sectors. The general rule:
 
 $$\text{toroidal contribution} \propto (probe\_scale^{-1} / source\_toroidal\_scale^{-1})^2$$
@@ -268,6 +278,8 @@ This generalizes to an experimental prediction: any measurement at sufficient pr
 ---
 
 ## VI. THE BORN RULE IS NOT AXIOMATIC
+
+![Fig. 4: Born rule emerges from round-trip closure on substrate unit-adjacency graph. The exponent-2 counts two conversions.](./figures/phys55_04_born_round_trip.png)
 
 ### VI.A The Four-Part Derivation
 
@@ -302,6 +314,8 @@ The Born rule is not a postulate in PCTRM. It is a theorem.
 ---
 
 ## VII. THE SIX-LEVEL HIERARCHY WITH INTEGRATED PREDICTIONS
+
+![Fig. 2: Six-level soliton hierarchy from Planck to cosmological scale. Same substrate vocabulary at every scale.](./figures/phys55_02_hierarchy_levels_scale.png)
 
 The six-level hierarchy from PHYS-54 is retained. Each level gets three categories: established predictions (already validated), execution-pending predictions (mechanism specified, cross-derivation needed), and novel predictions (framework pre-registers new values).
 
@@ -522,6 +536,8 @@ The framework either passes Round 1 or falls on specific pre-registered conditio
 ---
 
 ## XII. THE INTEGER ALPHABET
+
+![Fig. 7: Small integer alphabet plus pi, beta, K(k) produce precision predictions across QED, CKM, and cosmology. Integer 13 appears in 4+ domains.](./figures/phys55_07_integer_alphabet_map.png)
 
 The integer alphabet is the framework's prediction generator. The substrate produces observable values through alphabet expressions in β and K(k). No other prediction mechanism exists.
 
