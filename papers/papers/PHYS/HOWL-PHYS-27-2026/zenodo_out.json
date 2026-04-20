@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:10:26.163388+00:00",
+  "modified": "2026-04-20T16:10:26.379157+00:00",
+  "id": 19666360,
+  "conceptrecid": "19532258",
+  "conceptdoi": "10.5281/zenodo.19532258",
+  "metadata": {
+    "title": "sin\u00b2\u03b8_W from 3/8 \u2014 The Weak Mixing Angle as a Running Prediction: Two inputs, one prediction. The correction is 15/104.",
+    "description": "<h2>sin\u00b2\u03b8_W from 3/8 \u2014 The Weak Mixing Angle as a Running Prediction: Two inputs, one prediction. The correction is 15/104.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The SU(5) grand unified theory predicts sin\u00b2\u03b8_W = 3/8 = 0.375 at the unification scale. At the Z boson mass where experiments measure it, the value is 0.23122. The difference must come from the running of the gauge couplings between these two scales. This paper computes that running using the beta coefficients of the Standard Model modified by the Cabibbo Doublet \u2014 a vector-like quark doublet in the (3,2,1/6) representation with modified betas (25/6, \u221213/6, \u221220/3). The computation uses only two measured inputs, the electromagnetic coupling \u03b1_EM and the strong coupling \u03b1_s, and predicts sin\u00b2\u03b8_W as output. The one-loop prediction is sin\u00b2\u03b8_W = 0.22845 without a mass threshold and 0.22722 with a threshold at M_VL = 500 GeV. Both undershoot the measured value by 1.2% and 1.7% respectively. Adding a physical threshold makes the one-loop prediction worse, not better, because less of the running uses the Cabibbo Doublet betas that provide the correction. Four values form a strict ordering: threshold(0.22722) &lt; no-threshold(0.22845) &lt; 3/13(0.23077) &lt; measured(0.23122). The ratio 3/13 = N_gen/|b\u2082' numerator| \u2014 the generation count divided by the modified SU(2) beta numerator \u2014 sits between the one-loop predictions and the measured value, within 0.195% of measured. The exact correction needed to produce sin\u00b2\u03b8_W = 3/13 from the tree level 3/8 is 15/104. Two-loop corrections are expected to reduce the one-loop overcorrection and push the prediction toward both 3/13 and the measured value.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-27-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026, HOWL-PHYS-25-2026, HOWL-PHYS-26-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666360",
+      "recid": 19666360
+    }
+  },
+  "title": "sin\u00b2\u03b8_W from 3/8 \u2014 The Weak Mixing Angle as a Running Prediction: Two inputs, one prediction. The correction is 15/104.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666360",
+    "html": "https://zenodo.org/deposit/19666360",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666360/files",
+    "bucket": "https://zenodo.org/api/files/96bcb7ce-9f22-466d-8202-22eb30acb824",
+    "thumb250": "https://zenodo.org/record/19666360/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666360/thumb10",
+      "50": "https://zenodo.org/record/19666360/thumb50",
+      "100": "https://zenodo.org/record/19666360/thumb100",
+      "250": "https://zenodo.org/record/19666360/thumb250",
+      "750": "https://zenodo.org/record/19666360/thumb750",
+      "1200": "https://zenodo.org/record/19666360/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666360",
+    "latest_draft_html": "https://zenodo.org/deposit/19666360",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666360/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666360/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666360/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666360/actions/newversion"
+  },
+  "record_id": 19666360,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "f9df213d-99e6-47ad-a572-dac7a53a3d20",
+      "filename": "!manuscript.pdf",
+      "filesize": 77701,
+      "checksum": "1138beb4ca807963d44901c7dc0eed4c",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666360/files/f9df213d-99e6-47ad-a572-dac7a53a3d20",
+        "download": "https://zenodo.org/api/records/19666360/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "488f52f0-d850-45d9-9dc9-5bedce51c8dd",
+      "filename": "HOWL-PHYS-27-2026.zip",
+      "filesize": 157006,
+      "checksum": "551973722a2b30aa6fda62e987e35a01",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666360/files/488f52f0-d850-45d9-9dc9-5bedce51c8dd",
+        "download": "https://zenodo.org/api/records/19666360/draft/files/HOWL-PHYS-27-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

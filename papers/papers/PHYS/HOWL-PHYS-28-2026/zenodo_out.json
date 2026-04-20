@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:11:21.544265+00:00",
+  "modified": "2026-04-20T16:11:21.829091+00:00",
+  "id": 19666376,
+  "conceptrecid": "19532260",
+  "conceptdoi": "10.5281/zenodo.19532260",
+  "metadata": {
+    "title": "The VL Two-Loop Beta Matrix \u2014 Fermion Corrections to Gauge Coupling Unification: One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.",
+    "description": "<h2>The VL Two-Loop Beta Matrix \u2014 Fermion Corrections to Gauge Coupling Unification: One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The PHYS-24 two-loop unification calculation used the Standard Model two-loop beta matrix b_ij with a step-function threshold for the Cabibbo Doublet one-loop betas. This captured the dominant two-loop effect but omitted the Cabibbo Doublet's own two-loop contribution. This paper computes that contribution using the Machacek-Vaughn (1983-84) general formulas for fermion representations. The result is a 3\u00d73 matrix of nine exact Fractions, derived from the group theory of a single Dirac fermion in the (3,2,1/6) representation of SU(3)\u00d7SU(2)\u00d7U(1). The diagonal entries are (7/15, 15/4, 40/9) and the largest off-diagonal entry is 8/3. All entries are positive and all magnitudes are less than the corresponding SM values. The largest relative contribution is 64% for the SU(2) diagonal \u2014 the Cabibbo Doublet is not a small perturbation on SU(2) two-loop running. Adding the VL two-loop corrections to the unification calculation at M_VL = 500 GeV shifts the unification miss Delta from \u22120.490 (SM b_ij only) to \u22120.436 (SM + VL b_ij), a further 4.6% improvement beyond the SM-only two-loop result. The combined improvement over one-loop is 62.8%. The VL two-loop correction helps unification.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-28-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026, HOWL-PHYS-25-2026, HOWL-PHYS-26-2026, HOWL-PHYS-27-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666376",
+      "recid": 19666376
+    }
+  },
+  "title": "The VL Two-Loop Beta Matrix \u2014 Fermion Corrections to Gauge Coupling Unification: One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666376",
+    "html": "https://zenodo.org/deposit/19666376",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666376/files",
+    "bucket": "https://zenodo.org/api/files/c81d8b8a-0882-44e1-be8c-7ad61510135e",
+    "thumb250": "https://zenodo.org/record/19666376/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666376/thumb10",
+      "50": "https://zenodo.org/record/19666376/thumb50",
+      "100": "https://zenodo.org/record/19666376/thumb100",
+      "250": "https://zenodo.org/record/19666376/thumb250",
+      "750": "https://zenodo.org/record/19666376/thumb750",
+      "1200": "https://zenodo.org/record/19666376/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666376",
+    "latest_draft_html": "https://zenodo.org/deposit/19666376",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666376/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666376/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666376/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666376/actions/newversion"
+  },
+  "record_id": 19666376,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "c5e72986-3b1d-44c7-88a1-b9910d05936e",
+      "filename": "!manuscript.pdf",
+      "filesize": 80089,
+      "checksum": "b0ae36b723f16faf376df2f2e8230d28",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666376/files/c5e72986-3b1d-44c7-88a1-b9910d05936e",
+        "download": "https://zenodo.org/api/records/19666376/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "777c02c8-ba6c-4a8a-8ce1-09912f87ea67",
+      "filename": "HOWL-PHYS-28-2026.zip",
+      "filesize": 161026,
+      "checksum": "dfc5d2e9cbb973caa0b51526aecef69e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666376/files/777c02c8-ba6c-4a8a-8ce1-09912f87ea67",
+        "download": "https://zenodo.org/api/records/19666376/draft/files/HOWL-PHYS-28-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
