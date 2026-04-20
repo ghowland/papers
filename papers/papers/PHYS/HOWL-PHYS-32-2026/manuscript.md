@@ -9,7 +9,7 @@
 
 **Domain:** Representation Theory, Beta Function Structure, Integer Traceability
 
-**DOI:** 10.5281/zenodo.19528702
+**DOI:** 10.5281/zenodo.19666460
 
 **Status:** Complete
 

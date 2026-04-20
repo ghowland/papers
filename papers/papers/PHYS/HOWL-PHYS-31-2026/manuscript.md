@@ -9,7 +9,7 @@
 
 **Domain:** Statistical Methodology, Null Result, Cosmological Formula Validation
 
-**DOI:** 10.5281/zenodo.19528700
+**DOI:** 10.5281/zenodo.19666449
 
 **Status:** Complete
 

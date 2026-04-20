@@ -9,7 +9,7 @@
 
 **Domain:** Electroweak-Strong Unification, Coupling Prediction
 
-**DOI:** 10.5281/zenodo.19528698
+**DOI:** 10.5281/zenodo.19666420
 
 **Status:** Complete
 

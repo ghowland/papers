@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:17:21.285600+00:00",
+  "modified": "2026-04-20T16:17:21.626118+00:00",
+  "id": 19666449,
+  "conceptrecid": "19532270",
+  "conceptdoi": "10.5281/zenodo.19532270",
+  "metadata": {
+    "title": "Statistical Control \u2014 The Beta Integers and Combinatorial Coincidence: p = 0.81. Random integers do equally well. Track B is parked.",
+    "description": "<h2>Statistical Control \u2014 The Beta Integers and Combinatorial Coincidence: p = 0.81. Random integers do equally well. Track B is parked.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The gauge coupling beta functions of the Standard Model contain specific integers \u2014 41, 19, 7 from the SM betas, 25, 13, 20 from the Cabibbo Doublet modified betas, and derived quantities like 22 and 38. Earlier work observed that formulas constructed from these integers match measured cosmological values at sub-percent accuracy: the dark matter to baryon ratio equals (22/13)\u03c0 to 0.065%, the baryon density parameter equals (1/2)\u03c0\u00b2 to 0.097%, and the weak mixing angle equals 3/13 to 0.20%. Six of eight tested quantities were hit. This paper tests whether these matches are evidence of a deep connection or combinatorial coincidence. A Monte Carlo trial generates 10,000 random pools of 15 integers from [1,50] and scans each against the same eight targets using the same formula template (p/q)\u00d7\u03c0^b. The result: 81% of random pools score 6 or more hits \u2014 equal to or better than the beta pool. The beta pool sits at \u22120.24\u03c3 below the random mean of 6.2. The p-value is 0.81. The cosmological formulas are not statistically significant. The gate for cosmological investigation fires: Track B is parked. The unification program (Track A) is entirely unaffected \u2014 it rests on the dynamics of coupling running, not on integer formulas.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-31-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026, HOWL-PHYS-25-2026, HOWL-PHYS-30-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666449",
+      "recid": 19666449
+    }
+  },
+  "title": "Statistical Control \u2014 The Beta Integers and Combinatorial Coincidence: p = 0.81. Random integers do equally well. Track B is parked.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666449",
+    "html": "https://zenodo.org/deposit/19666449",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666449/files",
+    "bucket": "https://zenodo.org/api/files/e4000ba3-e022-475f-82c8-992a5d3d0aa6",
+    "thumb250": "https://zenodo.org/record/19666449/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666449/thumb10",
+      "50": "https://zenodo.org/record/19666449/thumb50",
+      "100": "https://zenodo.org/record/19666449/thumb100",
+      "250": "https://zenodo.org/record/19666449/thumb250",
+      "750": "https://zenodo.org/record/19666449/thumb750",
+      "1200": "https://zenodo.org/record/19666449/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666449",
+    "latest_draft_html": "https://zenodo.org/deposit/19666449",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666449/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666449/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666449/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666449/actions/newversion"
+  },
+  "record_id": 19666449,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "16c00e4f-6505-4cd4-95e3-6104c8014c75",
+      "filename": "HOWL-PHYS-31-2026.zip",
+      "filesize": 2087270,
+      "checksum": "a95b97154a9004a91e630ef6c2493025",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666449/files/16c00e4f-6505-4cd4-95e3-6104c8014c75",
+        "download": "https://zenodo.org/api/records/19666449/draft/files/HOWL-PHYS-31-2026.zip/content"
+      }
+    },
+    {
+      "id": "a53e346f-5610-446c-bf32-83883979d9e3",
+      "filename": "!manuscript.pdf",
+      "filesize": 1124953,
+      "checksum": "04f694195ab37a036aa33d02d446d605",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666449/files/a53e346f-5610-446c-bf32-83883979d9e3",
+        "download": "https://zenodo.org/api/records/19666449/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:18:12.678927+00:00",
+  "modified": "2026-04-20T16:18:12.909936+00:00",
+  "id": 19666460,
+  "conceptrecid": "19532272",
+  "conceptdoi": "10.5281/zenodo.19532272",
+  "metadata": {
+    "title": "The A\u2083 Decomposition \u2014 Tracing the Integer 20 in the SU(3) Beta: Four pieces, one sum. \u221233 + 12 + 0 + 1 = \u221220. Every piece exact.",
+    "description": "<h2>The A\u2083 Decomposition \u2014 Tracing the Integer 20 in the SU(3) Beta: Four pieces, one sum. \u221233 + 12 + 0 + 1 = \u221220. Every piece exact.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The modified SU(3) beta coefficient b\u2083' = \u221220/3 is one of the three numbers that control gauge coupling unification with the Cabibbo Doublet. The integer 20 in the numerator enters the gap ratio denominator (27/6), the \u03b1_s prediction (PHYS-30), and the cosmological integer inventory. This paper decomposes b\u2083' into its four exact Fraction constituents from first principles: the gauge self-coupling contributes \u221211 (from the SU(3) adjoint Casimir), three generations of SM quarks contribute +4 (from 12 Weyl color triplets), the Higgs contributes 0 (it is an SU(3) singlet), and the Cabibbo Doublet contributes +1/3 (from the Dynkin index formula). Over the common denominator 3: the numerator is \u221233 + 12 + 0 + 1 = \u221220. Every piece is an exact Fraction from the gauge group and particle content. The decomposition is verified by cross-checks against the SU(2) beta (\u221219/6, also decomposed), the two-loop diagonal entry db\u2083\u2083 = 40/9 from PHYS-28, and the gap ratio 38/27. All 14 checks pass exactly. This completes the integer traceability for all three gauge groups.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-32-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-24-2026, HOWL-PHYS-26-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666460",
+      "recid": 19666460
+    }
+  },
+  "title": "The A\u2083 Decomposition \u2014 Tracing the Integer 20 in the SU(3) Beta: Four pieces, one sum. \u221233 + 12 + 0 + 1 = \u221220. Every piece exact.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666460",
+    "html": "https://zenodo.org/deposit/19666460",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666460/files",
+    "bucket": "https://zenodo.org/api/files/548b88f7-cd87-420c-b6ef-8d8c42ba2763",
+    "thumb250": "https://zenodo.org/record/19666460/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666460/thumb10",
+      "50": "https://zenodo.org/record/19666460/thumb50",
+      "100": "https://zenodo.org/record/19666460/thumb100",
+      "250": "https://zenodo.org/record/19666460/thumb250",
+      "750": "https://zenodo.org/record/19666460/thumb750",
+      "1200": "https://zenodo.org/record/19666460/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666460",
+    "latest_draft_html": "https://zenodo.org/deposit/19666460",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666460/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666460/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666460/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666460/actions/newversion"
+  },
+  "record_id": 19666460,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "4a5c740f-f486-4b38-b576-4391972333ba",
+      "filename": "!manuscript.pdf",
+      "filesize": 1161836,
+      "checksum": "244420ac624a7b50f7739743f85ca57a",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666460/files/4a5c740f-f486-4b38-b576-4391972333ba",
+        "download": "https://zenodo.org/api/records/19666460/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "ab8dd3e6-f26c-4eaa-9bb7-b50a42f3394f",
+      "filename": "HOWL-PHYS-32-2026.zip",
+      "filesize": 2038928,
+      "checksum": "d2128965636e83c416d9844d8391547f",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666460/files/ab8dd3e6-f26c-4eaa-9bb7-b50a42f3394f",
+        "download": "https://zenodo.org/api/records/19666460/draft/files/HOWL-PHYS-32-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
