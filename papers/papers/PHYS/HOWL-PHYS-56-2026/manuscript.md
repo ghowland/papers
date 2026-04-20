@@ -3,15 +3,15 @@
 
 **Registry:** [@HOWL-PHYS-56-2026]
 
-**Series:** PHYS-40 (derivation map), PHYS-48 through PHYS-55, MATH-11, MATH-12, DATA-7
+**Series Path:** PHYS-40 (derivation map), PHYS-48 through PHYS-55, MATH-11, MATH-12, DATA-7
 
 **Date:** April 20, 2026
 
 **DOI:** 10.5281/zenodo.zzz
 
-**Domain:** Falsification / Kill-Switch Enumeration / Round 1 Coordinated Test Execution / Cross-Derivation Discipline
+**Domain:** Substrate Physics / Planck-Scale Mechanism / Standard Model Reduction / Quantum Mechanics Derivation / Gravitational Dynamics / Falsification Program
 
-**Status:** Coordinated falsification program for the integrated substrate specification.
+**Status:** Coordinated falsification program
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs, 2 false errata were removed and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.7.
 
