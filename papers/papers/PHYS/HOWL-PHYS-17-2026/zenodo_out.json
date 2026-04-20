@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:58:47.593302+00:00",
+  "modified": "2026-04-20T15:58:47.834091+00:00",
+  "id": 19666265,
+  "conceptrecid": "19532228",
+  "conceptdoi": "10.5281/zenodo.19532228",
+  "metadata": {
+    "title": "The Generation Democracy and the Boson Problem",
+    "description": "<h2>The Generation Democracy and the Boson Problem</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The Standard Model gap ratio 218/115 = 1.896 \u2014 the exact rational that measures how far the three gauge couplings are from converging \u2014 receives zero contribution from any quark, lepton, or neutrino. This paper decomposes the gap ratio into its three sources and finds that the 12 SM fermions collectively contribute nothing. Every complete generation adds (\u0394b\u2081, \u0394b\u2082, \u0394b\u2083) = (4/3, 4/3, 4/3) to the one-loop beta functions \u2014 equal amounts to all three gauge couplings. Equal contributions to the numerator and denominator of the gap ratio cancel exactly. The gap ratio is determined entirely by two sources: the gauge boson self-coupling (0, \u221222/3, \u221211), which sets a baseline gap of 22/11 = 2.000, and the Higgs doublet (1/10, 1/6, 0), which corrects it to 218/115 = 1.896. The Higgs correction accounts for 16% of the distance from 2.000 to the measured 1.358. The remaining 84% requires physics beyond the Standard Model. The unification failure is a boson problem: it originates in the Yang-Mills integer 11 applied asymmetrically across one abelian and two non-abelian gauge groups, and cannot be fixed by any number of complete fermion generations.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-17-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-17-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666265",
+      "recid": 19666265
+    }
+  },
+  "title": "The Generation Democracy and the Boson Problem",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666265",
+    "html": "https://zenodo.org/deposit/19666265",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666265/files",
+    "bucket": "https://zenodo.org/api/files/eb8ac534-8820-4252-becb-abc63271b389",
+    "thumb250": "https://zenodo.org/record/19666265/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666265/thumb10",
+      "50": "https://zenodo.org/record/19666265/thumb50",
+      "100": "https://zenodo.org/record/19666265/thumb100",
+      "250": "https://zenodo.org/record/19666265/thumb250",
+      "750": "https://zenodo.org/record/19666265/thumb750",
+      "1200": "https://zenodo.org/record/19666265/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666265",
+    "latest_draft_html": "https://zenodo.org/deposit/19666265",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666265/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666265/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666265/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666265/actions/newversion"
+  },
+  "record_id": 19666265,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "5b336cb3-02f3-4c76-8b73-238f366bd3a5",
+      "filename": "!manuscript.pdf",
+      "filesize": 1256166,
+      "checksum": "889203af0e9972ccd032c78d84982926",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/5b336cb3-02f3-4c76-8b73-238f366bd3a5",
+        "download": "https://zenodo.org/api/records/19666265/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "d9c7833a-92d5-465a-a6fb-ddac90250c8e",
+      "filename": "HOWL-PHYS-17-2026.zip",
+      "filesize": 3514653,
+      "checksum": "cd4116276668061ec2bc30f6a37427e3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/d9c7833a-92d5-465a-a6fb-ddac90250c8e",
+        "download": "https://zenodo.org/api/records/19666265/draft/files/HOWL-PHYS-17-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

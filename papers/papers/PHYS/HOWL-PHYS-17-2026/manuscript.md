@@ -8,7 +8,7 @@
 
 **Domain:** Gauge Coupling Unification, Beta Function Structure
 
-**DOI:** 10.5281/zenodo.19528657
+**DOI:** 10.5281/zenodo.19666265
 
 **Status:** Complete
 

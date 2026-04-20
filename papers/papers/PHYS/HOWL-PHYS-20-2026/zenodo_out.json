@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:02:14.735606+00:00",
+  "modified": "2026-04-20T16:02:14.924927+00:00",
+  "id": 19666289,
+  "conceptrecid": "19532239",
+  "conceptdoi": "10.5281/zenodo.19532239",
+  "metadata": {
+    "title": "The Proton Decay Test \u2014 Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5: M_GUT = 10^15.5 \u2192 \u03c4 ~ 10^34-35 yr \u2192 Hyper-Kamiokande 2027-2037.",
+    "description": "<h2>The Proton Decay Test \u2014 Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5: M_GUT = 10^15.5 \u2192 \u03c4 ~ 10^34-35 yr \u2192 Hyper-Kamiokande 2027-2037.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The Cabibbo Doublet (3,2,1/6) produces a grand unification scale M_GUT = 10^15.5 GeV from the one-loop running of the three SM gauge couplings with modified beta coefficients. In minimal SU(5), the proton lifetime for the dominant decay channel p \u2192 e\u207a\u03c0\u2070 scales as M_GUT\u2074, giving \u03c4 ~ 10^34-35 years for M_GUT = 10^15.5. The current experimental bound from Super-Kamiokande is \u03c4 &gt; 2.4 \u00d7 10^34 years at 90% confidence level (Phys. Rev. D 102, 112011, 2020). The Cabibbo Doublet prediction sits at this boundary \u2014 the lower end of the range is already in tension with the data, while the upper end remains viable. Hyper-Kamiokande, the successor experiment with 8.3 times the fiducial volume, is scheduled to begin operations in 2027 and will reach a sensitivity of approximately 10^35 years for p \u2192 e\u207a\u03c0\u2070 after 10 years of data collection and up to 10^35 years with 20 years. This covers the entire viable Cabibbo Doublet prediction range. The MSSM, by contrast, produces M_GUT = 10^17.3 \u2014 nearly two orders of magnitude higher \u2014 yielding \u03c4 ~ 10^36-37 years, far beyond any planned experiment. Despite having nearly identical gap ratios (38/27 = 1.407 vs 7/5 = 1.400), the Cabibbo Doublet and the MSSM are separated by a factor of 10^7 in proton lifetime because \u03c4 scales as the fourth power of M_GUT. This makes proton decay the decisive discriminator. One experiment, one decade, one answer.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-20-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-17-2026, HOWL-PHYS-18-2026, HOWL-PHYS-19-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666289",
+      "recid": 19666289
+    }
+  },
+  "title": "The Proton Decay Test \u2014 Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5: M_GUT = 10^15.5 \u2192 \u03c4 ~ 10^34-35 yr \u2192 Hyper-Kamiokande 2027-2037.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666289",
+    "html": "https://zenodo.org/deposit/19666289",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666289/files",
+    "bucket": "https://zenodo.org/api/files/1e107df2-99ce-4ddf-b621-d7158e9eeed5",
+    "thumb250": "https://zenodo.org/record/19666289/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666289/thumb10",
+      "50": "https://zenodo.org/record/19666289/thumb50",
+      "100": "https://zenodo.org/record/19666289/thumb100",
+      "250": "https://zenodo.org/record/19666289/thumb250",
+      "750": "https://zenodo.org/record/19666289/thumb750",
+      "1200": "https://zenodo.org/record/19666289/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666289",
+    "latest_draft_html": "https://zenodo.org/deposit/19666289",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666289/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666289/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666289/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666289/actions/newversion"
+  },
+  "record_id": 19666289,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "1e1df0a5-9362-4a83-bbba-c2b0fa59dcc2",
+      "filename": "HOWL-PHYS-20-2026.zip",
+      "filesize": 3496796,
+      "checksum": "3f400509a7395ba1ff7a8528806e86d6",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666289/files/1e1df0a5-9362-4a83-bbba-c2b0fa59dcc2",
+        "download": "https://zenodo.org/api/records/19666289/draft/files/HOWL-PHYS-20-2026.zip/content"
+      }
+    },
+    {
+      "id": "d096ad9c-c8d7-4867-860d-2d015eb7e238",
+      "filename": "!manuscript.pdf",
+      "filesize": 1240044,
+      "checksum": "a4bd3194aaffd8705f5fb3be26d23270",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666289/files/d096ad9c-c8d7-4867-860d-2d015eb7e238",
+        "download": "https://zenodo.org/api/records/19666289/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

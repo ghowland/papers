@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:59:35.004040+00:00",
+  "modified": "2026-04-20T15:59:35.264028+00:00",
+  "id": 19666267,
+  "conceptrecid": "19532230",
+  "conceptdoi": "10.5281/zenodo.19532230",
+  "metadata": {
+    "title": "The Y = 1/6 Asymmetry: Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction.",
+    "description": "<h2>The Y = 1/6 Asymmetry: Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The Cabibbo Doublet (3,2,1/6) fixes the Standard Model gap ratio with one particle because its hypercharge Y = 1/6 is the smallest nonzero value possible for a color triplet weak doublet with standard electric charges. The beta function contribution to b\u2081 (the hypercharge coupling) is proportional to Y\u00b2, making \u0394b\u2081 = 1/15 \u2014 tiny. The contributions to b\u2082 (weak coupling) and b\u2083 (strong coupling) are independent of Y, giving \u0394b\u2082 = 1 and \u0394b\u2083 = 1/3. The resulting asymmetry ratio \u0394b\u2082/\u0394b\u2081 = 15 is the highest of any candidate in the 15-particle enumeration. This extreme asymmetry produces a double action on the gap ratio: the numerator (b\u2081 \u2212 b\u2082) shrinks by 13% because \u0394b\u2082 overwhelms \u0394b\u2081, while the denominator (b\u2082 \u2212 b\u2083) grows by 17% because \u0394b\u2082 exceeds \u0394b\u2083. Both effects push the gap ratio from 218/115 = 1.896 down to 38/27 = 1.407, within 0.049 of the measured 1.358. Increasing Y to any other value degrades the correction monotonically \u2014 at Y = 1/2, the gap ratio distance is already 3.4 times worse. The optimum at Y = 1/6 is sharp, not broad. The scalar version of (3,2,1/6) has the same asymmetry ratio but half the magnitude, reaching only 1.632 \u2014 five times worse. The Cabibbo Doublet is not merely a survivor of the elimination cascade. It is the uniquely optimal single-multiplet correction to the SM gap ratio, and the mechanism is exact rational arithmetic on the representation quantum numbers.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-18-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-17-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666267",
+      "recid": 19666267
+    }
+  },
+  "title": "The Y = 1/6 Asymmetry: Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666267",
+    "html": "https://zenodo.org/deposit/19666267",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666267/files",
+    "bucket": "https://zenodo.org/api/files/2eb50eec-9fa8-4e56-90f7-f90462185668",
+    "thumb250": "https://zenodo.org/record/19666267/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666267/thumb10",
+      "50": "https://zenodo.org/record/19666267/thumb50",
+      "100": "https://zenodo.org/record/19666267/thumb100",
+      "250": "https://zenodo.org/record/19666267/thumb250",
+      "750": "https://zenodo.org/record/19666267/thumb750",
+      "1200": "https://zenodo.org/record/19666267/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666267",
+    "latest_draft_html": "https://zenodo.org/deposit/19666267",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666267/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666267/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666267/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666267/actions/newversion"
+  },
+  "record_id": 19666267,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "b9916bfd-9fc1-4c9e-b21c-f80fb0891289",
+      "filename": "!manuscript.pdf",
+      "filesize": 1240484,
+      "checksum": "4002ddd2c7348f47708aed0cf8f4963f",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666267/files/b9916bfd-9fc1-4c9e-b21c-f80fb0891289",
+        "download": "https://zenodo.org/api/records/19666267/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "d9d9d9f8-b036-4589-9cac-757d678d51c5",
+      "filename": "HOWL-PHYS-18-2026.zip",
+      "filesize": 3529844,
+      "checksum": "ae5fd831788d78fb1ee4a6aee8ee8314",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666267/files/d9d9d9f8-b036-4589-9cac-757d678d51c5",
+        "download": "https://zenodo.org/api/records/19666267/draft/files/HOWL-PHYS-18-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

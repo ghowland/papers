@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:01:24.500466+00:00",
+  "modified": "2026-04-20T16:01:24.743227+00:00",
+  "id": 19666281,
+  "conceptrecid": "19532232",
+  "conceptdoi": "10.5281/zenodo.19532232",
+  "metadata": {
+    "title": "Independent Anomaly Evidence for the Cabibbo Doublet: Three experiments, two roads, one particle. The data was already there. The connection was not.",
+    "description": "<h2>Independent Anomaly Evidence for the Cabibbo Doublet: Three experiments, two roads, one particle. The data was already there. The connection was not.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>Three independent experimental anomalies \u2014 the CKM first-row unitarity deficit (2.5-4\u03c3), the forward-backward b-quark asymmetry at LEP (~3\u03c3), and the Higgs signal strength excess at the LHC (~2\u03c3) \u2014 each independently point to a vector-like quark doublet in the (3,2,1/6) representation at the TeV scale. These anomalies were identified by precision flavor physics groups between 2019 and 2024 using data from nuclear beta decays, the LEP electron-positron collider, and the LHC proton-proton collider \u2014 three different experiments at three different facilities across three different decades. Separately, exact rational arithmetic on gauge coupling beta coefficients (PHYS-15) identifies the same (3,2,1/6) representation as the minimal single-multiplet fix for gauge coupling unification. Neither community knew about the other's method. The gap ratio path determines the representation and the unification scale M_GUT = 10^15.5 GeV. The anomaly path determines the mass window (1.5-6 TeV) and the mixing structure (|V_ub'| \u2248 0.045). Together they specify a concrete particle \u2014 the Cabibbo Doublet \u2014 with testable predictions at both the energy frontier and the intensity frontier. This paper documents the anomaly evidence, the mass window, the extended CKM matrix, and the convergence of two independent roads on one particle. The data was already there. The connection was not.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-19-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-14-2026, HOWL-PHYS-15-2026, HOWL-PHYS-17-2026, HOWL-PHYS-18-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-19-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666281",
+      "recid": 19666281
+    }
+  },
+  "title": "Independent Anomaly Evidence for the Cabibbo Doublet: Three experiments, two roads, one particle. The data was already there. The connection was not.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666281",
+    "html": "https://zenodo.org/deposit/19666281",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666281/files",
+    "bucket": "https://zenodo.org/api/files/ca037586-9af4-469b-9aa4-9f73191d0cf1",
+    "thumb250": "https://zenodo.org/record/19666281/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666281/thumb10",
+      "50": "https://zenodo.org/record/19666281/thumb50",
+      "100": "https://zenodo.org/record/19666281/thumb100",
+      "250": "https://zenodo.org/record/19666281/thumb250",
+      "750": "https://zenodo.org/record/19666281/thumb750",
+      "1200": "https://zenodo.org/record/19666281/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666281",
+    "latest_draft_html": "https://zenodo.org/deposit/19666281",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666281/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666281/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666281/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666281/actions/newversion"
+  },
+  "record_id": 19666281,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "3e06172b-3410-4116-8d69-1eb58e099d10",
+      "filename": "!manuscript.pdf",
+      "filesize": 1221637,
+      "checksum": "5947291f87e700ca5929430eb6e4181d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666281/files/3e06172b-3410-4116-8d69-1eb58e099d10",
+        "download": "https://zenodo.org/api/records/19666281/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "a9dd500d-62eb-4bf9-8329-be0fccb3e1ca",
+      "filename": "HOWL-PHYS-19-2026.zip",
+      "filesize": 3561543,
+      "checksum": "360415428c3ff23ec9aa7964649d6853",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666281/files/a9dd500d-62eb-4bf9-8329-be0fccb3e1ca",
+        "download": "https://zenodo.org/api/records/19666281/draft/files/HOWL-PHYS-19-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
