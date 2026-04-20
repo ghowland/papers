@@ -1,11 +1,11 @@
-# The One-Loop Degeneracy Theorem
+# sin²θ_W: The One-Loop Degeneracy Theorem
 ## Why sin²θ_W Cannot Be Predicted from One-Loop Gauge Coupling Unification
 
 **Registry:** [@HOWL-MATH-9-2026]
 
 **Series Path:** [@HOWL-MATH-1-2026] → [@HOWL-MATH-7-2026] → [@HOWL-MATH-8-2026] → [@HOWL-MATH-9-2026]
 
-**DOI:** 10.5281/zenodo.19528625
+**DOI:** 10.5281/zenodo.19532205
 
 **Date:** April 9, 2026
 

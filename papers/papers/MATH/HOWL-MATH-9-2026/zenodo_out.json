@@ -1,0 +1,130 @@
+{
+  "created": "2026-04-12T07:14:58.022618+00:00",
+  "modified": "2026-04-12T07:14:58.636726+00:00",
+  "id": 19532205,
+  "conceptrecid": "19532204",
+  "doi": "10.5281/zenodo.19532205",
+  "conceptdoi": "10.5281/zenodo.19532204",
+  "doi_url": "https://doi.org/10.5281/zenodo.19532205",
+  "metadata": {
+    "title": "The One-Loop Degeneracy Theorem: Why sin\u00b2\u03b8_W Cannot Be Predicted from One-Loop Gauge Coupling Unification",
+    "doi": "10.5281/zenodo.19532205",
+    "publication_date": "2026-04",
+    "description": "<h2>The One-Loop Degeneracy Theorem: Why sin\u00b2\u03b8_W Cannot Be Predicted from One-Loop Gauge Coupling Unification</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-9-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-7-2026, HOWL-MATH-8-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/MATH/HOWL-MATH-9-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19532205",
+      "recid": 19532205
+    }
+  },
+  "title": "The One-Loop Degeneracy Theorem: Why sin\u00b2\u03b8_W Cannot Be Predicted from One-Loop Gauge Coupling Unification",
+  "links": {
+    "self": "https://zenodo.org/api/records/19532205",
+    "html": "https://zenodo.org/records/19532205",
+    "doi": "https://doi.org/10.5281/zenodo.19532205",
+    "parent_doi": "https://doi.org/10.5281/zenodo.19532204",
+    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532205.svg",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532204.svg",
+    "files": "https://zenodo.org/api/records/19532205/files",
+    "bucket": "https://zenodo.org/api/files/7c6fb7a2-c7f7-4d3a-aad9-a349fa5a5241",
+    "thumb250": "https://zenodo.org/record/19532205/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19532205/thumb10",
+      "50": "https://zenodo.org/record/19532205/thumb50",
+      "100": "https://zenodo.org/record/19532205/thumb100",
+      "250": "https://zenodo.org/record/19532205/thumb250",
+      "750": "https://zenodo.org/record/19532205/thumb750",
+      "1200": "https://zenodo.org/record/19532205/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532205",
+    "latest_draft_html": "https://zenodo.org/deposit/19532205",
+    "publish": "https://zenodo.org/api/deposit/depositions/19532205/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19532205/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19532205/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19532205/actions/newversion",
+    "record": "https://zenodo.org/api/records/19532205",
+    "record_html": "https://zenodo.org/record/19532205",
+    "latest": "https://zenodo.org/api/records/19532205/versions/latest",
+    "latest_html": "https://zenodo.org/records/19532205/latest"
+  },
+  "record_id": 19532205,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "72451cfd-d169-4476-8318-054012e7b462",
+      "filename": "HOWL-MATH-9-2026.zip",
+      "filesize": 1340786,
+      "checksum": "2eb5d83bd32b04139dfb57b06475c1c7",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532205/files/72451cfd-d169-4476-8318-054012e7b462",
+        "download": "https://zenodo.org/api/records/19532205/draft/files/HOWL-MATH-9-2026.zip/content"
+      }
+    },
+    {
+      "id": "694ea092-6961-4028-8f66-3a196727a303",
+      "filename": "!manuscript.pdf",
+      "filesize": 59725,
+      "checksum": "12af0b4b60163ae63698c9f09f475cda",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532205/files/694ea092-6961-4028-8f66-3a196727a303",
+        "download": "https://zenodo.org/api/records/19532205/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "done",
+  "submitted": true
+}
