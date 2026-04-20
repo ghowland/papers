@@ -1,9 +1,11 @@
+# DATA-7
+## Work in progress
 
 **Skip:** True
 
-**Registry:** [@HOWL-DATA-6-2026]
+**Registry:** [@HOWL-DATA-7-2026]
 
-**Series Path:** [@HOWL-DATA-4-2026] → [@HOWL-DATA-5-2026] → [@HOWL-DATA-6-2026]
+**Series Path:** [@HOWL-DATA-4-2026] → [@HOWL-DATA-5-2026] → [@HOWL-DATA-6-2026] → [@HOWL-DATA-7-2026]
 
 **Date:** April 5, 2026
 

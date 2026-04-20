@@ -7,9 +7,9 @@ import sys
 import subprocess
 
 PROJECT_ROOT = os.getcwd()
-WORKING_LIST = os.path.join(PROJECT_ROOT, "working_papers.txt")
-COMMANDS_DIR = os.path.join(PROJECT_ROOT, "_template", "commands")
-PAPERS_DIR = os.path.join(PROJECT_ROOT, "papers")
+WORKING_LIST = PROJECT_ROOT + "/working_papers.txt"
+COMMANDS_DIR = PROJECT_ROOT + "/_template/commands"
+PAPERS_DIR = PROJECT_ROOT + "/papers"
 
 
 def list_available_commands():
@@ -61,7 +61,7 @@ def main():
         sys.exit(1)
 
     command_name = sys.argv[1]
-    script_path = os.path.join(COMMANDS_DIR, command_name + ".sh")
+    script_path = COMMANDS_DIR + "/" + command_name + ".sh"
 
     if not os.path.isfile(script_path):
         print("ERROR: command script not found: " + script_path)
@@ -82,7 +82,7 @@ def main():
     count = 0
     for paper_rel in papers:
         count = count + 1
-        paper_dir = os.path.join(PAPERS_DIR, paper_rel)
+        paper_dir = PAPERS_DIR + "/" + paper_rel
 
         print("[" + str(count) + "/" + str(len(papers)) + "] " + paper_rel)
 
@@ -90,10 +90,13 @@ def main():
             print("  ERROR: paper dir not found: " + paper_dir)
             sys.exit(1)
 
+        os.chdir(paper_dir)
         print("  cd " + paper_dir)
         print("  exec " + script_path)
 
-        result = subprocess.run([script_path], cwd=paper_dir)
+        result = subprocess.run([script_path])
+
+        os.chdir(PROJECT_ROOT)
 
         if result.returncode != 0:
             print("  ERROR: script failed with exit code " + str(result.returncode))

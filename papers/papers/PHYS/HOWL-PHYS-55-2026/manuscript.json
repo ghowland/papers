@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "The Clock and the Reading",
-    "registry_id": "HOWL-PHYS-44-2026",
-    "series_path": "[@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]",
-    "doi": "10.5281/zenodo.19528733",
+    "title": "Planck Cell-Tick Remainder Momentum II",
+    "registry_id": "HOWL-PHYS-55-2026",
+    "series_path": "[@HOWL-MATH-11-2026] \u2192 [@HOWL-MATH-12-2026] \u2192 [@HOWL-PHYS-48-2026] \u2192 [@HOWL-PHYS-49-2026] \u2192 [@HOWL-PHYS-50-2026] \u2192 [@HOWL-PHYS-52-2026] \u2192 [@HOWL-PHYS-53-2026] \u2192 [@HOWL-PHYS-54-2026] \u2192 [@HOWL-PHYS-55-2026]",
+    "doi": "10.5281/zenodo.zzz",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": "# The Clock and the Reading ## Separating Time from Space in the Soliton Hierarchy  **Registry:** [@HOWL-PHYS-44-2026]  **Series Path:** [@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-20..."
+    "raw_content_preview": "# Planck Cell-Tick Remainder Momentum II ## Substrate Specification, Dual-Geometry Integration, and Coordinated Falsification Program  **Registry:** [@HOWL-PHYS-55-2026]  **Supersedes:** [@HOWL-PHYS-5..."
 }

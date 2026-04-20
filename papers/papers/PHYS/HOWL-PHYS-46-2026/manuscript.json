@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "The Clock and the Reading",
-    "registry_id": "HOWL-PHYS-44-2026",
-    "series_path": "[@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]",
-    "doi": "10.5281/zenodo.19528733",
+    "title": "The Laporta Constants",
+    "registry_id": "HOWL-PHYS-46-2026",
+    "series_path": "[@HOWL-MATH-6-2026] \u2192 [@HOWL-MATH-11-2026] \u2192 [@HOWL-PHYS-46-2026]",
+    "doi": "10.5281/zenodo.zzz",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": "# The Clock and the Reading ## Separating Time from Space in the Soliton Hierarchy  **Registry:** [@HOWL-PHYS-44-2026]  **Series Path:** [@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-20..."
+    "raw_content_preview": "# The Laporta Constants ## Six Numbers at the Frontier of Physics and Mathematics  **Registry:** [@HOWL-PHYS-46-2026]  **Series Path:** [@HOWL-MATH-6-2026] \u2192 [@HOWL-MATH-11-2026] \u2192 [@HOWL-PHYS-46-2026..."
 }
