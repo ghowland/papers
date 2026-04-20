@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:38:31.052507+00:00",
+  "modified": "2026-04-20T15:38:31.245181+00:00",
+  "id": 19666041,
+  "conceptrecid": "19532338",
+  "conceptdoi": "10.5281/zenodo.19532338",
+  "metadata": {
+    "title": "The Strong CP Problem Is Not a Problem: \u03b8_QCD = 0 as the Ground State of an Integer-Topological System",
+    "description": "<h2>The Strong CP Problem Is Not a Problem: \u03b8_QCD = 0 as the Ground State of an Integer-Topological System</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-7-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-7-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666041",
+      "recid": 19666041
+    }
+  },
+  "title": "The Strong CP Problem Is Not a Problem: \u03b8_QCD = 0 as the Ground State of an Integer-Topological System",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666041",
+    "html": "https://zenodo.org/deposit/19666041",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666041/files",
+    "bucket": "https://zenodo.org/api/files/9b87c3a8-16db-4e05-8d90-31b6061d4e56",
+    "thumb250": "https://zenodo.org/record/19666041/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666041/thumb10",
+      "50": "https://zenodo.org/record/19666041/thumb50",
+      "100": "https://zenodo.org/record/19666041/thumb100",
+      "250": "https://zenodo.org/record/19666041/thumb250",
+      "750": "https://zenodo.org/record/19666041/thumb750",
+      "1200": "https://zenodo.org/record/19666041/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666041",
+    "latest_draft_html": "https://zenodo.org/deposit/19666041",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666041/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666041/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666041/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666041/actions/newversion"
+  },
+  "record_id": 19666041,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "7e49a44b-fe15-437d-845e-05bacb0635b9",
+      "filename": "!manuscript.pdf",
+      "filesize": 1366868,
+      "checksum": "2cf6264fe2facc7669817ff02ea067b2",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666041/files/7e49a44b-fe15-437d-845e-05bacb0635b9",
+        "download": "https://zenodo.org/api/records/19666041/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "0f31e044-62ed-4391-bebf-1fba7fb74163",
+      "filename": "HOWL-PHYS-7-2026.zip",
+      "filesize": 2481301,
+      "checksum": "f5641c2801786fdc9c6d6bc49e60f661",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666041/files/0f31e044-62ed-4391-bebf-1fba7fb74163",
+        "download": "https://zenodo.org/api/records/19666041/draft/files/HOWL-PHYS-7-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

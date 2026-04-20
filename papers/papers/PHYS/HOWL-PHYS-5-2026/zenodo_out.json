@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:37:12.058369+00:00",
+  "modified": "2026-04-20T15:37:12.295991+00:00",
+  "id": 19666016,
+  "conceptrecid": "19532328",
+  "conceptdoi": "10.5281/zenodo.19532328",
+  "metadata": {
+    "title": "The Running of \u03b1_EM in Integer Arithmetic: The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm",
+    "description": "<h2>The Running of \u03b1_EM in Integer Arithmetic: The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-5-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-2-2026, HOWL-PHYS-1-2026, HOWL-PHYS-3-2026, HOWL-PHYS-4-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-5-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666016",
+      "recid": 19666016
+    }
+  },
+  "title": "The Running of \u03b1_EM in Integer Arithmetic: The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666016",
+    "html": "https://zenodo.org/deposit/19666016",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666016/files",
+    "bucket": "https://zenodo.org/api/files/b4195629-3bdb-4ff4-93be-f3431a208750",
+    "thumb250": "https://zenodo.org/record/19666016/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666016/thumb10",
+      "50": "https://zenodo.org/record/19666016/thumb50",
+      "100": "https://zenodo.org/record/19666016/thumb100",
+      "250": "https://zenodo.org/record/19666016/thumb250",
+      "750": "https://zenodo.org/record/19666016/thumb750",
+      "1200": "https://zenodo.org/record/19666016/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666016",
+    "latest_draft_html": "https://zenodo.org/deposit/19666016",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666016/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666016/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666016/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666016/actions/newversion"
+  },
+  "record_id": 19666016,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "71067d2f-0b52-4ed6-b91f-aac501314b26",
+      "filename": "HOWL-PHYS-5-2026.zip",
+      "filesize": 2285726,
+      "checksum": "5621f5737d2e97e534fbb7a75bfe521b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666016/files/71067d2f-0b52-4ed6-b91f-aac501314b26",
+        "download": "https://zenodo.org/api/records/19666016/draft/files/HOWL-PHYS-5-2026.zip/content"
+      }
+    },
+    {
+      "id": "a01ef3d6-0669-4285-8725-29d38a9a8acd",
+      "filename": "!manuscript.pdf",
+      "filesize": 1224181,
+      "checksum": "62f64958572b6647a89f7c9ad7a0fba8",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666016/files/a01ef3d6-0669-4285-8725-29d38a9a8acd",
+        "download": "https://zenodo.org/api/records/19666016/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

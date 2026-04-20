@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:37:59.281223+00:00",
+  "modified": "2026-04-20T15:37:59.470919+00:00",
+  "id": 19666029,
+  "conceptrecid": "19532334",
+  "conceptdoi": "10.5281/zenodo.19532334",
+  "metadata": {
+    "title": "The Confinement Boundary in Integer Arithmetic: The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic",
+    "description": "<h2>The Confinement Boundary in Integer Arithmetic: The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-6-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-MATH-2-2026, HOWL-PHYS-1-2026, HOWL-PHYS-2-2026, HOWL-PHYS-4-2026, HOWL-PHYS-5-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-6-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666029",
+      "recid": 19666029
+    }
+  },
+  "title": "The Confinement Boundary in Integer Arithmetic: The Two Faces of the QCD Confinement Boundary and Four Standard Model Observables from Integer Arithmetic",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666029",
+    "html": "https://zenodo.org/deposit/19666029",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666029/files",
+    "bucket": "https://zenodo.org/api/files/27037e5e-5d63-4864-bdcb-735426691741",
+    "thumb250": "https://zenodo.org/record/19666029/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666029/thumb10",
+      "50": "https://zenodo.org/record/19666029/thumb50",
+      "100": "https://zenodo.org/record/19666029/thumb100",
+      "250": "https://zenodo.org/record/19666029/thumb250",
+      "750": "https://zenodo.org/record/19666029/thumb750",
+      "1200": "https://zenodo.org/record/19666029/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666029",
+    "latest_draft_html": "https://zenodo.org/deposit/19666029",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666029/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666029/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666029/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666029/actions/newversion"
+  },
+  "record_id": 19666029,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "c8cfa665-0d2e-4a08-9215-cde6b880b9ba",
+      "filename": "!manuscript.pdf",
+      "filesize": 1268641,
+      "checksum": "89f83cacf316a8cef79126cceb99e462",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666029/files/c8cfa665-0d2e-4a08-9215-cde6b880b9ba",
+        "download": "https://zenodo.org/api/records/19666029/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "c123a930-0a0f-4019-91f8-cbedcea4d513",
+      "filename": "HOWL-PHYS-6-2026.zip",
+      "filesize": 2288732,
+      "checksum": "9940ef837f9bc701ca10cf4b8c03d435",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666029/files/c123a930-0a0f-4019-91f8-cbedcea4d513",
+        "download": "https://zenodo.org/api/records/19666029/draft/files/HOWL-PHYS-6-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

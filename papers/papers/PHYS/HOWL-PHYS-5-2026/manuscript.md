@@ -1,12 +1,11 @@
 # The Running of α_EM in Integer Arithmetic
-
 ## The QED Transformation Law in Exact Rational Arithmetic Matches CODATA 2022 to 0.02 ppm
 
 **Registry:** [@HOWL-PHYS-5-2026]
 
 **Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-MATH-1-2026] → [@HOWL-MATH-2-2026] → [@HOWL-PHYS-3-2026] → [@HOWL-PHYS-4-2026] → [@HOWL-PHYS-5-2026]
 
-**DOI:** 10.5281/zenodo.19528735
+**DOI:** 10.5281/zenodo.19666016
 
 **Date:** March 2026
 
