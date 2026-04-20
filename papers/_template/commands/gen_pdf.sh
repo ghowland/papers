@@ -62,7 +62,6 @@ pandoc manuscript_fixed.md -o !manuscript.pdf \
   --citeproc \
   --bibliography=../../../references.bib \
   --metadata link-citations=true \
-  --metadata title="CKS-DWDM-6-2026" \
   -V mainfont="FreeSerif" \
   -V monofont="FreeMono" \
   -V "title:" \
@@ -77,6 +76,8 @@ pandoc manuscript_fixed.md -o !manuscript.pdf \
   --csl=../../../pass-through.csl \
   -V colorlinks=true \
   -V linkcolor=blue
+
+#REMOVED:   --metadata title="HOWL-INFO-6-2026" \
 
 # 7. Clean up
 rm manuscript_fixed.md

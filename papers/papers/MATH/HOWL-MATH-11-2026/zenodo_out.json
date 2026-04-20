@@ -1,0 +1,134 @@
+{
+  "created": "2026-04-20T14:46:06.057923+00:00",
+  "modified": "2026-04-20T14:50:03.172815+00:00",
+  "id": 19665364,
+  "conceptrecid": "19665363",
+  "metadata": {
+    "title": "\u03b2 = \u03c0/4",
+    "publication_date": "2026-04",
+    "description": "<div>\n<h1>&beta; = &pi;/4</h1>\n<h2>The Metric Conversion Factor Between L1 and L2 on Circular Geometry</h2>\n<br>\n<div>\n<div>A circle of diameter d has circumference &pi;d. Inscribe the circle in a square of side d. The square's perimeter is 4d. Now approximate the circle with a staircase &mdash; a rectilinear path that follows the circle ever more closely, each step smaller than the last. At every level of refinement the staircase perimeter remains exactly 4d. In the limit of infinitely fine steps, the staircase converges pointwise to the circle but its perimeter never converges to &pi;d. It stays at 4d.</div>\n<br>\n<div>The naive conclusion is &pi; = 4. The standard correction is that the staircase does not converge in arclength, only in position. That correction is correct but incomplete. It says what goes wrong without saying what the staircase is actually measuring.</div>\n<br>\n<div>The staircase is measuring L1 distance. The taxicab metric, the Manhattan distance, the sum of absolute coordinate displacements. In L1, the distance from (0,0) to (1,1) is 2, not &radic;2. The staircase perimeter is the L1 circumference of the circle. And the L1 circumference of a circle of diameter d is exactly 4d, regardless of how many steps the staircase has. This is not a failure of convergence. It is a correct measurement in a different metric.</div>\n</div>\n</div>\n<p><strong>Package Contents:</strong><br>* `manuscript.md`: Paper<br>* `README.md`: Overview</p>\n<p>&nbsp;</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "discrete spacetime",
+      "mathematics",
+      "zero free parameters",
+      "falsifiable physics",
+      "theoretical derivation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/MATH/HOWL-MATH-11-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "<p>HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-11-2026. Dependencies: HOWL Foundation Only.</p>",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19665364",
+      "recid": 19665364
+    }
+  },
+  "title": "\u03b2 = \u03c0/4",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19665364",
+    "html": "https://zenodo.org/deposit/19665364",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665364/files",
+    "bucket": "https://zenodo.org/api/files/8e2a97a8-5ff2-4339-8ac1-53b9827b7d09",
+    "thumb250": "https://zenodo.org/record/19665364/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19665364/thumb10",
+      "50": "https://zenodo.org/record/19665364/thumb50",
+      "100": "https://zenodo.org/record/19665364/thumb100",
+      "250": "https://zenodo.org/record/19665364/thumb250",
+      "750": "https://zenodo.org/record/19665364/thumb750",
+      "1200": "https://zenodo.org/record/19665364/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665364",
+    "latest_draft_html": "https://zenodo.org/deposit/19665364",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665364/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665364/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665364/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665364/actions/newversion"
+  },
+  "record_id": 19665364,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "e06b6c84-5f07-47df-a2ae-f8fa9565c11e",
+      "filename": "HOWL-MATH-11-2026.zip",
+      "filesize": 1760940,
+      "checksum": "a15eca61cc6a410af107810886e86fb3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/e06b6c84-5f07-47df-a2ae-f8fa9565c11e",
+        "download": "https://zenodo.org/api/records/19665364/draft/files/HOWL-MATH-11-2026.zip/content"
+      }
+    },
+    {
+      "id": "7a354260-6a9a-4a40-af5d-38efcf689801",
+      "filename": "!manuscript.pdf",
+      "filesize": 980113,
+      "checksum": "91c5be4674d6e1a437c9bec238ab0351",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/7a354260-6a9a-4a40-af5d-38efcf689801",
+        "download": "https://zenodo.org/api/records/19665364/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

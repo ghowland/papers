@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 1. Get the current directory name (e.g., CKS-MATH-0-2026)
+# 1. Get the current directory name (e.g., HOWL-MATH-1-2026)
 DIR_NAME=$(basename "$PWD")
 
 # 2. Define the ZIP filename

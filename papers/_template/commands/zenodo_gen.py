@@ -8,6 +8,9 @@ import json
 import re
 from pathlib import Path
 
+# When was it published?
+PUBLICATION_DATE = '2026-04'
+
 # Domain mapping for cleaner output
 DOMAIN_NAMES = {
     'COMP': 'Computation',
@@ -48,7 +51,7 @@ def generate_zenodo_json(paper, template_str):
     zenodo['title'] = title
     zenodo['description'] = abstract if abstract else '[Description to be added]'
     zenodo['version'] = '1.0'
-    zenodo['publication_date'] = '2026-02'
+    zenodo['publication_date'] = PUBLICATION_DATE
     
     # Update related identifiers (GitHub pathing)
     if 'related_identifiers' in zenodo and len(zenodo['related_identifiers']) > 0:

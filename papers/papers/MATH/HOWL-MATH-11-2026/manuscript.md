@@ -7,7 +7,7 @@
 
 **Date:** April 18, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19665364
 
 **Domain:** Mathematics / Metric Geometry / Foundations
 
