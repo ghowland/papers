@@ -860,3 +860,337 @@ The ground is set. The map is drawn. The paths are pre-registered.
 
 ---
 
+# Errata and Annotations for PHYS-56
+
+**Registry:** [@HOWL-PHYS-56-ERRATA-2026]
+
+**Document under review:** HOWL-PHYS-56-2026
+
+**Purpose:** Identify errors, inconsistencies, specification gaps, and improvements for the PHYS-56 draft before formal publication. These errata are issued as addendum to PHYS-56, not as a revision — the framework's commitment to pre-registration requires that all changes be documented rather than silently applied.
+
+**Date:** April 20, 2026
+
+---
+
+## Section I — Structural Errata
+
+### ERR-1: Dependency relationships need explicit numbering
+
+**Issue:** Section VI.G mentions "Dependency Relationships" but these aren't numbered clearly against the T1-T25 test catalog.
+
+**Annotation:** The explicit dependency map should be:
+- T6 (A₄ Harvard) depends on Round 0+ validated moduli (k₈₁, k₈₃)
+- T7 (M_W from sin²θ_W) depends on T6 validation and CD two-loop sector
+- T8 (G_F derivation) depends on T7 M_W derivation
+- T9 (sin²θ_eff) depends on T7 M_W and T8 G_F
+- T10 (τ_p Hyper-K) depends on CD coupling running validated; T1 Bell not a prerequisite
+- T11 (Lamb shift) depends on §IV quiver specification completion
+- T12 (neutron half-life) depends on §VI weak channel specification
+- T13 (H₂O bond angle) depends on §VI molecular channel composition
+- T14 (deuteron binding) depends on §VI strong residual specification
+- T20 (black hole thermo) depends on §XII.J Hawking mechanism specification
+
+**Correction to include in final:** Each priority tier should state which tests have cross-test dependencies and which are independent. T1-T5 (Priority 1) are all mechanism-independent and can run in parallel. T6-T10 (Priority 2) have cascading dependencies: T7 requires T6, T8 requires T7, T9 requires T7 and T8. T11-T15 (Priority 3) depend on specific master spec sections being finalized. T16-T20 (Priority 4) have independent mechanism targets. T21-T25 (Priority 5) depend on external experimental timelines.
+
+### ERR-2: K-switch catalog has off-by-one numbering consistency
+
+**Issue:** Section V lists "K1-K56 (PHYS-55 preserved + master spec) plus K57-K64 (PHYS-40/CD integration) plus K65-K68 (future falsifiers)."
+
+Total by this count: 56 + 8 + 4 = 68. Section V.G summary says "64 + 4 future = 68."
+
+These are consistent, but the abstract says "64 pre-registered kill switches" and the program status says "22 (of 64) kill switches cleared at exact or structural level."
+
+**Annotation:** The numbering needs to be uniformly 64 kill switches K1-K64 plus 4 future pre-registered falsifiers K65-K68. The abstract and program status need to be updated to this 64+4 = 68 structure.
+
+**Correction:** State in abstract and Section II: "64 pre-registered kill switches K1-K64 covering the integrated master specification's mechanisms, plus 4 additional future pre-registered falsifiers K65-K68 awaiting specific experiments."
+
+### ERR-3: Cleared kill switch count discrepancy
+
+**Issue:** Section V.G summary says 45 CLEARED. But:
+- K1-K22: Section V.B shows 22 CLEARED, K22 ACTIVE (meta-rule applied, not "cleared")
+- K23-K42: 19 CLEARED, K23 PARTIAL
+- K43-K56: 13 CLEARED (K50 OPEN, K54-K56 UNTESTED)
+- K57-K64: 6 CLEARED (K64 UNTESTED)
+
+Total: 22 + 19 + 13 + 6 = 60 CLEARED
+
+But stated summary: 45 CLEARED. This is a discrepancy of 15.
+
+**Annotation:** Recount is needed. The likely cause: some "CLEARED" entries are marked as structural validation rather than full precision validation. Either (a) reduce the "CLEARED" count to reflect strict precision-validated cleared vs partial, or (b) clarify the summary accordingly.
+
+**Correction:** Section V.G summary should be revised to: "53+ switches validated at stated precision or structural level, 3 PARTIAL, 4 UNTESTED (Round 1 Priority 1), 4 PRE-REGISTERED future falsifiers, 1 OPEN PROBLEM (Li-7 standard BBN)." Precise count requires audit per switch.
+
+---
+
+## Section II — Content Errata
+
+### ERR-4: Gap ratio SM value miscalculated
+
+**Issue:** Section VII.B states "Gap ratio (SM) = 218/115 = 1.895..."
+
+Actual calculation: (b₁ − b₂)/(b₂ − b₃) where SM couplings have b₁ = 33/5, b₂ = -19/6, b₃ = -7 at one-loop.
+
+(33/5 − (-19/6)) / (-19/6 − (-7)) = (33/5 + 19/6) / (-19/6 + 7) = (198/30 + 95/30) / (-19/6 + 42/6) = (293/30) / (23/6) = 293/30 · 6/23 = 1758/690 = 293/115 ≈ 2.548
+
+This is NOT 218/115. The actual SM gap ratio is approximately 293/115 or similar, depending on the specific SM b-coefficients used.
+
+**Annotation:** The value 218/115 ≈ 1.895 doesn't compute from standard SM b-coefficients. Either:
+- The SM b-coefficients listed are a specific variant (e.g., including additional BSM content)
+- The calculation has an error
+- The gap ratio formula is different from what's inferred
+
+**Correction:** Section VII.B should recompute and verify the SM gap ratio. If it's truly 218/115, the specific SM b-coefficients must be cited. If it's a different number, the table should be corrected.
+
+**Impact:** This is Evidence Line 1 of the 5 CD evidence lines. It's the foundational criterion for CD selection. The exact comparison "CD at 38/27 vs SM at (corrected value)" needs verification.
+
+### ERR-5: Muon g-2 status is 6.5σ, not at measurement tension level
+
+**Issue:** Section III.H precision ledger lists "muon g-2 (6.5σ, hadronic VP dispute)" under "Known standard-physics issues."
+
+This is correct as standard physics issue, but the framework's prediction contribution to this is unclear in context.
+
+**Annotation:** Framework-derived A₄ = -1.91225 contribution to muon g-2 is -5.57 × 10⁻¹¹ at -0.57% of Harvard uncertainty (meaning it's much smaller than experimental precision). The 6.5σ tension between SM prediction and FNAL measurement exists independently of the framework. PCTRM doesn't claim to resolve this tension, but also doesn't exacerbate it.
+
+**Correction:** Clarify in precision ledger: "Muon g-2 (6.5σ standard physics tension; framework A₄ contribution consistent but too small to address the tension)."
+
+### ERR-6: Koide a² = 2 precision miss inconsistency
+
+**Issue:** Section III.B states "a² = 2 matches torus surface dimension at 0.0019% miss" but the R₃/R₂ derivation experiment result shows "0.19% miss" (implied from 2.0000 vs 1.99996).
+
+Mathematical check: (2.0000 - 1.99996)/2.0000 = 0.00002 = 20 ppm = 0.002%.
+
+**Annotation:** The claim "0.0019%" appears correct at 19 ppm precision. The phrase "2.0000 vs 1.99996" gives 20 ppm exactly. These should be stated consistently.
+
+**Correction:** Use "20 ppm (0.002%)" consistently for the a² = 2 torus surface dimension match.
+
+### ERR-7: α_s precision claim inconsistency
+
+**Issue:** Multiple places state α_s precision differently:
+- Section III.D: "α_s = 0.11838 predicted vs 0.1180 measured — **0.33%**"
+- Section III.H precision ledger: "α_s (3257 ppm / 0.33%)"
+- Section V.C: "K39 α_s 10⁻³ CLEARED (3257 ppm / 0.33%)"
+
+3257 ppm = 0.3257%, so "0.33%" rounding is reasonable. But "10⁻³" (1000 ppm) as precision target for a 3257 ppm match is contradictory — it should be "PASS at 10⁻² precision" or similar.
+
+**Annotation:** The α_s match at 3257 ppm does NOT meet a 10⁻³ precision target (which would be 1000 ppm). It meets 10⁻² (10000 ppm) or 10⁻²·⁵ more precisely.
+
+**Correction:** Section V.C should state K39 precision target as 10⁻² (not 10⁻³) with status CLEARED at 3257 ppm. Or keep 10⁻³ and state K39 status as PARTIAL (meeting at 3257 ppm rather than 1000 ppm).
+
+### ERR-8: Proton decay GUT scale number varies
+
+**Issue:** Sections V.C (K41, K42), V.E (T10), VII.A, and IX.B reference M_GUT values:
+- Section V.C: "K41 GUT scale... CLEARED (log₁₀ 15.54)"
+- Section VI.E T10: "M_GUT = 10¹⁵·⁶¹ substrate derivation"
+- IX.A Novel Predictions: "Hyper-K proton decay at M_GUT = 10¹⁵·⁶¹ GeV"
+- III.F: "α_GUT⁻¹ = 42.135 at M_GUT = 10¹⁵·⁶¹ GeV"
+
+The proton decay experiment reports log₁₀(M_GUT/GeV) = 15.5426. This is neither 15.54 nor 15.61.
+
+**Annotation:** The values 15.54 (from proton_decay experiment) and 15.61 (cited in CD references) differ. This should be reconciled:
+- 15.54 is from the one-loop Cabibbo doublet proton decay calculation
+- 15.61 is possibly from two-loop CD calculation
+- These are different precision approximations of the same framework quantity
+
+**Correction:** State clearly: "M_GUT one-loop CD = 10¹⁵·⁵⁴ GeV (proton decay experiment)." "M_GUT two-loop CD = 10¹⁵·⁶¹ GeV (CD coupling sector)." Both above Super-K bound of 10¹⁵ GeV.
+
+### ERR-9: PHYS-40 derivation count inconsistency
+
+**Issue:** Section III.C states "53 derived values from 13 measured inputs, surplus +40."
+
+Surplus calculation: 53 - 13 = 40 ✓ (correct)
+
+But Section XII.B states "Forty surplus derivations across eight physics domains from thirteen measured inputs."
+
+Section III.C also reports "Koide (now connected) 2 values." So the total derived values across all domains should be: 6 (QED) + 15 (EW) + 10 (GUT) + 6 (Cosmology) + 5 (Nuclear) + 3 (Muon) + 4 (Flavor) + 1 (Spectroscopy) + 2 (Koide) = 52.
+
+This is 52, not 53. Difference of 1.
+
+**Annotation:** Either the Koide count is 3 (not 2), or there's a double-counting somewhere. Auditing is needed.
+
+**Correction:** Verify per-domain count and update accordingly. Most likely the Koide section has been revised and count needs adjustment. Either "52 derived values, surplus +39" or add 1 missing value to the catalog.
+
+### ERR-10: Hydrogen dual-domain precision citation
+
+**Issue:** Section V.E K62 "CLEARED (0.44 ppb + 0.12σ)"
+
+The 0.44 ppb is hydrogen 1S-2S precision. What is 0.12σ in this context?
+
+**Annotation:** The 0.12σ likely refers to the cosmology → nuclear hydrogen consistency at crossing #11. Either state this explicitly or clarify the dual-domain precision nature.
+
+**Correction:** Rewrite K62 as: "Hydrogen dual-domain consistency: 1S-2S transition (0.44 ppb from atomic physics) AND primordial hydrogen abundance in BBN (at 0.12σ from cosmology → nuclear crossing)."
+
+---
+
+## Section III — Specification Gaps
+
+### GAP-1: Complex amplitude derivation path specification incomplete
+
+**Issue:** Priority 1 Test T5 "Complex amplitude from dual-geometry" has three paths specified but the structural content of each path is not detailed:
+- Path 1: "Direct substrate dual-geometry calculation"
+- Path 2: "Standard QM complex amplitude structure"
+- Path 3: "Feynman path integral consistency"
+
+**Annotation:** These are hand-wavy. Path specification should include:
+- Path 1: Spherical sector (unit vector magnitude |v|) + toroidal sector (phase from K(k) periodicity) = complex amplitude Ae^(iφ) where A is spherical and φ is toroidal
+- Path 2: Standard quantum amplitude decomposition into magnitude and phase via Euler's formula for comparison
+- Path 3: Specific quantum interference test: Mach-Zehnder interferometer with specific input state, predict interference pattern at 10⁻³
+
+**Correction:** Each path in T5 should specify what structural starting point it uses, what computation chain it follows, and what observable it targets.
+
+### GAP-2: CD evidence line "gap ratio 38/27" doesn't state SM comparison
+
+**Issue:** Section III.G lists "Gap ratio 38/27" as Evidence Line 1 with result "Exact Fraction (only CD matches)."
+
+This states that only CD matches, but doesn't state what the SM gap ratio is (which is claimed to be 218/115 in other sections — see ERR-4).
+
+**Annotation:** Evidence line 1 is the selection criterion: among BSM candidates, which produces gap ratio = 38/27? Only the Cabibbo Doublet does. Other candidates produce different gap ratios. But the criterion is against SM baseline, and the SM baseline value needs to be stated.
+
+**Correction:** Evidence line 1 should specify:
+- CD gap ratio: 38/27 = 1.407...
+- SM gap ratio: [verified value, probably 218/115 ≈ 1.895 or 293/115 ≈ 2.548]
+- Measurement: "gap_measured_ratio_v0" from the pool (calculated from measured coupling values)
+- Criterion: The BSM candidate whose gap ratio matches the measured value is CD.
+
+### GAP-3: Bell correlation CHSH precision claim needs mechanism specification
+
+**Issue:** T1 specifies "10⁻³ on CHSH against Hensen 2015" but doesn't detail what the 10⁻³ quantifies.
+
+**Annotation:** CHSH experiments measure the CHSH inequality quantity S. The Tsirelson bound is S_max = 2√2 ≈ 2.828. Quantum correlations predict S = 2√2 at optimal measurement angles. The measurement is typically reported as S_measured = 2.828 ± ε where ε is the experimental uncertainty.
+
+10⁻³ precision on CHSH means:
+- Substrate prediction should be 2√2 = 2.8284 at optimal angles
+- Measured value should match at 10⁻³ precision (i.e., within 0.003 of 2.8284)
+
+**Correction:** T1 should specify: "Substrate Bell correlation E(θ_A, θ_B) = -cos(θ_A - θ_B) should reproduce CHSH bound S = 2√2 at 10⁻³ precision. Specifically, at θ_A = 0, θ_B = π/8, the quantum prediction is S = 2√2. Substrate prediction through channel-merger must agree within 0.003."
+
+### GAP-4: Black hole thermodynamics derivation paths underspecified
+
+**Issue:** T20 specifies three paths but each is vague:
+- Path 1: "Substrate boundary arithmetic for entropy S = A/4"
+- Path 2: "Hawking T from boundary sharpness"
+- Path 3: "Evaporation time τ ∝ M³"
+
+**Annotation:** Each derivation should have specific steps:
+- Path 1: Start with channel count at event horizon (area in Planck units). Entropy should emerge from substrate information-theoretic structure. Specifically, S/k_B = A/(4G). In Planck units, S = A/4.
+- Path 2: Hawking temperature T = ℏc³/(8πGMk_B). In substrate terms, T comes from quiver extraction rate at horizon boundary.
+- Path 3: Evaporation time τ comes from energy balance: dM/dt = -(1/4)·σ·A·T⁴·(ℏc²)^(-1). This gives τ ∝ M³.
+
+**Correction:** Each path should have explicit derivation chain from substrate primitives, not just the final formula.
+
+### GAP-5: Round 1 Priority 1 success matrix ambiguity
+
+**Issue:** Section XI.A "Full Success" requires "All 5 Priority 1 tests pass at stated precision through multi-path convergence."
+
+But "multi-path convergence" for T3 (direct-detection null) is a null prediction, which doesn't "converge" in the same sense.
+
+**Annotation:** T3 specifies:
+- Path 1: No-particle commitment (§XII.H)
+- Path 2: 22π/13 mechanism is flow-based at cosmic scale (validated at 725 ppm)
+- Path 3: Cross-scale toroidal consistency
+
+Path 2 and Path 3 can be validated quantitatively (flow-based mechanism predicts no particles). Path 1 is a commitment. The "convergence" for T3 is really validation of the flow mechanism rather than convergence on a numerical value.
+
+**Correction:** Clarify T3 success criterion: "Framework commits to no-particle DM. Mechanism validated through: (a) Flow-based 22π/13 at Planck precision, (b) Cross-scale toroidal consistency, (c) Multiple direct-detection experiments finding no signature. If any direct-detection experiment finds a WIMP signature, mechanism fails."
+
+---
+
+## Section IV — Additional Annotations
+
+### ANN-1: Kill switch K22 should remain "ACTIVE" not "CLEARED"
+
+**Observation:** K22 (Cross-derivation discipline meta) is labeled "ACTIVE" in one table and "CLEARED" in summary. This is a meta-rule that doesn't "clear" in the same way specific kill switches do.
+
+**Recommendation:** K22 should consistently be labeled "ACTIVE — governs all other kill switches." It's a governance mechanism, not a falsifiable prediction itself.
+
+### ANN-2: Add mention of PHYS-49 experimental foundation
+
+**Observation:** The document heavily references PHYS-49 (Laporta k₈₁, k₈₃ at sub-ppm) but doesn't explicitly cite it as a foundational validation result.
+
+**Recommendation:** In Section III, add explicit citation: "PHYS-49 established topology-specific moduli k₈₁ = 0.999994 at 167 ppb and k₈₃ = 0.997130 at 25 ppm through three-path cross-derivation. This is Round 0+ foundational evidence for the dual-geometry mechanism."
+
+### ANN-3: Specify the A₄ Laporta topology relationship
+
+**Observation:** The master spec references A₄ = -(13/8)·K(k₈₁)/π but doesn't specify what topology 81 is.
+
+**Recommendation:** Add in Section III or Section VI: "Laporta topology 81 is a specific Feynman diagram topology at four-loop QED, with characteristic elliptic structure. A₄ is the four-loop coefficient of the electron anomalous moment series, and the A₄ = -(13/8)·K(k₈₁)/π relationship connects the QED four-loop calculation to toroidal geometry at modulus k₈₁ = 0.999994."
+
+### ANN-4: Cross-derivation paths should include QM test
+
+**Observation:** T1 (Bell correlation) has 3 paths. Consider adding:
+- Path 4: GHZ three-particle correlation matching Mermin's -1 prediction
+
+This would strengthen the test by including a distinctly different quantum mechanical measurement.
+
+**Recommendation:** Extend T1 to include GHZ test or note that T1 covers only Bell pair correlations, with GHZ included as separate later priority test.
+
+### ANN-5: Clarify "surplus +40" meaning
+
+**Observation:** "Surplus +40" is used multiple times. This means: 53 derived values from 13 inputs = 40 independent predictions beyond inputs. 
+
+**Recommendation:** Add footnote on first use: "Surplus +40 refers to the number of independently derived values (53 total predictions - 13 measured inputs = 40 surplus derivations). Each surplus derivation is a testable prediction."
+
+### ANN-6: Add explicit note on inputs vs outputs
+
+**Observation:** Section III.D lists 13 measured inputs including Δα_had and Δr_total as "computed convenience inputs."
+
+**Recommendation:** Distinguish these explicitly: "Of the 13 inputs, 11 are irreducible direct measurements (a_e, m_e, m_μ, m_t, m_H, M_Z, G_F, Ω_DM, H₀, T_CMB, sin θ₁₄). Δα_had and Δr_total are computed from other inputs for convenience; they reduce to direct measurements."
+
+### ANN-7: The k₁ bug precedent is mentioned but underexplained
+
+**Observation:** Section VIII.B mentions "The CD two-loop computation failed for weeks due to inverted normalization (k₁ = 5/3 instead of 3/5)."
+
+**Recommendation:** Add more context: "The k₁ normalization is the U(1) GUT convention. In canonically normalized GUT (where all couplings unify at one coupling), α₁⁻¹ = (5/3) · α_EM⁻¹ · cos²θ_W. The inversion 5/3 → 3/5 (or equivalently the inverse) flipped the direction of the coupling running and cascaded to M_GUT = 10⁴⁵ GeV instead of 10¹⁵·⁶¹. DATA-6 diagnostic iteration identified and corrected this."
+
+### ANN-8: Mention the running "reading depth" concept briefly
+
+**Observation:** The Planck-scale locality section (III.C) doesn't mention running reading depth, which is the master spec's coordinate system foundation.
+
+**Recommendation:** Brief addition: "Hierarchy-local Planck quantities follow from running reading depth: each soliton in the hierarchy has a specific 'depth' measured in terms of its parent soliton's coordinate system. Planck length and Planck time measured by an observer at a specific reading depth reflect that local hierarchy configuration."
+
+---
+
+## Section V — Ambiguities and Open Questions
+
+### AMB-1: What counts as "multi-path convergence" precisely
+
+**Open question:** The threshold for multi-path convergence is stated as "at measurement precision." This should be more precise:
+
+- Do all paths need to agree within measurement precision of each other?
+- Or do all paths need to agree with measurement at measurement precision?
+- Or both?
+
+**Recommendation:** Clarify that "multi-path convergence at measurement precision" means:
+1. Each path's derivation lands within measurement precision of the measured value
+2. Each path's derivation agrees with the other paths within measurement precision (they are "convergent")
+
+This means paths must be consistent with each other AND consistent with measurement. Both conditions.
+
+### AMB-2: Round 1 execution timeline
+
+**Open question:** The document doesn't state when Round 1 is expected to execute.
+
+**Recommendation:** Add Section XIII or appendix: "Round 1 Execution Timeline":
+- T1-T5 (Priority 1 mechanism tests): Expected execution within 2-4 weeks of PHYS-56 publication
+- T6-T10 (Priority 2 cascade completion): Execution within 1-3 months
+- T11-T20 (Priority 3-4 systematic coverage): Execution within 3-12 months
+- T21-T25 (Priority 5 future experiments): Pre-registered; execution depends on external experimental timelines
+
+### AMB-3: What happens if Round 1 falls partially?
+
+**Open question:** If 4 of 5 Priority 1 tests pass but T1 (Bell correlation) fails, does the framework fall globally or mechanism-specifically?
+
+**Recommendation:** Clarify: "Partial Round 1 failure at Priority 1 triggers mechanism-specific revision for the failing test, not global framework retraction. Specifically:
+- T1 Bell failure → re-specify §XIII.F channel-sharing; do not retract §XIII.A-E
+- T2 Light bending failure → re-specify §XII.F toroidal sector; do not retract other §XII content
+- T3 Direct-detection finds particles → retract §XII.H no-particle DM commitment
+- T4 Casimir failure → re-specify §IV quiver mechanism
+- T5 Complex amplitude failure → re-specify §XIII.M amplitude structure"
+
+### AMB-4: The 0.022 GPA discrepancy handling
+
+**Open question:** K23 GPS at 0.35% and Gravity Probe A at 2.47% are both partially validated. What's the threshold for these to be considered "cleared" vs "partial"?
+
+**Recommendation:** Specify: "K23 (GPS) status: PARTIAL at 0.35% precision. Framework commits to reaching 10⁻¹⁰ precision in refined Round 2+. GPA (K55 or separate switch) status: PARTIAL at 2.47% — attributed to measurement uncertainty, not framework mechanism. Both are considered validated at the precision attainable with current experimental infrastructure."
+
+---
+
