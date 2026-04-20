@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:18:50.518164+00:00",
-  "modified": "2026-04-12T07:18:50.841181+00:00",
-  "id": 19532069,
+  "created": "2026-04-20T15:25:39.440395+00:00",
+  "modified": "2026-04-20T15:25:39.683896+00:00",
+  "id": 19665849,
   "conceptrecid": "19532068",
-  "doi": "10.5281/zenodo.19532069",
   "conceptdoi": "10.5281/zenodo.19532068",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532069",
   "metadata": {
     "title": "Integer Rational Representations in Q335: Integer Rational Database",
-    "doi": "10.5281/zenodo.19532069",
-    "publication_date": "2026-04",
     "description": "<h2>Integer Rational Representations in Q335: Integer Rational Database</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>This paper converts every entry from HOWL-DATA-1 into the Q335 = 2\u00b3\u00b3\u2075 integer rational basis established in MATH-4 and tests whether any alternative basis reveals hidden structure. 107 values spanning SI constants, measured fundamental parameters, electroweak observables, quark masses, hadron masses, atomic frequencies, analytical constants, and engineering data are converted. Each value v becomes the integer pair (numerator, 2\u00b3\u00b3\u2075) where numerator = round(v \u00d7 2\u00b3\u00b3\u2075), and the reconstruction v_recon = numerator/2\u00b3\u00b3\u2075 is verified against the original to all source digits.\n\nThree tests are performed. First, Q335 factorization: extract small prime factors from each numerator and measure the cofactor. Second, multi-base scan: repeat the conversion in 19 bases (primes 2 through 37 plus composites 6, 10, 12, 30, 42, 60, 210) and compare cofactor sizes. Third, control test: run 90 generic irrationals (\u221aprimes, \u221bprimes, ln primes, log ratios, special function values) through the same multi-base scan and compare to the physics constants.\n\nResults: Q335 faithfully represents all 107 entries. No measured fundamental constant has a compact Q335 numerator \u2014 all have 89-106 digit cofactors after small-prime extraction. The multi-base scan shows composite bases (60\u2075\u2070, 210\u00b3\u2078) give 13-15 digit average improvement over 2\u00b3\u00b3\u2075, but the control test (z-scores 0.77 and 1.80) confirms this improvement is a generic mathematical property of composite denominators, not specific to physics constants. Continued fraction analysis finds no anomalously simple rational approximation for any measured constant. The Koide ratio's CF partial quotient a\u2084 = 18050 quantifies the known proximity to 2/3.\n\nThe measured constants of the Standard Model have no preferred numerical base and no compact rational representation in any basis tested. Q335 = 2\u00b3\u00b3\u2075 is confirmed as the working basis for the HOWL series.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-DATA-2-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-DATA-1-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Documentation</p>",
     "access_right": "open",
     "creators": [
@@ -49,7 +45,6 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
@@ -67,41 +62,34 @@
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532069",
-      "recid": 19532069
+      "doi": "10.5281/zenodo.19665849",
+      "recid": 19665849
     }
   },
   "title": "Integer Rational Representations in Q335: Integer Rational Database",
   "links": {
-    "self": "https://zenodo.org/api/records/19532069",
-    "html": "https://zenodo.org/records/19532069",
-    "doi": "https://doi.org/10.5281/zenodo.19532069",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532068",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532069.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532068.svg",
-    "files": "https://zenodo.org/api/records/19532069/files",
-    "bucket": "https://zenodo.org/api/files/57a506ae-447f-44f6-be24-86c2657834d9",
-    "thumb250": "https://zenodo.org/record/19532069/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19665849",
+    "html": "https://zenodo.org/deposit/19665849",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19665849/files",
+    "bucket": "https://zenodo.org/api/files/1a87afd3-6fba-4a53-a97f-77c7e26cd23c",
+    "thumb250": "https://zenodo.org/record/19665849/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532069/thumb10",
-      "50": "https://zenodo.org/record/19532069/thumb50",
-      "100": "https://zenodo.org/record/19532069/thumb100",
-      "250": "https://zenodo.org/record/19532069/thumb250",
-      "750": "https://zenodo.org/record/19532069/thumb750",
-      "1200": "https://zenodo.org/record/19532069/thumb1200"
+      "10": "https://zenodo.org/record/19665849/thumb10",
+      "50": "https://zenodo.org/record/19665849/thumb50",
+      "100": "https://zenodo.org/record/19665849/thumb100",
+      "250": "https://zenodo.org/record/19665849/thumb250",
+      "750": "https://zenodo.org/record/19665849/thumb750",
+      "1200": "https://zenodo.org/record/19665849/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532069",
-    "latest_draft_html": "https://zenodo.org/deposit/19532069",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532069/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532069/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532069/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532069/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532069",
-    "record_html": "https://zenodo.org/record/19532069",
-    "latest": "https://zenodo.org/api/records/19532069/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532069/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665849",
+    "latest_draft_html": "https://zenodo.org/deposit/19665849",
+    "publish": "https://zenodo.org/api/deposit/depositions/19665849/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19665849/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19665849/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19665849/actions/newversion"
   },
-  "record_id": 19532069,
+  "record_id": 19665849,
   "owner": 1539729,
   "files": [
     {
@@ -110,8 +98,8 @@
       "filesize": 228823,
       "checksum": "063df4efc27af5567db5402b19cd6b53",
       "links": {
-        "self": "https://zenodo.org/api/records/19532069/files/80405316-c07d-43b4-969e-33bb18340e51",
-        "download": "https://zenodo.org/api/records/19532069/draft/files/HOWL-DATA-2-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665849/files/80405316-c07d-43b4-969e-33bb18340e51",
+        "download": "https://zenodo.org/api/records/19665849/draft/files/HOWL-DATA-2-2026.zip/content"
       }
     },
     {
@@ -120,11 +108,11 @@
       "filesize": 104247,
       "checksum": "21166cfb1be7094403106bceba715a24",
       "links": {
-        "self": "https://zenodo.org/api/records/19532069/files/7a794b95-c4c4-4bcf-80bb-264e38629694",
-        "download": "https://zenodo.org/api/records/19532069/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665849/files/7a794b95-c4c4-4bcf-80bb-264e38629694",
+        "download": "https://zenodo.org/api/records/19665849/draft/files/!manuscript.pdf/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }

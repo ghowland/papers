@@ -1,11 +1,11 @@
 # Verified Integer Rational Database
-## Round Three
+## DATA-3
 
 **Registry:** [@HOWL-DATA-3-2026]
 
 **Series Path:** [@HOWL-DATA-1-2026] → [@HOWL-DATA-2-2026] → [@HOWL-DATA-3-2026]
 
-**DOI:** 10.5281/zenodo.19528532
+**DOI:** 10.5281/zenodo.19532071
 
 **Date:** April 1 2026
 
