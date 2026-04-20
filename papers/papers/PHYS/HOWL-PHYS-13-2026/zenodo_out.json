@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:53:51.456185+00:00",
+  "modified": "2026-04-20T15:53:51.648365+00:00",
+  "id": 19666214,
+  "conceptrecid": "19532216",
+  "conceptdoi": "10.5281/zenodo.19532216",
+  "metadata": {
+    "title": "Gauge Coupling Unification and Minimal BSM Content: 218/115 meets the universe.",
+    "description": "<h2>Gauge Coupling Unification and Minimal BSM Content: 218/115 meets the universe.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The one-loop beta coefficients of the Standard Model are exact rationals determined by the gauge group and particle content: b\u2081 = 41/10, b\u2082 = \u221219/6, b\u2083 = \u22127. From these three numbers, a single rational \u2014 the gap ratio (b\u2081\u2212b\u2082)/(b\u2082\u2212b\u2083) = 218/115 = 1.896 \u2014 predicts whether the three gauge couplings converge to a unified value at high energy. The measured gap ratio from DATA-3 couplings is 1.358. The SM overshoots by 40%. The Standard Model does not unify.\n\nA finite enumeration of 15 single-multiplet BSM extensions, verified by reproducing the known MSSM result (gap = 7/5 = 1.400, near-unification at M_GUT = 10^17.3 GeV, \u0394(1/\u03b1\u2083) = \u22120.69), identifies one minimal solution: a vector-like quark doublet in the (3,2,1/6) representation \u2014 a single new particle with the quantum numbers of the left-handed quark doublet. Its gap ratio is 1.407 (distance 0.049 from measured), comparable to the full MSSM (distance 0.042), at M_GUT = 10^15.5 GeV on the proton decay boundary testable by Hyper-Kamiokande. No other single multiplet comes within 0.12 of the measured gap ratio.\n\nThe MSSM gap ratio 7/5 \u2014 a ratio of single-digit integers \u2014 is strikingly simpler than the SM's 218/115. This simplification is itself a measure of how much supersymmetry improves the unification structure. But the VL quark doublet achieves comparable unification quality with one new particle instead of dozens, demonstrating that the MSSM's unification success is not unique to supersymmetry.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-13-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-13-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666214",
+      "recid": 19666214
+    }
+  },
+  "title": "Gauge Coupling Unification and Minimal BSM Content: 218/115 meets the universe.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666214",
+    "html": "https://zenodo.org/deposit/19666214",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666214/files",
+    "bucket": "https://zenodo.org/api/files/b5d17286-2beb-499f-9d61-a7c5c8375c05",
+    "thumb250": "https://zenodo.org/record/19666214/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666214/thumb10",
+      "50": "https://zenodo.org/record/19666214/thumb50",
+      "100": "https://zenodo.org/record/19666214/thumb100",
+      "250": "https://zenodo.org/record/19666214/thumb250",
+      "750": "https://zenodo.org/record/19666214/thumb750",
+      "1200": "https://zenodo.org/record/19666214/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666214",
+    "latest_draft_html": "https://zenodo.org/deposit/19666214",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666214/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666214/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666214/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666214/actions/newversion"
+  },
+  "record_id": 19666214,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "f934bcef-d2bf-4178-b3c5-c98650971001",
+      "filename": "!manuscript.pdf",
+      "filesize": 1178883,
+      "checksum": "7613faf4046148b09d3edc9efad96d4c",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666214/files/f934bcef-d2bf-4178-b3c5-c98650971001",
+        "download": "https://zenodo.org/api/records/19666214/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "22303fef-ed8b-4bb3-b0ae-1417b66489e1",
+      "filename": "HOWL-PHYS-13-2026.zip",
+      "filesize": 2316446,
+      "checksum": "bd77ce457fc095e9ca5fc72e4040b131",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666214/files/22303fef-ed8b-4bb3-b0ae-1417b66489e1",
+        "download": "https://zenodo.org/api/records/19666214/draft/files/HOWL-PHYS-13-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

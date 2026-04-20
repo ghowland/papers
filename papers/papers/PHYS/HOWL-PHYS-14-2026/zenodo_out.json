@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:54:41.737792+00:00",
+  "modified": "2026-04-20T15:54:41.986911+00:00",
+  "id": 19666219,
+  "conceptrecid": "19532220",
+  "conceptdoi": "10.5281/zenodo.19532220",
+  "metadata": {
+    "title": "The Unified Transformation Map: Gauge Coupling Unification and Minimal BSM Content",
+    "description": "<h2>The Unified Transformation Map: Gauge Coupling Unification and Minimal BSM Content</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The Standard Model's gauge couplings run from atomic scales to grand unification through a sequence of domains separated by mass thresholds. At each threshold, one particle activates and the beta coefficients change by exact rationals determined by that particle's quantum numbers. This paper compiles the complete sequence \u2014 every domain, every threshold, every integer \u2014 into a single operational map from m_e to M_GUT.\n\nThe paper's finding is the cumulative gap ratio: starting from gauge bosons alone and adding particles one at a time, the gap ratio (the unification test from PHYS-13) evolves from 22/7 = 3.143 with no fermions to 218/115 = 1.896 with the full SM content. The trajectory reveals which particles drive the unification failure. The top quark pushes the gap ratio TOWARD the measured 1.358, while each quark generation's contribution to b\u2083 (the SU(3) beta function) pushes it AWAY. The Higgs doublet has negligible effect. The net overshoot of 218/115 vs 1.358 comes from the cumulative fermion contribution to b\u2081 (the U(1) beta function) outpacing the contribution to b\u2082 and b\u2083.\n\nThe map includes the confinement wall from PHYS-6 as the one domain where perturbative rules break down, the EW phase transition at M_W where the gauge structure changes from SU(3)\u00d7U(1)_em to SU(3)\u00d7SU(2)\u00d7U(1)_Y, and the VL quark doublet overlay from PHYS-13 showing how one additional threshold shifts the gap ratio from 1.896 to 1.407. An operational lookup function encodes the entire map for future sessions.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-14-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-12-2026, HOWL-PHYS-13-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-14-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666219",
+      "recid": 19666219
+    }
+  },
+  "title": "The Unified Transformation Map: Gauge Coupling Unification and Minimal BSM Content",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666219",
+    "html": "https://zenodo.org/deposit/19666219",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666219/files",
+    "bucket": "https://zenodo.org/api/files/54c00c51-c45d-4dc9-8cd6-cf90154d8a0f",
+    "thumb250": "https://zenodo.org/record/19666219/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666219/thumb10",
+      "50": "https://zenodo.org/record/19666219/thumb50",
+      "100": "https://zenodo.org/record/19666219/thumb100",
+      "250": "https://zenodo.org/record/19666219/thumb250",
+      "750": "https://zenodo.org/record/19666219/thumb750",
+      "1200": "https://zenodo.org/record/19666219/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666219",
+    "latest_draft_html": "https://zenodo.org/deposit/19666219",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666219/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666219/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666219/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666219/actions/newversion"
+  },
+  "record_id": 19666219,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "000a7bd0-76be-49a4-bebc-973a0e531618",
+      "filename": "HOWL-PHYS-14-2026.zip",
+      "filesize": 1914588,
+      "checksum": "2234df2161f92ce234f6cd007502bdfc",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666219/files/000a7bd0-76be-49a4-bebc-973a0e531618",
+        "download": "https://zenodo.org/api/records/19666219/draft/files/HOWL-PHYS-14-2026.zip/content"
+      }
+    },
+    {
+      "id": "a2ee1015-916f-4435-9d81-503c19ded3d8",
+      "filename": "!manuscript.pdf",
+      "filesize": 1107521,
+      "checksum": "861b48a2b112be380c8b1ebfe025fb9c",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666219/files/a2ee1015-916f-4435-9d81-503c19ded3d8",
+        "download": "https://zenodo.org/api/records/19666219/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

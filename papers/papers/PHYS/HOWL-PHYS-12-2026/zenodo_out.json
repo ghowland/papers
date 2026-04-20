@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T15:52:42.598039+00:00",
+  "modified": "2026-04-20T15:52:42.832888+00:00",
+  "id": 19666205,
+  "conceptrecid": "19532214",
+  "conceptdoi": "10.5281/zenodo.19532214",
+  "metadata": {
+    "title": "Electroweak Integer Anatomy: The transformation laws are integers. The values are not.",
+    "description": "<h2>Electroweak Integer Anatomy: The transformation laws are integers. The values are not.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>This paper extends the HOWL Fraction arithmetic framework from QED into the electroweak sector for the first time. Two computations expose the integer structure of the Standard Model at different magnifications.\n\nFirst, 11 LEP/SLD Z-pole observables are computed from 7 DATA-3 inputs (G_F, M_Z, \u03b1\u207b\u00b9, sin\u00b2\u03b8_W, \u03b1_s, m_t, m_H) at tree level plus leading \u0394\u03c1 correction. Every coefficient in every formula traces to the gauge group SU(3)\u00d7SU(2)\u00d7U(1), the generation count, or the loop expansion order. The transcendental content is minimal: only \u03c0 and \u221a2 from the Q335 basis enter the electroweak computation. All 14 checks pass. The overconstrained system extracts sin\u00b2\u03b8_W independently from two observables (A_l and A_FB^l), obtaining 0.23098 and 0.23102 \u2014 agreeing with each other to 3.9 \u00d7 10\u207b\u2075 and shifted from the MS-bar input by the expected one-loop correction of ~2 \u00d7 10\u207b\u2074. The M_W prediction at 80326 MeV (measured: 80369) demonstrates the top quark's radiative correction in exact arithmetic.\n\nSecond, the QED 2-loop coefficient A\u2082 = 197/144 + (3/4)\u03b6(3) + R\u2084(8/3 \u2212 16ln 2) is decomposed into rational, number-theoretic, and geometric pieces. The geometric piece (carried by R\u2084 = \u03c0\u00b2/32, the 4-ball remainder from MATH-5) dominates at magnitude 2.598 \u2014 nearly 8 times the net A\u2082 = \u22120.328 \u2014 and cancels 87.4% against the positive rational and number-theoretic pieces. A\u2082 is accidentally small because geometry nearly cancels arithmetic.\n\nBoth computations demonstrate the PHYS-2 thesis quantitatively: the transformation laws of the Standard Model are built from integers. The measured values are the only non-integer content. The integer anatomy is the same thesis at two magnifications: at the level of observables (11 outputs from 7 inputs) and at the level of a single coefficient (three pieces from three sources).</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-12-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-10-2026, HOWL-PHYS-11-2026, HOWL-PHYS-2-2026, HOWL-PHYS-6-2026, HOWL-PHYS-7-2026, HOWL-PHYS-8-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-12-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666205",
+      "recid": 19666205
+    }
+  },
+  "title": "Electroweak Integer Anatomy: The transformation laws are integers. The values are not.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666205",
+    "html": "https://zenodo.org/deposit/19666205",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666205/files",
+    "bucket": "https://zenodo.org/api/files/62e26c43-2239-4cdb-ac0e-ad7f90d0b5b2",
+    "thumb250": "https://zenodo.org/record/19666205/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666205/thumb10",
+      "50": "https://zenodo.org/record/19666205/thumb50",
+      "100": "https://zenodo.org/record/19666205/thumb100",
+      "250": "https://zenodo.org/record/19666205/thumb250",
+      "750": "https://zenodo.org/record/19666205/thumb750",
+      "1200": "https://zenodo.org/record/19666205/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666205",
+    "latest_draft_html": "https://zenodo.org/deposit/19666205",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666205/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666205/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666205/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666205/actions/newversion"
+  },
+  "record_id": 19666205,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "70757f95-fa2f-46a7-97c4-c4e73d80a932",
+      "filename": "!manuscript.pdf",
+      "filesize": 1304747,
+      "checksum": "7ec950c89fa722c2d86a1a6eac01f295",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666205/files/70757f95-fa2f-46a7-97c4-c4e73d80a932",
+        "download": "https://zenodo.org/api/records/19666205/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "c1f5f038-3c61-4387-898d-b6ea67db4b1a",
+      "filename": "HOWL-PHYS-12-2026.zip",
+      "filesize": 2572381,
+      "checksum": "32481d7cf37799faecb0d2269c7ef7da",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666205/files/c1f5f038-3c61-4387-898d-b6ea67db4b1a",
+        "download": "https://zenodo.org/api/records/19666205/draft/files/HOWL-PHYS-12-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

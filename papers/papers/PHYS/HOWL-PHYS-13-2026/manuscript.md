@@ -9,7 +9,7 @@
 
 **Domain:** Electroweak Physics, QED Coefficient Structure
 
-**DOI:** 10.5281/zenodo.19528641
+**DOI:** 10.5281/zenodo.19666214
 
 **Date:** April 1 2026
 
