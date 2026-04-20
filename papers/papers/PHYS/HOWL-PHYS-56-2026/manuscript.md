@@ -3,7 +3,7 @@
 
 **Registry:** [@HOWL-PHYS-56-2026]
 
-**Series Path:** PHYS-40 (derivation map), PHYS-48 through PHYS-55, MATH-11, MATH-12, DATA-7
+**Series Path:** [@HOWL-PHYS-40-2026] → [@HOWL-PHYS-48-2026] → [@HOWL-PHYS-55-2026] → [@HOWL-MATH-11-2026] → [@HOWL-MATH-12-2026] → [@HOWL-DATA-7-2026] → [@HOWL-PHYS-56-2026]
 
 **Date:** April 20, 2026
 
