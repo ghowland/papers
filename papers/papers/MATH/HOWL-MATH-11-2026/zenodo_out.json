@@ -1,12 +1,12 @@
 {
   "created": "2026-04-20T14:46:06.057923+00:00",
-  "modified": "2026-04-20T14:50:03.172815+00:00",
+  "modified": "2026-04-20T14:55:33.944956+00:00",
   "id": 19665364,
   "conceptrecid": "19665363",
   "metadata": {
     "title": "\u03b2 = \u03c0/4",
     "publication_date": "2026-04",
-    "description": "<div>\n<h1>&beta; = &pi;/4</h1>\n<h2>The Metric Conversion Factor Between L1 and L2 on Circular Geometry</h2>\n<br>\n<div>\n<div>A circle of diameter d has circumference &pi;d. Inscribe the circle in a square of side d. The square's perimeter is 4d. Now approximate the circle with a staircase &mdash; a rectilinear path that follows the circle ever more closely, each step smaller than the last. At every level of refinement the staircase perimeter remains exactly 4d. In the limit of infinitely fine steps, the staircase converges pointwise to the circle but its perimeter never converges to &pi;d. It stays at 4d.</div>\n<br>\n<div>The naive conclusion is &pi; = 4. The standard correction is that the staircase does not converge in arclength, only in position. That correction is correct but incomplete. It says what goes wrong without saying what the staircase is actually measuring.</div>\n<br>\n<div>The staircase is measuring L1 distance. The taxicab metric, the Manhattan distance, the sum of absolute coordinate displacements. In L1, the distance from (0,0) to (1,1) is 2, not &radic;2. The staircase perimeter is the L1 circumference of the circle. And the L1 circumference of a circle of diameter d is exactly 4d, regardless of how many steps the staircase has. This is not a failure of convergence. It is a correct measurement in a different metric.</div>\n</div>\n</div>\n<p><strong>Package Contents:</strong><br>* `manuscript.md`: Paper<br>* `README.md`: Overview</p>\n<p>&nbsp;</p>",
+    "description": "<div>\n<h2>The Metric Conversion Factor Between L1 and L2 on Circular Geometry</h2>\n<br>\n<div>\n<div>A circle of diameter d has circumference &pi;d. Inscribe the circle in a square of side d. The square's perimeter is 4d. Now approximate the circle with a staircase &mdash; a rectilinear path that follows the circle ever more closely, each step smaller than the last. At every level of refinement the staircase perimeter remains exactly 4d. In the limit of infinitely fine steps, the staircase converges pointwise to the circle but its perimeter never converges to &pi;d. It stays at 4d.</div>\n<br>\n<div>The naive conclusion is &pi; = 4. The standard correction is that the staircase does not converge in arclength, only in position. That correction is correct but incomplete. It says what goes wrong without saying what the staircase is actually measuring.</div>\n<br>\n<div>The staircase is measuring L1 distance. The taxicab metric, the Manhattan distance, the sum of absolute coordinate displacements. In L1, the distance from (0,0) to (1,1) is 2, not &radic;2. The staircase perimeter is the L1 circumference of the circle. And the L1 circumference of a circle of diameter d is exactly 4d, regardless of how many steps the staircase has. This is not a failure of convergence. It is a correct measurement in a different metric.</div>\n</div>\n</div>\n<p><strong>Package Contents:</strong><br>* `manuscript.md`: Paper<br>* `README.md`: Overview</p>\n<p>&nbsp;</p>",
     "access_right": "open",
     "creators": [
       {
@@ -67,14 +67,14 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
     "notes": "<p>HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-11-2026. Dependencies: HOWL Foundation Only.</p>",
-    "method": "Dependencies: HOWL Foundation Only.",
+    "method": "<p>Dependencies: HOWL-MATH-1-2026<br><br></p>",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {

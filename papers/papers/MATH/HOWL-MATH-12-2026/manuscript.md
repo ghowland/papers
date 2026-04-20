@@ -7,7 +7,7 @@
 
 **Date:** April 19, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19665820
 
 **Domain:** Metric Geometry / Elliptic Integrals / L1/L2 Conversion Theory
 
