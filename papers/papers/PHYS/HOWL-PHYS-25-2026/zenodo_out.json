@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:08:13.241164+00:00",
+  "modified": "2026-04-20T16:08:13.408025+00:00",
+  "id": 19666340,
+  "conceptrecid": "19532253",
+  "conceptdoi": "10.5281/zenodo.19532253",
+  "metadata": {
+    "title": "The Session 4 Operational Map \u2014 From Gauge Integers to Cosmological Predictions: The beta coefficients run further than expected. Here is where they go.",
+    "description": "<h2>The Session 4 Operational Map \u2014 From Gauge Integers to Cosmological Predictions: The beta coefficients run further than expected. Here is where they go.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>Session 3 established the operational ground: the SM does not unify (gap ratio 218/115 vs 1.358, 40% miss), the Cabibbo Doublet (3,2,1/6) fixes it (gap ratio 38/27, distance 0.049), and the two-loop correction improves the unification miss by 66%. Session 4 discovered that the same beta coefficient integers controlling unification also appear to control cosmological observables. Six formulas using only the electromagnetic coupling \u03b1, the beta-derived integers 13, 19, 20, and 22, and the geometric constant \u03c0 predict seven cosmological quantities \u2014 the cosmological constant scale, the dark matter to baryon ratio, the Hubble constant, and the four cosmic energy density fractions \u2014 at sub-percent precision with zero cosmological input. This paper documents the discovery, sets the working direction, and specifies the research program to determine whether the formulas are physics or coincidence. Three tracks: unification completion (PHYS-26 through PHYS-30), beta cosmology (PHYS-31 through PHYS-35, gated by statistical control), and structural foundations (PHYS-36, PHYS-37). Each paper has a backing script, a verification standard, and an abort condition. The direction is set without hedge. If it is wrong, we backtrack.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-25-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-25-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666340",
+      "recid": 19666340
+    }
+  },
+  "title": "The Session 4 Operational Map \u2014 From Gauge Integers to Cosmological Predictions: The beta coefficients run further than expected. Here is where they go.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666340",
+    "html": "https://zenodo.org/deposit/19666340",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666340/files",
+    "bucket": "https://zenodo.org/api/files/0737524e-557f-444c-bf7b-463f6f8e5fb5",
+    "thumb250": "https://zenodo.org/record/19666340/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666340/thumb10",
+      "50": "https://zenodo.org/record/19666340/thumb50",
+      "100": "https://zenodo.org/record/19666340/thumb100",
+      "250": "https://zenodo.org/record/19666340/thumb250",
+      "750": "https://zenodo.org/record/19666340/thumb750",
+      "1200": "https://zenodo.org/record/19666340/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666340",
+    "latest_draft_html": "https://zenodo.org/deposit/19666340",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666340/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666340/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666340/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666340/actions/newversion"
+  },
+  "record_id": 19666340,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "916fb3d2-a14b-4f38-bbc8-98c35f8ebbd9",
+      "filename": "HOWL-PHYS-25-2026.zip",
+      "filesize": 7645794,
+      "checksum": "1a64f72fcd30b3fed786b351a0e6118e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666340/files/916fb3d2-a14b-4f38-bbc8-98c35f8ebbd9",
+        "download": "https://zenodo.org/api/records/19666340/draft/files/HOWL-PHYS-25-2026.zip/content"
+      }
+    },
+    {
+      "id": "10ee185a-04fd-4c0b-8372-89b78fe55561",
+      "filename": "!manuscript.pdf",
+      "filesize": 93506,
+      "checksum": "106a1150ef5066a4bdd7f88093dd1b77",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666340/files/10ee185a-04fd-4c0b-8372-89b78fe55561",
+        "download": "https://zenodo.org/api/records/19666340/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-20T16:09:09.412073+00:00",
+  "modified": "2026-04-20T16:09:09.663380+00:00",
+  "id": 19666349,
+  "conceptrecid": "19532256",
+  "conceptdoi": "10.5281/zenodo.19532256",
+  "metadata": {
+    "title": "The Integer Traceability Chain: From SU(5) embedding to cosmological predictions in seven exact links.",
+    "description": "<h2>The Integer Traceability Chain: From SU(5) embedding to cosmological predictions in seven exact links.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The beta unification program (PHYS-25) found that the integers 13, 19, 20, and 22 \u2014 extracted from the gauge coupling beta coefficients \u2014 predict seven cosmological observables at sub-percent precision. This paper derives each integer from the gauge group alone, with no measurement, through a chain of seven exact links. The chain starts at the SU(5) embedding condition Tr(Y\u00b2) = k\u2081 Tr(T\u2083\u00b2), which gives the GUT normalization factor k\u2081 = 3/5 from explicit traces over one SM generation. From k\u2081, the Dynkin index coefficients (2/5, 2/3, 1/3) for vector-like fermion pairs follow. Applied to the Cabibbo Doublet (3,2,1/6), these produce \u0394b = (1/15, 1, 1/3) and modified betas b' = (25/6, \u221213/6, \u221220/3). The numerator magnitudes |6b\u2082'| = 13 and |3b\u2083'| = 20 are the integers that enter every cosmological formula. Every link is verified EXACT in Fraction arithmetic. The chain is Level 1 \u2014 it holds in any universe with the same gauge group. A structural finding: the cosmological integers 13 and 20 come from the SU(2) and SU(3) Dynkin coefficients C\u2082 = 2/3 and C\u2083 = 1/3, which do not contain the GUT normalization factor k\u2081. The cosmological program is independent of the GUT normalization convention.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-26-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026, HOWL-PHYS-25-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-26-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19666349",
+      "recid": 19666349
+    }
+  },
+  "title": "The Integer Traceability Chain: From SU(5) embedding to cosmological predictions in seven exact links.",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19666349",
+    "html": "https://zenodo.org/deposit/19666349",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19666349/files",
+    "bucket": "https://zenodo.org/api/files/26815f2d-9add-48a5-9f14-df9f4910aff0",
+    "thumb250": "https://zenodo.org/record/19666349/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19666349/thumb10",
+      "50": "https://zenodo.org/record/19666349/thumb50",
+      "100": "https://zenodo.org/record/19666349/thumb100",
+      "250": "https://zenodo.org/record/19666349/thumb250",
+      "750": "https://zenodo.org/record/19666349/thumb750",
+      "1200": "https://zenodo.org/record/19666349/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19666349",
+    "latest_draft_html": "https://zenodo.org/deposit/19666349",
+    "publish": "https://zenodo.org/api/deposit/depositions/19666349/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19666349/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19666349/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19666349/actions/newversion"
+  },
+  "record_id": 19666349,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "cbb35950-6d46-4069-863f-fba4a65f7751",
+      "filename": "HOWL-PHYS-26-2026.zip",
+      "filesize": 172298,
+      "checksum": "50c81ca0f35522f49d540bcbd0d2ac65",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666349/files/cbb35950-6d46-4069-863f-fba4a65f7751",
+        "download": "https://zenodo.org/api/records/19666349/draft/files/HOWL-PHYS-26-2026.zip/content"
+      }
+    },
+    {
+      "id": "03a4f4eb-76d1-4859-a6db-829ed03d59e2",
+      "filename": "!manuscript.pdf",
+      "filesize": 82233,
+      "checksum": "f2d36421c5f7b02dad8d2a253e5c69b8",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19666349/files/03a4f4eb-76d1-4859-a6db-829ed03d59e2",
+        "download": "https://zenodo.org/api/records/19666349/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
