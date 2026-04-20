@@ -1,0 +1,130 @@
+{
+  "created": "2026-04-12T07:15:37.670883+00:00",
+  "modified": "2026-04-12T07:15:38.044741+00:00",
+  "id": 19532181,
+  "conceptrecid": "19532180",
+  "doi": "10.5281/zenodo.19532181",
+  "conceptdoi": "10.5281/zenodo.19532180",
+  "doi_url": "https://doi.org/10.5281/zenodo.19532181",
+  "metadata": {
+    "title": "Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision: A Tiered Classification",
+    "doi": "10.5281/zenodo.19532181",
+    "publication_date": "2026-04",
+    "description": "<h2>Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision: A Tiered Classification</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-MATH-2-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-MATH-1-2026, HOWL-PHYS-1-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/MATH/HOWL-MATH-2-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19532181",
+      "recid": 19532181
+    }
+  },
+  "title": "Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision: A Tiered Classification",
+  "links": {
+    "self": "https://zenodo.org/api/records/19532181",
+    "html": "https://zenodo.org/records/19532181",
+    "doi": "https://doi.org/10.5281/zenodo.19532181",
+    "parent_doi": "https://doi.org/10.5281/zenodo.19532180",
+    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532181.svg",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532180.svg",
+    "files": "https://zenodo.org/api/records/19532181/files",
+    "bucket": "https://zenodo.org/api/files/f7b4a0d2-96ce-4e9e-8304-eeba424d1b16",
+    "thumb250": "https://zenodo.org/record/19532181/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19532181/thumb10",
+      "50": "https://zenodo.org/record/19532181/thumb50",
+      "100": "https://zenodo.org/record/19532181/thumb100",
+      "250": "https://zenodo.org/record/19532181/thumb250",
+      "750": "https://zenodo.org/record/19532181/thumb750",
+      "1200": "https://zenodo.org/record/19532181/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532181",
+    "latest_draft_html": "https://zenodo.org/deposit/19532181",
+    "publish": "https://zenodo.org/api/deposit/depositions/19532181/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19532181/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19532181/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19532181/actions/newversion",
+    "record": "https://zenodo.org/api/records/19532181",
+    "record_html": "https://zenodo.org/record/19532181",
+    "latest": "https://zenodo.org/api/records/19532181/versions/latest",
+    "latest_html": "https://zenodo.org/records/19532181/latest"
+  },
+  "record_id": 19532181,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "fe945299-784e-46b8-b479-97549f908629",
+      "filename": "!manuscript.pdf",
+      "filesize": 1231195,
+      "checksum": "70e42b51bd188cff34e57f50cdc5e591",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532181/files/fe945299-784e-46b8-b479-97549f908629",
+        "download": "https://zenodo.org/api/records/19532181/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "8e35a0a3-c0b5-4207-b258-49fd951e13e5",
+      "filename": "HOWL-MATH-2-2026.zip",
+      "filesize": 2225213,
+      "checksum": "2b36e8dd85a2b83d32ec748008dffbca",
+      "links": {
+        "self": "https://zenodo.org/api/records/19532181/files/8e35a0a3-c0b5-4207-b258-49fd951e13e5",
+        "download": "https://zenodo.org/api/records/19532181/draft/files/HOWL-MATH-2-2026.zip/content"
+      }
+    }
+  ],
+  "state": "done",
+  "submitted": true
+}
