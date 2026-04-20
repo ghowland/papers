@@ -1,10 +1,10 @@
 {
-  "title": "manuscript.md",
+  "title": "DATA-7",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
   "version": "1.0",
-  "publication_date": "2026-04",
+  "publication_date": "2026-02",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [
@@ -16,7 +16,7 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DATA-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-DATA-7-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",

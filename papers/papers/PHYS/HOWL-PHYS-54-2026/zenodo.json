@@ -1,26 +1,26 @@
 {
-  "title": "The Clock and the Reading",
+  "title": "Planck Cell-Tick Remainder Momentum Model",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper specifies a pre-registered falsification program for the Planck Cell-Tick Remainder Momentum (PCTRM) model, a speculative discrete-substrate mechanism aligned with the Standard Model. PCTRM proposes that physics is computed at the Planck scale through discrete integer arithmetic on modulus and remainder quantities across a nested soliton hierarchy, with motion, forces, and state transitions unified as channel-mediated remainder exchanges that cross modulus thresholds to trigger discrete events. The model is specified in PCTRM-1-2026; this paper specifies how to test it.\n\nThe central commitment of the program is **parallel isomorphism**: PCTRM and the Standard Model operate on different primitives (discrete-substrate versus field-theoretic) but must produce identical predictions at every observable scale. PCTRM does not compete with the Standard Model. PCTRM proposes an underlying substrate for the Standard Model. The falsification program tests whether the Standard Model's predictions emerge from PCTRM's substrate arithmetic at the precision CODATA measures.\n\nThe program proceeds from the tightest-tested scale upward: subatomic particle masses and couplings, atomic spectra, nuclear binding, molecular structure, macroscopic orbital and gravitational dynamics, and cosmological parameters. Each level has pre-registered predictions, specific precision thresholds, and explicit kill switches. A failure at any level does not falsify the entire program \u2014 it identifies a specific scope boundary where the substrate picture breaks. A pass at all levels establishes PCTRM as a viable substrate for the Standard Model and for RUM's existing cross-domain predictions (Koide at 9 ppm, \u03a9_\u039b at 85 ppm, microscopic-cosmic bridge at 300 ppm).\n\nThe program specification contains no validated results. Results come from future papers executing the program. PHYS-54 is the contract: what is tested, at what precision, with what kill switches. The RUM framework's standard loop \u2014 conjecture, find path, write script, run, read, re-conjecture \u2014 is applied here to a substrate model rather than to a specific prediction. Sixteen falsification criteria are stated. Six hierarchy levels are defined. Twelve priority tests are ordered with computational feasibility assessments. The program is ready for execution.",
   "version": "1.0",
-  "publication_date": "2026-04",
+  "publication_date": "2026-02",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "phys",
+    "0",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-44-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-0-2026.\n\nDependencies: [HOWL-MATH-11-2026], [HOWL-MATH-12-2026], [HOWL-PHYS-1-2026], [HOWL-PHYS-50-2026], [HOWL-PHYS-52-2026], [HOWL-PHYS-53-2026], [HOWL-PHYS-54-2026].\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-44-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-54-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
@@ -70,5 +70,5 @@
     }
   ],
   "language": "eng",
-  "method": "Dependencies: HOWL Foundation Only.\n\n"
+  "method": "Dependencies: [HOWL-MATH-11-2026], [HOWL-MATH-12-2026], [HOWL-PHYS-1-2026], [HOWL-PHYS-50-2026], [HOWL-PHYS-52-2026], [HOWL-PHYS-53-2026], [HOWL-PHYS-54-2026].\n\n"
 }

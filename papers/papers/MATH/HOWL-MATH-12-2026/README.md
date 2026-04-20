@@ -1,4 +1,4 @@
-# β = π/4
+# β⁰ Has Two Geometries
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-MATH-11-2026,
-  title={ β = π/4 },
+@article{ HOWL-MATH-12-2026,
+  title={ β⁰ Has Two Geometries },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.zzz},
   url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-MATH-11-2026. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-MATH-12-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

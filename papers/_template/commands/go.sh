@@ -1,3 +1,7 @@
 #!/bin/bash
 
-../../../_template/scan.py ; ../../../_template/gen_zenodo.sh ; ../../../_template/gen_readme.sh ; ../../../_template/gen_pdf.sh ; ../../../_template/gen_zip.sh > /dev/null
+../../../_template/commands/scan.py
+../../../_template/commands/gen_zenodo.sh
+../../../_template/commands/gen_readme.py
+../../../_template/commands/gen_pdf.sh
+../../../_template/commands/gen_zip.sh > /dev/null

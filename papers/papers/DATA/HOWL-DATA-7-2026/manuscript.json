@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "manuscript.md",
-    "registry_id": "HOWL-DATA-6-2026",
-    "series_path": "[@HOWL-DATA-4-2026] \u2192 [@HOWL-DATA-5-2026] \u2192 [@HOWL-DATA-6-2026]",
-    "doi": "",
+    "title": "DATA-7",
+    "registry_id": "HOWL-DATA-7-2026",
+    "series_path": "[@HOWL-DATA-4-2026] \u2192 [@HOWL-DATA-5-2026] \u2192 [@HOWL-DATA-6-2026] \u2192 [@HOWL-DATA-7-2026]",
+    "doi": "10.5281/zenodo.zzz",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": " **Skip:** True  **Registry:** [@HOWL-DATA-6-2026]  **Series Path:** [@HOWL-DATA-4-2026] \u2192 [@HOWL-DATA-5-2026] \u2192 [@HOWL-DATA-6-2026]  **Date:** April 5, 2026  **Domain:** Research Infrastructure / Ver..."
+    "raw_content_preview": "# DATA-7 ## Work in progress  **Skip:** True  **Registry:** [@HOWL-DATA-7-2026]  **Series Path:** [@HOWL-DATA-4-2026] \u2192 [@HOWL-DATA-5-2026] \u2192 [@HOWL-DATA-6-2026] \u2192 [@HOWL-DATA-7-2026]  **Date:** April..."
 }

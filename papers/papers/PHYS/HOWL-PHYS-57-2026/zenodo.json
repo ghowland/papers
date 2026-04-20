@@ -1,17 +1,17 @@
 {
-  "title": "The Clock and the Reading",
+  "title": "manuscript.md",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
   "version": "1.0",
-  "publication_date": "2026-04",
+  "publication_date": "2026-02",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "phys",
+    "physics",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
@@ -20,7 +20,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-44-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-57-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

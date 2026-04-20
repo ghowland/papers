@@ -1,4 +1,4 @@
-# manuscript.md
+# The Creation Machine
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,7 +47,7 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-DISC-13-2026,
-  title={ manuscript.md },
+  title={ The Creation Machine },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
