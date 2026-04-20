@@ -33,6 +33,8 @@ The ground is set. The map is drawn. The path forward is falsification.
 
 ## II. STANDING COMMITMENTS
 
+![Fig. 1: Precision Ledger — Framework validations span 9 orders of magnitude from exact structural identities to order-of-magnitude tiers.](./figures/phys56_01_precision_ledger.png)
+
 ### II.A The Framework's Parallel Isomorphism
 
 PCTRM commits to producing observables identical to Standard Model + General Relativity predictions at measurement precision, from substrate-level derivation rather than postulation. Where SM and GR agree with measurement, PCTRM must agree. Where SM and GR have known limitations (Li-7 BBN problem, muon g-2 hadronic VP dispute), PCTRM inherits them — the framework does not claim to solve standard physics open problems beyond what its specific mechanisms enable.
@@ -84,6 +86,9 @@ Multiple independent structural paths, no common numerical seeds, converging at 
 | experiment_whatif_scan_v0 | Framework consistency | Constants confirmed |
 | experiment_r2_universality_v0 (DATA-7) | R² cancellation | 6 of 6 PASS |
 | **experiment_koide_r3r2_v0** | **Koide geometric derivation** | **6 of 6 PASS + 2 INFO** |
+
+![Fig. 8](./figures/phys56_08_microscopic_cosmic_bridge.png)
+
 
 ### III.B The Koide Connection
 
@@ -235,6 +240,8 @@ All three converge on K = 2/3 at measurement precision. Amplitude a² = 2 connec
 
 ## V. KILL-SWITCH CATALOG (K1-K64)
 
+![Fig. 5: Toroidal Amplification — (m/m_e)^2 scaling across the particle spectrum, validated at 2304x for muon, with crossover at 22 MeV.](./figures/phys56_05_toroidal_amplification.png)
+
 ### V.A Organization
 
 K1-K22 preserved from PHYS-55 (substrate and integer alphabet). K23-K56 from master spec mechanism integration. K57-K64 from PHYS-40 / CD integration. Each switch has pre-registered precision target and validation status.
@@ -341,6 +348,8 @@ K1-K22 preserved from PHYS-55 (substrate and integer alphabet). K23-K56 from mas
 - **OPEN PROBLEM (standard physics, not PCTRM-specific):** 1 switch (K50 Li-7)
 
 **Total: 64 + 4 future pre-registered = 68 kill switches specified.**
+
+![Fig. 7: Dual-Geometry Across Scales — Spherical modulus and toroidal remainder manifest at proton, atom, planet, and galaxy levels. Same structure, 40 orders of magnitude.](./figures/phys56_07_dual_geometry_scales.png)
 
 ---
 
@@ -628,6 +637,8 @@ K1-K22 preserved from PHYS-55 (substrate and integer alphabet). K23-K56 from mas
 
 ## VII. THE INTEGER ALPHABET USAGE MATRIX
 
+![Fig. 4: Seven-Level Hierarchy — Validated predictions at every scale from Planck (10^-35 m) to cosmological (10^26 m), spanning 61 orders of magnitude.](./figures/phys56_04_hierarchy_predictions.png)
+
 ### VII.A Primary Integer Cross-Domain Map
 
 | Integer | Tests/Mechanisms |
@@ -727,6 +738,8 @@ All novel predictions have pre-registered pass/fail thresholds in Part V kill sw
 
 ## X. COMPANION COMMITMENTS
 
+![Fig. 2: Cross-Derivation Convergence — Four independent paths for Omega_Lambda = (251-22*pi)/264 all land at Planck measurement precision (8.5-85 ppm).](./figures/phys56_02_cross_derivation_convergence.png)
+
 ### X.A Standard Model Reduction Commitment
 
 PCTRM reproduces SM predictions at CODATA precision through substrate-level derivation. Tested at:
@@ -754,6 +767,8 @@ PCTRM reproduces QM postulates as substrate theorems. Specific:
 - Measurement from channel merger (no separate collapse dynamics)
 
 ### X.D Cosmology Reduction Commitment
+
+![Fig. 3: alpha_inverse Four-Path Convergence — CODATA, Cs recoil, Rb recoil, and forward QED from A_4 all converge at 3-4 ppb.](./figures/phys56_03_alpha_convergence.png)
 
 PCTRM reproduces Planck 2018 + SH0ES + LSS precision:
 - Ω_Λ at 8.5 ppm
@@ -845,6 +860,8 @@ BBN Li-7 problem (standard BBN issue). Muon g-2 hadronic VP dispute (CMD-3 vs la
 The series began with "constants are boundary readings" (PHYS-1). At PHYS-40 the derivation map showed 53 derived values from 13 measurements. With the Koide connection confirmed through R₃/R₂ geometric derivation, the atoll joins the mainland. The coupling sector has collapsed. Five independent lines of CD evidence hold. PHYS-56 specifies the complete falsification program. Round 1 tests the mechanisms. Future experiments (Hyper-K, FCC-ee, LHC Run 3) will test specific predictions.
 
 The ground is set. The map is drawn. The paths are pre-registered.
+
+![Fig. 6: Precision Distribution — 80+ validated predictions distributed across tiers from exact to 10%, with Li-7 (known BBN problem) as single outlier.](./figures/phys56_06_precision_distribution.png)
 
 ---
 
