@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:31:42.686873+00:00",
-  "modified": "2026-04-20T15:31:43.017823+00:00",
+  "modified": "2026-04-21T03:33:48.046894+00:00",
   "id": 19665914,
   "conceptrecid": "19532076",
   "conceptdoi": "10.5281/zenodo.19532076",
@@ -93,22 +93,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "e828e1cf-876e-402a-9fb3-79602760d04e",
+      "id": "837c83fe-b2ed-486a-840d-23935e079441",
       "filename": "!manuscript.pdf",
-      "filesize": 139440,
-      "checksum": "3f142e30406b3e3d78c6438e0bb7cf2c",
+      "filesize": 139446,
+      "checksum": "c585502016e4802640818d1b19b37692",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665914/files/e828e1cf-876e-402a-9fb3-79602760d04e",
+        "self": "https://zenodo.org/api/deposit/depositions/19665914/files/837c83fe-b2ed-486a-840d-23935e079441",
         "download": "https://zenodo.org/api/records/19665914/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "0ab10984-239b-456b-bd86-b743de016d5e",
+      "id": "a27d3b3e-30b7-422d-888f-2fdcece106c4",
       "filename": "HOWL-DATA-6-2026.zip",
-      "filesize": 2231707,
-      "checksum": "e06fad5603975edb714e711632c4e5f5",
+      "filesize": 2237488,
+      "checksum": "2f4ad84fc0098e2da537d8a2b9ec573b",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665914/files/0ab10984-239b-456b-bd86-b743de016d5e",
+        "self": "https://zenodo.org/api/deposit/depositions/19665914/files/a27d3b3e-30b7-422d-888f-2fdcece106c4",
         "download": "https://zenodo.org/api/records/19665914/draft/files/HOWL-DATA-6-2026.zip/content"
       }
     }

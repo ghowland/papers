@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:34:35.561400+00:00",
-  "modified": "2026-04-20T15:34:35.810103+00:00",
+  "modified": "2026-04-21T03:36:22.775953+00:00",
   "id": 19665964,
   "conceptrecid": "19532235",
   "conceptdoi": "10.5281/zenodo.19532235",
@@ -50,13 +50,13 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "cks"
-      },
-      {
         "identifier": "rum"
       },
       {
         "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
       }
     ],
     "upload_type": "publication",
@@ -93,23 +93,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "8d7d6394-6a84-4798-ad86-0c0a9c3f3035",
-      "filename": "!manuscript.pdf",
-      "filesize": 1656896,
-      "checksum": "7a1f8dc0a060dc3471a70ac64df59aa5",
+      "id": "4c8ed411-3ec4-4570-9557-f8a61c2c85f6",
+      "filename": "HOWL-PHYS-2-2026.zip",
+      "filesize": 3100265,
+      "checksum": "faf2614df835853f7bc33ec2bf0af798",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665964/files/8d7d6394-6a84-4798-ad86-0c0a9c3f3035",
-        "download": "https://zenodo.org/api/records/19665964/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665964/files/4c8ed411-3ec4-4570-9557-f8a61c2c85f6",
+        "download": "https://zenodo.org/api/records/19665964/draft/files/HOWL-PHYS-2-2026.zip/content"
       }
     },
     {
-      "id": "e30103fb-cfb5-4dde-8424-c66a015c7389",
-      "filename": "HOWL-PHYS-2-2026.zip",
-      "filesize": 3095727,
-      "checksum": "7a3e58e4bc989d0f943674374f632a02",
+      "id": "8dd7a677-0d62-4c39-ad3c-a624efd84775",
+      "filename": "!manuscript.pdf",
+      "filesize": 1656866,
+      "checksum": "5445f97d713a74f5b6abaf3fd5c0c04e",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665964/files/e30103fb-cfb5-4dde-8424-c66a015c7389",
-        "download": "https://zenodo.org/api/records/19665964/draft/files/HOWL-PHYS-2-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665964/files/8dd7a677-0d62-4c39-ad3c-a624efd84775",
+        "download": "https://zenodo.org/api/records/19665964/draft/files/!manuscript.pdf/content"
       }
     }
   ],
