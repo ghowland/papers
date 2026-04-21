@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:06:38.641466+00:00",
-  "modified": "2026-04-20T15:06:38.986847+00:00",
+  "modified": "2026-04-21T03:06:19.696735+00:00",
   "id": 19665611,
   "conceptrecid": "19532188",
   "conceptdoi": "10.5281/zenodo.19532188",
@@ -50,10 +50,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "cks"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "cks"
       },
       {
         "identifier": "rum"
@@ -93,22 +93,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "aac04598-e236-459d-8404-057730dd3b6a",
+      "id": "7f0a79bf-dbcc-41c7-a4c7-aa233ac27e69",
       "filename": "HOWL-MATH-3-2026.zip",
-      "filesize": 2694716,
-      "checksum": "8aa781c111d9b17880e042a28e628a18",
+      "filesize": 2699696,
+      "checksum": "3864cb63e1ec9ed4411d0fb7dbc714d2",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/aac04598-e236-459d-8404-057730dd3b6a",
+        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/7f0a79bf-dbcc-41c7-a4c7-aa233ac27e69",
         "download": "https://zenodo.org/api/records/19665611/draft/files/HOWL-MATH-3-2026.zip/content"
       }
     },
     {
-      "id": "7ec840eb-1e41-4146-9bb3-47f68b187147",
+      "id": "cfc7326d-e701-4f5c-bbef-2489ab70bf26",
       "filename": "!manuscript.pdf",
-      "filesize": 1445552,
-      "checksum": "977a2e5bf27892b7b5c16bade5d74da3",
+      "filesize": 1445531,
+      "checksum": "f25036b9ef23ed8a3a8869d1532c80f9",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/7ec840eb-1e41-4146-9bb3-47f68b187147",
+        "self": "https://zenodo.org/api/deposit/depositions/19665611/files/cfc7326d-e701-4f5c-bbef-2489ab70bf26",
         "download": "https://zenodo.org/api/records/19665611/draft/files/!manuscript.pdf/content"
       }
     }

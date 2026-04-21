@@ -1,5 +1,5 @@
 {
-  "title": "The One-Loop Degeneracy Theorem",
+  "title": "sin\u00b2\u03b8_W: The One-Loop Degeneracy Theorem",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
@@ -11,7 +11,7 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "math",
+    "mathematics",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
@@ -20,7 +20,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/MATH/HOWL-MATH-9-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-9-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -20,7 +20,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/DATA/HOWL-DATA-7-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/DATA/HOWL-DATA-7-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

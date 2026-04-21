@@ -1,4 +1,4 @@
-# The One-Loop Degeneracy Theorem
+# sin²θ_W: The One-Loop Degeneracy Theorem
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,12 +47,12 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-MATH-9-2026,
-  title={ The One-Loop Degeneracy Theorem },
+  title={ sin²θ_W: The One-Loop Degeneracy Theorem },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.19528625},
-  url = {https://zenodo.org/record/19528625},
+  doi = {10.5281/zenodo.19665787},
+  url = {https://zenodo.org/record/19665787},
   note={Howland Archive: HOWL-MATH-9-2026. Prerequisites: None (foundation paper) }
 }
 ```

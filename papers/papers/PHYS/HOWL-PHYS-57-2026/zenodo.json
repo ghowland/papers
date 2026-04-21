@@ -4,7 +4,7 @@
   "publication_type": "article",
   "description": "[Description to be added]",
   "version": "1.0",
-  "publication_date": "2026-02",
+  "publication_date": "2026-04",
   "access_right": "open",
   "license": "CC0-1.0",
   "keywords": [
@@ -20,7 +20,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/PHYS/HOWL-PHYS-57-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/PHYS/HOWL-PHYS-57-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

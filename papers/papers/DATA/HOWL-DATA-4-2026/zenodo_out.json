@@ -1,7 +1,7 @@
 {
-  "created": "2026-04-20T15:29:23.524972+00:00",
-  "modified": "2026-04-20T15:29:23.749284+00:00",
-  "id": 19665894,
+  "created": "2026-04-21T03:29:28.343023+00:00",
+  "modified": "2026-04-21T03:29:28.533402+00:00",
+  "id": 19674257,
   "conceptrecid": "19532072",
   "conceptdoi": "10.5281/zenodo.19532072",
   "metadata": {
@@ -50,66 +50,66 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "rum"
-      },
-      {
         "identifier": "zenodo"
       },
       {
         "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
       }
     ],
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19665894",
-      "recid": 19665894
+      "doi": "10.5281/zenodo.19674257",
+      "recid": 19674257
     }
   },
   "title": "Verified Integer Rational Database: Includes Cabibbo Doublet Extension",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/19665894",
-    "html": "https://zenodo.org/deposit/19665894",
+    "self": "https://zenodo.org/api/deposit/depositions/19674257",
+    "html": "https://zenodo.org/deposit/19674257",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/19665894/files",
-    "bucket": "https://zenodo.org/api/files/0fa48ac3-80ae-4fb0-a87d-b1de4aaf98db",
-    "thumb250": "https://zenodo.org/record/19665894/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/19674257/files",
+    "bucket": "https://zenodo.org/api/files/a455e34c-5960-49bc-b042-fcb803bcb074",
+    "thumb250": "https://zenodo.org/record/19674257/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19665894/thumb10",
-      "50": "https://zenodo.org/record/19665894/thumb50",
-      "100": "https://zenodo.org/record/19665894/thumb100",
-      "250": "https://zenodo.org/record/19665894/thumb250",
-      "750": "https://zenodo.org/record/19665894/thumb750",
-      "1200": "https://zenodo.org/record/19665894/thumb1200"
+      "10": "https://zenodo.org/record/19674257/thumb10",
+      "50": "https://zenodo.org/record/19674257/thumb50",
+      "100": "https://zenodo.org/record/19674257/thumb100",
+      "250": "https://zenodo.org/record/19674257/thumb250",
+      "750": "https://zenodo.org/record/19674257/thumb750",
+      "1200": "https://zenodo.org/record/19674257/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19665894",
-    "latest_draft_html": "https://zenodo.org/deposit/19665894",
-    "publish": "https://zenodo.org/api/deposit/depositions/19665894/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19665894/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19665894/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19665894/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19674257",
+    "latest_draft_html": "https://zenodo.org/deposit/19674257",
+    "publish": "https://zenodo.org/api/deposit/depositions/19674257/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19674257/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19674257/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19674257/actions/newversion"
   },
-  "record_id": 19665894,
+  "record_id": 19674257,
   "owner": 1539729,
   "files": [
     {
-      "id": "fcc3e0bf-ac03-431f-95d5-f70b02bca154",
-      "filename": "HOWL-DATA-4-2026.zip",
-      "filesize": 124540,
-      "checksum": "9ad236d386d7e3018fcbef60d1908d90",
+      "id": "ba048017-11fe-41ec-9c41-5e1b64e76f5e",
+      "filename": "!manuscript.pdf",
+      "filesize": 84863,
+      "checksum": "46ec75233a25936280109e47c0147ddd",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665894/files/fcc3e0bf-ac03-431f-95d5-f70b02bca154",
-        "download": "https://zenodo.org/api/records/19665894/draft/files/HOWL-DATA-4-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19674257/files/ba048017-11fe-41ec-9c41-5e1b64e76f5e",
+        "download": "https://zenodo.org/api/records/19674257/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "aae79a68-2c07-4ef7-aa31-9e0e132f1a3b",
-      "filename": "!manuscript.pdf",
-      "filesize": 84857,
-      "checksum": "128535cad2863e13460a4cf133093b3c",
+      "id": "6f9d67ee-9a06-4d3d-89c8-067cf7466eb5",
+      "filename": "HOWL-DATA-4-2026.zip",
+      "filesize": 129795,
+      "checksum": "1a3a0b2c8670ab5d25cab695d1be2713",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665894/files/aae79a68-2c07-4ef7-aa31-9e0e132f1a3b",
-        "download": "https://zenodo.org/api/records/19665894/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19674257/files/6f9d67ee-9a06-4d3d-89c8-067cf7466eb5",
+        "download": "https://zenodo.org/api/records/19674257/draft/files/HOWL-DATA-4-2026.zip/content"
       }
     }
   ],

@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:13:48.815216+00:00",
-  "modified": "2026-04-20T15:13:49.006355+00:00",
+  "modified": "2026-04-21T03:16:14.935230+00:00",
   "id": 19665702,
   "conceptrecid": "19532192",
   "conceptdoi": "10.5281/zenodo.19532192",
@@ -50,13 +50,13 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
+        "identifier": "zenodo"
+      },
+      {
         "identifier": "cks"
       },
       {
         "identifier": "rum"
-      },
-      {
-        "identifier": "zenodo"
       }
     ],
     "upload_type": "publication",
@@ -93,23 +93,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "cd63c4a6-08ab-42af-83cf-4870a4c69a15",
-      "filename": "HOWL-MATH-5-2026.zip",
-      "filesize": 2512810,
-      "checksum": "b5e802366fccbc77542f70d757b45abc",
+      "id": "a5103cb7-6204-40cd-9b9d-43402f9c6423",
+      "filename": "!manuscript.pdf",
+      "filesize": 1365896,
+      "checksum": "c7b9868aa62b0414c68afeb89700aa13",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665702/files/cd63c4a6-08ab-42af-83cf-4870a4c69a15",
-        "download": "https://zenodo.org/api/records/19665702/draft/files/HOWL-MATH-5-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665702/files/a5103cb7-6204-40cd-9b9d-43402f9c6423",
+        "download": "https://zenodo.org/api/records/19665702/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "a3511d4b-f89d-4bdd-bf08-8a206b49c085",
-      "filename": "!manuscript.pdf",
-      "filesize": 1365917,
-      "checksum": "75faed29397423e4c8b8da1553141122",
+      "id": "9de7ab7e-3f38-4512-b28e-47370b47495d",
+      "filename": "HOWL-MATH-5-2026.zip",
+      "filesize": 2517638,
+      "checksum": "869f561b42785df52d006548441deba1",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665702/files/a3511d4b-f89d-4bdd-bf08-8a206b49c085",
-        "download": "https://zenodo.org/api/records/19665702/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665702/files/9de7ab7e-3f38-4512-b28e-47370b47495d",
+        "download": "https://zenodo.org/api/records/19665702/draft/files/HOWL-MATH-5-2026.zip/content"
       }
     }
   ],

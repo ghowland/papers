@@ -11,7 +11,7 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "math",
+    "mathematics",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
@@ -20,7 +20,7 @@
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/MATH/HOWL-MATH-6-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

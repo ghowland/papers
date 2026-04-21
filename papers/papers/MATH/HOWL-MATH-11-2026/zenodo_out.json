@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T14:46:06.057923+00:00",
-  "modified": "2026-04-20T14:55:33.944956+00:00",
+  "modified": "2026-04-21T03:21:50.195301+00:00",
   "id": 19665364,
   "conceptrecid": "19665363",
   "metadata": {
@@ -109,22 +109,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "e06b6c84-5f07-47df-a2ae-f8fa9565c11e",
+      "id": "cc3d5565-1678-4115-8321-4fe8eb4f0425",
       "filename": "HOWL-MATH-11-2026.zip",
-      "filesize": 1760940,
-      "checksum": "a15eca61cc6a410af107810886e86fb3",
+      "filesize": 1761295,
+      "checksum": "d64ffd1665822eacbe63733b85956548",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/e06b6c84-5f07-47df-a2ae-f8fa9565c11e",
+        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/cc3d5565-1678-4115-8321-4fe8eb4f0425",
         "download": "https://zenodo.org/api/records/19665364/draft/files/HOWL-MATH-11-2026.zip/content"
       }
     },
     {
-      "id": "7a354260-6a9a-4a40-af5d-38efcf689801",
+      "id": "fec1b43c-d83a-4061-91aa-833362f9aa87",
       "filename": "!manuscript.pdf",
-      "filesize": 980113,
-      "checksum": "91c5be4674d6e1a437c9bec238ab0351",
+      "filesize": 980114,
+      "checksum": "8f7615b16acf309b89655015cf070cf2",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/7a354260-6a9a-4a40-af5d-38efcf689801",
+        "self": "https://zenodo.org/api/deposit/depositions/19665364/files/fec1b43c-d83a-4061-91aa-833362f9aa87",
         "download": "https://zenodo.org/api/records/19665364/draft/files/!manuscript.pdf/content"
       }
     }

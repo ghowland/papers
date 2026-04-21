@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:26:57.417163+00:00",
-  "modified": "2026-04-20T15:26:57.569061+00:00",
+  "modified": "2026-04-21T03:27:19.867815+00:00",
   "id": 19665870,
   "conceptrecid": "19532070",
   "conceptdoi": "10.5281/zenodo.19532070",
@@ -50,13 +50,13 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "cks"
-      },
-      {
         "identifier": "zenodo"
       },
       {
         "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
       }
     ],
     "upload_type": "publication",
@@ -93,23 +93,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "fda62587-7a31-44bf-bd9f-6dcbd7c2b194",
-      "filename": "HOWL-DATA-3-2026.zip",
-      "filesize": 115516,
-      "checksum": "456112c622b6e7a7ec14eacd794b7068",
+      "id": "f05865fa-66cf-483a-ac74-4d6384bc8e81",
+      "filename": "!manuscript.pdf",
+      "filesize": 68574,
+      "checksum": "ccdb3a522d0090f75a7668a6c3f8230f",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665870/files/fda62587-7a31-44bf-bd9f-6dcbd7c2b194",
-        "download": "https://zenodo.org/api/records/19665870/draft/files/HOWL-DATA-3-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665870/files/f05865fa-66cf-483a-ac74-4d6384bc8e81",
+        "download": "https://zenodo.org/api/records/19665870/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "591436c0-ffa6-4553-91f9-d403eb266d27",
-      "filename": "!manuscript.pdf",
-      "filesize": 68613,
-      "checksum": "1f6917d3ad7fc24c10a44146dd66df4b",
+      "id": "b54e37d1-701b-433f-9109-468c5dd6a360",
+      "filename": "HOWL-DATA-3-2026.zip",
+      "filesize": 120587,
+      "checksum": "3acf7d5bac72c5fa2517c009fe5214ad",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19665870/files/591436c0-ffa6-4553-91f9-d403eb266d27",
-        "download": "https://zenodo.org/api/records/19665870/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19665870/files/b54e37d1-701b-433f-9109-468c5dd6a360",
+        "download": "https://zenodo.org/api/records/19665870/draft/files/HOWL-DATA-3-2026.zip/content"
       }
     }
   ],
