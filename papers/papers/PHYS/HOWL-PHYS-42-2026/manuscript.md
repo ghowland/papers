@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-PHYS-1-2026] → [@HOWL-PHYS-40-2026] → [@HOWL-PHYS-41-2026] → [@HOWL-PHYS-42-2026]
 
-**DOI:** 10.5281/zenodo.19528727
+**DOI:** 10.5281/zenodo.19673839
 
 **Date:** April 9, 2026
 

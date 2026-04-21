@@ -7,7 +7,7 @@
 
 **Date:** April 19, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19673928
 
 **Domain:** Speculative Physics / Discrete Substrate Modeling / Computational Ontology / Pre-Registered Falsification Program
 

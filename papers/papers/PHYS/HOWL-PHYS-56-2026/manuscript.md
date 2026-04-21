@@ -7,7 +7,7 @@
 
 **Date:** April 20, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19673938
 
 **Domain:** Substrate Physics / Planck-Scale Mechanism / Standard Model Reduction / Quantum Mechanics Derivation / Gravitational Dynamics / Falsification Program
 

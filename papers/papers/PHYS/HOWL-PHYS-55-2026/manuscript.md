@@ -3,15 +3,11 @@
 
 **Registry:** [@HOWL-PHYS-55-2026]
 
-**Supersedes:** [@HOWL-PHYS-54-2026]
-
 **Series Path:** [@HOWL-MATH-11-2026] → [@HOWL-MATH-12-2026] → [@HOWL-PHYS-48-2026] → [@HOWL-PHYS-49-2026] → [@HOWL-PHYS-50-2026] → [@HOWL-PHYS-52-2026] → [@HOWL-PHYS-53-2026] → [@HOWL-PHYS-54-2026] → [@HOWL-PHYS-55-2026]
-
-**Also depends on:** PCTRM-1-2026 (substrate specification), PCTRM-2-2026 (entanglement extension with Session 9 corrections)
 
 **Date:** April 20, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19673930
 
 **Domain:** Substrate Physics / Planck-Scale Mechanism / Standard Model Reduction / Quantum Mechanics Derivation / Gravitational Dynamics / Falsification Program
 

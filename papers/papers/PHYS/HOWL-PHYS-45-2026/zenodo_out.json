@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-21T02:29:48.566799+00:00",
+  "modified": "2026-04-21T02:29:48.781667+00:00",
+  "id": 19673867,
+  "conceptrecid": "19572092",
+  "conceptdoi": "10.5281/zenodo.19572092",
+  "metadata": {
+    "title": "The Confinement Boundary: Where Integers Become Matter",
+    "description": "<h2>The Confinement Boundary: Where Integers Become Matter</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-45-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-41-2026, HOWL-PHYS-42-2026, HOWL-PHYS-43-2026, HOWL-PHYS-44-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/PHYS/HOWL-PHYS-45-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19673867",
+      "recid": 19673867
+    }
+  },
+  "title": "The Confinement Boundary: Where Integers Become Matter",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19673867",
+    "html": "https://zenodo.org/deposit/19673867",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19673867/files",
+    "bucket": "https://zenodo.org/api/files/e288aed3-9bb7-476e-830d-4c59afc14a84",
+    "thumb250": "https://zenodo.org/record/19673867/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673867/thumb10",
+      "50": "https://zenodo.org/record/19673867/thumb50",
+      "100": "https://zenodo.org/record/19673867/thumb100",
+      "250": "https://zenodo.org/record/19673867/thumb250",
+      "750": "https://zenodo.org/record/19673867/thumb750",
+      "1200": "https://zenodo.org/record/19673867/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19673867",
+    "latest_draft_html": "https://zenodo.org/deposit/19673867",
+    "publish": "https://zenodo.org/api/deposit/depositions/19673867/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19673867/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19673867/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19673867/actions/newversion"
+  },
+  "record_id": 19673867,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "296c10a1-f6b4-4aad-9804-843dc80b91a7",
+      "filename": "!manuscript.pdf",
+      "filesize": 1144990,
+      "checksum": "996c4fd13d4d63c4b791aa1be5c4052a",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673867/files/296c10a1-f6b4-4aad-9804-843dc80b91a7",
+        "download": "https://zenodo.org/api/records/19673867/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "4088cf48-c007-421f-9b14-1f94d8bd0ab8",
+      "filename": "HOWL-PHYS-45-2026.zip",
+      "filesize": 2038249,
+      "checksum": "9cc5c07130f1eed75f15989395b9cf49",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673867/files/4088cf48-c007-421f-9b14-1f94d8bd0ab8",
+        "download": "https://zenodo.org/api/records/19673867/draft/files/HOWL-PHYS-45-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

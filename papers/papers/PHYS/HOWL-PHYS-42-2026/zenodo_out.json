@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-21T02:25:56.258607+00:00",
+  "modified": "2026-04-21T02:25:56.574752+00:00",
+  "id": 19673839,
+  "conceptrecid": "19532315",
+  "conceptdoi": "10.5281/zenodo.19532315",
+  "metadata": {
+    "title": "Reading Depth Across the Soliton Hierarchy: 18 Tests from Meters to Gigaparsecs",
+    "description": "<h2>Reading Depth Across the Soliton Hierarchy: 18 Tests from Meters to Gigaparsecs</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>OF REQUIRED CORRECTIONS BEFORE PUBLICATION\n\n| Priority | Erratum | Impact |\n|---|---|---|\n| <strong>CRITICAL</strong> | E8/A8: Mercury is 2.8 ppm not 2.8 ppb | Precision claim off by 1000\u00d7 |\n| <strong>HIGH</strong> | E1: Muon \u03b3 = 15.8 vs 29.3 inconsistency | Wrong physics in Section IV |\n| <strong>HIGH</strong> | E3: SN Ia z = 0.5 in pool but z = 1 in paper | Result 1.5 not 2.0 |\n| <strong>MEDIUM</strong> | E2: Pound-Rebka date/uncertainty attribution | Incorrect citation |\n| <strong>MEDIUM</strong> | A5: GM_S 12-digit claim needs verification | Precision budget may be wrong |\n| <strong>LOW</strong> | E5: 30 vs 34 pool constants | Minor count error |\n| <strong>LOW</strong> | E6: 53/13 clarification | Ambiguous without context |\n| <strong>LOW</strong> | A2: Derivation key mismatch | Runner issue, not paper issue |</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-42-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-40-2026, HOWL-PHYS-41-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-42-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19673839",
+      "recid": 19673839
+    }
+  },
+  "title": "Reading Depth Across the Soliton Hierarchy: 18 Tests from Meters to Gigaparsecs",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19673839",
+    "html": "https://zenodo.org/deposit/19673839",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19673839/files",
+    "bucket": "https://zenodo.org/api/files/9bab9e06-6f94-405b-b551-2dbd05f55f2f",
+    "thumb250": "https://zenodo.org/record/19673839/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673839/thumb10",
+      "50": "https://zenodo.org/record/19673839/thumb50",
+      "100": "https://zenodo.org/record/19673839/thumb100",
+      "250": "https://zenodo.org/record/19673839/thumb250",
+      "750": "https://zenodo.org/record/19673839/thumb750",
+      "1200": "https://zenodo.org/record/19673839/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19673839",
+    "latest_draft_html": "https://zenodo.org/deposit/19673839",
+    "publish": "https://zenodo.org/api/deposit/depositions/19673839/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19673839/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19673839/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19673839/actions/newversion"
+  },
+  "record_id": 19673839,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "2a4364f4-7519-483b-a41e-34656ad14b6a",
+      "filename": "!manuscript.pdf",
+      "filesize": 1914497,
+      "checksum": "ea05e4ac0fc557a9d897f4d5fab0cc09",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673839/files/2a4364f4-7519-483b-a41e-34656ad14b6a",
+        "download": "https://zenodo.org/api/records/19673839/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "ae19bae1-68cf-40a2-8518-4d1ed216cfde",
+      "filename": "HOWL-PHYS-42-2026.zip",
+      "filesize": 3725452,
+      "checksum": "c69255f4063519d9001d0f47ff3d0f11",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673839/files/ae19bae1-68cf-40a2-8518-4d1ed216cfde",
+        "download": "https://zenodo.org/api/records/19673839/draft/files/HOWL-PHYS-42-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

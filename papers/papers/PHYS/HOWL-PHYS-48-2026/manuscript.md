@@ -7,7 +7,7 @@
 
 **Date:** April 19, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19673898
 
 **Domain:** QED / Metric Geometry / Multi-Loop Computation / Soliton Boundary Theory
 

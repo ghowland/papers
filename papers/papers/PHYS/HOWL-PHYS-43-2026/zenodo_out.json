@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-21T02:27:27.267200+00:00",
+  "modified": "2026-04-21T02:27:27.498990+00:00",
+  "id": 19673857,
+  "conceptrecid": "19532319",
+  "conceptdoi": "10.5281/zenodo.19532319",
+  "metadata": {
+    "title": "Separating Clock from Reading: Five Tests That Decompose Time Dilation",
+    "description": "<h2>Separating Clock from Reading: Five Tests That Decompose Time Dilation</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-43-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-41-2026, HOWL-PHYS-42-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-43-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19673857",
+      "recid": 19673857
+    }
+  },
+  "title": "Separating Clock from Reading: Five Tests That Decompose Time Dilation",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19673857",
+    "html": "https://zenodo.org/deposit/19673857",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19673857/files",
+    "bucket": "https://zenodo.org/api/files/209423c6-609d-4c3a-b34d-bf7ff8f1980d",
+    "thumb250": "https://zenodo.org/record/19673857/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673857/thumb10",
+      "50": "https://zenodo.org/record/19673857/thumb50",
+      "100": "https://zenodo.org/record/19673857/thumb100",
+      "250": "https://zenodo.org/record/19673857/thumb250",
+      "750": "https://zenodo.org/record/19673857/thumb750",
+      "1200": "https://zenodo.org/record/19673857/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19673857",
+    "latest_draft_html": "https://zenodo.org/deposit/19673857",
+    "publish": "https://zenodo.org/api/deposit/depositions/19673857/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19673857/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19673857/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19673857/actions/newversion"
+  },
+  "record_id": 19673857,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "c33daeaf-6f1e-412b-8080-d476f1802f7b",
+      "filename": "HOWL-PHYS-43-2026.zip",
+      "filesize": 3123024,
+      "checksum": "cf47a693d04c7d67e057b3211bcb10e3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673857/files/c33daeaf-6f1e-412b-8080-d476f1802f7b",
+        "download": "https://zenodo.org/api/records/19673857/draft/files/HOWL-PHYS-43-2026.zip/content"
+      }
+    },
+    {
+      "id": "caae06b3-ae27-4e25-9eb1-d29d897a48f9",
+      "filename": "!manuscript.pdf",
+      "filesize": 1663643,
+      "checksum": "7197237a65bedf93bc8dbbfc4946cf95",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673857/files/caae06b3-ae27-4e25-9eb1-d29d897a48f9",
+        "download": "https://zenodo.org/api/records/19673857/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

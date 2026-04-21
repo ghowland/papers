@@ -1,0 +1,118 @@
+{
+  "created": "2026-04-21T02:28:51.169704+00:00",
+  "modified": "2026-04-21T02:28:51.452142+00:00",
+  "id": 19673864,
+  "conceptrecid": "19532323",
+  "conceptdoi": "10.5281/zenodo.19532323",
+  "metadata": {
+    "title": "The Clock and the Reading: Separating Time from Space in the Soliton Hierarchy",
+    "description": "<h2>The Clock and the Reading: Separating Time from Space in the Soliton Hierarchy</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-44-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-41-2026, HOWL-PHYS-42-2026, HOWL-PHYS-43-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "python"
+    ],
+    "subjects": [
+      {
+        "term": "Physics",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101653",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/PHYS/HOWL-PHYS-44-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "rum"
+      },
+      {
+        "identifier": "cks"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19673864",
+      "recid": 19673864
+    }
+  },
+  "title": "The Clock and the Reading: Separating Time from Space in the Soliton Hierarchy",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19673864",
+    "html": "https://zenodo.org/deposit/19673864",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19673864/files",
+    "bucket": "https://zenodo.org/api/files/e67e437d-5078-4071-b9f0-8c63080ad7b7",
+    "thumb250": "https://zenodo.org/record/19673864/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673864/thumb10",
+      "50": "https://zenodo.org/record/19673864/thumb50",
+      "100": "https://zenodo.org/record/19673864/thumb100",
+      "250": "https://zenodo.org/record/19673864/thumb250",
+      "750": "https://zenodo.org/record/19673864/thumb750",
+      "1200": "https://zenodo.org/record/19673864/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19673864",
+    "latest_draft_html": "https://zenodo.org/deposit/19673864",
+    "publish": "https://zenodo.org/api/deposit/depositions/19673864/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19673864/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19673864/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19673864/actions/newversion"
+  },
+  "record_id": 19673864,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "d4b72829-046d-48d5-90b3-02f33cda0ed2",
+      "filename": "HOWL-PHYS-44-2026.zip",
+      "filesize": 2514665,
+      "checksum": "25073baf6bdb78e56341db69fec25c4d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673864/files/d4b72829-046d-48d5-90b3-02f33cda0ed2",
+        "download": "https://zenodo.org/api/records/19673864/draft/files/HOWL-PHYS-44-2026.zip/content"
+      }
+    },
+    {
+      "id": "fa30a509-a828-4c6b-a646-183adcd57eae",
+      "filename": "!manuscript.pdf",
+      "filesize": 1341656,
+      "checksum": "3b5a02223f64fbae3098d38805eda306",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673864/files/fa30a509-a828-4c6b-a646-183adcd57eae",
+        "download": "https://zenodo.org/api/records/19673864/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
