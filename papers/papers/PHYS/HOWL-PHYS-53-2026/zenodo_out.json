@@ -67,10 +67,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-53-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -89,6 +89,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/19673920/files",
     "bucket": "https://zenodo.org/api/files/f0f82e9f-f32c-4f68-ada6-4e7038fb0b9d",
+    "thumb250": "https://zenodo.org/record/19673920/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673920/thumb10",
+      "50": "https://zenodo.org/record/19673920/thumb50",
+      "100": "https://zenodo.org/record/19673920/thumb100",
+      "250": "https://zenodo.org/record/19673920/thumb250",
+      "750": "https://zenodo.org/record/19673920/thumb750",
+      "1200": "https://zenodo.org/record/19673920/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/19673920",
     "latest_draft_html": "https://zenodo.org/deposit/19673920",
     "publish": "https://zenodo.org/api/deposit/depositions/19673920/actions/publish",
@@ -98,7 +107,28 @@
   },
   "record_id": 19673920,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "f707c3ba-b342-4ac8-a503-58fbf070683b",
+      "filename": "HOWL-PHYS-53-2026.zip",
+      "filesize": 2296631,
+      "checksum": "cef7890197fc6402267210c9bb311f66",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673920/files/f707c3ba-b342-4ac8-a503-58fbf070683b",
+        "download": "https://zenodo.org/api/records/19673920/draft/files/HOWL-PHYS-53-2026.zip/content"
+      }
+    },
+    {
+      "id": "2608bc3a-af25-4d87-a86c-68cc093d52ad",
+      "filename": "!manuscript.pdf",
+      "filesize": 1257061,
+      "checksum": "fa0d7654e8c4fbdd1b0e00204529b975",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673920/files/2608bc3a-af25-4d87-a86c-68cc093d52ad",
+        "download": "https://zenodo.org/api/records/19673920/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }

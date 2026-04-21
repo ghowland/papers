@@ -1,15 +1,11 @@
 {
-  "created": "2026-04-12T07:24:37.462794+00:00",
-  "modified": "2026-04-12T07:24:39.644986+00:00",
-  "id": 19532265,
+  "created": "2026-04-21T04:12:17.048511+00:00",
+  "modified": "2026-04-21T04:13:02.979755+00:00",
+  "id": 19674487,
   "conceptrecid": "19532264",
-  "doi": "10.5281/zenodo.19532265",
   "conceptdoi": "10.5281/zenodo.19532264",
-  "doi_url": "https://doi.org/10.5281/zenodo.19532265",
   "metadata": {
     "title": "GUT Threshold Corrections \u2014 The Minimal SU(5) Limit: The threshold coefficients are too small. Minimal SU(5) is disfavored.",
-    "doi": "10.5281/zenodo.19532265",
-    "publication_date": "2026-04",
     "description": "<h2>GUT Threshold Corrections \u2014 The Minimal SU(5) Limit: The threshold coefficients are too small. Minimal SU(5) is disfavored.</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Abstract</h3>\n<p>The two-loop running of the gauge couplings with the Cabibbo Doublet modified betas leaves a residual unification miss Delta = \u22120.40 (PHYS-24, PHYS-28). This paper computes the GUT threshold corrections in minimal SU(5) that could close this residual. In minimal SU(5), the superheavy spectrum has three components: the X,Y gauge bosons defining M_GUT, the colored Higgs triplet T(3,1,\u22121/3) with beta shift db\u2083 = 1/12, and the Sigma field remnants \u2014 an (8,1,0) color octet with db\u2083 = 1/2 and a (1,3,0) weak triplet with db\u2082 = 1/3. The threshold correction to Delta is delta_Delta = \u2212(1/12)ln(M_T/M_X)/(2\u03c0) \u2212 (1/6)ln(M_Sigma/M_X)/(2\u03c0). The combined coefficient C_total = \u22121/4. All coefficients are exact Fractions from representation theory. To close Delta = \u22120.40, even the best case (triplet and Sigma at the same mass below M_X) requires M_X/M = 23,228 \u2014 a mass splitting far beyond natural. The abort test fires: minimal SU(5) is disfavored as the GUT completion. The Cabibbo Doublet representation (3,2,1/6) and its Level 1 arithmetic survive intact \u2014 they are independent of the GUT completion. The proton lifetime prediction (10^34.5 yr) is unchanged.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-29-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-1-2026, HOWL-PHYS-13-2026, HOWL-PHYS-21-2026, HOWL-PHYS-24-2026, HOWL-PHYS-25-2026, HOWL-PHYS-26-2026, HOWL-PHYS-27-2026, HOWL-PHYS-28-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
     "access_right": "open",
     "creators": [
@@ -49,82 +45,84 @@
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-by-4.0",
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "rum"
-      },
-      {
         "identifier": "zenodo"
       },
       {
         "identifier": "cks"
+      },
+      {
+        "identifier": "rum"
       }
     ],
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19532265",
-      "recid": 19532265
+      "doi": "10.5281/zenodo.19674487",
+      "recid": 19674487
     }
   },
   "title": "GUT Threshold Corrections \u2014 The Minimal SU(5) Limit: The threshold coefficients are too small. Minimal SU(5) is disfavored.",
   "links": {
-    "self": "https://zenodo.org/api/records/19532265",
-    "html": "https://zenodo.org/records/19532265",
-    "doi": "https://doi.org/10.5281/zenodo.19532265",
-    "parent_doi": "https://doi.org/10.5281/zenodo.19532264",
-    "badge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532265.svg",
-    "conceptbadge": "https://zenodo.org/badge/doi/10.5281%2Fzenodo.19532264.svg",
-    "files": "https://zenodo.org/api/records/19532265/files",
-    "bucket": "https://zenodo.org/api/files/82e9b0d0-952a-4a26-b994-bc6434dd4208",
-    "thumb250": "https://zenodo.org/record/19532265/thumb250",
+    "self": "https://zenodo.org/api/deposit/depositions/19674487",
+    "html": "https://zenodo.org/deposit/19674487",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19674487/files",
+    "bucket": "https://zenodo.org/api/files/fc0a6caf-75d1-4172-89da-76e3f37ed84e",
+    "thumb250": "https://zenodo.org/record/19674487/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19532265/thumb10",
-      "50": "https://zenodo.org/record/19532265/thumb50",
-      "100": "https://zenodo.org/record/19532265/thumb100",
-      "250": "https://zenodo.org/record/19532265/thumb250",
-      "750": "https://zenodo.org/record/19532265/thumb750",
-      "1200": "https://zenodo.org/record/19532265/thumb1200"
+      "10": "https://zenodo.org/record/19674487/thumb10",
+      "50": "https://zenodo.org/record/19674487/thumb50",
+      "100": "https://zenodo.org/record/19674487/thumb100",
+      "250": "https://zenodo.org/record/19674487/thumb250",
+      "750": "https://zenodo.org/record/19674487/thumb750",
+      "1200": "https://zenodo.org/record/19674487/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19532265",
-    "latest_draft_html": "https://zenodo.org/deposit/19532265",
-    "publish": "https://zenodo.org/api/deposit/depositions/19532265/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19532265/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19532265/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19532265/actions/newversion",
-    "record": "https://zenodo.org/api/records/19532265",
-    "record_html": "https://zenodo.org/record/19532265",
-    "latest": "https://zenodo.org/api/records/19532265/versions/latest",
-    "latest_html": "https://zenodo.org/records/19532265/latest"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19674487",
+    "latest_draft_html": "https://zenodo.org/deposit/19674487",
+    "publish": "https://zenodo.org/api/deposit/depositions/19674487/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19674487/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19674487/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19674487/actions/newversion"
   },
-  "record_id": 19532265,
+  "record_id": 19674487,
   "owner": 1539729,
   "files": [
     {
-      "id": "13709b18-0207-4679-b042-b5968f00d9df",
-      "filename": "!manuscript.pdf",
-      "filesize": 63575,
-      "checksum": "2f6cb6a4e93a72575470d87e5e66333e",
+      "id": "775c4001-c75e-430e-9f08-94eb918d7b2e",
+      "filename": "HOWL-PHYS-29-2026.zip",
+      "filesize": 2666784,
+      "checksum": "ae4bfc0c19a4674a0a48ec31ffc4521a",
       "links": {
-        "self": "https://zenodo.org/api/records/19532265/files/13709b18-0207-4679-b042-b5968f00d9df",
-        "download": "https://zenodo.org/api/records/19532265/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19674487/files/775c4001-c75e-430e-9f08-94eb918d7b2e",
+        "download": "https://zenodo.org/api/records/19674487/draft/files/HOWL-PHYS-29-2026.zip/content"
       }
     },
     {
-      "id": "f4e73908-f76f-4a82-87e7-725ab6a00044",
-      "filename": "HOWL-PHYS-29-2026.zip",
-      "filesize": 2660946,
-      "checksum": "d7c943655c801befebe5acbd78242d15",
+      "id": "5c7ced3e-6bd7-4026-b20b-81fd39258f7d",
+      "filename": "!manuscript.pdf",
+      "filesize": 1451850,
+      "checksum": "8051f26fc53807cd205b38b7d0082122",
       "links": {
-        "self": "https://zenodo.org/api/records/19532265/files/f4e73908-f76f-4a82-87e7-725ab6a00044",
-        "download": "https://zenodo.org/api/records/19532265/draft/files/HOWL-PHYS-29-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19674487/files/5c7ced3e-6bd7-4026-b20b-81fd39258f7d",
+        "download": "https://zenodo.org/api/records/19674487/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "3bafe517-5803-4ba6-8abe-4e7b52ccc1ff",
+      "filename": "HOWL-PHYS-30-2026.zip",
+      "filesize": 2624210,
+      "checksum": "3c34f683fad5852467ed90eb13a72d12",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19674487/files/3bafe517-5803-4ba6-8abe-4e7b52ccc1ff",
+        "download": "https://zenodo.org/api/records/19674487/draft/files/HOWL-PHYS-30-2026.zip/content"
       }
     }
   ],
-  "state": "done",
-  "submitted": true
+  "state": "unsubmitted",
+  "submitted": false
 }

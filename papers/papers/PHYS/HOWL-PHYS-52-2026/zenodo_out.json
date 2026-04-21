@@ -1,12 +1,12 @@
 {
   "created": "2026-04-21T02:36:55.662022+00:00",
-  "modified": "2026-04-21T02:36:55.781595+00:00",
+  "modified": "2026-04-21T04:51:05.593935+00:00",
   "id": 19673910,
   "conceptrecid": "19673909",
   "metadata": {
     "title": "The Remainder Program",
-    "publication_date": "2026-02",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "publication_date": "2026-04",
+    "description": "<div><br>The modulus/remainder decomposition is not a calculation technique. It is the structural principle of the soliton hierarchy.<br>\n<div>&nbsp;</div>\n<div>At every level of the hierarchy &mdash; from sub-femtometer QED loops to the Hubble-scale cosmic budget &mdash; physical quantities decompose into two components. The modulus carries the geometry: &beta; = &pi;/4, the L1/L2 spherical conversion, setting boundaries and determining when transitions occur. The remainder carries the inertia: the specific content that resists state change, accumulates with depth, and drives transitions when it exceeds the modulus boundary.</div>\n<br>\n<div>In framework language, mass is inertia. Stored energy is inertia. Entropy is inertia. Coupling strength is inertia. These are not competing descriptions &mdash; they are different measurement angles on the same quantity. The remainder is this quantity, computed at each hierarchy level.</div>\n<br>\n<div>The paper tests this claim at seven levels by computing the decomposition and comparing to measurements. Each level either supports or weakens the claim. Negative results are reported alongside positive ones.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -67,10 +67,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-52-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -89,6 +89,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/19673910/files",
     "bucket": "https://zenodo.org/api/files/0533888b-6db3-4eff-9876-ca71e49a8057",
+    "thumb250": "https://zenodo.org/record/19673910/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673910/thumb10",
+      "50": "https://zenodo.org/record/19673910/thumb50",
+      "100": "https://zenodo.org/record/19673910/thumb100",
+      "250": "https://zenodo.org/record/19673910/thumb250",
+      "750": "https://zenodo.org/record/19673910/thumb750",
+      "1200": "https://zenodo.org/record/19673910/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/19673910",
     "latest_draft_html": "https://zenodo.org/deposit/19673910",
     "publish": "https://zenodo.org/api/deposit/depositions/19673910/actions/publish",
@@ -98,7 +107,28 @@
   },
   "record_id": 19673910,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "eb34e0a5-abde-402c-9aa2-f7cea122b8a6",
+      "filename": "!manuscript.pdf",
+      "filesize": 1223492,
+      "checksum": "74320fbceab83ea466c391d8c20e6c99",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673910/files/eb34e0a5-abde-402c-9aa2-f7cea122b8a6",
+        "download": "https://zenodo.org/api/records/19673910/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "0281c27e-a68e-421a-acb7-6091845bc66d",
+      "filename": "HOWL-PHYS-52-2026.zip",
+      "filesize": 2141436,
+      "checksum": "76aa7a5412fc218628e7c83a5c12c894",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673910/files/0281c27e-a68e-421a-acb7-6091845bc66d",
+        "download": "https://zenodo.org/api/records/19673910/draft/files/HOWL-PHYS-52-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }

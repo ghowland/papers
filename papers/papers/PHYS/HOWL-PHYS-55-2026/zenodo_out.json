@@ -1,12 +1,12 @@
 {
   "created": "2026-04-21T02:38:05.426361+00:00",
-  "modified": "2026-04-21T02:38:05.579837+00:00",
+  "modified": "2026-04-21T04:56:08.817826+00:00",
   "id": 19673930,
   "conceptrecid": "19673929",
   "metadata": {
     "title": "Planck Cell-Tick Remainder Momentum II",
-    "publication_date": "2026-02",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "publication_date": "2026-04",
+    "description": "<div>\n<div>The RUM vocabulary is the substrate. Not a model of it. Not a convenient description. The substrate is unit-adjacency graph arithmetic on Planck cells at Planck ticks with direction-conditional continuous neighbors, remainder accumulation per tick, and channel-mediated adjacency extension. Standard Model phenomenology, quantum mechanical structure, general relativity, and cosmological partition are produced by arithmetic on this graph. Nothing else exists.</div>\n<br>\n<div>PCTRM provides substrate-level mechanisms for non-locality (channel-sharing across arbitrary Euclidean separation), measurement (observation-as-entanglement &mdash; measurement is channel-merger between observer and target, not a second dynamics), probability (unit-graph round-trip closure produces squared-magnitude amplitudes from adjacency geometry), Lorentz invariance (N/N = 1 integer-cell-count identity for photon propagation), gravitational dynamics (direction-drain on channel vectors produces 1/r&sup2; falloff and toroidal GR corrections at probe-scale resolution), and dual-geometry sectors (every soliton has spherical modulus and toroidal remainder, documented at QED four-loop precision with sub-ppm topology-specific moduli k\u2088\u2081 = 0.999994 and k\u2088\u2083 = 0.997130).</div>\n<br>\n<div>The Standard Model's postulates are theorems in this framework. The Born rule is not axiomatic; it is the structural consequence of unit-graph adjacency with round-trip basis closure. Hilbert space is the continuous-limit description of unit-adjacency graph with complex-valued (spherical + toroidal) channel states. Standard QM is not prior to PCTRM; it is the coarse-grained approximation of PCTRM. The measurement problem does not exist in this framework &mdash; it dissolves into channel-merger arithmetic.</div>\n<br>\n<div>Round 0 established baseline substrate consistency. Fifteen of sixteen substrate identities reproduced in one pass from the existing RUM pool at original published precisions. Four RUM precision identities (&Omega;_&Lambda; at 84.5 ppm, Koide at 9.23 ppm, DM/baryon at 725.2 ppm, bridge at 297.4 ppm) reproduced through the substrate-framed derivation path. No kill switch fired. The sole external FAIL (V_us at 3121 ppm against `ckm_vus_measured_v0`) resolves to PASS at 44 ppm against the PDG 2024 reference `ckm_cabibbo_angle_pdg_v0` &mdash; a pool-curation matter.</div>\n<br>\n<div>PHYS-55 integrates Session 9 theoretical advances (entanglement as channel-sharing, observation-as-entanglement, Born derivation from unit-graph structure, single-particle interference via channel-agreement, photon c-invariance as arithmetic identity) and PHYS-49/MATH-12 dual-geometry commitments (spherical modulus / toroidal remainder decomposition at every hierarchy level, topology-specific moduli, probe-dependent sector dominance). It retires PSLQ as primary validation method &mdash; 41 of 41 historical nulls confirmed its failure mode &mdash; and replaces it with cross-derivation discipline: a value or mechanism is validated when multiple independent structural paths through the integer alphabet, &beta;, and K(k) produce the same value at CODATA/FNAL/Planck/Harvard measurement precision.</div>\n<br>\n<div>PHYS-55 pre-registers Round 1 as a coordinated 10-test program organized into 3 priority tiers. Each test specifies multiple independent derivation paths that must converge on measured values at their native precision. Each test has a pre-registered kill switch. The framework advances through mechanism-level validation or it falls on specific pre-registered conditions. There is no middle ground.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -89,6 +89,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/19673930/files",
     "bucket": "https://zenodo.org/api/files/da63afc0-9862-47bb-aff0-de9655c86c3d",
+    "thumb250": "https://zenodo.org/record/19673930/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19673930/thumb10",
+      "50": "https://zenodo.org/record/19673930/thumb50",
+      "100": "https://zenodo.org/record/19673930/thumb100",
+      "250": "https://zenodo.org/record/19673930/thumb250",
+      "750": "https://zenodo.org/record/19673930/thumb750",
+      "1200": "https://zenodo.org/record/19673930/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/19673930",
     "latest_draft_html": "https://zenodo.org/deposit/19673930",
     "publish": "https://zenodo.org/api/deposit/depositions/19673930/actions/publish",
@@ -98,7 +107,28 @@
   },
   "record_id": 19673930,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "808cafc4-d6f5-4aab-8a55-c19d3e9466df",
+      "filename": "!manuscript.pdf",
+      "filesize": 2547018,
+      "checksum": "ba12c6ce0ed1ae553324ec0b4fd75d67",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673930/files/808cafc4-d6f5-4aab-8a55-c19d3e9466df",
+        "download": "https://zenodo.org/api/records/19673930/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "cac2acb1-c5c3-44f7-8706-0d80711d5767",
+      "filename": "HOWL-PHYS-55-2026.zip",
+      "filesize": 6752350,
+      "checksum": "2c5c6948aafc340d5a8a63b6c83e491b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19673930/files/cac2acb1-c5c3-44f7-8706-0d80711d5767",
+        "download": "https://zenodo.org/api/records/19673930/draft/files/HOWL-PHYS-55-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }

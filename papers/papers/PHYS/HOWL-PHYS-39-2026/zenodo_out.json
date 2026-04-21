@@ -1,11 +1,12 @@
 {
   "created": "2026-04-20T16:26:55.618275+00:00",
-  "modified": "2026-04-20T16:26:55.880568+00:00",
+  "modified": "2026-04-21T04:29:02.672093+00:00",
   "id": 19666556,
   "conceptrecid": "19532298",
   "conceptdoi": "10.5281/zenodo.19532298",
   "metadata": {
     "title": "From Gauge Integers to Hydrogen Spectroscopy: Two-Loop Unification, the k\u2081 Bug, and Eight Connected Domains",
+    "publication_date": "2026-04",
     "description": "<h2>From Gauge Integers to Hydrogen Spectroscopy: Two-Loop Unification, the k\u2081 Bug, and Eight Connected Domains</h2>\n<p>This paper is part of the HOWL research archive\u2014a collection of physics papers exploring integer fraction derivations across multiple domains using exact arithmetic and automated comparison.</p>\n<h3>Falsification Criteria</h3>\n<p>All papers in this archive are subject to falsification through direct comparison to published experimental measurements. Each derived value is tested against independent data with explicit PASS/FAIL criteria. Any derived value that fails its comparison is documented and published alongside the successes.</p>\n<h3>Research Context</h3>\n<p>This archive documents an ongoing research program in integer fraction physics. The methodology is: derive values from gauge group integers using exact fraction arithmetic, compare to published measurements, and document all results including failures. The archive spans multiple physics domains connected through the soliton boundary framework described in the constituent papers.</p>\n<h3>Package Contents</h3>\n<ul>\n<li><code>manuscript.md</code>: The complete derivation and supporting analysis.</li>\n<li><code>README.md</code>: Navigation, dependencies, and citation (Registry: HOWL-PHYS-39-2026).</li>\n</ul>\n<p><strong>Dependencies:</strong> HOWL-PHYS-36-2026, HOWL-PHYS-37-2026, HOWL-PHYS-38-2026, HOWL-PHYS-9-2026</p>\n<p><strong>Motto:</strong> Derive. Compare. Publish.<br><strong>Status:</strong> Complete</p>",
     "access_right": "open",
     "creators": [
@@ -50,10 +51,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "rum"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "rum"
       },
       {
         "identifier": "cks"
@@ -93,22 +94,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "6bf2e8ae-78c2-4402-96cd-928358753a4b",
+      "id": "c4cfb1a6-31ce-4b19-83ec-08e51e3b9e9b",
       "filename": "!manuscript.pdf",
-      "filesize": 1357176,
-      "checksum": "fd7253ec1732abf55bf01598b1c69277",
+      "filesize": 1357152,
+      "checksum": "a9db867d343e76db9b1deb2e19b6f594",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666556/files/6bf2e8ae-78c2-4402-96cd-928358753a4b",
+        "self": "https://zenodo.org/api/deposit/depositions/19666556/files/c4cfb1a6-31ce-4b19-83ec-08e51e3b9e9b",
         "download": "https://zenodo.org/api/records/19666556/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "e6ef0398-1bb0-4491-b8f1-a7cb88bcebed",
+      "id": "d6a1829e-8597-4e87-8052-ca742fc4aca9",
       "filename": "HOWL-PHYS-39-2026.zip",
-      "filesize": 2490640,
-      "checksum": "6c9bbb39a2574793dd86ca8d8b20dfbb",
+      "filesize": 2495546,
+      "checksum": "6b1e8a362b277acebe4ab2f871615497",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666556/files/e6ef0398-1bb0-4491-b8f1-a7cb88bcebed",
+        "self": "https://zenodo.org/api/deposit/depositions/19666556/files/d6a1829e-8597-4e87-8052-ca742fc4aca9",
         "download": "https://zenodo.org/api/records/19666556/draft/files/HOWL-PHYS-39-2026.zip/content"
       }
     }
