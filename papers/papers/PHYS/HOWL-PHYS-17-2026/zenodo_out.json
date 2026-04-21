@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:58:47.593302+00:00",
-  "modified": "2026-04-20T15:58:47.834091+00:00",
+  "modified": "2026-04-21T03:53:16.672673+00:00",
   "id": 19666265,
   "conceptrecid": "19532228",
   "conceptdoi": "10.5281/zenodo.19532228",
@@ -93,22 +93,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "5b336cb3-02f3-4c76-8b73-238f366bd3a5",
+      "id": "f805551b-9744-447c-96ad-4390cbe2e1aa",
       "filename": "!manuscript.pdf",
-      "filesize": 1256166,
-      "checksum": "889203af0e9972ccd032c78d84982926",
+      "filesize": 1256144,
+      "checksum": "1c426d8740a6ea97b33072682dfbadfb",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/5b336cb3-02f3-4c76-8b73-238f366bd3a5",
+        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/f805551b-9744-447c-96ad-4390cbe2e1aa",
         "download": "https://zenodo.org/api/records/19666265/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "d9c7833a-92d5-465a-a6fb-ddac90250c8e",
+      "id": "7124eb3e-5527-4a6d-961e-fc4a53fdcfbd",
       "filename": "HOWL-PHYS-17-2026.zip",
-      "filesize": 3514653,
-      "checksum": "cd4116276668061ec2bc30f6a37427e3",
+      "filesize": 3520538,
+      "checksum": "510439c67993c1ed1475b56dd15a2ebe",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/d9c7833a-92d5-465a-a6fb-ddac90250c8e",
+        "self": "https://zenodo.org/api/deposit/depositions/19666265/files/7124eb3e-5527-4a6d-961e-fc4a53fdcfbd",
         "download": "https://zenodo.org/api/records/19666265/draft/files/HOWL-PHYS-17-2026.zip/content"
       }
     }

@@ -1,6 +1,6 @@
 {
   "created": "2026-04-20T15:40:56.123765+00:00",
-  "modified": "2026-04-20T15:40:56.312597+00:00",
+  "modified": "2026-04-21T03:46:11.814409+00:00",
   "id": 19666088,
   "conceptrecid": "19532210",
   "conceptdoi": "10.5281/zenodo.19532210",
@@ -50,13 +50,13 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "cks"
+        "identifier": "zenodo"
       },
       {
         "identifier": "rum"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "cks"
       }
     ],
     "upload_type": "publication",
@@ -93,23 +93,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "d782f00c-d975-449a-b60d-37eb96229ce7",
-      "filename": "HOWL-PHYS-10-2026.zip",
-      "filesize": 2667661,
-      "checksum": "ab712f079a96bb086ec7689b9968c16a",
+      "id": "07a7a09b-5038-4456-96d6-397a77c2ca5c",
+      "filename": "!manuscript.pdf",
+      "filesize": 1471149,
+      "checksum": "583a5a994fd71f7466d972be5846e480",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666088/files/d782f00c-d975-449a-b60d-37eb96229ce7",
-        "download": "https://zenodo.org/api/records/19666088/draft/files/HOWL-PHYS-10-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19666088/files/07a7a09b-5038-4456-96d6-397a77c2ca5c",
+        "download": "https://zenodo.org/api/records/19666088/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "d1222fd8-613f-4905-be83-3e44f4151fba",
-      "filename": "!manuscript.pdf",
-      "filesize": 1471177,
-      "checksum": "528e666fea82b1f5c48b3cc3e9e53867",
+      "id": "83339975-f5a7-4ffb-9a9d-335356613c31",
+      "filename": "HOWL-PHYS-10-2026.zip",
+      "filesize": 2672685,
+      "checksum": "931261ec10855859077c1089c02ea4b3",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19666088/files/d1222fd8-613f-4905-be83-3e44f4151fba",
-        "download": "https://zenodo.org/api/records/19666088/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19666088/files/83339975-f5a7-4ffb-9a9d-335356613c31",
+        "download": "https://zenodo.org/api/records/19666088/draft/files/HOWL-PHYS-10-2026.zip/content"
       }
     }
   ],
