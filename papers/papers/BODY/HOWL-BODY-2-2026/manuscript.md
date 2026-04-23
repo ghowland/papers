@@ -317,3 +317,244 @@ You ask "is this food?" for every substance you encounter. The four questions gi
 
 ::: {#refs}
 :::
+
+---
+
+# Appendix: Supporting Reference Tables
+
+## Table A1: The Category Taxonomy
+
+Every ingested substance falls into one of these categories. The category is determined by the substance's relationship to the body, not by properties of the substance in isolation.
+
+| Category | Definition | Body Response | Examples |
+|---|---|---|---|
+| Poison | Harms at any dose. No intake level helps the body sustain function. | Cellular or metabolic injury proportional to dose. | Cyanide, arsenic, botulinum toxin, mercury, lead |
+| Non-food essential | Required for life, ingested or inhaled, cannot sustain life alone. | Regulatory function supported; no caloric substrate provided. | Water, air, salt |
+| Homeostasis-disruptor at excess dose | Safe or required at normal doses, lethal when dose overwhelms regulatory capacity. | Regulatory systems overwhelmed by volume, not by chemical injury. | Water past LD50, oxygen at high pressure, sodium at extreme intake |
+| Medicine | Situational intervention. Functions as medicine only at correct dose with correct indication. | Specific effect produced through mechanism; intervention in function rather than sustaining of function. | NSAIDs with inflammation, antibiotics with infection, insulin with diabetes |
+| Insufficient substance | Ingestible, not toxic, provides too little for the body to extract meaningful sustenance. | Approximately equivalent to no intake in terms of sustenance. | Pepper seeds, most spices alone, inedible fiber |
+| Partial food — acutely non-sustaining | Real food, but fails as sole intake within weeks through specific mechanisms. | Kills through metabolic overload or deficit before pure starvation timeline. | Rabbit meat alone, very lean fish alone |
+| Partial food — acutely sustaining, chronically insufficient | Provides calories and prevents acute starvation, develops deficiency disease over months to years. | Survival short-term, progressive deficiency and regulatory wear. | Bread and water, plain polished rice alone |
+| Sustaining food with chronic costs | Can sustain life long-term as sole intake, with specific slowly-developing problems. | Maintains basic homeostasis for years; specific systems accumulate stress. | Pig meat alone, potato-dominant diets |
+| Regular food | Body sustains indefinitely on this as ongoing intake. | Regulation succeeds, homeostasis maintained, no accumulating load. | Varied whole foods: meats, eggs, vegetables, fruits, whole grains, legumes, nuts |
+| Irregular food | Body handles occasionally without lasting harm; frequent intake destabilizes. | Transient perturbation at occasional intake; regulatory wear at sustained intake. | Cake, chips, sweetened drinks, fried foods, alcohol, ice cream |
+| Short-term food, long-term poison | Passes acute food test, fails chronic food test. | Sustains brief exposure, actively degrades regulatory machine under sustained intake. | Processed flour, heavily processed foods, industrial seed oils |
+
+## Table A2: The Sustaining Gradient
+
+Within the category of food, substances vary in how completely they sustain the body as sole intake. This table places example substances on the gradient.
+
+| Position | Substance | Time to Failure as Sole Intake | Primary Failure Mechanism | Status |
+|---|---|---|---|---|
+| Below threshold | Pepper seeds, spices alone | ~50 days | Insufficiency equivalent to starvation | Not food |
+| Acutely non-sustaining | Rabbit meat alone | 2–4 weeks | Nitrogen toxicity from excess protein without fat | Partial food, fails alone |
+| Acutely non-sustaining | Pure sugar and water | 3–8 weeks | Broad regulatory failure; no protein, fat, or micronutrients | Irregular food, near poison |
+| Acutely sustaining, chronically insufficient | White bread and water | 3–12 months | Deficiency disease: scurvy, B-vitamin deficiencies, essential fatty acid deficiency | Partial food, inadequate alone |
+| Acutely sustaining, chronically insufficient | Polished rice and water | 3–12 months | Beriberi (thiamine deficiency), protein insufficiency | Partial food, inadequate alone |
+| Broadly sustaining | Pig meat alone | Years | Gout, cardiovascular effects, vitamin C deficiency over long time | Sustaining food with costs |
+| Broadly sustaining | Whole milk for adapted populations | Years | Specific deficiencies over time; works best for some populations | Sustaining food with costs |
+| Broadly sustaining | Eggs as primary food | Years | Specific deficiencies very slowly | Sustaining food with costs |
+| Varied intake | Combined whole foods (meat, eggs, vegetables, fruits, grains, dairy) | Indefinite | None at reasonable variation | Regular food |
+
+## Table A3: Intake Frequency and Food Status
+
+The same substance can change category based on how often it is eaten. This table shows how frequency determines category for representative substances.
+
+| Substance | Rare (monthly or less) | Occasional (weekly) | Frequent (daily) | Dominant (major caloric fraction) |
+|---|---|---|---|---|
+| Home-made whole wheat bread | Regular food | Regular food | Regular food | Partial food; combine with other intake |
+| White bread | Regular food | Borderline regular/irregular | Irregular food | Chronically insufficient |
+| Cheap white bread | Irregular food | Irregular food | Chronically degrading | Chronically degrading with active damage |
+| Cheap potato chips | Irregular food | Irregular food | Chronically degrading | Rapidly degrading |
+| Cake (typical recipe) | Regular-equivalent for the occasion | Irregular food | Chronically degrading | Severely destabilizing |
+| Pure sugar (added) | Irregular food | Irregular food | Chronically degrading | Near-poison level destabilization |
+| Sweetened soft drinks | Irregular food | Chronically degrading | Severely destabilizing | Approaching pure-sugar failure |
+| Pig meat | Regular food | Regular food | Regular food | Sustaining food with chronic costs |
+| Eggs | Regular food | Regular food | Regular food | Broadly sustaining |
+| Whole fruit | Regular food | Regular food | Regular food | Partial food; combine with other intake |
+| Fruit juice (added sugar) | Irregular food | Irregular food | Chronically degrading | Severely destabilizing |
+| Alcohol (moderate portion) | Irregular food | Irregular food | Chronically degrading | Severely destabilizing |
+
+## Table A4: Regulatory Systems and Food Impact
+
+The body's major regulatory systems, what they require from food to function, and what destabilizes them.
+
+| Regulatory System | What It Regulates | What It Requires from Food | What Destabilizes It |
+|---|---|---|---|
+| Blood glucose regulation | Serum glucose, insulin, glucagon | Variable carbohydrate intake, fiber, protein, fat to slow absorption | Frequent high-glycemic loads, isolated sugar, processed flour |
+| Electrolyte balance | Sodium, potassium, chloride, magnesium, calcium | Varied intake of minerals, adequate water | Extreme salt intake, potassium deficit, dehydration |
+| Fluid regulation | Blood volume, cellular hydration, osmotic pressure | Water, sodium in range, potassium | Excess sodium, insufficient water, excess water |
+| Acid-base regulation | Blood pH, buffer systems | Varied intake contributing balanced acid/base load | Extreme protein loads, acidic processed foods in dominance |
+| Protein and nitrogen regulation | Amino acid pool, urea cycle, muscle maintenance | Complete protein in adequate but not excessive amounts | Protein deficit (muscle wasting), protein excess without fat (nitrogen toxicity) |
+| Fat regulation | Essential fatty acids, cell membranes, hormone synthesis | Dietary fats including essential fatty acids | Insufficient fat, excess oxidized fats, imbalanced omega-3/omega-6 |
+| Micronutrient regulation | Enzyme cofactors, vitamin-dependent processes | Vitamins and minerals from varied whole foods | Monotonous intake lacking specific nutrients, malabsorption |
+| Gut regulation | Microbiome, gut barrier, nutrient absorption | Fiber, varied substrates, fermented foods in some traditions | Processed foods lacking fiber, excess sugar, additive load |
+| Immune regulation | Inflammatory response, pathogen defense | Adequate protein, zinc, vitamin C, vitamin D, varied inputs | Chronic inflammation from processed foods, deficiency states |
+| Cardiovascular regulation | Blood pressure, vascular integrity | Balanced electrolytes, adequate nutrients for vessel maintenance | Excess sodium, oxidized fats, chronic high-glycemic load, deficiency in specific minerals |
+| Endocrine regulation | Hormone synthesis and clearance | Cholesterol, amino acids, fat-soluble vitamins, specific minerals | Insufficient fat, excess sugar, specific nutrient deficiencies |
+| Liver regulation | Detoxification, metabolic processing | Manageable load of substances to clear | Alcohol excess, pharmaceutical load, additive-heavy diet |
+
+## Table A5: Failure Timelines for Sole Intake
+
+Approximate time to significant dysfunction or death when a single substance is the only intake. These are approximations from historical and experimental data.
+
+| Substance | Time to Weakness | Time to Severe Dysfunction | Time to Death | Primary Lethal Mechanism |
+|---|---|---|---|---|
+| Nothing (water only) | 2–3 weeks | 3–5 weeks | ~50 days | Starvation |
+| Salt (with water) | Hours | 1–2 days | 3–7 days | Dehydration, cardiovascular collapse |
+| Pepper seeds (with water) | 2–3 weeks | 3–5 weeks | ~50 days | Starvation (functionally equivalent to no food) |
+| Rabbit meat alone | 1–2 weeks | 3–4 weeks | 4–8 weeks | Nitrogen toxicity, caloric insufficiency |
+| Pure sugar (with water) | 2–4 weeks | 4–8 weeks | 2–4 months | Multi-system regulatory failure |
+| White bread (with water) | 1–2 months | 3–6 months | 6–18 months | Deficiency disease (specific to what's missing) |
+| Polished rice (with water) | 1–2 months | 3–6 months | 6–12 months | Beriberi, protein insufficiency |
+| Potatoes alone (whole) | Months | 1–2 years | Years | Slow deficiency (particularly protein, specific micronutrients) |
+| Pig meat alone | Years | Years to decades | Decades | Gout, cardiovascular, eventual specific deficiencies |
+| Eggs alone | Years | Decades | Very slow | Minimal specific deficiencies over very long time |
+| Whole milk alone (for adapted populations) | Years | Decades | Very slow | Iron deficiency, specific issues over long time |
+| Varied whole foods | Indefinite | Indefinite | Normal lifespan | Not sole-intake failure |
+
+## Table A6: The Four-Question Decision Rule
+
+The operational rule for evaluating any substance against "is this food?"
+
+| Question | What It Assesses | Substance Passes If | Substance Fails If |
+|---|---|---|---|
+| 1. What does this substance provide the homeostasis machine? | Contribution of energy substrate, structural materials, and regulatory materials | Provides meaningful amounts of multiple categories (calories plus protein, or calories plus micronutrients, or ideally all three) | Provides only calories, or nothing meaningful |
+| 2. What load does this substance put on the regulatory systems? | Stress on specific regulatory pathways | Load is within normal capacity of the systems involved | Strains specific systems (insulin, kidney, liver, electrolyte) beyond comfortable range |
+| 3. What happens under sustained intake? | Whether the body maintains regulation over time | Regulation remains stable; no specific systems degrade progressively | Regulatory capacity degrades; specific systems wear down; chronic disease develops |
+| 4. What happens under occasional intake? | Whether the body recovers from periodic exposure | Body absorbs, processes, and returns to baseline without lasting effect | Damage accumulates even at occasional exposure; substance is poison or homeostasis-disruptor |
+
+### Category Assignment from Question Results
+
+| Pass 1 | Pass 2 | Pass 3 | Pass 4 | Category |
+|---|---|---|---|---|
+| Yes | Yes | Yes | Yes | Regular food |
+| Partial | Yes | Partial | Yes | Partial food — regular in combination |
+| Yes | Partial | No | Yes | Short-term food, long-term poison / Irregular food |
+| Minimal | Partial | No | Yes | Irregular food |
+| Minimal | No | No | No | Homeostasis-disruptor / Near-poison |
+| No | No | No | No | Poison |
+| No (not substrate) | Yes (required) | N/A | N/A | Non-food essential |
+| Varies | Varies | Moot | Moot | Medicine (situational) |
+
+## Table A7: Substances Arrayed on the Full Spectrum
+
+This table places example substances on the spectrum from most sustaining to most destabilizing. The ordering is approximate, and position depends on intake pattern.
+
+| Position | Substance | Category | Dominant Body Response |
+|---|---|---|---|
+| Most sustaining | Eggs | Regular food | Broad stabilization across most systems |
+| | Organ meats in variety | Regular food | Dense micronutrient stabilization |
+| | Fatty fish (wild-caught) | Regular food | Stabilization plus essential fatty acids |
+| | Varied meats and seafood | Regular food | Protein, fat, micronutrients |
+| | Varied vegetables | Regular food | Micronutrients, fiber; partial alone |
+| | Whole fruits in variety | Regular food | Micronutrients, sugar in fiber matrix |
+| | Whole grains | Regular food in combination | Carbohydrate, some protein, fiber, micronutrients |
+| | Legumes | Regular food in combination | Protein, carbohydrate, fiber, micronutrients |
+| | Nuts and seeds | Regular food | Fat, protein, micronutrients |
+| | Raw/lightly processed dairy (for tolerant populations) | Regular food | Fat, protein, calcium, other micronutrients |
+| | Home-made whole wheat bread | Partial food | Like whole grains, less dense than original grain |
+| | Potatoes (whole) | Partial food | Carbohydrate, potassium, some protein |
+| | Store whole wheat bread | Partial food toward irregular | Reduced nutrition, some additive load |
+| | White bread (enriched) | Borderline regular/irregular | Calories with minimum nutrient profile |
+| | Cheap white bread | Irregular food | Calories plus additive load, minimum nutrients |
+| | Sweetened yogurt (commercial) | Irregular food | Some dairy benefit plus sugar load |
+| | Commercial breakfast cereals | Irregular food | Processed grain plus concentrated sugar |
+| | Cake (typical) | Irregular food | Concentrated sugar plus processed flour plus fat |
+| | Cheap potato chips | Irregular food toward poison | Oxidized fats, sodium, minimal nutrition |
+| | Fast food hamburger | Irregular food | Variable; depends on specific product |
+| | Ice cream | Irregular food | Sugar, fat, some dairy benefit |
+| | Sweetened soft drinks | Irregular food near pure sugar | Concentrated sugar in water |
+| | Pure sugar | Irregular food near poison | Calories only, severe regulatory load |
+| | Alcohol | Irregular food near poison | Calories with hepatic clearance load and neurological effect |
+| | Fruit juice (sweetened) | Irregular food near pure sugar | Concentrated sugar without fiber |
+| | Industrial seed oils (used repeatedly) | Short-term food, long-term poison | Calories with oxidized fat load |
+| | Deep-fried processed foods | Short-term food, long-term poison | Calories with multiple destabilizers |
+| Not food (essentials) | Water | Non-food essential | Hydration support |
+| | Salt | Non-food essential | Electrolyte support |
+| | Air | Non-food essential | Oxygen for respiration |
+| Not food (harmful) | Small doses of mild poisons | Poison at any dose | Proportional injury |
+| | Cyanide | Poison | Cellular respiration arrest |
+| Most destabilizing | Acute lethal poisons | Poison | Rapid death |
+
+## Table A8: Common Modern Foods Versus Cultural Framing
+
+Substances often positioned as regular food that are irregular food by body response, and substances sometimes avoided that are actually regular food.
+
+| Substance | Cultural Position | Body-Response Category | Reason for Mismatch |
+|---|---|---|---|
+| Commercial breakfast cereals (sweetened) | "Healthy breakfast food" | Irregular food | Sugar content closer to dessert than to whole grain |
+| Fruit juice | "Healthy beverage" | Irregular food | Concentrated sugar without fiber of whole fruit |
+| Flavored yogurt | "Healthy snack" | Irregular food | Added sugar often exceeds beneficial dairy content |
+| Granola bars (commercial) | "Healthy snack" | Often irregular food | Typically high in added sugar and processed oils |
+| Smoothies (sweetened commercial) | "Healthy drink" | Often irregular food | Concentrated sugar with variable real content |
+| Sports drinks | "Healthy hydration" | Irregular food | Sugar and sodium solution; not required for normal activity |
+| Diet sodas | "Better than regular soda" | Non-food; irregular at best | Artificial sweeteners have their own regulatory effects |
+| Whole eggs | Sometimes avoided for cholesterol | Regular food | Broad nutritional content; cholesterol concerns largely overstated |
+| Full-fat dairy (for tolerant) | Sometimes avoided for fat content | Regular food | Fat content is a feature; fat-soluble vitamins require fat |
+| Red meat | Sometimes positioned as irregular | Regular food for most people | Broad nutritional content; concerns context-dependent |
+| Saturated fats from whole sources | Sometimes avoided | Regular food component | Required for hormone synthesis and cell membranes |
+| Salt (in normal cooking amounts) | Sometimes over-restricted | Non-food essential, use as needed | Required for regulatory function; deficiency is real problem |
+
+## Table A9: Duration-Dependent Substances — The Short-Term-Food, Long-Term-Poison Profile
+
+Substances that pass the acute food test and fail the chronic food test. Each has a characteristic timeline for transition from food-like to destabilizing at sustained intake.
+
+| Substance | Acute Food Status | Chronic Status (Frequent Intake) | Primary Destabilization Mechanism | Approximate Transition Timeline |
+|---|---|---|---|---|
+| Processed flour | Food (provides calories, brief sustenance) | Active destabilizer | Glycemic load, micronutrient deficit, gut effects | Months to years of dominant intake |
+| Industrial seed oils | Food (calories) | Active destabilizer | Oxidized fats, omega imbalance, inflammation | Months to years of regular use |
+| High-fructose corn syrup | Food (calories) | Active destabilizer | Hepatic load, glucose regulation strain | Weeks to months at significant intake |
+| Deep-fried foods | Food (calories) | Active destabilizer | Oxidized fats plus processing effects | Months to years of regular intake |
+| Processed meat (with nitrites, additives) | Food (protein, fat) | Slow destabilizer | Preservative load, altered protein matrix | Years of regular intake |
+| Alcohol | Tolerable at small doses | Active destabilizer | Hepatic load, neurological effects, caloric displacement | Months to years of regular intake |
+| Artificially sweetened products | Minimal food value | Variable destabilizer | Microbiome effects, possible metabolic signaling issues | Months to years |
+| Ultra-processed foods (composite) | Food (calories) | Active destabilizer | Combined effects of above mechanisms | Months to years |
+
+## Table A10: Individual Variation Factors
+
+Food status is generally consistent across individuals, but specific tolerances vary. This table names the major axes of individual variation that affect where substances fall for specific people.
+
+| Variation Axis | What It Affects | Common Examples |
+|---|---|---|
+| Lactase persistence | Dairy tolerance | Fresh milk: regular food for many populations, irregular or non-food for others |
+| Gluten sensitivity or celiac disease | Wheat tolerance | Wheat: regular food for most, non-food (harmful) for celiac sufferers |
+| FODMAP sensitivity | Gut response to certain carbohydrates | Onions, garlic, legumes: regular for most, irregular for sensitive individuals |
+| Specific food allergies | Immune response to specific proteins | Nuts, shellfish, eggs: regular food for most, poison for allergic individuals |
+| Enzyme variations | Processing of specific substances | Alcohol tolerance varies by genotype; some cannot safely consume |
+| Metabolic conditions | Handling of specific macronutrients | Diabetics handle glucose differently; PKU sufferers cannot handle phenylalanine |
+| Age-related changes | Nutritional needs and tolerance | Elderly often need more protein; children need specific nutrient densities |
+| Pregnancy and lactation | Specific increased needs | Folate, iron, calcium needs higher; some substances (alcohol) shift toward poison |
+| Activity level | Caloric and specific nutrient needs | High-activity: more calories, specific electrolytes; sedentary: less |
+| Gut microbiome composition | Processing of various foods | Individual microbiomes handle fiber and fermentable substances differently |
+| Historical adaptation | Population-level food tolerances | Inuit populations adapted to high-fat marine diets; others less so |
+| Acquired sensitivities | Changed tolerance over time | Gut damage from previous illness can reduce tolerance for previously-regular foods |
+
+## Table A11: The Decision Rule in Summary
+
+A condensed reference for applying the method.
+
+| Step | Question | Answer | Action |
+|---|---|---|---|
+| 1 | What does this provide? | Meaningful substrate, structure, and regulatory materials | Proceed to step 2 with positive weight |
+| 1 | What does this provide? | Only calories or less | Proceed to step 2 with negative weight |
+| 2 | What load does it impose? | Within regulatory capacity | Proceed to step 3 with positive weight |
+| 2 | What load does it impose? | Strains specific systems | Proceed to step 3 with negative weight |
+| 3 | What happens under sustained intake? | Body sustains | Regular food (at this intake pattern) |
+| 3 | What happens under sustained intake? | Regulatory wear accumulates | Step 4 determines whether irregular food or worse |
+| 4 | What happens under occasional intake? | Body absorbs and recovers | Irregular food |
+| 4 | What happens under occasional intake? | Damage accumulates even occasionally | Not food — poison or disruptor |
+
+### Practical Application Heuristic
+
+| Observation | Likely Category |
+|---|---|
+| Traditional food eaten for centuries by populations in good health | Regular food for those populations |
+| Food requiring significant processing, additives, and engineering | Likely irregular food or short-term food, long-term poison |
+| Food that people can eat but that makes them feel worse over time | Irregular food at that frequency, or not tolerated by that individual |
+| Food that concentrates specific substances (sugar, sodium, oils) beyond natural levels | Irregular food; may be short-term food, long-term poison |
+| Food sold primarily for convenience or flavor engineering | Often irregular food regardless of marketing |
+| Substance required for regulatory function but not providing substrate | Non-food essential |
+| Substance harmful at any dose | Poison |
+| Substance producing a specific effect for a limited purpose | Medicine (situational) |
+
