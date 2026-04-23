@@ -71,6 +71,7 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[[@HOWL-BODY-1-2026]](papers/papers/BODY/HOWL-BODY-1-2026/manuscript.md)** | **Neural Territory** | A Systematic Method for Nervous System Repair Through Proprioceptive Retraining. |
+| **[[@HOWL-BODY-2-2026]](papers/papers/BODY/HOWL-BODY-2-2026/manuscript.md)** | **What is Food?** | A Method for Evaluating Substances by Body Response. |
 
 ---
 
