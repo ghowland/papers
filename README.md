@@ -15,6 +15,8 @@
 | **[[@HOWL-INFO-3-2026]](papers/papers/INFO/HOWL-INFO-3-2026/manuscript.md)** | **The Pseudo-Socratic Method** | Adaptive Collaborative Reasoning Through Incremental State Assessment. |
 | **[[@HOWL-INFO-4-2026]](papers/papers/INFO/HOWL-INFO-4-2026/manuscript.md)** | **Howland's Axiom of Information Locality** | A unique set of information is created any time you abstact any state into a single entity. |
 | **[[@HOWL-INFO-5-2026]](papers/papers/INFO/HOWL-INFO-5-2026/manuscript.md)** | **Coherence as Information Phenomenon** | How the CKS Corpus Achieved Maximum Logical Validity at Zero Mathematical Coherence. |
+| **[[@HOWL-INFO-6-2026]](papers/papers/INFO/HOWL-INFO-6-2026/manuscript.md)** | **How to Write Technical Documents** | A Method for Uploading Specific Things into Specific Heads. |
+| **[[@HOWL-INFO-7-2026]](papers/papers/INFO/HOWL-INFO-7-2026/manuscript.md)** | **How to Review Technical Writing** | A Method for Performing Requested Service Against Specific Scope. |
 
 ---
 
