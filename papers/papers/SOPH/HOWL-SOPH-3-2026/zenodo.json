@@ -1,0 +1,74 @@
+{
+  "title": "Civic and Discivic Technologies",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Technologies are often evaluated by what they can do \u2014 their features, their capabilities, their convenience. This paper argues for a different evaluation: technologies should be classified by what they do to the humans who use them over time. Some technologies expand human capacity. The human who uses them ends up with more ability than they started with, and the ability persists whether or not the technology is present. These technologies are civic \u2014 they build the civilization that uses them. Other technologies substitute for human capacity. The human who uses them ends up with less ability than they started with, or with ability that only works as long as the technology is available. These technologies are discivic \u2014 they erode the civilization that depends on them. Most technologies are one or the other by their nature, and some can be either depending on how they are used. The paper develops the distinction, provides a test for applying it, and works through examples ranging from hammers and writing to social media and artificial intelligence. The goal is to give readers a stable way to evaluate technologies in their own lives and in their societies \u2014 not by what the technologies promise, but by what the technologies actually produce in the humans who use them.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "philosophy",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-SOPH-3-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/SOPH/HOWL-SOPH-3-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

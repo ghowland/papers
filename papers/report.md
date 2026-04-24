@@ -1,11 +1,11 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-04-24 03:55:38 UTC
+**Generated:** 2026-04-24 05:01:54 UTC
 
 ## Summary
 
-- **Total Papers:** 124
-- **Valid:** 120
+- **Total Papers:** 125
+- **Valid:** 121
 - **Invalid:** 4
 - **Total Errors:** 6
 - **Total Warnings:** 296
@@ -23,11 +23,11 @@
 - **MATH:** 12 papers
 - **NEURO:** 1 papers
 - **PHYS:** 57 papers
-- **SOPH:** 2 papers
+- **SOPH:** 3 papers
 
 ## By Status
 
-- **Published (has DOI):** 118
+- **Published (has DOI):** 119
 - **Draft (stub .zzz):** 6
 
 ## Validation Issues
