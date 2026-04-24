@@ -1,23 +1,23 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-04-21 04:28:25 UTC
+**Generated:** 2026-04-24 02:15:10 UTC
 
 ## Summary
 
-- **Total Papers:** 120
-- **Valid:** 116
+- **Total Papers:** 123
+- **Valid:** 119
 - **Invalid:** 4
 - **Total Errors:** 6
 - **Total Warnings:** 296
 
 ## By Subject
 
-- **BODY:** 1 papers
+- **BODY:** 2 papers
 - **COMP:** 8 papers
 - **CULT:** 10 papers
 - **DATA:** 7 papers
 - **DISC:** 14 papers
-- **INFO:** 5 papers
+- **INFO:** 7 papers
 - **LLM:** 1 papers
 - **LYRIC:** 2 papers
 - **MATH:** 12 papers
@@ -27,7 +27,7 @@
 
 ## By Status
 
-- **Published (has DOI):** 114
+- **Published (has DOI):** 117
 - **Draft (stub .zzz):** 6
 
 ## Validation Issues

@@ -1,4 +1,4 @@
-# Neural Territory
+# What is Food?
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,15 +6,7 @@
 
 ## Abstract
 
-This paper documents a systematic method for nervous system repair developed over 25 years of daily practice following catastrophic C5 spinal injury at age 11. The method addresses chronic neuromuscular dysfunction at the level of cortical body map degradation, inappropriate neural linking, and maladaptive motor patterning — problems that conventional rehabilitation does not target and cannot resolve through its available tools.
-
-The method uses four unrestricted interfaces (eyes, breath, tongue, dan tien), seven drumming rudiments adapted for joint mobilization, controlled chaos through stochastic resonance, cranial nerve manipulation for brainstem-level motor control, systematic fibrosis release, and sustained interoceptive attention development. These tools combine through a generative combinatoric system that produces effectively unlimited training configurations at any difficulty level.
-
-Documented outcomes for the primary practitioner (age 51, 25 years of practice): weight reduction from 140kg to 88kg competition weight, elimination of all chronic pain, return to competitive judo at age 50, order-of-magnitude improvement in cognitive interruption tolerance, and subjective 100x increase in interoceptive bandwidth from baseline. Raw cognitive capacity (IQ, pattern recognition, creative synthesis) did not change. The gains are interference reduction and resilience, not capability expansion.
-
-This is a practice document. It describes what to do, how to progress, and what to expect. It does not claim to explain why these practices work at a theoretical level. The practices produce results when performed. The results are the validation.
-
-There is no alternative to this level of work for this level of problem. Medication manages symptoms without addressing causes. Surgery addresses structure without addressing neural patterning. Generic physical therapy ("foam roller, resistance band, do these exercises for six weeks") addresses surface tissue without addressing cortical map degradation, system-wide compensation architecture, or 40 years of maladaptive reinforcement at 20,000 breaths and 8,000 steps per day. The gap between what conventional rehabilitation addresses and what this method addresses is not a gap in intensity. It is a gap in what is being treated.
+Food is a substance that stabilizes the body's homeostasis machine when ingested. Not-food is a substance that destabilizes it. Most substances do both in varying proportions, and the category of any given substance depends on the net regulatory effect over the intake pattern. This paper teaches the method for evaluating any substance against the question "is this food?" The method rests on the body as a continuously regulating system; food as an input that either helps the regulation succeed or taxes it; and the operational split between regular food (what the body sustains on as ongoing input) and irregular food (what the body handles occasionally without lasting harm). The paper is scoped to food in its relation to the body. Cultural framing, meal sociology, nutrition prescriptions, and medical guidance are out of scope. The reader finishes able to apply a four-question decision rule to any substance and place it in a category that corresponds to what the body will actually do with it.
 
 ---
 
@@ -54,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-BODY-1-2026,
-  title={ Neural Territory },
+@article{ HOWL-BODY-2-2026,
+  title={ What is Food? },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.19528490},
-  url = {https://zenodo.org/record/19528490},
-  note={Howland Archive: HOWL-BODY-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.19719331},
+  url = {https://zenodo.org/record/19719331},
+  note={Howland Archive: HOWL-BODY-2-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

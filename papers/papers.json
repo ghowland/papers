@@ -34,7 +34,42 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202161+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991205+00:00"
+  },
+  {
+    "file_path": "papers/BODY/HOWL-BODY-2-2026/manuscript.md",
+    "paper_id": "HOWL-BODY-2-2026",
+    "subject": "BODY",
+    "number": 2,
+    "year": 2026,
+    "title": "What is Food?",
+    "key_result": null,
+    "skip": false,
+    "subtitle": "A Method for Evaluating Substances by Body Response",
+    "doi": {
+      "raw": "10.5281/zenodo.19719331",
+      "is_stub": false,
+      "zenodo_id": "19719331",
+      "status": "published"
+    },
+    "frontmatter": {
+      "Registry": "[@HOWL-BODY-2-2026]",
+      "Series Path": "[@HOWL-BODY-1-2026] → [@HOWL-BODY-2-2026]",
+      "Date": "April 2026",
+      "DOI": "10.5281/zenodo.19719331",
+      "Domain": "Body and Biology",
+      "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.7."
+    },
+    "abstract": "Food is a substance that stabilizes the body's homeostasis machine when ingested. Not-food is a substance that destabilizes it. Most substances do both in varying proportions, and the category of any given substance depends on the net regulatory effect over the intake pattern. This paper teaches the method for evaluating any substance against the question \"is this food?\" The method rests on the body as a continuously regulating system; food as an input that either helps the regulation succeed or taxes it; and the operational split between regular food (what the body sustains on as ongoing input) and irregular food (what the body handles occasionally without lasting harm). The paper is scoped to food in its relation to the body. Cultural framing, meal sociology, nutrition prescriptions, and medical guidance are out of scope. The reader finishes able to apply a four-question decision rule to any substance and place it in a category that corresponds to what the body will actually do with it.",
+    "dependencies": [
+      "HOWL-BODY-1-2026"
+    ],
+    "validation": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "extracted_at": "2026-04-24T02:15:09.991248+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-1-2026/manuscript.md",
@@ -74,7 +109,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.202237+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991263+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-2-2026/manuscript.md",
@@ -114,7 +149,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.202269+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991276+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-3-2026/manuscript.md",
@@ -156,7 +191,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202299+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991289+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-4-2026/manuscript.md",
@@ -198,7 +233,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202327+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991301+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-5-2026/manuscript.md",
@@ -238,7 +273,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.202355+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991314+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-6-2026/manuscript.md",
@@ -281,7 +316,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202383+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991326+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-7-2026/manuscript.md",
@@ -325,7 +360,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202410+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991338+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-8-2026/manuscript.md",
@@ -368,7 +403,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.202438+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991351+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-1-2026/manuscript.md",
@@ -408,7 +443,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202465+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991363+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-10-2026/manuscript.md",
@@ -447,7 +482,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202492+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991376+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-2-2026/manuscript.md",
@@ -488,7 +523,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202518+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991388+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-3-2026/manuscript.md",
@@ -531,7 +566,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202545+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991401+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-4-2026/manuscript.md",
@@ -575,7 +610,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202574+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991413+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-5-2026/manuscript.md",
@@ -620,7 +655,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202602+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991425+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-6-2026/manuscript.md",
@@ -666,7 +701,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202630+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991437+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-7-2026/manuscript.md",
@@ -714,7 +749,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202657+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991449+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-8-2026/manuscript.md",
@@ -764,7 +799,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202680+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991461+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-9-2026/manuscript.md",
@@ -815,7 +850,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202694+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991473+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-1-2026/manuscript.md",
@@ -854,7 +889,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202708+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991485+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-2-2026/manuscript.md",
@@ -893,7 +928,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202722+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991498+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-3-2026/manuscript.md",
@@ -933,7 +968,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202734+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991510+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-4-2026/manuscript.md",
@@ -975,7 +1010,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202746+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991522+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-5-2026/manuscript.md",
@@ -1017,7 +1052,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202770+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991534+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-6-2026/manuscript.md",
@@ -1070,7 +1105,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202811+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991546+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-7-2026/manuscript.md",
@@ -1114,7 +1149,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202831+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991558+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-1-2026/manuscript.md",
@@ -1151,7 +1186,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202845+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991570+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-10-2026/manuscript.md",
@@ -1191,7 +1226,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202858+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991582+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-11-2026/manuscript.md",
@@ -1232,7 +1267,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202871+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991595+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-12-2026/manuscript.md",
@@ -1275,7 +1310,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202883+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991606+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-13-2026/manuscript.md",
@@ -1316,7 +1351,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202896+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991619+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-14-2026/manuscript.md",
@@ -1357,7 +1392,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202908+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991631+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-2-2026/manuscript.md",
@@ -1393,7 +1428,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202921+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991642+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-3-2026/manuscript.md",
@@ -1435,7 +1470,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202934+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991655+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-4-2026/manuscript.md",
@@ -1479,7 +1514,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202946+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991667+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-5-2026/manuscript.md",
@@ -1523,7 +1558,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202959+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991680+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-6-2026/manuscript.md",
@@ -1566,7 +1601,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202971+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991692+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-7-2026/manuscript.md",
@@ -1607,7 +1642,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202984+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991704+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-8-2026/manuscript.md",
@@ -1649,7 +1684,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.202996+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991717+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-9-2026/manuscript.md",
@@ -1692,7 +1727,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203009+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991729+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-1-2026/manuscript.md",
@@ -1731,7 +1766,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.203022+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991741+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-2-2026/manuscript.md",
@@ -1770,7 +1805,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.203034+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991754+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-3-2026/manuscript.md",
@@ -1848,7 +1883,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.203046+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991766+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-4-2026/manuscript.md",
@@ -1888,7 +1923,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203059+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991777+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-5-2026/manuscript.md",
@@ -1932,7 +1967,86 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203072+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991789+00:00"
+  },
+  {
+    "file_path": "papers/INFO/HOWL-INFO-6-2026/manuscript.md",
+    "paper_id": "HOWL-INFO-6-2026",
+    "subject": "INFO",
+    "number": 6,
+    "year": 2026,
+    "title": "How to Write Technical Documents",
+    "key_result": null,
+    "skip": false,
+    "subtitle": "A Method for Uploading Specific Things into Specific Heads",
+    "doi": {
+      "raw": "10.5281/zenodo.19719336",
+      "is_stub": false,
+      "zenodo_id": "19719336",
+      "status": "published"
+    },
+    "frontmatter": {
+      "Registry": "[@HOWL-INFO-6-2026]",
+      "Series Path": "[@HOWL-INFO-1-2026] → [@HOWL-INFO-2-2026] → [@HOWL-INFO-3-2026] → [@HOWL-INFO-4-2026] → [@HOWL-INFO-5-2026] → [@HOWL-INFO-6-2026]",
+      "DOI": "10.5281/zenodo.19719336",
+      "Date": "April 23 2026",
+      "Domain": "Technical Communication",
+      "Author": "Geoffrey Howland (Advisor), Claude Opus 4.7 (Writer)"
+    },
+    "abstract": "Technical writing is the transfer of a specific thing from the writer's head into the target reader's head, using words as a lossy medium. This paper teaches the method for performing that transfer. The method is a loop: identify the payload, pick the target, encode against the target's dictionary, commit to falsifiable claims, cut what doesn't carry payload, simulate the reader's encounter with the text, filter feedback against the target, and maintain the master document as the authoritative reference from which derivatives are produced. Each step is a specific technical operation with pass/fail criteria. The failures that dominate current technical writing — hedging, fog vocabulary, fancy vocabulary, humility performance, numbers around vagueness, padding — are violations of specific steps in this loop, and can be identified and repaired by reference to the step they violate. The paper is written to the ideal reader: someone who can decompress the full argument without accommodation, who is willing to replace their current model of writing with the one presented here, and who will practice the loop rather than remember its components.",
+    "dependencies": [
+      "HOWL-INFO-1-2026",
+      "HOWL-INFO-2-2026",
+      "HOWL-INFO-3-2026",
+      "HOWL-INFO-4-2026",
+      "HOWL-INFO-5-2026"
+    ],
+    "validation": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "extracted_at": "2026-04-24T02:15:09.991801+00:00"
+  },
+  {
+    "file_path": "papers/INFO/HOWL-INFO-7-2026/manuscript.md",
+    "paper_id": "HOWL-INFO-7-2026",
+    "subject": "INFO",
+    "number": 7,
+    "year": 2026,
+    "title": "How to Review Technical Writing",
+    "key_result": null,
+    "skip": false,
+    "subtitle": "A Method for Performing Requested Service Against Specific Scope",
+    "doi": {
+      "raw": "10.5281/zenodo.19719342",
+      "is_stub": false,
+      "zenodo_id": "19719342",
+      "status": "published"
+    },
+    "frontmatter": {
+      "Registry": "[@HOWL-INFO-7-2026]",
+      "Series Path": "[@HOWL-INFO-1-2026] → [@HOWL-INFO-2-2026] → [@HOWL-INFO-3-2026] → [@HOWL-INFO-4-2026] → [@HOWL-INFO-5-2026] → [@HOWL-INFO-6-2026] → [@HOWL-INFO-7-2026]",
+      "DOI": "10.5281/zenodo.19719342",
+      "Date": "April 23 2026",
+      "Domain": "Technical Communication",
+      "Author": "Geoffrey Howland (Advisor), Claude Opus 4.6 (Writer)"
+    },
+    "abstract": "Technical reviewing is a service performed for a specific author on specific terms the author defined, with the goal of enabling the author to act on their specific request. This paper teaches the method. The method is a loop: identify the requested operation, accept or decline cleanly, read the document on its own terms, perform the specific operation faithfully, report findings as a disciplined technical document, and move on. Each step has pass/fail criteria. The failures that dominate current technical reviewing — reading against the document's frame, substituting the requested operation, unrequested aggression, overriding authorial authority, inverted rigor assessment — are violations of specific steps in this loop, and can be identified and repaired by reference to the step they violate. The paper is the master reference for reviewers who want to serve authors reliably and accumulate standing across many reviews. It assumes familiarity with [@HOWL-INFO-6-2026], which establishes technical writing as the uploading of a specific thing into a specific reader's head; reviewing operates on documents produced by that process, and the reviewer's output is itself a technical document subject to the same discipline.",
+    "dependencies": [
+      "HOWL-INFO-1-2026",
+      "HOWL-INFO-2-2026",
+      "HOWL-INFO-3-2026",
+      "HOWL-INFO-4-2026",
+      "HOWL-INFO-5-2026",
+      "HOWL-INFO-6-2026"
+    ],
+    "validation": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "extracted_at": "2026-04-24T02:15:09.991813+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-1-2026/manuscript.md",
@@ -1976,7 +2090,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203085+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991825+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-1-2026/manuscript.md",
@@ -2016,7 +2130,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203097+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991837+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md",
@@ -2057,7 +2171,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203110+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991849+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-1-2026/manuscript.md",
@@ -2097,7 +2211,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203122+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991862+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-10-2026/manuscript.md",
@@ -2140,7 +2254,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203135+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991874+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-11-2026/manuscript.md",
@@ -2181,7 +2295,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203147+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991886+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-12-2026/manuscript.md",
@@ -2221,7 +2335,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203160+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991897+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-2-2026/manuscript.md",
@@ -2262,7 +2376,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203172+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991909+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-3-2026/manuscript.md",
@@ -2306,7 +2420,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203185+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991922+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-4-2026/manuscript.md",
@@ -2347,7 +2461,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203197+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991934+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-5-2026/manuscript.md",
@@ -2389,7 +2503,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203209+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991946+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-6-2026/manuscript.md",
@@ -2432,7 +2546,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203221+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991958+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-7-2026/manuscript.md",
@@ -2473,7 +2587,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203233+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991970+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-8-2026/manuscript.md",
@@ -2515,7 +2629,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203246+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991981+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-9-2026/manuscript.md",
@@ -2557,7 +2671,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203258+00:00"
+    "extracted_at": "2026-04-24T02:15:09.991993+00:00"
   },
   {
     "file_path": "papers/NEURO/HOWL-NEURO-1-2026/manuscript.md",
@@ -2593,7 +2707,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203270+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992006+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-1-2026/manuscript.md",
@@ -2630,7 +2744,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203282+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992018+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-10-2026/manuscript.md",
@@ -2673,7 +2787,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203294+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992030+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-11-2026/manuscript.md",
@@ -2719,7 +2833,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203306+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992042+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-12-2026/manuscript.md",
@@ -2765,7 +2879,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203319+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992056+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-13-2026/manuscript.md",
@@ -2812,7 +2926,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203332+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992069+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-14-2026/manuscript.md",
@@ -2860,7 +2974,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203344+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992081+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-15-2026/manuscript.md",
@@ -2908,7 +3022,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203356+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992093+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-16-2026/manuscript.md",
@@ -2959,7 +3073,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203368+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992104+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-17-2026/manuscript.md",
@@ -3010,7 +3124,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203381+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992117+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-18-2026/manuscript.md",
@@ -3062,7 +3176,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203393+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992149+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-19-2026/manuscript.md",
@@ -3115,7 +3229,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203405+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992170+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-2-2026/manuscript.md",
@@ -3153,7 +3267,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203417+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992193+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-20-2026/manuscript.md",
@@ -3207,7 +3321,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203429+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992218+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-21-2026/manuscript.md",
@@ -3262,7 +3376,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203441+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992232+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-22-2026/manuscript.md",
@@ -3318,7 +3432,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203453+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992245+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-23-2026/manuscript.md",
@@ -3375,7 +3489,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203465+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992258+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-24-2026/manuscript.md",
@@ -3417,7 +3531,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203477+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992271+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-25-2026/manuscript.md",
@@ -3460,7 +3574,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203489+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992284+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-26-2026/manuscript.md",
@@ -3504,7 +3618,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203501+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992296+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-27-2026/manuscript.md",
@@ -3549,7 +3663,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203513+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992308+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-28-2026/manuscript.md",
@@ -3595,7 +3709,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203525+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992320+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-29-2026/manuscript.md",
@@ -3642,7 +3756,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203538+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992333+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-3-2026/manuscript.md",
@@ -3683,7 +3797,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203551+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992344+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-30-2026/manuscript.md",
@@ -3731,7 +3845,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203564+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992356+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-31-2026/manuscript.md",
@@ -3776,7 +3890,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203576+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992368+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-32-2026/manuscript.md",
@@ -3819,7 +3933,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203588+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992381+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-33-2026/manuscript.md",
@@ -3860,7 +3974,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203601+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992393+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-34-2026/manuscript.md",
@@ -3904,7 +4018,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203614+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992405+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-35-2026/manuscript.md",
@@ -3947,7 +4061,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203627+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992417+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-36-2026/manuscript.md",
@@ -3987,7 +4101,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203640+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992430+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-37-2026/manuscript.md",
@@ -4028,7 +4142,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203653+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992442+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-38-2026/manuscript.md",
@@ -4070,7 +4184,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203665+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992454+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-39-2026/manuscript.md",
@@ -4113,7 +4227,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203678+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992466+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-4-2026/manuscript.md",
@@ -4155,7 +4269,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203691+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992478+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-40-2026/manuscript.md",
@@ -4200,7 +4314,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203704+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992491+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-41-2026/manuscript.md",
@@ -4243,7 +4357,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203716+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992503+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-42-2026/manuscript.md",
@@ -4284,7 +4398,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203730+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992516+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-43-2026/manuscript.md",
@@ -4325,7 +4439,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203743+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992528+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-44-2026/manuscript.md",
@@ -4367,7 +4481,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203755+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992540+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-45-2026/manuscript.md",
@@ -4410,7 +4524,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203792+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992552+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-46-2026/manuscript.md",
@@ -4451,7 +4565,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203808+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992569+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-47-2026/manuscript.md",
@@ -4493,7 +4607,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203821+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992581+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-48-2026/manuscript.md",
@@ -4535,7 +4649,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203834+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992593+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-49-2026/manuscript.md",
@@ -4579,7 +4693,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203846+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992605+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-5-2026/manuscript.md",
@@ -4623,7 +4737,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203858+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992618+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-50-2026/manuscript.md",
@@ -4664,7 +4778,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203871+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992630+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-51-2026/manuscript.md",
@@ -4705,7 +4819,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203884+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992642+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-52-2026/manuscript.md",
@@ -4746,7 +4860,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203896+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992654+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-53-2026/manuscript.md",
@@ -4787,7 +4901,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203909+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992666+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-54-2026/manuscript.md",
@@ -4825,7 +4939,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203921+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992679+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-55-2026/manuscript.md",
@@ -4872,7 +4986,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203933+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992691+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-56-2026/manuscript.md",
@@ -4892,7 +5006,7 @@
     },
     "frontmatter": {
       "Registry": "[@HOWL-PHYS-56-2026]",
-      "Series Path": "[@HOWL-PHYS-40-2026] → [@HOWL-PHYS-48-2026] → [@HOWL-PHYS-55-2026] → [@HOWL-MATH-11-2026] → [@HOWL-MATH-12-2026] → [@HOWL-DATA-7-2026] → [@HOWL-PHYS-56-2026]",
+      "Series Path": "[@HOWL-PHYS-40-2026] → [@HOWL-PHYS-48-2026] → [@HOWL-PHYS-55-2026] → [@HOWL-MATH-11-2026] → [@HOWL-MATH-12-2026] → [@HOWL-DATA-6-2026] → [@HOWL-PHYS-54-2026] → [@HOWL-PHYS-55-2026] → [@HOWL-PHYS-56-2026]",
       "Date": "April 20, 2026",
       "DOI": "10.5281/zenodo.19673938",
       "Domain": "Substrate Physics / Planck-Scale Mechanism / Standard Model Reduction / Quantum Mechanics Derivation / Gravitational Dynamics / Falsification Program",
@@ -4901,11 +5015,12 @@
     },
     "abstract": null,
     "dependencies": [
-      "HOWL-DATA-7-2026",
+      "HOWL-DATA-6-2026",
       "HOWL-MATH-11-2026",
       "HOWL-MATH-12-2026",
       "HOWL-PHYS-40-2026",
       "HOWL-PHYS-48-2026",
+      "HOWL-PHYS-54-2026",
       "HOWL-PHYS-55-2026"
     ],
     "validation": {
@@ -4917,7 +5032,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203946+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992703+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-57-2026/manuscript.md",
@@ -4956,7 +5071,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203958+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992715+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-6-2026/manuscript.md",
@@ -5001,7 +5116,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203972+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992728+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-7-2026/manuscript.md",
@@ -5043,7 +5158,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203985+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992740+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-8-2026/manuscript.md",
@@ -5085,7 +5200,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.203997+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992752+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-9-2026/manuscript.md",
@@ -5129,7 +5244,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.204009+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992764+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-1-2026/manuscript.md",
@@ -5162,7 +5277,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-04-21T04:28:25.204021+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992776+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-2-2026/manuscript.md",
@@ -5205,6 +5320,6 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-04-21T04:28:25.204033+00:00"
+    "extracted_at": "2026-04-24T02:15:09.992787+00:00"
   }
 ]

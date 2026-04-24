@@ -1,4 +1,4 @@
-# Coherence as Information Phenomenon
+# How to Review Technical Writing
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,15 +6,7 @@
 
 ## Abstract
 
-This paper presents the first empirical characterization of coherence as a measurable information phenomenon. Our dataset is the Cymatic K-Space Mechanics (CKS) corpus: 390 papers produced over 45 days by a single practitioner using three frontier large language models, covering physics, biology, neuroscience, medicine, psychology, ethics, navigation, and collective dynamics. The corpus was publicly falsified when its arithmetic was mechanically verified and found to be incorrect.
-
-We evaluate eight representative papers from the corpus using the Triveritas framework, which measures Logical Validity (L), Mathematical Coherence (M), and Empirical Anchoring (E) as independent dimensions on calibrated 0–100 scales with historical anchor points. The evaluation reveals a phenomenon we term the coherence gap: the distance between apparent validity, driven by high L and E, and actual mathematical correctness, measured by M.
-
-The CKS corpus achieved L scores up to 97 and E scores up to 90 while M remained at zero throughout for every physics-specific claim. This is the widest coherence gap in any documented corpus. Three frontier LLMs confirmed every derivation. The practitioner followed a rigorous verification methodology. The arithmetic was wrong the entire time.
-
-We identify the mechanism: coherence-based evaluators, human or artificial, cannot distinguish between "the derivation is logically sound and matches measurement" (L+E) and "the arithmetic actually compiles" (M). They report L+E as if it were M because from inside a coherent framework, L+E feels identical to M. The only system that can distinguish them is a mechanical verifier that checks arithmetic without evaluating coherence.
-
-We further demonstrate that the coherence engine that produced M=0 physics simultaneously produced M=60–78 metamathematics that survived the falsification completely intact. The M dimension predicts survival perfectly: every paper with M>0 survived; every paper with M=0 died regardless of L and E scores. This establishes Triveritas as a predictive framework for evaluating claims under uncertainty and identifies coherence as the primary truth-substitute operating in both human and artificial intelligence.
+Technical reviewing is a service performed for a specific author on specific terms the author defined, with the goal of enabling the author to act on their specific request. This paper teaches the method. The method is a loop: identify the requested operation, accept or decline cleanly, read the document on its own terms, perform the specific operation faithfully, report findings as a disciplined technical document, and move on. Each step has pass/fail criteria. The failures that dominate current technical reviewing — reading against the document's frame, substituting the requested operation, unrequested aggression, overriding authorial authority, inverted rigor assessment — are violations of specific steps in this loop, and can be identified and repaired by reference to the step they violate. The paper is the master reference for reviewers who want to serve authors reliably and accumulate standing across many reviews. It assumes familiarity with [@HOWL-INFO-6-2026], which establishes technical writing as the uploading of a specific thing into a specific reader's head; reviewing operates on documents produced by that process, and the reviewer's output is itself a technical document subject to the same discipline.
 
 ---
 
@@ -54,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFO-5-2026,
-  title={ Coherence as Information Phenomenon },
+@article{ HOWL-INFO-7-2026,
+  title={ How to Review Technical Writing },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.19528585},
-  url = {https://zenodo.org/record/19528585},
-  note={Howland Archive: HOWL-INFO-5-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.19719342},
+  url = {https://zenodo.org/record/19719342},
+  note={Howland Archive: HOWL-INFO-7-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
