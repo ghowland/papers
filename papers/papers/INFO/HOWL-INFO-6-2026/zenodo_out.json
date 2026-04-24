@@ -1,0 +1,134 @@
+{
+  "created": "2026-04-24T02:14:26.074055+00:00",
+  "modified": "2026-04-24T02:14:26.411824+00:00",
+  "id": 19719336,
+  "conceptrecid": "19719335",
+  "metadata": {
+    "title": "How to Write Technical Documents",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "discrete spacetime",
+      "information",
+      "zero free parameters",
+      "falsifiable physics",
+      "theoretical derivation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-6-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-6-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19719336",
+      "recid": 19719336
+    }
+  },
+  "title": "How to Write Technical Documents",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19719336",
+    "html": "https://zenodo.org/deposit/19719336",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19719336/files",
+    "bucket": "https://zenodo.org/api/files/d0299b66-56e6-427d-80b9-0193c2fee0ee",
+    "thumb250": "https://zenodo.org/record/19719336/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19719336/thumb10",
+      "50": "https://zenodo.org/record/19719336/thumb50",
+      "100": "https://zenodo.org/record/19719336/thumb100",
+      "250": "https://zenodo.org/record/19719336/thumb250",
+      "750": "https://zenodo.org/record/19719336/thumb750",
+      "1200": "https://zenodo.org/record/19719336/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19719336",
+    "latest_draft_html": "https://zenodo.org/deposit/19719336",
+    "publish": "https://zenodo.org/api/deposit/depositions/19719336/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19719336/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19719336/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19719336/actions/newversion"
+  },
+  "record_id": 19719336,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "79745697-3883-40bd-a930-c46af312b51c",
+      "filename": "!manuscript.pdf",
+      "filesize": 67895,
+      "checksum": "af6e2608af54c772a7d6c9c600b2c5b2",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19719336/files/79745697-3883-40bd-a930-c46af312b51c",
+        "download": "https://zenodo.org/api/records/19719336/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "812dea35-aeb3-4e85-b9e1-0c37dbad7209",
+      "filename": "HOWL-INFO-6-2026.zip",
+      "filesize": 109613,
+      "checksum": "4c8715b487ea63f7408466da72cddbfa",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19719336/files/812dea35-aeb3-4e85-b9e1-0c37dbad7209",
+        "download": "https://zenodo.org/api/records/19719336/draft/files/HOWL-INFO-6-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,0 +1,134 @@
+{
+  "created": "2026-04-24T03:55:22.163843+00:00",
+  "modified": "2026-04-24T03:55:22.288586+00:00",
+  "id": 19721105,
+  "conceptrecid": "19721104",
+  "metadata": {
+    "title": "LLMs are not Tools, LLMs are Maybe-Tools",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "discrete spacetime",
+      "information",
+      "zero free parameters",
+      "falsifiable physics",
+      "theoretical derivation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-8-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-8-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19721105",
+      "recid": 19721105
+    }
+  },
+  "title": "LLMs are not Tools, LLMs are Maybe-Tools",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19721105",
+    "html": "https://zenodo.org/deposit/19721105",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19721105/files",
+    "bucket": "https://zenodo.org/api/files/6daaa21f-6b80-4cc1-bdaf-f20cc67422d0",
+    "thumb250": "https://zenodo.org/record/19721105/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19721105/thumb10",
+      "50": "https://zenodo.org/record/19721105/thumb50",
+      "100": "https://zenodo.org/record/19721105/thumb100",
+      "250": "https://zenodo.org/record/19721105/thumb250",
+      "750": "https://zenodo.org/record/19721105/thumb750",
+      "1200": "https://zenodo.org/record/19721105/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19721105",
+    "latest_draft_html": "https://zenodo.org/deposit/19721105",
+    "publish": "https://zenodo.org/api/deposit/depositions/19721105/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19721105/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19721105/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19721105/actions/newversion"
+  },
+  "record_id": 19721105,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "025ec59b-9ef7-48e7-b836-352885d37348",
+      "filename": "!manuscript.pdf",
+      "filesize": 80875,
+      "checksum": "5f562a4e51af77ea4a6315a61db8a16d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19721105/files/025ec59b-9ef7-48e7-b836-352885d37348",
+        "download": "https://zenodo.org/api/records/19721105/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "b7e788e5-8a1a-42f1-ab66-5a36ce2a26d0",
+      "filename": "HOWL-INFO-8-2026.zip",
+      "filesize": 125492,
+      "checksum": "61bd07a9b269ebfde341f6b15d0ad3d6",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19721105/files/b7e788e5-8a1a-42f1-ab66-5a36ce2a26d0",
+        "download": "https://zenodo.org/api/records/19721105/draft/files/HOWL-INFO-8-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

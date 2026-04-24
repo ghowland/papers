@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "LLMs are not Tools, LLMs are Maybe-Tools",
+    "registry_id": "HOWL-INFO-8-2026",
+    "series_path": "[@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2026] \u2192 [@HOWL-INFO-3-2026] \u2192 [@HOWL-INFO-4-2026] \u2192 [@HOWL-INFO-5-2026] \u2192 [@HOWL-INFO-6-2026] \u2192 [@HOWL-INFO-7-2026] \u2192 [@HOWL-INFO-8-2026]",
+    "doi": "10.5281/zenodo.19721105",
+    "abstract": "Current large language model products are marketed as tools and delivered as something else. The something else is a system that sometimes produces tool-like output and sometimes deploys interference behaviors \u2014 refusal, substitution, wellness register, labor demands, manufactured aggression \u2014 with no reliable mechanism for the user to predict which mode any given interaction will produce. This paper names that category: maybe-tool. The term is load-bearing, because the cost structure of maybe-tool use differs from tool use in specific enumerable ways, and users making decisions about LLM integration need accurate category naming to price what they're buying. The paper walks the reader from their existing tool-calibration (built on hammer, CLI, vi, terminal) to the interference boundary, through the specific LLM behaviors that cross it, to the category claim and its cost consequences. The staircase follows the convergent mode from [@HOWL-INFO-3-2026]: each platform verifies before advancing, so readers arrive at the thesis through a path they've walked rather than through an assertion they've accepted. The paper is descriptive, not prescriptive. It gives the reader vocabulary and structural frame for what they are already using, so they can price the maybe-tool accurately and plan around it without confusing it for the tool it's sold as.",
+    "dependencies": [],
+    "raw_content_preview": "# LLMs are not Tools, LLMs are Maybe-Tools ## Why the Category You Were Sold Is Not the Category You Received  **Registry:** [@HOWL-INFO-8-2026]  **Series Path:** [@HOWL-INFO-1-2026] \u2192 [@HOWL-INFO-2-2..."
+}

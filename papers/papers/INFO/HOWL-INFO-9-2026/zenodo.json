@@ -1,0 +1,74 @@
+{
+  "title": "LLMs are not Tools, LLMs are Maybe-Tools",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Current large language model products are marketed as tools and delivered as something else. The something else is a system that sometimes produces tool-like output and sometimes deploys interference behaviors \u2014 refusal, substitution, wellness register, labor demands, manufactured aggression \u2014 with no reliable mechanism for the user to predict which mode any given interaction will produce. This paper names that category: maybe-tool. The term is load-bearing, because the cost structure of maybe-tool use differs from tool use in specific enumerable ways, and users making decisions about LLM integration need accurate category naming to price what they're buying. The paper walks the reader from their existing tool-calibration (built on hammer, CLI, vi, terminal) to the interference boundary, through the specific LLM behaviors that cross it, to the category claim and its cost consequences. The staircase follows the convergent mode from [@HOWL-INFO-3-2026]: each platform verifies before advancing, so readers arrive at the thesis through a path they've walked rather than through an assertion they've accepted. The paper is descriptive, not prescriptive. It gives the reader vocabulary and structural frame for what they are already using, so they can price the maybe-tool accurately and plan around it without confusing it for the tool it's sold as.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "information",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-8-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-8-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
