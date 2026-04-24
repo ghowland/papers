@@ -54,6 +54,7 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-SOPH-1-2026]](papers/papers/SOPH/HOWL-SOPH-1-2026/manuscript.md)** | **Paternal Operationalism** | A Philosophy Born from Necessity. |
 | **[[@HOWL-SOPH-2-2026]](papers/papers/SOPH/HOWL-SOPH-2-2026/manuscript.md)** | **The Quadrium** | Truth and Utility as Independent Measurements: A Sidecar Extension to the Triveritas. |
+| **[[@HOWL-SOPH-3-2026]](papers/papers/SOPH/HOWL-SOPH-3-2026/manuscript.md)** | **Civic and Discivic Technologies** | A Method for Classifying Technologies by What They Do to the Humans Who Use Them. |
 
 ---
 
