@@ -67,6 +67,8 @@ Both papers use the same cross-derivation discipline. PHYS-56 confirms the disci
 
 ### Section 3 — The 9 × 7 Channel × Level Matrix
 
+![Fig. 1: The 9 x 7 Channel x Level Matrix — All 63 cells color-coded by validation status. Validated (green), untested (orange), structural (blue), negligible (dim). Current USI = 25/55 = 0.45.](./figures/phys57_01_matrix_heatmap.png)
+
 **Channels (from PCTRM-1-MASTER §VI):**
 
 1. **Gravitational** — drain channel toward parent solitons, manifests as 1/r² gravity at macroscopic scale, drives orbital dynamics, hierarchy formation
@@ -90,6 +92,8 @@ Both papers use the same cross-derivation discipline. PHYS-56 confirms the disci
 6. **Cosmological** — universal soliton, cosmic structure, dark matter, dark energy
 
 The matrix has 63 potential cells (9 × 7). Approximately 55 are active (channel meaningfully manifests at that level). Approximately 5 are negligible (channel scale far from observation scale, e.g., strong-confinement at planetary level). Approximately 3 are purely structural (substrate-level cells without quantitative observables yet).
+
+![Fig. 5: Universal Multi-Channel Stacking — Same dual-geometry pattern at atomic, planetary, and galactic scales. Spherical modulus and toroidal remainder manifest at every soliton level. The framework's universality made visual.](./figures/phys57_05_multiscale_stacking.png)
 
 ### Section 4 — Naming Convention
 
@@ -137,6 +141,8 @@ The same methodology applies to every cell in the matrix. Different cells have d
 
 ### Section 6 — Cross-Cell Relationships
 
+![Fig. 2: Cross-Cell Bridge Identities — One validated bridge B1 connects QED four-loop A_4 to cosmic DM/baryon at 0.03%. Seven predicted bridges (B2-B8) await Round 2 testing.](./figures/phys57_02_bridge_identities.png)
+
 Beyond per-cell validation, the framework predicts specific relationships across cells.
 
 **Cross-channel at same level:**
@@ -171,6 +177,8 @@ This bridges Level 1 EM (A_4 from QED four-loop) to Level 6 channel-sharing (DM/
 This identity has been validated at 0.03% precision through giga_remainder testing. Other predicted bridges should hold at similar precision.
 
 ### Section 7 — Universality Strength Index (USI)
+
+![Fig. 8: USI Pre-Registered Outcomes — Current USI = 0.45 with three Round 2 trajectory scenarios (optimistic, moderate, failure) plotted against pre-registered thresholds at 0.50, 0.70, 0.85. Outcome determines framework status.](./figures/phys57_08_usi_thresholds.png)
 
 The framework's universality claim quantifies as:
 
@@ -244,6 +252,8 @@ The validated baseline at PHYS-57 launch:
 This places the framework's current status close to the boundary between "Partial universality (0.50 ≤ USI < 0.70)" and "Universality claim rejected (USI < 0.50)." Round 2 testing will determine which side the framework lands on.
 
 ### Section 9 — Distribution of Validated Cells
+
+![Fig. 3: Per-Level USI Distribution — Validation strength varies dramatically across hierarchy from L0 (substrate, 0.00) through L1 (subatomic, 0.78) to L6 (cosmological, 1.00). L2, L4, L5 require Round 2 expansion.](./figures/phys57_03_hierarchy_status.png)
 
 By channel:
 
@@ -434,6 +444,8 @@ Each test has pre-registered cross-derivation paths, precision targets, and pass
 
 ### Section 12 — Tier B: Nuclear & Particle Physics
 
+![Fig. 7: Quarkonium T8 Multi-State Convergence — 11 charmonium and bottomonium states extract consistent k_strong_subatom_HQ at target <0.5% spread. State-dependent moduli would reject heavy-quark sector universality.](./figures/phys57_07_quarkonium_convergence.png)
+
 #### T6: Nuclear Magnetic Moments
 
 **Cell:** (EM, Level 3)
@@ -552,6 +564,8 @@ Each test has pre-registered cross-derivation paths, precision targets, and pass
 **Falsification:** Inconsistent decay rates reject k_weak_nuclear.
 
 ### Section 13 — Tier C: Macroscopic Toroidal Structures
+
+![Fig. 4: Earth as a Level 5 Multi-Toroidal Soliton — At minimum 6 stacked toroidal sectors: geomagnetic dipole, inner and outer Van Allen belts, plasmasphere, atmospheric circulation cells, ocean gyres. Each has its own k_(channel)_(level) modulus.](./figures/phys57_04_earth_toroidal.png)
 
 #### T11: Earth's Geomagnetic Field
 
@@ -766,6 +780,8 @@ Each test has pre-registered cross-derivation paths, precision targets, and pass
 **Falsification:** Significant inconsistencies reject k_em_cosmic.
 
 ### Section 15 — Tier E: Channel-Sharing & Cross-Cell Tests
+
+![Fig. 6: Bell Correlation T23 Cross-Derivation — Four independent paths converge on the Tsirelson bound 2*sqrt(2) = sqrt(L1) = 2.828. Channel-merger, beta^2 counting, alphabet integer, multi-experiment. Failure rejects entanglement universality.](./figures/phys57_06_bell_correlation.png)
 
 #### T21: Hydrogen Hyperfine = EM × Strong Sharing
 
