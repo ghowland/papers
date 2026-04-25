@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "manuscript.md",
-    "registry_id": "HOWL-PHYS-44-2026",
-    "series_path": "[@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]",
-    "doi": "10.5281/zenodo.zzz",
-    "abstract": "",
+    "title": "Universal Structural Claim",
+    "registry_id": "HOWL-PHYS-57-2026",
+    "series_path": "[@HOWL-PHYS-55-2026] \u2192 [@HOWL-PHYS-56-2026] \u2192 [@HOWL-PHYS-57-2026]",
+    "doi": "10.5281/zenodo.19754947",
+    "abstract": "PCTRM commits to a universal structural claim: every channel from \u00a7VI of PCTRM-1-MASTER exists at every soliton level from \u00a7V, with each channel \u00d7 level cell having a characteristic toroidal modulus that is alphabet-derivable through integer expressions and cross-derivation validated at measurement precision.\n\nThis is one falsifiable claim spanning approximately 55 active cells across 9 channels \u00d7 7 levels.\n\nPHYS-57 establishes the test program for this universality claim, pre-registers the Round 2 validation specifications across 25 systematic tests in 5 priority tiers, defines the Universality Strength Index (USI) with pre-registered acceptance and rejection thresholds, and reports the framework's current validation status with concrete falsification conditions.\n\nThe framework currently shows USI \u2248 0.36 (20 of 55 active cells validated). Pre-registered targets: USI \u2265 0.85 for strong universality validation, USI < 0.50 for rejection. Round 2 testing systematically extends from validated baseline to untested cells with pre-specified precision targets per cell.\n\nPHYS-57 is companion to PHYS-56. PHYS-56 demonstrates cross-derivation discipline at sub-ppb precision in established cells. PHYS-57 demonstrates whether the methodology applies universally across the channel \u00d7 level matrix.",
     "dependencies": [],
-    "raw_content_preview": " **Registry:** [@HOWL-PHYS-44-2026]  **Series Path:** [@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]  **DOI:** 10.5281/zenodo.zzz  **Date:** April 10, 2026  ..."
+    "raw_content_preview": "# Universal Structural Claim ## Falsification of the Channel \u00d7 Level Universality Claim in PCTRM  **Registry:** [@HOWL-PHYS-57-2026]  **Series Path:** [@HOWL-PHYS-55-2026] \u2192 [@HOWL-PHYS-56-2026] \u2192 [@H..."
 }

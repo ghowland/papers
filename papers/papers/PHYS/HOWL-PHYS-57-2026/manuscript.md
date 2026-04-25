@@ -7,7 +7,7 @@
 
 **Date:** April 25, 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19754947
 
 **Domain:** Foundations of Physics
 

@@ -1,8 +1,8 @@
 {
-  "title": "manuscript.md",
+  "title": "Universal Structural Claim",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "PCTRM commits to a universal structural claim: every channel from \u00a7VI of PCTRM-1-MASTER exists at every soliton level from \u00a7V, with each channel \u00d7 level cell having a characteristic toroidal modulus that is alphabet-derivable through integer expressions and cross-derivation validated at measurement precision.\n\nThis is one falsifiable claim spanning approximately 55 active cells across 9 channels \u00d7 7 levels.\n\nPHYS-57 establishes the test program for this universality claim, pre-registers the Round 2 validation specifications across 25 systematic tests in 5 priority tiers, defines the Universality Strength Index (USI) with pre-registered acceptance and rejection thresholds, and reports the framework's current validation status with concrete falsification conditions.\n\nThe framework currently shows USI \u2248 0.36 (20 of 55 active cells validated). Pre-registered targets: USI \u2265 0.85 for strong universality validation, USI < 0.50 for rejection. Round 2 testing systematically extends from validated baseline to untested cells with pre-specified precision targets per cell.\n\nPHYS-57 is companion to PHYS-56. PHYS-56 demonstrates cross-derivation discipline at sub-ppb precision in established cells. PHYS-57 demonstrates whether the methodology applies universally across the channel \u00d7 level matrix.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -16,7 +16,7 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-44-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-57-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",

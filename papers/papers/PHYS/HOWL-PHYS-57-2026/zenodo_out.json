@@ -1,0 +1,134 @@
+{
+  "created": "2026-04-25T06:16:03.744328+00:00",
+  "modified": "2026-04-25T06:16:03.878655+00:00",
+  "id": 19754947,
+  "conceptrecid": "19754946",
+  "metadata": {
+    "title": "Universal Structural Claim",
+    "publication_date": "2026-04",
+    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "discrete spacetime",
+      "physics",
+      "zero free parameters",
+      "falsifiable physics",
+      "theoretical derivation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/PHYS/HOWL-PHYS-57-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-57-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.19754947",
+      "recid": 19754947
+    }
+  },
+  "title": "Universal Structural Claim",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/19754947",
+    "html": "https://zenodo.org/deposit/19754947",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/19754947/files",
+    "bucket": "https://zenodo.org/api/files/534ef4be-637e-4eb8-b8a7-b945cb5fc034",
+    "thumb250": "https://zenodo.org/record/19754947/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/19754947/thumb10",
+      "50": "https://zenodo.org/record/19754947/thumb50",
+      "100": "https://zenodo.org/record/19754947/thumb100",
+      "250": "https://zenodo.org/record/19754947/thumb250",
+      "750": "https://zenodo.org/record/19754947/thumb750",
+      "1200": "https://zenodo.org/record/19754947/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19754947",
+    "latest_draft_html": "https://zenodo.org/deposit/19754947",
+    "publish": "https://zenodo.org/api/deposit/depositions/19754947/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19754947/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19754947/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19754947/actions/newversion"
+  },
+  "record_id": 19754947,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "86995869-5cdd-4841-aaeb-7a4ffa955afb",
+      "filename": "HOWL-PHYS-57-2026.zip",
+      "filesize": 3723051,
+      "checksum": "535b5cd13bf5fe1d659aea1265647183",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19754947/files/86995869-5cdd-4841-aaeb-7a4ffa955afb",
+        "download": "https://zenodo.org/api/records/19754947/draft/files/HOWL-PHYS-57-2026.zip/content"
+      }
+    },
+    {
+      "id": "17481a89-359a-4acf-950c-0c9555110544",
+      "filename": "!manuscript.pdf",
+      "filesize": 2132604,
+      "checksum": "8d871fe556eda024263c3e7cfadf492a",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/19754947/files/17481a89-359a-4acf-950c-0c9555110544",
+        "download": "https://zenodo.org/api/records/19754947/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
