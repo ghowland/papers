@@ -1,6 +1,5 @@
-# Falsification of the Channel × Level Universality Claim in PCTRM
-
-**Howl Series Paper 57**
+# Universal Structural Claim
+## Falsification of the Channel × Level Universality Claim in PCTRM
 
 **Registry:** [@HOWL-PHYS-57-2026]
 
