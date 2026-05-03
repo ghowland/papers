@@ -1293,10 +1293,6 @@ The three-axis structure (mechanism, property, principle) is the load-bearing cl
 
 The structural claim is that infrastructure engineering benefits from separating these three things — that mechanisms, properties, and principles are distinct kinds of thing that should be reasoned about separately even when they are named with the same word.
 
-### 8.4 Acknowledgments
-
-This taxonomy draws on twenty-five years of operations work, the patterns observed across many environments, and the conceptual framework developed in *Old School Operations: 25 Years of System Administration and SRE.*
-
 ---
 
 ## Appendix A: Master mechanism index
@@ -1426,3 +1422,345 @@ This taxonomy draws on twenty-five years of operations work, the patterns observ
 
 ---
 
+## Appendix E: Mechanism implementations — which programs supply which mechanisms
+
+For each mechanism, examples of widely-deployed implementations. This is not exhaustive; it is enough to ground the abstract mechanism in something the reader can point at.
+
+### E.1 Information movement family
+
+| Mechanism | Common implementations |
+|---|---|
+| Channel | TCP, QUIC, Unix domain socket, SSH transport, ZeroMQ, gRPC streams, Kafka connections, MQTT |
+| Fanout | Multicast (IGMP), Anycast (BGP), Redis pub/sub, Kafka topics with multiple consumer groups, NATS, AWS SNS, Salt master publish |
+| Funnel | Fluentd, Logstash, Vector, syslog aggregators, OpenTelemetry collectors, Prometheus scraping, Salt returners |
+| Replicator | Postgres streaming replication, MySQL binlog, MongoDB oplog, Cassandra hinted handoff, Redis replication, Kafka MirrorMaker, rsync, etcd Raft, K8s informer caches |
+| Relay | HAProxy, Envoy, nginx (proxy mode), Squid, stunnel, ngrok, AWS API Gateway |
+
+### E.2 Selection family
+
+| Mechanism | Common implementations |
+|---|---|
+| Index | B-tree (most RDBMSes), LSM-tree (Cassandra, RocksDB, LevelDB), bloom filter (Cassandra SSTables, Bitcoin), GIN/GiST (Postgres), inverted index (Elasticsearch, Lucene), R-tree (PostGIS), HyperLogLog (Redis HLL, Presto) |
+| Selector | SQL WHERE, K8s label selectors, Salt grain match, Ansible host patterns, Prometheus PromQL `{label=value}`, AWS resource tag filters |
+| Comparator | etag/If-Match (HTTP), Postgres MVCC visibility, K8s resourceVersion check, vector clocks (Riak), git diff |
+| Hasher | SHA-2 family, BLAKE3, xxHash, MurmurHash3, CRC32, consistent hashing (Cassandra, Memcached), Rendezvous/HRW hashing |
+| Ranker | K8s scheduler scoring, Postgres query planner cost model, search engines (BM25, learned-to-rank), HAProxy least-conn |
+| Router | iptables, nftables, IP routing tables (FIB), kube-proxy, Envoy route_config, AWS Application Load Balancer rules, message brokers |
+
+### E.3 Representation family
+
+| Mechanism | Common implementations |
+|---|---|
+| Wrap/unwrap (representational) | JSON, protobuf, MessagePack, BSON, Avro, CBOR, base64, gzip, zstd, tar |
+| Wrap/unwrap (secure) | TLS 1.2/1.3, IPSEC, SSH transport layer, JOSE/JWT/JWS/JWE, signed URLs |
+| Wrap/unwrap (routing) | VXLAN, GRE, MPLS, Geneve, WireGuard, OpenVPN |
+| Schema | Postgres CREATE TABLE, JSON Schema, OpenAPI, protobuf .proto, Avro schema, SQL DDL, GraphQL SDL |
+| Namespace | DNS zones, K8s namespaces, filesystem directories, Java packages, Cassandra keyspaces, Postgres schemas |
+| Naming convention | RFC FQDN structure, K8s `app.kubernetes.io/*` labels, AWS resource ARN format, Cassandra composite keys, snowflake IDs, ULIDs |
+
+### E.4 Storage family
+
+| Mechanism | Common implementations |
+|---|---|
+| Buffer | Linux pipe buffers, kernel ring buffer (dmesg), Kafka in-memory queues, application-level circular buffers, Go channels |
+| Cache | Memcached, Redis, Varnish, CDN edges (Cloudflare, Fastly, Akamai), Linux page cache, CPU L1/L2/L3, browser cache |
+| Store | Postgres, MySQL, Cassandra, MongoDB, etcd, ZooKeeper, S3, HDFS, ext4, ZFS |
+| Journal | Postgres WAL, MySQL binlog, ext4 journal, Cassandra commitlog, Redis AOF, Kafka log segments, etcd WAL |
+| Log | syslog, journald, application logs, AWS CloudTrail, audit logs, web server access logs |
+| Snapshot | ZFS snapshots, LVM snapshots, AWS EBS snapshots, Postgres pg_dump, Redis RDB, K8s etcd backups, VM snapshots, Btrfs snapshots |
+| Tombstone | Cassandra tombstones, Riak tombstones, soft-delete columns in RDBMSes, Kafka tombstone messages, S3 delete markers in versioned buckets |
+
+### E.5 Versioning family
+
+| Mechanism | Common implementations |
+|---|---|
+| Version stamp | Git SHA, Postgres LSN, MySQL GTID, K8s resourceVersion, S3 ETag, MongoDB ObjectId, Cassandra timestamps, vector clocks (Riak, Voldemort) |
+| History | Git commits, Mercurial revsets, Perforce changelists, Postgres WAL, S3 object versions, time-travel queries (Snowflake, BigQuery) |
+| Merge algorithm | Git three-way merge, Riak siblings + CRDTs, Last-write-wins (Cassandra, DynamoDB), operational transformation (Google Docs), automerge |
+| Diff | unified diff, JSON Patch (RFC 6902), JSON Merge Patch (RFC 7396), K8s strategic merge patch, database migration tools (Flyway, Alembic) |
+| Reference | Git refs (branches, tags, HEAD), Docker image tags, K8s deployment.spec.template ref, symlinks, S3 latest version pointer, CNAME records |
+
+### E.6 Lifecycle family
+
+| Mechanism | Common implementations |
+|---|---|
+| TTL | DNS TTL, Redis EXPIRE, Cassandra TTL columns, Kafka log retention, S3 lifecycle policies, browser cookie max-age, ARP cache timeouts |
+| Lease | DHCP leases, K8s leader election leases, ZooKeeper ephemeral nodes, Consul sessions, Raft leader leases, file locks with timeouts |
+| Reaper | Postgres autovacuum, Cassandra compaction (tombstone GC), Linux OOM killer, K8s GC controller, Java GC, conntrack timeout sweep |
+| Drainer | K8s pod termination grace period, HAProxy connection draining, AWS ELB deregistration delay, Cassandra `nodetool decommission` |
+
+### E.7 Sensing family
+
+| Mechanism | Common implementations |
+|---|---|
+| Probe | K8s liveness/readiness probes, HAProxy health checks, AWS ELB target health, gRPC health protocol, Nagios checks, Pingdom |
+| Counter | Prometheus Counter, statsd counter, eBPF counters, /proc/net/stat, syscall counters |
+| Gauge | Prometheus Gauge, /proc/loadavg, JMX gauges, top, free, df |
+| Histogram | Prometheus Histogram, t-digest, HDRHistogram, OpenTelemetry histograms, ELK percentile aggregations |
+| Watch | K8s watch API, etcd watch, ZooKeeper watches, inotify, Consul blocking queries, Kafka consumer subscribe |
+| Heartbeat | Cassandra gossip, Consul gossip, Kafka heartbeats, BGP keepalive, OSPF hello, mobile app pings |
+
+### E.8 Control loop family
+
+| Mechanism | Common implementations |
+|---|---|
+| Reconciler | K8s controllers (Deployment, ReplicaSet, etc.), K8s operators, Terraform apply, Salt state.apply, Puppet agent, ArgoCD, Flux |
+| Reactor | Webhooks, K8s Reactor (in client-go), AWS Lambda triggered by events, GitHub Actions, EventBridge rules |
+| Scheduler (control loop) | cron, systemd timers, Kubernetes CronJob, Quartz, Airflow scheduler, Hangfire |
+| Workqueue | K8s client-go workqueue, Sidekiq, Celery, AWS SQS, RabbitMQ work queues, Resque |
+
+### E.9 Gating family
+
+| Mechanism | Common implementations |
+|---|---|
+| Authenticator | Kerberos, OAuth 2.0/OIDC, SAML, PKI client certs, SSH key auth, AWS IAM, LDAP, Active Directory |
+| Authorizer | K8s RBAC, AWS IAM policies, OPA, Casbin, Postgres GRANT, Cedar |
+| Validator | JSON Schema validators, K8s admission validating webhooks, Postgres CHECK constraints, OpenAPI validators, OPA Gatekeeper |
+| Mutator | K8s admission mutating webhooks (Istio sidecar injection), Postgres BEFORE INSERT triggers, GraphQL middleware, AWS Lambda authorizers |
+| Filter | iptables, nftables, AWS Security Groups, AWS NACLs, K8s NetworkPolicy, Calico policies, Snort, ModSecurity, Cloudflare WAF |
+| Limiter | nginx limit_req, Envoy rate limit filter, Redis-cell, AWS API Gateway throttling, Cloudflare rate limiting, semaphores in code |
+
+### E.10 Allocation family
+
+| Mechanism | Common implementations |
+|---|---|
+| Pool | Database connection pool (HikariCP, pgbouncer), thread pool, AWS EC2 Auto Scaling Group, K8s node pool, IP address pool (DHCP) |
+| Quota | K8s ResourceQuota, AWS service quotas, Linux cgroups, disk quotas (quotactl), Cassandra throughput throttle |
+| Scheduler (allocation) | K8s scheduler, Mesos, YARN, Slurm, AWS ECS placement, Borg, Nomad, Linux CFS scheduler |
+| Sharder | Cassandra token ring, Redis Cluster slots, MongoDB sharded clusters, Vitess, Citus, Elasticsearch shards |
+
+### E.11 Coordination family
+
+| Mechanism | Common implementations |
+|---|---|
+| Lock | pthread mutex, Postgres advisory locks, Redis Redlock, ZooKeeper locks, etcd lease-based locks, file locks (flock) |
+| Election | Raft (etcd, Consul), Paxos (Spanner), ZAB (ZooKeeper), Patroni (Postgres), Sentinel (Redis), Bully algorithm |
+| Barrier | pthread barrier, ZooKeeper double-barrier recipe, Java CyclicBarrier, MPI_Barrier, K8s Init Containers (sequential start) |
+| Quorum | Raft majority, Paxos quorum, Cassandra CL=QUORUM, etcd quorum reads/writes, MongoDB write concern w=majority, Galera quorum |
+| Sequencer | Postgres SEQUENCE, Twitter Snowflake, MongoDB ObjectId, Kafka offsets, Lamport clocks, vector clocks, AWS DynamoDB versionId |
+
+### E.12 Transformation family
+
+| Mechanism | Common implementations |
+|---|---|
+| Renderer | Jinja2, Mustache, Handlebars, Go html/template, ERB, Helm templates, Terraform templates, Liquid |
+| Transformer | UNIX pipes, awk, jq, MapReduce, Spark transformations, Pandas operations, stream processors (Kafka Streams, Flink) |
+| Compactor | Cassandra compaction, Kafka log compaction, Postgres VACUUM FULL, RocksDB compaction, Btrfs balance, ZFS scrub |
+
+### E.13 Resilience family
+
+| Mechanism | Common implementations |
+|---|---|
+| Retrier | Polly (.NET), Resilience4j, AWS SDK retries, gRPC retry policies, Postgres replication retry |
+| Circuit breaker | Hystrix, Resilience4j, Envoy outlier detection, Polly, Sentinel (Alibaba) |
+| Bulkhead | Hystrix thread pools, K8s namespaces with quotas, AWS account isolation, Cell-based architectures (AWS) |
+| Hedger | Google's tail-tolerant request hedging, Envoy hedge_policy, Cassandra speculative retry, BigTable hedged reads |
+| Failover mechanism | Patroni, repmgr, MHA, Sentinel, Cluster IP failover (keepalived), AWS RDS Multi-AZ, K8s pod replacement |
+
+---
+
+## Appendix F: Property gap analysis
+
+Properties that are commonly *claimed* but rarely *fully delivered* in practice. This is one of the more useful tables in the paper because it names where industry vocabulary diverges from contract reality.
+
+| Property | Common claim | What is actually delivered | Reason for the gap |
+|---|---|---|---|
+| Durability | "Your data is safe" | Survives single-machine crash; loses last 1–10s on async replication | Sync replication is too slow for default config |
+| Availability | "99.99% uptime" | Read availability of cached responses; write availability lower | Reads are easy to scale, writes serialize through primary |
+| Consistency (replica) | "Consistent" | Eventual, with 50ms–60s lag; "strong" only on primary | True linearizability requires expensive coordination |
+| Atomicity | "Transactional" | Per-row in NoSQL; per-transaction in RDBMS; rarely cross-system | Distributed transactions (XA, 2PC) avoided due to cost |
+| Idempotency | "Safe to retry" | Safe for GET/PUT/DELETE; not for POST without uniqueness keys | HTTP semantics widely misimplemented |
+| Ordering | "FIFO" | Per-partition only; no global order | Global order requires global serialization |
+| Determinism | "Reproducible" | Reproducible given identical inputs; rarely hit in practice | Time, randomness, concurrency, external state |
+| Isolation | "Serializable" | Read Committed by default; serializable rare | Performance cost of true serializable |
+| Failure transparency | "Self-healing" | Transparent for replica loss; opaque for primary loss | Primary failover often requires manual or complex automation |
+| Observability | "Fully observable" | Real-time per-component; hard to correlate cross-component | No global causality; logs/metrics/traces are siloed |
+| Auditability | "Audited" | Audit log exists; tamper-evident only with separate effort | Audit log itself rarely has integrity protection |
+| Reversibility | "Rollback supported" | Rollback for the database; not for downstream side effects | API calls, emails, payments cannot be unsent |
+| Boundedness | "Capped at N" | Capped under normal load; unbounded during failures or queue buildup | Bounds rarely enforced under stress conditions |
+| Confidentiality | "Encrypted" | Encrypted in transit; sometimes at rest; rarely against the operator | Operator-level confidentiality requires confidential computing |
+| Authenticity | "Authenticated" | Identity of immediate sender (TLS); rarely end-to-end author identity | Sender ≠ author in most architectures |
+
+---
+
+## Appendix G: Mechanism family populations across common system categories
+
+Which families dominate which kinds of system. Helps situate a system in the taxonomy quickly.
+
+| System category | Dominant families | Light/absent families |
+|---|---|---|
+| Configuration management (Salt, Ansible, Puppet) | Control loop, Selection, Transformation, Sensing | Versioning (light), Coordination (light) |
+| Container orchestration (Kubernetes, Nomad) | Control loop, Allocation, Gating, Sensing, Coordination | Transformation (light) |
+| Relational database (Postgres, MySQL) | Storage, Coordination, Versioning, Gating | Information movement (limited to replication) |
+| Distributed database (Cassandra, DynamoDB) | Storage, Replication, Coordination (Quorum), Versioning | Strong gating absent (no FK/CHECK) |
+| In-memory store (Redis, Memcached) | Storage (volatile), Information movement, Lifecycle | Versioning (light), Strong durability (optional) |
+| Object store (S3, GCS) | Storage, Versioning, Gating | Strong consistency (eventual until 2020), Coordination |
+| Message broker (Kafka, RabbitMQ, NATS) | Information movement, Storage (Journal), Coordination | Gating (basic), Selection (limited) |
+| Stream processor (Flink, Spark Streaming, Kafka Streams) | Transformation, Storage, Sensing | Gating, Versioning |
+| CDN (Cloudflare, Fastly, Akamai) | Information movement (Anycast, Fanout), Storage (Cache), Gating | Coordination, Versioning |
+| Load balancer (HAProxy, nginx, Envoy) | Selection (Router, Ranker), Sensing, Resilience | Storage, Versioning |
+| DNS (BIND, Unbound, Route53) | Selection, Storage, Information movement, Lifecycle | Coordination, Versioning (basic) |
+| Firewall (iptables, nftables, AWS SG) | Gating (Filter, Limiter), Selection | Storage, Coordination |
+| Source control (Git, Perforce) | Versioning (entire family), Storage, Comparison | Information movement (push/pull only), Coordination (limited) |
+| Service mesh (Istio, Linkerd) | Information movement, Gating, Sensing, Resilience | Storage (none of own) |
+| Observability stack (Prometheus, Grafana, ELK) | Sensing, Storage, Selection (PromQL, Lucene) | Gating, Coordination |
+| File transfer (rsync, sftp, aspera) | Information movement, Comparison (delta), Versioning (limited) | Most others absent — single-purpose tool |
+| Identity provider (Keycloak, Okta, AD) | Gating (Authenticator, Authorizer), Storage, Versioning | Information movement (light) |
+| Backup system (Bacula, Borg, Restic) | Storage (Snapshot), Versioning, Compactor | Coordination (light) |
+
+---
+
+## Appendix H: Properties at risk under each failure mode
+
+When a specific failure occurs, which property guarantees become difficult or impossible to maintain. This shows the engineering tradeoff space.
+
+| Failure mode | Properties typically lost | Properties usually preserved |
+|---|---|---|
+| Single process crash | Liveness (briefly), in-flight Atomicity | Durability (with WAL), Consistency-data (with rollback) |
+| Single node power loss | Liveness, fsync-pending writes if not synced | Durability (committed data), Consistency-replica (with replicas) |
+| Network partition | Consistency-replica (CP) **or** Availability (AP) — choose one | Durability, Liveness within partition |
+| Single disk failure | Boundedness (capacity), data on that disk if no RAID | Durability (with replication or RAID), Availability |
+| Single rack failure | Locality, requests pinned to rack | Most properties (with multi-rack replication) |
+| Single DC failure | Locality, regional Availability | Durability (multi-DC), global Availability |
+| Region failure | Durability (without multi-region), region's Availability | Multi-region durability, other regions' Availability |
+| Clock skew | Determinism (time-dependent), Ordering (timestamp-based) | Wall-clock-independent properties |
+| Quorum loss (>N/2 nodes down) | Consistency-replica writes, Liveness for writes | Read availability if AP |
+| Cache failure | Locality, Availability for cache-bound traffic | Source-of-truth properties (Durability, Consistency) |
+| Authenticator failure | Authenticity, all dependent gating | Properties of already-authenticated sessions |
+| Bulk corruption (silent) | Integrity, Auditability if logs corrupted | Almost nothing without integrity checking |
+| Insider threat | Confidentiality, Integrity, Auditability | None reliably without external controls |
+| Resource exhaustion (queue full, conn full) | Liveness, Boundedness violated, Availability | Durability, Consistency for completed ops |
+| Cascading failure | Failure transparency, Liveness across many systems | Often nothing without Bulkhead |
+| Time skew across replicas | Ordering, LWW correctness | Properties not relying on wall clocks |
+| Split-brain (election failure) | Consistency-replica, Atomicity | Per-partition consistency on each side |
+
+---
+
+## Appendix I: Mechanisms commonly mistaken for each other
+
+Confusions that produce architectural mistakes. Each row names a confusion and what distinguishes the mechanisms.
+
+| Pair often confused | Distinguishing question |
+|---|---|
+| Cache vs Store | If you lose it, do you lose data? Cache = no, Store = yes. |
+| Journal vs Log | Is replay the purpose? Journal = yes (WAL), Log = no (audit/access). |
+| Probe vs Heartbeat | Who initiates? Probe = watcher, Heartbeat = watched. |
+| Reconciler vs Reactor | Triggered by current state or events? Reconciler = state, Reactor = events. |
+| Lock vs Lease | Time-bounded by default? Lock = no, Lease = yes. |
+| Authenticator vs Authorizer | Who vs what they may do. Authenticator = identity, Authorizer = permission. |
+| Validator vs Mutator | Modifies the request? Validator = no, Mutator = yes. |
+| Filter vs Limiter | Selects by content or by rate? Filter = content, Limiter = rate. |
+| Snapshot vs Backup | A snapshot is a mechanism; "backup" is a goal achieved with snapshots + transport + retention. |
+| Tombstone vs Delete | Tombstone is a record-of-deletion; delete-without-tombstone causes resurrection in distributed systems. |
+| Quorum vs Election | Quorum is a counting rule; Election uses Quorum to pick a leader. |
+| Sharder vs Replicator | Sharder splits data across nodes; Replicator copies the same data to multiple nodes. |
+| Hasher vs Sequencer | Hasher is content-derived (deterministic from input); Sequencer is allocation-derived (monotonic over time). |
+| Index vs Schema | Index accelerates lookup over existing data; Schema describes what data is allowed. |
+| Pool vs Quota | Pool is resources to draw from; Quota is the limit on how much one party may draw. |
+| Watch vs Funnel | Watch = subscribe to changes (per-resource); Funnel = aggregate from many sources (per-stream). |
+
+---
+
+## Appendix J: Principle violations and their typical consequences
+
+When each principle is violated, what failure mode results. This is the most operationally useful table in the appendix.
+
+| Principle violated | Typical consequence |
+|---|---|
+| Data primacy | Configuration buried in code; can't change behavior without redeploying |
+| Single source of truth | Drift between sources; reconciliation is harder than between authority and cache |
+| Convention over lookup | Brittle naming; every change requires updating a registry |
+| 0/1/∞ | System breaks at the next growth step ("we built it for two replicas") |
+| Comprehensive over aggregate | Internally inconsistent system; no plan for the whole; ops engineers can't predict behavior |
+| One way to do each thing | Twice the operational load; each variant must be separately monitored and understood |
+| Idempotent retry | Retries cause duplication, double-charges, double-emails |
+| Level-triggered over edge-triggered | Missed events become missed work; system silently diverges from desired state |
+| Fail closed (in security context) | False acceptances become breaches |
+| Fail open (in availability context) | Outage on minor failures; unnecessary downtime |
+| Bound everything | Unbounded queue → OOM; unbounded retries → never give up; cache → fills disk |
+| Reversible changes | Rollback unavailable on incident; long MTTR |
+| Minimize dependencies | Cascading failures; one outage causes many; bootstrap is impossible |
+| Separate planes | Control plane outage takes down data plane; no way to manage during incident |
+| Layer for separation of concerns | Tight coupling; replacing one layer requires changing others |
+| Bucket for locality and accounting | Hot tenants starve others; no per-tenant accountability |
+| Local cache + global truth | Every request hits the global authority → bottleneck; or no fallback when global is partitioned |
+| Centralize policy, decentralize enforcement | Policy drift across enforcers, or single point of failure on every check |
+| Push the decision down | Every decision serialized through a coordinator; latency ceiling |
+| Push the work down/out | Origin servers absorb all traffic; no scaling without rebuilding |
+| Make state observable | Can't diagnose; every incident becomes a guessing game |
+| Removing classes of work | Automation only speeds the work, doesn't eliminate it; team scales with workload |
+
+---
+
+## Appendix K: Property triplet — what cannot coexist (CAP-style observations)
+
+Well-known impossibility results, generalized to property triplets across the taxonomy. These are not always strict theorems but engineering realities.
+
+| Triplet | Observation |
+|---|---|
+| Consistency-replica + Availability + Partition tolerance | Pick two (CAP). Under partition, CP rejects writes; AP accepts and reconciles later. |
+| Consistency-replica + Availability + Latency | At higher consistency levels, latency increases; PACELC. |
+| Durability + Latency + Throughput | Synchronous durability bounds throughput; asynchronous durability risks loss. |
+| Idempotency + Atomicity + Ordering | Achieving all three across distributed parties requires consensus; no shortcuts. |
+| Confidentiality + Observability + Auditability | Encrypted-at-rest data is harder to audit; audit data is itself sensitive. |
+| Locality + Stability under change + Availability | Rebalancing for locality after change reduces availability briefly. |
+| Reversibility + Atomicity (of side effects) + Latency | Reversible distributed operations require sagas or two-phase commit, both slow. |
+| Determinism + Liveness + Real-time clocks | A deterministic system that uses real time cannot be both reproducible and responsive to wall-clock events. |
+| Failure transparency + Boundedness + Liveness | Hiding failures requires retries, which can violate bounds and stall liveness. |
+
+---
+
+## Appendix L: Mechanism evolution over time
+
+Mechanisms that have changed in standard implementation over the last 25 years. Useful for spotting where industry conventions are mid-shift.
+
+| Mechanism | Older standard | Modern standard |
+|---|---|---|
+| Election | Manual failover, custom heartbeat scripts | Raft (etcd, Consul) widely available |
+| Replicator | Master-slave (term itself now changed) | Master-replica or peer-to-peer; CRDTs for AP systems |
+| Lock (distributed) | Custom NFS file locks, ad-hoc | Raft-backed (etcd locks), lease-based |
+| Probe | TCP connect or ping | HTTP /healthz, /readyz, /livez (K8s convention now industry-wide) |
+| Schema | Free-form text or per-RDBMS DDL | OpenAPI, protobuf, JSON Schema as portable schemas |
+| Naming convention | Per-organization arbitrary | Cloud resource ARNs, K8s standard labels, RFC-driven IDs (ULID) |
+| Reconciler | Cron + scripts | Operator pattern (K8s), GitOps (Flux, Argo) |
+| Authenticator | Per-app passwords, LDAP | OIDC, federated SSO, mTLS, workload identity |
+| Filter (network) | iptables linear scan | nftables sets, eBPF programs, cloud-native security groups |
+| Compactor | Manual VACUUM, cron-driven defrag | Background autovacuum, LSM auto-compaction |
+| Quorum | Hand-rolled per system | Library/framework primitives (etcd, ZooKeeper recipes) |
+| Versioning (data) | Last-write-wins or none | MVCC standard in OLTP; CRDTs growing in distributed systems |
+| Heartbeat detection | Fixed timeout | Phi accrual, gossip-amplified |
+| Sequencer | Auto-increment (single point) | Snowflake-style distributed; ULIDs for sortable IDs |
+| Snapshot | Stop-the-world dumps | Online consistent snapshots (ZFS, EBS, Postgres) |
+
+---
+
+## Appendix M: Fast-locator — given a problem, look here first
+
+A reverse index. The operator has a symptom; the table points at the family of mechanisms that needs attention.
+
+| Symptom | First family to inspect | Second family |
+|---|---|---|
+| "Data is missing after restart" | Storage (Journal, Store) | Coordination (commit protocol) |
+| "Reads return stale data" | Storage (Cache invalidation) | Information movement (Replicator lag) |
+| "Service is slow under load" | Allocation (Pool, Quota) | Resilience (Circuit breaker, Hedger) |
+| "Service is unreachable" | Information movement (Channel, Router) | Resilience (Failover) |
+| "Wrong user can see data" | Gating (Authorizer) | Representation (Wrap/unwrap encryption) |
+| "Operations not idempotent on retry" | Selection (Comparator), Versioning (Version stamp) | Coordination (Sequencer) |
+| "Configuration drifts on hosts" | Control loop (Reconciler) | Sensing (Probe) |
+| "Cluster has no leader" | Coordination (Election, Quorum) | Sensing (Heartbeat) |
+| "Backup is missing recent data" | Storage (Snapshot, Journal) | Lifecycle (TTL) |
+| "Replicas disagree" | Versioning (Merge algorithm), Coordination (Quorum) | Information movement (Replicator) |
+| "System won't scale past N nodes" | Coordination (centralization point), Allocation (Sharder) | Storage (single-primary bottleneck) |
+| "Memory keeps growing" | Lifecycle (Reaper, TTL) | Allocation (Quota) |
+| "Cascading outage took down everything" | Resilience (Bulkhead, Circuit breaker) | — |
+| "Audit log is incomplete" | Storage (Log retention), Sensing (Counter coverage) | Gating (logged at right point) |
+| "Deployments break things in production" | Versioning (Reference, History), Resilience (Failover) | Control loop (Reconciler logic) |
+| "Two systems see different facts" | (Single source of truth principle violated) | Versioning (Reconciliation) |
+| "Tail latency is bad" | Resilience (Hedger), Allocation (Scheduler) | Storage (Cache hit rate) |
+| "Deletes resurrect" | Storage (Tombstone discipline), Lifecycle (gc_grace) | Information movement (Replicator) |
+| "Names collide" | Representation (Namespace, Naming convention) | Coordination (Sequencer for unique IDs) |
+| "Schema migration breaks clients" | Representation (Schema versioning), Versioning (References) | — |
+
+---
+
+*End of Appendices E–M. These tables provide non-redundant, operationally useful supplements to the core taxonomy: implementations, gaps, populations, failure surfaces, common confusions, principle consequences, impossibility triplets, evolution, and a reverse-index for diagnosis.*
