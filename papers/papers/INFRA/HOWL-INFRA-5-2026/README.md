@@ -1,4 +1,4 @@
-# OpsDB Design
+# OpsDB API Layer
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,11 +6,11 @@
 
 ## Abstract
 
-The OpsDB is a centralized data substrate that serves as the single source of truth for operational reality across a Distributed Operating System (DOS). It holds all centrally-managed configuration, a sized cache of pulled observed state, pointers to authorities for everything else, schedules and policies, runner enumeration and metadata, structured documentation references, and complete history. It is consumed by three populations: humans operating the system, automation runners performing decentralized work, and auditors verifying compliance and control. The OpsDB is passive — it answers queries and accepts writes — while a sophisticated API in front of it enforces authentication, authorization, validation, change management, versioning, and audit.
+The OpsDB API is the single gate through which all interactions with OpsDB data pass. It is self-contained operational software: it does not depend on Kubernetes, on a specific cloud, on any orchestrator, or on any system the OpsDB models. It calls out only to authoritative external systems for the authority those systems own — identity providers (LDAP, Active Directory, OIDC, SAML) for human authentication, secret backends (Vault and equivalents) for credential resolution. Every other governance concern — authorization, validation, change management routing, versioning, audit — is enforced at this gate, uniformly, against all entity types in the schema.
 
-A Distributed Operating System (DOS) is the conceptual unit the OpsDB serves: any environment operated as a single coordinated system spanning many heterogeneous nodes — production datacenters, staging clusters, corporate infrastructure, employee fleets — where many machines, services, and policies are managed coherently as if they were one large operating system. A DOS is not defined by the underlying substrate (bare metal, virtual machines, Kubernetes clusters, cloud services, SaaS integrations can all participate) but by the operational coordination that unifies them: shared configuration management, shared policies, shared identity, shared monitoring, shared change discipline. An organization may have one DOS or several, and each DOS may have its own OpsDB or share one with others, depending on the cardinality decision specified in §5.
+This paper specifies the API surface. The get-set operations work uniformly across all entity types. The search API supports filter predicates, named join paths through the schema, projection, ordering, and bounded pagination. Field-level versioning bundles per change_set, with full-state version rows that make point-in-time reconstruction a single lookup. Five layers of authorization (role, per-entity governance, per-field classification, per-runner authority, policy rules) all evaluate as data. Runner report keys gate every runner's writable surface, making the answer to "who can write this metric" a queryable declaration rather than implicit trust. Change_sets pass through a defined lifecycle as OpsDB rows; the to-perform queue is approved-not-yet-applied rows; the change-set executor that drains it is a runner per [@HOWL-INFRA-4-2026], not the API. Notification dispatch is a runner concern. The API gates, validates, routes, records, and responds; runners do the world-side work.
 
-The OpsDB cardinality is 1 or N, never 2: a single OpsDB for organizations that fit under a single security umbrella, multiple substrates for organizations whose structure (security perimeters, legal or regulatory zones, organizational boundaries) prevents a single substrate. This paper specifies the OpsDB's design goals, architectural commitments, content scope, consumer model, the API as security and governance perimeter, and the construction disciplines that produce a stable, queryable, comprehensively-modeled substrate. Implementation choices and schema design are out of scope for this paper.
+What this paper does not specify: storage engine, wire protocol, deployment topology, identity provider integration specifics, UI design, specific runner implementations. The schema is the long-lived artifact per [@HOWL-INFRA-2-2026]; the API surface specified here is stable across implementations of the schema.
 
 ---
 
@@ -50,14 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFRA-2-2026,
-  title={ OpsDB Design },
+@article{ HOWL-INFRA-5-2026,
+  title={ OpsDB API Layer },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20004908},
-  url = {https://zenodo.org/record/20004908},
-  note={Howland Archive: HOWL-INFRA-2-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-INFRA-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

@@ -1,4 +1,5 @@
 # OpsDB API Layer
+
 ## Authentication, Versioning, and Change Management Gating
 
 **Registry:** [@HOWL-INFRA-5-2026]
@@ -152,14 +153,23 @@ The API does not provide an "execute this command" operation against any externa
 Every operation flows through the same gate. The gate handles, in order:
 
 1. **Authentication.** Verify caller identity by validating the credentials presented against the appropriate identity authority (IdP for humans, secret backend for runner service accounts). Resolve to `ops_user` or `runner_machine` row. Record in the operation context.
+
 2. **Authorization.** Evaluate the five-layer authorization model (§6.2) for the operation, target, and caller. First denial fails the operation; all five must pass for the operation to proceed.
+
 3. **Schema validation.** Verify the operation's shape matches the registered schema for the affected entity types and fields. Reject malformed requests with structured error feedback.
+
 4. **Bound validation.** Verify field values are within declared bounds: numeric ranges per INFRA-6 declarative constraints, enum membership for fields with enumerated values, FK existence for referenced rows, simple anchored patterns where applicable. No regex evaluation. No embedded logic. The constraints are data; the validation is a lookup.
+
 5. **Policy evaluation.** Consult `policy` rows for additional governance: data classification rules, retention rules, segregation-of-duties constraints, time-of-day restrictions where applicable. Reject operations that violate active policies.
+
 6. **Versioning preparation.** For set operations on change-managed entities, prepare the version row that will be written. For change_set submissions, prepare the per-field-change records. The actual version write happens in the execution step.
+
 7. **Change management routing.** For change_set submissions, evaluate `approval_rule` policies (§7.3), compute the required approver groups, write `change_set_approval_required` rows. Determine whether the change_set auto-approves, requires human approval, or is rejected by a blocking rule.
+
 8. **Audit logging.** Record the operation in `audit_log_entry` with full attribution. Append-only; the entry is written atomically with the operation's outcome.
+
 9. **Execution.** For direct writes, apply the row atomically. For change_set submissions, record the change_set and its field changes. For approval/rejection, record the action and re-evaluate requirements. For executor apply-writes, perform the entity update and version sibling write.
+
 10. **Response.** Return the operation result with metadata (success or structured error, affected row identities, computed approval requirements where applicable, audit log entry id for correlation).
 
 Every step is data-driven. The schema declares structure; policies declare governance; the API enforces both. Changing what the API enforces is changing data, not code. This is the *configuration as data* commitment from INFRA-2 §4.6 made operational at the gate.
@@ -193,10 +203,15 @@ Pattern matching is intentionally restricted. Regex is excluded both because it 
 Joins are expressed as named relationships, not raw SQL. The API resolves them against the schema. Examples:
 
 - `service.host_group` — join from service to its host_group via `host_group_id`.
+
 - `service.connections` — walk `service_connection` edges from the source service.
+
 - `machine.megavisor_instance.parent_chain` — recursive walk via `megavisor_instance.parent_megavisor_instance_id`, bounded by depth.
+
 - `entity.audit_log` — join to recent `audit_log_entry` rows for this entity.
+
 - `change_set.field_changes` — join to `change_set_field_change` rows for this change_set.
+
 - `change_set.approvals_required` — join to `change_set_approval_required` rows.
 
 Each join path is a schema-defined name registered with the API. The API knows how to translate the named path to the storage engine's join operations. New paths are added as schema metadata through `_schema_change_set` per INFRA-3 §20.
@@ -236,7 +251,9 @@ This is INFRA-1's *local cache plus global truth* principle made explicit at the
 The view mode shapes how versioned data is presented:
 
 - `standard` — current state of each matched entity.
+
 - `with_history` — current state plus the full version chain.
+
 - `at_time` — state of each matched entity as of a specified timestamp, reconstructed from the version chain.
 
 The `at_time` mode is the audit-friendly query: "show me what production looked like at the time of the incident." One search with one timestamp parameter returns the historical state across many entities, joined and projected as the caller specified.
@@ -256,7 +273,9 @@ Field-level versioning bundled per change_set. The mechanics for how the API pro
 When a change_set commits and updates an entity, three writes happen atomically:
 
 1. The base table row is updated with the new field values.
+
 2. A row is appended to the entity's `*_version` sibling table, recording the post-change full state of all fields (not just the changed fields).
+
 3. The associated `change_set_field_change` rows are updated to `applied_status='applied'` with timestamps.
 
 The version row contains all fields of the entity, not just the ones that changed. This is a deliberate space-time trade-off: storage is cheap, point-in-time reconstruction is expensive when implemented as version-chain replay. By storing full post-change state per version, reconstruction becomes a single row lookup at the target version. Diff between versions is a comparison of two rows, not a fold over a chain.
@@ -282,12 +301,19 @@ The split is mechanical. Change-managed data goes through change_sets, which pro
 Each `*_version` sibling table carries:
 
 - `id` — version row primary key
+
 - `*_id` — FK to the base table (the entity this version belongs to)
+
 - `version_serial` — INT, monotonic per entity
+
 - `parent_*_version_id` — self-FK, the prior version for this entity
+
 - `change_set_id` — FK to the change_set that produced this version
+
 - `is_active_version` — BOOLEAN, true for the current version
+
 - `created_time`, `updated_time`
+
 - All fields from the base table, snapshotting post-change state.
 
 The base table always reflects the current version. The sibling reconstructs history. Rollback is achieved by submitting a change_set whose field changes restore the values from a target version row (§5.5).
@@ -381,9 +407,13 @@ The boundary holds because identity and authorization are different concerns at 
 Per INFRA-4 §5.1, the OpsDB API client is a shared library. It handles, for runners:
 
 - Credential acquisition from the secret backend on runner startup.
+
 - Credential refresh before expiration.
+
 - Adding authentication headers to every request.
+
 - Retrying transient authentication failures with appropriate backoff.
+
 - Surfacing validation errors and authorization denials to the runner cleanly.
 
 A runner does not implement authentication. The library does. This is what makes "runners are valid writers" mechanical — the library and the API agree on the protocol; runners that use the library are inherently authenticated; runners that bypass the library do not exist within the OpsDB-coordinated operational reality (per INFRA-4 §13's anti-patterns).
@@ -411,20 +441,33 @@ This split is the operational realization of the passive-substrate commitment. T
 The `change_set.change_set_status` field walks through the lifecycle states defined in INFRA-3 §18.1:
 
 ```
+
 draft → submitted → validating → pending_approval → approved → applied
-                                              ↘ rejected
-                                              ↘ expired
-                                              ↘ cancelled
+
+                                          ↘ rejected
+
+                                          ↘ expired
+
+                                          ↘ cancelled
+
 ```
 
 - **draft** — under construction; not yet submitted. Submitter can edit field changes, reason, metadata.
+
 - **submitted** — API received; transition to validating is automatic.
+
 - **validating** — lint, schema, semantic, policy checks running. On success, transition to pending_approval. On failure, transition back to draft with errors recorded, or to rejected if the failure is unrecoverable.
+
 - **pending_approval** — validation passed; awaiting stakeholder approvals per `change_set_approval_required`. Notification runner observes this state.
+
 - **approved** — all required approvals received; ready for the to-perform queue. Change-set executor observes this state.
+
 - **applied** — change-set executor has successfully applied all field changes; entity rows reflect the new state; version siblings have been written.
+
 - **rejected** — a required approver rejected per the rule's rejection semantics; halt.
+
 - **expired** — submission deadline passed without sufficient approvals; halt.
+
 - **cancelled** — submitter or sufficient authority withdrew the change_set; halt.
 
 The state machine is illustrated in Figure 3. State transitions are themselves API operations recorded in the audit log; the entire lifecycle of every change_set is queryable.
@@ -438,10 +481,15 @@ When a change_set transitions through validating to pending_approval, the API co
 The computation: for each `change_set_field_change`, the API looks up the target entity. It walks the ownership and stakeholder bridges for that entity type — `service_ownership`, `service_stakeholder`, `machine_ownership`, `k8s_cluster_ownership`, `cloud_resource_ownership`, and similar bridges for other entity types — to find the `ops_user_role` rows responsible for the entity. It evaluates `policy` rows of type `approval_rule` against the entity, namespace, fields touched, and metadata (data classification, security zone membership, compliance scope membership). For each rule that matches, the API computes one or more `change_set_approval_required` rows specifying which group must approve and how many approvers from that group are needed.
 
 A change_set may produce multiple approval requirements:
+
 - Service owner approval for changes touching that service.
+
 - Security team approval if the change touches a `_security_zone` field or affects an entity in a security-sensitive namespace.
+
 - Compliance team approval if the entity is in `compliance_scope_service` for any active regime.
+
 - Schema steward approval if the change touches `_schema_*` tables.
+
 - Production operations approval if the entity is in the production namespace and the change affects a runtime field.
 
 Each requirement is independent. All must be fulfilled before the change_set can transition to `approved`. The API tracks per-requirement fulfillment in `change_set_approval_required.fulfilled_count` and `is_fulfilled`.
@@ -503,9 +551,13 @@ The to-perform queue is illustrated in Figure 5.
 Some change_sets do not require human approval. The API determines this by evaluating `approval_rule` policies; if all matching rules auto-approve, the change_set transitions through `validating → pending_approval → approved` without human intervention. The `pending_approval` state may be skipped entirely for fully-auto-approved change_sets (the transition is atomic from `validating` to `approved`).
 
 Auto-approval policies are themselves change-managed; modifying them requires approval, typically from the governance team. Policies typically auto-approve:
+
 - Drift corrections in non-production environments.
+
 - Cached observation writes (these don't go through change_set at all; they use `write_observation` directly).
+
 - Routine credential rotations within their declared schedule.
+
 - Low-risk reconciler outputs against entities in their declared scope.
 
 The same change-set discipline applies whether the approval is human or automatic. The audit trail is identical in shape: who proposed, what was proposed, who approved (the policy, in the auto case), what was applied, when, by which executor.
@@ -551,9 +603,13 @@ This section specifies a small but critical schema addition. Adoption of INFRA-5
 Runners write into shared tables that hold heterogeneous data keyed by name:
 
 - `observation_cache_metric.metric_key` — the identifier for what was measured (e.g., `host_cpu_seconds_total`, `pod_memory_bytes`).
+
 - `observation_cache_state.state_key` — the identifier for what state was observed (e.g., `pod_phase`, `disk_pct_used`).
+
 - `observation_cache_config.config_key` — the identifier for what configuration was pulled (e.g., `kubelet_max_pods`, `nginx_worker_connections`).
+
 - `runner_job_output_var.var_name` — the identifier for what coordination output the runner emitted (e.g., `drift_detected_count`, `failover_target`).
+
 - `evidence_record.evidence_record_type` — the identifier for what evidence was produced (e.g., `backup_verification`, `compliance_scan`).
 
 A runner with broad write authority to any of these tables can write any value to any key. A puller that should only write CPU metrics could, if compromised or misconfigured, write a value to `database_credentials_active` and that value would be accepted because the table-level write authority does not distinguish between legitimate keys and arbitrary keys.
@@ -567,33 +623,59 @@ Each runner declares its writable surface in `runner_report_key` rows. Each decl
 The schema:
 
 ```
+
 runner_report_key
+
   id
+
   runner_spec_id           -- which runner spec this declaration covers
+
   report_target_table      -- ENUM: observation_cache_metric,
-                           --   observation_cache_state,
-                           --   observation_cache_config,
-                           --   runner_job_output_var,
-                           --   evidence_record
+
+                       --   observation_cache_state,
+
+                       --   observation_cache_config,
+
+                       --   runner_job_output_var,
+
+                       --   evidence_record
+
   report_key               -- the key value the runner is authorized to write
+
   report_key_data_json     -- type and value validation rules
-                           --   (per INFRA-6 declarative constraints)
+
+                       --   (per INFRA-6 declarative constraints)
+
   is_active
+
   created_time
+
   updated_time
 
 runner_report_key_version  -- versioning sibling
+
   id
+
   runner_report_key_id
+
   version_serial
+
   parent_runner_report_key_version_id
+
   report_target_table
+
   report_key
+
   report_key_data_json
+
   change_set_id
+
   is_active_version
+
   created_time
+
   updated_time
+
 ```
 
 The table is change-managed; declarations evolve through change_sets like any other governance configuration. New keys, new constraints, retirement of obsolete declarations all flow through the same pipeline.
@@ -605,8 +687,11 @@ Declarations are at the `runner_spec` level, not the `runner_machine` level. All
 When a runner submits a write to one of the targeted tables, the API performs an additional check beyond the standard authorization layers:
 
 1. The API looks up the runner's `runner_report_key` rows for the target table (the runner's identity is established at authentication; the table is determined by the operation).
+
 2. The API checks whether the submitted key is in the declared set. If not, the write is rejected with `undeclared_report_key` error and the runner identity, target table, and submitted key are recorded in the audit log.
+
 3. If the key is in the declared set, the API validates the submitted value against `report_key_data_json` constraints (numeric range, enum membership, structural validation per INFRA-6). If validation fails, the write is rejected with `invalid_report_key_value` error and full detail recorded.
+
 4. If validation passes, the API performs the write, records audit, and responds.
 
 The verification flow is illustrated in Figure 6.
@@ -636,24 +721,43 @@ Compliance scopes tighten. A compliance regime that requires demonstrable proven
 A Prometheus host-metrics puller is deployed. The puller's `runner_spec` declares allowed metric keys via a change_set:
 
 ```
+
 change_set: "Add Prometheus host-metrics puller declarations"
+
 proposed_by_ops_user: alice@org
+
 field_changes:
+
   create runner_report_key:
-    runner_spec_id: prometheus_host_metrics_puller_v1
-    report_target_table: observation_cache_metric
-    report_key: host_cpu_seconds_total
-    report_key_data_json: {"type": "float", "min": 0, "max": 1e12}
+
+runner_spec_id: prometheus_host_metrics_puller_v1
+
+report_target_table: observation_cache_metric
+
+report_key: host_cpu_seconds_total
+
+report_key_data_json: {"type": "float", "min": 0, "max": 1e12}
+
   create runner_report_key:
-    runner_spec_id: prometheus_host_metrics_puller_v1
-    report_target_table: observation_cache_metric
-    report_key: host_memory_bytes_total
-    report_key_data_json: {"type": "int", "min": 0, "max": 1e15}
+
+runner_spec_id: prometheus_host_metrics_puller_v1
+
+report_target_table: observation_cache_metric
+
+report_key: host_memory_bytes_total
+
+report_key_data_json: {"type": "int", "min": 0, "max": 1e15}
+
   create runner_report_key:
-    runner_spec_id: prometheus_host_metrics_puller_v1
-    report_target_table: observation_cache_metric
-    report_key: host_disk_bytes_total
-    report_key_data_json: {"type": "int", "min": 0, "max": 1e18}
+
+runner_spec_id: prometheus_host_metrics_puller_v1
+
+report_target_table: observation_cache_metric
+
+report_key: host_disk_bytes_total
+
+report_key_data_json: {"type": "int", "min": 0, "max": 1e18}
+
 ```
 
 The change_set is approved by the security team (per the approval rule for runner declarations) and applied. The puller is now authorized for those three keys with those value bounds.
@@ -677,12 +781,19 @@ Every API operation produces an `audit_log_entry`. The audit log is the system's
 Each `audit_log_entry` row records:
 
 - **Operation identity.** Which API endpoint was called, which method (read vs write, get vs search vs submit). The `action_type` field per INFRA-3 §19.1 carries the structured operation class.
+
 - **Caller identity.** `acting_ops_user_id` for human callers, `acting_service_account_id` for runner callers, both populated for web-application-mediated human writes (the runner that made the call and the originating human).
+
 - **Target identity.** `target_entity_type` and `target_entity_id` for operations affecting specific entities. For multi-target operations (search, bulk submission), the audit log entry references the operation root and additional bridge tables capture per-target detail.
+
 - **Operation detail.** A structured summary in `request_data_summary` and `response_data_summary`. The summary captures fields touched, before/after value summaries (full values are stored elsewhere — in version siblings for change-managed data, in the cache tables for observation), validation outcomes, approval routing computed.
+
 - **Result.** Success, validation_failed, authorization_denied, rate_limited, internal_error. Structured enough to query "show me all authorization denials in the last hour."
+
 - **Context.** Client IP, user agent, request ID for correlation, change_set_id where applicable.
+
 - **Timestamp.** High-precision, monotonic, set by the API. The API's clock is the audit clock; client-supplied timestamps are recorded in `request_data_summary` but not used for the audit row's `acted_time`.
+
 - **Optional `_audit_chain_hash`.** For tamper-evidence regimes; covered in §9.3.
 
 ### 9.2 Append-only enforcement
@@ -718,9 +829,13 @@ Auditors query the audit log through the standard search API. The auditor role g
 Common audit query patterns:
 
 - "Every change touching service X in Q3" — filter on target_entity_type and target_entity_id, time range.
+
 - "Every authorization denial for a specific runner" — filter on acting_service_account_id, result type.
+
 - "Every emergency change in the last six months" — filter on operation type and the change_set's `is_emergency` flag, joined to audit entries.
+
 - "Every approval action by a specific user" — filter on acting_ops_user_id and operation type.
+
 - "Every write to a specific entity, with caller identity and value summary" — filter on target identity, action type write.
 
 These queries resolve through the search API's join paths. The auditor does not write SQL against the audit table directly; the search API translates declarative queries into engine operations, applying the auditor's access scope and bounds.
@@ -810,3 +925,4 @@ The structural commitments of the series — passive substrate, single gate, gov
 ---
 
 *End of HOWL-INFRA-5-2026.*
+

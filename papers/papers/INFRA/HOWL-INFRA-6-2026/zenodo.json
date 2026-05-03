@@ -1,8 +1,8 @@
 {
-  "title": "OpsDB Design",
+  "title": "OpsDB Schema Construction",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "The OpsDB is a centralized data substrate that serves as the single source of truth for operational reality across a Distributed Operating System (DOS). It holds all centrally-managed configuration, a sized cache of pulled observed state, pointers to authorities for everything else, schedules and policies, runner enumeration and metadata, structured documentation references, and complete history. It is consumed by three populations: humans operating the system, automation runners performing decentralized work, and auditors verifying compliance and control. The OpsDB is passive \u2014 it answers queries and accepts writes \u2014 while a sophisticated API in front of it enforces authentication, authorization, validation, change management, versioning, and audit.\n\nA Distributed Operating System (DOS) is the conceptual unit the OpsDB serves: any environment operated as a single coordinated system spanning many heterogeneous nodes \u2014 production datacenters, staging clusters, corporate infrastructure, employee fleets \u2014 where many machines, services, and policies are managed coherently as if they were one large operating system. A DOS is not defined by the underlying substrate (bare metal, virtual machines, Kubernetes clusters, cloud services, SaaS integrations can all participate) but by the operational coordination that unifies them: shared configuration management, shared policies, shared identity, shared monitoring, shared change discipline. An organization may have one DOS or several, and each DOS may have its own OpsDB or share one with others, depending on the cardinality decision specified in \u00a75.\n\nThe OpsDB cardinality is 1 or N, never 2: a single OpsDB for organizations that fit under a single security umbrella, multiple substrates for organizations whose structure (security perimeters, legal or regulatory zones, organizational boundaries) prevents a single substrate. This paper specifies the OpsDB's design goals, architectural commitments, content scope, consumer model, the API as security and governance perimeter, and the construction disciplines that produce a stable, queryable, comprehensively-modeled substrate. Implementation choices and schema design are out of scope for this paper.",
+  "description": "The OpsDB schema is itself data. This paper specifies a schema construction system in which the entire schema lives as hierarchical YAML or JSON files in a git repository, processed by a deterministic loader that produces both the relational database and the API's validation metadata from the same source. The schema files are self-contained, declarative, and bounded in expressive power. A small closed vocabulary of types, modifiers, and constraints describes every field of every entity. There is no embedded logic, no regex, no templating, no computed defaults, no conditional constraints, no inheritance. The constraint vocabulary is what the system permits; everything else is refused, by design, to keep the schema inspectable and to keep validation deterministic at the API gate.\n\nThe schema repository contains a `directory.yaml` listing the import order of all entity files. Each file describes one entity: its fields, types, foreign keys, range and length bounds, enum sets, and the FK references that act as set-membership constraints. Schema evolution is governed: no field deletions, no renames, no type changes. Type changes happen by duplicating the field, double-writing during a transition window of N successful releases, and removing the original after the transition. Renames do not happen at all. The schema repo creates the OpsDB initially and modifies it through the same change-management discipline INFRA-5 specifies, keeping schema, database, and API validation synchronized.\n\nWhat this paper does not specify: the storage engine, the loader's implementation language, the file format choice between YAML and JSON, or the specific authoring tooling. The schema is relational; the relations are declared as data; the rest is implementation choice.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -16,11 +16,11 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-2-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-6-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
