@@ -232,3 +232,14 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-ENG-1-2026]](papers/papers/ENG/HOWL-ENG-1-2026/manuscript.md)** | **What Engineering Is** | A precise definition and its consequences for software. |
 | **[[@HOWL-ENG-2-2026]](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
+
+---
+
+## Infrastructure
+*Networked Server Infrastructure Engineering.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-INFRA-1-2026]](papers/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md)** | **Infrastructure Taxonomy** | A Taxonomy of Infrastructure Mechanisms, Properties, and Principles. |
+| **[[@HOWL-INFRA-2-2026]](papers/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
+
