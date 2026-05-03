@@ -1,6 +1,6 @@
 {
   "created": "2026-05-03T06:33:43.382078+00:00",
-  "modified": "2026-05-03T06:50:18.354127+00:00",
+  "modified": "2026-05-03T06:51:51.750376+00:00",
   "id": 19997507,
   "conceptrecid": "19997506",
   "metadata": {
@@ -67,10 +67,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-ENG-2-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -109,23 +109,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "a79ef295-0887-4fc2-a6af-c0482a78fb8e",
-      "filename": "!manuscript.pdf",
-      "filesize": 1785972,
-      "checksum": "f7b31dd5f1d43f4f8511a5bc1a59e1cc",
+      "id": "f28d933d-98a5-4e4b-ab47-4e9928fe6de7",
+      "filename": "HOWL-ENG-2-2026.zip",
+      "filesize": 3383943,
+      "checksum": "ee9664aa8f584123bd0e42ac03fae4f1",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/a79ef295-0887-4fc2-a6af-c0482a78fb8e",
-        "download": "https://zenodo.org/api/records/19997507/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/f28d933d-98a5-4e4b-ab47-4e9928fe6de7",
+        "download": "https://zenodo.org/api/records/19997507/draft/files/HOWL-ENG-2-2026.zip/content"
       }
     },
     {
-      "id": "1909229e-e574-4731-af7c-8ca147c7e2f7",
-      "filename": "HOWL-ENG-2-2026.zip",
-      "filesize": 3383955,
-      "checksum": "f39f887d1e8f3618fb8a48e87a7125fe",
+      "id": "0b464c0f-a088-4c3b-ae33-a6a6790697e4",
+      "filename": "!manuscript.pdf",
+      "filesize": 1785978,
+      "checksum": "d8d71ee649513276d160e91c7d99c1ae",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/1909229e-e574-4731-af7c-8ca147c7e2f7",
-        "download": "https://zenodo.org/api/records/19997507/draft/files/HOWL-ENG-2-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/0b464c0f-a088-4c3b-ae33-a6a6790697e4",
+        "download": "https://zenodo.org/api/records/19997507/draft/files/!manuscript.pdf/content"
       }
     }
   ],

@@ -1,4 +1,4 @@
-# What True Cost Is
+# What Engineering True Cost Is
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,7 +47,7 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-ENG-2-2026,
-  title={ What True Cost Is },
+  title={ What Engineering True Cost Is },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},

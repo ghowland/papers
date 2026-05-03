@@ -231,4 +231,4 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[[@HOWL-ENG-1-2026]](papers/papers/ENG/HOWL-ENG-1-2026/manuscript.md)** | **What Engineering Is** | A precise definition and its consequences for software. |
-| **[[@HOWL-ENG-2-2026]](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What True Cost Is** | Why Software Can't be Credentialed and the Solution. |
+| **[[@HOWL-ENG-2-2026]](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
