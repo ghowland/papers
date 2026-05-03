@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-HOWL ENG-02 Diagrams — What True Cost Is, and Why Credentialing Has Failed Software
-8 figures covering True Cost domains, the three-tier credentialing model,
-and the structural reasons software credentialing fails.
+HOWL INFRA-2 Diagrams — OpsDB Design
+8 figures covering the three-population model, cardinality, API-as-perimeter,
+change-set lifecycle, architectural layering, freshness, investigation flow,
+and the local-replica pattern.
 Output: PNG files to ../figures/
 """
 
@@ -10,7 +11,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import Circle, FancyBboxPatch, FancyArrowPatch, Wedge, Rectangle
+from matplotlib.patches import FancyBboxPatch, Circle, FancyArrowPatch, Rectangle, Wedge, Polygon
 import numpy as np
 import os
 
@@ -49,16 +50,9 @@ else:
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
 
-    
+
 outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
 os.makedirs(outdir, exist_ok=True)
-
-def style_axes(ax):
-    ax.set_facecolor(PAN)
-    for spine in ax.spines.values():
-        spine.set_color(DIM)
-        spine.set_linewidth(0.5)
-    ax.tick_params(colors=DIM, labelsize=9)
 
 def save(fig, filename):
     path = os.path.join(outdir, filename)
@@ -67,692 +61,938 @@ def save(fig, filename):
     print("  Saved: %s" % filename)
 
 # ================================================================
-# FIG 1: TWO DOMAINS OF TRUE COST
-# Type: 2 (Scale/Landscape)
-# Shows: physical/civ True Cost vs financial/availability True Cost
+# FIG 1: THREE POPULATIONS ON ONE SUBSTRATE
+# Type: 5 (Connection Map)
+# Shows: Humans, automation, auditors converging on the OpsDB
 # ================================================================
-fig, ax = plt.subplots(figsize=(16, 10))
-fig.patch.set_facecolor(BG)
-style_axes(ax)
-
-# Two regions
-# Bottom-left: financial / reversible (business engineering)
-ax.axhspan(0, 4, xmin=0.0, xmax=0.55, alpha=0.08, color=BLUE, zorder=0)
-# Top-right: physical/civ / irreversible (traditional)
-ax.axhspan(6, 10, xmin=0.55, xmax=1.0, alpha=0.10, color=RED, zorder=0)
-# Crossover zone
-ax.axhspan(5, 9, xmin=0.45, xmax=0.95, alpha=0.05, color=GOLD, zorder=0)
-
-ax.text(2.0, 3.0, 'BUSINESS\nENGINEERING\nDOMAIN',
-        ha='center', va='center', fontsize=12,
-        color=BLUE, fontweight='bold', alpha=0.85)
-ax.text(8.0, 9.5, 'TRADITIONAL\nENGINEERING\nDOMAIN',
-        ha='center', va='center', fontsize=12,
-        color=RED, fontweight='bold', alpha=0.85)
-ax.text(7.5, 7.3, 'crossover region',
-        ha='center', va='center', fontsize=10,
-        color=GOLD, style='italic', alpha=0.85)
-
-# Examples placed
-examples = [
-    # (name, reversibility 0=reversible 10=irreversible, magnitude 0=low 10=mortality)
-    ('SaaS outage', 1.5, 1.5, BLUE),
-    ('Failed startup', 4.0, 2.5, BLUE),
-    ('Data loss\n(restorable)', 2.5, 2.0, BLUE),
-    ('Major data breach', 5.5, 4.0, ORANGE),
-    ('MapReduce job fail', 0.8, 0.8, BLUE),
-    ('Pacemaker bug', 9.0, 9.0, RED),
-    ('Bridge collapse', 9.5, 9.5, RED),
-    ('Therac-25', 9.5, 9.8, RED),
-    ('Avionics failure', 9.5, 9.5, RED),
-    ('Industrial accident', 9.0, 8.8, RED),
-    ('Grid failure\n(cascading)', 8.5, 8.5, RED),
-    ('Autonomous vehicle\ncollision', 9.0, 9.0, RED),
-    ('Algo trading crash', 6.5, 5.5, ORANGE),
-    ('Election\ndisinformation', 7.5, 6.5, ORANGE),
-]
-
-count = 0
-for name, x, y, c in examples:
-    ax.scatter(x, y, s=200, color=c, edgecolors=WHITE,
-               linewidth=1.5, zorder=5, alpha=0.9)
-    
-    offsetY = 0
-    if count % 2 == 1:
-        offsetY = -0.75
-
-    ax.annotate(name, xy=(x, y), xytext=(x - 0.5, y + 0.25 + offsetY),
-                fontsize=9, color=WHITE)
-    count += 1
-
-ax.set_xlabel('Reversibility of Cost  \u2192  (reversible \u2192 irreversible)',
-              color=SILVER, fontsize=12)
-ax.set_ylabel('Cost Magnitude  \u2192  (bounded \u2192 mortality / civilizational)',
-              color=SILVER, fontsize=12)
-ax.set_xlim(0, 10.5)
-ax.set_ylim(0, 10.5)
-
-ax.set_title('Two Domains of True Cost: Different Magnitudes, Different Reversibility',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
-
-save(fig, 'eng02_01_two_domains_truecost.png')
-
-# ================================================================
-# FIG 2: SUBSTRATE STABILITY ACROSS DISCIPLINES
-# Type: 1 (Running/Convergence Chart)
-# Shows: substrate change rate over time for each engineering discipline
-# ================================================================
-fig, ax = plt.subplots(figsize=(16, 10))
-fig.patch.set_facecolor(BG)
-style_axes(ax)
-
-years = np.linspace(1900, 2026, 200)
-
-# Civil/Mechanical/Electrical: nearly flat (substrate barely changes)
-civil = 95 + 2 * np.sin((years - 1900) / 30) + 0.5 * (years - 1900) / 126
-mech = 93 + 2 * np.cos((years - 1900) / 25) + 0.7 * (years - 1900) / 126
-elec = 90 + 5 * np.sin((years - 1900) / 20) + 1.0 * (years - 1900) / 126
-
-# Software: extreme volatility
-# Mainframes (1950s-60s), minis (70s), PCs (80s), web (90s), cloud (2000s),
-# containers (2010s), AI/serverless (2020s)
-sw = np.zeros_like(years)
-for i, y in enumerate(years):
-    if y < 1950:
-        sw[i] = 95
-    else:
-        # Each transition drops stability sharply, recovers partially
-        transitions = [1955, 1972, 1985, 1995, 2006, 2014, 2022]
-        base = 60
-        for t in transitions:
-            base -= 8 * np.exp(-((y - t) ** 2) / 20)
-        # Constant churn between transitions
-        sw[i] = max(20, base + 5 * np.sin((y - 1950) / 3))
-
-ax.plot(years, civil, color=BLUE, linewidth=2.5,
-        label='Civil engineering')
-ax.plot(years, mech, color=GREEN, linewidth=2.5,
-        label='Mechanical engineering')
-ax.plot(years, elec, color=PURPLE, linewidth=2.5,
-        label='Electrical engineering')
-ax.plot(years, sw, color=ORANGE, linewidth=2.8,
-        label='Software engineering')
-
-# Mark software substrate transitions
-transitions_marks = [
-    (1955, 'mainframes'),
-    (1972, 'minis'),
-    (1985, 'PCs'),
-    (1995, 'web'),
-    (2006, 'cloud'),
-    (2014, 'containers'),
-    (2022, 'AI / serverless'),
-]
-for ty, tname in transitions_marks:
-    ax.axvline(ty, color=ORANGE, linestyle=':', linewidth=0.8, alpha=0.4)
-    ax.text(ty, 12, tname, fontsize=8, color=ORANGE,
-            rotation=90, ha='center', va='bottom', alpha=0.85)
-
-# Annotation: stability threshold for credentialing
-ax.axhline(80, color=GOLD, linestyle='--', linewidth=1.2, alpha=0.6)
-ax.text(1905, 82, 'credentialing-viable threshold',
-        fontsize=9, color=GOLD)
-
-ax.set_xlabel('Year', color=SILVER, fontsize=12)
-ax.set_ylabel('Substrate Stability (%)', color=SILVER, fontsize=12)
-ax.set_xlim(1900, 2030)
-ax.set_ylim(0, 105)
-
-leg = ax.legend(loc='lower left', facecolor=PAN, edgecolor=DIM,
-                labelcolor=WHITE, fontsize=10)
-
-ax.set_title('Substrate Stability: Why Software Cannot Be Credentialed Like Civil',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
-
-save(fig, 'eng02_02_substrate_stability.png')
-
-# ================================================================
-# FIG 3: THE THREE-TIER CREDENTIALING MATRIX
-# Type: 5/6 (Connection Map / Comparison)
-# Shows: the central framework as a structured matrix
-# ================================================================
-fig, ax = plt.subplots(figsize=(18, 11))
-fig.patch.set_facecolor(BG)
+fig, ax = plt.subplots(figsize=(16, 11))
 ax.set_facecolor(BG)
-ax.set_xlim(0, 10)
+ax.set_xlim(0, 16)
+ax.set_ylim(0, 11)
+ax.axis('off')
+
+# OpsDB at center
+opsdb_x, opsdb_y = 8.0, 5.5
+opsdb_box = FancyBboxPatch((opsdb_x - 2.0, opsdb_y - 1.0), 4.0, 2.0,
+                            boxstyle='round,pad=0.1', facecolor=PAN,
+                            edgecolor=GOLD, linewidth=3)
+ax.add_patch(opsdb_box)
+ax.text(opsdb_x, opsdb_y + 0.45, 'OpsDB', ha='center', va='center',
+        fontsize=18, fontweight='bold', color=GOLD)
+ax.text(opsdb_x, opsdb_y - 0.05, 'one substrate', ha='center', va='center',
+        fontsize=10, color=WHITE, style='italic')
+ax.text(opsdb_x, opsdb_y - 0.55, 'config + cached state +', ha='center', va='center',
+        fontsize=8, color=SILVER)
+ax.text(opsdb_x, opsdb_y - 0.85, 'pointers + history + audit', ha='center', va='center',
+        fontsize=8, color=SILVER)
+
+# API ring around OpsDB
+api_ring = Circle((opsdb_x, opsdb_y), 1.55, facecolor='none',
+                   edgecolor=ORANGE, linewidth=2, linestyle='--', alpha=0.7)
+ax.add_patch(api_ring)
+ax.text(opsdb_x + 1.45, opsdb_y - 1.65, 'API gate',
+        ha='center', va='center', fontsize=9, color=ORANGE, style='italic')
+
+# Three populations as nodes
+def population_node(x, y, name, sublabel, color, examples):
+    box = FancyBboxPatch((x - 1.7, y - 0.7), 3.4, 1.4,
+                          boxstyle='round,pad=0.08', facecolor=PAN,
+                          edgecolor=color, linewidth=2.2)
+    ax.add_patch(box)
+    ax.text(x, y + 0.30, name, ha='center', va='center',
+            fontsize=13, fontweight='bold', color=color)
+    ax.text(x, y - 0.05, sublabel, ha='center', va='center',
+            fontsize=9, color=WHITE, style='italic')
+    ax.text(x, y - 0.45, examples, ha='center', va='center',
+            fontsize=7, color=SILVER)
+
+humans_xy    = (3.0, 9.0)
+runners_xy   = (13.0, 9.0)
+auditors_xy  = (8.0, 1.5)
+
+population_node(*humans_xy, 'HUMANS', 'investigate, plan, propose', CYAN,
+                'operators, planners, owners')
+population_node(*runners_xy, 'AUTOMATION', 'read, act, write back', GREEN,
+                'pullers, reconcilers, verifiers')
+population_node(*auditors_xy, 'AUDITORS', 'verify, evidence, attest', MAG,
+                'compliance, internal audit')
+
+# Arrows from each population to OpsDB API ring
+def pop_arrow(start, end, color, label_pos, label):
+    arr = FancyArrowPatch(start, end,
+                           arrowstyle='->,head_width=7,head_length=9',
+                           color=color, linewidth=1.8, alpha=0.75,
+                           connectionstyle="arc3,rad=0.0")
+    ax.add_patch(arr)
+    ax.text(label_pos[0], label_pos[1], label, ha='center', va='center',
+            fontsize=8, color=color,
+            bbox=dict(boxstyle='round,pad=0.25', facecolor=BG,
+                      edgecolor=color, linewidth=0.8))
+
+# Humans → API
+pop_arrow((humans_xy[0] + 1.0, humans_xy[1] - 0.6),
+          (opsdb_x - 1.4, opsdb_y + 1.1),
+          CYAN, (5.4, 7.6), 'query, propose changes')
+# Automation → API
+pop_arrow((runners_xy[0] - 1.0, runners_xy[1] - 0.6),
+          (opsdb_x + 1.4, opsdb_y + 1.1),
+          GREEN, (10.7, 7.6), 'poll, write results')
+# Auditors → API
+pop_arrow((auditors_xy[0] - 1.0, auditors_xy[1] + 0.5),
+          (opsdb_x - 0.5, opsdb_y - 1.4),
+          MAG, (5.4, 3.0), 'read evidence, history')
+
+# "Same data" annotation at center
+ax.text(opsdb_x, 0.5,
+        'Same data, same gate, same trail. Three audiences served from one substrate.',
+        ha='center', va='center', fontsize=10, color=GOLD, style='italic',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=PAN, edgecolor=GOLD, linewidth=1))
+
+ax.text(8.0, 10.4, 'Three Populations on One Substrate',
+        ha='center', va='center', fontsize=16, fontweight='bold', color=GOLD)
+
+save(fig, 'infra2_01_three_populations.png')
+
+# ================================================================
+# FIG 2: THE 0/1/N CARDINALITY LANDSCAPE
+# Type: 2 + 3 (Scale/Landscape + Threshold/Region)
+# Shows: Three valid regions; "2" explicitly forbidden
+# ================================================================
+fig, ax = plt.subplots(figsize=(18, 10))
+ax.set_facecolor(BG)
+ax.set_xlim(0, 18)
 ax.set_ylim(0, 10)
 ax.axis('off')
 
-# Title
-ax.text(5.0, 9.5, 'THE THREE-TIER CREDENTIALING MODEL',
-        ha='center', fontsize=16, color=GOLD, fontweight='bold')
-ax.text(5.0, 9.05, 'credentialing follows cost domain, not activity',
-        ha='center', fontsize=11, color=SILVER, style='italic')
+# Region backgrounds
+ax.add_patch(Rectangle((0.5, 1.5), 4.0, 7.0, facecolor=DIM, alpha=0.10,
+                        edgecolor=DIM, linewidth=1))
+ax.add_patch(Rectangle((4.5, 1.5), 4.0, 7.0, facecolor=GOLD, alpha=0.10,
+                        edgecolor=GOLD, linewidth=1.5))
+ax.add_patch(Rectangle((8.5, 1.5), 1.5, 7.0, facecolor=RED, alpha=0.18,
+                        edgecolor=RED, linewidth=1.5))
+ax.add_patch(Rectangle((10.0, 1.5), 7.5, 7.0, facecolor=CYAN, alpha=0.10,
+                        edgecolor=CYAN, linewidth=1.5))
 
-# Header row
-headers = ['Tier', 'Cost Domain', 'Substrate', 'Credentialing Target', 'Why It Works']
-header_x = [0.7, 2.7, 4.7, 6.5, 8.5]
-header_widths = [1.6, 1.6, 1.6, 1.6, 1.4]
+# Region headers
+ax.text(2.5, 8.0, '0', ha='center', fontsize=32, color=DIM, fontweight='bold')
+ax.text(6.5, 8.0, '1', ha='center', fontsize=32, color=GOLD, fontweight='bold')
+ax.text(9.25, 8.0, '2', ha='center', fontsize=32, color=RED, fontweight='bold')
+ax.text(13.75, 8.0, 'N', ha='center', fontsize=32, color=CYAN, fontweight='bold')
 
-for h, x, w in zip(headers, header_x, header_widths):
-    box = FancyBboxPatch((x - w/2 + 0.05, 7.8), w - 0.1, 0.7,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=GOLD, linewidth=1.5)
-    ax.add_patch(box)
-    ax.text(x, 8.15, h, ha='center', va='center',
-            fontsize=11, color=GOLD, fontweight='bold')
+# Subtitles
+ax.text(2.5, 7.3, 'where most orgs are',
+        ha='center', fontsize=10, color=SILVER, style='italic')
+ax.text(6.5, 7.3, 'one substrate, defended',
+        ha='center', fontsize=10, color=SILVER, style='italic')
+ax.text(9.25, 7.3, 'failure state',
+        ha='center', fontsize=10, color=RED, style='italic', fontweight='bold')
+ax.text(13.75, 7.3, 'planned multi-substrate',
+        ha='center', fontsize=10, color=SILVER, style='italic')
 
-# Three tier rows
-tiers = [
-    {
-        'name': 'TRADITIONAL',
-        'color': RED,
-        'cost': 'Physical /\ncivilizational\n(mortality)',
-        'substrate': 'Stable\n(physics holds still)',
-        'target': 'PERSON\n(then output\nvia stamp)',
-        'why': 'Costs justify\noverhead; codes\nexist; competence\nportable',
-        'y': 6.0,
-    },
-    {
-        'name': 'BUSINESS',
-        'color': BLUE,
-        'cost': 'Financial /\nservice-availability\n(bounded, reversible)',
-        'substrate': 'Unstable\n(continuous churn)',
-        'target': 'NONE\n(market handles\ncompetence)',
-        'why': 'Costs don\'t justify;\nsubstrate moves;\nno formal codes\npossible',
-        'y': 4.0,
-    },
-    {
-        'name': 'CROSSOVER',
-        'color': GOLD,
-        'cost': 'Traditional cost\nvia software\n(mortality reached)',
-        'substrate': 'System-specific\n(internal consistency)',
-        'target': 'OUTPUT\n(certified by\ndomain engineer)',
-        'why': 'SW competence\nnot portable;\nsystem is the\nunit',
-        'y': 2.0,
-    },
+# 0 region content
+zero_text = [
+    '• Operations is human-driven',
+    '• Configuration scattered',
+    '  across N tools',
+    '• No coordination substrate',
+    '• Most organizations today',
 ]
+for i, t in enumerate(zero_text):
+    ax.text(2.5, 6.5 - i * 0.4, t, ha='center', va='center',
+            fontsize=8, color=SILVER)
 
-for t in tiers:
-    # Tier label box
-    box = FancyBboxPatch((0.05, t['y'] - 0.7), 1.3, 1.4,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=t['color'], linewidth=2)
-    ax.add_patch(box)
-    ax.text(0.7, t['y'], t['name'], ha='center', va='center',
-            fontsize=12, color=t['color'], fontweight='bold', rotation=0)
+# 1 region content
+one_text = [
+    '• One substrate',
+    '• API enforces SSO + RBAC',
+    '• Single security umbrella',
+    '• Most non-mega-corps',
+    '• Defended forever, or N',
+]
+for i, t in enumerate(one_text):
+    ax.text(6.5, 6.5 - i * 0.4, t, ha='center', va='center',
+            fontsize=8, color=WHITE)
 
-    # Cost domain
-    box = FancyBboxPatch((1.95, t['y'] - 0.7), 1.5, 1.4,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=DIM, linewidth=1)
-    ax.add_patch(box)
-    ax.text(2.7, t['y'], t['cost'], ha='center', va='center',
-            fontsize=9, color=WHITE)
-
-    # Substrate
-    box = FancyBboxPatch((3.95, t['y'] - 0.7), 1.5, 1.4,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=DIM, linewidth=1)
-    ax.add_patch(box)
-    ax.text(4.7, t['y'], t['substrate'], ha='center', va='center',
-            fontsize=9, color=WHITE)
-
-    # Credentialing target
-    box = FancyBboxPatch((5.75, t['y'] - 0.7), 1.5, 1.4,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=t['color'], linewidth=1.5)
-    ax.add_patch(box)
-    ax.text(6.5, t['y'], t['target'], ha='center', va='center',
-            fontsize=10, color=t['color'], fontweight='bold')
-
-    # Why
-    box = FancyBboxPatch((7.85, t['y'] - 0.7), 1.7, 1.4,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=DIM, linewidth=1)
-    ax.add_patch(box)
-    ax.text(8.7, t['y'], t['why'], ha='center', va='center',
-            fontsize=8.5, color=SILVER)
-
-# Footer note
-ax.text(5.0, 0.6, 'Same SWE may cross between tiers across their career.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-ax.text(5.0, 0.3, 'The tier follows the work, not the person.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-
-save(fig, 'eng02_03_three_tier_matrix.png')
-
-# ================================================================
-# FIG 4: COST MAGNITUDE vs CREDENTIALING OVERHEAD
-# Type: 3 (Threshold/Region Chart)
-# Shows: society's credentialing apparatus follows cost magnitude
-# ================================================================
-fig, ax = plt.subplots(figsize=(16, 10))
-fig.patch.set_facecolor(BG)
-style_axes(ax)
-
-x = np.linspace(0, 10, 300)
-# Step-like curve: nothing at low cost, ramps up at mortality threshold
-# Society's investment in credentialing infrastructure
-overhead = 5 + 90 / (1 + np.exp(-1.5 * (x - 6)))
-
-ax.plot(x, overhead, color=GOLD, linewidth=2.8,
-        label='Society\'s credentialing apparatus')
-
-# Region shading
-ax.axvspan(0, 4, alpha=0.07, color=BLUE, zorder=0)
-ax.axvspan(4, 7, alpha=0.07, color=ORANGE, zorder=0)
-ax.axvspan(7, 10, alpha=0.10, color=RED, zorder=0)
-
-# Region labels
-ax.text(2.0, 95, 'BUSINESS COST', ha='center',
-        fontsize=11, color=BLUE, fontweight='bold')
-ax.text(2.0, 89, 'no apparatus', ha='center',
-        fontsize=9, color=BLUE, style='italic')
-
-ax.text(5.5, 95, 'EDGE / EMERGING', ha='center',
-        fontsize=11, color=ORANGE, fontweight='bold')
-ax.text(5.5, 89, 'partial / contested', ha='center',
-        fontsize=9, color=ORANGE, style='italic')
-
-ax.text(8.5, 95, 'TRADITIONAL COST', ha='center',
+# 2 region — forbidden
+ax.text(9.25, 6.5, '✗', ha='center', va='center',
+        fontsize=42, color=RED, fontweight='bold')
+ax.text(9.25, 5.4, 'NO', ha='center', va='center',
+        fontsize=14, color=RED, fontweight='bold')
+ax.text(9.25, 4.9, 'SUCH', ha='center', va='center',
         fontsize=11, color=RED, fontweight='bold')
-ax.text(8.5, 89, 'full apparatus', ha='center',
-        fontsize=9, color=RED, style='italic')
+ax.text(9.25, 4.5, 'STATE', ha='center', va='center',
+        fontsize=11, color=RED, fontweight='bold')
+ax.text(9.25, 3.6,
+        'split-brain ops',
+        ha='center', va='center', fontsize=8, color=RED, style='italic')
+ax.text(9.25, 3.2,
+        'two schemas',
+        ha='center', va='center', fontsize=8, color=RED, style='italic')
+ax.text(9.25, 2.8,
+        'drifting apart',
+        ha='center', va='center', fontsize=8, color=RED, style='italic')
 
-# Mark example activities
-markers = [
-    ('CRUD app dev', 1.0, 'business'),
-    ('SaaS ops at scale', 2.5, 'business'),
-    ('Distributed systems', 3.5, 'business'),
-    ('Algo trading', 5.5, 'edge'),
-    ('Medical AI', 7.0, 'crossover'),
-    ('Auto vehicles', 7.5, 'crossover'),
-    ('Avionics SW', 8.5, 'crossover'),
-    ('Pacemaker firmware', 8.8, 'crossover'),
-    ('Bridge engineering', 9.3, 'traditional'),
+# N region content (split into reasons-yes and reasons-no)
+ax.text(11.7, 6.7, 'JUSTIFIES N', ha='center', fontsize=10,
+        color=GREEN, fontweight='bold')
+yes_reasons = [
+    'org boundaries',
+    'security perimeter',
+    'legal/regulatory zones',
+    'human comm boundaries',
+    'air-gap requirements',
 ]
+for i, r in enumerate(yes_reasons):
+    ax.text(11.7, 6.2 - i * 0.35, '✓ ' + r, ha='center', va='center',
+            fontsize=8, color=GREEN)
 
-for name, xv, _ in markers:
-    yv = 5 + 90 / (1 + np.exp(-1.5 * (xv - 6)))
-    if xv < 4:
-        c = BLUE
-    elif xv < 7:
-        c = ORANGE
-    else:
-        c = RED
-    ax.scatter(xv, yv, s=160, color=c, edgecolors=WHITE,
-               linewidth=1.5, zorder=5)
-    ax.annotate(name, xy=(xv, yv), xytext=(xv + 0.15, yv - 7),
-                fontsize=9, color=WHITE,
-                arrowprops=dict(arrowstyle='-', color=DIM, lw=0.5, alpha=0.5))
+ax.text(15.7, 6.7, 'DOES NOT', ha='center', fontsize=10,
+        color=RED, fontweight='bold')
+no_reasons = [
+    'technical fragility',
+    'convenience',
+    'premature optimization',
+    'performance scaling',
+    '(fix ops practice instead)',
+]
+for i, r in enumerate(no_reasons):
+    color = RED if i < 4 else SILVER
+    style = 'normal' if i < 4 else 'italic'
+    ax.text(15.7, 6.2 - i * 0.35, '✗ ' + r, ha='center', va='center',
+            fontsize=8, color=color, style=style)
 
-# Threshold annotation
-ax.axvline(6.0, color=DIM, linestyle='--', linewidth=1, alpha=0.5)
-ax.text(6.05, 25, 'mortality\nthreshold', fontsize=9, color=DIM, va='center')
+# Barrier between 1 and 2
+ax.plot([8.5, 8.5], [1.5, 8.5], color=RED, linewidth=2.5, linestyle='-')
+# Barrier between 2 and N
+ax.plot([10.0, 10.0], [1.5, 8.5], color=RED, linewidth=2.5, linestyle='-')
 
-ax.set_xlabel('True Cost Magnitude  \u2192',
-              color=SILVER, fontsize=12)
-ax.set_ylabel('Credentialing Apparatus Society Builds (%)',
-              color=SILVER, fontsize=12)
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 105)
+# Bottom callout
+ax.text(9.0, 0.7,
+        'There is no 2.  Either commit to 1 and defend it, or architect for N.',
+        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=PAN, edgecolor=GOLD, linewidth=1))
 
-ax.set_title('Credentialing Overhead Follows Cost Magnitude',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
+ax.text(9.0, 9.4, 'OpsDB Cardinality — The 0/1/N Rule',
+        ha='center', va='center', fontsize=16, fontweight='bold', color=GOLD)
 
-save(fig, 'eng02_04_cost_vs_credentialing.png')
-
-# ================================================================
-# FIG 5: INTERNAL CONSISTENCY RATIO — BRIDGE vs PACEMAKER
-# Type: 6 (Comparison Bar Chart)
-# Shows: where engineering effort goes — software is internally consistent first
-# ================================================================
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 9),
-                                gridspec_kw={'wspace': 0.30})
-fig.patch.set_facecolor(BG)
-style_axes(ax1)
-style_axes(ax2)
-
-# Bridge engineering effort distribution
-bridge_categories = ['External\ninterface\n(loads, soil,\nwind, traffic)',
-                     'Internal\nconsistency\n(rebar, joints,\nbolts)']
-bridge_values = [70, 30]
-bridge_colors = [RED, CYAN]
-
-# Pacemaker firmware effort distribution
-pace_categories = ['External\ninterface\n(actual cardiac\ndecision)',
-                   'Internal\nconsistency\n(state machines,\nerror handling,\ncomms, diagnostics)']
-pace_values = [10, 90]
-pace_colors = [RED, CYAN]
-
-# Bridge bars
-y_pos = np.arange(len(bridge_categories))
-bars1 = ax1.barh(y_pos, bridge_values, color=bridge_colors, alpha=0.7,
-                 edgecolor=bridge_colors, linewidth=2)
-for i, (v, c) in enumerate(zip(bridge_values, bridge_categories)):
-    ax1.text(v + 1.5, i, str(v) + '%',
-             va='center', ha='left', fontsize=12,
-             color=WHITE, fontweight='bold')
-
-ax1.set_yticks(y_pos)
-ax1.set_yticklabels(bridge_categories, color=WHITE, fontsize=10)
-ax1.set_xlim(0, 100)
-ax1.set_xticks([0, 25, 50, 75, 100])
-ax1.set_xlabel('% of Engineering Effort', color=SILVER, fontsize=11)
-ax1.set_title('Bridge Engineering',
-              color=BLUE, fontsize=14, fontweight='bold', pad=12)
-ax1.text(50, 1.7,
-         'External interface dominates.\nInternal organization follows from loads.',
-         ha='center', fontsize=9, color=SILVER, style='italic')
-
-# Pacemaker bars
-y_pos = np.arange(len(pace_categories))
-bars2 = ax2.barh(y_pos, pace_values, color=pace_colors, alpha=0.7,
-                 edgecolor=pace_colors, linewidth=2)
-for i, (v, c) in enumerate(zip(pace_values, pace_categories)):
-    ax2.text(v + 1.5, i, str(v) + '%',
-             va='center', ha='left', fontsize=12,
-             color=WHITE, fontweight='bold')
-
-ax2.set_yticks(y_pos)
-ax2.set_yticklabels(pace_categories, color=WHITE, fontsize=10)
-ax2.set_xlim(0, 100)
-ax2.set_xticks([0, 25, 50, 75, 100])
-ax2.set_xlabel('% of Engineering Effort', color=SILVER, fontsize=11)
-ax2.set_title('Pacemaker Firmware',
-              color=ORANGE, fontsize=14, fontweight='bold', pad=12)
-ax2.text(50, 1.7,
-         'Internal consistency dominates.\nMortality decision is a fraction.',
-         ha='center', fontsize=9, color=SILVER, style='italic')
-
-fig.suptitle('Software is Internally Consistent First, Crossover-to-Reality Second',
-             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
-
-save(fig, 'eng02_05_internal_consistency_ratio.png')
+save(fig, 'infra2_02_cardinality_landscape.png')
 
 # ================================================================
-# FIG 6: A THOUSAND ENGINEERS, SAME PROBLEM
-# Type: 6 (Comparison — scatter clouds)
-# Shows: civil engineers converge, software engineers diverge
-# ================================================================
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 9),
-                                gridspec_kw={'wspace': 0.25})
-fig.patch.set_facecolor(BG)
-style_axes(ax1)
-style_axes(ax2)
-
-# Set seed for reproducibility
-np.random.seed(42)
-
-# Civil engineers: tight cluster around correct solution
-n = 1000
-civil_x = np.random.normal(5, 0.4, n)
-civil_y = np.random.normal(5, 0.4, n)
-
-# A few outliers at small distance
-civil_x_out = np.random.normal(5, 1.0, 50)
-civil_y_out = np.random.normal(5, 1.0, 50)
-
-ax1.scatter(civil_x, civil_y, s=20, color=BLUE, alpha=0.4,
-            edgecolors='none', zorder=3)
-ax1.scatter(civil_x_out, civil_y_out, s=20, color=BLUE, alpha=0.3,
-            edgecolors='none', zorder=2)
-
-# Mark the "correct solution region"
-correct = Circle((5, 5), 0.6, fill=False, edgecolor=GREEN,
-                  linewidth=2, linestyle='--', zorder=4)
-ax1.add_patch(correct)
-ax1.text(5, 6.4, 'physics\nconstrains\nsolution space',
-         ha='center', fontsize=10, color=GREEN, fontweight='bold')
-
-ax1.set_xlim(0, 10)
-ax1.set_ylim(0, 10)
-ax1.set_xticks([])
-ax1.set_yticks([])
-ax1.set_title('1000 Civil Engineers, Same Bridge Site',
-              color=BLUE, fontsize=14, fontweight='bold', pad=12)
-ax1.text(5, 0.5,
-         'Designs cluster tightly. Competence is portable.',
-         ha='center', fontsize=10, color=SILVER, style='italic')
-
-# Software engineers: spread across solution space
-sw_x = np.random.uniform(0.5, 9.5, n)
-sw_y = np.random.uniform(0.5, 9.5, n)
-
-# Distribute in clusters representing different architectural choices
-clusters = [(2, 2), (2, 8), (8, 2), (8, 8), (5, 5), (3, 6), (7, 4), (4, 8)]
-sw_x_clust = []
-sw_y_clust = []
-for cx, cy in clusters:
-    sw_x_clust.extend(np.random.normal(cx, 0.7, 125))
-    sw_y_clust.extend(np.random.normal(cy, 0.7, 125))
-sw_x_clust = np.array(sw_x_clust)
-sw_y_clust = np.array(sw_y_clust)
-
-# Clip to plot area
-sw_x_clust = np.clip(sw_x_clust, 0.3, 9.7)
-sw_y_clust = np.clip(sw_y_clust, 0.3, 9.7)
-
-ax2.scatter(sw_x_clust, sw_y_clust, s=20, color=ORANGE, alpha=0.4,
-            edgecolors='none', zorder=3)
-
-# Multiple "internally consistent" regions
-for cx, cy in clusters[:5]:
-    region = Circle((cx, cy), 0.9, fill=False, edgecolor=GREEN,
-                     linewidth=1.5, linestyle='--', alpha=0.6, zorder=4)
-    ax2.add_patch(region)
-
-ax2.text(5, 0.5,
-         'Architectures spread. Competence is system-specific.',
-         ha='center', fontsize=10, color=SILVER, style='italic')
-
-ax2.set_xlim(0, 10)
-ax2.set_ylim(0, 10)
-ax2.set_xticks([])
-ax2.set_yticks([])
-ax2.set_title('1000 SWEs, Same Crossover System',
-              color=ORANGE, fontsize=14, fontweight='bold', pad=12)
-
-fig.suptitle('Why Software Person-Credentialing Cannot Work Like Civil',
-             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
-
-save(fig, 'eng02_06_thousand_engineers.png')
-
-# ================================================================
-# FIG 7: TWO-ROLE CROSSOVER MODEL
+# FIG 3: API AS GOVERNANCE PERIMETER
 # Type: 4 (Geometric Cross-Section)
-# Shows: SWE builds, domain engineer certifies, accountability flow
+# Shows: Substrate at center, API ring with seven enforcement layers,
+# three populations approaching from outside
 # ================================================================
-fig, ax = plt.subplots(figsize=(16, 11))
-fig.patch.set_facecolor(BG)
+fig, ax = plt.subplots(figsize=(15, 13))
 ax.set_facecolor(BG)
-ax.set_xlim(-7, 7)
-ax.set_ylim(-7, 7)
+ax.set_xlim(-7.5, 7.5)
+ax.set_ylim(-7.5, 7.5)
 ax.set_aspect('equal')
 ax.axis('off')
 
-# Outer ring: users / public
-outer = Circle((0, 0), 6.0, facecolor='#1a1a2a', edgecolor=DIM,
-                linewidth=1.0, alpha=0.95, zorder=1)
-ax.add_patch(outer)
+# Outer ring zone (population approach area)
+# Substrate (innermost)
+ax.add_patch(Circle((0, 0), 1.6, facecolor=PAN,
+                     edgecolor=GOLD, linewidth=2.5))
+ax.text(0, 0.25, 'SUBSTRATE', ha='center', va='center',
+        fontsize=12, fontweight='bold', color=GOLD)
+ax.text(0, -0.25, 'data only', ha='center', va='center',
+        fontsize=9, color=WHITE, style='italic')
+ax.text(0, -0.65, '(simple)', ha='center', va='center',
+        fontsize=8, color=SILVER)
 
-# Middle ring: certification regime + domain engineer
-mid = Circle((0, 0), 4.2, facecolor='#1f1f30', edgecolor=GOLD,
-              linewidth=1.8, alpha=0.95, zorder=2)
-ax.add_patch(mid)
+# API ring (single ring, sectioned into 7 enforcement layers as wedges)
+api_inner_r = 1.7
+api_outer_r = 4.5
 
-# Inner ring: SWE builds the system
-inner = Circle((0, 0), 2.5, facecolor='#252538', edgecolor=CYAN,
-                linewidth=1.8, alpha=0.95, zorder=3)
-ax.add_patch(inner)
-
-# Core: the artifact
-core = Circle((0, 0), 1.0, facecolor=PAN, edgecolor=WHITE,
-               linewidth=1.5, alpha=1.0, zorder=4)
-ax.add_patch(core)
-
-# Labels
-ax.text(0, 0.15, 'CERTIFIED', ha='center', va='center',
-        fontsize=10, color=WHITE, fontweight='bold')
-ax.text(0, -0.25, 'SYSTEM', ha='center', va='center',
-        fontsize=10, color=WHITE, fontweight='bold')
-
-ax.text(0, 1.75, 'SWE builds the artifact',
-        ha='center', va='center', fontsize=11,
-        color=CYAN, fontweight='bold')
-ax.text(0, 1.40, '(internal consistency,', ha='center',
-        fontsize=8.5, color=SILVER, style='italic')
-ax.text(0, 1.15, 'validation, testing)', ha='center',
-        fontsize=8.5, color=SILVER, style='italic')
-
-ax.text(0, 3.5, 'Domain engineer certifies',
-        ha='center', va='center', fontsize=12,
-        color=GOLD, fontweight='bold')
-ax.text(0, 3.15, '(PE-credentialed, holds the safety claim)',
-        ha='center', fontsize=9, color=SILVER, style='italic')
-
-ax.text(0, -3.5, 'CERTIFICATION REGIME',
-        ha='center', va='center', fontsize=11,
-        color=GOLD, fontweight='bold')
-ax.text(0, -3.85, 'DO-178C / FDA / ISO 26262 / IEC 61508',
-        ha='center', fontsize=9, color=SILVER, style='italic')
-
-ax.text(0, 5.3, 'GOAL-SEEKERS / USERS',
-        ha='center', va='center', fontsize=12,
-        color=RED, fontweight='bold')
-ax.text(0, 4.95, '(receive certified output, bear True Cost on failure)',
-        ha='center', fontsize=9, color=SILVER, style='italic')
-
-ax.text(0, -5.3, 'PUBLIC',
-        ha='center', va='center', fontsize=12,
-        color=RED, fontweight='bold')
-ax.text(0, -5.65, '(structural accountability anchored at certification regime)',
-        ha='center', fontsize=9, color=SILVER, style='italic')
-
-# Accountability flow arrows
-# When system fails, accountability flows OUT through certifier
-arrow_angles = [60, 120, 240, 300]
-for ang in arrow_angles:
-    rad = np.radians(ang)
-    x1, y1 = 1.2 * np.cos(rad), 1.2 * np.sin(rad)
-    x2, y2 = 4.0 * np.cos(rad), 4.0 * np.sin(rad)
-    arrow = FancyArrowPatch((x1, y1), (x2, y2),
-                             arrowstyle='->', mutation_scale=18,
-                             color=RED, linewidth=1.8, alpha=0.7,
-                             zorder=5)
-    ax.add_patch(arrow)
-
-# Title
-ax.text(0, 6.5, 'Two-Role Crossover Model: Where the Safety Claim Lives',
-        ha='center', fontsize=14, color=GOLD, fontweight='bold')
-
-# Side annotations
-ax.text(-6.5, 0, 'SWE\ndoes engineering\nat crossover\nmagnitude',
-        ha='left', va='center', fontsize=9, color=CYAN,
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=CYAN))
-
-ax.text(6.5, 0, 'Domain engineer\nholds the safety\nclaim via\ndomain credential',
-        ha='right', va='center', fontsize=9, color=GOLD,
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
-
-save(fig, 'eng02_07_two_role_model.png')
-
-# ================================================================
-# FIG 8: REGULATORY REGIMES ON THE THREE-TIER MODEL
-# Type: 5 (Connection / Integer Map)
-# Shows: existing regimes placed on the framework
-# ================================================================
-fig, ax = plt.subplots(figsize=(18, 11))
-fig.patch.set_facecolor(BG)
-ax.set_facecolor(BG)
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 10)
-ax.axis('off')
-
-# Three tier bands
-ax.axhspan(7, 10, alpha=0.06, color=RED, zorder=0)
-ax.axhspan(3.5, 7, alpha=0.06, color=GOLD, zorder=0)
-ax.axhspan(0, 3.5, alpha=0.06, color=BLUE, zorder=0)
-
-# Tier labels (left side)
-ax.text(0.4, 8.5, 'TRADITIONAL', ha='center', va='center',
-        fontsize=11, color=RED, fontweight='bold', rotation=90)
-ax.text(0.4, 5.3, 'CROSSOVER', ha='center', va='center',
-        fontsize=11, color=GOLD, fontweight='bold', rotation=90)
-ax.text(0.4, 1.7, 'BUSINESS', ha='center', va='center',
-        fontsize=11, color=BLUE, fontweight='bold', rotation=90)
-
-# Title
-ax.text(5.0, 9.5, 'Existing Regulatory Regimes Map to the Three-Tier Model',
-        ha='center', fontsize=15, color=GOLD, fontweight='bold')
-
-# Place regimes
-regimes = [
-    # Traditional tier
-    {'name': 'PE\n(civil/mech/elec)', 'x': 2.0, 'y': 8.5, 'color': RED,
-     'note': 'person-level\ncredential'},
-    {'name': 'Chartered\nEngineer', 'x': 4.0, 'y': 8.5, 'color': RED,
-     'note': 'person-level\ncredential'},
-    {'name': 'Building codes\n(IBC, NEC, ASME)', 'x': 6.0, 'y': 8.5, 'color': RED,
-     'note': 'output-level\nstandard'},
-    {'name': 'Stamped\ndrawings', 'x': 8.0, 'y': 8.5, 'color': RED,
-     'note': 'output cert\nvia person'},
-
-    # Crossover tier
-    {'name': 'DO-178C\n(avionics)', 'x': 2.0, 'y': 5.3, 'color': GOLD,
-     'note': 'system\ncertification'},
-    {'name': 'FDA 510(k)/PMA\n(medical devices)', 'x': 4.0, 'y': 5.3, 'color': GOLD,
-     'note': 'system\ncertification'},
-    {'name': 'ISO 26262\n(automotive)', 'x': 6.0, 'y': 5.3, 'color': GOLD,
-     'note': 'system\ncertification'},
-    {'name': 'IEC 61508\n(industrial)', 'x': 8.0, 'y': 5.3, 'color': GOLD,
-     'note': 'system\ncertification'},
-
-    # Business tier
-    {'name': 'AWS / GCP /\nAzure certs', 'x': 2.0, 'y': 1.7, 'color': BLUE,
-     'note': 'weak; vendor\nspecific; obsoletes'},
-    {'name': 'IEEE CSDP', 'x': 4.0, 'y': 1.7, 'color': BLUE,
-     'note': 'weak; not\nadopted'},
-    {'name': 'ABET\nSW programs', 'x': 6.0, 'y': 1.7, 'color': BLUE,
-     'note': 'academic; not\nlicensure'},
-    {'name': 'Market\n(interviews, reputation)', 'x': 8.0, 'y': 1.7, 'color': BLUE,
-     'note': 'what actually\nworks'},
+# Seven enforcement layers as colored wedges
+layers = [
+    ('Auth\n(SSO, identity)',         BLUE,    0,    51.4),
+    ('Authorization\n(RBAC, scopes)', PURPLE,  51.4, 102.8),
+    ('Validation\n(schema, rules)',   CYAN,    102.8, 154.2),
+    ('Change Mgmt\n(propose+approve)', GOLD,   154.2, 205.6),
+    ('Versioning\n(history)',          GREEN,  205.6, 257.0),
+    ('Audit\n(append-only log)',       MAG,    257.0, 308.4),
+    ('Rate Limit\n(abuse defense)',    ORANGE, 308.4, 360.0),
 ]
 
-for r in regimes:
-    box = FancyBboxPatch((r['x'] - 0.85, r['y'] - 0.55), 1.7, 1.1,
-                          boxstyle='round,pad=0.05',
-                          facecolor=PAN, edgecolor=r['color'], linewidth=1.5)
+for name, color, t0, t1 in layers:
+    wedge = Wedge((0, 0), api_outer_r, t0, t1,
+                   width=api_outer_r - api_inner_r,
+                   facecolor=color, alpha=0.30, edgecolor=color, linewidth=1.5)
+    ax.add_patch(wedge)
+    # Label inside the wedge
+    mid_angle = np.deg2rad((t0 + t1) / 2)
+    label_r = (api_inner_r + api_outer_r) / 2
+    lx = label_r * np.cos(mid_angle)
+    ly = label_r * np.sin(mid_angle)
+    ax.text(lx, ly, name, ha='center', va='center',
+            fontsize=8, color=WHITE, fontweight='bold')
+
+# Outer ring label
+ax.text(0, api_outer_r + 0.4, 'API GATE — sophisticated',
+        ha='center', va='center', fontsize=11, color=ORANGE,
+        fontweight='bold', style='italic')
+ax.text(0, -api_outer_r - 0.4,
+        '(the only path to the substrate)',
+        ha='center', va='center', fontsize=9, color=ORANGE, style='italic')
+
+# Three populations arriving from outside
+def approaching_population(x, y, name, color):
+    box = FancyBboxPatch((x - 1.3, y - 0.45), 2.6, 0.9,
+                         boxstyle='round,pad=0.05', facecolor=PAN,
+                         edgecolor=color, linewidth=2)
     ax.add_patch(box)
-    ax.text(r['x'], r['y'] + 0.1, r['name'],
-            ha='center', va='center', fontsize=9.5,
-            color=WHITE, fontweight='bold')
-    ax.text(r['x'], r['y'] - 0.32, r['note'],
-            ha='center', va='center', fontsize=7.5,
-            color=r['color'], style='italic')
+    ax.text(x, y, name, ha='center', va='center',
+            fontsize=10, fontweight='bold', color=color)
 
-# Footer notes
-ax.text(5.0, 0.6,
-        'Crossover regimes converged on system-level certification by domain experts \u2014',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-ax.text(5.0, 0.3,
-        'the only credentialing model that fits software\'s structural facts.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
+# Position three populations radially around the API
+hum_x, hum_y = -5.5, 4.5
+auto_x, auto_y = 5.5, 4.5
+aud_x, aud_y = 0, -6.0
 
-save(fig, 'eng02_08_regulatory_regimes.png')
+approaching_population(hum_x, hum_y, 'humans', CYAN)
+approaching_population(auto_x, auto_y, 'automation', GREEN)
+approaching_population(aud_x, aud_y, 'auditors', MAG)
+
+# Arrows from each population through the API ring
+def gate_arrow(sx, sy, ex_dir_x, ex_dir_y, color):
+    # Draw arrow from population to outer edge of API ring
+    norm = np.sqrt(ex_dir_x**2 + ex_dir_y**2)
+    target_x = api_outer_r * ex_dir_x / norm
+    target_y = api_outer_r * ex_dir_y / norm
+    arr = FancyArrowPatch((sx, sy), (target_x, target_y),
+                           arrowstyle='->,head_width=6,head_length=9',
+                           color=color, linewidth=1.8, alpha=0.7)
+    ax.add_patch(arr)
+
+gate_arrow(hum_x + 0.7, hum_y - 0.4, -1, 1, CYAN)
+gate_arrow(auto_x - 0.7, auto_y - 0.4, 1, 1, GREEN)
+gate_arrow(aud_x, aud_y + 0.5, 0, -1, MAG)
+
+# Title
+ax.text(0, 6.7, 'API as Governance Perimeter',
+        ha='center', va='center', fontsize=15, fontweight='bold', color=GOLD)
+ax.text(0, 6.1,
+        'Sophisticated API surrounds simple substrate.  Every interaction passes through the gate.',
+        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+save(fig, 'infra2_03_api_perimeter.png')
+
+# ================================================================
+# FIG 4: CHANGE-SET LIFECYCLE
+# Type: 7 (Progression / Sequence)
+# Shows: propose → validate → route → approve → commit → version
+# with the emergency path branching off
+# ================================================================
+fig, ax = plt.subplots(figsize=(18, 9))
+ax.set_facecolor(PAN)
+ax.set_xlim(0, 18)
+ax.set_ylim(0, 9)
+ax.axis('off')
+
+# Main flow stages
+stages = [
+    (1.2,  'Propose',     'change set\nbundle + reason',  CYAN),
+    (4.0,  'Validate',    'schema, policy,\nintegrity',   BLUE),
+    (6.8,  'Route',       'compute approvers\nnotify',    PURPLE),
+    (9.6,  'Collect',     'approve / reject\ncomment',    GOLD),
+    (12.4, 'Commit',      'atomic across\nbundle',        GREEN),
+    (15.2, 'Version',     'history entry\naudit log',     MAG),
+]
+
+main_y = 5.2
+
+# Draw stage boxes
+for x, name, sublabel, color in stages:
+    box = FancyBboxPatch((x - 1.0, main_y - 0.7), 2.0, 1.4,
+                         boxstyle='round,pad=0.05', facecolor=BG,
+                         edgecolor=color, linewidth=2)
+    ax.add_patch(box)
+    ax.text(x, main_y + 0.30, name, ha='center', va='center',
+            fontsize=11, fontweight='bold', color=color)
+    ax.text(x, main_y - 0.20, sublabel, ha='center', va='center',
+            fontsize=8, color=WHITE)
+
+# Connecting arrows on the main flow
+for i in range(len(stages) - 1):
+    x0 = stages[i][0] + 1.0
+    x1 = stages[i+1][0] - 1.0
+    arr = FancyArrowPatch((x0, main_y), (x1, main_y),
+                           arrowstyle='->,head_width=7,head_length=9',
+                           color=GOLD, linewidth=1.5, alpha=0.7)
+    ax.add_patch(arr)
+
+# Emergency branch — split between Validate and Route
+emerg_y = 7.5
+# Branch up from Validate
+branch_x_up = stages[1][0]
+arr_up = FancyArrowPatch((branch_x_up, main_y + 0.7),
+                          (branch_x_up + 1.0, emerg_y - 0.5),
+                          arrowstyle='->,head_width=6,head_length=8',
+                          color=RED, linewidth=1.5, alpha=0.7,
+                          connectionstyle="arc3,rad=0.15")
+ax.add_patch(arr_up)
+# Emergency stage box
+emerg_box = FancyBboxPatch((branch_x_up + 1.0 - 1.4, emerg_y - 0.5), 2.8, 1.0,
+                            boxstyle='round,pad=0.05', facecolor=BG,
+                            edgecolor=RED, linewidth=2, linestyle='--')
+ax.add_patch(emerg_box)
+ax.text(branch_x_up + 1.0, emerg_y + 0.1, 'EMERGENCY PATH',
+        ha='center', va='center', fontsize=10, fontweight='bold', color=RED)
+ax.text(branch_x_up + 1.0, emerg_y - 0.25,
+        'reduced approval • flagged in audit', ha='center', va='center',
+        fontsize=8, color=WHITE)
+# Emergency flows back to Commit
+arr_down = FancyArrowPatch((branch_x_up + 1.0 + 1.4, emerg_y - 0.5),
+                            (stages[4][0] - 0.5, main_y + 0.7),
+                            arrowstyle='->,head_width=6,head_length=8',
+                            color=RED, linewidth=1.5, alpha=0.7,
+                            connectionstyle="arc3,rad=-0.15")
+ax.add_patch(arr_down)
+
+# Rejection / expiry path — drops down from Collect
+reject_y = 2.5
+arr_rej = FancyArrowPatch((stages[3][0], main_y - 0.7),
+                           (stages[3][0], reject_y + 0.5),
+                           arrowstyle='->,head_width=6,head_length=8',
+                           color=DIM, linewidth=1.2, alpha=0.7)
+ax.add_patch(arr_rej)
+rej_box = FancyBboxPatch((stages[3][0] - 1.5, reject_y - 0.5), 3.0, 1.0,
+                          boxstyle='round,pad=0.05', facecolor=BG,
+                          edgecolor=DIM, linewidth=1.5, linestyle=':')
+ax.add_patch(rej_box)
+ax.text(stages[3][0], reject_y + 0.1, 'REJECTED  /  EXPIRED',
+        ha='center', va='center', fontsize=10, fontweight='bold', color=DIM)
+ax.text(stages[3][0], reject_y - 0.25,
+        'recorded in history; does not commit', ha='center', va='center',
+        fontsize=8, color=SILVER)
+
+# Bottom annotation
+ax.text(9.0, 0.6,
+        'Every change is proposed, reviewed, and committed atomically.  Discipline applies uniformly to all centrally-managed data.',
+        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+# Title
+ax.text(9.0, 8.4, 'Change-Set Lifecycle',
+        ha='center', va='center', fontsize=16, fontweight='bold', color=GOLD)
+
+save(fig, 'infra2_04_change_set_lifecycle.png')
+
+# ================================================================
+# FIG 5: ARCHITECTURAL LAYERING — DATA PRIMACY IN TIME
+# Type: 4 (Geometric Cross-Section, with a time axis)
+# Shows: Three layers with churn rates over time; schema as long-lived center
+# ================================================================
+fig, ax = plt.subplots(figsize=(18, 10))
+ax.set_facecolor(PAN)
+ax.set_xlim(0, 18)
+ax.set_ylim(0, 10)
+
+# X axis: time (years)
+years = np.arange(0, 11, 1)
+
+# Three layers shown as horizontal bands
+# Bottom: schema (very stable)
+# Middle: runners + libs (medium churn)
+# Top: integrations + adapters (high churn)
+
+# Bottom layer — schema
+schema_y0, schema_y1 = 0.8, 2.5
+ax.add_patch(Rectangle((0.5, schema_y0), 17.0, schema_y1 - schema_y0,
+                        facecolor=GOLD, alpha=0.20,
+                        edgecolor=GOLD, linewidth=1.5))
+ax.text(0.8, (schema_y0 + schema_y1) / 2 + 0.30, 'SCHEMA',
+        fontsize=13, fontweight='bold', color=GOLD, va='center')
+ax.text(0.8, (schema_y0 + schema_y1) / 2 - 0.20,
+        'stable across decades', fontsize=9, color=WHITE, style='italic',
+        va='center')
+
+# Schema additions over time (small marks showing additive evolution)
+schema_additions = [1.5, 2.8, 4.0, 5.2, 6.8, 8.5]
+for x in schema_additions:
+    ax.plot([x, x], [schema_y0, schema_y1], color=GOLD,
+            linewidth=2, alpha=0.7)
+    ax.plot([x], [schema_y1 + 0.1], marker='+', markersize=8,
+            color=GOLD, alpha=0.8)
+
+ax.text(11, schema_y0 + 0.3, '+ = additive change set (new entity type, field)',
+        fontsize=8, color=GOLD, style='italic', va='center', alpha=0.8)
+
+# Middle layer — runners + libraries
+mid_y0, mid_y1 = 3.2, 5.4
+ax.add_patch(Rectangle((0.5, mid_y0), 17.0, mid_y1 - mid_y0,
+                        facecolor=GREEN, alpha=0.18,
+                        edgecolor=GREEN, linewidth=1.5))
+ax.text(0.8, (mid_y0 + mid_y1) / 2 + 0.35, 'RUNNERS + SHARED LIBS',
+        fontsize=13, fontweight='bold', color=GREEN, va='center')
+ax.text(0.8, (mid_y0 + mid_y1) / 2 - 0.20,
+        'medium churn — rewritten as goals shift', fontsize=9, color=WHITE,
+        style='italic', va='center')
+
+# Generate jagged churn pattern for runners
+np.random.seed(42)
+runner_churn_x = np.linspace(1.0, 17.0, 80)
+runner_churn_y = (mid_y0 + mid_y1) / 2 + 0.3 * np.sin(runner_churn_x * 1.2) + \
+                 0.15 * np.random.randn(80)
+ax.plot(runner_churn_x, runner_churn_y, color=GREEN, linewidth=1.8, alpha=0.7)
+
+# Top layer — integrations and adapters
+top_y0, top_y1 = 6.1, 8.3
+ax.add_patch(Rectangle((0.5, top_y0), 17.0, top_y1 - top_y0,
+                        facecolor=CYAN, alpha=0.18,
+                        edgecolor=CYAN, linewidth=1.5))
+ax.text(0.8, (top_y0 + top_y1) / 2 + 0.35, 'INTEGRATIONS + ADAPTERS',
+        fontsize=13, fontweight='bold', color=CYAN, va='center')
+ax.text(0.8, (top_y0 + top_y1) / 2 - 0.20,
+        'high churn — auth/cloud/k8s APIs evolve constantly',
+        fontsize=9, color=WHITE, style='italic', va='center')
+
+# Generate higher-frequency churn for integrations
+integ_churn_x = np.linspace(1.0, 17.0, 200)
+integ_churn_y = (top_y0 + top_y1) / 2 + 0.4 * np.sin(integ_churn_x * 3.0) + \
+                0.25 * np.random.randn(200)
+ax.plot(integ_churn_x, integ_churn_y, color=CYAN, linewidth=1.5, alpha=0.7)
+
+# Time axis at bottom
+ax.axhline(0.5, color=DIM, linewidth=1)
+ax.set_xticks([0.5, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 17.5])
+ax.set_xticklabels(['', '1y', '2y', '3y', '4y', '5y', '6y', '7y', '8y', '10y'],
+                    color=DIM, fontsize=9)
+ax.set_yticks([])
+ax.set_xlabel('time', fontsize=10, color=SILVER)
+
+for spine in ax.spines.values():
+    spine.set_color(DIM)
+    spine.set_linewidth(0.5)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+# Legend at right
+legend_x = 14.5
+ax.text(legend_x, 9.4, 'CHURN RATE',
+        ha='center', fontsize=10, color=WHITE, fontweight='bold')
+
+# Title
+ax.text(9.0, 9.5, 'Data Primacy as Architectural Layering',
+        ha='center', va='center', fontsize=16, fontweight='bold', color=GOLD)
+
+# Bottom annotation
+ax.text(9.0, 0.15,
+        'Schema persists. Runners and libs are rewritten as goals shift. Integrations adapt to constantly-evolving external APIs.',
+        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+save(fig, 'infra2_05_layering_in_time.png')
+
+# ================================================================
+# FIG 6: CACHED STATE FRESHNESS VS. POPULATION METHOD
+# Type: 1 (Running / Convergence Chart)
+# Shows: Curves showing how staleness varies by populator type
+# ================================================================
+fig, ax = plt.subplots(figsize=(18, 10))
+ax.set_facecolor(PAN)
+
+# X axis: time since last write (seconds, log scale)
+# Y axis: fraction of cached entities at that staleness or fresher
+
+t = np.logspace(-1, 4, 200)  # 0.1 sec to 10000 sec (~3 hours)
+
+# Each population method has a different freshness distribution
+# Watch stream: very fresh, sharp drop after seconds
+# 30s poller: most fresh within 30s, plateau, full coverage by 60s
+# 5min poller: fresher items still recent, full coverage by 300-600s
+# Hourly batch: most data within ~1 hour, full coverage by then
+# Manual import: very stale, only recent at import times
+
+def freshness_curve(t, scale, sharpness):
+    """Returns fraction of cached entries fresher than time t."""
+    return 1.0 / (1.0 + (t / scale) ** sharpness)
+
+watch_curve = freshness_curve(t, scale=1.5, sharpness=4.0)
+poll_30s = freshness_curve(t, scale=20, sharpness=3.5)
+poll_5min = freshness_curve(t, scale=200, sharpness=3.0)
+hourly = freshness_curve(t, scale=2400, sharpness=2.5)
+manual = freshness_curve(t, scale=8000, sharpness=2.0)
+
+ax.plot(t, watch_curve, color=GREEN, linewidth=2.5,
+        label='watch stream (event-driven)')
+ax.plot(t, poll_30s, color=CYAN, linewidth=2.5,
+        label='30s poller')
+ax.plot(t, poll_5min, color=BLUE, linewidth=2.5,
+        label='5min poller')
+ax.plot(t, hourly, color=ORANGE, linewidth=2.5,
+        label='hourly batch')
+ax.plot(t, manual, color=MAG, linewidth=2.5, linestyle='--',
+        label='manual import')
+
+# Threshold bands
+ax.axvspan(0.1, 10, facecolor=GREEN, alpha=0.06)
+ax.axvspan(10, 300, facecolor=CYAN, alpha=0.06)
+ax.axvspan(300, 3600, facecolor=ORANGE, alpha=0.06)
+ax.axvspan(3600, 36000, facecolor=MAG, alpha=0.06)
+
+# Threshold labels at top
+ax.text(1.0, 1.05, 'sub-10s', ha='center', fontsize=8,
+        color=GREEN, style='italic')
+ax.text(55, 1.05, '10s–5min', ha='center', fontsize=8,
+        color=CYAN, style='italic')
+ax.text(1100, 1.05, '5min–1h', ha='center', fontsize=8,
+        color=ORANGE, style='italic')
+ax.text(11000, 1.05, '1h+', ha='center', fontsize=8,
+        color=MAG, style='italic')
+
+# Reference line at 50%
+ax.axhline(0.5, color=DIM, linewidth=1, linestyle=':', alpha=0.6)
+ax.text(0.12, 0.52, '50% fresh-or-fresher line',
+        fontsize=8, color=DIM, style='italic')
+
+ax.set_xscale('log')
+ax.set_xlim(0.1, 18000)
+ax.set_ylim(0, 1.08)
+ax.set_xlabel('time since last write (seconds, log scale)',
+              fontsize=11, color=SILVER)
+ax.set_ylabel('fraction of cached entities at that staleness or fresher',
+              fontsize=11, color=SILVER)
+ax.tick_params(colors=DIM, labelsize=9)
+
+for spine in ax.spines.values():
+    spine.set_color(DIM)
+    spine.set_linewidth(0.5)
+
+leg = ax.legend(loc='lower left', facecolor=PAN, edgecolor=DIM,
+                labelcolor=WHITE, fontsize=9, framealpha=0.95)
+for text in leg.get_texts():
+    text.set_color(WHITE)
+
+# Annotation box
+ann_text = (
+    'The OpsDB does not impose freshness contracts.\n'
+    'Whatever the population method produces is the cache.\n'
+    'Consumers read timestamps and decide if it is fresh enough.'
+)
+ax.text(0.15, 0.18, ann_text, fontsize=10, color=GOLD,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                  edgecolor=GOLD, linewidth=1),
+        va='top', transform=ax.transAxes)
+
+ax.set_title('Cached State Freshness vs. Population Method',
+             fontsize=15, fontweight='bold', color=GOLD, pad=18)
+
+save(fig, 'infra2_06_freshness_curves.png')
+
+# ================================================================
+# FIG 7: INVESTIGATION FLOW — WITHOUT vs. WITH OPSDB
+# Type: 5 (Connection Map)
+# Shows: Operator switching N tools (left) vs. one OpsDB query plus
+# directed pointers (right)
+# ================================================================
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 10),
+                                 gridspec_kw={'wspace': 0.20})
+fig.patch.set_facecolor(BG)
+
+for ax in (ax1, ax2):
+    ax.set_facecolor(PAN)
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.axis('off')
+
+# --- LEFT PANEL: Without OpsDB ---
+ax1.text(5.0, 9.5, 'Without OpsDB',
+         ha='center', va='center', fontsize=14, fontweight='bold', color=RED)
+ax1.text(5.0, 9.0,
+         'operator assembles the picture by switching tools',
+         ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+# Operator at center
+op_x, op_y = 5.0, 5.0
+op_circle = Circle((op_x, op_y), 0.7, facecolor=PAN,
+                    edgecolor=CYAN, linewidth=2.5)
+ax1.add_patch(op_circle)
+ax1.text(op_x, op_y, 'OP', ha='center', va='center',
+         fontsize=11, fontweight='bold', color=CYAN)
+
+# Six scattered tools around operator — each disconnected from others
+tools_left = [
+    (1.5, 7.5, 'k8s\nconsole',  BLUE),
+    (8.5, 7.5, 'cloud\nconsole', PURPLE),
+    (1.5, 5.0, 'wiki',           ORANGE),
+    (8.5, 5.0, 'monitoring',     MAG),
+    (1.5, 2.5, 'logs',           GREEN),
+    (8.5, 2.5, 'CMDB',           CYAN),
+]
+
+for tx, ty, name, color in tools_left:
+    box = FancyBboxPatch((tx - 0.7, ty - 0.5), 1.4, 1.0,
+                         boxstyle='round,pad=0.05', facecolor=BG,
+                         edgecolor=color, linewidth=1.5)
+    ax1.add_patch(box)
+    ax1.text(tx, ty, name, ha='center', va='center',
+             fontsize=8, color=color, fontweight='bold')
+
+# Lots of bidirectional arrows operator <-> each tool
+for tx, ty, name, color in tools_left:
+    arr1 = FancyArrowPatch((op_x, op_y), (tx, ty),
+                            arrowstyle='->', color=color,
+                            linewidth=1.0, alpha=0.55,
+                            connectionstyle="arc3,rad=0.08")
+    ax1.add_patch(arr1)
+    arr2 = FancyArrowPatch((tx, ty), (op_x, op_y),
+                            arrowstyle='->', color=color,
+                            linewidth=1.0, alpha=0.55,
+                            connectionstyle="arc3,rad=0.08")
+    ax1.add_patch(arr2)
+
+# Cost annotation
+ax1.text(5.0, 0.6,
+         '6+ tool switches per investigation\nMental join in operator\'s head',
+         ha='center', va='center', fontsize=9, color=RED, style='italic',
+         bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                   edgecolor=RED, linewidth=1))
+
+# --- RIGHT PANEL: With OpsDB ---
+ax2.text(5.0, 9.5, 'With OpsDB',
+         ha='center', va='center', fontsize=14, fontweight='bold', color=GREEN)
+ax2.text(5.0, 9.0,
+         'operator queries one substrate; pointers direct to authorities',
+         ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+# Operator at left
+op_x2, op_y2 = 1.5, 5.0
+op_circle2 = Circle((op_x2, op_y2), 0.7, facecolor=PAN,
+                     edgecolor=CYAN, linewidth=2.5)
+ax2.add_patch(op_circle2)
+ax2.text(op_x2, op_y2, 'OP', ha='center', va='center',
+         fontsize=11, fontweight='bold', color=CYAN)
+
+# OpsDB in the middle
+opsdb_x2, opsdb_y2 = 5.0, 5.0
+opsdb_box = FancyBboxPatch((opsdb_x2 - 1.0, opsdb_y2 - 0.7), 2.0, 1.4,
+                            boxstyle='round,pad=0.05', facecolor=PAN,
+                            edgecolor=GOLD, linewidth=2.5)
+ax2.add_patch(opsdb_box)
+ax2.text(opsdb_x2, opsdb_y2 + 0.30, 'OpsDB', ha='center', va='center',
+         fontsize=12, fontweight='bold', color=GOLD)
+ax2.text(opsdb_x2, opsdb_y2 - 0.10, 'config + state', ha='center', va='center',
+         fontsize=8, color=WHITE)
+ax2.text(opsdb_x2, opsdb_y2 - 0.40, '+ pointers', ha='center', va='center',
+         fontsize=8, color=WHITE)
+
+# Operator → OpsDB (single arrow, prominent)
+arr_main = FancyArrowPatch((op_x2 + 0.7, op_y2), (opsdb_x2 - 1.0, opsdb_y2),
+                            arrowstyle='->,head_width=8,head_length=10',
+                            color=CYAN, linewidth=2.5, alpha=0.9)
+ax2.add_patch(arr_main)
+ax2.text((op_x2 + opsdb_x2) / 2, op_y2 + 0.5, 'one query',
+         ha='center', va='center', fontsize=9, color=CYAN, fontweight='bold',
+         bbox=dict(boxstyle='round,pad=0.25', facecolor=BG,
+                   edgecolor=CYAN, linewidth=0.8))
+
+# Authorities to the right of OpsDB — reached via pointers
+authorities = [
+    (8.5, 8.0, 'k8s API',     BLUE),
+    (8.5, 6.5, 'cloud API',   PURPLE),
+    (8.5, 5.0, 'wiki',        ORANGE),
+    (8.5, 3.5, 'Prom server', MAG),
+    (8.5, 2.0, 'log index',   GREEN),
+]
+
+for ax_x, ax_y, name, color in authorities:
+    box = FancyBboxPatch((ax_x - 0.7, ax_y - 0.4), 1.4, 0.8,
+                         boxstyle='round,pad=0.05', facecolor=BG,
+                         edgecolor=color, linewidth=1.5)
+    ax2.add_patch(box)
+    ax2.text(ax_x, ax_y, name, ha='center', va='center',
+             fontsize=8, color=color, fontweight='bold')
+    # Pointer arrow from OpsDB to authority (dashed = "pointer")
+    arr = FancyArrowPatch((opsdb_x2 + 1.0, opsdb_y2),
+                           (ax_x - 0.7, ax_y),
+                           arrowstyle='->', color=color,
+                           linewidth=1.0, alpha=0.55, linestyle='--')
+    ax2.add_patch(arr)
+
+# Pointer label
+ax2.text(7.2, 4.7, 'pointers', ha='center', va='center',
+         fontsize=8, color=DIM, style='italic')
+
+# Cost annotation
+ax2.text(5.0, 0.6,
+         'One query gets the picture\nFollow pointers when live data needed',
+         ha='center', va='center', fontsize=9, color=GREEN, style='italic',
+         bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                   edgecolor=GREEN, linewidth=1))
+
+# Title
+fig.suptitle('Investigation Flow:  N tools  →  one substrate',
+             fontsize=16, fontweight='bold', color=GOLD, y=0.98)
+
+save(fig, 'infra2_07_investigation_flow.png')
+
+# ================================================================
+# FIG 8: LOCAL REPLICA + GLOBAL TRUTH PATTERN
+# Type: 4 (Geometric Cross-Section)
+# Shows: OpsDB at center with hosts holding local cached slices,
+# including disconnected hosts continuing to serve local automation
+# ================================================================
+fig, ax = plt.subplots(figsize=(16, 12))
+ax.set_facecolor(BG)
+ax.set_xlim(0, 16)
+ax.set_ylim(0, 12)
+ax.axis('off')
+
+# OpsDB in the middle
+opsdb_x, opsdb_y = 8.0, 6.5
+opsdb_box = FancyBboxPatch((opsdb_x - 1.5, opsdb_y - 0.9), 3.0, 1.8,
+                            boxstyle='round,pad=0.1', facecolor=PAN,
+                            edgecolor=GOLD, linewidth=3)
+ax.add_patch(opsdb_box)
+ax.text(opsdb_x, opsdb_y + 0.35, 'OpsDB', ha='center', va='center',
+        fontsize=15, fontweight='bold', color=GOLD)
+ax.text(opsdb_x, opsdb_y - 0.05, 'global truth', ha='center', va='center',
+        fontsize=10, color=WHITE, style='italic')
+ax.text(opsdb_x, opsdb_y - 0.45, 'authoritative', ha='center', va='center',
+        fontsize=8, color=SILVER)
+
+# Hosts arranged around the OpsDB
+# Connected hosts (read recent data, periodically refresh)
+connected_hosts = [
+    (3.0, 9.5,  'host A', 'fresh'),
+    (13.0, 9.5, 'host B', 'fresh'),
+    (3.0, 6.5,  'host C', 'fresh'),
+    (13.0, 6.5, 'host D', 'fresh'),
+    (4.5, 3.0,  'host E', 'fresh'),
+]
+
+# Disconnected hosts (network partition; serving local replica)
+disconnected_hosts = [
+    (11.5, 3.0, 'host F', 'partition: 7m'),
+    (8.0, 1.5,  'host G', 'partition: 23m'),
+]
+
+def host_node(x, y, name, status, is_connected):
+    """Draw a host with a small local-replica box attached."""
+    color = GREEN if is_connected else ORANGE
+    # Host box
+    box = FancyBboxPatch((x - 0.7, y - 0.4), 1.4, 0.8,
+                         boxstyle='round,pad=0.05', facecolor=PAN,
+                         edgecolor=color, linewidth=2)
+    ax.add_patch(box)
+    ax.text(x, y, name, ha='center', va='center',
+            fontsize=10, fontweight='bold', color=color)
+    # Small local-replica indicator (small box)
+    rep_size = 0.35
+    rep_box = FancyBboxPatch((x + 0.5, y - 0.55), rep_size, rep_size,
+                              boxstyle='round,pad=0.02', facecolor=color,
+                              alpha=0.5, edgecolor=color, linewidth=1)
+    ax.add_patch(rep_box)
+    # Status label below
+    status_color = GREEN if is_connected else ORANGE
+    ax.text(x, y - 0.85, status, ha='center', va='center',
+            fontsize=7, color=status_color, style='italic')
+
+# Connection arrows (active sync)
+def connect_arrow(host_x, host_y, color, alpha=0.7, dashed=False):
+    style = '--' if dashed else '-'
+    arr = FancyArrowPatch((host_x, host_y),
+                           (opsdb_x, opsdb_y + 0.9 if host_y > opsdb_y else opsdb_y - 0.9),
+                           arrowstyle='-', color=color,
+                           linewidth=1.5, alpha=alpha, linestyle=style)
+    ax.add_patch(arr)
+
+# Draw connected hosts and their sync lines
+for hx, hy, name, status in connected_hosts:
+    host_node(hx, hy, name, status, is_connected=True)
+    # Closer endpoint to OpsDB box edge
+    if hx < opsdb_x:
+        end_x = opsdb_x - 1.5
+    elif hx > opsdb_x:
+        end_x = opsdb_x + 1.5
+    else:
+        end_x = opsdb_x
+    if hy > opsdb_y:
+        end_y = opsdb_y + 0.9
+    elif hy < opsdb_y:
+        end_y = opsdb_y - 0.9
+    else:
+        end_y = opsdb_y
+    arr = FancyArrowPatch((hx, hy), (end_x, end_y),
+                           arrowstyle='-', color=GREEN,
+                           linewidth=1.5, alpha=0.6)
+    ax.add_patch(arr)
+
+# Draw disconnected hosts with broken connection indication
+for hx, hy, name, status in disconnected_hosts:
+    host_node(hx, hy, name, status, is_connected=False)
+    # Broken/dashed line attempting to reach OpsDB
+    if hx < opsdb_x:
+        end_x = opsdb_x - 1.5
+    elif hx > opsdb_x:
+        end_x = opsdb_x + 1.5
+    else:
+        end_x = opsdb_x
+    if hy > opsdb_y:
+        end_y = opsdb_y + 0.9
+    elif hy < opsdb_y:
+        end_y = opsdb_y - 0.9
+    else:
+        end_y = opsdb_y
+    # Partial line — only draws part of the way, simulating broken
+    mid_x = (hx + end_x) / 2
+    mid_y = (hy + end_y) / 2
+    arr1 = FancyArrowPatch((hx, hy), (mid_x - 0.3, mid_y - 0.3),
+                            arrowstyle='-', color=ORANGE,
+                            linewidth=1.5, alpha=0.6, linestyle=':')
+    ax.add_patch(arr1)
+    # X mark indicating broken link
+    ax.plot([mid_x - 0.5, mid_x + 0.1], [mid_y - 0.5, mid_y + 0.1],
+            color=RED, linewidth=2, alpha=0.8)
+    ax.plot([mid_x - 0.5, mid_x + 0.1], [mid_y + 0.1, mid_y - 0.5],
+            color=RED, linewidth=2, alpha=0.8)
+
+# "still serving local automation" callout for disconnected hosts
+ax.text(11.5, 2.0, 'still serving\nlocal automation',
+        ha='center', va='center', fontsize=8, color=ORANGE, style='italic')
+ax.text(8.0, 0.5, 'still serving local automation',
+        ha='center', va='center', fontsize=8, color=ORANGE, style='italic')
+
+# Legend
+leg_x = 1.0
+leg_y_top = 11.0
+ax.add_patch(Rectangle((leg_x, leg_y_top - 0.3), 0.4, 0.4, facecolor=GREEN, alpha=0.5))
+ax.text(leg_x + 0.6, leg_y_top - 0.1, 'local replica  (cached slice)',
+        fontsize=9, color=WHITE, va='center')
+
+ax.plot([leg_x, leg_x + 0.4], [leg_y_top - 0.7, leg_y_top - 0.7],
+        color=GREEN, linewidth=2)
+ax.text(leg_x + 0.6, leg_y_top - 0.7, 'connected — periodic sync',
+        fontsize=9, color=WHITE, va='center')
+
+ax.plot([leg_x, leg_x + 0.4], [leg_y_top - 1.1, leg_y_top - 1.1],
+        color=ORANGE, linewidth=2, linestyle=':')
+ax.text(leg_x + 0.6, leg_y_top - 1.1, 'partition — replica still local',
+        fontsize=9, color=WHITE, va='center')
+
+# Title
+ax.text(8.0, 11.4, 'Local Replica + Global Truth',
+        ha='center', va='center', fontsize=16, fontweight='bold', color=GOLD)
+
+# Bottom note
+ax.text(8.0, 10.5,
+        'OpsDB is the global authority. Every host can hold a dumped slice locally; partition does not stop work.',
+        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+
+save(fig, 'infra2_08_local_replica.png')
 
 # ================================================================
 # SUMMARY
 # ================================================================
-print("\nGenerated 8 figures:")
-print("  eng02_01_two_domains_truecost.png          (Type 2)")
-print("  eng02_02_substrate_stability.png           (Type 1)")
-print("  eng02_03_three_tier_matrix.png             (Type 5/6)")
-print("  eng02_04_cost_vs_credentialing.png         (Type 3)")
-print("  eng02_05_internal_consistency_ratio.png    (Type 6)")
-print("  eng02_06_thousand_engineers.png            (Type 6)")
-print("  eng02_07_two_role_model.png                (Type 4)")
-print("  eng02_08_regulatory_regimes.png            (Type 5)")
-print("\nType coverage: 6 distinct types (1, 2, 3, 4, 5, 6)")
-print("Output directory: %s" % outdir)
+print("\nAll 8 figures saved to: %s" % outdir)
+print("  infra2_01_three_populations.png")
+print("  infra2_02_cardinality_landscape.png")
+print("  infra2_03_api_perimeter.png")
+print("  infra2_04_change_set_lifecycle.png")
+print("  infra2_05_layering_in_time.png")
+print("  infra2_06_freshness_curves.png")
+print("  infra2_07_investigation_flow.png")
+print("  infra2_08_local_replica.png")
