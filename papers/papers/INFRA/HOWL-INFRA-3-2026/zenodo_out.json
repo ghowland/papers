@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-03T13:09:30.404512+00:00",
-  "modified": "2026-05-03T13:09:30.492049+00:00",
-  "id": 20004908,
-  "conceptrecid": "20004907",
+  "created": "2026-05-03T15:49:41.647883+00:00",
+  "modified": "2026-05-03T15:49:41.731647+00:00",
+  "id": 20008274,
+  "conceptrecid": "20008273",
   "metadata": {
-    "title": "OpsDB Design",
+    "title": "An Example OpsDB Schema",
     "publication_date": "2026-04",
     "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -55,7 +55,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-2-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-3-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -73,59 +73,59 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-2-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-3-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20004908",
-      "recid": 20004908
+      "doi": "10.5281/zenodo.20008274",
+      "recid": 20008274
     }
   },
-  "title": "OpsDB Design",
+  "title": "An Example OpsDB Schema",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20004908",
-    "html": "https://zenodo.org/deposit/20004908",
+    "self": "https://zenodo.org/api/deposit/depositions/20008274",
+    "html": "https://zenodo.org/deposit/20008274",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20004908/files",
-    "bucket": "https://zenodo.org/api/files/cca6fa36-e267-4370-b11c-596db3ada2e9",
-    "thumb250": "https://zenodo.org/record/20004908/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/20008274/files",
+    "bucket": "https://zenodo.org/api/files/e1113e08-5550-4489-9740-7c08b1c286cb",
+    "thumb250": "https://zenodo.org/record/20008274/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20004908/thumb10",
-      "50": "https://zenodo.org/record/20004908/thumb50",
-      "100": "https://zenodo.org/record/20004908/thumb100",
-      "250": "https://zenodo.org/record/20004908/thumb250",
-      "750": "https://zenodo.org/record/20004908/thumb750",
-      "1200": "https://zenodo.org/record/20004908/thumb1200"
+      "10": "https://zenodo.org/record/20008274/thumb10",
+      "50": "https://zenodo.org/record/20008274/thumb50",
+      "100": "https://zenodo.org/record/20008274/thumb100",
+      "250": "https://zenodo.org/record/20008274/thumb250",
+      "750": "https://zenodo.org/record/20008274/thumb750",
+      "1200": "https://zenodo.org/record/20008274/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20004908",
-    "latest_draft_html": "https://zenodo.org/deposit/20004908",
-    "publish": "https://zenodo.org/api/deposit/depositions/20004908/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20004908/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20004908/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20004908/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20008274",
+    "latest_draft_html": "https://zenodo.org/deposit/20008274",
+    "publish": "https://zenodo.org/api/deposit/depositions/20008274/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20008274/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20008274/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20008274/actions/newversion"
   },
-  "record_id": 20004908,
+  "record_id": 20008274,
   "owner": 1539729,
   "files": [
     {
-      "id": "0f2e4045-9247-4ca7-acad-e8455ad517d6",
-      "filename": "HOWL-INFRA-2-2026.zip",
-      "filesize": 3195522,
-      "checksum": "9fc7844a207b5e2e15e0eb9139b454f5",
+      "id": "be96cf7b-1b73-47fb-8fb5-4c17eefc6c77",
+      "filename": "!manuscript.pdf",
+      "filesize": 1975984,
+      "checksum": "ddf735192e4bf10f7f189ef5c8ace5e2",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20004908/files/0f2e4045-9247-4ca7-acad-e8455ad517d6",
-        "download": "https://zenodo.org/api/records/20004908/draft/files/HOWL-INFRA-2-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20008274/files/be96cf7b-1b73-47fb-8fb5-4c17eefc6c77",
+        "download": "https://zenodo.org/api/records/20008274/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "06ec8953-d007-4a98-ab08-d7af74b31906",
-      "filename": "!manuscript.pdf",
-      "filesize": 1737188,
-      "checksum": "a68acfeb55215b3fc3504aa2f89c04fb",
+      "id": "4b538bfc-4ece-4b0b-aeb0-44b9bc97cda5",
+      "filename": "HOWL-INFRA-3-2026.zip",
+      "filesize": 3627112,
+      "checksum": "d00fc92558dc77b9f9d22aa760309cd3",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20004908/files/06ec8953-d007-4a98-ab08-d7af74b31906",
-        "download": "https://zenodo.org/api/records/20004908/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20008274/files/4b538bfc-4ece-4b0b-aeb0-44b9bc97cda5",
+        "download": "https://zenodo.org/api/records/20008274/draft/files/HOWL-INFRA-3-2026.zip/content"
       }
     }
   ],

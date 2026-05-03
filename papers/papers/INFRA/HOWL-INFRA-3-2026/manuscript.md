@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-INFRA-1-2026] → [@HOWL-INFRA-2-2026] → [@HOWL-INFRA-3-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20008274
 
 **Date:** May 3 2026
 
@@ -23,7 +23,7 @@ This paper specifies a relational schema demonstrating the OpsDB design from HOW
 
 The naming convention used throughout is the Database Schema Naming Convention, abbreviated DSNC. DSNC rules: all names are singular (`company_employee`, never `company_employees`); all names are lower_case_with_underscores; names are composed hierarchically with prefixes going from more specific to less specific (`web_site`, `web_site_widget`); foreign keys are named as `referenced_table_id` (`company_id` references `company.id`), with role prefixes when multiple FKs to the same table coexist (`vendor_company_id`, `service_company_id`); type suffixes are mandatory for time and date fields (`_time` for DATETIME, `_date` for DATE); booleans use tense prefixes (`is_active` for present, `was_activated` for past). Reserved fields appear on every table where applicable: `id`, `created_time`, `updated_time`, `parent_id` for self-hierarchy. Governance and admin metadata fields carry a leading underscore (`_requires_group`, `_audit_chain_hash`, `_retention_policy_id`) to keep them visually separated from the operational vocabulary the schema models. The benefits at scale: collisions are prevented by structural rules rather than memorized vocabulary; the schema is self-documenting; new domains slot into existing prefix trees without reorganization. DSNC has its own specification document; this paper applies the convention without re-specifying it.
 
-The schema is presented as relational tables with explicit foreign keys, type constraints, and reserved fields. Storage engine choice, API implementation, deployment patterns, and runner implementations are out of scope; INFRA-2 covered those design boundaries. This paper demonstrates that the OpsDB design produces a workable, comprehensive schema; it does not prescribe the canonical schema. The reader is assumed to have read INFRA-1 (taxonomy of mechanisms, properties, principles) and INFRA-2 (OpsDB design); no other prior reading is assumed.
+The schema is presented as relational tables with explicit foreign keys, type constraints, and reserved fields. Storage engine choice, API implementation, deployment patterns, and runner implementations are out of scope; INFRA-2 covered those design boundaries. This paper demonstrates that the OpsDB design produces a workable, comprehensive schema; it does not prescribe the canonical schema.
 
 ---
 

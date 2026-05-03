@@ -1,8 +1,8 @@
 {
-  "title": "OpsDB Design",
+  "title": "OpsDB Runner Design",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "The OpsDB is a centralized data substrate that serves as the single source of truth for operational reality across a Distributed Operating System (DOS). It holds all centrally-managed configuration, a sized cache of pulled observed state, pointers to authorities for everything else, schedules and policies, runner enumeration and metadata, structured documentation references, and complete history. It is consumed by three populations: humans operating the system, automation runners performing decentralized work, and auditors verifying compliance and control. The OpsDB is passive \u2014 it answers queries and accepts writes \u2014 while a sophisticated API in front of it enforces authentication, authorization, validation, change management, versioning, and audit.\n\nA Distributed Operating System (DOS) is the conceptual unit the OpsDB serves: any environment operated as a single coordinated system spanning many heterogeneous nodes \u2014 production datacenters, staging clusters, corporate infrastructure, employee fleets \u2014 where many machines, services, and policies are managed coherently as if they were one large operating system. A DOS is not defined by the underlying substrate (bare metal, virtual machines, Kubernetes clusters, cloud services, SaaS integrations can all participate) but by the operational coordination that unifies them: shared configuration management, shared policies, shared identity, shared monitoring, shared change discipline. An organization may have one DOS or several, and each DOS may have its own OpsDB or share one with others, depending on the cardinality decision specified in \u00a75.\n\nThe OpsDB cardinality is 1 or N, never 2: a single OpsDB for organizations that fit under a single security umbrella, multiple substrates for organizations whose structure (security perimeters, legal or regulatory zones, organizational boundaries) prevents a single substrate. This paper specifies the OpsDB's design goals, architectural commitments, content scope, consumer model, the API as security and governance perimeter, and the construction disciplines that produce a stable, queryable, comprehensively-modeled substrate. Implementation choices and schema design are out of scope for this paper.",
+  "description": "Runners are the operational logic layer around the OpsDB. Each runner reads from the OpsDB, acts in the world, and writes back to the OpsDB. The OpsDB is the runner's only stable interface \u2014 the persistent inputs and outputs of every runner are exclusively OpsDB rows. Side effects happen in the world; the trail of those side effects lives in the OpsDB.\n\nThis paper specifies the runner pattern, the runner kinds (puller, reconciler, verifier, scheduler, reactor, drift detector, change-set executor, reaper, bootstrapper, failover handler), the shared-library layer that keeps runners small, and the disciplines that govern runner design: idempotency, level-triggering over edge-triggering, bound everything, and per-runner change-management gating. The paper threads a worked example of the GitOps deployment pattern through several sections to show how runners coordinate through shared data without directing each other. The paper compares OpsDB-coordinated operational practice with standard practice in modern Kubernetes shops, showing where the same work produces a complete queryable trail rather than scattered evidence across many tools.\n\nWhat this paper does not specify: implementation language for runners, deployment platform for runner processes, specific runner code, framework code for shared libraries, Kubernetes tutorials, or GitOps tutorials. Those are organization-specific choices. The runner pattern transfers across all of them.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -16,11 +16,11 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-4-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-2-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-4-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

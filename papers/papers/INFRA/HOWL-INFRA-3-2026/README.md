@@ -1,4 +1,4 @@
-# OpsDB Design
+# An Example OpsDB Schema
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,11 +6,11 @@
 
 ## Abstract
 
-The OpsDB is a centralized data substrate that serves as the single source of truth for operational reality across a Distributed Operating System (DOS). It holds all centrally-managed configuration, a sized cache of pulled observed state, pointers to authorities for everything else, schedules and policies, runner enumeration and metadata, structured documentation references, and complete history. It is consumed by three populations: humans operating the system, automation runners performing decentralized work, and auditors verifying compliance and control. The OpsDB is passive — it answers queries and accepts writes — while a sophisticated API in front of it enforces authentication, authorization, validation, change management, versioning, and audit.
+This paper specifies a relational schema demonstrating the OpsDB design from HOWL-INFRA-2-2026. The schema is comprehensive across the operational substrate: site and location, identity, hardware, virtualization (with nested megavisor instances spanning bare metal, virtual machines, containers, and pods), Kubernetes, cloud resources, services and packages, runners, schedules, policies, configuration, cached observation, authority pointers, documentation metadata, monitoring and alerting, evidence, change management, audit, and the schema's record of itself.
 
-A Distributed Operating System (DOS) is the conceptual unit the OpsDB serves: any environment operated as a single coordinated system spanning many heterogeneous nodes — production datacenters, staging clusters, corporate infrastructure, employee fleets — where many machines, services, and policies are managed coherently as if they were one large operating system. A DOS is not defined by the underlying substrate (bare metal, virtual machines, Kubernetes clusters, cloud services, SaaS integrations can all participate) but by the operational coordination that unifies them: shared configuration management, shared policies, shared identity, shared monitoring, shared change discipline. An organization may have one DOS or several, and each DOS may have its own OpsDB or share one with others, depending on the cardinality decision specified in §5.
+The naming convention used throughout is the Database Schema Naming Convention, abbreviated DSNC. DSNC rules: all names are singular (`company_employee`, never `company_employees`); all names are lower_case_with_underscores; names are composed hierarchically with prefixes going from more specific to less specific (`web_site`, `web_site_widget`); foreign keys are named as `referenced_table_id` (`company_id` references `company.id`), with role prefixes when multiple FKs to the same table coexist (`vendor_company_id`, `service_company_id`); type suffixes are mandatory for time and date fields (`_time` for DATETIME, `_date` for DATE); booleans use tense prefixes (`is_active` for present, `was_activated` for past). Reserved fields appear on every table where applicable: `id`, `created_time`, `updated_time`, `parent_id` for self-hierarchy. Governance and admin metadata fields carry a leading underscore (`_requires_group`, `_audit_chain_hash`, `_retention_policy_id`) to keep them visually separated from the operational vocabulary the schema models. The benefits at scale: collisions are prevented by structural rules rather than memorized vocabulary; the schema is self-documenting; new domains slot into existing prefix trees without reorganization. DSNC has its own specification document; this paper applies the convention without re-specifying it.
 
-The OpsDB cardinality is 1 or N, never 2: a single OpsDB for organizations that fit under a single security umbrella, multiple substrates for organizations whose structure (security perimeters, legal or regulatory zones, organizational boundaries) prevents a single substrate. This paper specifies the OpsDB's design goals, architectural commitments, content scope, consumer model, the API as security and governance perimeter, and the construction disciplines that produce a stable, queryable, comprehensively-modeled substrate. Implementation choices and schema design are out of scope for this paper.
+The schema is presented as relational tables with explicit foreign keys, type constraints, and reserved fields. Storage engine choice, API implementation, deployment patterns, and runner implementations are out of scope; INFRA-2 covered those design boundaries. This paper demonstrates that the OpsDB design produces a workable, comprehensive schema; it does not prescribe the canonical schema. The reader is assumed to have read INFRA-1 (taxonomy of mechanisms, properties, principles) and INFRA-2 (OpsDB design); no other prior reading is assumed.
 
 ---
 
@@ -50,14 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFRA-2-2026,
-  title={ OpsDB Design },
+@article{ HOWL-INFRA-3-2026,
+  title={ An Example OpsDB Schema },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20004908},
-  url = {https://zenodo.org/record/20004908},
-  note={Howland Archive: HOWL-INFRA-2-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20008274},
+  url = {https://zenodo.org/record/20008274},
+  note={Howland Archive: HOWL-INFRA-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
