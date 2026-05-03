@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-INFRA-1-2026] → [@HOWL-INFRA-2-2026] → [@HOWL-INFRA-3-2026] → [@HOWL-INFRA-4-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20009133
 
 **Date:** May 3 2026
 
