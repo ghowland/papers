@@ -239,6 +239,8 @@ Organizations exist in one of three states with respect to OpsDBs:
 
 The principle from the taxonomy paper applies directly. An organization that has 1 and adds a 2nd has not just incrementally added capacity — it has changed its operational structure in a way that begins the slide to N without admitting it. If the structure genuinely requires N, plan for N. If it doesn't, refuse the 2nd.
 
+![Fig. 2: The 0/1/N Cardinality Landscape — three valid regions, with "2" explicitly forbidden as a failure state. Reasons that justify N populate the right region; non-reasons are rejected.](./figures/infra2_02_cardinality_landscape.png)
+
 ### 5.3 When 1 is the right answer
 
 Organizations small enough that "everyone with operational access" is a single trusted population. The API enforces access control, but the substrate is single. Most non-mega-corp organizations should target this state.
@@ -320,6 +322,8 @@ Pulled snapshots from authorities. The OpsDB does not replace authorities; it ca
 The cache is sized to the DOS. A small DOS may cache nearly all recent state from its authorities. A large DOS caches a meaningful subset — recent state, important entities, summary statistics. The cache is not a replacement for Prometheus or Datadog; it is enough cached data to support operational reasoning, with pointers to the monitoring system for queries the cache cannot answer.
 
 Freshness depends on the population method. Pullers run on schedules; their cadence determines how recent the cache is. Some authorities support push or watch streams; cache freshness for those approaches real-time. The OpsDB does not impose freshness contracts; it holds whatever the population method produces, with timestamps so consumers know the age of the data they are reading.
+
+![Fig. 6: Cached State Freshness vs. Population Method — different populators (watch streams, polling at various cadences, batch imports, manual) produce different staleness distributions. The OpsDB does not impose a freshness contract.](./figures/infra2_06_freshness_curves.png)
 
 ### 6.3 Authority pointers
 
@@ -481,6 +485,8 @@ Structured ownership metadata for human routing also produces compliance evidenc
 
 The OpsDB is one substrate doing many jobs because the underlying data is the same data and the disciplines compose.
 
+![Fig. 1: Three Populations on One Substrate — humans, automation, and auditors all converge on the OpsDB through one API, sharing the same data, gate, and trail.](./figures/infra2_01_three_populations.png)
+
 ### 7.5 Different access scopes, same surface
 
 SSO and groups and RBAC at the API layer mean each population sees what they're authorized to see. Auditors see read-only access to evidence and history. Operators see scoped read/write to their domain. Runners see narrowly-scoped credentials per runner. All from one API, one schema, one substrate.
@@ -508,6 +514,8 @@ Concentrating sophistication at the API means:
 - The API is the one piece of software that needs to be audited for governance correctness.
 
 The API earns its complexity. The substrate stays minimal.
+
+![Fig. 3: API as Governance Perimeter — substrate at center, seven enforcement layers in the API ring, three populations approaching from outside. The gate is the only path.](./figures/infra2_03_api_perimeter.png)
 
 ### 8.2 Authentication
 
@@ -623,6 +631,8 @@ Different entity types have different retention requirements. Configuration chan
 The API doesn't apply changes immediately. It records proposals, routes them for approval, collects approvals, and commits atomically when approval rules are satisfied.
 
 This is a fundamental design choice. Changes are not applied by direct write; they are proposed, reviewed, and committed as a discipline. The API is the place this discipline is enforced, uniformly, across all of operations.
+
+![Fig. 4: Change-Set Lifecycle — propose, validate, route, collect approvals, commit atomically, version. Emergency path branches off after validation; rejection drops out at the collection stage.](./figures/infra2_04_change_set_lifecycle.png)
 
 ### 9.6 Change set structure
 
@@ -920,6 +930,8 @@ The stability of the data layer enables fast iteration above it. A runner can be
 
 This is the data-king-logic-shell pattern instantiated as architectural layers: stable data underneath, churning logic above, with the API as the gate that enforces the boundary.
 
+![Fig. 5: Data Primacy as Architectural Layering — schema is the long-lived center; runners and shared libraries churn at medium rate; integrations and adapters churn fastest. Only the schema persists across decades.](./figures/infra2_05_layering_in_time.png)
+
 ---
 
 ## 12. Data flow patterns
@@ -980,6 +992,8 @@ A human investigating an incident queries the OpsDB. They start with the symptom
 
 Each query is fast because the data is structured and indexed. The investigation flow is bounded by the operator's questions, not by the tooling between them and the answers.
 
+![Fig. 7: Investigation Flow — Without OpsDB, the operator switches between many tools, joining mentally. With OpsDB, one query plus directed pointers gets the picture.](./figures/infra2_07_investigation_flow.png)
+
 ### 12.6 Audit flow
 
 An auditor queries the OpsDB for evidence and historical reconstruction. Read-only access to audit log, version history, change-management records, evidence records, and policy data.
@@ -1011,6 +1025,8 @@ Local automation reads the dumped slice during partition. Queries against the lo
 When connectivity returns, the runner queries the OpsDB for fresh data. The local replica is replaced or updated. Any actions taken during the partition are written back to the OpsDB once it is reachable.
 
 The local replica is a cache, in the taxonomy sense. The OpsDB is the global truth. The local-cache-plus-global-truth principle applies: fast local access for normal operation, fall through to global when needed, partition tolerance through cached state.
+
+![Fig. 8: Local Replica + Global Truth — the OpsDB is authoritative; every host can hold a dumped local slice. Disconnected hosts continue serving local automation through their replica until connectivity returns.](./figures/infra2_08_local_replica.png)
 
 ### 12.9 Cross-OpsDB flow (when N)
 
