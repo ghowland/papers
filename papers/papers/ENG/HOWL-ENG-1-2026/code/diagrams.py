@@ -561,7 +561,7 @@ rings = [
     (5.5, '#1a1a2a', 0.95, 'USERS', 'people who depend on the system'),
     (4.0, '#1f1f30', 0.9, 'GOAL-SEEKERS', 'organization / business'),
     (2.5, '#252538', 0.85, 'TEAM / ORG', 'colleagues, management'),
-    (1.0, '#2a2a40', 0.8, 'ENGINEER', 'the person doing the work'),
+    (1.0, '#ffffff', 0.8, 'ENGINEER', 'the person doing the work'),
 ]
 
 ring_labels = []

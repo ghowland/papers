@@ -35,8 +35,6 @@ These two sentences together are the entire definition. The remainder is exposit
 
 ## 3. Clause by clause
 
-![Fig. 6: Alignment basin — 90° aligns with gravity, 89° and 91° fall below the collapse threshold.](./figures/eng01_06_bridge_alignment_basin.png)
-
 ### Evaluating trade-offs
 
 This is the activity proper. It distinguishes engineering from execution. Someone running cable in a datacenter to a layout that has already been decided is executing; the layout was designed by someone evaluating where the bundles should run, what the cooling implications are, how the cable lengths affect signal integrity, and which paths leave room for future expansion. Both activities are valuable. Only the second is engineering.
@@ -48,6 +46,8 @@ The trade-offs must be live. A senior ops engineer who has applied the same data
 What the evaluation seeks. Alignment is the configuration of system parameters such that the system actually achieves its goals under its constraints. The bridge support set at 90 degrees to the deck is aligned with gravity; the load resolves into the ground. At 89 degrees the load path no longer matches the constraint, and the structure collapses. The number 90 is not arbitrary — it is the value at which the variables of the design align with the constants of physics.
 
 In software the constants are things like cache line widths, network round-trip times, the speed of light across a continent, the failure rates of consumer hardware. The variables are things like data layout, replication topology, batch sizes, retry policies. Engineering is finding the values of the variables that align with the constants such that the system behaves as intended. Misalignment is what failed engineering produces.
+
+![Fig. 6: Alignment basin — 90° aligns with gravity, 89° and 91° fall below the collapse threshold.](./figures/eng01_06_bridge_alignment_basin.png)
 
 ### Efficiently
 
