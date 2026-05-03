@@ -23,6 +23,8 @@ This paper offers a precise definition of engineering and defends it. The defini
 
 ## 2. The definition
 
+![Fig. 7: Engineering Identity Card — the definition, its five clauses, the True Cost qualifier, and the three tests.](./figures/eng01_07_identity_card.png)
+
 > *Engineering is evaluating trade-offs to find alignment of variables and constants that efficiently meet goals against externalities where failure has a True Cost.*
 
 Every word is load-bearing. The rest of the paper unpacks each clause, shows what activity it admits, what it excludes, and what survives if any clause is removed. A second sentence locks the first against drift:
@@ -32,6 +34,8 @@ Every word is load-bearing. The rest of the paper unpacks each clause, shows wha
 These two sentences together are the entire definition. The remainder is exposition.
 
 ## 3. Clause by clause
+
+![Fig. 6: Alignment basin — 90° aligns with gravity, 89° and 91° fall below the collapse threshold.](./figures/eng01_06_bridge_alignment_basin.png)
 
 ### Evaluating trade-offs
 
@@ -71,6 +75,8 @@ True Cost loads the consequences of failure into reality, onto parties who did n
 
 ## 4. True Cost
 
+![Fig. 8: Cost asymmetry — decisions made by the engineer flow outward, but consequences are borne by goal-seekers and users.](./figures/eng01_08_cost_asymmetry.png)
+
 > *True Cost is harm borne by goal-seekers and users when the engineered system fails.*
 
 The cost lands outside the engineering activity itself, on parties who did not do the work and cannot fix it. Bridge users did not choose the angle of the supports. Database customers did not choose the replication topology. Patients did not choose the radiation interlock logic.
@@ -80,6 +86,8 @@ The engineer may also pay — reputation, employment, legal liability — but th
 The Therac-25 radiation therapy machine is the textbook illustration. Software bugs in the input-handling logic interacted with the physical machine state to deliver massive radiation overdoses, killing several patients. The engineering failure was misalignment: variables (the interlock logic, race conditions in the data entry handling) against externalities (the actual machine state, patient bodies). The True Cost was paid by patients — exactly the structural property the definition names. The Therac-25 case is canonical in safety engineering literature precisely because it makes True Cost concrete in a way that is hard to argue with.
 
 ## 5. Removal tests
+
+![Fig. 1: Removal Test — each clause's removal collapses engineering into a different activity.](./figures/eng01_01_removal_test_matrix.png)
 
 The definition is minimal. Each clause is necessary. Removing any one of them admits non-engineering activities or excludes real engineering ones.
 
@@ -99,6 +107,8 @@ The five clauses together pick out engineering precisely. None can be removed wi
 
 ## 6. Engineering versus adjacent activities
 
+![Fig. 2: Activity Landscape — engineering sits where externalities push back AND failure carries True Cost.](./figures/eng01_02_activity_landscape.png)
+
 The definition lets us place neighboring activities precisely.
 
 **Math** is open at the level of theorems, with no externalities and no True Cost. Iteration as an algorithm is math: the problem statement is coherent without any substrate, and a wrong implementation has no external consequences. Lamport's published work on Paxos, logical clocks, and Byzantine generals is math by this definition — theorems about distributed computation, proven in proof-space, with internal-only consequences when wrong. The objects studied are algorithms, but the activity is mathematical because the externalities and True Costs do not enter the work. This is not a diminishment of Lamport; world-class mathematics produces foundations on which engineering is then built.
@@ -115,6 +125,8 @@ The clearest live example of this border is Paxos versus Raft. Paxos as publishe
 
 ## 7. Why substrate alone is not enough
 
+![Fig. 4: Engineering content rises with substrate pressure — CRUD work sits low, ops at scale and safety-critical sit high.](./figures/eng01_04_substrate_threshold.png)
+
 A reader might ask whether engineering is simply "applied to a real substrate." This is close but not quite right. Substrate is necessary but not sufficient.
 
 A textbook bridge problem has a substrate in its problem statement, but no one builds it and no one falls into a river. A Paxos implementation written for a class has a substrate, but if it is never deployed, no decisions depend on its correctness. Both involve substrate; neither is engineering.
@@ -122,6 +134,8 @@ A textbook bridge problem has a substrate in its problem statement, but no one b
 True Cost is what closes the gap. The substrate has to bite. There must be parties outside the activity who pay if the work is wrong, and the work must be done with that accountability in mind. This is what separates engineering from exercise, simulation, and study — not the presence of substrate but the presence of consequence.
 
 ## 8. Examples in software
+
+![Fig. 5: SWE examples placed on the substrate-pressure axis — marker size shows True Cost magnitude.](./figures/eng01_05_examples_landscape.png)
 
 The definition picks out a recognizable set of work in software. Five examples illustrate the range.
 
@@ -140,6 +154,8 @@ The definition picks out a recognizable set of work in software. Five examples i
 **The Therac-25 as negative example.** Already discussed. The case anchors True Cost because the cost was paid in human lives, and because the engineering failure can be named precisely: misalignment of interlock logic and input handling against the externality of the physical machine state. This is what failed engineering looks like when the True Cost is large and visible.
 
 ## 9. Implications for software
+
+![Fig. 3: SWE velocity cost vs Ops True Cost — the surfaces diverge past the crossover, and orgs must choose.](./figures/eng01_03_swe_ops_cost_surfaces.png)
 
 The definition has practical consequences.
 
