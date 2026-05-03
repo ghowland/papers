@@ -1,0 +1,134 @@
+{
+  "created": "2026-05-03T18:16:34.530450+00:00",
+  "modified": "2026-05-03T18:16:34.727056+00:00",
+  "id": 20011418,
+  "conceptrecid": "20011417",
+  "metadata": {
+    "title": "OpsDB Schema Construction",
+    "publication_date": "2026-04",
+    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "discrete spacetime",
+      "infra",
+      "zero free parameters",
+      "falsifiable physics",
+      "theoretical derivation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-6-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-6-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20011418",
+      "recid": 20011418
+    }
+  },
+  "title": "OpsDB Schema Construction",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20011418",
+    "html": "https://zenodo.org/deposit/20011418",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20011418/files",
+    "bucket": "https://zenodo.org/api/files/b61dead8-c545-4e11-94b4-53d8a88d4c6d",
+    "thumb250": "https://zenodo.org/record/20011418/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20011418/thumb10",
+      "50": "https://zenodo.org/record/20011418/thumb50",
+      "100": "https://zenodo.org/record/20011418/thumb100",
+      "250": "https://zenodo.org/record/20011418/thumb250",
+      "750": "https://zenodo.org/record/20011418/thumb750",
+      "1200": "https://zenodo.org/record/20011418/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20011418",
+    "latest_draft_html": "https://zenodo.org/deposit/20011418",
+    "publish": "https://zenodo.org/api/deposit/depositions/20011418/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20011418/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20011418/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20011418/actions/newversion"
+  },
+  "record_id": 20011418,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "91532309-cd85-484f-9b93-14e6e00d0d7b",
+      "filename": "!manuscript.pdf",
+      "filesize": 1815631,
+      "checksum": "7f1aeaccc77a8e197244c389b957da5e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20011418/files/91532309-cd85-484f-9b93-14e6e00d0d7b",
+        "download": "https://zenodo.org/api/records/20011418/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "e94d2023-56f1-4b91-8858-89ecd97044ea",
+      "filename": "HOWL-INFRA-6-2026.zip",
+      "filesize": 3348438,
+      "checksum": "cc4a406d18a457f8c37a5ffe4c30597e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20011418/files/e94d2023-56f1-4b91-8858-89ecd97044ea",
+        "download": "https://zenodo.org/api/records/20011418/draft/files/HOWL-INFRA-6-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
