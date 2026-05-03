@@ -576,25 +576,25 @@ ax.text(0, 0, 'ENGINEER',
         ha='center', va='center', fontsize=11,
         color=WHITE, fontweight='bold')
 ax.text(0, -0.4, 'the person\ndoing the work',
-        ha='center', va='top', fontsize=8, color=SILVER, style='italic')
+        ha='center', va='top', fontsize=8, color=WHITE, style='italic')
 
 ax.text(0, 1.7, 'TEAM / ORG',
         ha='center', va='center', fontsize=11,
         color=CYAN, fontweight='bold')
 ax.text(0, -1.7, 'colleagues, management',
-        ha='center', va='center', fontsize=8, color=SILVER, style='italic')
+        ha='center', va='center', fontsize=8, color=WHITE, style='italic')
 
 ax.text(0, 3.2, 'GOAL-SEEKERS',
         ha='center', va='center', fontsize=12,
         color=ORANGE, fontweight='bold')
 ax.text(0, -3.2, 'organization / business',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+        ha='center', va='center', fontsize=9, color=WHITE, style='italic')
 
 ax.text(0, 4.7, 'USERS',
         ha='center', va='center', fontsize=13,
         color=RED, fontweight='bold')
 ax.text(0, -4.7, 'people who depend on the system',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
+        ha='center', va='center', fontsize=9, color=WHITE, style='italic')
 
 # Arrows showing True Cost flowing OUTWARD (engineer cannot absorb it)
 arrow_angles = [45, 135, 225, 315]

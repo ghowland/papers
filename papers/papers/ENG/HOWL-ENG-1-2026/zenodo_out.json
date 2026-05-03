@@ -1,12 +1,12 @@
 {
   "created": "2026-05-03T03:20:10.832421+00:00",
-  "modified": "2026-05-03T03:20:11.749435+00:00",
+  "modified": "2026-05-03T03:29:42.255587+00:00",
   "id": 19994227,
   "conceptrecid": "19994226",
   "metadata": {
     "title": "What Engineering Is",
     "publication_date": "2026-04",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "description": "<div>\n<div>The word *engineer* has been borrowed across so many activities that it no longer reliably picks out a kind of work. A senior ops person keeping a production environment alive under load is called an engineer. A junior developer wiring REST endpoints together is called an engineer. A graduate student proving complexity bounds is called an engineer. A person physically running cable in a datacenter is sometimes called an engineer. These are all valuable activities, but they are not the same activity, and treating them as if they were produces practical confusion about who should be doing what, economic confusion about what should be paid like engineering, and intellectual confusion about what counts as rigor in software.</div>\n<br>\n<div>This paper offers a precise definition of engineering and defends it. The definition is structural: it identifies engineering by what the activity does, not by who performs it, what tools are used, or what credentials are held. The goal is a tool that lets the reader walk into any role and ask a small number of questions to determine, defensibly, whether the work is engineering.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -109,22 +109,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "2665d19e-b6d8-40d5-a135-75d119a6ca0e",
+      "id": "3493ead4-0a9f-4612-90d0-6225050970b3",
       "filename": "!manuscript.pdf",
-      "filesize": 1410155,
-      "checksum": "66dca866994ec4b28446085bcd23131f",
+      "filesize": 1412863,
+      "checksum": "4bf0c046b2b9b4aa7b702358200d9b49",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/2665d19e-b6d8-40d5-a135-75d119a6ca0e",
+        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/3493ead4-0a9f-4612-90d0-6225050970b3",
         "download": "https://zenodo.org/api/records/19994227/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "3dc62a35-9a3c-4f11-ba66-09828f184af3",
+      "id": "52612c52-55a2-4167-b168-ee6e0f399d4e",
       "filename": "HOWL-ENG-1-2026.zip",
-      "filesize": 2615839,
-      "checksum": "ca3fd754c47bfd713eb779b7482882ff",
+      "filesize": 2622493,
+      "checksum": "06c8ecfa61e2ec98dae5fd94f86478b2",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/3dc62a35-9a3c-4f11-ba66-09828f184af3",
+        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/52612c52-55a2-4167-b168-ee6e0f399d4e",
         "download": "https://zenodo.org/api/records/19994227/draft/files/HOWL-ENG-1-2026.zip/content"
       }
     }

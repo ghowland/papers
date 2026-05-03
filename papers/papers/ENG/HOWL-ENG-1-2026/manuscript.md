@@ -87,8 +87,6 @@ The Therac-25 radiation therapy machine is the textbook illustration. Software b
 
 ## 5. Removal tests
 
-![Fig. 1: Removal Test — each clause's removal collapses engineering into a different activity.](./figures/eng01_01_removal_test_matrix.png)
-
 The definition is minimal. Each clause is necessary. Removing any one of them admits non-engineering activities or excludes real engineering ones.
 
 Drop *evaluating trade-offs* and the activity becomes execution — skilled trades work, applying decisions made by others. Valuable, but not engineering.
@@ -105,9 +103,9 @@ Drop *True Cost* and academic work qualifies. A simulation, a textbook problem, 
 
 The five clauses together pick out engineering precisely. None can be removed without admitting activities that everyone agrees are not engineering, or excluding activities that everyone agrees are.
 
-## 6. Engineering versus adjacent activities
+![Fig. 1: Removal Test — each clause's removal collapses engineering into a different activity.](./figures/eng01_01_removal_test_matrix.png)
 
-![Fig. 2: Activity Landscape — engineering sits where externalities push back AND failure carries True Cost.](./figures/eng01_02_activity_landscape.png)
+## 6. Engineering versus adjacent activities
 
 The definition lets us place neighboring activities precisely.
 
@@ -123,9 +121,9 @@ The definition lets us place neighboring activities precisely.
 
 The clearest live example of this border is Paxos versus Raft. Paxos as published by Lamport is closer to math: a proof object demonstrating that consensus is possible under specific failure models. Raft, by Ongaro and Ousterhout, is engineering: same problem class, but the explicit goals were understandability and implementability, with the externality being human cognition and the messiness of real implementations. They redesigned the protocol so that engineers were less likely to get it wrong when implementing it, because bad Paxos implementations had shipped and corrupted data. The variables aligned in Raft — leader election structure, log replication mechanism, membership change protocol — were chosen against an externality that Paxos as published did not directly address. Both pieces of work are excellent. They are different activities.
 
-## 7. Why substrate alone is not enough
+![Fig. 2: Activity Landscape — engineering sits where externalities push back AND failure carries True Cost.](./figures/eng01_02_activity_landscape.png)
 
-![Fig. 4: Engineering content rises with substrate pressure — CRUD work sits low, ops at scale and safety-critical sit high.](./figures/eng01_04_substrate_threshold.png)
+## 7. Why substrate alone is not enough
 
 A reader might ask whether engineering is simply "applied to a real substrate." This is close but not quite right. Substrate is necessary but not sufficient.
 
@@ -133,9 +131,9 @@ A textbook bridge problem has a substrate in its problem statement, but no one b
 
 True Cost is what closes the gap. The substrate has to bite. There must be parties outside the activity who pay if the work is wrong, and the work must be done with that accountability in mind. This is what separates engineering from exercise, simulation, and study — not the presence of substrate but the presence of consequence.
 
-## 8. Examples in software
+![Fig. 4: Engineering content rises with substrate pressure — CRUD work sits low, ops at scale and safety-critical sit high.](./figures/eng01_04_substrate_threshold.png)
 
-![Fig. 5: SWE examples placed on the substrate-pressure axis — marker size shows True Cost magnitude.](./figures/eng01_05_examples_landscape.png)
+## 8. Examples in software
 
 The definition picks out a recognizable set of work in software. Five examples illustrate the range.
 
@@ -153,9 +151,9 @@ The definition picks out a recognizable set of work in software. Five examples i
 
 **The Therac-25 as negative example.** Already discussed. The case anchors True Cost because the cost was paid in human lives, and because the engineering failure can be named precisely: misalignment of interlock logic and input handling against the externality of the physical machine state. This is what failed engineering looks like when the True Cost is large and visible.
 
-## 9. Implications for software
+![Fig. 5: SWE examples placed on the substrate-pressure axis — marker size shows True Cost magnitude.](./figures/eng01_05_examples_landscape.png)
 
-![Fig. 3: SWE velocity cost vs Ops True Cost — the surfaces diverge past the crossover, and orgs must choose.](./figures/eng01_03_swe_ops_cost_surfaces.png)
+## 9. Implications for software
 
 The definition has practical consequences.
 
@@ -166,6 +164,8 @@ Senior ops people, when actually engineering rather than running runbooks, are d
 The conflict between SWE shipping velocity and ops stability is, under this definition, a conflict between internal cost optimization and True Cost optimization. Ops gates on True Cost: when shipping causes outages or data loss, ops pushes back, because the externality is punishing the system. SWE leadership often optimizes against internal pressures — quarterly targets, perceived productivity, manager career incentives — that do not connect to True Cost. These are real organizational pressures but they are not externalities in the engineering sense. The ops position in this conflict is therefore the engineering-correct position by default: gate on True Cost, ignore internal pressure that does not connect to True Cost. Anything else is letting non-engineering concerns override engineering ones.
 
 Engineering competence cannot be transmitted by coursework alone, because controlling externalities under True Cost can only be learned in environments where externalities punish error and the consequences are visible. Apprenticeship under cost pressure is the historical mechanism in every engineering discipline that has institutionalized itself. Software has mostly skipped this, with predictable results: a workforce credentialed by degrees that do not test for the relevant skill, working in roles whose titles claim a discipline the work does not actually instantiate.
+
+![Fig. 3: SWE velocity cost vs Ops True Cost — the surfaces diverge past the crossover, and orgs must choose.](./figures/eng01_03_swe_ops_cost_surfaces.png)
 
 ## 10. Implications for organizations
 
