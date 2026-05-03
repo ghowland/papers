@@ -1,4 +1,5 @@
 # The OpsDB: A Substrate for Coherent Operations
+
 ## What It Is, What You Get, How It Changes the Work
 
 **Registry:** [@HOWL-INFRA-7-2026]
