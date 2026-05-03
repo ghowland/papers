@@ -1,4 +1,5 @@
 # What Engineering Is
+
 ## A precise definition and its consequences for software
 
 **Registry:** [@HOWL-ENG-1-2026]
@@ -184,3 +185,4 @@ The paper does not argue that everyone should be doing engineering. Most useful 
 What the paper argues is that calling things by their right names lets organizations make better decisions about how to do them. Engineering is a specific activity, and it can now be defined precisely:
 
 > *Engineering is evaluating trade-offs to find alignment of variables and constants that efficiently meet goals against externalities where failure has a True Cost.*
+
