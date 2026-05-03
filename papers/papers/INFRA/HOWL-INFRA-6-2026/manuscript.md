@@ -390,6 +390,8 @@ This is a *configuration as data* commitment from INFRA-1 §5.1. Inferring depen
 
 The cost is that authors maintain `directory.yaml` when adding entities. The benefit is that the import graph is explicit; reading `directory.yaml` shows the schema's structure at a glance, in dependency order, without needing to process any other file.
 
+![Fig. 8: directory.yaml — Dependency DAG Flattened to Linear Order. Many valid total orderings exist; the author picks one and writes it down.](./figures/infra6_08_directory_dag.png)
+
 ### 4.3 The schema_version
 
 The `schema_version` field at the top of `directory.yaml` is the canonical version of the schema as a whole. It increments per `_schema_change_set` apply. The format is convention-driven (`YYYY.MM.DD.NN` is one common shape, with NN as a same-day counter). Two distinct values are never the same schema; identical values must be the same schema. This is the version that gets stored in `_schema_version.version_label` when the loader applies the schema to the OpsDB.
@@ -629,6 +631,8 @@ This is the entire expressive surface of the schema language. Every constraint t
 
 The list is small on purpose. Smaller is better. Every primitive is a place where the schema's behavior must be defined precisely; fewer primitives means less surface to reason about and fewer corners where edge cases can hide.
 
+![Fig. 1: The Closed Constraint Vocabulary — 9 types + 3 modifiers + 6 constraints. Adding one is a revision of INFRA-6.](./figures/infra6_01_closed_vocabulary.png)
+
 ---
 
 ## 7. What the vocabulary forbids
@@ -680,6 +684,8 @@ Schema evolution has its own forbidden list, covered in §12. The forbiddens her
 Each refusal closes off a category of complexity that would propagate into every consumer of the schema. The API would have to evaluate the conditional constraints, support the regex evaluator, process the inheritance, expand the templates. The loader would have to handle each. The reviewer would have to understand each. The schema steward would have to govern each.
 
 By refusing these things, the schema stays simple. The loader is mechanical. The API's bound-validation step is a lookup. The reviewer reads YAML. The schema steward reviews data. The complexity that would otherwise accumulate in the schema language stays elsewhere, where it belongs — in the API's semantic validation layer (where it's bounded and named), in policy data (where it's governed), in runner code (where it's reviewed).
+
+![Fig. 2: What the Vocabulary Permits vs. Refuses — the small allowed surface inside the vast forbidden surface.](./figures/infra6_02_permitted_vs_forbidden.png)
 
 ---
 
@@ -829,6 +835,8 @@ JSON payload schemas are one level deep into the JSON structure. Lists may conta
 
 The reasoning is the same as elsewhere. Deep nesting makes validation harder to reason about and creates places where bounds can be violated subtly. A payload that needs deep structure is a signal that the operational reality has more entity types in it than the schema currently models; the response is to model them, not to nest them in JSON.
 
+![Fig. 6: JSON Payload Validation Depth — bounded to one level. Deeper structure is a signal to factor into separate entities.](./figures/infra6_06_json_depth.png)
+
 ### 9.5 Validation at the API gate
 
 When a write to a `json`-typed field arrives at the API:
@@ -889,6 +897,8 @@ The initial bootstrap of an OpsDB starts from an empty database and the schema r
 7. The OpsDB is now ready. The API can begin serving requests; runners can begin operating.
 
 This is the same loader, the same files, the same vocabulary. The OpsDB is created from data; nothing about the bootstrap requires running an OpsDB to bootstrap an OpsDB.
+
+![Fig. 3: The Loader Processing Pipeline — schema repo to working OpsDB through eight validation gates.](./figures/infra6_03_loader_pipeline.png)
 
 ---
 
@@ -974,6 +984,8 @@ The pattern:
 
 This pattern handles every type change. Widening an int range that turns out to need to become a float: duplicate, double-write, migrate readers. Replacing a varchar field with a more structured enum: duplicate, double-write, migrate. Restructuring a field's semantic meaning (which is essentially a rename plus a type change): the same.
 
+![Fig. 5: Field Type Change via Duplication and Double-Write — N-release pattern; the old field becomes a tombstone but is never deleted.](./figures/infra6_05_double_write_pattern.png)
+
 ### 12.5 What is allowed: widening
 
 Some changes are non-breaking and permitted directly:
@@ -987,6 +999,8 @@ Some changes are non-breaking and permitted directly:
 - **Adding new approval rule references** to an entity (tightens governance for new changes; existing rows are unaffected).
 
 These changes flow through `_schema_change_set` like any other but pass validation easily because they cannot break consumers.
+
+![Fig. 7: Schema Growth Is Additive Only — cumulative entity and field counts grow monotonically; deprecated counts grow too but nothing is ever deleted.](./figures/infra6_07_schema_growth.png)
 
 ### 12.6 What is forbidden: narrowing
 
@@ -1007,6 +1021,8 @@ The rules are absolute because partial enforcement is worse than full enforcemen
 Absolute rules let consumers be simple. A runner can read a field by name and trust the name will always exist. A query can compare a field's value and trust the type will not change. A version history reconstruction can trust that fields present in old versions are still meaningful. The discipline costs the org occasional schema gymnastics around the duplication pattern; it buys decade-scale stability for everything that depends on the schema.
 
 This is the operational realization of the *data primacy* principle from INFRA-1 §5.1. Data persists; logic churns. The schema is data; its evolution is governed strictly precisely because everything else in the operational reality depends on it persisting.
+
+![Fig. 4: Schema Evolution — Widening Allowed, Narrowing Forbidden. The duplication-and-double-write pattern is the only path through forbidden ops.](./figures/infra6_04_widening_vs_narrowing.png)
 
 ---
 
