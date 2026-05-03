@@ -1,8 +1,8 @@
 {
-  "title": "OpsDB Schema Construction",
+  "title": "The OpsDB: A Substrate for Coherent Operations",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "The OpsDB schema is itself data. This paper specifies a schema construction system in which the entire schema lives as hierarchical YAML or JSON files in a git repository, processed by a deterministic loader that produces both the relational database and the API's validation metadata from the same source. The schema files are self-contained, declarative, and bounded in expressive power. A small closed vocabulary of types, modifiers, and constraints describes every field of every entity. There is no embedded logic, no regex, no templating, no computed defaults, no conditional constraints, no inheritance. The constraint vocabulary is what the system permits; everything else is refused, by design, to keep the schema inspectable and to keep validation deterministic at the API gate.\n\nThe schema repository contains a `directory.yaml` listing the import order of all entity files. Each file describes one entity: its fields, types, foreign keys, range and length bounds, enum sets, and the FK references that act as set-membership constraints. Schema evolution is governed: no field deletions, no renames, no type changes. Type changes happen by duplicating the field, double-writing during a transition window of N successful releases, and removing the original after the transition. Renames do not happen at all. The schema repo creates the OpsDB initially and modifies it through the same change-management discipline INFRA-5 specifies, keeping schema, database, and API validation synchronized.\n\nWhat this paper does not specify: the storage engine, the loader's implementation language, the file format choice between YAML and JSON, or the specific authoring tooling. The schema is relational; the relations are declared as data; the rest is implementation choice.",
+  "description": "This paper introduces the OpsDB to readers who have not encountered the prior six papers in the series. The OpsDB is a centralized data substrate that holds the full operational reality of an organization \u2014 configuration, observed state, schedules, policies, runner enumeration, documentation references, evidence, change history, audit \u2014 accessed through a single API gate that enforces authentication, authorization, validation, change management, versioning, and audit uniformly across every entity. Three populations consume the substrate through scoped access: humans investigating and proposing changes, automation runners performing operational work, auditors verifying controls. A small fleet of decentralized runners reads from the OpsDB, acts in the world through shared libraries, and writes results back; the OpsDB itself is passive and never invokes work. The schema is itself data, declared in YAML files in a git repo, evolved through the same change-management discipline that governs every other operational change.\n\nThis paper covers what the OpsDB is, what an organization receives by building one, and how operational workflows change when an OpsDB is in place. It reads as an introduction; the prior six papers (INFRA-1 through INFRA-6) provide the structural specifications. A reader who finishes this paper should understand whether their organization would benefit from an OpsDB and what it would feel like to operate inside one.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -16,11 +16,11 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-7-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-6-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-7-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
