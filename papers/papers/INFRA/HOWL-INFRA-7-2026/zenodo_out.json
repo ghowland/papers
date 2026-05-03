@@ -67,10 +67,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-7-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -89,6 +89,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20011780/files",
     "bucket": "https://zenodo.org/api/files/75511d3e-1b47-47c2-b6e5-bcd61c8e0226",
+    "thumb250": "https://zenodo.org/record/20011780/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20011780/thumb10",
+      "50": "https://zenodo.org/record/20011780/thumb50",
+      "100": "https://zenodo.org/record/20011780/thumb100",
+      "250": "https://zenodo.org/record/20011780/thumb250",
+      "750": "https://zenodo.org/record/20011780/thumb750",
+      "1200": "https://zenodo.org/record/20011780/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20011780",
     "latest_draft_html": "https://zenodo.org/deposit/20011780",
     "publish": "https://zenodo.org/api/deposit/depositions/20011780/actions/publish",
@@ -98,7 +107,28 @@
   },
   "record_id": 20011780,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "ca4befd2-1665-4697-9ec1-0a56089fc425",
+      "filename": "!manuscript.pdf",
+      "filesize": 2592486,
+      "checksum": "4c5e855fdb8caf15788e40cf8d3a2b3d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20011780/files/ca4befd2-1665-4697-9ec1-0a56089fc425",
+        "download": "https://zenodo.org/api/records/20011780/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "3c0cf966-24f8-46dd-9e65-9293696107c9",
+      "filename": "HOWL-INFRA-7-2026.zip",
+      "filesize": 4988274,
+      "checksum": "fe104117677c93425622b8c1143b89de",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20011780/files/3c0cf966-24f8-46dd-9e65-9293696107c9",
+        "download": "https://zenodo.org/api/records/20011780/draft/files/HOWL-INFRA-7-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }

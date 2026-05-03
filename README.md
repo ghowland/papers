@@ -236,7 +236,7 @@
 ---
 
 ## Infrastructure
-*Networked Server Infrastructure Engineering.*
+*Infrastructure Engineering.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
