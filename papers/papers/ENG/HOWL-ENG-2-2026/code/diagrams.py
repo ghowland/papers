@@ -83,13 +83,13 @@ ax.axhspan(6, 10, xmin=0.55, xmax=1.0, alpha=0.10, color=RED, zorder=0)
 # Crossover zone
 ax.axhspan(5, 9, xmin=0.45, xmax=0.95, alpha=0.05, color=GOLD, zorder=0)
 
-ax.text(2.0, 1.5, 'BUSINESS\nENGINEERING\nDOMAIN',
+ax.text(2.0, 3.0, 'BUSINESS\nENGINEERING\nDOMAIN',
         ha='center', va='center', fontsize=12,
         color=BLUE, fontweight='bold', alpha=0.85)
-ax.text(8.0, 8.5, 'TRADITIONAL\nENGINEERING\nDOMAIN',
+ax.text(8.0, 9.5, 'TRADITIONAL\nENGINEERING\nDOMAIN',
         ha='center', va='center', fontsize=12,
         color=RED, fontweight='bold', alpha=0.85)
-ax.text(7.5, 6.3, 'crossover region',
+ax.text(7.5, 7.3, 'crossover region',
         ha='center', va='center', fontsize=10,
         color=GOLD, style='italic', alpha=0.85)
 
@@ -112,11 +112,18 @@ examples = [
     ('Election\ndisinformation', 7.5, 6.5, ORANGE),
 ]
 
+count = 0
 for name, x, y, c in examples:
     ax.scatter(x, y, s=200, color=c, edgecolors=WHITE,
                linewidth=1.5, zorder=5, alpha=0.9)
-    ax.annotate(name, xy=(x, y), xytext=(x + 0.15, y + 0.25),
+    
+    offsetY = 0
+    if count % 2 == 1:
+        offsetY = -0.75
+
+    ax.annotate(name, xy=(x, y), xytext=(x - 0.5, y + 0.25 + offsetY),
                 fontsize=9, color=WHITE)
+    count += 1
 
 ax.set_xlabel('Reversibility of Cost  \u2192  (reversible \u2192 irreversible)',
               color=SILVER, fontsize=12)

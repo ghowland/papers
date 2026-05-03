@@ -1,6 +1,6 @@
 {
   "created": "2026-05-03T06:33:43.382078+00:00",
-  "modified": "2026-05-03T06:35:12.176894+00:00",
+  "modified": "2026-05-03T06:50:18.354127+00:00",
   "id": 19997507,
   "conceptrecid": "19997506",
   "metadata": {
@@ -55,7 +55,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/ENG/HOWL-ENG-2-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -109,22 +109,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "88a1a990-14ab-4171-87e8-8ec8b36da253",
+      "id": "a79ef295-0887-4fc2-a6af-c0482a78fb8e",
       "filename": "!manuscript.pdf",
-      "filesize": 86259,
-      "checksum": "25c18e8e1ba28d36ae7baaed2fa8152f",
+      "filesize": 1785972,
+      "checksum": "f7b31dd5f1d43f4f8511a5bc1a59e1cc",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/88a1a990-14ab-4171-87e8-8ec8b36da253",
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/a79ef295-0887-4fc2-a6af-c0482a78fb8e",
         "download": "https://zenodo.org/api/records/19997507/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "4ce259e3-51f2-4e9b-862f-9153b4bfcf07",
+      "id": "1909229e-e574-4731-af7c-8ca147c7e2f7",
       "filename": "HOWL-ENG-2-2026.zip",
-      "filesize": 1453394,
-      "checksum": "822b3bf8deb226fd1f6760eb94d2584a",
+      "filesize": 3383955,
+      "checksum": "f39f887d1e8f3618fb8a48e87a7125fe",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/4ce259e3-51f2-4e9b-862f-9153b4bfcf07",
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/1909229e-e574-4731-af7c-8ca147c7e2f7",
         "download": "https://zenodo.org/api/records/19997507/draft/files/HOWL-ENG-2-2026.zip/content"
       }
     }
