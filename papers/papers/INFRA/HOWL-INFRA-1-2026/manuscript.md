@@ -3,7 +3,7 @@
 
 **Registry:** [@HOWL-INFRA-1-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20002029
 
 **Date:** May 3 2026
 
@@ -21,8 +21,6 @@ Infrastructure engineering discusses systems and tools, not the underlying parts
 
 This paper presents a three-axis taxonomy. Axis 1 enumerates the mechanisms — the building blocks that perform work. Axis 2 enumerates the properties — the contracts that hold over those mechanisms. Axis 3 enumerates the principles — the rules that govern assembly. Each axis is populated; the relationships between axes are specified.
 
-The paper presents the taxonomy. Construction methodology, evaluation frameworks, and case studies are deferred to subsequent papers in the HOWL-INFRA series.
-
 ---
 
 ## 1. Introduction
@@ -30,8 +28,6 @@ The paper presents the taxonomy. Construction methodology, evaluation frameworks
 Infrastructure engineering frequently operates with imprecise vocabulary. Three distinct things are named with overlapping words: what a component does (the mechanism), what it guarantees (the property), and the rules that govern its proper use (the principle). The word "durability" can refer to a mechanism (write-ahead logging plus fsync plus replication), a property (the contract that committed data survives a defined set of failures), or a principle (the rule that critical data must survive single-node failure). The same applies to "consistency," "ordering," and several others.
 
 This paper separates these three. It presents a three-axis taxonomy: mechanisms, properties, principles. The taxonomy is purely descriptive. It does not prescribe construction, recommend implementations, or evaluate systems. It names the parts.
-
-Subsequent papers will use the taxonomy. HOWL-INFRA-2 will address construction methodology — how to design a system from a stated effect using the taxonomy. HOWL-INFRA-3 will address evaluation. HOWL-INFRA-4 will apply both to specific cases. Those topics are out of scope here. This paper exists so the rest can refer to a stable vocabulary.
 
 The scope is infrastructure: networked systems, server operations, configuration, orchestration, storage, and the data and control planes that connect them. Application internals, language design, and hardware design are out of scope except where they expose mechanisms that infrastructure consumes.
 
@@ -1275,17 +1271,7 @@ This paper has presented a three-axis taxonomy. Mechanisms (§3) are named, defi
 
 The same word commonly names a mechanism, a property, and a principle. The paper resolves this throughout by qualifying — durability mechanism, durability property, durability-related principle. The qualified form is the intended use throughout.
 
-### 8.2 What follows from this paper
-
-The taxonomy is built for construction. Subsequent papers will use it:
-
-- **HOWL-INFRA-2-2026: Construction Methodology** — using the taxonomy to design a system from a stated effect. Given a desired effect, derive the property requirements, identify the principles that apply, select mechanisms that provide the properties, compose them, and check coverage.
-- **HOWL-INFRA-3-2026: Evaluation Framework** — using the taxonomy to assess existing systems. For an existing system, identify the mechanisms used, the properties they provide, the principles followed and violated, and the gaps.
-- **HOWL-INFRA-4-2026: Case Studies** — applying the construction and evaluation frameworks to specific systems and decisions, including comparison of alternatives.
-
-These are out of scope for this paper. They are mentioned only to show the trajectory.
-
-### 8.3 An invitation
+### 8.2 An invitation
 
 The taxonomy is published with the expectation that other practitioners will find errors, omissions, and improvements. Names, groupings, and definitions are open to revision.
 

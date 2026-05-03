@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "What Engineering Is",
-    "registry_id": "HOWL-ENG-1-2026",
+    "title": "Infrastructure Taxonomy",
+    "registry_id": "HOWL-INFRA-1-2026",
     "series_path": "",
-    "doi": "10.5281/zenodo.19994227",
-    "abstract": "",
+    "doi": "10.5281/zenodo.20002029",
+    "abstract": "Infrastructure engineering discusses systems and tools, not the underlying parts those systems are built from. The same word commonly names a mechanism, a property, and a principle (durability is a mechanism implemented via journaling and replication; durability is a property claimed about committed data; \"durability principles\" govern how the mechanisms are configured). This conflation prevents precise comparison and prevents engineering decisions from being inspectable.\n\nThis paper presents a three-axis taxonomy. Axis 1 enumerates the mechanisms \u2014 the building blocks that perform work. Axis 2 enumerates the properties \u2014 the contracts that hold over those mechanisms. Axis 3 enumerates the principles \u2014 the rules that govern assembly. Each axis is populated; the relationships between axes are specified.",
     "dependencies": [],
-    "raw_content_preview": "# What Engineering Is ## A precise definition and its consequences for software  **Registry:** [@HOWL-ENG-1-2026]  **DOI:** 10.5281/zenodo.19994227  **Date:** May 3 2026  **Domain:** Applied Philosoph..."
+    "raw_content_preview": "# Infrastructure Taxonomy ## A Taxonomy of Infrastructure Mechanisms, Properties, and Principles  **Registry:** [@HOWL-INFRA-1-2026]  **DOI:** 10.5281/zenodo.20002029  **Date:** May 3 2026  **Domain:*..."
 }

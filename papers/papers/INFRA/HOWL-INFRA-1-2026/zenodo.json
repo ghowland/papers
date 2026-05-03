@@ -1,8 +1,8 @@
 {
-  "title": "What Engineering Is",
+  "title": "Infrastructure Taxonomy",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "Infrastructure engineering discusses systems and tools, not the underlying parts those systems are built from. The same word commonly names a mechanism, a property, and a principle (durability is a mechanism implemented via journaling and replication; durability is a property claimed about committed data; \"durability principles\" govern how the mechanisms are configured). This conflation prevents precise comparison and prevents engineering decisions from being inspectable.\n\nThis paper presents a three-axis taxonomy. Axis 1 enumerates the mechanisms \u2014 the building blocks that perform work. Axis 2 enumerates the properties \u2014 the contracts that hold over those mechanisms. Axis 3 enumerates the principles \u2014 the rules that govern assembly. Each axis is populated; the relationships between axes are specified.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -11,16 +11,16 @@
     "HOWL framework",
     "howland archive",
     "discrete spacetime",
-    "eng",
+    "infra",
     "zero free parameters",
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-ENG-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/ENG/HOWL-ENG-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-1-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
