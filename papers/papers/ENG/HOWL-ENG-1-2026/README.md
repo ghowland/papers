@@ -1,4 +1,4 @@
-# Elimination of Classical Carriers for Sub-Millisecond Motor Coordination
+# What Engineering Is
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-NEURO-1-2026,
-  title={ Elimination of Classical Carriers for Sub-Millisecond Motor Coordination },
+@article{ HOWL-ENG-1-2026,
+  title={ What Engineering Is },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.18655527},
-  url = {https://zenodo.org/record/18655527},
-  note={Howland Archive: HOWL-NEURO-1-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.19994227},
+  url = {https://zenodo.org/record/19994227},
+  note={Howland Archive: HOWL-ENG-1-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

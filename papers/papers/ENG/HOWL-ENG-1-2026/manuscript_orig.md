@@ -3,7 +3,7 @@
 
 **Registry:** [@HOWL-ENG-1-2026]
 
-**DOI:** 10.5281/zenodo.19994227
+**DOI:** 10.5281/zenodo.zzz
 
 **Date:** May 3 2026
 
@@ -23,6 +23,8 @@ This paper offers a precise definition of engineering and defends it. The defini
 
 ## 2. The definition
 
+![Fig. 7: Engineering Identity Card — the definition, its five clauses, the True Cost qualifier, and the three tests.](./figures/eng01_07_identity_card.png)
+
 > *Engineering is evaluating trade-offs to find alignment of variables and constants that efficiently meet goals against externalities where failure has a True Cost.*
 
 Every word is load-bearing. The rest of the paper unpacks each clause, shows what activity it admits, what it excludes, and what survives if any clause is removed. A second sentence locks the first against drift:
@@ -30,8 +32,6 @@ Every word is load-bearing. The rest of the paper unpacks each clause, shows wha
 > *True Cost is harm borne by goal-seekers and users when the engineered system fails.*
 
 These two sentences together are the entire definition. The remainder is exposition.
-
-![Fig. 7: Engineering Identity Card — the definition, its five clauses, the True Cost qualifier, and the three tests.](./figures/eng01_07_identity_card.png)
 
 ## 3. Clause by clause
 
