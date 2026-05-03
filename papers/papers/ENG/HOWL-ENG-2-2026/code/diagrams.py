@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-HOWL ENG-01 Diagrams — What Engineering Is
-8 figures covering the structural definition of engineering and its consequences.
+HOWL ENG-02 Diagrams — What True Cost Is, and Why Credentialing Has Failed Software
+8 figures covering True Cost domains, the three-tier credentialing model,
+and the structural reasons software credentialing fails.
 Output: PNG files to ../figures/
 """
 
@@ -9,7 +10,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import Circle, FancyBboxPatch, FancyArrowPatch, Wedge
+from matplotlib.patches import Circle, FancyBboxPatch, FancyArrowPatch, Wedge, Rectangle
 import numpy as np
 import os
 
@@ -66,583 +67,685 @@ def save(fig, filename):
     print("  Saved: %s" % filename)
 
 # ================================================================
-# FIG 1: REMOVAL TEST MATRIX
-# Type: 6 (Comparison Bar Chart)
-# Shows: each clause's load-bearing weight by what survives if removed
+# FIG 1: TWO DOMAINS OF TRUE COST
+# Type: 2 (Scale/Landscape)
+# Shows: physical/civ True Cost vs financial/availability True Cost
 # ================================================================
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
 style_axes(ax)
 
-clauses = [
-    'Evaluating\ntrade-offs',
-    'Alignment of\nvariables/constants',
-    'Efficiently',
-    'Meet goals',
-    'Against\nexternalities',
-    'True Cost\non failure',
-]
-collapses_to = [
-    'Execution / trades',
-    'Opinion / preference',
-    'Brute force',
-    'Structure-fitting',
-    'Pure mathematics',
-    'Academic exercise',
-]
-severity = [9, 8, 7, 7, 10, 10]
-colors = [ORANGE, ORANGE, CYAN, CYAN, RED, RED]
+# Two regions
+# Bottom-left: financial / reversible (business engineering)
+ax.axhspan(0, 4, xmin=0.0, xmax=0.55, alpha=0.08, color=BLUE, zorder=0)
+# Top-right: physical/civ / irreversible (traditional)
+ax.axhspan(6, 10, xmin=0.55, xmax=1.0, alpha=0.10, color=RED, zorder=0)
+# Crossover zone
+ax.axhspan(5, 9, xmin=0.45, xmax=0.95, alpha=0.05, color=GOLD, zorder=0)
 
-y_pos = np.arange(len(clauses))
-bars = ax.barh(y_pos, severity, color=colors, alpha=0.7,
-               edgecolor=colors, linewidth=2)
+ax.text(2.0, 1.5, 'BUSINESS\nENGINEERING\nDOMAIN',
+        ha='center', va='center', fontsize=12,
+        color=BLUE, fontweight='bold', alpha=0.85)
+ax.text(8.0, 8.5, 'TRADITIONAL\nENGINEERING\nDOMAIN',
+        ha='center', va='center', fontsize=12,
+        color=RED, fontweight='bold', alpha=0.85)
+ax.text(7.5, 6.3, 'crossover region',
+        ha='center', va='center', fontsize=10,
+        color=GOLD, style='italic', alpha=0.85)
 
-for i, (sev, collapse) in enumerate(zip(severity, collapses_to)):
-    ax.text(sev + 0.2, i, '\u2192 ' + collapse,
-            va='center', ha='left', fontsize=11, color=WHITE)
-    ax.text(0.15, i, str(sev) + '/10',
-            va='center', ha='left', fontsize=10, color=BG, fontweight='bold')
-
-ax.set_yticks(y_pos)
-ax.set_yticklabels(clauses, color=WHITE, fontsize=11)
-ax.set_xlabel('Severity of Definition Collapse if Clause Removed',
-              color=SILVER, fontsize=12)
-ax.set_xlim(0, 18)
-ax.set_ylim(-0.6, len(clauses) - 0.4)
-ax.invert_yaxis()
-ax.set_xticks([0, 2, 4, 6, 8, 10])
-ax.axvline(10, color=DIM, linestyle='--', linewidth=1, alpha=0.5)
-ax.text(10.05, -0.45, 'maximum', fontsize=8, color=DIM)
-
-ax.set_title('Removal Test: Each Clause is Load-Bearing',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
-ax.text(9, 6.3,
-        'Drop any clause and engineering collapses into a different activity.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-
-save(fig, 'eng01_01_removal_test_matrix.png')
-
-# ================================================================
-# FIG 2: ACTIVITY LANDSCAPE ON TWO AXES
-# Type: 3 (Threshold/Region Chart)
-# Shows: where each activity sits in (externality presence) x (True Cost) space
-# ================================================================
-fig, ax = plt.subplots(figsize=(16, 10))
-fig.patch.set_facecolor(BG)
-style_axes(ax)
-
-# Engineering region (high externality, high True Cost)
-ax.axhspan(6, 10, xmin=0.6, xmax=1.0, alpha=0.10, color=GOLD, zorder=0)
-# Math region (low externality, low True Cost)
-ax.axhspan(0, 4, xmin=0.0, xmax=0.4, alpha=0.10, color=BLUE, zorder=0)
-# Trades region (high externality, low True Cost — execution layer)
-ax.axhspan(0, 4, xmin=0.6, xmax=1.0, alpha=0.10, color=GREEN, zorder=0)
-# Academic / exercise (mid externality, low cost)
-ax.axhspan(0, 4, xmin=0.4, xmax=0.6, alpha=0.08, color=PURPLE, zorder=0)
-
-ax.text(8.2, 8.5, 'ENGINEERING', fontsize=14, color=GOLD,
-        fontweight='bold', alpha=0.9)
-ax.text(1.5, 1.5, 'MATH', fontsize=14, color=BLUE,
-        fontweight='bold', alpha=0.9)
-ax.text(8.2, 1.5, 'TRADES', fontsize=14, color=GREEN,
-        fontweight='bold', alpha=0.9)
-ax.text(4.7, 1.5, 'ACADEMIC', fontsize=12, color=PURPLE,
-        fontweight='bold', alpha=0.9)
-
-# Activities as points
-activities = [
-    # (name, ext, cost, color)
-    ('Pure crypto', 1.5, 1.2, BLUE),
-    ('Lamport: Paxos proof', 2.5, 1.8, BLUE),
-    ('Iteration', 1.0, 0.7, BLUE),
-    ('Textbook bridge', 4.5, 1.5, PURPLE),
-    ('Class Paxos impl', 5.0, 2.2, PURPLE),
-    ('Cabling concrete', 8.5, 2.0, GREEN),
-    ('Concrete pour', 9.0, 2.5, GREEN),
-    ('CRUD app', 7.0, 2.3, GREEN),
-    ('Senior ops on prod', 9.2, 8.5, GOLD),
-    ('Therac-25 (failed)', 9.5, 9.5, RED),
-    ('Quake netcode', 8.5, 7.0, GOLD),
-    ('Spanner / Bigtable', 9.0, 8.8, GOLD),
-    ('Applied crypto / TLS', 8.8, 8.0, GOLD),
-    ('Unix / C', 8.0, 7.2, GOLD),
-    ('Raft impl', 8.5, 7.8, GOLD),
+# Examples placed
+examples = [
+    # (name, reversibility 0=reversible 10=irreversible, magnitude 0=low 10=mortality)
+    ('SaaS outage', 1.5, 1.5, BLUE),
+    ('Failed startup', 4.0, 2.5, BLUE),
+    ('Data loss\n(restorable)', 2.5, 2.0, BLUE),
+    ('Major data breach', 5.5, 4.0, ORANGE),
+    ('MapReduce job fail', 0.8, 0.8, BLUE),
+    ('Pacemaker bug', 9.0, 9.0, RED),
+    ('Bridge collapse', 9.5, 9.5, RED),
+    ('Therac-25', 9.5, 9.8, RED),
+    ('Avionics failure', 9.5, 9.5, RED),
+    ('Industrial accident', 9.0, 8.8, RED),
+    ('Grid failure\n(cascading)', 8.5, 8.5, RED),
+    ('Autonomous vehicle\ncollision', 9.0, 9.0, RED),
+    ('Algo trading crash', 6.5, 5.5, ORANGE),
+    ('Election\ndisinformation', 7.5, 6.5, ORANGE),
 ]
 
-for name, x, y, c in activities:
-    ax.scatter(x, y, s=180, color=c, edgecolors=WHITE,
+for name, x, y, c in examples:
+    ax.scatter(x, y, s=200, color=c, edgecolors=WHITE,
                linewidth=1.5, zorder=5, alpha=0.9)
-    ax.annotate(name, xy=(x, y), xytext=(x + 0.15, y + 0.22),
+    ax.annotate(name, xy=(x, y), xytext=(x + 0.15, y + 0.25),
                 fontsize=9, color=WHITE)
 
-ax.set_xlabel('Externalities Push Back  \u2192',
+ax.set_xlabel('Reversibility of Cost  \u2192  (reversible \u2192 irreversible)',
               color=SILVER, fontsize=12)
-ax.set_ylabel('True Cost on Failure  \u2192',
+ax.set_ylabel('Cost Magnitude  \u2192  (bounded \u2192 mortality / civilizational)',
               color=SILVER, fontsize=12)
 ax.set_xlim(0, 10.5)
 ax.set_ylim(0, 10.5)
-ax.set_xticks([0, 2, 4, 6, 8, 10])
-ax.set_yticks([0, 2, 4, 6, 8, 10])
 
-ax.set_title('Activity Landscape: Engineering Occupies One Quadrant',
+ax.set_title('Two Domains of True Cost: Different Magnitudes, Different Reversibility',
              color=GOLD, fontsize=15, fontweight='bold', pad=15)
 
-save(fig, 'eng01_02_activity_landscape.png')
+save(fig, 'eng02_01_two_domains_truecost.png')
 
 # ================================================================
-# FIG 3: SWE VELOCITY vs OPS STABILITY — COST SURFACES
-# Type: 3 (Threshold/Region Chart)
-# Shows: where internal-cost optimization diverges from True-Cost optimization
+# FIG 2: SUBSTRATE STABILITY ACROSS DISCIPLINES
+# Type: 1 (Running/Convergence Chart)
+# Shows: substrate change rate over time for each engineering discipline
 # ================================================================
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
 style_axes(ax)
 
-# X axis: shipping velocity (low to high)
-# Y axis: cost (arbitrary units)
-x = np.linspace(0, 10, 200)
+years = np.linspace(1900, 2026, 200)
 
-# Internal cost: low when shipping fast, high when shipping slow
-# (this is what SWE leadership feels: "we're behind schedule")
-internal_cost = 8.0 * np.exp(-0.4 * x) + 0.5
+# Civil/Mechanical/Electrical: nearly flat (substrate barely changes)
+civil = 95 + 2 * np.sin((years - 1900) / 30) + 0.5 * (years - 1900) / 126
+mech = 93 + 2 * np.cos((years - 1900) / 25) + 0.7 * (years - 1900) / 126
+elec = 90 + 5 * np.sin((years - 1900) / 20) + 1.0 * (years - 1900) / 126
 
-# True cost: low when shipping safely, rises sharply when velocity exceeds capacity
-# (this is what Ops sees: outages, data loss, revenue hit)
-true_cost = 0.5 + 0.05 * x + 0.03 * np.maximum(0, x - 4) ** 2.5
+# Software: extreme volatility
+# Mainframes (1950s-60s), minis (70s), PCs (80s), web (90s), cloud (2000s),
+# containers (2010s), AI/serverless (2020s)
+sw = np.zeros_like(years)
+for i, y in enumerate(years):
+    if y < 1950:
+        sw[i] = 95
+    else:
+        # Each transition drops stability sharply, recovers partially
+        transitions = [1955, 1972, 1985, 1995, 2006, 2014, 2022]
+        base = 60
+        for t in transitions:
+            base -= 8 * np.exp(-((y - t) ** 2) / 20)
+        # Constant churn between transitions
+        sw[i] = max(20, base + 5 * np.sin((y - 1950) / 3))
 
-ax.plot(x, internal_cost, color=BLUE, linewidth=2.5,
-        label='Internal cost (felt by SWE leadership)')
-ax.plot(x, true_cost, color=RED, linewidth=2.5,
-        label='True Cost (paid by users / business)')
+ax.plot(years, civil, color=BLUE, linewidth=2.5,
+        label='Civil engineering')
+ax.plot(years, mech, color=GREEN, linewidth=2.5,
+        label='Mechanical engineering')
+ax.plot(years, elec, color=PURPLE, linewidth=2.5,
+        label='Electrical engineering')
+ax.plot(years, sw, color=ORANGE, linewidth=2.8,
+        label='Software engineering')
 
-# Crossover region
-crossover_idx = np.argmin(np.abs(internal_cost - true_cost))
-crossover_x = x[crossover_idx]
+# Mark software substrate transitions
+transitions_marks = [
+    (1955, 'mainframes'),
+    (1972, 'minis'),
+    (1985, 'PCs'),
+    (1995, 'web'),
+    (2006, 'cloud'),
+    (2014, 'containers'),
+    (2022, 'AI / serverless'),
+]
+for ty, tname in transitions_marks:
+    ax.axvline(ty, color=ORANGE, linestyle=':', linewidth=0.8, alpha=0.4)
+    ax.text(ty, 12, tname, fontsize=8, color=ORANGE,
+            rotation=90, ha='center', va='bottom', alpha=0.85)
 
-# Aligned region (left of crossover)
-ax.axvspan(0, crossover_x, alpha=0.06, color=GREEN, zorder=0)
-# Diverged region (right of crossover)
-ax.axvspan(crossover_x, 10, alpha=0.06, color=ORANGE, zorder=0)
+# Annotation: stability threshold for credentialing
+ax.axhline(80, color=GOLD, linestyle='--', linewidth=1.2, alpha=0.6)
+ax.text(1905, 82, 'credentialing-viable threshold',
+        fontsize=9, color=GOLD)
 
-ax.axvline(crossover_x, color=DIM, linestyle='--', linewidth=1.2, alpha=0.7)
-ax.text(crossover_x + 0.1, 9.0, 'crossover',
-        fontsize=9, color=DIM, rotation=90, va='top')
+ax.set_xlabel('Year', color=SILVER, fontsize=12)
+ax.set_ylabel('Substrate Stability (%)', color=SILVER, fontsize=12)
+ax.set_xlim(1900, 2030)
+ax.set_ylim(0, 105)
 
-ax.text(crossover_x / 2, 9.3, 'aligned: both costs agree',
-        ha='center', fontsize=10, color=GREEN, fontweight='bold')
-ax.text((crossover_x + 10) / 2, 9.3,
-        'diverged: orgs choose which cost matters',
-        ha='center', fontsize=10, color=ORANGE, fontweight='bold')
-
-# Annotation showing the engineering position
-ax.annotate('Ops gates here:\nTrue Cost rising',
-            xy=(7.5, true_cost[150]),
-            xytext=(5.5, 7.0),
-            fontsize=10, color=WHITE,
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=RED),
-            arrowprops=dict(arrowstyle='->', color=RED, lw=1.2))
-
-ax.annotate('SWE leadership\nfeels pressure here',
-            xy=(1.0, internal_cost[20]),
-            xytext=(2.5, 5.5),
-            fontsize=10, color=WHITE,
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=BLUE),
-            arrowprops=dict(arrowstyle='->', color=BLUE, lw=1.2))
-
-ax.set_xlabel('Shipping Velocity  \u2192',
-              color=SILVER, fontsize=12)
-ax.set_ylabel('Cost (arbitrary units)',
-              color=SILVER, fontsize=12)
-ax.set_xlim(0, 10)
-ax.set_ylim(0, 10)
-
-leg = ax.legend(loc='upper right', facecolor=PAN, edgecolor=DIM,
+leg = ax.legend(loc='lower left', facecolor=PAN, edgecolor=DIM,
                 labelcolor=WHITE, fontsize=10)
 
-ax.set_title('Two Cost Surfaces: Internal Pressure vs True Cost',
+ax.set_title('Substrate Stability: Why Software Cannot Be Credentialed Like Civil',
              color=GOLD, fontsize=15, fontweight='bold', pad=15)
 
-save(fig, 'eng01_03_swe_ops_cost_surfaces.png')
+save(fig, 'eng02_02_substrate_stability.png')
 
 # ================================================================
-# FIG 4: SUBSTRATE-BITES THRESHOLD
-# Type: 1 (Running/Convergence Chart)
-# Shows: engineering content rises with how hard the substrate pushes back
+# FIG 3: THE THREE-TIER CREDENTIALING MATRIX
+# Type: 5/6 (Connection Map / Comparison)
+# Shows: the central framework as a structured matrix
+# ================================================================
+fig, ax = plt.subplots(figsize=(18, 11))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 10)
+ax.axis('off')
+
+# Title
+ax.text(5.0, 9.5, 'THE THREE-TIER CREDENTIALING MODEL',
+        ha='center', fontsize=16, color=GOLD, fontweight='bold')
+ax.text(5.0, 9.05, 'credentialing follows cost domain, not activity',
+        ha='center', fontsize=11, color=SILVER, style='italic')
+
+# Header row
+headers = ['Tier', 'Cost Domain', 'Substrate', 'Credentialing Target', 'Why It Works']
+header_x = [0.7, 2.7, 4.7, 6.5, 8.5]
+header_widths = [1.6, 1.6, 1.6, 1.6, 1.4]
+
+for h, x, w in zip(headers, header_x, header_widths):
+    box = FancyBboxPatch((x - w/2 + 0.05, 7.8), w - 0.1, 0.7,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=GOLD, linewidth=1.5)
+    ax.add_patch(box)
+    ax.text(x, 8.15, h, ha='center', va='center',
+            fontsize=11, color=GOLD, fontweight='bold')
+
+# Three tier rows
+tiers = [
+    {
+        'name': 'TRADITIONAL',
+        'color': RED,
+        'cost': 'Physical /\ncivilizational\n(mortality)',
+        'substrate': 'Stable\n(physics holds still)',
+        'target': 'PERSON\n(then output\nvia stamp)',
+        'why': 'Costs justify\noverhead; codes\nexist; competence\nportable',
+        'y': 6.0,
+    },
+    {
+        'name': 'BUSINESS',
+        'color': BLUE,
+        'cost': 'Financial /\nservice-availability\n(bounded, reversible)',
+        'substrate': 'Unstable\n(continuous churn)',
+        'target': 'NONE\n(market handles\ncompetence)',
+        'why': 'Costs don\'t justify;\nsubstrate moves;\nno formal codes\npossible',
+        'y': 4.0,
+    },
+    {
+        'name': 'CROSSOVER',
+        'color': GOLD,
+        'cost': 'Traditional cost\nvia software\n(mortality reached)',
+        'substrate': 'System-specific\n(internal consistency)',
+        'target': 'OUTPUT\n(certified by\ndomain engineer)',
+        'why': 'SW competence\nnot portable;\nsystem is the\nunit',
+        'y': 2.0,
+    },
+]
+
+for t in tiers:
+    # Tier label box
+    box = FancyBboxPatch((0.05, t['y'] - 0.7), 1.3, 1.4,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=t['color'], linewidth=2)
+    ax.add_patch(box)
+    ax.text(0.7, t['y'], t['name'], ha='center', va='center',
+            fontsize=12, color=t['color'], fontweight='bold', rotation=0)
+
+    # Cost domain
+    box = FancyBboxPatch((1.95, t['y'] - 0.7), 1.5, 1.4,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=DIM, linewidth=1)
+    ax.add_patch(box)
+    ax.text(2.7, t['y'], t['cost'], ha='center', va='center',
+            fontsize=9, color=WHITE)
+
+    # Substrate
+    box = FancyBboxPatch((3.95, t['y'] - 0.7), 1.5, 1.4,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=DIM, linewidth=1)
+    ax.add_patch(box)
+    ax.text(4.7, t['y'], t['substrate'], ha='center', va='center',
+            fontsize=9, color=WHITE)
+
+    # Credentialing target
+    box = FancyBboxPatch((5.75, t['y'] - 0.7), 1.5, 1.4,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=t['color'], linewidth=1.5)
+    ax.add_patch(box)
+    ax.text(6.5, t['y'], t['target'], ha='center', va='center',
+            fontsize=10, color=t['color'], fontweight='bold')
+
+    # Why
+    box = FancyBboxPatch((7.85, t['y'] - 0.7), 1.7, 1.4,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=DIM, linewidth=1)
+    ax.add_patch(box)
+    ax.text(8.7, t['y'], t['why'], ha='center', va='center',
+            fontsize=8.5, color=SILVER)
+
+# Footer note
+ax.text(5.0, 0.6, 'Same SWE may cross between tiers across their career.',
+        ha='center', fontsize=10, color=SILVER, style='italic')
+ax.text(5.0, 0.3, 'The tier follows the work, not the person.',
+        ha='center', fontsize=10, color=SILVER, style='italic')
+
+save(fig, 'eng02_03_three_tier_matrix.png')
+
+# ================================================================
+# FIG 4: COST MAGNITUDE vs CREDENTIALING OVERHEAD
+# Type: 3 (Threshold/Region Chart)
+# Shows: society's credentialing apparatus follows cost magnitude
 # ================================================================
 fig, ax = plt.subplots(figsize=(16, 10))
 fig.patch.set_facecolor(BG)
 style_axes(ax)
 
-x = np.linspace(0, 10, 200)
-# Engineering content: low for soft substrates, rises sharply, saturates at extreme
-eng_content = 100 / (1 + np.exp(-1.0 * (x - 5)))
+x = np.linspace(0, 10, 300)
+# Step-like curve: nothing at low cost, ramps up at mortality threshold
+# Society's investment in credentialing infrastructure
+overhead = 5 + 90 / (1 + np.exp(-1.5 * (x - 6)))
 
-ax.plot(x, eng_content, color=GOLD, linewidth=2.8,
-        label='Engineering content of role')
+ax.plot(x, overhead, color=GOLD, linewidth=2.8,
+        label='Society\'s credentialing apparatus')
 
 # Region shading
-ax.axvspan(0, 3, alpha=0.07, color=BLUE, zorder=0)
-ax.axvspan(3, 6, alpha=0.07, color=PURPLE, zorder=0)
-ax.axvspan(6, 10, alpha=0.07, color=GOLD, zorder=0)
+ax.axvspan(0, 4, alpha=0.07, color=BLUE, zorder=0)
+ax.axvspan(4, 7, alpha=0.07, color=ORANGE, zorder=0)
+ax.axvspan(7, 10, alpha=0.10, color=RED, zorder=0)
 
-ax.text(1.5, 95, 'forgiving substrate', ha='center',
-        fontsize=10, color=BLUE, fontweight='bold')
-ax.text(4.5, 95, 'mixed', ha='center',
-        fontsize=10, color=PURPLE, fontweight='bold')
-ax.text(8.0, 95, 'unforgiving substrate', ha='center',
-        fontsize=10, color=GOLD, fontweight='bold')
+# Region labels
+ax.text(2.0, 95, 'BUSINESS COST', ha='center',
+        fontsize=11, color=BLUE, fontweight='bold')
+ax.text(2.0, 89, 'no apparatus', ha='center',
+        fontsize=9, color=BLUE, style='italic')
 
-# Plot example roles at their substrate-pressure x-values
-roles = [
-    ('CRUD app dev', 1.0, BLUE),
-    ('Framework user', 1.8, BLUE),
-    ('Backend service SWE', 3.2, PURPLE),
-    ('Performance engineer', 6.0, PURPLE),
-    ('DB internals', 7.8, GOLD),
-    ('Senior ops at scale', 8.5, GOLD),
-    ('Embedded / RT', 9.0, GOLD),
-    ('Safety-critical', 9.5, GOLD),
+ax.text(5.5, 95, 'EDGE / EMERGING', ha='center',
+        fontsize=11, color=ORANGE, fontweight='bold')
+ax.text(5.5, 89, 'partial / contested', ha='center',
+        fontsize=9, color=ORANGE, style='italic')
+
+ax.text(8.5, 95, 'TRADITIONAL COST', ha='center',
+        fontsize=11, color=RED, fontweight='bold')
+ax.text(8.5, 89, 'full apparatus', ha='center',
+        fontsize=9, color=RED, style='italic')
+
+# Mark example activities
+markers = [
+    ('CRUD app dev', 1.0, 'business'),
+    ('SaaS ops at scale', 2.5, 'business'),
+    ('Distributed systems', 3.5, 'business'),
+    ('Algo trading', 5.5, 'edge'),
+    ('Medical AI', 7.0, 'crossover'),
+    ('Auto vehicles', 7.5, 'crossover'),
+    ('Avionics SW', 8.5, 'crossover'),
+    ('Pacemaker firmware', 8.8, 'crossover'),
+    ('Bridge engineering', 9.3, 'traditional'),
 ]
 
-for name, xv, c in roles:
-    yv = 100 / (1 + np.exp(-1.0 * (xv - 5)))
-    ax.scatter(xv, yv, s=180, color=c, edgecolors=WHITE,
+for name, xv, _ in markers:
+    yv = 5 + 90 / (1 + np.exp(-1.5 * (xv - 6)))
+    if xv < 4:
+        c = BLUE
+    elif xv < 7:
+        c = ORANGE
+    else:
+        c = RED
+    ax.scatter(xv, yv, s=160, color=c, edgecolors=WHITE,
                linewidth=1.5, zorder=5)
-    ax.annotate(name, xy=(xv, yv), xytext=(xv + 0.1, yv - 4.5),
-                fontsize=9, color=WHITE)
+    ax.annotate(name, xy=(xv, yv), xytext=(xv + 0.15, yv - 7),
+                fontsize=9, color=WHITE,
+                arrowprops=dict(arrowstyle='-', color=DIM, lw=0.5, alpha=0.5))
 
-ax.set_xlabel('How Hard the Substrate Pushes Back  \u2192',
+# Threshold annotation
+ax.axvline(6.0, color=DIM, linestyle='--', linewidth=1, alpha=0.5)
+ax.text(6.05, 25, 'mortality\nthreshold', fontsize=9, color=DIM, va='center')
+
+ax.set_xlabel('True Cost Magnitude  \u2192',
               color=SILVER, fontsize=12)
-ax.set_ylabel('Engineering Content of the Work (%)',
+ax.set_ylabel('Credentialing Apparatus Society Builds (%)',
               color=SILVER, fontsize=12)
 ax.set_xlim(0, 10)
 ax.set_ylim(0, 105)
 
-ax.set_title('Engineering Content Tracks Substrate Pressure',
+ax.set_title('Credentialing Overhead Follows Cost Magnitude',
              color=GOLD, fontsize=15, fontweight='bold', pad=15)
 
-save(fig, 'eng01_04_substrate_threshold.png')
+save(fig, 'eng02_04_cost_vs_credentialing.png')
 
 # ================================================================
-# FIG 5: SWE EXAMPLES ON SUBSTRATE LANDSCAPE
-# Type: 2 (Scale/Landscape Diagram)
-# Shows: the paper's SWE examples placed on a substrate-pressure axis
+# FIG 5: INTERNAL CONSISTENCY RATIO — BRIDGE vs PACEMAKER
+# Type: 6 (Comparison Bar Chart)
+# Shows: where engineering effort goes — software is internally consistent first
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 8))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 9),
+                                gridspec_kw={'wspace': 0.30})
 fig.patch.set_facecolor(BG)
-style_axes(ax)
+style_axes(ax1)
+style_axes(ax2)
 
-# Horizontal landscape: log-style spacing of substrate severity
-examples = [
-    # (name, position, true_cost_marker_size, color, year)
-    ('Iteration\n(math)', 0.5, 80, BLUE, 'algorithm'),
-    ('Lamport: Paxos\nas proof', 1.5, 100, BLUE, '1989'),
-    ('Engelbart NLS\n+ remote demo', 4.5, 350, GOLD, '1968'),
-    ('Unix / C', 5.5, 400, GOLD, '1969-73'),
-    ('Quake netcode', 6.3, 380, GOLD, '1996'),
-    ('Raft\n(implementable)', 7.0, 360, GOLD, '2014'),
-    ('Acton: DOD\n(16ms wall)', 7.8, 420, GOLD, '2014'),
-    ('MapReduce /\nSpanner', 8.5, 480, GOLD, '2004+'),
-    ('Therac-25\n(failed)', 9.5, 600, RED, '1985-87'),
-]
+# Bridge engineering effort distribution
+bridge_categories = ['External\ninterface\n(loads, soil,\nwind, traffic)',
+                     'Internal\nconsistency\n(rebar, joints,\nbolts)']
+bridge_values = [70, 30]
+bridge_colors = [RED, CYAN]
 
-for name, xv, sz, c, year in examples:
-    ax.scatter(xv, 0.5, s=sz, color=c, edgecolors=WHITE,
-               linewidth=2, zorder=5, alpha=0.85)
-    ax.text(xv, 0.78, name, ha='center', va='bottom',
-            fontsize=10, color=WHITE)
-    ax.text(xv, 0.22, year, ha='center', va='top',
-            fontsize=8, color=DIM, style='italic')
+# Pacemaker firmware effort distribution
+pace_categories = ['External\ninterface\n(actual cardiac\ndecision)',
+                   'Internal\nconsistency\n(state machines,\nerror handling,\ncomms, diagnostics)']
+pace_values = [10, 90]
+pace_colors = [RED, CYAN]
 
-# Horizontal axis line
-ax.plot([0, 10], [0.5, 0.5], color=DIM, linewidth=0.8, alpha=0.5, zorder=1)
+# Bridge bars
+y_pos = np.arange(len(bridge_categories))
+bars1 = ax1.barh(y_pos, bridge_values, color=bridge_colors, alpha=0.7,
+                 edgecolor=bridge_colors, linewidth=2)
+for i, (v, c) in enumerate(zip(bridge_values, bridge_categories)):
+    ax1.text(v + 1.5, i, str(v) + '%',
+             va='center', ha='left', fontsize=12,
+             color=WHITE, fontweight='bold')
 
-# Region labels
-ax.axvspan(0, 3, alpha=0.06, color=BLUE, zorder=0)
-ax.axvspan(3, 7, alpha=0.06, color=GOLD, zorder=0)
-ax.axvspan(7, 10, alpha=0.10, color=GOLD, zorder=0)
+ax1.set_yticks(y_pos)
+ax1.set_yticklabels(bridge_categories, color=WHITE, fontsize=10)
+ax1.set_xlim(0, 100)
+ax1.set_xticks([0, 25, 50, 75, 100])
+ax1.set_xlabel('% of Engineering Effort', color=SILVER, fontsize=11)
+ax1.set_title('Bridge Engineering',
+              color=BLUE, fontsize=14, fontweight='bold', pad=12)
+ax1.text(50, 1.7,
+         'External interface dominates.\nInternal organization follows from loads.',
+         ha='center', fontsize=9, color=SILVER, style='italic')
 
-ax.text(1.5, 0.95, 'MATH', ha='center', fontsize=11,
-        color=BLUE, fontweight='bold')
-ax.text(5.0, 0.95, 'ENGINEERING', ha='center', fontsize=11,
+# Pacemaker bars
+y_pos = np.arange(len(pace_categories))
+bars2 = ax2.barh(y_pos, pace_values, color=pace_colors, alpha=0.7,
+                 edgecolor=pace_colors, linewidth=2)
+for i, (v, c) in enumerate(zip(pace_values, pace_categories)):
+    ax2.text(v + 1.5, i, str(v) + '%',
+             va='center', ha='left', fontsize=12,
+             color=WHITE, fontweight='bold')
+
+ax2.set_yticks(y_pos)
+ax2.set_yticklabels(pace_categories, color=WHITE, fontsize=10)
+ax2.set_xlim(0, 100)
+ax2.set_xticks([0, 25, 50, 75, 100])
+ax2.set_xlabel('% of Engineering Effort', color=SILVER, fontsize=11)
+ax2.set_title('Pacemaker Firmware',
+              color=ORANGE, fontsize=14, fontweight='bold', pad=12)
+ax2.text(50, 1.7,
+         'Internal consistency dominates.\nMortality decision is a fraction.',
+         ha='center', fontsize=9, color=SILVER, style='italic')
+
+fig.suptitle('Software is Internally Consistent First, Crossover-to-Reality Second',
+             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
+
+save(fig, 'eng02_05_internal_consistency_ratio.png')
+
+# ================================================================
+# FIG 6: A THOUSAND ENGINEERS, SAME PROBLEM
+# Type: 6 (Comparison — scatter clouds)
+# Shows: civil engineers converge, software engineers diverge
+# ================================================================
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 9),
+                                gridspec_kw={'wspace': 0.25})
+fig.patch.set_facecolor(BG)
+style_axes(ax1)
+style_axes(ax2)
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Civil engineers: tight cluster around correct solution
+n = 1000
+civil_x = np.random.normal(5, 0.4, n)
+civil_y = np.random.normal(5, 0.4, n)
+
+# A few outliers at small distance
+civil_x_out = np.random.normal(5, 1.0, 50)
+civil_y_out = np.random.normal(5, 1.0, 50)
+
+ax1.scatter(civil_x, civil_y, s=20, color=BLUE, alpha=0.4,
+            edgecolors='none', zorder=3)
+ax1.scatter(civil_x_out, civil_y_out, s=20, color=BLUE, alpha=0.3,
+            edgecolors='none', zorder=2)
+
+# Mark the "correct solution region"
+correct = Circle((5, 5), 0.6, fill=False, edgecolor=GREEN,
+                  linewidth=2, linestyle='--', zorder=4)
+ax1.add_patch(correct)
+ax1.text(5, 6.4, 'physics\nconstrains\nsolution space',
+         ha='center', fontsize=10, color=GREEN, fontweight='bold')
+
+ax1.set_xlim(0, 10)
+ax1.set_ylim(0, 10)
+ax1.set_xticks([])
+ax1.set_yticks([])
+ax1.set_title('1000 Civil Engineers, Same Bridge Site',
+              color=BLUE, fontsize=14, fontweight='bold', pad=12)
+ax1.text(5, 0.5,
+         'Designs cluster tightly. Competence is portable.',
+         ha='center', fontsize=10, color=SILVER, style='italic')
+
+# Software engineers: spread across solution space
+sw_x = np.random.uniform(0.5, 9.5, n)
+sw_y = np.random.uniform(0.5, 9.5, n)
+
+# Distribute in clusters representing different architectural choices
+clusters = [(2, 2), (2, 8), (8, 2), (8, 8), (5, 5), (3, 6), (7, 4), (4, 8)]
+sw_x_clust = []
+sw_y_clust = []
+for cx, cy in clusters:
+    sw_x_clust.extend(np.random.normal(cx, 0.7, 125))
+    sw_y_clust.extend(np.random.normal(cy, 0.7, 125))
+sw_x_clust = np.array(sw_x_clust)
+sw_y_clust = np.array(sw_y_clust)
+
+# Clip to plot area
+sw_x_clust = np.clip(sw_x_clust, 0.3, 9.7)
+sw_y_clust = np.clip(sw_y_clust, 0.3, 9.7)
+
+ax2.scatter(sw_x_clust, sw_y_clust, s=20, color=ORANGE, alpha=0.4,
+            edgecolors='none', zorder=3)
+
+# Multiple "internally consistent" regions
+for cx, cy in clusters[:5]:
+    region = Circle((cx, cy), 0.9, fill=False, edgecolor=GREEN,
+                     linewidth=1.5, linestyle='--', alpha=0.6, zorder=4)
+    ax2.add_patch(region)
+
+ax2.text(5, 0.5,
+         'Architectures spread. Competence is system-specific.',
+         ha='center', fontsize=10, color=SILVER, style='italic')
+
+ax2.set_xlim(0, 10)
+ax2.set_ylim(0, 10)
+ax2.set_xticks([])
+ax2.set_yticks([])
+ax2.set_title('1000 SWEs, Same Crossover System',
+              color=ORANGE, fontsize=14, fontweight='bold', pad=12)
+
+fig.suptitle('Why Software Person-Credentialing Cannot Work Like Civil',
+             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
+
+save(fig, 'eng02_06_thousand_engineers.png')
+
+# ================================================================
+# FIG 7: TWO-ROLE CROSSOVER MODEL
+# Type: 4 (Geometric Cross-Section)
+# Shows: SWE builds, domain engineer certifies, accountability flow
+# ================================================================
+fig, ax = plt.subplots(figsize=(16, 11))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.set_xlim(-7, 7)
+ax.set_ylim(-7, 7)
+ax.set_aspect('equal')
+ax.axis('off')
+
+# Outer ring: users / public
+outer = Circle((0, 0), 6.0, facecolor='#1a1a2a', edgecolor=DIM,
+                linewidth=1.0, alpha=0.95, zorder=1)
+ax.add_patch(outer)
+
+# Middle ring: certification regime + domain engineer
+mid = Circle((0, 0), 4.2, facecolor='#1f1f30', edgecolor=GOLD,
+              linewidth=1.8, alpha=0.95, zorder=2)
+ax.add_patch(mid)
+
+# Inner ring: SWE builds the system
+inner = Circle((0, 0), 2.5, facecolor='#252538', edgecolor=CYAN,
+                linewidth=1.8, alpha=0.95, zorder=3)
+ax.add_patch(inner)
+
+# Core: the artifact
+core = Circle((0, 0), 1.0, facecolor=PAN, edgecolor=WHITE,
+               linewidth=1.5, alpha=1.0, zorder=4)
+ax.add_patch(core)
+
+# Labels
+ax.text(0, 0.15, 'CERTIFIED', ha='center', va='center',
+        fontsize=10, color=WHITE, fontweight='bold')
+ax.text(0, -0.25, 'SYSTEM', ha='center', va='center',
+        fontsize=10, color=WHITE, fontweight='bold')
+
+ax.text(0, 1.75, 'SWE builds the artifact',
+        ha='center', va='center', fontsize=11,
+        color=CYAN, fontweight='bold')
+ax.text(0, 1.40, '(internal consistency,', ha='center',
+        fontsize=8.5, color=SILVER, style='italic')
+ax.text(0, 1.15, 'validation, testing)', ha='center',
+        fontsize=8.5, color=SILVER, style='italic')
+
+ax.text(0, 3.5, 'Domain engineer certifies',
+        ha='center', va='center', fontsize=12,
         color=GOLD, fontweight='bold')
-ax.text(8.5, 0.95, 'EXTREME-COST ENGINEERING', ha='center',
-        fontsize=11, color=GOLD, fontweight='bold')
+ax.text(0, 3.15, '(PE-credentialed, holds the safety claim)',
+        ha='center', fontsize=9, color=SILVER, style='italic')
 
-# Legend for marker size
-ax.text(0.2, 0.06,
-        'marker size  =  True Cost magnitude',
-        fontsize=9, color=SILVER, style='italic')
+ax.text(0, -3.5, 'CERTIFICATION REGIME',
+        ha='center', va='center', fontsize=11,
+        color=GOLD, fontweight='bold')
+ax.text(0, -3.85, 'DO-178C / FDA / ISO 26262 / IEC 61508',
+        ha='center', fontsize=9, color=SILVER, style='italic')
 
-ax.set_xlabel('Substrate Pressure  \u2192  (forgiving \u2192 unforgiving)',
-              color=SILVER, fontsize=12)
-ax.set_xlim(-0.3, 10.3)
-ax.set_ylim(0, 1.05)
-ax.set_yticks([])
-ax.set_xticks([])
+ax.text(0, 5.3, 'GOAL-SEEKERS / USERS',
+        ha='center', va='center', fontsize=12,
+        color=RED, fontweight='bold')
+ax.text(0, 4.95, '(receive certified output, bear True Cost on failure)',
+        ha='center', fontsize=9, color=SILVER, style='italic')
 
-ax.set_title('SWE Examples Placed on the Substrate Landscape',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
+ax.text(0, -5.3, 'PUBLIC',
+        ha='center', va='center', fontsize=12,
+        color=RED, fontweight='bold')
+ax.text(0, -5.65, '(structural accountability anchored at certification regime)',
+        ha='center', fontsize=9, color=SILVER, style='italic')
 
-save(fig, 'eng01_05_examples_landscape.png')
+# Accountability flow arrows
+# When system fails, accountability flows OUT through certifier
+arrow_angles = [60, 120, 240, 300]
+for ang in arrow_angles:
+    rad = np.radians(ang)
+    x1, y1 = 1.2 * np.cos(rad), 1.2 * np.sin(rad)
+    x2, y2 = 4.0 * np.cos(rad), 4.0 * np.sin(rad)
+    arrow = FancyArrowPatch((x1, y1), (x2, y2),
+                             arrowstyle='->', mutation_scale=18,
+                             color=RED, linewidth=1.8, alpha=0.7,
+                             zorder=5)
+    ax.add_patch(arrow)
 
-# ================================================================
-# FIG 6: BRIDGE SUPPORT ANGLE — ALIGNMENT BASIN
-# Type: 1 (Running/Convergence Chart)
-# Shows: structural integrity vs angle, with steep falloff away from 90 degrees
-# ================================================================
-fig, ax = plt.subplots(figsize=(16, 10))
-fig.patch.set_facecolor(BG)
-style_axes(ax)
+# Title
+ax.text(0, 6.5, 'Two-Role Crossover Model: Where the Safety Claim Lives',
+        ha='center', fontsize=14, color=GOLD, fontweight='bold')
 
-angles = np.linspace(80, 100, 400)
-# Integrity: gaussian-shaped basin centered at 90, with sharp dropoff
-integrity = 100 * np.exp(-0.5 * ((angles - 90) / 1.2) ** 2)
+# Side annotations
+ax.text(-6.5, 0, 'SWE\ndoes engineering\nat crossover\nmagnitude',
+        ha='left', va='center', fontsize=9, color=CYAN,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=CYAN))
 
-ax.plot(angles, integrity, color=GOLD, linewidth=2.8,
-        label='Structural integrity (% of design load)')
+ax.text(6.5, 0, 'Domain engineer\nholds the safety\nclaim via\ndomain credential',
+        ha='right', va='center', fontsize=9, color=GOLD,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD))
 
-# Mark the 90-degree alignment peak
-ax.axvline(90, color=GREEN, linestyle='-', linewidth=1.5, alpha=0.7)
-ax.scatter([90], [100], s=250, color=GREEN, edgecolors=WHITE,
-           linewidth=2, zorder=5)
-ax.annotate('90\u00b0: aligned\nwith gravity',
-            xy=(90, 100), xytext=(92.5, 92),
-            fontsize=11, color=WHITE, fontweight='bold',
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN),
-            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.2))
-
-# Mark the failure points
-fail_threshold = 50
-ax.axhline(fail_threshold, color=RED, linestyle='--', linewidth=1.2, alpha=0.6)
-ax.text(80.3, fail_threshold + 1.5, 'collapse threshold',
-        fontsize=9, color=RED)
-
-# Mark 89 and 91 degrees with their integrity values
-for ang in [89, 91]:
-    integ = 100 * np.exp(-0.5 * ((ang - 90) / 1.2) ** 2)
-    ax.scatter([ang], [integ], s=180, color=ORANGE,
-               edgecolors=WHITE, linewidth=1.5, zorder=5)
-    ax.annotate('%d\u00b0: %.0f%%' % (ang, integ),
-                xy=(ang, integ), xytext=(ang + (1.0 if ang > 90 else -3.0), integ - 12),
-                fontsize=10, color=WHITE,
-                arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1))
-
-# Failure region shading
-ax.fill_between(angles, 0, integrity, where=(integrity < fail_threshold),
-                color=RED, alpha=0.12, zorder=0)
-
-ax.text(82.5, 30, 'misaligned:\nfails',
-        ha='center', fontsize=10, color=RED, fontweight='bold')
-ax.text(97.5, 30, 'misaligned:\nfails',
-        ha='center', fontsize=10, color=RED, fontweight='bold')
-
-ax.set_xlabel('Support Angle (degrees)', color=SILVER, fontsize=12)
-ax.set_ylabel('Structural Integrity (%)', color=SILVER, fontsize=12)
-ax.set_xlim(80, 100)
-ax.set_ylim(0, 110)
-
-ax.set_title('Alignment is a Narrow Basin: 90\u00b0 vs 89\u00b0',
-             color=GOLD, fontsize=15, fontweight='bold', pad=15)
-
-save(fig, 'eng01_06_bridge_alignment_basin.png')
+save(fig, 'eng02_07_two_role_model.png')
 
 # ================================================================
-# FIG 7: ENGINEERING IDENTITY CARD
-# Type: 8 (Identity Card) — one per paper
-# Shows: definition, the 5 clauses, the True Cost asymmetry, the 3 tests
+# FIG 8: REGULATORY REGIMES ON THE THREE-TIER MODEL
+# Type: 5 (Connection / Integer Map)
+# Shows: existing regimes placed on the framework
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 12))
+fig, ax = plt.subplots(figsize=(18, 11))
 fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
 ax.set_xlim(0, 10)
 ax.set_ylim(0, 10)
 ax.axis('off')
 
-# Title bar
-ax.text(5.0, 9.5, 'ENGINEERING — STRUCTURAL DEFINITION',
-        ha='center', fontsize=17, color=GOLD, fontweight='bold')
+# Three tier bands
+ax.axhspan(7, 10, alpha=0.06, color=RED, zorder=0)
+ax.axhspan(3.5, 7, alpha=0.06, color=GOLD, zorder=0)
+ax.axhspan(0, 3.5, alpha=0.06, color=BLUE, zorder=0)
 
-# The defining sentence in a panel
-def_box = FancyBboxPatch((0.5, 7.8), 9.0, 1.2,
-                          boxstyle='round,pad=0.1',
-                          facecolor=PAN, edgecolor=GOLD, linewidth=2)
-ax.add_patch(def_box)
-ax.text(5.0, 8.55,
-        '"Engineering is evaluating trade-offs to find alignment of variables and constants',
-        ha='center', fontsize=12, color=WHITE, style='italic')
-ax.text(5.0, 8.20,
-        'that efficiently meet goals against externalities where failure has a True Cost."',
-        ha='center', fontsize=12, color=WHITE, style='italic')
+# Tier labels (left side)
+ax.text(0.4, 8.5, 'TRADITIONAL', ha='center', va='center',
+        fontsize=11, color=RED, fontweight='bold', rotation=90)
+ax.text(0.4, 5.3, 'CROSSOVER', ha='center', va='center',
+        fontsize=11, color=GOLD, fontweight='bold', rotation=90)
+ax.text(0.4, 1.7, 'BUSINESS', ha='center', va='center',
+        fontsize=11, color=BLUE, fontweight='bold', rotation=90)
 
-# The 5 clauses laid out as small panels
-clause_titles = [
-    'evaluating\ntrade-offs',
-    'alignment of\nvars/consts',
-    'efficiently',
-    'meet goals',
-    'against\nexternalities',
+# Title
+ax.text(5.0, 9.5, 'Existing Regulatory Regimes Map to the Three-Tier Model',
+        ha='center', fontsize=15, color=GOLD, fontweight='bold')
+
+# Place regimes
+regimes = [
+    # Traditional tier
+    {'name': 'PE\n(civil/mech/elec)', 'x': 2.0, 'y': 8.5, 'color': RED,
+     'note': 'person-level\ncredential'},
+    {'name': 'Chartered\nEngineer', 'x': 4.0, 'y': 8.5, 'color': RED,
+     'note': 'person-level\ncredential'},
+    {'name': 'Building codes\n(IBC, NEC, ASME)', 'x': 6.0, 'y': 8.5, 'color': RED,
+     'note': 'output-level\nstandard'},
+    {'name': 'Stamped\ndrawings', 'x': 8.0, 'y': 8.5, 'color': RED,
+     'note': 'output cert\nvia person'},
+
+    # Crossover tier
+    {'name': 'DO-178C\n(avionics)', 'x': 2.0, 'y': 5.3, 'color': GOLD,
+     'note': 'system\ncertification'},
+    {'name': 'FDA 510(k)/PMA\n(medical devices)', 'x': 4.0, 'y': 5.3, 'color': GOLD,
+     'note': 'system\ncertification'},
+    {'name': 'ISO 26262\n(automotive)', 'x': 6.0, 'y': 5.3, 'color': GOLD,
+     'note': 'system\ncertification'},
+    {'name': 'IEC 61508\n(industrial)', 'x': 8.0, 'y': 5.3, 'color': GOLD,
+     'note': 'system\ncertification'},
+
+    # Business tier
+    {'name': 'AWS / GCP /\nAzure certs', 'x': 2.0, 'y': 1.7, 'color': BLUE,
+     'note': 'weak; vendor\nspecific; obsoletes'},
+    {'name': 'IEEE CSDP', 'x': 4.0, 'y': 1.7, 'color': BLUE,
+     'note': 'weak; not\nadopted'},
+    {'name': 'ABET\nSW programs', 'x': 6.0, 'y': 1.7, 'color': BLUE,
+     'note': 'academic; not\nlicensure'},
+    {'name': 'Market\n(interviews, reputation)', 'x': 8.0, 'y': 1.7, 'color': BLUE,
+     'note': 'what actually\nworks'},
 ]
-clause_subs = [
-    'the activity',
-    'the mechanism',
-    'the criterion',
-    'the direction',
-    'the constraint',
-]
-clause_colors = [BLUE, CYAN, GREEN, ORANGE, MAG]
 
-for i, (t, s, c) in enumerate(zip(clause_titles, clause_subs, clause_colors)):
-    x0 = 0.5 + i * 1.85
-    box = FancyBboxPatch((x0, 5.5), 1.65, 1.5,
-                         boxstyle='round,pad=0.08',
-                         facecolor=PAN, edgecolor=c, linewidth=1.8)
+for r in regimes:
+    box = FancyBboxPatch((r['x'] - 0.85, r['y'] - 0.55), 1.7, 1.1,
+                          boxstyle='round,pad=0.05',
+                          facecolor=PAN, edgecolor=r['color'], linewidth=1.5)
     ax.add_patch(box)
-    ax.text(x0 + 0.825, 6.65, t, ha='center', va='center',
-            fontsize=10, color=WHITE, fontweight='bold')
-    ax.text(x0 + 0.825, 5.85, s, ha='center', va='center',
-            fontsize=8, color=c, style='italic')
+    ax.text(r['x'], r['y'] + 0.1, r['name'],
+            ha='center', va='center', fontsize=9.5,
+            color=WHITE, fontweight='bold')
+    ax.text(r['x'], r['y'] - 0.32, r['note'],
+            ha='center', va='center', fontsize=7.5,
+            color=r['color'], style='italic')
 
-# True Cost panel (qualifier)
-tc_box = FancyBboxPatch((0.5, 3.5), 9.0, 1.5,
-                         boxstyle='round,pad=0.1',
-                         facecolor=PAN, edgecolor=RED, linewidth=2)
-ax.add_patch(tc_box)
-ax.text(5.0, 4.6, 'True Cost on failure  —  the qualifier that excludes academic work',
-        ha='center', fontsize=12, color=RED, fontweight='bold')
-ax.text(5.0, 4.15,
-        'True Cost is harm borne by goal-seekers and users when the engineered system fails.',
-        ha='center', fontsize=11, color=WHITE, style='italic')
-ax.text(5.0, 3.75,
-        'The cost lands outside the engineering activity itself, on parties who did not do the work.',
-        ha='center', fontsize=10, color=SILVER)
-
-# The three-test filter
-ax.text(5.0, 2.85, 'THE THREE TESTS',
-        ha='center', fontsize=12, color=GOLD, fontweight='bold')
-
-tests = [
-    ('substrate?', 'is reality pushing back on the work?'),
-    ('trade-offs live?', 'is something genuinely undecided?'),
-    ('True Cost?', 'do goal-seekers / users pay if it fails?'),
-]
-for i, (q, exp) in enumerate(tests):
-    x0 = 0.7 + i * 3.1
-    box = FancyBboxPatch((x0, 1.3), 2.85, 1.25,
-                         boxstyle='round,pad=0.1',
-                         facecolor=PAN, edgecolor=GOLD, linewidth=1.5)
-    ax.add_patch(box)
-    ax.text(x0 + 1.425, 2.10, q,
-            ha='center', va='center', fontsize=11,
-            color=GOLD, fontweight='bold')
-    ax.text(x0 + 1.425, 1.62, exp,
-            ha='center', va='center', fontsize=9, color=WHITE)
-
-ax.text(5.0, 0.7, 'all three required  \u2192  engineering    |    any missing  \u2192  something else',
+# Footer notes
+ax.text(5.0, 0.6,
+        'Crossover regimes converged on system-level certification by domain experts \u2014',
+        ha='center', fontsize=10, color=SILVER, style='italic')
+ax.text(5.0, 0.3,
+        'the only credentialing model that fits software\'s structural facts.',
         ha='center', fontsize=10, color=SILVER, style='italic')
 
-save(fig, 'eng01_07_identity_card.png')
-
-# ================================================================
-# FIG 8: COST ASYMMETRY — WHO PAYS WHEN ENGINEERING FAILS
-# Type: 4 (Geometric Cross-Section)
-# Shows: concentric responsibility/consequence rings with cost flowing outward
-# ================================================================
-fig, ax = plt.subplots(figsize=(14, 12))
-fig.patch.set_facecolor(BG)
-ax.set_facecolor(BG)
-ax.set_xlim(-6, 6)
-ax.set_ylim(-6, 6)
-ax.set_aspect('equal')
-ax.axis('off')
-
-# Concentric rings (drawn outermost first for layering)
-rings = [
-    (5.5, '#1a1a2a', 0.95, 'USERS', 'people who depend on the system'),
-    (4.0, '#1f1f30', 0.9, 'GOAL-SEEKERS', 'organization / business'),
-    (2.5, '#252538', 0.85, 'TEAM / ORG', 'colleagues, management'),
-    (1.0, '#ffffff', 0.8, 'ENGINEER', 'the person doing the work'),
-]
-
-ring_labels = []
-for r, fc, alpha, name, sub in rings:
-    circle = Circle((0, 0), r, facecolor=fc, edgecolor=DIM,
-                    linewidth=1.0, alpha=alpha, zorder=1)
-    ax.add_patch(circle)
-    ring_labels.append((r, name, sub))
-
-# Label each ring
-ax.text(0, 0, 'ENGINEER',
-        ha='center', va='center', fontsize=11,
-        color=WHITE, fontweight='bold')
-ax.text(0, -0.4, 'the person\ndoing the work',
-        ha='center', va='top', fontsize=8, color=WHITE, style='italic')
-
-ax.text(0, 1.7, 'TEAM / ORG',
-        ha='center', va='center', fontsize=11,
-        color=CYAN, fontweight='bold')
-ax.text(0, -1.7, 'colleagues, management',
-        ha='center', va='center', fontsize=8, color=WHITE, style='italic')
-
-ax.text(0, 3.2, 'GOAL-SEEKERS',
-        ha='center', va='center', fontsize=12,
-        color=ORANGE, fontweight='bold')
-ax.text(0, -3.2, 'organization / business',
-        ha='center', va='center', fontsize=9, color=WHITE, style='italic')
-
-ax.text(0, 4.7, 'USERS',
-        ha='center', va='center', fontsize=13,
-        color=RED, fontweight='bold')
-ax.text(0, -4.7, 'people who depend on the system',
-        ha='center', va='center', fontsize=9, color=WHITE, style='italic')
-
-# Arrows showing True Cost flowing OUTWARD (engineer cannot absorb it)
-arrow_angles = [45, 135, 225, 315]
-for ang in arrow_angles:
-    rad = np.radians(ang)
-    x1, y1 = 0.7 * np.cos(rad), 0.7 * np.sin(rad)
-    x2, y2 = 5.2 * np.cos(rad), 5.2 * np.sin(rad)
-    arrow = FancyArrowPatch((x1, y1), (x2, y2),
-                             arrowstyle='->', mutation_scale=22,
-                             color=RED, linewidth=2.0, alpha=0.85,
-                             zorder=5)
-    ax.add_patch(arrow)
-
-# Label the cost flow
-ax.text(3.3, 3.3, 'True Cost\nflows outward',
-        ha='center', va='center', fontsize=10,
-        color=RED, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=RED))
-
-ax.text(-3.3, -3.3, 'engineer cannot\nabsorb the cost',
-        ha='center', va='center', fontsize=10,
-        color=RED, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=RED))
-
-# Title and footer
-ax.text(0, 5.7, 'True Cost Asymmetry: Who Pays When Engineering Fails',
-        ha='center', fontsize=14, color=GOLD, fontweight='bold')
-
-ax.text(0, -5.7,
-        'Decisions made on behalf of users  \u2192  consequences borne by users.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-ax.text(0, -5.95,
-        'This asymmetry is what creates the discipline\'s ethical obligation.',
-        ha='center', fontsize=10, color=SILVER, style='italic')
-
-save(fig, 'eng01_08_cost_asymmetry.png')
+save(fig, 'eng02_08_regulatory_regimes.png')
 
 # ================================================================
 # SUMMARY
 # ================================================================
 print("\nGenerated 8 figures:")
-print("  eng01_01_removal_test_matrix.png     (Type 6)")
-print("  eng01_02_activity_landscape.png      (Type 3)")
-print("  eng01_03_swe_ops_cost_surfaces.png   (Type 3)")
-print("  eng01_04_substrate_threshold.png     (Type 1)")
-print("  eng01_05_examples_landscape.png      (Type 2)")
-print("  eng01_06_bridge_alignment_basin.png  (Type 1)")
-print("  eng01_07_identity_card.png           (Type 8)")
-print("  eng01_08_cost_asymmetry.png          (Type 4)")
-print("\nType coverage: 6 distinct types (1, 2, 3, 4, 6, 8)")
+print("  eng02_01_two_domains_truecost.png          (Type 2)")
+print("  eng02_02_substrate_stability.png           (Type 1)")
+print("  eng02_03_three_tier_matrix.png             (Type 5/6)")
+print("  eng02_04_cost_vs_credentialing.png         (Type 3)")
+print("  eng02_05_internal_consistency_ratio.png    (Type 6)")
+print("  eng02_06_thousand_engineers.png            (Type 6)")
+print("  eng02_07_two_role_model.png                (Type 4)")
+print("  eng02_08_regulatory_regimes.png            (Type 5)")
+print("\nType coverage: 6 distinct types (1, 2, 3, 4, 5, 6)")
 print("Output directory: %s" % outdir)

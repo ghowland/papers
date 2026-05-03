@@ -1,12 +1,12 @@
 {
-  "created": "2026-05-03T03:20:10.832421+00:00",
-  "modified": "2026-05-03T03:33:34.377007+00:00",
-  "id": 19994227,
-  "conceptrecid": "19994226",
+  "created": "2026-05-03T06:33:43.382078+00:00",
+  "modified": "2026-05-03T06:35:12.176894+00:00",
+  "id": 19997507,
+  "conceptrecid": "19997506",
   "metadata": {
-    "title": "What Engineering Is",
+    "title": "What True Cost Is",
     "publication_date": "2026-04",
-    "description": "<div>\n<div>The word *engineer* has been borrowed across so many activities that it no longer reliably picks out a kind of work. A senior ops person keeping a production environment alive under load is called an engineer. A junior developer wiring REST endpoints together is called an engineer. A graduate student proving complexity bounds is called an engineer. A person physically running cable in a datacenter is sometimes called an engineer. These are all valuable activities, but they are not the same activity, and treating them as if they were produces practical confusion about who should be doing what, economic confusion about what should be paid like engineering, and intellectual confusion about what counts as rigor in software.</div>\n<br>\n<div>This paper offers a precise definition of engineering and defends it. The definition is structural: it identifies engineering by what the activity does, not by who performs it, what tools are used, or what credentials are held. The goal is a tool that lets the reader walk into any role and ask a small number of questions to determine, defensibly, whether the work is engineering.</div>\n</div>",
+    "description": "<div>\n<div>The first paper defined engineering. It identified True Cost as the qualifier that distinguishes engineering from academic work &mdash; the property that failure imposes harm on parties outside the engineering activity itself. The treatment of True Cost in that paper was binary. Either the activity has it, in which case the structural criterion can be met, or it doesn't, in which case the activity is academic regardless of how rigorous it is.</div>\n<br>\n<div>The binary treatment was sufficient to draw the engineering boundary. It is not sufficient to answer a question the software industry has been failing to resolve for fifty years: should software engineers be credentialed, and if so, how?</div>\n<br>\n<div>Attempts have been made. The IEEE Computer Society offers software engineering certifications. ABET accredits software engineering degree programs. Some jurisdictions have offered software engineering PE exams. Various national and international bodies have proposed licensure schemes. None of them have produced credentials the industry takes seriously, none have produced the kind of professional accountability structure that civil or electrical engineering has, and none have answered the basic question of who should certify what when software fails.</div>\n<br>\n<div>Meanwhile, software increasingly controls systems whose failure kills people. Autonomous vehicles must decide between collision outcomes. Medical devices deliver treatment in ways where bugs end lives. Industrial control systems manage chemical processes whose failure can level neighborhoods. Avionics software flies aircraft. Surgical robots cut into bodies. Grid management software dispatches power to hospitals on backup. The regulatory regimes around these domains have evolved without ever clearly explaining why they certify what they certify. The software industry remains confused about whether its own engineers should be credentialed, by whom, and for what.</div>\n<br>\n<div>This paper resolves the confusion. The resolution comes from unfolding True Cost into its domains. Once the domains are visible, the credentialing question answers itself.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -55,7 +55,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/ENG/HOWL-ENG-1-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/ENG/HOWL-ENG-2-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -73,59 +73,59 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-ENG-1-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-ENG-2-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.19994227",
-      "recid": 19994227
+      "doi": "10.5281/zenodo.19997507",
+      "recid": 19997507
     }
   },
-  "title": "What Engineering Is",
+  "title": "What True Cost Is",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/19994227",
-    "html": "https://zenodo.org/deposit/19994227",
+    "self": "https://zenodo.org/api/deposit/depositions/19997507",
+    "html": "https://zenodo.org/deposit/19997507",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/19994227/files",
-    "bucket": "https://zenodo.org/api/files/986ecc6f-e984-48bc-aad6-81566cc74ec7",
-    "thumb250": "https://zenodo.org/record/19994227/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/19997507/files",
+    "bucket": "https://zenodo.org/api/files/0b500477-86d3-4bd9-a0e4-0142737aae71",
+    "thumb250": "https://zenodo.org/record/19997507/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/19994227/thumb10",
-      "50": "https://zenodo.org/record/19994227/thumb50",
-      "100": "https://zenodo.org/record/19994227/thumb100",
-      "250": "https://zenodo.org/record/19994227/thumb250",
-      "750": "https://zenodo.org/record/19994227/thumb750",
-      "1200": "https://zenodo.org/record/19994227/thumb1200"
+      "10": "https://zenodo.org/record/19997507/thumb10",
+      "50": "https://zenodo.org/record/19997507/thumb50",
+      "100": "https://zenodo.org/record/19997507/thumb100",
+      "250": "https://zenodo.org/record/19997507/thumb250",
+      "750": "https://zenodo.org/record/19997507/thumb750",
+      "1200": "https://zenodo.org/record/19997507/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/19994227",
-    "latest_draft_html": "https://zenodo.org/deposit/19994227",
-    "publish": "https://zenodo.org/api/deposit/depositions/19994227/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/19994227/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/19994227/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/19994227/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/19997507",
+    "latest_draft_html": "https://zenodo.org/deposit/19997507",
+    "publish": "https://zenodo.org/api/deposit/depositions/19997507/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/19997507/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/19997507/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/19997507/actions/newversion"
   },
-  "record_id": 19994227,
+  "record_id": 19997507,
   "owner": 1539729,
   "files": [
     {
-      "id": "58f8388b-21ca-409d-93d3-01d841daf744",
+      "id": "88a1a990-14ab-4171-87e8-8ec8b36da253",
       "filename": "!manuscript.pdf",
-      "filesize": 1413258,
-      "checksum": "e62fcd4ea977e9a37dc4cb1b43779d9f",
+      "filesize": 86259,
+      "checksum": "25c18e8e1ba28d36ae7baaed2fa8152f",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/58f8388b-21ca-409d-93d3-01d841daf744",
-        "download": "https://zenodo.org/api/records/19994227/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/88a1a990-14ab-4171-87e8-8ec8b36da253",
+        "download": "https://zenodo.org/api/records/19997507/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "9327e18d-48e9-4c5e-b8e6-cf932209c4a5",
-      "filename": "HOWL-ENG-1-2026.zip",
-      "filesize": 2622753,
-      "checksum": "23dad9364a6695c39fc11f1163441150",
+      "id": "4ce259e3-51f2-4e9b-862f-9153b4bfcf07",
+      "filename": "HOWL-ENG-2-2026.zip",
+      "filesize": 1453394,
+      "checksum": "822b3bf8deb226fd1f6760eb94d2584a",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/19994227/files/9327e18d-48e9-4c5e-b8e6-cf932209c4a5",
-        "download": "https://zenodo.org/api/records/19994227/draft/files/HOWL-ENG-1-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/19997507/files/4ce259e3-51f2-4e9b-862f-9153b4bfcf07",
+        "download": "https://zenodo.org/api/records/19997507/draft/files/HOWL-ENG-2-2026.zip/content"
       }
     }
   ],

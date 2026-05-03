@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-ENG-1-2026] → [@HOWL-ENG-2-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19997507
 
 **Date:** May 3 2026
 
@@ -47,6 +47,8 @@ The cost is largely reversible. Businesses can recover from outages. Users can b
 
 These are different kinds of True Cost. Both are real. Both qualify under the engineering definition. They differ in magnitude, in reversibility, and in the credentialing infrastructure that makes sense around them. The remainder of this paper works through what follows from this difference.
 
+![Fig. 1: Two Domains of True Cost — physical/civilizational costs are mortality-bearing and irreversible; financial/availability costs are bounded and reversible.](./figures/eng02_01_two_domains_truecost.png)
+
 ## 3. Why traditional engineering can be credentialed
 
 Traditional engineering means civil, mechanical, electrical, structural, chemical, aerospace, biomedical, and the other disciplines that operate against physical reality and produce physical or civilizational True Cost. Every one of these disciplines has formal credentialing — the PE in the United States, the Chartered Engineer process in the UK and Commonwealth, the ingénieur diplômé in France, equivalents across the world. The credentialing works. It produces practitioners whose competence is reasonably reliable, whose work is signed and stamped, whose accountability is anchored by a license that can be revoked.
@@ -75,6 +77,8 @@ Society pays this cost because the alternative is worse. Without credentialing, 
 
 This is the case for credentialing. It rests on cost magnitude, substrate stability, and the social calculation that the overhead of credentialing is justified by what it prevents. All three conditions hold for traditional engineering. They do not hold for software in general.
 
+![Fig. 4: Society's credentialing apparatus scales with cost magnitude — full at mortality, none at bounded financial cost.](./figures/eng02_04_cost_vs_credentialing.png)
+
 ## 5. Why software engineering cannot be credentialed at the person level
 
 The substrate-instability argument. Software engineering operates against a substrate that is itself engineered, by other software engineers, who keep changing it. There is no underlying stable physical reality the way there is for civil or electrical engineering. The substrate is whatever the current operating systems, network protocols, language runtimes, frameworks, libraries, cloud APIs, and tools happen to be at this moment, and all of those move continuously.
@@ -100,6 +104,8 @@ This is why hiring in software relies so heavily on interviews testing current a
 **No formal codes.** Civil engineering has IBC, ACI, AISC, ASCE 7. Electrical engineering has NEC, IEC. Mechanical engineering has ASME. Software engineering has...books, conference talks, blog posts, tribal knowledge, and a fragmented landscape of style guides and best-practice documents that often contradict each other and go out of fashion within a decade. There is no formal standard analogous to a building code. There is no equivalent of "the wiring in this building must conform to NEC 2023" for "the architecture of this software system must conform to ANSI/IEEE-XXXX-2026." It doesn't exist. It can't exist in the same form because the substrate is too fluid.
 
 These three problems compound. A credential needs something stable to test against, and software doesn't provide it. A credential needs to predict portable competence, and software competence isn't portable in the way traditional engineering competence is. A credential needs formal codes to anchor it, and software lacks them. Every attempt to build software credentialing runs into these structural facts. The credentials that result are weak — they don't predict performance, they don't produce accountability, they don't carry the weight of a PE or a Chartered Engineer designation. This is not a failure of the credential designers. It is the substrate refusing to support the credentialing model that traditional engineering uses.
+
+![Fig. 2: Substrate stability over time — civil/mechanical/electrical operate on stable substrates; software's substrate churns continuously.](./figures/eng02_02_substrate_stability.png)
 
 ## 6. Why software engineering doesn't need credentialing
 
@@ -136,6 +142,8 @@ But the credentialing target cannot be the software engineer as a person. Three 
 
 A traditional engineering analogy. A licensed structural engineer can design a bridge in California and a building in Texas using overlapping competence, because both work against gravity, soil, wind, and the same materials. A software engineer who has built pacemaker firmware does not, by virtue of that experience, have the relevant competence to build avionics software. The bodies of domain knowledge are largely disjoint. Person-level credentialing in software for crossover work would either certify someone for one specific domain (in which case the credential is so narrow it barely justifies the apparatus) or certify them generally (in which case the credential overstates what they actually know).
 
+![Fig. 5: Engineering effort distribution — bridge work is dominated by external interface; pacemaker firmware is dominated by internal consistency.](./figures/eng02_05_internal_consistency_ratio.png)
+
 **Software is internally consistent first and crossover-to-reality second.** This is the deepest structural reason and worth slowing down on.
 
 A bridge's engineering is fundamentally about its relationship with physical reality. The internal structure of the bridge — the rebar layout, the cable arrangement, the bolt patterns — exists in service of the external interface with reality (loads, wind, soil). The internal consistency of the design is downstream of the external relationship. A bridge that is internally consistent but doesn't match its loads is wrong; a bridge that matches its loads is right, and the internal organization follows from that.
@@ -149,6 +157,8 @@ Because software is internally consistent first, the engineer's competence at ma
 A thousand software engineers designing the same crossover system would produce a thousand wildly different architectures, with different state representations, different error handling philosophies, different module decompositions, different testing approaches, different concurrency models, different update strategies. The variation isn't a sign of immaturity or lack of discipline. It's a structural feature of software as a substrate. Internal consistency demands choices that don't generalize, and the choice space is enormous. Two competent software engineers presented with the same problem will produce systems that differ in ways that matter for correctness, because their internal-consistency choices were different from the start.
 
 The certification has to attach to the system, not to the person. The system is the unit that has internal consistency. The system is what crosses to reality at specific points. The system is what makes specific decisions in specific contexts. The certification says "this system, validated for this use, has been examined and found to make correct decisions within its design envelope." It doesn't say "the person who wrote it is competent to write the next one," because that claim isn't structurally true for software.
+
+![Fig. 6: Convergence vs divergence — civil engineers cluster around physically constrained solutions; SWEs spread across the architectural space.](./figures/eng02_06_thousand_engineers.png)
 
 ## 8. Who certifies crossover engineering
 
@@ -170,6 +180,8 @@ This is also what the existing regulatory regimes have done in practice, often w
 
 The pattern is consistent: domain experts certify, with software expertise contributing. These regulatory regimes have already converged on the output-certification model for crossover work, and they have already converged on domain-engineer-as-certifier. The framework presented here names what they discovered.
 
+![Fig. 8: Existing regimes mapped to the framework — DO-178C, FDA, ISO 26262, IEC 61508 all converged on system-level certification by domain experts.](./figures/eng02_08_regulatory_regimes.png)
+
 ## 9. The two-role model for crossover work
 
 Crossover engineering staffs two distinct engineering roles. Both are doing real engineering by the structural definition. Neither alone is sufficient. Together they produce the certified output.
@@ -186,6 +198,8 @@ This structure also explains why crossover engineering is more expensive than bu
 
 A clarifying point about how software engineers should think about this. The software engineer in a crossover role is doing real engineering — your work is being held to the same structural criterion as a senior civil engineer's. But the safety claim ("this system won't kill someone") doesn't rest on you alone. It rests on the certification chain that wraps around your work. Your job is to build the system rigorously, document it thoroughly, validate it carefully, surface the decision points clearly, so that the domain engineer can evaluate them and certify the result. The domain engineer's job is to make the safety claim. You're both engineers; you're doing different engineering; both pieces are needed. The structural division of labor isn't a diminishment of your role — it's the correct architecture of accountability for the activity, given the structural properties of software as a substrate.
 
+![Fig. 7: Two-Role Model — SWE builds the system, domain engineer certifies the output. The safety claim is anchored at the certification regime, not at the SWE.](./figures/eng02_07_two_role_model.png)
+
 ## 10. The complete three-tier credentialing model
 
 The picture assembles into a clean structural answer to the credentialing question.
@@ -199,6 +213,8 @@ The picture assembles into a clean structural answer to the credentialing questi
 This is the structural answer. It handles every case the field has been confused about. It explains why general software engineering credentialing has structurally failed and will continue to fail — the substrate doesn't support it and the cost structure doesn't warrant it. It explains why the regulated software domains (avionics, medical, automotive, industrial) have evolved toward output certification by domain experts — that's the only credentialing model that fits the structural facts. It places the typical software engineer correctly in the business tier where credentialing is unnecessary and impossible. It places software engineers working on safety-critical systems correctly in the crossover tier, doing real engineering, working within a certification regime where the formal safety claim belongs to the domain engineer who certifies the output.
 
 The same software engineer might cross between tiers across their career. Tuesday they're writing a Django web app — business tier, no credential needed. Wednesday they're writing pacemaker firmware — crossover tier, working within a domain-engineer certification regime. Thursday they're back on the Django app. The tier follows the work, not the person. The framework handles this because the activity, not the role, is the unit.
+
+![Fig. 3: The Three-Tier Credentialing Model — credentialing follows cost domain, not activity.](./figures/eng02_03_three_tier_matrix.png)
 
 ## 11. Why this resolves long-standing confusions
 
