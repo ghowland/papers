@@ -1,0 +1,120 @@
+{
+  "key": "result_experiment_cosmology_chain_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_cosmology_chain_v0",
+  "timestamp": "2026-05-02T05:07:19Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "cosmo_dm_baryon_ratio_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_omega_dm_v0",
+      "status": "ok",
+      "output_count": 2
+    },
+    {
+      "key": "cosmo_omega_b_v0",
+      "status": "ok",
+      "output_count": 1
+    },
+    {
+      "key": "cosmo_omega_matter_v0",
+      "status": "ok",
+      "output_count": 1
+    },
+    {
+      "key": "cosmo_omega_de_v0",
+      "status": "ok",
+      "output_count": 2
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "Flatness: Omega_m + Omega_DE = 1",
+      "output_key": "result_cosmo_flatness_sum_v0",
+      "match_mode": "digits",
+      "reference_source": "flatness_constraint",
+      "expected": "1.0",
+      "got": "1.0",
+      "digits": 10,
+      "miss_pct": "0.0",
+      "status": "PASS",
+      "detail": "10-digit match, miss 0.0%"
+    },
+    {
+      "label": "DM/baryon vs Planck",
+      "output_key": "cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "5.3204",
+      "got": "5.31654141377",
+      "miss_pct": "0.07252",
+      "detail": "predicted 5.31654141377 ref 5.3204 miss 0.07252%"
+    },
+    {
+      "label": "Omega_b predicted",
+      "output_key": "result_cosmo_omega_b_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.0490",
+      "got": "0.0384615384615385",
+      "miss_pct": "21.51",
+      "detail": "predicted 0.0384615384615385 ref 0.0490 miss 21.51%"
+    },
+    {
+      "label": "Omega_m predicted",
+      "output_key": "result_cosmo_omega_matter_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.3111",
+      "got": "0.242943900529513",
+      "miss_pct": "21.91",
+      "detail": "predicted 0.242943900529513 ref 0.3111 miss 21.91%"
+    },
+    {
+      "label": "Omega_DE predicted",
+      "output_key": "result_cosmo_omega_de_v0",
+      "match_mode": "miss_pct",
+      "reference_source": "Planck_2018",
+      "status": "INFO",
+      "expected": "0.6889",
+      "got": "0.757056099470487",
+      "miss_pct": "9.893",
+      "detail": "predicted 0.757056099470487 ref 0.6889 miss 9.893%"
+    }
+  ],
+  "outputs": {
+    "cosmo_dm_to_baryon_ratio_prefactor_derived_v0": {
+      "_type": "Fraction",
+      "num": "22",
+      "den": "13"
+    },
+    "cosmo_dm_to_baryon_ratio_predicted_derived_v0": "5.31654141377",
+    "cosmo_omega_dm_r2_prefactor_derived_v0": {
+      "_type": "Fraction",
+      "num": "44",
+      "den": "169"
+    },
+    "cosmo_omega_dm_predicted_derived_v0": "0.204482362068",
+    "result_cosmo_omega_b_v0": "0.0384615384615385",
+    "result_cosmo_omega_matter_v0": "0.242943900529513",
+    "result_cosmo_omega_de_v0": "0.757056099470487",
+    "result_cosmo_flatness_sum_v0": "1.0"
+  },
+  "summary": {
+    "derivations_ok": 5,
+    "derivations_err": 0,
+    "comparisons_pass": 1,
+    "comparisons_fail": 0,
+    "comparisons_info": 4,
+    "comparisons_skip": 0
+  }
+}

@@ -223,3 +223,12 @@
 | **[[@HOWL-LYRIC-1-2026]](papers/papers/LYRIC/HOWL-LYRIC-1-2026/manuscript.md)** | **The Lyric Engine** | A Systematic Method for AI-Assisted Song Construction from Dense Source Material. |
 | **[[@HOWL-LYRIC-2-2026]](papers/papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md)** | **The Lyric Engine II** | A Systematic Method for LLM-Assisted Song Refinement from Existing Draft Material. |
 
+---
+
+## Engineering
+*Engineering.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[[@HOWL-ENG-1-2026]](papers/papers/ENG/HOWL-ENG-1-2026/manuscript.md)** | **What Engineering Is** | A precise definition and its consequences for software. |
+
