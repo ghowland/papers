@@ -242,4 +242,4 @@
 | :--- | :--- | :--- |
 | **[[@HOWL-INFRA-1-2026]](papers/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md)** | **Infrastructure Taxonomy** | A Taxonomy of Infrastructure Mechanisms, Properties, and Principles. |
 | **[[@HOWL-INFRA-2-2026]](papers/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md)** | **OpsDB Design** | A Centralized Data Substrate for Distributed Operating Systems. |
-
+| **[[@HOWL-INFRA-3-2026]](papers/papers/INFRA/HOWL-INFRA-3-2026/manuscript.md)** | **An Example OpsDB Schema** | Comprehensive Operational Substrate Schema. |
