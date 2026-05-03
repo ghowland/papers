@@ -111,6 +111,7 @@ ax.text(0, -0.55, '(passive)', ha='center', va='center',
         fontsize=9, color=DIM, style='italic', zorder=11)
 
 # Draw the ten rings
+count = 0
 for i, (label, sublabel) in enumerate(steps):
     r_in = inner_r + i * (ring_w + gap)
     r_out = r_in + ring_w
@@ -126,13 +127,21 @@ for i, (label, sublabel) in enumerate(steps):
                    linewidth=1.2, alpha=0.6, zorder=6)
     ax.add_patch(outer)
 
+    offsetY = 0
+    if count % 2 == 1:
+        offsetY = 0.2 + (i * 0.3)
+    else:
+        offsetY = -0.2 + (i * -0.3)
+
     # Step label on the ring (right side)
     angle = 0  # right side of each ring
     r_mid = (r_in + r_out) / 2
-    ax.text(r_mid, 0.18, label, ha='center', va='center',
+    ax.text(r_mid + 0.7, 0.18 + offsetY, label, ha='center', va='center',
             fontsize=9.5, color=WHITE, fontweight='bold', zorder=7)
-    ax.text(r_mid, -0.18, sublabel, ha='center', va='center',
+    ax.text(r_mid + 0.7, -0.18 + offsetY, sublabel, ha='center', va='center',
             fontsize=7.5, color=color, zorder=7)
+
+    count += 1
 
 # Operation arrow coming in from the left
 arrow_y = 0
