@@ -246,3 +246,5 @@
 | **[[@HOWL-INFRA-4-2026]](papers/papers/INFRA/HOWL-INFRA-4-2026/manuscript.md)** | **OpsDB Runner Design** | The Operational Logic Layer Around the OpsDB. |
 | **[[@HOWL-INFRA-5-2026]](papers/papers/INFRA/HOWL-INFRA-5-2026/manuscript.md)** | **OpsDB API Layer** | Authentication, Versioning, and Change Management Gating. |
 | **[[@HOWL-INFRA-6-2026]](papers/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md)** | **OpsDB Schema Construction** | Hierarchical Declarative Schemas with Bounded Validation. |
+| **[[@HOWL-INFRA-7-2026]](papers/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md)** | **The OpsDB: A Substrate for Coherent Operations** | What It Is, What You Get, How It Changes the Work. |
+
