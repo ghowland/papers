@@ -10,15 +10,15 @@ The series is fully specified — every architectural commitment, every discipli
 
 The papers in the order a new reader should approach them:
 
-1. [INFRA-7 — The OpsDB: A Substrate for Coherent Operations](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md) — what it is and what you get
-2. [INFRA-2 — OpsDB Design](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md) — the architectural commitments
-3. [INFRA-9 — OpsDB Implementation Path](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-9-2026/manuscript.md) — how to build it
-4. [INFRA-3 — An Example OpsDB Schema](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-3-2026/manuscript.md) — what the data looks like
-5. [INFRA-4 — OpsDB Runner Design](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-4-2026/manuscript.md) — the operational logic layer
-6. [INFRA-5 — OpsDB API Layer](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-5-2026/manuscript.md) — the governance gate
-7. [INFRA-6 — OpsDB Schema Construction](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md) — how the schema itself is built
-8. [INFRA-8 — The OpsDB Shared Library Suite](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-8-2026/manuscript.md) — the framework around the runners
-9. [INFRA-1 — Infrastructure Taxonomy](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md) — the vocabulary that grounds all of it
+1. [INFRA-7 — The OpsDB: A Substrate for Coherent Operations](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-7-2026/manuscript.md) — what it is and what you get
+2. [INFRA-2 — OpsDB Design](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-2-2026/manuscript.md) — the architectural commitments
+3. [INFRA-9 — OpsDB Implementation Path](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-9-2026/manuscript.md) — how to build it
+4. [INFRA-3 — An Example OpsDB Schema](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-3-2026/manuscript.md) — what the data looks like
+5. [INFRA-4 — OpsDB Runner Design](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-4-2026/manuscript.md) — the operational logic layer
+6. [INFRA-5 — OpsDB API Layer](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-5-2026/manuscript.md) — the governance gate
+7. [INFRA-6 — OpsDB Schema Construction](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-6-2026/manuscript.md) — how the schema itself is built
+8. [INFRA-8 — The OpsDB Shared Library Suite](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-8-2026/manuscript.md) — the framework around the runners
+9. [INFRA-1 — Infrastructure Taxonomy](https://github.com/ghowland/papers/blob/main/papers/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md) — the vocabulary that grounds all of it
 
 This order is intentional. The next sections explain why.
 
@@ -36,7 +36,7 @@ The order in this guide gives you the context first, then the architecture, then
 
 ## Stage 1 — What you get and what it is
 
-**Read [INFRA-7](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md) first.**
+**Read [INFRA-7](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-7-2026/manuscript.md) first.**
 
 INFRA-7 is the introduction to the architecture for a reader who has not encountered it before. It opens with §2 describing the operational state most organizations are currently in — fragmented tooling, scattered evidence, audit-as-quarterly-project, drift discovered during incidents — and frames the OpsDB as the architectural alternative to that state.
 
@@ -53,7 +53,7 @@ After INFRA-7 you should be able to decide whether your organization would benef
 
 ## Stage 2 — The architectural commitments
 
-**Read [INFRA-2](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md) second.**
+**Read [INFRA-2](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-2-2026/manuscript.md) second.**
 
 INFRA-7 describes what the architecture produces. INFRA-2 specifies what the architecture *is* — the design document. This is where the load-bearing commitments are made explicit and the reasoning behind each is stated.
 
@@ -71,7 +71,7 @@ After INFRA-2 you understand the architecture's commitments and the reasoning be
 
 ## Stage 3 — How to build it
 
-**Read [INFRA-9](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-9-2026/manuscript.md) third.**
+**Read [INFRA-9](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-9-2026/manuscript.md) third.**
 
 INFRA-9 specifies the implementation path. The architecture is large enough that attempting to build it all at once produces a multi-quarter project that delivers nothing usable until the end; INFRA-9 specifies six phases that each deliver something operational and validate the team's understanding before moving on.
 
@@ -93,7 +93,7 @@ After INFRA-9 you have a route. You know the order in which the architectural pi
 
 The detail papers specify the structural specifications behind each layer. Read them in this order, with the framing that you're filling in the details of a route you already understand.
 
-### [INFRA-3 — An Example OpsDB Schema](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-3-2026/manuscript.md)
+### [INFRA-3 — An Example OpsDB Schema](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-3-2026/manuscript.md)
 
 What the data looks like. ~150 entity types covering hardware, virtualization, Kubernetes, cloud resources, services, runners, schedules, policies, configuration, cached observation, authority pointers, documentation metadata, monitoring, evidence, change management, audit, and the schema's record of itself.
 
@@ -107,7 +107,7 @@ What you get from INFRA-3:
 
 INFRA-3 is one example. Your organization adapts it to your operational reality, adding domains you operate that aren't covered and trimming domains you don't operate. The structural patterns transfer; the specific entity types are your decision.
 
-### [INFRA-4 — OpsDB Runner Design](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-4-2026/manuscript.md)
+### [INFRA-4 — OpsDB Runner Design](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-4-2026/manuscript.md)
 
 The operational logic layer. The runner pattern in one sentence: get from the OpsDB, act in the world, set to the OpsDB.
 
@@ -123,7 +123,7 @@ What you get from INFRA-4:
 
 After INFRA-4 you understand the active layer that operates around the substrate.
 
-### [INFRA-5 — OpsDB API Layer](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-5-2026/manuscript.md)
+### [INFRA-5 — OpsDB API Layer](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-5-2026/manuscript.md)
 
 The governance gate. The API is the only path; every operation flows through the same enforcement sequence.
 
@@ -139,7 +139,7 @@ What you get from INFRA-5:
 
 After INFRA-5 you understand the gate where governance happens.
 
-### [INFRA-6 — OpsDB Schema Construction](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md)
+### [INFRA-6 — OpsDB Schema Construction](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-6-2026/manuscript.md)
 
 How the schema itself is constructed and evolved. The schema is data — YAML files in a git repository — processed by a deterministic loader that produces both the relational database structure and the API's validation metadata from the same source.
 
@@ -154,7 +154,7 @@ What you get from INFRA-6:
 
 After INFRA-6 you understand how the long-lived schema artifact is governed, evolved, and kept synchronized with the operational substrate.
 
-### [INFRA-8 — The OpsDB Shared Library Suite](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-8-2026/manuscript.md)
+### [INFRA-8 — The OpsDB Shared Library Suite](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-8-2026/manuscript.md)
 
 The framework around the runners. INFRA-4 promised that runners stay small because the libraries do the heavy lifting; INFRA-8 specifies what the libraries are.
 
@@ -175,7 +175,7 @@ After INFRA-8 you understand the framework that keeps the runner population cons
 
 ## Stage 5 — The taxonomy
 
-**Read [INFRA-1](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md) last.**
+**Read [INFRA-1](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-1-2026/manuscript.md) last.**
 
 INFRA-1 establishes the vocabulary the rest of the series uses. It separates three things commonly conflated: mechanisms (what does work), properties (what is claimed), and principles (what governs assembly).
 
@@ -226,4 +226,4 @@ The first read is for comprehension. Subsequent reads are for reference. The rea
 
 ## The starting point
 
-If you have not yet read any of the papers, your next click is [INFRA-7 — The OpsDB: A Substrate for Coherent Operations](https://github.com/ghowland/papers/blob/main/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md). That paper introduces the architecture from first principles for a reader who has not encountered it before. By the end of INFRA-7 you'll know whether the rest of the series is worth your time. If it is, continue with INFRA-2 and follow the order this guide specifies.
+If you have not yet read any of the papers, your next click is [INFRA-7 — The OpsDB: A Substrate for Coherent Operations](https://github.com/ghowland/papers/blob/main/papers/papers/INFRAHOWL-INFRA-7-2026/manuscript.md). That paper introduces the architecture from first principles for a reader who has not encountered it before. By the end of INFRA-7 you'll know whether the rest of the series is worth your time. If it is, continue with INFRA-2 and follow the order this guide specifies.
