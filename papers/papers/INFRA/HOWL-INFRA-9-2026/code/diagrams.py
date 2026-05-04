@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-HOWL INFRA-8 Diagrams - The Shared Library Suite
-8 figures covering two-sided policy enforcement, the library/runner boundary,
-denial paths, library/mechanism mapping, evolution, cross-implementation,
-runner anatomy, and the API client lifecycle.
+HOWL INFRA-9 Diagrams - OpsDB Implementation Path
+8 figures covering cardinality, phase progression, schema discipline,
+library structure, governance transition, and operational growth.
 Output: PNG files to ../figures/
 """
 
@@ -11,13 +10,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Wedge, Rectangle, Polygon
+from matplotlib.patches import FancyBboxPatch, Circle, FancyArrowPatch, Rectangle
 import numpy as np
 import os
 
 # ================================================================
 # GLOBAL STYLE
 # ================================================================
+
 
 # Light mode
 if True:
@@ -50,10 +50,10 @@ else:
     WHITE   = '#e8e8f0'
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
+    
 
 outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
 os.makedirs(outdir, exist_ok=True)
-
 
 def style_axes(ax):
     ax.set_facecolor(PAN)
@@ -62,1444 +62,793 @@ def style_axes(ax):
         spine.set_linewidth(0.5)
     ax.tick_params(colors=DIM, labelsize=9)
 
-
-def save(fig, filename):
-    path = os.path.join(outdir, filename)
+def save(fig, name):
+    path = os.path.join(outdir, name)
     fig.savefig(path, dpi=180, facecolor=BG, bbox_inches='tight', pad_inches=0.3)
     plt.close(fig)
-    print("  Saved: %s" % filename)
-
-
-# ================================================================
-# FIG 1: TWO-SIDED POLICY ENFORCEMENT
-# Type: 4 (Geometric Cross-Section)
-# Shows: runner declarations gate both OpsDB writes (API gate) and
-#        world-side actions (library suite); same input, two surfaces,
-#        comprehensive coverage.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(20, 13), facecolor=BG)
-ax.set_facecolor(BG)
-
-# Runner at top center
-runner_x, runner_y = 10, 10.5
-runner_box = FancyBboxPatch((runner_x - 2.5, runner_y - 0.9), 5.0, 1.8,
-                            boxstyle='round,pad=0.1',
-                            facecolor=PAN, edgecolor=ORANGE, linewidth=2.5)
-ax.add_patch(runner_box)
-ax.text(runner_x, runner_y + 0.45, 'runner_spec_v3.1',
-        ha='center', va='center', fontsize=12, color=ORANGE, fontweight='bold')
-ax.text(runner_x, runner_y + 0.05, 'k8s_pvc_repair',
-        ha='center', va='center', fontsize=10, color=WHITE,
-        fontfamily='monospace')
-ax.text(runner_x, runner_y - 0.40, 'wants to perform an action',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
-
-# Runner declarations - shown as a row of boxes below the runner
-decl_y = 8.3
-declarations = [
-    ('runner_*_target',     'k8s_namespace=prod_a',     CYAN,    3.0),
-    ('runner_capability',   'k8s_apply, secret_read',   PURPLE,  7.0),
-    ('runner_report_key',   'metric=pvc_repair_count',  GOLD,   11.0),
-    ('runner_*_target',     'cloud_account=prod_aws',   CYAN,   15.0),
-    ('runner_capability',   'cloud_provision',          PURPLE, 19.0),
-]
-
-# Box around all declarations
-decl_bg = FancyBboxPatch((1.5, decl_y - 0.65), 19.0, 1.30,
-                        boxstyle='round,pad=0.05',
-                        facecolor=PAN, edgecolor=GOLD, linewidth=1.5,
-                        alpha=0.5)
-ax.add_patch(decl_bg)
-ax.text(10.5, decl_y + 0.85, 'Runner declarations (OpsDB rows)',
-        ha='center', va='center', fontsize=10, color=GOLD, fontweight='bold')
-
-decl_w = 3.4
-for name, val, color, x in declarations:
-    box = FancyBboxPatch((x - decl_w/2, decl_y - 0.45), decl_w, 0.90,
-                        boxstyle='round,pad=0.04',
-                        facecolor=PAN, edgecolor=color, linewidth=1.3)
-    ax.add_patch(box)
-    ax.text(x, decl_y + 0.18, name, ha='center', va='center',
-            fontsize=8, color=color, fontweight='bold')
-    ax.text(x, decl_y - 0.20, val, ha='center', va='center',
-            fontsize=7.5, color=WHITE, fontfamily='monospace')
-
-# Arrow from runner down through declarations
-ax.annotate('', xy=(10.5, decl_y + 0.65), xytext=(10.0, runner_y - 0.9),
-            arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.8))
-ax.text(11.5, 9.3, 'declares', ha='left', va='center',
-        fontsize=9, color=ORANGE, style='italic')
-
-# Now the runner's actions split into two paths
-# Left path: OpsDB writes
-# Right path: world-side actions
-
-# Action labels
-ax.text(5.5, 6.9, 'OpsDB write', ha='center', va='center',
-        fontsize=11, color=WHITE, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD,
-                  linewidth=1.2))
-ax.text(15.0, 6.9, 'World-side action', ha='center', va='center',
-        fontsize=11, color=WHITE, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD,
-                  linewidth=1.2))
-
-# Arrows from declarations down to gate / library
-ax.annotate('', xy=(5.5, 6.55), xytext=(7.0, decl_y - 0.65),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5, alpha=0.7))
-ax.annotate('', xy=(15.0, 6.55), xytext=(15.0, decl_y - 0.65),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5, alpha=0.7))
-
-# LEFT: API Gate
-gate_box = FancyBboxPatch((1.5, 4.0), 8.0, 2.4,
-                          boxstyle='round,pad=0.1',
-                          facecolor=PAN, edgecolor=GOLD, linewidth=2.5)
-ax.add_patch(gate_box)
-ax.text(5.5, 5.95, 'OpsDB API Gate (INFRA-5)',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold')
-ax.text(5.5, 5.55, '10-step gate sequence',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
-
-# Gate steps as small dots
-gate_steps = ['auth', 'authz', 'schema', 'bound', 'policy', 'version',
-              'route', 'audit', 'execute', 'respond']
-for i, step in enumerate(gate_steps):
-    sx = 2.0 + i * 0.75
-    dot = Circle((sx, 4.95), 0.10, facecolor=GOLD, edgecolor=GOLD)
-    ax.add_patch(dot)
-    ax.text(sx, 4.55, step, ha='center', va='center',
-            fontsize=6.5, color=DIM, rotation=0)
-
-# Inside-the-gate text on report keys
-ax.text(5.5, 4.20, 'runner_report_key gates writable surface',
-        ha='center', va='center', fontsize=8.5, color=GOLD,
-        fontfamily='monospace')
-
-# RIGHT: Library Suite
-lib_box = FancyBboxPatch((10.5, 4.0), 8.0, 2.4,
-                        boxstyle='round,pad=0.1',
-                        facecolor=PAN, edgecolor=GOLD, linewidth=2.5)
-ax.add_patch(lib_box)
-ax.text(14.5, 5.95, 'Library Suite (INFRA-8)',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold')
-ax.text(14.5, 5.55, 'each library validates declared scope',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
-
-# Libraries as small dots
-libraries_list = ['k8s', 'cloud', 'host', 'secret', 'identity',
-                  'monitoring', 'notify', 'registry']
-for i, lib in enumerate(libraries_list):
-    sx = 11.0 + i * 0.95
-    dot = Circle((sx, 4.95), 0.10, facecolor=GOLD, edgecolor=GOLD)
-    ax.add_patch(dot)
-    ax.text(sx, 4.55, lib, ha='center', va='center',
-            fontsize=6.5, color=DIM)
-
-ax.text(14.5, 4.20, 'runner_*_target gates world-side actions',
-        ha='center', va='center', fontsize=8.5, color=GOLD,
-        fontfamily='monospace')
-
-# Outcomes - both fail closed, both audit-logged
-outcomes_y = 2.4
-
-# Left outcome
-out_left = FancyBboxPatch((1.5, outcomes_y - 0.55), 8.0, 1.10,
-                          boxstyle='round,pad=0.05',
-                          facecolor=GREEN, edgecolor=GREEN, linewidth=2,
-                          alpha=0.20)
-ax.add_patch(out_left)
-ax.text(5.5, outcomes_y + 0.20,
-        'IF declared: write committed; audit_log_entry recorded',
-        ha='center', va='center', fontsize=9, color=WHITE)
-ax.text(5.5, outcomes_y - 0.20,
-        'IF undeclared: undeclared_report_key rejection; audited',
-        ha='center', va='center', fontsize=9, color=WHITE)
-
-# Right outcome
-out_right = FancyBboxPatch((10.5, outcomes_y - 0.55), 8.0, 1.10,
-                          boxstyle='round,pad=0.05',
-                          facecolor=GREEN, edgecolor=GREEN, linewidth=2,
-                          alpha=0.20)
-ax.add_patch(out_right)
-ax.text(14.5, outcomes_y + 0.20,
-        'IF declared: world-side call proceeds; observed and metered',
-        ha='center', va='center', fontsize=9, color=WHITE)
-ax.text(14.5, outcomes_y - 0.20,
-        'IF undeclared: library_authorization_denied; logged',
-        ha='center', va='center', fontsize=9, color=WHITE)
-
-# Arrows from gate/library to outcomes
-ax.annotate('', xy=(5.5, outcomes_y + 0.6), xytext=(5.5, 4.0),
-            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.5, alpha=0.6))
-ax.annotate('', xy=(14.5, outcomes_y + 0.6), xytext=(14.5, 4.0),
-            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.5, alpha=0.6))
-
-# Bottom synthesis - arrows converging to "trail"
-trail_y = 0.55
-trail_box = FancyBboxPatch((6.0, trail_y - 0.45), 9.0, 0.95,
-                          boxstyle='round,pad=0.1',
-                          facecolor=PAN, edgecolor=GOLD, linewidth=2.5)
-ax.add_patch(trail_box)
-ax.text(10.5, trail_y + 0.12,
-        'One trail. Both surfaces. Same declarations.',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold')
-ax.text(10.5, trail_y - 0.22,
-        'Runner cannot perform any action outside its declared scope.',
-        ha='center', va='center', fontsize=9, color=SILVER, style='italic')
-
-ax.annotate('', xy=(8.5, trail_y + 0.5), xytext=(5.5, outcomes_y - 0.55),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.4, alpha=0.6))
-ax.annotate('', xy=(12.5, trail_y + 0.5), xytext=(14.5, outcomes_y - 0.55),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.4, alpha=0.6))
-
-ax.set_xlim(0.5, 21.5)
-ax.set_ylim(-0.1, 12.0)
-ax.set_aspect('auto')
-ax.axis('off')
-ax.set_title('Two-Sided Policy Enforcement\n'
-             'Same declarations gate both OpsDB writes (left) and world-side actions (right)',
-             color=GOLD, fontsize=16, fontweight='bold', pad=14)
-
-save(fig, 'infra8_01_two_sided_enforcement.png')
-
+    print("  Saved: %s" % name)
 
 # ================================================================
-# FIG 2: THE LIBRARY/RUNNER BOUNDARY
-# Type: 4 (Geometric Cross-Section)
-# Shows: where the line is drawn and why; runner-specific decision
-#        logic above, library calls below.
+# FIG 1: RUNNER POPULATION GROWTH OVER PHASES
+# Type: 1 (Curve)
+# Shows: operational benefits arrive in phase 6, not before. Flat
+# through phases 1-5 then sharp accumulation. Text cannot show the
+# shape of the delay.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 13), facecolor=BG)
-ax.set_facecolor(BG)
-
-# Two-zone background
-runner_zone = Rectangle((1.0, 7.5), 16.0, 4.5, facecolor=ORANGE,
-                       alpha=0.06, zorder=1)
-ax.add_patch(runner_zone)
-library_zone = Rectangle((1.0, 0.5), 16.0, 6.7, facecolor=BLUE,
-                        alpha=0.06, zorder=1)
-ax.add_patch(library_zone)
-
-# Zone labels
-ax.text(0.4, 9.7, 'RUNNER\nZONE', ha='center', va='center',
-        fontsize=12, color=ORANGE, fontweight='bold', rotation=90)
-ax.text(0.4, 3.85, 'LIBRARY\nZONE', ha='center', va='center',
-        fontsize=12, color=BLUE, fontweight='bold', rotation=90)
-
-# Boundary line with label
-ax.axhline(y=7.35, xmin=0.06, xmax=0.96, color=GOLD, linewidth=2,
-           linestyle='--', zorder=3)
-ax.text(9.0, 7.35, 'the boundary',
-        ha='center', va='center', fontsize=10, color=GOLD,
-        fontweight='bold', style='italic',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
-                  edgecolor=GOLD, linewidth=1.5))
-
-# Runner-zone content (top) - runner-specific decision logic
-ax.text(9.0, 11.5, 'runner-specific decision logic',
-        ha='center', va='center', fontsize=11, color=ORANGE,
-        fontweight='bold', style='italic')
-
-runner_logic = [
-    (3.5, 10.5, 'select PVCs in\nattention-worthy state'),
-    (9.0, 10.5, 'compute repair kind\n(rebind/resize/replace)'),
-    (14.5, 10.5, 'construct repair manifest\nspecific to PVC'),
-    (5.5, 8.7, 'decide auto-correct vs\nfile finding per policy'),
-    (12.5, 8.7, 'record outcome\nwith per-target detail'),
-]
-
-logic_w = 3.6
-logic_h = 1.3
-
-for lx, ly, label in runner_logic:
-    box = FancyBboxPatch((lx - logic_w/2, ly - logic_h/2), logic_w, logic_h,
-                        boxstyle='round,pad=0.06',
-                        facecolor=PAN, edgecolor=ORANGE, linewidth=1.4)
-    ax.add_patch(box)
-    lines = label.split('\n')
-    if len(lines) == 2:
-        ax.text(lx, ly + 0.18, lines[0], ha='center', va='center',
-                fontsize=8.5, color=WHITE, fontweight='bold')
-        ax.text(lx, ly - 0.20, lines[1], ha='center', va='center',
-                fontsize=8, color=SILVER)
-    else:
-        ax.text(lx, ly, label, ha='center', va='center',
-                fontsize=8.5, color=WHITE, fontweight='bold')
-
-# Library-zone content (bottom) - libraries the runner uses
-ax.text(9.0, 6.6, 'shared libraries (mechanical, uniform across runner population)',
-        ha='center', va='center', fontsize=11, color=BLUE,
-        fontweight='bold', style='italic')
-
-libraries = [
-    (2.5, 5.0, 'opsdb.api',      'OpsDB I/O',         CYAN),
-    (5.5, 5.0, 'world.k8s',      'apply, query, watch', PURPLE),
-    (8.5, 5.0, 'world.cloud',    'cloud operations',   GREEN),
-    (11.5, 5.0,'world.secret',   'secret backend',     MAG),
-    (14.5, 5.0,'world.monitoring','metric queries',    BLUE),
-
-    (2.5, 3.2, 'coordination.retry', 'retry+backoff', GOLD),
-    (5.5, 3.2, 'coordination.breaker','circuit',     RED),
-    (8.5, 3.2, 'observation.logging', 'structured logs', SILVER),
-    (11.5, 3.2,'observation.metrics', 'counters/gauges', SILVER),
-    (14.5, 3.2,'notification',      'pages/chat',       ORANGE),
-
-    (5.5, 1.4, 'templating.config', 'render configs',  GREEN),
-    (11.5, 1.4,'git',                'commit/push',     CYAN),
-]
-
-lib_w = 2.5
-lib_h = 1.0
-
-for lx, ly, name, sub, color in libraries:
-    box = FancyBboxPatch((lx - lib_w/2, ly - lib_h/2), lib_w, lib_h,
-                        boxstyle='round,pad=0.05',
-                        facecolor=PAN, edgecolor=color, linewidth=1.3)
-    ax.add_patch(box)
-    ax.text(lx, ly + 0.18, name, ha='center', va='center',
-            fontsize=8.5, color=color, fontweight='bold',
-            fontfamily='monospace')
-    ax.text(lx, ly - 0.20, sub, ha='center', va='center',
-            fontsize=7.5, color=SILVER, style='italic')
-
-# Lines crossing the boundary - showing what the runner calls
-# (kept faint and few to avoid clutter)
-crossing_calls = [
-    # (runner_logic_idx_x, library_idx_xy)
-    ((3.5, 10.5 - logic_h/2), (2.5, 5.0 + lib_h/2),  CYAN),    # PVC select -> opsdb.api
-    ((9.0, 10.5 - logic_h/2), (5.5, 5.0 + lib_h/2),  PURPLE),  # repair kind -> k8s
-    ((14.5, 10.5 - logic_h/2), (5.5, 5.0 + lib_h/2), PURPLE),  # manifest -> k8s
-    ((5.5, 8.7 - logic_h/2), (2.5, 5.0 + lib_h/2),   CYAN),    # decide -> opsdb.api
-    ((12.5, 8.7 - logic_h/2), (2.5, 5.0 + lib_h/2),  CYAN),    # record -> opsdb.api
-    ((12.5, 8.7 - logic_h/2), (8.5, 3.2 + lib_h/2),  SILVER),  # record -> logging
-]
-
-for (sx, sy), (ex, ey), color in crossing_calls:
-    ax.plot([sx, ex], [sy, ey], color=color, linewidth=0.8,
-            alpha=0.40, linestyle=':', zorder=2)
-
-# Bottom caption
-ax.text(9.0, 0.0,
-        'The test: would the same code appear in two runners? -> library. Specific to one runner\'s job? -> runner.',
-        ha='center', va='center', fontsize=10, color=GOLD, style='italic',
-        fontweight='bold')
-
-ax.set_xlim(0, 18)
-ax.set_ylim(-0.3, 12.5)
-ax.set_aspect('auto')
-ax.axis('off')
-ax.set_title('The Library/Runner Boundary\n'
-             'Decision logic above; library calls below; the line is drawn by the "two runners" test',
-             color=GOLD, fontsize=16, fontweight='bold', pad=14)
-
-save(fig, 'infra8_02_library_runner_boundary.png')
-
-
-# ================================================================
-# FIG 3: SAME RUNNER, TWO DENIAL PATHS
-# Type: 7 (Progression) x 2 panels
-# Shows: concrete demonstration of two-sided enforcement; same runner,
-#        two attempts, denial at different surfaces, both audited.
-# ================================================================
-
-fig, (axL, axR) = plt.subplots(1, 2, figsize=(20, 12),
-                                facecolor=BG, gridspec_kw={'wspace': 0.10})
-
-for ax in (axL, axR):
-    ax.set_facecolor(PAN)
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 14)
-
-# --- LEFT PANEL: API Gate denial ---
-axL.set_title('Attempt A: write observation_cache_metric',
-              color=RED, fontsize=13, fontweight='bold', pad=10)
-
-# Runner box
-runner_box_L = FancyBboxPatch((1.0, 12.6), 8.0, 1.1,
-                              boxstyle='round,pad=0.1',
-                              facecolor=PAN, edgecolor=ORANGE, linewidth=2)
-axL.add_patch(runner_box_L)
-axL.text(5.0, 13.32, 'k8s_pvc_repair runner',
-         ha='center', va='center', fontsize=10.5, color=ORANGE,
-         fontweight='bold')
-axL.text(5.0, 12.95,
-         'attempts: write metric_key="db_credentials_active"',
-         ha='center', va='center', fontsize=8.5, color=WHITE,
-         fontfamily='monospace')
-
-axL.annotate('', xy=(5.0, 12.0), xytext=(5.0, 12.6),
-             arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.5))
-
-# Library: OpsDB API client
-client_box = FancyBboxPatch((1.0, 10.6), 8.0, 1.3,
-                            boxstyle='round,pad=0.1',
-                            facecolor=PAN, edgecolor=CYAN, linewidth=1.6)
-axL.add_patch(client_box)
-axL.text(5.0, 11.45, 'opsdb.api client',
-         ha='center', va='center', fontsize=10, color=CYAN, fontweight='bold')
-axL.text(5.0, 11.10,
-         'serializes write_observation call, attaches credentials',
-         ha='center', va='center', fontsize=8, color=SILVER, style='italic')
-axL.text(5.0, 10.80, 'sends to API gate',
-         ha='center', va='center', fontsize=8, color=WHITE)
-
-axL.annotate('', xy=(5.0, 10.0), xytext=(5.0, 10.6),
-             arrowprops=dict(arrowstyle='->', color=CYAN, lw=1.5))
-
-# API Gate
-gate_box_L = FancyBboxPatch((1.0, 7.3), 8.0, 2.6,
-                            boxstyle='round,pad=0.1',
-                            facecolor=PAN, edgecolor=GOLD, linewidth=2.5)
-axL.add_patch(gate_box_L)
-axL.text(5.0, 9.55, 'API Gate (INFRA-5)',
-         ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold')
-
-# Within the gate, mark which step denies
-axL.text(5.0, 9.20, 'auth: PASS', ha='center', va='center',
-         fontsize=8, color=GREEN, fontfamily='monospace')
-axL.text(5.0, 8.95, 'authz: PASS', ha='center', va='center',
-         fontsize=8, color=GREEN, fontfamily='monospace')
-axL.text(5.0, 8.70, 'schema: PASS', ha='center', va='center',
-         fontsize=8, color=GREEN, fontfamily='monospace')
-axL.text(5.0, 8.45, 'bound: PASS', ha='center', va='center',
-         fontsize=8, color=GREEN, fontfamily='monospace')
-axL.text(5.0, 8.13,
-         'runner_report_key check:',
-         ha='center', va='center', fontsize=9, color=RED, fontweight='bold')
-axL.text(5.0, 7.85,
-         '"db_credentials_active" NOT in declared keys',
-         ha='center', va='center', fontsize=8.5, color=RED,
-         fontfamily='monospace')
-axL.text(5.0, 7.55,
-         'declared: pvc_repair_count, pvc_skip_count',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-
-axL.annotate('', xy=(5.0, 6.7), xytext=(5.0, 7.3),
-             arrowprops=dict(arrowstyle='->', color=RED, lw=2))
-
-# Outcome
-out_box_L = FancyBboxPatch((1.0, 3.5), 8.0, 3.0,
-                          boxstyle='round,pad=0.1',
-                          facecolor=RED, edgecolor=RED, linewidth=2.5,
-                          alpha=0.20)
-axL.add_patch(out_box_L)
-axL.text(5.0, 6.10, 'WRITE REJECTED',
-         ha='center', va='center', fontsize=12, color=RED, fontweight='bold')
-axL.text(5.0, 5.65, 'undeclared_report_key',
-         ha='center', va='center', fontsize=9.5, color=WHITE,
-         fontfamily='monospace')
-axL.text(5.0, 5.20, 'observation_cache_metric: NO ROW WRITTEN',
-         ha='center', va='center', fontsize=8.5, color=WHITE,
-         fontweight='bold')
-axL.text(5.0, 4.65, 'audit_log_entry written:',
-         ha='center', va='center', fontsize=8.5, color=GOLD, fontweight='bold')
-axL.text(5.0, 4.30,
-         'action=write_rejected,',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-axL.text(5.0, 4.05,
-         'submitted_key=db_credentials_active,',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-axL.text(5.0, 3.80,
-         'reason=undeclared_report_key,',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-
-axL.text(5.0, 2.7, 'Surface: API gate (INFRA-5 §8)',
-         ha='center', va='center', fontsize=9.5, color=GOLD,
-         fontweight='bold')
-axL.text(5.0, 2.35, 'Caught at OpsDB write time',
-         ha='center', va='center', fontsize=8.5, color=SILVER,
-         style='italic')
-
-# Bottom row - the audit query
-audit_y = 1.1
-audit_box = FancyBboxPatch((0.5, audit_y - 0.6), 9.0, 1.2,
-                          boxstyle='round,pad=0.06',
-                          facecolor=PAN, edgecolor=GOLD, linewidth=1.5)
-axL.add_patch(audit_box)
-axL.text(5.0, audit_y + 0.30,
-         'queryable: SELECT * FROM audit_log_entry',
-         ha='center', va='center', fontsize=9, color=GOLD,
-         fontfamily='monospace')
-axL.text(5.0, audit_y - 0.05,
-         'WHERE acting_runner = pvc_repair AND result = "rejected"',
-         ha='center', va='center', fontsize=8, color=SILVER,
-         fontfamily='monospace')
-axL.text(5.0, audit_y - 0.40,
-         '   ORDER BY acted_time DESC LIMIT 100',
-         ha='center', va='center', fontsize=8, color=SILVER,
-         fontfamily='monospace')
-
-# --- RIGHT PANEL: Library denial ---
-axR.set_title('Attempt B: apply K8s manifest in undeclared namespace',
-              color=RED, fontsize=13, fontweight='bold', pad=10)
-
-# Runner box
-runner_box_R = FancyBboxPatch((1.0, 12.6), 8.0, 1.1,
-                              boxstyle='round,pad=0.1',
-                              facecolor=PAN, edgecolor=ORANGE, linewidth=2)
-axR.add_patch(runner_box_R)
-axR.text(5.0, 13.32, 'k8s_pvc_repair runner',
-         ha='center', va='center', fontsize=10.5, color=ORANGE,
-         fontweight='bold')
-axR.text(5.0, 12.95,
-         'attempts: world.k8s.apply_manifest(cluster_a, ns_finance)',
-         ha='center', va='center', fontsize=8.5, color=WHITE,
-         fontfamily='monospace')
-
-axR.annotate('', xy=(5.0, 12.0), xytext=(5.0, 12.6),
-             arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.5))
-
-# Library: K8s
-k8s_box = FancyBboxPatch((1.0, 7.3), 8.0, 4.6,
-                        boxstyle='round,pad=0.1',
-                        facecolor=PAN, edgecolor=PURPLE, linewidth=2.5)
-axR.add_patch(k8s_box)
-axR.text(5.0, 11.55, 'opsdb.world.kubernetes',
-         ha='center', va='center', fontsize=11, color=PURPLE, fontweight='bold')
-axR.text(5.0, 11.20, 'before reaching the cluster, the library checks scope:',
-         ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-
-# Show the scope check
-axR.text(5.0, 10.65, 'load runner declarations from cache',
-         ha='center', va='center', fontsize=8.5, color=WHITE)
-axR.text(5.0, 10.35,
-         'check (cluster_a, ns_finance) against declarations:',
-         ha='center', va='center', fontsize=8.5, color=WHITE)
-
-# Declarations shown as a list
-decl_y_start = 9.85
-decl_items = [
-    ('runner_k8s_namespace_target #1', '(cluster_a, prod_a)',  GREEN, False),
-    ('runner_k8s_namespace_target #2', '(cluster_a, prod_b)',  GREEN, False),
-    ('runner_k8s_namespace_target #3', '(cluster_b, staging)', GREEN, False),
-]
-for i, (name, val, c, _) in enumerate(decl_items):
-    y = decl_y_start - i * 0.32
-    axR.text(2.7, y, '-', ha='center', va='center',
-             fontsize=10, color=DIM)
-    axR.text(2.95, y, name, ha='left', va='center',
-             fontsize=7.5, color=DIM, fontfamily='monospace')
-    axR.text(6.0, y, val, ha='left', va='center',
-             fontsize=7.5, color=SILVER, fontfamily='monospace')
-
-axR.text(5.0, 8.65,
-         'no declaration covers (cluster_a, ns_finance)',
-         ha='center', va='center', fontsize=9, color=RED, fontweight='bold')
-axR.text(5.0, 8.30,
-         'library refuses BEFORE reaching the cluster',
-         ha='center', va='center', fontsize=8, color=RED, style='italic')
-
-# Show that the kube API never sees the call
-axR.text(5.0, 7.85, '[ kube API not contacted ]',
-         ha='center', va='center', fontsize=8, color=DIM,
-         fontfamily='monospace', style='italic')
-axR.text(5.0, 7.55,
-         'world-side action prevented at library layer',
-         ha='center', va='center', fontsize=8, color=DIM, style='italic')
-
-axR.annotate('', xy=(5.0, 6.7), xytext=(5.0, 7.3),
-             arrowprops=dict(arrowstyle='->', color=RED, lw=2))
-
-# Outcome
-out_box_R = FancyBboxPatch((1.0, 3.5), 8.0, 3.0,
-                          boxstyle='round,pad=0.1',
-                          facecolor=RED, edgecolor=RED, linewidth=2.5,
-                          alpha=0.20)
-axR.add_patch(out_box_R)
-axR.text(5.0, 6.10, 'CALL REJECTED',
-         ha='center', va='center', fontsize=12, color=RED, fontweight='bold')
-axR.text(5.0, 5.65, 'library_authorization_denied',
-         ha='center', va='center', fontsize=9.5, color=WHITE,
-         fontfamily='monospace')
-axR.text(5.0, 5.20, 'cluster: NO MANIFEST APPLIED',
-         ha='center', va='center', fontsize=8.5, color=WHITE,
-         fontweight='bold')
-axR.text(5.0, 4.65, 'observation log emitted:',
-         ha='center', va='center', fontsize=8.5, color=GOLD, fontweight='bold')
-axR.text(5.0, 4.30,
-         'event=library_denial,',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-axR.text(5.0, 4.05,
-         'library=opsdb.world.kubernetes,',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-axR.text(5.0, 3.80,
-         'attempted_target=(cluster_a, ns_finance)',
-         ha='center', va='center', fontsize=7.5, color=SILVER,
-         fontfamily='monospace')
-
-axR.text(5.0, 2.7, 'Surface: library suite (INFRA-8 §13)',
-         ha='center', va='center', fontsize=9.5, color=GOLD,
-         fontweight='bold')
-axR.text(5.0, 2.35, 'Caught at world-side action time',
-         ha='center', va='center', fontsize=8.5, color=SILVER,
-         style='italic')
-
-# Bottom audit query - same query catches both
-audit_box_R = FancyBboxPatch((0.5, audit_y - 0.6), 9.0, 1.2,
-                            boxstyle='round,pad=0.06',
-                            facecolor=PAN, edgecolor=GOLD, linewidth=1.5)
-axR.add_patch(audit_box_R)
-axR.text(5.0, audit_y + 0.30,
-         'same audit pattern: library denials emit observation logs',
-         ha='center', va='center', fontsize=9, color=GOLD,
-         fontfamily='monospace')
-axR.text(5.0, audit_y - 0.05,
-         'queryable through monitoring authority pointer + filter',
-         ha='center', va='center', fontsize=8, color=SILVER,
-         fontfamily='monospace')
-axR.text(5.0, audit_y - 0.40,
-         'investigation joins both surfaces by runner identity',
-         ha='center', va='center', fontsize=8, color=SILVER,
-         fontfamily='monospace')
-
-for ax in (axL, axR):
-    ax.set_xticks([])
-    ax.set_yticks([])
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-
-fig.suptitle('Same Runner, Two Denial Paths\n'
-             'Both surfaces refuse the action; both produce structured records',
-             color=GOLD, fontsize=15, fontweight='bold', y=0.99)
-
-save(fig, 'infra8_03_two_denial_paths.png')
-
-
-# ================================================================
-# FIG 4: LIBRARY CATEGORIES -> MECHANISM FAMILIES
-# Type: 5 (Connection Map)
-# Shows: each library category mapped to one or more INFRA-1 mechanism
-#        families. Library taxonomy follows mechanism taxonomy.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(20, 13), facecolor=BG)
-ax.set_facecolor(BG)
-
-# Left column: library categories
-# Right column: INFRA-1 mechanism families
-
-libraries_col = [
-    ('opsdb.api',            'OpsDB API client',          0,  CYAN),
-    ('world.kubernetes',     'K8s operations',            1,  PURPLE),
-    ('world.cloud',          'cloud operations',          2,  GREEN),
-    ('world.secret',         'secret backend',            3,  MAG),
-    ('world.identity',       'IdP queries',               4,  MAG),
-    ('world.monitoring',     'metric/log queries',        5,  BLUE),
-    ('coordination.retry',   'retry / backoff',           6,  GOLD),
-    ('coordination.breaker', 'circuit breaker',           7,  RED),
-    ('coordination.hedger',  'hedged requests',           8,  ORANGE),
-    ('coordination.bulkhead','isolation pools',           9,  ORANGE),
-    ('observation.logging',  'structured logs',          10,  SILVER),
-    ('observation.metrics',  'counters/gauges',          11,  SILVER),
-    ('notification',         'pages, chat, tickets',     12,  CYAN),
-    ('templating',           'value substitution',       13,  GREEN),
-    ('git',                  'commit, push, PR',         14,  GOLD),
-]
-
-mechanisms_col = [
-    ('Authenticator',           'Gating',         0,   GOLD),
-    ('Authorizer',              'Gating',         1,   GOLD),
-    ('Validator',               'Gating',         2,   GOLD),
-    ('Wrap/unwrap',             'Representation', 3,   PURPLE),
-    ('Channel',                 'Info movement',  4,   CYAN),
-    ('Replicator',              'Info movement',  5,   CYAN),
-    ('Retrier',                 'Resilience',     6,   GREEN),
-    ('Circuit breaker',         'Resilience',     7,   RED),
-    ('Hedger',                  'Resilience',     8,   ORANGE),
-    ('Bulkhead',                'Resilience',     9,   ORANGE),
-    ('Counter / Gauge',         'Sensing',        10,  BLUE),
-    ('Renderer / Transformer',  'Transformation', 11,  GREEN),
-    ('Filter',                  'Gating',         12,  GOLD),
-    ('Version stamp / History', 'Versioning',     13,  PURPLE),
-]
-
-# Layout
-left_x = 4.0
-right_x = 16.0
-y_top = 12.5
-y_bottom = 0.5
-
-n_libs = len(libraries_col)
-n_mechs = len(mechanisms_col)
-
-lib_w = 4.5
-lib_h = 0.65
-mech_w = 4.5
-mech_h = 0.70
-
-lib_ys = np.linspace(y_top, y_bottom, n_libs)
-mech_ys = np.linspace(y_top, y_bottom, n_mechs)
-
-# Column headers
-ax.text(left_x, y_top + 0.85, 'Library categories (INFRA-8)',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD,
-                  linewidth=1.5))
-ax.text(right_x, y_top + 0.85, 'Mechanism families (INFRA-1)',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD,
-                  linewidth=1.5))
-
-# Draw library boxes
-for name, sub, idx, color in libraries_col:
-    y = lib_ys[idx]
-    box = FancyBboxPatch((left_x - lib_w/2, y - lib_h/2), lib_w, lib_h,
-                        boxstyle='round,pad=0.04',
-                        facecolor=PAN, edgecolor=color, linewidth=1.3)
-    ax.add_patch(box)
-    ax.text(left_x - 1.95, y, name, ha='left', va='center',
-            fontsize=8.5, color=color, fontweight='bold',
-            fontfamily='monospace')
-    ax.text(left_x + 2.0, y, sub, ha='right', va='center',
-            fontsize=7.5, color=SILVER, style='italic')
-
-# Draw mechanism boxes
-for name, family, idx, color in mechanisms_col:
-    y = mech_ys[idx]
-    box = FancyBboxPatch((right_x - mech_w/2, y - mech_h/2), mech_w, mech_h,
-                        boxstyle='round,pad=0.04',
-                        facecolor=PAN, edgecolor=color, linewidth=1.3)
-    ax.add_patch(box)
-    ax.text(right_x - 2.0, y + 0.10, name, ha='left', va='center',
-            fontsize=9, color=color, fontweight='bold')
-    ax.text(right_x - 2.0, y - 0.16, '(' + family + ')', ha='left', va='center',
-            fontsize=7.5, color=SILVER, style='italic')
-
-# Mappings: (library_idx, mechanism_idx)
-# Each library category maps to one or more mechanisms
-mappings = [
-    # opsdb.api -> Authenticator, Wrap/unwrap, Channel
-    (0, 0), (0, 3), (0, 4),
-    # world.kubernetes -> Authenticator, Channel, Wrap/unwrap
-    (1, 0), (1, 3), (1, 4),
-    # world.cloud -> Authenticator, Channel, Wrap/unwrap
-    (2, 0), (2, 3),
-    # world.secret -> Authenticator, Channel
-    (3, 0), (3, 4),
-    # world.identity -> Channel, Validator
-    (4, 4), (4, 2),
-    # world.monitoring -> Channel
-    (5, 4),
-    # coordination.retry -> Retrier
-    (6, 6),
-    # coordination.breaker -> Circuit breaker
-    (7, 7),
-    # coordination.hedger -> Hedger
-    (8, 8),
-    # coordination.bulkhead -> Bulkhead
-    (9, 9),
-    # observation.logging -> Counter/Gauge (a kind of structured emission)
-    (10, 10),
-    # observation.metrics -> Counter/Gauge
-    (11, 10),
-    # notification -> Channel, Filter
-    (12, 4), (12, 12),
-    # templating -> Renderer/Transformer
-    (13, 11),
-    # git -> Channel, Version stamp
-    (14, 4), (14, 13),
-]
-
-for lib_idx, mech_idx in mappings:
-    ly = lib_ys[lib_idx]
-    my = mech_ys[mech_idx]
-    color = libraries_col[lib_idx][3]
-    ax.plot([left_x + lib_w/2 + 0.05, right_x - mech_w/2 - 0.05],
-            [ly, my],
-            color=color, linewidth=0.9, alpha=0.45, zorder=2)
-
-# Bottom caption
-ax.text(10.0, -0.4,
-        'The library taxonomy is not arbitrary - it follows the mechanism taxonomy from INFRA-1.',
-        ha='center', va='center', fontsize=11, color=GOLD, fontweight='bold')
-ax.text(10.0, -0.85,
-        'Each library is the operational realization of one or more mechanism families.',
-        ha='center', va='center', fontsize=10, color=SILVER, style='italic')
-
-ax.set_xlim(-0.5, 20.5)
-ax.set_ylim(-1.3, 14.0)
-ax.set_aspect('auto')
-ax.axis('off')
-ax.set_title('Library Categories Mapped to Mechanism Families\n'
-             'INFRA-8 libraries are the operational realization of INFRA-1 mechanisms',
-             color=GOLD, fontsize=15, fontweight='bold', pad=12)
-
-save(fig, 'infra8_04_libraries_to_mechanisms.png')
-
-
-# ================================================================
-# FIG 5: LIBRARY EVOLUTION TIMELINE
-# Type: 1 (Running chart)
-# Shows: semantic versioning in practice; major versions, deprecation
-#        cycles, multiple versions coexisting, runners pinned to versions.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
+fig, ax = plt.subplots(figsize=(16, 9))
+fig.patch.set_facecolor(BG)
 style_axes(ax)
 
-# X-axis: time in months over a 5-year span
-total_months = 60
-months = np.arange(0, total_months + 1)
+# Phase boundaries on x-axis (cumulative time units, conceptual)
+phase_starts = [0, 1, 2, 3.5, 4.5, 6, 7.5]
+phase_labels = ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5', 'Phase 6', '']
 
-# Track 1: opsdb.world.kubernetes major versions
-# v1.x: months 0-22, supported until 30 (overlap with v2)
-# v2.x: months 18-46, supported until 54 (overlap with v3)
-# v3.x: months 42-60+
+# Runner counts: phases 1-5 produce zero "real-work" runners
+# Phase 3-4 has scrappy ingestion scripts (not registered runners)
+# Phase 5 registers them but they are still OpsDB-maintenance only
+# Phase 6 starts adding operational-benefit runners
+x = np.linspace(0, 9, 400)
+y = np.zeros_like(x)
+for i, xi in enumerate(x):
+    if xi < 4.5:
+        y[i] = 0
+    elif xi < 6:
+        # Phase 5: registers existing scripts as runners (OpsDB-maintenance)
+        y[i] = 3 * (xi - 4.5) / 1.5
+    else:
+        # Phase 6: operational runners accumulate
+        t = xi - 6
+        y[i] = 3 + 18 * (1 - np.exp(-t * 0.6))
 
-# Track 2: opsdb.coordination.retry major versions
-# v1.x: months 0-36, supported until 48
-# v2.x: months 30-60+
+ax.plot(x, y, color=GOLD, linewidth=2.5, label='Operational runner count')
 
-# Vertical layout: each version on its own row band
-# Y values represent which version is "current" or "supported"
+# Shade phase regions
+phase_colors = [BLUE, BLUE, CYAN, CYAN, ORANGE, GREEN]
+for i in range(6):
+    ax.axvspan(phase_starts[i], phase_starts[i+1], alpha=0.05, color=phase_colors[i])
 
-# Library 1: opsdb.world.kubernetes
-y_kube_1 = 8.0
-y_kube_2 = 7.0
-y_kube_3 = 6.0
+# Phase boundary lines and labels at top
+for i in range(6):
+    ax.axvline(phase_starts[i+1], color=DIM, linestyle=':', linewidth=0.8, alpha=0.6)
+    mid = (phase_starts[i] + phase_starts[i+1]) / 2
+    ax.text(mid, 24.5, phase_labels[i], color=SILVER, fontsize=10,
+            ha='center', va='top', fontweight='bold')
 
-# Library 2: opsdb.coordination.retry
-y_retry_1 = 4.0
-y_retry_2 = 3.0
+# Annotation: "operational benefit arrives here"
+ax.annotate('Operational benefits\nbegin arriving',
+            xy=(6.3, 4.5), xytext=(7.6, 11),
+            color=GOLD, fontsize=11, ha='center', fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5))
 
-# Draw version bars
-def version_bar(ax_in, y, start, current_end, deprec_end, label, color,
-                short_label):
-    # Active period (solid)
-    ax_in.barh(y, current_end - start, left=start, height=0.55,
-               color=color, alpha=0.5, edgecolor=color, linewidth=1.5)
-    # Deprecated period (lighter, dashed border)
-    if deprec_end > current_end:
-        ax_in.barh(y, deprec_end - current_end, left=current_end, height=0.55,
-                   color=color, alpha=0.15, edgecolor=color, linewidth=1,
-                   hatch='///')
-    # Label at start
-    ax_in.text(start + 0.5, y, short_label, ha='left', va='center',
-               fontsize=10, color=color, fontweight='bold')
+# Annotation: phases 1-5 produce zero real-work runners
+ax.annotate('Phases 1-5: zero runners\ndoing operational work\nbeyond OpsDB maintenance',
+            xy=(2.5, 0.3), xytext=(2.5, 8),
+            color=SILVER, fontsize=10, ha='center',
+            arrowprops=dict(arrowstyle='->', color=SILVER, lw=1.0, alpha=0.7))
 
+# Annotation: phase 5 transition
+ax.annotate('Phase 5: scripts become\nregistered runners',
+            xy=(5.2, 2.1), xytext=(4.0, 16),
+            color=ORANGE, fontsize=9, ha='center',
+            arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.0, alpha=0.7))
 
-# opsdb.world.kubernetes versions
-version_bar(ax, y_kube_1, 0,  22, 30, 'kube v1', PURPLE, 'v1.x')
-version_bar(ax, y_kube_2, 18, 46, 54, 'kube v2', BLUE,   'v2.x')
-version_bar(ax, y_kube_3, 42, 60, 60, 'kube v3', GREEN,  'v3.x')
+# Phase 6 doesn't end note
+ax.text(8.6, 20.5, 'Phase 6 does\nnot end',
+        color=GREEN, fontsize=9, ha='center', style='italic',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GREEN, linewidth=1))
 
-# opsdb.coordination.retry versions
-version_bar(ax, y_retry_1, 0,  36, 48, 'retry v1', GOLD, 'v1.x')
-version_bar(ax, y_retry_2, 30, 60, 60, 'retry v2', CYAN, 'v2.x')
+ax.set_xlim(-0.3, 9.3)
+ax.set_ylim(-1, 26)
+ax.set_xlabel('Implementation timeline (conceptual)', color=SILVER, fontsize=12)
+ax.set_ylabel('Runners performing operational work', color=SILVER, fontsize=12)
+ax.set_title('Runner Population Growth Across Implementation Phases',
+             color=GOLD, fontsize=15, fontweight='bold', pad=18)
+ax.set_xticks([])
 
-# Library labels on the left
-ax.text(-2.5, 7.0, 'opsdb.world\n.kubernetes', ha='center', va='center',
-        fontsize=10, color=WHITE, fontweight='bold')
-ax.text(-2.5, 3.5, 'opsdb.coordination\n.retry', ha='center', va='center',
-        fontsize=10, color=WHITE, fontweight='bold')
+leg = ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
+                labelcolor=WHITE, fontsize=10)
 
-# Version annotations
-# kube v2 release event
-ax.annotate('v2.0 released\n(adds watch streams)',
-            xy=(18, y_kube_2 + 0.3), xytext=(14, 9.4),
-            fontsize=8.5, color=BLUE, ha='center',
-            arrowprops=dict(arrowstyle='->', color=BLUE, lw=1, alpha=0.6),
-            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
-                      edgecolor=BLUE, linewidth=1))
-
-ax.annotate('v1 deprecated\n(8-cycle window)',
-            xy=(22, y_kube_1 + 0.3), xytext=(26, 9.4),
-            fontsize=8.5, color=PURPLE, ha='center',
-            arrowprops=dict(arrowstyle='->', color=PURPLE, lw=1, alpha=0.6),
-            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
-                      edgecolor=PURPLE, linewidth=1))
-
-ax.annotate('v1 removed\n(after dep cycle)',
-            xy=(30, y_kube_1), xytext=(34, 9.4),
-            fontsize=8.5, color=DIM, ha='center',
-            arrowprops=dict(arrowstyle='->', color=DIM, lw=1, alpha=0.6),
-            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
-                      edgecolor=DIM, linewidth=1))
-
-ax.annotate('v3.0 released\n(typed payloads)',
-            xy=(42, y_kube_3 + 0.3), xytext=(48, 9.4),
-            fontsize=8.5, color=GREEN, ha='center',
-            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1, alpha=0.6),
-            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
-                      edgecolor=GREEN, linewidth=1))
-
-ax.annotate('retry v2\n(idempotency keys)',
-            xy=(30, y_retry_2 + 0.3), xytext=(28, 1.6),
-            fontsize=8.5, color=CYAN, ha='center',
-            arrowprops=dict(arrowstyle='->', color=CYAN, lw=1, alpha=0.6),
-            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG,
-                      edgecolor=CYAN, linewidth=1))
-
-# Show some runner pins
-ax.text(60.5, y_kube_1, 'no runners',
-        ha='left', va='center', fontsize=7.5, color=DIM, style='italic')
-ax.text(60.5, y_kube_2, '12 runners pinned',
-        ha='left', va='center', fontsize=8, color=BLUE, style='italic')
-ax.text(60.5, y_kube_3, '47 runners pinned',
-        ha='left', va='center', fontsize=8, color=GREEN, style='italic')
-ax.text(60.5, y_retry_1, '3 legacy runners',
-        ha='left', va='center', fontsize=7.5, color=GOLD, style='italic')
-ax.text(60.5, y_retry_2, '180 runners pinned',
-        ha='left', va='center', fontsize=8, color=CYAN, style='italic')
-
-# Legend for hatching pattern
-legend_y = 0.5
-ax.text(2, legend_y, 'solid:', ha='left', va='center',
-        fontsize=9, color=GOLD, fontweight='bold')
-ax.barh(legend_y, 5, left=4, height=0.30, color=BLUE, alpha=0.5)
-ax.text(10, legend_y, 'current/active version',
-        ha='left', va='center', fontsize=9, color=WHITE)
-
-ax.text(22, legend_y, 'hatched:', ha='left', va='center',
-        fontsize=9, color=GOLD, fontweight='bold')
-ax.barh(legend_y, 5, left=25, height=0.30, color=BLUE, alpha=0.15,
-        hatch='///', edgecolor=BLUE, linewidth=0.8)
-ax.text(31, legend_y, 'deprecated, still supported',
-        ha='left', va='center', fontsize=9, color=WHITE)
-
-ax.text(43, legend_y, 'gap:', ha='left', va='center',
-        fontsize=9, color=GOLD, fontweight='bold')
-ax.text(46, legend_y, 'version removed (tombstone in docs)',
-        ha='left', va='center', fontsize=9, color=DIM, style='italic')
-
-# X-axis: months
-ax.set_xlim(-5, 64)
-ax.set_ylim(-0.5, 10.3)
-ax.set_xticks([0, 12, 24, 36, 48, 60])
-ax.set_xticklabels(['month 0', 'month 12', 'month 24',
-                    'month 36', 'month 48', 'month 60'],
-                   fontsize=10, color=SILVER)
-ax.set_yticks([])
-ax.set_xlabel('time (5-year span)', color=SILVER, fontsize=11)
-
-# Year markers
-for y_marker in [12, 24, 36, 48]:
-    ax.axvline(x=y_marker, color=DIM, linewidth=0.5, linestyle=':', alpha=0.4)
-
-ax.set_title('Library Evolution Timeline\n'
-             'Semantic versioning, deprecation cycles, runners pin and migrate at their own pace',
-             color=GOLD, fontsize=15, fontweight='bold', pad=12)
-
-save(fig, 'infra8_05_library_evolution.png')
-
+save(fig, 'infra09_01_runner_growth.png')
 
 # ================================================================
-# FIG 6: THE CROSS-IMPLEMENTATION CONTRACT
-# Type: 5 (Connection Map)
-# Shows: one contract, multiple language implementations gated by
-#        contract test suite, runners pin to versions.
+# FIG 2: N-OPSDB SYNC ARCHITECTURE
+# Type: 4 (Geometric Cross-Section)
+# Shows: shared infrastructure (one schema, one library suite, one
+# API codebase) deploys to N substrates with diverging data. Text
+# cannot convey the "same shape, different contents" geometry.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 13), facecolor=BG)
+fig, ax = plt.subplots(figsize=(16, 10))
+fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
-
-# Center: the contract
-contract_x, contract_y = 9, 7.5
-contract_box = FancyBboxPatch((contract_x - 3.0, contract_y - 1.6),
-                              6.0, 3.2,
-                              boxstyle='round,pad=0.15',
-                              facecolor=PAN, edgecolor=GOLD, linewidth=3)
-ax.add_patch(contract_box)
-ax.text(contract_x, contract_y + 1.20,
-        'opsdb.world.kubernetes',
-        ha='center', va='center', fontsize=12, color=GOLD,
-        fontweight='bold', fontfamily='monospace')
-ax.text(contract_x, contract_y + 0.85,
-        'CONTRACT v2.5',
-        ha='center', va='center', fontsize=11, color=WHITE,
-        fontweight='bold')
-ax.text(contract_x, contract_y + 0.40,
-        'apply_manifest(cluster, ns, manifest)',
-        ha='center', va='center', fontsize=8, color=SILVER,
-        fontfamily='monospace')
-ax.text(contract_x, contract_y + 0.10,
-        'query_resource(cluster, ns, kind, name)',
-        ha='center', va='center', fontsize=8, color=SILVER,
-        fontfamily='monospace')
-ax.text(contract_x, contract_y - 0.20,
-        'watch_resources(cluster, ns, kind, callback)',
-        ha='center', va='center', fontsize=8, color=SILVER,
-        fontfamily='monospace')
-ax.text(contract_x, contract_y - 0.50,
-        'helm_render(chart_ref, values)',
-        ha='center', va='center', fontsize=8, color=SILVER,
-        fontfamily='monospace')
-ax.text(contract_x, contract_y - 0.80,
-        'helm_install(...)',
-        ha='center', va='center', fontsize=8, color=SILVER,
-        fontfamily='monospace')
-ax.text(contract_x, contract_y - 1.20,
-        '+ failure modes, guarantees, bounds',
-        ha='center', va='center', fontsize=7.5, color=DIM,
-        style='italic')
-
-# Test suite below the contract
-test_box = FancyBboxPatch((contract_x - 3.0, 4.4), 6.0, 1.6,
-                          boxstyle='round,pad=0.1',
-                          facecolor=PAN, edgecolor=ORANGE, linewidth=2.5)
-ax.add_patch(test_box)
-ax.text(contract_x, 5.65, 'CONTRACT TEST SUITE',
-        ha='center', va='center', fontsize=11, color=ORANGE,
-        fontweight='bold')
-ax.text(contract_x, 5.30, 'every operation, every failure mode,',
-        ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-ax.text(contract_x, 5.00, 'every policy enforcement check',
-        ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-ax.text(contract_x, 4.65,
-        'any implementation must pass to claim contract conformance',
-        ha='center', va='center', fontsize=8, color=ORANGE)
-
-# Arrow from contract to tests
-ax.annotate('', xy=(contract_x, 6.0), xytext=(contract_x, 5.9),
-            arrowprops=dict(arrowstyle='-', color=GOLD, lw=1.5))
-
-# Three implementations below the test suite
-impl_y = 2.5
-implementations = [
-    ('Python impl',  'opsdb-k8s-python',     2.5, BLUE,    '2.5.3'),
-    ('Go impl',      'opsdb-k8s-go',         9.0, GREEN,   '2.5.1'),
-    ('Rust impl',    'opsdb-k8s-rust',      15.5, PURPLE,  '2.5.0'),
-]
-
-impl_w = 3.6
-impl_h = 1.4
-
-for label, pkg_name, x, color, version in implementations:
-    box = FancyBboxPatch((x - impl_w/2, impl_y - impl_h/2), impl_w, impl_h,
-                        boxstyle='round,pad=0.1',
-                        facecolor=PAN, edgecolor=color, linewidth=2)
-    ax.add_patch(box)
-    ax.text(x, impl_y + 0.40, label, ha='center', va='center',
-            fontsize=11, color=color, fontweight='bold')
-    ax.text(x, impl_y + 0.05, pkg_name, ha='center', va='center',
-            fontsize=8.5, color=WHITE, fontfamily='monospace')
-    ax.text(x, impl_y - 0.30, 'v' + version, ha='center', va='center',
-            fontsize=8.5, color=SILVER, fontfamily='monospace')
-
-    # PASS marker
-    ax.text(x, impl_y - 0.55, 'contract tests PASS',
-            ha='center', va='center', fontsize=7.5, color=GREEN,
-            fontweight='bold')
-
-    # Arrow from test suite to implementation
-    ax.annotate('', xy=(x, impl_y + impl_h/2 + 0.05),
-                xytext=(contract_x, 4.4),
-                arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.2,
-                                alpha=0.6))
-
-# Runners below, each pinned to one implementation
-runner_y = 0.5
-runners_pinned = [
-    ('reconciler-A',  2.5,  BLUE),
-    ('reconciler-B',  4.0,  BLUE),
-    ('drift-det-C',   5.5,  BLUE),
-    ('verifier-D',    7.5,  GREEN),
-    ('reconciler-E',  9.0,  GREEN),
-    ('verifier-F',   10.5,  GREEN),
-    ('puller-G',     13.5,  PURPLE),
-    ('reconciler-H', 15.0,  PURPLE),
-    ('drift-det-I',  16.5,  PURPLE),
-]
-
-r_w = 1.3
-r_h = 0.55
-
-for name, x, color in runners_pinned:
-    box = FancyBboxPatch((x - r_w/2, runner_y - r_h/2), r_w, r_h,
-                        boxstyle='round,pad=0.04',
-                        facecolor=PAN, edgecolor=color, linewidth=1)
-    ax.add_patch(box)
-    ax.text(x, runner_y, name, ha='center', va='center',
-            fontsize=7.5, color=WHITE, fontweight='bold')
-
-# Arrows from implementations to their runners
-runner_implementation_pairs = [
-    (2.5,  2.5),  (2.5, 4.0),  (2.5, 5.5),    # Python implementation runners
-    (9.0,  7.5),  (9.0, 9.0),  (9.0, 10.5),   # Go implementation runners
-    (15.5, 13.5), (15.5, 15.0),(15.5, 16.5),  # Rust implementation runners
-]
-
-for impl_x, runner_x in runner_implementation_pairs:
-    color_idx = 0
-    if impl_x == 2.5:
-        color = BLUE
-    elif impl_x == 9.0:
-        color = GREEN
-    else:
-        color = PURPLE
-    ax.annotate('', xy=(runner_x, runner_y + r_h/2),
-                xytext=(impl_x, impl_y - impl_h/2),
-                arrowprops=dict(arrowstyle='->', color=color, lw=0.8,
-                                alpha=0.5))
-
-# Top caption
-ax.text(contract_x, 11.5,
-        'one contract',
-        ha='center', va='center', fontsize=14, color=GOLD,
-        fontweight='bold')
-ax.text(contract_x, 11.05,
-        'language-neutral specification of operations, inputs, outputs,',
-        ha='center', va='center', fontsize=9.5, color=SILVER,
-        style='italic')
-ax.text(contract_x, 10.75,
-        'guarantees, and failure modes',
-        ha='center', va='center', fontsize=9.5, color=SILVER,
-        style='italic')
-
-# Layer labels on the left
-ax.text(0.2, 7.5, 'CONTRACT', ha='center', va='center',
-        fontsize=10, color=GOLD, fontweight='bold', rotation=90)
-ax.text(0.2, 5.2, 'TEST GATE', ha='center', va='center',
-        fontsize=10, color=ORANGE, fontweight='bold', rotation=90)
-ax.text(0.2, 2.5, 'IMPLEMENTATIONS', ha='center', va='center',
-        fontsize=10, color=BLUE, fontweight='bold', rotation=90)
-ax.text(0.2, 0.5, 'RUNNERS', ha='center', va='center',
-        fontsize=10, color=SILVER, fontweight='bold', rotation=90)
-
-# Bottom caption
-ax.text(contract_x, -0.4,
-        'Multiple implementations coexist; runners pin to versions; the contract is the stable surface.',
-        ha='center', va='center', fontsize=10, color=GOLD, fontweight='bold')
-
-ax.set_xlim(-0.5, 19.0)
-ax.set_ylim(-0.9, 12.0)
-ax.set_aspect('auto')
+ax.set_xlim(0, 16)
+ax.set_ylim(0, 10)
 ax.axis('off')
-ax.set_title('The Cross-Implementation Contract\n'
-             'One contract, multiple language implementations, contract tests as the gate',
-             color=GOLD, fontsize=16, fontweight='bold', pad=12)
 
-save(fig, 'infra8_06_cross_implementation_contract.png')
+# Top: shared infrastructure (one source of truth)
+shared_y = 8.0
+shared_box_w = 3.2
+shared_box_h = 1.1
+shared_items = [
+    ('Schema repo', 2.5, BLUE),
+    ('Library suite', 8.0, CYAN),
+    ('API codebase', 13.5, ORANGE),
+]
+for label, cx, color in shared_items:
+    box = FancyBboxPatch((cx - shared_box_w/2, shared_y - shared_box_h/2),
+                          shared_box_w, shared_box_h,
+                          boxstyle='round,pad=0.05', facecolor=PAN,
+                          edgecolor=color, linewidth=2)
+    ax.add_patch(box)
+    ax.text(cx, shared_y, label, color=WHITE, fontsize=11,
+            ha='center', va='center', fontweight='bold')
 
+# Header for shared row
+ax.text(8, 9.45, 'ONE source of truth (shared across all substrates)',
+        color=GOLD, fontsize=12, ha='center', fontweight='bold')
+
+# Bottom: N substrates (showing 3 to make N visual)
+substrate_y = 3.0
+substrate_w = 4.2
+substrate_h = 3.2
+substrate_centers = [3.0, 8.0, 13.0]
+substrate_labels = ['Substrate 1\n(production)', 'Substrate 2\n(corp)', 'Substrate N\n(...)']
+substrate_data = [
+    ['Production data', 'Prod users', 'Prod audit log', 'Prod runners'],
+    ['Corp data', 'Corp users', 'Corp audit log', 'Corp runners'],
+    ['Other data', 'Other users', 'Other audit log', 'Other runners'],
+]
+
+for cx, lbl, data in zip(substrate_centers, substrate_labels, substrate_data):
+    # Outer substrate box
+    box = FancyBboxPatch((cx - substrate_w/2, substrate_y - substrate_h/2),
+                          substrate_w, substrate_h,
+                          boxstyle='round,pad=0.05', facecolor=PAN,
+                          edgecolor=GOLD, linewidth=1.5, alpha=0.9)
+    ax.add_patch(box)
+    # Substrate title
+    ax.text(cx, substrate_y + substrate_h/2 - 0.35, lbl, color=GOLD,
+            fontsize=10, ha='center', va='center', fontweight='bold')
+    # Diverging contents
+    for j, item in enumerate(data):
+        ax.text(cx, substrate_y + 0.7 - j*0.45, item, color=SILVER,
+                fontsize=9, ha='center', va='center')
+
+# Header for substrate row
+ax.text(8, 4.95, 'N substrates (data, users, audit log all diverge)',
+        color=SILVER, fontsize=12, ha='center', fontweight='bold', style='italic')
+
+# Arrows from shared to each substrate
+for cx_top in [item[1] for item in shared_items]:
+    for cx_bot in substrate_centers:
+        arrow = FancyArrowPatch((cx_top, shared_y - shared_box_h/2 - 0.05),
+                                 (cx_bot, substrate_y + substrate_h/2 + 0.05),
+                                 arrowstyle='->', color=DIM,
+                                 linewidth=0.7, alpha=0.5,
+                                 mutation_scale=10)
+        ax.add_patch(arrow)
+
+# Bootstrap-at-N=2 note
+ax.text(8, 1.1, 'Bootstrap at N=2 from day one. Adding N=3 later is cheap; '
+                'retrofitting sync onto a system started at N=1 is expensive.',
+        color=CYAN, fontsize=10, ha='center', style='italic',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                  edgecolor=CYAN, linewidth=1))
+
+ax.text(8, 0.3,
+        'No cross-substrate writes. Each substrate is its own write authority.',
+        color=DIM, fontsize=9, ha='center', style='italic')
+
+ax.set_title('N-OpsDB Sync Pipeline: Shared Infrastructure, Diverging Data',
+             color=GOLD, fontsize=14, fontweight='bold', y=0.97)
+
+save(fig, 'infra09_02_n_opsdb_sync.png')
 
 # ================================================================
-# FIG 7: PVC-REPAIR RUNNER ANATOMY
-# Type: 8 (Identity Card) - one per paper, used here
-# Shows: the 200-line runner exploded view; library glue vs runner logic.
+# FIG 3: DSNC LIST-OF-N RIGHT VS WRONG
+# Type: 6 (Comparison)
+# Shows: naive positional flattening vs proper sub-table. The
+# visual contrast makes the structural difference immediate.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9),
+                                gridspec_kw={'wspace': 0.30})
+fig.patch.set_facecolor(BG)
+
+for ax in (ax1, ax2):
+    ax.set_facecolor(PAN)
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 12)
+    ax.axis('off')
+
+# === LEFT: WRONG ===
+ax1.text(5, 11.3, 'WRONG: Positional Flattening',
+         color=RED, fontsize=14, ha='center', fontweight='bold')
+ax1.text(5, 10.6, 'Naive flatten of a list-of-N into indexed fields',
+         color=SILVER, fontsize=10, ha='center', style='italic')
+
+# Single bloated row
+wrong_box = FancyBboxPatch((0.5, 4.5), 9.0, 5.5,
+                            boxstyle='round,pad=0.1', facecolor=BG,
+                            edgecolor=RED, linewidth=2)
+ax1.add_patch(wrong_box)
+ax1.text(5, 9.6, 'cloud_resource (one row)',
+         color=RED, fontsize=11, ha='center', fontweight='bold')
+
+wrong_fields = [
+    'id: ec2-abc123',
+    'cloud_data_volumes_0_id: vol-1',
+    'cloud_data_volumes_0_size: 100',
+    'cloud_data_volumes_1_id: vol-2',
+    'cloud_data_volumes_1_size: 200',
+    'cloud_data_volumes_2_id: vol-3',
+    'cloud_data_volumes_2_size: 50',
+    '... how many do we support?',
+]
+for i, f in enumerate(wrong_fields):
+    color = WHITE if i == 0 else (RED if 'how many' in f else SILVER)
+    ax1.text(0.9, 9.0 - i*0.55, f, color=color, fontsize=9,
+             ha='left', va='center', family='monospace')
+
+# Failure callouts
+ax1.text(5, 3.7, 'Failures:', color=RED, fontsize=11,
+         ha='center', fontweight='bold')
+failures = [
+    'Indices are positional, not meaningful',
+    'Schema must change every time N grows',
+    'Queries treat items non-uniformly',
+    'Provenance of list-ness is lost',
+]
+for i, f in enumerate(failures):
+    ax1.text(5, 3.0 - i*0.5, '- ' + f, color=RED, fontsize=9, ha='center')
+
+# === RIGHT: CORRECT ===
+ax2.text(5, 11.3, 'CORRECT: Sub-Table with FK',
+         color=GREEN, fontsize=14, ha='center', fontweight='bold')
+ax2.text(5, 10.6, 'List-of-N becomes N rows in a related table',
+         color=SILVER, fontsize=10, ha='center', style='italic')
+
+# Parent table
+parent_box = FancyBboxPatch((1.5, 7.8), 7.0, 1.7,
+                             boxstyle='round,pad=0.1', facecolor=BG,
+                             edgecolor=GREEN, linewidth=2)
+ax2.add_patch(parent_box)
+ax2.text(5, 9.1, 'cloud_resource (one row)',
+         color=GREEN, fontsize=11, ha='center', fontweight='bold')
+ax2.text(5, 8.5, 'id: ec2-abc123', color=WHITE, fontsize=9,
+         ha='center', family='monospace')
+ax2.text(5, 8.05, 'cloud_resource_type: ec2_instance', color=SILVER,
+         fontsize=9, ha='center', family='monospace')
+
+# Child table with N rows
+child_box = FancyBboxPatch((0.7, 4.0), 8.6, 3.0,
+                            boxstyle='round,pad=0.1', facecolor=BG,
+                            edgecolor=GREEN, linewidth=2)
+ax2.add_patch(child_box)
+ax2.text(5, 6.6, 'cloud_resource_attached_volume (N rows)',
+         color=GREEN, fontsize=11, ha='center', fontweight='bold')
+
+child_rows = [
+    'id=v-1  parent=ec2-abc123  volume_id=vol-1  size=100',
+    'id=v-2  parent=ec2-abc123  volume_id=vol-2  size=200',
+    'id=v-3  parent=ec2-abc123  volume_id=vol-3  size=50',
+]
+for i, r in enumerate(child_rows):
+    ax2.text(5, 6.05 - i*0.45, r, color=SILVER, fontsize=8.5,
+             ha='center', family='monospace')
+
+# FK arrow from child to parent
+arrow = FancyArrowPatch((5, 7.05), (5, 7.75),
+                         arrowstyle='->', color=GREEN,
+                         linewidth=1.5, mutation_scale=15)
+ax2.add_patch(arrow)
+ax2.text(5.4, 7.4, 'FK', color=GREEN, fontsize=9, fontweight='bold')
+
+# Success callouts
+ax2.text(5, 3.4, 'Properties:', color=GREEN, fontsize=11,
+         ha='center', fontweight='bold')
+successes = [
+    'Each item has its own identity',
+    'N is unbounded without schema change',
+    'Queries treat items uniformly',
+    'Provenance preserved through FK',
+]
+for i, s in enumerate(successes):
+    ax2.text(5, 2.7 - i*0.5, '+ ' + s, color=GREEN, fontsize=9, ha='center')
+
+fig.suptitle('The DSNC List-of-N Test: How to Flatten JSON Without Losing Provenance',
+             color=GOLD, fontsize=15, fontweight='bold', y=0.995)
+
+save(fig, 'infra09_03_dsnc_list_of_n.png')
+
+# ================================================================
+# FIG 4: MINIMAL LIBRARY STARTING SET
+# Type: 4 (Geometric Cross-Section)
+# Shows: nested rings - foundational libraries at center, world-side
+# libraries radiating outward, runners in the outer band. Text cannot
+# convey what is load-bearing vs what comes later.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(14, 14))
+fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
-
-# Header: runner identity card
-header_box = FancyBboxPatch((1.0, 10.5), 16.0, 1.4,
-                            boxstyle='round,pad=0.15',
-                            facecolor=PAN, edgecolor=GOLD, linewidth=2.5)
-ax.add_patch(header_box)
-ax.text(9.0, 11.50, 'k8s_pvc_repair runner',
-        ha='center', va='center', fontsize=14, color=GOLD,
-        fontweight='bold', fontfamily='monospace')
-ax.text(9.0, 11.10, 'a typical small runner: ~200 lines, single purpose, data-defined',
-        ha='center', va='center', fontsize=10, color=SILVER, style='italic')
-ax.text(9.0, 10.75,
-        'reads OpsDB -> decides -> acts via libraries -> records outcome',
-        ha='center', va='center', fontsize=9, color=WHITE)
-
-# Two columns: Library glue (~50 lines) and Runner-specific logic (~150 lines)
-
-# Left column: library glue
-glue_x = 4.5
-glue_y = 5.0
-glue_box = FancyBboxPatch((1.0, 1.2), 7.0, 8.7,
-                          boxstyle='round,pad=0.1',
-                          facecolor=BLUE, edgecolor=BLUE, linewidth=2,
-                          alpha=0.10)
-ax.add_patch(glue_box)
-ax.text(4.5, 9.55 + 0.6, 'LIBRARY GLUE (~50 lines)',
-        ha='center', va='center', fontsize=12, color=BLUE,
-        fontweight='bold')
-ax.text(4.5, 9.20 + 0.6, 'mechanical, uniform across all runners',
-        ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-
-# Code-like list of library calls
-glue_calls = [
-    ('client = opsdb.api.connect()',                      9.55, CYAN),
-    ('# (handles credentials, retries, audit)',           9.55, DIM),
-
-    ('candidates = client.search(',                       8.85, CYAN),
-    ('  entity_type="k8s_pvc",',                          8.85, CYAN),
-    ('  filter=spec.runner_data_json.selector,',          8.85, CYAN),
-    ('  freshness_max_seconds=300)',                      8.85, CYAN),
-
-    ('logger = opsdb.observation.logging.get()',          7.75, SILVER),
-    ('metrics = opsdb.observation.metrics.get()',         7.45, SILVER),
-
-    ('with metrics.timer("pvc_repair_cycle"):',           6.65, GOLD),
-    ('  for pvc in candidates:',                          6.40, GOLD),
-
-    ('    # ... runner-specific decision in right panel ...', 5.65, DIM),
-
-    ('    if action == "apply":',                         4.85, GOLD),
-    ('      result = opsdb.coordination.retry.with_retry(', 4.55, GOLD),
-    ('        lambda: opsdb.world.kubernetes.apply_manifest(', 4.55, PURPLE),
-    ('          cluster_id=pvc.cluster_id,',              4.55, PURPLE),
-    ('          namespace=pvc.namespace,',                4.55, PURPLE),
-    ('          manifest=repair_manifest))',              4.55, PURPLE),
-
-    ('    client.write_observation(',                     3.05, CYAN),
-    ('      table="runner_job_target_k8s_workload",',     3.05, CYAN),
-    ('      payload={',                                   3.05, CYAN),
-    ('        "k8s_workload_id": pvc.parent_workload_id,', 3.05, CYAN),
-    ('        "per_target_status": result.status})',      3.05, CYAN),
-
-    ('logger.log("info", "cycle_complete", ...)',         1.65, SILVER),
-    ('metrics.counter_increment("pvc_repair_count", ...)', 1.40, SILVER),
-]
-
-# Render glue calls as code-style text lines, one below another
-y_cursor = 9.55
-prev_y = None
-line_height = 0.30
-for code, _, color in glue_calls:
-    if prev_y is None:
-        prev_y = y_cursor
-    else:
-        y_cursor -= line_height
-        prev_y = y_cursor
-
-    if code.startswith('#'):
-        ax.text(1.4, y_cursor, code, ha='left', va='center',
-                fontsize=7.5, color=color, fontfamily='monospace',
-                style='italic')
-    else:
-        ax.text(1.4, y_cursor, code, ha='left', va='center',
-                fontsize=7.5, color=color, fontfamily='monospace')
-
-# Right column: runner-specific decision logic
-logic_box = FancyBboxPatch((9.0, 1.2), 7.5, 8.7,
-                          boxstyle='round,pad=0.1',
-                          facecolor=ORANGE, edgecolor=ORANGE, linewidth=2,
-                          alpha=0.10)
-ax.add_patch(logic_box)
-ax.text(12.75, 9.55 + 0.6, 'RUNNER-SPECIFIC LOGIC (~150 lines)',
-        ha='center', va='center', fontsize=12, color=ORANGE,
-        fontweight='bold')
-ax.text(12.75, 9.20 + 0.6, 'PVC repair decisions; not in any other runner',
-        ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-
-# Logic blocks
-logic_blocks = [
-    (8.65, 'def is_repairable(pvc):',                        ORANGE,  False),
-    (8.40, '  """attention-worthy state classification"""',  DIM,     True),
-    (8.15, '  if pvc.status_phase == "Lost":',               WHITE,   False),
-    (7.90, '    return False  # unrecoverable',              DIM,     True),
-    (7.65, '  if pvc.status_phase == "Pending"',             WHITE,   False),
-    (7.45, '     and pvc.age_seconds > 300:',                WHITE,   False),
-    (7.20, '    return True',                                WHITE,   False),
-    (6.95, '  if pvc.has_orphaned_pod():',                   WHITE,   False),
-    (6.75, '    return True',                                WHITE,   False),
-    (6.50, '  return False',                                 WHITE,   False),
-
-    (6.05, '',                                                WHITE,   False),
-    (5.85, 'def choose_repair(pvc):',                         ORANGE,  False),
-    (5.60, '  """rebind / resize / replace"""',               DIM,     True),
-    (5.35, '  if pvc.usage_pct > 95:',                        WHITE,   False),
-    (5.10, '    return RESIZE',                               WHITE,   False),
-    (4.85, '  if pvc.binding_lost():',                        WHITE,   False),
-    (4.60, '    return REBIND',                               WHITE,   False),
-    (4.35, '  return REPLACE',                                WHITE,   False),
-
-    (3.95, '',                                                WHITE,   False),
-    (3.75, 'def build_repair_manifest(pvc, repair):',         ORANGE,  False),
-    (3.50, '  """construct K8s manifest for repair"""',       DIM,     True),
-    (3.25, '  base = load_template("pvc_repair.yaml")',       WHITE,   False),
-    (3.00, '  return apply_repair_overrides(base, ...)',      WHITE,   False),
-
-    (2.55, '',                                                WHITE,   False),
-    (2.40, 'def auto_or_propose(pvc, repair):',               ORANGE,  False),
-    (2.15, '  """policy: auto-correct vs file finding"""',    DIM,     True),
-    (1.90, '  if pvc.namespace.startswith("staging_"):',      WHITE,   False),
-    (1.65, '    return ACTION_APPLY',                         WHITE,   False),
-    (1.40, '  return ACTION_FILE_FINDING',                    WHITE,   False),
-]
-
-for y, code, color, is_comment in logic_blocks:
-    if is_comment:
-        ax.text(9.4, y, code, ha='left', va='center',
-                fontsize=7.5, color=color, fontfamily='monospace',
-                style='italic')
-    else:
-        ax.text(9.4, y, code, ha='left', va='center',
-                fontsize=7.5, color=color, fontfamily='monospace')
-
-# Bottom: line counts
-ax.text(4.5, 0.6, 'lines: ~50',
-        ha='center', va='center', fontsize=10, color=BLUE,
-        fontweight='bold')
-ax.text(4.5, 0.3, '(if this code appears in another runner, it stays here)',
-        ha='center', va='center', fontsize=8, color=DIM, style='italic')
-
-ax.text(12.75, 0.6, 'lines: ~150',
-        ha='center', va='center', fontsize=10, color=ORANGE,
-        fontweight='bold')
-ax.text(12.75, 0.3, '(specific to PVC repair; lives only in this runner)',
-        ha='center', va='center', fontsize=8, color=DIM, style='italic')
-
-ax.set_xlim(0, 18)
-ax.set_ylim(-0.1, 12.5)
-ax.set_aspect('auto')
+ax.set_xlim(-7, 7)
+ax.set_ylim(-7, 7)
+ax.set_aspect('equal')
 ax.axis('off')
-ax.set_title('PVC-Repair Runner Anatomy\n'
-             'A typical small runner: 50 lines library glue + 150 lines runner-specific decision logic',
-             color=GOLD, fontsize=15, fontweight='bold', pad=12)
 
-save(fig, 'infra8_07_pvc_repair_anatomy.png')
+# Outermost ring: runner population
+outer = Circle((0, 0), 6.2, facecolor=PAN, edgecolor=GOLD,
+               linewidth=2, alpha=0.4)
+ax.add_patch(outer)
 
+# Middle ring: world-side libraries (phase 6)
+middle = Circle((0, 0), 4.5, facecolor=PAN, edgecolor=CYAN,
+                linewidth=2, alpha=0.5)
+ax.add_patch(middle)
+
+# Inner ring: resilience/coordination libraries (phase 6 as patterns emerge)
+inner_mid = Circle((0, 0), 3.0, facecolor=PAN, edgecolor=BLUE,
+                   linewidth=2, alpha=0.6)
+ax.add_patch(inner_mid)
+
+# Innermost: foundational libraries (phase 4 minimum)
+core = Circle((0, 0), 1.5, facecolor=BG, edgecolor=GOLD,
+              linewidth=2.5)
+ax.add_patch(core)
+
+# Core labels (phase 4 minimum)
+ax.text(0, 0.3, 'API client', color=GOLD, fontsize=11,
+        ha='center', va='center', fontweight='bold')
+ax.text(0, -0.3, 'Logging', color=GOLD, fontsize=11,
+        ha='center', va='center', fontweight='bold')
+
+# Inner-mid: coordination (placed at angles, with offsets to prevent overlap)
+inner_items = [
+    ('Retry/backoff',     90),
+    ('Circuit breaker',  150),
+    ('Bulkhead',         210),
+    ('Hedger',           330),
+]
+for label, angle in inner_items:
+    rad = np.radians(angle)
+    rx = 2.25 * np.cos(rad)
+    ry = 2.25 * np.sin(rad)
+    ax.text(rx, ry, label, color=BLUE, fontsize=10,
+            ha='center', va='center', fontweight='bold')
+
+# Middle: world-side libraries
+middle_items = [
+    ('K8s ops',          45),
+    ('Cloud ops',         0),
+    ('Host ops',        315),
+    ('Secret access',   270),
+    ('Identity provider',225),
+    ('Monitoring',      180),
+    ('Notification',    135),
+    ('Git ops',          90),
+]
+for label, angle in middle_items:
+    rad = np.radians(angle)
+    rx = 3.75 * np.cos(rad)
+    ry = 3.75 * np.sin(rad)
+    ax.text(rx, ry, label, color=CYAN, fontsize=9.5,
+            ha='center', va='center')
+
+# Outer: runner kinds
+outer_items = [
+    ('Pullers',          90),
+    ('Reconcilers',      45),
+    ('Verifiers',         0),
+    ('Drift detectors', 315),
+    ('Reactors',        270),
+    ('Schedulers',      225),
+    ('Reapers',         180),
+    ('Executors',       135),
+]
+for label, angle in outer_items:
+    rad = np.radians(angle)
+    rx = 5.35 * np.cos(rad)
+    ry = 5.35 * np.sin(rad)
+    ax.text(rx, ry, label, color=GOLD, fontsize=10,
+            ha='center', va='center', fontweight='bold')
+
+# Ring labels (placed outside the rings to avoid overlap)
+ring_labels = [
+    (0,    1.5 + 0.32, 'Phase 4 minimum',  GOLD),
+    (-2.85, 0,        'Phase 6 (patterns)', BLUE),
+    (-4.55, -0.20,    'Phase 6 (world-side)', CYAN),
+    (-6.45, -0.20,    'Phase 6 (runners)',   GOLD),
+]
+# Better: place ring labels along the bottom-left as offset annotations
+for i, (label, color) in enumerate([
+    ('Phase 4: foundational',   GOLD),
+    ('Phase 6: resilience',     BLUE),
+    ('Phase 6: world-side',     CYAN),
+    ('Phase 6: runner kinds',   GOLD),
+]):
+    y = -6.6 + i * 0.3 if False else 0  # placeholder
+# Use a proper legend instead
+
+legend_handles = [
+    mpatches.Patch(color=GOLD,  label='Phase 4 minimum: API client + logging'),
+    mpatches.Patch(color=BLUE,  label='Phase 6: resilience patterns (extract once seen 3x)'),
+    mpatches.Patch(color=CYAN,  label='Phase 6: world-side libraries (built when needed)'),
+    mpatches.Patch(color=GOLD,  label='Phase 6: runners consuming the suite'),
+]
+leg = ax.legend(handles=legend_handles, loc='lower center',
+                bbox_to_anchor=(0.5, -0.02),
+                facecolor=PAN, edgecolor=DIM,
+                labelcolor=WHITE, fontsize=10, ncol=2,
+                frameon=True)
+
+ax.set_title('Minimal Library Starting Set: What is Load-Bearing at Phase 4',
+             color=GOLD, fontsize=15, fontweight='bold', pad=18)
+
+save(fig, 'infra09_04_library_rings.png')
 
 # ================================================================
-# FIG 8: THE OPSDB API CLIENT LIFECYCLE
+# FIG 5: DEV-TO-OPERATIONAL CUTOVER
 # Type: 7 (Progression)
-# Shows: what a single API client call actually does behind the scenes;
-#        credential acquisition, request construction, audit, retry.
+# Shows: before/after states of the one-time transition at phase 5.
+# Text cannot show the discrete cutover boundary visually.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
+ax.set_xlim(0, 18)
+ax.set_ylim(0, 11)
+ax.axis('off')
 
-# Vertical sequence diagram showing one API client call from runner's POV
-# Each phase is a horizontal band with explanation
+# Cutover line in the middle
+ax.axvline(9, color=ORANGE, linewidth=3, linestyle='-', alpha=0.9)
+ax.text(9, 10.5, 'CUTOVER', color=ORANGE, fontsize=13,
+        ha='center', va='center', fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                  edgecolor=ORANGE, linewidth=2))
+ax.text(9, 0.4, 'One-time event at Phase 5',
+        color=ORANGE, fontsize=10, ha='center', style='italic')
 
-phases = [
-    ('runner code',
-     'client.submit_change_set(field_changes, reason="rotate creds")',
-     ORANGE,
-     'a single line in the runner',
-     11.0),
+# === LEFT: BEFORE (development) ===
+ax.text(4.5, 9.7, 'BEFORE: Development substrate',
+        color=BLUE, fontsize=13, ha='center', fontweight='bold')
+ax.text(4.5, 9.2, '(Phase 3-4 state)',
+        color=SILVER, fontsize=10, ha='center', style='italic')
 
-    ('phase 1: credential check',
-     'is current credential still valid? if expiring, refresh from secret backend',
-     MAG,
-     'opsdb.world.secret library auto-refreshes',
-     9.5),
+before_items = [
+    ('Minimal API', 'authenticated read/write only', BLUE),
+    ('No change management', 'direct writes accepted', BLUE),
+    ('Rough authorization', 'role-based read/write', BLUE),
+    ('No runner report keys', 'unrestricted write surface', BLUE),
+    ('Simple request logging', 'no audit log infrastructure', BLUE),
+    ('Ad-hoc ingestion scripts', 'not registered runners', BLUE),
+    ('Schema iterations are cheap', 'no governance pipeline', BLUE),
+]
+for i, (title, sub, color) in enumerate(before_items):
+    y = 8.4 - i * 1.05
+    box = FancyBboxPatch((0.5, y - 0.4), 8.0, 0.8,
+                          boxstyle='round,pad=0.05', facecolor=PAN,
+                          edgecolor=color, linewidth=1, alpha=0.85)
+    ax.add_patch(box)
+    ax.text(0.9, y + 0.12, title, color=WHITE, fontsize=10,
+            ha='left', va='center', fontweight='bold')
+    ax.text(0.9, y - 0.22, sub, color=SILVER, fontsize=8.5,
+            ha='left', va='center', style='italic')
 
-    ('phase 2: correlation',
-     'attach runner_job_id, propagate trace context, generate request_id',
-     CYAN,
-     'audit correlation IDs flow through the call chain',
-     8.0),
+# === RIGHT: AFTER (operational) ===
+ax.text(13.5, 9.7, 'AFTER: Operational substrate',
+        color=GREEN, fontsize=13, ha='center', fontweight='bold')
+ax.text(13.5, 9.2, '(Phase 5 onward)',
+        color=SILVER, fontsize=10, ha='center', style='italic')
 
-    ('phase 3: optimistic version stamp',
-     'attach drafted-against version stamps for each affected entity',
-     PURPLE,
-     'INFRA-5 §5.6 stale-version protection',
-     6.5),
+after_items = [
+    ('Full INFRA-5 API', '10-step gate on every operation', GREEN),
+    ('Change management active', 'change_managed entities gated', GREEN),
+    ('Five-layer authorization', 'role/entity/field/runner/policy', GREEN),
+    ('Runner report keys enforced', 'declared writable surface only', GREEN),
+    ('Append-only audit log', 'full attribution every write', GREEN),
+    ('Registered runners with scopes', 'runner_spec rows in OpsDB', GREEN),
+    ('Schema changes are change_sets', 'governed evolution', GREEN),
+]
+for i, (title, sub, color) in enumerate(after_items):
+    y = 8.4 - i * 1.05
+    box = FancyBboxPatch((9.5, y - 0.4), 8.0, 0.8,
+                          boxstyle='round,pad=0.05', facecolor=PAN,
+                          edgecolor=color, linewidth=1, alpha=0.85)
+    ax.add_patch(box)
+    ax.text(9.9, y + 0.12, title, color=WHITE, fontsize=10,
+            ha='left', va='center', fontweight='bold')
+    ax.text(9.9, y - 0.22, sub, color=SILVER, fontsize=8.5,
+            ha='left', va='center', style='italic')
 
-    ('phase 4: serialize and send',
-     'POST /change_set with structured payload over TLS',
-     BLUE,
-     'opsdb.api transport handles the wire format',
-     5.0),
+# Bottom annotation about historical data
+ax.text(9, 1.2,
+        'Historical data loaded under dev API is preserved. '
+        'Governance applies to changes after the cutover, not retroactively.',
+        color=CYAN, fontsize=10, ha='center', style='italic',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                  edgecolor=CYAN, linewidth=1))
 
-    ('phase 5: API gate processing',
-     '10-step gate sequence runs (auth/authz/validate/route/audit/execute)',
-     GOLD,
-     'this is INFRA-5 territory',
-     3.5),
+ax.set_title('The Development-to-Operational Cutover: A One-Time Transition',
+             color=GOLD, fontsize=15, fontweight='bold', y=0.98)
 
-    ('phase 6: response parsing',
-     'parse structured response, surface errors as typed exceptions',
-     GREEN,
-     'runner sees a clean structured result or a structured error',
-     2.0),
+save(fig, 'infra09_05_cutover.png')
+
+# ================================================================
+# FIG 6: SCHEMA QUALITY COST OVER LIFETIME
+# Type: 1 (Curve)
+# Shows: two divergent curves over years. Schema-right stays flat;
+# schema-wrong diverges as every consumer pays the cost forever.
+# Text cannot show the scale of compounding.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 9))
+fig.patch.set_facecolor(BG)
+style_axes(ax)
+
+t = np.linspace(0, 10, 400)
+
+# Schema-right cost: small ongoing maintenance, grows linearly with scope
+right_cost = 1.0 + 0.15 * t
+
+# Schema-wrong cost: each consumer pays a fix-up tax; consumers grow
+# over time, so cost grows superlinearly
+# Approximate: linear consumer growth + per-consumer fixed tax + occasional
+# major re-work events
+wrong_cost = 1.0 + 0.4 * t + 0.18 * t**2 + 0.4 * np.sin(t * 0.8) * (t > 2)
+
+ax.plot(t, right_cost, color=GREEN, linewidth=2.5,
+        label='Schema right at Phase 3')
+ax.plot(t, wrong_cost, color=RED, linewidth=2.5,
+        label='Schema wrong at Phase 3')
+
+# Fill the gap to emphasize the divergence
+ax.fill_between(t, right_cost, wrong_cost,
+                where=(wrong_cost > right_cost),
+                color=RED, alpha=0.10)
+
+# Phase 3 marker
+ax.axvline(0.3, color=ORANGE, linestyle='--', linewidth=1.2, alpha=0.7)
+ax.text(0.4, 19, 'Phase 3:\nschema baseline\nset here', color=ORANGE,
+        fontsize=9, ha='left', va='top')
+
+# Annotation: every consumer pays
+ax.annotate('Every consumer pays\nthe schema-shape cost\non every cycle',
+            xy=(7.5, wrong_cost[300]), xytext=(5.5, 9),
+            color=RED, fontsize=10, ha='center', fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=RED, lw=1.3))
+
+# Annotation: stays flat
+ax.annotate('Linear maintenance\nscaling with scope',
+            xy=(7.5, right_cost[300]), xytext=(8.0, 4.5),
+            color=GREEN, fontsize=10, ha='center', fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.3))
+
+# Key callouts inline
+ax.text(2.0, 1.3, 'Both start near equal',
+        color=SILVER, fontsize=9, ha='center', style='italic')
+
+ax.set_xlim(-0.3, 10.3)
+ax.set_ylim(0, 22)
+ax.set_xlabel('Years of OpsDB operation', color=SILVER, fontsize=12)
+ax.set_ylabel('Cumulative cost paid by consumers (relative units)',
+              color=SILVER, fontsize=12)
+ax.set_title('Schema Quality Cost Over OpsDB Lifetime',
+             color=GOLD, fontsize=15, fontweight='bold', pad=18)
+
+leg = ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
+                labelcolor=WHITE, fontsize=11)
+
+ax.text(5, -2.2,
+        'Schema is cheap to fix at Phase 3 (no governance, no consumers). '
+        'After Phase 5, every fix is paid by every consumer of the data.',
+        color=DIM, fontsize=9, ha='center', style='italic',
+        transform=ax.transData)
+# Move that note inside the axes range
+ax.text(5, 0.6,
+        '(Schema is cheap to fix at Phase 3. After Phase 5, every fix is paid by every consumer.)',
+        color=DIM, fontsize=9, ha='center', style='italic')
+
+save(fig, 'infra09_06_schema_quality_cost.png')
+
+# ================================================================
+# FIG 7: CARDINALITY LANDSCAPE WITH N=2 FORBIDDEN
+# Type: 3 (Threshold/Region)
+# Shows: three valid regions (0, 1, N) with N=2 as explicit failure
+# state. Text cannot make the "no 2" rule visually immediate.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 9))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+for spine in ax.spines.values():
+    spine.set_color(DIM)
+    spine.set_linewidth(0.5)
+ax.tick_params(colors=DIM, labelsize=9)
+
+# X-axis: cardinality value (0, 1, 2, 3, 4, 5+)
+# Y-axis: validity (1.0 = valid, 0 = forbidden), but use it for visual placement
+
+# Region shading
+ax.axvspan(-0.5, 0.5, alpha=0.10, color=DIM)        # 0 region
+ax.axvspan(0.5, 1.5,  alpha=0.15, color=GREEN)      # 1 region
+ax.axvspan(1.5, 2.5,  alpha=0.20, color=RED)        # 2 forbidden
+ax.axvspan(2.5, 5.5,  alpha=0.15, color=BLUE)       # N region
+
+# Region labels at top
+ax.text(0,   2.65, '0 OpsDBs',     color=DIM,   fontsize=12, ha='center', fontweight='bold')
+ax.text(1,   2.65, '1 OpsDB',      color=GREEN, fontsize=12, ha='center', fontweight='bold')
+ax.text(2,   2.65, '2 OpsDBs',     color=RED,   fontsize=12, ha='center', fontweight='bold')
+ax.text(4,   2.65, 'N OpsDBs',     color=BLUE,  fontsize=12, ha='center', fontweight='bold')
+
+# Status labels just below region labels
+ax.text(0,   2.30, '(failure state - no coordination)',
+        color=DIM,   fontsize=9, ha='center', style='italic')
+ax.text(1,   2.30, 'VALID',
+        color=GREEN, fontsize=10, ha='center', fontweight='bold')
+ax.text(2,   2.30, 'FORBIDDEN',
+        color=RED,   fontsize=10, ha='center', fontweight='bold')
+ax.text(4,   2.30, 'VALID (N >= 3)',
+        color=BLUE,  fontsize=10, ha='center', fontweight='bold')
+
+# Markers at each cardinality
+ax.scatter([0], [1.5], s=400, c=DIM,   edgecolors=WHITE, linewidth=1.5, zorder=5)
+ax.scatter([1], [1.5], s=400, c=GREEN, edgecolors=WHITE, linewidth=1.5, zorder=5)
+ax.scatter([2], [1.5], s=400, c=RED,   edgecolors=WHITE, linewidth=1.5,
+           marker='X', zorder=5)
+ax.scatter([3, 4, 5], [1.5, 1.5, 1.5], s=400, c=BLUE,
+           edgecolors=WHITE, linewidth=1.5, zorder=5)
+
+# Reasons that justify each (offset boxes below)
+reasons_zero = ['Default failure state', 'before any OpsDB exists']
+reasons_one  = ['Most orgs land here', 'under structural-unity threshold']
+reasons_two  = ['NEVER. There is no', 'stable "almost 1" state']
+reasons_n    = ['Security perimeters', 'Regulatory residency',
+                'Air-gap requirements', 'Independent org units']
+
+reason_groups = [
+    (0, reasons_zero, DIM),
+    (1, reasons_one,  GREEN),
+    (2, reasons_two,  RED),
+    (4, reasons_n,    BLUE),
+]
+for cx, reasons, color in reason_groups:
+    box_h = 0.15 * len(reasons) + 0.5
+    box = FancyBboxPatch((cx - 0.85, 0.15), 1.7, box_h,
+                          boxstyle='round,pad=0.05', facecolor=BG,
+                          edgecolor=color, linewidth=1.2)
+    ax.add_patch(box)
+    for i, r in enumerate(reasons):
+        ax.text(cx, 0.15 + box_h - 0.25 - i * 0.18, r,
+                color=color, fontsize=8.5, ha='center', va='center')
+
+# What does NOT justify N callout (top right)
+ax.text(4, -0.55, 'N is NOT justified by:',
+        color=ORANGE, fontsize=10, ha='center', fontweight='bold')
+not_reasons = [
+    'Convenience',
+    'Premature optimization',
+    'Performance scaling (engine choice)',
+    'Technical fragility (= bad ops practice)',
+]
+for i, nr in enumerate(not_reasons):
+    ax.text(4, -0.80 - i * 0.18, '- ' + nr, color=ORANGE,
+            fontsize=8.5, ha='center')
+
+# Big "X" emphasis on the 2 region
+ax.text(2, 1.5, 'X', color=RED, fontsize=48, ha='center', va='center',
+        fontweight='bold', alpha=0.0)  # already drawn via scatter
+
+ax.set_xlim(-0.7, 5.7)
+ax.set_ylim(-1.7, 3.0)
+ax.set_yticks([])
+ax.set_xticks([0, 1, 2, 3, 4, 5])
+ax.set_xticklabels(['0', '1', '2', '3', '4', '5+'])
+ax.set_xlabel('OpsDB cardinality', color=SILVER, fontsize=12)
+ax.set_title('Cardinality Landscape: Valid Regions and the Forbidden N=2',
+             color=GOLD, fontsize=15, fontweight='bold', pad=18)
+
+save(fig, 'infra09_07_cardinality.png')
+
+# ================================================================
+# FIG 8: AUTO-APPROVAL POLICY SPECTRUM
+# Type: 3 (Threshold/Region)
+# Shows: change risk on x-axis, approval mode bands, with example
+# patterns placed on the spectrum. Text cannot show calibration as
+# a continuous design space.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 9))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(PAN)
+for spine in ax.spines.values():
+    spine.set_color(DIM)
+    spine.set_linewidth(0.5)
+ax.tick_params(colors=DIM, labelsize=9)
+
+# X-axis: change risk (0 to 10 conceptual)
+# Y-axis: 4 horizontal bands for approval modes
+
+# Bands
+bands = [
+    (3.0, 4.0, GREEN,  'Auto-approve',
+     'Routine, low-risk, declared-scope'),
+    (2.0, 3.0, CYAN,   'Single approver',
+     'Service owner or domain owner'),
+    (1.0, 2.0, BLUE,   'Multi-approver',
+     'Service + security + compliance'),
+    (0.0, 1.0, ORANGE, 'Emergency only',
+     'High-risk, post-hoc review required'),
+]
+for ymin, ymax, color, label, sub in bands:
+    ax.axhspan(ymin, ymax, alpha=0.12, color=color)
+    ax.text(-0.2, (ymin + ymax) / 2 + 0.10, label, color=color,
+            fontsize=11, ha='right', va='center', fontweight='bold')
+    ax.text(-0.2, (ymin + ymax) / 2 - 0.18, sub, color=SILVER,
+            fontsize=8.5, ha='right', va='center', style='italic')
+
+# Example patterns placed on the spectrum
+# (risk_x, band_y_center, label, color)
+examples = [
+    (0.8, 3.5,  'Drift correction\n(non-prod, low-risk fields)',         GREEN),
+    (2.2, 3.5,  'Scheduled credential\nrotation',                         GREEN),
+    (3.8, 3.5,  'Routine reconciler\nconfig adjust',                      GREEN),
+    (1.5, 2.5,  'Service config update\n(non-prod)',                      CYAN),
+    (4.0, 2.5,  'New runner registration',                                CYAN),
+    (5.5, 2.5,  'Production service\nconfig update',                      CYAN),
+    (5.0, 1.5,  'Security policy change',                                 BLUE),
+    (6.5, 1.5,  'Production database\nschema change',                     BLUE),
+    (8.0, 1.5,  'Compliance scope change',                                BLUE),
+    (8.5, 0.5,  'Schema steward\noverride',                               ORANGE),
+    (9.5, 0.5,  'Production failover\n(time-pressured)',                  ORANGE),
 ]
 
-# Layout
-phase_x_start = 1.0
-phase_x_end = 17.0
-phase_w = phase_x_end - phase_x_start
-phase_h = 1.1
+for rx, ry, label, color in examples:
+    ax.scatter([rx], [ry], s=140, c=color, edgecolors=WHITE,
+               linewidth=1.5, zorder=5)
+    # Offset label to avoid overlapping the marker; alternate above/below
+    # by using a slight y offset
+    offset_y = 0.18 if (rx * 10) % 2 == 0 else -0.20
+    va = 'bottom' if offset_y > 0 else 'top'
+    ax.text(rx, ry + offset_y, label, color=color, fontsize=8.5,
+            ha='center', va=va)
 
-for label, detail, color, sub, y in phases:
-    box = FancyBboxPatch((phase_x_start, y - phase_h/2), phase_w, phase_h,
-                        boxstyle='round,pad=0.06',
-                        facecolor=PAN, edgecolor=color, linewidth=1.8)
-    ax.add_patch(box)
-    ax.text(phase_x_start + 0.2, y + 0.30, label, ha='left', va='center',
-            fontsize=11, color=color, fontweight='bold')
-    ax.text(phase_x_start + 0.2, y - 0.05, detail, ha='left', va='center',
-            fontsize=9, color=WHITE, fontfamily='monospace')
-    ax.text(phase_x_start + 0.2, y - 0.35, sub, ha='left', va='center',
-            fontsize=8.5, color=SILVER, style='italic')
+# Risk axis labels at bottom
+ax.text(0.5, -0.45, 'Low risk', color=GREEN, fontsize=10,
+        ha='center', fontweight='bold')
+ax.text(5.0, -0.45, 'Medium risk', color=CYAN, fontsize=10,
+        ha='center', fontweight='bold')
+ax.text(9.5, -0.45, 'High risk', color=ORANGE, fontsize=10,
+        ha='center', fontweight='bold')
 
-# Connecting arrows between phases
-for i in range(len(phases) - 1):
-    y_top = phases[i][4] - phase_h/2
-    y_bot = phases[i+1][4] + phase_h/2
-    ax.annotate('', xy=(2.5, y_bot - 0.05), xytext=(2.5, y_top + 0.05),
-                arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5,
-                                alpha=0.7))
+# Bottom note
+ax.text(5.0, -0.95,
+        'Each org calibrates the bands at Phase 5. Bias is narrow auto-approval initially, '
+        'broader as confidence builds. The bands themselves are change-managed policy data.',
+        color=DIM, fontsize=9, ha='center', style='italic')
 
-# Special path: stale version retry loop (between phase 5 and phase 6)
-# Show as a curved arrow back from response to phase 3
-loop_start_y = phases[5][4]  # API gate
-loop_target_y = phases[2][4]  # correlation (we re-do version stamps then resend)
+ax.set_xlim(-2.6, 10.5)
+ax.set_ylim(-1.2, 4.3)
+ax.set_yticks([])
+ax.set_xticks([])
+ax.set_xlabel('Change risk (low to high)', color=SILVER, fontsize=12, labelpad=20)
+ax.set_title('Auto-Approval Policy Spectrum: Calibrating Approval Mode by Change Risk',
+             color=GOLD, fontsize=15, fontweight='bold', pad=18)
 
-ax.annotate('',
-            xy=(15.5, loop_target_y),
-            xytext=(15.5, loop_start_y - 0.1),
-            arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.5,
-                            connectionstyle='arc3,rad=-0.4', alpha=0.8))
-ax.text(16.7, (loop_start_y + loop_target_y) / 2,
-        'on stale_version:\nrefetch, reconcile,\nretry submit',
-        ha='center', va='center', fontsize=8.5, color=ORANGE,
-        style='italic',
-        bbox=dict(boxstyle='round,pad=0.25', facecolor=BG,
-                  edgecolor=ORANGE, linewidth=1))
-
-# Bottom: the runner sees only this
-result_y = 0.35
-result_box = FancyBboxPatch((1.0, result_y - 0.4), 16.0, 0.8,
-                           boxstyle='round,pad=0.08',
-                           facecolor=PAN, edgecolor=GREEN, linewidth=2)
-ax.add_patch(result_box)
-ax.text(9.0, result_y + 0.10,
-        'runner sees: change_set_id (success) or typed exception (failure)',
-        ha='center', va='center', fontsize=10, color=GREEN, fontweight='bold')
-ax.text(9.0, result_y - 0.25,
-        'all six phases above are handled by the library; the runner code is one line',
-        ha='center', va='center', fontsize=8.5, color=SILVER, style='italic')
-
-# Side annotations explaining what's at stake at each layer
-ax.text(0.4, 9.5, 'transport', ha='center', va='center',
-        fontsize=8, color=DIM, rotation=90)
-ax.text(0.4, 6.5, 'protocol', ha='center', va='center',
-        fontsize=8, color=DIM, rotation=90)
-ax.text(0.4, 3.5, 'remote', ha='center', va='center',
-        fontsize=8, color=DIM, rotation=90)
-
-ax.set_xlim(-0.5, 19.0)
-ax.set_ylim(-0.4, 12.0)
-ax.set_aspect('auto')
-ax.axis('off')
-ax.set_title('The OpsDB API Client Lifecycle\n'
-             'What a single client.submit_change_set() call actually does',
-             color=GOLD, fontsize=16, fontweight='bold', pad=12)
-
-save(fig, 'infra8_08_api_client_lifecycle.png')
-
+save(fig, 'infra09_08_approval_spectrum.png')
 
 # ================================================================
 # SUMMARY
 # ================================================================
 
-print("\n" + "=" * 60)
-print("INFRA-8 diagram script complete")
-print("=" * 60)
-print("Files written to: %s" % outdir)
-print()
-print("  infra8_01_two_sided_enforcement.png")
-print("  infra8_02_library_runner_boundary.png")
-print("  infra8_03_two_denial_paths.png")
-print("  infra8_04_libraries_to_mechanisms.png")
-print("  infra8_05_library_evolution.png")
-print("  infra8_06_cross_implementation_contract.png")
-print("  infra8_07_pvc_repair_anatomy.png")
-print("  infra8_08_api_client_lifecycle.png")
+print("\nINFRA-9 diagram script complete. 8 figures generated:")
+print("  1. infra09_01_runner_growth.png       - Runner population growth across phases")
+print("  2. infra09_02_n_opsdb_sync.png        - N-OpsDB sync architecture")
+print("  3. infra09_03_dsnc_list_of_n.png      - DSNC list-of-N right vs wrong")
+print("  4. infra09_04_library_rings.png       - Minimal library starting set")
+print("  5. infra09_05_cutover.png             - Dev-to-operational cutover")
+print("  6. infra09_06_schema_quality_cost.png - Schema quality cost over lifetime")
+print("  7. infra09_07_cardinality.png         - Cardinality landscape (0/1/N, no 2)")
+print("  8. infra09_08_approval_spectrum.png   - Auto-approval policy spectrum")
