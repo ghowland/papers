@@ -36,8 +36,6 @@ The order in this guide gives you the context first, then the architecture, then
 
 ![Fig. 2: Paper dependency graph - which papers inform which, with stage colors marking the comprehension order.](./figures/reading_guide_02_dependency_dag.png)
 
-![Fig. 5: Two orders, same papers - numbered order is for reference, comprehension order is for the first read.](./figures/reading_guide_05_two_orders.png)
-
 ---
 
 ## Stage 1 — What you get and what it is
