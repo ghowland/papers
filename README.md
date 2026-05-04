@@ -248,4 +248,5 @@
 | **[[@HOWL-INFRA-6-2026]](papers/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md)** | **OpsDB Schema Construction** | Hierarchical Declarative Schemas with Bounded Validation. |
 | **[[@HOWL-INFRA-7-2026]](papers/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md)** | **The OpsDB: A Substrate for Coherent Operations** | What It Is, What You Get, How It Changes the Work. |
 | **[[@HOWL-INFRA-8-2026]](papers/papers/INFRA/HOWL-INFRA-8-2026/manuscript.md)** | **The OpsDB Shared Library Suite** | The Operational Logic Framework Around the OpsDB. |
+| **[[@HOWL-INFRA-9-2026]](papers/papers/INFRA/HOWL-INFRA-9-2026/manuscript.md)** | **OpsDB Implementation Path** | A Six-Phase Guide from Specification to Working Substrate. |
 
