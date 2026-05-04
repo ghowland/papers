@@ -5,6 +5,24 @@
 
 ---
 
+## Infrastructure
+*Infrastructure Engineering.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[How To Read OpsDB Infra Papers](papers/papers/INFRA/README.md)** | **How to Read the OpsDB Infrastructure Series** | This provides order and context for the INFRA series papers for the OpsDB. |
+| **[@HOWL-INFRA-1-2026](papers/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md)** | **Infrastructure Taxonomy** | A Taxonomy of Infrastructure Mechanisms, Properties, and Principles. |
+| **[@HOWL-INFRA-2-2026](papers/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md)** | **OpsDB Design** | A Centralized Data Substrate for Distributed Operating Systems. |
+| **[@HOWL-INFRA-3-2026](papers/papers/INFRA/HOWL-INFRA-3-2026/manuscript.md)** | **An Example OpsDB Schema** | Comprehensive Operational Substrate Schema. |
+| **[@HOWL-INFRA-4-2026](papers/papers/INFRA/HOWL-INFRA-4-2026/manuscript.md)** | **OpsDB Runner Design** | The Operational Logic Layer Around the OpsDB. |
+| **[@HOWL-INFRA-5-2026](papers/papers/INFRA/HOWL-INFRA-5-2026/manuscript.md)** | **OpsDB API Layer** | Authentication, Versioning, and Change Management Gating. |
+| **[@HOWL-INFRA-6-2026](papers/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md)** | **OpsDB Schema Construction** | Hierarchical Declarative Schemas with Bounded Validation. |
+| **[@HOWL-INFRA-7-2026](papers/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md)** | **The OpsDB: A Substrate for Coherent Operations** | What It Is, What You Get, How It Changes the Work. |
+| **[@HOWL-INFRA-8-2026](papers/papers/INFRA/HOWL-INFRA-8-2026/manuscript.md)** | **The OpsDB Shared Library Suite** | The Operational Logic Framework Around the OpsDB. |
+| **[@HOWL-INFRA-9-2026](papers/papers/INFRA/HOWL-INFRA-9-2026/manuscript.md)** | **OpsDB Implementation Path** | A Six-Phase Guide from Specification to Working Substrate. |
+
+---
+
 ## Information
 *Frameworks for knowledge management and information theory.*
 
@@ -37,6 +55,16 @@
 
 ---
 
+## Engineering
+*Engineering.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[@HOWL-ENG-1-2026](papers/papers/ENG/HOWL-ENG-1-2026/manuscript.md)** | **What Engineering Is** | A precise definition and its consequences for software. |
+| **[@HOWL-ENG-2-2026](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
+
+---
+
 ## LLM
 *Integer based Large Language Models.*
 
@@ -45,7 +73,6 @@
 | **[@HOWL-LLM-1-2026](papers/papers/LLM/HOWL-LLM-1-2026/manuscript.md)** | **Integer LLM with Prolog Knowledge Base** | Bidirectional Neural-Symbolic Architecture for Provenanced Generation. |
 
 ---
-
 
 ## Philosophy
 *Philosophical foundations.*
@@ -224,30 +251,3 @@
 | **[@HOWL-LYRIC-2-2026](papers/papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md)** | **The Lyric Engine II** | A Systematic Method for LLM-Assisted Song Refinement from Existing Draft Material. |
 
 ---
-
-## Engineering
-*Engineering.*
-
-| ID | Title | Description |
-| :--- | :--- | :--- |
-| **[@HOWL-ENG-1-2026](papers/papers/ENG/HOWL-ENG-1-2026/manuscript.md)** | **What Engineering Is** | A precise definition and its consequences for software. |
-| **[@HOWL-ENG-2-2026](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
-
----
-
-## Infrastructure
-*Infrastructure Engineering.*
-
-| ID | Title | Description |
-| :--- | :--- | :--- |
-| **[How To Read OpsDB Infra Papers](papers/papers/INFRA/README.md)** | **How to Read the OpsDB Infrastructure Series** | This provides order and context for the INFRA series papers for the OpsDB. |
-| **[@HOWL-INFRA-1-2026](papers/papers/INFRA/HOWL-INFRA-1-2026/manuscript.md)** | **Infrastructure Taxonomy** | A Taxonomy of Infrastructure Mechanisms, Properties, and Principles. |
-| **[@HOWL-INFRA-2-2026](papers/papers/INFRA/HOWL-INFRA-2-2026/manuscript.md)** | **OpsDB Design** | A Centralized Data Substrate for Distributed Operating Systems. |
-| **[@HOWL-INFRA-3-2026](papers/papers/INFRA/HOWL-INFRA-3-2026/manuscript.md)** | **An Example OpsDB Schema** | Comprehensive Operational Substrate Schema. |
-| **[@HOWL-INFRA-4-2026](papers/papers/INFRA/HOWL-INFRA-4-2026/manuscript.md)** | **OpsDB Runner Design** | The Operational Logic Layer Around the OpsDB. |
-| **[@HOWL-INFRA-5-2026](papers/papers/INFRA/HOWL-INFRA-5-2026/manuscript.md)** | **OpsDB API Layer** | Authentication, Versioning, and Change Management Gating. |
-| **[@HOWL-INFRA-6-2026](papers/papers/INFRA/HOWL-INFRA-6-2026/manuscript.md)** | **OpsDB Schema Construction** | Hierarchical Declarative Schemas with Bounded Validation. |
-| **[@HOWL-INFRA-7-2026](papers/papers/INFRA/HOWL-INFRA-7-2026/manuscript.md)** | **The OpsDB: A Substrate for Coherent Operations** | What It Is, What You Get, How It Changes the Work. |
-| **[@HOWL-INFRA-8-2026](papers/papers/INFRA/HOWL-INFRA-8-2026/manuscript.md)** | **The OpsDB Shared Library Suite** | The Operational Logic Framework Around the OpsDB. |
-| **[@HOWL-INFRA-9-2026](papers/papers/INFRA/HOWL-INFRA-9-2026/manuscript.md)** | **OpsDB Implementation Path** | A Six-Phase Guide from Specification to Working Substrate. |
-
