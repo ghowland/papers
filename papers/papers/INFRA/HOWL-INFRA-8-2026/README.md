@@ -1,4 +1,4 @@
-# The OpsDB: A Substrate for Coherent Operations
+# The OpsDB Shared Library Suite
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,9 +6,13 @@
 
 ## Abstract
 
-This paper introduces the OpsDB to readers who have not encountered the prior six papers in the series. The OpsDB is a centralized data substrate that holds the full operational reality of an organization — configuration, observed state, schedules, policies, runner enumeration, documentation references, evidence, change history, audit — accessed through a single API gate that enforces authentication, authorization, validation, change management, versioning, and audit uniformly across every entity. Three populations consume the substrate through scoped access: humans investigating and proposing changes, automation runners performing operational work, auditors verifying controls. A small fleet of decentralized runners reads from the OpsDB, acts in the world through shared libraries, and writes results back; the OpsDB itself is passive and never invokes work. The schema is itself data, declared in YAML files in a git repo, evolved through the same change-management discipline that governs every other operational change.
+The shared library suite is the framework that keeps OpsDB-coordinated runners small and consistent. INFRA-4 introduced the suite as a category and made the case that runners stay small because the libraries do the heavy lifting; this paper specifies what the libraries are, what contracts they expose, what the library/runner boundary looks like, and how the suite enforces policy at world-side action time. The suite is a contract specification, not an implementation; multiple implementations of the same library can coexist (different languages, different transports), but they expose the same contract that runners are written against.
 
-This paper covers what the OpsDB is, what an organization receives by building one, and how operational workflows change when an OpsDB is in place. It reads as an introduction; the prior six papers (INFRA-1 through INFRA-6) provide the structural specifications. A reader who finishes this paper should understand whether their organization would benefit from an OpsDB and what it would feel like to operate inside one.
+The paper specifies the contract for each library category: the OpsDB API client (the mandatory client every runner uses), world-side substrate libraries (Kubernetes operations, cloud operations, host operations, container/registry operations, secret backend access, identity provider operations, monitoring authority operations, authority pointer resolution), coordination and resilience libraries (retry, circuit breaker, hedger, bulkhead, failover routing), observation libraries (logging, metrics, tracing — mandatory and uniform across the runner population), notification libraries (email, chat, page, ticket creation), templating and rendering libraries (deliberately dumb), git and version-control libraries.
+
+The structural payoff is two-sided policy enforcement. The API gate (INFRA-5) enforces policy at OpsDB write time. The library suite enforces policy at world-side action time. Runner declarations — `runner_*_target` bridges, `runner_capability` rows, `runner_report_key` rows — are the input to both. A runner cannot, through any path, perform an action outside its declared scope: OpsDB writes are caught at the gate, world-side actions are caught at the library. The library suite is the operational realization of "one way to do each thing" applied to runner-world interaction.
+
+What this paper does not specify: implementation languages, specific function signatures, deployment topologies for the libraries themselves, or specific runner implementations that consume them.
 
 ---
 
@@ -48,14 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFRA-7-2026,
-  title={ The OpsDB: A Substrate for Coherent Operations },
+@article{ HOWL-INFRA-8-2026,
+  title={ The OpsDB Shared Library Suite },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20011780},
-  url = {https://zenodo.org/record/20011780},
-  note={Howland Archive: HOWL-INFRA-7-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20017988},
+  url = {https://zenodo.org/record/20017988},
+  note={Howland Archive: HOWL-INFRA-8-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

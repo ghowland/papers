@@ -1,11 +1,11 @@
-# The Shared Library Suite
+# The OpsDB Shared Library Suite
 ## The Operational Logic Framework Around the OpsDB
 
 **Registry:** [@HOWL-INFRA-8-2026]
 
 **Series Path:** [@HOWL-INFRA-1-2026] → [@HOWL-INFRA-2-2026] → [@HOWL-INFRA-3-2026] → [@HOWL-INFRA-4-2026] → [@HOWL-INFRA-5-2026] → [@HOWL-INFRA-6-2026] → [@HOWL-INFRA-7-2026] → [@HOWL-INFRA-8-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20017988
 
 **Date:** May 4 2026
 

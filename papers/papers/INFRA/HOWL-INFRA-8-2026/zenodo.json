@@ -1,8 +1,8 @@
 {
-  "title": "The OpsDB: A Substrate for Coherent Operations",
+  "title": "The OpsDB Shared Library Suite",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "This paper introduces the OpsDB to readers who have not encountered the prior six papers in the series. The OpsDB is a centralized data substrate that holds the full operational reality of an organization \u2014 configuration, observed state, schedules, policies, runner enumeration, documentation references, evidence, change history, audit \u2014 accessed through a single API gate that enforces authentication, authorization, validation, change management, versioning, and audit uniformly across every entity. Three populations consume the substrate through scoped access: humans investigating and proposing changes, automation runners performing operational work, auditors verifying controls. A small fleet of decentralized runners reads from the OpsDB, acts in the world through shared libraries, and writes results back; the OpsDB itself is passive and never invokes work. The schema is itself data, declared in YAML files in a git repo, evolved through the same change-management discipline that governs every other operational change.\n\nThis paper covers what the OpsDB is, what an organization receives by building one, and how operational workflows change when an OpsDB is in place. It reads as an introduction; the prior six papers (INFRA-1 through INFRA-6) provide the structural specifications. A reader who finishes this paper should understand whether their organization would benefit from an OpsDB and what it would feel like to operate inside one.",
+  "description": "The shared library suite is the framework that keeps OpsDB-coordinated runners small and consistent. INFRA-4 introduced the suite as a category and made the case that runners stay small because the libraries do the heavy lifting; this paper specifies what the libraries are, what contracts they expose, what the library/runner boundary looks like, and how the suite enforces policy at world-side action time. The suite is a contract specification, not an implementation; multiple implementations of the same library can coexist (different languages, different transports), but they expose the same contract that runners are written against.\n\nThe paper specifies the contract for each library category: the OpsDB API client (the mandatory client every runner uses), world-side substrate libraries (Kubernetes operations, cloud operations, host operations, container/registry operations, secret backend access, identity provider operations, monitoring authority operations, authority pointer resolution), coordination and resilience libraries (retry, circuit breaker, hedger, bulkhead, failover routing), observation libraries (logging, metrics, tracing \u2014 mandatory and uniform across the runner population), notification libraries (email, chat, page, ticket creation), templating and rendering libraries (deliberately dumb), git and version-control libraries.\n\nThe structural payoff is two-sided policy enforcement. The API gate (INFRA-5) enforces policy at OpsDB write time. The library suite enforces policy at world-side action time. Runner declarations \u2014 `runner_*_target` bridges, `runner_capability` rows, `runner_report_key` rows \u2014 are the input to both. A runner cannot, through any path, perform an action outside its declared scope: OpsDB writes are caught at the gate, world-side actions are caught at the library. The library suite is the operational realization of \"one way to do each thing\" applied to runner-world interaction.\n\nWhat this paper does not specify: implementation languages, specific function signatures, deployment topologies for the libraries themselves, or specific runner implementations that consume them.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -16,11 +16,11 @@
     "falsifiable physics",
     "theoretical derivation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-7-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFRA-8-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-7-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFRA/HOWL-INFRA-8-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
