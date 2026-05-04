@@ -1,7 +1,4 @@
-# Howland Archive
-
-**Status:** Architectural Blueprint for Independent Implementation
-**Framework Access:** `papers/{TOPIC}/{REGISTRY_ID}/manuscript.md`
+# Papers
 
 ---
 
