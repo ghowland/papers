@@ -77,6 +77,8 @@ This paper inherits the conventions established across the prior series. Brief r
 
 The first decision because everything downstream depends on it.
 
+![Fig. 7: Cardinality landscape - 0, 1, and N are valid regions; N=2 is the forbidden failure state.](./figures/infra09_07_cardinality.png)
+
 ### 3.1 The decision
 
 Per INFRA-2 §5, organizations exist in one of three states with respect to OpsDBs: zero, one, or many. The "many" case has a structural shape — N OpsDBs deliberately, never two as a failure state. Phase 1 chooses among three working configurations:
@@ -88,6 +90,8 @@ Per INFRA-2 §5, organizations exist in one of three states with respect to OpsD
 **N DOS, N OpsDB.** Substrate-level separation per INFRA-2 §5.4 — security perimeters where API access control is structurally insufficient, legal or regulatory zones with data residency requirements, organizational boundaries between independently-operating units, air-gap requirements.
 
 The decision is made by structural reasons, not by convenience. INFRA-2 §5.6 enumerates the reasons that don't justify N: technical fragility, convenience, premature optimization, performance scaling. If the organization's reason for choosing N falls in those categories, the decision is wrong.
+
+![Fig. 2: N-OpsDB sync pipeline - shared infrastructure deploys to N substrates with diverging data, users, and audit logs.](./figures/infra09_02_n_opsdb_sync.png)
 
 ### 3.2 Why this decision comes first
 
@@ -224,6 +228,8 @@ The list-of-N test is the most common phase 3 mistake. The cloud API returns an 
 
 The practical test the team applies during phase 3: when ingesting a nested structure, if any nested element is itself a thing with identity that could change independently of the parent, or if there are N of them, the nested structure is not flat-payload data. It is sub-table data and gets its own table or bridge.
 
+![Fig. 3: The DSNC list-of-N test - naive positional flattening fails; sub-table with FK preserves provenance.](./figures/infra09_03_dsnc_list_of_n.png)
+
 ### 5.5 DSNC names get long but recompose without provenance loss
 
 The naming discipline produces long names. `cloud_resource_security_group_membership` is verbose; `service_authority_pointer_relationship_role` is verbose; `change_set_emergency_review_status` is verbose. The verbosity is the price of unambiguous structural meaning.
@@ -247,6 +253,8 @@ Schema quality determines everything downstream. If the schema is well-formed, r
 The phase 3 effort spent on getting the schema right pays back across every later phase. A schema that lists volumes correctly as a sub-table is a schema where the volume-tracking runner is small, the audit query is direct, the compliance scanner doesn't need special-case logic. A schema that lists volumes incorrectly as positional flattened fields is a schema where every runner that touches volumes carries logic to extract them, every audit query parses indices, and every schema change to add a new positional field cascades through every consumer.
 
 This is why phase 3 is iterative and validation-gated rather than time-gated. The team stays in phase 3 until the schema is right; only then does ingestion at scale make sense.
+
+![Fig. 6: Schema quality cost over OpsDB lifetime - schema-right stays flat; schema-wrong diverges as every consumer pays the cost forever.](./figures/infra09_06_schema_quality_cost.png)
 
 ### 5.8 Phase 3 deliverable
 
@@ -299,6 +307,8 @@ The guidance:
 **Code that duplicates the OpsDB design gets thrown out.** Some existing code was written to coordinate operational data in the absence of an OpsDB. Custom inventories, ad-hoc state stores, scripts that maintain their own caches of operational reality. Those are competing with the OpsDB; they don't become libraries or runners; they get retired as the OpsDB takes over their function. Phase 4 identifies them; later phases retire them.
 
 The phase 4 work includes inventorying the existing operational code and labeling each piece by category. Library candidates get refactored into the suite during phases 4 and 6 as the corresponding library is built. Runner candidates wait for phase 6. Retirement candidates are documented for later removal.
+
+![Fig. 4: Minimal library starting set - the API client and logging library are load-bearing at Phase 4; world-side and resilience libraries arrive in Phase 6.](./figures/infra09_04_library_rings.png)
 
 ### 6.5 Phase 4 deliverable
 
@@ -368,6 +378,8 @@ Common patterns the team will instantiate:
 - **Cached observation writes** don't go through change_set at all; they use `write_observation` directly.
 
 The auto-approval policies are themselves change-managed; modifying them requires approval from the governance team. The team writes them at phase 5 with the bias toward narrow auto-approval initially and broader auto-approval as confidence builds.
+
+![Fig. 8: Auto-approval policy spectrum - approval mode calibrated by change risk, with example patterns placed on the spectrum.](./figures/infra09_08_approval_spectrum.png)
 
 ### 7.6 Implement the runner enumeration
 
@@ -450,6 +462,8 @@ There is no ceremony of "the OpsDB is finished." There is just "it covers what m
 
 The first operational runner is in production, addressing a real operational domain, producing the queryable trail the architecture promised. The runner's outputs flow into the OpsDB; humans, automation, and auditors can query them. The library suite has grown to include the world-side libraries the runner needed. The team has the pattern for adding subsequent runners.
 
+![Fig. 1: Runner population growth across implementation phases - operational benefits arrive in phase 6, not before.](./figures/infra09_01_runner_growth.png)
+
 ### 8.7 Phase 6 validation criterion
 
 The OpsDB delivers operational benefit beyond its own maintenance. A real operational task that previously required scattered tooling now runs through the OpsDB-coordinated pattern. The queryable trail composes — humans investigating, automation acting, auditors verifying all consume the same data through the same gate.
@@ -499,6 +513,8 @@ Phase 5 identifies the stakeholders for each entity class as part of writing the
 ## 10. The development-to-operational transition
 
 The phase 3 development OpsDB and the phase 5 operational OpsDB are different systems with the same schema and the same data substrate. The transition between them happens once and deserves explicit specification.
+
+![Fig. 5: The development-to-operational cutover - a one-time transition at Phase 5 from dev substrate to operational substrate.](./figures/infra09_05_cutover.png)
 
 ### 10.1 What's different between development and operational
 
