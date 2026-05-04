@@ -1,4 +1,4 @@
-# The OpsDB Shared Library Suite
+# OpsDB Implementation Path
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,13 +6,11 @@
 
 ## Abstract
 
-The shared library suite is the framework that keeps OpsDB-coordinated runners small and consistent. INFRA-4 introduced the suite as a category and made the case that runners stay small because the libraries do the heavy lifting; this paper specifies what the libraries are, what contracts they expose, what the library/runner boundary looks like, and how the suite enforces policy at world-side action time. The suite is a contract specification, not an implementation; multiple implementations of the same library can coexist (different languages, different transports), but they expose the same contract that runners are written against.
+The prior eight papers in the HOWL infrastructure series specify what to build. INFRA-1 establishes the taxonomy. INFRA-2 specifies the OpsDB design. INFRA-3 demonstrates a schema. INFRA-4 specifies the runner pattern. INFRA-5 specifies the API gate. INFRA-6 specifies schema construction. INFRA-7 introduces the architecture to new readers. INFRA-8 specifies the shared library suite. None of them say how to actually start.
 
-The paper specifies the contract for each library category: the OpsDB API client (the mandatory client every runner uses), world-side substrate libraries (Kubernetes operations, cloud operations, host operations, container/registry operations, secret backend access, identity provider operations, monitoring authority operations, authority pointer resolution), coordination and resilience libraries (retry, circuit breaker, hedger, bulkhead, failover routing), observation libraries (logging, metrics, tracing — mandatory and uniform across the runner population), notification libraries (email, chat, page, ticket creation), templating and rendering libraries (deliberately dumb), git and version-control libraries.
+This paper specifies the implementation path: a defined sequence of six phases that take a team from "we have read the specifications" to "we have a working OpsDB serving real operational data." Each phase makes a specific decision, produces a specific deliverable, defers what the next phase will address, and has a validation criterion that determines whether the team can move forward. The phases are: decide cardinality, determine baseline schema, build the development API and start ingesting data, determine the shared library core, design and implement change management, and add operational logic beyond OpsDB management.
 
-The structural payoff is two-sided policy enforcement. The API gate (INFRA-5) enforces policy at OpsDB write time. The library suite enforces policy at world-side action time. Runner declarations — `runner_*_target` bridges, `runner_capability` rows, `runner_report_key` rows — are the input to both. A runner cannot, through any path, perform an action outside its declared scope: OpsDB writes are caught at the gate, world-side actions are caught at the library. The library suite is the operational realization of "one way to do each thing" applied to runner-world interaction.
-
-What this paper does not specify: implementation languages, specific function signatures, deployment topologies for the libraries themselves, or specific runner implementations that consume them.
+The structural claim is that the architecture is large enough that attempting to build it all at once produces a multi-quarter project that delivers nothing usable until the end. The phased path delivers operational value early and grows into the full architecture; each phase validates the team's understanding before committing to the next. What this paper does not specify: storage engine choice, programming language choices, deployment topology, specific identity provider integration, or implementation timelines. Those are organizational decisions that depend on the team's existing context.
 
 ---
 
@@ -52,14 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFRA-8-2026,
-  title={ The OpsDB Shared Library Suite },
+@article{ HOWL-INFRA-9-2026,
+  title={ OpsDB Implementation Path },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20017988},
-  url = {https://zenodo.org/record/20017988},
-  note={Howland Archive: HOWL-INFRA-8-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20018889},
+  url = {https://zenodo.org/record/20018889},
+  note={Howland Archive: HOWL-INFRA-9-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
