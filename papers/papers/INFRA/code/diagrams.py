@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HOWL OpsDB Reading Guide Diagrams - How to Read the Series
+OpsDB Reading Guide Diagrams - How to Read the Series
 8 figures covering reading order, paper dependencies, stage-to-paper mapping,
 section pointers, comprehension order, knowledge accumulation, pitfalls, and
 re-read access patterns.
@@ -57,24 +57,24 @@ os.makedirs(outdir, exist_ok=True)
 
 # Stage colors (consistent across figures)
 STAGE_COLORS = {
-    1: GOLD,    # Context (INFRA-7)
-    2: BLUE,    # Architecture (INFRA-2)
-    3: ORANGE,  # Path (INFRA-9)
-    4: CYAN,    # Details (INFRA-3,4,5,6,8)
-    5: PURPLE,  # Vocabulary (INFRA-1)
+    1: GOLD,    # Context (OPSDB-1)
+    2: BLUE,    # Architecture (OPSDB-2)
+    3: ORANGE,  # Path (OPSDB-3)
+    4: CYAN,    # Details (OPSDB-4,4,5,6,8)
+    5: PURPLE,  # Vocabulary (OPSDB-9)
 }
 
 # Paper data: (id, stage, short_title, deliverable)
 PAPERS = [
-    ('INFRA-7', 1, 'Coherent Operations',     'What it is, what you get'),
-    ('INFRA-2', 2, 'OpsDB Design',            'Architectural commitments'),
-    ('INFRA-9', 3, 'Implementation Path',     'How to build it'),
-    ('INFRA-3', 4, 'Example Schema',          'What the data looks like'),
-    ('INFRA-4', 4, 'Runner Design',           'Operational logic layer'),
-    ('INFRA-5', 4, 'API Layer',               'The governance gate'),
-    ('INFRA-6', 4, 'Schema Construction',     'Schema as data, governed'),
-    ('INFRA-8', 4, 'Library Suite',           'Framework around runners'),
-    ('INFRA-1', 5, 'Taxonomy',                'Vocabulary that grounds it'),
+    ('OPSDB-1', 1, 'Coherent Operations',     'What it is, what you get'),
+    ('OPSDB-2', 2, 'OpsDB Design',            'Architectural commitments'),
+    ('OPSDB-3', 3, 'Implementation Path',     'How to build it'),
+    ('OPSDB-4', 4, 'Example Schema',          'What the data looks like'),
+    ('OPSDB-5', 4, 'Runner Design',           'Operational logic layer'),
+    ('OPSDB-6', 4, 'API Layer',               'The governance gate'),
+    ('OPSDB-7', 4, 'Schema Construction',     'Schema as data, governed'),
+    ('OPSDB-8', 4, 'Library Suite',           'Framework around runners'),
+    ('OPSDB-9', 5, 'Taxonomy',                'Vocabulary that grounds it'),
 ]
 
 def style_axes(ax):
@@ -110,11 +110,11 @@ ax.axis('off')
 # Stage 5 (vocabulary) outermost - read last
 # Stage 1 (context) innermost - read first
 ring_specs = [
-    (5, 8.0, PURPLE, 'Stage 5: Taxonomy',           'INFRA-1'),
-    (4, 6.5, CYAN,   'Stage 4: Details',            'INFRA-3, 4, 5, 6, 8'),
-    (3, 4.8, ORANGE, 'Stage 3: Path',               'INFRA-9'),
-    (2, 3.2, BLUE,   'Stage 2: Architecture',       'INFRA-2'),
-    (1, 1.6, WHITE,   'Stage 1: Context',            'INFRA-7'),
+    (5, 8.0, PURPLE, 'Stage 5: Taxonomy',           'OPSDB-9'),
+    (4, 6.5, CYAN,   'Stage 4: Details',            'OPSDB-4, 4, 5, 6, 8'),
+    (3, 4.8, ORANGE, 'Stage 3: Path',               'OPSDB-3'),
+    (2, 3.2, BLUE,   'Stage 2: Architecture',       'OPSDB-2'),
+    (1, 1.6, WHITE,   'Stage 1: Context',            'OPSDB-1'),
 ]
 
 # Draw outermost first so smaller circles overlay
@@ -130,31 +130,31 @@ ax.text(0, 0.4, 'Stage 1', color=GOLD, fontsize=12,
         ha='center', va='center', fontweight='bold')
 ax.text(0, -0.2, 'Context', color=GOLD, fontsize=10,
         ha='center', va='center')
-ax.text(0, -0.7, 'INFRA-7', color=WHITE, fontsize=11,
+ax.text(0, -0.7, 'OPSDB-1', color=WHITE, fontsize=11,
         ha='center', va='center', fontweight='bold')
 
 # Stage 2 band (between r=1.6 and r=3.2), label at top of band
 ax.text(0, 2.4, 'Stage 2: Architecture', color=BLUE, fontsize=11,
         ha='center', va='center', fontweight='bold')
-ax.text(0, 2.0, 'INFRA-2', color=WHITE, fontsize=10,
+ax.text(0, 2.0, 'OPSDB-2', color=WHITE, fontsize=10,
         ha='center', va='center')
 
 # Stage 3 band (between r=3.2 and r=4.8), label at top
 ax.text(0, 4.0, 'Stage 3: Path', color=ORANGE, fontsize=11,
         ha='center', va='center', fontweight='bold')
-ax.text(0, 3.6, 'INFRA-9', color=WHITE, fontsize=10,
+ax.text(0, 3.6, 'OPSDB-3', color=WHITE, fontsize=10,
         ha='center', va='center')
 
 # Stage 4 band (between r=4.8 and r=6.5), label at top
 ax.text(0, 5.65, 'Stage 4: Details', color=CYAN, fontsize=11,
         ha='center', va='center', fontweight='bold')
-ax.text(0, 5.20, 'INFRA-3, 4, 5, 6, 8', color=WHITE, fontsize=10,
+ax.text(0, 5.20, 'OPSDB-4, 4, 5, 6, 8', color=WHITE, fontsize=10,
         ha='center', va='center')
 
 # Stage 5 band (between r=6.5 and r=8.0), label at top
 ax.text(0, 7.25, 'Stage 5: Taxonomy', color=PURPLE, fontsize=11,
         ha='center', va='center', fontweight='bold')
-ax.text(0, 6.85, 'INFRA-1', color=WHITE, fontsize=10,
+ax.text(0, 6.85, 'OPSDB-9', color=WHITE, fontsize=10,
         ha='center', va='center')
 
 # "Read first" arrow pointing to center (offset to left)
@@ -194,19 +194,19 @@ ax.set_ylim(0, 11)
 ax.axis('off')
 
 # Position papers in dependency layout
-# Top: foundational/reference layer (INFRA-1)
-# Below: arch (INFRA-2 sits at the heart)
+# Top: foundational/reference layer (OPSDB-9)
+# Below: arch (OPSDB-2 sits at the heart)
 # Spread the rest by their conceptual position
 positions = {
-    'INFRA-1': (8.0, 9.5),   # Taxonomy (referenced by all)
-    'INFRA-7': (2.0, 7.5),   # Intro
-    'INFRA-2': (8.0, 7.5),   # Design (central)
-    'INFRA-9': (14.0, 7.5),  # Implementation path
-    'INFRA-3': (3.0, 4.5),   # Schema example
-    'INFRA-4': (6.5, 4.5),   # Runners
-    'INFRA-5': (10.0, 4.5),  # API
-    'INFRA-6': (13.0, 4.5),  # Schema construction
-    'INFRA-8': (8.0, 2.0),   # Library suite (sits below runners and API)
+    'OPSDB-9': (8.0, 9.5),   # Taxonomy (referenced by all)
+    'OPSDB-1': (2.0, 7.5),   # Intro
+    'OPSDB-2': (8.0, 7.5),   # Design (central)
+    'OPSDB-3': (14.0, 7.5),  # Implementation path
+    'OPSDB-4': (3.0, 4.5),   # Schema example
+    'OPSDB-5': (6.5, 4.5),   # Runners
+    'OPSDB-6': (10.0, 4.5),  # API
+    'OPSDB-7': (13.0, 4.5),  # Schema construction
+    'OPSDB-8': (8.0, 2.0),   # Library suite (sits below runners and API)
 }
 
 # Stage colors per paper
@@ -216,18 +216,18 @@ paper_title = {p[0]: p[2] for p in PAPERS}
 # Draw dependency edges first (so nodes overlay)
 # Numbered-order dependencies: each paper builds on prior in numbered series
 deps = [
-    ('INFRA-2', 'INFRA-3'),  # 3 demonstrates 2's design
-    ('INFRA-2', 'INFRA-4'),  # 4 specifies runners for 2's design
-    ('INFRA-2', 'INFRA-5'),  # 5 specifies API for 2's gate claim
-    ('INFRA-3', 'INFRA-6'),  # 6 specifies how to build 3's schema
-    ('INFRA-2', 'INFRA-6'),  # 6 implements 2's schema commitment
-    ('INFRA-4', 'INFRA-8'),  # 8 specifies libraries 4 promised
-    ('INFRA-5', 'INFRA-8'),  # 8 closes 5's runner authority gap
-    ('INFRA-2', 'INFRA-7'),  # 7 introduces 2's design
-    ('INFRA-2', 'INFRA-9'),  # 9 specifies how to build 2's design
-    ('INFRA-1', 'INFRA-2'),  # 2 uses 1's vocabulary
-    ('INFRA-1', 'INFRA-4'),
-    ('INFRA-1', 'INFRA-5'),
+    ('OPSDB-2', 'OPSDB-4'),  # 3 demonstrates 2's design
+    ('OPSDB-2', 'OPSDB-5'),  # 4 specifies runners for 2's design
+    ('OPSDB-2', 'OPSDB-6'),  # 5 specifies API for 2's gate claim
+    ('OPSDB-4', 'OPSDB-7'),  # 6 specifies how to build 3's schema
+    ('OPSDB-2', 'OPSDB-7'),  # 6 implements 2's schema commitment
+    ('OPSDB-5', 'OPSDB-8'),  # 8 specifies libraries 4 promised
+    ('OPSDB-6', 'OPSDB-8'),  # 8 closes 5's runner authority gap
+    ('OPSDB-2', 'OPSDB-1'),  # 7 introduces 2's design
+    ('OPSDB-2', 'OPSDB-3'),  # 9 specifies how to build 2's design
+    ('OPSDB-9', 'OPSDB-2'),  # 2 uses 1's vocabulary
+    ('OPSDB-9', 'OPSDB-5'),
+    ('OPSDB-9', 'OPSDB-6'),
 ]
 
 for src, dst in deps:
@@ -300,73 +300,73 @@ col_widths  = [2.8, 2.8, 2.8, 5.0, 2.8]
 
 stage_info = [
     (1, 'Stage 1', 'Context',          GOLD,
-     ['INFRA-7'], 0),
+     ['OPSDB-1'], 0),
     (2, 'Stage 2', 'Architecture',     BLUE,
-     ['INFRA-2'], 1),
+     ['OPSDB-2'], 1),
     (3, 'Stage 3', 'Path',             ORANGE,
-     ['INFRA-9'], 2),
+     ['OPSDB-3'], 2),
     (4, 'Stage 4', 'Details',          CYAN,
-     ['INFRA-3', 'INFRA-4', 'INFRA-5', 'INFRA-6', 'INFRA-8'], 3),
+     ['OPSDB-4', 'OPSDB-5', 'OPSDB-6', 'OPSDB-7', 'OPSDB-8'], 3),
     (5, 'Stage 5', 'Taxonomy',         PURPLE,
-     ['INFRA-1'], 4),
+     ['OPSDB-9'], 4),
 ]
 
 # Deliverables by paper
 deliverables = {
-    'INFRA-7': [
+    'OPSDB-1': [
         'Picture absorbable in one sitting',
         '10 capabilities orgs gain',
         '8 before/after walkthroughs',
         'Honest cost-benefit framing',
     ],
-    'INFRA-2': [
+    'OPSDB-2': [
         '10 architectural commitments',
         'Cardinality rule (1 or N, no 2)',
         'Comprehensive scope argument',
         'Three populations claim',
         'Construction discipline',
     ],
-    'INFRA-9': [
+    'OPSDB-3': [
         'Six-phase implementation path',
         'Per-phase decisions/deliverables',
         'DSNC list-of-N test',
         'Required roles',
         'Dev-to-operational cutover',
     ],
-    'INFRA-3': [
+    'OPSDB-4': [
         'Recurring structural patterns',
         'Unified substrate hierarchy',
         'Service abstraction graph',
         '~150 entity types',
     ],
-    'INFRA-4': [
+    'OPSDB-5': [
         'Get-act-set runner pattern',
         '11 runner kinds (open list)',
         'Three load-bearing disciplines',
         'Change-management gating',
         'GitOps integration example',
     ],
-    'INFRA-5': [
+    'OPSDB-6': [
         '10-step gate sequence',
         'Five-layer authorization',
         'change_set lifecycle',
         'Field-level versioning',
         'Runner report keys',
     ],
-    'INFRA-6': [
+    'OPSDB-7': [
         'Repository layout',
         'Closed constraint vocabulary',
         'Forbidden ops list',
         'Constraint/policy split',
         'Reconciliation discipline',
     ],
-    'INFRA-8': [
+    'OPSDB-8': [
         'Library/runner boundary',
         'Contract not implementation',
         'World-side substrate libs',
         'Two-sided policy enforcement',
     ],
-    'INFRA-1': [
+    'OPSDB-9': [
         'Three-axis vocabulary',
         '~60 mechanisms',
         '21 properties',
@@ -473,34 +473,34 @@ ax.set_ylim(0, 11)
 ax.axis('off')
 
 # Comprehension order
-comp_order = ['INFRA-7', 'INFRA-2', 'INFRA-9', 'INFRA-3', 'INFRA-4',
-              'INFRA-5', 'INFRA-6', 'INFRA-8', 'INFRA-1']
+comp_order = ['OPSDB-1', 'OPSDB-2', 'OPSDB-3', 'OPSDB-4', 'OPSDB-5',
+              'OPSDB-6', 'OPSDB-7', 'OPSDB-8', 'OPSDB-9']
 
 # Section pointers per paper (from the guide)
 sections = {
-    'INFRA-7': ['§2 starting state', '§4 capabilities', '§4.10 compounding',
+    'OPSDB-1': ['§2 starting state', '§4 capabilities', '§4.10 compounding',
                 '§5 walkthroughs', '§6 cost-benefit'],
-    'INFRA-2': ['§4 commitments', '§5 cardinality', '§5.4 N reasons',
+    'OPSDB-2': ['§4 commitments', '§5 cardinality', '§5.4 N reasons',
                 '§5.6 not N', '§6.13 all-of-ops', '§7 populations',
                 '§14 discipline'],
-    'INFRA-9': ['§3 cardinality', '§4 schema', '§5 dev API',
+    'OPSDB-3': ['§3 cardinality', '§4 schema', '§5 dev API',
                 '§5.4-7 DSNC', '§6 libs', '§7 CM',
                 '§8 phase 6', '§9 roles', '§10 cutover'],
-    'INFRA-3': ['§6 substrate', '§7 services', '§21 boundaries',
+    'OPSDB-4': ['§6 substrate', '§7 services', '§21 boundaries',
                 'patterns: DSNC, versioning, payloads'],
-    'INFRA-4': ['§2 pattern', '§3 lifecycle', '§4 kinds',
+    'OPSDB-5': ['§2 pattern', '§3 lifecycle', '§4 kinds',
                 '§7 disciplines', '§8 gating', '§10 GitOps',
                 '§11 contrasts'],
-    'INFRA-5': ['§3.5 10-step gate', '§5 versioning', '§5.6 concurrency',
+    'OPSDB-6': ['§3.5 10-step gate', '§5 versioning', '§5.6 concurrency',
                 '§6.2 5 layers', '§7.2 lifecycle', '§7.7 to-perform queue',
                 '§8 report keys', '§9 audit'],
-    'INFRA-6': ['§3 layout', '§4 directory.yaml', '§6 vocabulary',
+    'OPSDB-7': ['§3 layout', '§4 directory.yaml', '§6 vocabulary',
                 '§7 forbidden', '§8 constraints split', '§12 evolution',
                 '§12.4 duplication', '§13 reconciliation'],
-    'INFRA-8': ['§1.2 contracts', '§3 boundary', '§4 API client',
+    'OPSDB-8': ['§1.2 contracts', '§3 boundary', '§4 API client',
                 '§5 world-side', '§6 resilience', '§7 observation',
                 '§13 two-sided'],
-    'INFRA-1': ['§2 three axes', '§4.5 orthogonality', '§5.7 opposed principles',
+    'OPSDB-9': ['§2 three axes', '§4.5 orthogonality', '§5.7 opposed principles',
                 '§7 honest sections', 'App F gap analysis',
                 'App I confusables', 'App M reverse index'],
 }
@@ -586,11 +586,11 @@ ax.set_ylim(0, 10)
 ax.axis('off')
 
 # Top track: numbered order
-numbered_order = ['INFRA-1', 'INFRA-2', 'INFRA-3', 'INFRA-4', 'INFRA-5',
-                  'INFRA-6', 'INFRA-7', 'INFRA-8', 'INFRA-9']
+numbered_order = ['OPSDB-9', 'OPSDB-2', 'OPSDB-4', 'OPSDB-5', 'OPSDB-6',
+                  'OPSDB-7', 'OPSDB-1', 'OPSDB-8', 'OPSDB-3']
 # Bottom track: comprehension order
-comp_order = ['INFRA-7', 'INFRA-2', 'INFRA-9', 'INFRA-3', 'INFRA-4',
-              'INFRA-5', 'INFRA-6', 'INFRA-8', 'INFRA-1']
+comp_order = ['OPSDB-1', 'OPSDB-2', 'OPSDB-3', 'OPSDB-4', 'OPSDB-5',
+              'OPSDB-6', 'OPSDB-7', 'OPSDB-8', 'OPSDB-9']
 
 n = 9
 margin = 1.0
@@ -705,28 +705,28 @@ ax.axis('off')
 # Stack of capability slabs from bottom (Stage 1) to top (Stage 5)
 slab_specs = [
     (1, 0.5,  GOLD,
-     'After Stage 1 (INFRA-7)',
+     'After Stage 1 (OPSDB-1)',
      ['Decide if your org should adopt the OpsDB',
       'Recognize the fragmentation pattern',
       'Speak in capabilities, not features']),
     (2, 2.7,  BLUE,
-     'After Stage 2 (INFRA-2)',
+     'After Stage 2 (OPSDB-2)',
      ['State the architectural commitments',
       'Defend the cardinality rule',
       'Recognize feature-creep antipatterns']),
     (3, 4.9,  ORANGE,
-     'After Stage 3 (INFRA-9)',
+     'After Stage 3 (OPSDB-3)',
      ['Plan the implementation phases',
       'Apply the validation criteria',
       'Identify required roles']),
     (4, 7.1,  CYAN,
-     'After Stage 4 (INFRA-3, 4, 5, 6, 8)',
+     'After Stage 4 (OPSDB-4, 4, 5, 6, 8)',
      ['Read the schema as data',
       'Design runners that compose',
       'Walk the 10-step gate sequence',
       'Govern schema evolution']),
     (5, 9.3,  PURPLE,
-     'After Stage 5 (INFRA-1)',
+     'After Stage 5 (OPSDB-9)',
      ['Use precise mechanism vocabulary',
       'Distinguish properties from claims',
       'Diagnose principle violations']),
@@ -867,11 +867,11 @@ ax.set_ylim(0, 1.05)
 ax.set_xlabel('"What if I start with this paper?"', color=SILVER, fontsize=12)
 ax.set_ylabel('Comprehension achievable from this starting point',
               color=SILVER, fontsize=12)
-ax.set_title('The Numbered-Order Pitfall: Why Starting at INFRA-1 Fails',
+ax.set_title('The Numbered-Order Pitfall: Why Starting at OPSDB-9 Fails',
              color=GOLD, fontsize=15, fontweight='bold', pad=18)
 
 ax.text(5, -0.13,
-        'Only INFRA-7 is a viable first read. Every other entry point produces a partial picture.',
+        'Only OPSDB-1 is a viable first read. Every other entry point produces a partial picture.',
         color=DIM, fontsize=9, ha='center', style='italic',
         transform=ax.transData)
 
@@ -898,8 +898,8 @@ ax.text(9, 9.0, '(Read every paper, in this order, to build the picture)',
         color=SILVER, fontsize=10, ha='center', style='italic')
 
 # Linear sequence in top half
-comp_order = ['INFRA-7', 'INFRA-2', 'INFRA-9', 'INFRA-3', 'INFRA-4',
-              'INFRA-5', 'INFRA-6', 'INFRA-8', 'INFRA-1']
+comp_order = ['OPSDB-1', 'OPSDB-2', 'OPSDB-3', 'OPSDB-4', 'OPSDB-5',
+              'OPSDB-6', 'OPSDB-7', 'OPSDB-8', 'OPSDB-9']
 
 top_y = 7.8
 n = 9
@@ -939,17 +939,17 @@ ax.text(9, 4.0, '(Already understand the architecture; jump to specific sections
 
 # Reference scenarios shown as starting points jumping into specific papers
 scenarios = [
-    ('Phase 1 work',         (1.5, 2.5),  ['INFRA-2 §5', 'INFRA-9 §3']),
-    ('Phase 2 work',         (5.0, 2.5),  ['INFRA-3', 'INFRA-6']),
-    ('Phase 4 work',         (8.5, 2.5),  ['INFRA-8 §15.1']),
-    ('Phase 6 runner build', (12.0, 2.5), ['INFRA-4 §4', 'INFRA-8 §5']),
-    ('Schema evolution',     (15.5, 2.5), ['INFRA-6 §12']),
+    ('Phase 1 work',         (1.5, 2.5),  ['OPSDB-2 §5', 'OPSDB-3 §3']),
+    ('Phase 2 work',         (5.0, 2.5),  ['OPSDB-4', 'OPSDB-7']),
+    ('Phase 4 work',         (8.5, 2.5),  ['OPSDB-8 §15.1']),
+    ('Phase 6 runner build', (12.0, 2.5), ['OPSDB-5 §4', 'OPSDB-8 §5']),
+    ('Schema evolution',     (15.5, 2.5), ['OPSDB-7 §12']),
 ]
 
 # Bottom row papers (reference targets)
 ref_papers_y = 0.8
-ref_papers = ['INFRA-2', 'INFRA-3', 'INFRA-4', 'INFRA-5', 'INFRA-6',
-              'INFRA-8', 'INFRA-9']
+ref_papers = ['OPSDB-2', 'OPSDB-4', 'OPSDB-5', 'OPSDB-6', 'OPSDB-7',
+              'OPSDB-8', 'OPSDB-3']
 ref_n = len(ref_papers)
 ref_centers = [1.5 + i * (15 / (ref_n - 1)) for i in range(ref_n)]
 
