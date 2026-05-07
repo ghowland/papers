@@ -89,6 +89,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20062439/files",
     "bucket": "https://zenodo.org/api/files/6509ff5d-1975-47a9-ad04-76b7db3a8590",
+    "thumb250": "https://zenodo.org/record/20062439/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20062439/thumb10",
+      "50": "https://zenodo.org/record/20062439/thumb50",
+      "100": "https://zenodo.org/record/20062439/thumb100",
+      "250": "https://zenodo.org/record/20062439/thumb250",
+      "750": "https://zenodo.org/record/20062439/thumb750",
+      "1200": "https://zenodo.org/record/20062439/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20062439",
     "latest_draft_html": "https://zenodo.org/deposit/20062439",
     "publish": "https://zenodo.org/api/deposit/depositions/20062439/actions/publish",
@@ -98,7 +107,28 @@
   },
   "record_id": 20062439,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "0d2e87e5-62d0-457f-9ad2-da304710a7f4",
+      "filename": "HOWL-GAME-1-2026.zip",
+      "filesize": 199246,
+      "checksum": "8a0996cce0148cc751ce487ed10f1b0e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20062439/files/0d2e87e5-62d0-457f-9ad2-da304710a7f4",
+        "download": "https://zenodo.org/api/records/20062439/draft/files/HOWL-GAME-1-2026.zip/content"
+      }
+    },
+    {
+      "id": "5453cff4-5931-4673-b5cc-b2888398b1cd",
+      "filename": "!manuscript.pdf",
+      "filesize": 145146,
+      "checksum": "2f89bedf9daddab1acc32b27cf924ca5",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20062439/files/5453cff4-5931-4673-b5cc-b2888398b1cd",
+        "download": "https://zenodo.org/api/records/20062439/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
