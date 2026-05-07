@@ -91,6 +91,8 @@ Mechanisms are organized into families. Each family groups mechanisms by the rol
 
 ### 3.1 Gating (GF1)
 
+![Fig. 6: Quest Gating Pipeline — the Fallout NV gameplay loop with gate types and loop levels at each stage.](./figures/game1_06_gating_pipeline.png)
+
 Gating mechanisms require the player to demonstrate or achieve something before proceeding. Every gate has a threshold (what must be demonstrated), a release condition (when does the gate no longer apply), and may have modifier systems (ways to adjust the threshold).
 
 Gating is also pacing and duration. These are not three separate things — they are three perspectives on the same mechanism. Gating is the designer's view: requiring the player to demonstrate X before Y becomes available. Pacing is the experiential view: the rate at which new content, challenge, and reward arrive. Duration is the economic view: how long the game lasts. A game that gates too aggressively feels slow-paced and padded. A game that gates too loosely feels rushed and shallow.
@@ -155,6 +157,8 @@ Sub-types: group size (need N players to attempt content — MMO raid requiremen
 
 ### 3.2 Temporal Structure (GF2)
 
+![Fig. 1: Game Temporal Profiles — six games fingerprinted across six loop levels from 0.2s reaction to 3000s strategic.](./figures/game1_01_temporal_profiles.png)
+
 Temporal structure mechanisms define the nested time loops at which play operates. Different games weight different loops. The player's cognitive mode shifts at each level. A game's temporal profile — which loops are active, which are dominant, how they nest — is a primary determinant of what kind of experience it provides.
 
 #### GM09 — Reaction Loop (0.2s)
@@ -206,6 +210,8 @@ How loops relate to each other within a game. This is not a single mechanism but
 Nesting types: nested (inner loop demanded continuously during outer loop — Death Stranding's 0.2s balance within 300s traversal, making the outer loop active throughout), interrupted (discrete events break the outer loop and demand inner loop attention — RimWorld raid during base building, dropping from 300s authorial to 2-10s crisis response), empty (outer loop has no inner demand — Skyrim walking between fast-travel-discovered locations with no encounters, creating passive time).
 
 A time loop is engaging when it contains an active inner loop. A 300s navigation loop with no inner loop is waiting. A 300s navigation loop with a 0.2s balance loop nested inside it is gameplay the entire time.
+
+![Fig. 5: Loop Hierarchy — six temporal loops from 0.2s reaction to 3000s strategic shown as concentric containment.](./figures/game1_05_loop_hierarchy.png)
 
 ### 3.3 Information (GF3)
 
@@ -358,6 +364,8 @@ Positive consequences are the "pull" that motivates engagement with gating mecha
 ### 3.6 Pressure (GF6)
 
 Pressure mechanisms create external demands on the player's attention and resources. Pressure is what makes self-directed activity into a challenged activity.
+
+![Fig. 3: Expression Under Pressure — the tradeoff curve between disruption frequency and creative expression capacity.](./figures/game1_03_expression_pressure.png)
 
 #### GM33 — Disruption Pressure
 
@@ -533,6 +541,8 @@ Sub-types: positive feedback (success breeds success — rich-get-richer snowbal
 
 Feedback loops are a critical design calibration. Unchecked positive feedback produces runaway winners and unrecoverable losers. Unchecked negative feedback prevents the player from ever feeling powerful. Destabilizing loops produce dramatic failure cascades that can be thrilling (barely surviving a crisis) or frustrating (unavoidable doom spiral).
 
+![Fig. 8: Feedback Loop Dynamics — four loop types as geometric spirals showing positive, negative, stabilizing, and destabilizing dynamics.](./figures/game1_08_feedback_loops.png)
+
 ---
 
 ## 4. Property Axis
@@ -542,6 +552,8 @@ Properties are contracts about player experience. They claim that something hold
 Properties are organized into bands by what aspect of experience they address.
 
 ### 4.1 Engagement Band (PB1)
+
+![Fig. 2: Design Space — games plotted on cognitive demand vs consequence severity with audience region thresholds.](./figures/game1_02_design_space.png)
 
 Claims about whether and how the game holds player attention.
 
@@ -584,6 +596,8 @@ Claims about whether and how the game holds player attention.
 **Partial provision:** Fits during normal play but overwhelms during crisis peaks. Fits for experienced players but overwhelms newcomers. Fits when the game is paused for planning but not during real-time execution.
 
 **Does not claim:** That the game is simple. Only that the demand matches the audience. Dwarf Fortress provides cognitive budget fit for its target audience (players who enjoy high-complexity management). It does not provide cognitive budget fit for casual players. Neither is a design failure — they're different target audiences.
+
+![Fig. 7: Cognitive Budget — stacked cognitive demand components for three games against player capacity thresholds.](./figures/game1_07_cognitive_budget.png)
 
 ### 4.2 Fairness Band (PB2)
 
@@ -870,6 +884,8 @@ Random uncoupled destruction — a meteor lands on your base with no warning and
 ### 5.4 Tempo Discipline (PG4)
 
 Principles governing the rhythm and timing of experience.
+
+![Fig. 4: Engagement Density — 300 seconds of Death Stranding (continuous inner loop) vs Skyrim (sparse interruptions).](./figures/game1_04_engagement_density.png)
 
 #### GR13 — Active Inner Loops Sustain Outer Loops
 
