@@ -249,3 +249,11 @@
 | **[@HOWL-LYRIC-2-2026](papers/papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md)** | **The Lyric Engine II** | A Systematic Method for LLM-Assisted Song Refinement from Existing Draft Material. |
 
 ---
+
+## Game
+*Game design.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[@HOWL-GAME-1-2026](papers/papers/GAME/HOWL-GAME-1-2026/manuscript.md)** | **A Structural Taxonomy of Player Experience in Game Design** | First Pass. |
+
