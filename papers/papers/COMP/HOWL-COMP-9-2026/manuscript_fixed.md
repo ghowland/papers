@@ -1,4 +1,5 @@
 # Building Applications with OpsDB Application Architecture
+
 ## A Construction Reference for the OpsDB Application Platform
 
 **Registry:** [@HOWL-COMP-9-2026]
@@ -154,65 +155,105 @@ Schema construction translates the domain analysis into YAML files that the load
 An entity YAML file declares the entity's name, fields, relationships, governance configuration, and notes. The minimal structure:
 
 ```yaml
+
 name: task
+
 domain: project_management
+
 versioned: true
+
 notes: |
+
   A unit of work within a project. Lifecycle managed through
+
   status enum with transitions enforced by policy rows.
 
 fields:
+
   - name: title
-    type: varchar
-    length: 255
-    nullable: false
+
+type: varchar
+
+length: 255
+
+nullable: false
 
   - name: description
-    type: text
-    nullable: true
+
+type: text
+
+nullable: true
 
   - name: status
-    type: enum
-    values: [draft, open, in_progress, review, done, archived]
-    nullable: false
-    default: draft
+
+type: enum
+
+values: [draft, open, in_progress, review, done, archived]
+
+nullable: false
+
+default: draft
 
   - name: priority
-    type: int
-    min: 1
-    max: 5
-    nullable: false
-    default: 3
+
+type: int
+
+min: 1
+
+max: 5
+
+nullable: false
+
+default: 3
 
   - name: due_date
-    type: date
-    nullable: true
+
+type: date
+
+nullable: true
 
   - name: estimated_hours
-    type: float
-    min: 0.0
-    max: 10000.0
-    nullable: true
+
+type: float
+
+min: 0.0
+
+max: 10000.0
+
+nullable: true
 
   - name: project_id
-    type: foreign_key
-    references: project
-    nullable: false
+
+type: foreign_key
+
+references: project
+
+nullable: false
 
   - name: assignee_user_id
-    type: foreign_key
-    references: ops_user
-    nullable: true
+
+type: foreign_key
+
+references: ops_user
+
+nullable: true
 
   - name: _requires_group
-    type: foreign_key
-    references: ops_group
-    nullable: true
+
+type: foreign_key
+
+references: ops_group
+
+nullable: true
 
   - name: _access_classification
-    type: foreign_key
-    references: data_classification
-    nullable: true
+
+type: foreign_key
+
+references: data_classification
+
+nullable: true
+
 ```
 
 Every field has an explicit type from the nine available. Every numeric field has explicit bounds. Every varchar has an explicit length. Every enum has an explicit value set. Every foreign key references a specific target table. The loader rejects anything outside this vocabulary.
@@ -264,30 +305,47 @@ Six constraint mechanisms are available.
 When entities of the same structural type have different typed payloads — different kinds of monitors, different kinds of schedules, different kinds of evidence records — the discriminator pattern applies.
 
 ```yaml
+
 name: monitor
+
 domain: monitoring
+
 versioned: true
 
 fields:
+
   - name: name
-    type: varchar
-    length: 255
-    nullable: false
+
+type: varchar
+
+length: 255
+
+nullable: false
 
   - name: monitor_type
-    type: enum
-    values: [prometheus_query, http_probe, tcp_probe, script_local,
-             script_remote, k8s_event_watch, cloud_metric]
-    nullable: false
+
+type: enum
+
+values: [prometheus_query, http_probe, tcp_probe, script_local,
+
+         script_remote, k8s_event_watch, cloud_metric]
+
+nullable: false
 
   - name: monitor_data_json
-    type: json
-    nullable: false
+
+type: json
+
+nullable: false
 
   - name: is_enabled
-    type: boolean
-    nullable: false
-    default: true
+
+type: boolean
+
+nullable: false
+
+default: true
+
 ```
 
 The `monitor_type` enum selects which JSON schema validates `monitor_data_json`. Each JSON schema is a separate YAML file under `schema/json_schemas/monitor/`. The loader registers the mapping. The gate pipeline validates the JSON payload against the schema selected by the discriminator value on every write.
@@ -301,25 +359,39 @@ Bridge tables handle many-to-many and polymorphic relationships with clean forei
 **Many-to-many bridge:**
 
 ```yaml
+
 name: task_label
+
 domain: project_management
+
 versioned: false
 
 fields:
+
   - name: task_id
-    type: foreign_key
-    references: task
-    nullable: false
+
+type: foreign_key
+
+references: task
+
+nullable: false
 
   - name: label_id
-    type: foreign_key
-    references: label
-    nullable: false
+
+type: foreign_key
+
+references: label
+
+nullable: false
 
   - name: applied_by_user_id
-    type: foreign_key
-    references: ops_user
-    nullable: false
+
+type: foreign_key
+
+references: ops_user
+
+nullable: false
+
 ```
 
 The bridge table has no identity beyond its foreign keys. It exists to relate two entities. It may carry additional fields — who applied the label, when, why — that describe the relationship, not the related entities.
@@ -329,37 +401,59 @@ The bridge table has no identity beyond its foreign keys. It exists to relate tw
 When an entity (comment) can be attached to multiple different entity types (task, project, milestone), create one bridge table per target type:
 
 ```yaml
+
 name: task_comment
+
 domain: project_management
+
 versioned: false
 
 fields:
+
   - name: task_id
-    type: foreign_key
-    references: task
-    nullable: false
+
+type: foreign_key
+
+references: task
+
+nullable: false
 
   - name: comment_id
-    type: foreign_key
-    references: comment
-    nullable: false
+
+type: foreign_key
+
+references: comment
+
+nullable: false
+
 ```
 
 ```yaml
+
 name: project_comment
+
 domain: project_management
+
 versioned: false
 
 fields:
+
   - name: project_id
-    type: foreign_key
-    references: project
-    nullable: false
+
+type: foreign_key
+
+references: project
+
+nullable: false
 
   - name: comment_id
-    type: foreign_key
-    references: comment
-    nullable: false
+
+type: foreign_key
+
+references: comment
+
+nullable: false
+
 ```
 
 This is more tables than a single polymorphic FK column, but every foreign key is a real foreign key to a real table, checked by the database on every write. No type column selecting which table the FK points to. No orphaned references. No application-level integrity checking. The database enforces it mechanically.
@@ -369,27 +463,43 @@ This is more tables than a single polymorphic FK column, but every foreign key i
 Self-referential foreign keys model hierarchies — organizational units, task/subtask trees, location trees, category trees.
 
 ```yaml
+
 name: category
+
 domain: catalog
+
 versioned: true
 
 fields:
+
   - name: name
-    type: varchar
-    length: 255
-    nullable: false
+
+type: varchar
+
+length: 255
+
+nullable: false
 
   - name: parent_category_id
-    type: foreign_key
-    references: category
-    nullable: true
+
+type: foreign_key
+
+references: category
+
+nullable: true
 
   - name: depth
-    type: int
-    min: 0
-    max: 20
-    nullable: false
-    default: 0
+
+type: int
+
+min: 0
+
+max: 20
+
+nullable: false
+
+default: 0
+
 ```
 
 The `parent_category_id` is nullable — root categories have no parent. The `depth` field is maintained by a runner that traverses the parent chain and sets depth on create or reparent. The depth bound (max: 20) prevents unbounded hierarchy depth.
@@ -403,10 +513,15 @@ Three governance fields control per-entity access beyond role-based authorizatio
 **_requires_group** scopes entity visibility to members of a specific group. When set, only members of the referenced group (or administrators) can read or write the entity. Use for: project-scoped data (only project members see project tasks), team-scoped data (only team members see team resources), personal data (only the owner sees their private items).
 
 ```yaml
+
   - name: _requires_group
-    type: foreign_key
-    references: ops_group
-    nullable: true
+
+type: foreign_key
+
+references: ops_group
+
+nullable: true
+
 ```
 
 When null, the entity is visible to any authenticated user with appropriate role permissions. When set, group membership is checked at gate step 2 layer 2.
@@ -422,23 +537,37 @@ The classification is set per entity row, not per field definition. This means d
 For entities where interactive editing is the primary use pattern, draft mode governance flags reduce friction without eliminating structural safety.
 
 ```yaml
+
 name: document
+
 domain: knowledge_management
+
 versioned: true
 
 draft_mode:
+
   _autoversion_disabled: true
+
   _edit_latest_version: true
+
   _audit_logs_disabled: true
 
 notes: |
+
   Draft mode enabled. Interim editing states are not individually
+
   versioned or audited. Version commits engage full governance.
+
   Properties weakened: per-write versioning, per-write audit.
+
   Properties preserved: schema validation, authorization,
+
   committed-version history, committed-version audit.
+
   Acceptable because: document content is iterative drafting
+
   where per-keystroke versioning creates noise without value.
+
 ```
 
 The property analysis in the notes field is not optional guidance — it is the schema steward's verification that the tradeoff is understood. Before setting draft mode flags, the developer must enumerate which properties are weakened and confirm that the weakened properties are not required for the entity's role in the application.
@@ -452,27 +581,49 @@ Auth and authorization always run. Schema validation always runs. Bound validati
 Schema files are organized in a directory structure that mirrors the domain taxonomy.
 
 ```
+
 schema/
+
   directory.yaml              # imports all domain directories
+
   conventions/
-    reserved.yaml             # reserved field definitions
+
+reserved.yaml             # reserved field definitions
+
   domains/
-    01_identity/              # users, groups, roles
-    02_core/                  # primary domain entities
-    03_workflow/              # lifecycle and process entities
-    04_policy/                # policies, rules, classifications
-    05_schedule/              # schedules, deadlines
-    06_integration/           # authority pointers, external refs
-    07_observation/           # observation cache tables
-    08_audit/                 # audit, evidence, compliance
-    09_runner/                # runner specs, jobs, capabilities
+
+01_identity/              # users, groups, roles
+
+02_core/                  # primary domain entities
+
+03_workflow/              # lifecycle and process entities
+
+04_policy/                # policies, rules, classifications
+
+05_schedule/              # schedules, deadlines
+
+06_integration/           # authority pointers, external refs
+
+07_observation/           # observation cache tables
+
+08_audit/                 # audit, evidence, compliance
+
+09_runner/                # runner specs, jobs, capabilities
+
   json_schemas/
-    monitor/                  # per-discriminator JSON schemas
-    schedule/
-    evidence_record/
-    runner_spec/
+
+monitor/                  # per-discriminator JSON schemas
+
+schedule/
+
+evidence_record/
+
+runner_spec/
+
   meta/
-    _schema_meta.yaml         # schema metadata entity types
+
+_schema_meta.yaml         # schema metadata entity types
+
 ```
 
 The directory numbering creates a natural dependency order — identity entities exist before core entities reference them, core entities exist before policies reference them. The `directory.yaml` file imports domain directories in order. Entity files are leaf-level — they do not import other files.
@@ -494,30 +645,53 @@ Design approval rules from the stakes, not from the entity structure. Ask: if th
 The calibration for AI proposers follows the same logic. An AI runner that proposes changes to low-sensitivity observation summaries can be auto-approved. An AI runner that proposes changes to financial records based on reconciliation results requires human review. The policy rows that govern AI-proposed changes are the same mechanism as all other approval rules — they just match on the proposer's service account identity.
 
 ```yaml
+
 # Approval rule: budget changes require project owner
+
 name: budget_change_approval
+
 policy_type: approval_rule
+
 policy_data_json:
+
   match:
-    entity_types: [project]
-    field_names: [budget_amount, budget_currency]
+
+entity_types: [project]
+
+field_names: [budget_amount, budget_currency]
+
   require:
-    approver_count: 1
-    approver_source: ownership_bridge
-    approver_role: project_owner
+
+approver_count: 1
+
+approver_source: ownership_bridge
+
+approver_role: project_owner
+
 ```
 
 ```yaml
+
 # Approval rule: AI-proposed entity changes require human review
+
 name: ai_proposal_review
+
 policy_type: approval_rule
+
 policy_data_json:
+
   match:
-    proposer_type: service_account
-    proposer_role: ai_runner
+
+proposer_type: service_account
+
+proposer_role: ai_runner
+
   require:
-    approver_count: 1
-    approver_source: entity_owner
+
+approver_count: 1
+
+approver_source: entity_owner
+
 ```
 
 #### 4.2 Access Control Design
@@ -537,24 +711,43 @@ Design access control from the data sensitivity outward, not from the user roles
 For entities with lifecycle state machines, transition rules are policy rows that the gate pipeline evaluates at step 5.
 
 ```yaml
+
 name: task_transitions
+
 policy_type: state_transition
+
 policy_data_json:
+
   entity_type: task
+
   field: status
+
   transitions:
-    - from: draft
-      to: [open]
-    - from: open
-      to: [in_progress, draft]
-    - from: in_progress
-      to: [review, draft]
-    - from: review
-      to: [done, in_progress]
-    - from: done
-      to: [archived]
-    - from: archived
-      to: []    # terminal state
+
+- from: draft
+
+  to: [open]
+
+- from: open
+
+  to: [in_progress, draft]
+
+- from: in_progress
+
+  to: [review, draft]
+
+- from: review
+
+  to: [done, in_progress]
+
+- from: done
+
+  to: [archived]
+
+- from: archived
+
+  to: []    # terminal state
+
 ```
 
 When a change set proposes a status field change on a task, the gate pipeline checks the transition against this policy. If the transition is not in the declared set, the change set is rejected. The rejection is audited — the audit log records the attempted invalid transition, who proposed it, and when.
@@ -566,13 +759,21 @@ Transition rules can include conditions evaluated by runners. "A task can only m
 Retention policies determine how long versioned data, observation cache entries, and audit records persist.
 
 ```yaml
+
 name: task_retention
+
 policy_type: retention
+
 policy_data_json:
+
   entity_type: task
+
   version_history_days: 365
+
   observation_cache_days: 30
+
   audit_log_days: 2555    # 7 years for compliance
+
 ```
 
 A reaper runner reads retention policies and enforces them — soft-deleting version rows past their retention horizon, removing expired observation cache entries, preserving audit entries for their declared retention period.
@@ -584,17 +785,29 @@ Design retention from regulatory requirements first, operational needs second, s
 The schema vocabulary does not include conditional constraints. Cross-field invariants — "if status is active then start_date must be set," "if payment_method is credit_card then card_token must be present" — are policy rows evaluated at gate step 5.
 
 ```yaml
+
 name: active_requires_start_date
+
 policy_type: semantic_invariant
+
 policy_data_json:
+
   entity_type: task
+
   condition:
-    field: status
-    equals: active
+
+field: status
+
+equals: active
+
   require:
-    field: start_date
-    not_null: true
+
+field: start_date
+
+not_null: true
+
   message: "Active tasks must have a start date"
+
 ```
 
 This separation keeps the schema vocabulary simple and the validation logic inspectable. Every cross-field rule is a queryable policy row. You can enumerate all invariants for an entity type with a single search query. Changing an invariant is a change set, audited and reversible. In conventional development, cross-field validation is buried in application code — scattered across model validators, service methods, and middleware — and discovering all the rules requires reading the codebase.
@@ -632,21 +845,33 @@ A puller runner imports data from an external system into OpsDB observation cach
 **Structure:**
 
 ```
+
 get phase:
+
   - read runner spec from OpsDB (connection params, schedule, bounds)
+
   - read authority entity from OpsDB (endpoint URL, auth reference)
+
   - read last sync cursor from observation cache (if incremental)
 
 act phase:
+
   - connect to external API via library suite
+
   - paginate through external data
+
   - transform each external record to OpsDB entity shape
+
   - handle rate limits (library suite manages backoff)
 
 set phase:
+
   - write transformed records to observation cache via API
+
   - update sync cursor in observation cache
+
   - write sync summary (record count, errors, duration) to observation cache
+
 ```
 
 **Schema mapping.** The transformation from external format to OpsDB entity shape is the puller's primary domain logic. A Stripe payment puller reads Stripe's payment intent objects and maps them to OpsDB observation cache rows: `stripe_payment_id` → observation key, `amount` → `observed_amount`, `status` → `observed_status`, `created` → `observed_time`. The mapping is explicit code in the runner — typically a function per external entity type, 20–40 lines each.
@@ -662,27 +887,40 @@ A reconciler compares desired state (from governed entities) with observed state
 **Structure:**
 
 ```
+
 get phase:
+
   - read desired state from governed entities via search API
+
   - read observed state from observation cache via search API
+
   - (or read observed state directly from external system via library suite)
 
 act phase:
+
   - for each desired entity, find the corresponding observed state
+
   - compute the diff: fields where desired ≠ observed
+
   - for each diff, determine the correction action
+
   - filter out diffs within acceptable tolerance
 
 set phase:
+
   - for each correction:
-    - if auto-approve: submit change set with correction, auto-approved by policy
-    - if approval-required: submit change set with correction, routes to approvers
-    - if direct external action: execute via library suite, write result as observation
+
+- if auto-approve: submit change set with correction, auto-approved by policy
+
+- if approval-required: submit change set with correction, routes to approvers
+
+- if direct external action: execute via library suite, write result as observation
+
 ```
 
 **Convergence behavior.** The reconciler is level-triggered, not edge-triggered. It does not react to events ("this value changed"). It compares current desired state with current observed state on every cycle. If an event is missed — a webhook fails, a notification drops — the next reconciler cycle detects the discrepancy from the state comparison. This is the R3 idempotency principle and R8 level-triggered-over-edge-triggered from the ops book applied to runner design.
 
-**Tolerance.** Not every diff is worth correcting. A reconciler comparing expected inventory counts with warehouse-observed counts might tolerate a variance of ±2 items before proposing a correction. Tolerance thresholds are configurable in the runner spec's typed JSON payload — they are data, not hardcoded constants.
+**Tolerance.** Not every diff is worth correcting. A reconciler comparing expected inventory counts with warehouse-observed counts might tolerate a variance of  $\pm$ 2 items before proposing a correction. Tolerance thresholds are configurable in the runner spec's typed JSON payload — they are data, not hardcoded constants.
 
 **Partial drift.** When the reconciler finds multiple diffs across multiple entities, it can propose a single bulk change set covering all corrections, or individual change sets per entity. Bulk change sets are atomic — all corrections apply or none do. Individual change sets allow partial progress — some corrections can be approved while others are pending review. The choice depends on whether the corrections are interdependent. Independent corrections (each entity's count is independently correct or incorrect) use individual change sets. Interdependent corrections (a set of accounts must balance to zero) use bulk change sets.
 
@@ -693,24 +931,39 @@ A verifier checks that expected conditions hold and produces evidence records do
 **Structure:**
 
 ```
+
 get phase:
+
   - read schedules that are due for verification
+
   - read target entities referenced by each schedule
+
   - read prior evidence records (to detect regressions)
 
 act phase:
+
   - for each due schedule:
-    - evaluate the verification condition against the target
-    - determine pass or fail
-    - assemble supporting data (what was checked, what was found)
+
+- evaluate the verification condition against the target
+
+- determine pass or fail
+
+- assemble supporting data (what was checked, what was found)
 
 set phase:
+
   - write evidence record per verification with:
-    - pass/fail result
-    - verification time
-    - supporting data as typed JSON payload
-    - reference to schedule and target entity
+
+- pass/fail result
+
+- verification time
+
+- supporting data as typed JSON payload
+
+- reference to schedule and target entity
+
   - update schedule's last_verified_time
+
 ```
 
 **Evidence record typed payloads.** Each verification type has its own JSON schema for the evidence record payload. A certificate validity verifier writes: certificate subject, issuer, expiration date, days until expiration, chain validation result. A backup verification verifier writes: backup timestamp, backup size, restore test result, duration. The typed payload ensures every evidence record of a given type has consistent structure — queryable, comparable across time, and usable by compliance reporting.
@@ -724,24 +977,39 @@ A notification runner detects state transitions that warrant notification and di
 **Structure:**
 
 ```
+
 get phase:
+
   - read recent change sets (since last notification cycle)
+
   - read pending approval requests
+
   - read approaching deadlines (schedules with due dates within threshold)
+
   - read notification configuration (which transitions trigger which channels)
+
   - read recipient resolution data (on-call assignments, ownership bridges)
 
 act phase:
+
   - for each trigger event:
-    - resolve recipients from ownership/stakeholder bridges and on-call assignments
-    - select channel(s) from notification configuration
-    - format message using configured template
-    - deduplicate against prior notifications (check observation cache)
+
+- resolve recipients from ownership/stakeholder bridges and on-call assignments
+
+- select channel(s) from notification configuration
+
+- format message using configured template
+
+- deduplicate against prior notifications (check observation cache)
 
 set phase:
+
   - dispatch via library suite (email, webhook, chat API)
+
   - write delivery receipt to observation cache (keyed by event + recipient)
+
   - write delivery failures to observation cache for retry on next cycle
+
 ```
 
 **Channel configuration as data.** Notification channels are authority entities with typed payloads: email (SMTP configuration), webhook (URL, headers, auth), chat (Slack/Teams API configuration). Adding a notification channel means creating an authority entity through a change set. Removing a channel means deactivating the authority entity. The runner reads the active authority entities and dispatches through them. No code change for channel changes.
@@ -755,20 +1023,31 @@ A configuration push runner reads governed state from OpsDB and pushes it to an 
 **Structure:**
 
 ```
+
 get phase:
+
   - read governed entities that the external system consumes
+
   - read the external system's current configuration (via library suite)
+
   - read the runner spec for transformation rules and connection params
 
 act phase:
+
   - transform governed entities into the external system's native format
+
   - compute the diff between current external config and desired config
+
   - generate the update payload
 
 set phase:
+
   - push the update to the external system via library suite
+
   - write push result (success/failure, timestamp, diff summary) to observation cache
+
   - on failure: log structured error, increment retry counter, respect retry budget
+
 ```
 
 **Transformation as domain logic.** The transformation from OpsDB entity shape to external format is the runner's primary contribution. An API gateway configuration push runner reads route definition entities, rate limit policy entities, and consumer quota entities from OpsDB, and produces the gateway's native configuration format — a YAML file, a JSON API payload, a protobuf message. This transformation is 50–100 lines of mapping code. The library suite handles the connection, authentication, retry, and error handling for the push.
@@ -786,20 +1065,31 @@ This is the complement of the configuration push runner. Together they form the 
 **Structure:**
 
 ```
+
 get phase:
+
   - read runner spec (external system connection, polling interval, scope)
+
   - read authority entity (endpoint, auth reference)
+
   - read last poll cursor from observation cache
 
 act phase:
+
   - connect to external system's results API via library suite
+
   - read results since last poll cursor
+
   - transform results to observation cache format
 
 set phase:
+
   - write results to observation cache with freshness timestamps
+
   - update poll cursor
+
   - write poll summary (record count, errors, latency) to observation cache
+
 ```
 
 The pull runner handles the external system's eventual consistency. If the external system reports results with delay — a payment processor that settles transactions hours after authorization — the pull runner writes observations with the timestamp from the external system, not the pull time. Consumers querying the observation cache see when the event actually occurred, not when OpsDB learned about it.
@@ -811,48 +1101,83 @@ An AI observation runner uses an LLM to generate derived observations over gover
 **Structure:**
 
 ```
+
 get phase:
+
   - read runner spec (model, token budget, prompt template reference, 
-    regeneration trigger, target entity types)
+
+regeneration trigger, target entity types)
+
   - read governed entities that form the context
+
   - traverse relationships to build complete context
-    (entity → dependencies → change sets → alerts → observations)
+
+(entity → dependencies → change sets → alerts → observations)
 
 act phase:
+
   - assemble context into structured prompt
+
   - call LLM via library suite (with retry, timeout, circuit breaking)
+
   - validate response length against configured character budget
+
   - validate response structure if structured output is expected
 
 set phase:
+
   - write AI observation to observation cache with:
-    - freshness timestamp
-    - character budget used
-    - model identifier
-    - source entity references (which entities were summarized)
-    - prompt hash (for reproducibility tracking)
+
+- freshness timestamp
+
+- character budget used
+
+- model identifier
+
+- source entity references (which entities were summarized)
+
+- prompt hash (for reproducibility tracking)
+
   - on LLM failure: write error observation, continue to next entity
+
 ```
 
 **Configuration via runner spec:**
 
 ```yaml
+
 name: incident_summary_runner
+
 runner_type: ai_observation
+
 runner_data_json:
+
   model: "claude-sonnet"
+
   max_tokens: 500
+
   character_budget: 2000
+
   regeneration_trigger: "source_entity_change"
+
   target_entity_types: [incident]
+
   context_traversal:
-    - incident -> affected_service (via bridge)
-    - affected_service -> service_connection (dependencies)
-    - incident -> change_set (recent, last 24h)
-    - incident -> alert_fire (related alerts)
+
+- incident -> affected_service (via bridge)
+
+- affected_service -> service_connection (dependencies)
+
+- incident -> change_set (recent, last 24h)
+
+- incident -> alert_fire (related alerts)
+
   prompt_template_ref: "incident_summary_v1"
+
   observation_cache_table: observation_cache_state
+
   observation_key_prefix: "ai_summary_incident_"
+
 ```
 
 **Multiple granularities.** The same runner code serves different summary needs through different runner specs. An 80-character headline for a dashboard ticker has `character_budget: 80` and a terse prompt template. A 2000-character incident summary for the war room has `character_budget: 2000` and a detailed prompt template. A 12-character severity classification has `character_budget: 12` and a classification-focused prompt template. Three runner specs, one runner implementation.
@@ -870,26 +1195,43 @@ The get-act-set pattern still applies. The library suite still handles infrastru
 **Example: invoice generation runner.**
 
 ```
+
 get phase:
+
   - read active subscriptions with billing_cycle_date ≤ today
+
   - read plan entities for each subscription (pricing data)
+
   - read usage records since last invoice for metered plans
+
   - read tax policy data for jurisdiction-based tax rates
+
   - read credit balance for each customer account
 
 act phase:
+
   - for each billable subscription:
-    - compute base charge from plan pricing
-    - compute usage charges from usage records × metered rates
-    - compute proration for mid-cycle changes
-    - apply credits from credit balance
-    - compute tax from jurisdiction rules
-    - generate line items
+
+- compute base charge from plan pricing
+
+- compute usage charges from usage records  $\times$  metered rates
+
+- compute proration for mid-cycle changes
+
+- apply credits from credit balance
+
+- compute tax from jurisdiction rules
+
+- generate line items
 
 set phase:
+
   - submit change set creating invoice entity with line items
+
   - submit change set updating credit balance if credits applied
+
   - write invoice generation summary to observation cache
+
 ```
 
 The runner is 200–300 lines. The pricing data, tax rules, proration logic, and credit application are domain computations — the runner's actual contribution. Everything else — reading data, writing change sets, handling errors, retrying failures, logging, authentication — is library suite calls.
@@ -901,15 +1243,25 @@ Runners operate as threads within a server runner process. The server runner is 
 **Thread configuration.** The server runner reads runner spec entities from OpsDB to determine which runners to instantiate and how many threads each gets. Configuration is data — changing which runners run, how many threads each gets, and what cycle timing each uses means changing runner spec rows through change sets.
 
 ```yaml
+
 # Runner thread configuration (in runner_spec entity)
+
 name: notification_runner_spec
+
 runner_type: notification
+
 runner_data_json:
+
   thread_count: 2
+
   cycle_interval_seconds: 30
+
   retry_budget: 3
+
   execution_timeout_seconds: 60
+
   scope_per_cycle: 100
+
 ```
 
 **Shared resources.** All runner threads share the database connection pool, the library suite instances (with per-runner scope enforcement), the logging infrastructure, and the metrics collection. This eliminates the per-runner operational overhead that separate processes would require — no per-runner deployment, no per-runner monitoring configuration, no per-runner resource allocation.
@@ -939,21 +1291,37 @@ The frontend does not maintain user sessions beyond the token lifecycle. Session
 **List views.** Call `search` with filter predicates, projection (which fields to return), ordering, and cursor-based pagination. The search API returns only entities the authenticated caller can access — multi-tenancy is invisible to the frontend code. Fields the caller cannot see due to access classification are omitted from the response with metadata indicating the omission.
 
 ```
+
 POST /api/search
+
 {
+
   "entity_type": "task",
+
   "filters": {
-    "and": [
-      {"field": "project_id", "op": "eq", "value": "proj_123"},
-      {"field": "status", "op": "in", "value": ["open", "in_progress"]},
-      {"field": "assignee_user_id", "op": "eq", "value": "current_user"}
-    ]
+
+"and": [
+
+  {"field": "project_id", "op": "eq", "value": "proj_123"},
+
+  {"field": "status", "op": "in", "value": ["open", "in_progress"]},
+
+  {"field": "assignee_user_id", "op": "eq", "value": "current_user"}
+
+]
+
   },
+
   "fields": ["id", "title", "status", "priority", "due_date", "assignee_user_id"],
+
   "order_by": [{"field": "priority", "direction": "asc"}, {"field": "due_date", "direction": "asc"}],
+
   "page_size": 25,
+
   "cursor": null
+
 }
+
 ```
 
 **Detail views.** Call `get_entity` with the entity type and ID. The response includes all fields the caller can see plus metadata: version serial, created/updated timestamps, created/updated by identity. If the entity is versioned, the current version is returned. Named join paths can include related entities in a single request — a task detail view can include the project, the assignee, and recent comments through declared join paths.
@@ -969,16 +1337,27 @@ POST /api/search
 **Standard writes.** The frontend submits a change set containing the proposed field changes and a reason string.
 
 ```
+
 POST /api/change_set/submit
+
 {
+
   "entity_type": "task",
+
   "entity_id": "task_456",
+
   "changes": [
-    {"field": "status", "old_value": "open", "new_value": "in_progress"},
-    {"field": "assignee_user_id", "old_value": null, "new_value": "user_789"}
+
+{"field": "status", "old_value": "open", "new_value": "in_progress"},
+
+{"field": "assignee_user_id", "old_value": null, "new_value": "user_789"}
+
   ],
+
   "reason": "Starting work on authentication redesign task"
+
 }
+
 ```
 
 The old_value fields enable optimistic concurrency — if the entity has changed since the frontend read it, the submit fails with a conflict response. The frontend can then re-read, merge if appropriate, and re-submit.
@@ -1040,12 +1419,19 @@ Each architecture position has a distinct construction pattern. The patterns bel
 **Construction sequence:**
 
 1. Domain analysis: enumerate entities, relationships, lifecycles, policies
+
 2. Schema design: write YAML files for all entities
+
 3. Loader run: generate database structure
+
 4. Seed data: create initial policy rows, approval rules, role definitions, group memberships
+
 5. API verification: create test entities, verify constraints, test approval flows
+
 6. Runner implementation: build domain runners (notification, integration, computation)
+
 7. Frontend development: build UI consuming the API
+
 8. Policy tuning: adjust approval rules, access control, and retention as real usage reveals needs
 
 ![Fig. 7: Governed State Spectrum — most business software clusters at 95%+ governed state, with clear region boundaries at architecture positions.](../figures/comp9_07_governed_state_spectrum.png)
@@ -1065,13 +1451,21 @@ Each architecture position has a distinct construction pattern. The patterns bel
 **Construction sequence:**
 
 1. Domain analysis: identify governed entities AND hot-path requirements
+
 2. Schema design for governed portion
+
 3. Hot-path service design and implementation
+
 4. Runner bridge design: what configuration flows out, what results flow back
+
 5. Configuration push runner implementation
+
 6. Observation pull runner implementation
+
 7. Loader run and API verification for governed portion
+
 8. Integration testing: verify the bridge — config changes in OpsDB propagate to hot-path service, results flow back as observations
+
 9. Frontend development: consuming both APIs
 
 **The bridge pattern in detail:**
@@ -1079,15 +1473,23 @@ Each architecture position has a distinct construction pattern. The patterns bel
 The hot-path service reads configuration from a local cache that runners populate. The cache refresh cycle is configured in the runner spec — every 60 seconds, every 5 minutes, on-demand via a trigger. The hot-path service never calls the OpsDB API directly at runtime. If OpsDB is unavailable, the hot-path service continues with cached configuration. When OpsDB returns, the runner catches up.
 
 ```
+
 OpsDB governed entities
+
   → config push runner (reads entities, transforms, pushes)
-    → hot-path service local cache
-      → hot-path service processing
+
+→ hot-path service local cache
+
+  → hot-path service processing
 
 hot-path service results
+
   → observation pull runner (reads results, transforms, writes)
-    → OpsDB observation cache
-      → search API (for dashboards, reports, reconciliation)
+
+→ OpsDB observation cache
+
+  → search API (for dashboards, reports, reconciliation)
+
 ```
 
 The observation pull runner writes results as observation cache entries with freshness timestamps. A reconciler runner can compare the observation cache against governed entities to detect discrepancies — "OpsDB says the customer's plan is Premium but the billing engine charged them at the Basic rate."
@@ -1107,10 +1509,15 @@ The observation pull runner writes results as observation cache entries with fre
 **Construction sequence:**
 
 1. Specialized system design and implementation (the primary engineering work)
+
 2. Identify what configuration and operational data should be governed
+
 3. Schema design for the governance wrapper
+
 4. Runner bridge implementation
+
 5. Admin frontend consuming OpsDB API
+
 6. Compliance and audit views consuming OpsDB audit log and evidence records
 
 #### 7.4 Personal AppDB Pattern
@@ -1128,29 +1535,45 @@ The observation pull runner writes results as observation cache entries with fre
 Start with a generic collection entity that has a discriminated JSON payload. Track recipes, books, plants, and workout sessions as collection items with different payload schemas. When a domain becomes important enough to warrant proper schema treatment — your recipe collection grows from casual tracking to a serious reference — write a proper schema for that domain. A migration runner reads the generic collection items of that type and writes them as proper entities through change sets. The generic collection stays for casual tracking. The proper schema provides structured fields, relationships, typed queries, and specific runners.
 
 ```yaml
+
 # Generic collection for casual tracking
+
 name: collection
+
 domain: personal
 
 fields:
+
   - name: name
-    type: varchar
-    length: 255
-    nullable: false
+
+type: varchar
+
+length: 255
+
+nullable: false
 
   - name: collection_type
-    type: enum
-    values: [recipe, book, plant, workout, wine, movie, travel]
-    nullable: false
+
+type: enum
+
+values: [recipe, book, plant, workout, wine, movie, travel]
+
+nullable: false
 
   - name: item_data_json
-    type: json
-    nullable: false
+
+type: json
+
+nullable: false
 
   - name: tags
-    type: varchar
-    length: 1024
-    nullable: true
+
+type: varchar
+
+length: 1024
+
+nullable: true
+
 ```
 
 As the personal AppDB matures, some collections graduate to proper schemas. Others stay generic indefinitely. The decision to graduate is driven by pain — when the generic schema's lack of typed fields, explicit relationships, or specific runners becomes a friction, it is time to formalize. This is the correct use of iterative discovery within the OpsDB architecture — the generic collection is the sandbox, and graduation to a proper schema is the point where the domain is understood well enough for comprehensive design.
@@ -1168,15 +1591,23 @@ As the personal AppDB matures, some collections graduate to proper schemas. Othe
 Each release includes a schema version identifier. Schema changes between releases follow the additive evolution rules — new fields, new entities, widened constraints, no deletions, no renames, no type changes. Upgrading from version N to N+1 means applying the schema diff through the schema change set mechanism. The loader computes the diff between the deployed schema and the release schema, generates the additive changes, and applies them through a schema change set.
 
 ```
+
 Release 1.0:
+
   entities: project, task, comment, label
+
   fields: (initial set)
+
   policies: (default approval rules, retention policies)
 
 Release 1.1:
+
   entities: project, task, comment, label, milestone  (added)
+
   fields: task.estimated_hours (added), task.priority max widened from 5 to 10
+
   policies: (default + milestone approval rules)
+
 ```
 
 The upgrade from 1.0 to 1.1 adds the milestone entity, adds the estimated_hours field to task (nullable, so existing rows are unaffected), and widens the priority range. No existing data is affected. No existing consumers break. The deploying organization reviews the schema change set, approves it, and the schema executor applies it.
@@ -1198,7 +1629,9 @@ The AppDB architecture is well-suited for AI assistance at every stage of constr
 An AI can generate schema YAML from a domain description. The prompt pattern:
 
 1. Describe the domain in plain language — what entities exist, what their relationships are, what fields they have
+
 2. Specify the schema conventions — singular names, lowercase underscores, FK naming, type suffixes
+
 3. Ask for YAML output conforming to the loader's expected format
 
 The AI generates YAML files. The loader verifies them mechanically — structural correctness, naming conventions, FK target existence, type validity, constraint completeness. If the loader rejects the output, the error message identifies the specific violation. The AI can be prompted to fix the violation, or the developer can fix it manually.
@@ -1210,8 +1643,11 @@ This works well because the output format is constrained and verifiable. The AI 
 An AI can generate runner code from a runner spec description. The prompt pattern:
 
 1. Describe the runner's purpose — what it reads, what it computes, what it writes
+
 2. Specify the get-act-set structure
+
 3. Specify the library suite calls available
+
 4. Ask for Go code using the library suite
 
 The AI generates 150–300 lines of runner code. The code is small enough for complete human review. The library suite handles all infrastructure concerns, so the AI only generates domain logic — the act phase computation. Errors in the generated code are contained by the runner's scope declaration — even incorrect runner code cannot affect data outside its declared scope because the API gate and library suite enforce boundaries.
@@ -1259,68 +1695,117 @@ For factual queries that the search API answers directly. "How many tasks are ov
 Each method in this paper is cataloged below for reference. The catalog provides the method's applicability, inputs, and outputs.
 
 ```
+
 methods(id|name|section|applies_to|inputs|outputs)
 
 # Domain Analysis Methods
+
 M01|Entity Enumeration|2.1|all positions|domain knowledge|entity list with identity/attribute analysis
+
 M02|Field Enumeration|2.2|all positions|entity list|field list with types, constraints, modifiers
+
 M03|Relationship Classification|2.3|all positions|entity list|classified relationships (ownership, reference, bridge, polymorphic, hierarchy)
+
 M04|Lifecycle Identification|2.4|entities with state|entity list|state enums + transition graphs
+
 M05|Policy Enumeration|2.5|all positions|entity list + relationships|approval rules, access control, retention, change mgmt rules
+
 M06|Schedule Enumeration|2.6|all positions|domain knowledge|recurring operations, deadlines, event triggers
+
 M07|External Integration Enumeration|2.7|split + wrapper|domain knowledge|authorities, puller targets, push targets
+
 M08|Hot Path Identification|2.8|split + wrapper|domain knowledge + performance requirements|hot path boundary + runner bridge plan
+
 M09|Architecture Position Selection|2.8|all|domain analysis results|position (primary, split, wrapper, personal, distributed)
 
 # Schema Construction Methods
+
 M10|Entity Design|3.1|all positions|entity from M01 + fields from M02|entity YAML file
+
 M11|Type Selection|3.2|all positions|field from M02|type + constraints from closed vocabulary
+
 M12|Constraint Selection|3.3|all positions|field from M02|bounds, lengths, enum sets, FK refs, nullable, unique
+
 M13|Discriminator Pattern|3.4|entities with typed variants|entity with subtypes|discriminator enum + JSON schemas
+
 M14|Bridge Table Design|3.5|many-to-many + polymorphic relationships|relationship from M03|bridge table YAML files
+
 M15|Hierarchy Design|3.6|self-referential entities|entity with parent-child relationship|self-FK + depth field + traversal runner
+
 M16|Governance Field Configuration|3.7|entities needing access control|access requirements from M05|_requires_group, _access_classification declarations
+
 M17|Draft Mode Configuration|3.8|interactive editing entities|property analysis per entity|draft mode flags + documented tradeoff
+
 M18|Schema Organization|3.9|all positions|complete entity set|directory structure + domain grouping
 
 # Policy Construction Methods
+
 M19|Approval Rule Design|4.1|all governed entities|entity types + sensitivity analysis|approval rule policy rows
+
 M20|Access Control Design|4.2|all positions|data sensitivity map|roles, groups, classifications, layer configuration
+
 M21|State Transition Rules|4.3|entities with lifecycles|transition graph from M04|state transition policy rows
+
 M22|Retention Policy Design|4.4|all governed entities|regulatory + operational requirements|retention policy rows
+
 M23|Cross-Field Invariant Rules|4.5|entities with conditional constraints|domain rules that cross fields|semantic invariant policy rows
 
 # Runner Construction Methods
+
 M24|Runner Design|5.1|all runners|domain logic requirement|runner spec with inputs, outputs, gating, trigger, bounds, idempotency
+
 M25|Puller Runner|5.2|external data import|authority + external API|observation cache rows with freshness
+
 M26|Reconciler Runner|5.3|desired vs observed correction|governed entities + observation cache|change sets (corrections) or direct actions
+
 M27|Verifier Runner|5.4|scheduled verification|schedules + targets|evidence records with pass/fail
+
 M28|Notification Runner|5.5|state transition alerting|change sets + schedules + config|dispatched notifications + delivery receipts
+
 M29|Configuration Push Runner|5.6|hot path config delivery|governed entities|external system config + push receipts
+
 M30|Observation Pull Runner|5.7|hot path result collection|external system results|observation cache rows
+
 M31|AI Observation Runner|5.8|LLM-derived observations|governed entities + context traversal|AI observation cache rows with freshness + source refs
+
 M32|Custom Domain Runner|5.9|domain-specific computation|governed entities + domain rules|computed results as governed entities or observations
+
 M33|Server Runner Configuration|5.10|runner thread management|runner specs|thread allocation, cycle timing, scope isolation
 
 # Frontend Integration Methods
+
 M34|Authentication Integration|6.1|all frontends|IdP configuration|SSO token flow
+
 M35|Read Patterns|6.2|all frontends|search API|list views, detail views, activity feeds, dashboards, point-in-time views
+
 M36|Write Patterns|6.3|all frontends|change set API|standard writes, auto-approved, approval-required, creation, bulk, emergency
+
 M37|Draft Mode Integration|6.4|draft-mode entities|draft mode API|autosave + explicit commit + undo/redo
+
 M38|Multi-Tenancy Integration|6.5|multi-user applications|authorization API|pre-filtered results, field omissions, group-scoped navigation
 
 # Application Pattern Methods
+
 M39|Governed-State-Dominant Construction|7.1|primary backend position|full domain analysis|complete AppDB with schema + runners + frontend
+
 M40|Split-Backend Construction|7.2|split backend position|domain analysis + hot path ID|AppDB + hot path service + runner bridges
+
 M41|Operational Wrapper Construction|7.3|wrapper position|specialized system + governance needs|governance AppDB + runner bridges
+
 M42|Personal AppDB Construction|7.4|personal scale|personal data domains|personal AppDB with graduated formalization
+
 M43|Distributed Application Construction|7.5|packaged applications|prototype AppDB|release packaging + schema versioning + per-deployment policy
 
 # AI-Assisted Methods
+
 M44|AI Schema Generation|8.1|all positions|domain description + conventions|loader-verifiable YAML files
+
 M45|AI Runner Generation|8.2|all runners|runner spec description + library suite API|150-300 line runner code
+
 M46|AI Change Proposer Configuration|8.3|governed entities|AI runner spec + approval rules|AI service account + scope + policy
+
 M47|AI Observation Configuration|8.4|governed entities with summary needs|runner spec + prompt templates + character budgets|AI observation cache with freshness
+
 ```
 
 ---
@@ -1332,84 +1817,143 @@ For each major construction decision, a decision tree identifies the method to a
 #### 10.1 Architecture Position Selection
 
 ```
+
 Does the application have processing that cannot tolerate the gate pipeline latency?
+
 ├── No → Is it a personal or single-user application?
+
 │   ├── Yes → Personal AppDB (M42)
+
 │   └── No → Is it intended for distribution as a deployable package?
+
 │       ├── Yes → Distributed Application (M43) with Governed-State-Dominant (M39)
+
 │       └── No → Governed-State-Dominant (M39)
+
 └── Yes → What percentage of the data model is governed state?
-    ├── 70%+ → Split-Backend (M40)
-    ├── 10-70% → Operational Wrapper (M41)
-    └── <10% → OpsDB may not be the right tool; evaluate metadata-only position
+
+├── 70%+ → Split-Backend (M40)
+
+├── 10-70% → Operational Wrapper (M41)
+
+└── <10% → OpsDB may not be the right tool; evaluate metadata-only position
+
 ```
 
 #### 10.2 Entity Design Selection
 
 ```
+
 Does the entity have subtypes with different field sets?
+
 ├── Yes → Discriminator Pattern (M13)
+
 └── No → Does the entity relate to multiple different entity types polymorphically?
-    ├── Yes → create bridge tables per target type (M14)
-    └── No → Does the entity have a parent-child hierarchy?
-        ├── Yes → Self-referential FK + depth field (M15)
-        └── No → Standard Entity Design (M10)
+
+├── Yes → create bridge tables per target type (M14)
+
+└── No → Does the entity have a parent-child hierarchy?
+
+    ├── Yes → Self-referential FK + depth field (M15)
+
+    └── No → Standard Entity Design (M10)
+
 ```
 
 #### 10.3 Runner Kind Selection
 
 ```
+
 What does the runner do?
+
 ├── Imports data from external system → Puller (M25)
+
 ├── Compares desired vs observed and corrects → Reconciler (M26)
+
 ├── Verifies conditions and produces evidence → Verifier (M27)
+
 ├── Dispatches notifications on state transitions → Notification (M28)
+
 ├── Pushes governed config to external system → Config Push (M29)
+
 ├── Pulls results from external system → Observation Pull (M30)
+
 ├── Generates LLM-derived summaries → AI Observation (M31)
+
 └── Domain-specific computation → Custom Domain (M32)
+
 ```
 
 #### 10.4 Gating Mode Selection
 
 ```
+
 What does the runner write?
+
 ├── Observation cache (external state, metrics, AI summaries)
+
 │   → Direct write (authenticated, validated, audited, no change set)
+
 ├── Governed entity changes with low risk
+
 │   → Auto-approved change set (change set created, auto-transitions)
+
 ├── Governed entity changes with high risk or compliance requirements
+
 │   → Approval-required change set (routes to human approvers)
+
 └── Mixed (different targets with different stakes)
-    → Per-target gating (direct write for observations, approval for governed)
+
+→ Per-target gating (direct write for observations, approval for governed)
+
 ```
 
 #### 10.5 Governance Flag Decision
 
 ```
+
 Is this entity used for interactive editing where per-keystroke versioning creates noise?
+
 ├── No → Full governance (default)
+
 └── Yes → Does the entity hold compliance-relevant data?
-    ├── Yes → Full governance (compliance requires per-write auditability)
-    └── No → Does the entity hold financial data?
-        ├── Yes → Full governance (financial data requires per-write versioning)
-        └── No → Property analysis: which properties are weakened by draft mode?
-            ├── Per-write versioning → acceptable if committed versions suffice
-            ├── Per-write audit → acceptable if committed version audit suffices
-            └── Change management → acceptable if auto-commit governance suffices
-            → Enable draft mode flags + document tradeoff in schema notes (M17)
+
+├── Yes → Full governance (compliance requires per-write auditability)
+
+└── No → Does the entity hold financial data?
+
+    ├── Yes → Full governance (financial data requires per-write versioning)
+
+    └── No → Property analysis: which properties are weakened by draft mode?
+
+        ├── Per-write versioning → acceptable if committed versions suffice
+
+        ├── Per-write audit → acceptable if committed version audit suffices
+
+        └── Change management → acceptable if auto-commit governance suffices
+
+        → Enable draft mode flags + document tradeoff in schema notes (M17)
+
 ```
 
 #### 10.6 AI Assistance Selection
 
 ```
+
 What task are you performing?
+
 ├── Schema design from domain description → AI Schema Generation (M44)
+
 ├── Runner implementation from spec → AI Runner Generation (M45)
+
 ├── Automated domain decisions that modify governed state → AI Change Proposer (M46)
+
 ├── Derived summaries over governed data → AI Observation (M47)
+
 └── Domain analysis, policy design, architecture decisions → Human judgment
-    (AI can assist with enumeration but the decisions are engineering)
+
+(AI can assist with enumeration but the decisions are engineering)
+
 ```
 
 ---
@@ -1419,37 +1963,69 @@ What task are you performing?
 Each construction method connects to the underlying taxonomy's mechanisms, properties, and principles.
 
 ```
+
 method_to_taxonomy(method|mechanisms|properties|principles)
+
 M01|AF1(Storage)+AF13(Representation)|P04(Consistency)|R05(Comprehensive)+R01(Data Primacy)
+
 M02|AF13(Representation)|P04(Consistency)+P08(Determinism)|R01(Data Primacy)
+
 M03|AF1(Storage)+AF4(Selection)|P04(Consistency)+P05(Integrity)|R05(Comprehensive)
+
 M04|NM01(State Machine Evaluator)|NP01(Lifecycle Integrity)|NR02(Rules as Data)
+
 M05|AF2(Gating)+AF9(Coordination)|P06(Authenticity)+P07(Confidentiality)+P21(Auditability)|R18(Centralize Policy)
+
 M06|AF8(Lifecycle)+NM04(Temporal Projection)|NP02(Temporal Consistency)|R01(Data Primacy)
+
 M07|AF5(Information Movement)|P11(Availability)+P19(Failure Transparency)|R17(Local Cache + Global Truth)
+
 M08|AF5+AF10+AF11+AF12|P10(Liveness)+P11(Availability)+P12(Boundedness)|R14(Separate Planes)
+
 M10|AF1+AF13|P04+P08|R01+R03(Convention over Lookup)
+
 M13|AF13+NM02(Rule Engine)|P04+P08|R01+R04(0/1/Infinity)
+
 M14|AF1+AF4|P04+P05|R05+R06(One Way)
+
 M17|varies per flag|weakens P20(Observability)+P21 selectively|NR03(Separate Read/Write Models)
+
 M19|AF2+AF9|P06+P21+NP05(Non-repudiation)|R18+NR02
+
 M20|AF2|P06+P07+P13(Isolation)|R09(Fail Closed)+R18
+
 M21|NM01|NP01|NR02
+
 M24|AF6(Control Loop)+AF7(Sensing)|P01(Idempotency)+P10+P12|R07(Idempotent Retry)+R08(Level-Triggered)+R11(Bound Everything)
+
 M25|AF5+AF7|P03(Durability)+P11|R08+NR01(Separate Domain from Infra)
+
 M26|AF6+AF7|P01+P04+P09(Convergence)|R08+R07
+
 M27|AF7+AF8|P20+P21|R21(Make State Observable)
+
 M28|AF5|P10+P11|R18+R19(Push Decision Down)
+
 M29|AF5+AF10|P11+P19|R17+R20(Push Work Down)
+
 M30|AF5+AF7|P03+P11|R17+R08
+
 M31|AF5+AF10+NM03(Accumulator)|P11+SP04(Domain Opacity)|NR01+SM04(Semantic Repurposing)
+
 M32|AF10+NM02+NM03|NP03(Computational Correctness)|NR01+NR02
+
 M33|AF12(Allocation)+AF9|P10+P12+P13|R04+R11+SM06(Scene as Isolation)
+
 M39|all governed mechanisms|all governed properties|all universal principles
+
 M40|governed + AF5+AF11|governed + P11+P19|R14+R17+R19
+
 M41|AF1+AF2+AF5+AF7|P06+P07+P20+P21|R14+R17+NR01
+
 M44|AF13+SM04|SP01(Vocabulary Closure)+SP02(Structural Security)|NP02(Vocabulary Restriction)+NP05(Marginal Cost → Zero)
+
 M46|AF2+AF6+SM07(Structured Trace)|P01+P21+SP03(Hot-Swap Safety)|NP01(Security by Anatomy)+NP04(Infra Fix Protects All)
+
 ```
 
 ---
@@ -1491,20 +2067,19 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | ID | Pattern | Description | When to Use | YAML Elements | Example |
 |---|---|---|---|---|---|
 | EP01 | Standard Entity | Single entity type with typed fields and constraints | Most entities; one identity, one set of attributes | name, domain, versioned, fields with types and constraints | task, project, customer, invoice |
-| EP02 | Discriminator Entity | Entity with subtype-specific typed JSON payload | Entity has variants with different field sets sharing common structure | Discriminator enum field + *_data_json field + per-type JSON schemas | monitor (prometheus_query, http_probe), schedule (cron, rate, calendar) |
-| EP03 | Bridge Entity | Join table connecting two entity types | Many-to-many relationships; polymorphic attachment | Two mandatory FK fields + optional relationship metadata fields | task_label, project_member, service_ownership |
-| EP04 | Polymorphic Bridge Set | Multiple bridge tables connecting one source to multiple targets | One entity type attaches to several different entity types | One bridge table per source-target pair, each with two mandatory FKs | task_comment + project_comment + milestone_comment |
-| EP05 | Hierarchical Entity | Self-referential entity with parent chain | Tree structures: org units, categories, locations, task/subtask | Nullable self-FK (parent_*_id) + depth int field + hierarchy runner | category, organizational_unit, location |
-| EP06 | Governance Scoped Entity | Entity with per-row access control | Entities visible only to specific groups or with field-level sensitivity | _requires_group FK + _access_classification FK | patient_record, salary_data, classified_document |
-| EP07 | Draft Mode Entity | Entity with relaxed interim governance | Interactive editing where per-keystroke versioning creates noise | draft_mode flags (_autoversion_disabled, _edit_latest_version, _audit_logs_disabled) | document, note, configuration_draft |
-| EP08 | Observation Cache Entity | Non-governed entity holding external or derived state | Imported external data, metrics, AI summaries, computed caches | versioned: false; written by scoped runners; freshness timestamp field | observation_cache_state, observation_cache_metric |
-| EP09 | Evidence Record Entity | Append-oriented entity recording verification results | Scheduled checks producing pass/fail with supporting data | Discriminator for evidence type + result enum + evidence_data_json | evidence_record (backup_verification, certificate_validity) |
-| EP10 | Schedule Entity | Entity representing recurring or deadline-driven work | Anything that recurs, expires, or has temporal triggers | Discriminator for schedule type + schedule_data_json + last/next execution fields | schedule (cron_expression, rate_based, calendar_anchored) |
-| EP11 | Policy Entity | Entity expressing behavioral rules evaluated by gate pipeline | Approval rules, transition rules, invariants, retention, access control | Discriminator for policy type + policy_data_json | policy (approval_rule, state_transition, semantic_invariant) |
-| EP12 | Authority Entity | Entity representing an external system connection | External systems the application integrates with | Discriminator for authority type + authority_data_json + connection params | authority (payment_processor, identity_provider, cloud_api) |
-| EP13 | Runner Spec Entity | Entity declaring a runner's configuration and bounds | Every runner in the system | Discriminator for runner type + runner_data_json with bounds, scope, trigger | runner_spec (puller, reconciler, verifier, ai_observation) |
-| EP14 | Generic Collection Entity | Catch-all entity for casual tracking with graduated formalization | Personal AppDB; early-stage domain exploration | collection_type enum + item_data_json + tags | collection (recipe, book, plant, workout) |
-
+| EP02 | Discriminator Entity | Entity with subtype-specific typed JSON payload | Entity has variants with different field sets sharing common structure | Discriminator enum field + * data json field + per-type JSON schemas | monitor (prometheus query, http probe), schedule (cron, rate, calendar) |
+| EP03 | Bridge Entity | Join table connecting two entity types | Many-to-many relationships; polymorphic attachment | Two mandatory FK fields + optional relationship metadata fields | task label, project member, service ownership |
+| EP04 | Polymorphic Bridge Set | Multiple bridge tables connecting one source to multiple targets | One entity type attaches to several different entity types | One bridge table per source-target pair, each with two mandatory FKs | task comment + project comment + milestone comment |
+| EP05 | Hierarchical Entity | Self-referential entity with parent chain | Tree structures: org units, categories, locations, task/subtask | Nullable self-FK (parent * id) + depth int field + hierarchy runner | category, organizational unit, location |
+| EP06 | Governance Scoped Entity | Entity with per-row access control | Entities visible only to specific groups or with field-level sensitivity |  requires group FK +  access classification FK | patient record, salary data, classified document |
+| EP07 | Draft Mode Entity | Entity with relaxed interim governance | Interactive editing where per-keystroke versioning creates noise | draft mode flags ( autoversion disabled,  edit latest version,  audit logs disabled) | document, note, configuration draft |
+| EP08 | Observation Cache Entity | Non-governed entity holding external or derived state | Imported external data, metrics, AI summaries, computed caches | versioned: false; written by scoped runners; freshness timestamp field | observation cache state, observation cache metric |
+| EP09 | Evidence Record Entity | Append-oriented entity recording verification results | Scheduled checks producing pass/fail with supporting data | Discriminator for evidence type + result enum + evidence data json | evidence record (backup verification, certificate validity) |
+| EP10 | Schedule Entity | Entity representing recurring or deadline-driven work | Anything that recurs, expires, or has temporal triggers | Discriminator for schedule type + schedule data json + last/next execution fields | schedule (cron expression, rate based, calendar anchored) |
+| EP11 | Policy Entity | Entity expressing behavioral rules evaluated by gate pipeline | Approval rules, transition rules, invariants, retention, access control | Discriminator for policy type + policy data json | policy (approval rule, state transition, semantic invariant) |
+| EP12 | Authority Entity | Entity representing an external system connection | External systems the application integrates with | Discriminator for authority type + authority data json + connection params | authority (payment processor, identity provider, cloud api) |
+| EP13 | Runner Spec Entity | Entity declaring a runner's configuration and bounds | Every runner in the system | Discriminator for runner type + runner data json with bounds, scope, trigger | runner spec (puller, reconciler, verifier, ai observation) |
+| EP14 | Generic Collection Entity | Catch-all entity for casual tracking with graduated formalization | Personal AppDB; early-stage domain exploration | collection type enum + item data json + tags | collection (recipe, book, plant, workout) |
 ---
 
 ### Appendix B: Field Type Decision Matrix
@@ -1515,14 +2090,13 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Decimal number with domain bounds | float | min, max | Always declare both bounds; avoid for exact financial arithmetic |
 | Short bounded string (names, titles, codes) | varchar | length | 63 for identifiers, 255 for names, 1024 for descriptions/URLs |
 | Long unbounded text (prose, markdown, notes) | text | none | Use sparingly; most strings have natural bounds |
-| True/false present state | boolean | none | Prefix is_ (is_active, is_published) |
-| True/false past event | boolean | none | Prefix was_ (was_approved, was_escalated) |
-| Point in time | datetime | none | Suffix _time; stored UTC; timezone handling in runners |
-| Calendar day without time | date | none | Suffix _date; use when time component is meaningless |
+| True/false present state | boolean | none | Prefix is  (is active, is published) |
+| True/false past event | boolean | none | Prefix was  (was approved, was escalated) |
+| Point in time | datetime | none | Suffix  time; stored UTC; timezone handling in runners |
+| Calendar day without time | date | none | Suffix  date; use when time component is meaningless |
 | Constrained value from fixed set | enum | values[] | Values can be added never removed; plan initial set carefully |
 | Subtype-specific structured data | json | none (validated by discriminator-selected JSON schema) | Always pair with discriminator enum field |
-| Reference to another entity | foreign_key | references (target table) | Name as referenced_table_id or role_referenced_table_id |
-
+| Reference to another entity | foreign key | references (target table) | Name as referenced table id or role referenced table id |
 ---
 
 ### Appendix C: Constraint Selection Matrix
@@ -1532,73 +2106,68 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Numeric range | int, float | min, max | Gate step 4 (bound validation) | Can widen (lower min or raise max); never narrow |
 | String length | varchar | length | Gate step 4 | Can widen; never narrow |
 | Enum value set | enum | values[] | Gate step 4 | Can add values; never remove |
-| Foreign key reference | foreign_key | references | Gate step 4 (existence check) | Target table must exist; FK is permanent |
+| Foreign key reference | foreign key | references | Gate step 4 (existence check) | Target table must exist; FK is permanent |
 | Nullable | all types | nullable: true/false | Gate step 3 (schema validation) | Can change from not-null to nullable; never the reverse |
 | Unique | all except text and json | unique: true | Gate step 4 | Can add to empty table; cannot add with existing duplicates; cannot remove |
-
 ---
 
 ### Appendix D: Relationship Pattern Matrix
 
 | Pattern | Cardinality | Implementation | FK Nullable | Naming | Example |
 |---|---|---|---|---|---|
-| Ownership | One-to-many mandatory | FK on child entity | false | parent_table_id | task.project_id |
-| Optional reference | One-to-many optional | FK on referencing entity | true | referenced_table_id | task.assignee_user_id |
-| Multiple references to same target | One-to-many multiple | Multiple FKs with role prefixes | varies | role_table_id | contract.vendor_company_id, contract.client_company_id |
-| Many-to-many | Many-to-many | Bridge table with two mandatory FKs | false (both) | table_a_id + table_b_id | task_label (task_id + label_id) |
-| Polymorphic attachment | One-to-many across types | One bridge table per target type | false (both) | source_id + target_id | task_comment, project_comment, milestone_comment |
-| Self-referential hierarchy | Tree | Nullable self-FK + depth field | true (parent) | parent_table_id + depth int | category.parent_category_id |
-
+| Ownership | One-to-many mandatory | FK on child entity | false | parent table id | task.project id |
+| Optional reference | One-to-many optional | FK on referencing entity | true | referenced table id | task.assignee user id |
+| Multiple references to same target | One-to-many multiple | Multiple FKs with role prefixes | varies | role table id | contract.vendor company id, contract.client company id |
+| Many-to-many | Many-to-many | Bridge table with two mandatory FKs | false (both) | table a id + table b id | task label (task id + label id) |
+| Polymorphic attachment | One-to-many across types | One bridge table per target type | false (both) | source id + target id | task comment, project comment, milestone comment |
+| Self-referential hierarchy | Tree | Nullable self-FK + depth field | true (parent) | parent table id + depth int | category.parent category id |
 ---
 
 ### Appendix E: Governance Field Reference
 
 | Field | Type | Purpose | Gate Layer | Default | When to Use |
 |---|---|---|---|---|---|
-| _requires_group | FK → ops_group | Restrict entity visibility to group members | Layer 2 (per-entity governance) | null (no restriction) | Project-scoped data, team-scoped data, personal data |
-| _access_classification | FK → data_classification | Control field-level visibility by sensitivity | Layer 3 (per-field classification) | null (no restriction) | Salary data, medical details, financial details, PII |
+|  requires group | FK → ops group | Restrict entity visibility to group members | Layer 2 (per-entity governance) | null (no restriction) | Project-scoped data, team-scoped data, personal data |
+|  access classification | FK → data classification | Control field-level visibility by sensitivity | Layer 3 (per-field classification) | null (no restriction) | Salary data, medical details, financial details, PII |
 | versioned: true | Schema flag | Enable change management and version history | Step 6 (versioning) + step 7 (change mgmt) | false | All entities where change history matters |
-| _autoversion_disabled | Draft mode flag | Skip version row on interim saves | Step 6 | false (version every write) | Interactive editing entities (documents, notes) |
-| _edit_latest_version | Draft mode flag | Write directly to current row, skip change set | Step 7 | false (route through change set) | Interactive editing entities |
-| _audit_logs_disabled | Draft mode flag | Skip audit log on interim saves | Step 8 | false (log every operation) | Interactive editing entities (use with caution) |
-
+|  autoversion disabled | Draft mode flag | Skip version row on interim saves | Step 6 | false (version every write) | Interactive editing entities (documents, notes) |
+|  edit latest version | Draft mode flag | Write directly to current row, skip change set | Step 7 | false (route through change set) | Interactive editing entities |
+|  audit logs disabled | Draft mode flag | Skip audit log on interim saves | Step 8 | false (log every operation) | Interactive editing entities (use with caution) |
 ---
 
 ### Appendix F: Policy Type Reference
 
 | ID | Type | Purpose | Evaluated At | Match Criteria | Effect |
 |---|---|---|---|---|---|
-| PT01 | approval_rule | Determine who must approve a change set | Gate step 7 | Entity type, field names, namespace, data classification, security zone, proposer role | Approval count + approver source + approver role |
-| PT02 | state_transition | Declare valid state machine transitions | Gate step 5 | Entity type, field, from value, to value | Accept or reject the transition |
-| PT03 | semantic_invariant | Enforce cross-field conditional constraints | Gate step 5 | Entity type, condition (field + operator + value), requirement (field + constraint) | Accept or reject with message |
+| PT01 | approval rule | Determine who must approve a change set | Gate step 7 | Entity type, field names, namespace, data classification, security zone, proposer role | Approval count + approver source + approver role |
+| PT02 | state transition | Declare valid state machine transitions | Gate step 5 | Entity type, field, from value, to value | Accept or reject the transition |
+| PT03 | semantic invariant | Enforce cross-field conditional constraints | Gate step 5 | Entity type, condition (field + operator + value), requirement (field + constraint) | Accept or reject with message |
 | PT04 | retention | Declare per-entity-type retention horizons | Reaper runner reads | Entity type | Version history days + observation cache days + audit log days |
-| PT05 | access_control | Declare role-to-entity-type permissions | Gate step 2 layer 1 | Role, entity type, operation (read/write) | Allow or deny |
-| PT06 | change_management | Declare emergency review windows and SoD rules | Gate step 7 | Entity type, change type | Review window hours + segregation of duties flag |
-| PT07 | schedule_governance | Declare scheduling constraints for runners and operations | Gate step 5 | Runner type, schedule type | Allowed windows + blackout periods |
-| PT08 | security_zone | Declare environment-level access restrictions | Gate step 2 layer 5 | Zone, role, time of day, tenure | Allow or deny with additional conditions |
-| PT09 | data_classification | Declare sensitivity levels and access grants | Gate step 2 layer 3 | Classification level, role | Visible fields or hidden fields |
-
+| PT05 | access control | Declare role-to-entity-type permissions | Gate step 2 layer 1 | Role, entity type, operation (read/write) | Allow or deny |
+| PT06 | change management | Declare emergency review windows and SoD rules | Gate step 7 | Entity type, change type | Review window hours + segregation of duties flag |
+| PT07 | schedule governance | Declare scheduling constraints for runners and operations | Gate step 5 | Runner type, schedule type | Allowed windows + blackout periods |
+| PT08 | security zone | Declare environment-level access restrictions | Gate step 2 layer 5 | Zone, role, time of day, tenure | Allow or deny with additional conditions |
+| PT09 | data classification | Declare sensitivity levels and access grants | Gate step 2 layer 3 | Classification level, role | Visible fields or hidden fields |
 ---
 
 ### Appendix G: Runner Kind Reference
 
 | ID | Kind | Purpose | Reads From | Writes To | Gating Mode | Trigger | Typical Size (lines) |
 |---|---|---|---|---|---|---|---|
-| RK01 | Puller | Import external data | External API + runner spec + authority | observation_cache_* | Direct write | Scheduled (cron/rate) | 200–400 |
-| RK02 | Reconciler | Compare desired vs observed, correct drift | Governed entities + observation_cache | change_set or entity rows | Auto-approve or approval-required | Scheduled | 200–350 |
-| RK03 | Verifier | Check conditions, produce evidence | Schedule + target entities + prior evidence | evidence_record | Direct write | Scheduled | 150–250 |
-| RK04 | Notification | Detect transitions, dispatch messages | change_sets + schedules + on_call + authority | observation_cache (delivery receipts) + external channels | Direct write (observations) | Scheduled or event-driven | 200–350 |
-| RK05 | Change-set Executor | Apply approved change sets | Approved change_sets | Entity rows + version rows | Post-approval direct | Event-driven (new approvals) | 150–250 |
-| RK06 | Reaper | Enforce retention policies | retention_policy rows | Deletes/soft-deletes on expired rows | Direct write | Scheduled | 150–200 |
-| RK07 | Config Push | Push governed state to external system | Governed entities + runner spec | External system config + observation_cache (push receipts) | Direct write (observations) | Scheduled or on-change | 200–350 |
-| RK08 | Observation Pull | Pull results from external system | External API + runner spec + authority | observation_cache_* | Direct write | Scheduled | 200–300 |
-| RK09 | AI Observation | Generate LLM-derived summaries | Governed entities + context traversal | observation_cache_* (AI summaries) | Direct write | Scheduled or on-change | 200–350 |
-| RK10 | Reactor | Process external events | Webhook/event + runner spec | Observation or change_set | Varies (direct for obs, approval for entities) | Event-driven | 200–300 |
-| RK11 | Drift Detector | Find discrepancies without correcting | Desired entities + observation_cache | change_set (proposal only) | Approval-required | Scheduled | 200–300 |
-| RK12 | Scheduler | Manage execution timing for other runners | Schedule entities + runner specs | runner_job entities | Auto-approve | Scheduled | 150–250 |
-| RK13 | Bootstrapper | Provision new entities from templates | Template config + trigger entity | Entity rows via change_set | Auto-approve or approval | Event-driven | 200–350 |
+| RK01 | Puller | Import external data | External API + runner spec + authority | observation cache * | Direct write | Scheduled (cron/rate) | 200–400 |
+| RK02 | Reconciler | Compare desired vs observed, correct drift | Governed entities + observation cache | change set or entity rows | Auto-approve or approval-required | Scheduled | 200–350 |
+| RK03 | Verifier | Check conditions, produce evidence | Schedule + target entities + prior evidence | evidence record | Direct write | Scheduled | 150–250 |
+| RK04 | Notification | Detect transitions, dispatch messages | change sets + schedules + on call + authority | observation cache (delivery receipts) + external channels | Direct write (observations) | Scheduled or event-driven | 200–350 |
+| RK05 | Change-set Executor | Apply approved change sets | Approved change sets | Entity rows + version rows | Post-approval direct | Event-driven (new approvals) | 150–250 |
+| RK06 | Reaper | Enforce retention policies | retention policy rows | Deletes/soft-deletes on expired rows | Direct write | Scheduled | 150–200 |
+| RK07 | Config Push | Push governed state to external system | Governed entities + runner spec | External system config + observation cache (push receipts) | Direct write (observations) | Scheduled or on-change | 200–350 |
+| RK08 | Observation Pull | Pull results from external system | External API + runner spec + authority | observation cache * | Direct write | Scheduled | 200–300 |
+| RK09 | AI Observation | Generate LLM-derived summaries | Governed entities + context traversal | observation cache * (AI summaries) | Direct write | Scheduled or on-change | 200–350 |
+| RK10 | Reactor | Process external events | Webhook/event + runner spec | Observation or change set | Varies (direct for obs, approval for entities) | Event-driven | 200–300 |
+| RK11 | Drift Detector | Find discrepancies without correcting | Desired entities + observation cache | change set (proposal only) | Approval-required | Scheduled | 200–300 |
+| RK12 | Scheduler | Manage execution timing for other runners | Schedule entities + runner specs | runner job entities | Auto-approve | Scheduled | 150–250 |
+| RK13 | Bootstrapper | Provision new entities from templates | Template config + trigger entity | Entity rows via change set | Auto-approve or approval | Event-driven | 200–350 |
 | RK14 | Custom Domain | Domain-specific computation | Governed entities + domain rules | Computed results as entities or observations | Varies | Varies | 150–300 |
-
 ---
 
 ### Appendix H: Gating Mode Decision Matrix
@@ -1610,34 +2179,31 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Approval-required | Yes | Routes to human approvers | Yes | Yes (on apply) | High-risk changes, financial data, access control, compliance-relevant, AI-proposed governed changes |
 | Post-approval direct | No (already approved) | Already completed | Yes | Yes | Change-set executor applying previously approved change sets |
 | Emergency | Yes (reduced) | Reduced approval count + mandatory flag | Yes (with emergency flag) | Yes | Break-glass situations with mandatory post-incident review |
-
 ---
 
 ### Appendix I: Schedule Type Reference
 
 | ID | Type | Payload Fields | Use When | Example |
 |---|---|---|---|---|
-| ST01 | Cron expression | cron_string, timezone | Fixed recurring schedule with specific timing | "0 2 * * *" — daily at 2 AM |
-| ST02 | Rate-based | interval_seconds | Simple periodic execution | Every 300 seconds (5 minutes) |
-| ST03 | Event-triggered | trigger_entity_type, trigger_field, trigger_condition | Execution after specific state change | Run compliance scan 24h after any policy change |
-| ST04 | Calendar-anchored | anchor_date, recurrence_rule, timezone | Business calendar operations | Quarterly on first business day; annually on fiscal year start |
-| ST05 | Deadline-driven | deadline_field, entity_type, warning_threshold_days | Approaching deadline notification or verification | Certificate expires in 30 days; contract renewal due in 60 days |
-| ST06 | Manual | authorized_roles, required_evidence_type | Human-initiated scheduled operations | Physical inspection; vendor review; tape rotation |
-
+| ST01 | Cron expression | cron string, timezone | Fixed recurring schedule with specific timing | "0 2 * * *" — daily at 2 AM |
+| ST02 | Rate-based | interval seconds | Simple periodic execution | Every 300 seconds (5 minutes) |
+| ST03 | Event-triggered | trigger entity type, trigger field, trigger condition | Execution after specific state change | Run compliance scan 24h after any policy change |
+| ST04 | Calendar-anchored | anchor date, recurrence rule, timezone | Business calendar operations | Quarterly on first business day; annually on fiscal year start |
+| ST05 | Deadline-driven | deadline field, entity type, warning threshold days | Approaching deadline notification or verification | Certificate expires in 30 days; contract renewal due in 60 days |
+| ST06 | Manual | authorized roles, required evidence type | Human-initiated scheduled operations | Physical inspection; vendor review; tape rotation |
 ---
 
 ### Appendix J: Draft Mode Property Impact Matrix
 
 | Flag | Property Affected | Impact | Still Enforced | Risk Level |
 |---|---|---|---|---|
-| _autoversion_disabled | Per-write versioning | Interim states not individually recoverable | Committed version history intact | Low — recovery granularity reduced to committed versions |
-| _autoversion_disabled | Point-in-time reconstruction | Reconstruction available at committed version granularity only | Committed version reconstruction O(1) | Low — acceptable for editing use cases |
-| _edit_latest_version | Change management (approval routing) | Interim saves bypass change set pipeline | Committed versions go through full change management | Medium — behavioral changes between commits are ungoverned |
-| _edit_latest_version | Attribution of interim changes | Individual interim saves not attributed to specific change sets | Committed versions fully attributed | Low — interim saves attributed via auth identity in request |
-| _audit_logs_disabled | Auditability | Interim saves not individually recorded in audit log | Committed versions produce audit entries | Medium — interim activity invisible to audit queries |
-| _audit_logs_disabled | Compliance evidence | Gap in audit trail between committed versions | Committed version audit entries satisfy per-version compliance | High for compliance-relevant data — do not use on regulated entities |
+|  autoversion disabled | Per-write versioning | Interim states not individually recoverable | Committed version history intact | Low — recovery granularity reduced to committed versions |
+|  autoversion disabled | Point-in-time reconstruction | Reconstruction available at committed version granularity only | Committed version reconstruction O(1) | Low — acceptable for editing use cases |
+|  edit latest version | Change management (approval routing) | Interim saves bypass change set pipeline | Committed versions go through full change management | Medium — behavioral changes between commits are ungoverned |
+|  edit latest version | Attribution of interim changes | Individual interim saves not attributed to specific change sets | Committed versions fully attributed | Low — interim saves attributed via auth identity in request |
+|  audit logs disabled | Auditability | Interim saves not individually recorded in audit log | Committed versions produce audit entries | Medium — interim activity invisible to audit queries |
+|  audit logs disabled | Compliance evidence | Gap in audit trail between committed versions | Committed version audit entries satisfy per-version compliance | High for compliance-relevant data — do not use on regulated entities |
 | All three combined | Combined weakening | Interim editing is structurally validated and authorized but not versioned, change-managed, or audited | Auth + authz + schema validation + bound validation + policy evaluation | Acceptable only for non-regulated interactive editing entities |
-
 ---
 
 ### Appendix K: Schema Evolution Rule Reference
@@ -1657,7 +2223,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | SE11 | Remove enum value | Forbidden | Never | n/a | Existing rows may hold removed value |
 | SE12 | Tighten uniqueness | Forbidden | Never | n/a | Existing rows may violate new constraint |
 | SE13 | Add not-null field | Forbidden (unless empty table) | Only on empty table before data exists | Loader adds NOT NULL column | Breaks if table has existing rows without default |
-
 #### Duplication Pattern Steps
 
 | Step | Action | Duration | Notes |
@@ -1668,7 +2233,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | DP04 | Mark old field deprecated | Change set | Notes field documents deprecation |
 | DP05 | Continue writing both for safety period | Configurable | Ensures all readers have migrated |
 | DP06 | Stop writing to old field | Deployment | Old field becomes tombstone; never deleted |
-
 ---
 
 ### Appendix L: Library Suite Call Reference
@@ -1676,35 +2240,34 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | ID | Library | Call | Purpose | Runner Phases | Handles |
 |---|---|---|---|---|---|
 | LC01 | opsdb-api | search | Query governed entities with filters, joins, projection, pagination | get | Auth, pagination, rate limiting |
-| LC02 | opsdb-api | get_entity | Fetch single entity with optional joins | get | Auth, field-level access filtering |
-| LC03 | opsdb-api | get_entity_at_time | Reconstruct entity state at timestamp | get | Auth, version lookup |
-| LC04 | opsdb-api | get_entity_history | Fetch version chain for entity | get | Auth, pagination |
-| LC05 | opsdb-api | submit_change_set | Propose field changes with reason | set | Auth, validation, scope checking, optimistic concurrency |
-| LC06 | opsdb-api | bulk_submit | Propose multi-entity atomic changes | set | Auth, validation, scope checking, atomicity |
-| LC07 | opsdb-api | write_observation | Write to observation cache tables | set | Auth, report key validation, scope checking |
-| LC08 | opsdb-api | emergency_apply | Break-glass change with reduced approval | set | Auth, emergency role check, audit flagging |
-| LC09 | k8s | list_resources | Query Kubernetes API for resources | get | Auth, pagination, rate limiting |
-| LC10 | k8s | apply_manifest | Apply Kubernetes manifest | act | Auth, dry-run support, retry, conflict handling |
-| LC11 | k8s | watch_events | Subscribe to Kubernetes event stream | get | Auth, reconnection, backpressure |
-| LC12 | cloud-aws | describe_resources | Query AWS API for resource state | get | Auth, pagination, rate limiting, region handling |
-| LC13 | cloud-aws | apply_change | Modify AWS resource | act | Auth, retry, idempotency token, dry-run support |
-| LC14 | cloud-gcp | describe_resources | Query GCP API for resource state | get | Auth, pagination, rate limiting, project scoping |
-| LC15 | cloud-gcp | apply_change | Modify GCP resource | act | Auth, retry, operation polling |
-| LC16 | secrets | read_secret | Fetch secret value from vault | act | Auth, lease management, caching |
-| LC17 | secrets | rotate_secret | Generate and store new secret | act | Auth, atomic swap, old-version retention |
-| LC18 | notification | send_email | Dispatch email via configured SMTP | act | Auth, retry, template rendering, rate limiting |
-| LC19 | notification | send_webhook | Dispatch webhook to configured URL | act | Auth, retry, signature, timeout |
-| LC20 | notification | send_chat | Dispatch message to chat platform | act | Auth, retry, rate limiting, thread management |
-| LC21 | logging | structured_log | Emit structured log entry with correlation ID | all phases | Correlation propagation, level filtering, output formatting |
+| LC02 | opsdb-api | get entity | Fetch single entity with optional joins | get | Auth, field-level access filtering |
+| LC03 | opsdb-api | get entity at time | Reconstruct entity state at timestamp | get | Auth, version lookup |
+| LC04 | opsdb-api | get entity history | Fetch version chain for entity | get | Auth, pagination |
+| LC05 | opsdb-api | submit change set | Propose field changes with reason | set | Auth, validation, scope checking, optimistic concurrency |
+| LC06 | opsdb-api | bulk submit | Propose multi-entity atomic changes | set | Auth, validation, scope checking, atomicity |
+| LC07 | opsdb-api | write observation | Write to observation cache tables | set | Auth, report key validation, scope checking |
+| LC08 | opsdb-api | emergency apply | Break-glass change with reduced approval | set | Auth, emergency role check, audit flagging |
+| LC09 | k8s | list resources | Query Kubernetes API for resources | get | Auth, pagination, rate limiting |
+| LC10 | k8s | apply manifest | Apply Kubernetes manifest | act | Auth, dry-run support, retry, conflict handling |
+| LC11 | k8s | watch events | Subscribe to Kubernetes event stream | get | Auth, reconnection, backpressure |
+| LC12 | cloud-aws | describe resources | Query AWS API for resource state | get | Auth, pagination, rate limiting, region handling |
+| LC13 | cloud-aws | apply change | Modify AWS resource | act | Auth, retry, idempotency token, dry-run support |
+| LC14 | cloud-gcp | describe resources | Query GCP API for resource state | get | Auth, pagination, rate limiting, project scoping |
+| LC15 | cloud-gcp | apply change | Modify GCP resource | act | Auth, retry, operation polling |
+| LC16 | secrets | read secret | Fetch secret value from vault | act | Auth, lease management, caching |
+| LC17 | secrets | rotate secret | Generate and store new secret | act | Auth, atomic swap, old-version retention |
+| LC18 | notification | send email | Dispatch email via configured SMTP | act | Auth, retry, template rendering, rate limiting |
+| LC19 | notification | send webhook | Dispatch webhook to configured URL | act | Auth, retry, signature, timeout |
+| LC20 | notification | send chat | Dispatch message to chat platform | act | Auth, retry, rate limiting, thread management |
+| LC21 | logging | structured log | Emit structured log entry with correlation ID | all phases | Correlation propagation, level filtering, output formatting |
 | LC22 | logging | metric | Emit metric data point | all phases | Metric naming, label propagation, buffering |
-| LC23 | git | clone_repo | Clone git repository | get | Auth, shallow clone, sparse checkout |
-| LC24 | git | commit_and_push | Commit changes and push | act | Auth, retry, conflict detection |
+| LC23 | git | clone repo | Clone git repository | get | Auth, shallow clone, sparse checkout |
+| LC24 | git | commit and push | Commit changes and push | act | Auth, retry, conflict detection |
 | LC25 | template | render | Render template with variable substitution | act | No logic execution; substitution only |
 | LC26 | llm | generate | Call LLM API with prompt and parameters | act | Auth, retry, timeout, token budget enforcement, circuit breaking |
 | LC27 | lifecycle | heartbeat | Report runner thread health | set | Cycle timing, error counting, observation cache write |
-| LC28 | lifecycle | claim_work | Claim work item via advisory lock | get | Lock acquisition, conflict resolution, timeout |
-| LC29 | lifecycle | release_work | Release work item claim | set | Lock release, completion recording |
-
+| LC28 | lifecycle | claim work | Claim work item via advisory lock | get | Lock acquisition, conflict resolution, timeout |
+| LC29 | lifecycle | release work | Release work item claim | set | Lock release, completion recording |
 ---
 
 ### Appendix M: AI Runner Configuration Reference
@@ -1712,19 +2275,18 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Field | Type | Purpose | Example Values |
 |---|---|---|---|
 | model | varchar | LLM model identifier | "claude-sonnet", "claude-haiku" |
-| max_tokens | int | Maximum response tokens from LLM | 100, 500, 2000 |
-| character_budget | int | Target character count for output | 12, 80, 500, 2000, 5000 |
-| regeneration_trigger | enum | When to regenerate observation | source_entity_change, scheduled, on_demand |
-| trigger_schedule | varchar | Cron or rate for scheduled regeneration | "*/15 * * * *", "rate:900" |
-| target_entity_types | json array | Which entity types to summarize | ["incident"], ["task", "project"] |
-| context_traversal | json array | Relationship paths to traverse for context assembly | ["incident -> affected_service", "incident -> change_set"] |
-| prompt_template_ref | varchar | Reference to prompt template entity | "incident_summary_v1", "anomaly_narrative_v2" |
-| observation_cache_table | varchar | Target observation cache table | "observation_cache_state" |
-| observation_key_prefix | varchar | Prefix for observation cache keys | "ai_summary_incident_", "ai_classify_" |
-| retry_budget | int | Max LLM call retries per cycle | 3 |
-| execution_timeout_seconds | int | Max time for LLM call including retries | 60, 120 |
-| scope_per_cycle | int | Max entities to process per runner cycle | 10, 50, 100 |
-
+| max tokens | int | Maximum response tokens from LLM | 100, 500, 2000 |
+| character budget | int | Target character count for output | 12, 80, 500, 2000, 5000 |
+| regeneration trigger | enum | When to regenerate observation | source entity change, scheduled, on demand |
+| trigger schedule | varchar | Cron or rate for scheduled regeneration | "*/15 * * * *", "rate:900" |
+| target entity types | json array | Which entity types to summarize | ["incident"], ["task", "project"] |
+| context traversal | json array | Relationship paths to traverse for context assembly | ["incident -> affected service", "incident -> change set"] |
+| prompt template ref | varchar | Reference to prompt template entity | "incident summary v1", "anomaly narrative v2" |
+| observation cache table | varchar | Target observation cache table | "observation cache state" |
+| observation key prefix | varchar | Prefix for observation cache keys | "ai summary incident ", "ai classify " |
+| retry budget | int | Max LLM call retries per cycle | 3 |
+| execution timeout seconds | int | Max time for LLM call including retries | 60, 120 |
+| scope per cycle | int | Max entities to process per runner cycle | 10, 50, 100 |
 #### AI Observation Granularities
 
 | ID | Name | Character Budget | Use Case | Prompt Style | Audience |
@@ -1735,7 +2297,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | AG04 | Standard summary | 2000 | War room display, incident detail view | Structured multi-paragraph with context | Incident responders |
 | AG05 | Detailed analysis | 5000 | Post-incident review, compliance narrative | Thorough analysis with dependency chain walkthrough | Investigators and auditors |
 | AG06 | Structured classification | 100 | Data classification suggestion, category proposal | JSON-formatted classification with confidence | AI change proposer pipeline |
-
 ---
 
 ### Appendix N: Architecture Position Quick Reference
@@ -1748,29 +2309,27 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | AP04 Metadata manager | 5–10% | Entire system | Structured pointers + operational metadata | Metadata sync | Specialized system; OpsDB for ops views | Time-series DB, search engine, graph DB, object store, message broker |
 | AP05 Personal | 99% | None | Full backend on personal hardware | Optional personal integrations | Lightweight web/mobile/CLI | Recipe tracker, book log, finance tracker, home inventory, journal |
 | AP06 Distributed | Matches inner position | Matches inner position | Prototype + per-deployment instances | Same as inner position | Same as inner position | Packaged SaaS, deployable compliance tools, distributed project management |
-
 ---
 
 ### Appendix O: Naming Convention Quick Reference
 
 | Element | Convention | Rule | Examples | Anti-Examples |
 |---|---|---|---|---|
-| Entity name | Singular lowercase underscore | Singular noun or noun phrase | task, project_member, cloud_resource | tasks, ProjectMember, cloudResource |
-| Field name | Lowercase underscore | Descriptive noun or adjective | title, start_date, is_active | Title, startDate, isActive |
-| Foreign key | referenced_table_id | Target table name + _id suffix | project_id, assignee_user_id | proj_id, assignee, fk_project |
-| Role-disambiguated FK | role_table_id | Role prefix + target table + _id | vendor_company_id, client_company_id | company_id_1, company_id_2 |
-| Datetime field | *_time suffix | Field name + _time | created_time, approved_time, expires_time | created_at, approvedDate, timestamp |
-| Date field | *_date suffix | Field name + _date | due_date, birth_date, effective_date | dueDate, due_datetime |
-| Present-state boolean | is_* prefix | is_ + adjective or state | is_active, is_published, is_billable | active, published, enabled |
-| Past-event boolean | was_* prefix | was_ + past participle | was_approved, was_escalated | approved, has_been_approved |
-| Governance field | _ prefix | Underscore + field name | _requires_group, _access_classification | requires_group, accessLevel |
-| Bridge table | source_target | Both entity names singular | task_label, project_member, service_ownership | task_labels, project_members |
-| Discriminator enum | *_type | entity_name + _type | cloud_resource_type, monitor_type | type, kind, category |
-| Discriminator payload | *_data_json | entity_name + _data_json | cloud_data_json, monitor_data_json | data, payload, config |
-| Versioning sibling | *_version | entity_name + _version (auto-generated) | task_version, policy_version | task_history, task_versions |
-| Hierarchical prefix | Specific to general | Longer names build on shorter | web_site → web_site_widget → web_site_widget_config | widget_web_site, config_widget |
-| Domain directory | NN_name | Zero-padded number + domain name | 01_identity, 02_core, 07_policy | identity, 2_core |
-
+| Entity name | Singular lowercase underscore | Singular noun or noun phrase | task, project member, cloud resource | tasks, ProjectMember, cloudResource |
+| Field name | Lowercase underscore | Descriptive noun or adjective | title, start date, is active | Title, startDate, isActive |
+| Foreign key | referenced table id | Target table name +  id suffix | project id, assignee user id | proj id, assignee, fk project |
+| Role-disambiguated FK | role table id | Role prefix + target table +  id | vendor company id, client company id | company id 1, company id 2 |
+| Datetime field | * time suffix | Field name +  time | created time, approved time, expires time | created at, approvedDate, timestamp |
+| Date field | * date suffix | Field name +  date | due date, birth date, effective date | dueDate, due datetime |
+| Present-state boolean | is * prefix | is  + adjective or state | is active, is published, is billable | active, published, enabled |
+| Past-event boolean | was * prefix | was  + past participle | was approved, was escalated | approved, has been approved |
+| Governance field |   prefix | Underscore + field name |  requires group,  access classification | requires group, accessLevel |
+| Bridge table | source target | Both entity names singular | task label, project member, service ownership | task labels, project members |
+| Discriminator enum | * type | entity name +  type | cloud resource type, monitor type | type, kind, category |
+| Discriminator payload | * data json | entity name +  data json | cloud data json, monitor data json | data, payload, config |
+| Versioning sibling | * version | entity name +  version (auto-generated) | task version, policy version | task history, task versions |
+| Hierarchical prefix | Specific to general | Longer names build on shorter | web site → web site widget → web site widget config | widget web site, config widget |
+| Domain directory | NN name | Zero-padded number + domain name | 01 identity, 02 core, 07 policy | identity, 2 core |
 ---
 
 ### Appendix P: Forbidden Pattern Quick Reference
@@ -1800,7 +2359,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | FP21 | Shared accounts | Identity | Defeats attribution | One identity per human; scoped service accounts per runner | Policy enforcement |
 | FP22 | Draft mode on compliance data | Governance flags | Creates audit gap on regulated entities | Full governance for compliance-relevant tables | Schema steward review |
 | FP23 | AI writing governed state directly | AI integration | Bypasses human oversight for consequential changes | AI proposes change sets; humans approve; AI writes observations directly | Approval rule configuration |
-
 ---
 
 ### Appendix Q: Compliance Mapping by Method
@@ -1816,7 +2374,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | M35 | Read Patterns (audit views) | Point-in-time reconstruction, change attribution | PCI-DSS-10, ISO27001-A.16 |
 | M36 | Write Patterns (change sets) | Full change trail with proposer, approver, reason, timestamp | SOC2-Processing-Integrity, SOX-IT-General-Controls |
 | M46 | AI Change Proposer | AI proposals subject to same governance as human proposals | All frameworks — AI changes governed identically to human changes |
-
 ---
 
 ### Appendix R: Construction Effort Estimates by Application Type
@@ -1843,7 +2400,6 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Game backend | AP03 | 2,500 | 5 | 1,200 | 30 | 18 + specialized | 180 | Mostly specialized system |
 | Video streaming | AP03 | 2,500 | 5 | 1,200 | 35 | 18 + specialized | 195 | Mostly specialized system |
 | Ad auction | AP03 | 2,500 | 5 | 1,200 | 40 | 18 + specialized | 165 | Mostly specialized system |
-
 ---
 
 ### Appendix S: Method Composition by Application Type
@@ -1855,21 +2411,19 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | Operational wrapper | M01–M03, M05, M07–M09 | M10–M12, M16, M18 | M19–M20, M22 | M24, M29–M31, M33 | M34–M36, M38 | M44, M46–M47 | M41 |
 | Personal | M01–M04, M06 | M10–M14, M17–M18 | M19 (auto-approve all), M22 | M24–M25, M28, M31–M32 | M34–M37 | M44–M45, M47 | M42 |
 | Distributed | Same as inner position | Same as inner + release versioning | Same as inner + default policies | Same as inner + upgrade runner | Same as inner | Same as inner | M43 + inner pattern |
-
 ---
 
 ### Appendix T: Search API Operation Reference
 
 | Operation | Purpose | Parameters | Returns | Bounded By | Use Case |
 |---|---|---|---|---|---|
-| search | Query entities with filters | entity_type, filters (AND/OR/NOT), fields (projection), order_by, page_size, cursor | Matching entity rows with projected fields | max_result_size, max_join_depth, max_query_time, max_predicate_depth, rate_limit | List views, dashboards, reporting, runner get phase |
-| get_entity | Fetch single entity | entity_type, entity_id, join_paths (optional) | Single entity with optional related entities | rate_limit | Detail views, runner get phase |
-| get_entity_at_time | Reconstruct state at timestamp | entity_type, entity_id, timestamp | Version row current at specified time | rate_limit | Audit views, incident investigation, regulatory queries |
-| get_entity_history | Fetch version chain | entity_type, entity_id, page_size, cursor | Version rows in reverse chronological order | max_result_size, rate_limit | Activity feeds, change tracking, diff views |
-| get_dependencies | Traverse relationships | entity_type, entity_id, join_path, depth_limit | Related entities along declared join path | max_depth, rate_limit | Dependency views, impact analysis, hierarchy traversal |
-| search (with_history) | Current state plus version chain | Same as search + view_mode: with_history | Entity rows with embedded version arrays | max_result_size, max_versions_per_entity | Combined list + history views |
-| search (at_time) | Reconstructed state at timestamp | Same as search + view_mode: at_time + timestamp | Entity rows as they existed at specified time | max_result_size, rate_limit | Historical reporting, compliance snapshots |
-
+| search | Query entities with filters | entity type, filters (AND/OR/NOT), fields (projection), order by, page size, cursor | Matching entity rows with projected fields | max result size, max join depth, max query time, max predicate depth, rate limit | List views, dashboards, reporting, runner get phase |
+| get entity | Fetch single entity | entity type, entity id, join paths (optional) | Single entity with optional related entities | rate limit | Detail views, runner get phase |
+| get entity at time | Reconstruct state at timestamp | entity type, entity id, timestamp | Version row current at specified time | rate limit | Audit views, incident investigation, regulatory queries |
+| get entity history | Fetch version chain | entity type, entity id, page size, cursor | Version rows in reverse chronological order | max result size, rate limit | Activity feeds, change tracking, diff views |
+| get dependencies | Traverse relationships | entity type, entity id, join path, depth limit | Related entities along declared join path | max depth, rate limit | Dependency views, impact analysis, hierarchy traversal |
+| search (with history) | Current state plus version chain | Same as search + view mode: with history | Entity rows with embedded version arrays | max result size, max versions per entity | Combined list + history views |
+| search (at time) | Reconstructed state at timestamp | Same as search + view mode: at time + timestamp | Entity rows as they existed at specified time | max result size, rate limit | Historical reporting, compliance snapshots |
 #### Filter Predicates
 
 | Operator | Description | Field Types | Example |
@@ -1877,17 +2431,16 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 | eq | Equals | All | status eq "active" |
 | neq | Not equals | All | status neq "archived" |
 | gt | Greater than | int, float, datetime, date | priority gt 3 |
-| gte | Greater than or equal | int, float, datetime, date | due_date gte "2026-01-01" |
-| lt | Less than | int, float, datetime, date | created_time lt "2026-05-01T00:00:00Z" |
-| lte | Less than or equal | int, float, datetime, date | estimated_hours lte 40.0 |
-| in | Set membership | All | status in ["open", "in_progress"] |
-| not_in | Not in set | All | status not_in ["archived", "deleted"] |
-| is_null | Field is null | Nullable fields | assignee_user_id is_null |
-| is_not_null | Field is not null | Nullable fields | due_date is_not_null |
-| starts_with | Anchored prefix match | varchar | name starts_with "prod-" |
-| contains_key | JSON object contains key | json | monitor_data_json contains_key "threshold" |
+| gte | Greater than or equal | int, float, datetime, date | due date gte "2026-01-01" |
+| lt | Less than | int, float, datetime, date | created time lt "2026-05-01T00:00:00Z" |
+| lte | Less than or equal | int, float, datetime, date | estimated hours lte 40.0 |
+| in | Set membership | All | status in ["open", "in progress"] |
+| not in | Not in set | All | status not in ["archived", "deleted"] |
+| is null | Field is null | Nullable fields | assignee user id is null |
+| is not null | Field is not null | Nullable fields | due date is not null |
+| starts with | Anchored prefix match | varchar | name starts with "prod-" |
+| contains key | JSON object contains key | json | monitor data json contains key "threshold" |
 | range | Between two values | int, float, datetime, date | priority range [1, 3] |
-
 ---
 
 ### Appendix U: Cross-Reference — Methods to Ops Book Concepts
