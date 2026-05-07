@@ -1,12 +1,12 @@
 {
-  "created": "2026-05-07T04:29:29.244701+00:00",
-  "modified": "2026-05-07T04:29:29.687920+00:00",
-  "id": 20062439,
+  "created": "2026-05-07T04:53:02.060533+00:00",
+  "modified": "2026-05-07T04:53:02.195670+00:00",
+  "id": 20062618,
   "conceptrecid": "20062438",
+  "conceptdoi": "10.5281/zenodo.20062438",
   "metadata": {
-    "title": "manuscript.md",
-    "publication_date": "2026-04",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "title": "A Structural Taxonomy of Player Experience in Game Design: First Pass",
+    "description": "<div>\n<div>This document enumerates the structural primitives of player experience in game design. It classifies what the player does, decides, learns, manages, and is gated by &mdash; not what they see, hear, or feel emotionally. Aesthetics (visual style, audio design, narrative content, mood) are out of scope. They matter for the total product but they are not gameplay.</div>\n<br>\n<div>The taxonomy follows a three-axis framework: mechanisms (what the game presents and what the player does), properties (contracts about experience quality), and principles (rules governing design assembly). This framework is adapted from infrastructure systems taxonomy [@HOWL-INFRA-1-2026] and application architecture taxonomy [@HOWL-COMP-9-2026], which demonstrated that the three-axis separation &mdash; mechanism, property, principle as distinct kinds of thing &mdash; prevents the conflation that makes design reasoning imprecise.</div>\n<br>\n<div>Game design vocabulary is in worse shape than infrastructure vocabulary. \"Difficulty\" names a mechanism (a difficulty selector), a property (the game is hard), and a principle (games should be appropriately challenging). \"Progression\" names a mechanism (an XP bar), a property (the player advances), and a principle (reward investment over time). \"Balance\" is used for everything. The qualification discipline from the infrastructure taxonomy &mdash; always say \"difficulty mechanism\" vs \"difficulty property\" vs \"difficulty-related principle\" &mdash; is needed here.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -30,11 +30,7 @@
     "keywords": [
       "HOWL framework",
       "howland archive",
-      "discrete spacetime",
-      "game",
-      "zero free parameters",
-      "falsifiable physics",
-      "theoretical derivation"
+      "game"
     ],
     "subjects": [
       {
@@ -55,22 +51,21 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/GAME/HOWL-GAME-1-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/GAME/HOWL-GAME-1-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
       }
     ],
-    "version": "1.0",
     "language": "eng",
     "license": "cc-zero",
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-GAME-1-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -78,54 +73,54 @@
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20062439",
-      "recid": 20062439
+      "doi": "10.5281/zenodo.20062618",
+      "recid": 20062618
     }
   },
-  "title": "manuscript.md",
+  "title": "A Structural Taxonomy of Player Experience in Game Design: First Pass",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20062439",
-    "html": "https://zenodo.org/deposit/20062439",
+    "self": "https://zenodo.org/api/deposit/depositions/20062618",
+    "html": "https://zenodo.org/deposit/20062618",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20062439/files",
-    "bucket": "https://zenodo.org/api/files/6509ff5d-1975-47a9-ad04-76b7db3a8590",
-    "thumb250": "https://zenodo.org/record/20062439/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/20062618/files",
+    "bucket": "https://zenodo.org/api/files/27c06a0c-9206-43ad-8476-bbcb84a7b154",
+    "thumb250": "https://zenodo.org/record/20062618/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20062439/thumb10",
-      "50": "https://zenodo.org/record/20062439/thumb50",
-      "100": "https://zenodo.org/record/20062439/thumb100",
-      "250": "https://zenodo.org/record/20062439/thumb250",
-      "750": "https://zenodo.org/record/20062439/thumb750",
-      "1200": "https://zenodo.org/record/20062439/thumb1200"
+      "10": "https://zenodo.org/record/20062618/thumb10",
+      "50": "https://zenodo.org/record/20062618/thumb50",
+      "100": "https://zenodo.org/record/20062618/thumb100",
+      "250": "https://zenodo.org/record/20062618/thumb250",
+      "750": "https://zenodo.org/record/20062618/thumb750",
+      "1200": "https://zenodo.org/record/20062618/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20062439",
-    "latest_draft_html": "https://zenodo.org/deposit/20062439",
-    "publish": "https://zenodo.org/api/deposit/depositions/20062439/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20062439/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20062439/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20062439/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20062618",
+    "latest_draft_html": "https://zenodo.org/deposit/20062618",
+    "publish": "https://zenodo.org/api/deposit/depositions/20062618/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20062618/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20062618/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20062618/actions/newversion"
   },
-  "record_id": 20062439,
+  "record_id": 20062618,
   "owner": 1539729,
   "files": [
     {
-      "id": "0d2e87e5-62d0-457f-9ad2-da304710a7f4",
-      "filename": "HOWL-GAME-1-2026.zip",
-      "filesize": 199246,
-      "checksum": "8a0996cce0148cc751ce487ed10f1b0e",
+      "id": "0093dff8-4e52-4e19-93b7-82356faac834",
+      "filename": "!manuscript.pdf",
+      "filesize": 1703404,
+      "checksum": "ab142f5ed6e24be87ac78b3076a331bd",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20062439/files/0d2e87e5-62d0-457f-9ad2-da304710a7f4",
-        "download": "https://zenodo.org/api/records/20062439/draft/files/HOWL-GAME-1-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20062618/files/0093dff8-4e52-4e19-93b7-82356faac834",
+        "download": "https://zenodo.org/api/records/20062618/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "5453cff4-5931-4673-b5cc-b2888398b1cd",
-      "filename": "!manuscript.pdf",
-      "filesize": 145146,
-      "checksum": "2f89bedf9daddab1acc32b27cf924ca5",
+      "id": "d4795ca6-ec41-4d50-8464-07ad976e06be",
+      "filename": "HOWL-GAME-1-2026.zip",
+      "filesize": 3141703,
+      "checksum": "1e2f1f8c2ca9f4ca104f2cc5bc50dfe2",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20062439/files/5453cff4-5931-4673-b5cc-b2888398b1cd",
-        "download": "https://zenodo.org/api/records/20062439/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20062618/files/d4795ca6-ec41-4d50-8464-07ad976e06be",
+        "download": "https://zenodo.org/api/records/20062618/draft/files/HOWL-GAME-1-2026.zip/content"
       }
     }
   ],

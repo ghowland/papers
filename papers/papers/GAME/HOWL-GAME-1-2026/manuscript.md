@@ -3,7 +3,7 @@
 
 **Registry:** [@HOWL-GAME-1-2026]
 
-**DOI:** 10.5281/zenodo.20062439
+**DOI:** 10.5281/zenodo.20062618
 
 **Date:** May 2026
 
