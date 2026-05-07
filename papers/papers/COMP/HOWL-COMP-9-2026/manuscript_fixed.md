@@ -58,7 +58,7 @@ A complete AppDB application consists of four artifact types.
 
 **Step 8: Frontend integration.** Connect the frontend to the OpsDB API. Implement SSO authentication. Map user actions to API operations — search for list views, get_entity for detail views, submit_change_set for mutations, get_entity_history for activity feeds. Render approval status for pending change sets. Handle draft mode for fluid editing use cases.
 
-![Fig. 1: Backend Code Size — conventional vs AppDB across 20 application types, showing 8–15x reduction for governed-state apps.](../figures/comp9_01_code_reduction_ratios.png)
+![Fig. 1: Backend Code Size — conventional vs AppDB across 20 application types, showing 8–15x reduction for governed-state apps.](figures/comp9_01_code_reduction_ratios.png)
 
 ---
 
@@ -574,7 +574,7 @@ The property analysis in the notes field is not optional guidance — it is the 
 
 Auth and authorization always run. Schema validation always runs. Bound validation always runs. Draft mode never weakens security or structural integrity. It weakens recording — versioning, audit, change management — for interim saves between explicit commits.
 
-![Fig. 8: Property Impact Radar — full governance covers all 10 axes, draft mode contracts versioning/audit/change-mgmt while holding validation and authorization.](../figures/comp9_08_property_impact_radar.png)
+![Fig. 8: Property Impact Radar — full governance covers all 10 axes, draft mode contracts versioning/audit/change-mgmt while holding validation and authorization.](figures/comp9_08_property_impact_radar.png)
 
 #### 3.9 Schema Organization
 
@@ -836,7 +836,7 @@ Before writing code, design the runner by answering seven questions.
 
 **What report keys can it write?** The runner declares which observation cache tables and fields it can write to. The API and library suite both validate writes against these declarations. A notification runner can write to `observation_cache_state` with keys related to notification delivery. It cannot write to `observation_cache_metric` or to governed entity tables outside its declared scope.
 
-![Fig. 3: Gating Mode Property Accumulation — each mode adds governance properties, from 5/10 (direct write) to 10/10 (approval-required).](../figures/comp9_03_gating_mode_properties.png)
+![Fig. 3: Gating Mode Property Accumulation — each mode adds governance properties, from 5/10 (direct write) to 10/10 (approval-required).](figures/comp9_03_gating_mode_properties.png)
 
 #### 5.2 Puller Runner Construction
 
@@ -1272,7 +1272,7 @@ runner_data_json:
 
 **Health monitoring.** Each runner thread writes health observations to the observation cache on every cycle: cycle start time, cycle duration, records processed, errors encountered. A monitoring runner (or an external monitoring system pulling from the observation cache) detects unhealthy threads — prolonged cycle times, increasing error counts, stuck threads. The health observations are the same mechanism as any other observation — queryable through the search API, subject to freshness semantics, and visible to dashboards.
 
-![Fig. 5: Runner Data Flow — pullers bring external state in, reconcilers compare, verifiers produce evidence, config push sends governed state out.](../figures/comp9_05_runner_data_flow.png)
+![Fig. 5: Runner Data Flow — pullers bring external state in, reconcilers compare, verifiers produce evidence, config push sends governed state out.](figures/comp9_05_runner_data_flow.png)
 
 ---
 
@@ -1402,7 +1402,7 @@ The frontend does not implement multi-tenancy. It passes the authenticated user'
 
 Each architecture position has a distinct construction pattern. The patterns below describe what to build, what OpsDB provides, and where the development effort concentrates.
 
-![Fig. 4: Effort Distribution — schema-dominant for primary backend, specialized-system-dominant for wrapper, showing the crossover.](../figures/comp9_04_effort_distribution.png)
+![Fig. 4: Effort Distribution — schema-dominant for primary backend, specialized-system-dominant for wrapper, showing the crossover.](figures/comp9_04_effort_distribution.png)
 
 #### 7.1 Governed-State-Dominant Pattern
 
@@ -1434,7 +1434,7 @@ Each architecture position has a distinct construction pattern. The patterns bel
 
 8. Policy tuning: adjust approval rules, access control, and retention as real usage reveals needs
 
-![Fig. 7: Governed State Spectrum — most business software clusters at 95%+ governed state, with clear region boundaries at architecture positions.](../figures/comp9_07_governed_state_spectrum.png)
+![Fig. 7: Governed State Spectrum — most business software clusters at 95%+ governed state, with clear region boundaries at architecture positions.](figures/comp9_07_governed_state_spectrum.png)
 
 #### 7.2 Split-Backend Pattern
 
@@ -1620,7 +1620,7 @@ The release includes default policies — default approval rules, default retent
 
 ### 8. AI-Assisted Construction Methods
 
-![Fig. 6: AI Containment — AI proposes change sets through the gate pipeline, writes observations directly, humans approve governed changes.](../figures/comp9_06_ai_containment.png)
+![Fig. 6: AI Containment — AI proposes change sets through the gate pipeline, writes observations directly, humans approve governed changes.](figures/comp9_06_ai_containment.png)
 
 The AppDB architecture is well-suited for AI assistance at every stage of construction. The closed vocabulary, mechanical verification, small artifact size, and governed change management create an environment where AI is productive and contained.
 
@@ -1690,7 +1690,7 @@ For factual queries that the search API answers directly. "How many tasks are ov
 
 ### 9. Construction Method Catalog
 
-![Fig. 2: Method Applicability — 47 methods across 7 groups, showing universal core vs position-specific methods.](../figures/comp9_02_method_composition.png)
+![Fig. 2: Method Applicability — 47 methods across 7 groups, showing universal core vs position-specific methods.](figures/comp9_02_method_composition.png)
 
 Each method in this paper is cataloged below for reference. The catalog provides the method's applicability, inputs, and outputs.
 
