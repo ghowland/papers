@@ -49,6 +49,7 @@
 | **[@HOWL-COMP-6-2026](papers/papers/COMP/HOWL-COMP-6-2026/manuscript.md)** | **SIML - Silo Markup Language** | Replacing the web with safe interactivity. |
 | **[@HOWL-COMP-7-2026](papers/papers/COMP/HOWL-COMP-7-2026/manuscript.md)** | **SiQL** | SiQL is a SQL-replacement for doing queries with Prolog. |
 | **[@HOWL-COMP-8-2026](papers/papers/COMP/HOWL-COMP-8-2026/manuscript.md)** | **SiloSec Protocol Specification** | SiloSec can operate at the IP layer without "kernel integration" because it is the kernel. |
+| **[@HOWL-COMP-9-2026](papers/papers/COMP/HOWL-COMP-9-2026/manuscript.md)** | **Building Applications with OpsDB Application Architecture** | A Construction Reference for the OpsDB Application Platform. |
 
 ---
 
