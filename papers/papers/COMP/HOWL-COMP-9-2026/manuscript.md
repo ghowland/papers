@@ -1470,3 +1470,426 @@ The architecture rests on data primacy: the schema is data, the policies are dat
 
 ---
 
+### Appendix A: Entity Design Pattern Reference
+
+| ID | Pattern | Description | When to Use | YAML Elements | Example |
+|---|---|---|---|---|---|
+| EP01 | Standard Entity | Single entity type with typed fields and constraints | Most entities; one identity, one set of attributes | name, domain, versioned, fields with types and constraints | task, project, customer, invoice |
+| EP02 | Discriminator Entity | Entity with subtype-specific typed JSON payload | Entity has variants with different field sets sharing common structure | Discriminator enum field + *_data_json field + per-type JSON schemas | monitor (prometheus_query, http_probe), schedule (cron, rate, calendar) |
+| EP03 | Bridge Entity | Join table connecting two entity types | Many-to-many relationships; polymorphic attachment | Two mandatory FK fields + optional relationship metadata fields | task_label, project_member, service_ownership |
+| EP04 | Polymorphic Bridge Set | Multiple bridge tables connecting one source to multiple targets | One entity type attaches to several different entity types | One bridge table per source-target pair, each with two mandatory FKs | task_comment + project_comment + milestone_comment |
+| EP05 | Hierarchical Entity | Self-referential entity with parent chain | Tree structures: org units, categories, locations, task/subtask | Nullable self-FK (parent_*_id) + depth int field + hierarchy runner | category, organizational_unit, location |
+| EP06 | Governance Scoped Entity | Entity with per-row access control | Entities visible only to specific groups or with field-level sensitivity | _requires_group FK + _access_classification FK | patient_record, salary_data, classified_document |
+| EP07 | Draft Mode Entity | Entity with relaxed interim governance | Interactive editing where per-keystroke versioning creates noise | draft_mode flags (_autoversion_disabled, _edit_latest_version, _audit_logs_disabled) | document, note, configuration_draft |
+| EP08 | Observation Cache Entity | Non-governed entity holding external or derived state | Imported external data, metrics, AI summaries, computed caches | versioned: false; written by scoped runners; freshness timestamp field | observation_cache_state, observation_cache_metric |
+| EP09 | Evidence Record Entity | Append-oriented entity recording verification results | Scheduled checks producing pass/fail with supporting data | Discriminator for evidence type + result enum + evidence_data_json | evidence_record (backup_verification, certificate_validity) |
+| EP10 | Schedule Entity | Entity representing recurring or deadline-driven work | Anything that recurs, expires, or has temporal triggers | Discriminator for schedule type + schedule_data_json + last/next execution fields | schedule (cron_expression, rate_based, calendar_anchored) |
+| EP11 | Policy Entity | Entity expressing behavioral rules evaluated by gate pipeline | Approval rules, transition rules, invariants, retention, access control | Discriminator for policy type + policy_data_json | policy (approval_rule, state_transition, semantic_invariant) |
+| EP12 | Authority Entity | Entity representing an external system connection | External systems the application integrates with | Discriminator for authority type + authority_data_json + connection params | authority (payment_processor, identity_provider, cloud_api) |
+| EP13 | Runner Spec Entity | Entity declaring a runner's configuration and bounds | Every runner in the system | Discriminator for runner type + runner_data_json with bounds, scope, trigger | runner_spec (puller, reconciler, verifier, ai_observation) |
+| EP14 | Generic Collection Entity | Catch-all entity for casual tracking with graduated formalization | Personal AppDB; early-stage domain exploration | collection_type enum + item_data_json + tags | collection (recipe, book, plant, workout) |
+
+---
+
+### Appendix B: Field Type Decision Matrix
+
+| Condition | Type | Constraints to Declare | Notes |
+|---|---|---|---|
+| Whole number with domain bounds | int | min, max | Always declare both bounds; use for currency in minor units |
+| Decimal number with domain bounds | float | min, max | Always declare both bounds; avoid for exact financial arithmetic |
+| Short bounded string (names, titles, codes) | varchar | length | 63 for identifiers, 255 for names, 1024 for descriptions/URLs |
+| Long unbounded text (prose, markdown, notes) | text | none | Use sparingly; most strings have natural bounds |
+| True/false present state | boolean | none | Prefix is_ (is_active, is_published) |
+| True/false past event | boolean | none | Prefix was_ (was_approved, was_escalated) |
+| Point in time | datetime | none | Suffix _time; stored UTC; timezone handling in runners |
+| Calendar day without time | date | none | Suffix _date; use when time component is meaningless |
+| Constrained value from fixed set | enum | values[] | Values can be added never removed; plan initial set carefully |
+| Subtype-specific structured data | json | none (validated by discriminator-selected JSON schema) | Always pair with discriminator enum field |
+| Reference to another entity | foreign_key | references (target table) | Name as referenced_table_id or role_referenced_table_id |
+
+---
+
+### Appendix C: Constraint Selection Matrix
+
+| Constraint Type | Applies To | Declaration | Enforcement Point | Evolution Rule |
+|---|---|---|---|---|
+| Numeric range | int, float | min, max | Gate step 4 (bound validation) | Can widen (lower min or raise max); never narrow |
+| String length | varchar | length | Gate step 4 | Can widen; never narrow |
+| Enum value set | enum | values[] | Gate step 4 | Can add values; never remove |
+| Foreign key reference | foreign_key | references | Gate step 4 (existence check) | Target table must exist; FK is permanent |
+| Nullable | all types | nullable: true/false | Gate step 3 (schema validation) | Can change from not-null to nullable; never the reverse |
+| Unique | all except text and json | unique: true | Gate step 4 | Can add to empty table; cannot add with existing duplicates; cannot remove |
+
+---
+
+### Appendix D: Relationship Pattern Matrix
+
+| Pattern | Cardinality | Implementation | FK Nullable | Naming | Example |
+|---|---|---|---|---|---|
+| Ownership | One-to-many mandatory | FK on child entity | false | parent_table_id | task.project_id |
+| Optional reference | One-to-many optional | FK on referencing entity | true | referenced_table_id | task.assignee_user_id |
+| Multiple references to same target | One-to-many multiple | Multiple FKs with role prefixes | varies | role_table_id | contract.vendor_company_id, contract.client_company_id |
+| Many-to-many | Many-to-many | Bridge table with two mandatory FKs | false (both) | table_a_id + table_b_id | task_label (task_id + label_id) |
+| Polymorphic attachment | One-to-many across types | One bridge table per target type | false (both) | source_id + target_id | task_comment, project_comment, milestone_comment |
+| Self-referential hierarchy | Tree | Nullable self-FK + depth field | true (parent) | parent_table_id + depth int | category.parent_category_id |
+
+---
+
+### Appendix E: Governance Field Reference
+
+| Field | Type | Purpose | Gate Layer | Default | When to Use |
+|---|---|---|---|---|---|
+| _requires_group | FK → ops_group | Restrict entity visibility to group members | Layer 2 (per-entity governance) | null (no restriction) | Project-scoped data, team-scoped data, personal data |
+| _access_classification | FK → data_classification | Control field-level visibility by sensitivity | Layer 3 (per-field classification) | null (no restriction) | Salary data, medical details, financial details, PII |
+| versioned: true | Schema flag | Enable change management and version history | Step 6 (versioning) + step 7 (change mgmt) | false | All entities where change history matters |
+| _autoversion_disabled | Draft mode flag | Skip version row on interim saves | Step 6 | false (version every write) | Interactive editing entities (documents, notes) |
+| _edit_latest_version | Draft mode flag | Write directly to current row, skip change set | Step 7 | false (route through change set) | Interactive editing entities |
+| _audit_logs_disabled | Draft mode flag | Skip audit log on interim saves | Step 8 | false (log every operation) | Interactive editing entities (use with caution) |
+
+---
+
+### Appendix F: Policy Type Reference
+
+| ID | Type | Purpose | Evaluated At | Match Criteria | Effect |
+|---|---|---|---|---|---|
+| PT01 | approval_rule | Determine who must approve a change set | Gate step 7 | Entity type, field names, namespace, data classification, security zone, proposer role | Approval count + approver source + approver role |
+| PT02 | state_transition | Declare valid state machine transitions | Gate step 5 | Entity type, field, from value, to value | Accept or reject the transition |
+| PT03 | semantic_invariant | Enforce cross-field conditional constraints | Gate step 5 | Entity type, condition (field + operator + value), requirement (field + constraint) | Accept or reject with message |
+| PT04 | retention | Declare per-entity-type retention horizons | Reaper runner reads | Entity type | Version history days + observation cache days + audit log days |
+| PT05 | access_control | Declare role-to-entity-type permissions | Gate step 2 layer 1 | Role, entity type, operation (read/write) | Allow or deny |
+| PT06 | change_management | Declare emergency review windows and SoD rules | Gate step 7 | Entity type, change type | Review window hours + segregation of duties flag |
+| PT07 | schedule_governance | Declare scheduling constraints for runners and operations | Gate step 5 | Runner type, schedule type | Allowed windows + blackout periods |
+| PT08 | security_zone | Declare environment-level access restrictions | Gate step 2 layer 5 | Zone, role, time of day, tenure | Allow or deny with additional conditions |
+| PT09 | data_classification | Declare sensitivity levels and access grants | Gate step 2 layer 3 | Classification level, role | Visible fields or hidden fields |
+
+---
+
+### Appendix G: Runner Kind Reference
+
+| ID | Kind | Purpose | Reads From | Writes To | Gating Mode | Trigger | Typical Size (lines) |
+|---|---|---|---|---|---|---|---|
+| RK01 | Puller | Import external data | External API + runner spec + authority | observation_cache_* | Direct write | Scheduled (cron/rate) | 200–400 |
+| RK02 | Reconciler | Compare desired vs observed, correct drift | Governed entities + observation_cache | change_set or entity rows | Auto-approve or approval-required | Scheduled | 200–350 |
+| RK03 | Verifier | Check conditions, produce evidence | Schedule + target entities + prior evidence | evidence_record | Direct write | Scheduled | 150–250 |
+| RK04 | Notification | Detect transitions, dispatch messages | change_sets + schedules + on_call + authority | observation_cache (delivery receipts) + external channels | Direct write (observations) | Scheduled or event-driven | 200–350 |
+| RK05 | Change-set Executor | Apply approved change sets | Approved change_sets | Entity rows + version rows | Post-approval direct | Event-driven (new approvals) | 150–250 |
+| RK06 | Reaper | Enforce retention policies | retention_policy rows | Deletes/soft-deletes on expired rows | Direct write | Scheduled | 150–200 |
+| RK07 | Config Push | Push governed state to external system | Governed entities + runner spec | External system config + observation_cache (push receipts) | Direct write (observations) | Scheduled or on-change | 200–350 |
+| RK08 | Observation Pull | Pull results from external system | External API + runner spec + authority | observation_cache_* | Direct write | Scheduled | 200–300 |
+| RK09 | AI Observation | Generate LLM-derived summaries | Governed entities + context traversal | observation_cache_* (AI summaries) | Direct write | Scheduled or on-change | 200–350 |
+| RK10 | Reactor | Process external events | Webhook/event + runner spec | Observation or change_set | Varies (direct for obs, approval for entities) | Event-driven | 200–300 |
+| RK11 | Drift Detector | Find discrepancies without correcting | Desired entities + observation_cache | change_set (proposal only) | Approval-required | Scheduled | 200–300 |
+| RK12 | Scheduler | Manage execution timing for other runners | Schedule entities + runner specs | runner_job entities | Auto-approve | Scheduled | 150–250 |
+| RK13 | Bootstrapper | Provision new entities from templates | Template config + trigger entity | Entity rows via change_set | Auto-approve or approval | Event-driven | 200–350 |
+| RK14 | Custom Domain | Domain-specific computation | Governed entities + domain rules | Computed results as entities or observations | Varies | Varies | 150–300 |
+
+---
+
+### Appendix H: Gating Mode Decision Matrix
+
+| Mode | Change Set Created | Approval Routing | Audit Logged | Version Created | Use When |
+|---|---|---|---|---|---|
+| Direct write | No | No | Yes | No | Observation cache writes, evidence records, runner job updates, metrics, AI observations |
+| Auto-approve | Yes | Auto-transitions to approved | Yes | Yes (if versioned) | Low-risk governed entity changes, routine automated updates, personal AppDB all changes |
+| Approval-required | Yes | Routes to human approvers | Yes | Yes (on apply) | High-risk changes, financial data, access control, compliance-relevant, AI-proposed governed changes |
+| Post-approval direct | No (already approved) | Already completed | Yes | Yes | Change-set executor applying previously approved change sets |
+| Emergency | Yes (reduced) | Reduced approval count + mandatory flag | Yes (with emergency flag) | Yes | Break-glass situations with mandatory post-incident review |
+
+---
+
+### Appendix I: Schedule Type Reference
+
+| ID | Type | Payload Fields | Use When | Example |
+|---|---|---|---|---|
+| ST01 | Cron expression | cron_string, timezone | Fixed recurring schedule with specific timing | "0 2 * * *" — daily at 2 AM |
+| ST02 | Rate-based | interval_seconds | Simple periodic execution | Every 300 seconds (5 minutes) |
+| ST03 | Event-triggered | trigger_entity_type, trigger_field, trigger_condition | Execution after specific state change | Run compliance scan 24h after any policy change |
+| ST04 | Calendar-anchored | anchor_date, recurrence_rule, timezone | Business calendar operations | Quarterly on first business day; annually on fiscal year start |
+| ST05 | Deadline-driven | deadline_field, entity_type, warning_threshold_days | Approaching deadline notification or verification | Certificate expires in 30 days; contract renewal due in 60 days |
+| ST06 | Manual | authorized_roles, required_evidence_type | Human-initiated scheduled operations | Physical inspection; vendor review; tape rotation |
+
+---
+
+### Appendix J: Draft Mode Property Impact Matrix
+
+| Flag | Property Affected | Impact | Still Enforced | Risk Level |
+|---|---|---|---|---|
+| _autoversion_disabled | Per-write versioning | Interim states not individually recoverable | Committed version history intact | Low — recovery granularity reduced to committed versions |
+| _autoversion_disabled | Point-in-time reconstruction | Reconstruction available at committed version granularity only | Committed version reconstruction O(1) | Low — acceptable for editing use cases |
+| _edit_latest_version | Change management (approval routing) | Interim saves bypass change set pipeline | Committed versions go through full change management | Medium — behavioral changes between commits are ungoverned |
+| _edit_latest_version | Attribution of interim changes | Individual interim saves not attributed to specific change sets | Committed versions fully attributed | Low — interim saves attributed via auth identity in request |
+| _audit_logs_disabled | Auditability | Interim saves not individually recorded in audit log | Committed versions produce audit entries | Medium — interim activity invisible to audit queries |
+| _audit_logs_disabled | Compliance evidence | Gap in audit trail between committed versions | Committed version audit entries satisfy per-version compliance | High for compliance-relevant data — do not use on regulated entities |
+| All three combined | Combined weakening | Interim editing is structurally validated and authorized but not versioned, change-managed, or audited | Auth + authz + schema validation + bound validation + policy evaluation | Acceptable only for non-regulated interactive editing entities |
+
+---
+
+### Appendix K: Schema Evolution Rule Reference
+
+| ID | Change Type | Allowed | Conditions | Mechanism | Risk |
+|---|---|---|---|---|---|
+| SE01 | Add nullable field | Yes | Field must be nullable | Loader adds column with NULL | None — existing rows unaffected |
+| SE02 | Add entity type | Yes | No conditions beyond naming conventions | Loader creates new table | None — no existing consumers affected |
+| SE03 | Add enum value | Yes | New value appended to set | Loader updates check constraint | None — existing rows retain current values |
+| SE04 | Widen numeric range | Yes | New min ≤ old min AND new max ≥ old max | Loader updates check constraint | None — existing valid values remain valid |
+| SE05 | Widen string length | Yes | New length ≥ old length | Loader updates column length | None — existing valid values remain valid |
+| SE06 | Add index | Yes | No conditions | Loader creates index | Temporary — index build may lock table briefly |
+| SE07 | Delete field | Forbidden | Never | n/a | Breaks version history, audit log, consumers |
+| SE08 | Rename field or entity | Forbidden | Never | n/a | Breaks every consumer by name |
+| SE09 | Change field type | Forbidden | Never; use six-step duplication pattern | n/a | Breaks consumers expecting prior type |
+| SE10 | Narrow numeric range | Forbidden | Never | n/a | Existing rows may violate new bound |
+| SE11 | Remove enum value | Forbidden | Never | n/a | Existing rows may hold removed value |
+| SE12 | Tighten uniqueness | Forbidden | Never | n/a | Existing rows may violate new constraint |
+| SE13 | Add not-null field | Forbidden (unless empty table) | Only on empty table before data exists | Loader adds NOT NULL column | Breaks if table has existing rows without default |
+
+#### Duplication Pattern Steps
+
+| Step | Action | Duration | Notes |
+|---|---|---|---|
+| DP01 | Add new field alongside old | Immediate | New field is nullable; old field unchanged |
+| DP02 | Begin writing to both fields | Deployment | All writers update both old and new fields |
+| DP03 | Migrate readers to new field | Gradual | Readers switch from old field to new field |
+| DP04 | Mark old field deprecated | Change set | Notes field documents deprecation |
+| DP05 | Continue writing both for safety period | Configurable | Ensures all readers have migrated |
+| DP06 | Stop writing to old field | Deployment | Old field becomes tombstone; never deleted |
+
+---
+
+### Appendix L: Library Suite Call Reference
+
+| ID | Library | Call | Purpose | Runner Phases | Handles |
+|---|---|---|---|---|---|
+| LC01 | opsdb-api | search | Query governed entities with filters, joins, projection, pagination | get | Auth, pagination, rate limiting |
+| LC02 | opsdb-api | get_entity | Fetch single entity with optional joins | get | Auth, field-level access filtering |
+| LC03 | opsdb-api | get_entity_at_time | Reconstruct entity state at timestamp | get | Auth, version lookup |
+| LC04 | opsdb-api | get_entity_history | Fetch version chain for entity | get | Auth, pagination |
+| LC05 | opsdb-api | submit_change_set | Propose field changes with reason | set | Auth, validation, scope checking, optimistic concurrency |
+| LC06 | opsdb-api | bulk_submit | Propose multi-entity atomic changes | set | Auth, validation, scope checking, atomicity |
+| LC07 | opsdb-api | write_observation | Write to observation cache tables | set | Auth, report key validation, scope checking |
+| LC08 | opsdb-api | emergency_apply | Break-glass change with reduced approval | set | Auth, emergency role check, audit flagging |
+| LC09 | k8s | list_resources | Query Kubernetes API for resources | get | Auth, pagination, rate limiting |
+| LC10 | k8s | apply_manifest | Apply Kubernetes manifest | act | Auth, dry-run support, retry, conflict handling |
+| LC11 | k8s | watch_events | Subscribe to Kubernetes event stream | get | Auth, reconnection, backpressure |
+| LC12 | cloud-aws | describe_resources | Query AWS API for resource state | get | Auth, pagination, rate limiting, region handling |
+| LC13 | cloud-aws | apply_change | Modify AWS resource | act | Auth, retry, idempotency token, dry-run support |
+| LC14 | cloud-gcp | describe_resources | Query GCP API for resource state | get | Auth, pagination, rate limiting, project scoping |
+| LC15 | cloud-gcp | apply_change | Modify GCP resource | act | Auth, retry, operation polling |
+| LC16 | secrets | read_secret | Fetch secret value from vault | act | Auth, lease management, caching |
+| LC17 | secrets | rotate_secret | Generate and store new secret | act | Auth, atomic swap, old-version retention |
+| LC18 | notification | send_email | Dispatch email via configured SMTP | act | Auth, retry, template rendering, rate limiting |
+| LC19 | notification | send_webhook | Dispatch webhook to configured URL | act | Auth, retry, signature, timeout |
+| LC20 | notification | send_chat | Dispatch message to chat platform | act | Auth, retry, rate limiting, thread management |
+| LC21 | logging | structured_log | Emit structured log entry with correlation ID | all phases | Correlation propagation, level filtering, output formatting |
+| LC22 | logging | metric | Emit metric data point | all phases | Metric naming, label propagation, buffering |
+| LC23 | git | clone_repo | Clone git repository | get | Auth, shallow clone, sparse checkout |
+| LC24 | git | commit_and_push | Commit changes and push | act | Auth, retry, conflict detection |
+| LC25 | template | render | Render template with variable substitution | act | No logic execution; substitution only |
+| LC26 | llm | generate | Call LLM API with prompt and parameters | act | Auth, retry, timeout, token budget enforcement, circuit breaking |
+| LC27 | lifecycle | heartbeat | Report runner thread health | set | Cycle timing, error counting, observation cache write |
+| LC28 | lifecycle | claim_work | Claim work item via advisory lock | get | Lock acquisition, conflict resolution, timeout |
+| LC29 | lifecycle | release_work | Release work item claim | set | Lock release, completion recording |
+
+---
+
+### Appendix M: AI Runner Configuration Reference
+
+| Field | Type | Purpose | Example Values |
+|---|---|---|---|
+| model | varchar | LLM model identifier | "claude-sonnet", "claude-haiku" |
+| max_tokens | int | Maximum response tokens from LLM | 100, 500, 2000 |
+| character_budget | int | Target character count for output | 12, 80, 500, 2000, 5000 |
+| regeneration_trigger | enum | When to regenerate observation | source_entity_change, scheduled, on_demand |
+| trigger_schedule | varchar | Cron or rate for scheduled regeneration | "*/15 * * * *", "rate:900" |
+| target_entity_types | json array | Which entity types to summarize | ["incident"], ["task", "project"] |
+| context_traversal | json array | Relationship paths to traverse for context assembly | ["incident -> affected_service", "incident -> change_set"] |
+| prompt_template_ref | varchar | Reference to prompt template entity | "incident_summary_v1", "anomaly_narrative_v2" |
+| observation_cache_table | varchar | Target observation cache table | "observation_cache_state" |
+| observation_key_prefix | varchar | Prefix for observation cache keys | "ai_summary_incident_", "ai_classify_" |
+| retry_budget | int | Max LLM call retries per cycle | 3 |
+| execution_timeout_seconds | int | Max time for LLM call including retries | 60, 120 |
+| scope_per_cycle | int | Max entities to process per runner cycle | 10, 50, 100 |
+
+#### AI Observation Granularities
+
+| ID | Name | Character Budget | Use Case | Prompt Style | Audience |
+|---|---|---|---|---|---|
+| AG01 | Ticker headline | 80 | Dashboard ticker, mobile notification header | Terse single-sentence | All users |
+| AG02 | Severity tag | 12 | Severity classification label | Single-word or short-phrase classification | Automated routing |
+| AG03 | Brief summary | 500 | Notification body, list view annotation | Concise paragraph with key facts | Operational staff |
+| AG04 | Standard summary | 2000 | War room display, incident detail view | Structured multi-paragraph with context | Incident responders |
+| AG05 | Detailed analysis | 5000 | Post-incident review, compliance narrative | Thorough analysis with dependency chain walkthrough | Investigators and auditors |
+| AG06 | Structured classification | 100 | Data classification suggestion, category proposal | JSON-formatted classification with confidence | AI change proposer pipeline |
+
+---
+
+### Appendix N: Architecture Position Quick Reference
+
+| Position | Governed Ratio | Hot Path | OpsDB Role | Runner Bridge | Frontend Target | Example Applications |
+|---|---|---|---|---|---|---|
+| AP01 Primary backend | 95–100% | None | Full backend | n/a | OpsDB API only | CRM, HR, compliance, project mgmt, personal data, education, legal, procurement, inventory |
+| AP02 Split backend | 70–90% | Bounded specific path | Governance + catalog | Config push + observation pull | OpsDB API + hot-path API | E-commerce, booking, billing, CMS, IoT fleet, API gateway config, workflow, turn-based games |
+| AP03 Operational wrapper | 10–30% | Dominant | Config + accounts + policies + audit | Config push + observation pull | Primarily hot-path; OpsDB for admin | Real-time chat, streaming, ML platform, video streaming, ad auction, HFT |
+| AP04 Metadata manager | 5–10% | Entire system | Structured pointers + operational metadata | Metadata sync | Specialized system; OpsDB for ops views | Time-series DB, search engine, graph DB, object store, message broker |
+| AP05 Personal | 99% | None | Full backend on personal hardware | Optional personal integrations | Lightweight web/mobile/CLI | Recipe tracker, book log, finance tracker, home inventory, journal |
+| AP06 Distributed | Matches inner position | Matches inner position | Prototype + per-deployment instances | Same as inner position | Same as inner position | Packaged SaaS, deployable compliance tools, distributed project management |
+
+---
+
+### Appendix O: Naming Convention Quick Reference
+
+| Element | Convention | Rule | Examples | Anti-Examples |
+|---|---|---|---|---|
+| Entity name | Singular lowercase underscore | Singular noun or noun phrase | task, project_member, cloud_resource | tasks, ProjectMember, cloudResource |
+| Field name | Lowercase underscore | Descriptive noun or adjective | title, start_date, is_active | Title, startDate, isActive |
+| Foreign key | referenced_table_id | Target table name + _id suffix | project_id, assignee_user_id | proj_id, assignee, fk_project |
+| Role-disambiguated FK | role_table_id | Role prefix + target table + _id | vendor_company_id, client_company_id | company_id_1, company_id_2 |
+| Datetime field | *_time suffix | Field name + _time | created_time, approved_time, expires_time | created_at, approvedDate, timestamp |
+| Date field | *_date suffix | Field name + _date | due_date, birth_date, effective_date | dueDate, due_datetime |
+| Present-state boolean | is_* prefix | is_ + adjective or state | is_active, is_published, is_billable | active, published, enabled |
+| Past-event boolean | was_* prefix | was_ + past participle | was_approved, was_escalated | approved, has_been_approved |
+| Governance field | _ prefix | Underscore + field name | _requires_group, _access_classification | requires_group, accessLevel |
+| Bridge table | source_target | Both entity names singular | task_label, project_member, service_ownership | task_labels, project_members |
+| Discriminator enum | *_type | entity_name + _type | cloud_resource_type, monitor_type | type, kind, category |
+| Discriminator payload | *_data_json | entity_name + _data_json | cloud_data_json, monitor_data_json | data, payload, config |
+| Versioning sibling | *_version | entity_name + _version (auto-generated) | task_version, policy_version | task_history, task_versions |
+| Hierarchical prefix | Specific to general | Longer names build on shorter | web_site → web_site_widget → web_site_widget_config | widget_web_site, config_widget |
+| Domain directory | NN_name | Zero-padded number + domain name | 01_identity, 02_core, 07_policy | identity, 2_core |
+
+---
+
+### Appendix P: Forbidden Pattern Quick Reference
+
+| ID | Pattern | Where | Why Forbidden | Alternative | Detection |
+|---|---|---|---|---|---|
+| FP01 | Regex in schema | Schema YAML | Catastrophic backtracking; dialect variation | Enum sets, length bounds, anchored patterns at gate step 5 | Loader rejects |
+| FP02 | Embedded logic in schema | Schema YAML | Makes validation non-deterministic | All values are literals; computed values via runners | Loader rejects |
+| FP03 | Conditional constraints in schema | Schema YAML | Cross-field logic belongs in policy evaluation | Semantic invariant policy rows at gate step 5 | Loader rejects |
+| FP04 | Inheritance in schema | Schema YAML | Creates coupling between entity types | Each entity declares independently; reserved fields via opt-in | Loader rejects |
+| FP05 | Templating in schema | Schema YAML | Variation via template variables creates per-deployment divergence | One schema per AppDB; variation via runtime config data | Loader rejects |
+| FP06 | Imports within entity files | Schema YAML | Entity files must be leaf-level | Only directory.yaml imports; entity files are self-contained | Loader rejects |
+| FP07 | Field deletion | Schema evolution | Breaks version history, audit log, all consumers | Deprecate; field remains; data queryable forever | Loader rejects (diff check) |
+| FP08 | Field/entity rename | Schema evolution | Breaks every consumer by name | Add new + deprecate old; names are permanent | Loader rejects (diff check) |
+| FP09 | Type change | Schema evolution | Breaks consumers expecting prior type | Six-step duplication pattern | Loader rejects (diff check) |
+| FP10 | Range narrowing | Schema evolution | Existing rows may violate new bound | Widening only; add new field with narrower bound if needed | Loader rejects (diff check) |
+| FP11 | Enum value removal | Schema evolution | Existing rows may hold removed value | Add new field with narrower set + deprecate old | Loader rejects (diff check) |
+| FP12 | Uniqueness tightening | Schema evolution | Existing rows may violate constraint | Add new field with uniqueness + duplication pattern | Loader rejects (diff check) |
+| FP13 | Runner invoking runner | Runner design | Creates orchestrator coupling and cascading failure | Coordination through shared OpsDB state | Code review discipline |
+| FP14 | Persistent state outside OpsDB | Runner design | Other runners and queries cannot see it | Persistent state in OpsDB; in-memory for one cycle only | Code review discipline |
+| FP15 | Reinventing shared libraries | Runner design | Divergent failure modes across runners | Use standard library suite | Code review discipline |
+| FP16 | Logic in templates | Templating | Templates become opaque code | Logic in upstream runner; templates substitute values only | Code review discipline |
+| FP17 | Secrets in OpsDB | Data boundaries | OpsDB not designed for need-to-know + audit-on-read | Authority pointers to vault; library accesses at runtime | Policy enforcement |
+| FP18 | OpsDB as runtime dependency | Architecture | Services fail if OpsDB unreachable | Runners cache; local replicas; graceful degradation | Architecture review |
+| FP19 | Side tables | Schema discipline | First step toward fragmentation | Absorb into schema via new entity types | Schema steward review |
+| FP20 | Side channels | Architecture | Bypasses API; governance becomes advisory | API is only path; no exceptions | Architecture enforcement |
+| FP21 | Shared accounts | Identity | Defeats attribution | One identity per human; scoped service accounts per runner | Policy enforcement |
+| FP22 | Draft mode on compliance data | Governance flags | Creates audit gap on regulated entities | Full governance for compliance-relevant tables | Schema steward review |
+| FP23 | AI writing governed state directly | AI integration | Bypasses human oversight for consequential changes | AI proposes change sets; humans approve; AI writes observations directly | Approval rule configuration |
+
+---
+
+### Appendix Q: Compliance Mapping by Method
+
+| Method ID | Method Name | Compliance Properties Provided | Frameworks Satisfied |
+|---|---|---|---|
+| M10 | Entity Design | Validated writes, typed constraints, FK integrity | SOC2-Processing-Integrity, ISO27001-A.8 |
+| M16 | Governance Fields | Per-entity access control, field-level classification | SOC2-Confidentiality, PCI-DSS-7, HIPAA-Security |
+| M19 | Approval Rules | Attributed change approval, segregation of duties | SOC2-Security, SOX-IT-General-Controls |
+| M20 | Access Control | Role-based + entity-scoped + field-classified access | SOC2-Security, ISO27001-A.9, PCI-DSS-7, HIPAA-Security |
+| M22 | Retention Policies | Configurable retention per entity type per regulation | SOC2-Privacy, GDPR-Article-30 |
+| M27 | Verifier Runner | Continuous evidence production with pass/fail records | PCI-DSS-11, SOC2-Availability, ISO27001-A.12 |
+| M35 | Read Patterns (audit views) | Point-in-time reconstruction, change attribution | PCI-DSS-10, ISO27001-A.16 |
+| M36 | Write Patterns (change sets) | Full change trail with proposer, approver, reason, timestamp | SOC2-Processing-Integrity, SOX-IT-General-Controls |
+| M46 | AI Change Proposer | AI proposals subject to same governance as human proposals | All frameworks — AI changes governed identically to human changes |
+
+---
+
+### Appendix R: Construction Effort Estimates by Application Type
+
+| Application Type | Position | Schema YAML (lines) | Runner Count | Runner Total (lines) | Policy Rows | Backend Effort (person-days) | Conventional Effort (person-days) | Ratio |
+|---|---|---|---|---|---|---|---|---|
+| Project management | AP01 | 2,000 | 4 | 800 | 30 | 15 | 120 | 8:1 |
+| CRM | AP01 | 3,000 | 5 | 1,200 | 50 | 20 | 180 | 9:1 |
+| HR platform | AP01 | 3,000 | 4 | 900 | 40 | 18 | 150 | 8:1 |
+| Compliance platform | AP01 | 2,500 | 4 | 900 | 60 | 18 | 135 | 7:1 |
+| Inventory management | AP01 | 2,000 | 3 | 600 | 25 | 12 | 105 | 9:1 |
+| Personal finance | AP01 | 1,500 | 3 | 700 | 10 | 8 | 60 | 8:1 |
+| Recipe app | AP01 | 1,000 | 1 | 200 | 5 | 4 | 45 | 11:1 |
+| Education platform | AP01 | 2,500 | 4 | 900 | 35 | 16 | 135 | 8:1 |
+| Legal case management | AP01 | 2,500 | 4 | 900 | 40 | 16 | 120 | 8:1 |
+| Procurement | AP01 | 2,000 | 3 | 600 | 35 | 12 | 105 | 9:1 |
+| E-commerce | AP02 | 3,000 | 6 | 1,500 | 50 | 30 + hot path | 240 | Varies by hot path |
+| Booking system | AP02 | 2,000 | 4 | 1,000 | 30 | 20 + hot path | 120 | Varies by hot path |
+| CMS | AP02 | 2,500 | 4 | 1,000 | 35 | 22 + hot path | 150 | Varies by hot path |
+| Subscription billing | AP02 | 3,000 | 6 | 1,500 | 50 | 28 + hot path | 165 | Varies by hot path |
+| IoT fleet management | AP02 | 2,500 | 5 | 1,200 | 40 | 25 + hot path | 150 | Varies by hot path |
+| Chat platform | AP03 | 2,000 | 4 | 1,000 | 30 | 15 + specialized | 210 | Mostly specialized system |
+| ML platform | AP03 | 2,500 | 5 | 1,200 | 35 | 18 + specialized | 135 | Mostly specialized system |
+| Game backend | AP03 | 2,500 | 5 | 1,200 | 30 | 18 + specialized | 180 | Mostly specialized system |
+| Video streaming | AP03 | 2,500 | 5 | 1,200 | 35 | 18 + specialized | 195 | Mostly specialized system |
+| Ad auction | AP03 | 2,500 | 5 | 1,200 | 40 | 18 + specialized | 165 | Mostly specialized system |
+
+---
+
+### Appendix S: Method Composition by Application Type
+
+| Application Type | Domain Analysis | Schema Construction | Policy Construction | Runner Construction | Frontend Integration | AI Assistance | Application Pattern |
+|---|---|---|---|---|---|---|---|
+| Governed-state-dominant | M01–M06, M09 | M10–M18 | M19–M23 | M24, M25–M28, M31–M33 | M34–M38 | M44–M47 | M39 |
+| Split-backend | M01–M09 | M10–M18 | M19–M23 | M24–M33 | M34–M38 | M44–M47 | M40 |
+| Operational wrapper | M01–M03, M05, M07–M09 | M10–M12, M16, M18 | M19–M20, M22 | M24, M29–M31, M33 | M34–M36, M38 | M44, M46–M47 | M41 |
+| Personal | M01–M04, M06 | M10–M14, M17–M18 | M19 (auto-approve all), M22 | M24–M25, M28, M31–M32 | M34–M37 | M44–M45, M47 | M42 |
+| Distributed | Same as inner position | Same as inner + release versioning | Same as inner + default policies | Same as inner + upgrade runner | Same as inner | Same as inner | M43 + inner pattern |
+
+---
+
+### Appendix T: Search API Operation Reference
+
+| Operation | Purpose | Parameters | Returns | Bounded By | Use Case |
+|---|---|---|---|---|---|
+| search | Query entities with filters | entity_type, filters (AND/OR/NOT), fields (projection), order_by, page_size, cursor | Matching entity rows with projected fields | max_result_size, max_join_depth, max_query_time, max_predicate_depth, rate_limit | List views, dashboards, reporting, runner get phase |
+| get_entity | Fetch single entity | entity_type, entity_id, join_paths (optional) | Single entity with optional related entities | rate_limit | Detail views, runner get phase |
+| get_entity_at_time | Reconstruct state at timestamp | entity_type, entity_id, timestamp | Version row current at specified time | rate_limit | Audit views, incident investigation, regulatory queries |
+| get_entity_history | Fetch version chain | entity_type, entity_id, page_size, cursor | Version rows in reverse chronological order | max_result_size, rate_limit | Activity feeds, change tracking, diff views |
+| get_dependencies | Traverse relationships | entity_type, entity_id, join_path, depth_limit | Related entities along declared join path | max_depth, rate_limit | Dependency views, impact analysis, hierarchy traversal |
+| search (with_history) | Current state plus version chain | Same as search + view_mode: with_history | Entity rows with embedded version arrays | max_result_size, max_versions_per_entity | Combined list + history views |
+| search (at_time) | Reconstructed state at timestamp | Same as search + view_mode: at_time + timestamp | Entity rows as they existed at specified time | max_result_size, rate_limit | Historical reporting, compliance snapshots |
+
+#### Filter Predicates
+
+| Operator | Description | Field Types | Example |
+|---|---|---|---|
+| eq | Equals | All | status eq "active" |
+| neq | Not equals | All | status neq "archived" |
+| gt | Greater than | int, float, datetime, date | priority gt 3 |
+| gte | Greater than or equal | int, float, datetime, date | due_date gte "2026-01-01" |
+| lt | Less than | int, float, datetime, date | created_time lt "2026-05-01T00:00:00Z" |
+| lte | Less than or equal | int, float, datetime, date | estimated_hours lte 40.0 |
+| in | Set membership | All | status in ["open", "in_progress"] |
+| not_in | Not in set | All | status not_in ["archived", "deleted"] |
+| is_null | Field is null | Nullable fields | assignee_user_id is_null |
+| is_not_null | Field is not null | Nullable fields | due_date is_not_null |
+| starts_with | Anchored prefix match | varchar | name starts_with "prod-" |
+| contains_key | JSON object contains key | json | monitor_data_json contains_key "threshold" |
+| range | Between two values | int, float, datetime, date | priority range [1, 3] |
+
+---
+
+### Appendix U: Cross-Reference — Methods to Ops Book Concepts
+
+| Method | Book Concepts | Book Rules | Book Claims | Book Distinctions |
+|---|---|---|---|---|
+| M01 Entity Enumeration | C16 (Slicing the Pie), C17 (Comprehensive) | R5 (Slice the Pie) | K9 (Comprehensive → consistency) | D3 (Comprehensive vs Aggregated) |
+| M02 Field Enumeration | C8 (Data), C7 (Knowability) | R8 (Data Primacy) | K3 (Virtual data knowable), K4 (Data > Logic) | D2 (Data vs Logic) |
+| M04 Lifecycle Identification | C9 (Logic), C11 (System) | R8 (Data Primacy) | K7 (Tool-Logic outlives goal-Logic) | D2 (Data vs Logic) |
+| M09 Architecture Position | C20 (Attribute Axis), C21 (Axiomatic Engineering) | R1 (90-9-0.9%) | K11 (Better not Best) | D5 (Best vs Better) |
+| M10 Entity Design | C8 (Data), C17 (Comprehensive) | R8, R15 (Constraints On) | K4 (Data > Logic) | D2 (Data vs Logic) |
+| M17 Draft Mode Config | C20 (Attribute Axis), C15 (Philosopher's Knife) | R1 (priorities), R5 (slice) | K11 (Better: explicit tradeoff) | D5 (Best vs Better) |
+| M19 Approval Rules | C56 (AAA), C24 (Impersonal Decision) | R6 (AAA), R1 (priorities) | K1 (Control) | D12 (Insider vs Outsider) |
+| M20 Access Control | C56 (AAA), C30 (Security Zone) | R6 (AAA), R9 (One Way) | K1 (Control) | D12 (Insider vs Outsider) |
+| M24 Runner Design | C36 (Idempotency), C31 (Operational Logic) | R3 (Idempotency), R10 (Local Cache), R11 (Min Deps) | K14 (Idempotency → safe retry) | D4 (OpsLogic vs AppLogic) |
+| M25 Puller Runner | C40 (Source of Truth), C41 (Knowing the Present) | R8 (Data Primacy), R12 (Verify Personally) | K15 (All data aged), K17 (Models for control sync) | D10 (Understanding vs Control Model) |
+| M26 Reconciler Runner | C36 (Idempotency), C39 (Model for Control) | R3 (Idempotency) | K14, K17 | D10 (Understanding vs Control Model) |
+| M33 Server Runner | C35 (DOS), C34 (Distributed System) | R2 (0/1/Infinity) | K10 (No 2), K13 (Prod = one machine) | D7 (Centralized vs Decentralized) |
+| M39 Governed-State Pattern | C17 (Comprehensive), C2 (Control) | R5, R8, R9 | K1, K2, K9 | D3 (Comprehensive vs Aggregated) |
+| M44 AI Schema Generation | C8 (Data), C7 (Knowability) | R8 (Data Primacy) | K3, K4 | D2 (Data vs Logic) |
+| M46 AI Change Proposer | C56 (AAA), C2 (Control) | R6 (AAA), R3 (Idempotency) | K1 (Control), K21 (Automation amplifies) | D4 (OpsLogic vs AppLogic) |
