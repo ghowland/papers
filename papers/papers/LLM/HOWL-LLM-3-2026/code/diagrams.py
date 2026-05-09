@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-HOWL LLM-2 Diagrams — Calibrate, Extract, Refine: 1-Shot Pseudo-Gold from LLM Chat Sessions
-8 figures covering coherence ceiling, system scale, calibration mechanics, and industry claims.
+HOWL LLM-3 Diagrams — Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable
+8 figures covering ballistic generation model, speed constraints, comprehension costs,
+and the honest productivity multiplier.
 Output: PNG files to ../figures/
 """
 
@@ -9,12 +10,15 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.patches import Wedge, FancyBboxPatch
+from matplotlib.lines import Line2D
 import numpy as np
 import os
 
 # ================================================================
 # GLOBAL STYLE
 # ================================================================
+
 
 # Light mode
 if True:
@@ -48,14 +52,15 @@ else:
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
 
+
 def setup_ax(ax, title, xlabel='', ylabel='', title_size=15):
     ax.set_facecolor(PAN)
-    ax.set_title(title, color=GOLD, fontsize=title_size, fontweight='bold', pad=14)
+    ax.set_title(title, color=GOLD, fontsize=title_size, fontweight='bold', pad=18)
     if xlabel:
-        ax.set_xlabel(xlabel, color=SILVER, fontsize=11)
+        ax.set_xlabel(xlabel, color=SILVER, fontsize=11, labelpad=10)
     if ylabel:
-        ax.set_ylabel(ylabel, color=SILVER, fontsize=11)
-    ax.tick_params(colors=DIM, labelsize=9)
+        ax.set_ylabel(ylabel, color=SILVER, fontsize=11, labelpad=10)
+    ax.tick_params(colors=DIM, labelsize=9, pad=6)
     for spine in ax.spines.values():
         spine.set_color(DIM)
         spine.set_linewidth(0.5)
@@ -68,591 +73,663 @@ def save(fig, filename):
     plt.close(fig)
     print("  Saved: %s" % filename)
 
+# ================================================================
+# FIG 1: BALLISTIC CONE — GENERATION LANDING ZONE
+# Type: Geometric Cross-Section (Type 4)
+# Shows: Top-down view of target with concentric deviation cones
+#        at different calibration quality levels. At 1200-line
+#        distance, even small angular errors produce large
+#        positional displacement.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 14), facecolor=BG)
+setup_ax(ax, 'Ballistic Cone: Where Generation Lands vs. Where You Aimed', title_size=14)
+ax.set_aspect('equal')
+ax.axis('off')
+
+origin_x, origin_y = 0.0, 0.0
+distance = 12.0  # represents 1200 lines scaled
+
+# Label offsets: (x_offset, y_offset) from the computed endpoint position
+# Adjust these to fix overlaps
+label_offset_no_cal      = (1.5, 0.0)
+label_offset_minimal_cal = (1.5, 0.0)
+label_offset_moderate_cal = (1.5, 2.5)
+label_offset_full_cal    = (1.5, 4.0)
+
+label_offsets = [
+    label_offset_no_cal,
+    label_offset_minimal_cal,
+    label_offset_moderate_cal,
+    label_offset_full_cal,
+]
+
+# Origin label offset
+origin_label_x_off = 0.0
+origin_label_y_off = -1.4
+
+# Target label offset
+target_label_x_off = 0.8
+target_label_y_off = 0.6
+
+# Distance label offset
+dist_label_x = -8.0
+dist_label_y_center = 6.0
+
+# Draw cones from origin to landing zone at distance
+cone_specs = [
+    (60, 'No Calibration\n(training weights only)', RED, 0.04),
+    (30, 'Minimal Calibration\n(docs loaded, no probing)', ORANGE, 0.05),
+    (15, 'Moderate Calibration\n(probed, some correction)', CYAN, 0.06),
+    (5, 'Full Calibration\n(verified representations)', GREEN, 0.08),
+]
+
+# Draw cones as wedges from origin
+for angle_deg, label, color, alpha_val in cone_specs:
+    wedge = Wedge(
+        (origin_x, origin_y),
+        distance * 1.05,
+        90 - angle_deg,
+        90 + angle_deg,
+        facecolor=color,
+        alpha=alpha_val,
+        edgecolor=color,
+        linewidth=1.0,
+        zorder=2
+    )
+    ax.add_patch(wedge)
+
+# Target line (straight up)
+ax.plot([origin_x, origin_x], [origin_y, distance], color=GOLD, linewidth=2,
+        linestyle='--', alpha=0.7, zorder=5)
+
+# Arc length annotations at the landing distance
+for i, (angle_deg, label, color, alpha_val) in enumerate(cone_specs):
+    angle_rad = np.radians(angle_deg)
+    arc_length = distance * np.tan(angle_rad)
+
+    # Right side endpoint
+    end_x = origin_x + distance * np.sin(angle_rad)
+    end_y = origin_y + distance * np.cos(angle_rad)
+
+    # Cone edge lines
+    ax.plot([origin_x, end_x], [origin_y, end_y], color=color, linewidth=1.2,
+            alpha=0.5, zorder=3)
+    ax.plot([origin_x, -end_x], [origin_y, end_y], color=color, linewidth=1.2,
+            alpha=0.5, zorder=3)
+
+    # Label position: endpoint + offset
+    x_off, y_off = label_offsets[i]
+    label_x = end_x + x_off
+    label_y = end_y + y_off
+
+    arc_lines = int(arc_length * 100)  # scale to lines
+    full_label = "%s\n+/-%d degrees\n~%d lines off target" % (label, angle_deg, arc_lines)
+
+    # Arrow from label to endpoint
+    ax.annotate(full_label,
+                xy=(end_x, end_y),
+                xytext=(label_x, label_y),
+                color=color, fontsize=8, linespacing=1.5,
+                ha='left', va='center',
+                arrowprops=dict(arrowstyle='->', color=color, lw=1.0, alpha=0.6),
+                bbox=dict(boxstyle='round,pad=0.6', facecolor=BG, edgecolor=color, alpha=0.85))
+
+# Origin marker
+ax.scatter([origin_x], [origin_y], s=250, color=GOLD, edgecolors=WHITE,
+           linewidth=2, zorder=6)
+ax.text(origin_x + origin_label_x_off, origin_y + origin_label_y_off,
+        'Prompt\n(launch point)', ha='center', va='top',
+        color=GOLD, fontsize=10, fontweight='bold', linespacing=1.4)
+
+# Target marker
+ax.scatter([origin_x], [distance], s=250, color=GOLD, edgecolors=WHITE,
+           linewidth=2, zorder=6, marker='*')
+ax.text(origin_x + target_label_x_off, distance + target_label_y_off,
+        'Intended Target', ha='left', va='bottom',
+        color=GOLD, fontsize=10, fontweight='bold')
+
+# Distance label
+ax.text(dist_label_x, dist_label_y_center, '~1,200 lines\nof generation',
+        ha='center', va='center',
+        color=SILVER, fontsize=10, rotation=90, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.6', facecolor=BG, edgecolor=DIM, alpha=0.85))
+
+ax.set_xlim(-10.0, 18.0)
+ax.set_ylim(-3.0, 16.5)
+
+save(fig, 'llm3_01_ballistic_cone.png')
 
 # ================================================================
-# FIG 1: SYSTEM SCALE VS MODEL CAPABILITY
+# FIG 2: SPEED RANGE — NO NAVIGABLE MODE
 # Type: Scale/Landscape (Type 2)
-# Shows: Log-scale axis from 1 module to 1000, with landmarks for
-#        tutorial projects, vibe-coded projects, model ceiling,
-#        and real engineering systems. Shaded regions mark where
-#        AI is effective, marginal, and counterproductive.
+# Shows: Horizontal axis from 0 to 1400 lines. Hand-coding zone
+#        (0-50, navigable), dead zone (50-400, model won't
+#        generate this little), ballistic zone (400-1200).
+#        The navigable zone and generation zone do not overlap.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
-setup_ax(ax, 'System Scale vs. Model Capability', ylabel='')
+setup_ax(ax, 'Speed Range: No Navigable Mode Exists', ylabel='')
 ax.axis('off')
 
-# Log scale axis from 1 to 2000 modules
-x_min, x_max = 0.0, 3.35  # log10 scale: 1 to ~2200
 y_center = 0.5
-bar_height = 0.08
+bar_height = 0.12
 
-# Draw the main axis line
-ax.plot([x_min, x_max], [y_center, y_center], color=SILVER, linewidth=2, zorder=5)
+# Main axis line
+ax.plot([0, 1400], [y_center, y_center], color=SILVER, linewidth=2, zorder=3)
 
-# Tick marks and labels
-landmarks = [
-    (0.0, '1', 'Single\nFunction', DIM),
-    (0.7, '5', 'Tutorial\nProject', CYAN),
-    (1.0, '10', 'Typical Vibe-\nCoded Project', BLUE),
-    (1.18, '15', 'Max Modules in\nBlow Thread', MAG),
-    (1.6, '~40', 'Model Coherence\nCeiling (~1 module)', RED),
-    (2.65, '~450', 'Production\nGame Engine', GOLD),
-    (3.0, '1000', 'Large-Scale\nSystem', PURPLE),
-]
+# Zones as shaded regions
+# Navigable zone: 0-50
+ax.barh(y_center, 50, left=0, height=bar_height, color=GREEN, alpha=0.35,
+        edgecolor=GREEN, linewidth=1.5, zorder=4)
+ax.text(25, y_center + 0.13, 'Navigable\nZone', ha='center', va='bottom',
+        color=GREEN, fontsize=11, fontweight='bold', linespacing=1.4)
+ax.text(25, y_center - 0.13, '0-50 lines\nHand-coding:\nyou make every\ndecision as you go',
+        ha='center', va='top', color=GREEN, fontsize=8, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GREEN, alpha=0.8))
 
-count = 0
-for lx, label_num, label_desc, color in landmarks:
-    if count % 2 == 0:
-        offsetY = -0.01
-    else:
-        offsetY = 0.015
+# Dead zone: 50-400
+ax.barh(y_center, 350, left=50, height=bar_height, color=DIM, alpha=0.15,
+        edgecolor=DIM, linewidth=1.0, zorder=4)
+ax.text(225, y_center + 0.13, 'Dead Zone', ha='center', va='bottom',
+        color=DIM, fontsize=11, fontweight='bold', linespacing=1.4)
+ax.text(225, y_center - 0.13, '50-400 lines\nModel inflates\npast this range.\nYou cannot request\ngeneration this small.',
+        ha='center', va='top', color=DIM, fontsize=8, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.8))
 
-    ax.plot([lx, lx], [y_center - 0.03, y_center + 0.03], color=color, linewidth=2, zorder=6)
-    ax.text(lx, y_center - 0.07, label_num, ha='center', va='top',
-            color=color, fontsize=10, fontweight='bold')
-    ax.text(lx, y_center + 0.06 + offsetY, label_desc, ha='center', va='bottom',
-            color=color, fontsize=9, linespacing=1.3)
-    count += 1
+# Ballistic zone: 400-1200
+ax.barh(y_center, 800, left=400, height=bar_height, color=CYAN, alpha=0.30,
+        edgecolor=CYAN, linewidth=1.5, zorder=4)
+ax.text(800, y_center + 0.13, 'Ballistic Zone', ha='center', va='bottom',
+        color=CYAN, fontsize=11, fontweight='bold', linespacing=1.4)
+ax.text(800, y_center - 0.13, '400-1,200 lines\nLLM generation range.\nNo steering during flight.\nAll decisions made by model.',
+        ha='center', va='top', color=CYAN, fontsize=8, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=CYAN, alpha=0.8))
 
-# Shaded regions
-ax.axvspan(x_min, 1.15, ymin=0.25, ymax=0.42, alpha=0.10, color=GREEN)
-ax.text(0.55, y_center - 0.16, 'AI Effective', ha='center', va='center',
-        color=GREEN, fontsize=11, fontweight='bold')
+# Ceiling marker
+ax.plot([1200, 1200], [y_center - 0.08, y_center + 0.08], color=RED, linewidth=2.5, zorder=5)
+ax.text(1200, y_center + 0.22, 'Coherence\nCeiling', ha='center', va='bottom',
+        color=RED, fontsize=10, fontweight='bold', linespacing=1.4)
 
-ax.axvspan(1.15, 1.7, ymin=0.25, ymax=0.42, alpha=0.08, color=ORANGE)
-ax.text(1.42, y_center - 0.16, 'AI Marginal', ha='center', va='center',
-        color=ORANGE, fontsize=11, fontweight='bold')
+# The gap annotation
+ax.annotate('', xy=(50, y_center + 0.25), xytext=(400, y_center + 0.25),
+            arrowprops=dict(arrowstyle='<->', color=ORANGE, lw=2))
+ax.text(225, y_center + 0.29, 'THE GAP: No mode exists here.\nYou either navigate (0-50) or ride the rocket (400-1200).',
+        ha='center', va='bottom', color=ORANGE, fontsize=9, fontweight='bold', linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=ORANGE, alpha=0.9))
 
-ax.axvspan(1.7, x_max, ymin=0.25, ymax=0.42, alpha=0.06, color=RED)
-ax.text(2.5, y_center - 0.16, 'AI Counterproductive', ha='center', va='center',
-        color=RED, fontsize=11, fontweight='bold')
+# Tick marks
+for pos in [0, 50, 100, 200, 400, 600, 800, 1000, 1200, 1400]:
+    ax.plot([pos, pos], [y_center - 0.03, y_center + 0.03], color=SILVER, linewidth=1, zorder=3)
+    ax.text(pos, y_center - 0.045, str(pos), ha='center', va='top', color=DIM, fontsize=7)
 
-# Scale label
-ax.text(x_max + 0.05, y_center, 'modules\n(log scale)', ha='left', va='center',
-        color=DIM, fontsize=9)
+ax.text(700, y_center - 0.42, 'Output Length (lines of real code)', ha='center', va='center',
+        color=SILVER, fontsize=11)
 
-# Key insight annotation
-ax.text(1.9, y_center + 0.22,
-        'The model failed on 4 modules (< 1%% of a 450-module system).\n'
-        'The gap between where AI works and where systems live\n'
-        'is over an order of magnitude.',
-        ha='left', va='center', color=SILVER, fontsize=10,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.9),
-        linespacing=1.5)
+ax.set_xlim(-80, 1500)
+ax.set_ylim(-0.05, 1.0)
 
-ax.set_xlim(-0.15, 3.5)
-ax.set_ylim(0.15, 0.85)
-
-save(fig, 'llm2_01_system_scale_landscape.png')
+save(fig, 'llm3_02_speed_range.png')
 
 
 # ================================================================
-# FIG 2: CEILING STABILITY ACROSS MODEL GENERATIONS
+# FIG 3: EXPANSION BIAS OVER SESSION LENGTH
 # Type: Running/Convergence (Type 1)
-# Shows: Flat coherence ceiling at ~1200 lines over 15 months,
-#        with benchmark scores rising as a diverging dotted line.
-#        Model release points marked on the timeline.
+# Shows: Actual output length vs requested output length over
+#        successive prompts within a session. Actual expands
+#        toward ceiling; requested stays flat.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'Coherence Ceiling vs. Benchmark Scores Across Model Generations',
-         xlabel='Timeline', ylabel='')
+setup_ax(ax, 'Expansion Bias: Output Length Grows With Each Prompt',
+         xlabel='Successive Prompts in Session',
+         ylabel='Output Length (lines)')
 
-# Timeline: Feb 2025 to May 2026 = ~16 months
-months = np.arange(0, 16)
-month_labels = ['Feb 25', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-                'Oct', 'Nov', 'Dec', 'Jan 26', 'Feb', 'Mar', 'Apr', 'May 26']
+prompts = np.arange(1, 11)
 
-# Coherence ceiling: flat at 1200
-ceiling = np.ones(16) * 1200
+# Requested: stays roughly flat at ~200
+requested = np.array([200, 200, 180, 200, 220, 200, 200, 180, 200, 200])
 
-# Benchmark scores: rising from ~60 to ~85 (normalized to same axis via secondary)
-bench_raw = np.array([58, 60, 62, 64, 65, 67, 70, 72, 74, 76, 78, 79, 81, 82, 83, 85])
+# Actual: starts around 400, trends toward 1200
+actual = np.array([420, 480, 550, 640, 720, 810, 890, 980, 1050, 1140])
 
-# Model release points (approximate positions)
-releases = [
-    (0, 'Sonnet 3.5', CYAN),
-    (4, 'Opus 3.5', BLUE),
-    (8, 'Sonnet 3.6', CYAN),
-    (11, 'Opus 4.5', PURPLE),
-    (15, 'Opus 4.6', GOLD),
-]
+ax.plot(prompts, requested, color=GREEN, linewidth=2.5, marker='o', markersize=8,
+        markeredgecolor=WHITE, markeredgewidth=1.5, label='Requested output size', zorder=5)
+ax.plot(prompts, actual, color=MAG, linewidth=2.5, marker='s', markersize=8,
+        markeredgecolor=WHITE, markeredgewidth=1.5, label='Actual output produced', zorder=5)
 
-# Plot ceiling
-ax.plot(months, ceiling, color=RED, linewidth=2.5, linestyle='-', label='Coherence Ceiling (real code)', zorder=5)
-ax.fill_between(months, 1100, 1300, alpha=0.06, color=RED)
-ax.text(15.3, 1200, '~1,200 lines', va='center', ha='left', color=RED, fontsize=10, fontweight='bold')
+# Fill the gap
+ax.fill_between(prompts, requested, actual, alpha=0.08, color=RED, zorder=2)
 
-# Secondary axis for benchmarks
-ax2 = ax.twinx()
-ax2.plot(months, bench_raw, color=GREEN, linewidth=2, linestyle='--', label='Benchmark Scores (SWE-bench etc.)', zorder=4)
-ax2.set_ylabel('Benchmark Score (normalized)', color=GREEN, fontsize=11)
-ax2.tick_params(colors=GREEN, labelsize=9)
-ax2.spines['right'].set_color(GREEN)
-ax2.spines['right'].set_linewidth(0.5)
-for spine_name in ['top', 'left', 'bottom']:
-    ax2.spines[spine_name].set_color(DIM)
-    ax2.spines[spine_name].set_linewidth(0.5)
+# Ceiling line
+ax.axhline(y=1200, color=RED, linewidth=1.5, linestyle='--', alpha=0.6, zorder=3)
+ax.text(10.3, 1200, 'Coherence\nCeiling', ha='left', va='center',
+        color=RED, fontsize=9, fontweight='bold', linespacing=1.4)
 
-# Mark model releases
-for pos, name, color in releases:
-    ax.axvline(x=pos, color=color, linewidth=1, linestyle=':', alpha=0.5, zorder=3)
-    ax.text(pos, 1450, name, ha='center', va='bottom', color=color, fontsize=8,
-            rotation=35,
-            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=color, alpha=0.8))
+# Floor line
+ax.axhline(y=400, color=ORANGE, linewidth=1.0, linestyle=':', alpha=0.5, zorder=3)
+ax.text(10.3, 400, 'Generation\nFloor', ha='left', va='center',
+        color=ORANGE, fontsize=9, linespacing=1.4)
 
-# Divergence annotation
-ax.annotate('Benchmarks rise.\nCeiling does not move.',
-            xy=(12, 1200), xytext=(8, 1550),
-            color=GOLD, fontsize=11, fontweight='bold',
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD, alpha=0.9))
-
-ax.set_xticks(months)
-ax.set_xticklabels(month_labels, rotation=40, ha='right', fontsize=8, color=DIM)
-ax.set_xlim(-0.5, 16)
-ax.set_ylim(0, 1700)
-ax2.set_ylim(50, 95)
-ax.set_ylabel('Coherent Output (lines of real code)', color=RED, fontsize=11)
-
-# Combined legend
-from matplotlib.lines import Line2D
-legend_elements = [
-    Line2D([0], [0], color=RED, linewidth=2.5, label='Coherence Ceiling'),
-    Line2D([0], [0], color=GREEN, linewidth=2, linestyle='--', label='Benchmark Scores'),
-]
-ax.legend(handles=legend_elements, loc='lower right',
-          facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
-
-save(fig, 'llm2_02_ceiling_stability.png')
-
-
-# ================================================================
-# FIG 3: COHERENCE DEGRADATION CURVE
-# Type: Threshold/Region (Type 3)
-# Shows: Reliability of output vs. generation length, with gradual
-#        degradation and a threshold band marking the engineering
-#        trust boundary at ~1200 lines. Shaded regions for
-#        "reliable," "degrading," and "unreliable."
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'Coherence Degradation vs. Output Length',
-         xlabel='Output Length (lines of real code)',
-         ylabel='Constraint Coherence (probability of honoring all constraints)')
-
-x = np.linspace(0, 2400, 500)
-# Sigmoid-like degradation curve
-coherence = 1.0 / (1.0 + np.exp((x - 1000) / 250.0))
-coherence = 0.05 + 0.90 * coherence  # floor at 0.05, max at 0.95
-
-ax.plot(x, coherence, color=CYAN, linewidth=2.5, zorder=5)
-
-# Threshold band at ~1200 lines
-ax.axvspan(1050, 1350, alpha=0.08, color=ORANGE, zorder=2)
-ax.axvline(x=1200, color=ORANGE, linewidth=1.5, linestyle='--', alpha=0.7, zorder=4)
-ax.text(1210, 0.88, '~1,200 lines\n(engineering\ntrust boundary)', ha='left', va='top',
-        color=ORANGE, fontsize=10, fontweight='bold', linespacing=1.3)
-
-# Shaded regions
-ax.axvspan(0, 800, ymin=0, ymax=1, alpha=0.05, color=GREEN, zorder=1)
-ax.text(400, 0.12, 'Reliable', ha='center', va='center',
-        color=GREEN, fontsize=12, fontweight='bold', alpha=0.8)
-
-ax.axvspan(800, 1350, ymin=0, ymax=1, alpha=0.04, color=ORANGE, zorder=1)
-ax.text(1050, 0.12, 'Degrading', ha='center', va='center',
-        color=ORANGE, fontsize=12, fontweight='bold', alpha=0.8)
-
-ax.axvspan(1350, 2400, ymin=0, ymax=1, alpha=0.04, color=RED, zorder=1)
-ax.text(1850, 0.12, 'Unreliable for\nEngineering', ha='center', va='center',
-        color=RED, fontsize=11, fontweight='bold', alpha=0.8, linespacing=1.3)
-
-# Horizontal reference: 50% coherence
-y_50 = 0.50
-ax.axhline(y=y_50, color=DIM, linewidth=1, linestyle=':', alpha=0.5)
-ax.text(2380, y_50 + 0.03, '50%% coherence', ha='right', va='bottom', color=DIM, fontsize=9)
-
-# Key data point: SiQL module
-ax.scatter([1266], [0.48], s=200, color=GOLD, edgecolors=WHITE, linewidth=2, zorder=6)
-ax.annotate('SiQL module\n(1,266 lines — one-shot,\ncoherent, at the limit)',
-            xy=(1266, 0.48), xytext=(1600, 0.65),
-            color=GOLD, fontsize=10,
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD, alpha=0.9),
-            linespacing=1.3)
-
-ax.set_xlim(-50, 2500)
-ax.set_ylim(0.0, 1.02)
-
-save(fig, 'llm2_03_coherence_degradation.png')
-
-
-# ================================================================
-# FIG 4: TRAINING WEIGHT GRAVITY VS CONTEXT STEERING
-# Type: Running/Convergence (Type 1)
-# Shows: Two probability distributions overlaid — the broad
-#        training-weight default and the narrowed post-calibration
-#        distribution. The calibrated distribution is tighter and
-#        shifted toward the engineer's target.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'Effect of Calibration on Output Distribution',
-         xlabel='Solution Space (generic ← → system-specific)',
-         ylabel='Probability Density')
-
-x = np.linspace(-4, 6, 500)
-
-# Training weight distribution: broad, centered at 0 (generic median)
-training_dist = 0.35 * np.exp(-0.5 * (x / 1.4) ** 2)
-
-# Calibrated distribution: narrow, shifted toward system-specific (center at 2.5)
-calibrated_dist = 0.75 * np.exp(-0.5 * ((x - 2.5) / 0.6) ** 2)
-
-# Fill under curves
-ax.fill_between(x, training_dist, alpha=0.12, color=BLUE, zorder=2)
-ax.plot(x, training_dist, color=BLUE, linewidth=2.5, label='Uncalibrated (training weights)', zorder=3)
-
-ax.fill_between(x, calibrated_dist, alpha=0.15, color=GOLD, zorder=4)
-ax.plot(x, calibrated_dist, color=GOLD, linewidth=2.5, label='After Calibration (context-steered)', zorder=5)
-
-# Mark the engineer's target
-ax.axvline(x=2.5, color=GREEN, linewidth=1.5, linestyle='--', alpha=0.7, zorder=6)
-ax.text(2.65, 0.72, "Engineer's\nsystem target", ha='left', va='top',
-        color=GREEN, fontsize=10, fontweight='bold', linespacing=1.3)
-
-# Mark the training median
-ax.axvline(x=0.0, color=BLUE, linewidth=1.5, linestyle=':', alpha=0.5, zorder=3)
-ax.text(-0.15, 0.32, 'Training\nmedian\n(tutorial code)', ha='right', va='top',
-        color=BLUE, fontsize=10, linespacing=1.3)
-
-# Annotation: the gap
-ax.annotate('', xy=(2.4, 0.04), xytext=(0.1, 0.04),
-            arrowprops=dict(arrowstyle='<->', color=SILVER, lw=1.5))
-ax.text(1.25, 0.06, 'Calibration closes this gap', ha='center', va='bottom',
-        color=SILVER, fontsize=10)
-
-# Leakage annotation
-ax.annotate('Training priors\nstill leak through',
-            xy=(-0.5, 0.08), xytext=(-2.5, 0.20),
-            color=MAG, fontsize=9,
-            arrowprops=dict(arrowstyle='->', color=MAG, lw=1.2),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=MAG, alpha=0.8),
-            linespacing=1.3)
-
-ax.set_xlim(-4.5, 6.5)
-ax.set_ylim(0, 0.88)
-ax.set_xticks([])
-
-ax.legend(loc='upper right', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
-
-save(fig, 'llm2_04_calibration_distribution.png')
-
-
-# ================================================================
-# FIG 5: CONSTRAINT VIOLATION PROPAGATION COST
-# Type: Threshold/Region (Type 3)
-# Shows: Two curves — the direct cost of a wrong suggestion
-#        (small, constant) vs. the propagation cost of finding
-#        and fixing constraint violations across a system (grows
-#        with constraint count). Crossover point where "AI help"
-#        becomes "AI damage."
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'When AI Help Becomes AI Damage',
-         xlabel='System Constraint Count',
-         ylabel='Cost (engineer-hours)')
-
-constraints = np.linspace(1, 500, 500)
-
-# Direct cost: time to write the code yourself — modest, grows slowly
-direct_cost = 2.0 + 0.008 * constraints
-
-# AI-assisted cost with propagation: starts low (AI saves time on small systems)
-# but propagation cost grows superlinearly with constraint count
-ai_base_cost = 0.5 + 0.002 * constraints  # AI typing saves time
-propagation_cost = 0.00003 * constraints ** 2  # finding violations grows quadratically
-ai_total_cost = ai_base_cost + propagation_cost
-
-# Find crossover
-cross_idx = np.argmin(np.abs(direct_cost - ai_total_cost))
-cross_x = constraints[cross_idx]
-cross_y = direct_cost[cross_idx]
-
-ax.plot(constraints, direct_cost, color=CYAN, linewidth=2.5,
-        label='Write it yourself', zorder=5)
-ax.plot(constraints, ai_total_cost, color=MAG, linewidth=2.5,
-        label='AI-assisted (including violation repair)', zorder=5)
-
-# Shaded regions
-ax.axvspan(1, cross_x, alpha=0.06, color=GREEN, zorder=1)
-ax.text(cross_x * 0.4, 1.0, 'Net Benefit\nfrom AI', ha='center', va='center',
-        color=GREEN, fontsize=11, fontweight='bold', linespacing=1.3)
-
-ax.axvspan(cross_x, 500, alpha=0.05, color=RED, zorder=1)
-ax.text(cross_x + (500 - cross_x) * 0.5, 1.0, 'Net Damage\nfrom AI', ha='center', va='center',
-        color=RED, fontsize=11, fontweight='bold', linespacing=1.3)
-
-# Crossover point
-ax.scatter([cross_x], [cross_y], s=250, color=ORANGE, edgecolors=WHITE, linewidth=2, zorder=7)
-ax.annotate('Crossover: ~%d constraints\n"Some help" becomes\nactive destruction' % int(cross_x),
-            xy=(cross_x, cross_y), xytext=(cross_x + 80, cross_y + 2.5),
+# Gap annotation
+ax.annotate('Expansion gap:\nmodel produces 2-5x\nwhat was requested',
+            xy=(7, (actual[6] + requested[6]) / 2.0),
+            xytext=(3.5, 900),
             color=ORANGE, fontsize=10, fontweight='bold',
             arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.5),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=ORANGE, alpha=0.9),
-            linespacing=1.3)
+            bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=ORANGE, alpha=0.9),
+            linespacing=1.4)
 
-# Reference landmarks
-for cx, label in [(15, 'Tutorial\nproject'), (100, 'Moderate\nsystem'), (450, 'Game\nengine')]:
-    ax.axvline(x=cx, color=DIM, linewidth=1, linestyle=':', alpha=0.4)
-    ylim_top = ax.get_ylim()[1]
-    ax.text(cx, ylim_top * 0.92, label, ha='center', va='top', color=DIM, fontsize=8,
-            linespacing=1.3)
+# Context growth note
+ax.text(8.5, 550, 'Context grows with\neach prompt, pushing\nmodel toward longer\noutput', ha='center',
+        va='center', color=SILVER, fontsize=9, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.85))
 
-ax.set_xlim(-10, 520)
-y_max = max(np.max(direct_cost), np.max(ai_total_cost)) * 1.1
-ax.set_ylim(0, y_max)
+ax.set_xlim(0.3, 11.5)
+ax.set_ylim(0, 1400)
+ax.set_xticks(prompts)
 
 ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
 
-save(fig, 'llm2_05_constraint_violation_cost.png')
+save(fig, 'llm3_03_expansion_bias.png')
 
 
 # ================================================================
-# FIG 6: TECHNICAL DEBT ACCUMULATION (SCISSORS)
+# FIG 4: JOURNEY VS DESTINATION — UNDERSTANDING ACCUMULATION
 # Type: Running/Convergence (Type 1)
-# Shows: Two diverging curves over time — code volume rising
-#        steeply, code quality/maintainability declining.
-#        The growing gap between them IS the technical debt.
-#        Industry data points annotated.
+# Shows: Two processes producing the same code. Hand-coding:
+#        code completion and understanding rise together.
+#        LLM generation: code completion jumps instantly,
+#        understanding starts near zero, rises slowly through
+#        examination. The gap between understanding curves is
+#        the comprehension cost.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'The AI Scissors: Volume vs. Quality Over Time',
-         xlabel='Months After AI Tool Adoption',
-         ylabel='Index (baseline = 100 at adoption)')
+setup_ax(ax, 'Journey vs. Destination: Where Understanding Comes From',
+         xlabel='Time Invested',
+         ylabel='Completion / Understanding (%%)')
 
-months = np.linspace(0, 24, 200)
+t = np.linspace(0, 10, 200)
 
-# Code volume: grows steeply with AI assistance
-volume = 100 + 55 * (1 - np.exp(-months / 4.0)) * (1 + months / 20.0)
+# Hand-coding: both rise together, roughly linearly with slight curve
+hand_code = 100 * (1 - np.exp(-t / 4.0))
+hand_understand = 95 * (1 - np.exp(-t / 4.2))  # slightly behind, nearly parallel
 
-# Code quality: declines as unreviewed AI code accumulates
-quality = 100 - 8 * months ** 0.7
+# LLM generation: code completion jumps at t=0.5, understanding lags
+llm_code = np.where(t < 0.5, t * 20, np.minimum(100, 95 + t * 0.5))
+llm_understand = np.where(t < 0.5, 0, 80 * (1 - np.exp(-(t - 0.5) / 5.0)))
 
-# Ensure quality doesn't go below 25
-quality = np.maximum(quality, 25)
+# Hand-coding curves
+ax.plot(t, hand_code, color=GREEN, linewidth=2.5, label='Hand-coded: code completion', zorder=5)
+ax.plot(t, hand_understand, color=GREEN, linewidth=2.5, linestyle='--',
+        label='Hand-coded: understanding', zorder=5)
 
-ax.plot(months, volume, color=CYAN, linewidth=2.5, label='Code Volume (output rate)', zorder=5)
-ax.plot(months, quality, color=MAG, linewidth=2.5, label='Code Quality (maintainability)', zorder=5)
+# LLM curves
+ax.plot(t, llm_code, color=CYAN, linewidth=2.5, label='LLM: code completion', zorder=5)
+ax.plot(t, llm_understand, color=CYAN, linewidth=2.5, linestyle='--',
+        label='LLM: understanding', zorder=5)
 
-# Fill the gap (technical debt)
-ax.fill_between(months, quality, volume, alpha=0.07, color=RED, zorder=2)
+# Fill the comprehension gap for LLM
+ax.fill_between(t, llm_understand, llm_code, alpha=0.06, color=RED, zorder=2)
 
-# Label the gap
-ax.annotate('Growing\nTechnical Debt',
-            xy=(16, (volume[133] + quality[133]) / 2.0),
-            xytext=(18.5, 120),
-            color=RED, fontsize=12, fontweight='bold',
+# Annotations
+# The instant jump
+ax.annotate('Code appears\ninstantly',
+            xy=(0.5, 95), xytext=(1.8, 105),
+            color=CYAN, fontsize=9,
+            arrowprops=dict(arrowstyle='->', color=CYAN, lw=1.3),
+            bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=CYAN, alpha=0.85),
+            linespacing=1.4)
+
+# The understanding gap
+ax.annotate('Comprehension\ncost: the gap\nyou must close\nby examination',
+            xy=(5, (llm_code[100] + llm_understand[100]) / 2.0),
+            xytext=(6.5, 35),
+            color=RED, fontsize=10, fontweight='bold',
             arrowprops=dict(arrowstyle='->', color=RED, lw=1.5),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=RED, alpha=0.9),
-            linespacing=1.3)
+            bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=RED, alpha=0.9),
+            linespacing=1.4)
 
-# Industry data points
-data_points = [
-    (6, 135, '+30-55%% output\n(McKinsey)', CYAN, 'right'),
-    (6, 65, '+30-41%% debt\nin 6 months', MAG, 'right'),
-    (12, 55, '1.7x more issues\nin AI-assisted PRs', RED, 'left'),
-    (24, 40, '4x maintenance cost\nby year 2', ORANGE, 'left'),
+# Hand-coding note
+ax.text(7.5, 80, 'Hand-coding:\nunderstanding is\na free byproduct\nof the journey',
+        ha='center', va='center', color=GREEN, fontsize=9, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GREEN, alpha=0.85))
+
+ax.set_xlim(-0.3, 10.8)
+ax.set_ylim(-5, 115)
+
+ax.legend(loc='lower right', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9,
+          ncol=2)
+
+save(fig, 'llm3_04_journey_vs_destination.png')
+
+
+# ================================================================
+# FIG 5: SPLASH DAMAGE VS DISTANCE GAINED
+# Type: Threshold/Region (Type 3)
+# Shows: Scatter of task types plotted by distance gained (useful
+#        output) vs comprehension cost (hours). Break-even line
+#        where comprehension cost equals hand-coding time. Points
+#        above are net positive, below are net negative.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+setup_ax(ax, 'Splash Damage vs. Distance Gained',
+         xlabel='Useful Output (lines of working code)',
+         ylabel='Total Cost Including Comprehension (hours)')
+
+# Break-even line: hand-coding rate ~40 lines/hour
+hand_rate = 40.0
+x_range = np.linspace(50, 1200, 200)
+breakeven = x_range / hand_rate
+
+ax.plot(x_range, breakeven, color=ORANGE, linewidth=2, linestyle='--', zorder=4,
+        label='Break-even: hand-coding speed')
+
+# Task clusters
+tasks = [
+    # (output_lines, total_hours, label, color, marker)
+    (100, 0.3, 'Boilerplate\nstruct', GREEN, 'o'),
+    (150, 0.5, 'Utility\nfunction', GREEN, 'o'),
+    (300, 1.5, 'Data\ntransform', GREEN, 'o'),
+    (400, 3.0, 'API\nendpoint', CYAN, 's'),
+    (500, 5.0, 'Module\n(known pattern)', CYAN, 's'),
+    (600, 7.0, 'New routine\n(moderate)', CYAN, 's'),
+    (800, 14.0, 'Complex\nmodule', MAG, 'D'),
+    (1000, 22.0, 'System\nintegration', MAG, 'D'),
+    (1200, 35.0, 'Multi-concern\nmodule', RED, 'D'),
+    (200, 8.0, 'Security-\ncritical', RED, 'D'),
 ]
 
-for dx, dy, label, color, ha_dir in data_points:
-    ax.scatter([dx], [dy], s=180, color=color, edgecolors=WHITE, linewidth=1.5, zorder=6)
-    x_offset = -30 if ha_dir == 'right' else 30
-    ax.annotate(label, xy=(dx, dy),
-                xytext=(dx + (2.0 if ha_dir == 'left' else -2.0), dy + 8),
-                color=color, fontsize=9,
-                arrowprops=dict(arrowstyle='->', color=color, lw=1.2),
-                bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=color, alpha=0.8),
-                linespacing=1.3)
+for out_lines, hours, label, color, marker in tasks:
+    ax.scatter([out_lines], [hours], s=200, color=color, edgecolors=WHITE,
+              linewidth=1.5, marker=marker, zorder=6)
+    # Offset labels to avoid overlap
+    x_off = 35
+    y_off = 0.8
+    if out_lines >= 800:
+        x_off = -45
+        y_off = 1.2
+    if label.startswith('Security'):
+        x_off = 45
+        y_off = -0.5
+    ax.text(out_lines + x_off, hours + y_off, label, ha='left', va='bottom',
+            color=color, fontsize=8, linespacing=1.3,
+            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=color, alpha=0.75))
 
-# 39% churn annotation
-ax.text(20, 165, '39%% increase in code churn\n(GitClear, 100M+ lines analyzed)',
-        ha='center', va='center', color=SILVER, fontsize=9,
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, alpha=0.9),
-        linespacing=1.3)
+# Shade regions
+ax.fill_between(x_range, 0, breakeven, alpha=0.05, color=GREEN, zorder=1)
+ax.fill_between(x_range, breakeven, 40, alpha=0.04, color=RED, zorder=1)
 
-# Baseline
-ax.axhline(y=100, color=DIM, linewidth=1, linestyle=':', alpha=0.5)
-ax.text(0.3, 102, 'Baseline at adoption', color=DIM, fontsize=8)
+ax.text(900, 5, 'Net Positive:\ngeneration faster\nthan hand-coding', ha='center', va='center',
+        color=GREEN, fontsize=10, fontweight='bold', linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GREEN, alpha=0.85))
 
-ax.set_xlim(-0.5, 25)
-ax.set_ylim(20, 185)
+ax.text(350, 28, 'Net Negative:\ncomprehension cost\nexceeds hand-coding time', ha='center', va='center',
+        color=RED, fontsize=10, fontweight='bold', linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=RED, alpha=0.85))
+
+ax.set_xlim(0, 1350)
+ax.set_ylim(0, 40)
+
+ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
+
+save(fig, 'llm3_05_splash_damage_distance.png')
+
+
+# ================================================================
+# FIG 6: ACCUMULATION — COHERENCE DECAY ACROSS MODULE COUNT
+# Type: Running/Convergence (Type 1)
+# Shows: Cross-module coherence on Y vs module count on X.
+#        Hand-coded: slight gradual decline. LLM-generated:
+#        steep decline as each module is a separate ballistic
+#        landing. Curves diverge with scale.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+setup_ax(ax, 'Cross-Module Coherence: Hand-Coded vs. LLM-Generated',
+         xlabel='Number of Modules in System',
+         ylabel='Cross-Module Coherence (%%)')
+
+modules = np.linspace(1, 500, 500)
+
+# Hand-coded: slow, gentle decline — one mind maintaining consistency
+hand_coherence = 95 - 12 * np.log10(modules + 1)
+
+# LLM-generated: steeper decline — each module is independent landing
+llm_coherence = 95 - 35 * np.log10(modules + 1)
+llm_coherence = np.maximum(llm_coherence, 15)
+
+ax.plot(modules, hand_coherence, color=GREEN, linewidth=2.5,
+        label='Hand-coded (single engineer)', zorder=5)
+ax.plot(modules, llm_coherence, color=MAG, linewidth=2.5,
+        label='LLM-generated (separate sessions)', zorder=5)
+
+# Fill the divergence
+ax.fill_between(modules, llm_coherence, hand_coherence, alpha=0.06, color=RED, zorder=2)
+
+# Landmark markers
+landmarks = [
+    (10, 'Tutorial\nproject', CYAN),
+    (50, 'Small\nsystem', BLUE),
+    (150, 'Medium\nsystem', ORANGE),
+    (450, 'Production\ngame engine', GOLD),
+]
+
+for mod_count, label, color in landmarks:
+    idx = int(mod_count) - 1
+    hand_y = hand_coherence[idx]
+    llm_y = llm_coherence[idx]
+
+    ax.axvline(x=mod_count, color=DIM, linewidth=0.8, linestyle=':', alpha=0.4, zorder=3)
+
+    ax.scatter([mod_count], [hand_y], s=150, color=GREEN, edgecolors=WHITE,
+              linewidth=1.5, zorder=6)
+    ax.scatter([mod_count], [llm_y], s=150, color=MAG, edgecolors=WHITE,
+              linewidth=1.5, zorder=6)
+
+    gap = hand_y - llm_y
+    ax.text(mod_count, hand_y + 5, '%s\ngap: %.0f%%' % (label, gap),
+            ha='center', va='bottom', color=color, fontsize=8, linespacing=1.3,
+            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=color, alpha=0.8))
+
+# Divergence annotation
+ax.text(300, 55, 'Each LLM-generated module is a\nseparate ballistic landing.\nNo shared decision-making\nproduces no shared coherence.',
+        ha='center', va='center', color=SILVER, fontsize=9, linespacing=1.4,
+        bbox=dict(boxstyle='round,pad=0.6', facecolor=BG, edgecolor=DIM, alpha=0.9))
+
+ax.set_xlim(-15, 530)
+ax.set_ylim(10, 105)
 
 ax.legend(loc='lower left', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
 
-save(fig, 'llm2_06_technical_debt_scissors.png')
+save(fig, 'llm3_06_accumulation_coherence.png')
 
 
 # ================================================================
-# FIG 7: CONTEXT WINDOW COMPOSITION
-# Type: Progression/Sequence (Type 7)
-# Shows: How the context window fills during a session — system
-#        prompt, loaded docs, probe/correction exchanges, and
-#        remaining generation budget. Visualized as a horizontal
-#        stacked bar showing proportional consumption.
+# FIG 7: DECISION FRAMEWORK — FIRE VS WALK REGIONS
+# Type: Threshold/Region (Type 3)
+# Shows: 2D plot with task complexity on X and constraint density
+#        on Y. Four quadrants: fire (green), fire with caution
+#        (yellow), evaluate (orange), walk (red). Task type
+#        labels placed in each region.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
-setup_ax(ax, 'Context Window Budget: Calibration vs. Generation Capacity', ylabel='')
+fig, ax = plt.subplots(figsize=(16, 12), facecolor=BG)
+setup_ax(ax, 'Decision Framework: When to Fire and When to Walk',
+         xlabel='Task Complexity',
+         ylabel='System Constraint Density')
 
-# Three scenarios as horizontal stacked bars
-scenarios = ['No Calibration', 'Light Calibration', 'Full Calibration']
-y_positions = [2.4, 1.4, 0.4]
-bar_h = 0.55
+# Quadrant boundaries
+mid_x = 5.0
+mid_y = 5.0
 
-# Components as fractions of total context window
-# [system_prompt, loaded_docs, probes, corrections, generation_remaining]
-components = [
-    [0.05, 0.00, 0.00, 0.00, 0.95],   # No calibration
-    [0.05, 0.15, 0.10, 0.05, 0.65],   # Light calibration
-    [0.05, 0.25, 0.15, 0.10, 0.45],   # Full calibration
+# Shade quadrants
+# Low complexity, low constraint = FIRE
+ax.fill([0, mid_x, mid_x, 0], [0, 0, mid_y, mid_y],
+        color=GREEN, alpha=0.08, zorder=1)
+
+# Low complexity, high constraint = FIRE WITH CAUTION
+ax.fill([0, mid_x, mid_x, 0], [mid_y, mid_y, 10, 10],
+        color=ORANGE, alpha=0.06, zorder=1)
+
+# High complexity, low constraint = EVALUATE
+ax.fill([mid_x, 10, 10, mid_x], [0, 0, mid_y, mid_y],
+        color=CYAN, alpha=0.06, zorder=1)
+
+# High complexity, high constraint = WALK
+ax.fill([mid_x, 10, 10, mid_x], [mid_y, mid_y, 10, 10],
+        color=RED, alpha=0.06, zorder=1)
+
+# Boundary lines
+ax.axvline(x=mid_x, color=DIM, linewidth=1.5, linestyle='-', alpha=0.4, zorder=3)
+ax.axhline(y=mid_y, color=DIM, linewidth=1.5, linestyle='-', alpha=0.4, zorder=3)
+
+# Quadrant labels with large text
+quad_labels = [
+    (2.5, 2.5, 'FIRE', GREEN, 18),
+    (2.5, 7.5, 'FIRE WITH\nCAUTION', ORANGE, 14),
+    (7.5, 2.5, 'EVALUATE\nCASE BY CASE', CYAN, 13),
+    (7.5, 7.5, 'WALK', RED, 18),
 ]
 
-colors_bar = [DIM, BLUE, CYAN, MAG, GREEN]
-labels_bar = ['System Prompt', 'Loaded Docs', 'Probe Exchanges', 'Corrections', 'Generation Budget']
+for qx, qy, qlabel, qcolor, qsize in quad_labels:
+    ax.text(qx, qy, qlabel, ha='center', va='center', color=qcolor,
+            fontsize=qsize, fontweight='bold', alpha=0.6, linespacing=1.4)
 
-for idx in range(3):
-    left = 0.0
-    for comp_idx in range(5):
-        width = components[idx][comp_idx]
-        if width > 0:
-            bar_color = colors_bar[comp_idx]
-            alpha_val = 0.7 if comp_idx < 4 else 0.5
-            ax.barh(y_positions[idx], width, left=left, height=bar_h,
-                    color=bar_color, alpha=alpha_val, edgecolor=WHITE, linewidth=0.5, zorder=3)
-            if width >= 0.08:
-                ax.text(left + width / 2.0, y_positions[idx], '%d%%' % int(width * 100),
-                        ha='center', va='center', color=WHITE, fontsize=9, fontweight='bold')
-            left += width
-
-    # Scenario label
-    ax.text(-0.03, y_positions[idx], scenarios[idx], ha='right', va='center',
-            color=SILVER, fontsize=11, fontweight='bold')
-
-# Quality annotations on the right
-quality_notes = [
-    (2.4, 'Output: training-weight median\n(uncorrected, generic)', RED),
-    (1.4, 'Output: partially aligned\n(major constraints loaded)', ORANGE),
-    (0.4, 'Output: calibrated to system\n(verified representations)', GREEN),
+# Task type examples as scatter points
+task_examples = [
+    (1.5, 1.0, 'Boilerplate\nstruct', GREEN),
+    (2.0, 2.5, 'Utility\nfunction', GREEN),
+    (3.0, 1.5, 'Data\ntransform', GREEN),
+    (3.5, 3.5, 'Known-pattern\nmodule', GREEN),
+    (1.5, 6.5, 'Constrained\nboilerplate', ORANGE),
+    (3.0, 7.5, 'Convention-heavy\nmodule', ORANGE),
+    (4.0, 8.5, 'Security\nboilerplate', ORANGE),
+    (6.5, 2.0, 'Novel\nalgorithm', CYAN),
+    (7.5, 3.0, 'Complex\nbusiness logic', CYAN),
+    (8.5, 1.5, 'Performance-\ncritical path', CYAN),
+    (6.5, 6.5, 'Architectural\ncode', RED),
+    (7.5, 8.0, 'Cross-module\nintegration', RED),
+    (8.5, 7.5, 'Constraint-surface\ndesign', RED),
+    (9.0, 9.0, 'System-wide\nrefactor', RED),
 ]
 
-for y, note, color in quality_notes:
-    ax.text(1.03, y, note, ha='left', va='center', color=color, fontsize=9,
-            linespacing=1.3)
+for tx, ty, tlabel, tcolor in task_examples:
+    ax.scatter([tx], [ty], s=120, color=tcolor, edgecolors=WHITE,
+              linewidth=1.5, zorder=6)
+    # Offset labels
+    x_off = 0.35
+    y_off = 0.3
+    ha_val = 'left'
+    if tx > 8:
+        x_off = -0.35
+        ha_val = 'right'
+    ax.text(tx + x_off, ty + y_off, tlabel, ha=ha_val, va='bottom',
+            color=tcolor, fontsize=7, linespacing=1.3,
+            bbox=dict(boxstyle='round,pad=0.35', facecolor=BG, edgecolor=tcolor, alpha=0.7))
 
-# Legend
-legend_patches = []
-for i in range(5):
-    legend_patches.append(mpatches.Patch(facecolor=colors_bar[i],
-                                          alpha=0.7 if i < 4 else 0.5,
-                                          edgecolor=WHITE, linewidth=0.5,
-                                          label=labels_bar[i]))
-ax.legend(handles=legend_patches, loc='upper right',
-          facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9,
-          ncol=3)
+# Axis labels at extremes
+ax.text(0.3, -0.7, 'Low', ha='center', va='center', color=DIM, fontsize=9)
+ax.text(9.7, -0.7, 'High', ha='center', va='center', color=DIM, fontsize=9)
+ax.text(-0.8, 0.3, 'Low', ha='center', va='center', color=DIM, fontsize=9)
+ax.text(-0.8, 9.7, 'High', ha='center', va='center', color=DIM, fontsize=9)
 
-# Key insight
-ax.text(0.5, 3.25,
-        'Calibration consumes context budget but improves output quality.\n'
-        'The tradeoff: less generation capacity, but what generates is aligned to the system.',
-        ha='center', va='center', color=GOLD, fontsize=10,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, alpha=0.9),
-        linespacing=1.4)
-
-ax.set_xlim(-0.35, 1.55)
-ax.set_ylim(-0.15, 3.65)
-ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
-ax.set_xticklabels(['0%', '25%', '50%', '75%', '100%'], color=DIM, fontsize=9)
+ax.set_xlim(-1.2, 10.5)
+ax.set_ylim(-1.2, 10.5)
+ax.set_xticks([])
 ax.set_yticks([])
-ax.set_xlabel('Context Window Usage', color=SILVER, fontsize=11)
 
-save(fig, 'llm2_07_context_window_composition.png')
+save(fig, 'llm3_07_decision_framework.png')
 
 
 # ================================================================
-# FIG 8: INTERFACE CORRECTION CHANNEL COMPARISON
+# FIG 8: HONEST MULTIPLIER BY TASK CATEGORY
 # Type: Comparison Bar Chart (Type 6)
-# Shows: Four interfaces with bars showing correction opportunities
-#        per generation cycle. Chat is the only bar with meaningful
-#        height. Visual elimination: one bar standing.
+# Shows: Three task categories with honest multiplier ranges.
+#        Small/isolated: 2-5x. Medium/constrained: 1-2x.
+#        Large/complex: 0.5-1x. Break-even at 1x marked.
+#        Industry "100x" shown at absurd scale for reference.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-setup_ax(ax, 'Correction Opportunities Per Generation Cycle by Interface',
-         xlabel='', ylabel='Correction Opportunities')
+setup_ax(ax, 'The Honest Multiplier by Task Category',
+         xlabel='', ylabel='Productivity Multiplier')
 
-interfaces = ['Tab\nComplete', 'Agentic\n(Autonomous)', 'Multi-Agent\nOrchestration', 'Chat\n(Interactive)']
-opportunities = [0.1, 0.3, 0.1, 8.0]  # Chat gets ~8 correction points per cycle
-bar_colors = [RED, RED, RED, GREEN]
-bar_x = np.arange(4)
+categories = ['Small, Isolated\nDisposable', 'Medium, Constrained\nMaintained', 'Large, Complex\nLong-lived']
+x_pos = np.array([0, 1.3, 2.6])
+bar_width = 0.7
 
-bars = ax.bar(bar_x, opportunities, width=0.55, color=bar_colors, alpha=0.7,
-              edgecolor=WHITE, linewidth=1.5, zorder=4)
+# Multiplier ranges (show as bars from low to high of range)
+ranges_low = [2.0, 1.0, 0.5]
+ranges_high = [5.0, 2.0, 1.0]
+ranges_mid = [(l + h) / 2.0 for l, h in zip(ranges_low, ranges_high)]
+bar_colors = [GREEN, CYAN, RED]
 
-# Value labels on bars
-for i, (bx, val) in enumerate(zip(bar_x, opportunities)):
-    label_text = '%.0f' % val if val >= 1 else ('~0' if val <= 0.1 else '~0')
-    y_pos = val + 0.25
-    ax.text(bx, y_pos, label_text, ha='center', va='bottom',
-            color=bar_colors[i], fontsize=12, fontweight='bold')
+for i in range(3):
+    # Bar from low to high
+    bar_bottom = ranges_low[i]
+    bar_h = ranges_high[i] - ranges_low[i]
+    ax.bar(x_pos[i], bar_h, bottom=bar_bottom, width=bar_width,
+           color=bar_colors[i], alpha=0.65, edgecolor=WHITE, linewidth=1.5, zorder=4)
 
-# Annotations for why each is low/high
-annotations = [
-    (0, 'Accept or reject.\nNo diagnosis.\nNo correction.', RED),
-    (1, 'Agent iterates against\ntest output, not\nconstraint surface.', RED),
-    (2, 'Same model, different\npersona prompts.\nNo correction channel.', RED),
-    (3, 'Observe. Diagnose.\nCorrect. Verify.\nThen generate.', GREEN),
-]
+    # Range label on bar
+    ax.text(x_pos[i], ranges_high[i] + 0.25, '%.1fx - %.1fx' % (ranges_low[i], ranges_high[i]),
+            ha='center', va='bottom', color=bar_colors[i], fontsize=11, fontweight='bold')
 
-for bx, text, color in annotations:
-    y_base = opportunities[bx]
-    ax.text(bx, y_base + 1.2, text, ha='center', va='bottom',
-            color=color, fontsize=9, linespacing=1.4,
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=color, alpha=0.8))
+    # Midpoint marker
+    ax.scatter([x_pos[i]], [ranges_mid[i]], s=120, color=WHITE, edgecolors=bar_colors[i],
+              linewidth=2, zorder=6)
 
-# Key insight
-ax.text(1.5, 9.0,
-        'The correction channel is the feature.\n'
-        'Only chat provides it.',
-        ha='center', va='center', color=GOLD, fontsize=12, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, alpha=0.9),
-        linespacing=1.4)
+# Break-even line
+ax.axhline(y=1.0, color=ORANGE, linewidth=2, linestyle='--', alpha=0.7, zorder=3)
+ax.text(3.2, 1.08, 'Break-even (1x)', ha='left', va='bottom',
+        color=ORANGE, fontsize=10, fontweight='bold')
 
-ax.set_xticks(bar_x)
-ax.set_xticklabels(interfaces, color=SILVER, fontsize=10)
-ax.set_xlim(-0.6, 3.6)
-ax.set_ylim(0, 10.5)
+# Industry claim reference
+ax.annotate('Industry claim:\n"100x"',
+            xy=(1.3, 7.0), xytext=(2.8, 6.5),
+            color=DIM, fontsize=9,
+            arrowprops=dict(arrowstyle='->', color=DIM, lw=1.2),
+            bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.8),
+            linespacing=1.4)
+ax.text(1.3, 7.3, '100x would be here\n(off chart by 13x)', ha='center', va='bottom',
+        color=DIM, fontsize=8, linespacing=1.3)
 
-save(fig, 'llm2_08_correction_channel_comparison.png')
+# Below break-even annotation
+ax.text(2.6, 0.35, 'Can go negative:\ncomprehension cost\nexceeds generation\nsavings',
+        ha='center', va='center', color=RED, fontsize=8, linespacing=1.3,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=RED, alpha=0.8))
+
+# Most credible self-report
+ax.axhline(y=2.0, color=GOLD, linewidth=1, linestyle=':', alpha=0.4, zorder=3)
+ax.text(3.2, 2.08, 'Most credible self-report:\n"about 2x" (selective use)',
+        ha='left', va='bottom', color=GOLD, fontsize=9, linespacing=1.3)
+
+ax.set_xticks(x_pos)
+ax.set_xticklabels(categories, color=SILVER, fontsize=10)
+ax.set_xlim(-0.6, 4.0)
+ax.set_ylim(0, 7.8)
+
+save(fig, 'llm3_08_honest_multiplier.png')
 
 
 # ================================================================
 # SUMMARY
 # ================================================================
 
-print("\n=== HOWL LLM-2 Diagrams Complete ===")
+print("\n=== HOWL LLM-3 Diagrams Complete ===")
 filenames = [
-    'llm2_01_system_scale_landscape.png',
-    'llm2_02_ceiling_stability.png',
-    'llm2_03_coherence_degradation.png',
-    'llm2_04_calibration_distribution.png',
-    'llm2_05_constraint_violation_cost.png',
-    'llm2_06_technical_debt_scissors.png',
-    'llm2_07_context_window_composition.png',
-    'llm2_08_correction_channel_comparison.png',
+    'llm3_01_ballistic_cone.png',
+    'llm3_02_speed_range.png',
+    'llm3_03_expansion_bias.png',
+    'llm3_04_journey_vs_destination.png',
+    'llm3_05_splash_damage_distance.png',
+    'llm3_06_accumulation_coherence.png',
+    'llm3_07_decision_framework.png',
+    'llm3_08_honest_multiplier.png',
 ]
 for i, f in enumerate(filenames):
     print("  Fig %d: %s" % (i + 1, f))

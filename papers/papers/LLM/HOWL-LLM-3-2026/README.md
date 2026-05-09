@@ -1,4 +1,4 @@
-# Calibrate, Extract, Refine
+# Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-This paper documents a method for using LLM chat sessions to produce usable engineering output. The method treats each chat session as a finite instrument that must be calibrated through diagnostic probing before use, used for bounded one-shot extraction within the model's coherence ceiling, and left behind while the engineer refines the output by hand. The method is grounded in architectural properties of transformer models — the absence of constraint checking, the degradation of attention across context length, the gravitational pull toward training-weight medians — and shaped by fifteen months of empirical observation that the coherence ceiling for real code generation has not moved across model generations. Chat is the only LLM interface that provides a correction channel: the ability to observe output, diagnose session-specific misalignment, and correct it before further generation. All other interfaces — tab completion, agentic, autonomous — remove this channel and leave the engineer with output that trends toward generic patterns that violate system-specific constraints. The paper is not a claim that this method is universally superior. It is a claim that for engineers working on systems that exceed the model's coherence ceiling, the correction channel is the feature that makes AI usable at all, and this method is how to use it.
+LLM code generation is a ballistic event, not a steerable process. The user aims, the model fires, and the output lands somewhere in a cone around the target at a distance the user does not control. Between prompt and completion, there is no steering. The generation has a minimum floor of roughly 400 lines and a ceiling of roughly 1,200 lines, with no comfortable low speed where the user can inspect and navigate as the output forms. The consequence is that LLM-produced code is a destination without a journey — the user possesses working code but not the micro-decision experience that constitutes understanding. This paper describes the ballistic model of LLM generation, the speed and directional constraints that follow from it, the comprehension cost paid after every landing, and the accumulation problem when hundreds of ballistic landings produce a codebase no single person fully understands. The paper provides a decision framework for when ballistic generation is worth the cost and when writing code by hand produces better outcomes despite being slower. This is a companion to [@HOWL-LLM-2-2026], which documents the method for using LLMs within their limits, and [@HOWL-INFO-8-2026], which names the category of system that produces these constraints.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-LLM-2-2026,
-  title={ Calibrate, Extract, Refine },
+@article{ HOWL-LLM-3-2026,
+  title={ Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20096290},
-  url = {https://zenodo.org/record/20096290},
-  note={Howland Archive: HOWL-LLM-2-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20096630},
+  url = {https://zenodo.org/record/20096630},
+  note={Howland Archive: HOWL-LLM-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
