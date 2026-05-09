@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Incompatibility by Construction",
+    "registry_id": "HOWL-LLM-4-2026",
+    "series_path": "[@HOWL-LLM-2-2026] \u2192 [@HOWL-LLM-3-2026] \u2192 [@HOWL-LLM-4-2026]",
+    "doi": "10.5281/zenodo.20097126",
+    "abstract": "LLM-assisted software development operates under two success criteria that are incompatible by construction. The model's success criterion is locally coherent output \u2014 code that is syntactically valid, responsive to the current prompt, and consistent with whatever context is loaded this turn. The engineer's success criterion is total system correctness \u2014 a finished product where every component aligns with every other component across all conditions, including conditions no one enumerated. The first is a per-turn local property that the transformer architecture can provide. The second is a continuous global property that requires persistent constraint maintenance the architecture does not have. No sequence of locally successful outputs guarantees the global property, because the global property depends on cross-output consistency that no individual output can ensure. This paper identifies eighteen specific cases where the two criteria diverge, demonstrates why tests, specifications, and agentic workflows each fail to bridge the gap, and establishes that the incompatibility follows from what per-turn generation is \u2014 not from how good it currently is. The incompatibility cannot be fixed with more LLM. It can only be managed by an engineer who knows it exists and scopes their use of the tool accordingly.",
+    "dependencies": [],
+    "raw_content_preview": "# Incompatibility by Construction ## What Cannot Be Fixed With More LLM  **Registry:** [@HOWL-LLM-4-2026]  **DOI:** 10.5281/zenodo.20097126  **Series Path:** [@HOWL-LLM-2-2026] \u2192 [@HOWL-LLM-3-2026] \u2192 ..."
+}
