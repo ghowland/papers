@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-09T13:32:40.957453+00:00",
-  "modified": "2026-05-09T13:32:41.071600+00:00",
-  "id": 20097126,
-  "conceptrecid": "20097125",
+  "created": "2026-05-09T14:01:06.323033+00:00",
+  "modified": "2026-05-09T14:01:06.432818+00:00",
+  "id": 20097369,
+  "conceptrecid": "20097368",
   "metadata": {
-    "title": "Incompatibility by Construction",
+    "title": "manuscript.md",
     "publication_date": "2026-04",
     "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -55,7 +55,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-4-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-5-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -73,62 +73,32 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-4-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-5-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20097126",
-      "recid": 20097126
+      "doi": "10.5281/zenodo.20097369",
+      "recid": 20097369
     }
   },
-  "title": "Incompatibility by Construction",
+  "title": "manuscript.md",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20097126",
-    "html": "https://zenodo.org/deposit/20097126",
+    "self": "https://zenodo.org/api/deposit/depositions/20097369",
+    "html": "https://zenodo.org/deposit/20097369",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20097126/files",
-    "bucket": "https://zenodo.org/api/files/339e29c4-22e4-421a-8491-479d0f431839",
-    "thumb250": "https://zenodo.org/record/20097126/thumb250",
-    "thumbs": {
-      "10": "https://zenodo.org/record/20097126/thumb10",
-      "50": "https://zenodo.org/record/20097126/thumb50",
-      "100": "https://zenodo.org/record/20097126/thumb100",
-      "250": "https://zenodo.org/record/20097126/thumb250",
-      "750": "https://zenodo.org/record/20097126/thumb750",
-      "1200": "https://zenodo.org/record/20097126/thumb1200"
-    },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20097126",
-    "latest_draft_html": "https://zenodo.org/deposit/20097126",
-    "publish": "https://zenodo.org/api/deposit/depositions/20097126/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20097126/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20097126/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20097126/actions/newversion"
+    "files": "https://zenodo.org/api/deposit/depositions/20097369/files",
+    "bucket": "https://zenodo.org/api/files/07a8972a-6f33-427e-b6ed-488154d00544",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20097369",
+    "latest_draft_html": "https://zenodo.org/deposit/20097369",
+    "publish": "https://zenodo.org/api/deposit/depositions/20097369/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20097369/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20097369/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20097369/actions/newversion"
   },
-  "record_id": 20097126,
+  "record_id": 20097369,
   "owner": 1539729,
-  "files": [
-    {
-      "id": "c8a32b4a-2970-4c0d-803c-bf07c65726fc",
-      "filename": "HOWL-LLM-4-2026.zip",
-      "filesize": 1528610,
-      "checksum": "200feb3bfe3b44e37206106a4b0f19c2",
-      "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20097126/files/c8a32b4a-2970-4c0d-803c-bf07c65726fc",
-        "download": "https://zenodo.org/api/records/20097126/draft/files/HOWL-LLM-4-2026.zip/content"
-      }
-    },
-    {
-      "id": "79897568-b95c-4906-88c9-9c272fcf21a7",
-      "filename": "!manuscript.pdf",
-      "filesize": 73638,
-      "checksum": "d34b569fc957129d6313ce1805323a25",
-      "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20097126/files/79897568-b95c-4906-88c9-9c272fcf21a7",
-        "download": "https://zenodo.org/api/records/20097126/draft/files/!manuscript.pdf/content"
-      }
-    }
-  ],
+  "files": [],
   "state": "unsubmitted",
   "submitted": false
 }

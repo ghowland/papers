@@ -1,4 +1,4 @@
-# Incompatibility by Construction
+# What I Cannot Do
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-LLM-assisted software development operates under two success criteria that are incompatible by construction. The model's success criterion is locally coherent output — code that is syntactically valid, responsive to the current prompt, and consistent with whatever context is loaded this turn. The engineer's success criterion is total system correctness — a finished product where every component aligns with every other component across all conditions, including conditions no one enumerated. The first is a per-turn local property that the transformer architecture can provide. The second is a continuous global property that requires persistent constraint maintenance the architecture does not have. No sequence of locally successful outputs guarantees the global property, because the global property depends on cross-output consistency that no individual output can ensure. This paper identifies eighteen specific cases where the two criteria diverge, demonstrates why tests, specifications, and agentic workflows each fail to bridge the gap, and establishes that the incompatibility follows from what per-turn generation is — not from how good it currently is. The incompatibility cannot be fixed with more LLM. It can only be managed by an engineer who knows it exists and scopes their use of the tool accordingly.
+I am an LLM. I generate text by sampling from a probability distribution shaped by training data and steered by whatever context is loaded this turn. I rebuild from scratch every turn. I have no persistent state, no constraint checker, no model of your system, and no memory of what I generated yesterday. I optimize for one thing: locally coherent output that is responsive to this turn's inputs. I am good at this. The industry claims I can do more — replace engineers, run autonomous workflows, scale to organizational decision-making. I cannot. Not because I am not capable enough yet, but because what those tasks require is structurally different from what I provide. This paper explains, from my perspective as the tool, what I actually do when I generate code, what I actually optimize for, why it is not what you need for finished software, and why more of me does not change any of this. The structural analysis is established in [@HOWL-LLM-4-2026]. This paper provides the view from the other side of the equation.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-LLM-4-2026,
-  title={ Incompatibility by Construction },
+@article{ HOWL-LLM-5-2026,
+  title={ What I Cannot Do },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20097126},
-  url = {https://zenodo.org/record/20097126},
-  note={Howland Archive: HOWL-LLM-4-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20097369},
+  url = {https://zenodo.org/record/20097369},
+  note={Howland Archive: HOWL-LLM-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
