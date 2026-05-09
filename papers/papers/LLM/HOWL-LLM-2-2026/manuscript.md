@@ -57,8 +57,6 @@ These properties are architectural. They are not bugs, training gaps, or tempora
 
 ## 3. The Coherence Ceiling
 
-![Fig. 2: Ceiling Stability — benchmark scores rise over 15 months while the coherence ceiling remains flat at ~1,200 lines.](./figures/llm2_02_ceiling_stability.png)
-
 The model has a maximum length of coherent output for real code generation. Beyond this length, the model begins violating its own earlier decisions — using a different naming convention than it established at the top, importing across a boundary it was told not to cross, adopting a pattern from its training data that conflicts with the pattern it was following from context.
 
 The ceiling is approximately 1,200 lines of real code in a single generation pass. This is not a theoretical number. It is an empirical observation from fifteen months of daily use across multiple model generations — Claude Opus 4.5, earlier Sonnet models, and current releases. During that period, context windows grew, benchmark scores improved, and new capabilities were announced. The coherence ceiling did not move.
