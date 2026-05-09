@@ -73,11 +73,7 @@ def generate_zenodo_json(paper, template_str):
     zenodo['keywords'] = [
         f'{prefix} framework',
         'howland archive',
-        'discrete spacetime',
         domain_name.lower(),
-        'zero free parameters',
-        'falsifiable physics',
-        'theoretical derivation'
     ]
     
     # Method
