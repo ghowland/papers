@@ -1,0 +1,74 @@
+{
+  "title": "Incompatibility by Construction",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "LLM-assisted software development operates under two success criteria that are incompatible by construction. The model's success criterion is locally coherent output \u2014 code that is syntactically valid, responsive to the current prompt, and consistent with whatever context is loaded this turn. The engineer's success criterion is total system correctness \u2014 a finished product where every component aligns with every other component across all conditions, including conditions no one enumerated. The first is a per-turn local property that the transformer architecture can provide. The second is a continuous global property that requires persistent constraint maintenance the architecture does not have. No sequence of locally successful outputs guarantees the global property, because the global property depends on cross-output consistency that no individual output can ensure. This paper identifies eighteen specific cases where the two criteria diverge, demonstrates why tests, specifications, and agentic workflows each fail to bridge the gap, and establishes that the incompatibility follows from what per-turn generation is \u2014 not from how good it currently is. The incompatibility cannot be fixed with more LLM. It can only be managed by an engineer who knows it exists and scopes their use of the tool accordingly.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "llm",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-4-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-4-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
