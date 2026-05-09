@@ -1,4 +1,4 @@
-# Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable
+# Riding the Rocket
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,7 +47,7 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-LLM-3-2026,
-  title={ Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable },
+  title={ Riding the Rocket },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},

@@ -70,6 +70,7 @@
 | :--- | :--- | :--- |
 | **[@HOWL-LLM-1-2026](papers/papers/LLM/HOWL-LLM-1-2026/manuscript.md)** | **Integer LLM with Prolog Knowledge Base** | Bidirectional Neural-Symbolic Architecture for Provenanced Generation. |
 | **[@HOWL-LLM-2-2026](papers/papers/LLM/HOWL-LLM-2-2026/manuscript.md)** | **Calibrate, Extract, Refine** | 1-Shot Pseudo-Gold from LLM Chat Sessions. |
+| **[@HOWL-LLM-3-2026](papers/papers/LLM/HOWL-LLM-3-2026/manuscript.md)** | **Riding the Rocket** | Why LLM Generation Is Ballistic, Not Steerable. |
 
 ---
 

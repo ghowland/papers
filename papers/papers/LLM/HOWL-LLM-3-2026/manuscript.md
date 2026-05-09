@@ -1,4 +1,5 @@
-# Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable
+# Riding the Rocket
+## Why LLM Generation Is Ballistic, Not Steerable
 
 **Registry:** [@HOWL-LLM-3-2026]
 

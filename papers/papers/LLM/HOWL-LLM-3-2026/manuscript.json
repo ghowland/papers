@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable",
+    "title": "Riding the Rocket",
     "registry_id": "HOWL-LLM-3-2026",
     "series_path": "[@HOWL-LLM-2-2026] \u2192 [@HOWL-LLM-3-2026]",
     "doi": "10.5281/zenodo.20096630",
     "abstract": "LLM code generation is a ballistic event, not a steerable process. The user aims, the model fires, and the output lands somewhere in a cone around the target at a distance the user does not control. Between prompt and completion, there is no steering. The generation has a minimum floor of roughly 400 lines and a ceiling of roughly 1,200 lines, with no comfortable low speed where the user can inspect and navigate as the output forms. The consequence is that LLM-produced code is a destination without a journey \u2014 the user possesses working code but not the micro-decision experience that constitutes understanding. This paper describes the ballistic model of LLM generation, the speed and directional constraints that follow from it, the comprehension cost paid after every landing, and the accumulation problem when hundreds of ballistic landings produce a codebase no single person fully understands. The paper provides a decision framework for when ballistic generation is worth the cost and when writing code by hand produces better outcomes despite being slower. This is a companion to [@HOWL-LLM-2-2026], which documents the method for using LLMs within their limits, and [@HOWL-INFO-8-2026], which names the category of system that produces these constraints.",
     "dependencies": [],
-    "raw_content_preview": "# Riding the Rocket: Why LLM Generation Is Ballistic, Not Steerable  **Registry:** [@HOWL-LLM-3-2026]  **DOI:** 10.5281/zenodo.20096630  **Series Path:** [@HOWL-LLM-2-2026] \u2192 [@HOWL-LLM-3-2026]  **Dat..."
+    "raw_content_preview": "# Riding the Rocket ## Why LLM Generation Is Ballistic, Not Steerable  **Registry:** [@HOWL-LLM-3-2026]  **DOI:** 10.5281/zenodo.20096630  **Series Path:** [@HOWL-LLM-2-2026] \u2192 [@HOWL-LLM-3-2026]  **D..."
 }
