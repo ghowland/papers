@@ -60,6 +60,8 @@ This is the ballistic model. You aim. The model fires. You land. Between aiming 
 
 The metaphor is not decorative. It describes the control structure accurately. In a steerable process, you make adjustments during execution — you see the code forming, you redirect when it drifts, you make each decision as it arises. In a ballistic process, all the aiming happens before the launch, and the trajectory is determined by the initial conditions plus forces acting during flight that you cannot alter. LLM generation is the second kind. Your control ends when you submit the prompt. What happens after that is the model's trajectory through its probability space, landing wherever the distribution takes it.
 
+![Fig. 1: Ballistic Cone — angular deviation at 1,200 lines of generation distance produces large positional errors even with good calibration.](./figures/llm3_01_ballistic_cone.png)
+
 ---
 
 ## 4. The Speed Problem
@@ -75,6 +77,8 @@ Between 400 and 1,200, the generation moves fast. The speed is the product's val
 There is no 8mph mode. No speed where you could ride alongside the generation, inspecting each decision as it occurs, approving or rejecting in real time. The model either fires at full speed or does not fire. The "streaming" display — watching tokens appear on screen — creates the illusion of a process you are participating in. You are not participating. You are watching a ballistic arc in progress. The tokens you see appearing have already been determined by the probability distribution at each step. Your observation changes nothing.
 
 The speed creates the value and the cost simultaneously. You get distance you could not cover by hand in the same time. You lose the steering that hand-coding provides. You cannot have the speed without losing the steering, because the steering is the decision-making, and the decision-making is what the speed replaces.
+
+![Fig. 2: Speed Range — the navigable zone (0-50 lines, hand-coding) and the ballistic zone (400-1,200 lines, LLM generation) do not overlap. No intermediate mode exists.](./figures/llm3_02_speed_range.png)
 
 ---
 
@@ -106,6 +110,8 @@ The expansion is not value. The additional 350 lines in the struct example are n
 
 Active constraint works but requires vigilance. The engineer must specify output scope on every prompt, anticipate where the model will try to expand, and cut the expansion when it appears. This is cognitive overhead dedicated to managing the model's output volume rather than to the engineer's actual problem. The overhead is part of the time tax described in [@HOWL-INFO-8-2026] — attention spent on the tool instead of on the work.
 
+![Fig. 3: Expansion Bias — actual output length grows toward the ceiling with each successive prompt, diverging from the requested output size.](./figures/llm3_03_expansion_bias.png)
+
 ---
 
 ## 7. The Splash Damage
@@ -120,6 +126,8 @@ The splash damage scales with output length. A 50-line struct definition has low
 
 A skilled user of this technique does what a skilled Quake player does: they budget for the damage. They know the health cost before they fire. They fire only when the distance is worth the health. They do not fire rockets to cross distances they could walk, because the splash damage on a short jump is still real and the distance gained is trivial. They do not fire rockets in sequence without checking their health between jumps, because splash damage accumulates.
 
+![Fig. 5: Splash Damage vs. Distance — the break-even threshold where comprehension cost of LLM-generated code exceeds the time to hand-code it.](./figures/llm3_05_splash_damage_distance.png)
+
 ---
 
 ## 8. Destinations Without Journeys
@@ -133,6 +141,8 @@ When an LLM generates a 500-line module, the engineer finishes with one thing: a
 The industry calls this "reviewing AI-generated code." The framing implies it is a small verification step — check for correctness, approve, move on. The framing is wrong about the scope. Review for correctness — does the code do what it should — is one part. The larger part is review for understanding — why does the code do it this way, what were the alternatives, what constraints does this approach impose on future changes, where are the implicit assumptions, what breaks if the requirements change. This is the examination you would not need if you had written the code yourself, because the answers would already be in your head as residue of the decisions you made.
 
 The examination is examining a foreign object. The code functions according to specification. Its internal structure reflects decisions made by a probability distribution trained on millions of other codebases. The decisions may be good. They may be conventional. They may even be identical to what the engineer would have chosen. But they are not the engineer's decisions, and the engineer does not know them until they have traced each one. The code is an artifact produced by a process the engineer observed but did not direct. Understanding it requires the same kind of effort as understanding any artifact produced by someone else — but without the option to ask the producer why they made their choices, because the producer was a statistical process with no persistent rationale.
+
+![Fig. 4: Journey vs. Destination — hand-coding produces understanding as a free byproduct; LLM generation produces code instantly but understanding must be rebuilt through examination.](./figures/llm3_04_journey_vs_destination.png)
 
 ---
 
@@ -186,6 +196,8 @@ This is the accumulation cost. Each ballistic landing adds another module the en
 
 The codebases most affected are the ones the industry claims benefit most from AI generation. Large systems, many modules, rapid development — these are the scenarios where generation speed matters most and where the accumulation cost is highest. The productivity gain and the accumulation cost grow together. The question is which grows faster. For small systems, the gain wins. For large systems with global constraints, the accumulation cost eventually catches and passes the generation gain.
 
+![Fig. 6: Accumulation — cross-module coherence in hand-coded systems declines slowly; in LLM-generated systems it drops steeply because each module is a separate ballistic landing.](./figures/llm3_06_accumulation_coherence.png)
+
 ---
 
 ## 12. When to Fire and When to Walk
@@ -201,6 +213,8 @@ The ballistic model provides a decision framework.
 **Budget the splash damage before firing.** Before submitting a generation prompt, estimate the comprehension cost. How long will it take to read, understand, verify, and integrate the output? If the answer exceeds the time to write the code by hand, the generation is not worth the cost. If the answer is substantially less, the generation is a good use of the technique. The estimation improves with experience — experienced users develop accurate intuitions about which tasks generate cleanly and which tasks produce artifacts that are expensive to examine.
 
 **Walk the ground after landing.** Every generation is followed by examination. Read the code. Trace the control flow. Verify the micro-decisions against the system's constraints. Build the understanding that the ballistic generation skipped. This is the refinement phase, and it is not optional. Code that passes through a system unexamined is code that will produce surprises later, because its internal decisions were made by a distribution that did not know the system's constraints.
+
+![Fig. 7: Decision Framework — task complexity vs. constraint density determines when LLM generation is worth the splash damage and when hand-coding produces better outcomes.](./figures/llm3_07_decision_framework.png)
 
 ---
 
@@ -219,6 +233,8 @@ The industry reports only the positive numbers because the positive numbers come
 The honest multiplier, averaged across all task types for an engineer working on a system of meaningful complexity, is closer to 2x on the tasks where they choose to use generation, with the important qualifier that the engineer's judgment about which tasks deserve generation is the primary determinant of the outcome. The engineer who fires on every task gets the average of positive and negative multipliers, which may wash out to 1x or below. The engineer who fires selectively — choosing tasks where the destination is worth the splash damage — captures the positive multipliers and avoids the negative ones.
 
 Selectivity is the skill. Not prompting technique, not tool choice, not model selection. Knowing when to fire and when to walk is what separates productive LLM use from LLM use that produces impressive-looking metrics and negative real outcomes.
+
+![Fig. 8: Honest Multiplier — productivity gain declines from 2-5x on small isolated tasks to potentially negative on large complex systems, against the industry's claimed 100x.](./figures/llm3_08_honest_multiplier.png)
 
 ---
 
