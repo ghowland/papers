@@ -1,0 +1,74 @@
+{
+  "title": "Calibrate, Extract, Refine",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "This paper documents a method for using LLM chat sessions to produce usable engineering output. The method treats each chat session as a finite instrument that must be calibrated through diagnostic probing before use, used for bounded one-shot extraction within the model's coherence ceiling, and left behind while the engineer refines the output by hand. The method is grounded in architectural properties of transformer models \u2014 the absence of constraint checking, the degradation of attention across context length, the gravitational pull toward training-weight medians \u2014 and shaped by fifteen months of empirical observation that the coherence ceiling for real code generation has not moved across model generations. Chat is the only LLM interface that provides a correction channel: the ability to observe output, diagnose session-specific misalignment, and correct it before further generation. All other interfaces \u2014 tab completion, agentic, autonomous \u2014 remove this channel and leave the engineer with output that trends toward generic patterns that violate system-specific constraints. The paper is not a claim that this method is universally superior. It is a claim that for engineers working on systems that exceed the model's coherence ceiling, the correction channel is the feature that makes AI usable at all, and this method is how to use it.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "discrete spacetime",
+    "llm",
+    "zero free parameters",
+    "falsifiable physics",
+    "theoretical derivation"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-2-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

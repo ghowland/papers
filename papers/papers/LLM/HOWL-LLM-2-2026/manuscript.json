@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Calibrate, Extract, Refine",
+    "registry_id": "HOWL-LLM-2-2026",
+    "series_path": "",
+    "doi": "10.5281/zenodo.20096290",
+    "abstract": "This paper documents a method for using LLM chat sessions to produce usable engineering output. The method treats each chat session as a finite instrument that must be calibrated through diagnostic probing before use, used for bounded one-shot extraction within the model's coherence ceiling, and left behind while the engineer refines the output by hand. The method is grounded in architectural properties of transformer models \u2014 the absence of constraint checking, the degradation of attention across context length, the gravitational pull toward training-weight medians \u2014 and shaped by fifteen months of empirical observation that the coherence ceiling for real code generation has not moved across model generations. Chat is the only LLM interface that provides a correction channel: the ability to observe output, diagnose session-specific misalignment, and correct it before further generation. All other interfaces \u2014 tab completion, agentic, autonomous \u2014 remove this channel and leave the engineer with output that trends toward generic patterns that violate system-specific constraints. The paper is not a claim that this method is universally superior. It is a claim that for engineers working on systems that exceed the model's coherence ceiling, the correction channel is the feature that makes AI usable at all, and this method is how to use it.",
+    "dependencies": [],
+    "raw_content_preview": "# Calibrate, Extract, Refine ## 1-Shot Pseudo-Gold from LLM Chat Sessions  **Registry:** [@HOWL-LLM-2-2026]  **DOI:** 10.5281/zenodo.20096290  **Date:** May 2026  **Domain:** LLM Usage Methodology  **..."
+}
