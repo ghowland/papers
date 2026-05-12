@@ -10,7 +10,7 @@
 
 **Domain:** Methodology / Sociology of Science / Cross-Disciplinary Structure
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.19532044
 
 **Status:** Draft
 

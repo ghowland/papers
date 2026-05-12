@@ -1,12 +1,12 @@
 {
   "created": "2026-05-12T04:42:08.317994+00:00",
-  "modified": "2026-05-12T04:42:08.443130+00:00",
+  "modified": "2026-05-12T04:46:22.646077+00:00",
   "id": 20131529,
   "conceptrecid": "20131528",
   "metadata": {
-    "title": "Fuel and Frame",
-    "publication_date": "2026-04",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "title": "Fuel and Frame: Nervous System Resource Allocation as a Contributing Mechanism to SSH Type Formation",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>The Socio-Sexual Hierarchy (SSH) is a predictive behavioral taxonomy for male social and sexual behavior created by Vox Day. It defines seven male behavioral types based on recurring patterns of social interaction, sexual dynamics, and how other people &mdash; both male and female &mdash; react to those patterns. The SSH is not a personality test, a moral framework, or a status ranking system. It is a prediction engine. It exists because the predictions it makes are recurring and stable across populations.</div>\n<br>\n<div>The SSH defines its types against two axes: social and sexual. The social axis describes how a male interacts with other males in group and hierarchical contexts. The sexual axis describes how a male interacts with females in romantic and sexual contexts and, critically, how females react to him. These two axes give the model its name &mdash; socio-sexual &mdash; and both are always in play when making predictions.</div>\n<br>\n<div>Of the seven defined types, this paper examines six: Alpha, Bravo, Delta, Gamma, Omega, and Sigma. The seventh type, Lambda, describes males whose sexual behavior is directed toward other males. Lambda is excluded from this analysis not as a value judgment but because its inclusion would break the comparison framework. The other six types are defined against male-female sexual dynamics in which female preferences &mdash; for time, resources, status, excitement, safety &mdash; create one prediction axis, and male social behavior creates the other. Lambda introduces entirely different behavioral axes and response dynamics that would expand the argument without clarifying it. A separate analysis with its own comparison framework would be required to address Lambda adequately.</div>\n<br>\n<div>The taxonomy covers approximately 45% of humanity &mdash; the heterosexual male population &mdash; and is scientific in the predictive sense. The types exist because the behavioral clusters they describe are stable and recurring. If deltas did not reliably exhibit task-focus at the expense of social awareness, there would be no delta category. If gammas did not reliably reframe failures as intended outcomes, there would be no gamma category. The labels survive because the patterns recur, and the patterns recur because something is generating them consistently.</div>\n<br>\n<div>This paper proposes one contributing mechanism for that consistency: nervous system fuel allocation. The human nervous system distributes metabolic resources according to a priority hierarchy, funding survival-critical lower structures first and higher cognitive structures with whatever remains. This paper argues that the distribution profile &mdash; how much fuel reaches the upper structures after lower-level demands are met &mdash; maps cleanly onto the behavioral clusters the SSH describes, and that differences in this distribution profile contribute to the formation and stability of the six examined types.</div>\n<br>\n<div>This is explicitly proposed as a contributing factor. Fuel allocation is not claimed as the sole or complete explanation for SSH type formation. Genetic factors, developmental environment, accumulated experience, neurochemical profiles, and other mechanisms almost certainly contribute. But the fuel allocation model provides a parsimonious framework that explains several key SSH phenomena: why the types form as distinct clusters rather than a continuum, why they are stable over time, why they revert under stress, and why they can be partially modified through deliberate training.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/NEURO/HOWL-NEURO-2-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/NEURO/HOWL-NEURO-2-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-NEURO-2-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -78,7 +78,7 @@
       "recid": 20131529
     }
   },
-  "title": "Fuel and Frame",
+  "title": "Fuel and Frame: Nervous System Resource Allocation as a Contributing Mechanism to SSH Type Formation",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/20131529",
     "html": "https://zenodo.org/deposit/20131529",
@@ -105,23 +105,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "c76018eb-55f9-4616-8e74-0f300ed6b671",
-      "filename": "!manuscript.pdf",
-      "filesize": 1538206,
-      "checksum": "908acaeb15208fd6783b3d3cc15d4e01",
+      "id": "a290fa20-8f70-4f44-956d-89471d4010a5",
+      "filename": "HOWL-NEURO-2-2026.zip",
+      "filesize": 2799821,
+      "checksum": "e864460408dce6e27cc3b9ae250e8bff",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20131529/files/c76018eb-55f9-4616-8e74-0f300ed6b671",
-        "download": "https://zenodo.org/api/records/20131529/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20131529/files/a290fa20-8f70-4f44-956d-89471d4010a5",
+        "download": "https://zenodo.org/api/records/20131529/draft/files/HOWL-NEURO-2-2026.zip/content"
       }
     },
     {
-      "id": "a99080ed-87b8-46f2-b159-66f325c6a304",
-      "filename": "HOWL-NEURO-2-2026.zip",
-      "filesize": 2799535,
-      "checksum": "a4e5cceae0384d21003a85463c356de6",
+      "id": "4506976c-137d-4e91-a72b-9ae9d3e39325",
+      "filename": "!manuscript.pdf",
+      "filesize": 1538209,
+      "checksum": "81478b95266496e0d4a724b250d9ce6a",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20131529/files/a99080ed-87b8-46f2-b159-66f325c6a304",
-        "download": "https://zenodo.org/api/records/20131529/draft/files/HOWL-NEURO-2-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20131529/files/4506976c-137d-4e91-a72b-9ae9d3e39325",
+        "download": "https://zenodo.org/api/records/20131529/draft/files/!manuscript.pdf/content"
       }
     }
   ],

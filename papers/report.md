@@ -1,20 +1,20 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-05-12 04:41:43 UTC
+**Generated:** 2026-05-12 06:35:30 UTC
 
 ## Summary
 
-- **Total Papers:** 145
-- **Valid:** 140
+- **Total Papers:** 146
+- **Valid:** 141
 - **Invalid:** 5
 - **Total Errors:** 7
-- **Total Warnings:** 339
+- **Total Warnings:** 340
 
 ## By Subject
 
 - **BODY:** 2 papers
 - **COMP:** 9 papers
-- **CULT:** 10 papers
+- **CULT:** 11 papers
 - **DATA:** 7 papers
 - **DISC:** 14 papers
 - **ENG:** 2 papers
@@ -30,8 +30,8 @@
 
 ## By Status
 
-- **Published (has DOI):** 137
-- **Draft (stub .zzz):** 8
+- **Published (has DOI):** 140
+- **Draft (stub .zzz):** 6
 
 ## Validation Issues
 
@@ -55,7 +55,7 @@
   - ❌ Missing Registry field in frontmatter
 
 
-### Papers with Warnings (132 total)
+### Papers with Warnings (133 total)
 
 **HOWL-BODY-1-2026**
   - ⚠️  Missing ## References section
@@ -84,19 +84,18 @@
   - ⚠️  No abstract section found
 
 **HOWL-CULT-10-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
+
+**HOWL-CULT-11-2026**
+  - ⚠️  Missing ## References section
+  - ⚠️  Missing ::: {#refs} ::: delimiter
+  - ⚠️  No abstract section found
 
 **HOWL-CULT-2-2026**
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
   - ⚠️  No abstract section found
 
-**HOWL-CULT-3-2026**
-  - ⚠️  Missing ## References section
-  - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ⚠️  No abstract section found
-
-... and 122 more papers with warnings
+... and 123 more papers with warnings
