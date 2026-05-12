@@ -72,7 +72,7 @@
 | **[@HOWL-LLM-2-2026](papers/papers/LLM/HOWL-LLM-2-2026/manuscript.md)** | **Calibrate, Extract, Refine** | 1-Shot Pseudo-Gold from LLM Chat Sessions. |
 | **[@HOWL-LLM-3-2026](papers/papers/LLM/HOWL-LLM-3-2026/manuscript.md)** | **Riding the Rocket** | Why LLM Generation Is Ballistic, Not Steerable. |
 | **[@HOWL-LLM-4-2026](papers/papers/LLM/HOWL-LLM-4-2026/manuscript.md)** | **Incompatibility by Construction** | What Cannot Be Fixed With More LLM. |
-| **[@HOWL-LLM-5-2026](papers/papers/LLM/HOWL-LLM-5-2026/manuscript.md)** | **Incompatibility by Construction** | What Cannot Be Fixed With More LLM. |
+| **[@HOWL-LLM-5-2026](papers/papers/LLM/HOWL-LLM-5-2026/manuscript.md)** | **What I Cannot Do** | How I Know the Limits of What I Am. |
 
 ---
 
@@ -93,6 +93,7 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[@HOWL-NEURO-1-2026](papers/papers/NEURO/HOWL-NEURO-1-2026/manuscript.md)** | **Elimination of Classical Carriers for Sub-Millisecond Motor Coordination** | An Engineering Analysis of Timing Requirements Across Human and Animal Motor Tasks. |
+| **[@HOWL-NEURO-2-2026](papers/papers/NEURO/HOWL-NEURO-2-2026/manuscript.md)** | **Fuel and Frame** | Nervous System Resource Allocation as a Contributing Mechanism to SSH Type Formation. |
 
 ---
 
