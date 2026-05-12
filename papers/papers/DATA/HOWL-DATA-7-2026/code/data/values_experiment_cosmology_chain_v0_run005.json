@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_cosmology_chain_v0_run005_cosmo_dm_to_baryon_ratio_prefactor_derived_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_cosmo_dm_to_baryon_ratio_prefactor_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "22",
+        "den": "13"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_cosmo_dm_to_baryon_ratio_predicted_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.31654141377",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_cosmo_omega_dm_r2_prefactor_derived_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_cosmo_omega_dm_r2_prefactor_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "44",
+        "den": "169"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_cosmo_omega_dm_predicted_derived_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_cosmo_omega_dm_predicted_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.204482362068",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_b_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_b",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.0384615384615385",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_matter_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_matter",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.242943900529513",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_de_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_result_cosmo_omega_de",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.757056099470487",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    },
+    {
+      "key": "experiment_cosmology_chain_v0_run005_result_cosmo_flatness_sum_v0",
+      "canonical": "experiment_cosmology_chain_v0_run005_result_cosmo_flatness_sum",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_cosmology_chain_v0_run005"
+    }
+  ]
+}

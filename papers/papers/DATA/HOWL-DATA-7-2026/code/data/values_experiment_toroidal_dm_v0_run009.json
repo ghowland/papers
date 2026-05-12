@@ -1,0 +1,364 @@
+{
+  "nodes": [
+    {
+      "key": "experiment_toroidal_dm_v0_run009_cosmo_dm_to_baryon_ratio_prefactor_derived_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_cosmo_dm_to_baryon_ratio_prefactor_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "22",
+        "den": "13"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_cosmo_dm_to_baryon_ratio_predicted_derived_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_cosmo_dm_to_baryon_ratio_predicted_derived",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.31654141377",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_cosmo_amplification_reduced_factor_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_cosmo_amplification_reduced_factor",
+      "version": 0,
+      "node_type": "value",
+      "value": {
+        "_type": "Fraction",
+        "num": "44",
+        "den": "13"
+      },
+      "value_type": "exact_fraction",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_cosmo_amplification_formula_text_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_cosmo_amplification_formula_text",
+      "version": 0,
+      "node_type": "value",
+      "value": "(44/13) * pi * (c/v)^2",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_mond_a0_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_mond_a0",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.04208899459679e-10",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_mond_a0_match_pct_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_mond_a0_match_pct",
+      "version": 0,
+      "node_type": "value",
+      "value": "13.1592504502674",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_mond_transition_earth_au_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_mond_transition_earth_au",
+      "version": 0,
+      "node_type": "value",
+      "value": "13.0728116035403",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_mond_transition_sun_au_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_mond_transition_sun_au",
+      "version": 0,
+      "node_type": "value",
+      "value": "7544.43106237327",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_virial_mass_solar_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_virial_mass_solar",
+      "version": 0,
+      "node_type": "value",
+      "value": "168776336979.549",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_virial_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_virial_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.81293894965915",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_frame_dragging_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_frame_dragging_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "2.06194748710125e-13",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_frame_dragging_negligible_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_frame_dragging_negligible",
+      "version": 0,
+      "node_type": "value",
+      "value": true,
+      "value_type": "exact_integer",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "8.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.875",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "30.4347826086957",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.967142857142857",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "186.206896551724",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.99462962962963",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_carina_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_carina_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "84.2105263157895",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_carina_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_carina_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.988125",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_sextans_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_sextans_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "295.454545454545",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_sextans_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_sextans_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.996615384615385",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_segue1_dm_vis_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_segue1_dm_vis_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "3823.52941176471",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_segue1_dark_fraction_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_segue1_dark_fraction",
+      "version": 0,
+      "node_type": "value",
+      "value": "0.999738461538462",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_cosmic_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_fornax_cosmic_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "1.50473764377792",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_cosmic_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_sculptor_cosmic_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "5.72454538393774",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_cosmic_ratio_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_dwarf_draco_cosmic_ratio",
+      "version": 0,
+      "node_type": "value",
+      "value": "35.024065846555",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_fj_fornax_mass_solar_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_fj_fornax_mass_solar",
+      "version": 0,
+      "node_type": "value",
+      "value": "1354620.52649917",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_fj_sculptor_mass_solar_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_fj_sculptor_mass_solar",
+      "version": 0,
+      "node_type": "value",
+      "value": "517875.677616424",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_fj_draco_mass_solar_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_fj_draco_mass_solar",
+      "version": 0,
+      "node_type": "value",
+      "value": "495723.804926766",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_tf_mw_mass_solar_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_tf_mw_mass_solar",
+      "version": 0,
+      "node_type": "value",
+      "value": "169342095064.297",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    },
+    {
+      "key": "experiment_toroidal_dm_v0_run009_result_tf_v4_scaling_test_v0",
+      "canonical": "experiment_toroidal_dm_v0_run009_result_tf_v4_scaling_test",
+      "version": 0,
+      "node_type": "value",
+      "value": "16.0",
+      "value_type": "approximate",
+      "unit": "dimensionless",
+      "level": 3,
+      "source": "experiment_toroidal_dm_v0_run009"
+    }
+  ]
+}

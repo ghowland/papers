@@ -1,0 +1,86 @@
+{
+  "key": "result_experiment_proton_decay_v0",
+  "node_type": "result",
+  "experiment_key": "experiment_proton_decay_v0",
+  "timestamp": "2026-05-12T08:33:16Z",
+  "status": "complete",
+  "execution_log": [
+    {
+      "key": "coupling_extraction_v0",
+      "status": "ok",
+      "output_count": 5
+    },
+    {
+      "key": "crossing_one_loop_scale_v0",
+      "status": "ok",
+      "output_count": 2
+    }
+  ],
+  "connections_resolved": [],
+  "diagrams_produced": [],
+  "comparison_results": [
+    {
+      "label": "log10(M_GUT/GeV) in [15, 16]",
+      "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+      "match_mode": "range",
+      "reference_source": "theoretical",
+      "got": "15.5426",
+      "lo": "15",
+      "hi": "16",
+      "status": "PASS",
+      "detail": "in [15, 16]"
+    },
+    {
+      "label": "CD M_GUT vs Super-K bound (must survive)",
+      "output_key": "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0",
+      "match_mode": "range",
+      "reference_source": "Super-K_2020",
+      "got": "15.5426",
+      "lo": "15",
+      "hi": "18",
+      "status": "PASS",
+      "detail": "in [15, 18]"
+    }
+  ],
+  "outputs": {
+    "coupling_alpha_em_v0": {
+      "_type": "Fraction",
+      "num": "1000000000",
+      "den": "137035999177"
+    },
+    "coupling_cos2_theta_w_v0": {
+      "_type": "Fraction",
+      "num": "38439",
+      "den": "50000"
+    },
+    "coupling_alpha_1_inverse_gut_normalized_mz_v0": {
+      "_type": "Fraction",
+      "num": "15802580317094109",
+      "den": "250000000000000"
+    },
+    "coupling_alpha_2_inverse_mz_v0": {
+      "_type": "Fraction",
+      "num": "1584273186485297",
+      "den": "50000000000000"
+    },
+    "coupling_alpha_3_inverse_mz_v0": {
+      "_type": "Fraction",
+      "num": "500",
+      "den": "59"
+    },
+    "result_l_gut_one_loop_cabibbo_doublet_derived_v0": {
+      "_type": "Fraction",
+      "num": "2955455394250359",
+      "den": "593750000000000"
+    },
+    "result_m_gut_one_loop_cabibbo_doublet_log10_gev_derived_v0": "15.5426000541"
+  },
+  "summary": {
+    "derivations_ok": 2,
+    "derivations_err": 0,
+    "comparisons_pass": 2,
+    "comparisons_fail": 0,
+    "comparisons_info": 0,
+    "comparisons_skip": 0
+  }
+}
