@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20132738/files",
     "bucket": "https://zenodo.org/api/files/f5cca12d-bf0a-4111-a612-242f4e98cf98",
+    "thumb250": "https://zenodo.org/record/20132738/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20132738/thumb10",
+      "50": "https://zenodo.org/record/20132738/thumb50",
+      "100": "https://zenodo.org/record/20132738/thumb100",
+      "250": "https://zenodo.org/record/20132738/thumb250",
+      "750": "https://zenodo.org/record/20132738/thumb750",
+      "1200": "https://zenodo.org/record/20132738/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20132738",
     "latest_draft_html": "https://zenodo.org/deposit/20132738",
     "publish": "https://zenodo.org/api/deposit/depositions/20132738/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20132738,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "df568cc9-0b56-48f1-be75-28282a525f00",
+      "filename": "!manuscript.pdf",
+      "filesize": 65519,
+      "checksum": "816cf596ba4951d91c87ddbefca1bb3e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20132738/files/df568cc9-0b56-48f1-be75-28282a525f00",
+        "download": "https://zenodo.org/api/records/20132738/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "b8e75c46-a30b-4300-ad71-e131290132c7",
+      "filename": "HOWL-CULT-11-2026.zip",
+      "filesize": 98566,
+      "checksum": "e6be5f51def48e3aec2bdfdecffcea9d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20132738/files/b8e75c46-a30b-4300-ad71-e131290132c7",
+        "download": "https://zenodo.org/api/records/20132738/draft/files/HOWL-CULT-11-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
