@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-10-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20175816/files",
     "bucket": "https://zenodo.org/api/files/334f1c51-ef5e-4ddd-b0c9-35212b531223",
+    "thumb250": "https://zenodo.org/record/20175816/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20175816/thumb10",
+      "50": "https://zenodo.org/record/20175816/thumb50",
+      "100": "https://zenodo.org/record/20175816/thumb100",
+      "250": "https://zenodo.org/record/20175816/thumb250",
+      "750": "https://zenodo.org/record/20175816/thumb750",
+      "1200": "https://zenodo.org/record/20175816/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20175816",
     "latest_draft_html": "https://zenodo.org/deposit/20175816",
     "publish": "https://zenodo.org/api/deposit/depositions/20175816/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20175816,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "9add61c4-c2ee-4281-b261-a24145f8dd28",
+      "filename": "HOWL-COMP-10-2026.zip",
+      "filesize": 3052129,
+      "checksum": "33068f490642b509cad7fa6ee43b55d7",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20175816/files/9add61c4-c2ee-4281-b261-a24145f8dd28",
+        "download": "https://zenodo.org/api/records/20175816/draft/files/HOWL-COMP-10-2026.zip/content"
+      }
+    },
+    {
+      "id": "ca69aac3-d46a-4590-96af-45b9b85a3000",
+      "filename": "!manuscript.pdf",
+      "filesize": 1632330,
+      "checksum": "d251e0387f10726d38da65aeae23b17d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20175816/files/ca69aac3-d46a-4590-96af-45b9b85a3000",
+        "download": "https://zenodo.org/api/records/20175816/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
