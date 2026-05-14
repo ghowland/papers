@@ -246,6 +246,7 @@
 | **[@HOWL-CULT-9-2026](papers/papers/CULT/HOWL-CULT-9-2026/manuscript.md)** | **The Omni-Academy** | A Structural Specification for the First Institution in the Hallways. |
 | **[@HOWL-CULT-10-2026](papers/papers/CULT/HOWL-CULT-10-2026/manuscript.md)** | **The Geometric Remainder Across Departments** | How Disciplinary Structure Prevented the Unification of a Four-Thousand-Year-Old Constant. |
 | **[@HOWL-CULT-11-2026](papers/papers/CULT/HOWL-CULT-11-2026/manuscript.md)** | **Engineering and Science** | A Taxonomy of What Works and What Explains. |
+| **[@HOWL-CULT-12-2026](papers/papers/CULT/HOWL-CULT-11-2026/manuscript.md)** | **Cowardice and High Status as Anti-Popper Progress Blocking** | The Structural Mechanics of Institutional Non-Commitment. |
 
 ---
 
