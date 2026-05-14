@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-07T02:33:00.545606+00:00",
-  "modified": "2026-05-07T02:33:00.667723+00:00",
-  "id": 20061178,
-  "conceptrecid": "20061177",
+  "created": "2026-05-14T06:01:08.654949+00:00",
+  "modified": "2026-05-14T06:01:08.748096+00:00",
+  "id": 20175816,
+  "conceptrecid": "20175815",
   "metadata": {
-    "title": "Building Applications with OpsDB Application Architecture",
+    "title": "Tall-Infra Data-Only Execution",
     "publication_date": "2026-04",
     "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -30,11 +30,7 @@
     "keywords": [
       "HOWL framework",
       "howland archive",
-      "discrete spacetime",
-      "computation",
-      "zero free parameters",
-      "falsifiable physics",
-      "theoretical derivation"
+      "computation"
     ],
     "subjects": [
       {
@@ -55,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-9-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-10-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -67,68 +63,38 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-9-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-10-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20061178",
-      "recid": 20061178
+      "doi": "10.5281/zenodo.20175816",
+      "recid": 20175816
     }
   },
-  "title": "Building Applications with OpsDB Application Architecture",
+  "title": "Tall-Infra Data-Only Execution",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20061178",
-    "html": "https://zenodo.org/deposit/20061178",
+    "self": "https://zenodo.org/api/deposit/depositions/20175816",
+    "html": "https://zenodo.org/deposit/20175816",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20061178/files",
-    "bucket": "https://zenodo.org/api/files/9878087f-4e64-4113-8484-3792d73a5ec4",
-    "thumb250": "https://zenodo.org/record/20061178/thumb250",
-    "thumbs": {
-      "10": "https://zenodo.org/record/20061178/thumb10",
-      "50": "https://zenodo.org/record/20061178/thumb50",
-      "100": "https://zenodo.org/record/20061178/thumb100",
-      "250": "https://zenodo.org/record/20061178/thumb250",
-      "750": "https://zenodo.org/record/20061178/thumb750",
-      "1200": "https://zenodo.org/record/20061178/thumb1200"
-    },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20061178",
-    "latest_draft_html": "https://zenodo.org/deposit/20061178",
-    "publish": "https://zenodo.org/api/deposit/depositions/20061178/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20061178/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20061178/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20061178/actions/newversion"
+    "files": "https://zenodo.org/api/deposit/depositions/20175816/files",
+    "bucket": "https://zenodo.org/api/files/334f1c51-ef5e-4ddd-b0c9-35212b531223",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20175816",
+    "latest_draft_html": "https://zenodo.org/deposit/20175816",
+    "publish": "https://zenodo.org/api/deposit/depositions/20175816/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20175816/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20175816/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20175816/actions/newversion"
   },
-  "record_id": 20061178,
+  "record_id": 20175816,
   "owner": 1539729,
-  "files": [
-    {
-      "id": "915fdac7-3963-4b7a-95cf-09f93a9f3e15",
-      "filename": "HOWL-COMP-9-2026.zip",
-      "filesize": 3514905,
-      "checksum": "e6d133b41532fabe982a5896a580c8ed",
-      "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20061178/files/915fdac7-3963-4b7a-95cf-09f93a9f3e15",
-        "download": "https://zenodo.org/api/records/20061178/draft/files/HOWL-COMP-9-2026.zip/content"
-      }
-    },
-    {
-      "id": "e33bea1a-40aa-4f5e-b581-f984d1871579",
-      "filename": "!manuscript.pdf",
-      "filesize": 1928312,
-      "checksum": "87a853bc5272810f811776d7166add1c",
-      "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20061178/files/e33bea1a-40aa-4f5e-b581-f984d1871579",
-        "download": "https://zenodo.org/api/records/20061178/draft/files/!manuscript.pdf/content"
-      }
-    }
-  ],
+  "files": [],
   "state": "unsubmitted",
   "submitted": false
 }

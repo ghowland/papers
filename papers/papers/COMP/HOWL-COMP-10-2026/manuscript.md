@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-COMP-1-2026] → [@HOWL-COMP-2-2026] → [@HOWL-COMP-3-2026] → [@HOWL-COMP-4-2026] → [@HOWL-COMP-5-2026] → [@HOWL-COMP-6-2026] → [@HOWL-COMP-7-2026] → [@HOWL-COMP-8-2026] → [@HOWL-COMP-9-2026] → [@HOWL-COMP-10-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20175816
 
 **Date:** May 2026
 
@@ -48,6 +48,8 @@ The software layer sits between these two resolved boundaries — stable substra
 The software industry implicitly assumes the latter. There is always a new language, a new framework, a new architecture pattern, a new paradigm. The assumption is that software is an open research frontier — that there is always more to discover, more to build, more to rearchitect.
 
 This paper argues the opposite. The software layer is an engineering problem, not a research problem. Like building a bridge from Roman concrete, it can be designed, constructed, tested, and finished. The water flows across it forever. The bridge does not need to be rebuilt because someone wants to ship different cargo.
+
+![Fig. 2: The Five-Layer Stack — three finite engineering layers support two infinite creative layers.](./figures/comp10_02_five_layer_stack.png)
 
 ---
 
@@ -99,6 +101,8 @@ Concrete examples make this vivid:
 
 In every case, the claim is "data-driven." In every case, the reality is: data owns the nouns (what exists), code owns the verbs (how things behave). The wall between data and behavior is present in every system. It moved over thirty years. It never disappeared.
 
+![Fig. 3: The Wall — compiled behavior decreased over 30 years but never reached zero until data-only.](./figures/comp10_03_wall_eras.png)
+
 ---
 
 ### 4. Data-Only Execution Defined
@@ -127,6 +131,8 @@ Any "no" means the wall is present. The system may be data-driven — perhaps hi
 
 ### 5. The DSP Architecture
 
+![Fig. 7: The funnel architecture — each layer narrows from all possible behaviors to one winning action.](./figures/comp10_07_dsp_funnel.png)
+
 The architecture that enables data-only execution borrows its core metaphor from digital signal processing. In audio DSP, sound is shaped by envelopes — time-bounded modifiers with attack, sustain, and release phases, applied through curves over duration. A synthesizer note, a reverb tail, and a compressor gain reduction are all envelopes applied to an audio signal. The DSP processor doesn't know what "music" is. It applies envelopes to signals.
 
 The same principle generalizes to all gameplay — and, as this paper argues, to all application behavior. A sword strike is an envelope: duration ~0.3 seconds, immediate tick, target stat health, modifier -25, triggered on animation frame event. A poison effect is an envelope: duration 10 seconds, tick every 1.0 seconds, target stat health, modifier -5, linear curve. A shield buff is an envelope: duration 30 seconds, continuous, target stat armor_rating, modifier +15. A healing potion is an envelope: duration 0 (immediate), target stat health, modifier +50.
@@ -139,13 +145,19 @@ The execution pipeline is a funnel. Each layer narrows the candidate set:
 
 **Layer 2 — Prolog: "Are the preconditions met?"** Prolog-style predicate logic evaluates rules against facts. Facts are regenerated every frame from entity state — does the entity have a target, what is the distance to the target, is health below 20%, how many enemies are in melee range. Rules compose these facts declaratively: `can_melee` requires `has_target_entity`, `target_entity_distance(D)`, `distance_melee(M)`, and `D < M`. The evaluator performs unification — it does not know what "melee" means. It matches predicates against facts.
 
+![Fig. 8: Prolog rules compose from entity field reads through comparisons to behavior-gating conditions.](./figures/comp10_08_prolog_composition.png)
+
 **Layer 3 — Utility AI: "Which behavior scores highest?"** Available behaviors are scored multiplicatively. Each behavior has considerations — inputs normalized to [0,1], shaped by curves (linear, quadratic, sigmoid, exponential, boolean), weighted and multiplied together. Any consideration that evaluates to zero kills the entire behavior's score — a hard gate requiring no special logic. The highest-scoring behavior wins. Critically, behaviors with more considerations naturally score lower (more multiplications below 1.0) but are more specific. Specificity is self-balancing through the mathematics.
+
+![Fig. 1: Paladin Combat AI — 21 behaviors gated by boolean Prolog rules, scored multiplicatively.](./figures/comp10_01_paladin_heatmap.png)
 
 **Layer 4 — Logic Blocks: "How do I execute this?"** The winning behavior either triggers an action type (which flows into the equipment/skill/envelope chain) or executes a logic block stack — a stack-based bytecode interpreter with ~100+ block types for control flow, arithmetic, logic, and data access. The interpreter reads and writes entity fields via runtime-resolved paths. It cannot crash: invalid paths return default values, math operations clamp and saturate, array access is bounds-checked, and each block type has fixed input/output types that the editing UI enforces.
 
 **Layer 5 — Envelopes: "Apply stat transformations."** The winning action produces envelopes — time-bounded stat modifications with curves. The envelope processor applies them each frame based on elapsed time. This is the DSP core: signals (stat values) modified by envelopes (time-bounded curve-driven transformations), processed by a single code path regardless of domain meaning.
 
 The entire pipeline — state machine evaluation, predicate unification, utility scoring, bytecode execution, envelope application — is domain-agnostic. It does not know whether it is running a combat encounter, a crafting system, a weather simulation, or a bank transaction. The dataset provides the semantics. The pipeline provides the mechanics.
+
+![Fig. 4: Five game effects as envelope curves — same pipeline, different parameters.](./figures/comp10_04_envelope_landscape.png)
 
 ---
 
@@ -171,6 +183,8 @@ This is not a metaphor. This is literally an operating system. The binary is the
 The implication is that the binary can host arbitrary numbers of applications simultaneously. Ten thousand scenes, each with its own field replacements and entity configurations, all running in the same process, managed by the same scheduler, isolated by the same permission system. A game, a spreadsheet, a chat client, and a business dashboard coexist because there is nothing to conflict — they are different datasets flowing through the same domain-agnostic pipeline.
 
 No bottom-up software architecture can achieve this, because bottom-up software compiles domain types into the binary. A spreadsheet application has spreadsheet types. A game has game types. Combining them means merging codebases or building an abstraction layer — which is building an operating system on top of an operating system. The data-only architecture skips this entirely. The binary already is the operating system. It never compiled any domain types. Applications are datasets that teach it what to be.
+
+![Fig. 6: Field replacement — identical struct fields serve game and business domains through labels only.](./figures/comp10_06_field_replacement.png)
 
 ---
 
@@ -235,6 +249,8 @@ The critical discipline is that logic blocks are not available from day one of a
 Only after multiple applications have shipped with zero logic blocks does probing begin: what genuinely cannot be expressed through the state machine → Prolog → utility AI → envelope flow? What requires a compiled utility function? The answers are discovered empirically, not speculatively.
 
 The convergence signal is observable. Early in the build-out phase, new logic block types are added frequently because the infrastructure is young. By the 5th application, the rate slows. By the 10th, it approaches zero. New applications stop requiring new primitives because they compose existing ones. When composition replaces extension, the drawer is full and the binary's scope is finalized.
+
+![Fig. 5: New primitives per application decays toward zero — the completion signal.](./figures/comp10_05_lb_convergence.png)
 
 ---
 
