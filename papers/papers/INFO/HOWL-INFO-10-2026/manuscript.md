@@ -1,5 +1,5 @@
-# Closing Domains: A Repeatable Method for Finishing Infrastructure
-
+# Closing Domains
+## A Repeatable Method for Finishing Infrastructure
 
 **Registry:** [@HOWL-INFO-10-2026]
 

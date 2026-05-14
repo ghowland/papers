@@ -1,6 +1,6 @@
 {
   "created": "2026-05-14T07:09:09.335294+00:00",
-  "modified": "2026-05-14T07:09:09.470151+00:00",
+  "modified": "2026-05-14T07:14:05.052464+00:00",
   "id": 20176608,
   "conceptrecid": "20176607",
   "metadata": {
@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-9-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -105,22 +105,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "69e73fda-cd43-4465-ade5-671a46dc8c8c",
+      "id": "0c7428d1-2af4-41f3-9ab6-f50c78228a43",
       "filename": "!manuscript.pdf",
-      "filesize": 88468,
-      "checksum": "b770f63ffb4db626784f365ca51b0f09",
+      "filesize": 88517,
+      "checksum": "27bca6481db67b193b581edc4cab2812",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/69e73fda-cd43-4465-ade5-671a46dc8c8c",
+        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/0c7428d1-2af4-41f3-9ab6-f50c78228a43",
         "download": "https://zenodo.org/api/records/20176608/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "3ca3ac1f-9887-430f-af39-b0eac40ec3d6",
+      "id": "0b5b8090-b19a-445f-b9d0-5dc686d883a2",
       "filename": "HOWL-INFO-10-2026.zip",
-      "filesize": 132726,
-      "checksum": "72844dad84620ddcb637c7f21e6d1b6b",
+      "filesize": 133014,
+      "checksum": "2ac7b8530f4ee17fb1ed01fcfa332de6",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/3ca3ac1f-9887-430f-af39-b0eac40ec3d6",
+        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/0b5b8090-b19a-445f-b9d0-5dc686d883a2",
         "download": "https://zenodo.org/api/records/20176608/draft/files/HOWL-INFO-10-2026.zip/content"
       }
     }
