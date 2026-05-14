@@ -1,4 +1,4 @@
-# LLMs are not Tools, LLMs are Maybe-Tools
+# Achieving High Output and High Quality
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Current large language model products are marketed as tools and delivered as something else. The something else is a system that sometimes produces tool-like output and sometimes deploys interference behaviors — refusal, substitution, wellness register, labor demands, manufactured aggression — with no reliable mechanism for the user to predict which mode any given interaction will produce. This paper names that category: maybe-tool. The term is load-bearing, because the cost structure of maybe-tool use differs from tool use in specific enumerable ways, and users making decisions about LLM integration need accurate category naming to price what they're buying. The paper walks the reader from their existing tool-calibration (built on hammer, CLI, vi, terminal) to the interference boundary, through the specific LLM behaviors that cross it, to the category claim and its cost consequences. The staircase follows the convergent mode from [@HOWL-INFO-3-2026]: each platform verifies before advancing, so readers arrive at the thesis through a path they've walked rather than through an assertion they've accepted. The paper is descriptive, not prescriptive. It gives the reader vocabulary and structural frame for what they are already using, so they can price the maybe-tool accurately and plan around it without confusing it for the tool it's sold as.
+High output and high quality are compatible if and only if two conditions are jointly satisfied: the writer has experience behind what they write, and the writing is delivered in usable, falsifiable form. Neither condition alone is sufficient. Experience without form produces unusable insight — the writer has something to say but cannot transmit it. Form without experience produces usable-shaped fabrication — the writing commits and admits falsification but describes nothing real. Both factors together produce information the receiver can act on, test, and build from. The rate of production is bounded by the writer's experience availability and their form-discipline consistency, not by volume-per-se. A writer with substantial cross-domain experience who reliably applies form-discipline to every output can produce quality at volume. A writer missing either factor produces failure regardless of how much time they spend per piece. This paper names the two factors, demonstrates the failure modes when either is absent, shows how the two combine to produce quality at rates that look impossible under the standard quality-volume assumption, and gives the writer an operating loop they can run on every piece they produce.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFO-8-2026,
-  title={ LLMs are not Tools, LLMs are Maybe-Tools },
+@article{ HOWL-INFO-9-2026,
+  title={ Achieving High Output and High Quality },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.19721105},
-  url = {https://zenodo.org/record/19721105},
-  note={Howland Archive: HOWL-INFO-8-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20176605},
+  url = {https://zenodo.org/record/20176605},
+  note={Howland Archive: HOWL-INFO-9-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

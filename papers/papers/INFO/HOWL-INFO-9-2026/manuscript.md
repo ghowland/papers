@@ -5,9 +5,9 @@
 
 **Series Path:** [@HOWL-INFO-1-2026] → [@HOWL-INFO-2-2026] → [@HOWL-INFO-3-2026] → [@HOWL-INFO-4-2026] → [@HOWL-INFO-5-2026] → [@HOWL-INFO-6-2026] → [@HOWL-INFO-7-2026] → [@HOWL-INFO-8-2026] → [@HOWL-INFO-9-2026]
 
-**Date:** April 24 2026
+**Date:** May 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20176605
 
 **Domain:** Information Theory / Methodology of Production
 
