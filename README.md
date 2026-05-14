@@ -249,6 +249,7 @@
 | **[@HOWL-CULT-12-2026](papers/papers/CULT/HOWL-CULT-12-2026/manuscript.md)** | **Cowardice and High Status as Anti-Popper Progress Blocking** | The Structural Mechanics of Institutional Non-Commitment. |
 | **[@HOWL-CULT-13-2026](papers/papers/CULT/HOWL-CULT-13-2026/manuscript.md)** | **Scientific Time Series Data: A Proposal for a 21st Century Upgrade to CODATA** | Replacing Averaged Snapshots with Synchronized Observable Measurement. |
 | **[@HOWL-CULT-14-2026](papers/papers/CULT/HOWL-CULT-14-2026/manuscript.md)** | **Mechanical Evaluation of Outsider Scientific Contributions** | Replacing Averaged Snapshots with Synchronized Observable Measurement. |
+| **[@HOWL-CULT-15-2026](papers/papers/CULT/HOWL-CULT-15-2026/manuscript.md)** | **Showing Your Work in 2026** | A Structural Specification for Reproducible Scientific Computation. |
 
 ---
 
