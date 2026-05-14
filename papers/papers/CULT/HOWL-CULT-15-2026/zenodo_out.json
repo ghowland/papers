@@ -1,12 +1,12 @@
 {
   "created": "2026-05-14T15:25:45.998499+00:00",
-  "modified": "2026-05-14T15:25:46.132358+00:00",
+  "modified": "2026-05-14T15:50:05.181502+00:00",
   "id": 20184251,
   "conceptrecid": "20184250",
   "metadata": {
-    "title": "Showing Your Work in 2026",
-    "publication_date": "2026-04",
-    "description": "This paper uses four definitions. Each is mechanical. Each is testable. Each is applied to observable structure, not to individuals. Everything in the paper is built from these definitions. A reader who does not accept them should stop here \u2014 nothing that follows will be persuasive because everything that follows depends on them.\n\n**Falsification.** A claim is scientific if and only if it specifies conditions under which it would be false. This is Karl Popper's demarcation criterion, formalized in 1934. It is not merely a philosophical position. It is the structural feature that separates claims that can teach us about reality from claims that cannot. A claim that is compatible with every possible observation says nothing about which observation will actually occur. It cannot be wrong, so it cannot be tested, so it cannot teach.\n\nFalsification as a practice requires four elements. First, commitment: the claimant states a specific prediction before the test. Second, specificity: the prediction is precise enough that observation can disagree with it. Third, priority: the prediction is stated before the result, not retrofitted. Fourth, acceptance: when observation contradicts the prediction, the claimant accepts the failure as a finding. Remove any one element and the activity is not falsification. It may be sophisticated. It may be interesting. But it is not the practice that produces scientific knowledge.\n\n**The Crank Label.** In institutional science, the word \"crank\" is applied to people outside the credentialing system who engage with frontier scientific questions. The label has a specific structural property: it is applied based on who the person is \u2014 their degrees, their affiliation, their publication history, their institutional membership \u2014 rather than what their work contains. Once applied, the label determines the response. The work is not examined. The work is not evaluated against any content criterion. The classification intercepts the work before examination can occur.\n\nThis classification is the structural inverse of falsification. Falsification evaluates claims on their content \u2014 their specificity, their testability, their agreement with observation. The crank label evaluates claimants on their credentials \u2014 their institutional history, their social position within the field. Falsification asks \"what does the work say and can it be tested?\" The crank label asks \"who is the author and are they authorized to speak?\" These are opposite operations. The label structurally prevents falsification from being applied to the work it intercepts.\n\n**LEMU.** This paper proposes four evaluation axes that replace credential-based filtering with content-based evaluation. The axes are Logic, Empirical, Mathematical, and Utility. Each axis is non-subjective. Each produces a result that can be explained mechanically to the submitter. Each evaluates the work, not the author.\n\nThe axes are defined in full in Section 3. The critical preliminary definition here is the distinction between utility and novelty, because the two will be confused if not separated at the outset. Novelty asks whether something has been said before. Utility asks whether it does anything. These are different properties. A paper that independently re-derives a known result using a new method has low novelty but potentially high utility \u2014 the new method might be simpler, faster, or applicable to problems the existing method cannot reach. A paper that proposes something never proposed before but with no consequences has high novelty and zero utility. This paper uses only utility. Novelty is excluded on purpose. Whether a contribution is original is a separate question from whether it is valuable. The evaluation framework does not ask \"is this new?\" It asks \"does this work?\"\n\n**Located Error.** When a specific claim fails at a specific point for a specific identifiable reason, the failure is a located error. Located errors are the most valuable output of any evaluation process because they narrow the search space. Before the evaluation, the problem could be anywhere in the work. After a located error, the problem is at a specific point. The submitter knows what to fix. The evaluator knows what failed. The search space has been reduced by the precise amount of information contained in the located error. A rejection that says \"this work does not meet our standards\" is not a located error. It provides no information about where the work fails. It does not narrow the search space. It cannot be acted on.",
+    "title": "Showing Your Work in 2026: A Structural Specification for Reproducible Scientific Computation",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>A physicist completes a computation. The computation derives a physical quantity &mdash; say, the primordial helium abundance &mdash; from a chain of input values and intermediate calculations. The physicist writes a paper. The paper is typeset in LaTeX. The equations are formatted. The derivation is described in prose.</div>\n<br>\n<div>The prose reads something like this: \"Using the Planck 2018 value of the baryon density parameter &Omega;_b = 0.0490 &plusmn; 0.0006, we derive the baryon-to-photon ratio &eta; via the standard relation involving the CMB photon number density (Fixsen 2009) and the critical density. Substituting into the Pitrou et al. (2018) BBN fitting formulae, we obtain Y_p = 0.2486, in reasonable agreement with the Aver et al. (2015) measurement of 0.2449 &plusmn; 0.0040.\"</div>\n<br>\n<div>The reader who wants to verify this result must perform the following steps. Find the Planck 2018 paper. Locate the &Omega;_b value in its tables. Find the Fixsen 2009 paper. Locate the CMB temperature value. Calculate the photon number density from the temperature using the standard formula, which requires knowing that formula and looking up &zeta;(3). Find the critical density, which requires the Hubble constant and the gravitational constant, each of which requires its own lookup. Compute &eta; from these inputs. Find the Pitrou 2018 paper. Locate the fitting coefficients. Apply the fitting formula. Check whether the result matches the paper's stated value.</div>\n<br>\n<div>This process has specific failure modes. The reader may copy a value incorrectly from one of the cited papers &mdash; transcription error. The paper may use a symbol that means different things in different conventions and not state which convention is intended &mdash; notational ambiguity. The paper may skip steps the author considered obvious &mdash; derivation gaps. The paper may have used a specific numerical method with specific parameters and not reported them &mdash; unstated numerical choices. The computation may have been performed in double-precision floating point, where rounding errors accumulated across the chain and the final digits depend on the implementation rather than on the physics &mdash; floating-point artifact.</div>\n<br>\n<div>These are not descriptions of bad practice. This is standard practice. The best papers in the best journals follow this format. The format was designed for an era when computation meant pen-and-paper derivation and publication meant printed pages. In that era, prose description of a computation was the best available technology for communicating the computation to others. The format served that era.</div>\n<br>\n<div>The era is over. Computation is performed by machines. Storage is effectively unlimited. Distribution is instantaneous and global. The infrastructure that made prose description the only viable format no longer constrains us. What constrains us is convention &mdash; the inherited practice of describing computations rather than publishing them.</div>\n<br>\n<div>The structural problem is precise. A prose description of a computation is not a computation. It is a set of instructions for performing a computation, written in natural language, subject to ambiguity, and requiring manual re-execution by every reader who wishes to verify the result. The distance between the description and the computation is the space where irreproducibility lives. Every ambiguity, every unstated choice, every transcription opportunity is a point where two independent readers may arrive at different results from the same paper. The prose description does not prevent this divergence. It enables it.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-15-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/CULT/HOWL-CULT-15-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -78,13 +78,22 @@
       "recid": 20184251
     }
   },
-  "title": "Showing Your Work in 2026",
+  "title": "Showing Your Work in 2026: A Structural Specification for Reproducible Scientific Computation",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/20184251",
     "html": "https://zenodo.org/deposit/20184251",
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20184251/files",
     "bucket": "https://zenodo.org/api/files/24154f78-9def-4e8e-8ed1-7739edebf044",
+    "thumb250": "https://zenodo.org/record/20184251/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20184251/thumb10",
+      "50": "https://zenodo.org/record/20184251/thumb50",
+      "100": "https://zenodo.org/record/20184251/thumb100",
+      "250": "https://zenodo.org/record/20184251/thumb250",
+      "750": "https://zenodo.org/record/20184251/thumb750",
+      "1200": "https://zenodo.org/record/20184251/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20184251",
     "latest_draft_html": "https://zenodo.org/deposit/20184251",
     "publish": "https://zenodo.org/api/deposit/depositions/20184251/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20184251,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "95096736-cbfb-4011-82b1-67746e4c37c3",
+      "filename": "!manuscript.pdf",
+      "filesize": 1447319,
+      "checksum": "df1106472e0b7fbf28ac4311f22750ae",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20184251/files/95096736-cbfb-4011-82b1-67746e4c37c3",
+        "download": "https://zenodo.org/api/records/20184251/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "986c1c2a-f4d7-4504-b3d7-e6d8b170d13a",
+      "filename": "HOWL-CULT-15-2026.zip",
+      "filesize": 2554029,
+      "checksum": "a3f77e45c51aa6c1f5ae5df636b4b1f9",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20184251/files/986c1c2a-f4d7-4504-b3d7-e6d8b170d13a",
+        "download": "https://zenodo.org/api/records/20184251/draft/files/HOWL-CULT-15-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
