@@ -1,14 +1,14 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-05-14 15:17:15 UTC
+**Generated:** 2026-05-14 15:25:26 UTC
 
 ## Summary
 
 - **Total Papers:** 152
-- **Valid:** 146
-- **Invalid:** 6
-- **Total Errors:** 9
-- **Total Warnings:** 352
+- **Valid:** 147
+- **Invalid:** 5
+- **Total Errors:** 7
+- **Total Warnings:** 351
 
 ## By Subject
 
@@ -36,10 +36,6 @@
 ## Validation Issues
 
 ### Papers with Errors
-
-**HOWL-CULT-15-2026**
-  - ❌ Missing title (H1)
-  - ❌ Missing Registry field in frontmatter
 
 **HOWL-DISC-14-2026**
   - ❌ Missing title (H1)

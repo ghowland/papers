@@ -1,0 +1,100 @@
+{
+  "created": "2026-05-14T15:25:45.998499+00:00",
+  "modified": "2026-05-14T15:25:46.132358+00:00",
+  "id": 20184251,
+  "conceptrecid": "20184250",
+  "metadata": {
+    "title": "Showing Your Work in 2026",
+    "publication_date": "2026-04",
+    "description": "This paper uses four definitions. Each is mechanical. Each is testable. Each is applied to observable structure, not to individuals. Everything in the paper is built from these definitions. A reader who does not accept them should stop here \u2014 nothing that follows will be persuasive because everything that follows depends on them.\n\n**Falsification.** A claim is scientific if and only if it specifies conditions under which it would be false. This is Karl Popper's demarcation criterion, formalized in 1934. It is not merely a philosophical position. It is the structural feature that separates claims that can teach us about reality from claims that cannot. A claim that is compatible with every possible observation says nothing about which observation will actually occur. It cannot be wrong, so it cannot be tested, so it cannot teach.\n\nFalsification as a practice requires four elements. First, commitment: the claimant states a specific prediction before the test. Second, specificity: the prediction is precise enough that observation can disagree with it. Third, priority: the prediction is stated before the result, not retrofitted. Fourth, acceptance: when observation contradicts the prediction, the claimant accepts the failure as a finding. Remove any one element and the activity is not falsification. It may be sophisticated. It may be interesting. But it is not the practice that produces scientific knowledge.\n\n**The Crank Label.** In institutional science, the word \"crank\" is applied to people outside the credentialing system who engage with frontier scientific questions. The label has a specific structural property: it is applied based on who the person is \u2014 their degrees, their affiliation, their publication history, their institutional membership \u2014 rather than what their work contains. Once applied, the label determines the response. The work is not examined. The work is not evaluated against any content criterion. The classification intercepts the work before examination can occur.\n\nThis classification is the structural inverse of falsification. Falsification evaluates claims on their content \u2014 their specificity, their testability, their agreement with observation. The crank label evaluates claimants on their credentials \u2014 their institutional history, their social position within the field. Falsification asks \"what does the work say and can it be tested?\" The crank label asks \"who is the author and are they authorized to speak?\" These are opposite operations. The label structurally prevents falsification from being applied to the work it intercepts.\n\n**LEMU.** This paper proposes four evaluation axes that replace credential-based filtering with content-based evaluation. The axes are Logic, Empirical, Mathematical, and Utility. Each axis is non-subjective. Each produces a result that can be explained mechanically to the submitter. Each evaluates the work, not the author.\n\nThe axes are defined in full in Section 3. The critical preliminary definition here is the distinction between utility and novelty, because the two will be confused if not separated at the outset. Novelty asks whether something has been said before. Utility asks whether it does anything. These are different properties. A paper that independently re-derives a known result using a new method has low novelty but potentially high utility \u2014 the new method might be simpler, faster, or applicable to problems the existing method cannot reach. A paper that proposes something never proposed before but with no consequences has high novelty and zero utility. This paper uses only utility. Novelty is excluded on purpose. Whether a contribution is original is a separate question from whether it is valuable. The evaluation framework does not ask \"is this new?\" It asks \"does this work?\"\n\n**Located Error.** When a specific claim fails at a specific point for a specific identifiable reason, the failure is a located error. Located errors are the most valuable output of any evaluation process because they narrow the search space. Before the evaluation, the problem could be anywhere in the work. After a located error, the problem is at a specific point. The submitter knows what to fix. The evaluator knows what failed. The search space has been reduced by the precise amount of information contained in the located error. A rejection that says \"this work does not meet our standards\" is not a located error. It provides no information about where the work fails. It does not narrow the search space. It cannot be acted on.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "culture"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-15-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-15-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20184251",
+      "recid": 20184251
+    }
+  },
+  "title": "Showing Your Work in 2026",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20184251",
+    "html": "https://zenodo.org/deposit/20184251",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20184251/files",
+    "bucket": "https://zenodo.org/api/files/24154f78-9def-4e8e-8ed1-7739edebf044",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20184251",
+    "latest_draft_html": "https://zenodo.org/deposit/20184251",
+    "publish": "https://zenodo.org/api/deposit/depositions/20184251/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20184251/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20184251/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20184251/actions/newversion"
+  },
+  "record_id": 20184251,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}
