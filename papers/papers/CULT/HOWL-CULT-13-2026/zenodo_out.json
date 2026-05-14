@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-14T13:22:01.060413+00:00",
+  "modified": "2026-05-14T13:22:01.207706+00:00",
+  "id": 20181965,
+  "conceptrecid": "20181964",
+  "metadata": {
+    "title": "Scientific Time Series Data: A Proposal for a 21st Century Upgrade to CODATA",
+    "publication_date": "2026-04",
+    "description": "The fundamental physical constants published by CODATA are produced by collecting measurements from instruments of different types, at different locations, at different times, and averaging them into a single recommended value per quantity per publication cycle. This process was designed under 20th century infrastructure constraints where centralized averaging was the most practical way to distill worldwide measurements into usable reference values. The averaging destroys three categories of information present in the raw data: disagreement structure between instruments, temporal structure within each instrument's readings, and contextual correlation between readings and the physical conditions under which they were taken. These categories of information are precisely what would be needed to investigate open questions such as the non-convergence of gravitational constant measurements, the possible dependence of measured quantities on environmental or astronomical conditions, and the existence of correlations between quantities in different domains that are currently never placed on the same timeline.\n\nThis paper proposes a concrete infrastructure upgrade: time-synchronize all contributing instruments to a common reference clock via GPS, publish each instrument's readings as a time series with full device and environmental metadata, and make the unified dataset publicly queryable in a standardized format. Every component of this infrastructure exists, is deployed at scale in other industries, and is available at negligible cost relative to the instruments it would serve. The upgrade preserves everything the current system provides \u2014 the recommended value can still be computed from the dataset by anyone who wants it \u2014 while adding the raw temporal, spatial, and instrumental structure that the averaging process currently removes. The paper specifies falsification conditions for each of its motivating predictions and commits to accepting failure if synchronized time series analysis reveals no cross-domain correlations, no contextual structure in measurement disagreements, and no event-driven effects on precision readings.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "culture"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-13-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-13-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20181965",
+      "recid": 20181965
+    }
+  },
+  "title": "Scientific Time Series Data: A Proposal for a 21st Century Upgrade to CODATA",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20181965",
+    "html": "https://zenodo.org/deposit/20181965",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20181965/files",
+    "bucket": "https://zenodo.org/api/files/21a1863a-e58e-47a9-84ab-8ceed5c2a160",
+    "thumb250": "https://zenodo.org/record/20181965/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20181965/thumb10",
+      "50": "https://zenodo.org/record/20181965/thumb50",
+      "100": "https://zenodo.org/record/20181965/thumb100",
+      "250": "https://zenodo.org/record/20181965/thumb250",
+      "750": "https://zenodo.org/record/20181965/thumb750",
+      "1200": "https://zenodo.org/record/20181965/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20181965",
+    "latest_draft_html": "https://zenodo.org/deposit/20181965",
+    "publish": "https://zenodo.org/api/deposit/depositions/20181965/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20181965/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20181965/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20181965/actions/newversion"
+  },
+  "record_id": 20181965,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "72e8c41c-d3c7-4871-b14f-38f9d1570166",
+      "filename": "HOWL-CULT-13-2026.zip",
+      "filesize": 102957,
+      "checksum": "91135edae1a47a91860329f9269e42e5",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20181965/files/72e8c41c-d3c7-4871-b14f-38f9d1570166",
+        "download": "https://zenodo.org/api/records/20181965/draft/files/HOWL-CULT-13-2026.zip/content"
+      }
+    },
+    {
+      "id": "6e228681-d32b-428c-919b-33af07b73902",
+      "filename": "!manuscript.pdf",
+      "filesize": 71515,
+      "checksum": "107770192e7ca57e10a73aa70d3c5cdd",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20181965/files/6e228681-d32b-428c-919b-33af07b73902",
+        "download": "https://zenodo.org/api/records/20181965/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

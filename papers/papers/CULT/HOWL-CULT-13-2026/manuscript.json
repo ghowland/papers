@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Scientific Time Series Data: A Proposal for a 21st Century Upgrade to CODATA",
+    "registry_id": "HOWL-CULT-13-2026",
+    "series_path": "[@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026] \u2192 [@HOWL-CULT-5-2026] \u2192 [@HOWL-CULT-6-2026] \u2192 [@HOWL-CULT-7-2026] \u2192 [@HOWL-CULT-8-2026] \u2192 [@HOWL-CULT-9-2026] \u2192 [@HOWL-CULT-12-2026] \u2192 [@HOWL-CULT-13-2026]",
+    "doi": "10.5281/zenodo.20181965",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# Scientific Time Series Data: A Proposal for a 21st Century Upgrade to CODATA ## Replacing Averaged Snapshots with Synchronized Observable Measurement  **Registry:** [@HOWL-CULT-13-2026]  **Series Pa..."
+}
