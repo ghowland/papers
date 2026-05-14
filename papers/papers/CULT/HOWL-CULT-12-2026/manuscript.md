@@ -7,7 +7,7 @@
 
 **Date:** May 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20181100
 
 **Domain:** Epistemology / Institutional Analysis / Philosophy of Science
 

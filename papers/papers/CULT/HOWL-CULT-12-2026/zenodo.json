@@ -1,5 +1,5 @@
 {
-  "title": "Engineering and Science",
+  "title": "Cowardice and High Status as Anti-Popper Progress Blocking",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
@@ -12,11 +12,11 @@
     "howland archive",
     "culture"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-11-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-12-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-11-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-12-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -1,4 +1,4 @@
-# Engineering and Science
+# Cowardice and High Status as Anti-Popper Progress Blocking
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-CULT-11-2026,
-  title={ Engineering and Science },
+@article{ HOWL-CULT-12-2026,
+  title={ Cowardice and High Status as Anti-Popper Progress Blocking },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20132738},
-  url = {https://zenodo.org/record/20132738},
-  note={Howland Archive: HOWL-CULT-11-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20181100},
+  url = {https://zenodo.org/record/20181100},
+  note={Howland Archive: HOWL-CULT-12-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
