@@ -69,6 +69,8 @@ This property — output in the same format as input — makes derivation chains
 
 **Layer 5: The report.** A human-readable summary generated from the run output. Derivation status — how many succeeded, how many errored. Comparison results — predicted value, measured value, miss percentage, pass/fail status for each test. Located failures — which specific test failed, by how much, at which point in the chain. The report is generated from the output, not written separately. It cannot disagree with the output because it is derived from it.
 
+![Fig. 8: Value Node Anatomy — A single value store entry dissected, showing every field and its purpose. This is the fundamental data unit of the five-layer standard.](./figures/cult15_08_value_node_anatomy.png)
+
 ---
 
 ## 3. A Cross-Domain Example
@@ -78,6 +80,8 @@ The five layers become concrete through a specific example. Consider a computati
 The experiment is called `experiment_bridge_bbn_v0`. Its purpose is to test whether gauge integers from the Standard Model predict primordial nuclear abundances through the cosmological chain. The derivation proceeds as follows. Integer inputs produce the baryon density parameter Ω_b. Ω_b combined with the CMB photon number density produces the baryon-to-photon ratio η. η enters the Big Bang Nucleosynthesis fitting formulae and produces predictions for the primordial helium-4 mass fraction Y_p and the primordial deuterium-to-hydrogen ratio D/H. Separately, the derived cosmological parameters are checked for consistency with the effective number of neutrino species N_eff, and the vacuum energy density is derived and compared against observation.
 
 Three domains — particle physics integers, cosmological parameters, nuclear abundances — connected by a single derivation chain. If the integers are wrong, the helium prediction breaks. If the cosmological bridge is wrong, the deuterium prediction breaks. The chain is falsifiable end to end.
+
+![Fig. 1: BBN Domain Crossing Map — Gauge integers flow through three physics domains with actual values at each handoff.](./figures/cult15_01_bbn_domain_crossing.png)
 
 **Layer 1 in practice.** The experiment draws from twenty-eight named value store entries. Each entry is a specific physical quantity with full metadata. The CMB temperature: `cosmo_t_cmb_v0`, value 2.7255 K, 5 digits, uncertainty 0.0006 K, source "Fixsen 2009. ApJ 707, 916. COBE/FIRAS CMB monopole temperature." The primordial deuterium measurement: `cosmo_dh_measured_v0`, value 2.527 × 10⁻⁵, 4 digits, uncertainty 0.030 × 10⁻⁵, source "Cooke, Pettini, Steidel 2018. ApJ 855, 102." The BBN fitting coefficients: `bbn_yp_a_coeff_v0`, value 0.2485, source "Pitrou et al. 2018. Phys.Rept. 754, 1." Every input named. Every input sourced. Every input machine-readable. A reader verifying the computation does not hunt through citations. They query the value store.
 
@@ -89,7 +93,12 @@ Another comparison tests the full derivation chain: label "Full chain: integers 
 
 **Layer 3 in practice.** The connection bundle for this experiment lists all twenty-eight input values by key and describes the experiment's scope: "Tests whether gauge integers predict nuclear abundances through the cosmological chain." The bundle identifies the cross-domain nature of the test explicitly. The inputs span particle physics (gauge integers), cosmology (Planck parameters, CMB temperature, critical density), and nuclear physics (BBN fitting coefficients, measured abundances). The bundle is the manifest — anyone reading it knows what the experiment claims to test, what inputs it uses, and what domains it crosses.
 
+![Fig. 2: Domain Crossing Scale — The BBN derivation spans from gauge integers at the Standard Model scale through CMB photons to nuclear abundances, covering 25+ orders of magnitude.](./figures/cult15_02_domain_crossing_scale.png)
+
+
 **Layer 4 in practice.** The run produces fifty-seven output values. Each is stored as a named value node keyed to the specific run. The derived baryon density: `result_omega_b_derived_v0`, value 0.049035637966613, source `experiment_bridge_bbn_v0_run011`. The derived helium abundance: `result_yp_derived_v0`, value 0.248643255182356. The derived deuterium abundance: `result_dh_derived_v0`, value 2.53060482485205 × 10⁻⁵. The miss percentages, sigma values, intermediate quantities, and consistency checks — all stored, all named, all traceable to the run that produced them.
+
+![Fig. 7: Prediction vs Measurement — Integer-derived predictions paired with cosmological measurements for four BBN quantities. Error bars show measurement uncertainty.](./figures/cult15_07_prediction_vs_measurement.png)
 
 **Layer 5 in practice.** The report prints the complete results. Thirteen comparisons, each with its verdict:
 
@@ -107,6 +116,8 @@ The failure is located precisely. Y_p misses the three-digit agreement target. T
 
 The summary is generated, not written: seven derivations, zero errors. Four passes, one failure, eight informational. Status: partial. The experiment does not claim success. It reports what it found. The failure is printed with the same mechanical precision as the successes.
 
+![Fig. 6: Miss Distribution — All 13 BBN comparisons plotted on a log scale with threshold regions. Most predictions are sub-percent. The Y_p digit failure is located precisely.](./figures/cult15_06_miss_distribution.png)
+
 ---
 
 ## 4. The Anti-Smuggling Property
@@ -120,6 +131,8 @@ The BBN experiment demonstrates this. Twenty-eight inputs are declared in the de
 Even numerical configuration is stored in the value store. Integration step counts, decimal precision settings, convergence thresholds — these are not buried in source code comments. They are named value nodes with sources and notes. The reference implementation stores `config_euler_step_count_v0` at 10000 with the note: "Increased from 4000 (original) to 10000 for improved two-loop convergence." The choice is recorded. The change is documented. If changing the step count changes the result, that sensitivity is discoverable because both configurations are stored, both are versioned, and both runs are reproducible.
 
 The anti-smuggling property is not a policy. It is not a guideline that researchers are encouraged to follow. It is an architectural constraint enforced by the infrastructure. The same way a compiler rejects code that references an undeclared variable, the runner rejects computations that reference undeclared values. The mechanism is identical. The consequence is identical. You cannot use what you have not declared.
+
+![Fig. 4: Anti-Smuggling Architecture — The runner can only access values declared in the experiment definition. Undeclared values are structurally blocked.](./figures/cult15_04_anti_smuggling.png)
 
 ---
 
@@ -136,6 +149,8 @@ The BBN experiment's definition contains thirteen comparison entries. Each entry
 This is stronger than external pre-registration in three specific ways. First, it is structural rather than administrative — the pre-registration is embedded in the computation infrastructure, not filed with a separate registry. Second, it is automatically enforced — the runner evaluates the criteria mechanically, removing the opportunity for post-hoc reinterpretation of what "success" means. Third, it is granular — each comparison is an independent test with its own criterion, so a partial failure is located at a specific point rather than producing an ambiguous overall verdict.
 
 The BBN experiment demonstrates all three properties. It pre-registers thirteen tests. Eleven produce clear verdicts (four PASS, one FAIL, six INFO with quantified miss). The failure is at Y_p digit agreement — located at a specific comparison, with a specific miss of 1.49%. The experiment does not hide this failure. It cannot hide it. The comparison was in the definition. The runner evaluated it. The report printed it.
+
+![Fig. 3: Comparison Verdict Landscape — All 13 BBN comparisons with their pre-registered pass/fail verdicts and miss percentages on a log scale.](./figures/cult15_03_verdict_landscape.png)
 
 ---
 
@@ -162,6 +177,8 @@ The experiment definition costs planning time. Declaring inputs, outputs, and co
 The run infrastructure costs implementation time. Building a runner that loads the value store, executes derivations, runs comparisons, and produces reports is an engineering project. The reference implementation exists and is operational — fifty experiments across multiple domains of physics. For a new research group, adopting the standard means either using the existing infrastructure or building a compatible implementation against the specification. This is a one-time cost.
 
 The total cost is small relative to the cost of the science. A single precision measurement experiment at a national laboratory costs millions of dollars and years of effort. The five-layer standard costs days of engineering to implement and hours per experiment to maintain. The cost of not implementing it — irreproducible results, unlocated errors, smuggled parameters, destroyed temporal structure — is paid by every downstream user of the results, repeatedly, for as long as the results are used.
+
+![Fig. 5: Verification Cost — Current practice scales linearly with readers. The five-layer standard is flat after initial author investment.](./figures/cult15_05_verification_cost.png)
 
 ---
 
