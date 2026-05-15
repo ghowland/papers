@@ -1,12 +1,12 @@
 {
   "created": "2026-05-15T18:59:09.434519+00:00",
-  "modified": "2026-05-15T18:59:09.526002+00:00",
+  "modified": "2026-05-15T19:16:07.081070+00:00",
   "id": 20214563,
   "conceptrecid": "20214562",
   "metadata": {
-    "title": "Computational Primitives and Operational Environments",
-    "publication_date": "2026-04",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "title": "Computational Primitives and Operational Environments: The Execution Layer for VDR-LLM-Prolog",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download &mdash; the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.</div>\n<br>\n<div>The central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.</div>\n<br>\n<div>&nbsp;</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-6-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/VDR/HOWL-VDR-6-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -78,7 +78,7 @@
       "recid": 20214563
     }
   },
-  "title": "Computational Primitives and Operational Environments",
+  "title": "Computational Primitives and Operational Environments: The Execution Layer for VDR-LLM-Prolog",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/20214563",
     "html": "https://zenodo.org/deposit/20214563",
@@ -105,23 +105,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "cb04ffd0-d293-405b-8b77-310d0ea237ee",
-      "filename": "!manuscript.pdf",
-      "filesize": 119333,
-      "checksum": "20219338475c37bf4358061555c38a53",
+      "id": "c26b3398-4221-49aa-adbf-e4f6ca1d013a",
+      "filename": "HOWL-VDR-6-2026.zip",
+      "filesize": 2592391,
+      "checksum": "271be150591c90556d60578cf795142c",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20214563/files/cb04ffd0-d293-405b-8b77-310d0ea237ee",
-        "download": "https://zenodo.org/api/records/20214563/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20214563/files/c26b3398-4221-49aa-adbf-e4f6ca1d013a",
+        "download": "https://zenodo.org/api/records/20214563/draft/files/HOWL-VDR-6-2026.zip/content"
       }
     },
     {
-      "id": "a684b33d-f559-4d5f-ab13-414821fbed97",
-      "filename": "HOWL-VDR-6-2026.zip",
-      "filesize": 1345950,
-      "checksum": "56cacbfe9b5ea21c8b2cd6b8aa8ddb52",
+      "id": "297412f6-d453-4372-a679-84af243b6185",
+      "filename": "!manuscript.pdf",
+      "filesize": 1344493,
+      "checksum": "af74cd0592f51811f8da3831ba467ab8",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20214563/files/a684b33d-f559-4d5f-ab13-414821fbed97",
-        "download": "https://zenodo.org/api/records/20214563/draft/files/HOWL-VDR-6-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20214563/files/297412f6-d453-4372-a679-84af243b6185",
+        "download": "https://zenodo.org/api/records/20214563/draft/files/!manuscript.pdf/content"
       }
     }
   ],
