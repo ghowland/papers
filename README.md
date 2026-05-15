@@ -110,8 +110,8 @@
 
 ---
 
-## Integer Arithmetic: VDR: Value, Decimal, Remainder
-*Exact Finite Arithmetic in Irreducible Triple Form.*
+## Discrete Calculus and Exact Arithmetic: VDR — Value, Denominator, Remainder
+*Finite Exact Computation in Irreducible Triple Form.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
