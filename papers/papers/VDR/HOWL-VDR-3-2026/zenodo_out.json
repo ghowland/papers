@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-3-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20210962/files",
     "bucket": "https://zenodo.org/api/files/219052c4-20ad-4cde-a348-938e0eb85f08",
+    "thumb250": "https://zenodo.org/record/20210962/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20210962/thumb10",
+      "50": "https://zenodo.org/record/20210962/thumb50",
+      "100": "https://zenodo.org/record/20210962/thumb100",
+      "250": "https://zenodo.org/record/20210962/thumb250",
+      "750": "https://zenodo.org/record/20210962/thumb750",
+      "1200": "https://zenodo.org/record/20210962/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20210962",
     "latest_draft_html": "https://zenodo.org/deposit/20210962",
     "publish": "https://zenodo.org/api/deposit/depositions/20210962/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20210962,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "c38f558f-1ffa-492d-8e5e-53315618493d",
+      "filename": "!manuscript.pdf",
+      "filesize": 89854,
+      "checksum": "4775ee2493352b9ac43f0ccd10f997d4",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20210962/files/c38f558f-1ffa-492d-8e5e-53315618493d",
+        "download": "https://zenodo.org/api/records/20210962/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "0d1e9d20-2942-40be-bc78-127fefd9121a",
+      "filename": "HOWL-VDR-3-2026.zip",
+      "filesize": 557827,
+      "checksum": "faa503a6c2af922441d1f251fc907d0c",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20210962/files/0d1e9d20-2942-40be-bc78-127fefd9121a",
+        "download": "https://zenodo.org/api/records/20210962/draft/files/HOWL-VDR-3-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
