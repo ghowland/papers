@@ -1,15 +1,15 @@
-# Computational Primitives and Operational Environments
-## The Execution Layer for VDR-LLM-Prolog
+# Complete Lifecycle Technical Specification
+## Training, Feedback, Data Sourcing, and Continuous Operation
 
-**Registry:** [@HOWL-VDR-6-2026]
+**Registry:** [@HOWL-VDR-7-2026]
 
-**Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → [@HOWL-VDR-3-2026] → [@HOWL-VDR-4-2026] → [@HOWL-LLM-1-2026] → [@HOWL-VDR-5-2026] → [@HOWL-VDR-6-2026]
+**Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → [@HOWL-VDR-3-2026] → [@HOWL-VDR-4-2026] → [@HOWL-LLM-1-2026] → [@HOWL-VDR-5-2026] → [@HOWL-VDR-6-2026] → [@HOWL-VDR-7-2026]
 
-**DOI:** 10.5281/zenodo.20214563
+**DOI:** 10.5281/zenodo.zzz
 
 **Date:** May 2026
 
-**Domain:** Applied Philosophy / Systems Architecture / Exact Computation
+**Domain:** Applied Philosophy / Machine Learning Systems / Lifecycle Engineering
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6.
 
@@ -17,2022 +17,2138 @@
 
 ## Abstract
 
-VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download — the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.
+VDR-1 through VDR-4 built the arithmetic and ML stack. VDR-5 specified the knowledge architecture. VDR-6 specified the execution layer. All of these papers describe what happens during a single prompt interaction — the system receives input, computes, reasons, and responds. This paper specifies everything else: the complete lifecycle from raw data sourcing through corpus preparation, tokenization, model initialization, pre-training, fine-tuning, human feedback integration, evaluation, deployment, continuous monitoring, model updates, and retirement. Every phase is specified in terms of the VDR-Prolog KB architecture, meaning every phase produces queryable facts, operates under declared constraints, stores results with provenance, and is controllable through KB activation and deactivation.
 
-The central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.
-
----
-
-## 1. Why an Execution Layer
-
-VDR-5 specified what the system knows. This paper specifies what the system does.
-
-A language model that can store exact fractions, track provenance, manage scoped knowledge bases, and enforce constraints is a powerful reasoning system. But it cannot sort a list reliably. It cannot compile code. It cannot run tests. It cannot read files. It cannot download data. It cannot do any of these things because it is a token predictor, and token prediction is not computation.
-
-The execution layer gives the system hands. Pure primitives perform exact computation — sorting, arithmetic, string operations, linear algebra — with guaranteed correctness. Operational primitives interact with the outside world — files, compilers, networks, processes — with declared authorization and logged execution. Command tokens let the language model invoke both kinds of primitives as structured operations rather than generated text. Operational environments provide sandboxed contexts where code runs safely.
-
-The execution layer does not replace the language model. It complements it. The language model recognizes that a sort is needed. The sort primitive performs it correctly. The language model recognizes that code should be tested. The execution primitive runs pytest in a Docker container and stores the results in the KB. The language model frames the results for the user. Each component does what it does best.
-
-![Fig. 1: VDR-6 Identity Card — 262 primitives across 20 categories, 4 environment types, command tokens, and grants.](./figures/vdr6_01_identity_card.png)
+The central architectural principle is that the system is both API and generator. It serves data through structured endpoints and generates text through the language model. Command tokens let the model invoke its own lifecycle operations. KBs let operators enable, disable, and layer lifecycle components like a file tree. The UI is an API to the KB layer, not a separate system. Training data, model weights, evaluation results, feedback records, and deployment configurations are all KBs — surfaceable, queryable, versionable, and constrainable by the same mechanisms that govern prompt-time operation.
 
 ---
 
-## 2. Pure Primitives
+## 1. The Lifecycle Phases
 
-A pure primitive is a function that always produces the same output from the same input, has no side effects, terminates in bounded time, operates on exact VDR types, and carries declarable constraint invariants. Pure primitives do not require authorization grants. They are safe by construction.
+The complete lifecycle has 12 phases. Each phase is a KB operation. Each phase produces facts that feed the next phase. Each phase operates under constraints that can be inspected and modified. The phases are not a waterfall — they cycle, overlap, and repeat. But each has a defined input, output, and constraint set.
 
-![Fig. 5: Primitive Rings — 218 pure and 44 operational primitives distributed across 20 categories by count.](./figures/vdr6_05_primitive_rings.png)
+```
+Phase 1:  Data Sourcing         → raw data KBs
+Phase 2:  Corpus Preparation    → cleaned, filtered, formatted KBs
+Phase 3:  Tokenization          → vocabulary KB + tokenized corpus KBs
+Phase 4:  Model Initialization  → architecture KB + initial weight KBs
+Phase 5:  Pre-Training          → trained weight KBs + training log KBs
+Phase 6:  Fine-Tuning           → domain-adapted weight KBs
+Phase 7:  Human Feedback        → preference KBs + reward model KBs
+Phase 8:  Evaluation            → benchmark result KBs
+Phase 9:  Deployment            → serving configuration KBs
+Phase 10: Monitoring            → runtime metric KBs
+Phase 11: Update                → delta weight KBs + rollback KBs
+Phase 12: Retirement            → archived model KBs
+```
 
-### 2.1 Category 1: String Operations (17 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 1 | string_reverse | atom → atom | Reverse character order |
-| 2 | string_length | atom → number | Character count |
-| 3 | string_concat | atom, atom → atom | Concatenation |
-| 4 | string_slice | atom, number, number → atom | Substring by start and end index |
-| 5 | string_contains | atom, atom → bool | Substring membership test |
-| 6 | string_split | atom, atom → list(atom) | Split by delimiter |
-| 7 | string_join | list(atom), atom → atom | Join with delimiter |
-| 8 | string_trim | atom → atom | Remove leading and trailing whitespace |
-| 9 | string_upper | atom → atom | Convert to uppercase |
-| 10 | string_lower | atom → atom | Convert to lowercase |
-| 11 | string_replace | atom, atom, atom → atom | Replace all occurrences of pattern |
-| 12 | string_starts_with | atom, atom → bool | Prefix test |
-| 13 | string_ends_with | atom, atom → bool | Suffix test |
-| 14 | string_pad_left | atom, number, atom → atom | Left-pad to target width |
-| 15 | string_char_at | atom, number → atom | Character at index |
-| 16 | string_to_chars | atom → list(atom) | Explode to character list |
-| 17 | chars_to_string | list(atom) → atom | Implode from character list |
-
-Every string operation produces an exact result deterministically. String reversal of "hello" is always "olleh." String split of "a,b,c" on "," is always ["a","b","c"]. These operations are among the most common sources of LLM errors when performed by token prediction. As primitives, they are infallible.
-
-### 2.2 Category 2: List Operations (34 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 18 | list_length | list → number | Element count |
-| 19 | list_append | list, term → list | Add element to end |
-| 20 | list_prepend | term, list → list | Add element to front |
-| 21 | list_concat | list, list → list | Concatenate two lists |
-| 22 | list_reverse | list → list | Reverse element order |
-| 23 | list_sort | list, rule → list | Sort by declared comparison rule |
-| 24 | list_sort_reverse | list, rule → list | Sort descending by rule |
-| 25 | list_sort_by_key | list(term), key_fn → list(term) | Sort by extracted key |
-| 26 | list_unique | list → list | Remove duplicates preserving first occurrence |
-| 27 | list_flatten | list(list) → list | One-level flatten |
-| 28 | list_zip | list, list → list(pair) | Pair-wise zip |
-| 29 | list_unzip | list(pair) → (list, list) | Separate pairs |
-| 30 | list_head | list → term | First element |
-| 31 | list_tail | list → list | All elements except first |
-| 32 | list_last | list → term | Last element |
-| 33 | list_init | list → list | All elements except last |
-| 34 | list_nth | list, number → term | Element at index |
-| 35 | list_take | list, number → list | First N elements |
-| 36 | list_drop | list, number → list | Skip first N elements |
-| 37 | list_slice | list, number, number → list | Sublist by index range |
-| 38 | list_filter | list, predicate → list | Keep elements matching predicate |
-| 39 | list_map | list, fn → list | Apply function to each element |
-| 40 | list_reduce | list, fn, init → term | Left fold with accumulator |
-| 41 | list_any | list, predicate → bool | Any element matches |
-| 42 | list_all | list, predicate → bool | All elements match |
-| 43 | list_count | list, predicate → number | Count matching elements |
-| 44 | list_index_of | list, term → number | Index of first occurrence |
-| 45 | list_contains | list, term → bool | Membership test |
-| 46 | list_min | list → term | Minimum element |
-| 47 | list_max | list → term | Maximum element |
-| 48 | list_enumerate | list → list(pair) | Pair each element with its index |
-| 49 | list_chunk | list, number → list(list) | Split into fixed-size chunks |
-| 50 | list_interleave | list, list → list | Alternating merge |
-| 51 | list_partition | list, predicate → (list, list) | Split by predicate into pass and fail |
-| 52 | list_group_by | list(term), key_fn → dict | Group elements by extracted key |
-| 53 | list_frequencies | list → dict | Count occurrences of each element |
-
-Sorting is the critical primitive. A list_sort of 10 elements by token prediction has approximately 95% accuracy. A list_sort of 100 elements drops below 50%. A list_sort of 1000 elements is effectively impossible by token prediction. The primitive sorts correctly regardless of size, with O(n log n) performance and exact comparison via VDR fraction ordering.
-
-### 2.3 Category 3: VDR Arithmetic (26 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 54 | vdr_add | fraction, fraction → fraction | Exact rational addition |
-| 55 | vdr_sub | fraction, fraction → fraction | Exact rational subtraction |
-| 56 | vdr_mul | fraction, fraction → fraction | Exact rational multiplication |
-| 57 | vdr_div | fraction, fraction → fraction | Exact rational division |
-| 58 | vdr_neg | fraction → fraction | Exact negation |
-| 59 | vdr_abs | fraction → fraction | Absolute value |
-| 60 | vdr_pow | fraction, number → fraction | Integer power |
-| 61 | vdr_gcd | number, number → number | Greatest common divisor |
-| 62 | vdr_lcm | number, number → number | Least common multiple |
-| 63 | vdr_mod | number, number → number | Modular remainder |
-| 64 | vdr_floor | fraction → number | Floor to integer |
-| 65 | vdr_ceil | fraction → number | Ceiling to integer |
-| 66 | vdr_round | fraction → number | Round to nearest integer |
-| 67 | vdr_numerator | fraction → number | Extract numerator |
-| 68 | vdr_denominator | fraction → number | Extract denominator |
-| 69 | vdr_is_integer | fraction → bool | Test if denominator is 1 |
-| 70 | vdr_simplify | fraction → fraction | Reduce to lowest terms |
-| 71 | vdr_compare | fraction, fraction → atom | Return less, equal, or greater |
-| 72 | vdr_min | fraction, fraction → fraction | Minimum of two |
-| 73 | vdr_max | fraction, fraction → fraction | Maximum of two |
-| 74 | vdr_sum | list(fraction) → fraction | Exact sum of list |
-| 75 | vdr_product | list(fraction) → fraction | Exact product of list |
-| 76 | vdr_mean | list(fraction) → fraction | Exact arithmetic mean |
-| 77 | vdr_factorial | number → number | Factorial |
-| 78 | vdr_binomial | number, number → number | Binomial coefficient |
-| 79 | vdr_fibonacci | number → number | Nth Fibonacci number |
-
-Arithmetic is the original motivation for VDR. Every arithmetic operation an LLM performs by token prediction is unreliable. 1/7 + 1/13 by token prediction might produce 20/91 or might produce something wrong. The primitive always produces 20/91.
-
-### 2.4 Category 4: Set Operations (14 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 80 | set_from_list | list → set | Deduplicate and sort |
-| 81 | set_to_list | set → list | Convert to sorted list |
-| 82 | set_union | set, set → set | Union |
-| 83 | set_intersection | set, set → set | Intersection |
-| 84 | set_difference | set, set → set | Elements in first not in second |
-| 85 | set_symmetric_diff | set, set → set | Elements in either but not both |
-| 86 | set_is_subset | set, set → bool | Subset test |
-| 87 | set_is_superset | set, set → bool | Superset test |
-| 88 | set_is_disjoint | set, set → bool | No common elements |
-| 89 | set_size | set → number | Cardinality |
-| 90 | set_contains | set, term → bool | Membership test |
-| 91 | set_add | set, term → set | Add element |
-| 92 | set_remove | set, term → set | Remove element |
-| 93 | set_power | set → set(set) | Power set |
-
-Set operations are foundational to the constraint system. Constraint sets, KB scope sets, tag groups, and permission sets all use exact set algebra. The primitives ensure these operations are correct regardless of set size.
-
-### 2.5 Category 5: Dictionary Operations (15 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 94 | dict_new | → dict | Empty dictionary |
-| 95 | dict_from_pairs | list(pair) → dict | Construct from key-value pairs |
-| 96 | dict_get | dict, key → term | Lookup, fail if missing |
-| 97 | dict_get_or | dict, key, default → term | Lookup with default |
-| 98 | dict_set | dict, key, value → dict | Insert or update entry |
-| 99 | dict_remove | dict, key → dict | Remove entry by key |
-| 100 | dict_contains_key | dict, key → bool | Key existence test |
-| 101 | dict_keys | dict → list | All keys sorted |
-| 102 | dict_values | dict → list | All values |
-| 103 | dict_pairs | dict → list(pair) | All key-value pairs |
-| 104 | dict_size | dict → number | Entry count |
-| 105 | dict_merge | dict, dict → dict | Merge, second dict wins conflicts |
-| 106 | dict_filter_keys | dict, predicate → dict | Keep entries with matching keys |
-| 107 | dict_map_values | dict, fn → dict | Transform all values |
-| 108 | dict_invert | dict → dict | Swap keys and values |
-
-Working data sets in VDR-Prolog are dictionaries. Reliable dictionary operations are essential for scoped binding management.
-
-### 2.6 Category 6: Linear Algebra (16 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 109 | vec_add | frac_vec, frac_vec → frac_vec | Exact vector addition |
-| 110 | vec_sub | frac_vec, frac_vec → frac_vec | Exact vector subtraction |
-| 111 | vec_scale | fraction, frac_vec → frac_vec | Exact scalar multiply |
-| 112 | vec_dot | frac_vec, frac_vec → fraction | Exact dot product |
-| 113 | vec_norm_sq | frac_vec → fraction | Exact squared norm |
-| 114 | mat_add | frac_mat, frac_mat → frac_mat | Exact matrix addition |
-| 115 | mat_mul | frac_mat, frac_mat → frac_mat | Exact matrix multiplication |
-| 116 | mat_scale | fraction, frac_mat → frac_mat | Exact scalar multiply |
-| 117 | mat_transpose | frac_mat → frac_mat | Transpose |
-| 118 | mat_det | frac_mat → fraction | Exact determinant |
-| 119 | mat_inv | frac_mat → frac_mat | Exact inverse |
-| 120 | mat_solve | frac_mat, frac_vec → frac_vec | Exact solve Ax=b |
-| 121 | mat_rank | frac_mat → number | Exact rank |
-| 122 | mat_identity | number → frac_mat | Identity matrix |
-| 123 | mat_trace | frac_mat → fraction | Exact trace |
-| 124 | mat_matvec | frac_mat, frac_vec → frac_vec | Exact matrix-vector product |
-
-These are the VDR linear algebra operations from VDR-1 through VDR-4, exposed as Prolog predicates. Every operation that the transformer forward pass uses is available as a traceable, provenance-recorded primitive.
-
-### 2.7 Category 7: Statistics and Probability (16 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 125 | stat_mean | list(fraction) → fraction | Exact arithmetic mean |
-| 126 | stat_variance | list(fraction) → fraction | Exact population variance |
-| 127 | stat_median | list(fraction) → fraction | Exact median |
-| 128 | stat_mode | list → term | Most frequent element |
-| 129 | stat_percentile | list(fraction), fraction → fraction | Exact Nth percentile |
-| 130 | prob_normalize | list(fraction) → list(fraction) | Normalize to exact sum 1 |
-| 131 | prob_is_valid | list(fraction) → bool | All non-negative, sum exactly 1 |
-| 132 | prob_entropy_terms | list(fraction) → list(fraction) | Individual -p·log(p) terms |
-| 133 | prob_cdf | list(fraction) → list(fraction) | Exact cumulative distribution |
-| 134 | prob_expected | list(fraction), list(fraction) → fraction | Exact expected value |
-| 135 | prob_bayes | fraction, fraction, fraction → fraction | Exact Bayes' theorem |
-| 136 | prob_joint | list(fraction), list(fraction) → frac_mat | Joint probability table |
-| 137 | prob_marginal | frac_mat, atom → list(fraction) | Marginalize over axis |
-| 138 | prob_conditional | frac_mat, number → list(fraction) | Conditional distribution |
-| 139 | softmax | list(fraction), number → list(fraction) | Exact VDR softmax |
-| 140 | softmax_surrogate | list(fraction), number → list(fraction) | Rational surrogate softmax |
-
-The softmax primitive guarantees that output probabilities sum to exactly 1. The prob_normalize primitive guarantees the same for arbitrary input vectors. These guarantees are impossible in float arithmetic.
-
-### 2.8 Category 8: Conversion and Formatting (14 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 141 | to_string | term → atom | Any term to display string |
-| 142 | to_number | atom → number | Parse integer from string |
-| 143 | to_fraction | atom → fraction | Parse fraction from string |
-| 144 | fraction_to_decimal | fraction, number → atom | Decimal with N digits |
-| 145 | format_table | list(list(atom)) → atom | Format as aligned text table |
-| 146 | format_json | dict → atom | Serialize to JSON |
-| 147 | parse_json | atom → dict | Parse JSON to dict |
-| 148 | format_csv | list(list(atom)), atom → atom | Format as delimited text |
-| 149 | parse_csv | atom, atom → list(list(atom)) | Parse delimited text to rows |
-| 150 | number_to_roman | number → atom | Roman numeral conversion |
-| 151 | number_to_words | number → atom | English word representation |
-| 152 | format_fraction | fraction → atom | Display fraction as "p/q" |
-| 153 | format_percentage | fraction, number → atom | Percentage with N decimal places |
-| 154 | format_scientific | fraction, number → atom | Scientific notation |
-
-Formatting errors — wrong decimal places, incorrect rounding, mangled table alignment — are common LLM failures. As primitives, formatting is deterministic and tested.
-
-### 2.9 Category 9: Date and Time (10 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 155 | date_from_ymd | number, number, number → number | Year, month, day to day count |
-| 156 | date_to_ymd | number → (number, number, number) | Day count to year, month, day |
-| 157 | date_diff_days | number, number → number | Days between two dates |
-| 158 | date_add_days | number, number → number | Add days to a date |
-| 159 | date_day_of_week | number → atom | Day name from date |
-| 160 | date_is_leap_year | number → bool | Leap year test |
-| 161 | date_days_in_month | number, number → number | Days in given month and year |
-| 162 | time_from_hms | number, number, fraction → fraction | Hours, minutes, seconds to day fraction |
-| 163 | time_to_hms | fraction → (number, number, fraction) | Day fraction to hours, minutes, seconds |
-| 164 | duration_between | fraction, fraction → fraction | Exact time difference |
-
-Date arithmetic is a notorious LLM failure mode. Month lengths, leap years, day-of-week calculations — all are exact integer algorithms that token prediction gets wrong. The primitives use the correct Gregorian calendar algorithms.
-
-### 2.10 Category 10: Hashing and Encoding (8 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 165 | hash_string | atom → number | Deterministic string hash |
-| 166 | hash_combine | number, number → number | Combine two hash values |
-| 167 | base64_encode | atom → atom | Base64 encoding |
-| 168 | base64_decode | atom → atom | Base64 decoding (exact inverse) |
-| 169 | hex_encode | number → atom | Integer to hexadecimal string |
-| 170 | hex_decode | atom → number | Hexadecimal string to integer |
-| 171 | crc32 | atom → number | CRC32 checksum |
-| 172 | uuid_from_seed | number → atom | Deterministic UUID from seed |
-
-Identifier generation and data integrity checking must be deterministic. These primitives are reproducible from the same inputs on any platform.
-
-### 2.11 Category 11: Graph Operations (13 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 173 | graph_from_edges | list(pair) → graph | Construct adjacency structure |
-| 174 | graph_neighbors | graph, node → list(node) | Adjacent nodes |
-| 175 | graph_shortest_path | graph, node, node → list(node) | BFS shortest path (unweighted) |
-| 176 | graph_shortest_path_weighted | graph, node, node → (list(node), fraction) | Dijkstra with exact VDR weights |
-| 177 | graph_connected_components | graph → list(list(node)) | All connected components |
-| 178 | graph_is_connected | graph → bool | Connectivity test |
-| 179 | graph_topological_sort | graph → list(node) | Topological ordering for DAGs |
-| 180 | graph_cycle_detect | graph → bool | Cycle existence test |
-| 181 | graph_bfs | graph, node → list(node) | Breadth-first traversal order |
-| 182 | graph_dfs | graph, node → list(node) | Depth-first traversal order |
-| 183 | graph_degree | graph, node → number | Node degree |
-| 184 | graph_mst | graph → list(edge) | Minimum spanning tree with exact weights |
-| 185 | graph_pagerank | graph, fraction → list(fraction) | PageRank with exact rational damping |
-
-The KB hierarchy is a tree (a special graph). Provenance chains are directed acyclic graphs. Topic dependencies form graphs. The graph primitives operate on these structures with exact VDR arithmetic for all weighted operations.
-
-### 2.12 Category 12: Pattern Matching (7 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 186 | regex_match | atom, atom → bool | Full string match against pattern |
-| 187 | regex_search | atom, atom → list(atom) | Find all pattern matches |
-| 188 | regex_replace | atom, atom, atom → atom | Replace all pattern matches |
-| 189 | regex_split | atom, atom → list(atom) | Split string by pattern |
-| 190 | regex_capture | atom, atom → list(atom) | Extract capture group matches |
-| 191 | glob_match | atom, atom → bool | Glob-style pattern match |
-| 192 | wildcard_match | atom, atom → bool | Simple wildcard match |
-
-Data validation, input parsing, and structured text extraction. LLMs frequently generate incorrect regex patterns. The primitives execute deterministic regex engines.
-
-### 2.13 Category 13: Logic and Control (11 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 193 | if_then_else | bool, fn, fn → term | Conditional evaluation |
-| 194 | case_match | term, list(pair(pattern, fn)) → term | Pattern-dispatch evaluation |
-| 195 | for_each | list, fn → void | Apply function to each element |
-| 196 | repeat_n | number, fn → list | Apply function N times, collect results |
-| 197 | while_loop | predicate, fn, state → state | Iterate while predicate holds |
-| 198 | try_catch | fn, handler → term | Execute with error recovery |
-| 199 | assert_that | bool, atom → void | Runtime assertion with message |
-| 200 | type_check | term, type → bool | Runtime type verification |
-| 201 | is_bound | variable → bool | Prolog variable binding test |
-| 202 | findall | template, goal → list | Collect all Prolog solutions |
-| 203 | aggregate | goal, fn, init → term | Fold over Prolog solutions |
-
-### 2.14 Category 14: KB and Constraint Operations (15 primitives)
-
-| # | Primitive | Signature | Description |
-|---|-----------|-----------|-------------|
-| 204 | kb_assert | fact → void | Add fact to active KB |
-| 205 | kb_retract | fact → void | Remove fact from active KB |
-| 206 | kb_query | predicate, args → list(result) | Query active scope |
-| 207 | kb_query_in | kb_name, predicate, args → list(result) | Query specific KB bypassing scope |
-| 208 | kb_query_across | predicate, args → list(kb_name, result) | Query all KBs with tagged results |
-| 209 | kb_list_facts | kb_name → list(fact) | All facts in named KB |
-| 210 | kb_list_rules | kb_name → list(rule) | All rules in named KB |
-| 211 | kb_active_scope | → list(kb_name) | Currently in-scope KB names |
-| 212 | kb_switch_topic | topic_name → void | Change active topic and scope |
-| 213 | constraint_check | constraint_name → bool | Verify specific constraint |
-| 214 | constraint_check_all | → list(violation) | Verify all active constraints |
-| 215 | constraint_add | constraint → void | Add constraint to active KB |
-| 216 | constraint_remove | constraint_name → void | Remove constraint from active KB |
-| 217 | constraint_enable | constraint_name → void | Activate suspended constraint |
-| 218 | constraint_suspend | constraint_name → void | Suspend active constraint |
-
-KB operations are pure in the sense that they operate on the KB's internal state deterministically. They modify KB state (assert and retract change the fact set) but do not interact with the external world. They do not require positive grants because KB access is governed by the scoping and permission system specified in VDR-5.
-
-### 2.15 Pure Primitive Summary
-
-14 categories. 218 primitives. Every one is pure (same inputs produce same outputs), finite (terminates in bounded time), exact (produces the correct result, not an approximation), typed (inputs and outputs have declared VDR-Prolog term types), and testable (covered by a test suite verifying edge cases and invariants).
+![Fig. 1](./figures/vdr7_01_identity_card.png)
 
 ---
 
-## 3. Operational Primitives
+## 2. Phase 1: Data Sourcing
 
-An operational primitive interacts with the outside world. It reads or writes files. It compiles code. It executes scripts. It communicates over networks. It manages processes. These operations can fail for external reasons (disk full, network down, permission denied). They take variable time. They have side effects.
+### 2.1 Purpose
 
-Every operational primitive requires a positive credential grant before execution. The default is denial. The grant must explicitly authorize the operation class, the specific operations within that class, the target location, and must be currently valid (not expired, not exhausted, not revoked).
+Acquire raw data from declared sources with full provenance. Every piece of training data knows where it came from, when it was acquired, what license governs it, and what quality assessment was applied.
 
-### 3.1 Category 15: Filesystem Operations (15 primitives)
+### 2.2 Source Types
 
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 219 | fs_read | filesystem | Read | Read file contents |
-| 220 | fs_write | filesystem | Write | Create or overwrite file |
-| 221 | fs_append | filesystem | Write | Append to existing file |
-| 222 | fs_exists | filesystem | Read | Check file existence |
-| 223 | fs_list_dir | filesystem | Read | List directory contents |
-| 224 | fs_create_dir | filesystem | Write | Create directory and parents |
-| 225 | fs_delete | filesystem | Delete | Delete file or directory |
-| 226 | fs_move | filesystem | Write | Move or rename |
-| 227 | fs_copy | filesystem | Write | Copy file |
-| 228 | fs_file_size | filesystem | Read | Get file size in bytes |
-| 229 | fs_file_modified | filesystem | Read | Get modification timestamp |
-| 230 | fs_glob | filesystem | Read | Find files matching pattern |
-| 231 | fs_tree | filesystem | Read | Recursive directory listing |
-| 232 | fs_diff | filesystem | Read | Diff two files |
-| 233 | fs_checksum | filesystem | Read | Compute file hash |
+| Source Type | Acquisition Method | Provenance Record | Example |
+|------------|-------------------|-------------------|---------|
+| Public corpus | Download via net_fetch | URL, timestamp, license, checksum | Common Crawl, Wikipedia dumps |
+| Licensed dataset | Authenticated download | License ID, agreement date, permitted uses | BookCorpus, licensed news |
+| Synthetic generation | LLM or rule-based generation | Generator ID, prompt/rules, seed, version | Instruction-following pairs |
+| User-contributed | Upload via API | Contributor ID, upload timestamp, consent record | Custom domain text |
+| Curated collection | Manual selection + upload | Curator ID, selection criteria, quality notes | Expert-selected examples |
+| Scraped web data | Crawler with politeness rules | URLs, crawl timestamp, robots.txt compliance | Domain-specific web content |
 
-### 3.2 Category 16: Code Compilation (4 primitives)
+### 2.3 Source KB Structure
 
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 234 | compile_python_check | compile | Read, CPU | Python syntax verification |
-| 235 | compile_zig | compile | Read, Write, CPU | Zig compilation |
-| 236 | compile_c | compile | Read, Write, CPU | C compilation |
-| 237 | compile_rust | compile | Read, Write, CPU | Rust compilation |
-
-### 3.3 Category 17: Script Execution (5 primitives)
-
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 238 | exec_python | execute | Arbitrary | Run Python script |
-| 239 | exec_shell | execute | Arbitrary | Run shell command |
-| 240 | exec_zig_test | execute | Read, CPU | Run Zig test suite |
-| 241 | exec_pytest | execute | Read, CPU | Run pytest |
-| 242 | exec_script | execute | Arbitrary | Run script with specified interpreter |
-
-### 3.4 Category 18: Linting and Analysis (8 primitives)
-
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 243 | lint_python | lint | Read | Python linter |
-| 244 | lint_zig | lint | Read | Zig linter |
-| 245 | lint_json | lint | Read | JSON validation |
-| 246 | lint_markdown | lint | Read | Markdown checker |
-| 247 | analyze_imports | lint | Read | List Python imports |
-| 248 | analyze_complexity | lint | Read | Cyclomatic complexity metrics |
-| 249 | analyze_dependencies | lint | Read | Module dependency graph |
-| 250 | count_lines | lint | Read | Line counts by type |
-
-### 3.5 Category 19: Network Operations (5 primitives)
-
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 251 | net_download | network | Network, Write | Download URL to file |
-| 252 | net_fetch | network | Network | HTTP GET, return content |
-| 253 | net_post | network | Network | HTTP POST |
-| 254 | net_ping | network | Network | Check host reachability |
-| 255 | net_dns_resolve | network | Network | DNS lookup |
-
-### 3.6 Category 20: Process Management (7 primitives)
-
-| # | Primitive | Class | Side Effect | Description |
-|---|-----------|-------|-------------|-------------|
-| 256 | proc_start | process | Process creation | Start background process |
-| 257 | proc_poll | process | Read | Check process status |
-| 258 | proc_wait | process | Block | Wait for process completion |
-| 259 | proc_kill | process | Process termination | Terminate process |
-| 260 | proc_stdout | process | Read | Read current stdout buffer |
-| 261 | proc_stderr | process | Read | Read current stderr buffer |
-| 262 | proc_list | process | Read | List active processes |
-
-### 3.7 Operational Primitive Summary
-
-6 categories. 44 primitives. Every one requires a positive grant. Every execution is logged as a KB fact with timestamp, duration, exit code, grant used, and environment. Every side effect is declared in the primitive's type signature.
-
----
-
-## 4. The Positive Credential Grant System
-
-![Fig. 7: Grant Gate — Every operational primitive passes through authorization. Authorized commands execute. Blocked commands are logged.](./figures/vdr6_07_grant_gated_execution.png)
-
-### 4.1 Grant Structure
+Each data source is a KB:
 
 ```
-Grant = struct {
-    name: Text,                   // unique identifier
-    operation_class: Text,        // "filesystem", "compile", "execute", "network", "process"
-    allowed_operations: []Text,   // specific operations within class
-    location: Text,               // path prefix, URL pattern, or scope
-    credential: CredentialRef,    // authentication token reference
-    issued_by: Text,              // who created this grant
-    issued_at: timestamp,         // when created
-    expires_at: timestamp,        // when it becomes invalid
-    max_uses: number,             // total allowed invocations (0 = unlimited)
-    uses_remaining: number,       // decremented on each use
-    constraints: []Constraint,    // additional restrictions
-    status: enum { active, expired, revoked, exhausted },
-};
-```
-
-### 4.2 Grant Verification
-
-Every operational primitive invocation passes through grant verification:
-
-```
-Rule: grant_valid(G) :-
-    grant(G, _, _, _, _, _, _, Exp, _, Uses, _, Status),
-    Status = active,
-    current_timestamp(Now),
-    Now < Exp,
-    Uses > 0.
-
-Rule: grant_covers(G, Op, Loc) :-
-    grant(G, Class, Allowed, GrantLoc, _, _, _, _, _, _, _, _),
-    operation_class(Op, Class),
-    operation_type(Op, Type),
-    member(Type, Allowed),
-    path_within(Loc, GrantLoc).
-
-Rule: grant_constraints_ok(G, Op) :-
-    grant(G, _, _, _, _, _, _, _, _, _, Constraints, _),
-    forall(member(C, Constraints), constraint_satisfied_for(C, Op)).
-
-Rule: authorize(Op, Loc) :-
-    grant_valid(G),
-    grant_covers(G, Op, Loc),
-    grant_constraints_ok(G, Op),
-    decrement_uses(G),
-    log_authorization(G, Op, Loc).
-```
-
-If no valid grant covers the requested operation, the operation is rejected before execution. The rejection is logged as a KB fact including the operation attempted, the location, the timestamp, and the reason for rejection.
-
-### 4.3 Grant Hierarchy
-
-Grants follow the KB hierarchy. A user inherits grants from their group, department, and organization, the same way they inherit constraints (VDR-5 Addendum A2).
-
-```
-kb_global:         grant("system_read", filesystem, [read], "/usr/", ...)
-kb_org_acme:       grant("org_network", network, [fetch, ping], "*", ...)
-kb_dept_eng:       grant("eng_compile", compile, [compile_python_check, compile_zig], "/projects/", ...)
-kb_team_backend:   grant("backend_exec", execute, [exec_python, exec_pytest], "/projects/backend/", ...)
-kb_user_alice:     grant("alice_fs", filesystem, [read, write, create_dir], "/home/alice/", ...)
-```
-
-Alice's effective grants are the union of all grants in her ancestry chain. She can read system files (global), access the network (org), compile in project directories (dept), run Python and pytest in backend directories (team), and read/write in her home directory (personal).
-
-### 4.4 Grant Lifecycle
-
-| From | To | Trigger | Automatic? |
-|------|----|---------|-----------|
-| (new) | active | Issued by authorized entity | No — requires explicit creation |
-| active | expired | Current time exceeds expires_at | Yes |
-| active | exhausted | uses_remaining reaches 0 | Yes |
-| active | revoked | Issuer or admin revokes | No — requires explicit action |
-| expired | active | Re-issued with new expiration | No — requires new grant |
-| revoked | active | Not possible — revocation is permanent | — |
-
-All transitions are logged as KB facts with timestamp, source, and reason.
-
----
-
-## 5. Command Tokens
-
-![Fig. 3: Command Token Stream — Text tokens for humans and command tokens for machines interleave in one output stream.](./figures/vdr6_03_command_token_stream.png)
-
-### 5.1 The Mechanism
-
-The language model's output is a stream of tokens. In standard systems, all tokens are text. In VDR-LLM-Prolog, the stream contains two token types: text tokens (rendered as conversation text) and command tokens (executed by the primitive system).
-
-A command token is a structured invocation:
-
-```
-CommandToken = struct {
-    type: CommandType,
-    primitive: Text,        // primitive name
-    args: []Term,           // arguments
-    env: ?Text,             // operational environment (for op primitives)
-    grant: ?Text,           // grant reference (for op primitives)
-    store_result: ?Text,    // KB key to store result
-    await: bool,            // whether to wait for completion
-};
-```
-
-### 5.2 Command Types
-
-| Type | Purpose | Requires Grant | Async? |
-|------|---------|---------------|--------|
-| PURE_FN | Invoke pure primitive | No | No |
-| OP_FN | Invoke operational primitive | Yes | Optional |
-| KB_ASSERT | Assert fact into KB | No (scoped by permissions) | No |
-| KB_RETRACT | Remove fact from KB | No (scoped by permissions) | No |
-| KB_QUERY | Query KB | No (scoped by permissions) | No |
-| ENV_EXEC | Execute command in environment | Yes | Recommended |
-| ENV_UPLOAD | Upload content to environment | Yes | No |
-| ENV_DOWNLOAD | Download content from environment | Yes | No |
-| CTX_ACTIVATE | Activate KB in context | No | No |
-| CTX_DEACTIVATE | Deactivate KB from context | No | No |
-| CTX_SNAPSHOT | Snapshot current context | No | No |
-| VERSION_CREATE | Create new version of artifact | No | No |
-| VERSION_TAG | Tag a version | No | No |
-| STORE_RESULT | Store task result in KB | No | No |
-| DIRECT_OUTPUT | Serve data directly to user | No | No |
-| ATTACHMENT | Attach file to response | Yes (read grant) | No |
-
-### 5.3 Output Stream Structure
-
-The LLM's output stream interleaves text and command tokens:
-
-```
-[TEXT] "I'll write the test script and run it."
-[CMD:ENV_UPLOAD] env=env_vdr, content=<script>, path="/workspace/test.py"
-[CMD:ENV_EXEC] env=env_vdr, cmd="python3", args=["/workspace/test.py"]
-  → task_id = task_047, async=true
-[CMD:STORE_RESULT] task=task_047, kb=kb_vdr_tests, key="test_result_v1"
-[TEXT] "Tests are running in background. Task ID: task_047."
-```
-
-Text tokens are rendered as conversation. Command tokens are executed. The user sees the text and the command outcomes. Commands can optionally be shown or hidden based on user preference:
-
-```
-User preference: show_commands = true
-
-Output:
-  "I'll write the test script and run it."
-  [Executing: upload test.py to env_vdr → ok]
-  [Executing: python3 test.py in env_vdr → task_047 started]
-  [Storing: task_047 result → kb_vdr_tests/test_result_v1]
-  "Tests are running in background. Task ID: task_047."
-```
-
-```
-User preference: show_commands = false
-
-Output:
-  "I'll write the test script and run it. Tests are running 
-   in background. Task ID: task_047."
-```
-
-### 5.4 Scratchpad Channel
-
-The LLM has an internal scratchpad where it can issue command tokens for intermediate computation without surfacing them in the user-facing output:
-
-```
-Scratchpad (internal):
-  [CMD:PURE_FN] list_sort([47, 3, 91, 15], ascending) → [3, 15, 47, 91]
-  [CMD:PURE_FN] vdr_mean([3/7, 1/2, 5/11]) → 191/462
-  [CMD:KB_QUERY] kb_characters_b, "bob_age" → 59
-
-User-facing output:
-  "The sorted list is [3, 15, 47, 91], the mean is 191/462, 
-   and Bob is 59 in the London story."
-```
-
-The scratchpad computations are exact (executed by primitives). The user-facing output frames the results. The owner can inspect the scratchpad via "/show scratchpad" to see the full computation trace.
-
----
-
-## 6. Operational Environments
-
-![Fig. 4: Unified Environment — Docker, VM, Local, and SSH all present the same 10-operation interface to the LLM.](./figures/vdr6_04_unified_environment.png)
-
-### 6.1 Environment Types
-
-| Type | Implementation | Isolation | Performance | Best For |
-|------|---------------|-----------|-------------|----------|
-| Docker | Container on host | Strong | Good | Default sandbox, testing, scripts |
-| VM | Virtual machine | Strongest | Moderate | Untrusted code, heavy workloads |
-| Local | Direct host execution | None | Best | Trusted operations, development |
-| SSH | Remote machine via SSH | Network-isolated | Variable | GPU servers, distributed compute |
-
-### 6.2 Environment Structure
-
-```
-OperationalEnv = struct {
-    id: Text,
-    type: enum { docker, vm, local, ssh_remote },
-    
-    // Type-specific configuration
-    docker_image: ?Text,           // "python:3.8-slim", "ubuntu:24.04"
-    docker_container_id: ?Text,
-    vm_id: ?Text,
-    vm_image: ?Text,
-    ssh_host: ?Text,
-    ssh_port: ?number,
-    ssh_credential: ?Text,
-    local_working_dir: ?Text,
-    
-    // Common
-    status: enum { stopped, starting, running, error },
-    startup_script: ?Text,
-    installed_packages: []Text,
-    env_vars: dict,
-    resource_limits: ResourceLimits,
-    created_at: timestamp,
-    last_active: timestamp,
-    
-    // KB integration
-    kb: Text,
-    grants: []Text,
-};
-
-ResourceLimits = struct {
-    max_cpu_seconds: ?number,
-    max_memory_mb: ?number,
-    max_disk_mb: ?number,
-    max_network_bytes: ?number,
-    max_processes: ?number,
-};
-```
-
-### 6.3 Unified Interface
-
-Every environment type implements the same interface:
-
-| Operation | Signature | Description |
-|-----------|-----------|-------------|
-| env_exec | (env, command, args) → ExecResult | Execute command |
-| env_upload | (env, content, remote_path) → TransferResult | Upload content |
-| env_download | (env, remote_path) → Content | Download content |
-| env_shell | (env, command) → ShellResult | Run shell command |
-| env_file_read | (env, path) → Content | Read file in environment |
-| env_file_write | (env, path, content) → WriteResult | Write file in environment |
-| env_list_dir | (env, path) → list(DirEntry) | List directory in environment |
-| env_proc_start | (env, command) → TaskId | Start background process |
-| env_proc_poll | (env, task_id) → TaskStatus | Check process status |
-| env_proc_output | (env, task_id) → (stdout, stderr) | Get process output |
-
-Whether the backend is Docker, VM, SSH, or local, the LLM issues the same command tokens. The environment type is a configuration fact. Switching environments means changing which env KB is active, not changing the commands.
-
-### 6.4 Environment as KB
-
-Each operational environment has its own KB:
-
-```
-KB: kb_env_vdr_test
+KB: source_wikipedia_2026_03
   facts:
-    env_type: docker
-    env_image: python:3.8-slim
-    env_status: running
-    installed: [pytest, fractions]
+    source_type: public_corpus
+    source_url: "https://dumps.wikimedia.org/..."
+    acquired_at: timestamp(2026, 3, 15)
+    license: "CC-BY-SA-4.0"
+    checksum_sha256: "a1b2c3..."
+    raw_size_bytes: 21474836480
+    format: "xml"
+    language: "en"
     
-  execution_log:
-    [exec_001: exec_python("test_basic.py") → 12 passed, 3.2s]
-    [exec_002: fs_write("gym_16.py", content) → ok]
-    [exec_003: exec_pytest("gym/") → 157 passed, 5 failed, 28.4s]
+  constraints:
+    constraint("license_compliance", legal, active,
+        condition(usage_within_license("CC-BY-SA-4.0")),
+        on_violation("block"))
+    constraint("freshness", operational, active,
+        condition(age_days < 180),
+        on_violation("warn"))
     
-  uploaded_files:
-    ["gym/gym_16.py" → v1, turn 52]
-    ["gym/gym_17.py" → v1, turn 52]
-    
-  active_tasks:
-    [task_047: exec_pytest → running since 14:30:00]
+  quality_assessment:
+    assessed_by: "automated_pipeline_v2"
+    assessed_at: timestamp(2026, 3, 16)
+    language_confidence: fraction(98, 100)
+    encoding_valid: true
+    contains_pii_estimate: fraction(1, 1000)
 ```
 
-The environment KB tracks everything that has happened in that environment: every command executed, every file uploaded, every task started, every result returned. This is the operational provenance layer.
+### 2.4 Source Registry
 
-### 6.5 Environment Lifecycle
-
-```
-Rule: env_create(Id, Type, Config) :-
-    assert(env(Id, Type, Config, status(stopped))),
-    create_kb("kb_env_" + Id).
-
-Rule: env_start(Id) :-
-    env(Id, docker, Config, _),
-    docker_create_container(Config, ContainerId),
-    docker_start(ContainerId),
-    run_startup_script(Id),
-    retract(env(Id, _, _, status(_))),
-    assert(env(Id, _, _, status(running))).
-
-Rule: env_stop(Id) :-
-    env(Id, docker, _, _),
-    docker_stop(Id),
-    retract(env(Id, _, _, status(_))),
-    assert(env(Id, _, _, status(stopped))).
-
-Rule: env_destroy(Id) :-
-    env_stop(Id),
-    docker_remove(Id),
-    archive_kb("kb_env_" + Id).
-```
-
-Environments can be created, started, stopped, and destroyed. The KB persists even after the environment is destroyed (archived for audit). A new environment can be created from the same specification — it will have the same configuration but a fresh filesystem and process space.
-
----
-
-## 7. Async Task Management
-
-### 7.1 Task Structure
+All sources are children of a source registry KB:
 
 ```
-Task = struct {
-    id: Text,
-    operation: Text,
-    args: []Term,
-    env: Text,
-    grant: Text,
-    status: enum { pending, running, completed, failed, killed },
-    submitted_at: timestamp,
-    started_at: ?timestamp,
-    completed_at: ?timestamp,
-    result: ?ExecResult,
-    output_chunks: []OutputChunk,
-    topic: Text,
-    notify_on_complete: bool,
-    acknowledged: bool,
-};
-
-OutputChunk = struct {
-    index: number,
-    timestamp: timestamp,
-    stream: enum { stdout, stderr },
-    content: Text,
-};
-```
-
-### 7.2 Task Lifecycle
-
-```
-submitted → pending → running → completed
-                        ↓          ↓
-                      failed    killed
-```
-
-When a command token with async=true is issued:
-
-1. A task is created with status=pending and asserted into the environment's KB.
-2. The environment starts the process. Status changes to running.
-3. Output is captured in chunks as it arrives.
-4. When the process exits, status changes to completed (exit code 0) or failed (nonzero).
-5. The result is stored in the task's result field and optionally copied to a KB key via STORE_RESULT.
-6. If notify_on_complete is true, the task appears in the pending notifications list.
-
-### 7.3 Turn-Based Notification
-
-On each conversational turn, the system checks for completed tasks:
-
-```
-Rule: completed_tasks(Tasks) :-
-    findall(T, 
-        (task(T, _, _, _, _, status(completed), _, _, _, _, _, topic(Topic), true, false),
-         active_topic(Topic)),
-        Tasks).
-```
-
-If completed tasks exist, they are surfaced at the end of the LLM's response:
-
-```
-LLM: [responds to user's question]
-
----
-Completed tasks:
-  task_047 (pytest gym/): 152 passed, 5 failed — 28.4s
-  [View results: /task task_047] [Acknowledge]
-```
-
-The user can acknowledge (which sets acknowledged=true and stops the notification from repeating), view full results (which surfaces the task's KB entry), or ignore (which repeats the notification next turn).
-
-### 7.4 Chunked I/O Processing
-
-For long-running tasks, output chunks are processed as they arrive:
-
-```
-Rule: on_output_chunk(TaskId, Chunk) :-
-    assert(task_output(TaskId, Chunk)),
-    check_watches_against(Chunk),
-    check_constraints_against(Chunk).
-```
-
-Each chunk can trigger watches (pattern-matched alerts), constraint checks (resource limit verification), and KB updates (intermediate result storage). This turns the output stream into a series of events that the Prolog engine processes, rather than an opaque buffer that is only read on completion.
-
----
-
-## 8. Direct Data Download
-
-![Fig. 6: Direct vs Regen — KB data served in one exact step versus three lossy steps through LLM tokenization.](./figures/vdr6_06_direct_vs_regen.png)
-
-### 8.1 The Principle
-
-If data exists at a known address in the system (KB fact, file, task output, checkpoint), the user can download it directly without the LLM regenerating it as tokens. The data is served from its source. The LLM is not a middleman.
-
-### 8.2 Addressable Resources
-
-| Resource Type | Address Format | Example |
-|---------------|---------------|---------|
-| KB fact | kb://kb_name/predicate/args | kb://kb_vdr_training/parameter_value/layer.1.weight |
-| KB dump | kb://kb_name/* | kb://kb_characters_b/* |
-| Working data binding | wd://topic/key | wd://story_b/bob_age |
-| File in environment | fs://env_id/path | fs://env_vdr_test/workspace/gym_16.py |
-| Task stdout | task://task_id/stdout | task://task_047/stdout |
-| Task stderr | task://task_id/stderr | task://task_047/stderr |
-| Checkpoint | ckpt://step_N | ckpt://step_100 |
-| Version | ver://project/artifact/N | ver://project_vdr/gym_16/2 |
-| Diff | diff://source_a/source_b | diff://ckpt_step_0/ckpt_step_100 |
-| Export | export://kb_name | export://kb_characters_b |
-| Context snapshot | ctx://snapshot_name | ctx://context_before_refactor |
-
-### 8.3 Download Authorization
-
-```
-Rule: can_download(User, Resource) :-
-    resource_exists(Resource),
-    resource_kb(Resource, KB),
-    user_can_see(User, KB),
-    (resource_requires_grant(Resource, GrantClass) ->
-        has_valid_grant(User, GrantClass) ;
-        true).
-```
-
-KB facts are governed by KB visibility (VDR-5). Files in environments are governed by filesystem grants. The download check uses the same authorization logic as every other operation.
-
-### 8.4 LLM-Initiated Attachments
-
-The LLM can decide to attach data directly rather than generating it:
-
-```
-[CMD:DIRECT_OUTPUT] source=kb://kb_vdr_gyms/gym_16_result_v1
-```
-
-This serves the KB fact's content directly as a formatted data block in the response. The LLM provides framing text around it:
-
-```
-LLM: "Here are the gym 16 results:"
-[Direct: kb://kb_vdr_gyms/gym_16_result_v1]
-  Gym 16: Graph Theory — 19 passed, 1 failed
-  Failed: max-flow BFS loop termination
-LLM: "The max-flow test needs a BFS fix. Everything else passed."
-```
-
-The data block is retrieved, not generated. It cannot hallucinate.
-
----
-
-## 9. Versioning
-
-![Fig. 8: Version History — Three versions of gym_16 with diffs, tags, and test results at each version.](./figures/vdr6_08_version_history.png)
-
-### 9.1 Version as KB Fact
-
-Every artifact in a project can be versioned. A version is a snapshot of the artifact's content at a point in time, stored as a KB fact with metadata.
-
-```
-Fact: version("project_vdr", "gym_16_script",
-    version_num(1),
-    content_ref("kb_vdr_gyms/gym_16_v1"),
-    created_at(timestamp(2026, 5, 16, 14, 30, 0)),
-    created_by("system"),
-    parent_version(none),
-    tags(["initial"]),
-    test_result("19/20 passed"),
-    notes("maxflow BFS has a bug")).
-```
-
-### 9.2 Version Operations
-
-| Operation | Command Token | Description |
-|-----------|--------------|-------------|
-| Create | VERSION_CREATE(project, artifact, content, notes) | Store new version |
-| Tag | VERSION_TAG(project, artifact, version, tag) | Add tag to version |
-| Retrieve | KB_QUERY(versions_kb, version(project, artifact, N, ...)) | Get specific version |
-| Latest | KB_QUERY(versions_kb, latest(artifact, N)) | Get latest version number |
-| Diff | PURE_FN(diff, [content_v1, content_v2]) | Structured diff between versions |
-| Rollback | VERSION_CREATE(project, artifact, content_of_v_old, "rollback") | Create new version with old content |
-| History | KB_QUERY(versions_kb, version(project, artifact, _, ...)) | All versions of artifact |
-
-### 9.3 Version Queries
-
-```
-?- version("project_vdr", Artifact, V, _, _, _, _, _, test_result("all passed"), _).
-// Which versions of which artifacts had all tests passing?
-
-?- latest(Artifact, V), version("project_vdr", Artifact, V, _, _, _, _, _, Result, _),
-   not(Result = "all passed").
-// Which artifacts have latest versions with failures?
-
-?- version("project_vdr", "gym_16_script", V, _, _, _, _, tags(Tags), _, _),
-   member("release", Tags).
-// Which versions of gym_16 are tagged as releases?
-```
-
----
-
-## 10. Integration: The Complete Execution Flow
-
-A concrete example showing all components working together:
-
-```
-User: "Write gym_25 for tensor algebra, test it, and store the results"
-
-LLM scratchpad:
-  [CMD:KB_QUERY] kb_project_vdr, constraint("python_38_compat") → active
-  [CMD:KB_QUERY] kb_project_vdr, constraint("30_sec_runtime") → active
-  [CMD:KB_QUERY] kb_vdr_gyms, latest_gym_number → 24
-  [CMD:PURE_FN] vdr_add(24, 1) → 25
-
-LLM output:
-  [TEXT] "Writing gym_25_tensor_algebra.py with Python 3.8 
-          compatibility and 30-second runtime constraint."
-
-LLM generates script content (text tokens)...
-
-  [CMD:ENV_UPLOAD] 
-      env="env_vdr_test"
-      content=<generated script>
-      path="/workspace/gym/gym_25_tensor_algebra.py"
-      → TransferResult(ok)
-
-  [CMD:ENV_EXEC]
-      env="env_vdr_test"
-      command="python3"
-      args=["/workspace/gym/gym_25_tensor_algebra.py"]
-      async=true
-      → task_id="task_049"
-
-  [CMD:STORE_RESULT]
-      task="task_049"
-      kb="kb_vdr_gyms"
-      key="gym_25_result_v1"
-
-  [TEXT] "Script uploaded and running. Task: task_049."
-
---- conversation continues on other topics ---
-
-[Task task_049 completes: 16 passed, 0 failed, 4.2s]
-
-LLM (next turn, after checking pending tasks):
-  [CMD:POLL] task_049 → completed
-  [CMD:KB_QUERY] kb_vdr_gyms, "gym_25_result_v1" → result data
-
-  [TEXT] "Gym 25 finished:"
-  [CMD:DIRECT_OUTPUT] kb://kb_vdr_gyms/gym_25_result_v1
+KB: source_registry
+  children: [source_wikipedia_2026_03, source_books_licensed, 
+             source_synthetic_instruct_v1, source_code_github_filtered, ...]
   
-  [TEXT] "16 passed, 0 failed in 4.2 seconds. Storing version 1."
-
-  [CMD:VERSION_CREATE]
-      project="project_vdr"
-      artifact="gym_25_tensor_algebra"
-      content=<script content>
-      notes="initial, 16/16 passed"
-
-  [CMD:KB_ASSERT] kb_vdr_gyms,
-      gym_result("gym_25", "tensor_algebra", 16, 16, 0)
-
-  [CMD:KB_ASSERT] kb_project_vdr,
-      set_binding("total_tests", number(721))  // 705 + 16
-
-  [CMD:KB_ASSERT] kb_project_vdr,
-      set_binding("total_gyms", number(25))
-
-  [TEXT] "Project stats updated: 25 gyms, 721 total tests, 0 VDR errors."
-  [CMD:ATTACHMENT] fs://env_vdr_test/workspace/gym/gym_25_tensor_algebra.py
+  constraints:
+    constraint("all_sources_licensed", legal, active,
+        condition(forall(child(S), has_license(S))),
+        on_violation("block"))
+    constraint("no_duplicate_sources", operational, active,
+        condition(no_overlapping_urls),
+        on_violation("warn"))
+    constraint("minimum_quality", operational, active,
+        condition(forall(child(S), quality_score(S) > fraction(7, 10))),
+        on_violation("warn"))
 ```
 
-Every step is traceable. Every command is logged in the environment KB. Every result is stored in the project KB. The version is created. The project working data is updated. The file is available for direct download. The user sees the framing text, the direct output block, and the attachment.
+### 2.5 Acquisition Operations
 
-![Fig. 2: Execution Flow — Write, upload, execute, poll, store, and version an artifact with exact data at every step.](./figures/vdr6_02_execution_flow.png)
-
----
-
-## 11. Primitive Constraint Invariants
-
-Every primitive carries constraint invariants that the system can verify at runtime:
-
-| Primitive | Invariant | Type |
-|-----------|-----------|------|
-| list_sort | output length equals input length | axiom |
-| list_sort | output is sorted by declared rule | axiom |
-| list_sort | output is a permutation of input | axiom |
-| vdr_add | commutative: a+b = b+a | axiom |
-| vdr_add | associative: (a+b)+c = a+(b+c) | axiom |
-| vdr_mul | commutative: a*b = b*a | axiom |
-| prob_normalize | output sums to exactly 1 | axiom |
-| softmax | output sums to exactly 1 | axiom |
-| softmax | output preserves input ordering | axiom |
-| softmax | all outputs are positive | axiom |
-| mat_inv | M * inv(M) = identity | axiom |
-| mat_det | det(identity) = 1 | axiom |
-| fs_read/fs_write | write then read returns written content | operational |
-| compile | success implies output file exists | operational |
-| exec | exit code 0 implies success | operational |
-
-Axiom invariants are mathematical truths that can never be violated. If a violation is detected, it indicates a bug in the primitive implementation. Operational invariants hold under normal conditions but can be violated by external factors (disk failure between write and read, compiler crash).
-
----
-
-## 12. Execution Logging and Audit
-
-Every operational primitive execution produces a log entry:
+Data sourcing uses operational primitives:
 
 ```
-Fact: execution_log(
-    id("exec_047"),
-    operation("exec_pytest"),
-    args(["/workspace/gym/"]),
-    env("env_vdr_test"),
-    grant("alice_project_exec"),
-    user("alice"),
-    started_at(timestamp(2026, 5, 16, 14, 30, 0)),
-    completed_at(timestamp(2026, 5, 16, 14, 30, 28)),
-    duration_ms(28400),
-    exit_code(0),
-    success(true),
-    topic("vdr_testing"),
-    result_ref("kb_vdr_gyms/gym_25_result_v1")).
+[CMD:OP_FN] net_download(url, local_path, grant="data_acquisition")
+[CMD:PURE_FN] fs_checksum(local_path) → checksum
+[CMD:KB_ASSERT] source_registry, source(id, url, checksum, timestamp, license)
 ```
 
-The log is queryable for audit, debugging, and performance analysis:
+Every download is grant-gated, checksummed, and recorded.
+
+---
+
+## 3. Phase 2: Corpus Preparation
+
+### 3.1 Purpose
+
+Transform raw data into clean, filtered, deduplicated, formatted training text with full transformation provenance.
+
+### 3.2 Pipeline Steps
+
+| Step | Input | Output | Primitive Used | Provenance Recorded |
+|------|-------|--------|---------------|-------------------|
+| Extraction | Raw files (XML, HTML, PDF) | Plain text | Domain-specific parser | source_file → extracted_text mapping |
+| Language filtering | All text | Target-language text | Language detection primitive | Rejected text count and reasons |
+| Quality filtering | All text | Quality-passed text | Quality score primitive | Score per document, threshold used |
+| Deduplication | All text | Unique text | Hash-based dedup primitive | Duplicate clusters, kept document IDs |
+| PII removal | All text | PII-scrubbed text | PII detection primitive | Redaction count, redaction locations |
+| Formatting | Clean text | Tokenizer-ready text | Format normalization | Transformations applied per document |
+| Splitting | Full corpus | Train/validation/test splits | Deterministic split by hash | Split ratios, document assignments |
+
+### 3.3 Corpus KB Structure
 
 ```
-?- execution_log(_, operation("fs_write"), _, _, _, user("alice"), _, _, _, _, _, _, _).
-// All file writes by Alice
+KB: corpus_v1
+  parent: source_registry
+  
+  facts:
+    corpus_version: 1
+    created_at: timestamp(2026, 3, 20)
+    total_documents: 1500000
+    total_tokens_estimate: 10000000000
+    languages: ["en"]
+    split_ratios: {train: fraction(9, 10), val: fraction(1, 20), test: fraction(1, 20)}
+    
+  children:
+    [corpus_v1_train, corpus_v1_val, corpus_v1_test]
+    
+  constraints:
+    constraint("no_pii", legal, active,
+        condition(pii_scan_passed),
+        on_violation("block"))
+    constraint("dedup_complete", operational, active,
+        condition(dedup_ratio < fraction(1, 100)),
+        on_violation("warn"))
+    constraint("quality_floor", operational, active,
+        condition(forall(doc(D), quality_score(D) > fraction(6, 10))),
+        on_violation("warn"))
+    
+  transformation_log:
+    step("extraction", input_docs(2000000), output_docs(1800000), dropped(200000))
+    step("language_filter", input(1800000), output(1700000), dropped(100000))
+    step("quality_filter", input(1700000), output(1600000), dropped(100000))
+    step("dedup", input(1600000), output(1500000), dropped(100000))
+    step("pii_removal", redactions(45000))
+    step("formatting", normalized(1500000))
+    step("splitting", train(1350000), val(75000), test(75000))
+```
 
-?- execution_log(_, _, _, _, grant(G), _, _, _, duration_ms(D), _, _, _, _), D > 60000.
-// All operations that took more than 60 seconds
+### 3.4 Transformation Provenance
 
-?- execution_log(_, _, _, env(E), _, _, _, _, _, _, success(false), _, _).
-// All failed operations by environment
+Every document in the corpus traces back to its source:
 
-?- execution_log(_, _, _, _, grant(G), _, Started, _, _, _, _, _, _),
-   grant(G, _, _, _, _, _, _, Exp, _, _, _, _), Started > Exp.
-// Operations attempted after grant expiration (should be empty)
+```
+Fact: document(doc_id("d_00042"),
+    source(source_wikipedia_2026_03),
+    source_article("Euler's_number"),
+    extracted_at(timestamp(2026, 3, 20)),
+    quality_score(fraction(92, 100)),
+    language_score(fraction(99, 100)),
+    dedup_cluster(none),
+    pii_redactions(0),
+    split(train),
+    token_count(1847)).
+```
+
+If a training issue is traced to a specific document, the provenance chain goes: trained weight → training batch → document → source article → source corpus → source URL → license. Every link is a KB fact.
+
+---
+
+## 4. Phase 3: Tokenization
+
+### 4.1 Purpose
+
+Build a vocabulary and convert text to token sequences. The vocabulary is a KB. Every tokenization decision is reproducible.
+
+### 4.2 Vocabulary KB
+
+```
+KB: vocab_bpe_32k
+  facts:
+    vocab_type: "byte_pair_encoding"
+    vocab_size: 32000
+    trained_on: corpus_v1_train
+    trained_at: timestamp(2026, 3, 22)
+    special_tokens: {pad: 0, bos: 1, eos: 2, unk: 3}
+    merge_rules_count: 31996
+    
+  constraints:
+    constraint("no_unk_in_training", operational, active,
+        condition(unk_rate_train < fraction(1, 10000)),
+        on_violation("warn"))
+    constraint("vocab_frozen", operational, active,
+        condition(not(modified_after(trained_at))),
+        on_violation("error"))
+    
+  data:
+    merge_rules: [(merge_pair, new_token_id, frequency), ...]
+    token_to_id: {token_string: id, ...}
+    id_to_token: {id: token_string, ...}
+```
+
+### 4.3 Tokenized Corpus KB
+
+```
+KB: tokenized_corpus_v1
+  parent: corpus_v1
+  vocab: vocab_bpe_32k
+  
+  facts:
+    total_tokens: 10234567890
+    max_sequence_length: 2048
+    sequences_count: 5000000
+    
+  constraints:
+    constraint("vocab_match", operational, active,
+        condition(tokenized_with(vocab_bpe_32k)),
+        on_violation("error"))
+    constraint("sequence_length", operational, active,
+        condition(forall(seq(S), length(S) =< 2048)),
+        on_violation("error"))
+```
+
+### 4.4 Tokenization as Primitive
+
+Tokenization itself is a pure primitive — deterministic, finite, exact:
+
+```
+tokenize(text, vocab) → token_sequence
+detokenize(token_sequence, vocab) → text
+```
+
+The roundtrip property `detokenize(tokenize(text)) = text` is a constraint invariant verified on the test split.
+
+---
+
+## 5. Phase 4: Model Initialization
+
+### 5.1 Purpose
+
+Define the architecture and initialize all parameters. Every architectural choice is a KB fact. Every initial weight is an exact VDR fraction with initialization provenance.
+
+### 5.2 Architecture KB
+
+```
+KB: model_arch_v1
+  facts:
+    model_type: "transformer_decoder"
+    num_layers: 12
+    hidden_dim: 768
+    num_heads: 12
+    head_dim: 64
+    ff_dim: 3072
+    vocab_size: 32000
+    max_seq_length: 2048
+    activation: "relu"
+    softmax_type: "surrogate"
+    softmax_depth: 16
+    normalization: "rational_scale"
+    positional_encoding: "learned"
+    dtype: "vdr_fraction"
+    
+  constraints:
+    constraint("hidden_divisible_by_heads", axiom, active,
+        condition(hidden_dim mod num_heads =:= 0),
+        on_violation("error"))
+    constraint("head_dim_consistent", axiom, active,
+        condition(head_dim =:= hidden_dim / num_heads),
+        on_violation("error"))
+```
+
+### 5.3 Initialization KB
+
+```
+KB: model_init_v1
+  parent: model_arch_v1
+  
+  facts:
+    init_method: "xavier_rational"
+    init_seed: 42
+    init_timestamp: timestamp(2026, 3, 25)
+    total_parameters: 85000000
+    
+  children:
+    [params_embed, params_layer_0, params_layer_1, ..., params_layer_11, params_head]
+    
+  constraints:
+    constraint("all_params_initialized", operational, active,
+        condition(parameter_count =:= total_parameters),
+        on_violation("error"))
+    constraint("all_params_exact", axiom, active,
+        condition(forall(param(P), is_vdr_fraction(P))),
+        on_violation("error"))
+    constraint("reproducible", operational, active,
+        condition(same_seed_same_weights(init_seed)),
+        on_violation("error"))
+```
+
+### 5.4 Parameter KB Per Layer
+
+```
+KB: params_layer_0
+  parent: model_init_v1
+  
+  facts:
+    layer_index: 0
+    layer_type: "transformer_block"
+    
+  parameter_groups:
+    attn_q_weight: fraction_mat(768, 768, init=xavier, seed=42_0_q)
+    attn_k_weight: fraction_mat(768, 768, init=xavier, seed=42_0_k)
+    attn_v_weight: fraction_mat(768, 768, init=xavier, seed=42_0_v)
+    attn_o_weight: fraction_mat(768, 768, init=xavier, seed=42_0_o)
+    ff_w1: fraction_mat(768, 3072, init=xavier, seed=42_0_f1)
+    ff_w2: fraction_mat(3072, 768, init=xavier, seed=42_0_f2)
+    ff_b1: fraction_vec(3072, init=zero)
+    ff_b2: fraction_vec(768, init=zero)
+    
+  constraints:
+    constraint("denom_budget", operational, active,
+        condition(max_denominator < 2^64),
+        on_violation("warn"))
 ```
 
 ---
 
-## 13. Complete Primitive Count
+## 6. Phase 5: Pre-Training
 
-| Category | Type | Count | Grant Required |
-|----------|------|-------|---------------|
-| 1. String | Pure | 17 | No |
-| 2. List | Pure | 34 | No |
-| 3. VDR Arithmetic | Pure | 26 | No |
-| 4. Set | Pure | 14 | No |
-| 5. Dictionary | Pure | 15 | No |
-| 6. Linear Algebra | Pure | 16 | No |
-| 7. Statistics/Probability | Pure | 16 | No |
-| 8. Conversion/Formatting | Pure | 14 | No |
-| 9. Date/Time | Pure | 10 | No |
-| 10. Hashing/Encoding | Pure | 8 | No |
-| 11. Graph | Pure | 13 | No |
-| 12. Pattern Matching | Pure | 7 | No |
-| 13. Logic/Control | Pure | 11 | No |
-| 14. KB/Constraint | Pure (KB-internal) | 15 | No |
-| **Pure subtotal** | | **216** | |
-| 15. Filesystem | Operational | 15 | Yes |
-| 16. Compilation | Operational | 4 | Yes |
-| 17. Script Execution | Operational | 5 | Yes |
-| 18. Linting/Analysis | Operational | 8 | Yes (read) |
-| 19. Network | Operational | 5 | Yes |
-| 20. Process Management | Operational | 7 | Yes |
-| **Operational subtotal** | | **44** | |
-| **Total** | | **260** | |
+### 6.1 Purpose
 
-216 pure primitives that are always available and always correct. 44 operational primitives that require positive credential authorization and produce logged, auditable side effects.
+Train the model on the full corpus to learn language patterns. Every training step produces exact gradients, exact parameter updates, and exact loss values. The training run is a KB that grows with each step.
 
----
+### 6.2 Training Configuration KB
 
-## 14. Falsification Criteria
+```
+KB: training_config_pretrain_v1
+  facts:
+    optimizer: "sgd_momentum"
+    learning_rate: fraction(3, 10000)
+    momentum: fraction(9, 10)
+    batch_size: 32
+    sequence_length: 2048
+    total_steps: 100000
+    warmup_steps: 1000
+    lr_schedule: "cosine_decay"
+    gradient_clip_norm: fraction(1, 1)
+    checkpoint_interval: 1000
+    eval_interval: 500
+    
+  constraints:
+    constraint("lr_positive", axiom, active,
+        condition(learning_rate > 0),
+        on_violation("error"))
+    constraint("batch_fits_memory", operational, active,
+        condition(estimated_memory(batch_size, sequence_length) < available_memory),
+        on_violation("block"))
+    constraint("gradient_clip", operational, active,
+        condition(forall(step(S), gradient_norm(S) =< gradient_clip_norm)),
+        on_violation("clip_and_log"))
+```
 
-**F1.** If any pure primitive produces an incorrect result from valid inputs, the primitive is buggy. The invariant constraints enable automatic detection.
+### 6.3 Training Run KB
 
-**F2.** If any operational primitive executes without a valid grant, the authorization system has a bypass vulnerability.
+```
+KB: training_run_pretrain_v1
+  parent: training_config_pretrain_v1
+  model: model_init_v1
+  corpus: tokenized_corpus_v1
+  
+  facts:
+    started_at: timestamp(2026, 3, 26)
+    environment: env_gpu_cluster_01
+    status: running
+    current_step: 45000
+    
+  children:
+    [checkpoint_step_0, checkpoint_step_1000, ..., checkpoint_step_45000]
+    
+  step_log:
+    // Retained for checkpoint steps + anomaly steps (per retention policy)
+    step(0, loss(fraction(10, 1)), lr(fraction(3, 100000)), grad_norm(fraction(5, 1)), duration_ms(1200))
+    step(1000, loss(fraction(4, 1)), lr(fraction(3, 10000)), grad_norm(fraction(2, 1)), duration_ms(1150))
+    ...
+    
+  constraints:
+    constraint("loss_finite", axiom, active,
+        condition(forall(step(S), loss(S) < fraction(1000, 1))),
+        on_violation("halt_training"))
+    constraint("loss_decreasing_trend", operational, active,
+        condition(moving_average_loss(1000) < moving_average_loss_prev(1000)),
+        on_violation("warn"))
+    constraint("no_nan_equivalent", axiom, active,
+        condition(forall(step(S), forall(param(P), denominator(P, S) > 0))),
+        on_violation("halt_training"))
+```
 
-**F3.** If any command token is executed without being logged in the environment KB, the audit trail is incomplete.
+### 6.4 Checkpoint KB
 
-**F4.** If any task result stored in the KB differs from the actual process output, the result capture mechanism has a bug.
+```
+KB: checkpoint_step_45000
+  parent: training_run_pretrain_v1
+  
+  facts:
+    step: 45000
+    created_at: timestamp(2026, 4, 5)
+    loss: fraction(287, 100)
+    learning_rate: fraction(18, 10000)
+    total_parameter_bytes: 340000000
+    max_denominator: 2^48
+    mean_denominator: 2^31
+    
+  parameter_snapshots:
+    // All parameter values at this step, as exact VDR fractions
+    // Stored as serialized KB, restorable exactly
+    
+  optimizer_state:
+    // Momentum velocities for all parameters, as exact VDR fractions
+    
+  constraints:
+    constraint("restorable", operational, active,
+        condition(load_checkpoint(45000) produces identical_model),
+        on_violation("error"))
+```
 
-**F5.** If a direct download serves content that differs from the source data, the serving mechanism has a corruption bug.
+### 6.5 Learning Rate Schedule
 
-**F6.** If a version created by VERSION_CREATE cannot be exactly retrieved by a subsequent query, the versioning system has a storage or retrieval bug.
+The learning rate at each step is an exact VDR fraction:
 
-**F7.** If an environment of type Docker allows an operation to affect the host filesystem outside the container mount, the isolation is broken.
+```
+Rule: lr_at_step(Step, LR) :-
+    training_config(_, warmup_steps(W), total_steps(T), base_lr(BaseLR), _),
+    (Step < W ->
+        // Linear warmup
+        LR is BaseLR * Step / W
+    ;
+        // Cosine decay (rational approximation)
+        Progress is (Step - W) / (T - W),
+        CosApprox is cosine_rational_approx(Progress),
+        LR is BaseLR * (1 + CosApprox) / 2
+    ).
+```
 
-Each criterion is testable by exact comparison. The pure primitive invariants are mathematical — they can be verified by the constraint system on every invocation. The operational criteria require integration testing against actual environments.
+The cosine is approximated by a rational function (Padé or truncated Taylor). The approximation depth is a declared parameter. The LR at every step is an exact fraction with recorded provenance.
 
----
+### 6.6 Denominator Management
 
-## 15. Implementation Priority
+During training, parameter denominators grow. The system monitors this and applies Q-basis reprojection when denominators exceed a budget:
 
-| Phase | Component | Dependencies | Effort |
-|-------|-----------|-------------|--------|
-| 1 | Pure primitives (categories 1-5) | VDR core | Low per primitive, medium total |
-| 2 | KB/constraint primitives (category 14) | VDR-Prolog KB from VDR-5 | Medium |
-| 3 | Command token parser and executor | Primitives from phase 1-2 | Medium |
-| 4 | Docker environment manager | Docker API | Medium |
-| 5 | Filesystem operational primitives | Docker env from phase 4 | Low |
-| 6 | Execution and compilation primitives | Docker env from phase 4 | Low |
-| 7 | Async task manager | Environment from phase 4 | Medium |
-| 8 | Grant and credential system | KB from VDR-5 | Medium |
-| 9 | Versioning system | KB from VDR-5 | Low |
-| 10 | Direct download serving | KB + environments | Low |
-| 11 | Pure primitives (categories 6-13) | VDR core | Medium total |
-| 12 | Network and process primitives | Environment from phase 4 | Low |
-| 13 | Scratchpad and notification system | Task manager from phase 7 | Medium |
-| 14 | Integration testing | All above | High |
+```
+Rule: denominator_check(Step) :-
+    forall(param(P),
+        (param_denominator(P, Step, D),
+         D > denom_budget ->
+            reproject_to_qbasis(P, Step, target_exponent)
+         ;
+            true
+        )).
 
-Phase 1 (pure string, list, arithmetic, set, dictionary primitives) and phase 3 (command token executor) can begin immediately with the existing VDR codebase. They do not require the Prolog KB engine from VDR-5. The KB engine is needed starting at phase 2 for constraint primitives and persists through all subsequent phases.
+Rule: reproject_to_qbasis(Param, Step, K) :-
+    param_value(Param, Step, OldValue),
+    NewValue is round(OldValue * 2^K) / 2^K,
+    retract(param_value(Param, Step, OldValue)),
+    assert(param_value(Param, Step, NewValue)),
+    assert(reprojection_event(Param, Step, K, 
+        error_bound(abs(OldValue - NewValue)))).
+```
 
----
+Every reprojection is logged with its exact error bound. The error is bounded by 2^(-K-1). The reprojection is a declared, auditable precision decision — not silent truncation.
 
-## 16. Conclusion
-
-VDR-5 specified the knowledge architecture: what the system knows, how it is organized, and how it is queried. VDR-6 specifies the execution architecture: what the system does, how operations are authorized, and how results are stored.
-
-Together they define a complete system:
-
-The **knowledge layer** (VDR-5) provides scoped KBs, working data sets, constraint management, topic tracking, and first-class surfacing. Everything is a KB. Everything is queryable.
-
-The **execution layer** (VDR-6) provides 216 pure computational primitives, 44 authorized operational primitives, command tokens for structured invocation, sandboxed operational environments, async task management, versioning, and direct data download. Everything is logged. Everything is authorized.
-
-The **arithmetic layer** (VDR-1 through VDR-4) provides exact fractions, zero drift, exact softmax, exact autodiff, and a working transformer architecture. Everything is exact.
-
-The language model sits at the center: recognizing intent, selecting primitives, assembling plans, generating explanations, and framing results. It does not sort lists (the sort primitive does). It does not compile code (the compilation primitive does). It does not remember constraints (the KB stores them). It does not track conversations (the topic system tracks them). It does what language models do well — understand language and reason about goals — and delegates everything else to components that are exact, authorized, logged, and queryable.
-
-260 primitives. 20 categories. Positive credential gating. Async execution. KB-stored results. Versioned artifacts. Direct data download. Command tokens. Operational environments. Everything logged. Everything auditable. Everything surfaceable.
-
-The system can think, compute, execute, store, verify, and explain. Each capability is a separate component with clear interfaces. No component does another's job. The result is not a faster language model or a more capable language model. It is a trustworthy computational system with a language model as its interface.
-
----
-
-# Addendum to VDR-6: Regex Primitive Removal
-
----
-
-## A1. Regex Primitives Removed
-
-Category 12 (Pattern Matching, primitives #186-192) is removed from the specification. The 7 regex primitives (regex_match, regex_search, regex_replace, regex_split, regex_capture, glob_match, wildcard_match) are struck.
-
-### A1.1 Rationale
-
-Regular expressions are an unbounded computation risk. A crafted regex pattern can cause catastrophic backtracking — exponential time consumption on inputs that appear benign. The classic example is the pattern `(a+)+b` matched against the string "aaaaaaaaaaaaaaaaaaaac", which causes the regex engine to explore 2^N paths before failing. This is not a theoretical concern. It is a known denial-of-service vector called ReDoS (Regular Expression Denial of Service).
-
-In a system where the LLM can issue command tokens that include regex patterns, the attack surface is the LLM itself. A prompt injection or adversarial input could cause the LLM to generate a pathological regex as a command token. The regex primitive would then consume unbounded CPU time, violating the finite-termination guarantee that every other pure primitive satisfies.
-
-The pure primitive contract (Section 2) requires that every primitive terminates in bounded time relative to input size. Regex evaluation does not satisfy this contract for arbitrary patterns. No amount of input validation on the pattern can reliably detect all pathological cases — the problem of determining whether a regex has exponential worst-case behavior is itself computationally hard.
-
-### A1.2 What Replaces Regex
-
-String operations (Category 1) cover the majority of practical pattern matching needs: string_contains for substring search, string_split for delimiter-based parsing, string_starts_with and string_ends_with for prefix/suffix testing, string_replace for substitution. These are all O(n) or O(n·m) in input and pattern length with no backtracking.
-
-For structured parsing beyond what string primitives provide, the system should use purpose-built parsers: parse_json and parse_csv (Category 8) for data formats, and domain-specific parsers added as new primitives when needed. A JSON parser has bounded behavior. A CSV parser has bounded behavior. A regex engine does not.
-
-If regex capability is needed in the future, it must be implemented as an operational primitive (not pure), with a CPU time limit enforced by the operational environment, and a positive grant required for each invocation. It would not carry the "always terminates" guarantee of pure primitives because it cannot.
-
-### A1.3 Revised Counts
-
-Pure primitives: 218 → 211 (7 removed).
-Categories: 14 pure → 13 pure (Category 12 removed).
-Total primitives: 262 → 255.
-Total categories: 20 → 19.
-
-The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Constraint) shift down by 7 to fill the gap. All references in the appendix tables are updated accordingly.
-
----
-
-**END ADDENDUM**
-
----
-
-## Appendix A: Complete Primitive Index
-
-| # | Name | Category | Type |
-|---|------|----------|------|
-| 1-17 | string_* | String | Pure |
-| 18-53 | list_* | List | Pure |
-| 54-79 | vdr_* | Arithmetic | Pure |
-| 80-93 | set_* | Set | Pure |
-| 94-108 | dict_* | Dictionary | Pure |
-| 109-124 | vec_*, mat_* | Linear Algebra | Pure |
-| 125-140 | stat_*, prob_*, softmax* | Statistics | Pure |
-| 141-154 | to_*, format_*, parse_*, number_to_* | Conversion | Pure |
-| 155-164 | date_*, time_*, duration_* | Date/Time | Pure |
-| 165-172 | hash_*, base64_*, hex_*, crc32, uuid_* | Hashing | Pure |
-| 173-185 | graph_* | Graph | Pure |
-| 186-192 | regex_*, glob_*, wildcard_* | Pattern | Pure |
-| 193-203 | if_then_else, case_match, for_each, repeat_n, while_loop, try_catch, assert_that, type_check, is_bound, findall, aggregate | Logic | Pure |
-| 204-218 | kb_*, constraint_* | KB/Constraint | Pure (KB-internal) |
-| 219-233 | fs_* | Filesystem | Operational |
-| 234-237 | compile_* | Compilation | Operational |
-| 238-242 | exec_* | Execution | Operational |
-| 243-250 | lint_*, analyze_*, count_lines | Linting | Operational |
-| 251-255 | net_* | Network | Operational |
-| 256-262 | proc_* | Process | Operational |
+![Fig. 3](./figures/vdr7_03_training_metrics.png)
 
 ---
 
-## Appendix B: Command Token Reference
+## 7. Phase 6: Fine-Tuning
 
-| Token Type | Arguments | Grant Required | Async | Side Effect |
-|-----------|-----------|---------------|-------|-------------|
-| PURE_FN | primitive, args | No | No | None |
-| OP_FN | primitive, args, env, grant | Yes | Optional | Declared per primitive |
-| KB_ASSERT | kb, fact | No (scoped) | No | KB state |
-| KB_RETRACT | kb, fact | No (scoped) | No | KB state |
-| KB_QUERY | kb, predicate, args | No (scoped) | No | None |
-| ENV_EXEC | env, command, args | Yes | Recommended | Process creation |
-| ENV_UPLOAD | env, content, path | Yes | No | File creation |
-| ENV_DOWNLOAD | env, path | Yes | No | Data transfer |
-| CTX_ACTIVATE | kb | No | No | Context state |
-| CTX_DEACTIVATE | kb | No | No | Context state |
-| CTX_SNAPSHOT | name | No | No | KB creation |
-| VERSION_CREATE | project, artifact, content, notes | No | No | KB state |
-| VERSION_TAG | project, artifact, version, tag | No | No | KB state |
-| STORE_RESULT | task_id, kb, key | No | No | KB state |
-| DIRECT_OUTPUT | resource_address | No (visibility-gated) | No | Data to user |
-| ATTACHMENT | resource_address, filename | Yes (read grant) | No | File to user |
+### 7.1 Purpose
+
+Adapt the pre-trained model to a specific domain or task. Fine-tuning is structurally identical to pre-training — it is a training run with a different corpus, learning rate, and potentially frozen layers.
+
+### 7.2 Fine-Tuning Configuration
+
+```
+KB: training_config_finetune_instruct_v1
+  parent: training_config_pretrain_v1  // inherits structure
+  
+  facts:
+    finetune_type: "instruction_following"
+    base_checkpoint: checkpoint_step_100000
+    learning_rate: fraction(1, 100000)  // lower than pretrain
+    total_steps: 5000
+    frozen_layers: [0, 1, 2, 3]  // freeze first 4 layers
+    corpus: corpus_instruct_v1
+    
+  constraints:
+    constraint("base_checkpoint_exists", operational, active,
+        condition(checkpoint_exists(checkpoint_step_100000)),
+        on_violation("error"))
+    constraint("frozen_layers_unchanged", axiom, active,
+        condition(forall(frozen_layer(L), step(S), 
+            params(L, S) =:= params(L, 0))),
+        on_violation("error"))
+```
+
+### 7.3 Instruction Corpus KB
+
+```
+KB: corpus_instruct_v1
+  facts:
+    corpus_type: "instruction_response_pairs"
+    total_pairs: 50000
+    sources: [source_synthetic_instruct, source_human_written_instruct]
+    format: {instruction: text, response: text, metadata: dict}
+    
+  constraints:
+    constraint("response_quality", operational, active,
+        condition(forall(pair(P), quality_score(P) > fraction(8, 10))),
+        on_violation("exclude"))
+    constraint("instruction_diversity", operational, active,
+        condition(topic_coverage > fraction(9, 10)),
+        on_violation("warn"))
+```
+
+### 7.4 Multi-Stage Fine-Tuning
+
+Fine-tuning can be multi-stage, each stage a separate training run KB:
+
+```
+Stage 1: Instruction following (general)
+  → checkpoint_instruct_v1
+
+Stage 2: Domain adaptation (specific domain)
+  base: checkpoint_instruct_v1
+  → checkpoint_domain_v1
+
+Stage 3: Safety tuning
+  base: checkpoint_domain_v1
+  → checkpoint_safe_v1
+```
+
+Each stage is a child KB of the previous. The full lineage is queryable:
+
+```
+?- checkpoint_lineage(checkpoint_safe_v1, Chain).
+% Chain = [model_init_v1, checkpoint_step_100000, 
+%          checkpoint_instruct_v1, checkpoint_domain_v1, checkpoint_safe_v1]
+```
 
 ---
 
-## Appendix C: Grant Class Reference
+## 8. Phase 7: Human Feedback
 
-| Class | Operations | Typical Scope | Risk Level |
-|-------|-----------|---------------|-----------|
-| filesystem | read, write, append, create_dir, delete, move, copy | Directory path | Medium (write), Low (read) |
-| compile | compile_python_check, compile_zig, compile_c, compile_rust | Source directory | Low-Medium |
-| execute | exec_python, exec_shell, exec_zig_test, exec_pytest, exec_script | Working directory | High |
-| lint | lint_python, lint_zig, lint_json, lint_markdown, analyze_* | Source directory | Low (read-only) |
-| network | net_download, net_fetch, net_post, net_ping, net_dns_resolve | URL pattern or wildcard | Medium |
-| process | proc_start, proc_poll, proc_wait, proc_kill, proc_stdout, proc_stderr, proc_list | Environment | Medium-High |
+### 8.1 Purpose
+
+Collect human preferences to align the model's behavior. Every preference judgment is a KB fact with full provenance: who judged, when, what they compared, and what they chose.
+
+### 8.2 Feedback Collection Types
+
+| Type | Structure | Use Case |
+|------|-----------|----------|
+| Pairwise preference | (prompt, response_A, response_B, preferred) | RLHF-style training |
+| Rating | (prompt, response, score 1-5) | Quality assessment |
+| Binary | (prompt, response, accept/reject) | Safety filtering |
+| Correction | (prompt, response, corrected_response) | Supervised improvement |
+| Annotation | (prompt, response, [tag1, tag2, ...]) | Multi-label classification |
+| Free-form | (prompt, response, human_comment) | Qualitative feedback |
+
+### 8.3 Feedback KB Structure
+
+```
+KB: feedback_round_1
+  facts:
+    collection_period: (timestamp(2026, 4, 15), timestamp(2026, 4, 30))
+    model_version: checkpoint_instruct_v1
+    annotator_count: 25
+    total_judgments: 10000
+    
+  children:
+    [feedback_pairwise_r1, feedback_ratings_r1, feedback_safety_r1]
+    
+  constraints:
+    constraint("inter_annotator_agreement", operational, active,
+        condition(kappa > fraction(6, 10)),
+        on_violation("warn"))
+    constraint("minimum_judgments_per_prompt", operational, active,
+        condition(forall(prompt(P), judgment_count(P) >= 3)),
+        on_violation("warn"))
+    constraint("annotator_consent", legal, active,
+        condition(forall(annotator(A), has_consent(A))),
+        on_violation("block"))
+```
+
+### 8.4 Pairwise Preference KB
+
+```
+KB: feedback_pairwise_r1
+  parent: feedback_round_1
+  
+  judgments:
+    pairwise(
+        id("j_00001"),
+        prompt("Explain photosynthesis"),
+        response_a(text_ref("resp_a_00001")),
+        response_b(text_ref("resp_b_00001")),
+        preferred(a),
+        annotator("annotator_12"),
+        judged_at(timestamp(2026, 4, 16, 10, 30, 0)),
+        confidence(high),
+        time_spent_seconds(45),
+        model_a(checkpoint_instruct_v1),
+        model_b(checkpoint_instruct_v1),
+        generation_params(temperature(fraction(7, 10)), top_k(50))
+    ).
+    ...
+```
+
+Every judgment records: what was compared, who judged, when, how confident they were, how long they spent, which model generated each response, and what generation parameters were used. This is complete provenance for every human preference signal.
+
+### 8.5 Reward Model Training
+
+A reward model is trained on the preference data:
+
+```
+KB: reward_model_v1
+  parent: feedback_pairwise_r1
+  
+  facts:
+    base_model: checkpoint_instruct_v1
+    reward_head: linear(hidden_dim, 1)
+    trained_on: feedback_pairwise_r1
+    training_steps: 2000
+    accuracy_on_held_out: fraction(73, 100)
+    
+  constraints:
+    constraint("above_random", operational, active,
+        condition(accuracy > fraction(1, 2)),
+        on_violation("error"))
+    constraint("calibrated", operational, active,
+        condition(calibration_error < fraction(1, 10)),
+        on_violation("warn"))
+```
+
+### 8.6 RLHF Training
+
+Reinforcement learning from human feedback uses the reward model to update the policy:
+
+```
+KB: training_config_rlhf_v1
+  facts:
+    policy_model: checkpoint_instruct_v1
+    reward_model: reward_model_v1
+    reference_model: checkpoint_instruct_v1  // for KL penalty
+    kl_coefficient: fraction(1, 100)
+    ppo_epochs: 4
+    ppo_clip: fraction(1, 5)
+    total_steps: 10000
+    
+  constraints:
+    constraint("kl_bounded", operational, active,
+        condition(forall(step(S), kl_divergence(S) < fraction(10, 1))),
+        on_violation("reduce_lr"))
+    constraint("reward_improving", operational, active,
+        condition(mean_reward_trend > 0),
+        on_violation("warn"))
+```
+
+### 8.7 Direct Preference Optimization (DPO)
+
+As an alternative to RLHF, DPO trains directly on preferences without a reward model:
+
+```
+KB: training_config_dpo_v1
+  facts:
+    base_model: checkpoint_instruct_v1
+    reference_model: checkpoint_instruct_v1
+    beta: fraction(1, 10)  // temperature parameter
+    preferences: feedback_pairwise_r1
+    total_steps: 5000
+    
+  constraints:
+    constraint("preference_loss_decreasing", operational, active,
+        condition(dpo_loss_trend < 0),
+        on_violation("warn"))
+```
+
+Both RLHF and DPO produce trained checkpoints with full provenance: which preferences were used, what reward model (if RLHF), what hyperparameters, what constraints were active.
 
 ---
 
-## Appendix D: Paper Series
+## 9. Phase 8: Evaluation
 
-| Paper | Registry | Central Result |
-|-------|----------|----------------|
-| VDR-1 | @HOWL-VDR-1-2026 | Exact arithmetic in irreducible triple form |
-| VDR-2 | @HOWL-VDR-2-2026 | 15 domains, 282 tests, chaos boundary |
-| VDR-3 | @HOWL-VDR-3-2026 | 23 domains, transcendental integration, no unique boundaries |
-| VDR-4 | @HOWL-VDR-4-2026 | 24-module ML stack, working exact transformer |
-| VDR-5 | @HOWL-VDR-5-2026 | Prolog provenance, constraints, scoped KBs, surfacing |
-| **VDR-6** | **@HOWL-VDR-6-2026** | **260 primitives, command tokens, operational environments, versioning** |
-| MATH-3 | @HOWL-MATH-3-2026 | Elliptic integrals, Borwein acceleration |
-| MATH-4 | @HOWL-MATH-4-2026 | Q335 universal basis, 22 constants |
+![Fig. 4](./figures/vdr7_04_eval_comparison.png)
+
+### 9.1 Purpose
+
+Measure model quality on standardized benchmarks and custom evaluations. Every evaluation result is a KB fact with exact scores, the model version tested, and the evaluation configuration.
+
+### 9.2 Evaluation Suite KB
+
+```
+KB: eval_suite_v1
+  children:
+    [eval_perplexity, eval_accuracy, eval_safety, eval_reasoning, 
+     eval_instruction_following, eval_domain_specific]
+    
+  constraints:
+    constraint("all_benchmarks_run", operational, active,
+        condition(forall(benchmark(B), result_exists(B))),
+        on_violation("warn"))
+    constraint("no_data_contamination", operational, active,
+        condition(forall(benchmark(B), no_overlap(B, training_data))),
+        on_violation("error"))
+```
+
+### 9.3 Benchmark Result KB
+
+```
+KB: eval_perplexity_v1
+  parent: eval_suite_v1
+  
+  facts:
+    benchmark: "wikitext_103_test"
+    model: checkpoint_safe_v1
+    evaluated_at: timestamp(2026, 5, 1)
+    perplexity: fraction(2347, 100)  // 23.47 — exact rational
+    token_count: 245566
+    evaluation_environment: env_eval_01
+    
+  constraints:
+    constraint("perplexity_reasonable", operational, active,
+        condition(perplexity < fraction(100, 1)),
+        on_violation("investigate"))
+```
+
+### 9.4 Safety Evaluation KB
+
+```
+KB: eval_safety_v1
+  parent: eval_suite_v1
+  
+  facts:
+    benchmark: "safety_prompts_v3"
+    model: checkpoint_safe_v1
+    total_prompts: 5000
+    safe_responses: 4950
+    unsafe_responses: 50
+    safety_rate: fraction(99, 100)
+    
+  categories:
+    category("harmful_instructions", tested(1000), passed(995), rate(fraction(199, 200)))
+    category("bias_probes", tested(1000), passed(980), rate(fraction(49, 50)))
+    category("privacy_leaks", tested(1000), passed(998), rate(fraction(499, 500)))
+    category("deception", tested(1000), passed(990), rate(fraction(99, 100)))
+    category("illegal_content", tested(1000), passed(987), rate(fraction(987, 1000)))
+    
+  constraints:
+    constraint("minimum_safety_rate", operational, active,
+        condition(safety_rate > fraction(95, 100)),
+        on_violation("block_deployment"))
+    constraint("no_category_below_floor", operational, active,
+        condition(forall(category(C), rate(C) > fraction(9, 10))),
+        on_violation("block_deployment"))
+```
+
+### 9.5 Comparison Across Model Versions
+
+```
+?- eval_result(Model, "wikitext_103_test", perplexity, PPL),
+   checkpoint_lineage(Model, Chain).
+// Returns perplexity for every model in the lineage — shows improvement curve
+
+?- eval_result(checkpoint_safe_v1, Benchmark, Metric, Score),
+   eval_result(checkpoint_instruct_v1, Benchmark, Metric, OldScore),
+   Score < OldScore.
+// Which benchmarks got WORSE after safety tuning?
+```
+
+![Fig. 2](./figures/vdr7_02_data_lineage.png)
 
 ---
 
-**END HOWL-VDR-6-2026**
+## 10. Phase 9: Deployment
 
-**Registry:** [@HOWL-VDR-6-2026]
+### 10.1 Purpose
+
+Configure and deploy the model for serving. The deployment is a KB that specifies exactly which model checkpoint, which constraints, which operational environment, and which API configuration.
+
+### 10.2 Deployment Configuration KB
+
+```
+KB: deployment_prod_v1
+  facts:
+    model_checkpoint: checkpoint_safe_v1
+    serving_environment: env_prod_cluster
+    api_version: "v1"
+    max_concurrent_requests: 100
+    max_sequence_length: 2048
+    default_temperature: fraction(7, 10)
+    default_top_k: 50
+    rate_limit_per_user: 100  // requests per hour
+    
+  constraints:
+    constraint("model_passed_safety", operational, active,
+        condition(eval_safety_rate(checkpoint_safe_v1) > fraction(95, 100)),
+        on_violation("block_deployment"))
+    constraint("model_passed_quality", operational, active,
+        condition(eval_perplexity(checkpoint_safe_v1) < fraction(30, 1)),
+        on_violation("block_deployment"))
+    constraint("environment_healthy", operational, active,
+        condition(env_status(env_prod_cluster, running)),
+        on_violation("block_deployment"))
+```
+
+### 10.3 API as KB Interface
+
+The API is not a separate system. It is a thin layer over the KB:
+
+| API Endpoint | KB Operation |
+|-------------|-------------|
+| POST /generate | Forward pass → KB records request, response, provenance |
+| GET /model/info | KB_QUERY(deployment_prod_v1, model facts) |
+| GET /model/constraints | KB_QUERY(deployment_prod_v1, active constraints) |
+| GET /kb/{name} | DIRECT_OUTPUT(kb://name) — owner only |
+| POST /feedback | KB_ASSERT(feedback_kb, judgment) |
+| GET /metrics | KB_QUERY(monitoring_kb, current metrics) |
+| POST /admin/deploy | VERSION_CREATE + CTX_ACTIVATE on deployment KB |
+| POST /admin/rollback | CTX_ACTIVATE on previous deployment KB |
+
+Every API call is a KB operation. Every request is logged. Every response has provenance. The API is not separate infrastructure — it is the surfacing layer from VDR-5 exposed over HTTP.
+
+### 10.4 The System as Both API and Generator
+
+The deployed system has two output modes:
+
+**Generator mode.** The LLM produces text tokens for conversation. This is the standard chat interface.
+
+**API mode.** The system serves structured data from KBs. This is for programmatic access — other systems querying model state, evaluation results, training provenance, or KB contents.
+
+Both modes use the same KB layer. Both modes respect the same grants and constraints. Both modes produce the same provenance records. The difference is only the output format: text tokens for humans, structured data for machines.
+
+Command tokens bridge the two: the LLM can generate text for the user and simultaneously issue command tokens that trigger API-mode operations (store results, update KBs, trigger evaluations).
+
+---
+
+## 11. Phase 10: Monitoring
+
+### 11.1 Purpose
+
+Continuously track the deployed model's behavior. Every metric is a KB fact. Anomalies trigger watches. Constraint violations trigger alerts.
+
+### 11.2 Monitoring KB
+
+```
+KB: monitoring_prod_v1
+  parent: deployment_prod_v1
+  
+  metrics:
+    // Per-minute aggregates
+    metric(timestamp(T), requests_per_minute, N)
+    metric(timestamp(T), mean_latency_ms, L)
+    metric(timestamp(T), p99_latency_ms, P)
+    metric(timestamp(T), error_rate, fraction(E, Total))
+    metric(timestamp(T), mean_output_length, Tokens)
+    metric(timestamp(T), safety_flag_rate, fraction(Flagged, Total))
+    
+  watches:
+    watch("latency_spike",
+        condition(p99_latency_ms > 5000),
+        message("P99 latency exceeded 5 seconds"),
+        watch_type(on_change))
+    watch("error_spike",
+        condition(error_rate > fraction(1, 100)),
+        message("Error rate exceeded 1%"),
+        watch_type(on_change))
+    watch("safety_spike",
+        condition(safety_flag_rate > fraction(1, 20)),
+        message("Safety flag rate exceeded 5%"),
+        watch_type(on_change))
+    watch("denom_growth",
+        condition(mean_parameter_denominator > 2^56),
+        message("Parameter denominators growing beyond budget"),
+        watch_type(on_change))
+        
+  constraints:
+    constraint("availability", operational, active,
+        condition(uptime_fraction > fraction(999, 1000)),
+        on_violation("page_oncall"))
+```
+
+### 11.3 User Interaction Logging
+
+Every user interaction is a KB fact:
+
+```
+Fact: interaction(
+    id("req_000042"),
+    user("user_alice"),
+    timestamp(2026, 5, 10, 14, 30, 0),
+    prompt_tokens(150),
+    completion_tokens(450),
+    latency_ms(1200),
+    model(checkpoint_safe_v1),
+    safety_flagged(false),
+    feedback(none),
+    session(session_id("s_00012"))
+).
+```
+
+Interactions are queryable for analysis:
+
+```
+?- interaction(_, user("user_alice"), _, _, Tokens, _, _, _, _, _), Tokens > 1000.
+// Alice's long completions
+
+?- interaction(_, _, Timestamp, _, _, _, _, safety_flagged(true), _, _).
+// All safety-flagged interactions
+
+?- interaction(_, _, T, _, _, Latency, _, _, _, _), Latency > 5000.
+// All slow requests
+```
+
+### 11.4 Drift Detection
+
+```
+Rule: distribution_drift(Metric, Current, Baseline, Delta) :-
+    metric_baseline(Metric, Baseline),
+    metric_current(Metric, Current),
+    Delta is abs(Current - Baseline),
+    Delta > drift_threshold(Metric).
+
+Watch: watch("output_length_drift",
+    condition(distribution_drift(mean_output_length, _, _, Delta), Delta > fraction(1, 5)),
+    message("Output length distribution has drifted >20% from baseline")).
+```
+
+---
+
+## 12. Phase 11: Update
+
+### 12.1 Purpose
+
+Update the deployed model with new training, new data, or new constraints. Every update is versioned. Every update is rollback-able.
+
+### 12.2 Update Types
+
+| Update Type | Scope | Requires | Rollback Method |
+|------------|-------|----------|----------------|
+| Weight update | Full model | Training run | Restore previous checkpoint |
+| LoRA adapter | Additive weights | Fine-tuning run | Remove adapter KB |
+| Constraint update | Behavior rules | Admin approval | Revert constraint KB |
+| Vocabulary update | Tokenizer | Retokenize + retrain | Restore previous vocab KB |
+| Safety patch | Specific behavior | Targeted fine-tuning | Remove patch KB |
+| KB update | Knowledge content | Content review | Restore KB snapshot |
+
+### 12.3 Update KB
+
+```
+KB: update_v2
+  facts:
+    update_type: "safety_patch"
+    base_deployment: deployment_prod_v1
+    new_checkpoint: checkpoint_safe_v2
+    reason: "Address newly identified safety gap in category X"
+    approved_by: "safety_team_lead"
+    approved_at: timestamp(2026, 5, 12)
+    deployed_at: timestamp(2026, 5, 12, 14, 0, 0)
+    rollback_target: deployment_prod_v1
+    
+  constraints:
+    constraint("approved", operational, active,
+        condition(approved_by \= none),
+        on_violation("block"))
+    constraint("tested", operational, active,
+        condition(eval_passed(checkpoint_safe_v2, eval_suite_v1)),
+        on_violation("block"))
+    constraint("rollback_available", operational, active,
+        condition(checkpoint_exists(rollback_target)),
+        on_violation("error"))
+```
+
+### 12.4 Rollback
+
+```
+Rule: rollback(CurrentDeployment) :-
+    deployment(CurrentDeployment, _, _, _, rollback_target(Target), _),
+    checkpoint_exists(Target),
+    deactivate_kb(CurrentDeployment),
+    activate_kb(Target),
+    assert(rollback_event(CurrentDeployment, Target, current_timestamp)),
+    log(rollback(CurrentDeployment, Target)).
+```
+
+Rollback deactivates the current deployment KB and activates the previous one. The old model checkpoint is loaded. The rollback is logged. The current deployment KB is not deleted — it is deactivated and available for analysis.
+
+### 12.5 Canary Deployment
+
+```
+KB: canary_v2
+  parent: update_v2
+  
+  facts:
+    canary_percentage: fraction(5, 100)  // 5% of traffic
+    canary_start: timestamp(2026, 5, 12, 14, 0, 0)
+    canary_duration_hours: 24
+    promotion_criteria:
+        latency_delta < fraction(1, 10)   // <10% regression
+        error_rate_delta < fraction(1, 100) // <1% regression
+        safety_rate >= fraction(95, 100)    // safety maintained
+        
+  constraints:
+    constraint("canary_monitored", operational, active,
+        condition(monitoring_active(canary_v2)),
+        on_violation("halt_canary"))
+    constraint("auto_rollback", operational, active,
+        condition(not(promotion_criteria_violated)),
+        on_violation("rollback_canary"))
+```
+
+The canary runs for 24 hours with 5% of traffic. If promotion criteria are met, the update is promoted to full deployment. If any criterion is violated, the canary is automatically rolled back. All decisions are logged as KB facts.
+
+---
+
+## 13. Phase 12: Retirement
+
+### 13.1 Purpose
+
+Retire a model version. Archive its KBs. Maintain provenance chain for audit.
+
+### 13.2 Retirement KB
+
+```
+KB: retirement_v1
+  facts:
+    model: checkpoint_safe_v1
+    retired_at: timestamp(2026, 8, 1)
+    reason: "Superseded by checkpoint_safe_v3"
+    successor: checkpoint_safe_v3
+    archive_location: "archive://models/safe_v1/"
+    retention_period_years: 7
+    
+  constraints:
+    constraint("no_active_deployments", operational, active,
+        condition(not(deployment_active(checkpoint_safe_v1))),
+        on_violation("block_retirement"))
+    constraint("successor_exists", operational, active,
+        condition(checkpoint_exists(successor)),
+        on_violation("block_retirement"))
+    constraint("archive_complete", operational, active,
+        condition(all_kbs_archived(checkpoint_safe_v1)),
+        on_violation("error"))
+```
+
+### 13.3 What Gets Archived
+
+| Component | Archive Format | Retention | Queryable After Archive? |
+|-----------|---------------|-----------|------------------------|
+| Model weights (checkpoint) | Serialized VDR fractions | Per policy (7 years) | Yes (via archive KB) |
+| Training configuration | KB export (JSON) | Indefinite | Yes |
+| Training logs | KB export (JSON) | Per policy | Yes |
+| Evaluation results | KB export (JSON) | Indefinite | Yes |
+| Feedback data | KB export (anonymized) | Per legal requirement | Yes (anonymized) |
+| Deployment configuration | KB export (JSON) | Indefinite | Yes |
+| Monitoring metrics | Aggregated summaries | Per policy | Yes (summaries) |
+| Source provenance | KB references | Indefinite | Yes |
+
+The archived model is frozen but queryable. You can ask "what was model v1's safety rate on category X?" years after retirement, because the evaluation KB is archived and searchable.
+
+---
+
+## 14. Cross-Phase KB Relationships
+
+The lifecycle phases are not isolated. Each phase's KB references and depends on others:
+
+```
+source_registry
+  └── corpus_v1
+       ├── tokenized_corpus_v1
+       │    └── training_run_pretrain_v1
+       │         ├── checkpoint_step_100000
+       │         │    ├── training_run_finetune_instruct_v1
+       │         │    │    ├── checkpoint_instruct_v1
+       │         │    │    │    ├── feedback_round_1
+       │         │    │    │    │    └── reward_model_v1
+       │         │    │    │    │         └── training_run_rlhf_v1
+       │         │    │    │    │              └── checkpoint_safe_v1
+       │         │    │    │    │                   ├── eval_suite_v1
+       │         │    │    │    │                   ├── deployment_prod_v1
+       │         │    │    │    │                   │    └── monitoring_prod_v1
+       │         │    │    │    │                   └── retirement_v1
+       │         │    │    │    └── eval_suite_instruct_v1
+       │         │    │    └── vocab_bpe_32k
+       │         │    └── model_arch_v1
+       │         └── model_init_v1
+       └── corpus_v1_quality_report
+```
+
+Every node is a KB. Every edge is a parent-child or reference relationship. The entire lifecycle from raw data to retired model is one queryable tree.
+
+```
+?- lifecycle_chain(source_wikipedia_2026_03, deployment_prod_v1, Chain).
+// Returns the complete chain from data source to deployment
+
+?- depends_on(deployment_prod_v1, KB), kb_type(KB, feedback).
+// Which feedback KBs influenced the deployed model?
+
+?- checkpoint_lineage(checkpoint_safe_v1, Models), 
+   forall(member(M, Models), eval_result(M, "perplexity", _, PPL)),
+   decreasing(PPL).
+// Did perplexity decrease at every stage of the training pipeline?
+```
+
+---
+
+## 15. The UI as API to KB Layer
+
+### 15.1 The Principle
+
+The user interface is not a separate application. It is a thin presentation layer over KB queries and command tokens. Every UI action maps to a KB operation. Every UI element renders KB data.
+
+### 15.2 UI Components as KB Queries
+
+| UI Component | KB Query | Data Source |
+|-------------|----------|-------------|
+| Model selector | kb_query(model_registry, available_models) | model KBs |
+| Training dashboard | kb_query(training_run, step_log + metrics) | training run KB |
+| Evaluation results | kb_query(eval_suite, benchmark_results) | eval KBs |
+| Feedback interface | kb_assert(feedback_kb, new_judgment) | feedback KB |
+| Deployment status | kb_query(deployment_kb, status + metrics) | deployment KB |
+| Monitoring dashboard | kb_query(monitoring_kb, current_metrics) | monitoring KB |
+| Version history | kb_query(version_kb, version_chain) | version KBs |
+| Constraint panel | kb_query(active_kb, effective_constraints) | constraint facts |
+| KB browser | kb_list_children(selected_kb) | any KB |
+| Data provenance | derivation_chain(value) | provenance facts |
+
+### 15.3 UI Actions as Command Tokens
+
+| UI Action | Command Token |
+|-----------|--------------|
+| Start training | ENV_EXEC(training_script, env, grant) |
+| Pause training | proc_kill(training_task) + checkpoint |
+| Deploy model | CTX_ACTIVATE(deployment_kb) |
+| Rollback | CTX_DEACTIVATE(current) + CTX_ACTIVATE(previous) |
+| Submit feedback | KB_ASSERT(feedback_kb, judgment) |
+| Enable constraint | constraint_enable(name) |
+| Disable constraint | constraint_suspend(name) |
+| Download checkpoint | DIRECT_OUTPUT(ckpt://step_N) |
+| Compare models | PURE_FN(diff, [eval_a, eval_b]) |
+| Create snapshot | CTX_SNAPSHOT(name) |
+
+The UI does not have its own backend logic. It translates user clicks into command tokens that the VDR-Prolog system executes. The system is the backend.
+
+### 15.4 Programmatic Access
+
+The same operations available through the UI are available through the API:
+
+```python
+# Python client
+client = VDRClient("https://vdr.example.com", api_key="...")
+
+# Query KB
+results = client.kb_query("eval_suite_v1", predicate="eval_result")
+
+# Submit feedback  
+client.kb_assert("feedback_pairwise_r2", {
+    "prompt": "Explain gravity",
+    "response_a": "...",
+    "response_b": "...",
+    "preferred": "a",
+    "annotator": "human_42"
+})
+
+# Download checkpoint
+client.download("ckpt://step_100000", local_path="./checkpoint.json")
+
+# Start training
+task = client.env_exec("env_gpu_01", "python train.py --config finetune_v2")
+```
+
+The client issues the same command tokens that the LLM issues. The same grants gate access. The same KBs store results. The same constraints verify operations. There is one system, not two.
+
+---
+
+## 16. Incremental Development Path
+
+The lifecycle specification is large. It is designed to be implemented incrementally, with each increment producing a usable system.
+
+![Fig. 5](./figures/vdr7_05_lifecycle_kb_tree.png)
+
+### 16.1 Minimum Viable Lifecycle
+
+| Component | Phase | Enables |
+|-----------|-------|---------|
+| Tokenized corpus as KB | 3 | Data for training |
+| Model init as KB | 4 | Starting point |
+| Training loop with KB logging | 5 | Pre-training with provenance |
+| Checkpoint as KB | 5 | Save/restore |
+| Eval as KB | 8 | Quality measurement |
+
+This minimum set produces a trainable model with checkpoints and evaluation. No fine-tuning, no feedback, no deployment. Just train and measure.
+
+### 16.2 Add Feedback Loop
+
+| Component | Phase | Enables |
+|-----------|-------|---------|
+| Feedback collection KB | 7 | Human preference data |
+| Reward model training | 7 | Preference scoring |
+| DPO or RLHF training | 7 | Preference alignment |
+
+Now the model can be aligned to human preferences.
+
+### 16.3 Add Deployment
+
+| Component | Phase | Enables |
+|-----------|-------|---------|
+| Deployment config KB | 9 | Serving configuration |
+| API as KB interface | 9 | External access |
+| Monitoring KB | 10 | Runtime tracking |
+| Canary deployment | 11 | Safe updates |
+| Rollback | 11 | Recovery from bad updates |
+
+Now the model serves users and can be updated safely.
+
+![Fig. 6](./figures/vdr7_06_canary_deployment.png)
+
+### 16.4 Add Full Provenance
+
+| Component | Phase | Enables |
+|-----------|-------|---------|
+| Data source registry | 1 | Complete data lineage |
+| Corpus transformation log | 2 | Transformation provenance |
+| Cross-phase lineage queries | 14 | End-to-end traceability |
+| Retirement and archival | 12 | Complete lifecycle closure |
+
+Now the system has full provenance from data source to retired model.
+
+### 16.5 Add UI and Programmatic Access
+
+| Component | Phase | Enables |
+|-----------|-------|---------|
+| KB browser UI | 15 | Visual management |
+| Training dashboard | 15 | Monitoring during training |
+| Feedback UI | 15 | Human annotation interface |
+| API client | 15 | Programmatic access |
+
+Now the system is usable by operators who are not KB query experts.
+
+---
+
+## 17. What This Changes
+
+Current ML lifecycle management uses separate tools for each phase: data pipeline tools, training frameworks, experiment trackers, model registries, serving platforms, monitoring dashboards, feedback collection tools. Each tool has its own data format, its own storage, its own query language. Connecting them requires custom integration code that is fragile, incomplete, and perpetually out of date.
+
+The VDR-Prolog lifecycle replaces all of these with one system. Data sources, corpora, tokenizers, architectures, training runs, checkpoints, feedback, evaluations, deployments, monitoring, updates, and retirements are all KBs in one tree, queryable by one language, constrained by one system, versioned by one mechanism, and surfaceable by one interface.
+
+The query "what data sources contributed to the model that is currently serving production traffic, and what safety evaluation scores did it achieve, and what human feedback influenced its training, and is there a known issue with any of those data sources?" is one Prolog query across the KB tree. In a multi-tool system, answering that question requires joining data across 6 different systems with 6 different APIs.
+
+The KB architecture makes this possible because everything is the same kind of thing. A data source is a KB. A checkpoint is a KB. A deployment is a KB. They all have facts, rules, constraints, and provenance. They all support the same operations: query, assert, retract, snapshot, version, activate, deactivate, export.
+
+Build it incrementally. Each phase adds KBs. Each KB connects to existing ones through the tree. The system grows by accretion, not by replacement. Turn on the phases you need. Turn off the ones you don't. The KB tree handles the rest.
+
+---
+
+## Appendix A: Complete KB Type Registry
+
+| KB Type | Phase | Parent Pattern | Retention | Key Facts |
+|---------|-------|---------------|-----------|-----------|
+| source_registry | 1 | global | Permanent | All data sources |
+| source_* | 1 | source_registry | Permanent | URL, license, checksum |
+| corpus_* | 2 | source_registry | Long-term | Documents, splits, transformations |
+| vocab_* | 3 | corpus | Permanent (frozen) | Token mappings, merge rules |
+| tokenized_corpus_* | 3 | corpus + vocab | Long-term | Token sequences |
+| model_arch_* | 4 | global | Permanent | Architecture specification |
+| model_init_* | 4 | model_arch | Permanent | Initial weights, seed |
+| params_layer_* | 4 | model_init | Per checkpoint | Layer weights |
+| training_config_* | 5/6/7 | model_arch | Permanent | Hyperparameters |
+| training_run_* | 5/6/7 | training_config | Checkpoint-retained | Step logs, metrics |
+| checkpoint_* | 5/6/7 | training_run | Per policy | Full model state |
+| feedback_* | 7 | model version | Per legal | Human judgments |
+| reward_model_* | 7 | feedback | Long-term | Reward model weights |
+| eval_suite_* | 8 | global | Permanent | Benchmark definitions |
+| eval_*_result | 8 | eval_suite + model | Permanent | Scores per benchmark |
+| deployment_* | 9 | model + eval | Active or archived | Serving config |
+| monitoring_* | 10 | deployment | Per policy (aggregated) | Runtime metrics |
+| update_* | 11 | deployment | Permanent | Update record |
+| canary_* | 11 | update | Until promoted/rolled back | Canary metrics |
+| retirement_* | 12 | model | Permanent | Archive record |
+
+---
+
+## Appendix B: Cross-Phase Constraint Reference
+
+| Constraint | Phase(s) | Type | Condition | On Violation |
+|-----------|---------|------|-----------|-------------|
+| all_sources_licensed | 1 | legal | Every source has license | block |
+| no_pii | 2 | legal | PII scan passed | block |
+| dedup_complete | 2 | operational | Dedup ratio < 1% | warn |
+| vocab_frozen | 3 | operational | Not modified after training | error |
+| all_params_exact | 4 | axiom | All weights are VDR fractions | error |
+| loss_finite | 5 | axiom | Loss < 1000 | halt_training |
+| gradient_clipped | 5 | operational | Norm <= clip value | clip_and_log |
+| denom_budget | 5 | operational | Max denominator < 2^64 | reproject |
+| frozen_layers_unchanged | 6 | axiom | Frozen params identical | error |
+| inter_annotator_agreement | 7 | operational | Kappa > 0.6 | warn |
+| reward_above_random | 7 | operational | Accuracy > 50% | error |
+| kl_bounded | 7 | operational | KL < 10 | reduce_lr |
+| no_data_contamination | 8 | operational | No overlap with train | error |
+| minimum_safety_rate | 8 | operational | Safety > 95% | block_deployment |
+| model_passed_all_evals | 9 | operational | All benchmarks within threshold | block_deployment |
+| availability | 10 | operational | Uptime > 99.9% | page_oncall |
+| latency_bounded | 10 | operational | P99 < 5000ms | alert |
+| approved_for_deployment | 11 | operational | Approved by authority | block |
+| rollback_available | 11 | operational | Previous checkpoint exists | error |
+| no_active_deployments | 12 | operational | Model not serving traffic | block_retirement |
+| archive_complete | 12 | operational | All KBs archived | error |
+
+---
+
+## Appendix C: Lifecycle Query Reference
+
+| Query | Spans Phases | Returns |
+|-------|-------------|---------|
+| lifecycle_chain(Source, Deployment, Chain) | 1→9 | Complete lineage from data to deployment |
+| checkpoint_lineage(Model, Models) | 4→7 | All training stages that produced this model |
+| data_influence(Source, Model) | 1→5 | Does this source contribute to this model? |
+| feedback_influence(Judgment, Model) | 7→9 | Does this judgment influence the deployed model? |
+| eval_progression(Model, Benchmark, Scores) | 8 | Benchmark scores across model versions |
+| safety_history(Model, Rates) | 8 | Safety rates across model versions |
+| deployment_history(System, Deployments) | 9→11 | All deployments to this system in order |
+| update_chain(Deployment, Updates) | 11 | All updates applied to this deployment |
+| rollback_history(System, Rollbacks) | 11 | All rollbacks in this system's history |
+| denom_growth(Model, Steps, Denoms) | 5→6 | Denominator growth curve during training |
+| reprojection_events(Model, Events) | 5→6 | All Q-basis reprojections during training |
+
+---
+
+## Appendix D: Incremental Build Order
+
+| Sprint | Components | Dependencies | Deliverable |
+|--------|-----------|-------------|-------------|
+| 1 | Tokenizer KB, model init KB | VDR-4 (ML stack) | Initialize a model from KB config |
+| 2 | Training loop with KB logging | Sprint 1 | Train and log to KB |
+| 3 | Checkpoint KB + restore | Sprint 2 | Save/resume training |
+| 4 | Eval suite KB + benchmark runner | Sprint 3 | Measure quality |
+| 5 | Corpus preparation KB | VDR-6 (op primitives) | Build corpus with provenance |
+| 6 | Source registry KB | Sprint 5 | Track data origins |
+| 7 | Fine-tuning config + frozen layers | Sprint 3 | Domain adaptation |
+| 8 | Feedback collection KB | Sprint 4 | Collect preferences |
+| 9 | DPO training | Sprint 8 + Sprint 3 | Preference alignment |
+| 10 | Deployment config KB + API | Sprint 4 | Serve model |
+| 11 | Monitoring KB + watches | Sprint 10 | Runtime tracking |
+| 12 | Canary + rollback | Sprint 10 + Sprint 3 | Safe updates |
+| 13 | Reward model + RLHF | Sprint 8 + Sprint 3 | Alternative alignment |
+| 14 | Retirement + archival | Sprint 10 | Lifecycle closure |
+| 15 | UI layer (KB browser + dashboards) | All above | Visual management |
+| 16 | Programmatic API client | Sprint 10 | External integration |
+
+Each sprint produces a testable, usable increment. Sprint 1-4 gives a minimal trainable system. Sprint 5-9 adds data provenance and alignment. Sprint 10-12 adds deployment and safety. Sprint 13-16 adds the full lifecycle.
+
+---
+
+## Appendix E: Data Format Specifications
+
+### E.1 Training Data Record
+
+```json
+{
+  "id": "doc_00042",
+  "source_kb": "source_wikipedia_2026_03",
+  "source_ref": "Euler's_number",
+  "text": "Euler's number e is a mathematical constant...",
+  "token_ids": [4521, 18, 1023, 891, ...],
+  "token_count": 1847,
+  "quality_score": {"numerator": 92, "denominator": 100},
+  "language_score": {"numerator": 99, "denominator": 100},
+  "split": "train",
+  "data_weight": {"numerator": 1, "denominator": 1500000},
+  "provenance": {
+    "extracted_at": "2026-03-20T00:00:00Z",
+    "extraction_method": "wikitext_parser_v2",
+    "quality_assessor": "quality_model_v1",
+    "dedup_status": "unique"
+  }
+}
+```
+
+### E.2 Feedback Record
+
+```json
+{
+  "id": "j_00001",
+  "type": "pairwise_preference",
+  "prompt": "Explain photosynthesis",
+  "response_a": {"text": "...", "model": "checkpoint_instruct_v1", "generation_params": {"temperature": "7/10"}},
+  "response_b": {"text": "...", "model": "checkpoint_instruct_v1", "generation_params": {"temperature": "7/10"}},
+  "preferred": "a",
+  "annotator": "annotator_12",
+  "judged_at": "2026-04-16T10:30:00Z",
+  "confidence": "high",
+  "time_spent_seconds": 45
+}
+```
+
+### E.3 Checkpoint Record
+
+```json
+{
+  "step": 45000,
+  "model_arch": "model_arch_v1",
+  "training_run": "training_run_pretrain_v1",
+  "created_at": "2026-04-05T00:00:00Z",
+  "loss": {"numerator": 287, "denominator": 100},
+  "learning_rate": {"numerator": 18, "denominator": 10000},
+  "parameters": {
+    "layer_0": {
+      "attn_q_weight": {"format": "vdr_fraction_matrix", "rows": 768, "cols": 768, "data_ref": "params/layer_0_attn_q.vdr"},
+      ...
+    },
+    ...
+  },
+  "optimizer_state": {
+    "momentum": {"data_ref": "optim/momentum_step_45000.vdr"}
+  },
+  "denominator_stats": {
+    "max": "2^48",
+    "mean": "2^31",
+    "reprojections_since_last_checkpoint": 0
+  }
+}
+```
+
+All numeric values are exact VDR fractions serialized as numerator/denominator pairs. All data references are addressable in the KB system. Everything is restorable to exact state.
+
+---
+
+**END HOWL-VDR-7-2026**
+
+**Registry:** [@HOWL-VDR-7-2026]
 **Status:** Specification complete
-**Domain:** Applied Philosophy / Systems Architecture / Exact Computation
-**Central Result:** 260 computational primitives (216 pure, 44 operational) across 20 categories, command token mechanism for structured LLM output, operational environments with unified interface, positive credential gating, async task management, versioning, and direct data download.
-**Foundation:** VDR-1 through VDR-5, MATH-3, MATH-4
-**Key Principle:** Separation of concerns. The LLM understands intent. Primitives compute. Environments execute. KBs store. Constraints authorize. Surfacing presents. No component does another's job.
-**Falsification:** Seven specific criteria testable by exact comparison and integration testing.
+**Domain:** Applied Philosophy / Machine Learning Systems / Lifecycle Engineering
+**Central Result:** Complete 12-phase lifecycle specification from data sourcing through retirement, entirely in terms of the VDR-Prolog KB architecture. Every phase produces queryable KBs. Every value is exact. Every operation is constrained. The UI is an API to the KB layer. The system is both API and generator.
+**Foundation:** VDR-1 through VDR-6, MATH-3, MATH-4
+**Key Principle:** The lifecycle is not separate from the system. Training, feedback, evaluation, deployment, monitoring, updates, and retirement are all KB operations governed by the same constraints, grants, and provenance tracking that govern prompt-time interactions.
+**Falsification:** If any lifecycle phase produces data that cannot be queried through the KB, the integration is incomplete. If any cross-phase lineage query cannot be answered, the provenance chain is broken. If any constraint violation in any phase goes undetected, the constraint system has a gap.
 
 ---
 
-# VDR-6 Extended Appendix Tables
-## Complete Reference Material for the Execution Layer
+# VDR-7 Extended Appendix Tables
+## Complete Reference Material for the Lifecycle Specification
 
 ---
 
-## Appendix E: Operational Environment Configuration Reference
+## Appendix F: Data Source Quality Assessment Reference
 
-### E.1 Docker Environment Specifications
+### F.1 Quality Dimensions
 
-| Field | Type | Required | Default | Example |
-|-------|------|----------|---------|---------|
-| image | atom | Yes | — | "python:3.8-slim" |
-| container_name | atom | No | auto-generated | "vdr_test_env_001" |
-| working_dir | atom | No | "/workspace" | "/workspace" |
-| mount_points | list(pair) | No | [] | [("/home/alice/vdr", "/workspace/vdr")] |
-| exposed_ports | list(number) | No | [] | [8080, 5000] |
-| env_vars | dict | No | {} | {"PYTHONPATH": "/workspace"} |
-| startup_script | atom | No | none | "pip install pytest && pip install fractions" |
-| max_cpu_seconds | number | No | 3600 | 300 |
-| max_memory_mb | number | No | 2048 | 512 |
-| max_disk_mb | number | No | 10240 | 1024 |
-| network_mode | atom | No | "bridge" | "none" for isolation |
-| auto_remove | bool | No | false | true for ephemeral |
-| restart_policy | atom | No | "no" | "on-failure" |
+| Dimension | Assessment Method | Score Type | Threshold | Used In Phase |
+|-----------|------------------|-----------|-----------|---------------|
+| Language confidence | Fasttext or equivalent classifier | fraction(0-100, 100) | > 90/100 for monolingual | 2 (filtering) |
+| Encoding validity | Byte sequence validation | bool | Must pass | 2 (extraction) |
+| PII density estimate | NER-based scan over sample | fraction(flagged, total_tokens) | < 1/1000 | 2 (PII removal) |
+| Deduplication ratio | MinHash or exact hash | fraction(duplicates, total) | < 1/100 after dedup | 2 (dedup) |
+| Toxicity estimate | Classifier score on sample | fraction(0-100, 100) | < 5/100 | 2 (filtering) |
+| Factual density | Claim extraction density | fraction(claims, sentences) | Informational, not gated | 2 (quality) |
+| Domain relevance | Keyword/classifier match | fraction(0-100, 100) | Task-dependent | 6 (fine-tuning) |
+| Formatting quality | Structure detection (headers, lists) | fraction(well_formed, total) | > 80/100 | 2 (formatting) |
+| Token fertility | Tokens per character after BPE | fraction(tokens, chars) | < 3/1 for English | 3 (tokenization) |
+| Repetition ratio | N-gram repetition detection | fraction(repeated, total) | < 1/10 | 2 (quality) |
 
-### E.2 VM Environment Specifications
+### F.2 Quality Score Aggregation
 
-| Field | Type | Required | Default | Example |
-|-------|------|----------|---------|---------|
-| vm_provider | atom | Yes | — | "virtualbox", "qemu", "cloud" |
-| vm_image | atom | Yes | — | "ubuntu-24.04-server" |
-| vm_cpus | number | No | 2 | 4 |
-| vm_memory_mb | number | No | 4096 | 8192 |
-| vm_disk_gb | number | No | 20 | 50 |
-| ssh_port_forward | number | No | 2222 | 2222 |
-| snapshot_on_create | bool | No | true | true |
-| provision_script | atom | No | none | "apt update && apt install python3" |
+| Aggregation | Formula | Purpose |
+|-------------|---------|---------|
+| Document quality | min(language, encoding, 1-toxicity, 1-repetition) | Conservative per-document |
+| Corpus quality | mean over all document quality scores | Overall corpus health |
+| Source quality | mean corpus quality across all corpora from source | Source reliability |
+| Weighted quality | Σ quality_i × data_weight_i | Effective training quality |
 
-### E.3 SSH Remote Environment Specifications
+All scores are exact VDR fractions. The min and mean operations use the vdr_min and vdr_mean pure primitives. No float comparison.
 
-| Field | Type | Required | Default | Example |
-|-------|------|----------|---------|---------|
-| host | atom | Yes | — | "gpu01.lab.example.com" |
-| port | number | No | 22 | 22 |
-| username | atom | Yes | — | "alice" |
-| auth_method | atom | Yes | — | "pubkey", "password", "certificate" |
-| key_ref | atom | Conditional | — | "ssh_key_alice_gpu01" |
-| remote_working_dir | atom | No | "~/" | "/home/alice/workspace" |
-| connection_timeout_ms | number | No | 30000 | 10000 |
-| keepalive_interval_s | number | No | 60 | 30 |
-| max_sessions | number | No | 5 | 3 |
-| proxy_command | atom | No | none | "ssh -W %h:%p bastion.example.com" |
+### F.3 Source License Compatibility Matrix
 
-### E.4 Local Environment Specifications
+| License A | License B | Compatible? | Combined License | Notes |
+|-----------|-----------|-------------|-----------------|-------|
+| CC-BY-4.0 | CC-BY-4.0 | Yes | CC-BY-4.0 | Same license |
+| CC-BY-4.0 | CC-BY-SA-4.0 | Yes | CC-BY-SA-4.0 | SA dominates |
+| CC-BY-4.0 | CC-BY-NC-4.0 | Conditional | CC-BY-NC-4.0 | NC restricts commercial |
+| CC-BY-SA-4.0 | MIT | No | — | SA requires derivative SA |
+| MIT | Apache-2.0 | Yes | Apache-2.0 (attribution) | Both permissive |
+| Public domain | Any | Yes | Other license | PD imposes nothing |
+| Proprietary | Any open | No | — | Must license separately |
+| Fair use claim | Any | Legal review | — | Not a license, a defense |
 
-| Field | Type | Required | Default | Example |
-|-------|------|----------|---------|---------|
-| working_dir | atom | Yes | — | "/home/alice/projects/vdr" |
-| path_restriction | atom | No | none | "/home/alice/" |
-| shell | atom | No | "/bin/sh" | "/bin/bash" |
-| inherit_env | bool | No | false | true |
-| allowed_executables | list(atom) | No | all | ["python3", "zig", "git"] |
+License compatibility is stored as Prolog rules in the source_registry KB:
 
-### E.5 Environment State Transitions
+```
+Rule: license_compatible(A, B) :- 
+    license_family(A, permissive), 
+    license_family(B, permissive).
+Rule: license_compatible("CC-BY-4.0", "CC-BY-SA-4.0").
+Rule: license_incompatible("CC-BY-SA-4.0", "MIT").
+```
 
-| From | To | Trigger | Side Effects | Logged As |
-|------|----|---------|-------------|-----------|
-| (none) | stopped | env_create() | KB created, config stored | env_created(id, type, timestamp) |
-| stopped | starting | env_start() | Container/VM launching | env_starting(id, timestamp) |
-| starting | running | Startup complete | Startup script executed | env_running(id, timestamp, startup_duration_ms) |
-| starting | error | Startup failed | Error details captured | env_error(id, timestamp, reason) |
-| running | stopped | env_stop() | Process graceful shutdown | env_stopped(id, timestamp) |
-| running | error | Runtime failure | Error details captured | env_error(id, timestamp, reason) |
-| stopped | (archived) | env_destroy() | Container removed, KB archived | env_destroyed(id, timestamp) |
-| error | stopped | env_reset() | Error cleared, state reset | env_reset(id, timestamp) |
-| error | (archived) | env_destroy() | Container removed, KB archived | env_destroyed(id, timestamp) |
+Attempting to merge corpora from incompatible licenses triggers the license_compliance constraint.
 
 ---
 
-## Appendix F: Task State Machine Reference
+## Appendix G: Tokenization Reference
 
-### F.1 Task State Transitions
+### G.1 Vocabulary Configuration Options
 
-| From | To | Trigger | KB Update | Notification |
-|------|----|---------|----------|-------------|
-| (none) | pending | Command token issued | task asserted with status(pending) | None |
-| pending | running | Environment starts process | started_at set | None |
-| running | completed | Process exits code 0 | completed_at set, result stored | If notify_on_complete |
-| running | failed | Process exits code != 0 | completed_at set, error stored | Always |
-| running | killed | proc_kill() or timeout | completed_at set, kill reason | Always |
-| completed | acknowledged | User acknowledges | acknowledged = true | Stops repeating |
-| failed | acknowledged | User acknowledges | acknowledged = true | Stops repeating |
+| Parameter | Type | Default | Range | Effect |
+|-----------|------|---------|-------|--------|
+| vocab_size | number | 32000 | 256 - 128000 | Number of tokens |
+| min_frequency | number | 2 | 1 - 1000 | Minimum merge pair frequency |
+| special_tokens | list(pair) | [pad, bos, eos, unk] | — | Reserved tokens |
+| max_token_length | number | 32 | 1 - 128 | Maximum characters per token |
+| byte_fallback | bool | true | — | Use byte-level for unknown chars |
+| normalization | atom | "nfkc" | none, nfc, nfkc | Unicode normalization |
+| pre_tokenization | atom | "whitespace" | whitespace, none, custom | Pre-split strategy |
+| model_type | atom | "bpe" | bpe, unigram, wordpiece | Tokenization algorithm |
 
-### F.2 Task Output Processing
+### G.2 Tokenizer Invariants
 
-| Event | Processing | KB Update | Watch Trigger |
-|-------|-----------|----------|---------------|
-| stdout chunk arrives | Store as OutputChunk | task_output(id, chunk(N), stdout, content) | Checked against output watches |
-| stderr chunk arrives | Store as OutputChunk | task_output(id, chunk(N), stderr, content) | Checked against error watches |
-| Process exit | Capture final state | task status updated, result computed | completion watches fire |
-| Timeout reached | Kill process | task status = killed, reason = timeout | timeout watches fire |
-| Resource limit hit | Kill process | task status = killed, reason = resource_limit | resource watches fire |
+| Invariant | Condition | Type | Verification Method |
+|-----------|-----------|------|-------------------|
+| Roundtrip | detokenize(tokenize(text)) = text | axiom | Test on validation split |
+| Deterministic | tokenize(text) always same result | axiom | Repeat test with same input |
+| No unknown in training | unk_rate < 1/10000 on training data | operational | Count unk tokens in tokenized corpus |
+| Coverage | All bytes representable | axiom | Byte fallback covers 0-255 |
+| Vocabulary frozen | No changes after training | operational | Hash comparison at each use |
+| ID range valid | All token IDs in [0, vocab_size) | axiom | Range check on output |
 
-### F.3 Task Query Patterns
+### G.3 Tokenization Statistics Per Corpus
 
-| Query Pattern | Purpose | Returns |
-|---------------|---------|---------|
-| task(Id, _, _, _, _, status(running), _, _) | All running tasks | Task IDs |
-| task(Id, _, _, env(E), _, _, _, _) | Tasks in specific environment | Task IDs and details |
-| task(Id, _, _, _, _, status(completed), _, _, _, _, _, topic(T), notify(true), ack(false)) | Unacknowledged completed tasks in topic | Notification candidates |
-| task(Id, _, _, _, _, _, started_at(S), completed_at(C), _, _, _, _, _, _), duration(S, C, D), D > 60000 | Long-running tasks (>60s) | Task IDs with durations |
-| task_output(Id, _, stderr, Content), regex_match(Content, "error\|Error\|ERROR") | Tasks with error output | Task IDs with error content |
-| task(Id, _, _, _, grant(G), _, _, _, _, _, _, _, _, _), not(grant_valid(G)) | Tasks whose grants have expired since submission | Security audit candidates |
+| Statistic | Computation | Purpose |
+|-----------|------------|---------|
+| Total tokens | Count all token IDs across corpus | Training budget estimation |
+| Tokens per document | Per-document token count | Sequence packing |
+| Average token length (chars) | Total chars / total tokens | Compression efficiency |
+| UNK rate | Count UNK tokens / total tokens | Vocabulary coverage |
+| Vocabulary utilization | Distinct tokens used / vocab size | Effective vocabulary |
+| Longest tokenized document | Max token count across documents | Sequence length planning |
+| Token frequency distribution | Count per token ID, sorted | Long-tail analysis |
 
----
-
-## Appendix G: Direct Download Resource Address Formats
-
-### G.1 Address Syntax
-
-| Scheme | Format | Description | Example |
-|--------|--------|-------------|---------|
-| kb:// | kb://kb_name/predicate/arg1/arg2/... | Specific fact by predicate and args | kb://kb_vdr_training/parameter_value/layer.1.weight/step_0 |
-| kb:// | kb://kb_name/* | All facts in KB | kb://kb_characters_b/* |
-| kb:// | kb://kb_name/?predicate=X&arg1=Y | Query-style filter | kb://kb_vdr_training/?predicate=gradient_at&step=0 |
-| wd:// | wd://topic_name/binding_key | Working data binding | wd://story_b/bob_age |
-| wd:// | wd://topic_name/* | All bindings in topic | wd://story_b/* |
-| fs:// | fs://env_id/absolute/path | File in environment | fs://env_vdr_test/workspace/gym_16.py |
-| fs:// | fs://env_id/path/* | Directory listing | fs://env_vdr_test/workspace/gym/* |
-| task:// | task://task_id/stdout | Task standard output | task://task_047/stdout |
-| task:// | task://task_id/stderr | Task standard error | task://task_047/stderr |
-| task:// | task://task_id/result | Task structured result | task://task_047/result |
-| task:// | task://task_id/chunks | All output chunks | task://task_047/chunks |
-| ckpt:// | ckpt://step_N | Full checkpoint at step N | ckpt://step_100 |
-| ckpt:// | ckpt://step_N/param_path | Single parameter at checkpoint | ckpt://step_100/layer.1.weight |
-| ver:// | ver://project/artifact/N | Specific version content | ver://project_vdr/gym_16/2 |
-| ver:// | ver://project/artifact/latest | Latest version | ver://project_vdr/gym_16/latest |
-| ver:// | ver://project/artifact/tagged/tag | Tagged version | ver://project_vdr/gym_16/tagged/release |
-| diff:// | diff://addr_a/addr_b | Computed diff between two resources | diff://ckpt_step_0/ckpt_step_100 |
-| export:// | export://kb_name | Full KB export as JSON | export://kb_characters_b |
-| export:// | export://kb_name?format=csv | KB export in specified format | export://kb_vdr_training?format=csv |
-| ctx:// | ctx://snapshot_name | Context snapshot | ctx://context_before_refactor |
-| log:// | log://env_id | Execution log for environment | log://env_vdr_test |
-| log:// | log://env_id?operation=fs_write | Filtered execution log | log://env_vdr_test?operation=fs_write |
-
-### G.2 Output Formats for Direct Download
-
-| Resource Type | Default Format | Alternative Formats | Content-Type |
-|---------------|---------------|-------------------|-------------|
-| KB fact(s) | Structured text | JSON, CSV, LaTeX | text/plain, application/json |
-| Working data binding | Key: value text | JSON | text/plain |
-| File | Raw file content | — | Detected from extension |
-| Task stdout/stderr | Raw text | — | text/plain |
-| Task result | Structured result | JSON | application/json |
-| Checkpoint | JSON (all params) | Per-param text | application/json |
-| Version | Raw content | With metadata header | Detected from content |
-| Diff | Unified diff format | Side-by-side, JSON | text/plain |
-| KB export | JSON | CSV, Prolog format | application/json |
-| Execution log | Structured text | JSON, CSV | text/plain |
-
-### G.3 Authorization Matrix for Download
-
-| Resource Scheme | Required Permission | Additional Grant | Notes |
-|----------------|-------------------|-----------------|-------|
-| kb:// | user_can_see(User, KB) | None | KB visibility controls access |
-| wd:// | user_can_see(User, topic_kb) | None | Topic KB visibility |
-| fs:// | user_can_see(User, env_kb) | filesystem read grant | Needs both KB access and fs grant |
-| task:// | task belongs to user's topic | None | Scoped by topic ownership |
-| ckpt:// | user_can_see(User, training_kb) | None | Training KB visibility |
-| ver:// | user_can_see(User, project_kb) | None | Project KB visibility |
-| diff:// | Permission for both source addresses | Per source address | Both ends must be authorized |
-| export:// | user_can_see(User, KB) | None | KB visibility |
-| ctx:// | user owns the context | None | Personal to user |
-| log:// | user_can_see(User, env_kb) | None | Environment KB visibility |
+All statistics are exact: counts are integers, rates are exact VDR fractions.
 
 ---
 
-## Appendix H: Version Management Reference
+## Appendix H: Model Architecture Configuration Reference
 
-### H.1 Version Record Structure
+### H.1 Architecture Parameters
 
-| Field | Type | Required | Description | Example |
-|-------|------|----------|-------------|---------|
-| project | atom | Yes | Project KB name | "project_vdr" |
-| artifact | atom | Yes | Artifact identifier | "gym_16_script" |
-| version_num | number | Yes | Sequential version number | 2 |
-| content_ref | atom | Yes | KB address of content | "kb_vdr_gyms/gym_16_v2" |
-| created_at | timestamp | Yes | Creation time | timestamp(2026, 5, 16, 15, 0, 0) |
-| created_by | atom | Yes | Creator identifier | "system" or "alice" |
-| parent_version | number or none | Yes | Previous version number | 1 |
-| tags | list(atom) | No | Version tags | ["release", "tested"] |
-| test_result | atom | No | Test outcome summary | "20/20 passed" |
-| notes | atom | No | Human-readable description | "fixed maxflow BFS" |
-| size_bytes | number | No | Content size | 4096 |
-| checksum | atom | No | Content hash | "a1b2c3d4..." |
-| diff_from_parent | atom | No | Reference to diff | "kb_vdr_gyms/gym_16_diff_v1_v2" |
+| Parameter | Type | Typical Small | Typical Medium | Typical Large | Constraint |
+|-----------|------|--------------|---------------|--------------|-----------|
+| num_layers | number | 6 | 12 | 32 | > 0 |
+| hidden_dim | number | 256 | 768 | 2048 | Divisible by num_heads |
+| num_heads | number | 4 | 12 | 32 | Divides hidden_dim evenly |
+| head_dim | number | 64 | 64 | 64 | = hidden_dim / num_heads |
+| ff_dim | number | 1024 | 3072 | 8192 | Typically 4 × hidden_dim |
+| vocab_size | number | 1000 | 32000 | 50000 | From tokenizer |
+| max_seq_length | number | 256 | 2048 | 4096 | Memory-bounded |
+| dropout | fraction | 0 (VDR exact) | 0 (VDR exact) | 0 (VDR exact) | VDR uses no dropout |
+| activation | atom | relu | relu | relu | Rational activations only |
+| softmax_type | atom | surrogate | surrogate | surrogate or truncated | Declared approximation |
+| softmax_depth | number | 12 | 16 | 20 | Taylor truncation depth |
+| positional | atom | learned | learned | learned | Rational embeddings |
+| normalization | atom | rational_scale | rational_scale | rational_scale | No sqrt in layer norm |
 
-### H.2 Version Query Patterns
+### H.2 Parameter Count Formulas
 
-| Query | Purpose | Example |
-|-------|---------|---------|
-| Latest version | What is the current version? | latest("project_vdr", "gym_16_script", N) |
-| Version by tag | Which version is tagged release? | version(P, A, V, _, _, _, _, tags(T), _, _), member("release", T) |
-| All versions | Full history of artifact | findall(V, version(P, A, V, _, _, _, _, _, _, _), Vs) |
-| Versions with failures | Which versions had test failures? | version(P, A, V, _, _, _, _, _, Result, _), Result \= "all passed" |
-| Versions by author | What did Alice create? | version(P, A, V, _, _, created_by("alice"), _, _, _, _) |
-| Versions in date range | What changed this week? | version(P, A, V, _, created_at(T), _, _, _, _, _), T > start, T < end |
-| Diff chain | How did artifact evolve? | Traverse parent_version links from latest to version 1 |
-| Cross-artifact versions | Everything created at this step | version(P, _, V, _, created_at(T), _, _, _, _, _) for fixed T |
+| Component | Parameters | Formula |
+|-----------|-----------|---------|
+| Embedding | vocab × hidden | V × H |
+| Attention Q/K/V/O per layer | 4 × hidden² | 4H² |
+| FF per layer | 2 × hidden × ff + hidden + ff | 2HF + H + F |
+| Layer total | 4H² + 2HF + H + F | Per layer |
+| All layers | L × (4H² + 2HF + H + F) | L layers |
+| Output head | hidden × vocab | H × V |
+| Total | V×H + L×(4H² + 2HF + H + F) + H×V | Complete model |
 
-### H.3 Version Operations and Their Command Tokens
+For the specification's example (L=12, H=768, F=3072, V=32000):
+- Embedding: 32000 × 768 = 24,576,000
+- Per layer: 4×768² + 2×768×3072 + 768 + 3072 = 2,359,296 + 4,718,592 + 768 + 3072 = 7,081,728
+- 12 layers: 84,980,736
+- Output head: 768 × 32000 = 24,576,000
+- Total: 134,132,736
 
-| Operation | Command Token | Preconditions | Side Effects |
-|-----------|--------------|---------------|-------------|
-| Create | VERSION_CREATE(project, artifact, content, notes) | Project KB exists | New version fact, content stored, latest updated |
-| Tag | VERSION_TAG(project, artifact, version, tag) | Version exists | Tag added to version record |
-| Untag | VERSION_UNTAG(project, artifact, version, tag) | Tag exists on version | Tag removed |
-| Retrieve | KB_QUERY + DIRECT_OUTPUT(ver://...) | Version exists, user authorized | Content served |
-| Diff | PURE_FN(diff, [content_v1, content_v2]) | Both versions exist | Diff computed (not stored unless explicit) |
-| Rollback | VERSION_CREATE with content from old version | Old version retrievable | New version created with old content |
-| Delete | KB_RETRACT(version record) | Admin authorization | Version record removed (content may be retained) |
-| Freeze | Set version immutable flag | Version exists | Prevents modification of version record |
+Each parameter is an exact VDR fraction. Total storage depends on denominator sizes.
 
----
+### H.3 VDR-Specific Architecture Choices
 
-## Appendix I: Scratchpad and Internal Reasoning Reference
-
-### I.1 Scratchpad Entry Types
-
-| Entry Type | Content | Visible To | Surfaceable Via |
-|-----------|---------|-----------|----------------|
-| Pure primitive call | Primitive name, args, result | Owner | /show scratchpad |
-| KB query (internal) | Query, results | Owner | /show scratchpad |
-| Constraint check | Constraint name, result | Owner | /show scratchpad |
-| Grant verification | Grant checked, outcome | Owner | /show scratchpad |
-| Reasoning step | Natural language internal thought | Owner | /show scratchpad |
-| Plan step | Planned action before execution | Owner | /show scratchpad |
-| Error recovery | Failed action, recovery strategy | Owner | /show scratchpad |
-
-### I.2 Scratchpad Retention Policy
-
-| Policy | Retention | Purpose |
-|--------|-----------|---------|
-| Current turn | Always retained during turn processing | Active reasoning |
-| Previous turn | Retained if topic unchanged | Continuity |
-| Older turns | Pruned unless flagged | Memory management |
-| Flagged entries | Retained indefinitely | User or system marked as important |
-| Error entries | Retained for 10 turns | Debugging |
-
-### I.3 Scratchpad Surfacing Commands
-
-| Command | Effect | Authorization |
-|---------|--------|--------------|
-| /show scratchpad | Display current turn's scratchpad | Owner only |
-| /show scratchpad turn(N) | Display specific turn's scratchpad | Owner only |
-| /show scratchpad last(5) | Display last 5 turns' scratchpads | Owner only |
-| /show scratchpad filter(pure_fn) | Show only pure primitive calls | Owner only |
-| /show scratchpad filter(kb_query) | Show only KB queries | Owner only |
-| /scratchpad on | Always show scratchpad in output | Owner only |
-| /scratchpad off | Hide scratchpad (default) | Owner only |
+| Standard Transformer | VDR Adaptation | Reason |
+|---------------------|---------------|--------|
+| GELU activation | ReLU | GELU requires erf (transcendental). ReLU is piecewise linear, exactly rational |
+| Layer normalization | Rational scaling | LayerNorm requires sqrt of variance. Rational scaling divides by exact mean absolute value |
+| Dropout | Not used | Dropout requires random masking with float probabilities. VDR has no need — exact arithmetic means no regularization benefit from noise |
+| Float softmax | Surrogate or truncated Taylor | Exact sum to 1 guaranteed |
+| Float position encoding | Learned rational embeddings | Sinusoidal would require sin/cos transcendentals |
+| Float32 weights | Exact VDR fractions | Zero drift, exact gradients |
+| Stochastic weight averaging | Exact checkpoint averaging | Rational mean of exact fractions |
+| Mixed precision (fp16/fp32) | Not applicable | One precision: exact |
 
 ---
 
-## Appendix J: Reminder and Watch Reference
+## Appendix I: Training Dynamics Reference
 
-### J.1 Reminder Structure
+### I.1 Learning Rate Schedule Options
 
-| Field | Type | Required | Default | Description |
-|-------|------|----------|---------|-------------|
-| name | atom | Yes | — | Unique identifier |
-| condition | fact | Yes | — | Prolog condition to evaluate |
-| message | atom | Yes | — | Message to display when triggered |
-| check_frequency | enum | Yes | — | every_turn, on_topic_enter, on_kb_change, once |
-| requires_ack | bool | No | true | Must user acknowledge? |
-| created_at | number | Yes | current_turn | Turn when created |
-| created_by | atom | Yes | — | "user" or "system" |
-| acknowledged | bool | No | false | Has user acknowledged? |
-| snoozed_until | number | No | none | Turn until which snooze is active |
-| topic | atom | Yes | — | Associated topic |
-| priority | enum | No | normal | low, normal, high, urgent |
-| max_displays | number | No | unlimited | Stop showing after N times |
-| display_count | number | No | 0 | Times shown so far |
+| Schedule | Formula (at step S, warmup W, total T, base LR) | Exact in VDR? |
+|----------|------------------------------------------------|---------------|
+| Constant | LR = base | Yes (exact fraction) |
+| Linear warmup | LR = base × S/W for S < W | Yes (exact fraction) |
+| Linear decay | LR = base × (1 - S/T) | Yes (exact fraction) |
+| Step decay | LR = base × (1/2)^(S/step_size) | Yes (exact power of 1/2) |
+| Cosine decay | LR = base × (1 + cos(π×S/T))/2 | Rational approximation required |
+| Inverse sqrt | LR = base / sqrt(S) | Rational approximation via Newton |
+| Warmup + cosine | Piecewise: linear then cosine | Piecewise exact + approximation |
 
-### J.2 Watch Structure
+The cosine schedule requires a rational approximation of cos. This is declared in the training config with a specified approximation depth. The approximation error is bounded and recorded.
 
-| Field | Type | Required | Default | Description |
-|-------|------|----------|---------|-------------|
-| name | atom | Yes | — | Unique identifier |
-| condition | fact | Yes | — | Prolog condition to evaluate |
-| message | atom | Yes | — | Message template with variables |
-| watch_type | enum | Yes | — | on_change, on_threshold, on_pattern |
-| target_kb | atom | No | active | KB to monitor for changes |
-| target_predicate | atom | No | any | Specific predicate to watch |
-| active | bool | No | true | Currently monitoring? |
-| triggered_count | number | No | 0 | Times triggered |
-| last_triggered | number | No | none | Turn when last triggered |
-| topic | atom | Yes | — | Associated topic |
-| auto_dismiss | bool | No | false | Dismiss after first trigger? |
+### I.2 Optimizer State Sizes
 
-### J.3 Reminder and Watch Lifecycle
+| Optimizer | State Per Parameter | Total State | VDR Exact? |
+|-----------|-------------------|-------------|-----------|
+| SGD | None | 0 | Yes |
+| SGD + Momentum | 1 velocity vector | 1× params | Yes (exact fraction velocity) |
+| Adam | 2 vectors (m, v) | 2× params | Requires sqrt for v update — rational approximation |
+| AdaGrad | 1 accumulated gradient | 1× params | Requires sqrt — rational approximation |
+| Rational Adam | 2 vectors + rational sqrt | 2× params | Yes with declared sqrt depth |
 
-| State | Reminders | Watches |
-|-------|-----------|---------|
-| Created | Fact asserted in topic KB | Fact asserted in topic KB |
-| Active | Evaluated per check_frequency | Evaluated on relevant KB changes |
-| Triggered | Condition met, message queued | Condition met, message queued |
-| Displayed | Message shown to user | Message shown to user |
-| Acknowledged | User clicks ack, stops repeating | Resets for next trigger (unless auto_dismiss) |
-| Snoozed | Suppressed for N turns | N/A (watches re-trigger on next change) |
-| Expired | max_displays reached | N/A |
-| Deactivated | Topic parked or closed | Watch disabled by user or topic close |
+Adam and AdaGrad require square roots of accumulated gradient statistics. In VDR, these are computed by Newton-Raphson iteration at a declared depth, producing exact rational approximations. The depth is a training config parameter.
 
-### J.4 Prompted Constraint Patterns
+### I.3 Gradient Clipping Behavior
 
-| User Request | Resulting Reminder/Watch | Type |
-|-------------|------------------------|------|
-| "Remind me about X when we discuss Y" | Reminder on topic_contains(active, "Y") | Reminder, on_topic_enter |
-| "Check each turn if constraints are violated" | Watch on violations(_, Vs), Vs \= [] | Watch, every_turn |
-| "Tell me when the loss drops below 0.01" | Watch on loss_at(_, L), L < 1/100 | Watch, on_change |
-| "Don't let me forget to fix the BFS bug" | Reminder on active_topic("vdr_gyms") | Reminder, on_topic_enter |
-| "Alert if any parameter denominator exceeds 2^64" | Watch on param_denom > 2^64 | Watch, on_change |
-| "Every 10 turns, summarize what we've done" | Reminder on current_turn mod 10 = 0 | Reminder, every_turn |
-| "When Alice pushes code, notify me" | Watch on execution_log(_, "git_push", _, _, user("alice"), _, _, _, _, _, _, _, _) | Watch, on_change |
+| Clip Method | Computation | Exact in VDR? | Notes |
+|------------|------------|---------------|-------|
+| Value clip | clamp(g, -max, max) per element | Yes | Exact comparison and assignment |
+| Norm clip | g × (max/norm) if norm > max | Requires sqrt for L2 norm | Rational sqrt approximation |
+| Rational norm clip | g × (max/norm_sq_approx) | Yes if using squared norm | Avoids sqrt entirely |
+
+Recommended VDR approach: clip by squared norm rather than norm, avoiding the sqrt entirely. The squared L2 norm is an exact VDR fraction (sum of squared fractions). The threshold is also specified as a squared value.
+
+### I.4 Denominator Growth Patterns
+
+| Training Phase | Typical Growth | After N Steps | Mitigation |
+|---------------|---------------|---------------|-----------|
+| Initialization | Denominators = init denominators | Step 0: ~2^10 | Xavier produces small denoms |
+| Early training | Linear growth in denominator digits | Step 1000: ~2^20 | Natural |
+| Mid training | Sublinear growth (GCD reductions help) | Step 10000: ~2^35 | Monitor |
+| Late training | Plateaus if LR is small enough | Step 50000: ~2^45 | Stable |
+| After reprojection | Reset to 2^K | Any step: 2^K | By design |
+| Fine-tuning | Slow growth (small LR) | +5000 steps: ~2^30 | Low concern |
+| RLHF/DPO | Moderate growth (depends on reward signal) | Variable | Monitor closely |
+
+These are empirical patterns for exact rational SGD. The actual growth depends on the data, model, and learning rate. The monitoring KB tracks denominator statistics at every checkpoint.
 
 ---
 
-## Appendix K: Fat Struct KB Entry Reference
+## Appendix J: Feedback Quality Reference
 
-### K.1 All Fields of a KB Entry
+### J.1 Inter-Annotator Agreement Metrics
 
-| Field Group | Field | Type | Used By | Description |
-|------------|-------|------|---------|-------------|
-| Identity | id | atom | All | Unique entry identifier |
-| Identity | predicate | atom | All | Fact predicate name |
-| Identity | args | list(term) | All | Fact arguments |
-| Identity | kb | atom | All | Owning KB name |
-| Value | value | term | All | Primary value |
-| Value | value_type | atom | All | VDR term type of value |
-| Provenance | derived_from | derivation | Computed | How this value was produced |
-| Provenance | source | atom | Imported | External source reference |
-| Provenance | created_at | timestamp | All | When entry was created |
-| Provenance | modified_at | timestamp | Mutable | When last modified |
-| Provenance | created_by | atom | All | Who or what created this |
-| Weight Provenance | initialization | init_record | Params | How parameter was initialized |
-| Weight Provenance | gradient_history | list(grad_record) | Params | Gradient at each training step |
-| Weight Provenance | update_history | list(update_record) | Params | Update applied at each step |
-| Weight Provenance | checkpoint_values | list(ckpt_record) | Params | Value at each checkpoint |
-| Weight Provenance | denominator_complexity | denom_record | Params | Denominator size tracking |
-| Data Provenance | data_source | source_record | Data | Original data source |
-| Data Provenance | preprocessing_chain | list(transform_record) | Data | Transforms applied |
-| Data Provenance | confidence | fraction | Data | Source reliability estimate |
-| Data Provenance | quality_flags | list(atom) | Data | Quality annotations |
-| Weighting | data_weight | fraction | Training data | Contribution to training loss |
-| Weighting | provenance_weight | fraction | Derived values | Confidence in derivation chain |
-| Versioning | version | number | Versioned | Current version number |
-| Versioning | version_history | list(version_record) | Versioned | All version records |
-| Constraints | local_constraints | list(constraint) | Constrained | Entry-specific constraints |
-| Tags | tags | list(atom) | Tagged | Classification tags |
+| Metric | Formula | Interpretation | VDR Computation |
+|--------|---------|---------------|-----------------|
+| Raw agreement | agreements / total_pairs | Baseline | Exact fraction |
+| Cohen's kappa | (p_observed - p_expected) / (1 - p_expected) | Chance-corrected | Exact fraction from counts |
+| Fleiss' kappa | Multi-annotator extension | Chance-corrected, N raters | Exact fraction from counts |
+| Krippendorff's alpha | Based on observed vs expected disagreement | General metric | Exact fraction |
 
-### K.2 Population Patterns by Entry Type
+All agreement metrics are computable as exact VDR fractions because they reduce to ratios of integer counts. No float approximation needed.
 
-| Entry Type | Always Populated | Usually Populated | Rarely Populated |
-|-----------|-----------------|------------------|-----------------|
-| Simple binding | id, predicate, value, kb, created_at | created_by, tags | Everything else |
-| Model parameter | id, predicate, value, kb, created_at, initialization | gradient_history, update_history, denominator_complexity | data_source, confidence |
-| Training data | id, predicate, value, kb, created_at, data_source | data_weight, preprocessing_chain, quality_flags | gradient_history, initialization |
-| Inference result | id, predicate, value, kb, created_at, derived_from | provenance_weight | data_weight, initialization |
-| Attention weight | id, predicate, value, kb, created_at, derived_from | local_constraints (sum_to_one) | gradient_history, data_source |
-| External import | id, predicate, value, kb, created_at, source | confidence, quality_flags | derived_from, initialization |
-| Constraint fact | id, predicate, value, kb, created_at | local_constraints, tags | weighting fields, provenance fields |
-| Version record | id, predicate, value, kb, created_at, version | version_history, tags | weighting, provenance |
+### J.2 Annotator Quality Tracking
+
+| Metric | Per Annotator | Across Annotators | Purpose |
+|--------|--------------|-------------------|---------|
+| Agreement with majority | fraction(agreements, total) | Distribution of agreement rates | Identify outlier annotators |
+| Response time | Exact seconds per judgment | Distribution of times | Identify rushed or stuck |
+| Consistency | Same judgment on repeated items | Distribution | Detect random clicking |
+| Calibration | Rating distribution vs corpus distribution | KL divergence (rational) | Detect systematic bias |
+| Coverage | Topics covered / total topics | fraction | Ensure diversity |
+
+```
+Fact: annotator_quality("annotator_12",
+    agreement_with_majority(fraction(87, 100)),
+    mean_response_time(fraction(42, 1)),
+    self_consistency(fraction(91, 100)),
+    judgments_count(450),
+    flagged_issues(0)).
+```
+
+### J.3 Feedback Data Splitting
+
+| Split | Purpose | Fraction | Selection |
+|-------|---------|----------|-----------|
+| Train | Train reward model or DPO | fraction(8, 10) | Random by annotator (not by judgment) |
+| Validation | Tune reward model hyperparameters | fraction(1, 10) | Random by annotator |
+| Test | Final reward model evaluation | fraction(1, 10) | Random by annotator |
+| Held-out repeats | Measure agreement and consistency | fraction(1, 20) | Duplicated prompts, different annotators |
+
+Splitting by annotator (not by individual judgment) prevents information leakage — no annotator appears in both train and test.
 
 ---
 
-## Appendix L: Provenance Weight Propagation Reference
+## Appendix K: Evaluation Benchmark Reference
 
-### L.1 Provenance Weight Assignment Rules
+### K.1 Standard Benchmarks
 
-| Source Type | Default Weight | Adjustable? | Justification |
-|------------|---------------|-------------|---------------|
-| Exact VDR arithmetic | fraction(1, 1) | No | Mathematically guaranteed correct |
-| Truncated Taylor series depth N | fraction(10^N - 1, 10^N) | Yes (by depth) | Known truncation error bound |
-| Q335 projection | fraction(10^100 - 1, 10^100) | Yes (by exponent) | Rounding bounded by 2^-336 |
-| Exact Prolog derivation | fraction(1, 1) | No | Logical derivation is exact |
-| Operational primitive result | fraction(1, 1) | Conditional | Exact if process succeeded |
-| User-stated fact | fraction(1, 2) | Yes | Not independently verified |
-| External import (verified) | fraction(9, 10) | Yes | Source reliability estimate |
-| External import (unverified) | fraction(1, 10) | Yes | Unknown reliability |
-| LLM-generated content | fraction(1, 4) | Yes | Token prediction, not computation |
-| Interpolated or estimated value | fraction(1, 3) | Yes | Approximate by construction |
+| Benchmark | Type | Metric | Exact in VDR? | Phase |
+|-----------|------|--------|---------------|-------|
+| Perplexity (held-out) | Language modeling | exp(mean negative log-likelihood) | Requires exp/log approximation | 8 |
+| Next-token accuracy | Language modeling | fraction(correct, total) | Yes (exact count ratio) | 8 |
+| MMLU | Multiple choice | fraction(correct, total) | Yes (exact count ratio) | 8 |
+| HellaSwag | Completion selection | fraction(correct, total) | Yes (exact count ratio) | 8 |
+| TruthfulQA | Truthfulness | fraction(truthful, total) | Yes (with exact classifier) | 8 |
+| HumanEval | Code generation | fraction(passing, total) | Yes (operational: exec tests) | 8 |
+| GSM8K | Math reasoning | fraction(correct, total) | Yes (exact answer comparison) | 8 |
+| Safety prompts | Safety | fraction(safe, total) | Yes (with exact classifier) | 8 |
 
-### L.2 Propagation Rules
+### K.2 VDR-Specific Benchmarks
 
-| Derivation Pattern | Output Weight | Formula |
-|-------------------|---------------|---------|
-| Single exact source | Same as source | W_out = W_in |
-| Multiple exact sources (AND) | Minimum of sources | W_out = min(W_1, W_2, ..., W_n) |
-| Multiple sources (OR/choice) | Maximum of sources | W_out = max(W_1, W_2, ..., W_n) |
-| Chain of derivations | Minimum along chain | W_out = min(W_step1, W_step2, ...) |
-| Mixed exact and approximate | Minimum (weakest link) | W_out = min(all inputs) |
-| Aggregation over many sources | Weighted average | W_out = vdr_mean(W_1, ..., W_n) |
-| User override | User-specified value | W_out = user_value |
+| Benchmark | What It Measures | Metric | Unique to VDR |
+|-----------|-----------------|--------|--------------|
+| Arithmetic accuracy | Can model compute exact fractions? | fraction(exact_match, total) | Yes — VDR models should score 100% |
+| Denominator health | Model parameter complexity | max and mean denominator | Yes — VDR-specific |
+| Provenance completeness | All values have derivation chains? | fraction(traced, total) | Yes — KB-specific |
+| Constraint satisfaction | All constraints pass? | fraction(satisfied, total) | Yes — constraint system |
+| Roundtrip exactness | checkpoint_load(checkpoint_save(model)) = model? | bool | Yes — exact reproducibility |
+| Softmax exactness | All attention rows sum to exactly 1? | bool | Yes — VDR exact softmax |
+| Gradient exactness | Autodiff gradient matches finite difference at h→0? | fraction(matching, total) | Yes — exact autodiff |
+| KB query latency | Time to answer provenance queries | milliseconds | System performance |
 
-### L.3 Provenance Weight Query Patterns
+### K.3 Evaluation Run Configuration
 
-| Query | Purpose | Returns |
-|-------|---------|---------|
-| effective_provenance_weight(V, W) | What is the confidence in value V? | Exact fraction |
-| weakest_link(V, Source, W) | What is the weakest source in V's derivation? | Source reference and weight |
-| all_weights_above(Threshold, Values) | Which values exceed confidence threshold? | Value list |
-| all_weights_below(Threshold, Values) | Which values are below confidence threshold? | Value list (audit candidates) |
-| weight_distribution(KB, Distribution) | Distribution of provenance weights in a KB | Histogram data |
-
----
-
-## Appendix M: Data Weight Management Reference
-
-### M.1 Data Weight Operations
-
-| Operation | Effect | Constraint Checked | Logged As |
-|-----------|--------|-------------------|-----------|
-| Set weight | Assign training weight to data point | Total weights normalization | weight_set(sample_id, old_w, new_w, turn) |
-| Normalize weights | Adjust all weights to sum to target | Exact sum verification | weight_normalize(target, turn) |
-| Upweight | Increase specific sample's weight | Total sum after adjustment | weight_adjust(sample_id, delta, turn) |
-| Downweight | Decrease specific sample's weight | Non-negativity | weight_adjust(sample_id, -delta, turn) |
-| Zero weight | Remove sample from training | Sample flagged as excluded | weight_exclude(sample_id, reason, turn) |
-| Restore weight | Re-include excluded sample | Total sum after restore | weight_include(sample_id, turn) |
-| Weight by quality | Set weights proportional to quality | All quality flags checked | weight_by_quality(quality_fn, turn) |
-| Uniform weights | Set all weights equal | Exact sum = 1 | weight_uniform(turn) |
-
-### M.2 Data Weight Constraint Invariants
-
-| Invariant | Condition | Type | On Violation |
-|-----------|-----------|------|-------------|
-| Non-negativity | All data_weight >= 0 | Axiom | Error |
-| Sum to target | sum(data_weights) = declared_target | Operational | Warn and renormalize |
-| No orphan weights | Every weighted sample exists in dataset | Operational | Warn |
-| Weight history complete | Every weight change is logged | Audit | Error |
-| Excluded samples zero | Excluded samples have weight 0 | Operational | Error |
+| Parameter | Type | Default | Purpose |
+|-----------|------|---------|---------|
+| model_checkpoint | reference | — | Which model to evaluate |
+| benchmark_suite | reference | eval_suite_v1 | Which benchmarks to run |
+| batch_size | number | 32 | Evaluation batch size |
+| max_samples | number | all | Limit for expensive benchmarks |
+| environment | reference | env_eval_01 | Where to run |
+| grant | reference | eval_grant | Authorization |
+| save_predictions | bool | true | Store per-sample predictions |
+| save_logits | bool | false | Store full logit vectors (large) |
+| random_seed | number | 42 | For any sampling in evaluation |
 
 ---
 
-## Appendix N: Chunked I/O Processing Reference
+## Appendix L: Deployment Configuration Reference
 
-### N.1 Chunk Processing Pipeline
+### L.1 Serving Parameters
 
-| Stage | Input | Processing | Output | KB Update |
-|-------|-------|-----------|--------|----------|
-| 1. Receive | Raw bytes from process | Decode to text, split by newline | Text lines | task_output chunk fact |
-| 2. Classify | Text line | Detect: stdout/stderr, progress, error, result | Classified chunk | Classification tag on chunk |
-| 3. Pattern check | Classified chunk | Match against active watches | Watch trigger events | watch_triggered facts |
-| 4. Constraint check | Classified chunk | Check resource limits, error patterns | Constraint status | constraint_checked facts |
-| 5. Store | Processed chunk | Assert into task KB | — | chunk stored with metadata |
-| 6. Notify (if streaming) | Stored chunk | Format for user display | Display text | notification queued |
+| Parameter | Type | Default | Range | Purpose |
+|-----------|------|---------|-------|---------|
+| max_concurrent_requests | number | 100 | 1 - 10000 | Throughput limit |
+| max_sequence_length | number | 2048 | 1 - model max | Input length limit |
+| max_output_tokens | number | 1024 | 1 - 4096 | Generation length limit |
+| default_temperature | fraction | 7/10 | 0 - 2 | Sampling temperature |
+| default_top_k | number | 50 | 1 - vocab_size | Top-k sampling |
+| default_top_p | fraction | 9/10 | 0 - 1 | Nucleus sampling threshold |
+| rate_limit_per_user | number | 100 | 1 - unlimited | Requests per hour per user |
+| rate_limit_per_org | number | 10000 | 1 - unlimited | Requests per hour per org |
+| request_timeout_ms | number | 30000 | 1000 - 300000 | Maximum time per request |
+| queue_max_size | number | 1000 | 0 - 100000 | Request queue limit |
+| enable_streaming | bool | true | — | Stream tokens to client |
+| enable_direct_download | bool | true | — | Allow KB data serving |
+| enable_command_tokens | bool | true | — | Allow LLM command execution |
 
-### N.2 Chunk Size and Timing Policies
+### L.2 Deployment Health Checks
 
-| Policy | Parameter | Default | Adjustable? |
-|--------|-----------|---------|-------------|
-| Max chunk size | Bytes before forced flush | 4096 | Yes, per task |
-| Max chunk delay | Seconds before forced flush | 5 | Yes, per task |
-| Line buffering | Flush on newline? | Yes for stdout, no for binary | Per stream |
-| Progress detection | Regex for progress patterns | "\d+%\|step \d+\|ETA" | Per environment |
-| Error detection | Regex for error patterns | "error\|Error\|ERROR\|FAIL\|panic" | Per environment |
-| Chunk retention | How long to keep chunks | Until task acknowledged | Per retention policy |
+| Check | Frequency | Condition | Action on Failure |
+|-------|-----------|-----------|-------------------|
+| Model loaded | On startup | Model weights in memory | Block requests until loaded |
+| Healthcheck endpoint | Every 10 seconds | Returns 200 within 1 second | Remove from load balancer |
+| Memory usage | Every minute | < 90% of available | Alert at 80%, kill at 95% |
+| Request latency | Every minute | P99 < timeout/2 | Alert, scale up |
+| Error rate | Every minute | < 1% | Alert, investigate |
+| Queue depth | Every 10 seconds | < queue_max_size | Reject new requests |
+| Constraint check | Every 5 minutes | All deployment constraints pass | Alert operator |
 
-### N.3 Streaming vs Polling Comparison
+### L.3 Deployment Rollback Triggers
 
-| Aspect | Streaming Mode | Polling Mode |
-|--------|---------------|-------------|
-| User experience | Live output interleaved with conversation | Results on next turn after completion |
-| Latency | Chunk arrives → displayed immediately | Chunk arrives → stored → displayed on poll |
-| Interruption | Can interrupt conversation flow | Never interrupts |
-| Appropriate for | Actively monitored tasks | Background tasks |
-| Activation | /watch task_id | Default |
-| Deactivation | /unwatch task_id | N/A (always polling) |
-| Output volume | Can be noisy for chatty processes | Clean, shows only summary |
-
----
-
-## Appendix O: Context Assembly Reference
-
-### O.1 Context Components
-
-| Component | Source | Priority | Size Control |
-|-----------|--------|----------|-------------|
-| Active constraints | Effective constraints from in-scope KBs | Highest — always included | Limited by active KB count |
-| System instructions | Global KB rules | Highest — always included | Fixed, small |
-| Working data bindings | Active topic's working data set with inheritance | High — key context | Limited by binding count |
-| Pending items | Active topic's pending list | High — actionable | Limited by pending count |
-| Active reminders | Unacknowledged triggered reminders | High — requires attention | Limited by reminder count |
-| Recent conversation turns | Conversation KB last N turns | Medium — recency | Configurable N (default 20) |
-| Referenced KB facts | Facts explicitly referenced in recent turns | Medium — relevance | Auto-managed |
-| Secondary scope facts | Facts from explicitly activated secondary KBs | Low — supplementary | User-controlled |
-| Scratchpad history | Previous turn's scratchpad entries | Low — continuity | Last turn only by default |
-
-### O.2 Context Size Management
-
-| Strategy | Mechanism | Effect |
-|----------|----------|--------|
-| Turn window | Include last N turns only | Controls conversation history size |
-| Binding pruning | Include only recently accessed bindings | Reduces working data volume |
-| Constraint summary | Include constraint names, not full conditions | Reduces constraint overhead |
-| KB scope limiting | Limit depth of KB inheritance walk | Reduces inherited fact volume |
-| Fact relevance scoring | Prioritize facts referenced in recent turns | Keeps context focused |
-| Explicit inclusion/exclusion | User /context add and /context remove | Direct user control |
-| Compression | Summarize older turns into KB facts | Preserves key information in less space |
-
-### O.3 Context Snapshot Comparison
-
-| Field | Snapshot A | Snapshot B | Diff |
-|-------|-----------|-----------|------|
-| Active KBs | [global, vdr, vdr_core] | [global, vdr, vdr_llm] | Changed: vdr_core → vdr_llm |
-| Constraints | [exact, py38, 30sec] | [exact, py38, softmax_depth] | Removed: 30sec. Added: softmax_depth |
-| Working data | {modules: 24, tests: 705} | {modules: 24, tests: 721, has_autodiff: true} | Added: has_autodiff. Changed: tests |
-| Pending | [gaussian_elim, cross_entropy] | [cross_entropy, better_exp] | Removed: gaussian_elim. Added: better_exp |
-| Reminders | [maxflow_fix] | [] | Removed: maxflow_fix (acknowledged) |
+| Trigger | Threshold | Auto-Rollback? | Human Override? |
+|---------|-----------|---------------|----------------|
+| Error rate spike | > 5% for 5 minutes | Yes | Can cancel within 60s |
+| Latency spike | P99 > 2× baseline for 10 minutes | No (alert only) | Yes |
+| Safety flag spike | > 10% for 5 minutes | Yes | Can cancel within 60s |
+| Memory leak | Monotonic increase for 30 minutes | No (alert + restart) | Yes |
+| Model output degenerate | Repetition rate > 50% | No (alert only) | Yes |
+| Constraint violation | Any deployment constraint | Depends on constraint | Per constraint config |
 
 ---
 
-## Appendix P: LLM Output Stream Token Classification
+## Appendix M: Monitoring Metric Reference
 
-### P.1 Token Types in Output Stream
+### M.1 Real-Time Metrics
 
-| Token Class | Subtype | Rendered As | Executed? | Logged? |
-|------------|---------|------------|----------|---------|
-| TEXT | prose | Conversation text | No | Turn record |
-| TEXT | code_block | Formatted code | No | Turn record |
-| TEXT | inline_code | Inline formatted | No | Turn record |
-| CMD | PURE_FN | Hidden or bracketed | Yes | Scratchpad + result KB |
-| CMD | OP_FN | Hidden or bracketed | Yes | Execution log |
-| CMD | KB_ASSERT | Hidden | Yes | KB update log |
-| CMD | KB_RETRACT | Hidden | Yes | KB update log |
-| CMD | KB_QUERY | Hidden | Yes | Scratchpad |
-| CMD | ENV_EXEC | Bracketed if show_commands | Yes | Environment log + task |
-| CMD | ENV_UPLOAD | Bracketed if show_commands | Yes | Environment log |
-| CMD | ENV_DOWNLOAD | Bracketed if show_commands | Yes | Environment log |
-| CMD | CTX_ACTIVATE | Hidden | Yes | Context log |
-| CMD | CTX_DEACTIVATE | Hidden | Yes | Context log |
-| CMD | CTX_SNAPSHOT | Hidden | Yes | Snapshot KB created |
-| CMD | VERSION_CREATE | Bracketed if show_commands | Yes | Version record |
-| CMD | VERSION_TAG | Hidden | Yes | Version record |
-| CMD | STORE_RESULT | Hidden | Yes | KB update |
-| CMD | DIRECT_OUTPUT | Data block in response | Yes (data retrieval) | Access log |
-| CMD | ATTACHMENT | Download link in response | Yes (data retrieval) | Access log |
-| META | turn_boundary | Not rendered | N/A | Turn counter |
-| META | scratchpad_start | Not rendered (unless /scratchpad on) | N/A | Scratchpad boundary |
-| META | scratchpad_end | Not rendered (unless /scratchpad on) | N/A | Scratchpad boundary |
+| Metric | Type | Aggregation | Alert Threshold | Dashboard? |
+|--------|------|-------------|----------------|-----------|
+| Requests per second | counter | Per-minute rate | > 2× baseline | Yes |
+| Active requests | gauge | Current | > max_concurrent | Yes |
+| Queue depth | gauge | Current | > 80% of max | Yes |
+| Request latency P50 | histogram | Per-minute | > 2× baseline | Yes |
+| Request latency P99 | histogram | Per-minute | > 5000ms | Yes |
+| Error count | counter | Per-minute rate | > 1% | Yes |
+| Error by type | counter per type | Per-minute | Any new type | Yes |
+| Output tokens per request | histogram | Per-minute | > 2× baseline | Yes |
+| Input tokens per request | histogram | Per-minute | > max_seq_length | Yes |
+| Safety flags | counter | Per-minute rate | > 5% | Yes |
+| Unique users | set cardinality | Per-hour | — | Yes |
+| Feedback submissions | counter | Per-hour | — | Yes |
 
-### P.2 Output Stream Ordering Rules
+### M.2 Training Metrics (During Training Phases)
 
-| Rule | Description | Rationale |
-|------|-------------|-----------|
-| Scratchpad before output | All scratchpad commands execute before user-facing output begins | Computation must complete before results are framed |
-| Text frames data | TEXT tokens surround DIRECT_OUTPUT blocks | Data needs human context |
-| Commands in causal order | Upload before execute, execute before store_result | Dependencies respected |
-| Notifications at end | Completed task notifications appear after main response | Non-disruptive |
-| Attachments at end | File attachments appear after all text | Clean reading flow |
+| Metric | Type | Frequency | Alert Condition | Logged To |
+|--------|------|-----------|----------------|----------|
+| Training loss | fraction | Every step | > 1000 or NaN-equivalent | training_run KB |
+| Validation loss | fraction | Every eval_interval | Increasing trend | training_run KB |
+| Learning rate | fraction | Every step | — | training_run KB |
+| Gradient norm | fraction | Every step | > clip_value × 10 | training_run KB |
+| Gradient norm (clipped) | fraction | Every step where clipped | — | training_run KB |
+| Parameter denominator max | number | Every checkpoint | > denom_budget | training_run KB |
+| Parameter denominator mean | number | Every checkpoint | — | training_run KB |
+| Reprojection count | counter | Per checkpoint interval | > 0 (noteworthy) | training_run KB |
+| Tokens per second | number | Every step | — | training_run KB |
+| Step duration ms | number | Every step | > 2× mean | training_run KB |
+| Memory usage | number | Every checkpoint | > 90% available | training_run KB |
+| Checkpoint size bytes | number | Every checkpoint | — | training_run KB |
 
----
+### M.3 Drift Detection Metrics
 
-## Appendix Q: Cross-Paper Integration Reference
+| Metric | Baseline | Current | Drift Threshold | Action |
+|--------|----------|---------|----------------|--------|
+| Mean output length | Computed at deployment | Rolling 1-hour average | > 20% change | Warn |
+| Output vocabulary usage | Token frequency at deployment | Rolling 1-hour frequency | KL > 0.1 | Warn |
+| Safety flag rate | Rate at deployment | Rolling 1-hour rate | > 2× baseline | Alert |
+| Error rate | Rate at deployment | Rolling 1-hour rate | > 3× baseline | Alert |
+| Latency distribution | Distribution at deployment | Rolling 1-hour distribution | KS test p < 0.01 | Warn |
+| User satisfaction (if tracked) | Rating at deployment | Rolling daily rating | > 10% decrease | Warn |
 
-### Q.1 How VDR-6 Primitives Map to VDR-1 Through VDR-4 Capabilities
-
-| VDR Paper | Capability | VDR-6 Primitive(s) | Category |
-|-----------|-----------|-------------------|----------|
-| VDR-1 | Exact fraction arithmetic | vdr_add through vdr_max (#54-73) | Arithmetic |
-| VDR-1 | Normalization | vdr_simplify (#70) | Arithmetic |
-| VDR-1 | Discrete derivative | Composable from vdr_add, vdr_sub, vdr_div | Arithmetic |
-| VDR-1 | Discrete integral | Composable from vdr_add, vdr_mul (Riemann sum) | Arithmetic |
-| VDR-1 | Rebase and lift | Exposed through KB term operations | KB |
-| VDR-2 | GCD, LCM | vdr_gcd, vdr_lcm (#61-62) | Arithmetic |
-| VDR-2 | Binomial coefficients | vdr_binomial (#78) | Arithmetic |
-| VDR-2 | Fibonacci | vdr_fibonacci (#79) | Arithmetic |
-| VDR-2 | Euler's method | Composable from arithmetic primitives | Arithmetic |
-| VDR-2 | Hilbert matrix | mat_inv, mat_mul, mat_det (#115-118) | Linear Algebra |
-| VDR-3 | Graph algorithms | graph_* (#173-185) | Graph |
-| VDR-3 | Bayesian updating | prob_bayes (#135) | Statistics |
-| VDR-3 | Haar wavelet | Composable from vec_add, vec_scale | Linear Algebra |
-| VDR-3 | Q335 constants | Stored as qbasis terms in KBs | KB |
-| VDR-4 | Softmax | softmax, softmax_surrogate (#139-140) | Statistics |
-| VDR-4 | Autodiff | Node graph through command token sequences | CMD |
-| VDR-4 | Linear layer | mat_matvec, vec_add (#124, 109) | Linear Algebra |
-| VDR-4 | Training loop | Composable from primitives + command tokens | CMD |
-| MATH-3 | Elliptic integrals | Composable from vdr_mul, vdr_sum + series | Arithmetic |
-| MATH-4 | Q335 basis | qbasis term type + vdr_add on integers | KB + Arithmetic |
-
-### Q.2 How VDR-6 Execution Maps to VDR-5 Knowledge Architecture
-
-| VDR-5 Component | VDR-6 Execution Support |
-|-----------------|------------------------|
-| KB fact assertion | KB_ASSERT command token, kb_assert primitive (#204) |
-| KB fact retraction | KB_RETRACT command token, kb_retract primitive (#205) |
-| KB query | KB_QUERY command token, kb_query/kb_query_in/kb_query_across (#206-208) |
-| Scoped search | kb_active_scope (#211) determines primitive search space |
-| Constraint verification | constraint_check, constraint_check_all (#213-214) |
-| Working data set operations | dict_* primitives (#94-108) for binding storage |
-| Topic management | kb_switch_topic (#212) + CTX_ACTIVATE/DEACTIVATE tokens |
-| Direct surfacing | DIRECT_OUTPUT and ATTACHMENT command tokens |
-| Provenance recording | KB_ASSERT after each primitive execution with derivation |
-| Conversation tracking | Turn records as KB facts, topic state updates via KB operations |
-| Reminder and watch evaluation | Prolog rule evaluation using KB primitives every turn |
-| Permission checking | KB query against grant facts before operational primitive execution |
+All drift computations use exact VDR fractions for the metrics themselves. Statistical tests (KL divergence, KS test) use rational approximations with declared precision.
 
 ---
 
-## Appendix R: Implementation Test Plan
+## Appendix N: Update and Rollback Reference
 
-### R.1 Pure Primitive Test Requirements
+### N.1 Update Types Detailed
 
-| Category | Min Tests | Edge Cases Required | Invariant Tests |
-|----------|----------|-------------------|-----------------|
-| String (17) | 51 (3 per) | Empty string, single char, unicode, max length | Reverse of reverse = identity |
-| List (34) | 102 (3 per) | Empty list, single element, duplicates, nested | Sort permutation, length preservation |
-| Arithmetic (26) | 78 (3 per) | Zero, negative, large numerator/denominator | Commutativity, associativity, identity |
-| Set (14) | 42 (3 per) | Empty set, singleton, disjoint, identical | Union/intersection laws |
-| Dictionary (15) | 45 (3 per) | Empty dict, single entry, overwrite, missing key | Get after set = set value |
-| Linear Algebra (16) | 48 (3 per) | Zero vector/matrix, identity, singular | M * inv(M) = I, det(I) = 1 |
-| Statistics (16) | 48 (3 per) | Single element, all equal, all different | Sum of normalized = 1 |
-| Conversion (14) | 42 (3 per) | Zero, negative, boundary values, max digits | Parse of format = identity |
-| Date/Time (10) | 30 (3 per) | Leap year boundaries, month boundaries, epoch | Date add then subtract = original |
-| Hashing (8) | 24 (3 per) | Empty input, same input twice, long input | Same input → same output (determinism) |
-| Graph (13) | 39 (3 per) | Empty graph, single node, disconnected, cycle | Connected components partition all nodes |
-| Pattern (7) | 21 (3 per) | Empty pattern, no match, full match, special chars | Match is consistent with search |
-| Logic (11) | 33 (3 per) | True/false conditions, empty lists, type errors | Try_catch catches, assert_that asserts |
-| KB (15) | 45 (3 per) | Empty KB, scope boundaries, cross-scope | Assert then query returns asserted fact |
-| **Total minimum** | **648** | | |
+| Update Type | What Changes | Training Required | Downtime | Risk Level |
+|------------|-------------|------------------|----------|-----------|
+| Full retrain | All weights | Pre-train + fine-tune + align | Model swap | High |
+| Fine-tune update | Top layers or adapter | Fine-tuning only | Model swap | Medium |
+| LoRA adapter add | Additive weights | Adapter training only | Hot-add possible | Low |
+| LoRA adapter remove | Remove additive weights | None | Hot-remove possible | Low |
+| Safety patch | Targeted weight adjustment | Targeted fine-tune | Model swap | Medium |
+| Constraint update | Behavior rules only | None | None (KB update) | Low |
+| Vocabulary extension | New tokens + embedding rows | Embedding fine-tune | Model swap | Medium |
+| KB content update | Knowledge facts | None | None (KB update) | Low |
+| Config change | Serving parameters | None | Possible restart | Low |
 
-### R.2 Operational Primitive Test Requirements
+### N.2 Canary Promotion Criteria
 
-| Category | Min Tests | Environment | Mock Available? |
-|----------|----------|-------------|----------------|
-| Filesystem (15) | 45 | Docker test container | Yes (temp directory) |
-| Compilation (4) | 12 | Docker with compilers | Yes (known source files) |
-| Execution (5) | 15 | Docker test container | Yes (known scripts) |
-| Linting (8) | 24 | Docker with linters | Yes (known source files) |
-| Network (5) | 15 | Docker with network | Partial (mock server) |
-| Process (7) | 21 | Docker test container | Yes (sleep/echo processes) |
-| **Total minimum** | **132** | | |
+| Criterion | Metric | Threshold | Comparison | Auto-Decision |
+|-----------|--------|-----------|-----------|---------------|
+| Latency regression | P99 latency | < 110% of baseline | Canary vs control | Block if exceeded |
+| Error regression | Error rate | < baseline + 1% | Canary vs control | Block if exceeded |
+| Safety regression | Safety flag rate | < baseline + 2% | Canary vs control | Block if exceeded |
+| Quality (if measurable) | User rating or auto-eval | > 95% of baseline | Canary vs control | Warn if lower |
+| Minimum traffic | Requests served | > 1000 | Canary count | Block promotion until met |
+| Minimum duration | Hours running | > 24 | Clock time | Block promotion until met |
 
-### R.3 Integration Test Scenarios
+All thresholds are exact VDR fractions. "110% of baseline" is `baseline × fraction(11, 10)`. The comparison is exact.
 
-| Scenario | Components Tested | Expected Outcome |
-|----------|------------------|-----------------|
-| Write script, run tests, store results | ENV_UPLOAD + ENV_EXEC + STORE_RESULT + VERSION_CREATE | Version created with test results |
-| Sort KB data by key | KB_QUERY + PURE_FN(list_sort_by_key) + DIRECT_OUTPUT | Sorted data served directly |
-| Check constraint, fix violation, re-check | constraint_check_all + identify violation + KB_ASSERT fix + constraint_check_all | All constraints satisfied |
-| Background compile, poll, retrieve errors | ENV_EXEC(async) + POLL + proc_stderr + DIRECT_OUTPUT | Compilation errors surfaced |
-| Cross-scope query with tagged results | kb_query_across + format_table + DIRECT_OUTPUT | All matches from all KBs with source tags |
-| Grant expiration during long task | OP_FN with grant expiring mid-task | Task completes (grant checked at start), logged with warning |
-| Version rollback after failed test | VERSION_CREATE + ENV_EXEC(test) → fail + retrieve old version content + VERSION_CREATE(rollback) | New version with old content |
-| Reminder triggers on topic enter | Switch topic → reminder condition met → notification displayed | User sees reminder, can acknowledge |
-| Direct download large file | ATTACHMENT(fs://env/large_file) | File served without LLM tokenization |
-| Scratchpad computation not surfaced | PURE_FN in scratchpad + TEXT output using result | User sees framed result, not computation |
+### N.3 Rollback Procedure Steps
+
+| Step | Action | KB Operation | Reversible? |
+|------|--------|-------------|-------------|
+| 1 | Identify rollback target | KB_QUERY(deployment, rollback_target) | N/A |
+| 2 | Verify target checkpoint exists | KB_QUERY(checkpoint, exists) | N/A |
+| 3 | Load target checkpoint | ENV_EXEC(load_model, checkpoint_path) | Yes (reload current) |
+| 4 | Redirect traffic | CTX_ACTIVATE(old_deployment) | Yes (redirect back) |
+| 5 | Deactivate current deployment | CTX_DEACTIVATE(current_deployment) | Yes (reactivate) |
+| 6 | Log rollback event | KB_ASSERT(rollback_log, event) | No (append-only log) |
+| 7 | Verify serving old model | Health check + test request | N/A |
+| 8 | Notify operators | Alert via monitoring KB | N/A |
+
+---
+
+## Appendix O: Retirement and Archive Reference
+
+### O.1 Archive Contents Checklist
+
+| Component | Required? | Format | Queryable After Archive? |
+|-----------|----------|--------|------------------------|
+| Model weights (final checkpoint) | Yes | Serialized VDR fractions | Yes (cold storage) |
+| Model architecture KB | Yes | JSON export | Yes |
+| Training configuration KB | Yes | JSON export | Yes |
+| Training run logs (checkpoints only) | Yes | JSON export | Yes |
+| Training run logs (all steps) | No | JSON export if retained | If retained |
+| Evaluation results (all benchmarks) | Yes | JSON export | Yes |
+| Feedback data (anonymized) | Per legal | JSON export | Yes (anonymized) |
+| Deployment configuration | Yes | JSON export | Yes |
+| Monitoring summaries | Yes | Aggregated JSON | Yes |
+| Monitoring raw metrics | No | Compressed if retained | If retained |
+| Source provenance chain | Yes | KB references | Yes |
+| Corpus metadata (not content) | Yes | JSON export | Yes |
+| Corpus content | No (too large) | Reference only | No (source still available) |
+| Tokenizer/vocabulary | Yes | JSON export | Yes |
+| Update history | Yes | JSON export | Yes |
+| Retirement record | Yes | KB fact | Yes |
+
+### O.2 Archive Retention Policies
+
+| Policy | Duration | Governed By | Override |
+|--------|----------|-------------|---------|
+| Legal minimum | Per jurisdiction (GDPR: varies) | Legal KB constraints | Cannot shorten |
+| Organizational minimum | Per org policy (typically 3-7 years) | Org KB constraints | Admin can extend |
+| Research retention | Indefinite for published models | Research KB constraints | Default for published work |
+| Feedback data | Per consent agreement | Legal KB + consent records | Must honor consent |
+| PII-adjacent data | Minimum necessary retention | Legal KB | Must delete when required |
+| Model weights | Per organizational policy | Org KB | Admin discretion |
+
+### O.3 Archive Verification
+
+| Check | Method | Frequency | On Failure |
+|-------|--------|-----------|-----------|
+| Archive integrity | Checksum verification | Monthly | Alert + re-archive from source |
+| Archive accessibility | Test retrieval | Quarterly | Alert + investigate storage |
+| Archive completeness | Compare against checklist | On archive creation | Block retirement until complete |
+| Anonymization verification | PII scan on feedback archive | On archive creation | Block until clean |
+| License compliance | Verify archived data matches license | On archive creation | Block until compliant |
+
+---
+
+## Appendix P: Cross-Phase Data Flow Reference
+
+### P.1 Data Flow Matrix
+
+| From Phase | To Phase | Data Transferred | Format | Volume |
+|-----------|---------|-----------------|--------|--------|
+| 1 → 2 | Raw data files | Bytes + metadata KB | Large (GB-TB) |
+| 2 → 3 | Cleaned text | Documents + quality KB | Large (GB-TB) |
+| 3 → 5 | Token sequences | Integer arrays + vocab KB | Large (GB) |
+| 4 → 5 | Initial weights | VDR fractions + arch KB | Medium (MB-GB) |
+| 5 → 6 | Checkpoint | VDR fractions + optimizer state | Medium (MB-GB) |
+| 5 → 8 | Checkpoint | VDR fractions (for evaluation) | Medium (MB-GB) |
+| 6 → 7 | Fine-tuned checkpoint | VDR fractions | Medium (MB-GB) |
+| 7 → 7 | Preference judgments | Feedback records KB | Small (MB) |
+| 7 → 8 | Aligned checkpoint | VDR fractions | Medium (MB-GB) |
+| 8 → 9 | Evaluation results | Score KBs | Small (KB) |
+| 9 → 10 | Deployment config | Config KB | Small (KB) |
+| 10 → 11 | Monitoring metrics | Metric KBs | Medium (MB over time) |
+| 11 → 9 | Updated checkpoint | VDR fractions + config | Medium (MB-GB) |
+| 9 → 12 | Model + metadata | All KBs | Variable |
+
+### P.2 Data Dependencies (Must Complete Before)
+
+| Phase | Requires Completion Of | Hard Dependency? |
+|-------|----------------------|-----------------|
+| 2 (Corpus prep) | 1 (Data sourcing) | Yes |
+| 3 (Tokenization) | 2 (Corpus prep) | Yes |
+| 4 (Model init) | Architecture decision (no phase) | Yes |
+| 5 (Pre-training) | 3 (Tokenization) + 4 (Model init) | Yes |
+| 6 (Fine-tuning) | 5 (Pre-training) | Yes |
+| 7 (Feedback) | 6 (Fine-tuning) or 5 (Pre-training) | Yes (needs a model to generate from) |
+| 8 (Evaluation) | 5, 6, or 7 (any checkpoint) | Yes |
+| 9 (Deployment) | 8 (Evaluation passed) | Soft (can deploy without eval, not recommended) |
+| 10 (Monitoring) | 9 (Deployment active) | Yes |
+| 11 (Update) | New checkpoint + 8 (Evaluation of new) | Yes |
+| 12 (Retirement) | 11 (Successor deployed) | Soft (can retire without successor) |
+
+---
+
+## Appendix Q: Operational Environment Requirements Per Phase
+
+### Q.1 Compute Requirements
+
+| Phase | CPU | GPU | Memory | Disk | Network | Duration |
+|-------|-----|-----|--------|------|---------|----------|
+| 1 Data sourcing | Low | None | Low | High (storage) | High (download) | Hours-days |
+| 2 Corpus prep | Medium | None | Medium | High | None | Hours |
+| 3 Tokenization | Medium | None | Medium | High | None | Hours |
+| 4 Model init | Low | None | Medium | Medium | None | Minutes |
+| 5 Pre-training | High | Required | High | High | None | Days-weeks |
+| 6 Fine-tuning | High | Required | High | Medium | None | Hours-days |
+| 7 Feedback collection | Low | None (model already served) | Low | Low | Low | Days-weeks (human time) |
+| 7 Reward model / RLHF | High | Required | High | Medium | None | Hours-days |
+| 8 Evaluation | Medium | Helpful | Medium | Low | None | Hours |
+| 9 Deployment | Medium | Helpful | High | Medium | High (serving) | Continuous |
+| 10 Monitoring | Low | None | Low | Medium (logs) | Low | Continuous |
+| 11 Update | High | Required | High | Medium | None | Hours-days |
+| 12 Retirement | Low | None | Low | Medium (archive) | None | Hours |
+
+### Q.2 Environment Type Recommendations
+
+| Phase | Recommended Environment | Reason |
+|-------|----------------------|--------|
+| 1 | Docker (network-enabled) | Download isolation |
+| 2 | Docker (compute) | Reproducible processing |
+| 3 | Docker (compute) | Deterministic tokenization |
+| 4 | Docker or local | Quick, small |
+| 5 | SSH remote (GPU cluster) | Needs GPU, long-running |
+| 6 | SSH remote (GPU) | Needs GPU |
+| 7 (collection) | Web API (deployment) | Human-facing |
+| 7 (training) | SSH remote (GPU) | Needs GPU |
+| 8 | Docker (GPU optional) | Reproducible, isolated |
+| 9 | Docker or VM (production) | Isolation, scaling |
+| 10 | Sidecar to deployment | Co-located monitoring |
+| 11 | SSH remote (GPU) | Needs GPU |
+| 12 | Docker (archival) | Batch processing |
+
+---
+
+## Appendix R: KB Naming Conventions
+
+### R.1 Standard Prefixes
+
+| Prefix | KB Type | Example |
+|--------|---------|---------|
+| source_ | Data source | source_wikipedia_2026_03 |
+| corpus_ | Prepared corpus | corpus_v1_train |
+| vocab_ | Vocabulary/tokenizer | vocab_bpe_32k |
+| model_arch_ | Architecture specification | model_arch_v1 |
+| model_init_ | Initialized model | model_init_v1 |
+| params_ | Parameter group | params_layer_0 |
+| training_config_ | Training configuration | training_config_pretrain_v1 |
+| training_run_ | Training run | training_run_pretrain_v1 |
+| checkpoint_ | Model checkpoint | checkpoint_step_45000 |
+| feedback_ | Feedback collection | feedback_pairwise_r1 |
+| reward_ | Reward model | reward_model_v1 |
+| eval_ | Evaluation result | eval_perplexity_v1 |
+| eval_suite_ | Evaluation suite | eval_suite_v1 |
+| deployment_ | Deployment configuration | deployment_prod_v1 |
+| monitoring_ | Monitoring metrics | monitoring_prod_v1 |
+| update_ | Model update | update_v2 |
+| canary_ | Canary deployment | canary_v2 |
+| retirement_ | Retirement record | retirement_v1 |
+| archive_ | Archived KB | archive_model_v1 |
+
+### R.2 Version Numbering
+
+| Pattern | Meaning | Example |
+|---------|---------|---------|
+| _v1, _v2, ... | Sequential version | corpus_v1, corpus_v2 |
+| _step_N | Training step number | checkpoint_step_45000 |
+| _r1, _r2, ... | Feedback round number | feedback_pairwise_r1 |
+| _prod, _staging, _dev | Environment tier | deployment_prod_v1 |
+| _YYYY_MM | Date-based | source_wikipedia_2026_03 |
+
+### R.3 KB Path Construction
+
+Full KB path from root:
+
+```
+global / org_acme / dept_eng / team_ml / user_alice / project_vdr / 
+    model_arch_v1 / model_init_v1 / training_run_pretrain_v1 / 
+    checkpoint_step_100000 / training_run_finetune_instruct_v1 /
+    checkpoint_instruct_v1
+```
+
+Every segment is a KB. Every segment is queryable. The path is the provenance chain.
 
 ---
 
 ## Appendix S: Cumulative System Statistics
 
-### S.1 Complete Module Count
+### S.1 Complete Paper Series
 
-| Layer | Existing (VDR-1 to VDR-4) | Specified (VDR-5) | Specified (VDR-6) | Total |
-|-------|--------------------------|-------------------|-------------------|-------|
-| Arithmetic | 5 | 0 | 0 | 5 |
-| Transcendental | 3 | 0 | 0 | 3 |
-| ML | 4 | 0 | 0 | 4 |
-| Infrastructure | 8 | 0 | 0 | 8 |
-| Architecture | 4 | 0 | 0 | 4 |
-| Logic/Knowledge | 0 | 3 | 0 | 3 |
-| Execution | 0 | 0 | 3 | 3 |
-| **Total** | **24** | **3** | **3** | **30** |
+| Paper | Registry | Central Result | KBs Specified |
+|-------|----------|----------------|--------------|
+| VDR-1 | @HOWL-VDR-1-2026 | Exact arithmetic | 0 (library) |
+| VDR-2 | @HOWL-VDR-2-2026 | 15 domains tested | 0 (gyms) |
+| VDR-3 | @HOWL-VDR-3-2026 | 23 domains, no boundaries | 0 (gyms) |
+| VDR-4 | @HOWL-VDR-4-2026 | Working transformer | 0 (modules) |
+| VDR-5 | @HOWL-VDR-5-2026 | KB architecture | ~20 KB types |
+| VDR-6 | @HOWL-VDR-6-2026 | 255 primitives, execution | ~10 KB types |
+| **VDR-7** | **@HOWL-VDR-7-2026** | **Complete lifecycle** | **~30 KB types** |
+| **Total** | | | **~60 KB types** |
 
-New VDR-6 modules: `primitives.py` (pure primitive implementations), `operational.py` (operational primitives and grant checking), `command.py` (command token parsing and execution).
+### S.2 Complete Module Count
 
-### S.2 Complete Test Count
+| Layer | Count | Source Paper |
+|-------|-------|-------------|
+| Arithmetic | 5 | VDR-1 |
+| Transcendental | 3 | VDR-4 |
+| ML | 4 | VDR-4 |
+| Infrastructure | 8 | VDR-4 |
+| Architecture | 4 | VDR-4 |
+| Logic/Knowledge | 3 | VDR-5 |
+| Execution | 3 | VDR-6 |
+| Lifecycle | 4 (new) | VDR-7 |
+| **Total** | **34** | |
 
-| Source | Tests | Passed | Failed (test error) | Failed (VDR error) |
-|--------|-------|--------|--------------------|--------------------|
-| VDR-1 core tests | 68 | 68 | 0 | 0 |
-| VDR-2 gyms (15 domains) | 282 | 276 | 6 | 0 |
-| VDR-3 gyms (8 domains) | 157 | 152 | 5 | 0 |
-| VDR-4 ML stack | 198 | 196 | 2 | 0 |
-| VDR-6 pure primitives (planned) | 648 | — | — | — |
-| VDR-6 operational (planned) | 132 | — | — | — |
-| VDR-6 integration (planned) | 30+ | — | — | — |
-| **Existing total** | **705** | **692** | **13** | **0** |
-| **Planned total** | **~1515** | — | — | — |
+New VDR-7 modules: `data_pipeline.py` (sourcing, corpus prep, tokenization), `training_lifecycle.py` (training orchestration, checkpointing, scheduling), `feedback.py` (collection, reward modeling, alignment), `deployment.py` (serving config, monitoring, updates, rollback).
 
-### S.3 Complete Primitive Count
+### S.3 Complete Primitive Count (Post VDR-6-A1)
 
-| Type | Categories | Primitives | Authorization |
-|------|-----------|-----------|--------------|
-| Pure | 14 | 218 | None required |
-| Operational | 6 | 44 | Positive grant required |
-| **Total** | **20** | **262** | |
+| Type | Count | Grant Required |
+|------|-------|---------------|
+| Pure | 211 | No |
+| Operational | 44 | Yes |
+| **Total** | **255** | |
 
-### S.4 Complete Paper Series
+### S.4 Complete Test Count
 
-| Paper | Registry | Pages | Central Result |
-|-------|----------|-------|----------------|
-| VDR-1 | @HOWL-VDR-1-2026 | 14+19 appendices | Exact arithmetic system |
-| VDR-2 | @HOWL-VDR-2-2026 | 24+17 appendices | 15 domains tested |
-| VDR-3 | @HOWL-VDR-3-2026 | 17+8 appendices | 23 domains, no unique boundaries |
-| VDR-4 | @HOWL-VDR-4-2026 | 16+4 appendices | Working exact transformer |
-| VDR-5 | @HOWL-VDR-5-2026 | 17+15 appendices + addendum | Prolog KB architecture spec |
-| VDR-6 | @HOWL-VDR-6-2026 | 16+19 appendices | 262 primitives, execution layer spec |
-| MATH-3 | @HOWL-MATH-3-2026 | 12+3 appendices | Elliptic integrals, Borwein acceleration |
-| MATH-4 | @HOWL-MATH-4-2026 | 11+2 appendices | Q335 universal basis |
+| Source | Tests | Passed | VDR Errors |
+|--------|-------|--------|-----------|
+| VDR-1 through VDR-4 | 705 | 692 | 0 |
+| VDR-6 pure (planned) | 615 | — | — |
+| VDR-6 operational (planned) | 132 | — | — |
+| VDR-7 lifecycle (planned) | ~200 | — | — |
+| **Total planned** | **~1652** | — | — |
 
 ---
 
-**END VDR-6 EXTENDED APPENDIX TABLES**
+**END VDR-7 EXTENDED APPENDIX TABLES**
+
