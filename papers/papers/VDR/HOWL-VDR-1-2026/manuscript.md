@@ -1018,3 +1018,648 @@ Left Riemann error: $O(1/n)$. Trapezoidal error: $O(1/n^2)$. All values exact VD
 
 ---
 
+## Appendix E. Complete Normalization Examples
+
+### E.1 Sign Normalization
+
+| Input | Normalized | Rule Applied |
+|-------|-----------|-------------|
+| $[1, -2, 0]$ | $[-1, 2, 0]$ | Negate both V and D when D < 0 |
+| $[-3, -5, 0]$ | $[3, 5, 0]$ | Negate both V and D when D < 0 |
+| $[0, -7, 0]$ | $[0, 7, 0]$ | Negate both, V stays 0 |
+| $[1, 2, 0]$ | $[1, 2, 0]$ | D already positive, no change |
+| $[-4, 3, 0]$ | $[-4, 3, 0]$ | D positive, negative V preserved |
+
+### E.2 GCD Reduction
+
+| Input | gcd(|V|, |D|) | Normalized | Projection |
+|-------|--------------|-----------|------------|
+| $[2, 4, 0]$ | 2 | $[1, 2, 0]$ | $1/2$ |
+| $[6, 15, 0]$ | 3 | $[2, 5, 0]$ | $2/5$ |
+| $[12, 8, 0]$ | 4 | $[3, 2, 0]$ | $3/2$ |
+| $[0, 13, 0]$ | 13 | $[0, 1, 0]$ | $0$ |
+| $[7, 1, 0]$ | 1 | $[7, 1, 0]$ | $7$ |
+| $[100, 100, 0]$ | 100 | $[1, 1, 0]$ | $1$ |
+| $[-6, 9, 0]$ | 3 | $[-2, 3, 0]$ | $-2/3$ |
+| $[35, 49, 0]$ | 7 | $[5, 7, 0]$ | $5/7$ |
+
+### E.3 Combined Sign and GCD
+
+| Input | After Sign | After GCD | Final |
+|-------|-----------|-----------|-------|
+| $[6, -15, 0]$ | $[-6, 15, 0]$ | $[-2, 5, 0]$ | $[-2, 5, 0]$ |
+| $[-4, -6, 0]$ | $[4, 6, 0]$ | $[2, 3, 0]$ | $[2, 3, 0]$ |
+| $[-10, -25, 0]$ | $[10, 25, 0]$ | $[2, 5, 0]$ | $[2, 5, 0]$ |
+| $[0, -1, 0]$ | $[0, 1, 0]$ | $[0, 1, 0]$ | $[0, 1, 0]$ |
+
+---
+
+## Appendix F. Complete Closed Arithmetic Tables
+
+### F.1 Addition
+
+| A | B | A + B (raw) | Normalized | Projection Check |
+|---|---|------------|-----------|-----------------|
+| $[1,2,0]$ | $[1,3,0]$ | $[5,6,0]$ | $[5,6,0]$ | $1/2 + 1/3 = 5/6$ |
+| $[1,4,0]$ | $[1,4,0]$ | $[8,16,0]$ | $[1,2,0]$ | $1/4 + 1/4 = 1/2$ |
+| $[2,3,0]$ | $[3,4,0]$ | $[17,12,0]$ | $[17,12,0]$ | $2/3 + 3/4 = 17/12$ |
+| $[1,2,0]$ | $[-1,2,0]$ | $[0,4,0]$ | $[0,1,0]$ | $1/2 + (-1/2) = 0$ |
+| $[5,6,0]$ | $[1,6,0]$ | $[36,36,0]$ | $[1,1,0]$ | $5/6 + 1/6 = 1$ |
+| $[0,1,0]$ | $[7,11,0]$ | $[7,11,0]$ | $[7,11,0]$ | $0 + 7/11 = 7/11$ |
+| $[1,7,0]$ | $[1,13,0]$ | $[20,91,0]$ | $[20,91,0]$ | $1/7 + 1/13 = 20/91$ |
+| $[-2,3,0]$ | $[-4,5,0]$ | $[-22,15,0]$ | $[-22,15,0]$ | $-2/3 + (-4/5) = -22/15$ |
+
+### F.2 Subtraction
+
+| A | B | A − B (raw) | Normalized | Projection Check |
+|---|---|------------|-----------|-----------------|
+| $[3,4,0]$ | $[1,2,0]$ | $[2,8,0]$ | $[1,4,0]$ | $3/4 - 1/2 = 1/4$ |
+| $[1,2,0]$ | $[1,3,0]$ | $[1,6,0]$ | $[1,6,0]$ | $1/2 - 1/3 = 1/6$ |
+| $[1,3,0]$ | $[1,2,0]$ | $[-1,6,0]$ | $[-1,6,0]$ | $1/3 - 1/2 = -1/6$ |
+| $[5,7,0]$ | $[5,7,0]$ | $[0,49,0]$ | $[0,1,0]$ | $5/7 - 5/7 = 0$ |
+| $[1,1,0]$ | $[1,3,0]$ | $[2,3,0]$ | $[2,3,0]$ | $1 - 1/3 = 2/3$ |
+| $[0,1,0]$ | $[3,5,0]$ | $[-3,5,0]$ | $[-3,5,0]$ | $0 - 3/5 = -3/5$ |
+
+### F.3 Multiplication
+
+| A | B | A × B (raw) | Normalized | Projection Check |
+|---|---|------------|-----------|-----------------|
+| $[2,3,0]$ | $[3,5,0]$ | $[6,15,0]$ | $[2,5,0]$ | $2/3 \times 3/5 = 2/5$ |
+| $[1,2,0]$ | $[1,2,0]$ | $[1,4,0]$ | $[1,4,0]$ | $1/2 \times 1/2 = 1/4$ |
+| $[7,11,0]$ | $[13,17,0]$ | $[91,187,0]$ | $[91,187,0]$ | $7/11 \times 13/17 = 91/187$ |
+| $[5,1,0]$ | $[1,5,0]$ | $[5,5,0]$ | $[1,1,0]$ | $5 \times 1/5 = 1$ |
+| $[0,3,0]$ | $[7,11,0]$ | $[0,33,0]$ | $[0,1,0]$ | $0 \times 7/11 = 0$ |
+| $[-2,3,0]$ | $[3,4,0]$ | $[-6,12,0]$ | $[-1,2,0]$ | $-2/3 \times 3/4 = -1/2$ |
+| $[-1,2,0]$ | $[-1,3,0]$ | $[1,6,0]$ | $[1,6,0]$ | $-1/2 \times -1/3 = 1/6$ |
+| $[3,7,0]$ | $[1,1,0]$ | $[3,7,0]$ | $[3,7,0]$ | $3/7 \times 1 = 3/7$ |
+
+### F.4 Division
+
+| A | B | A ÷ B (raw) | Normalized | Projection Check |
+|---|---|------------|-----------|-----------------|
+| $[2,3,0]$ | $[4,5,0]$ | $[10,12,0]$ | $[5,6,0]$ | $2/3 \div 4/5 = 5/6$ |
+| $[1,2,0]$ | $[1,3,0]$ | $[3,2,0]$ | $[3,2,0]$ | $1/2 \div 1/3 = 3/2$ |
+| $[1,1,0]$ | $[3,1,0]$ | $[1,3,0]$ | $[1,3,0]$ | $1 \div 3 = 1/3$ |
+| $[0,5,0]$ | $[7,11,0]$ | $[0,35,0]$ | $[0,1,0]$ | $0 \div 7/11 = 0$ |
+| $[-3,4,0]$ | $[2,5,0]$ | $[-15,8,0]$ | $[-15,8,0]$ | $-3/4 \div 2/5 = -15/8$ |
+| $[5,6,0]$ | $[5,6,0]$ | $[30,30,0]$ | $[1,1,0]$ | $5/6 \div 5/6 = 1$ |
+| $[1,2,0]$ | $[0,3,0]$ | FAIL | — | Division by zero |
+
+---
+
+## Appendix G. Complete Rebase Tables
+
+### G.1 Closed Rebase (Successful)
+
+| Source | Target D | VB/D | Result | Normalized | Projection |
+|--------|----------|------|--------|-----------|------------|
+| $[1,2,0]$ | 4 | 2 | $[2,4,0]$ | $[1,2,0]$ | $1/2$ |
+| $[1,2,0]$ | 6 | 3 | $[3,6,0]$ | $[1,2,0]$ | $1/2$ |
+| $[1,2,0]$ | 8 | 4 | $[4,8,0]$ | $[1,2,0]$ | $1/2$ |
+| $[1,2,0]$ | 10 | 5 | $[5,10,0]$ | $[1,2,0]$ | $1/2$ |
+| $[3,4,0]$ | 8 | 6 | $[6,8,0]$ | $[3,4,0]$ | $3/4$ |
+| $[3,4,0]$ | 12 | 9 | $[9,12,0]$ | $[3,4,0]$ | $3/4$ |
+| $[2,3,0]$ | 9 | 6 | $[6,9,0]$ | $[2,3,0]$ | $2/3$ |
+| $[5,1,0]$ | 7 | 35 | $[35,7,0]$ | $[5,1,0]$ | $5$ |
+
+### G.2 Closed Rebase (Failed — Triggers Active)
+
+| Source | Target D | VB/D | Reason |
+|--------|----------|------|--------|
+| $[1,2,0]$ | 3 | $3/2$ | Not integer |
+| $[1,2,0]$ | 5 | $5/2$ | Not integer |
+| $[1,2,0]$ | 7 | $7/2$ | Not integer |
+| $[1,3,0]$ | 2 | $2/3$ | Not integer |
+| $[1,3,0]$ | 4 | $4/3$ | Not integer |
+| $[2,7,0]$ | 3 | $6/7$ | Not integer |
+| $[3,5,0]$ | 4 | $12/5$ | Not integer |
+
+### G.3 Active Rebase Construction
+
+| Source | Target D | N = VB | Q | S | Mismatch | Result | Projection Check |
+|--------|----------|--------|---|---|----------|--------|-----------------|
+| $[1,2,0]$ | 3 | 3 | 1 | 1 | $[1,2,0]$ | $[1,3,[1,2,0]]$ | $(1+1/2)/3 = 1/2$ ✓ |
+| $[1,2,0]$ | 5 | 5 | 2 | 1 | $[1,2,0]$ | $[2,5,[1,2,0]]$ | $(2+1/2)/5 = 1/2$ ✓ |
+| $[1,2,0]$ | 7 | 7 | 3 | 1 | $[1,2,0]$ | $[3,7,[1,2,0]]$ | $(3+1/2)/7 = 1/2$ ✓ |
+| $[1,3,0]$ | 2 | 2 | 0 | 2 | $[2,3,0]$ | $[0,2,[2,3,0]]$ | $(0+2/3)/2 = 1/3$ ✓ |
+| $[1,3,0]$ | 4 | 4 | 1 | 1 | $[1,3,0]$ | $[1,4,[1,3,0]]$ | $(1+1/3)/4 = 1/3$ ✓ |
+| $[2,7,0]$ | 3 | 6 | 0 | 6 | $[6,7,0]$ | $[0,3,[6,7,0]]$ | $(0+6/7)/3 = 2/7$ ✓ |
+| $[5,6,0]$ | 4 | 20 | 3 | 2 | $[2,6,0]$ | $[3,4,[1,3,0]]$ | $(3+1/3)/4 = 5/6$ ✓ |
+
+---
+
+## Appendix H. Complete Lift Tables
+
+### H.1 Atomic Lift
+
+| Remainder | Scale k | lift(r, k) |
+|-----------|---------|------------|
+| 0 | 3 | 0 |
+| 1 | 3 | 3 |
+| -2 | 5 | -10 |
+| 4 | -2 | -8 |
+| 7 | 1 | 7 |
+| -1 | -1 | 1 |
+| 3 | 7 | 21 |
+| 0 | -5 | 0 |
+
+### H.2 Child VDR Lift
+
+| Child | Scale k | lift(child, k) | V scaled | D preserved | R scaled |
+|-------|---------|----------------|----------|-------------|----------|
+| $[1,3,0]$ | 2 | $[2,3,0]$ | $1 \to 2$ | 3 | $0 \to 0$ |
+| $[1,3,0]$ | 5 | $[5,3,0]$ | $1 \to 5$ | 3 | $0 \to 0$ |
+| $[2,5,1]$ | 3 | $[6,5,3]$ | $2 \to 6$ | 5 | $1 \to 3$ |
+| $[1,7,-2]$ | 4 | $[4,7,-8]$ | $1 \to 4$ | 7 | $-2 \to -8$ |
+| $[3,4,0]$ | -1 | $[-3,4,0]$ | $3 \to -3$ | 4 | $0 \to 0$ |
+| $[0,1,0]$ | 100 | $[0,1,0]$ | $0 \to 0$ | 1 | $0 \to 0$ |
+
+### H.3 Composite Remainder Lift
+
+| Remainder | Scale k | Result |
+|-----------|---------|--------|
+| $1 + [1,3,0]$ | 2 | $2 + [2,3,0]$ |
+| $0 + [1,2,0] + [1,5,0]$ | 3 | $0 + [3,2,0] + [3,5,0]$ |
+| $-1 + [2,7,0]$ | 4 | $-4 + [8,7,0]$ |
+| $3 + [1,3,0] + [1,4,0]$ | -1 | $-3 + [-1,3,0] + [-1,4,0]$ |
+
+### H.4 Lift Composition Verification
+
+| R | a | b | lift(lift(R,a),b) | lift(R,a·b) | Equal |
+|---|---|---|-------------------|-------------|-------|
+| 1 | 3 | 5 | 15 | 15 | ✓ |
+| $[1,3,0]$ | 2 | 4 | $[8,3,0]$ | $[8,3,0]$ | ✓ |
+| $1 + [1,5,0]$ | 3 | -2 | $-6 + [-6,5,0]$ | $-6 + [-6,5,0]$ | ✓ |
+
+---
+
+## Appendix I. Complete Active Arithmetic Tables
+
+### I.1 Same-Denominator Addition
+
+| A | B | A + B (raw) | Normalized | V sum | R combined |
+|---|---|------------|-----------|-------|------------|
+| $[2,5,1]$ | $[3,5,-1]$ | $[5,5,0]$ | $[1,1,0]$ | 5 | $1+(-1)=0$ |
+| $[1,7,2]$ | $[3,7,1]$ | $[4,7,3]$ | $[4,7,3]$ | 4 | $2+1=3$ |
+| $[0,3,1]$ | $[0,3,2]$ | $[0,3,3]$ | $[0,3,3]$ | 0 | $1+2=3$ |
+| $[4,5,-2]$ | $[1,5,2]$ | $[5,5,0]$ | $[1,1,0]$ | 5 | $-2+2=0$ |
+| $[1,3,0]$ | $[2,3,1]$ | $[3,3,1]$ | $[3,3,1]$ | 3 | $0+1=1$ |
+
+### I.2 Different-Denominator Addition
+
+| A | B | Shared D | V cross | R lifted | Result projection |
+|---|---|----------|---------|----------|------------------|
+| $[1,2,1]$ | $[1,3,0]$ | 6 | $1 \cdot 3 + 1 \cdot 2 = 5$ | $\mathrm{lift}(1,3)=3$ | $(5+3)/6 = 4/3$ |
+| $[2,5,1]$ | $[1,7,0]$ | 35 | $2 \cdot 7 + 1 \cdot 5 = 19$ | $\mathrm{lift}(1,7)=7$ | $(19+7)/35 = 26/35$ |
+
+### I.3 Active Multiplication Cross-Terms
+
+For $[V_1, D_1, R_1] \times [V_2, D_2, R_2]$:
+
+| A | B | V₁V₂ | New D | Left (V₁·R₂) | Right (V₂·R₁) | Cross (R₁·R₂) | Result proj |
+|---|---|------|-------|--------------|----------------|----------------|-------------|
+| $[2,5,1]$ | $[3,7,-1]$ | 6 | 35 | $2 \cdot (-1) = -2$ | $3 \cdot 1 = 3$ | $1 \cdot (-1) = -1$ | $6/35$ |
+| $[1,2,1]$ | $[1,3,1]$ | 1 | 6 | $1 \cdot 1 = 1$ | $1 \cdot 1 = 1$ | $1 \cdot 1 = 1$ | $2/3$ |
+| $[2,5,1]$ | $[3,1,0]$ | 6 | 5 | $2 \cdot 0 = 0$ | $3 \cdot 1 = 3$ | $1 \cdot 0 = 0$ | $9/5$ |
+| $[1,2,0]$ | $[1,3,1]$ | 1 | 6 | $1 \cdot 1 = 1$ | $1 \cdot 0 = 0$ | $0 \cdot 1 = 0$ | $1/3$ |
+
+### I.4 Active Division
+
+| A | B | B closed? | Method | Result proj |
+|---|---|-----------|--------|-------------|
+| $[2,5,1]$ | $[3,7,0]$ | Yes | Multiply by $[7,3,0]$ | $7/5$ |
+| $[1,2,0]$ | $[1,3,1]$ | No | Project B → $2/3$, invert → $[3,2,0]$ | $3/4$ |
+| $[2,5,1]$ | $[1,3,1]$ | No | Project B → $2/3$, invert → $[3,2,0]$ | $9/10$ |
+
+### I.5 Negation
+
+| Input | Negated | V negated | R negated |
+|-------|---------|-----------|-----------|
+| $[1,2,0]$ | $[-1,2,0]$ | $1 \to -1$ | $0 \to 0$ |
+| $[2,5,1]$ | $[-2,5,-1]$ | $2 \to -2$ | $1 \to -1$ |
+| $[1,3,[1,6,0]]$ | $[-1,3,[-1,6,0]]$ | $1 \to -1$ | child negated |
+| $[0,1,0]$ | $[0,1,0]$ | $0 \to 0$ | $0 \to 0$ |
+
+---
+
+## Appendix J. Complete Equality Tables
+
+### J.1 Structural Equality
+
+| A | B | $A \equiv_s B$ | Reason |
+|---|---|---------------|--------|
+| $[1,2,0]$ | $[1,2,0]$ | True | Identical |
+| $[2,4,0]$ | $[1,2,0]$ | False | Different V (2 vs 1), different D (4 vs 2) |
+| $[1,-2,0]$ | $[-1,2,0]$ | False | Different V, different D sign |
+| $[2,5,1]$ | $[2,5,1]$ | True | Identical |
+| $[2,5,1]$ | $[3,5,0]$ | False | Different V, different R |
+| $[1,2,[1,3,0]]$ | $[1,2,[1,3,0]]$ | True | Identical including children |
+| $[1,2,[1,3,0]+[1,5,0]]$ | $[1,2,[1,5,0]+[1,3,0]]$ | False | Child order differs |
+
+### J.2 Value Equality
+
+| A | B | $A \equiv_n B$ | Reason |
+|---|---|---------------|--------|
+| $[1,2,0]$ | $[1,2,0]$ | True | Identical |
+| $[2,4,0]$ | $[1,2,0]$ | True | GCD reduces $[2,4,0]$ to $[1,2,0]$ |
+| $[1,-2,0]$ | $[-1,2,0]$ | True | Sign normalization |
+| $[6,15,0]$ | $[2,5,0]$ | True | GCD reduces both to $[2,5,0]$ |
+| $[-6,-9,0]$ | $[2,3,0]$ | True | Sign + GCD |
+| $[2,5,1]$ | $[3,5,0]$ | False | Different remainder state |
+| $[2,5,1]$ | $[2,5,-1]$ | False | Different remainder sign |
+| $[0,7,0]$ | $[0,13,0]$ | True | Both normalize to $[0,1,0]$ |
+| $[1,2,[1,3,0]+[1,5,0]]$ | $[1,2,[1,5,0]+[1,3,0]]$ | True | Child order normalized |
+
+---
+
+## Appendix K. Complete Structural Metrics Tables
+
+### K.1 Depth
+
+| Object | Depth | Explanation |
+|--------|-------|-------------|
+| $[1,2,0]$ | 0 | Closed, no nesting |
+| $[5,1,0]$ | 0 | Closed integer |
+| $[2,5,1]$ | 0 | Atomic remainder, no child VDRs |
+| $[1,3,[1,6,0]]$ | 1 | One level of child nesting |
+| $[1,2,[1,3,[1,5,0]]]$ | 2 | Child contains a child |
+| $[1,2,1+[1,3,0]+[1,7,0]]$ | 1 | Multiple children, all at depth 1 |
+| $[1,2,[1,3,[1,4,[1,5,0]]]]$ | 3 | Three levels deep |
+
+### K.2 Structural Size
+
+| Object | Node count | Atomic bases | Total size |
+|--------|-----------|-------------|------------|
+| $[1,2,0]$ | 1 | 1 | 2 |
+| $[5,1,0]$ | 1 | 1 | 2 |
+| $[2,5,1]$ | 1 | 1 | 2 |
+| $[1,3,[1,6,0]]$ | 2 | 2 | 4 |
+| $[1,2,1+[1,3,0]+[1,7,0]]$ | 3 | 3 | 6 |
+| $[1,2,[1,3,[1,5,0]]]$ | 3 | 3 | 6 |
+| $[2,5,1+[1,4,0]+[1,2,0]]$ | 3 | 3 | 6 |
+
+Size formula: each VDR node contributes 1, each atomic remainder base contributes 1. $\mathrm{size}([V,D,R]) = 1 + \mathrm{size}(R)$, $\mathrm{size}(r) = 1$, $\mathrm{size}(r + X_1 + \dots + X_n) = 1 + \sum \mathrm{size}(X_i)$.
+
+### K.3 Denominator Complexity
+
+| Object | $\Delta$ (denom set) | $u$ (distinct) | $s$ (sum) | $m$ (count) | Tuple |
+|--------|---------------------|----------------|-----------|-------------|-------|
+| $[1,2,0]$ | $\{2\}$ | 1 | 2 | 1 | $(1,2,1)$ |
+| $[5,1,0]$ | $\{1\}$ | 1 | 1 | 1 | $(1,1,1)$ |
+| $[1,3,[1,6,0]]$ | $\{3,6\}$ | 2 | 9 | 2 | $(2,9,2)$ |
+| $[3,4,[1,4,0]]$ | $\{4,4\}$ | 1 | 8 | 2 | $(1,8,2)$ |
+| $[3,4,[1,12,0]]$ | $\{4,12\}$ | 2 | 16 | 2 | $(2,16,2)$ |
+| $[1,6,[1,6,0]]$ | $\{6,6\}$ | 1 | 12 | 2 | $(1,12,2)$ |
+| $[1,6,[1,3,0]+[1,2,0]]$ | $\{6,3,2\}$ | 3 | 11 | 3 | $(3,11,3)$ |
+| $[1,2,1+[1,3,0]+[1,7,0]]$ | $\{2,3,7\}$ | 3 | 12 | 3 | $(3,12,3)$ |
+
+Comparison example: $[3,4,[1,4,0]]$ with tuple $(1,8,2)$ is simpler than $[3,4,[1,12,0]]$ with tuple $(2,16,2)$ because fewer distinct denominators.
+
+---
+
+## Appendix L. Newton-Raphson Convergence Detail
+
+### L.1 $\sqrt{2}$: $x_{n+1} = (x_n + 2/x_n)/2$, $x_0 = 1$
+
+| Depth | Fraction | Numerator digits | Denominator digits | $x^2$ | $x^2 - 2$ denominator digits | Float approx |
+|-------|----------|-----------------|-------------------|-------|------------------------------|-------------|
+| 0 | $1/1$ | 1 | 1 | $1$ | 0 | 1.0 |
+| 1 | $3/2$ | 1 | 1 | $9/4$ | 0 | 1.5 |
+| 2 | $17/12$ | 2 | 2 | $289/144$ | 2 | 1.41667 |
+| 3 | $577/408$ | 3 | 3 | $332929/166464$ | 5 | 1.41422 |
+| 4 | $665857/470832$ | 6 | 6 | $\sim 4.4 \times 10^{11}/\sim 2.2 \times 10^{11}$ | 11 | 1.41421356237 |
+| 5 | 12-digit / 12-digit | 12 | 12 | — | 23 | 1.41421356237310 |
+| 6 | 24-digit / 24-digit | 24 | 24 | — | 48 | 1.41421356237310 |
+| 7 | 49-digit / 49-digit | 49 | 49 | — | 97 | 1.41421356237310 |
+
+Correct digits of $\sqrt{2}$ approximately double at each step. Fraction size grows geometrically. Every fraction is exact — not a truncated decimal.
+
+### L.2 $\sqrt{3}$: $x_{n+1} = (x_n + 3/x_n)/2$, $x_0 = 1$
+
+| Depth | Fraction | $x^2 - 3$ | Float approx |
+|-------|----------|-----------|-------------|
+| 0 | $1$ | $-2$ | 1.0 |
+| 1 | $2$ | $1$ | 2.0 |
+| 2 | $7/4$ | $1/16$ | 1.75 |
+| 3 | $97/56$ | $1/3136$ | 1.73214 |
+| 4 | $18817/10864$ | $1/118026496$ | 1.73205081 |
+| 5 | $708158977/408855776$ | $1/\sim 1.67 \times 10^{17}$ | 1.73205080757 |
+
+### L.3 $\sqrt{5}$: $x_{n+1} = (x_n + 5/x_n)/2$, $x_0 = 2$
+
+| Depth | Fraction | $x^2 - 5$ | Float approx |
+|-------|----------|-----------|-------------|
+| 0 | $2$ | $-1$ | 2.0 |
+| 1 | $9/4$ | $1/16$ | 2.25 |
+| 2 | $161/72$ | $1/5184$ | 2.23611 |
+| 3 | $51841/23184$ | $1/537517056$ | 2.23607 |
+
+---
+
+## Appendix M. Discrete Calculus Detail Tables
+
+### M.1 Discrete Derivative of $f(x) = x^2$
+
+| $x$ | $h$ | $D_h f(x)$ | Exact fraction | Analytical $f'(x)$ | Discretization error |
+|-----|-----|-----------|----------------|--------------------|--------------------|
+| 0 | 1/10 | 1/10 | $1/10$ | 0 | $1/10$ |
+| 0 | 1/100 | 1/100 | $1/100$ | 0 | $1/100$ |
+| 1 | 1/10 | 21/10 | $21/10$ | 2 | $1/10$ |
+| 1 | 1/100 | 201/100 | $201/100$ | 2 | $1/100$ |
+| 2 | 1/10 | 41/10 | $41/10$ | 4 | $1/10$ |
+| 2 | 1/1000 | 4001/1000 | $4001/1000$ | 4 | $1/1000$ |
+| 3 | 1/1000 | 6001/1000 | $6001/1000$ | 6 | $1/1000$ |
+| 3 | 1/1000000 | 6000001/1000000 | $6000001/1000000$ | 6 | $1/1000000$ |
+
+Discretization error = $h$ exactly. The analytical derivative of $x^2$ is $2x$. The discrete derivative is $2x + h$. The difference is exactly $h$.
+
+### M.2 Discrete Derivative of $f(x) = x^3$
+
+| $x$ | $h$ | $D_h f(x)$ | Analytical $f'(x)$ | Error |
+|-----|-----|-----------|--------------------|----|
+| 1 | 1/100 | $30301/10000$ | 3 | $301/10000$ |
+| 2 | 1/100 | $120601/10000$ | 12 | $601/10000$ |
+| 3 | 1/100 | $270901/10000$ | 27 | $901/10000$ |
+
+Analytical: $3x^2$. Discrete: $3x^2 + 3xh + h^2$. Error: $3xh + h^2$.
+
+### M.3 Second Discrete Derivative of $f(x) = x^3$
+
+| $x$ | $h$ | $D_h^2 f(x)$ | Analytical $f''(x)$ | Error |
+|-----|-----|-------------|--------------------|----|
+| 0 | 1/100 | $3/50$ | 0 | $3/50$ |
+| 1 | 1/100 | $303/50$ | 6 | $3/50$ |
+| 2 | 1/100 | $603/50$ | 12 | $3/50$ |
+| 3 | 1/100 | $903/50$ | 18 | $3/50$ |
+
+Error is constant $6h = 3/50$ for all $x$. This is the exact discretization artifact.
+
+### M.4 Left Riemann Integral of $f(x) = x^2$ from 0 to 1
+
+| $n$ | $h$ | Exact result | Decimal | Error from $1/3$ | Error order |
+|-----|-----|-------------|---------|-----------------|-------------|
+| 5 | 1/5 | $6/25$ | 0.24 | $-7/75$ | $O(1/n)$ |
+| 10 | 1/10 | $57/200$ | 0.285 | $-29/600$ | $O(1/n)$ |
+| 20 | 1/20 | $247/800$ | 0.30875 | $-53/2400$ | $O(1/n)$ |
+| 50 | 1/50 | $1617/5000$ | 0.3234 | $-127/15000$ | $O(1/n)$ |
+| 100 | 1/100 | $6567/20000$ | 0.32835 | $-553/60000$ | $O(1/n)$ |
+| 1000 | 1/1000 | $665667/2000000$ | 0.332834 | $-5503/6000000$ | $O(1/n)$ |
+
+### M.5 Trapezoidal Integral of $f(x) = x^2$ from 0 to 1
+
+| $n$ | $h$ | Exact result | Decimal | Error from $1/3$ | Error order |
+|-----|-----|-------------|---------|-----------------|-------------|
+| 5 | 1/5 | $17/50$ | 0.34 | $1/150$ | $O(1/n^2)$ |
+| 10 | 1/10 | $67/200$ | 0.335 | $1/600$ | $O(1/n^2)$ |
+| 20 | 1/20 | $267/800$ | 0.33375 | $1/2400$ | $O(1/n^2)$ |
+| 50 | 1/50 | $1667/5000$ | 0.3334 | $1/15000$ | $O(1/n^2)$ |
+| 100 | 1/100 | $6667/20000$ | 0.33335 | $1/60000$ | $O(1/n^2)$ |
+| 1000 | 1/1000 | $666667/2000000$ | 0.333334 | $1/6000000$ | $O(1/n^2)$ |
+
+Trapezoidal error is exactly $h^2/2 = 1/(2n^2)$ for $x^2$ on $[0,1]$. Every entry is an exact VDR rational.
+
+### M.6 Finite Difference Table for $f(x) = x^3$
+
+| $x$ | $f(x)$ | $\Delta f$ | $\Delta^2 f$ | $\Delta^3 f$ | $\Delta^4 f$ |
+|-----|---------|-----------|--------------|--------------|--------------|
+| 0 | 0 | 1 | 6 | 6 | 0 |
+| 1 | 1 | 7 | 12 | 6 | |
+| 2 | 8 | 19 | 18 | | |
+| 3 | 27 | 37 | | | |
+| 4 | 64 | | | | |
+
+### M.7 Finite Difference Table for $f(x) = x^4$
+
+| $x$ | $f(x)$ | $\Delta f$ | $\Delta^2 f$ | $\Delta^3 f$ | $\Delta^4 f$ | $\Delta^5 f$ |
+|-----|---------|-----------|--------------|--------------|--------------|--------------|
+| 0 | 0 | 1 | 14 | 36 | 24 | 0 |
+| 1 | 1 | 15 | 50 | 60 | 24 | |
+| 2 | 16 | 65 | 110 | 84 | | |
+| 3 | 81 | 175 | 194 | | | |
+| 4 | 256 | 369 | | | | |
+| 5 | 625 | | | | | |
+
+$\Delta^4(x^4) = 24 = 4!$ exactly. $\Delta^5(x^4) = 0$ exactly.
+
+---
+
+## Appendix N. Series Partial Sum Tables
+
+### N.1 Leibniz Series for $\pi/4$: $\sum_{k=0}^{N} (-1)^k/(2k+1)$
+
+| Terms ($N+1$) | Exact fraction | $4 \times$ fraction | $\pi$ approx | Digits correct |
+|---------------|---------------|---------------------|-------------|----------------|
+| 1 | $1$ | 4.0 | 3.14159... | 0 |
+| 2 | $2/3$ | 2.667 | | 0 |
+| 5 | $76/105$ | 2.895 | | 0 |
+| 10 | $263681/350175$ | 3.042 | | 1 |
+| 20 | large fraction | 3.091 | | 1 |
+| 50 | large fraction | 3.122 | | 1 |
+| 100 | large fraction | 3.132 | | 1 |
+| 500 | large fraction | 3.1396 | | 2 |
+| 1000 | large fraction | 3.14059 | | 3 |
+
+Leibniz converges at $O(1/N)$. Every partial sum is a single exact VDR rational. The "large fraction" entries have numerators and denominators exceeding 100 digits — fully exact, not truncated.
+
+### N.2 Basel Series for $\pi^2/6$: $\sum_{k=1}^{N} 1/k^2$
+
+| Terms ($N$) | Exact fraction | Approx | $\pi$ from $\sqrt{6 \cdot \mathrm{sum}}$ | Digits correct |
+|-------------|---------------|--------|------------------------------------------|----------------|
+| 1 | $1$ | 1.0 | 2.449 | 0 |
+| 5 | $5269/3600$ | 1.464 | 2.963 | 0 |
+| 10 | $1968329/1270080$ | 1.550 | 3.050 | 1 |
+| 50 | large fraction | 1.625 | 3.122 | 1 |
+| 100 | large fraction | 1.635 | 3.132 | 1 |
+| 1000 | large fraction | 1.6439 | 3.1406 | 2 |
+
+Converges at $O(1/N)$. Every partial sum exact.
+
+---
+
+## Appendix O. Hilbert Matrix Detail
+
+### O.1 Hilbert Matrix Elements ($n = 4$)
+
+$$H_4 = \begin{pmatrix} [1,1,0] & [1,2,0] & [1,3,0] & [1,4,0] \\ [1,2,0] & [1,3,0] & [1,4,0] & [1,5,0] \\ [1,3,0] & [1,4,0] & [1,5,0] & [1,6,0] \\ [1,4,0] & [1,5,0] & [1,6,0] & [1,7,0] \end{pmatrix}$$
+
+### O.2 Hilbert Matrix Determinant
+
+| Size | $\det(H_n)$ exact | Float approx |
+|------|--------------------|-------------|
+| 2 | $1/12$ | $8.33 \times 10^{-2}$ |
+| 3 | $1/2160$ | $4.63 \times 10^{-4}$ |
+| 4 | $1/6048000$ | $1.65 \times 10^{-7}$ |
+| 5 | $1/266716800000$ | $3.75 \times 10^{-12}$ |
+
+Every determinant is the exact reciprocal of an integer. VDR computes these exactly.
+
+### O.3 Inverse of $H_4$ (All Integer Entries)
+
+$$H_4^{-1} = \begin{pmatrix} 16 & -120 & 240 & -140 \\ -120 & 1200 & -2700 & 1680 \\ 240 & -2700 & 6480 & -4200 \\ -140 & 1680 & -4200 & 2800 \end{pmatrix}$$
+
+Every entry is an exact integer. This is a known property of the Hilbert matrix inverse that VDR recovers automatically from its exact arithmetic. Float-based inversion produces entries near these integers but contaminated by rounding error.
+
+### O.4 $H_4 \times H_4^{-1}$ Residual Comparison
+
+| Element | VDR result | numpy float64 result | numpy residual |
+|---------|-----------|---------------------|---------------|
+| (0,0) | $[1,1,0]$ exactly | 0.999999999999998 | $2 \times 10^{-15}$ |
+| (0,1) | $[0,1,0]$ exactly | $-3.6 \times 10^{-13}$ | $3.6 \times 10^{-13}$ |
+| (1,1) | $[1,1,0]$ exactly | 1.000000000001 | $10^{-12}$ |
+| (2,3) | $[0,1,0]$ exactly | $2.4 \times 10^{-12}$ | $2.4 \times 10^{-12}$ |
+| (3,3) | $[1,1,0]$ exactly | 0.999999999997 | $3 \times 10^{-12}$ |
+
+VDR: every element exactly correct. Float: off-diagonal residuals up to $10^{-12}$, growing with matrix size.
+
+---
+
+## Appendix P. Validity and Error Tables
+
+### P.1 Valid Raw Forms
+
+| Object | Valid | Closed | Active | Notes |
+|--------|-------|--------|--------|-------|
+| $[1,2,0]$ | ✓ | ✓ | | Standard rational |
+| $[2,4,0]$ | ✓ | ✓ | | Unnormalized but valid |
+| $[1,-2,0]$ | ✓ | ✓ | | Negative D valid in raw form |
+| $[-6,-9,0]$ | ✓ | ✓ | | Both negative, valid |
+| $[2,5,1]$ | ✓ | | ✓ | Atomic remainder |
+| $[1,3,[1,6,0]]$ | ✓ | | ✓ | Child in remainder |
+| $[0,1,0]$ | ✓ | ✓ | | Zero |
+| $[7,1,0]$ | ✓ | ✓ | | Integer |
+
+### P.2 Invalid Forms
+
+| Object | Error | Reason |
+|--------|-------|--------|
+| $[1,0,0]$ | ZeroDenominatorError | D = 0 |
+| $[1,0,5]$ | ZeroDenominatorError | D = 0 |
+| $[1.5, 2, 0]$ | InvalidStructureError | V not integer |
+| $["a", 2, 0]$ | InvalidStructureError | V not integer |
+| $[1, 2.0, 0]$ | InvalidStructureError | D not integer |
+
+### P.3 Operation Failures
+
+| Operation | Error | Reason |
+|-----------|-------|--------|
+| $[1,2,0] \div [0,3,0]$ | ArithmeticFailure | Division by zero |
+| $[1,2,0] \div [0,1,0]$ | ArithmeticFailure | Division by zero |
+| rebase to D=0 | RebaseError | Target denominator zero |
+| lift by k=0 | VDRError | Lift by zero invalid |
+| to_fraction() on functional | VDRError | Must resolve first |
+
+---
+
+## Appendix Q. JSON Serialization Examples
+
+### Q.1 Closed Object
+
+```json
+{
+  "v": 1,
+  "d": 2,
+  "r": {"base": 0, "children": []}
+}
+```
+
+### Q.2 Active Object with Atomic Remainder
+
+```json
+{
+  "v": 2,
+  "d": 5,
+  "r": {"base": 1, "children": []}
+}
+```
+
+### Q.3 Active Object with Child
+
+```json
+{
+  "v": 1,
+  "d": 3,
+  "r": {
+    "base": 0,
+    "children": [
+      {"v": 1, "d": 6, "r": {"base": 0, "children": []}}
+    ]
+  }
+}
+```
+
+### Q.4 Composite Remainder with Multiple Children
+
+```json
+{
+  "v": 2,
+  "d": 5,
+  "r": {
+    "base": 1,
+    "children": [
+      {"v": 1, "d": 3, "r": {"base": 0, "children": []}},
+      {"v": 1, "d": 7, "r": {"base": 0, "children": []}}
+    ]
+  }
+}
+```
+
+All serialization is lossless. `vdr_from_dict(vdr_to_dict(x))` produces an object structurally equal to $x$.
+
+---
+
+## Appendix R. LaTeX Export Examples
+
+| VDR Object | LaTeX Output | Rendered |
+|-----------|-------------|---------|
+| $[1,2,0]$ | `\frac{1}{2}` | $\frac{1}{2}$ |
+| $[5,1,0]$ | `5` | $5$ |
+| $[-3,4,0]$ | `\frac{-3}{4}` | $\frac{-3}{4}$ |
+| $[0,1,0]$ | `0` | $0$ |
+| $[22,7,0]$ | `\frac{22}{7}` | $\frac{22}{7}$ |
+| $[1,3,[1,6,0]]$ | `\frac{1}{3}\left\{\frac{1}{6}\right\}` | $\frac{1}{3}\left\{\frac{1}{6}\right\}$ |
+| $[2,5,1]$ | `\frac{2}{5}\left\{1\right\}` | $\frac{2}{5}\left\{1\right\}$ |
+
+Active objects display the remainder in braces $\{\}$ to distinguish completion structure from ordinary notation.
+
+---
+
+## Appendix S. Complete Operation Count for Benchmark Tasks
+
+### S.1 Return-to-Origin Test
+
+| Parameter | Value |
+|-----------|-------|
+| Start value | $[1, 7, 0]$ |
+| Step value | $[1, 13, 0]$ |
+| Forward operations | 100 additions |
+| Reverse operations | 100 subtractions |
+| Total operations | 200 |
+| Final value | $[1, 7, 0]$ |
+| Error | 0 (exact) |
+| Float equivalent error | $\sim 2.78 \times 10^{-16}$ |
+
+### S.2 Matrix Roundtrip Test
+
+| Parameter | Value |
+|-----------|-------|
+| Matrix A | $[[3/7, 1/13], [5/11, 2/3]]$ |
+| Matrix B | $[[7/3, 2/5], [1/9, 4/7]]$ |
+| Forward operations | 20 multiplications by B |
+| Reverse operations | 20 multiplications by $B^{-1}$ |
+| Total matrix multiplications | 40 |
+| Total scalar multiplications | $40 \times 8 = 320$ |
+| Total scalar additions | $40 \times 4 = 160$ |
+| Final matrix | Exactly A |
+| Error | 0 (exact) |
+
+### S.3 Hilbert Matrix Inversion
+
+| Parameter | $n = 3$ | $n = 4$ | $n = 5$ |
+|-----------|---------|---------|---------|
+| Matrix elements | 9 | 16 | 25 |
+| Cofactor matrices computed | 9 | 16 | 25 |
+| Determinant multiplications | 27 | 256 | 3125 |
+| Total scalar operations | ~100 | ~1000 | ~30000 |
+| $H \times H^{-1}$ residual | 0 | 0 | 0 |
+| $\mathrm{inv}(\mathrm{inv}(H)) = H$ | ✓ | ✓ | ✓ |
+

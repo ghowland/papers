@@ -1,4 +1,4 @@
-# manuscript.md
+# VDR: Exact Finite Arithmetic in Irreducible Triple Form
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,9 @@
 
 ## Abstract
 
+Floating-point and decimal arithmetic systems lose exact equality under repeated operations. This loss is structural — it comes from representing values as single scalars that discard intermediate structure at every step. This paper introduces VDR, an arithmetic system that represents every value as a finite tree of integer triples `[V, D, R]` where V is the value slot, D is the denominator frame, and R is the remainder — exact unresolved structure that scalar systems would discard. The remainder is not error. It is part of the value.
 
+The system provides exact rational arithmetic with zero drift over arbitrary operation chains, exact matrix inversion of ill-conditioned matrices where floating-point fails, recursive construction of irrational values where every expansion step is itself exact, and discrete calculus operators where every derivative and integral is an exact rational at every step size. A working Python implementation accompanies this paper. Every claim is verified by executable tests. The code is the specification.
 
 ---
 
@@ -47,7 +49,7 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-VDR-1-2026,
-  title={ manuscript.md },
+  title={ VDR: Exact Finite Arithmetic in Irreducible Triple Form },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
