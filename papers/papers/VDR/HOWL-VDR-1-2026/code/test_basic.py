@@ -5,7 +5,7 @@ Run:  python test_basic.py
 """
 
 from fractions import Fraction
-from vdr import VDR, Residual
+from vdr.vdr import VDR, Remainder
 
 def show(label, x):
     print("  %-12s  %s   (projects to %s)" % (label, x, x.to_fraction()))
@@ -163,9 +163,9 @@ assert r.is_closed, "active cancellation should produce closed result"
 section("10. Lift")
 # -------------------------------------------------------------------------
 
-r0 = Residual(1)
+r0 = Remainder(1)
 print("  lift(1, 3) = %s" % r0.lift(3))
-assert r0.lift(3) == Residual(3)
+assert r0.lift(3) == Remainder(3)
 
 child = VDR(1, 3)
 lifted = child._lift_vdr(2)

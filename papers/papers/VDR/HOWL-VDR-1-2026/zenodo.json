@@ -10,17 +10,13 @@
   "keywords": [
     "HOWL framework",
     "howland archive",
-    "discrete spacetime",
-    "game",
-    "zero free parameters",
-    "falsifiable physics",
-    "theoretical derivation"
+    "vdr"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-GAME-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/GAME/HOWL-GAME-1-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-1-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

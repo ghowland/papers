@@ -5,7 +5,7 @@ Exact finite discrete representation in irreducible triple form.
 A VDR object is [V, D, R] where:
     V ∈ ℤ           — value slot (settled numerator)
     D ∈ ℤ \ {0}     — denominator slot (frame)
-    R ∈ Residual     — remainder slot (exact unresolved state)
+    R ∈ Remainder     — remainder slot (exact unresolved state)
 
 R is either:
     an integer (atomic remainder), or
@@ -15,7 +15,7 @@ Recursion exists only in R. Every valid object is a finite tree.
 No limits, no approximation, no infinity.
 
 Closed object:  [V, D, 0]  — projects to V/D exactly
-Active object:  [V, D, R]  with R ≠ 0 — carries exact residual state
+Active object:  [V, D, R]  with R ≠ 0 — carries exact remainder state
 
     from vdr import VDR
     x = VDR(1, 2)       # 1/2
@@ -30,7 +30,7 @@ from fractions import Fraction
 from math import gcd
 from typing import List, Optional, Tuple, Union
 
-__all__ = ["VDR", "Residual", "VDRError"]
+__all__ = ["VDR", "Remainder", "VDRError"]
 
 
 # ---------------------------------------------------------------------------
@@ -55,17 +55,17 @@ class ArithmeticFailure(VDRError):
 
 
 # ---------------------------------------------------------------------------
-# Residual
+# Remainder
 # ---------------------------------------------------------------------------
 
-class Residual:
+class Remainder:
     """
     The remainder slot of a VDR triple.
 
-    Atomic form:   Residual(base=r, children=[])
+    Atomic form:   Remainder(base=r, children=[])
                    — a single integer r
 
-    Composite form: Residual(base=r, children=[X1, X2, ...])
+    Composite form: Remainder(base=r, children=[X1, X2, ...])
                     — integer base plus finite child VDR list
 
     Formally: R = r + X₁ + X₂ + … + Xₙ
@@ -78,14 +78,14 @@ class Residual:
         # type: (int, Optional[List[VDR]]) -> None
         if not isinstance(base, int):
             raise InvalidStructureError(
-                "Residual base must be int, got %s" % type(base).__name__
+                "Remainder base must be int, got %s" % type(base).__name__
             )
         self.base = base
         self.children = list(children) if children else []
         for c in self.children:
             if not isinstance(c, VDR):
                 raise InvalidStructureError(
-                    "Residual child must be VDR, got %s" % type(c).__name__
+                    "Remainder child must be VDR, got %s" % type(c).__name__
                 )
 
     # -- predicates --------------------------------------------------------
@@ -93,7 +93,7 @@ class Residual:
     @property
     def is_zero(self):
         # type: () -> bool
-        """True when this residual contributes nothing: base 0, no children."""
+        """True when this remainder contributes nothing: base 0, no children."""
         return self.base == 0 and len(self.children) == 0
 
     @property
@@ -112,8 +112,8 @@ class Residual:
     # -- equality ----------------------------------------------------------
 
     def structural_eq(self, other):
-        # type: (Residual) -> bool
-        if not isinstance(other, Residual):
+        # type: (Remainder) -> bool
+        if not isinstance(other, Remainder):
             return False
         if self.base != other.base:
             return False
@@ -127,19 +127,19 @@ class Residual:
     # -- operations --------------------------------------------------------
 
     def negate(self):
-        # type: () -> Residual
+        # type: () -> Remainder
         """
         -(r + X₁ + … + Xₙ) = -r + (-X₁) + … + (-Xₙ)
         """
-        return Residual(
+        return Remainder(
             -self.base,
             [c.negate() for c in self.children],
         )
 
     def combine(self, other, sign=1):
-        # type: (Residual, int) -> Residual
+        # type: (Remainder, int) -> Remainder
         """
-        Same-frame residual combination.
+        Same-frame remainder combination.
         sign=1  for addition:    R₁ ⊕ R₂
         sign=-1 for subtraction: R₁ ⊖ R₂
         """
@@ -151,10 +151,10 @@ class Residual:
             new_children = list(self.children) + [
                 c.negate() for c in other.children
             ]
-        return Residual(new_base, new_children)
+        return Remainder(new_base, new_children)
 
     def lift(self, k):
-        # type: (int) -> Residual
+        # type: (int) -> Remainder
         """
         Transport remainder into a scaled denominator frame.
 
@@ -167,7 +167,7 @@ class Residual:
         """
         if k == 0:
             raise VDRError("lift by zero is invalid")
-        return Residual(
+        return Remainder(
             self.base * k,
             [c._lift_vdr(k) for c in self.children],
         )
@@ -190,9 +190,9 @@ class Residual:
     # -- normalization -----------------------------------------------------
 
     def normalize(self):
-        # type: () -> Residual
+        # type: () -> Remainder
         """
-        Normalize residual structure:
+        Normalize remainder structure:
         1. Normalize all children recursively
         2. Absorb closed children with matching parent-frame denominator
            (deferred — requires parent context)
@@ -224,10 +224,10 @@ class Residual:
             else:
                 final_children.append(c)
 
-        # sort children canonically: by |D| asc, then V asc, then residual
+        # sort children canonically: by |D| asc, then V asc, then remainder
         final_children.sort(key=_child_sort_key)
 
-        return Residual(absorbed_base, final_children)
+        return Remainder(absorbed_base, final_children)
 
     # -- display -----------------------------------------------------------
 
@@ -244,7 +244,7 @@ class Residual:
         # type: (object) -> bool
         if isinstance(other, int) and self.is_atomic:
             return self.base == other
-        if isinstance(other, Residual):
+        if isinstance(other, Remainder):
             return self.structural_eq(other)
         return NotImplemented
 
@@ -264,7 +264,7 @@ class VDR:
     Construction:
         VDR(3)              → [3, 1, 0]   integer
         VDR(1, 2)           → [1, 2, 0]   rational 1/2
-        VDR(1, 3, Residual(1))  → [1, 3, 1]   active
+        VDR(1, 3, Remainder(1))  → [1, 3, 1]   active
         VDR.from_fraction(Fraction(5, 6))  → [5, 6, 0]
 
     Arithmetic uses Python operators:
@@ -278,7 +278,7 @@ class VDR:
     __slots__ = ("v", "d", "r")
 
     def __init__(self, v, d=1, r=None):
-        # type: (int, int, Union[None, int, Residual]) -> None
+        # type: (int, int, Union[None, int, Remainder]) -> None
         if not isinstance(v, int):
             raise InvalidStructureError(
                 "V must be int, got %s" % type(v).__name__
@@ -294,14 +294,14 @@ class VDR:
         self.d = d
 
         if r is None:
-            self.r = Residual(0)
+            self.r = Remainder(0)
         elif isinstance(r, int):
-            self.r = Residual(r)
-        elif isinstance(r, Residual):
+            self.r = Remainder(r)
+        elif isinstance(r, Remainder):
             self.r = r
         else:
             raise InvalidStructureError(
-                "R must be int, Residual, or None, got %s" % type(r).__name__
+                "R must be int, Remainder, or None, got %s" % type(r).__name__
             )
 
     # -- class constructors ------------------------------------------------
@@ -408,7 +408,7 @@ class VDR:
             g = gcd(abs(v), abs(d))
             if g > 0:
                 v, d = v // g, d // g
-            return VDR(v, d, Residual(0))
+            return VDR(v, d, Remainder(0))
 
         # for active nodes, still enforce positive D
         # but only reduce V,D if compatible with remainder
@@ -596,7 +596,7 @@ class VDR:
         if mismatch.v == 0:
             new_r = lifted_r
         else:
-            new_r = Residual(new_base, new_children)
+            new_r = Remainder(new_base, new_children)
 
         return VDR(q, target_d, new_r).normalize()
 
@@ -642,7 +642,7 @@ class VDR:
         size([V,D,R]) = 1 + size(R)
         size(r + X₁+…+Xₙ) = 1 + Σsize(Xᵢ)
         """
-        return 1 + _residual_size(self.r)
+        return 1 + _remainder_size(self.r)
 
     def den_complexity(self):
         # type: () -> Tuple[int, int, int]
@@ -750,7 +750,7 @@ def _active_add(a, b, sign=1):
 
 
 def _remainder_divisible_by(r, g):
-    # type: (Residual, int) -> bool
+    # type: (Remainder, int) -> bool
     """Check if a remainder can be cleanly divided by g."""
     if r.base % g != 0:
         return False
@@ -763,12 +763,12 @@ def _remainder_divisible_by(r, g):
 
 
 def _remainder_divide(r, g):
-    # type: (Residual, int) -> Residual
+    # type: (Remainder, int) -> Remainder
     """Divide remainder structure by g (must be pre-checked)."""
     new_children = []
     for c in r.children:
         new_children.append(VDR(c.v // g, c.d, _remainder_divide(c.r, g)))
-    return Residual(r.base // g, new_children)
+    return Remainder(r.base // g, new_children)
 
 
 def _merge_same_denom_children(children):
@@ -811,8 +811,8 @@ def _child_sort_key(c):
     return (abs(c.d), c.d, c.v, c.r.base)
 
 
-def _residual_size(r):
-    # type: (Residual) -> int
+def _remainder_size(r):
+    # type: (Remainder) -> int
     """size(R): 1 for atomic base + sum of child sizes."""
     total = 1  # the atomic base
     for c in r.children:
