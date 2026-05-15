@@ -1,4 +1,4 @@
-# Computational Primitives and Operational Environments
+# Complete Lifecycle Technical Specification
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,9 +6,9 @@
 
 ## Abstract
 
-VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download — the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.
+VDR-1 through VDR-4 built the arithmetic and ML stack. VDR-5 specified the knowledge architecture. VDR-6 specified the execution layer. All of these papers describe what happens during a single prompt interaction — the system receives input, computes, reasons, and responds. This paper specifies everything else: the complete lifecycle from raw data sourcing through corpus preparation, tokenization, model initialization, pre-training, fine-tuning, human feedback integration, evaluation, deployment, continuous monitoring, model updates, and retirement. Every phase is specified in terms of the VDR-Prolog KB architecture, meaning every phase produces queryable facts, operates under declared constraints, stores results with provenance, and is controllable through KB activation and deactivation.
 
-The central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.
+The central architectural principle is that the system is both API and generator. It serves data through structured endpoints and generates text through the language model. Command tokens let the model invoke its own lifecycle operations. KBs let operators enable, disable, and layer lifecycle components like a file tree. The UI is an API to the KB layer, not a separate system. Training data, model weights, evaluation results, feedback records, and deployment configurations are all KBs — surfaceable, queryable, versionable, and constrainable by the same mechanisms that govern prompt-time operation.
 
 ---
 
@@ -48,14 +48,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-6-2026,
-  title={ Computational Primitives and Operational Environments },
+@article{ HOWL-VDR-7-2026,
+  title={ Complete Lifecycle Technical Specification },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20214563},
-  url = {https://zenodo.org/record/20214563},
-  note={Howland Archive: HOWL-VDR-6-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20215140},
+  url = {https://zenodo.org/record/20215140},
+  note={Howland Archive: HOWL-VDR-7-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
