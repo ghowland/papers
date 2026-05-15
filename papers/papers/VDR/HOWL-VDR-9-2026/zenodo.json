@@ -1,0 +1,70 @@
+{
+  "title": "Orchestrated Inference",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "The prior papers in this series built a language model architecture with exact arithmetic (VDR-1 through VDR-4), scoped knowledge bases with constraints and provenance (VDR-5), 333 deterministic primitives invoked through compact command tokens (VDR-6, VDR-8), a complete model lifecycle as KB operations (VDR-7), runtime data primitives for working memory (VDR-8), universal dotted-path addressing (VDR-8), and session snapshots with disposable cloning (VDR-8). Each paper added a capability. None of them specified how those capabilities compose into multi-step inference processes.\n\nThis paper specifies Orchestrated Inference \u2014 the pattern by which the language model uses its tools to conduct structured investigations that produce traceable, quantified conclusions. The language model does not reason. It orchestrates. It selects and sequences exact tools \u2014 Prolog for logical deduction, Python for numerical computation, pure primitives for data manipulation, operational primitives for external data acquisition \u2014 in a loop that produces inferences neither the language model nor any single tool could produce alone.\n\nThe paper defines the orchestrated inference loop (assess \u2192 formalize \u2192 execute \u2192 store \u2192 assess), inference notebooks as standard KB schemas for housing investigations, four inference modes (deductive, inductive, abductive, analogical) with their characteristic tool signatures, external data integration patterns for bringing real-world data into the exact system, and inference provenance that gives every conclusion a complete, queryable derivation chain with exact confidence scores.\n\nThe central claim is precise: the language model predicts tokens; the tools compute and deduce; the composition produces structured inferences; the KB records everything. Orchestrated Inference is not artificial reasoning. It is a reasoning exoskeleton \u2014 external structure that compensates for the language model's computational unreliability while leveraging its strength at pattern recognition, intent mapping, and natural language formalization.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-9-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-9-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

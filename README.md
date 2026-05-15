@@ -122,6 +122,8 @@
 | **[@HOWL-VDR-5-2026](papers/papers/VDR/HOWL-VDR-5-2026/manuscript.md)** | **Exact Arithmetic Meets Logical Provenance** | A Specification for Constraint-Grounded Language Models With Full Data Lineage. |
 | **[@HOWL-VDR-6-2026](papers/papers/VDR/HOWL-VDR-6-2026/manuscript.md)** | **Computational Primitives and Operational Environments** | The Execution Layer for VDR-LLM-Prolog. |
 | **[@HOWL-VDR-7-2026](papers/papers/VDR/HOWL-VDR-7-2026/manuscript.md)** | **Complete Lifecycle Technical Specification** | Training, Feedback, Data Sourcing, and Continuous Operation. |
+| **[@HOWL-VDR-8-2026](papers/papers/VDR/HOWL-VDR-8-2026/manuscript.md)** | **Computational State Primitives, Universal Data Pathing, and Session Management** | The Runtime Layer for VDR-LLM-Prolog. |
+| **[@HOWL-VDR-9-2026](papers/papers/VDR/HOWL-VDR-9-2026/manuscript.md)** | **Orchestrated Inference** | Structured Reasoning Through Tool Composition in VDR-LLM-Prolog. |
 
 ---
 
