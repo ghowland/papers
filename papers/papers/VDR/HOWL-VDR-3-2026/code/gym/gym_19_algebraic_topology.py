@@ -57,7 +57,7 @@ print("\n=== 2. d∘d = 0 ===")
 
 # B1 is 3x3 (3 edges, 3 vertices), B2 is 1x3 (1 face, 3 edges)
 # B1 * B2^T should be 3x1 zero matrix
-product = B1 * B2.T
+product = B1.T * B2.T
 print("  B1 * B2^T =")
 print(product.pretty())
 is_zero = True
@@ -149,7 +149,7 @@ B2_tet = Mat([
 ])
 
 # d∘d = 0
-prod_tet = B1_tet * B2_tet.T  # 6x4
+prod_tet = B1_tet.T * B2_tet.T  # 4x4
 is_zero_tet = True
 for i in range(prod_tet.nrows):
     for j in range(prod_tet.ncols):

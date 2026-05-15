@@ -161,18 +161,18 @@ for k in range(5):
 # all values should be exact rationals
 all_exact = True
 for t in trajectory:
-    for xi in t.data:
+    for xi in t._data:
         if not xi.is_closed:
             all_exact = False
 check("all trajectory values exact rational", all_exact)
 
 # system is stable (eigenvalues of A are -1, -2), so x should decay
 # check |x[5]| < |x[0]|
-x5_mag = trajectory[5].data[0] * trajectory[5].data[0] + trajectory[5].data[1] * trajectory[5].data[1]
+x5_mag = trajectory[5][0] * trajectory[5][0] + trajectory[5][1] * trajectory[5][1]
 x0_mag = VDR(1)  # |x0|^2 = 1
 check("state decays (|x5|^2 < |x0|^2)", x5_mag < x0_mag)
 print("  x[5] = (%s, %s)" % (
-    trajectory[5].data[0].to_fraction(), trajectory[5].data[1].to_fraction()))
+    trajectory[5][0].to_fraction(), trajectory[5][1].to_fraction()))
 
 # === 7. Controllability Gramian (discrete, finite horizon) ===
 print("\n=== 7. Finite controllability Gramian ===")

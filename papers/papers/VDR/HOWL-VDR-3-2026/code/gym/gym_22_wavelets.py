@@ -142,18 +142,18 @@ H4 = Mat([
 from vdr import Vec
 sig_vec = Vec(sig)
 transformed = H4.matvec(sig_vec)
-print("  H4 * signal = %s" % [str(x) for x in transformed.data])
+print("  H4 * signal = %s" % [str(transformed[i]) for i in range(4)])
 
 # first 2 are averages, last 2 are details
-check("matrix avg[0] matches", transformed.data[0] == avgs[0])
-check("matrix avg[1] matches", transformed.data[1] == avgs[1])
-check("matrix det[0] matches", transformed.data[2] == dets[0])
-check("matrix det[1] matches", transformed.data[3] == dets[1])
+check("matrix avg[0] matches", transformed[0] == avgs[0])
+check("matrix avg[1] matches", transformed[1] == avgs[1])
+check("matrix det[0] matches", transformed[2] == dets[0])
+check("matrix det[1] matches", transformed[3] == dets[1])
 
 # inverse matrix
 H4_inv = H4.inv()
 recon_vec = H4_inv.matvec(transformed)
-all_match_mat = all(recon_vec.data[i] == sig[i] for i in range(4))
+all_match_mat = all(recon_vec[i] == sig[i] for i in range(4))
 check("matrix inverse reconstruction", all_match_mat)
 
 # === 7. Haar denoising (thresholding) ===
