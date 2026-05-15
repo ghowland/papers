@@ -1,4 +1,5 @@
 # Exact Arithmetic Meets Logical Provenance
+
 ## A Specification for Constraint-Grounded Language Models With Full Data Lineage
 
 **Registry:** [@HOWL-VDR-5-2026]
@@ -59,7 +60,7 @@ This is what enables exact discrete calculus: the discretization artifact at eve
 
 ### 2.3 Transcendental Reach
 
-VDR handles transcendental constants through two mechanisms. Functional remainders wrap convergent rational series — each depth produces an exact rational that approaches the transcendental to arbitrary precision. The Q335 basis from MATH-4 [@HOWL-MATH-4-2026] represents 22 fundamental constants (π, e, ln(2), √2, ζ(3), and 17 others) as single integers over the shared denominator 2^335, verified at 100 digits against mpmath. Adding π + e under Q335 is one integer addition. The rounding error is 10^66 times smaller than the Planck length.
+VDR handles transcendental constants through two mechanisms. Functional remainders wrap convergent rational series — each depth produces an exact rational that approaches the transcendental to arbitrary precision. The Q335 basis from MATH-4 [@HOWL-MATH-4-2026] represents 22 fundamental constants ( $\pi$ , e, ln(2), √2, ζ(3), and 17 others) as single integers over the shared denominator 2^335, verified at 100 digits against mpmath. Adding  $\pi$  + e under Q335 is one integer addition. The rounding error is 10^66 times smaller than the Planck length.
 
 ### 2.4 What VDR Provides to This System
 
@@ -114,20 +115,27 @@ A Term is the fundamental data unit. Every fact, rule, and query is built from T
 A Fact is a predicate with arguments. It asserts something is true.
 
 ```
+
 parameter_value("layer.1.weight[0][0]", step(0), fraction(1, 4)).
+
 ```
 
 This says: at training step 0, the weight at position [0][0] in layer 1 has the exact value 1/4.
 
 ```
+
 attention_weight(doc(42), position(3), position(7), fraction(43545600, 59565131)).
+
 ```
 
 This says: in document 42, the attention weight from position 3 to position 7 is exactly 43545600/59565131.
 
 ```
+
 derived_from(attention_weight(doc(42), pos(3), pos(7)), softmax, 
-    [score(doc(42), pos(3), pos(0)), score(doc(42), pos(3), pos(1)), ...]).
+
+[score(doc(42), pos(3), pos(0)), score(doc(42), pos(3), pos(1)), ...]).
+
 ```
 
 This says: the attention weight was derived by applying softmax to the list of attention scores.
@@ -137,20 +145,31 @@ This says: the attention weight was derived by applying softmax to the list of a
 A Rule is a logical implication: head :- body. If all the body conditions are satisfied, the head is true.
 
 ```
+
 depends_on(X, Y) :- derived_from(X, _, Sources), member(Y, Sources).
+
 depends_on(X, Y) :- derived_from(X, _, Sources), member(Z, Sources), depends_on(Z, Y).
+
 ```
 
 This says: X depends on Y if Y is a direct input to X, or if Y is an input to something that X depends on. This is transitive dependency — the system can trace any value back to its ultimate sources through any number of intermediate steps.
 
 ```
+
 weight_consistent(Param, Step) :-
-    parameter_value(Param, Step, V1),
-    PrevStep is Step - 1,
-    parameter_value(Param, PrevStep, V0),
-    gradient_at(Param, PrevStep, G),
-    updated_by(Param, PrevStep, sgd, lr(LR)),
-    V1 =:= V0 - LR * G.
+
+parameter_value(Param, Step, V1),
+
+PrevStep is Step - 1,
+
+parameter_value(Param, PrevStep, V0),
+
+gradient_at(Param, PrevStep, G),
+
+updated_by(Param, PrevStep, sgd, lr(LR)),
+
+V1 =:= V0 - LR * G.
+
 ```
 
 This says: a weight is consistent at step N if its value equals the previous step's value minus the learning rate times the gradient. Because every value is an exact VDR fraction, this check is exact. It either holds or it doesn't. No tolerance.
@@ -176,24 +195,43 @@ This is lexical scoping applied to knowledge. If you are discussing story B, the
 ### 5.2 The KB Tree
 
 ```
+
 kb_global (always in scope)
+
 ├── axioms, system constraints, operational rules
+
 │
+
 ├── kb_project_vdr
+
 │   ├── language=python, version=3.8
+
 │   ├── kb_vdr_core (24 modules, 705 tests)
+
 │   ├── kb_vdr_llm (softmax, autodiff, transformer)
+
 │   └── kb_math_series (Q335, 22 constants)
+
 │
+
 ├── kb_story_a
+
 │   ├── setting=Pacific Northwest, year=2024
+
 │   ├── kb_characters_a (bob_age=32, alice_age=28)
+
 │   └── kb_plot_a (chapter=3, conflict=missing artifact)
+
 │
+
 └── kb_story_b
-    ├── setting=London, year=2026
-    ├── kb_characters_b (bob_age=59, margaret_age=45)
-    └── kb_plot_b (chapter=1, conflict=double agent)
+
+├── setting=London, year=2026
+
+├── kb_characters_b (bob_age=59, margaret_age=45)
+
+└── kb_plot_b (chapter=1, conflict=double agent)
+
 ```
 
 When story_b is active, queries resolve against kb_story_b, kb_characters_b, kb_plot_b, and kb_global. The entire story_a subtree is invisible. "How old is Bob?" returns 59, from kb_characters_b. No disambiguation needed. No risk of returning 32 from the wrong story.
@@ -207,14 +245,21 @@ Ambiguous terms resolve by scope. "Bank" in a finance KB means financial institu
 When the user genuinely needs to reach across scopes, they can:
 
 ```
+
 ?- query_in(kb_characters_a, "bob_age", Age).
+
 % Explicitly query story A's Bob while story B is active
+
 ```
 
 ```
+
 ?- query_across("bob_age", Results).
+
 % Search all KBs, return tagged results:
+
 % [kb_characters_a: 32, kb_characters_b: 59]
+
 ```
 
 Cross-scope queries are explicit and tagged. The results identify which KB each value came from. No silent mixing.
@@ -234,7 +279,9 @@ A working data set is a named, scoped collection of variable bindings attached t
 When the user says "Bob is 32 years old," the system does not just add tokens to the context window. It asserts a binding:
 
 ```
+
 binding(kb_characters_a, "bob_age", number(32)).
+
 ```
 
 This binding is stored in the correct scope, retrievable by exact lookup, overridable by a child scope, diffable against other scopes, and persistent until explicitly changed.
@@ -250,7 +297,9 @@ If the project-level dataset says `language = python` and the linalg sub-dataset
 Every binding set is logged with its turn number:
 
 ```
+
 binding_history(kb_characters_a, "bob_age", number(32), turn(5)).
+
 ```
 
 The system knows when every value was set. "When did we decide Bob was 32?" has an exact answer: turn 5.
@@ -260,10 +309,15 @@ The system knows when every value was set. "When did we decide Bob was 32?" has 
 Working data sets can be snapshotted (frozen copy of all bindings at a point in time) and diffed (structured comparison between two datasets or two snapshots):
 
 ```
+
 diff(snapshot_step_0, snapshot_step_1) →
+
   Changed: layer1_weight_0_0: 1/4 → 31/140
+
   Changed: layer1_bias_0: 0 → 3/70
+
   Unchanged: 4291 bindings
+
 ```
 
 ### 6.5 Type Discipline
@@ -279,10 +333,15 @@ Bindings carry exact VDR types. The system can enforce type constraints: "bob_ag
 A constraint is not a boolean flag or a comment in a system prompt. It is a structured object stored in the knowledge base, with a name, scope, status, condition, violation policy, activation time, and source.
 
 ```
+
 constraint("sum_to_one", scope("axiom"), active,
-    condition(forall(distribution(D), sum(D, 1))),
-    on_violation("error"),
-    source("mathematics")).
+
+condition(forall(distribution(D), sum(D, 1))),
+
+on_violation("error"),
+
+source("mathematics")).
+
 ```
 
 ### 7.2 Four Constraint Domains
@@ -300,9 +359,13 @@ constraint("sum_to_one", scope("axiom"), active,
 Constraints form named sets. Sets can be enabled, disabled, intersected, unioned, and differenced as groups:
 
 ```
+
 enable_set("vdr_project").
+
 disable_set("story_constraints").
+
 active_in_both("safety", "project", Result).
+
 ```
 
 This gives the system the ability to reason about groups of constraints. "Enable all the VDR project constraints but disable the 30-second runtime limit for this specific task" is a set operation on constraint groups.
@@ -320,9 +383,13 @@ Because every value is an exact VDR fraction, constraint checking is exact. "All
 A topic has a name, a status (open, closed, parked, branched), timestamps for lifecycle events, a parent topic, child topics, and a list of pending items.
 
 ```
+
 topic("vdr_llm", open, opened_at(turn(20)), parent("vdr_core")).
+
 pending("vdr_llm", "implement_gaussian_elimination").
+
 pending("vdr_llm", "implement_cross_entropy_loss").
+
 ```
 
 ### 8.2 Lifecycle Management
@@ -354,14 +421,21 @@ Nothing in the system is hidden from the system itself or from an authorized use
 The system can return structured data without passing it through the language model's token generation. When the user asks for data, the KB produces it directly. The LLM provides framing text. The data and the framing are visually and semantically distinct.
 
 ```
+
 LLM: "Here's what we have for Bob in the London story:"
 
 KB [kb_characters_b]:
+
   bob_age: 59
+
   bob_town: London
+
   bob_occupation: retired professor
+
   
+
 LLM: "Margaret is also in this story — want to see her details?"
+
 ```
 
 The data block is a direct read from the KB. The LLM did not generate the number 59. The KB produced it. The data cannot be hallucinated because it is not generated — it is retrieved.
@@ -371,9 +445,13 @@ The data block is a direct read from the KB. The LLM did not generate the number
 Every fact has an address: the KB path plus the fact identifier. The LLM can embed live references in its output:
 
 ```
+
 LLM: "The learning rate is "
+
 Reference: [kb_vdr_training/lr → 1/10]
+
 LLM: ", set during training configuration."
+
 ```
 
 The reference is a live link. If the value changes, the reference resolves to the new value. The LLM text is static commentary. The reference is dynamic truth.
@@ -415,30 +493,55 @@ The LLM queries its own KBs during reasoning. It does not need to remember const
 ### 10.2 The Data Flow
 
 ```
+
 User input (text)
+
   ↓
+
 Tokenization → token ids (exact integers)
+
   ↓
+
 Embedding lookup → exact fraction vectors
+
   ↓ (fact asserted: embedding derived from token + table)
+
 Attention scores → exact fraction matrix
+
   ↓ (fact asserted: scores derived from Q·K^T)
+
 Softmax → exact fraction weights, sum exactly to 1
+
   ↓ (fact asserted: weights derived from softmax(scores))
+
   ↓ (constraint checked: sum_to_one verified)
+
 Value mixing → exact fraction vectors
+
   ↓ (fact asserted: mixed derived from weights · values)
+
 Feedforward → exact fraction vectors
+
   ↓ (fact asserted: ff_out derived from linear + relu)
+
 Logits → exact fraction scores over vocabulary
+
   ↓ (fact asserted: logits derived from logits_head · hidden)
+
 Output probabilities → exact fractions summing to 1
+
   ↓ (constraint checked: valid_distribution verified)
+
 Token sampling → selected token
+
   ↓ (fact asserted: sampled token, seed, probability)
+
 Output to user
+
   ↓ (KB data surfaced directly where applicable)
+
   ↓ (LLM generates framing text around KB data)
+
 ```
 
 Every arrow is an exact VDR operation. Every parenthetical is a Prolog fact assertion. Every constraint check is exact.
@@ -446,46 +549,83 @@ Every arrow is an exact VDR operation. Every parenthetical is a Prolog fact asse
 ### 10.3 The Training Flow
 
 ```
+
 Forward pass (as above, all exact)
+
   ↓
+
 Loss computation → exact fraction
+
   ↓ (fact asserted: loss value, derivation from predictions and targets)
+
 Backward pass → exact fraction gradients for every parameter
+
   ↓ (fact asserted: gradient for each parameter at this step)
+
 Optimizer step → exact fraction parameter updates
+
   ↓ (fact asserted: new parameter value, update derivation)
+
   ↓ (constraint checked: weight_consistent verified)
+
   ↓ (constraint checked: denominator_bound verified)
+
 Checkpoint (if policy says so)
+
   ↓ (all parameter values serialized as exact fractions)
+
   ↓ (provenance chain complete from initialization to current step)
+
 ```
 
 ### 10.4 The Conversation Flow
 
 ```
+
 User speaks
+
   ↓
+
 Topic identification → active topic determined
+
   ↓ (scoped KBs activated, out-of-scope KBs invisible)
+
 Working data set → current bindings available
+
   ↓
+
 Constraint set → active constraints loaded
+
   ↓
+
 Intent recognition → is this a KB query or a generation request?
+
   ↓
+
 If KB query:
+
   Run Prolog query against in-scope KBs
+
   Surface structured results directly
+
   LLM generates framing text
+
   ↓
+
 If generation request:
+
   LLM generates response
+
   References KB facts where relevant
+
   Constraint system checks output
+
   New bindings asserted if user declares facts
+
   Pending items updated
+
   Topic state updated
+
 ```
 
 ---
@@ -495,131 +635,221 @@ If generation request:
 ### 11.1 Term Types
 
 ```
+
 TermType = enum {
-    // Core Prolog
-    atom,
-    variable,
-    list,
-    
-    // VDR Arithmetic
-    fraction,
-    fraction_vec,
-    fraction_mat,
-    
-    // Q-Basis Compressed
-    qbasis,
-    qbasis_vec,
-    qbasis_mat,
-    
-    // References
-    parameter,
-    layer,
-    token,
-    token_seq,
-    
-    // Provenance
-    derivation,
-    constraint,
-    checkpoint,
-    gradient,
-    loss,
-    step,
-    
-    // Conversation
-    topic,
-    binding,
-    scope,
-    constraint_set,
+
+// Core Prolog
+
+atom,
+
+variable,
+
+list,
+
+// VDR Arithmetic
+
+fraction,
+
+fraction_vec,
+
+fraction_mat,
+
+// Q-Basis Compressed
+
+qbasis,
+
+qbasis_vec,
+
+qbasis_mat,
+
+// References
+
+parameter,
+
+layer,
+
+token,
+
+token_seq,
+
+// Provenance
+
+derivation,
+
+constraint,
+
+checkpoint,
+
+gradient,
+
+loss,
+
+step,
+
+// Conversation
+
+topic,
+
+binding,
+
+scope,
+
+constraint_set,
+
 };
+
 ```
 
 ### 11.2 Fact Structure
 
 ```
+
 Fact = struct {
-    predicate: Text,
-    args: []Term,
-    kb_source: Text,        // which KB this fact belongs to
-    asserted_at: i32,       // turn or step when asserted
-    derivation: ?Derivation, // how this fact was produced (optional)
+
+predicate: Text,
+
+args: []Term,
+
+kb_source: Text,        // which KB this fact belongs to
+
+asserted_at: i32,       // turn or step when asserted
+
+derivation: ?Derivation, // how this fact was produced (optional)
+
 };
+
 ```
 
 ### 11.3 Rule Structure
 
 ```
+
 Rule = struct {
-    head: Fact,             // conclusion (full Fact, not just name)
-    body: []Fact,           // conditions (all must be satisfied)
-    kb_source: Text,        // which KB this rule belongs to
+
+head: Fact,             // conclusion (full Fact, not just name)
+
+body: []Fact,           // conditions (all must be satisfied)
+
+kb_source: Text,        // which KB this rule belongs to
+
 };
+
 ```
 
 ### 11.4 Knowledge Base Structure
 
 ```
+
 KnowledgeBase = struct {
-    name: Text,
-    facts: FactSet,
-    rules: RuleSet,
-    parent: ?Text,           // parent KB name, or null for root
-    children: []Text,        // child KB names
-    topic: ?Text,            // associated topic, if any
-    visibility: enum { public, internal, owner_only },
-    frozen: bool,            // if true, read-only (snapshot)
+
+name: Text,
+
+facts: FactSet,
+
+rules: RuleSet,
+
+parent: ?Text,           // parent KB name, or null for root
+
+children: []Text,        // child KB names
+
+topic: ?Text,            // associated topic, if any
+
+visibility: enum { public, internal, owner_only },
+
+frozen: bool,            // if true, read-only (snapshot)
+
 };
+
 ```
 
 ### 11.5 Working Data Set Structure
 
 ```
+
 WorkingDataSet = struct {
-    name: Text,
-    topic: Text,
-    parent: ?Text,
-    bindings: HashMap(Text, Term),
-    history: []BindingEvent,  // timestamped log of all changes
-    frozen: bool,
+
+name: Text,
+
+topic: Text,
+
+parent: ?Text,
+
+bindings: HashMap(Text, Term),
+
+history: []BindingEvent,  // timestamped log of all changes
+
+frozen: bool,
+
 };
 
 BindingEvent = struct {
-    key: Text,
-    old_value: ?Term,
-    new_value: Term,
-    turn: i32,
+
+key: Text,
+
+old_value: ?Term,
+
+new_value: Term,
+
+turn: i32,
+
 };
+
 ```
 
 ### 11.6 Constraint Structure
 
 ```
+
 Constraint = struct {
-    name: Text,
-    scope: enum { operational, axiom, legal, project, conversation },
-    status: enum { active, suspended, violated, satisfied, parked },
-    condition: Fact,          // the logical condition to check
-    on_violation: enum { warn, block, log, escalate, error },
-    activated_at: i32,
-    last_checked: i32,
-    source: Text,             // who or what declared this
+
+name: Text,
+
+scope: enum { operational, axiom, legal, project, conversation },
+
+status: enum { active, suspended, violated, satisfied, parked },
+
+condition: Fact,          // the logical condition to check
+
+on_violation: enum { warn, block, log, escalate, error },
+
+activated_at: i32,
+
+last_checked: i32,
+
+source: Text,             // who or what declared this
+
 };
+
 ```
 
 ### 11.7 Topic Structure
 
 ```
+
 Topic = struct {
-    name: Text,
-    status: enum { open, closed, parked, branched },
-    opened_at: i32,
-    closed_at: ?i32,
-    parked_at: ?i32,
-    parent: ?Text,
-    children: []Text,
-    pending: []Text,
-    constraint_set: ?Text,    // associated constraint set
-    working_data: ?Text,      // associated working data set
+
+name: Text,
+
+status: enum { open, closed, parked, branched },
+
+opened_at: i32,
+
+closed_at: ?i32,
+
+parked_at: ?i32,
+
+parent: ?Text,
+
+children: []Text,
+
+pending: []Text,
+
+constraint_set: ?Text,    // associated constraint set
+
+working_data: ?Text,      // associated working data set
+
 };
+
 ```
 
 ### 11.8 The Query Engine
@@ -627,9 +857,13 @@ Topic = struct {
 The query engine is a standard Prolog-style depth-first search with backtracking, modified for scoped KB search:
 
 1. Determine in-scope KBs from the active topic's ancestry chain.
+
 2. For each KB in scope order (current → parent → ... → global), search for facts matching the query predicate and attempt unification.
+
 3. First successful unification in scope order wins (cut semantics for scoped search).
+
 4. For cross-scope queries, search all KBs and tag results with their source.
+
 5. For rule evaluation, recursively evaluate body conditions using the same scoped search.
 
 ### 11.9 The Bridge
@@ -653,15 +887,21 @@ The Python-Prolog bridge passes exact rationals between VDR (Python) and the Pro
 ### 12.2 Retention Policies as Rules
 
 ```
+
 retain_step(Step) :- Step mod checkpoint_interval =:= 0.
+
 retain_step(Step) :- loss_anomaly_at(Step).
+
 retain_step(Step) :- constraint_violated_at(_, Step).
 
 retain_batch(Batch) :- contains_unknown_token(Batch).
+
 retain_batch(Batch) :- output_anomaly(Batch).
 
 prune_step(Step) :- not(retain_step(Step)).
+
 prune_batch(Batch) :- not(retain_batch(Batch)).
+
 ```
 
 The pruning policy is itself a set of Prolog rules. It is declarative, inspectable, and modifiable without changing code.
@@ -779,18 +1019,31 @@ A knowledge base is a self-contained unit of knowledge. It has facts (what is tr
 ### A1.2 Revised KB Structure
 
 ```
+
 KnowledgeBase = struct {
-    name: Text,
-    facts: FactSet,
-    rules: RuleSet,
-    constraints: []Constraint,   // constraints local to this KB
-    parent: ?Text,
-    children: []Text,
-    topic: ?Text,
-    working_data: ?WorkingDataSet,
-    visibility: enum { public, internal, owner_only },
-    frozen: bool,
+
+name: Text,
+
+facts: FactSet,
+
+rules: RuleSet,
+
+constraints: []Constraint,   // constraints local to this KB
+
+parent: ?Text,
+
+children: []Text,
+
+topic: ?Text,
+
+working_data: ?WorkingDataSet,
+
+visibility: enum { public, internal, owner_only },
+
+frozen: bool,
+
 };
+
 ```
 
 Constraints are now a field of the KB, not a separate global structure. When a KB is activated, its constraints are activated. When a KB is deactivated (topic switch), its constraints are deactivated. When a KB is snapshotted, its constraints are included. When a KB is pruned, its constraints go with it.
@@ -800,22 +1053,37 @@ Constraints are now a field of the KB, not a separate global structure. When a K
 Constraints inherit through the KB tree, the same way facts and bindings inherit. A child KB's constraints add to (and can override) its parent's constraints. The effective constraint set at any point is the union of constraints from the current KB up to the root.
 
 ```
+
 Rule: effective_constraints(KB, All) :-
-    kb_constraints(KB, Local),
-    kb_parent(KB, Parent),
-    (Parent = none -> 
-        All = Local ;
-        effective_constraints(Parent, ParentConstraints),
-        merge_constraints(Local, ParentConstraints, All)).
+
+kb_constraints(KB, Local),
+
+kb_parent(KB, Parent),
+
+(Parent = none -> 
+
+    All = Local ;
+
+    effective_constraints(Parent, ParentConstraints),
+
+    merge_constraints(Local, ParentConstraints, All)).
 
 Rule: merge_constraints(Local, Parent, Merged) :-
-    % Local constraints with same name override parent
-    findall(C, (member(C, Local)), LocalList),
-    findall(C, (member(C, Parent), 
-                constraint_name(C, N), 
-                not((member(L, Local), constraint_name(L, N)))), 
-            InheritedList),
-    append(LocalList, InheritedList, Merged).
+
+% Local constraints with same name override parent
+
+findall(C, (member(C, Local)), LocalList),
+
+findall(C, (member(C, Parent), 
+
+            constraint_name(C, N), 
+
+            not((member(L, Local), constraint_name(L, N)))), 
+
+        InheritedList),
+
+append(LocalList, InheritedList, Merged).
+
 ```
 
 A global KB has the constraint "all fractions must be exact." A project KB inherits that and adds "Python 3.8 compatible." A sub-project KB inherits both and adds "runtime under 30 seconds." At the sub-project level, all three constraints are active. Disabling the 30-second constraint at the sub-project level does not affect the parent's constraints.
@@ -841,32 +1109,59 @@ A user account is a collection of facts (name, preferences, history), rules (wha
 ### A2.2 Account KB Structure
 
 ```
+
 KB: user_alice
+
   facts:
-    user_name("Alice Chen")
-    user_role(end_user)
-    user_created(2026-03-15)
-    preference("language", "English")
-    preference("formatting", "minimal")
-    preference("expertise", "expert_zig")
+
+user_name("Alice Chen")
+
+user_role(end_user)
+
+user_created(2026-03-15)
+
+preference("language", "English")
+
+preference("formatting", "minimal")
+
+preference("expertise", "expert_zig")
+
   
+
   constraints:
-    constraint("rate_limit", scope("operational"), active,
-        condition(queries_per_hour =< 100),
-        on_violation("throttle"))
-    constraint("no_internal_access", scope("policy"), active,
-        condition(not(accesses(kb, visibility(internal)))),
-        on_violation("block"))
-    constraint("max_context", scope("operational"), active,
-        condition(context_tokens =< 200000),
-        on_violation("truncate"))
+
+constraint("rate_limit", scope("operational"), active,
+
+    condition(queries_per_hour =< 100),
+
+    on_violation("throttle"))
+
+constraint("no_internal_access", scope("policy"), active,
+
+    condition(not(accesses(kb, visibility(internal)))),
+
+    on_violation("block"))
+
+constraint("max_context", scope("operational"), active,
+
+    condition(context_tokens =< 200000),
+
+    on_violation("truncate"))
+
   
+
   working_data:
-    current_project: "vdr_development"
-    active_topics: ["vdr_llm", "prolog_integration"]
-    parked_topics: ["story_b"]
+
+current_project: "vdr_development"
+
+active_topics: ["vdr_llm", "prolog_integration"]
+
+parked_topics: ["story_b"]
+
   
+
   children: [kb_alice_vdr_project, kb_alice_story_a, kb_alice_story_b]
+
 ```
 
 Everything about Alice — her identity, her permissions, her preferences, her constraints, her active work, her conversation history — is in her KB. The KB is the account.
@@ -876,23 +1171,41 @@ Everything about Alice — her identity, her permissions, her preferences, her c
 Groups work by KB inheritance. A group account is a parent KB. User accounts are child KBs. Group constraints apply to all members through inheritance.
 
 ```
+
 KB: group_engineering_team
+
   facts:
-    group_name("Engineering Team")
-    group_created(2026-01-01)
+
+group_name("Engineering Team")
+
+group_created(2026-01-01)
+
   
+
   constraints:
-    constraint("code_review_required", scope("policy"), active,
-        condition(all_code_changes_reviewed),
-        on_violation("block"))
-    constraint("no_production_access", scope("policy"), active,
-        condition(not(accesses(production_db))),
-        on_violation("block"))
-    constraint("approved_languages", scope("project"), active,
-        condition(language_in([python, zig, rust])),
-        on_violation("warn"))
+
+constraint("code_review_required", scope("policy"), active,
+
+    condition(all_code_changes_reviewed),
+
+    on_violation("block"))
+
+constraint("no_production_access", scope("policy"), active,
+
+    condition(not(accesses(production_db))),
+
+    on_violation("block"))
+
+constraint("approved_languages", scope("project"), active,
+
+    condition(language_in([python, zig, rust])),
+
+    on_violation("warn"))
+
   
+
   children: [user_alice, user_bob_engineer, user_carol]
+
 ```
 
 Alice inherits the engineering team's constraints. She cannot push code without review. She cannot access the production database. She can only use approved languages. These constraints come from her parent KB (the group), not from a separate access control system. They are facts in the KB tree, queryable and inspectable.
@@ -902,27 +1215,49 @@ Alice inherits the engineering team's constraints. She cannot push code without 
 Groups can nest. A company has departments. Departments have teams. Teams have members. Each level is a KB with constraints that propagate downward.
 
 ```
+
 KB: org_acme_corp
+
 ├── constraint: "gdpr_compliance" (active, legal)
+
 ├── constraint: "data_retention_7_years" (active, legal)
+
 │
+
 ├── KB: dept_engineering
+
 │   ├── constraint: "code_review_required" (active, policy)
+
 │   ├── constraint: "approved_languages" (active, project)
+
 │   │
+
 │   ├── KB: team_backend
+
 │   │   ├── constraint: "database_access_logged" (active, operational)
+
 │   │   ├── KB: user_alice (inherits all above)
+
 │   │   └── KB: user_bob_engineer (inherits all above)
+
 │   │
+
 │   └── KB: team_frontend
+
 │       ├── constraint: "no_database_direct" (active, operational)
+
 │       └── KB: user_carol (inherits all above)
+
 │
+
 └── KB: dept_legal
-    ├── constraint: "client_privilege" (active, legal)
-    └── KB: user_dave_lawyer
-        (inherits org + legal constraints, NOT engineering constraints)
+
+├── constraint: "client_privilege" (active, legal)
+
+└── KB: user_dave_lawyer
+
+    (inherits org + legal constraints, NOT engineering constraints)
+
 ```
 
 Alice (backend engineer) inherits: GDPR compliance, data retention, code review, approved languages, database access logged. Five constraints from four levels of the hierarchy.
@@ -938,10 +1273,15 @@ The constraint set for any user is determined entirely by their position in the 
 A child KB can override a parent constraint by declaring a constraint with the same name and a different configuration.
 
 ```
+
 KB: team_backend
+
   constraint: "approved_languages" overrides parent
-    condition(language_in([python, zig, rust, go]))
-    // backend team also allows Go
+
+condition(language_in([python, zig, rust, go]))
+
+// backend team also allows Go
+
 ```
 
 The merge rule from A1.3 handles this: local constraints with the same name as parent constraints replace the parent version. The backend team's approved language list includes Go. The frontend team's does not, because it inherits the department-level list unchanged.
@@ -949,9 +1289,13 @@ The merge rule from A1.3 handles this: local constraints with the same name as p
 Override is logged as a fact:
 
 ```
+
 constraint_override("team_backend", "approved_languages", 
-    overrides("dept_engineering"),
-    reason("Go needed for microservices")).
+
+overrides("dept_engineering"),
+
+reason("Go needed for microservices")).
+
 ```
 
 The override has provenance. "Why can the backend team use Go?" is answered by querying the override fact.
@@ -961,19 +1305,31 @@ The override has provenance. "Why can the backend team use Go?" is answered by q
 Individual users can have constraints added to their account KB by administrators, by policy rules, or by their own preferences.
 
 ```
+
 KB: user_alice
+
   constraint: "30_sec_runtime" (active, preference, source(self))
-    // Alice's personal preference
+
+// Alice's personal preference
+
   
+
   constraint: "elevated_access_production" (active, policy, source(admin))
-    // Admin granted Alice production access, overriding team default
-    condition(accesses(production_db, read_only))
-    on_violation("log")
-    
+
+// Admin granted Alice production access, overriding team default
+
+condition(accesses(production_db, read_only))
+
+on_violation("log")
+
   constraint: "training_required_ml" (active, policy, source(hr_system))
-    // HR system added this after Alice moved to ML team
-    condition(completed_training("ml_safety_2026"))
-    on_violation("block_ml_features")
+
+// HR system added this after Alice moved to ML team
+
+condition(completed_training("ml_safety_2026"))
+
+on_violation("block_ml_features")
+
 ```
 
 Some constraints come from Alice herself (personal preferences). Some come from administrators (access grants). Some come from automated systems (training requirements). All are facts in Alice's KB. All are queryable. All have provenance showing who added them and when.
@@ -981,23 +1337,33 @@ Some constraints come from Alice herself (personal preferences). Some come from 
 ### A2.7 Querying the Account Hierarchy
 
 ```
+
 ?- effective_constraints(user_alice, Constraints).
+
 % Returns all constraints Alice is subject to:
+
 % [gdpr_compliance, data_retention, code_review, 
+
 %  approved_languages(with Go), database_access_logged,
+
 %  30_sec_runtime, elevated_access_production, training_required_ml]
 
 ?- constraint_source(user_alice, "elevated_access_production", Source).
+
 % Source = admin, granted(2026-04-15)
 
 ?- users_with_constraint("no_production_access", Users).
+
 % Users = [bob_engineer, carol]  (not Alice — hers was overridden)
 
 ?- constraints_from_level(user_alice, "org_acme_corp", OrgConstraints).
+
 % OrgConstraints = [gdpr_compliance, data_retention]
 
 ?- constraint_violations(user_alice, Violations).
+
 % Checks all effective constraints, returns any that are violated
+
 ```
 
 ### A2.8 Account KBs Carry Conversation State
@@ -1027,15 +1393,21 @@ A user account KB can be exported and imported. Alice changes companies. Her per
 Because constraint sets are computable from the KB tree, they can be tested before deployment. "If we add this constraint to the engineering department KB, which users are affected?" is a query:
 
 ```
+
 ?- hypothetical_add(dept_engineering, new_constraint, Affected).
+
 % Returns all users under dept_engineering who would gain this constraint
+
 ```
 
 "If we override this constraint for team_backend, does it create a conflict with the legal department's requirements?" is another query:
 
 ```
+
 ?- hypothetical_override(team_backend, "data_access", new_condition, Conflicts).
+
 % Checks whether the new condition violates any ancestor constraints
+
 ```
 
 These are not hypothetical features. They are direct consequences of constraints being facts in a logic programming knowledge base. The query engine already exists. The scoping rules already exist. The provenance tracking already exists. Making constraints KB-local and making accounts KBs is a structural rearrangement, not a new capability.
@@ -1072,7 +1444,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | VDR-4 | 24-module ML stack | 198 | 0 |
 | **VDR-5** | **Architecture specification** | — | — |
 | **Total** | | **705** | **0** |
-
 ---
 
 ## Appendix B: Module Inventory
@@ -1080,7 +1451,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | Module | Layer | Purpose |
 |--------|-------|---------|
 | vdr.py | Arithmetic | Core triple, remainder, normalization |
-| active_mul.py | Arithmetic | Active multiplication/division |
+| active mul.py | Arithmetic | Active multiplication/division |
 | fn.py | Arithmetic | Functional remainders, discrete calculus |
 | linalg.py | Arithmetic | Vec, Mat, parse, serialize |
 | export.py | Arithmetic | Lossy boundary |
@@ -1105,7 +1476,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | **prolog.py** | **Logic (VDR-5)** | **KB engine, constraints, provenance** |
 | **conversation.py** | **Logic (VDR-5)** | **Topics, working data, scoping** |
 | **surfacing.py** | **Logic (VDR-5)** | **Direct output, references, modes** |
-
 24 existing modules. 3 new modules specified by VDR-5. 27 total.
 
 ---
@@ -1121,22 +1491,28 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | **VDR-5** | **@HOWL-VDR-5-2026** | **Prolog provenance, constraints, scoped KBs** |
 | MATH-3 | @HOWL-MATH-3-2026 | Elliptic integrals, Borwein acceleration |
 | MATH-4 | @HOWL-MATH-4-2026 | Q335 universal basis, 22 constants |
-
 ---
 
 **END HOWL-VDR-5-2026**
 
 **Registry:** [@HOWL-VDR-5-2026]
+
 **Status:** Specification complete. Implementation roadmap defined.
+
 **Domain:** Applied Philosophy / Exact Machine Learning / Knowledge Systems
+
 **Central Result:** Architecture specification for a language model with exact arithmetic, logical provenance, first-class constraints, scoped knowledge bases, structured conversation tracking, and direct data surfacing.
+
 **Foundation:** VDR-1 through VDR-4, MATH-3, MATH-4
+
 **Key Claim:** Data provenance, constraint enforcement, and conversational state tracking are architectural requirements, not afterthought features. This paper specifies what that architecture looks like.
+
 **Falsification:** Five specific criteria, all testable by exact comparison.
 
 ---
 
 # VDR-5 Appendix Tables
+
 ## Complete Reference for VDR-LLM-Prolog Implementation
 
 ---
@@ -1147,30 +1523,29 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | TermType | Category | Primary Storage | Secondary Storage | Example |
 |----------|----------|----------------|-------------------|---------|
-| atom | Core Prolog | Text name | — | atom("softmax"), atom("layer_2") |
+| atom | Core Prolog | Text name | — | atom("softmax"), atom("layer 2") |
 | variable | Core Prolog | Text name | — | variable("?X"), variable("?Weight") |
 | list | Core Prolog | []Term | — | list([atom("a"), number(3)]) |
 | fraction | VDR Arithmetic | BigInt numerator | BigInt denominator | fraction(31, 140) |
-| fraction_vec | VDR Arithmetic | []Fraction | — | fraction_vec([1/2, 1/3, 1/7]) |
-| fraction_mat | VDR Arithmetic | [][]Fraction | — | fraction_mat([[1/2, 1/3],[1/7, 1/4]]) |
+| fraction vec | VDR Arithmetic | []Fraction | — | fraction vec([1/2, 1/3, 1/7]) |
+| fraction mat | VDR Arithmetic | [][]Fraction | — | fraction mat([[1/2, 1/3],[1/7, 1/4]]) |
 | qbasis | Q-Basis | BigInt numerator | i32 exponent k | qbasis(219886425873..., 335) |
-| qbasis_vec | Q-Basis | []BigInt | i32 exponent k | qbasis_vec([p1, p2, p3], 335) |
-| qbasis_mat | Q-Basis | [][]BigInt | i32 exponent k | qbasis_mat([[p1,p2],[p3,p4]], 335) |
+| qbasis vec | Q-Basis | []BigInt | i32 exponent k | qbasis vec([p1, p2, p3], 335) |
+| qbasis mat | Q-Basis | [][]BigInt | i32 exponent k | qbasis mat([[p1,p2],[p3,p4]], 335) |
 | parameter | Reference | Text path | — | parameter("layer.1.weight[0][0]") |
 | layer | Reference | Text name | i32 index | layer("attention", 2) |
 | token | Reference | i32 id | Text surface | token(42, "the") |
-| token_seq | Reference | []i32 | — | token_seq([42, 17, 93, 5]) |
+| token seq | Reference | []i32 | — | token seq([42, 17, 93, 5]) |
 | derivation | Provenance | Text operation | []Term inputs | derivation("softmax", [score1, score2]) |
-| constraint | Provenance | Constraint struct | — | constraint("sum_to_one", axiom, active) |
+| constraint | Provenance | Constraint struct | — | constraint("sum to one", axiom, active) |
 | checkpoint | Provenance | i32 step | — | checkpoint(100) |
-| gradient | Provenance | Fraction value | Text param_path | gradient(-3/7, "layer.1.weight[0][0]") |
-| loss | Provenance | Fraction value | Text loss_type | loss(17/2, "mse") |
-| step | Provenance | i32 step_number | — | step(42) |
-| topic | Conversation | Topic struct | — | topic("vdr_llm", open) |
-| binding | Conversation | Text key + Term val | Text dataset | binding("bob_age", number(32)) |
+| gradient | Provenance | Fraction value | Text param path | gradient(-3/7, "layer.1.weight[0][0]") |
+| loss | Provenance | Fraction value | Text loss type | loss(17/2, "mse") |
+| step | Provenance | i32 step number | — | step(42) |
+| topic | Conversation | Topic struct | — | topic("vdr llm", open) |
+| binding | Conversation | Text key + Term val | Text dataset | binding("bob age", number(32)) |
 | scope | Conversation | Text name | — | scope("legal"), scope("project") |
-| constraint_set | Conversation | Text name + []Text | — | constraint_set("safety", [...]) |
-
+| constraint set | Conversation | Text name + []Text | — | constraint set("safety", [...]) |
 ### D.2 Unification Rules by Term Type
 
 | TermType | Unification Method | Exact? | Notes |
@@ -1179,15 +1554,15 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | variable | Binds to any term | Yes | ?X unifies with anything, binds ?X |
 | list | Element-wise recursive | Yes | Same length, each element unifies |
 | fraction | Cross-multiplication: a*d == b*c | Yes | 1/2 = 2/4 by exact integer comparison |
-| fraction_vec | Element-wise fraction comparison | Yes | Same dimension, each element exact |
-| fraction_mat | Element-wise fraction comparison | Yes | Same shape, each element exact |
+| fraction vec | Element-wise fraction comparison | Yes | Same dimension, each element exact |
+| fraction mat | Element-wise fraction comparison | Yes | Same shape, each element exact |
 | qbasis | Integer equality + exponent equality | Yes | Same p and same k |
-| qbasis_vec | Element-wise integer + shared exponent | Yes | Same dimension, same k, each p equal |
-| qbasis_mat | Element-wise integer + shared exponent | Yes | Same shape, same k |
+| qbasis vec | Element-wise integer + shared exponent | Yes | Same dimension, same k, each p equal |
+| qbasis mat | Element-wise integer + shared exponent | Yes | Same shape, same k |
 | parameter | Path string equality | Yes | "layer.1.weight[0][0]" = same string |
 | layer | Name + index equality | Yes | Both must match |
 | token | Integer id equality | Yes | Token 42 = token 42 |
-| token_seq | Element-wise integer equality | Yes | Same length, each id matches |
+| token seq | Element-wise integer equality | Yes | Same length, each id matches |
 | derivation | Operation + input list equality | Yes | Recursive on inputs |
 | constraint | Name equality | Yes | For override resolution |
 | checkpoint | Step number equality | Yes | Step 100 = step 100 |
@@ -1197,8 +1572,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | topic | Name equality | Yes | For lookup and state tracking |
 | binding | Key equality (value separate) | Yes | Key match, value via unification |
 | scope | Name equality | Yes | "legal" = "legal" |
-| constraint_set | Name equality | Yes | For set operations |
-
+| constraint set | Name equality | Yes | For set operations |
 ---
 
 ## Appendix E: Complete Fact Predicate Reference
@@ -1207,69 +1581,64 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Predicate | Arity | Arg Types | Example | KB Location |
 |-----------|-------|-----------|---------|-------------|
-| model_name | 1 | atom | model_name("tiny_transformer_v1") | kb_model |
-| model_vocab_size | 1 | number | model_vocab_size(3) | kb_model |
-| model_embed_dim | 1 | number | model_embed_dim(2) | kb_model |
-| model_num_layers | 1 | number | model_num_layers(1) | kb_model |
-| model_num_heads | 1 | number | model_num_heads(1) | kb_model |
-| model_context_length | 1 | number | model_context_length(3) | kb_model |
-| model_activation | 1 | atom | model_activation("relu") | kb_model |
-| model_softmax_type | 1 | atom | model_softmax_type("surrogate") | kb_model |
-| model_softmax_depth | 1 | number | model_softmax_depth(12) | kb_model |
-| layer_type | 2 | number, atom | layer_type(0, "attention") | kb_model |
-| layer_input_dim | 2 | number, number | layer_input_dim(0, 2) | kb_model |
-| layer_output_dim | 2 | number, number | layer_output_dim(0, 2) | kb_model |
-
+| model name | 1 | atom | model name("tiny transformer v1") | kb model |
+| model vocab size | 1 | number | model vocab size(3) | kb model |
+| model embed dim | 1 | number | model embed dim(2) | kb model |
+| model num layers | 1 | number | model num layers(1) | kb model |
+| model num heads | 1 | number | model num heads(1) | kb model |
+| model context length | 1 | number | model context length(3) | kb model |
+| model activation | 1 | atom | model activation("relu") | kb model |
+| model softmax type | 1 | atom | model softmax type("surrogate") | kb model |
+| model softmax depth | 1 | number | model softmax depth(12) | kb model |
+| layer type | 2 | number, atom | layer type(0, "attention") | kb model |
+| layer input dim | 2 | number, number | layer input dim(0, 2) | kb model |
+| layer output dim | 2 | number, number | layer output dim(0, 2) | kb model |
 ### E.2 Parameter Facts
 
 | Predicate | Arity | Arg Types | Example | KB Location |
 |-----------|-------|-----------|---------|-------------|
-| parameter_value | 3 | parameter, step, fraction | parameter_value("layer.1.weight[0][0]", step(0), fraction(1,4)) | kb_params |
-| parameter_shape | 2 | parameter, list | parameter_shape("layer.1.weight", [2, 2]) | kb_params |
-| parameter_count | 1 | number | parameter_count(6) | kb_params |
-| initialized_from | 3 | parameter, atom, number | initialized_from("layer.1.weight[0][0]", "xavier", seed(42)) | kb_params |
-| gradient_at | 3 | parameter, step, fraction | gradient_at("layer.1.weight[0][0]", step(0), fraction(-3,7)) | kb_training |
-| updated_by | 4 | parameter, step, atom, fraction | updated_by("layer.1.weight[0][0]", step(0), "sgd", lr(fraction(1,10))) | kb_training |
-| param_denominator | 3 | parameter, step, number | param_denominator("layer.1.weight[0][0]", step(1), 140) | kb_training |
-
+| parameter value | 3 | parameter, step, fraction | parameter value("layer.1.weight[0][0]", step(0), fraction(1,4)) | kb params |
+| parameter shape | 2 | parameter, list | parameter shape("layer.1.weight", [2, 2]) | kb params |
+| parameter count | 1 | number | parameter count(6) | kb params |
+| initialized from | 3 | parameter, atom, number | initialized from("layer.1.weight[0][0]", "xavier", seed(42)) | kb params |
+| gradient at | 3 | parameter, step, fraction | gradient at("layer.1.weight[0][0]", step(0), fraction(-3,7)) | kb training |
+| updated by | 4 | parameter, step, atom, fraction | updated by("layer.1.weight[0][0]", step(0), "sgd", lr(fraction(1,10))) | kb training |
+| param denominator | 3 | parameter, step, number | param denominator("layer.1.weight[0][0]", step(1), 140) | kb training |
 ### E.3 Data Provenance Facts
 
 | Predicate | Arity | Arg Types | Example | KB Location |
 |-----------|-------|-----------|---------|-------------|
-| raw_text | 2 | atom, atom | raw_text(doc(1), "the cat sat") | kb_data |
-| tokenized | 2 | atom, token_seq | tokenized(doc(1), token_seq([42, 17, 93])) | kb_data |
-| token_id | 3 | atom, number, number | token_id(doc(1), pos(0), id(42)) | kb_data |
-| embedding | 3 | atom, number, fraction_vec | embedding(doc(1), pos(0), fraction_vec([3/7, 1/2])) | kb_inference |
-| attention_score | 4 | atom, number, number, fraction | attention_score(doc(1), pos(0), pos(1), fraction(5,12)) | kb_inference |
-| attention_weight | 4 | atom, number, number, fraction | attention_weight(doc(1), pos(0), pos(1), fraction(43545600,59565131)) | kb_inference |
-| hidden_state | 3 | atom, number, fraction_vec | hidden_state(doc(1), pos(0), fraction_vec([...])) | kb_inference |
-| logits | 3 | atom, number, fraction_vec | logits(doc(1), pos(2), fraction_vec([3/7, 1/5, 2/9])) | kb_inference |
-| output_prob | 4 | atom, number, token, fraction | output_prob(doc(1), pos(2), token(17), fraction(3,7)) | kb_inference |
-| sampled_token | 4 | atom, number, token, number | sampled_token(doc(1), pos(2), token(17), seed(1234)) | kb_inference |
-
+| raw text | 2 | atom, atom | raw text(doc(1), "the cat sat") | kb data |
+| tokenized | 2 | atom, token seq | tokenized(doc(1), token seq([42, 17, 93])) | kb data |
+| token id | 3 | atom, number, number | token id(doc(1), pos(0), id(42)) | kb data |
+| embedding | 3 | atom, number, fraction vec | embedding(doc(1), pos(0), fraction vec([3/7, 1/2])) | kb inference |
+| attention score | 4 | atom, number, number, fraction | attention score(doc(1), pos(0), pos(1), fraction(5,12)) | kb inference |
+| attention weight | 4 | atom, number, number, fraction | attention weight(doc(1), pos(0), pos(1), fraction(43545600,59565131)) | kb inference |
+| hidden state | 3 | atom, number, fraction vec | hidden state(doc(1), pos(0), fraction vec([...])) | kb inference |
+| logits | 3 | atom, number, fraction vec | logits(doc(1), pos(2), fraction vec([3/7, 1/5, 2/9])) | kb inference |
+| output prob | 4 | atom, number, token, fraction | output prob(doc(1), pos(2), token(17), fraction(3,7)) | kb inference |
+| sampled token | 4 | atom, number, token, number | sampled token(doc(1), pos(2), token(17), seed(1234)) | kb inference |
 ### E.4 Derivation Facts
 
 | Predicate | Arity | Arg Types | Example | KB Location |
 |-----------|-------|-----------|---------|-------------|
-| derived_from | 3 | term, atom, list | derived_from(attention_weight(d,p,q,w), "softmax", [scores...]) | kb_inference |
-| operation_type | 2 | atom, atom | operation_type("softmax", "nonlinear") | kb_model |
-| operation_inputs | 2 | atom, list | operation_inputs(op_id(42), [input_ref_1, input_ref_2]) | kb_inference |
-| operation_output | 2 | atom, term | operation_output(op_id(42), fraction(5, 12)) | kb_inference |
-| computation_step | 3 | atom, number, atom | computation_step(op_id(42), order(7), "attention_score") | kb_inference |
-
+| derived from | 3 | term, atom, list | derived from(attention weight(d,p,q,w), "softmax", [scores...]) | kb inference |
+| operation type | 2 | atom, atom | operation type("softmax", "nonlinear") | kb model |
+| operation inputs | 2 | atom, list | operation inputs(op id(42), [input ref 1, input ref 2]) | kb inference |
+| operation output | 2 | atom, term | operation output(op id(42), fraction(5, 12)) | kb inference |
+| computation step | 3 | atom, number, atom | computation step(op id(42), order(7), "attention score") | kb inference |
 ### E.5 Loss and Training Facts
 
 | Predicate | Arity | Arg Types | Example | KB Location |
 |-----------|-------|-----------|---------|-------------|
-| loss_at | 2 | step, fraction | loss_at(step(0), fraction(17,2)) | kb_training |
-| loss_type | 1 | atom | loss_type("mse") | kb_training |
-| learning_rate | 2 | step, fraction | learning_rate(step(0), fraction(1,10)) | kb_training |
-| optimizer_type | 1 | atom | optimizer_type("sgd") | kb_training |
-| momentum_coeff | 1 | fraction | momentum_coeff(fraction(9,10)) | kb_training |
-| batch_size | 1 | number | batch_size(2) | kb_training |
-| epoch | 2 | number, number | epoch(1, steps(3)) | kb_training |
-| checkpoint_at | 1 | step | checkpoint_at(step(100)) | kb_training |
-
+| loss at | 2 | step, fraction | loss at(step(0), fraction(17,2)) | kb training |
+| loss type | 1 | atom | loss type("mse") | kb training |
+| learning rate | 2 | step, fraction | learning rate(step(0), fraction(1,10)) | kb training |
+| optimizer type | 1 | atom | optimizer type("sgd") | kb training |
+| momentum coeff | 1 | fraction | momentum coeff(fraction(9,10)) | kb training |
+| batch size | 1 | number | batch size(2) | kb training |
+| epoch | 2 | number, number | epoch(1, steps(3)) | kb training |
+| checkpoint at | 1 | step | checkpoint at(step(100)) | kb training |
 ---
 
 ## Appendix F: Complete Rule Reference
@@ -1278,76 +1647,70 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| Direct dependency | depends_on(X, Y) | derived_from(X, _, Sources), member(Y, Sources) | X directly uses Y |
-| Transitive dependency | depends_on(X, Y) | derived_from(X, _, Sources), member(Z, Sources), depends_on(Z, Y) | X indirectly uses Y |
-| Affected by parameter | affected_by_param(P, V) | parameter_value(P, _, _), depends_on(V, P) | V depends on parameter P |
-| Root sources | root_source(X, S) | depends_on(X, S), not(derived_from(S, _, _)) | S is an underived input to X |
-| Derivation depth | derivation_depth(X, 0) | not(derived_from(X, _, _)) | Underived fact has depth 0 |
-| Derivation depth | derivation_depth(X, D) | derived_from(X, _, Sources), max_depth(Sources, MD), D is MD + 1 | Derived depth is max input depth + 1 |
-
+| Direct dependency | depends on(X, Y) | derived from(X,  , Sources), member(Y, Sources) | X directly uses Y |
+| Transitive dependency | depends on(X, Y) | derived from(X,  , Sources), member(Z, Sources), depends on(Z, Y) | X indirectly uses Y |
+| Affected by parameter | affected by param(P, V) | parameter value(P,  ,  ), depends on(V, P) | V depends on parameter P |
+| Root sources | root source(X, S) | depends on(X, S), not(derived from(S,  ,  )) | S is an underived input to X |
+| Derivation depth | derivation depth(X, 0) | not(derived from(X,  ,  )) | Underived fact has depth 0 |
+| Derivation depth | derivation depth(X, D) | derived from(X,  , Sources), max depth(Sources, MD), D is MD + 1 | Derived depth is max input depth + 1 |
 ### F.2 Consistency Rules
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| Weight consistent | weight_consistent(P, S) | parameter_value(P, S, V1), S1 is S-1, parameter_value(P, S1, V0), gradient_at(P, S1, G), learning_rate(S1, LR), V1 =:= V0 - LR * G | SGD update is exact |
-| Loss decreasing | loss_decreasing(S) | loss_at(S, L1), S0 is S-1, loss_at(S0, L0), L1 < L0 | Training is improving |
-| Distribution valid | valid_distribution(D) | sum_list(D, 1), forall(member(P, D), P >= 0) | Probabilities are valid |
-| Attention valid | attention_valid(Doc, Pos) | findall(W, attention_weight(Doc, Pos, _, W), Ws), valid_distribution(Ws) | Attention row is valid |
-| Gradient bounded | gradient_bounded(P, S, B) | gradient_at(P, S, G), abs(G) =< B | Gradient within bound |
-| Denominator bounded | denom_bounded(P, S, B) | parameter_value(P, S, fraction(_, D)), D =< B | Denominator within bound |
-
+| Weight consistent | weight consistent(P, S) | parameter value(P, S, V1), S1 is S-1, parameter value(P, S1, V0), gradient at(P, S1, G), learning rate(S1, LR), V1 =:= V0 - LR * G | SGD update is exact |
+| Loss decreasing | loss decreasing(S) | loss at(S, L1), S0 is S-1, loss at(S0, L0), L1 < L0 | Training is improving |
+| Distribution valid | valid distribution(D) | sum list(D, 1), forall(member(P, D), P >= 0) | Probabilities are valid |
+| Attention valid | attention valid(Doc, Pos) | findall(W, attention weight(Doc, Pos,  , W), Ws), valid distribution(Ws) | Attention row is valid |
+| Gradient bounded | gradient bounded(P, S, B) | gradient at(P, S, G), abs(G) =< B | Gradient within bound |
+| Denominator bounded | denom bounded(P, S, B) | parameter value(P, S, fraction( , D)), D =< B | Denominator within bound |
 ### F.3 Scoping Rules
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| In scope | in_scope(KB) | active_topic(T), kb_belongs_to(KB, T) | Current topic's KB |
-| In scope parent | in_scope(KB) | active_topic(T), topic(T, _, _, parent(P)), P \= none, kb_belongs_to(KB, P) | Parent topic's KB |
-| In scope global | in_scope(KB) | kb_belongs_to(KB, "global") | Global always in scope |
-| In scope secondary | in_scope(KB) | secondary_scope(T), kb_belongs_to(KB, T) | Explicitly activated scope |
-| Out of scope | out_of_scope(KB) | kb_exists(KB), not(in_scope(KB)) | Everything else |
-| Scoped query | query(Pred, Args, Result) | in_scope(KB), fact_in(KB, Pred, Args, Result), ! | First in-scope match |
-| Cross query | query_across(Pred, Args, Results) | findall(KB-R, (kb_exists(KB), fact_in(KB, Pred, Args, R)), Results) | All KBs, tagged |
-| Qualified query | query_in(KB, Pred, Args, Result) | fact_in(KB, Pred, Args, Result) | Specific KB, bypass scope |
-
+| In scope | in scope(KB) | active topic(T), kb belongs to(KB, T) | Current topic's KB |
+| In scope parent | in scope(KB) | active topic(T), topic(T,  ,  , parent(P)), P \= none, kb belongs to(KB, P) | Parent topic's KB |
+| In scope global | in scope(KB) | kb belongs to(KB, "global") | Global always in scope |
+| In scope secondary | in scope(KB) | secondary scope(T), kb belongs to(KB, T) | Explicitly activated scope |
+| Out of scope | out of scope(KB) | kb exists(KB), not(in scope(KB)) | Everything else |
+| Scoped query | query(Pred, Args, Result) | in scope(KB), fact in(KB, Pred, Args, Result), ! | First in-scope match |
+| Cross query | query across(Pred, Args, Results) | findall(KB-R, (kb exists(KB), fact in(KB, Pred, Args, R)), Results) | All KBs, tagged |
+| Qualified query | query in(KB, Pred, Args, Result) | fact in(KB, Pred, Args, Result) | Specific KB, bypass scope |
 ### F.4 Working Data Rules
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| Resolve binding | resolve(Var, Val) | active_topic(T), active_dataset(T, DS), resolve_in(Var, DS, Val) | Scoped lookup |
-| Local resolve | resolve_in(Var, DS, Val) | binding(DS, Var, Val) | Found locally |
-| Inherited resolve | resolve_in(Var, DS, Val) | not(binding(DS, Var, _)), dataset(DS, _, parent(P)), P \= none, resolve_in(Var, P, Val) | Walk to parent |
-| Unbound | resolve_in(Var, DS, unbound) | not(binding(DS, Var, _)), dataset(DS, _, parent(none)) | Reached root, not found |
-| Set binding | set_binding(Var, Val) | active_dataset(_, DS), retractall(binding(DS, Var, _)), assert(binding(DS, Var, Val)), assert(binding_history(DS, Var, Val, current_turn)) | Store with history |
-| Visible bindings | visible_bindings(All) | active_dataset(_, DS), collect_all(DS, All) | Everything in scope |
-| Diff | diff(DS1, DS2, Add, Rem, Chg) | findall(K-V, (binding(DS2,K,V), not(binding(DS1,K,_))), Add), findall(K-V, (binding(DS1,K,V), not(binding(DS2,K,_))), Rem), findall(K-V1-V2, (binding(DS1,K,V1), binding(DS2,K,V2), V1\=V2), Chg) | Structured comparison |
-
+| Resolve binding | resolve(Var, Val) | active topic(T), active dataset(T, DS), resolve in(Var, DS, Val) | Scoped lookup |
+| Local resolve | resolve in(Var, DS, Val) | binding(DS, Var, Val) | Found locally |
+| Inherited resolve | resolve in(Var, DS, Val) | not(binding(DS, Var,  )), dataset(DS,  , parent(P)), P \= none, resolve in(Var, P, Val) | Walk to parent |
+| Unbound | resolve in(Var, DS, unbound) | not(binding(DS, Var,  )), dataset(DS,  , parent(none)) | Reached root, not found |
+| Set binding | set binding(Var, Val) | active dataset( , DS), retractall(binding(DS, Var,  )), assert(binding(DS, Var, Val)), assert(binding history(DS, Var, Val, current turn)) | Store with history |
+| Visible bindings | visible bindings(All) | active dataset( , DS), collect all(DS, All) | Everything in scope |
+| Diff | diff(DS1, DS2, Add, Rem, Chg) | findall(K-V, (binding(DS2,K,V), not(binding(DS1,K, ))), Add), findall(K-V, (binding(DS1,K,V), not(binding(DS2,K, ))), Rem), findall(K-V1-V2, (binding(DS1,K,V1), binding(DS2,K,V2), V1\=V2), Chg) | Structured comparison |
 ### F.5 Topic Management Rules
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| Should close | should_close(T) | topic(T, open, _, _), not(pending(T, _)), not((topic(C, open, _, parent(T)))) | No pending, no open children |
-| Should park | should_park(T) | topic(T, open, O, _), current_turn(N), N-O > 20, not(recently_discussed(T, 5)) | Stale topic |
-| Recently discussed | recently_discussed(T, W) | current_turn(N), last_mentioned(T, M), N-M =< W | Active within window |
-| Dangling | dangling_topics(Ts) | findall(T, (topic(T, open, _, _), should_park(T)), Ts) | Open but stale |
-| Topic depth | topic_depth(T, 0) | topic(T, _, _, parent(none)) | Root topic |
-| Topic depth | topic_depth(T, D) | topic(T, _, _, parent(P)), topic_depth(P, PD), D is PD+1 | Nested depth |
-| Wrap | wrap(T) | summarize(T, S), retract(topic(T,open,_,_)), assert(topic(T,parked,_,_)), log(wrapped(T,S)) | Park with summary |
-| Unwrap | unwrap(T) | retract(topic(T,parked,_,_)), assert(topic(T,open,_,_)), list_pending(T), log(unwrapped(T)) | Resume from park |
-
+| Should close | should close(T) | topic(T, open,  ,  ), not(pending(T,  )), not((topic(C, open,  , parent(T)))) | No pending, no open children |
+| Should park | should park(T) | topic(T, open, O,  ), current turn(N), N-O > 20, not(recently discussed(T, 5)) | Stale topic |
+| Recently discussed | recently discussed(T, W) | current turn(N), last mentioned(T, M), N-M =< W | Active within window |
+| Dangling | dangling topics(Ts) | findall(T, (topic(T, open,  ,  ), should park(T)), Ts) | Open but stale |
+| Topic depth | topic depth(T, 0) | topic(T,  ,  , parent(none)) | Root topic |
+| Topic depth | topic depth(T, D) | topic(T,  ,  , parent(P)), topic depth(P, PD), D is PD+1 | Nested depth |
+| Wrap | wrap(T) | summarize(T, S), retract(topic(T,open, , )), assert(topic(T,parked, , )), log(wrapped(T,S)) | Park with summary |
+| Unwrap | unwrap(T) | retract(topic(T,parked, , )), assert(topic(T,open, , )), list pending(T), log(unwrapped(T)) | Resume from park |
 ### F.6 Constraint Rules
 
 | Rule | Head | Body | Purpose |
 |------|------|------|---------|
-| Effective constraints | effective_constraints(KB, All) | kb_constraints(KB, Local), kb_parent(KB, P), (P=none -> All=Local ; effective_constraints(P, PC), merge_constraints(Local, PC, All)) | Inherited union |
-| Merge with override | merge_constraints(L, P, M) | findall(C, member(C,L), LL), findall(C, (member(C,P), name(C,N), not((member(X,L), name(X,N)))), IL), append(LL, IL, M) | Local overrides parent |
-| All satisfied | all_satisfied(KB) | effective_constraints(KB, Cs), forall(member(C, Cs), constraint_satisfied(C)) | Every constraint passes |
-| Violations | violations(KB, Vs) | effective_constraints(KB, Cs), findall(C, (member(C,Cs), not(constraint_satisfied(C))), Vs) | Failed constraints |
-| Enable set | enable_set(Name) | constraint_set(Name, Ms), forall(member(C,Ms), activate(C)) | Group activation |
-| Disable set | disable_set(Name) | constraint_set(Name, Ms), forall(member(C,Ms), suspend(C)) | Group suspension |
-| Set union | set_union(S1, S2, R) | constraint_set(S1,A), constraint_set(S2,B), union(A,B,R) | Combine sets |
-| Set intersect | set_intersect(S1, S2, R) | constraint_set(S1,A), constraint_set(S2,B), intersection(A,B,R) | Common constraints |
-| Set diff | set_diff(S1, S2, R) | constraint_set(S1,A), constraint_set(S2,B), subtract(A,B,R) | Remove set from set |
-
+| Effective constraints | effective constraints(KB, All) | kb constraints(KB, Local), kb parent(KB, P), (P=none -> All=Local ; effective constraints(P, PC), merge constraints(Local, PC, All)) | Inherited union |
+| Merge with override | merge constraints(L, P, M) | findall(C, member(C,L), LL), findall(C, (member(C,P), name(C,N), not((member(X,L), name(X,N)))), IL), append(LL, IL, M) | Local overrides parent |
+| All satisfied | all satisfied(KB) | effective constraints(KB, Cs), forall(member(C, Cs), constraint satisfied(C)) | Every constraint passes |
+| Violations | violations(KB, Vs) | effective constraints(KB, Cs), findall(C, (member(C,Cs), not(constraint satisfied(C))), Vs) | Failed constraints |
+| Enable set | enable set(Name) | constraint set(Name, Ms), forall(member(C,Ms), activate(C)) | Group activation |
+| Disable set | disable set(Name) | constraint set(Name, Ms), forall(member(C,Ms), suspend(C)) | Group suspension |
+| Set union | set union(S1, S2, R) | constraint set(S1,A), constraint set(S2,B), union(A,B,R) | Combine sets |
+| Set intersect | set intersect(S1, S2, R) | constraint set(S1,A), constraint set(S2,B), intersection(A,B,R) | Common constraints |
+| Set diff | set diff(S1, S2, R) | constraint set(S1,A), constraint set(S2,B), subtract(A,B,R) | Remove set from set |
 ---
 
 ## Appendix G: Complete Constraint Type Reference
@@ -1356,24 +1719,23 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Type | Domain | Can Suspend? | Violation Action | Verification Method |
 |------|--------|-------------|-----------------|---------------------|
-| sum_to_one | axiom | No | error | Exact fraction sum == 1/1 |
-| non_negative | axiom | No | error | Every fraction >= 0/1 |
-| gradient_consistent | axiom | No | error | w_new == w_old - lr * grad exactly |
-| denominator_bounded | operational | Yes | warn | Denominator <= declared bound |
-| runtime_bounded | operational | Yes | warn | Estimated runtime <= bound |
-| python_38_compat | operational | Yes | block | AST contains no forbidden constructs |
-| exact_arithmetic | operational | No | block | No float operations |
-| rate_limit | operational | Yes | throttle | Queries per hour <= bound |
-| gdpr_compliance | legal | Yes | block | No PII in specified outputs |
-| data_retention | legal | Yes | block | Data older than limit pruned |
-| cite_sources | policy | Yes | warn | Claims have source references |
-| code_review | policy | Yes | block | Changes have review approval |
-| approved_languages | project | Yes | warn | Code uses approved language set |
-| naming_convention | project | Yes | warn | Names match declared patterns |
-| no_changes_beyond | project | Yes | block | Diff only touches requested areas |
-| character_consistent | conversation | Yes | warn | Character facts match declared values |
-| plot_continuous | conversation | Yes | warn | Plot events follow declared sequence |
-
+| sum to one | axiom | No | error | Exact fraction sum == 1/1 |
+| non negative | axiom | No | error | Every fraction >= 0/1 |
+| gradient consistent | axiom | No | error | w new == w old - lr * grad exactly |
+| denominator bounded | operational | Yes | warn | Denominator <= declared bound |
+| runtime bounded | operational | Yes | warn | Estimated runtime <= bound |
+| python 38 compat | operational | Yes | block | AST contains no forbidden constructs |
+| exact arithmetic | operational | No | block | No float operations |
+| rate limit | operational | Yes | throttle | Queries per hour <= bound |
+| gdpr compliance | legal | Yes | block | No PII in specified outputs |
+| data retention | legal | Yes | block | Data older than limit pruned |
+| cite sources | policy | Yes | warn | Claims have source references |
+| code review | policy | Yes | block | Changes have review approval |
+| approved languages | project | Yes | warn | Code uses approved language set |
+| naming convention | project | Yes | warn | Names match declared patterns |
+| no changes beyond | project | Yes | block | Diff only touches requested areas |
+| character consistent | conversation | Yes | warn | Character facts match declared values |
+| plot continuous | conversation | Yes | warn | Plot events follow declared sequence |
 ### G.2 Constraint Status Transitions
 
 | From | To | Trigger | Logged? |
@@ -1387,18 +1749,16 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | violated | active | Underlying issue fixed, reverify | Yes |
 | violated | suspended | User acknowledges and suspends | Yes |
 | any | any | — | All transitions logged with turn, source, reason |
-
 ### G.3 Constraint Scope Hierarchy
 
 | Scope | Applies To | Inherited? | Overridable? | Example |
 |-------|-----------|-----------|-------------|---------|
-| axiom | All KBs | Yes, always | No | sum_to_one |
-| operational | System-level | Yes | By admin only | rate_limit |
-| legal | Organization-level | Yes | By legal authority only | gdpr_compliance |
-| policy | Group/team-level | Yes | By group admin | code_review |
-| project | Project-level | Yes | By project lead | approved_languages |
-| conversation | Topic-level | No (local only) | By user | character_consistent |
-
+| axiom | All KBs | Yes, always | No | sum to one |
+| operational | System-level | Yes | By admin only | rate limit |
+| legal | Organization-level | Yes | By legal authority only | gdpr compliance |
+| policy | Group/team-level | Yes | By group admin | code review |
+| project | Project-level | Yes | By project lead | approved languages |
+| conversation | Topic-level | No (local only) | By user | character consistent |
 ---
 
 ## Appendix H: Complete KB Hierarchy Reference
@@ -1414,38 +1774,35 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | parent | ?Text | No | none | Parent KB for inheritance |
 | children | []Text | No | [] | Child KB names |
 | topic | ?Text | No | none | Associated topic |
-| working_data | ?WorkingDataSet | No | none | Scoped variable bindings |
+| working data | ?WorkingDataSet | No | none | Scoped variable bindings |
 | visibility | enum | Yes | public | Access control level |
 | frozen | bool | Yes | false | Read-only flag |
 | owner | ?Text | No | none | Owning user/group |
-| created_at | i32 | Yes | current_turn | Creation timestamp |
-| last_modified | i32 | Yes | current_turn | Modification timestamp |
-
+| created at | i32 | Yes | current turn | Creation timestamp |
+| last modified | i32 | Yes | current turn | Modification timestamp |
 ### H.2 KB Types by Purpose
 
 | KB Type | Parent Pattern | Typical Contents | Retention | Example |
 |---------|---------------|------------------|-----------|---------|
-| Global | none (root) | Axioms, system rules | Permanent | kb_global |
-| Organization | Global | Legal constraints, org policies | Permanent | kb_acme_corp |
-| Department | Organization | Team policies, access rules | Permanent | kb_engineering |
-| Team | Department | Team-specific constraints | Permanent | kb_backend |
-| User account | Team or Organization | Identity, preferences, conversation state | Permanent | kb_user_alice |
-| Project | User or Team | Project facts, project constraints | Long-term | kb_project_vdr |
-| Sub-project | Project | Module-specific facts | Long-term | kb_vdr_llm |
-| Model | Project | Architecture, hyperparameters | Long-term | kb_model |
-| Training run | Model | Parameter history, gradients, losses | Checkpoint-retained | kb_training_run_1 |
-| Inference batch | Training run | Activations, attention, outputs | Batch-transient | kb_batch_42 |
-| Story/creative | User | Characters, plot, setting | User-managed | kb_story_a |
-| Snapshot | Any | Frozen copy of another KB at a point | Read-only | kb_snapshot_step_100 |
-
+| Global | none (root) | Axioms, system rules | Permanent | kb global |
+| Organization | Global | Legal constraints, org policies | Permanent | kb acme corp |
+| Department | Organization | Team policies, access rules | Permanent | kb engineering |
+| Team | Department | Team-specific constraints | Permanent | kb backend |
+| User account | Team or Organization | Identity, preferences, conversation state | Permanent | kb user alice |
+| Project | User or Team | Project facts, project constraints | Long-term | kb project vdr |
+| Sub-project | Project | Module-specific facts | Long-term | kb vdr llm |
+| Model | Project | Architecture, hyperparameters | Long-term | kb model |
+| Training run | Model | Parameter history, gradients, losses | Checkpoint-retained | kb training run 1 |
+| Inference batch | Training run | Activations, attention, outputs | Batch-transient | kb batch 42 |
+| Story/creative | User | Characters, plot, setting | User-managed | kb story a |
+| Snapshot | Any | Frozen copy of another KB at a point | Read-only | kb snapshot step 100 |
 ### H.3 KB Visibility Levels
 
 | Level | Owner Sees | Operator Sees | End User Sees | LLM Reasons Over |
 |-------|-----------|--------------|--------------|------------------|
 | public | Yes | Yes | Yes | Yes |
 | internal | Yes | Yes | No | Yes |
-| owner_only | Yes | No | No | Yes |
-
+| owner only | Yes | No | No | Yes |
 ### H.4 KB Search Order
 
 | Priority | KB Source | Condition | Stop on Match? |
@@ -1456,8 +1813,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | ... | Ancestors up to root | Walk up tree | Yes (cut) |
 | N | Global KB | Always searched last | Yes (cut) |
 | — | Secondary scope KBs | Only if explicitly activated | Yes (cut) |
-| — | Out-of-scope KBs | Only via query_in() or query_across() | N/A |
-
+| — | Out-of-scope KBs | Only via query in() or query across() | N/A |
 ---
 
 ## Appendix I: Complete Working Data Set Reference
@@ -1466,29 +1822,27 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Operation | Signature | Effect | Logged? |
 |-----------|----------|--------|---------|
-| set | set_binding(Key, Value) | Assert binding in active dataset | Yes: key, old_val, new_val, turn |
-| get | get_binding(Key) → Value | Resolve with inheritance | No (read-only) |
-| delete | delete_binding(Key) | Retract binding from active dataset | Yes: key, old_val, turn |
-| list | visible_bindings() → All | Collect with inheritance | No (read-only) |
-| list_local | local_bindings() → Local | Current dataset only, no inheritance | No (read-only) |
-| snapshot | snapshot(Name) | Frozen copy of all visible bindings | Yes: name, turn, binding_count |
+| set | set binding(Key, Value) | Assert binding in active dataset | Yes: key, old val, new val, turn |
+| get | get binding(Key) → Value | Resolve with inheritance | No (read-only) |
+| delete | delete binding(Key) | Retract binding from active dataset | Yes: key, old val, turn |
+| list | visible bindings() → All | Collect with inheritance | No (read-only) |
+| list local | local bindings() → Local | Current dataset only, no inheritance | No (read-only) |
+| snapshot | snapshot(Name) | Frozen copy of all visible bindings | Yes: name, turn, binding count |
 | restore | restore(Snapshot, Target) | Copy all bindings from snapshot to target | Yes: source, target, turn |
 | diff | diff(DS1, DS2) → Changes | Added, removed, changed bindings | No (read-only) |
-| merge | merge(Source, Target) | Copy source bindings into target, source wins conflicts | Yes: source, target, turn, conflict_count |
+| merge | merge(Source, Target) | Copy source bindings into target, source wins conflicts | Yes: source, target, turn, conflict count |
 | clear | clear(DS) | Remove all bindings from dataset | Yes: dataset, turn, count |
-
 ### I.2 Binding History Event Types
 
 | Event | Fields | Example |
 |-------|--------|---------|
-| created | key, value, turn, source | created("bob_age", number(32), turn(5), "user") |
-| updated | key, old_value, new_value, turn, source | updated("bob_age", number(32), number(33), turn(12), "user") |
-| deleted | key, old_value, turn, source | deleted("bob_age", number(33), turn(20), "user") |
-| inherited | key, value, from_dataset, turn | inherited("language", atom("python"), "kb_project", turn(1)) |
-| shadowed | key, local_value, parent_value, turn | shadowed("max_n", number(50), number(6), turn(15)) |
-| snapshot | snapshot_name, turn, binding_count | snapshot("before_refactor", turn(30), 42) |
-| restored | snapshot_name, turn | restored("before_refactor", turn(35)) |
-
+| created | key, value, turn, source | created("bob age", number(32), turn(5), "user") |
+| updated | key, old value, new value, turn, source | updated("bob age", number(32), number(33), turn(12), "user") |
+| deleted | key, old value, turn, source | deleted("bob age", number(33), turn(20), "user") |
+| inherited | key, value, from dataset, turn | inherited("language", atom("python"), "kb project", turn(1)) |
+| shadowed | key, local value, parent value, turn | shadowed("max n", number(50), number(6), turn(15)) |
+| snapshot | snapshot name, turn, binding count | snapshot("before refactor", turn(30), 42) |
+| restored | snapshot name, turn | restored("before refactor", turn(35)) |
 ### I.3 Type Constraints for Bindings
 
 | Type | Check | Example Valid | Example Invalid |
@@ -1496,11 +1850,10 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | number | Term.type == number | number(32) | atom("thirty-two") |
 | fraction | Term.type == fraction | fraction(1, 4) | number(0.25) |
 | atom | Term.type == atom | atom("Portland") | number(42) |
-| fraction_vec | Term.type == fraction_vec | fraction_vec([1/2, 1/3]) | list([1, 2]) |
-| fraction_mat | Term.type == fraction_mat | fraction_mat([[1/2]]) | fraction_vec([1/2]) |
+| fraction vec | Term.type == fraction vec | fraction vec([1/2, 1/3]) | list([1, 2]) |
+| fraction mat | Term.type == fraction mat | fraction mat([[1/2]]) | fraction vec([1/2]) |
 | token | Term.type == token | token(42, "the") | number(42) |
 | any | Always passes | — | — |
-
 ---
 
 ## Appendix J: Complete Topic Lifecycle Reference
@@ -1510,10 +1863,9 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | State | Meaning | KB Active? | Constraints Active? | Working Data? | Can Query? |
 |-------|---------|-----------|--------------------|--------------|-----------| 
 | open | Currently active or accessible | Yes | Yes | Read/write | Yes |
-| closed | Completed, no pending items | No | No | Read-only | Via query_in only |
-| parked | Temporarily suspended | No | No | Preserved (read-only) | Via query_in only |
+| closed | Completed, no pending items | No | No | Read-only | Via query in only |
+| parked | Temporarily suspended | No | No | Preserved (read-only) | Via query in only |
 | branched | Split into child topics | Yes (parent) | Yes (parent) | Read-only (parent) | Yes (parent) |
-
 ### J.2 State Transitions
 
 | From | To | Trigger | Precondition | Side Effects |
@@ -1526,25 +1878,23 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | closed | open | User reopens | — | Unfreeze working data, reactivate KB tree |
 | branched | open | All children closed | No open children | Resume normal open state |
 | any | any | — | — | Transition logged with turn, source, reason |
-
 ### J.3 Topic Triggered Actions
 
 | Trigger | Action | Purpose |
 |---------|--------|---------|
-| on_open | activate_kb_tree(Topic) | Make facts visible |
-| on_open | load_constraints(Topic) | Apply topic's constraints |
-| on_open | restore_working_data(Topic) | Make bindings available |
-| on_close | verify_no_pending(Topic) | Ensure completeness |
-| on_close | summarize(Topic) | Record what was accomplished |
-| on_close | freeze_working_data(Topic) | Prevent accidental modification |
-| on_close | deactivate_kb_tree(Topic) | Remove from scope |
-| on_park | snapshot_state(Topic) | Preserve for later resume |
-| on_park | log_park_reason(Topic) | Record why parked |
-| on_park | deactivate_kb_tree(Topic) | Remove from scope |
-| on_resume | restore_state(Topic) | Bring back snapshot |
-| on_resume | activate_kb_tree(Topic) | Make facts visible again |
-| on_resume | list_pending(Topic) | Remind user of open items |
-
+| on open | activate kb tree(Topic) | Make facts visible |
+| on open | load constraints(Topic) | Apply topic's constraints |
+| on open | restore working data(Topic) | Make bindings available |
+| on close | verify no pending(Topic) | Ensure completeness |
+| on close | summarize(Topic) | Record what was accomplished |
+| on close | freeze working data(Topic) | Prevent accidental modification |
+| on close | deactivate kb tree(Topic) | Remove from scope |
+| on park | snapshot state(Topic) | Preserve for later resume |
+| on park | log park reason(Topic) | Record why parked |
+| on park | deactivate kb tree(Topic) | Remove from scope |
+| on resume | restore state(Topic) | Bring back snapshot |
+| on resume | activate kb tree(Topic) | Make facts visible again |
+| on resume | list pending(Topic) | Remind user of open items |
 ---
 
 ## Appendix K: Complete Surfacing Mode Reference
@@ -1563,7 +1913,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | History | "/history key" | Binding change log | None (direct) | Binding history |
 | Pending | "/pending" | Open items list | None (direct) | Topic pending lists |
 | Context | "/context" | Active scope summary | Optional summary | KB tree + topic state |
-
 ### K.2 Output Block Types
 
 | Block Type | Source | Can Hallucinate? | Editable? | Live? |
@@ -1573,7 +1922,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | Reference | KB address + current value | No | Via KB operations | Yes (updates on change) |
 | Query result | Prolog query execution | No | No | Snapshot at query time |
 | Constraint status | Constraint verification | No | Via constraint operations | Yes (re-verifiable) |
-
 ### K.3 Permission Filtering
 
 | User Role | Sees LLM Text | Sees Public KB Data | Sees Internal KB Data | Sees Owner-Only Data | Sees Reasoning Trace |
@@ -1582,7 +1930,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | Operator | Yes | Yes | Yes | No | Optional |
 | End User | Yes | Yes | No | No | No |
 | Auditor | Yes | Yes | Yes | Yes (read-only) | Yes (read-only) |
-
 ---
 
 ## Appendix L: Complete Account Hierarchy Reference
@@ -1591,52 +1938,48 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Field | User Account | Group Account | Organization Account |
 |-------|-------------|--------------|---------------------|
-| name | user_alice | team_backend | org_acme_corp |
+| name | user alice | team backend | org acme corp |
 | facts | Identity, preferences, history | Group metadata, policies | Org metadata, legal facts |
 | rules | Personal rules | Team rules | Org-wide rules |
 | constraints | Personal + inherited | Team + inherited | Org + global |
 | parent | Group or org KB | Org KB | Global KB |
 | children | Project KBs, story KBs | User KBs | Department KBs |
-| working_data | Current session state | Shared team state | Shared org state |
-| visibility | owner_only | internal | internal |
+| working data | Current session state | Shared team state | Shared org state |
+| visibility | owner only | internal | internal |
 | owner | self | group admin | org admin |
-
 ### L.2 Constraint Inheritance Through Account Hierarchy
 
 | Level | Example KB | Constraints Defined Here | Inherited From Above | Total Effective |
 |-------|-----------|------------------------|---------------------|----------------|
-| Global | kb_global | exact_arithmetic, sum_to_one | — | 2 |
-| Organization | kb_acme_corp | gdpr_compliance, data_retention | 2 from global | 4 |
-| Department | kb_engineering | code_review, approved_languages | 4 from above | 6 |
-| Team | kb_backend | database_logged, go_allowed (override) | 6 from above | 7 (one override) |
-| User | kb_user_alice | 30_sec_runtime, elevated_access | 7 from above | 9 |
-
+| Global | kb global | exact arithmetic, sum to one | — | 2 |
+| Organization | kb acme corp | gdpr compliance, data retention | 2 from global | 4 |
+| Department | kb engineering | code review, approved languages | 4 from above | 6 |
+| Team | kb backend | database logged, go allowed (override) | 6 from above | 7 (one override) |
+| User | kb user alice | 30 sec runtime, elevated access | 7 from above | 9 |
 ### L.3 Constraint Override Rules
 
 | Scenario | Parent Constraint | Child Override | Effective at Child | Logged As |
 |----------|------------------|---------------|-------------------|-----------|
-| No override | approved_languages([py,zig,rust]) | — | approved_languages([py,zig,rust]) | inherited |
-| Expand | approved_languages([py,zig,rust]) | approved_languages([py,zig,rust,go]) | approved_languages([py,zig,rust,go]) | overridden(expand) |
-| Restrict | rate_limit(100/hr) | rate_limit(50/hr) | rate_limit(50/hr) | overridden(restrict) |
-| Suspend | code_review(active) | code_review(suspended) | code_review(suspended) | overridden(suspend) |
-| Cannot override | sum_to_one (axiom) | — | sum_to_one (axiom) | override_blocked |
-| Cannot override | gdpr_compliance (legal) | — | gdpr_compliance (legal) | override_blocked |
-
+| No override | approved languages([py,zig,rust]) | — | approved languages([py,zig,rust]) | inherited |
+| Expand | approved languages([py,zig,rust]) | approved languages([py,zig,rust,go]) | approved languages([py,zig,rust,go]) | overridden(expand) |
+| Restrict | rate limit(100/hr) | rate limit(50/hr) | rate limit(50/hr) | overridden(restrict) |
+| Suspend | code review(active) | code review(suspended) | code review(suspended) | overridden(suspend) |
+| Cannot override | sum to one (axiom) | — | sum to one (axiom) | override blocked |
+| Cannot override | gdpr compliance (legal) | — | gdpr compliance (legal) | override blocked |
 ### L.4 Account Operations
 
 | Operation | Who Can Do It | Effect | Logged? |
 |-----------|--------------|--------|---------|
 | Create user | Org admin, group admin | New user KB as child of group | Yes |
 | Delete user | Org admin | Remove user KB and all children | Yes |
-| Move user to group | Org admin | Reparent user KB | Yes: old_parent, new_parent |
+| Move user to group | Org admin | Reparent user KB | Yes: old parent, new parent |
 | Add constraint to user | Admin, automated system | Assert constraint in user KB | Yes: source, reason |
 | Remove constraint from user | Admin with sufficient level | Retract constraint | Yes: source, reason |
 | Override group constraint | Group admin | Assert same-name constraint in child KB | Yes: override details |
-| Grant KB access | KB owner, admin | Assert kb_granted(KB, User) | Yes |
-| Revoke KB access | KB owner, admin | Retract kb_granted(KB, User) | Yes |
+| Grant KB access | KB owner, admin | Assert kb granted(KB, User) | Yes |
+| Revoke KB access | KB owner, admin | Retract kb granted(KB, User) | Yes |
 | Export account | User (own), admin (any) | Serialize user KB and children | Yes |
 | Import account | Admin | Deserialize KB, attach to parent | Yes |
-
 ---
 
 ## Appendix M: Memory Tier Reference
@@ -1647,24 +1990,22 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 |------|----------|----------|---------------|-------------|
 | 1: Persistent | Architecture, rules, axioms, accounts, org structure | Never pruned | — | Small (KB) |
 | 2: Checkpoint | Parameter snapshots, model state at checkpoint steps | Until explicitly deleted | Keep every Nth step + anomaly steps | Medium (MB per checkpoint) |
-| 3: Step-transient | Gradients, updates, intermediate state for current step | Until step committed | Prune unless retain_step rule matches | Small per step (KB) |
-| 4: Batch-transient | Per-batch inference: embeddings, attention, logits, outputs | Until batch processed | Prune unless retain_batch rule matches | Medium per batch (KB-MB) |
+| 3: Step-transient | Gradients, updates, intermediate state for current step | Until step committed | Prune unless retain step rule matches | Small per step (KB) |
+| 4: Batch-transient | Per-batch inference: embeddings, attention, logits, outputs | Until batch processed | Prune unless retain batch rule matches | Medium per batch (KB-MB) |
 | 5: Conversation-transient | Per-turn working state, draft outputs, reasoning traces | Until turn complete | Prune unless flagged | Small per turn (KB) |
-
 ### M.2 Retention Policy Rules
 
 | Rule | Condition | Effect | Override |
 |------|-----------|--------|----------|
-| retain_step(S) | S mod checkpoint_interval == 0 | Keep full step state | — |
-| retain_step(S) | loss_anomaly_at(S) | Keep for diagnosis | — |
-| retain_step(S) | constraint_violated_at(_, S) | Keep violation context | — |
-| retain_step(S) | user_flagged(S) | User explicitly requested | — |
-| retain_batch(B) | contains_unknown_token(B) | Keep for analysis | — |
-| retain_batch(B) | output_anomaly(B) | Keep for diagnosis | — |
-| retain_batch(B) | user_flagged(B) | User explicitly requested | — |
-| prune_step(S) | not(retain_step(S)) | Free step-transient data | Cannot override |
-| prune_batch(B) | not(retain_batch(B)) | Free batch-transient data | Cannot override |
-
+| retain step(S) | S mod checkpoint interval == 0 | Keep full step state | — |
+| retain step(S) | loss anomaly at(S) | Keep for diagnosis | — |
+| retain step(S) | constraint violated at( , S) | Keep violation context | — |
+| retain step(S) | user flagged(S) | User explicitly requested | — |
+| retain batch(B) | contains unknown token(B) | Keep for analysis | — |
+| retain batch(B) | output anomaly(B) | Keep for diagnosis | — |
+| retain batch(B) | user flagged(B) | User explicitly requested | — |
+| prune step(S) | not(retain step(S)) | Free step-transient data | Cannot override |
+| prune batch(B) | not(retain batch(B)) | Free batch-transient data | Cannot override |
 ### M.3 Storage Estimates
 
 | Component | Per-Parameter | Per-Step | Per-Batch | Per-Checkpoint |
@@ -1677,7 +2018,6 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | Logits (per position) | — | — | ~vocab*20 bytes | — |
 | Derivation fact | — | — | ~100 bytes | — |
 | Constraint check | — | ~50 bytes | ~50 bytes | — |
-
 For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter per checkpoint, ~500 bytes per step, ~2KB per batch inference with full provenance.
 
 ---
@@ -1688,52 +2028,47 @@ For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter 
 
 | Query | Purpose | Returns |
 |-------|---------|---------|
-| parameter_value(P, step(S), V) | Value at specific step | Exact fraction |
-| parameter_value(P, step(0), V), parameter_value(P, step(100), V) | Steps where value equals initial | Step numbers or failure |
-| findall(S, (parameter_value(P, step(S), V), V > fraction(1,1)), Steps) | Steps where weight exceeds 1 | List of step numbers |
-| gradient_at(P, step(S), G), abs(G) > fraction(100,1) | Gradient explosion detection | Parameter + step pairs |
-| param_denominator(P, step(S), D), D > 2^64 | Denominator growth detection | Parameter + step + denominator |
-
+| parameter value(P, step(S), V) | Value at specific step | Exact fraction |
+| parameter value(P, step(0), V), parameter value(P, step(100), V) | Steps where value equals initial | Step numbers or failure |
+| findall(S, (parameter value(P, step(S), V), V > fraction(1,1)), Steps) | Steps where weight exceeds 1 | List of step numbers |
+| gradient at(P, step(S), G), abs(G) > fraction(100,1) | Gradient explosion detection | Parameter + step pairs |
+| param denominator(P, step(S), D), D > 2^64 | Denominator growth detection | Parameter + step + denominator |
 ### N.2 Data Lineage Queries
 
 | Query | Purpose | Returns |
 |-------|---------|---------|
-| depends_on(output_prob(D,P,T,_), embedding(D,Pos)) | Which input positions influenced output | Position list |
-| root_source(attention_weight(D,P,Q,_), S) | Ultimate inputs to an attention weight | Raw sources |
-| affected_by_param(P, output_prob(D,Pos,T,_)) | Does this parameter affect this output | Yes/no |
-| derivation_depth(V, D) | How many computation steps produced V | Integer depth |
-
+| depends on(output prob(D,P,T, ), embedding(D,Pos)) | Which input positions influenced output | Position list |
+| root source(attention weight(D,P,Q, ), S) | Ultimate inputs to an attention weight | Raw sources |
+| affected by param(P, output prob(D,Pos,T, )) | Does this parameter affect this output | Yes/no |
+| derivation depth(V, D) | How many computation steps produced V | Integer depth |
 ### N.3 Constraint Queries
 
 | Query | Purpose | Returns |
 |-------|---------|---------|
-| effective_constraints(KB, Cs) | All constraints in scope | Constraint list |
+| effective constraints(KB, Cs) | All constraints in scope | Constraint list |
 | violations(KB, Vs) | Currently violated constraints | Violation list |
-| constraint_source(User, C, Source) | Who added this constraint | Source + timestamp |
-| users_with_constraint(C, Users) | Who is subject to constraint C | User list |
-| hypothetical_add(KB, C, Affected) | Impact of adding new constraint | Affected KB list |
-
+| constraint source(User, C, Source) | Who added this constraint | Source + timestamp |
+| users with constraint(C, Users) | Who is subject to constraint C | User list |
+| hypothetical add(KB, C, Affected) | Impact of adding new constraint | Affected KB list |
 ### N.4 Conversation Queries
 
 | Query | Purpose | Returns |
 |-------|---------|---------|
-| dangling_topics(Ts) | Open but stale topics | Topic list |
-| findall(P, pending(_, P), All) | All pending items globally | Item list |
-| topic(T, open, _, parent(P)) | Open subtopics of P | Topic list |
-| binding_history(DS, Key, _, Turn) | When was key last changed | Turn number |
-| visible_bindings(All) | Everything in current scope | Key-value list |
+| dangling topics(Ts) | Open but stale topics | Topic list |
+| findall(P, pending( , P), All) | All pending items globally | Item list |
+| topic(T, open,  , parent(P)) | Open subtopics of P | Topic list |
+| binding history(DS, Key,  , Turn) | When was key last changed | Turn number |
+| visible bindings(All) | Everything in current scope | Key-value list |
 | diff(snap1, snap2, A, R, C) | Changes between snapshots | Added, removed, changed |
-
 ### N.5 Account Queries
 
 | Query | Purpose | Returns |
 |-------|---------|---------|
-| user_can_see(User, KB) | Access check | Yes/no |
-| effective_constraints(user_alice, Cs) | Alice's full constraint set | Constraint list with inheritance chain |
-| constraint_override(Team, C, Details) | Override details | Original + override + reason |
-| users_under(Group, Users) | All users in group hierarchy | User list |
-| kb_owner(KB, Owner) | Who owns this KB | Owner reference |
-
+| user can see(User, KB) | Access check | Yes/no |
+| effective constraints(user alice, Cs) | Alice's full constraint set | Constraint list with inheritance chain |
+| constraint override(Team, C, Details) | Override details | Original + override + reason |
+| users under(Group, Users) | All users in group hierarchy | User list |
+| kb owner(KB, Owner) | Who owns this KB | Owner reference |
 ---
 
 ## Appendix O: Falsification Test Matrix
@@ -1748,7 +2083,6 @@ For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter 
 | Softmax sum | softmax([1,2,3]) | Sum exactly 1 | Sum != 1 |
 | Gradient x^2 | d(x^2)/dx at x=3 | Exactly 6 | Result != 6 |
 | 705 existing tests | Various | Various | Any VDR computation error |
-
 ### O.2 Logic Layer Tests
 
 | Test | Input | Expected | Falsifies If |
@@ -1760,7 +2094,6 @@ For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter 
 | Shadowing | Local binding overrides parent | Local value returned | Parent value returned |
 | Derivation chain | Trace value to source | Complete chain | Missing link |
 | Constraint check | Sum-to-one on exact distribution | Satisfied | Violated |
-
 ### O.3 Conversation Layer Tests
 
 | Test | Input | Expected | Falsifies If |
@@ -1769,9 +2102,8 @@ For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter 
 | Working data scope | Switch topic, query binding | Correct scope value | Wrong scope value |
 | Constraint inheritance | Child KB query effective constraints | Union of ancestor chain | Missing or extra constraint |
 | Override | Same-name constraint in child | Child version wins | Parent version wins |
-| KB surfacing | /show kb_name | Exact KB contents | Missing or modified data |
-| Cross-scope query | query_in(other_kb, ...) | Tagged result from specified KB | Result from wrong KB |
-
+| KB surfacing | /show kb name | Exact KB contents | Missing or modified data |
+| Cross-scope query | query in(other kb, ...) | Tagged result from specified KB | Result from wrong KB |
 ### O.4 Account Layer Tests
 
 | Test | Input | Expected | Falsifies If |
@@ -1781,7 +2113,7 @@ For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter 
 | Group inheritance | User inherits group constraint | Constraint effective | Constraint missing |
 | Override logged | Team overrides dept constraint | Override fact recorded | No record |
 | Account export/import | Export user KB, import elsewhere | Identical KB | Any difference |
-
 ---
 
 **END VDR-5 APPENDIX TABLES**
+
