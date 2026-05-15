@@ -1,0 +1,73 @@
+=== 1. vocab and encoding ===
+  vocab = {'a': 0, 'b': 1, 'c': 2}
+  ids = [0, 1, 0, 2]
+  decoded = ['a', 'b', 'a', 'c']
+  PASS: vocab size = 3
+  PASS: decode(encode(tokens)) = tokens
+
+=== 2. sliding windows ===
+  windows = [([0, 1], 2), ([1, 2], 3), ([2, 3], 4)]
+  PASS: sliding windows exact
+
+=== 3. one-hot and batching ===
+  one_hot = [Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)]
+  batches = [[([0, 1], 2), ([1, 2], 3)], [([2, 3], 4)]]
+  PASS: one_hot exact
+  PASS: batchify produces 2 batches
+
+=== 4. tiny text dataset ===
+  ids = [0, 1, 0, 2, 0]
+  windows = [([0, 1], 0), ([1, 0], 2), ([0, 2], 0)]
+  PASS: tiny_text_dataset windows count = 3
+
+=== 5. metrics basics ===
+  accuracy = 3/4
+  argmax = 1
+  PASS: exact_accuracy = 3/4
+  PASS: argmax = index 1
+
+=== 6. denominator complexity ===
+  vec complexity = {'max_d': 4, 'sum_d': 9, 'count': 3}
+  param complexity = {'max_d': 10, 'sum_d': 32, 'count': 9}
+  PASS: vec max denominator = 4
+  PASS: parameter complexity counts entries
+
+=== 7. single train step ===
+  pred = [Fraction(3, 8)]
+  loss = 1/64
+  PASS: train_step loss is closed
+  PASS: prediction has dimension 1
+
+=== 8. train epoch ===
+  before avg_loss = 77/4800
+  after avg_loss = 1687374558939772106219752230270721/98493723850592747520000000000000000
+  PASS: before avg_loss closed
+  PASS: after avg_loss closed
+
+=== 9. evaluate epoch ===
+  eval avg_loss = 77/4800
+  preds len = 3
+  PASS: evaluate returns one pred per sample
+
+=== 10. classification helpers ===
+  pred0 = 0
+  pred_ids = [0, 1, 0, 1]
+  accuracy = 1
+  PASS: predict_class first sample = 0
+  PASS: toy classifier has exact accuracy 1
+
+=== 11. checkpoint save/load parameters ===
+  saved entries = 4
+  loaded entries = 4
+  PASS: save_parameters count matches
+  PASS: load_parameters count matches
+  PASS: loaded first parameter value matches original
+
+=== 12. checkpoint save model ===
+  save_model entries = 4
+  PASS: save_model serializes all params
+
+==================================================
+Batch 5 results: 21 passed, 0 failed
+ALL BATCH 5 TESTS PASSED
+==================================================
