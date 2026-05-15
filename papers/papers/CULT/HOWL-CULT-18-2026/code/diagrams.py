@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-HOWL CULT-15 Diagrams — Showing Your Work in 2026
-8 figures covering the five-layer standard, BBN cross-domain example,
-pre-registered falsification, anti-smuggling, and verification economics.
+HOWL CULT-18 Diagrams — Closing Physics at Scale
+8 figures covering the coverage matrix methodology, BBN results,
+precision architecture, velocity comparison, and domain coverage.
 Output: PNG files to ../figures/
 """
 
@@ -11,14 +11,13 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.patches as patches
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
 import numpy as np
 import os
 
-outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
-os.makedirs(outdir, exist_ok=True)
+# ================================================================
+# GLOBAL STYLE
+# ================================================================
 
-# ── Global style ──────────────────────────────────────────────
 
 # Light mode
 if True:
@@ -52,716 +51,679 @@ else:
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
 
-def save(fig, name):
-    path = os.path.join(outdir, name)
+
+outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
+os.makedirs(outdir, exist_ok=True)
+
+def save(fig, filename):
+    path = os.path.join(outdir, filename)
     fig.savefig(path, dpi=180, facecolor=BG, bbox_inches='tight', pad_inches=0.3)
     plt.close(fig)
-    print("  Saved: %s" % name)
+    print("  Saved: %s" % filename)
 
 def style_ax(ax, title='', xlabel='', ylabel=''):
     ax.set_facecolor(PAN)
-    for sp in ax.spines.values():
-        sp.set_color(DIM)
-        sp.set_linewidth(0.5)
+    for spine in ax.spines.values():
+        spine.set_color(DIM)
+        spine.set_linewidth(0.5)
     ax.tick_params(colors=DIM, labelsize=9)
     if title:
-        ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=18)
+        ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=20)
     if xlabel:
-        ax.set_xlabel(xlabel, color=SILVER, fontsize=11, labelpad=10)
+        ax.set_xlabel(xlabel, color=SILVER, fontsize=11, labelpad=12)
     if ylabel:
-        ax.set_ylabel(ylabel, color=SILVER, fontsize=11, labelpad=10)
-
+        ax.set_ylabel(ylabel, color=SILVER, fontsize=11, labelpad=12)
 
 # ================================================================
-# FIG 1: BBN DOMAIN CROSSING MAP
-# Type: Connection/Integer Map (Type 5)
-# Shows: How gauge integers flow through three physics domains
-#        with actual numerical values at each handoff point.
-#        Text says "cross-domain" — this shows exactly where
-#        13/264 becomes eta=6.090 becomes Y_p=0.2486.
+# FIG 1: BBN DERIVATION CHAIN
+# Type: Progression/Sequence (Type 7)
+# Shows: The cross-domain chain from gauge integers through
+#        cosmological parameters to nuclear abundances, with
+#        computed values and miss percentages at each stage.
+#        Three physics domains connected in one executable chain.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
 ax.axis('off')
+
+ax.set_xlim(-0.5, 10.5)
+ax.set_ylim(-1.5, 8.5)
+
+# Domain background bands
+domain_bands = [
+    ((-0.3, -0.8), 3.1, 8.8, '#1a1a3a', 'PARTICLE\nPHYSICS'),
+    ((2.8, -0.8), 3.4, 8.8, '#1a2a1a', 'COSMOLOGY'),
+    ((6.2, -0.8), 4.1, 8.8, '#2a1a1a', 'NUCLEAR\nPHYSICS'),
+]
+for (x, y), w, h, c, label in domain_bands:
+    rect = patches.FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.15',
+                                   facecolor=c, edgecolor=DIM, linewidth=0.8, alpha=0.5)
+    ax.add_patch(rect)
+    ax.text(x + w/2, y + h - 0.3, label, ha='center', va='top',
+            color=DIM, fontsize=8, fontstyle='italic')
+
+# Chain nodes
+nodes = [
+    (1.0, 6.5, 'Gauge Integers', '11, 13', CYAN, 'From SU(2)\nbeta structure'),
+    (1.0, 3.5, 'DM/Baryon\nPrefactor', '22/13', CYAN, 'Exact fraction'),
+    (4.0, 6.5, 'Baryon Density\n$\\Omega_b$', '0.04904', GREEN, 'Planck: 0.0490\nMiss: 0.073%'),
+    (4.0, 3.5, 'Baryon-to-Photon\n$\\eta_{10}$', '6.090', GREEN, 'Planck: 6.104\nMiss: 0.24%'),
+    (7.5, 6.5, 'Deuterium\nD/H', '2.531e-5', GOLD, 'Measured: 2.527e-5\nMiss: 0.14%'),
+    (7.5, 3.5, 'Helium-4\n$Y_p$', '0.2486', ORANGE, 'Measured: 0.2449\nMiss: 1.53%'),
+]
+
+for (x, y, title, value, color, note) in nodes:
+    box = patches.FancyBboxPatch((x - 0.85, y - 0.7), 1.7, 1.4,
+                                  boxstyle='round,pad=0.2',
+                                  facecolor=PAN, edgecolor=color, linewidth=2)
+    ax.add_patch(box)
+    ax.text(x, y + 0.3, title, ha='center', va='center',
+            color=WHITE, fontsize=9, fontweight='bold')
+    ax.text(x, y - 0.15, value, ha='center', va='center',
+            color=color, fontsize=11, fontweight='bold')
+    ax.text(x, y - 0.95, note, ha='center', va='top',
+            color=SILVER, fontsize=7)
+
+# Arrows connecting nodes
+arrow_style = dict(arrowstyle='->', color=SILVER, lw=1.8, connectionstyle='arc3,rad=0')
+arrow_pairs = [
+    ((1.0, 5.8), (1.0, 4.25)),      # integers -> prefactor
+    ((1.85, 3.5), (3.15, 3.5)),      # prefactor -> eta (through omega_b)
+    ((1.85, 6.5), (3.15, 6.5)),      # integers -> omega_b
+    ((4.0, 5.8), (4.0, 4.25)),       # omega_b -> eta
+    ((4.85, 6.5), (6.65, 6.5)),      # eta -> D/H
+    ((4.85, 3.5), (6.65, 3.5)),      # eta -> Y_p
+]
+for start, end in arrow_pairs:
+    ax.annotate('', xy=end, xytext=start, arrowprops=arrow_style)
+
+# Arrow labels
+ax.text(1.25, 5.1, '$\\times \\pi$', ha='left', va='center', color=CYAN, fontsize=9)
+ax.text(2.5, 6.8, '$\\Omega_{DM}$ / ratio', ha='center', va='bottom', color=SILVER, fontsize=8)
+ax.text(4.25, 5.1, 'CMB + Bose-\nEinstein', ha='left', va='center', color=SILVER, fontsize=7)
+ax.text(5.7, 6.8, 'Pitrou 2018\na=2.57, b=-0.44', ha='center', va='bottom', color=SILVER, fontsize=7)
+ax.text(5.7, 3.2, 'Pitrou 2018\na=0.2485, b=0.0016', ha='center', va='top', color=SILVER, fontsize=7)
+
+# Verdict badges
+badge_data = [
+    (9.2, 6.8, 'PASS', '3-digit\nmatch', GREEN),
+    (9.2, 6.1, 'PASS', '0.12$\\sigma$', GREEN),
+    (9.2, 3.8, 'PASS', '0.94$\\sigma$', GREEN),
+    (9.2, 3.1, 'FAIL', '2-digit\nonly', RED),
+]
+for (x, y, verdict, detail, color) in badge_data:
+    ax.text(x, y, verdict, ha='center', va='center', color=color,
+            fontsize=9, fontweight='bold',
+            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=color, linewidth=1.5))
+    ax.text(x, y - 0.4, detail, ha='center', va='top', color=DIM, fontsize=7)
+
+ax.set_title('BBN Derivation Chain: Gauge Integers to Nuclear Abundances',
+             color=GOLD, fontsize=16, fontweight='bold', pad=25)
+
+save(fig, 'cult18_01_bbn_chain.png')
+
+# ================================================================
+# FIG 2: R2 = pi/4 CROSS-DOMAIN CONNECTIONS
+# Type: Connection/Integer Map (Type 5)
+# Shows: The single geometric factor pi/4 appearing in four
+#        different physics domains with the actual equations
+#        and precision standards. The shared constant makes
+#        cross-domain structure visible.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 12))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.axis('off')
+
+ax.set_xlim(-2, 12)
+ax.set_ylim(-1, 11)
+
+# Central node
+central_x, central_y = 5.0, 5.5
+circle = plt.Circle((central_x, central_y), 1.2, facecolor=PAN,
+                     edgecolor=GOLD, linewidth=3)
+ax.add_patch(circle)
+ax.text(central_x, central_y + 0.25, '$R_2 = \\pi/4$', ha='center', va='center',
+        color=GOLD, fontsize=18, fontweight='bold')
+ax.text(central_x, central_y - 0.35, '= 0.785398...',
+        ha='center', va='center', color=SILVER, fontsize=10)
+
+# Domain nodes
+domains = [
+    (0.5, 9.5, 'PIPE FLOW', '$Q = R_2 \\cdot d^2 \\cdot v$',
+     'Coordinator: velocity $v$', 'Coriolis: 0.05%', CYAN),
+    (9.5, 9.5, 'DRAG FORCE', '$F = \\frac{1}{2}\\rho v^2 R_2 d^2 C_d$',
+     'Coordinator: drag coeff $C_d$', 'Wind tunnel: 1%', BLUE),
+    (0.5, 1.5, 'ORIFICE FLOW', '$q = C_d R_2 d^2 \\sqrt{2\\Delta P/\\rho}$',
+     'Coordinator: discharge $C_d$', 'ISO 5167: 0.5%', GREEN),
+    (9.5, 1.5, 'CAPACITANCE', '$C = \\varepsilon_0 R_2 d^2 / t$',
+     'Coordinator: permittivity $\\varepsilon$', 'pF precision', MAG),
+]
+
+for (x, y, title, equation, coord, precision, color) in domains:
+    box_w, box_h = 3.2, 2.4
+    box = patches.FancyBboxPatch((x - box_w/2, y - box_h/2), box_w, box_h,
+                                  boxstyle='round,pad=0.25',
+                                  facecolor=PAN, edgecolor=color, linewidth=2)
+    ax.add_patch(box)
+    ax.text(x, y + 0.7, title, ha='center', va='center',
+            color=color, fontsize=11, fontweight='bold')
+    ax.text(x, y + 0.05, equation, ha='center', va='center',
+            color=WHITE, fontsize=10)
+    ax.text(x, y - 0.55, coord, ha='center', va='center',
+            color=SILVER, fontsize=8)
+    ax.text(x, y - 0.95, precision, ha='center', va='center',
+            color=DIM, fontsize=8,
+            bbox=dict(boxstyle='round,pad=0.2', facecolor=BG, edgecolor=DIM, linewidth=0.8))
+
+# Arrows from center to domains
+for (x, y, _, _, _, _, color) in domains:
+    dx = x - central_x
+    dy = y - central_y
+    dist = np.sqrt(dx**2 + dy**2)
+    start_x = central_x + 1.3 * dx / dist
+    start_y = central_y + 1.3 * dy / dist
+    end_x = x - 1.7 * dx / dist
+    end_y = y - 1.3 * dy / dist
+    ax.annotate('', xy=(end_x, end_y), xytext=(start_x, start_y),
+                arrowprops=dict(arrowstyle='->', color=color, lw=2,
+                                connectionstyle='arc3,rad=0'))
+
+ax.text(5.0, 10.5, '$\\pi/4$: The Cross-Section Invariant Across Four Domains',
+        ha='center', va='center', color=GOLD, fontsize=16, fontweight='bold')
+ax.text(5.0, -0.3, 'One geometric factor. Four domains. Each independently validated to stated precision.',
+        ha='center', va='center', color=SILVER, fontsize=10)
+
+save(fig, 'cult18_02_r2_connections.png')
+
+# ================================================================
+# FIG 3: PRECISION TOWER
+# Type: Scale/Landscape (Type 2)
+# Shows: The hierarchy of precision from exact SI constants
+#        at the base through exact group-theory fractions
+#        through 2^335 transcendentals to measured values.
+#        The tower shows that the foundation is MORE precise
+#        than the measurements built on it.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 12))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.axis('off')
+
+ax.set_xlim(-1, 11)
+ax.set_ylim(-0.5, 12)
+
+# Tower levels from bottom (most precise) to top (least precise)
+levels = [
+    (0.5, 0.5, 9.0, 2.0, 'SI 2019 EXACT CONSTANTS', GOLD,
+     'Infinite precision — defined exact by international agreement',
+     ['c = 299,792,458 m/s', 'h = 6.62607015e-34 J\u00b7s',
+      'e = 1.602176634e-19 C', 'k_B = 1.380649e-23 J/K'],
+     '\u221e digits'),
+    (1.0, 3.0, 8.0, 2.0, 'GROUP THEORY EXACT FRACTIONS', CYAN,
+     'Exact rational — derived from gauge group structure',
+     ['b\u2081 = 41/10', 'b\u2082 = -19/6', 'b\u2083 = -7',
+      'a\u2081 (Schwinger) = 1/2'],
+     '\u221e digits'),
+    (1.5, 5.5, 7.0, 2.0, 'TRANSCENDENTALS (2\u00b3\u00b3\u2075 BASIS)', BLUE,
+     'Rational approximation — bounded error < 10\u207b\u00b9\u2070\u2070',
+     ['\u03c0, e, \u03b6(3), \u03b6(5)', 'ln(2), ln(3), \u221a2, \u221a3',
+      'K(k), E(k) at specific moduli', 'Catalan, Li\u2084 ... Li\u2087'],
+     '100+ digits'),
+    (2.0, 8.0, 6.0, 2.0, 'MEASURED VALUES', MAG,
+     'Finite precision — from CODATA, PDG, Planck',
+     ['\u03b1 = 7.297e-3 (\u00b1 0.3 ppb)', '\u03a9_b = 0.0490 (\u00b1 ~1%)',
+      'D/H = 2.527e-5 (\u00b1 1.2%)', 'G = 6.674e-11 (\u00b1 22 ppm)'],
+     '4\u201315 digits'),
+]
+
+for (x, y, w, h, title, color, desc, examples, precision) in levels:
+    box = patches.FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.2',
+                                  facecolor=PAN, edgecolor=color, linewidth=2.5,
+                                  alpha=0.9)
+    ax.add_patch(box)
+    ax.text(x + 0.4, y + h - 0.25, title, ha='left', va='top',
+            color=color, fontsize=11, fontweight='bold')
+    ax.text(x + 0.4, y + h - 0.65, desc, ha='left', va='top',
+            color=SILVER, fontsize=8)
+
+    ex_text = '    '.join(examples)
+    ax.text(x + w/2, y + 0.5, ex_text, ha='center', va='center',
+            color=WHITE, fontsize=8)
+
+    ax.text(x + w - 0.3, y + h - 0.25, precision, ha='right', va='top',
+            color=GOLD, fontsize=10, fontweight='bold')
+
+# Vertical arrow showing precision direction
+ax.annotate('', xy=(0.2, 9.8), xytext=(0.2, 0.7),
+            arrowprops=dict(arrowstyle='->', color=DIM, lw=2))
+ax.text(-0.2, 5.5, 'DECREASING\nPRECISION', ha='center', va='center',
+        color=DIM, fontsize=9, rotation=90)
+
+ax.text(5.0, 11.5, 'The Precision Tower: Foundation More Exact Than Measurements',
+        ha='center', va='center', color=GOLD, fontsize=15, fontweight='bold')
+ax.text(5.0, 10.8, 'Exact arithmetic ensures derivation error is zero.\n'
+        'All disagreement with measurement is in the physics, not the arithmetic.',
+        ha='center', va='center', color=SILVER, fontsize=9)
+
+save(fig, 'cult18_03_precision_tower.png')
+
+# ================================================================
+# FIG 4: BBN COMPARISON RESULTS
+# Type: Comparison Bar Chart (Type 6)
+# Shows: All 13 BBN comparisons as horizontal bars on a log
+#        scale of miss percentage, color-coded by verdict.
+#        The spread from 0.024% to 10.9% is immediately visible.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
+style_ax(ax, title='BBN Experiment: 13 Pre-Registered Comparisons',
+         xlabel='Miss Percentage (log scale)', ylabel='')
+
+comparisons = [
+    ('D/H digits', 0.024, 'PASS', GREEN),
+    ('\u03a9_b vs Planck', 0.073, 'INFO', BLUE),
+    ('D/H vs measured', 0.143, 'INFO', BLUE),
+    ('\u03a9_DE vs Planck', 0.198, 'INFO', BLUE),
+    ('\u03b7 vs Planck', 0.237, 'INFO', BLUE),
+    ('\u03a9_m vs Planck', 0.439, 'INFO', BLUE),
+    ('\u03c1_\u039b g/cm\u00b3 vs obs', 0.152, 'INFO', BLUE),
+    ('Y_p vs measured', 1.528, 'INFO', BLUE),
+    ('Y_p digits', 1.487, 'FAIL', RED),
+    ('N_eff vs Planck', 9.296, 'INFO', BLUE),
+    ('\u03c1_\u039b GeV\u2074 vs obs', 10.94, 'INFO', BLUE),
+    ('N_eff vs 3.044', 10.90, 'INFO', BLUE),
+]
+
+comparisons_sorted = sorted(comparisons, key=lambda x: x[1])
+
+y_positions = np.arange(len(comparisons_sorted))
+labels = [c[0] for c in comparisons_sorted]
+values = [c[1] for c in comparisons_sorted]
+colors = [c[3] for c in comparisons_sorted]
+verdicts = [c[2] for c in comparisons_sorted]
+
+bars = ax.barh(y_positions, values, height=0.6, color=colors, alpha=0.7,
+               edgecolor=[c for c in colors], linewidth=1.5)
+
+ax.set_xscale('log')
+ax.set_xlim(0.01, 30)
+ax.set_ylim(-0.8, len(comparisons_sorted) - 0.2)
+ax.set_yticks(y_positions)
+ax.set_yticklabels(labels, fontsize=9, color=SILVER)
+
+# Value labels on bars
+for i, (val, verdict, color) in enumerate(zip(values, verdicts, colors)):
+    label_x = val * 1.3 if val < 15 else val * 0.5
+    ax.text(label_x, i, '%.3f%%' % val, ha='left', va='center',
+            color=WHITE, fontsize=8, fontweight='bold')
+    ax.text(0.013, i, verdict, ha='left', va='center',
+            color=color, fontsize=8, fontweight='bold')
+
+# Threshold lines
+ax.axvline(x=1.0, color=ORANGE, linestyle='--', linewidth=1.5, alpha=0.5)
+ax.text(1.0, len(comparisons_sorted) - 0.5, '1%', ha='center', va='bottom',
+        color=ORANGE, fontsize=9)
+
+ax.axvline(x=0.1, color=GREEN, linestyle='--', linewidth=1.5, alpha=0.5)
+ax.text(0.1, len(comparisons_sorted) - 0.5, '0.1%', ha='center', va='bottom',
+        color=GREEN, fontsize=9)
+
+# Summary box
+summary_text = '4 PASS  |  1 FAIL  |  8 INFO\n57 output values  |  7 derivations'
+ax.text(15, 1.5, summary_text, ha='center', va='center',
+        color=WHITE, fontsize=9,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, linewidth=1.5))
+
+save(fig, 'cult18_04_bbn_comparisons.png')
+
+# ================================================================
+# FIG 5: VELOCITY COMPARISON
+# Type: Scale/Landscape (Type 2)
+# Shows: The structural time difference between institutional
+#        peer review and platform experiment execution on a
+#        log scale. The orders-of-magnitude gap is spatial.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
+ax.set_facecolor(BG)
+ax.axis('off')
+
 ax.set_xlim(-0.5, 10.5)
 ax.set_ylim(-0.5, 8.5)
 
-ax.set_title('BBN Domain Crossing Map\nGauge Integers to Nuclear Abundances',
-             color=GOLD, fontsize=16, fontweight='bold', pad=25)
-
-# Domain background regions
-dom_regions = [
-    ((-0.3, 4.8), 3.4, 3.4, '#1a1a3a', 'PARTICLE PHYSICS', BLUE),
-    ((3.5, 4.8), 3.4, 3.4, '#1a2a1a', 'COSMOLOGY', PURPLE),
-    ((7.3, 4.8), 3.0, 3.4, '#2a1a1a', 'NUCLEAR PHYSICS', MAG),
-]
-for (x, y), w, h, fc, label, lc in dom_regions:
-    rect = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.15',
-                          facecolor=fc, edgecolor=lc, linewidth=1.5, alpha=0.6)
-    ax.add_patch(rect)
-    ax.text(x + w/2, y + h - 0.3, label, ha='center', va='top',
-            color=lc, fontsize=10, fontweight='bold', alpha=0.8)
-
-# Value boxes
-boxes = [
-    # (x, y, label_top, value, color)
-    (0.7, 6.2, 'Gauge Integers', '11, 13', BLUE),
-    (0.7, 5.2, r'$\Omega_b = 13/264$', '0.049036', CYAN),
-    (4.0, 7.0, r'$\Omega_{DM} = \pi/12$', '0.2618', PURPLE),
-    (4.0, 5.8, r'$\eta = n_b / n_\gamma$', '6.090e-10', CYAN),
-    (4.0, 5.0, r'$\eta_{10}$', '6.090', GREEN),
-    (8.0, 7.0, r'$Y_p$ (He-4)', '0.2486', ORANGE),
-    (8.0, 6.0, 'D/H', '2.531e-5', GREEN),
-    (8.0, 5.2, r'$N_{eff}$', '2.712', SILVER),
+# Log time axis (horizontal)
+time_points = [
+    (0.5, '1 second', CYAN),
+    (1.5, '1 minute', CYAN),
+    (2.5, '1 hour', GREEN),
+    (4.0, '1 day', GREEN),
+    (5.5, '1 week', ORANGE),
+    (6.5, '1 month', ORANGE),
+    (7.5, '3 months', RED),
+    (8.5, '6 months', RED),
+    (9.5, '1 year+', RED),
 ]
 
-for bx, by, label, val, col in boxes:
-    rect = FancyBboxPatch((bx - 0.6, by - 0.25), 1.9, 0.65,
-                          boxstyle='round,pad=0.12',
-                          facecolor=BG, edgecolor=col, linewidth=1.5)
-    ax.add_patch(rect)
-    ax.text(bx + 0.35, by + 0.18, label, ha='center', va='center',
-            color=col, fontsize=9, fontweight='bold')
-    ax.text(bx + 0.35, by - 0.08, val, ha='center', va='center',
-            color=WHITE, fontsize=10)
+# Time axis line
+ax.plot([0.2, 9.8], [4.0, 4.0], color=DIM, linewidth=1.5)
+for x, label, color in time_points:
+    ax.plot(x, 4.0, 'o', color=color, markersize=6)
+    ax.text(x, 3.5, label, ha='center', va='top', color=color, fontsize=8, rotation=35)
 
-# Arrows between boxes
-arrow_kw = dict(arrowstyle='->', color=GOLD, lw=2, mutation_scale=18)
-arrow_list = [
-    ((1.65, 6.2), (1.65, 5.65)),      # integers -> omega_b
-    ((2.0, 5.35), (3.4, 5.85)),       # omega_b -> eta
-    ((2.0, 6.2), (3.4, 7.0)),         # integers -> omega_dm (through pi)
-    ((4.95, 5.55), (4.95, 5.25)),     # eta -> eta10
-    ((5.5, 7.0), (7.4, 7.0)),         # (cosmology) -> Y_p
-    ((5.5, 5.15), (7.4, 6.0)),        # eta10 -> D/H
-    ((5.5, 5.0), (7.4, 5.2)),         # -> N_eff
+# Platform events (top)
+platform_events = [
+    (0.5, 6.5, 'Run\nexperiment', 'Runner executes\n7 derivations', CYAN),
+    (1.5, 6.5, 'Fork &\nmodify', 'Change 1 input\nre-run', CYAN),
+    (2.5, 6.5, '100\nexperiments', 'One contributor\none day', GREEN),
+    (4.0, 6.5, 'Community\nreview', 'Merge request\nevaluated', GREEN),
 ]
 
-for (x1, y1), (x2, y2) in arrow_list:
-    ax.annotate('', xy=(x2, y2), xytext=(x1, y1),
-                arrowprops=dict(arrowstyle='->', color=GOLD, lw=2))
+for x, y, title, detail, color in platform_events:
+    box = patches.FancyBboxPatch((x - 0.55, y - 0.55), 1.1, 1.1,
+                                  boxstyle='round,pad=0.15',
+                                  facecolor=PAN, edgecolor=color, linewidth=1.8)
+    ax.add_patch(box)
+    ax.text(x, y + 0.15, title, ha='center', va='center',
+            color=color, fontsize=9, fontweight='bold')
+    ax.text(x, y - 0.8, detail, ha='center', va='top', color=SILVER, fontsize=7)
 
-# Measured values (comparison annotations on right)
-meas = [
-    (9.6, 7.25, 'Measured: 0.2449', MAG),
-    (9.6, 6.85, 'Miss: 1.53%', BG),
-    (9.6, 6.25, 'Measured: 2.527e-5', MAG),
-    (9.6, 5.85, 'Miss: 0.14%', BG),
-    (9.6, 5.45, 'Standard: 3.044', MAG),
-    (9.6, 5.05, 'Miss: 10.9%', BG),
+ax.text(2.0, 7.8, 'PLATFORM', ha='center', va='center',
+        color=CYAN, fontsize=14, fontweight='bold')
+
+# Institutional events (bottom)
+inst_events = [
+    (4.0, 1.5, 'Write\npaper', '15-30 pages\nprose', ORANGE),
+    (5.5, 1.5, 'Submit &\nscreen', 'Editorial\nassessment', ORANGE),
+    (6.5, 1.5, 'Peer\nreview', '2-3 reviewers\nread prose', RED),
+    (7.5, 1.5, 'Revise &\nresubmit', 'Address\ncomments', RED),
+    (9.0, 1.5, 'Publish', 'Accepted\nformatted', RED),
 ]
-for mx, my, mtxt, mc in meas:
-    ax.text(mx, my, mtxt, color=mc, fontsize=8, va='center')
 
-# Chain formula at bottom
-ax.text(5.0, 4.4, r'Chain: integers $\rightarrow$ $\Omega_b$ $\rightarrow$ '
-        r'$\eta$ $\rightarrow$ BBN $\rightarrow$ primordial abundances',
-        ha='center', va='center', color=SILVER, fontsize=11,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM))
+for x, y, title, detail, color in inst_events:
+    box = patches.FancyBboxPatch((x - 0.55, y - 0.55), 1.1, 1.1,
+                                  boxstyle='round,pad=0.15',
+                                  facecolor=PAN, edgecolor=color, linewidth=1.8)
+    ax.add_patch(box)
+    ax.text(x, y + 0.15, title, ha='center', va='center',
+            color=color, fontsize=9, fontweight='bold')
+    ax.text(x, y - 0.8, detail, ha='center', va='top', color=SILVER, fontsize=7)
 
-ax.text(5.0, 3.7, 'Three physics domains from two gauge integers\n'
-        'Falsification: if integers wrong, helium and deuterium predictions break',
-        ha='center', va='center', color=DIM, fontsize=9)
+ax.text(6.5, 0.0, 'INSTITUTION', ha='center', va='center',
+        color=RED, fontsize=14, fontweight='bold')
 
-save(fig, 'cult15_01_bbn_domain_crossing.png')
+# Highlight the gap
+ax.annotate('', xy=(0.5, 5.5), xytext=(0.5, 4.3),
+            arrowprops=dict(arrowstyle='->', color=CYAN, lw=2))
+ax.annotate('', xy=(9.0, 2.6), xytext=(9.0, 3.7),
+            arrowprops=dict(arrowstyle='->', color=RED, lw=2))
 
+ax.text(5.0, 8.2, 'Velocity: Platform vs Institution',
+        ha='center', va='center', color=GOLD, fontsize=16, fontweight='bold')
+ax.text(5.0, -0.2, 'Same result. Different time. The gap is structural, not incremental.',
+        ha='center', va='center', color=SILVER, fontsize=10)
+
+save(fig, 'cult18_05_velocity_comparison.png')
 
 # ================================================================
-# FIG 2: DOMAIN CROSSING SCALE
-# Type: Scale/Landscape (Type 2)
-# Shows: Log-scale energy axis from quarks to cosmos with the
-#        BBN derivation chain marked at each scale it touches.
-#        The physical span of the computation is the claim.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 9), facecolor=BG)
-style_ax(ax, title='Domain Crossing Scale\nBBN Derivation Spans 25 Orders of Magnitude',
-         xlabel='Energy Scale (GeV)', ylabel='')
-
-energies = {
-    'Planck': 1.22e19,
-    'GUT': 2e16,
-    r'$M_Z$': 91.2,
-    r'$m_p$': 0.938,
-    r'$m_e$': 0.000511,
-    'BBN (1 MeV)': 0.001,
-    'CMB (0.2 meV)': 2e-13,
-    r'$H_0$': 1.5e-42,
-}
-
-log_e = {k: np.log10(v) for k, v in energies.items()}
-
-y_base = 0.5
-ax.set_xlim(-45, 22)
-ax.set_ylim(-0.5, 4.5)
-
-# Main energy axis line
-ax.plot([-44, 21], [y_base, y_base], color=DIM, lw=2)
-
-# Landmarks
-y_offsets = [1.0, 1.5, 1.0, 1.5, 1.0, 1.5, 1.0, 1.5]
-for i, (label, loge) in enumerate(log_e.items()):
-    ax.plot([loge, loge], [y_base - 0.1, y_base + 0.1], color=SILVER, lw=1.5)
-    yoff = y_base + 0.3 + y_offsets[i]
-    ax.plot([loge, loge], [y_base + 0.1, yoff - 0.15], color=DIM, lw=0.8,
-            ls='--', alpha=0.5)
-    ax.text(loge, yoff, label, ha='center', va='bottom', color=WHITE,
-            fontsize=9, fontweight='bold')
-    ax.text(loge, yoff - 0.2, '%.0e GeV' % energies[list(energies.keys())[i]],
-            ha='center', va='top', color=DIM, fontsize=7)
-
-# BBN chain regions
-chain_regions = [
-    (np.log10(0.938) - 2, np.log10(91.2) + 2, 'Gauge Integers', BLUE, -0.3),
-    (np.log10(2e-13) - 1, np.log10(0.938) + 1, 'Cosmological Bridge', PURPLE, -0.7),
-    (np.log10(0.001) - 1.5, np.log10(0.001) + 1.5, 'Nucleosynthesis', MAG, -1.1),
-    (np.log10(1.5e-42) - 1, np.log10(2e-13) + 1, r'$H_0$, CMB, $\Omega$', CYAN, -1.5),
-]
-
-for x1, x2, label, col, yoff in chain_regions:
-    ax.fill_between([x1, x2], [y_base + yoff - 0.12]*2,
-                    [y_base + yoff + 0.12]*2,
-                    color=col, alpha=0.15)
-    ax.plot([x1, x2], [y_base + yoff]*2, color=col, lw=3, alpha=0.7)
-    mid = (x1 + x2) / 2
-    ax.text(mid, y_base + yoff - 0.25, label, ha='center', va='top',
-            color=col, fontsize=9, fontweight='bold')
-
-# Arrow showing full span
-ax.annotate('', xy=(-43, -0.3), xytext=(2, -0.3),
-            arrowprops=dict(arrowstyle='<->', color=GOLD, lw=2))
-ax.text(-20, -0.5, 'Full derivation span: 25+ orders of magnitude',
-        ha='center', va='top', color=GOLD, fontsize=10)
-
-ax.set_yticks([])
-
-save(fig, 'cult15_02_domain_crossing_scale.png')
-
-
-# ================================================================
-# FIG 3: COMPARISON VERDICT LANDSCAPE
-# Type: Comparison Bar Chart (Type 6)
-# Shows: All 13 BBN comparisons as horizontal bars on a log scale
-#        of miss percentage, with PASS/FAIL/INFO status colored.
-#        The falsification surface in one glance.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
-style_ax(ax, title='BBN Experiment — Pre-Registered Falsification Surface\n'
-         '13 Comparisons, All Declared Before Run',
-         xlabel='Miss (log scale)', ylabel='')
-
-comparisons = [
-    (r'$\Omega_b$ vs Planck', 0.073, 'INFO', SILVER),
-    (r'$\eta$ vs Planck', 0.237, 'INFO', SILVER),
-    (r'$\eta_{10}$ vs Planck', 0.237, 'INFO', SILVER),
-    (r'$Y_p$ vs measured', 1.528, 'INFO', SILVER),
-    (r'$Y_p$ digits', 1.487, 'FAIL', RED),
-    ('D/H vs measured', 0.143, 'INFO', SILVER),
-    ('D/H digits', 0.024, 'PASS', GREEN),
-    (r'$N_{eff}$ range', 0.0, 'PASS', GREEN),
-    (r'$N_{eff}$ vs 3.044', 10.9, 'INFO', SILVER),
-    (r'$\rho_\Lambda$ GeV$^4$', 10.94, 'INFO', SILVER),
-    (r'$\rho_\Lambda$ g/cm$^3$', 0.152, 'INFO', SILVER),
-    (r'$Y_p$ chain $<1\sigma$', 0.0, 'PASS', GREEN),
-    ('D/H chain $<1\\sigma$', 0.0, 'PASS', GREEN),
-]
-
-y_positions = np.arange(len(comparisons))
-bar_height = 0.55
-
-for i, (label, miss, status, col) in enumerate(comparisons):
-    bar_val = max(miss, 0.005)  # minimum visible bar
-    ax.barh(i, np.log10(bar_val) + 3, height=bar_height, left=-1,
-            color=col, alpha=0.6, edgecolor=col, linewidth=1.5)
-
-    status_colors = {'PASS': GREEN, 'FAIL': RED, 'INFO': SILVER}
-    sc = status_colors.get(status, SILVER)
-
-    ax.text(-1.3, i, label, ha='right', va='center', color=WHITE, fontsize=9)
-    ax.text(3.5, i + 0.0, '[%s]' % status, ha='left', va='center',
-            color=sc, fontsize=9, fontweight='bold')
-    if miss > 0:
-        ax.text(3.5 + 1.0, i, '%.3g%%' % miss, ha='left', va='center',
-                color=DIM, fontsize=8)
-
-# Threshold lines
-ax.axvline(x=np.log10(1.0) + 1, color=ORANGE, ls='--', lw=1.5, alpha=0.6)
-ax.text(np.log10(1.0) + 1.05, len(comparisons) - 0.5, '1% miss',
-        color=ORANGE, fontsize=8, va='center')
-ax.axvline(x=np.log10(0.1) + 1, color=CYAN, ls='--', lw=1.5, alpha=0.4)
-ax.text(np.log10(0.1) + 1.05, len(comparisons) - 1.0, '0.1% miss',
-        color=CYAN, fontsize=8, va='center')
-
-ax.set_yticks([])
-ax.set_ylim(-1, len(comparisons) + 0.5)
-ax.set_xlim(-1.5, 5.5)
-
-ax.text(2.0, -0.7, 'Every comparison pre-registered in experiment definition before computation',
-        ha='center', va='center', color=DIM, fontsize=9)
-
-save(fig, 'cult15_03_verdict_landscape.png')
-
-
-# ================================================================
-# FIG 4: ANTI-SMUGGLING ARCHITECTURE
+# FIG 6: ANTI-SMUGGLING BOUNDARY
 # Type: Geometric Cross-Section (Type 4)
-# Shows: The boundary between declared dependencies and the value
-#        store, with allowed paths drawn and blocked paths marked.
-#        The architecture IS the guard.
+# Shows: The experiment definition as a containment boundary
+#        with declared inputs as the only entry points, the
+#        runner as the gate that rejects undeclared keys.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
+fig, ax = plt.subplots(figsize=(16, 11))
+fig.patch.set_facecolor(BG)
 ax.set_facecolor(BG)
 ax.axis('off')
-ax.set_xlim(-1, 11)
-ax.set_ylim(-1, 9)
 
-ax.set_title('Anti-Smuggling Architecture\nStructural Prevention of Undeclared Inputs',
-             color=GOLD, fontsize=16, fontweight='bold', pad=25)
+ax.set_xlim(-2, 14)
+ax.set_ylim(-1.5, 11)
 
-# Value Store (large container on left)
-store_box = FancyBboxPatch((0.2, 0.5), 3.5, 7.5, boxstyle='round,pad=0.3',
-                           facecolor='#0d0d1f', edgecolor=CYAN, linewidth=2.5)
-ax.add_patch(store_box)
-ax.text(2.0, 7.7, 'VALUE STORE', ha='center', va='center',
-        color=CYAN, fontsize=13, fontweight='bold')
-ax.text(2.0, 7.2, '4900+ named nodes', ha='center', va='center',
-        color=DIM, fontsize=9)
-
-# Sample values in store
-store_vals = [
-    ('cosmo_yp_measured_v0', '0.2449', 6.3),
-    ('cosmo_dh_measured_v0', '2.527e-5', 5.6),
-    ('bbn_yp_a_coeff_v0', '0.2485', 4.9),
-    ('geom_pi_v0', r'$\pi$', 4.2),
-    ('si_speed_of_light_v0', '299792458', 3.5),
-    ('mass_proton_v0', '938.272 MeV', 2.8),
-    ('cosmo_h0_planck_v0', '67.4 km/s/Mpc', 2.1),
-    ('UNDECLARED_value', '???', 1.2),
-]
-
-for key, val, yy in store_vals:
-    is_undeclared = 'UNDECLARED' in key
-    ec = RED if is_undeclared else DIM
-    fc = '#1a0a0a' if is_undeclared else BG
-    rect = FancyBboxPatch((0.5, yy - 0.22), 3.0, 0.44,
-                          boxstyle='round,pad=0.08',
-                          facecolor=fc, edgecolor=ec, linewidth=1)
-    ax.add_patch(rect)
-    ax.text(0.7, yy, key, color=SILVER if not is_undeclared else RED,
-            fontsize=7, va='center', family='monospace')
-    ax.text(3.3, yy, val, color=WHITE if not is_undeclared else RED,
-            fontsize=8, va='center', ha='right')
-
-# Experiment Definition (middle box)
-def_box = FancyBboxPatch((4.5, 3.5), 2.8, 4.5, boxstyle='round,pad=0.3',
-                         facecolor='#0d1a0d', edgecolor=GREEN, linewidth=2.5)
-ax.add_patch(def_box)
-ax.text(5.9, 7.7, 'EXPERIMENT\nDEFINITION', ha='center', va='center',
-        color=GREEN, fontsize=12, fontweight='bold')
-
-dep_labels = [
-    'dependencies:', 6.8,
-    '  cosmo_yp_measured', 6.3,
-    '  cosmo_dh_measured', 5.8,
-    '  bbn_yp_a_coeff', 5.3,
-    '  geom_pi', 4.8,
-    '  si_speed_of_light', 4.3,
-    '  mass_proton', 3.8,
-]
-for i in range(0, len(dep_labels), 2):
-    txt = dep_labels[i]
-    yy = dep_labels[i+1]
-    ax.text(4.8, yy, txt, color=GREEN if ':' in txt else BG,
-            fontsize=8, va='center', family='monospace')
-
-# Runner (right box)
-run_box = FancyBboxPatch((8.0, 4.0), 2.5, 3.5, boxstyle='round,pad=0.3',
-                         facecolor='#1a1a0d', edgecolor=GOLD, linewidth=2.5)
-ax.add_patch(run_box)
-ax.text(9.25, 7.2, 'RUNNER', ha='center', va='center',
+# Outer boundary: experiment definition
+outer = patches.FancyBboxPatch((1.5, 0.5), 10, 8.5, boxstyle='round,pad=0.4',
+                                facecolor='#0d0d1a', edgecolor=GOLD, linewidth=3,
+                                linestyle='-')
+ax.add_patch(outer)
+ax.text(6.5, 9.3, 'EXPERIMENT DEFINITION BOUNDARY', ha='center', va='center',
         color=GOLD, fontsize=13, fontweight='bold')
-ax.text(9.25, 6.6, 'Loads ONLY\ndeclared keys', ha='center', va='center',
-        color=BG, fontsize=9)
-ax.text(9.25, 5.6, 'Executes\nderivations', ha='center', va='center',
-        color=BG, fontsize=9)
-ax.text(9.25, 4.8, 'Evaluates\ncomparisons', ha='center', va='center',
-        color=BG, fontsize=9)
-ax.text(9.25, 4.2, 'Prints\nPASS / FAIL', ha='center', va='center',
-        color=BG, fontsize=9)
+ax.text(6.5, 8.7, 'Only declared dependencies may enter', ha='center', va='center',
+        color=SILVER, fontsize=9)
 
-# Allowed arrows (store -> definition -> runner)
-for yy in [6.3, 5.6, 4.9, 4.2, 3.5, 2.8]:
-    if yy >= 3.8:
-        ax.annotate('', xy=(4.5, min(yy, 6.8)), xytext=(3.5, yy),
-                    arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.5, alpha=0.6))
-
-ax.annotate('', xy=(8.0, 5.8), xytext=(7.3, 5.8),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2.5))
-
-# Blocked arrow (undeclared -> runner)
-ax.annotate('', xy=(8.0, 1.5), xytext=(3.5, 1.2),
-            arrowprops=dict(arrowstyle='->', color=RED, lw=2.5, ls='--'))
-
-# X mark on blocked arrow
-ax.text(5.8, 1.8, r'$\times$  BLOCKED', color=RED, fontsize=14,
-        fontweight='bold', va='center', ha='center')
-ax.text(5.8, 1.3, 'Undeclared value cannot\nenter derivation', color=RED,
-        fontsize=9, va='center', ha='center')
-
-# Bottom annotation
-ax.text(5.0, -0.3, 'Smuggling is structurally impossible:\n'
-        'the runner has no mechanism to access undeclared values',
-        ha='center', va='center', color=DIM, fontsize=10,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.5))
-
-save(fig, 'cult15_04_anti_smuggling.png')
-
-
-# ================================================================
-# FIG 5: VERIFICATION COST CURVE
-# Type: Running/Convergence Chart (Type 1)
-# Shows: Two curves — reader verification time vs number of readers.
-#        Current practice: linear (each reader re-derives).
-#        Five-layer: flat after initial author cost.
-#        The crossover IS the economic argument.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, title='Verification Cost: Current Practice vs Five-Layer Standard',
-         xlabel='Number of Independent Readers Verifying the Result',
-         ylabel='Total Person-Hours Invested')
-
-readers = np.arange(0, 26)
-
-# Current practice: author writes paper (10h) + each reader re-derives (5h each)
-current_author = 10
-current_per_reader = 5
-current_total = current_author + readers * current_per_reader
-
-# Five-layer: author writes paper (10h) + prepares artifacts (4h) + each reader reruns (0.25h)
-layer_author = 14
-layer_per_reader = 0.25
-layer_total = layer_author + readers * layer_per_reader
-
-ax.plot(readers, current_total, color=RED, lw=2.5, label='Current practice (prose description)')
-ax.plot(readers, layer_total, color=GREEN, lw=2.5, label='Five-layer standard (rerunnable artifact)')
-
-# Fill between
-ax.fill_between(readers, layer_total, current_total,
-                where=current_total > layer_total,
-                color=GREEN, alpha=0.06)
-
-# Crossover point
-cross_x = (layer_author - current_author) / (current_per_reader - layer_per_reader)
-cross_y = current_author + cross_x * current_per_reader
-ax.scatter([cross_x], [cross_y], s=200, color=GOLD, edgecolors=WHITE,
-           linewidth=2, zorder=10)
-ax.annotate('Crossover: %.1f readers' % cross_x,
-            xy=(cross_x, cross_y),
-            xytext=(cross_x + 4, cross_y + 15),
-            color=GOLD, fontsize=10, fontweight='bold',
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5))
-
-# Annotations at right edge
-ax.text(25.5, current_total[-1], '%d hours\n(25 readers)' % current_total[-1],
-        color=RED, fontsize=9, va='center')
-ax.text(25.5, layer_total[-1] + 4, '%d hours\n(25 readers)' % layer_total[-1],
-        color=GREEN, fontsize=9, va='center')
-
-# Savings annotation
-savings_at_10 = (current_author + 10*current_per_reader) - (layer_author + 10*layer_per_reader)
-ax.annotate('Savings at 10 readers:\n%.0f person-hours' % savings_at_10,
-            xy=(10, current_author + 10*current_per_reader),
-            xytext=(12, 85),
-            color=SILVER, fontsize=10,
-            arrowprops=dict(arrowstyle='->', color=SILVER, lw=1),
-            bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM))
-
-ax.set_xlim(-0.5, 27)
-ax.set_ylim(0, 145)
-ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM, labelcolor=WHITE,
-          fontsize=10, framealpha=0.9)
-
-ax.text(13.5, 5, 'Author overhead: +4 hours to prepare five-layer artifacts\n'
-        'Reader savings: 4.75 hours per reader (95% reduction)',
-        ha='center', va='center', color=DIM, fontsize=9)
-
-save(fig, 'cult15_05_verification_cost.png')
-
-
-# ================================================================
-# FIG 6: MISS PERCENTAGE DISTRIBUTION
-# Type: Threshold/Region Chart (Type 3)
-# Shows: All 13 BBN comparisons on a log scale with threshold
-#        regions for sub-percent, percent, and >10% miss.
-#        The located failure is visible as crossing a threshold.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
-style_ax(ax, title='BBN Experiment — Miss Distribution Across All Comparisons',
-         xlabel='Comparison', ylabel='Miss (%)')
-
-miss_data = [
-    (r'$\Omega_b$', 0.073, 'INFO'),
-    (r'$\eta$', 0.237, 'INFO'),
-    (r'$\eta_{10}$', 0.237, 'INFO'),
-    (r'$Y_p$ vs meas', 1.528, 'INFO'),
-    (r'$Y_p$ digits', 1.487, 'FAIL'),
-    ('D/H vs meas', 0.143, 'INFO'),
-    ('D/H digits', 0.024, 'PASS'),
-    (r'$N_{eff}$ range', 0.001, 'PASS'),
-    (r'$N_{eff}$ vs 3.044', 10.9, 'INFO'),
-    (r'$\rho_\Lambda$ GeV$^4$', 10.94, 'INFO'),
-    (r'$\rho_\Lambda$ g/cm$^3$', 0.152, 'INFO'),
-    (r'$Y_p$ $<1\sigma$', 0.001, 'PASS'),
-    ('D/H $<1\\sigma$', 0.001, 'PASS'),
+# Declared inputs (inside, left side)
+declared_inputs = [
+    'si_speed_of_light_v0',
+    'cosmo_omega_dm_planck_v0',
+    'integer_yang_mills_eleven_v0',
+    'bbn_dh_a_coeff_v0',
+    'geom_pi_v0',
 ]
 
-x = np.arange(len(miss_data))
+ax.text(3.5, 7.5, 'DECLARED INPUTS', ha='center', va='center',
+        color=GREEN, fontsize=10, fontweight='bold')
 
-# Threshold regions
-ax.axhspan(0.0005, 0.1, color=GREEN, alpha=0.06)
-ax.axhspan(0.1, 1.0, color=CYAN, alpha=0.04)
-ax.axhspan(1.0, 100, color=ORANGE, alpha=0.04)
+for i, key in enumerate(declared_inputs):
+    y = 6.5 - i * 1.1
+    box = patches.FancyBboxPatch((2.2, y - 0.3), 2.8, 0.6,
+                                  boxstyle='round,pad=0.12',
+                                  facecolor=PAN, edgecolor=GREEN, linewidth=1.2)
+    ax.add_patch(box)
+    ax.text(3.6, y, key, ha='center', va='center', color=GREEN, fontsize=7)
+    # Arrow from declared to runner
+    ax.annotate('', xy=(6.0, y), xytext=(5.1, y),
+                arrowprops=dict(arrowstyle='->', color=GREEN, lw=1.2, alpha=0.6))
 
-ax.axhline(y=0.1, color=CYAN, ls='--', lw=1, alpha=0.5)
-ax.axhline(y=1.0, color=ORANGE, ls='--', lw=1.2, alpha=0.6)
-ax.axhline(y=10.0, color=RED, ls='--', lw=1.2, alpha=0.6)
+# Runner (center)
+runner_box = patches.FancyBboxPatch((5.8, 1.5), 2.4, 6.0,
+                                     boxstyle='round,pad=0.2',
+                                     facecolor=PAN, edgecolor=CYAN, linewidth=2.5)
+ax.add_patch(runner_box)
+ax.text(7.0, 7.0, 'RUNNER', ha='center', va='center',
+        color=CYAN, fontsize=12, fontweight='bold')
+ax.text(7.0, 6.3, 'Resolves keys\nagainst store', ha='center', va='center',
+        color=SILVER, fontsize=8)
+ax.text(7.0, 4.5, 'Executes\nderivations', ha='center', va='center',
+        color=SILVER, fontsize=8)
+ax.text(7.0, 3.0, 'Evaluates\ncomparisons', ha='center', va='center',
+        color=SILVER, fontsize=8)
 
-ax.text(len(miss_data) - 0.3, 0.04, 'Sub-0.1%', color=GREEN, fontsize=8,
-        ha='right', va='center')
-ax.text(len(miss_data) - 0.3, 0.3, '0.1% - 1%', color=CYAN, fontsize=8,
-        ha='right', va='center')
-ax.text(len(miss_data) - 0.3, 3.0, '1% - 10%', color=ORANGE, fontsize=8,
-        ha='right', va='center')
-ax.text(len(miss_data) - 0.3, 30.0, '>10%', color=RED, fontsize=8,
-        ha='right', va='center')
+# Output (inside, right side)
+ax.text(9.8, 7.5, 'OUTPUTS', ha='center', va='center',
+        color=GOLD, fontsize=10, fontweight='bold')
 
-for i, (label, miss, status) in enumerate(miss_data):
-    col = GREEN if status == 'PASS' else (RED if status == 'FAIL' else SILVER)
-    val = max(miss, 0.001)
-    ax.scatter([i], [val], s=200, color=col, edgecolors=WHITE, linewidth=2, zorder=10)
-    # Value label above each point
-    y_txt = val * 2.0 if val > 0.01 else val * 4.0
-    ax.text(i, y_txt, '%.3g%%' % miss if miss > 0.001 else 'range',
-            ha='center', va='bottom', color=col, fontsize=8, fontweight='bold')
+outputs = ['PASS: 4', 'FAIL: 1', 'INFO: 8', '57 values']
+output_colors = [GREEN, RED, BLUE, SILVER]
+for i, (label, color) in enumerate(zip(outputs, output_colors)):
+    y = 6.5 - i * 1.1
+    box = patches.FancyBboxPatch((9.0, y - 0.3), 1.8, 0.6,
+                                  boxstyle='round,pad=0.12',
+                                  facecolor=PAN, edgecolor=color, linewidth=1.2)
+    ax.add_patch(box)
+    ax.text(9.9, y, label, ha='center', va='center', color=color, fontsize=9)
+    ax.annotate('', xy=(8.9, y), xytext=(8.3, y),
+                arrowprops=dict(arrowstyle='->', color=CYAN, lw=1.2, alpha=0.6))
 
-ax.set_yscale('log')
-ax.set_ylim(0.0005, 80)
-ax.set_xlim(-0.8, len(miss_data) - 0.2)
-ax.set_xticks(x)
-ax.set_xticklabels([d[0] for d in miss_data], rotation=45, ha='right',
-                   fontsize=8, color=SILVER)
-
-# Legend area
-legend_items = [
-    mpatches.Patch(color=GREEN, label='PASS'),
-    mpatches.Patch(color=RED, label='FAIL'),
-    mpatches.Patch(color=SILVER, label='INFO'),
+# Undeclared values (outside, rejected)
+undeclared = [
+    (-0.5, 5.5, 'hidden_constant_x'),
+    (-0.5, 3.5, 'hardcoded_0.042'),
+    (-0.5, 1.5, 'untracked_fudge'),
 ]
-ax.legend(handles=legend_items, loc='upper left', facecolor=PAN,
-          edgecolor=DIM, labelcolor=WHITE, fontsize=9)
 
-save(fig, 'cult15_06_miss_distribution.png')
+for x, y, label in undeclared:
+    box = patches.FancyBboxPatch((x - 0.9, y - 0.3), 2.2, 0.6,
+                                  boxstyle='round,pad=0.12',
+                                  facecolor='#1a0a0a', edgecolor=RED, linewidth=1.5,
+                                  linestyle='--')
+    ax.add_patch(box)
+    ax.text(x + 0.2, y, label, ha='center', va='center', color=RED, fontsize=7)
+    # Rejected arrow
+    ax.annotate('', xy=(1.3, y), xytext=(x + 1.2, y),
+                arrowprops=dict(arrowstyle='->', color=RED, lw=1.5))
+    ax.text(1.5, y + 0.35, '\u2717', ha='center', va='center', color=RED, fontsize=14)
+
+ax.text(-0.5, 7.5, 'UNDECLARED', ha='center', va='center',
+        color=RED, fontsize=10, fontweight='bold')
+ax.text(-0.5, 7.0, 'Not in dependencies\n= cannot enter', ha='center', va='center',
+        color=DIM, fontsize=8)
+
+ax.text(6.5, 10.2, 'Anti-Smuggling: Architectural Enforcement',
+        ha='center', va='center', color=GOLD, fontsize=15, fontweight='bold')
+ax.text(6.5, -1.0, 'The infrastructure has no mechanism for undeclared values to participate.',
+        ha='center', va='center', color=SILVER, fontsize=10)
+
+save(fig, 'cult18_06_anti_smuggling.png')
 
 # ================================================================
-# FIG 7: BBN PREDICTION VS MEASUREMENT
+# FIG 7: BBN SIGMA DEVIATIONS
+# Type: Threshold/Region (Type 3)
+# Shows: D/H, Y_p, and N_eff sigma deviations plotted on a
+#        0-3 sigma number line with 1-sigma and 2-sigma
+#        regions shaded. Shows WHERE predictions fall relative
+#        to measurement uncertainty.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 8))
+fig.patch.set_facecolor(BG)
+style_ax(ax, title='BBN Chain: Sigma Deviations from Measurement',
+         xlabel='Standard Deviations ($\\sigma$) from Measured Value',
+         ylabel='')
+
+# Shaded regions
+ax.axvspan(0, 1.0, alpha=0.12, color=GREEN)
+ax.axvspan(1.0, 2.0, alpha=0.08, color=ORANGE)
+ax.axvspan(2.0, 3.5, alpha=0.06, color=RED)
+
+# Region labels
+ax.text(0.5, 4.8, 'Within 1$\\sigma$', ha='center', va='center',
+        color=GREEN, fontsize=11, alpha=0.7)
+ax.text(1.5, 4.8, '1-2$\\sigma$', ha='center', va='center',
+        color=ORANGE, fontsize=11, alpha=0.7)
+ax.text(2.5, 4.8, '> 2$\\sigma$', ha='center', va='center',
+        color=RED, fontsize=11, alpha=0.7)
+
+# Data points
+sigma_data = [
+    ('D/H (deuterium)', 0.120, GREEN, 'Miss: 0.14%\n3-digit match'),
+    ('Y_p (helium-4)', 0.936, GREEN, 'Miss: 1.53%\nWithin 1$\\sigma$'),
+    ('N_eff (neutrino)', 1.635, ORANGE, 'Miss: 10.9%\nTension'),
+    ('\u03a9_b (baryon density)', 0.073, GREEN, 'Miss: 0.073%\nSub-permille'),
+]
+
+y_positions = [3.5, 2.5, 1.5, 0.5]
+
+for i, (label, sigma, color, note) in enumerate(sigma_data):
+    y = y_positions[i]
+    ax.scatter(sigma, y, s=300, color=color, edgecolors=WHITE,
+               linewidth=2, zorder=5)
+    ax.text(-0.15, y, label, ha='right', va='center',
+            color=WHITE, fontsize=10, fontweight='bold')
+    ax.text(sigma + 0.15, y + 0.2, '%.3f$\\sigma$' % sigma,
+            ha='left', va='bottom', color=color, fontsize=10, fontweight='bold')
+    ax.text(sigma + 0.15, y - 0.15, note, ha='left', va='top',
+            color=SILVER, fontsize=8)
+
+# Vertical threshold lines
+ax.axvline(x=1.0, color=ORANGE, linestyle='--', linewidth=1.5, alpha=0.6)
+ax.axvline(x=2.0, color=RED, linestyle='--', linewidth=1.5, alpha=0.6)
+
+ax.set_xlim(-0.3, 3.5)
+ax.set_ylim(-0.3, 5.5)
+ax.set_yticks([])
+
+# Summary
+ax.text(2.8, 3.5, 'D/H: 0.12$\\sigma$\ndeep inside\nmeasurement\nuncertainty',
+        ha='center', va='center', color=DIM, fontsize=8,
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, linewidth=0.8))
+
+save(fig, 'cult18_07_sigma_deviations.png')
+
+# ================================================================
+# FIG 8: DOMAIN COVERAGE STATUS
 # Type: Comparison Bar Chart (Type 6)
-# Shows: For each BBN quantity, predicted and measured values as
-#        paired bars with error bars. The reader sees agreement
-#        and the located miss at Y_p.
+# Shows: 16 physics domains with current experiment counts,
+#        revealing the coverage imbalance — some domains have
+#        10 experiments, others have zero.
 # ================================================================
 
-fig, axes = plt.subplots(2, 2, figsize=(18, 12), facecolor=BG,
-                         gridspec_kw={'hspace': 0.55, 'wspace': 0.40})
+fig, ax = plt.subplots(figsize=(18, 10))
+fig.patch.set_facecolor(BG)
+style_ax(ax, title='Coverage Matrix: Current Experiment Count by Domain',
+         xlabel='Number of Experiments', ylabel='')
 
-quantities = [
-    {
-        'title': r'Baryon Density $\Omega_b$',
-        'predicted': 0.049036,
-        'measured': 0.0490,
-        'meas_unc': 0.0006,
-        'miss_pct': 0.073,
-    },
-    {
-        'title': r'Baryon-to-Photon $\eta_{10}$',
-        'predicted': 6.0895,
-        'measured': 6.104,
-        'meas_unc': 0.058,
-        'miss_pct': 0.237,
-    },
-    {
-        'title': r'Primordial Helium $Y_p$',
-        'predicted': 0.2486,
-        'measured': 0.2449,
-        'meas_unc': 0.0040,
-        'miss_pct': 1.528,
-    },
-    {
-        'title': r'Primordial Deuterium D/H ($\times 10^5$)',
-        'predicted': 2.5306,
-        'measured': 2.527,
-        'meas_unc': 0.030,
-        'miss_pct': 0.143,
-    },
+domains_data = [
+    ('QED', 10, CYAN),
+    ('Electroweak', 9, BLUE),
+    ('Cosmology', 4, PURPLE),
+    ('GR / Gravity', 3, GREEN),
+    ('BBN', 2, GOLD),
+    ('Lepton masses', 3, CYAN),
+    ('Dark matter', 1, PURPLE),
+    ('Atomic / Hydrogen', 1, BLUE),
+    ('GUT / Proton decay', 1, ORANGE),
+    ('Cross-domain geometry', 1, GOLD),
+    ('CKM mixing', 1, GREEN),
+    ('QCD / Confinement', 1, RED),
+    ('Nuclear', 0, DIM),
+    ('Quark masses', 0, DIM),
+    ('PMNS mixing', 0, DIM),
+    ('Neutrino', 0, DIM),
 ]
 
-for idx, (axi, q) in enumerate(zip(axes.flat, quantities)):
-    style_ax(axi, title=q['title'])
+domains_data_sorted = sorted(domains_data, key=lambda x: x[1])
 
-    pred = q['predicted']
-    meas = q['measured']
-    unc = q['meas_unc']
+y_positions = np.arange(len(domains_data_sorted))
+labels = [d[0] for d in domains_data_sorted]
+values = [d[1] for d in domains_data_sorted]
+colors = [d[2] for d in domains_data_sorted]
 
-    # Compute sensible y-axis range: center on mean, span driven by
-    # whichever is larger — the pred/meas difference or the uncertainty
-    mean_val = (pred + meas) / 2.0
-    spread = max(abs(pred - meas), unc) * 6.0
-    spread = max(spread, abs(mean_val) * 0.02)  # at least 2% of value
-    ymin = mean_val - spread
-    ymax = mean_val + spread
+bars = ax.barh(y_positions, values, height=0.65, color=colors, alpha=0.7,
+               edgecolor=colors, linewidth=1.5)
 
-    bars = axi.bar([0, 1], [pred, meas], width=0.45, color=[CYAN, MAG],
-                   alpha=0.7, edgecolor=[CYAN, MAG], linewidth=2)
-    axi.errorbar([1], [meas], yerr=[unc],
-                 fmt='none', ecolor=WHITE, elinewidth=2, capsize=8, capthick=2)
+# Zero-count domains get a marker
+for i, (label, val, color) in enumerate(domains_data_sorted):
+    if val == 0:
+        ax.text(0.15, i, 'EMPTY', ha='left', va='center',
+                color=RED, fontsize=9, fontweight='bold')
+    else:
+        ax.text(val + 0.2, i, str(val), ha='left', va='center',
+                color=WHITE, fontsize=10, fontweight='bold')
 
-    # Value labels just above each bar top
-    label_offset = spread * 0.08
-    axi.text(0, pred + label_offset, '%.6g' % pred, ha='center', va='bottom',
-             color=WHITE, fontsize=11, fontweight='bold')
-    axi.text(1, meas + unc + label_offset, '%.6g' % meas, ha='center', va='bottom',
-             color=WHITE, fontsize=11, fontweight='bold')
+ax.set_xlim(-0.5, 13)
+ax.set_ylim(-0.8, len(domains_data_sorted) - 0.2)
+ax.set_yticks(y_positions)
+ax.set_yticklabels(labels, fontsize=9, color=SILVER)
 
-    # Bar category labels below bars
-    axi.text(0, ymin + spread * 0.05, 'Predicted\n(from integers)',
-             ha='center', va='bottom', color=SILVER, fontsize=9)
-    axi.text(1, ymin + spread * 0.05, 'Measured',
-             ha='center', va='bottom', color=SILVER, fontsize=9)
+# Annotation
+total_exp = sum(values)
+filled_domains = sum(1 for v in values if v > 0)
+empty_domains = sum(1 for v in values if v == 0)
 
-    # Miss annotation at top center
-    miss_col = RED if q['miss_pct'] > 1.0 else GREEN
-    axi.text(0.5, ymax - spread * 0.08,
-             'Miss: %.3g%%' % q['miss_pct'], ha='center', va='top',
-             color=miss_col, fontsize=12, fontweight='bold',
-             bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=miss_col))
+summary = '%d experiments across %d domains\n%d domains empty — each is a contribution opportunity' % (
+    total_exp, filled_domains, empty_domains)
+ax.text(8.5, 3.0, summary, ha='center', va='center',
+        color=WHITE, fontsize=9,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, linewidth=1.5))
 
-    axi.set_ylim(ymin, ymax)
-    axi.set_xlim(-0.55, 1.55)
-    axi.set_xticks([])
-
-save(fig, 'cult15_07_prediction_vs_measurement.png')
-
-# ================================================================
-# FIG 8: VALUE NODE ANATOMY
-# Type: Identity Card (Type 8)
-# Shows: A single value store entry dissected with every field
-#        labeled and annotated with its purpose. The fundamental
-#        data unit of the five-layer standard.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
-ax.set_facecolor(BG)
-ax.axis('off')
-ax.set_xlim(-1, 11)
-ax.set_ylim(-1, 10)
-
-ax.set_title('Anatomy of a Value Store Node\nThe Fundamental Data Unit of the Five-Layer Standard',
-             color=GOLD, fontsize=16, fontweight='bold', pad=25)
-
-# Central node box
-node_box = FancyBboxPatch((1.5, 1.0), 5.0, 7.5, boxstyle='round,pad=0.4',
-                          facecolor='#0d0d1f', edgecolor=CYAN, linewidth=2.5)
-ax.add_patch(node_box)
-
-# Field entries inside box
-fields = [
-    ('key:', 'cosmo_yp_measured_v0', 7.5, CYAN, BLUE),
-    ('canonical:', 'cosmo_yp_measured', 7.0, DIM, BG),
-    ('version:', '0', 6.5, DIM, BG),
-    ('node_type:', 'value', 6.0, DIM, BG),
-    ('value:', '0.2449', 5.3, GOLD, BLUE),
-    ('value_type:', 'approximate', 4.8, DIM, BG),
-    ('unit:', 'dimensionless', 4.3, DIM, BG),
-    ('digits:', '4', 3.8, DIM, BG),
-    ('uncertainty:', '0.0040', 3.3, ORANGE, BLUE),
-    ('source:', 'Aver, Olive, Skillman 2015', 2.6, MAG, BLUE),
-    ('', 'JCAP 07, 011', 2.2, MAG, BG),
-    ('tags:', '["cosmology","BBN","helium"]', 1.7, DIM, BG),
-    ('notes:', 'Primordial 4He mass fraction', 1.2, DIM, BG),
-]
-
-for fname, fval, fy, fcol, vcol in fields:
-    if fname:
-        ax.text(2.0, fy, fname, color=fcol, fontsize=10,
-                fontweight='bold', family='monospace', va='center')
-    ax.text(3.7, fy, fval, color=vcol, fontsize=10,
-            family='monospace', va='center')
-
-# Annotation arrows pointing to key fields
-annotations = [
-    ('key', 7.5, 'Unique machine-readable\nidentifier — no ambiguity', CYAN),
-    ('value', 5.3, 'The datum itself\nExact fraction or stated precision', GOLD),
-    ('uncertainty', 3.3, 'Measurement uncertainty\nEnables proper comparison', ORANGE),
-    ('source', 2.6, 'Specific publication\nAnyone can verify', MAG),
-]
-
-for label, fy, desc, col in annotations:
-    ax.annotate(desc,
-                xy=(6.5, fy), xytext=(8.0, fy + 0.3),
-                color=col, fontsize=9,
-                fontweight='bold',
-                arrowprops=dict(arrowstyle='->', color=col, lw=1.5),
-                bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
-                         edgecolor=col, linewidth=1))
-
-# Properties callout at bottom
-props = [
-    'Named — every value has a unique key',
-    'Typed — exact fraction, approximate, integer, boolean',
-    'Versioned — schema version tracks changes',
-    'Sourced — traceable to original publication',
-    'Searchable — tags enable cross-domain queries',
-]
-
-for i, prop in enumerate(props):
-    y = -0.1 - i * 0.35
-    ax.text(4.0, y, prop, color=SILVER, fontsize=9, ha='center', va='center')
-
-# Title for properties
-ax.text(4.0, 0.3, 'Five Properties of Every Node:', color=WHITE,
-        fontsize=11, fontweight='bold', ha='center', va='center')
-
-# Anti-smuggling note
-ax.text(4.0, -2.0, 'If a value is not in the store, the computation cannot access it.\n'
-        'The store is the single source of truth for all inputs.',
-        color=DIM, fontsize=9, ha='center', va='center',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.5))
-
-ax.set_ylim(-2.5, 9.5)
-
-save(fig, 'cult15_08_value_node_anatomy.png')
-
+save(fig, 'cult18_08_domain_coverage.png')
 
 # ================================================================
 # SUMMARY
 # ================================================================
-print("\n" + "="*60)
-print("CULT-15 Diagrams Complete — 8 figures")
-print("="*60)
-figs = [
-    'cult15_01_bbn_domain_crossing.png',
-    'cult15_02_domain_crossing_scale.png',
-    'cult15_03_verdict_landscape.png',
-    'cult15_04_anti_smuggling.png',
-    'cult15_05_verification_cost.png',
-    'cult15_06_miss_distribution.png',
-    'cult15_07_prediction_vs_measurement.png',
-    'cult15_08_value_node_anatomy.png',
-]
-for f in figs:
-    print("  %s" % f)
-print("="*60)
+
+print("\nCULT-18 Diagrams Complete:")
+print("  cult18_01_bbn_chain.png")
+print("  cult18_02_r2_connections.png")
+print("  cult18_03_precision_tower.png")
+print("  cult18_04_bbn_comparisons.png")
+print("  cult18_05_velocity_comparison.png")
+print("  cult18_06_anti_smuggling.png")
+print("  cult18_07_sigma_deviations.png")
+print("  cult18_08_domain_coverage.png")

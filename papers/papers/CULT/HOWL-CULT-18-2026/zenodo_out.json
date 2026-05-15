@@ -1,0 +1,100 @@
+{
+  "created": "2026-05-15T07:38:44.090213+00:00",
+  "modified": "2026-05-15T07:38:44.718834+00:00",
+  "id": 20199985,
+  "conceptrecid": "20199984",
+  "metadata": {
+    "title": "Closing Physics at Scale: A Methodology for the 21st Century",
+    "publication_date": "2026-04",
+    "description": "Two integers from gauge theory \u2014 11 and 13 \u2014 were passed through standard cosmological equations to predict how much deuterium, helium, and lithium the universe produced in its first minutes after the Big Bang. The predictions were compared against Planck satellite measurements and precision spectroscopy of distant gas clouds. The results:\n\nDeuterium abundance: predicted 2.531 \u00d7 10\u207b\u2075, measured 2.527 \u00d7 10\u207b\u2075. Three-digit agreement. Miss 0.14%. Deviation from measurement: 0.12 standard deviations.\n\nHelium-4 mass fraction: predicted 0.2486, measured 0.2449. Within one standard deviation. Miss 1.53%. Deviation from measurement: 0.94 standard deviations.\n\nBaryon density parameter: predicted 0.049036, measured 0.0490. Miss 727 parts per million.\n\nLithium-7 abundance: predicted approximately 3\u00d7 higher than observed. This is the known lithium problem \u2014 standard Big Bang Nucleosynthesis predicts too much lithium regardless of input source. The chain reproduces the discrepancy at the correct ratio, confirming it runs the same physics as every other BBN calculation.\n\nThe derivation chain crosses three physics domains. It starts in particle physics \u2014 gauge integers from the Standard Model. It crosses into cosmology \u2014 baryon density, photon density, baryon-to-photon ratio. It lands in nuclear physics \u2014 primordial element abundances. The chain spans over twenty-five orders of magnitude in energy scale.\n\nNo one in the institutional physics community has published this chain. Not because the equations are secret. Not because the values are unavailable. Not because the computation is beyond current capability. The equations are in textbooks. The values are in reference compilations. The computation is trivial. The chain has not been published because it crosses three departmental boundaries and no department owns it.\n\nThe chain was produced by a person with no physics degree, no institutional affiliation, and no publication history in physics journals. The tools were a laptop, Python, and a large language model for search and derivational assistance. The time investment was three months. The physics background was high school level.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "culture"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-18-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-18-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20199985",
+      "recid": 20199985
+    }
+  },
+  "title": "Closing Physics at Scale: A Methodology for the 21st Century",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20199985",
+    "html": "https://zenodo.org/deposit/20199985",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20199985/files",
+    "bucket": "https://zenodo.org/api/files/375830bf-ec98-4338-9708-2488bcd5185a",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20199985",
+    "latest_draft_html": "https://zenodo.org/deposit/20199985",
+    "publish": "https://zenodo.org/api/deposit/depositions/20199985/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20199985/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20199985/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20199985/actions/newversion"
+  },
+  "record_id": 20199985,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}

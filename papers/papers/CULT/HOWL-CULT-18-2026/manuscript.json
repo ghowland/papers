@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "manuscript.md",
+    "title": "Closing Physics at Scale: A Methodology for the 21st Century",
     "registry_id": "HOWL-CULT-18-2026",
     "series_path": "[@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026] \u2192 [@HOWL-CULT-5-2026] \u2192 [@HOWL-CULT-6-2026] \u2192 [@HOWL-CULT-7-2026] \u2192 [@HOWL-CULT-8-2026] \u2192 [@HOWL-CULT-9-2026] \u2192 [@HOWL-CULT-12-2026] \u2192 [@HOWL-CULT-13-2026] \u2192 [@HOWL-CULT-14-2026] \u2192 [@HOWL-DATA-6-2026] \u2192 [@HOWL-CULT-15-2026] \u2192 [@HOWL-CULT-16-2026] \u2192 [@HOWL-CULT-17-2026] \u2192 [@HOWL-CULT-18-2026]",
-    "doi": "10.5281/zenodo.20196015",
+    "doi": "10.5281/zenodo.20199985",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": " **Registry:** [@HOWL-CULT-18-2026]  **Series Path:** [@HOWL-CULT-1-2026] \u2192 [@HOWL-CULT-2-2026] \u2192 [@HOWL-CULT-3-2026] \u2192 [@HOWL-CULT-4-2026] \u2192 [@HOWL-CULT-5-2026] \u2192 [@HOWL-CULT-6-2026] \u2192 [@HOWL-CULT-7-..."
+    "raw_content_preview": "# Closing Physics at Scale: A Methodology for the 21st Century ## An Engineering Plan for Global Coverage Through Commodity Tools  **Registry:** [@HOWL-CULT-18-2026]  **Series Path:** [@HOWL-CULT-1-20..."
 }

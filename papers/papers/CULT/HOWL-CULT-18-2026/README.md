@@ -1,4 +1,4 @@
-# manuscript.md
+# Closing Physics at Scale: A Methodology for the 21st Century
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,12 +47,12 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-CULT-18-2026,
-  title={ manuscript.md },
+  title={ Closing Physics at Scale: A Methodology for the 21st Century },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20196015},
-  url = {https://zenodo.org/record/20196015},
+  doi = {10.5281/zenodo.20199985},
+  url = {https://zenodo.org/record/20199985},
   note={Howland Archive: HOWL-CULT-18-2026. Prerequisites: None (foundation paper) }
 }
 ```
