@@ -1,0 +1,90 @@
+=== 1. derivative of x^2 ===
+  y = [9, 1, 0] grad_x = [6, 1, 0]
+  PASS: x^2 at x=3 is 9
+  PASS: d(x^2)/dx at x=3 is 6
+
+=== 2. derivative of x^3 ===
+  y = [8, 1, 0] grad_x = [12, 1, 0]
+  PASS: x^3 at x=2 is 8
+  PASS: d(x^3)/dx at x=2 is 12
+
+=== 3. affine expression ===
+  y = [17, 1, 0] grad_x = [3, 1, 0]
+  PASS: 3x+2 at x=5 is 17
+  PASS: d(3x+2)/dx = 3
+
+=== 4. product rule ===
+  z = [14, 1, 0] grad_x = [7, 1, 0] grad_y = [2, 1, 0]
+  PASS: xy = 14
+  PASS: d(xy)/dx = y
+  PASS: d(xy)/dy = x
+
+=== 5. quotient rule ===
+  z = [2, 1, 0] grad_x = [1, 3, 0] grad_y = [-2, 3, 0]
+  PASS: x/y = 2
+  PASS: d(x/y)/dx = 1/y = 1/3
+  PASS: d(x/y)/dy = -x/y^2 = -2/3
+
+=== 6. relu active branch ===
+  y = [4, 1, 0] grad_x = [1, 1, 0]
+  PASS: relu(4) = 4
+  PASS: relu'(4) = 1
+
+=== 7. relu inactive branch ===
+  y = [0, 1, 0] grad_x = [0, 1, 0]
+  PASS: relu(-4) = 0
+  PASS: relu'(-4) = 0
+
+=== 8. sum and mean ===
+  sum = [6, 1, 0] mean = [2, 1, 0]
+  grads = [1, 3, 0] [1, 3, 0] [1, 3, 0]
+  PASS: sum = 6
+  PASS: mean = 2
+  PASS: d mean / da = 1/3
+  PASS: d mean / db = 1/3
+  PASS: d mean / dc = 1/3
+
+=== 9. dot product ===
+  dot = [11, 1, 0] grads = [3, 1, 0] [4, 1, 0]
+  PASS: dot = 1*3 + 2*4 = 11
+  PASS: d dot / dx1 = 3
+  PASS: d dot / dx2 = 4
+
+=== 10. linear node ===
+  y = [11, 1, 0] grads = [5, 1, 0] [-1, 1, 0]
+  PASS: 5*2 + (-1)*3 + 4 = 11
+  PASS: d y / dx1 = 5
+  PASS: d y / dx2 = -1
+
+=== 11. mse loss scalar ===
+  loss = [4, 1, 0] grad_pred = [4, 1, 0]
+  PASS: (3-1)^2 = 4
+  PASS: d/dp (p-1)^2 at p=3 is 4
+
+=== 12. mse loss vector ===
+  loss = [17, 2, 0]
+  grads = [1, 1, 0] [4, 1, 0]
+  PASS: ((2-1)^2 + (5-1)^2)/2 = 17/2
+  PASS: grad p1 = 2*(2-1)/2 = 1
+  PASS: grad p2 = 2*(5-1)/2 = 4
+
+=== 13. chain rule composite ===
+  y = [10, 1, 0] grad_x = [13, 1, 0]
+  PASS: (x^2+1)x at x=2 is 10
+  PASS: d[(x^2+1)x]/dx at x=2 is 13
+
+=== 14. zero_grads ===
+  PASS: grad before zero_grads is 4
+  PASS: x grad zeroed
+  PASS: y grad zeroed
+
+=== 15. vector extraction helpers ===
+  values = [Fraction(1, 2), Fraction(2, 3), Fraction(7, 6)]
+  grads = [Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)]
+  PASS: value_of_vec extracts exact values
+  PASS: grad_of_vec extracts exact grads
+
+==================================================
+Autodiff test results: 39 passed, 0 failed
+ALL AUTODIFF TESTS PASSED
+==================================================
