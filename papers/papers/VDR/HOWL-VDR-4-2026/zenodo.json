@@ -1,0 +1,70 @@
+{
+  "title": "Exact-Fraction Language Model Architecture",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "VDR-1 introduced exact finite arithmetic in irreducible triple form. VDR-2 tested it across 15 mathematical domains. VDR-3 extended coverage to 23 domains and integrated the MATH-3/MATH-4 transcendental basis, establishing that VDR has no unique computational boundaries. This paper reports what happened when that arithmetic system was extended into a complete machine learning stack: 24 modules implementing exact-fraction softmax, reverse-mode autodiff, trainable neural network layers, optimizers, attention, a transformer architecture, token sampling, checkpointing, datasets, metrics, and a shared-denominator basis system. 181 tests pass across 7 test batches. A working tiny transformer language model runs forward passes, computes exact logits, produces exact attention weights that sum to exactly 1, and exposes every intermediate value as an inspectable exact fraction. No floating-point arithmetic is used at any point in any computation.\n\nThe central finding is not that exact-fraction LLMs are practical at scale \u2014 they are not, yet. The central finding is that every component of a language model architecture can be expressed as exact rational arithmetic, that the approximation boundary can be placed exactly where the designer chooses rather than where hardware precision forces it, and that the resulting system produces outputs that are bit-for-bit reproducible, fully inspectable, and provably normalized. This changes the status of VDR from \"an exact arithmetic library with ML potential\" to \"a system that has actually built and run an exact transformer.\"",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-4-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-4-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
