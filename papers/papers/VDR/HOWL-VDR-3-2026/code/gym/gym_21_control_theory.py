@@ -153,8 +153,8 @@ x = Vec([VDR(1), VDR(0)])
 trajectory = [x]
 for k in range(5):
     x = Vec([
-        A_d[0, 0] * x.data[0] + A_d[0, 1] * x.data[1],
-        A_d[1, 0] * x.data[0] + A_d[1, 1] * x.data[1],
+        A_d[0, 0] * x._data[0] + A_d[0, 1] * x._data[1],
+        A_d[1, 0] * x._data[0] + A_d[1, 1] * x._data[1],
     ])
     trajectory.append(x)
 

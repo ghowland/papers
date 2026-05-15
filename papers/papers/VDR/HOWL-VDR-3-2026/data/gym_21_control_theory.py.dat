@@ -1,0 +1,61 @@
+=== 1. State space model ===
+  A =
+|  [0, 1, 0]   [1, 1, 0] |
+| [-2, 1, 0]  [-3, 1, 0] |
+  B = [[0],[1]]
+  C = [[1, 0]]
+
+=== 2. Controllability ===
+  controllability matrix =
+| [0, 1, 0]   [1, 1, 0] |
+| [1, 1, 0]  [-3, 1, 0] |
+  PASS: controllability rank = 2 (full)
+  det(ctrl) = [-1, 1, 0]
+  PASS: ctrl det != 0 (controllable)
+
+=== 3. Observability ===
+  observability matrix =
+| [1, 1, 0]  [0, 1, 0] |
+| [0, 1, 0]  [1, 1, 0] |
+  PASS: observability rank = 2 (full)
+  det(obs) = [1, 1, 0]
+  PASS: obs det != 0 (observable)
+
+=== 4. Characteristic polynomial ===
+  trace(A) = [-3, 1, 0], det(A) = [2, 1, 0]
+  PASS: trace = -3
+  PASS: det = 2
+  A² + 3A + 2I =
+| [0, 1, 0]  [0, 1, 0] |
+| [0, 1, 0]  [0, 1, 0] |
+  PASS: Cayley-Hamilton: A²+3A+2I = 0
+
+=== 5. Transfer function H(s) = C(sI-A)^{-1}B ===
+  sI - A at s=1:
+| [1, 1, 0]  [-1, 1, 0] |
+| [2, 1, 0]   [4, 1, 0] |
+  H(1) = 1/6
+  PASS: H(1) = 1/6
+  H(0) = 1/2 (DC gain)
+  PASS: H(0) = 1/2 (DC gain)
+
+=== 6. Discrete state evolution ===
+  A_d =
+|  [1, 1, 0]  [1, 10, 0] |
+| [-1, 5, 0]  [7, 10, 0] |
+  PASS: all trajectory values exact rational
+  FAIL: state decays (|x5|^2 < |x0|^2)
+  x[5] = (8533/10000, -26281/50000)
+
+=== 7. Finite controllability Gramian ===
+  W_c =
+|  [389, 1000000, 0]   [1499, 1000000, 0] |
+| [1499, 1000000, 0]  [17109, 1000000, 0] |
+  det(W_c) = 11021/2500000000, trace(W_c) = 8749/500000
+  PASS: Gramian det > 0 (controllable)
+  PASS: Gramian trace > 0
+  PASS: Gramian symmetric
+
+==================================================
+Gym 21 results: 13 passed, 1 failed
+==================================================
