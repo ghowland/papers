@@ -1,4 +1,4 @@
-# It's Hard: Why the Physics Community Will Never Close Its Open Problems
+# No Path: Cross-Domain Derivation by an Outsider Using Commodity Tools
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-CULT-16-2026,
-  title={ It's Hard: Why the Physics Community Will Never Close Its Open Problems },
+@article{ HOWL-CULT-17-2026,
+  title={ No Path: Cross-Domain Derivation by an Outsider Using Commodity Tools },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20195364},
-  url = {https://zenodo.org/record/20195364},
-  note={Howland Archive: HOWL-CULT-16-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20196015},
+  url = {https://zenodo.org/record/20196015},
+  note={Howland Archive: HOWL-CULT-17-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
