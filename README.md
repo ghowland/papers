@@ -115,6 +115,15 @@
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
+| **[@HOWL-VDR-1-2026](papers/papers/MATH/HOWL-VDR-1-2026/manuscript.md)** | **VDR Arithmetic: Value, Decimal, Remainder** | Exact Finite Arithmetic in Irreducible Triple Form. |
+
+---
+
+## Math
+*Mathematical foundations and geometric theory.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
 | **[@HOWL-MATH-1-2026](papers/papers/MATH/HOWL-MATH-1-2026/manuscript.md)** | **The Geometric Ratio β** | π/4 as the Cross-Section Invariant Between Circular and Rectilinear Measurement. |
 | **[@HOWL-MATH-2-2026](papers/papers/MATH/HOWL-MATH-2-2026/manuscript.md)** | **Integer-Pair Representations of Transcendental Constants at Sub-Planck Precision** | A Tiered Classification. |
 | **[@HOWL-MATH-3-2026](papers/papers/MATH/HOWL-MATH-3-2026/manuscript.md)** | **The Transcendental Hierarchy** | Extending the Integer Pair Basis to Complete Elliptic Integrals and the 4-Loop Boundary. |
