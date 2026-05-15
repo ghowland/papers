@@ -1229,3 +1229,4 @@ No circular dependencies. Core has zero internal dependencies. Extensions patch 
 | `fractions.Fraction` | Required (stdlib) | No alternative needed |
 | `math.gcd` | Required (stdlib) | No alternative needed |
 | `typing.Union, List, Optional, Tuple, Dict` | Required | For type hints |
+

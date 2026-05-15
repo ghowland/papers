@@ -1,7 +1,5 @@
 
-**Registry:** [@HOWL-VDR-3-2026]
-
-**Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-VDR-3-2026]
+**Registry:** [@HOWL-GAME-1-2026]
 
 **DOI:** 10.5281/zenodo.zzz
 

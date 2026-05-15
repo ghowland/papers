@@ -1,0 +1,70 @@
+{
+  "title": "VDR Gym: Exact Arithmetic Across Fifteen Domains",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "HOWL-VDR-1-2026 introduced VDR, an exact finite arithmetic system in irreducible triple form, and demonstrated its core capabilities: zero-drift rational arithmetic, exact matrix inversion, recursive irrational construction, and discrete calculus. This companion paper reports the results of a systematic exercise program \u2014 the VDR Gym \u2014 that pushes the system across fifteen mathematical domains to map its working boundaries. 290 tests were executed across number theory, polynomial algebra, continued fractions, matrix decomposition, recursive sequences, combinatorics, signal processing, computational geometry, differential equations, optimization, probability, cryptographic primitives, symbolic algebra, fixed-point iteration, and chaotic dynamics. 282 passed. 6 failed due to identifiable test-authoring errors. 2 domains (chaotic iteration at r=4) were terminated due to exponential representation cost \u2014 a genuine and important boundary of exact arithmetic that this paper documents as a finding rather than a defect. Every passing result was computed with zero drift using exact VDR rational arithmetic. No floating-point numbers were used in any computation.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-2-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-2-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
