@@ -1,0 +1,48 @@
+=== 1. Newton's method for optimization (exact) ===
+  Newton optimization for x^2-4x+7:
+    step 0: x = 10
+    step 1: x = 2
+    step 2: x = 2
+    step 3: x = 2
+    step 4: x = 2
+    step 5: x = 2
+  converges to x=2 in 1 step                              PASS
+  Newton for x^3-6x^2+9x+1:
+    step 0: x = 0
+    step 1: x = 3/4
+    step 2: x = 39/40
+    step 3: x = 3279/3280
+    step 4: x = 21523359/21523360
+    step 5: x = 926510094425919/926510094425920
+  Newton cubic converges (diffs decrease)                 PASS
+
+=== 2. Gradient descent with exact rational step ===
+  Gradient descent for x^2+2y^2, lr=1/10:
+    step 0: (5, 3)  f=43
+    step 5: (1024/625, 729/3125)  f=27277282/9765625
+    step 10: (1048576/1953125, 177147/9765625)  f=27550552813618/95367431640625
+    step 15: (1073741824/6103515625, 43046721/30517578125)  f=28826743655548878082/931322574615478515625
+    step 20: (1099511627776/19073486328125, 10460353203/95367431640625)  f=30223364328343992392372818/9094947017729282379150390625
+  GD approaches (0,0)                                     PASS
+  all GD steps are exact rationals                        PASS
+
+=== 3. Exact simplex method (2D) ===
+  Simplex solution:
+    x1 = 0, x2 = 0
+    objective = 0
+  simplex solution is feasible                            PASS
+  all simplex values are exact rationals                  PASS
+
+=== 4. Bisection method (exact rational) ===
+  Bisection for x^2 = 2:
+    step 0: 3/2  x^2-2 error=2.50e-01
+    step 5: 91/64  x^2-2 error=2.17e-02
+    step 10: 2897/2048  x^2-2 error=9.54e-04
+    step 20: 2965821/2097152  x^2-2 error=2.69e-07
+    step 29: 1518500249/1073741824  x^2-2 error=2.60e-09
+  all bisection midpoints are exact                       PASS
+  bisection 30 steps: error < 1e-8                        PASS
+
+==================================================
+GYM 10 RESULTS: 8 passed, 0 failed
+==================================================

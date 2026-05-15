@@ -1,0 +1,54 @@
+=== 1. Haar single-level transform ===
+  signal = ['[1, 1, 0]', '[3, 1, 0]', '[5, 1, 0]', '[7, 1, 0]']
+  averages = ['[2, 1, 0]', '[6, 1, 0]']
+  details = ['[-1, 1, 0]', '[-1, 1, 0]']
+  PASS: avg[0] = 2
+  PASS: avg[1] = 6
+  PASS: det[0] = -1
+  PASS: det[1] = -1
+
+=== 2. Perfect reconstruction ===
+  reconstructed = ['[1, 1, 0]', '[3, 1, 0]', '[5, 1, 0]', '[7, 1, 0]']
+  PASS: perfect reconstruction
+
+=== 3. Multi-level Haar (8 samples) ===
+  L1 avgs = ['[2, 1, 0]', '[3, 1, 0]', '[3, 1, 0]', '[5, 1, 0]']
+  L1 dets = ['[-1, 1, 0]', '[-1, 1, 0]', '[2, 1, 0]', '[-2, 1, 0]']
+  L2 avgs = ['[5, 2, 0]', '[4, 1, 0]']
+  L2 dets = ['[-1, 2, 0]', '[-1, 1, 0]']
+  L3 avgs = ['[13, 4, 0]']
+  L3 dets = ['[-3, 4, 0]']
+  reconstructed = ['[1, 1, 0]', '[3, 1, 0]', '[2, 1, 0]', '[4, 1, 0]', '[5, 1, 0]', '[1, 1, 0]', '[3, 1, 0]', '[7, 1, 0]']
+  PASS: 8-sample 3-level perfect reconstruction
+
+=== 4. Haar on rational signal ===
+  avg[0] = 5/21
+  PASS: rational avg[0] = 5/21
+  PASS: rational perfect reconstruction
+
+=== 5. Energy preservation ===
+  E(signal) = 114, 2*(E(a1)+E(d1)) = 114
+  PASS: Parseval (level 1): E = 2*(Ea+Ed)
+
+=== 6. Haar as matrix ===
+  H4 * signal = ['[2, 1, 0]', '[6, 1, 0]', '[-1, 1, 0]', '[-1, 1, 0]']
+  PASS: matrix avg[0] matches
+  PASS: matrix avg[1] matches
+  PASS: matrix det[0] matches
+  PASS: matrix det[1] matches
+  PASS: matrix inverse reconstruction
+
+=== 7. Haar denoising ===
+  denoised = ['[10, 1, 0]', '[10, 1, 0]', '[10, 1, 0]', '[10, 1, 0]', '[20, 1, 0]', '[20, 1, 0]', '[20, 1, 0]', '[20, 1, 0]']
+  PASS: denoised values are exact rationals
+  avg first half = 10, avg second half = 20
+  PASS: first half avg = 10
+  PASS: second half avg = 20
+
+=== 8. 64-sample roundtrip ===
+  PASS: 64-sample 6-level perfect reconstruction
+
+==================================================
+Gym 22 results: 18 passed, 0 failed
+ALL GYM 22 TESTS PASSED
+==================================================

@@ -1,0 +1,51 @@
+=== 1. 2x2 zero-sum minimax ===
+  p* = 3/5, q* = 1/2, value = 1
+  PASS: p* = 3/5
+  PASS: q* = 1/2
+  PASS: game value = 1
+  PASS: E(p*,q*) = value
+
+=== 2. Matching pennies ===
+  p* = 1/2, q* = 1/2, value = 0
+  PASS: matching pennies p* = 1/2
+  PASS: matching pennies q* = 1/2
+  PASS: matching pennies value = 0
+
+=== 3. Battle of the sexes ===
+  p* = 3/5, q* = 2/5
+  E1 = 6/5
+  PASS: BOS p* = 3/5
+  PASS: BOS q* = 2/5
+  PASS: BOS E1 = 6/5
+
+=== 4. Shapley value (3-player) ===
+  phi = [7/18, 25/72, 19/72]
+  PASS: Shapley sums to v(N) = 1
+  PASS: phi[0] is closed
+  PASS: phi[1] is closed
+  PASS: phi[2] is closed
+
+=== 5. Dominated strategy elimination ===
+  PASS: row 3 dominated by row 1
+  p*(row1) = 4/5
+  PASS: reduced game p* = 4/5
+
+=== 6. Cournot duopoly ===
+  q1* = 20/3, q2* = 14/3
+  PASS: q1* = 20/3
+  PASS: q2* = 14/3
+  P* = 13/3
+  PASS: P* = 13/3
+  profit1 = 200/9
+  PASS: profit1 = 200/9
+
+=== 7. 3x3 zero-sum solve via support enumeration ===
+  PASS: RPS E(col 0) = 0
+  PASS: RPS E(col 1) = 0
+  PASS: RPS E(col 2) = 0
+  PASS: RPS probs sum to 1
+
+==================================================
+Gym 17 results: 24 passed, 0 failed
+ALL GYM 17 TESTS PASSED
+==================================================

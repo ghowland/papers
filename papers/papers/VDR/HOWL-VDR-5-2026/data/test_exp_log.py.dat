@@ -1,0 +1,64 @@
+=== 1. exp series basics ===
+  exp_series(0,10) = 1
+  PASS: exp_series(0) = 1
+  exp_series(1,3) = 8/3
+  PASS: exp_series(1,3) = 8/3
+  exp_series(-1,4) = 3/8
+  PASS: exp_series(-1,4) = 1 - 1 + 1/2 - 1/6 + 1/24 = 3/8
+
+=== 2. exp monotonicity on small range ===
+  exp(0)   = 1
+  exp(1/2) = 3234775558633/1961990553600
+  exp(1)   = 260412269/95800320
+  PASS: exp series is monotone on tested range
+
+=== 3. exp negative helper ===
+  exp_neg(2) = 1919/14175
+  exp_series(-2) = 1919/14175
+  PASS: exp_neg(2) matches exp_series(-2)
+
+=== 4. range reduced exp on integers ===
+  exp_range_reduced(1) = 9864101/3628800
+  exp_series(1)        = 9864101/3628800
+  PASS: range reduced exp(1) matches direct
+  exp_range_reduced(2) = 97300488538201/13168189440000
+  PASS: exp(2) > exp(1)
+  exp_range_reduced(-2) = 13168189440000/97300488538201
+  PASS: exp(-2) < 1
+
+=== 5. log1p basics ===
+  log1p_series(0) = 0
+  PASS: log1p(0) = 0
+  log1p_series(1/2,4) = 77/192
+  PASS: log1p series matches exact truncated sum
+
+=== 6. log near one ===
+  log_series(1) = 0
+  PASS: log(1) = 0
+  log(3/2) approx = 130777/322560
+  log(5/4) approx = 147409261/660602880
+  PASS: log monotonic near one for tested values
+
+=== 7. log ratio near one ===
+  log_ratio_near_one(3,2) = 130777/322560
+  log_series(3/2)         = 130777/322560
+  PASS: log_ratio_near_one matches log_series(num/den)
+
+=== 8. exp-log local consistency near zero ===
+  x = 1/10
+  log1p(x) = 264199818417569/2772000000000000
+  exp(log1p(x)) = 108454695791086031554287470420096340542575758397042476776227836263902831302441016536455285631044373119927011286359589119036896395274097887011691091756623249140085243821827351882965273713135602561/98595177991897086331184816862924795436204661145600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  PASS: exp(log1p(x)) > 1 for x > 0
+  PASS: exp(log1p(x)) remains in plausible local range
+
+=== 9. exact-fraction closure ===
+  PASS: all exp/log outputs are closed VDR fractions
+
+=== 10. exact reproducibility ===
+  PASS: exp reproducible exactly
+  PASS: log reproducible exactly
+
+==================================================
+Batch 2 results: 18 passed, 0 failed
+ALL BATCH 2 TESTS PASSED
+==================================================

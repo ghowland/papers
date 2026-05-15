@@ -1,0 +1,76 @@
+=== 1. Q-basis denominator ===
+  Q = 256
+  PASS: 2^8 = 256
+
+=== 2. to_qbasis ===
+  to_qbasis(1/3,8) = 85/256
+  PASS: Q-basis result is closed
+  PASS: Q-basis denominator is 256 before normalization/equivalent value
+
+=== 3. vec_to_qbasis ===
+  qv = [Fraction(1, 2), Fraction(85, 256), Fraction(1, 4)]
+  PASS: Q-basis vector has same dimension
+
+=== 4. mat_to_qbasis ===
+  qm = [[Fraction(1, 2), Fraction(85, 256)], [Fraction(1, 4), Fraction(51, 256)]]
+  PASS: Q-basis matrix shape preserved
+
+=== 5. Q-basis add and multiply ===
+  q-add = 1/2
+  q-mul = 43/256
+  PASS: Q-basis add returns positive exact fraction
+  PASS: Q-basis mul returns positive exact fraction
+
+=== 6. Embedding ===
+  row = [Fraction(1, 1), Fraction(1, 1)]
+  rows = [[Fraction(1, 1), Fraction(0, 1)], [Fraction(1, 1), Fraction(1, 1)], [Fraction(0, 1), Fraction(1, 1)]]
+  PASS: embedding lookup exact
+  PASS: embedding lookup_many length = 3
+
+=== 7. FeedForwardBlock ===
+  ff output = [Fraction(29, 1), Fraction(1, 1)]
+  PASS: feedforward output dimension = 2
+
+=== 8. TransformerBlock softmax ===
+  block out 0 = [Fraction(1610739089, 59565131), Fraction(103110731, 59565131)]
+  block out 1 = [Fraction(914009489, 59565131), Fraction(103110731, 59565131)]
+  PASS: block returns two rows
+  PASS: block row dimension preserved
+
+=== 9. TransformerBlock surrogate ===
+  scores 0 = [Fraction(1, 1), Fraction(-3, 1)]
+  weights 0 = [Fraction(1, 1), Fraction(0, 1)]
+  out 0 = [Fraction(30, 1), Fraction(2, 1)]
+  PASS: surrogate attention row 0 sums to 1
+  PASS: surrogate attention row 1 sums to 1
+
+=== 10. TinyTransformerLM logits ===
+  logits[0] = [Fraction(4, 1), Fraction(1, 1), Fraction(5, 1)]
+  logits[1] = [Fraction(4, 1), Fraction(206221462, 59565131), Fraction(444481986, 59565131)]
+  PASS: LM returns logits for each token position
+  PASS: LM logits dimension = vocab size
+
+=== 11. TinyTransformerLM cache ===
+  cache keys = ['attn_out', 'ff_out', 'logits', 'out', 'res1', 'scores', 'weights']
+  logits len = 3
+  PASS: cache has key outputs
+  PASS: cache has 3 position logits
+
+=== 12. TinyTransformerLM parameters ===
+  parameter count = 6
+  PASS: LM exposes parameters
+
+=== 13. Embedding to Q-basis ===
+  q-embedding row = [Fraction(1, 1), Fraction(1, 1)]
+  PASS: Q-basis embedding row dimension preserved
+
+=== 14. TinyTransformerLM to Q-basis ===
+  q-logits[0] = [Fraction(4, 1), Fraction(1, 1), Fraction(5, 1)]
+  q-logits[1] = [Fraction(4, 1), Fraction(206221462, 59565131), Fraction(444481986, 59565131)]
+  PASS: Q-basis LM still returns position logits
+  PASS: Q-basis LM logits dimension preserved
+
+==================================================
+Batch 6 results: 22 passed, 0 failed
+ALL BATCH 6 TESTS PASSED
+==================================================
