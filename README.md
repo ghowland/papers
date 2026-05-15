@@ -110,8 +110,8 @@
 
 ---
 
-## Math
-*Mathematical foundations and geometric theory.*
+## Integer Arithmetic: VDR: Value, Decimal, Remainder
+*Exact Finite Arithmetic in Irreducible Triple Form.*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
