@@ -37,6 +37,8 @@ Modern language models have three structural deficiencies that no amount of scal
 
 These three deficiencies are independent. Each could be addressed separately. This paper addresses all three simultaneously because the solutions reinforce each other: exact arithmetic makes provenance meaningful (the recorded derivation chain is exact, not approximate), provenance makes constraint checking possible (you can verify that a value satisfies a constraint by tracing its derivation), and scoped knowledge bases make conversation tracking reliable (variables are stored in the right scope, not lost in a token stream).
 
+![Fig. 3: VDR-LLM-Prolog — Three layers, 705 tests, 27 modules, exact fractions throughout.](./figures/vdr5_03_identity_card.png)
+
 ---
 
 ## 2. The Foundation: VDR Exact Arithmetic
@@ -77,9 +79,13 @@ The softmax function requires exponentials, which are transcendental. VDR comput
 
 For logits [1, 2, 3], the softmax outputs are 64826368/720042809, 176214841/720042809, and 479001600/720042809. Their sum is 720042809/720042809 = 1. A rational surrogate softmax using a square-shift kernel (no exponentials) is also available: for the same logits with shift c=4, outputs are 4/29, 9/29, 16/29. Sum is 29/29 = 1.
 
+![Fig. 6: Softmax Exact Bars — VDR fractions sum to exactly 1. Float64 fractions do not.](./figures/vdr5_06_softmax_exact_bars.png)
+
 ### 3.2 Exact Autodiff
 
 Reverse-mode automatic differentiation over VDR computation graphs. Every gradient is an exact fraction. d(x²)/dx at x=3 is exactly 6, not 5.999999... The chain rule, product rule, and quotient rule all produce exact fractions. MSE loss gradients are exact. The autodiff layer supports general computation graphs, not just fixed formulas.
+
+![Fig. 2: Gradient Chain — Forward exact fractions and backward exact gradients flowing through a 2-layer network.](./figures/vdr5_02_gradient_chain.png)
 
 ### 3.3 Exact Transformer
 
@@ -172,6 +178,8 @@ When a query is evaluated, terms are unified by exact comparison. Two fraction t
 Every piece of knowledge has a home — a specific KB in a specific place in the topic tree. When the system searches for a fact, it searches only the KBs in the current scope: the active topic's KB, its parent's KB, up to the root, plus the global KB. Out-of-scope KBs are not searched at all.
 
 This is lexical scoping applied to knowledge. If you are discussing story B, the facts from story A are not in scope. Not deprioritized. Not ranked lower. Not searched. The system cannot confuse the two because it never sees both simultaneously.
+
+![Fig. 5: KB Tree Scoping — Active topic vdr_llm illuminates its ancestry path. Story KBs are invisible to queries.](./figures/vdr5_05_kb_tree_scoping.png)
 
 ### 5.2 The KB Tree
 
@@ -412,6 +420,8 @@ The LLM queries its own KBs during reasoning. It does not need to remember const
 
 **Layer 3: Conversation (Scoped KBs + Working Data + Topics + Constraints).** Knowledge is scoped to topics. Variables persist in working data sets. Topics have lifecycle state. Constraints are activated and deactivated with scope changes. Provides the structured memory foundation.
 
+![Fig. 4: Architecture Stack — VDR arithmetic, Prolog logic, and conversation management with data flowing between layers.](./figures/vdr5_04_architecture_stack.png)
+
 ### 10.2 The Data Flow
 
 ```
@@ -442,6 +452,8 @@ Output to user
 ```
 
 Every arrow is an exact VDR operation. Every parenthetical is a Prolog fact assertion. Every constraint check is exact.
+
+![Fig. 1: Provenance Chain — Raw text through tokenization, attention, softmax to output, with exact fractions at every stage.](./figures/vdr5_01_provenance_chain.png)
 
 ### 10.3 The Training Flow
 
@@ -640,6 +652,8 @@ The Python-Prolog bridge passes exact rationals between VDR (Python) and the Pro
 
 ## 12. Memory Management
 
+![Fig. 8: Memory Tiers — Five levels from persistent (KB) to transient (pruned), with Prolog retention rules at each tier.](./figures/vdr5_08_memory_tiers.png)
+
 ### 12.1 Tiered Retention
 
 **Tier 1: Persistent.** Model architecture, rules, constraints, hyperparameters. Never freed.
@@ -833,6 +847,8 @@ Because a KB now contains its own constraints, it is fully self-describing. You 
 ---
 
 ## A2. User Accounts as Knowledge Bases
+
+![Fig. 7: Constraint Inheritance — Global through org, dept, team to user. 9 effective constraints from 5 hierarchy levels.](./figures/vdr5_07_constraint_inheritance.png)
 
 ### A2.1 The Insight
 
