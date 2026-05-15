@@ -764,6 +764,304 @@ Data with provenance. Arithmetic with exactness. Constraints with enforcement. C
 
 ---
 
+# Addendum to VDR-5: Constraints as KB-Local and Account Hierarchy
+
+---
+
+## A1. Constraints Belong to Knowledge Bases
+
+The VDR-5 specification described constraints as a separate system that references KBs. This addendum corrects that design: constraints belong inside the KB they govern, not in a separate registry.
+
+### A1.1 The Principle
+
+A knowledge base is a self-contained unit of knowledge. It has facts (what is true), rules (what follows from what), and constraints (what must hold). Separating constraints from their KB creates the same problem that separating documentation from code creates — they drift apart. The constraints for a model's attention weights should live in the same KB as the attention weight facts. The constraints for a user's spending limits should live in the same KB as the user's financial data.
+
+### A1.2 Revised KB Structure
+
+```
+KnowledgeBase = struct {
+    name: Text,
+    facts: FactSet,
+    rules: RuleSet,
+    constraints: []Constraint,   // constraints local to this KB
+    parent: ?Text,
+    children: []Text,
+    topic: ?Text,
+    working_data: ?WorkingDataSet,
+    visibility: enum { public, internal, owner_only },
+    frozen: bool,
+};
+```
+
+Constraints are now a field of the KB, not a separate global structure. When a KB is activated, its constraints are activated. When a KB is deactivated (topic switch), its constraints are deactivated. When a KB is snapshotted, its constraints are included. When a KB is pruned, its constraints go with it.
+
+### A1.3 Constraint Inheritance
+
+Constraints inherit through the KB tree, the same way facts and bindings inherit. A child KB's constraints add to (and can override) its parent's constraints. The effective constraint set at any point is the union of constraints from the current KB up to the root.
+
+```
+Rule: effective_constraints(KB, All) :-
+    kb_constraints(KB, Local),
+    kb_parent(KB, Parent),
+    (Parent = none -> 
+        All = Local ;
+        effective_constraints(Parent, ParentConstraints),
+        merge_constraints(Local, ParentConstraints, All)).
+
+Rule: merge_constraints(Local, Parent, Merged) :-
+    % Local constraints with same name override parent
+    findall(C, (member(C, Local)), LocalList),
+    findall(C, (member(C, Parent), 
+                constraint_name(C, N), 
+                not((member(L, Local), constraint_name(L, N)))), 
+            InheritedList),
+    append(LocalList, InheritedList, Merged).
+```
+
+A global KB has the constraint "all fractions must be exact." A project KB inherits that and adds "Python 3.8 compatible." A sub-project KB inherits both and adds "runtime under 30 seconds." At the sub-project level, all three constraints are active. Disabling the 30-second constraint at the sub-project level does not affect the parent's constraints.
+
+### A1.4 Constraint Scoping Follows KB Scoping
+
+When the active topic changes, the active KBs change, and therefore the active constraints change. This is automatic. There is no separate constraint activation step. The constraint set is always exactly the effective constraints of the in-scope KBs.
+
+Switching from the VDR project to story B deactivates the VDR project's constraints (Python 3.8 compat, exact arithmetic, naming conventions) and activates story B's constraints (character consistency, plot continuity, setting accuracy). The global constraints (system operational rules) remain active because the global KB is always in scope.
+
+### A1.5 Portable KBs
+
+Because a KB now contains its own constraints, it is fully self-describing. You can export a KB (facts + rules + constraints + working data) and import it into a different system. The receiving system does not need to know what constraints to apply — they travel with the data. A model checkpoint KB includes not just the parameter values but the invariants those parameters must satisfy. A dataset KB includes not just the data but the validation rules for that data.
+
+---
+
+## A2. User Accounts as Knowledge Bases
+
+### A2.1 The Insight
+
+A user account is a collection of facts (name, preferences, history), rules (what this user is allowed to do), and constraints (what limits apply). This is exactly what a KB is. Therefore a user account should be a KB.
+
+### A2.2 Account KB Structure
+
+```
+KB: user_alice
+  facts:
+    user_name("Alice Chen")
+    user_role(end_user)
+    user_created(2026-03-15)
+    preference("language", "English")
+    preference("formatting", "minimal")
+    preference("expertise", "expert_zig")
+  
+  constraints:
+    constraint("rate_limit", scope("operational"), active,
+        condition(queries_per_hour =< 100),
+        on_violation("throttle"))
+    constraint("no_internal_access", scope("policy"), active,
+        condition(not(accesses(kb, visibility(internal)))),
+        on_violation("block"))
+    constraint("max_context", scope("operational"), active,
+        condition(context_tokens =< 200000),
+        on_violation("truncate"))
+  
+  working_data:
+    current_project: "vdr_development"
+    active_topics: ["vdr_llm", "prolog_integration"]
+    parked_topics: ["story_b"]
+  
+  children: [kb_alice_vdr_project, kb_alice_story_a, kb_alice_story_b]
+```
+
+Everything about Alice — her identity, her permissions, her preferences, her constraints, her active work, her conversation history — is in her KB. The KB is the account.
+
+### A2.3 Group Accounts as Parent KBs
+
+Groups work by KB inheritance. A group account is a parent KB. User accounts are child KBs. Group constraints apply to all members through inheritance.
+
+```
+KB: group_engineering_team
+  facts:
+    group_name("Engineering Team")
+    group_created(2026-01-01)
+  
+  constraints:
+    constraint("code_review_required", scope("policy"), active,
+        condition(all_code_changes_reviewed),
+        on_violation("block"))
+    constraint("no_production_access", scope("policy"), active,
+        condition(not(accesses(production_db))),
+        on_violation("block"))
+    constraint("approved_languages", scope("project"), active,
+        condition(language_in([python, zig, rust])),
+        on_violation("warn"))
+  
+  children: [user_alice, user_bob_engineer, user_carol]
+```
+
+Alice inherits the engineering team's constraints. She cannot push code without review. She cannot access the production database. She can only use approved languages. These constraints come from her parent KB (the group), not from a separate access control system. They are facts in the KB tree, queryable and inspectable.
+
+### A2.4 Nested Group Hierarchy
+
+Groups can nest. A company has departments. Departments have teams. Teams have members. Each level is a KB with constraints that propagate downward.
+
+```
+KB: org_acme_corp
+├── constraint: "gdpr_compliance" (active, legal)
+├── constraint: "data_retention_7_years" (active, legal)
+│
+├── KB: dept_engineering
+│   ├── constraint: "code_review_required" (active, policy)
+│   ├── constraint: "approved_languages" (active, project)
+│   │
+│   ├── KB: team_backend
+│   │   ├── constraint: "database_access_logged" (active, operational)
+│   │   ├── KB: user_alice (inherits all above)
+│   │   └── KB: user_bob_engineer (inherits all above)
+│   │
+│   └── KB: team_frontend
+│       ├── constraint: "no_database_direct" (active, operational)
+│       └── KB: user_carol (inherits all above)
+│
+└── KB: dept_legal
+    ├── constraint: "client_privilege" (active, legal)
+    └── KB: user_dave_lawyer
+        (inherits org + legal constraints, NOT engineering constraints)
+```
+
+Alice (backend engineer) inherits: GDPR compliance, data retention, code review, approved languages, database access logged. Five constraints from four levels of the hierarchy.
+
+Carol (frontend engineer) inherits: GDPR compliance, data retention, code review, approved languages, no direct database access. The last constraint differs from Alice's because Carol is in a different team KB.
+
+Dave (lawyer) inherits: GDPR compliance, data retention, client privilege. He does not inherit engineering constraints because his KB path goes through dept_legal, not dept_engineering.
+
+The constraint set for any user is determined entirely by their position in the KB tree. No separate ACL system. No role-based access control tables. The KB tree is the access control structure.
+
+### A2.5 Constraint Override at Lower Levels
+
+A child KB can override a parent constraint by declaring a constraint with the same name and a different configuration.
+
+```
+KB: team_backend
+  constraint: "approved_languages" overrides parent
+    condition(language_in([python, zig, rust, go]))
+    // backend team also allows Go
+```
+
+The merge rule from A1.3 handles this: local constraints with the same name as parent constraints replace the parent version. The backend team's approved language list includes Go. The frontend team's does not, because it inherits the department-level list unchanged.
+
+Override is logged as a fact:
+
+```
+constraint_override("team_backend", "approved_languages", 
+    overrides("dept_engineering"),
+    reason("Go needed for microservices")).
+```
+
+The override has provenance. "Why can the backend team use Go?" is answered by querying the override fact.
+
+### A2.6 Per-User Constraint Customization
+
+Individual users can have constraints added to their account KB by administrators, by policy rules, or by their own preferences.
+
+```
+KB: user_alice
+  constraint: "30_sec_runtime" (active, preference, source(self))
+    // Alice's personal preference
+  
+  constraint: "elevated_access_production" (active, policy, source(admin))
+    // Admin granted Alice production access, overriding team default
+    condition(accesses(production_db, read_only))
+    on_violation("log")
+    
+  constraint: "training_required_ml" (active, policy, source(hr_system))
+    // HR system added this after Alice moved to ML team
+    condition(completed_training("ml_safety_2026"))
+    on_violation("block_ml_features")
+```
+
+Some constraints come from Alice herself (personal preferences). Some come from administrators (access grants). Some come from automated systems (training requirements). All are facts in Alice's KB. All are queryable. All have provenance showing who added them and when.
+
+### A2.7 Querying the Account Hierarchy
+
+```
+?- effective_constraints(user_alice, Constraints).
+% Returns all constraints Alice is subject to:
+% [gdpr_compliance, data_retention, code_review, 
+%  approved_languages(with Go), database_access_logged,
+%  30_sec_runtime, elevated_access_production, training_required_ml]
+
+?- constraint_source(user_alice, "elevated_access_production", Source).
+% Source = admin, granted(2026-04-15)
+
+?- users_with_constraint("no_production_access", Users).
+% Users = [bob_engineer, carol]  (not Alice — hers was overridden)
+
+?- constraints_from_level(user_alice, "org_acme_corp", OrgConstraints).
+% OrgConstraints = [gdpr_compliance, data_retention]
+
+?- constraint_violations(user_alice, Violations).
+% Checks all effective constraints, returns any that are violated
+```
+
+### A2.8 Account KBs Carry Conversation State
+
+Because the user account is a KB, the user's conversation state (active topics, parked topics, working data sets) lives inside the KB. When Alice logs in, her KB is loaded, her active topics are restored, her working data sets are available, and her constraints are in effect. When she switches to a different project, her project-level KB activates and the old one deactivates, with all the scoping behavior described in VDR-5 Section 5.
+
+If Alice has two simultaneous sessions (desktop and mobile), both sessions reference the same KB. Changes in one session are visible in the other. Working data is shared. Topic state is shared. Constraints are shared. The KB is the single source of truth for Alice's account state.
+
+---
+
+## A3. Implications
+
+### A3.1 Self-Describing Data
+
+Every KB carries its own constraints. A KB exported to another system includes the rules for validating its contents. The receiving system does not need external documentation to understand what the data must satisfy. The constraints are inside.
+
+### A3.2 Auditable Access Control
+
+Every constraint has provenance. "Why can't Carol access the database?" traces through the KB tree: team_frontend has constraint "no_database_direct," inherited from dept_engineering's policy, which was declared by the CTO on a specific date. The access control decision is not a black-box policy engine. It is a queryable fact chain.
+
+### A3.3 Portable Accounts
+
+A user account KB can be exported and imported. Alice changes companies. Her personal preference constraints (formatting, language, runtime limits) travel with her. Her company-specific constraints (GDPR compliance, code review) are stripped because they belonged to parent KBs she is no longer a child of. The KB tree handles this naturally — detaching from a parent KB removes the inherited constraints.
+
+### A3.4 Testable Constraint Configurations
+
+Because constraint sets are computable from the KB tree, they can be tested before deployment. "If we add this constraint to the engineering department KB, which users are affected?" is a query:
+
+```
+?- hypothetical_add(dept_engineering, new_constraint, Affected).
+% Returns all users under dept_engineering who would gain this constraint
+```
+
+"If we override this constraint for team_backend, does it create a conflict with the legal department's requirements?" is another query:
+
+```
+?- hypothetical_override(team_backend, "data_access", new_condition, Conflicts).
+% Checks whether the new condition violates any ancestor constraints
+```
+
+These are not hypothetical features. They are direct consequences of constraints being facts in a logic programming knowledge base. The query engine already exists. The scoping rules already exist. The provenance tracking already exists. Making constraints KB-local and making accounts KBs is a structural rearrangement, not a new capability.
+
+---
+
+## A4. Revised Specification Summary
+
+The VDR-5 specification is amended as follows:
+
+**Constraints move from a separate system into the KB structure.** Every KB has a constraints field. Constraints inherit through the KB tree. Effective constraints at any point are the union of local and inherited constraints, with same-name overrides.
+
+**User accounts are KBs.** A user's identity, preferences, permissions, conversation state, and working data are facts in their account KB. Group accounts are parent KBs. The organizational hierarchy is a KB tree. Access control is constraint inheritance.
+
+**Three new fields in the KB structure:** `constraints: []Constraint`, `working_data: ?WorkingDataSet`, and `owner: ?Text` (the user or group that owns this KB).
+
+**One new invariant:** A constraint in a child KB with the same name as a constraint in a parent KB overrides the parent constraint for that child and all its descendants. The override is logged with provenance.
+
+Everything else in VDR-5 remains unchanged. The scoping rules, the query engine, the surfacing modes, the topic management, the provenance tracking — all work exactly as specified, now with constraints embedded in the KBs they govern and accounts embedded in the KB tree they belong to.
+
+---
+
+**END ADDENDUM**
+
+---
+
 ## Appendix A: Cumulative Project Statistics
 
 | Paper | Contribution | Tests | Errors |
@@ -835,3 +1133,6 @@ Data with provenance. Arithmetic with exactness. Constraints with enforcement. C
 **Foundation:** VDR-1 through VDR-4, MATH-3, MATH-4
 **Key Claim:** Data provenance, constraint enforcement, and conversational state tracking are architectural requirements, not afterthought features. This paper specifies what that architecture looks like.
 **Falsification:** Five specific criteria, all testable by exact comparison.
+
+---
+

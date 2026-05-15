@@ -1,4 +1,4 @@
-# Exact-Fraction Language Model Architecture
+# Exact Arithmetic Meets Logical Provenance
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,9 +6,11 @@
 
 ## Abstract
 
-VDR-1 introduced exact finite arithmetic in irreducible triple form. VDR-2 tested it across 15 mathematical domains. VDR-3 extended coverage to 23 domains and integrated the MATH-3/MATH-4 transcendental basis, establishing that VDR has no unique computational boundaries. This paper reports what happened when that arithmetic system was extended into a complete machine learning stack: 24 modules implementing exact-fraction softmax, reverse-mode autodiff, trainable neural network layers, optimizers, attention, a transformer architecture, token sampling, checkpointing, datasets, metrics, and a shared-denominator basis system. 181 tests pass across 7 test batches. A working tiny transformer language model runs forward passes, computes exact logits, produces exact attention weights that sum to exactly 1, and exposes every intermediate value as an inspectable exact fraction. No floating-point arithmetic is used at any point in any computation.
+This paper specifies VDR-LLM-Prolog, a language model architecture where every value is an exact fraction, every derivation is recorded in a logic programming knowledge base, every constraint is a first-class queryable object, and every piece of knowledge is directly surfaceable to the user without passing through the language model's token generation. The specification integrates four prior results: VDR exact arithmetic (VDR-1 through VDR-3), the VDR machine learning stack (VDR-4), transcendental constant representation (MATH-3/MATH-4), and a custom Prolog-style knowledge engine designed for LLM provenance.
 
-The central finding is not that exact-fraction LLMs are practical at scale — they are not, yet. The central finding is that every component of a language model architecture can be expressed as exact rational arithmetic, that the approximation boundary can be placed exactly where the designer chooses rather than where hardware precision forces it, and that the resulting system produces outputs that are bit-for-bit reproducible, fully inspectable, and provably normalized. This changes the status of VDR from "an exact arithmetic library with ML potential" to "a system that has actually built and run an exact transformer."
+The system has three layers. The arithmetic layer (VDR) ensures every number is an exact fraction with zero drift and zero silent truncation. The logic layer (Prolog) records how every value was derived, what it depends on, and what constraints it satisfies. The conversation layer manages scoped knowledge bases, working data sets, topic tracking, and constraint activation — giving the language model structured persistent memory that survives topic switches, supports inheritance and shadowing, and is directly queryable by the user.
+
+The central claim is that data provenance, constraint enforcement, and conversational state tracking are not features to be bolted onto a language model after the fact. They are architectural requirements that should be present from the foundation. This paper specifies what that foundation looks like.
 
 ---
 
@@ -48,14 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-4-2026,
-  title={ Exact-Fraction Language Model Architecture },
+@article{ HOWL-VDR-5-2026,
+  title={ Exact Arithmetic Meets Logical Provenance },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20211285},
-  url = {https://zenodo.org/record/20211285},
-  note={Howland Archive: HOWL-VDR-4-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-VDR-5-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
