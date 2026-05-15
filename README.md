@@ -120,6 +120,7 @@
 | **[@HOWL-VDR-3-2026](papers/papers/VDR/HOWL-VDR-3-2026/manuscript.md)** | **VDR Gym Extension** | Exact Arithmetic Across Twenty-Three Domains. |
 | **[@HOWL-VDR-4-2026](papers/papers/VDR/HOWL-VDR-4-2026/manuscript.md)** | **Exact-Fraction Language Model Architecture** | From Arithmetic Library to Working Transformer in 24 Modules. |
 | **[@HOWL-VDR-5-2026](papers/papers/VDR/HOWL-VDR-5-2026/manuscript.md)** | **Exact Arithmetic Meets Logical Provenance** | A Specification for Constraint-Grounded Language Models With Full Data Lineage. |
+| **[@HOWL-VDR-6-2026](papers/papers/VDR/HOWL-VDR-6-2026/manuscript.md)** | **Computational Primitives and Operational Environments** | The Execution Layer for VDR-LLM-Prolog. |
 
 ---
 
