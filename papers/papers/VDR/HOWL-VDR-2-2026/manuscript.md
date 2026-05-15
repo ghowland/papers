@@ -1,10 +1,11 @@
-# VDR Gym: Exact Arithmetic Across Fifteen Domains
+# VDR Gym
+## Exact Arithmetic Across Fifteen Domains
 
 **Registry:** [@HOWL-VDR-2-2026]
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20208950
 
 **Date:** May 2026
 
