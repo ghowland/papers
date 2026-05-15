@@ -56,7 +56,6 @@ Each gym script follows a fixed pattern. It imports VDR from the library, define
 | 14 | Fixed-point iteration | — | — | killed |
 | 15 | Chaos and sensitivity | — | — | killed |
 | **Total** | | **268+** | **262** | **6** |
-
 Gyms 14 and 15 were terminated after exceeding 20 minutes each on a 2019-era laptop. The sections that completed before termination are analyzed in Section 17.
 
 ---
@@ -93,7 +92,7 @@ Lagrange interpolation through three points (0,1), (1,3), (2,7) recovers the pol
 
 Polynomial GCD of (x²-1) and (x²+2x+1) returns (x+1), computed by the Euclidean algorithm with exact VDR polynomial division at each step.
 
-The Cayley-Hamilton theorem is verified for a 2×2 matrix: M² - 5M + 5I = 0 exactly, where the characteristic polynomial is x² - 5x + 5.
+The Cayley-Hamilton theorem is verified for a 2 $\times$ 2 matrix: M² - 5M + 5I = 0 exactly, where the characteristic polynomial is x² - 5x + 5.
 
 **The failure.** One test failed: evaluation of p(x) = 2x³ - 3x² + x - 5 at x = 1/2. The expected result was -19/4 but the test received a different value. This is a test-authoring error in the expected value, not a VDR computation error. The polynomial 2(1/2)³ - 3(1/2)² + (1/2) - 5 = 2/8 - 3/4 + 1/2 - 5 = 1/4 - 3/4 + 1/2 - 5 = -5. The expected value in the test was -19/4, which is incorrect. The correct expected value is -5. VDR computed the correct answer; the test expectation was wrong.
 
@@ -119,9 +118,9 @@ The root cause is that the test takes only the coefficients returned by the peri
 
 Every exercise passed. The gym implements LU decomposition, LU decomposition with rational entries, forward/back substitution, PLU decomposition with row pivoting, matrix powers via repeated squaring, rational Gram-Schmidt orthogonalization, and partial matrix exponential.
 
-**LU decomposition.** A 3×3 integer matrix is decomposed into L (lower triangular, ones on diagonal) and U (upper triangular). The product L×U reconstructs the original matrix exactly. L is verified to be lower triangular with diagonal ones. U is verified to be upper triangular.
+**LU decomposition.** A 3 $\times$ 3 integer matrix is decomposed into L (lower triangular, ones on diagonal) and U (upper triangular). The product L $\times$ U reconstructs the original matrix exactly. L is verified to be lower triangular with diagonal ones. U is verified to be upper triangular.
 
-A 3×3 matrix with rational entries (1/2, 1/3, 1/4, etc.) is also decomposed. The reconstruction L×U matches the original exactly. This is where VDR's advantage over float is most visible — LU decomposition of a matrix with entries like 1/5 and 1/6 produces L and U entries that are exact rationals, not rounded floats.
+A 3 $\times$ 3 matrix with rational entries (1/2, 1/3, 1/4, etc.) is also decomposed. The reconstruction L $\times$ U matches the original exactly. This is where VDR's advantage over float is most visible — LU decomposition of a matrix with entries like 1/5 and 1/6 produces L and U entries that are exact rationals, not rounded floats.
 
 **PLU decomposition.** A matrix requiring row pivoting ([0,1,2],[1,0,3],[4,3,2]) is decomposed into P (permutation), L, and U. The product PA = LU is verified exactly.
 
@@ -211,7 +210,6 @@ The decay equation dy/dx = -y is solved similarly. After 20 steps at h = 1/10, y
 
 **Lotka-Volterra.** The predator-prey system with rational parameters (a = 2/3, b = 4/3, c = 1, d = 1) is simulated for 200 Euler steps at h = 1/100. Every one of the 200 prey and predator values is an exact rational. No float simulation of Lotka-Volterra can make this claim.
 
-
 ---
 
 ## 12. Optimization (Gym 10): 8/8
@@ -234,13 +232,13 @@ Every exercise passed. Bayes' theorem, Markov chain steady state, gambler's ruin
 
 **Bayes' theorem.** The classic disease-test problem: P(disease) = 1/1000, P(positive|disease) = 99/100, P(positive|healthy) = 1/100. The posterior P(disease|positive) is computed as an exact rational. The result is approximately 9%, the well-known counterintuitive answer. Every intermediate probability is exact — no float rounding contaminates the computation.
 
-**Markov chain steady state.** A 2-state weather model (sunny/rainy) is solved both by matrix power (P^20) and by direct linear system solution. The exact steady state is [2/3, 1/3], obtained by solving the system (P^T - I)π = 0 with the constraint π₁ + π₂ = 1 using VDR matrix solve. Exact. No eigenvalue computation needed — direct linear algebra suffices for the steady state.
+**Markov chain steady state.** A 2-state weather model (sunny/rainy) is solved both by matrix power (P^20) and by direct linear system solution. The exact steady state is [2/3, 1/3], obtained by solving the system (P^T - I) $\pi$  = 0 with the constraint  $\pi$ ₁ +  $\pi$ ₂ = 1 using VDR matrix solve. Exact. No eigenvalue computation needed — direct linear algebra suffices for the steady state.
 
 **Gambler's ruin.** Absorption probabilities for a random walk with absorbing barriers at 0 and N = 5 are computed by solving a linear system. For p = q = 1/2, P(ruin | start at k) = 1 - k/N. All four interior probabilities match the exact formula: P(ruin|1) = 4/5, P(ruin|2) = 3/5, P(ruin|3) = 2/5, P(ruin|4) = 1/5.
 
 **Binomial distribution.** The full PMF of Binomial(10, 1/3) is computed as exact rationals. The PMF sums to exactly 1 — not to 0.9999999... but to exactly 1/1 = 1. The expected value E[X] = Σ k·P(X=k) = 10/3, computed exactly.
 
-**Sequential Bayesian updating.** A prior of 1/2 is updated through three evidence steps with likelihood ratios 3, 1/2, and 4. The final posterior is 6/7 exactly. The computation uses the odds form: posterior_odds = prior_odds × LR. Every update is exact VDR rational division.
+**Sequential Bayesian updating.** A prior of 1/2 is updated through three evidence steps with likelihood ratios 3, 1/2, and 4. The final posterior is 6/7 exactly. The computation uses the odds form: posterior_odds = prior_odds  $\times$  LR. Every update is exact VDR rational division.
 
 ![Fig. 7: Binomial PMF — Every probability is an exact fraction. Sum is exactly 1.](./figures/vdr2_07_binomial_pmf.png)
 
@@ -331,8 +329,11 @@ This is not a defect in VDR. It is a mathematical fact about chaotic dynamics. T
 **Practical consequence.** VDR is not suitable for long-time simulation of chaotic systems in the naive iterate-and-store approach. However, VDR is suitable for:
 
 - Short-time exact simulation (10-15 steps of logistic r=4)
+
 - Non-chaotic iteration of any length (contraction mappings, convergent Newton-Raphson, stable linear systems)
+
 - Exact period detection in periodic orbits (tent map on rationals, Arnold cat map on rational torus points)
+
 - Exact sensitivity analysis by computing the exact difference between two nearby orbits for a bounded number of steps
 
 ![Fig. 2: Denominator Explosion — Exact chaos has exponential representation cost.](./figures/vdr2_02_denominator_explosion.png)
@@ -369,7 +370,7 @@ The gym results identify specific domains where VDR provides capabilities that f
 
 **Chaotic dynamics at long time horizons.** As documented in Section 18, exact representation of chaotic orbits has exponential cost. VDR handles this honestly but slowly.
 
-**Operations requiring irrationals or complex numbers.** Eigenvalue computation for matrices with irrational eigenvalues, operations involving √2 or π as native objects (not as rational approximations), and any computation requiring complex arithmetic. VDR represents these via functional remainders that produce rational approximations at each depth, but each approximation is rational, not irrational.
+**Operations requiring irrationals or complex numbers.** Eigenvalue computation for matrices with irrational eigenvalues, operations involving √2 or  $\pi$  as native objects (not as rational approximations), and any computation requiring complex arithmetic. VDR represents these via functional remainders that produce rational approximations at each depth, but each approximation is rational, not irrational.
 
 **Large-scale linear algebra.** Cofactor expansion for determinants is O(n!). The exact Hilbert matrix test in VDR-1 works for n = 4 and n = 5 but becomes slow for larger n. This is an algorithm choice, not a fundamental limitation — Gaussian elimination with exact rational arithmetic would be polynomial — but the current implementation uses cofactor expansion.
 
@@ -394,7 +395,6 @@ The gym results identify specific domains where VDR provides capabilities that f
 | Symbolic algebra | 20 | 20 | 0 | Complete |
 | Fixed-point iteration | partial | partial | — | Killed: chaos cost |
 | Chaos and sensitivity | partial | partial | — | Killed: chaos cost |
-
 **Zero VDR computation errors across all tests.** Every failure is traceable to an incorrect expected value in the test, not to an incorrect computation by VDR.
 
 **One genuine boundary discovered.** Exact representation of chaotic orbits has exponential cost. This is a mathematical fact, not a bug.
@@ -409,7 +409,7 @@ The gym results point toward specific next steps for VDR development.
 
 **Representation compression for iterated maps.** The chaotic orbit problem suggests investigating whether VDR trees can be compressed or lazily evaluated. A functional remainder that represents "the result of n logistic map steps" without materializing the intermediate fractions could bring chaotic dynamics back into scope.
 
-**Complex number extension.** A VDR complex type [Re, Im] where Re and Im are VDR objects would enable eigenvalue computation for 2×2 matrices with complex eigenvalues and open the door to exact DFT computation.
+**Complex number extension.** A VDR complex type [Re, Im] where Re and Im are VDR objects would enable eigenvalue computation for 2 $\times$ 2 matrices with complex eigenvalues and open the door to exact DFT computation.
 
 **Benchmark against mpmath and SymPy.** The gym exercises should be re-implemented using mpmath (arbitrary-precision float) and SymPy (symbolic exact) to compare runtime and correctness. VDR should be faster than SymPy on pure rational computation and more exact than mpmath on everything.
 
@@ -476,7 +476,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 35 | 3¹² mod 13 | Fermat | 1 | 1 | PASS |
 | 36 | √2 convergents monotone | CF [1;2,2,...] | improving | improving | PASS |
 | 37 | e convergent[14] | CF of e, 15 terms | error < 10⁻¹⁰ | verified | PASS |
-
 ### A.2 Gym 02: Polynomial Algebra (22/23)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -504,7 +503,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 21 | rational Lagrange p(1/5)=1/7 | interp | 1/7 | 1/7 | PASS |
 | 22 | poly gcd = x+1 | gcd(x²-1, x²+2x+1) | [1,1] | [1,1] | PASS |
 | 23 | Cayley-Hamilton | M²-5M+5I = 0 | zero matrix | zero matrix | PASS |
-
 **Failure analysis (exercise 5):** p(x) = 2x³-3x²+x-5 evaluated at x=1/2: 2(1/8) - 3(1/4) + 1/2 - 5 = 1/4 - 3/4 + 1/2 - 5 = -5. The test expected -19/4. VDR computed -5 correctly. The expected value was wrong.
 
 ### A.3 Gym 03: Continued Fractions (26/31)
@@ -542,17 +540,16 @@ The code is published. The tests are executable. The results are reproducible. E
 | 29 | √5 convergent error | last convergent | < 0.01 | > 0.01 | **FAIL** |
 | 30 | √7 convergent error | last convergent | < 0.01 | > 0.01 | **FAIL** |
 | 31 | √10 convergent error | last convergent | < 0.01 | > 0.01 | **FAIL** |
-
 **Failure analysis (exercises 27–31):** The period-finding function returns only the non-repeating initial segment plus one period of the CF. For √2 = [1; 2, 2, 2, ...] with period 1, it returns [1; 2] — only 2 coefficients. The convergent from [1; 2] is 3/2, and (3/2)² = 9/4, so |9/4 - 2| = 1/4 = 0.25 > 0.01. The fix: extend the periodic CF to more repetitions before computing the final convergent. For example, [1; 2, 2, 2, 2, 2] (5 repetitions) gives convergent 99/70, and (99/70)² - 2 = 1/4900 < 0.01. The period detection is correct. The convergent quality check needs more terms.
 
 ### A.4 Gym 04: Matrix Decomposition (13/13)
 
 | # | Exercise | Input | Expected | Got | Status |
 |---|----------|-------|----------|-----|--------|
-| 1 | LU: L*U = A | 3×3 integer | A | A | PASS |
+| 1 | LU: L*U = A | 3 $\times$ 3 integer | A | A | PASS |
 | 2 | L lower triangular | L matrix | diag=1, upper=0 | verified | PASS |
 | 3 | U upper triangular | U matrix | lower=0 | verified | PASS |
-| 4 | LU rational reconstruct | 3×3 rational | exact | exact | PASS |
+| 4 | LU rational reconstruct | 3 $\times$ 3 rational | exact | exact | PASS |
 | 5 | LU solve Ax=b | [1,2,3] | exact x | exact x | PASS |
 | 6 | LU agrees with Cramer | same system | same x | same x | PASS |
 | 7 | PA = LU | pivoted matrix | exact | exact | PASS |
@@ -562,7 +559,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 11 | F(15)²+F(16)²=F(31) | Fibonacci identity | equal | equal | PASS |
 | 12 | Gram-Schmidt orthogonal | 3 vectors | all dots = 0 | all dots = 0 | PASS |
 | 13 | matrix exp deterministic | 10 terms, twice | identical | identical | PASS |
-
 ### A.5 Gym 05: Recursive Sequences (15/15)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -582,7 +578,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 13 | Tribonacci 0–15 | T(0)..T(15) | known values | all match | PASS |
 | 14 | rational recurrence | a(0)..a(14) | 3-2^(1-n) | all match | PASS |
 | 15 | Bernoulli B(0)..B(12) all | 13 values | known fractions | all match | PASS |
-
 ### A.6 Gym 06: Combinatorics (31/31)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -618,7 +613,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 29 | multinomial(10;3,3,4)=4200 | multinomial | 4200 | 4200 | PASS |
 | 30 | trinomial sum = 3⁴=81 | multinomial theorem | 81 | 81 | PASS |
 | 31 | Catalan GF exact rational | gen function | denom > 1 | verified | PASS |
-
 ### A.7 Gym 07: Signal Processing (11/11)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -634,7 +628,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 9 | Toeplitz*signal = conv | matrix conv | equal | equal | PASS |
 | 10 | IIR a=1/2: y[n]=(1/2)^n | impulse response | (1/2)^n | all match | PASS |
 | 11 | IIR a=2/3: y[n]=(2/3)^n | impulse response | (2/3)^n | all match | PASS |
-
 ### A.8 Gym 08: Computational Geometry (19/19)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -658,7 +651,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 17 | rational dist² exact | rational points | exact | exact | PASS |
 | 18 | circumcenter = (3,4) | right triangle | (3,4) | (3,4) | PASS |
 | 19 | circumcenter equidistant | 3 distances | all equal | all equal | PASS |
-
 ### A.9 Gym 09: Differential Equations (10/10)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -673,7 +665,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 8 | Picard 8 = 1/k! | Taylor coeffs | 1/k! | all match | PASS |
 | 9 | Picard e approx < 10⁻⁵ | 8 terms | error < 10⁻⁵ | verified | PASS |
 | 10 | Lotka-Volterra all exact | 200 steps | all rational | all rational | PASS |
-
 ### A.10 Gym 10: Optimization (8/8)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -686,7 +677,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 6 | simplex exact rationals | solution | all rational | all rational | PASS |
 | 7 | bisection all exact | 30 midpoints | all rational | all rational | PASS |
 | 8 | bisection error < 10⁻⁸ | 30 steps | < 10⁻⁸ | verified | PASS |
-
 ### A.11 Gym 11: Probability (13/13)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -704,7 +694,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 11 | E[Binom] = 10/3 | expected value | 10/3 | 10/3 | PASS |
 | 12 | Bayesian posterior exact | 3 updates | exact rational | exact | PASS |
 | 13 | final posterior = 6/7 | odds form | 6/7 | 6/7 | PASS |
-
 ### A.12 Gym 12: Cryptographic Primitives (37/37)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -732,9 +721,9 @@ The code is published. The tests are executable. The results are reproducible. E
 | 21 | 5³⁰ mod 31 = 1 | Fermat | 1 | 1 | PASS |
 | 22 | gcd(35,15) = 5 | ext GCD | 5 | 5 | PASS |
 | 23 | Bezout identity | 35x+15y=5 | holds | holds | PASS |
-| 24 | 3⁻¹ mod 7: 3×5 mod 7=1 | mod inv | 1 | 1 | PASS |
-| 25 | 5⁻¹ mod 11: 5×9 mod 11=1 | mod inv | 1 | 1 | PASS |
-| 26 | 7⁻¹ mod 13: 7×2 mod 13=1 | mod inv | 1 | 1 | PASS |
+| 24 | 3⁻¹ mod 7: 3 $\times$ 5 mod 7=1 | mod inv | 1 | 1 | PASS |
+| 25 | 5⁻¹ mod 11: 5 $\times$ 9 mod 11=1 | mod inv | 1 | 1 | PASS |
+| 26 | 7⁻¹ mod 13: 7 $\times$ 2 mod 13=1 | mod inv | 1 | 1 | PASS |
 | 27 | CRT x mod 3 = 2 | CRT verify | 2 | 2 | PASS |
 | 28 | CRT x mod 5 = 3 | CRT verify | 3 | 3 | PASS |
 | 29 | CRT x mod 7 = 2 | CRT verify | 2 | 2 | PASS |
@@ -746,7 +735,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 35 | RSA roundtrip msg=3000 | encrypt/decrypt | 3000 | 3000 | PASS |
 | 36 | dlog 2^x≡8 mod 13: x=3 | baby-giant | 3 | 3 | PASS |
 | 37 | dlog 3^x≡9 mod 17 verify | baby-giant | 3^x mod 17=9 | verified | PASS |
-
 ### A.13 Gym 13: Symbolic Algebra (20/20)
 
 | # | Exercise | Input | Expected | Got | Status |
@@ -770,8 +758,7 @@ The code is published. The tests are executable. The results are reproducible. E
 | 17 | ∫₀¹ x² dx = 1/3 | definite | 1/3 | 1/3 | PASS |
 | 18 | ∫₀² x³ dx = 4 | definite | 4 | 4 | PASS |
 | 19 | ∫₁³ (3x²+2x+1) dx = 36 | definite | 36 | 36 | PASS |
-| 20 | ∫_{1/3}^{2/3} x² dx | rational bounds | exact | exact | PASS |
-
+| 20 | ∫ {1/3}^{2/3} x² dx | rational bounds | exact | exact | PASS |
 ---
 
 ## Appendix B. Bernoulli Numbers Computed by VDR
@@ -791,8 +778,7 @@ The code is published. The tests are executable. The results are reproducible. E
 | 10 | 5/66 | 0.07576 |
 | 11 | 0 | 0.0 |
 | 12 | -691/2730 | -0.25311 |
-
-All computed by the recursive formula using exact VDR arithmetic. B(12) = -691/2730 is the first Bernoulli number with a numerator not equal to ±1 or 0. This fraction appears in the theory of modular forms and in the Riemann zeta function at even positive integers. VDR computes it from the recursion without any special-case handling.
+All computed by the recursive formula using exact VDR arithmetic. B(12) = -691/2730 is the first Bernoulli number with a numerator not equal to  $\pm$ 1 or 0. This fraction appears in the theory of modular forms and in the Riemann zeta function at even positive integers. VDR computes it from the recursion without any special-case handling.
 
 ---
 
@@ -802,35 +788,33 @@ All computed by the recursive formula using exact VDR arithmetic. B(12) = -691/2
 
 | n | F(n-1) | F(n) | F(n+1) | F(n-1)·F(n+1) | F(n)² | Difference | (-1)^n | Match |
 |---|--------|------|--------|----------------|-------|-----------|--------|-------|
-| 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 | ✓ |
-| 3 | 1 | 2 | 3 | 3 | 4 | -1 | -1 | ✓ |
-| 4 | 2 | 3 | 5 | 10 | 9 | 1 | 1 | ✓ |
-| 5 | 3 | 5 | 8 | 24 | 25 | -1 | -1 | ✓ |
-| 6 | 5 | 8 | 13 | 65 | 64 | 1 | 1 | ✓ |
-| 7 | 8 | 13 | 21 | 168 | 169 | -1 | -1 | ✓ |
-| 8 | 13 | 21 | 34 | 442 | 441 | 1 | 1 | ✓ |
-| 9 | 21 | 34 | 55 | 1155 | 1156 | -1 | -1 | ✓ |
-| 10 | 34 | 55 | 89 | 3026 | 3025 | 1 | 1 | ✓ |
-
+| 2 | 1 | 1 | 2 | 2 | 1 | 1 | 1 |  $\checkmark$  |
+| 3 | 1 | 2 | 3 | 3 | 4 | -1 | -1 |  $\checkmark$  |
+| 4 | 2 | 3 | 5 | 10 | 9 | 1 | 1 |  $\checkmark$  |
+| 5 | 3 | 5 | 8 | 24 | 25 | -1 | -1 |  $\checkmark$  |
+| 6 | 5 | 8 | 13 | 65 | 64 | 1 | 1 |  $\checkmark$  |
+| 7 | 8 | 13 | 21 | 168 | 169 | -1 | -1 |  $\checkmark$  |
+| 8 | 13 | 21 | 34 | 442 | 441 | 1 | 1 |  $\checkmark$  |
+| 9 | 21 | 34 | 55 | 1155 | 1156 | -1 | -1 |  $\checkmark$  |
+| 10 | 34 | 55 | 89 | 3026 | 3025 | 1 | 1 |  $\checkmark$  |
 Every identity verified by exact VDR integer multiplication.
 
 ### C.2 Lucas-Fibonacci Identity: L(n)² - 5·F(n)² = 4·(-1)^n
 
 | n | L(n) | F(n) | L(n)² | 5·F(n)² | Difference | 4·(-1)^n | Match |
 |---|------|------|-------|---------|-----------|----------|-------|
-| 2 | 3 | 1 | 9 | 5 | 4 | 4 | ✓ |
-| 3 | 4 | 2 | 16 | 20 | -4 | -4 | ✓ |
-| 4 | 7 | 3 | 49 | 45 | 4 | 4 | ✓ |
-| 5 | 11 | 5 | 121 | 125 | -4 | -4 | ✓ |
-| 6 | 18 | 8 | 324 | 320 | 4 | 4 | ✓ |
-| 7 | 29 | 13 | 841 | 845 | -4 | -4 | ✓ |
-| 8 | 47 | 21 | 2209 | 2205 | 4 | 4 | ✓ |
-
+| 2 | 3 | 1 | 9 | 5 | 4 | 4 |  $\checkmark$  |
+| 3 | 4 | 2 | 16 | 20 | -4 | -4 |  $\checkmark$  |
+| 4 | 7 | 3 | 49 | 45 | 4 | 4 |  $\checkmark$  |
+| 5 | 11 | 5 | 121 | 125 | -4 | -4 |  $\checkmark$  |
+| 6 | 18 | 8 | 324 | 320 | 4 | 4 |  $\checkmark$  |
+| 7 | 29 | 13 | 841 | 845 | -4 | -4 |  $\checkmark$  |
+| 8 | 47 | 21 | 2209 | 2205 | 4 | 4 |  $\checkmark$  |
 ---
 
 ## Appendix D. Harmonic Number Exact Values
 
-| n | H_n exact fraction | Decimal approx | Denominator digit count |
+| n | H n exact fraction | Decimal approx | Denominator digit count |
 |---|-------------------|---------------|------------------------|
 | 1 | 1 | 1.0 | 1 |
 | 2 | 3/2 | 1.5 | 1 |
@@ -840,7 +824,6 @@ Every identity verified by exact VDR integer multiplication.
 | 20 | 55835135/15519504 | 3.5977 | 8 |
 | 50 | (exact, ~40 digit denom) | 4.4992 | ~40 |
 | 100 | (exact, ~85 digit denom) | 5.1874 | ~85 |
-
 Every H_n is computed as a single exact VDR rational by summing 1/k for k=1..n. The denominators grow as lcm(1,2,...,n). Float computation of H₁₀₀ loses precision in the last digits due to adding small terms (1/100) to large partial sums (≈5). VDR has no such issue — every addition is exact.
 
 ---
@@ -849,12 +832,11 @@ Every H_n is computed as a single exact VDR rational by summing 1/k for k=1..n. 
 
 | Fraction | Decomposition | Term count | Verified sum |
 |----------|--------------|-----------|-------------|
-| 2/3 | 1/2 + 1/6 | 2 | 2/3 ✓ |
-| 3/7 | 1/3 + 1/11 + 1/231 | 3 | 3/7 ✓ |
-| 5/11 | 1/3 + 1/9 + 1/99 | 3 | 5/11 ✓ |
-| 7/15 | 1/3 + 1/8 + 1/120 | 3 | 7/15 ✓ |
-| 4/17 | 1/5 + 1/29 + 1/1233 + 1/3039345 | 4 | 4/17 ✓ |
-
+| 2/3 | 1/2 + 1/6 | 2 | 2/3  $\checkmark$  |
+| 3/7 | 1/3 + 1/11 + 1/231 | 3 | 3/7  $\checkmark$  |
+| 5/11 | 1/3 + 1/9 + 1/99 | 3 | 5/11  $\checkmark$  |
+| 7/15 | 1/3 + 1/8 + 1/120 | 3 | 7/15  $\checkmark$  |
+| 4/17 | 1/5 + 1/29 + 1/1233 + 1/3039345 | 4 | 4/17  $\checkmark$  |
 The greedy algorithm produces unit fractions with rapidly growing denominators. 4/17 requires a denominator of 3,039,345 in its fourth term. VDR computes and verifies the sum exactly.
 
 ---
@@ -874,7 +856,6 @@ The greedy algorithm produces unit fractions with rapidly growing denominators. 
 | 8 | 3/4 | [3, 4, 0] |
 | 9 | 4/5 | [4, 5, 0] |
 | 10 | 1/1 | [1, 1, 0] |
-
 11 elements. Every consecutive pair (a/b, c/d) satisfies |ad - bc| = 1 exactly.
 
 ---
@@ -895,7 +876,6 @@ The greedy algorithm produces unit fractions with rapidly growing denominators. 
 | 7 | 1/128 | 0.007813 |
 | 8 | 1/256 | 0.003906 |
 | 9 | 1/512 | 0.001953 |
-
 ### G.2 Filter coefficient a = 2/3
 
 | n | y[n] exact | Decimal |
@@ -908,7 +888,6 @@ The greedy algorithm produces unit fractions with rapidly growing denominators. 
 | 5 | 32/243 | 0.13169 |
 | 6 | 64/729 | 0.08779 |
 | 7 | 128/2187 | 0.05853 |
-
 Every output sample is an exact VDR rational. In float-based DSP, these values would accumulate rounding error over long filter runs. In VDR, (2/3)^100 is computed as an exact fraction 2^100/3^100 with no loss.
 
 ---
@@ -919,11 +898,10 @@ Every output sample is an exact VDR rational. In float-based DSP, these values w
 
 | Start k | P(ruin at 0) | Expected 1-k/N |
 |---------|-------------|----------------|
-| 1 | 4/5 | 4/5 ✓ |
-| 2 | 3/5 | 3/5 ✓ |
-| 3 | 2/5 | 2/5 ✓ |
-| 4 | 1/5 | 1/5 ✓ |
-
+| 1 | 4/5 | 4/5  $\checkmark$  |
+| 2 | 3/5 | 3/5  $\checkmark$  |
+| 3 | 2/5 | 2/5  $\checkmark$  |
+| 4 | 1/5 | 1/5  $\checkmark$  |
 Computed by solving a tridiagonal linear system using exact VDR Cramer's rule.
 
 ---
@@ -944,7 +922,6 @@ Computed by solving a tridiagonal linear system using exact VDR Cramer's rule.
 | 9 | 20/59049 | 0.00034 |
 | 10 | 1/59049 | 0.00002 |
 | **Sum** | **59049/59049** | **1.00000** |
-
 The PMF sums to exactly 1. The common denominator 59049 = 3^10 arises from (1-1/3)^(10-k) terms. Every probability is an exact VDR rational.
 
 ---
@@ -959,16 +936,14 @@ The PMF sums to exactly 1. The common denominator 59049 = 3^10 arises from (1-1/
 | φ(n) = (p-1)(q-1) | 3120 |
 | e (public) | 17 |
 | d (private) = e⁻¹ mod φ(n) | 2753 |
-| e·d mod φ(n) | 1 ✓ |
-
+| e·d mod φ(n) | 1  $\checkmark$  |
 | Message | Encrypted (m^e mod n) | Decrypted (c^d mod n) | Match |
 |---------|----------------------|----------------------|-------|
-| 7 | computed | 7 | ✓ |
-| 42 | computed | 42 | ✓ |
-| 100 | computed | 100 | ✓ |
-| 1234 | computed | 1234 | ✓ |
-| 3000 | computed | 3000 | ✓ |
-
+| 7 | computed | 7 |  $\checkmark$  |
+| 42 | computed | 42 |  $\checkmark$  |
+| 100 | computed | 100 |  $\checkmark$  |
+| 1234 | computed | 1234 |  $\checkmark$  |
+| 3000 | computed | 3000 |  $\checkmark$  |
 Every step uses exact VDR modular arithmetic. The private key d = 2753 is computed via the extended Euclidean algorithm, verified by e·d = 17·2753 = 46801 ≡ 1 (mod 3120).
 
 ---
@@ -993,7 +968,6 @@ Every step uses exact VDR modular arithmetic. The private key d = 2753 is comput
 | 20 | ~260,000 |
 | 25 | ~8,000,000 |
 | 30 | ~260,000,000 |
-
 Denominator digit count approximately doubles at each step, consistent with the Lyapunov exponent ln(2) ≈ 0.693. Each iterate is exact. The computational cost grows as O(n²) in denominator digit count for each multiplication, making step 20+ impractical on consumer hardware.
 
 ### K.2 Tent Map on 1/7
@@ -1006,12 +980,11 @@ Denominator digit count approximately doubles at each step, consistent with the 
 | 4 | 2/7 | 7 |
 | 5 | 4/7 | 7 |
 | 6 | 6/7 | 7 |
-
 Period 3. Denominator stays at 7 forever. The tent map on p/q with gcd(p,q)=1 has periodic orbits with denominators that divide q. No growth. No computational difficulty. This is the exact opposite of the chaotic logistic map — periodic rational orbits are free.
 
 ### K.3 Arnold Cat Map on (1/7, 3/11)
 
-Period 40 computed exactly. The denominator stays bounded by lcm(7,11) = 77 throughout the orbit because the cat map on the rational torus Z/qZ × Z/qZ is periodic. Every coordinate has denominator dividing 77. All 40 points are exact rational pairs. Float arithmetic could not reliably detect this period because modular reduction of floats accumulates error, eventually placing the orbit on the wrong side of a boundary.
+Period 40 computed exactly. The denominator stays bounded by lcm(7,11) = 77 throughout the orbit because the cat map on the rational torus Z/qZ  $\times$  Z/qZ is periodic. Every coordinate has denominator dividing 77. All 40 points are exact rational pairs. Float arithmetic could not reliably detect this period because modular reduction of floats accumulates error, eventually placing the orbit on the wrong side of a boundary.
 
 ---
 
@@ -1027,7 +1000,6 @@ Period 40 computed exactly. The denominator stays bounded by lcm(7,11) = 77 thro
 | 6 | 3/5 | 1771561/1000000 | 1.77156 | 1.8221 |
 | 8 | 4/5 | 214358881/100000000 | 2.14359 | 2.2255 |
 | 10 | 1 | 25937424601/10000000000 | 2.59374 | 2.71828 |
-
 Euler error at x=1: |2.59374 - 2.71828| ≈ 0.125. Every VDR value is (11/10)^n exactly.
 
 ### L.2 RK4 Method, h = 1/4
@@ -1035,12 +1007,11 @@ Euler error at x=1: |2.59374 - 2.71828| ≈ 0.125. Every VDR value is (11/10)^n 
 | Step | x | y decimal | e^x | Error |
 |------|---|-----------|-----|-------|
 | 0 | 0 | 1.0 | 1.0 | 0 |
-| 1 | 1/4 | 1.28394... | 1.28403 | ~9×10⁻⁵ |
-| 2 | 1/2 | 1.64851... | 1.64872 | ~2×10⁻⁴ |
-| 3 | 3/4 | 2.11681... | 2.11700 | ~2×10⁻⁴ |
-| 4 | 1 | 2.71735... | 2.71828 | ~9×10⁻⁴ |
-
-RK4 error at x=1: ≈ 9×10⁻⁴, about 140× better than Euler despite using only 4 steps vs 10. Both results are exact VDR rationals — the error is method error (discretization), not arithmetic error.
+| 1 | 1/4 | 1.28394... | 1.28403 | ~9 $\times$ 10⁻⁵ |
+| 2 | 1/2 | 1.64851... | 1.64872 | ~2 $\times$ 10⁻⁴ |
+| 3 | 3/4 | 2.11681... | 2.11700 | ~2 $\times$ 10⁻⁴ |
+| 4 | 1 | 2.71735... | 2.71828 | ~9 $\times$ 10⁻⁴ |
+RK4 error at x=1: ≈ 9 $\times$ 10⁻⁴, about 140 $\times$  better than Euler despite using only 4 steps vs 10. Both results are exact VDR rationals — the error is method error (discretization), not arithmetic error.
 
 ---
 
@@ -1056,7 +1027,6 @@ RK4 error at x=1: ≈ 9×10⁻⁴, about 140× better than Euler despite using o
 | 4 | [1, 1, 1/2, 1/6, 1/24] | degree 4 |
 | 5 | [1, 1, 1/2, 1/6, 1/24, 1/120] | degree 5 |
 | 8 | [1, 1, 1/2, 1/6, 1/24, 1/120, 1/720, 1/5040, 1/40320] | degree 8 |
-
 Every coefficient is the exact reciprocal of a factorial. Sum at x=1 after 8 iterations: 109601/40320 = 2.71828... approximating e to 5 decimal places. The fraction 109601/40320 is exact — it is the 8th partial sum of the Taylor series for e, represented as a single VDR rational.
 
 ---
@@ -1065,10 +1035,9 @@ Every coefficient is the exact reciprocal of a factorial. Sum at x=1 after 8 ite
 
 | n | S₁(n) = Σk | n(n+1)/2 | Match | S₂(n) = Σk² | n(n+1)(2n+1)/6 | Match | S₃(n) = Σk³ | [n(n+1)/2]² | Match |
 |---|-----------|----------|-------|-------------|----------------|-------|-------------|-------------|-------|
-| 10 | 55 | 55 | ✓ | 385 | 385 | ✓ | 3025 | 3025 | ✓ |
-| 50 | 1275 | 1275 | ✓ | 42925 | 42925 | ✓ | 1625625 | 1625625 | ✓ |
-| 100 | 5050 | 5050 | ✓ | 338350 | 338350 | ✓ | 25502500 | 25502500 | ✓ |
-
+| 10 | 55 | 55 |  $\checkmark$  | 385 | 385 |  $\checkmark$  | 3025 | 3025 |  $\checkmark$  |
+| 50 | 1275 | 1275 |  $\checkmark$  | 42925 | 42925 |  $\checkmark$  | 1625625 | 1625625 |  $\checkmark$  |
+| 100 | 5050 | 5050 |  $\checkmark$  | 338350 | 338350 |  $\checkmark$  | 25502500 | 25502500 |  $\checkmark$  |
 Every sum is computed by iterating VDR addition and multiplication, then compared against the closed-form formula. All 9 comparisons are exact equality — not approximate.
 
 ---
@@ -1077,11 +1046,10 @@ Every sum is computed by iterating VDR addition and multiplication, then compare
 
 | Integrand | Bounds | Antiderivative | Result | Expected | Match |
 |-----------|--------|---------------|--------|----------|-------|
-| x² | [0, 1] | x³/3 | 1/3 | 1/3 | ✓ |
-| x³ | [0, 2] | x⁴/4 | 4 | 4 | ✓ |
-| 3x²+2x+1 | [1, 3] | x³+x²+x | 36 | 36 | ✓ |
-| x² | [1/3, 2/3] | x³/3 | 7/81 | 7/81 | ✓ |
-
+| x² | [0, 1] | x³/3 | 1/3 | 1/3 |  $\checkmark$  |
+| x³ | [0, 2] | x⁴/4 | 4 | 4 |  $\checkmark$  |
+| 3x²+2x+1 | [1, 3] | x³+x²+x | 36 | 36 |  $\checkmark$  |
+| x² | [1/3, 2/3] | x³/3 | 7/81 | 7/81 |  $\checkmark$  |
 These are exact symbolic integrals — the antiderivative is computed as a VDR polynomial, evaluated at the exact rational endpoints, and the difference is an exact VDR rational. This is not numerical integration. It is exact algebraic evaluation of the fundamental theorem of calculus for polynomial integrands with rational coefficients and rational bounds.
 
 ---
@@ -1097,7 +1065,6 @@ These are exact symbolic integrals — the antiderivative is computed as a VDR p
 | 03 | √7 convergent | error < 0.01 | error > 0.01 | Too few CF terms | Same fix |
 | 03 | √10 convergent | error < 0.01 | error > 0.01 | Too few CF terms | Same fix |
 | 15 | tent map period 6 | period 6 | period 3 | Wrong expected period | Change expected to 3 |
-
 All 7 failures (6 in completed gyms + 1 in partial gym 15) are test-authoring errors. Zero are VDR computation errors. The VDR library computed the correct exact answer in every case.
 
 ---
@@ -1106,24 +1073,25 @@ All 7 failures (6 in completed gyms + 1 in partial gym 15) are test-authoring er
 
 | Domain | Exact? | Fast? | Advantage over float | Advantage over CAS |
 |--------|--------|-------|---------------------|-------------------|
-| Integer arithmetic | ✓ | ✓ | Equal (both exact) | Simpler |
-| Rational arithmetic | ✓ | ✓ | Exact vs approximate | Simpler, faster |
-| Number theory | ✓ | ✓ | Exact modular ops | Comparable |
-| Combinatorics | ✓ | ✓ | Exact large integers | Comparable |
-| Polynomial algebra | ✓ | ✓ | Exact coefficients | Simpler for rationals |
-| Linear algebra (small) | ✓ | ✓ | Zero drift, exact inverse | Comparable |
-| Linear algebra (large) | ✓ | Slow | Zero drift | CAS faster algorithms |
-| Computational geometry | ✓ | ✓ | No robustness failures | Simpler |
-| Probability | ✓ | ✓ | PMF sums to exactly 1 | Simpler |
-| Cryptography | ✓ | ✓ | Required (float cannot do) | Comparable |
-| Signal processing | ✓ | ✓ | Exact filter coefficients | Simpler |
-| Discrete ODE (stable) | ✓ | ✓ | Zero arithmetic drift | Simpler |
-| Discrete ODE (chaotic) | ✓ | Very slow | Exact but impractical | CAS also slow |
-| Optimization | ✓ | ✓ | Exact iterates | Comparable |
-| Symbolic calculus (poly) | ✓ | ✓ | Exact integrals | CAS more general |
-| Chaotic iteration | ✓ | Exponential cost | Honest vs hidden cost | Both expensive |
-
+| Integer arithmetic |  $\checkmark$  |  $\checkmark$  | Equal (both exact) | Simpler |
+| Rational arithmetic |  $\checkmark$  |  $\checkmark$  | Exact vs approximate | Simpler, faster |
+| Number theory |  $\checkmark$  |  $\checkmark$  | Exact modular ops | Comparable |
+| Combinatorics |  $\checkmark$  |  $\checkmark$  | Exact large integers | Comparable |
+| Polynomial algebra |  $\checkmark$  |  $\checkmark$  | Exact coefficients | Simpler for rationals |
+| Linear algebra (small) |  $\checkmark$  |  $\checkmark$  | Zero drift, exact inverse | Comparable |
+| Linear algebra (large) |  $\checkmark$  | Slow | Zero drift | CAS faster algorithms |
+| Computational geometry |  $\checkmark$  |  $\checkmark$  | No robustness failures | Simpler |
+| Probability |  $\checkmark$  |  $\checkmark$  | PMF sums to exactly 1 | Simpler |
+| Cryptography |  $\checkmark$  |  $\checkmark$  | Required (float cannot do) | Comparable |
+| Signal processing |  $\checkmark$  |  $\checkmark$  | Exact filter coefficients | Simpler |
+| Discrete ODE (stable) |  $\checkmark$  |  $\checkmark$  | Zero arithmetic drift | Simpler |
+| Discrete ODE (chaotic) |  $\checkmark$  | Very slow | Exact but impractical | CAS also slow |
+| Optimization |  $\checkmark$  |  $\checkmark$  | Exact iterates | Comparable |
+| Symbolic calculus (poly) |  $\checkmark$  |  $\checkmark$  | Exact integrals | CAS more general |
+| Chaotic iteration |  $\checkmark$  | Exponential cost | Honest vs hidden cost | Both expensive |
 ## References
 
 ::: {#refs}
+
 :::
+
