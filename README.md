@@ -251,6 +251,7 @@
 | **[@HOWL-CULT-14-2026](papers/papers/CULT/HOWL-CULT-14-2026/manuscript.md)** | **Mechanical Evaluation of Outsider Scientific Contributions** | Replacing Averaged Snapshots with Synchronized Observable Measurement. |
 | **[@HOWL-CULT-15-2026](papers/papers/CULT/HOWL-CULT-15-2026/manuscript.md)** | **Showing Your Work in 2026** | A Structural Specification for Reproducible Scientific Computation. |
 | **[@HOWL-CULT-16-2026](papers/papers/CULT/HOWL-CULT-16-2026/manuscript.md)** | **It's Hard: Why the Physics Community Will Never Close Its Open Problems** | The Structural Architecture of Institutional Non-Closure. |
+| **[@HOWL-CULT-17-2026](papers/papers/CULT/HOWL-CULT-17-2026/manuscript.md)** | **No Path: Cross-Domain Derivation by an Outsider Using Commodity Tools** | A Case Study in Institutional Exclusion of Valid Work. |
 
 ---
 
