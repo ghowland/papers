@@ -1,0 +1,60 @@
+=== 1. Fibonacci via VDR recurrence ===
+  first 20 Fibonacci numbers correct                      PASS
+  Cassini's identity for n=2..17                          PASS
+
+=== 2. Fibonacci ratios approach golden ratio ===
+  F(n+1)/F(n) convergence:
+    n=5: 5/3  error=4.86e-02
+    n=10: 55/34  error=3.87e-04
+    n=15: 610/377  error=3.15e-06
+    n=19: 4181/2584  error=6.70e-08
+  all F(n+1)/F(n) are exact rationals                     PASS
+
+=== 3. Lucas numbers ===
+  first 15 Lucas numbers                                  PASS
+  L(n)^2 - 5*F(n)^2 = 4*(-1)^n                            PASS
+
+=== 4. Catalan numbers ===
+  first 10 Catalan numbers                                PASS
+  Catalan recurrence verified                             PASS
+
+=== 5. Bernoulli numbers ===
+  Bernoulli numbers:
+    B(0) = 1
+    B(1) = -1/2
+    B(2) = 1/6
+    B(3) = 0
+    B(4) = -1/30
+    B(5) = 0
+    B(6) = 1/42
+    B(7) = 0
+    B(8) = -1/30
+    B(9) = 0
+    B(10) = 5/66
+    B(11) = 0
+    B(12) = -691/2730
+  Bernoulli numbers B(0)..B(12)                           PASS
+
+=== 6. Functional remainder: sequence as lazy VDR ===
+  fn fib(0) = 0                                           PASS
+  fn fib(1) = 1                                           PASS
+  fn fib(5) = 5                                           PASS
+  fn fib(10) = 55                                         PASS
+  fn fib(15) = 610                                        PASS
+
+=== 7. Generalized Fibonacci (Tribonacci) ===
+  first 16 Tribonacci numbers                             PASS
+
+=== 8. Recurrence with rational coefficients ===
+  rational recurrence a(n):
+    a(0) = 1
+    a(1) = 2
+    a(5) = 47/16
+    a(10) = 1535/512
+    a(15) = 49151/16384
+    a(20) = 1572863/524288
+  rational recurrence matches closed form                 PASS
+
+==================================================
+GYM 05 RESULTS: 15 passed, 0 failed
+==================================================

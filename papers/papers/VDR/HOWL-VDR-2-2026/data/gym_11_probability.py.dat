@@ -1,0 +1,57 @@
+=== 1. Exact Bayes' theorem ===
+  Bayes' theorem — disease test:
+    P(positive) = 549/50000
+    P(disease|positive) = 11/122
+    = 0.0902 (about 9.0%)
+  P(disease|+) is exact rational                          PASS
+  probabilities sum to 1                                  PASS
+
+=== 2. Exact Markov chain steady state ===
+  Markov steady state (P^20):
+| [317891439501134, 476837158203125, 0]  [158945718701991, 476837158203125, 0] |
+| [317891437403982, 476837158203125, 0]  [158945720799143, 476837158203125, 0] |
+  row 0: 317891439501134/476837158203125, 158945718701991/476837158203125
+  row 1: 317891437403982/476837158203125, 158945720799143/476837158203125
+  exact steady state: [Fraction(2, 3), Fraction(1, 3)]
+  steady state = [2/3, 1/3]                               PASS
+
+=== 3. Random walk absorption probabilities ===
+  Gambler's ruin (N=5, p=q=1/2):
+    P(ruin | start at 1) = 4/5
+    P(ruin | start at 2) = 3/5
+    P(ruin | start at 3) = 2/5
+    P(ruin | start at 4) = 1/5
+  P(ruin|k=1) = 4/5                                       PASS
+  P(ruin|k=2) = 3/5                                       PASS
+  P(ruin|k=3) = 2/5                                       PASS
+  P(ruin|k=4) = 1/5                                       PASS
+
+=== 4. Exact expected value and variance ===
+  E[die roll] = 7/2
+  E[X] = 7/2                                              PASS
+  Var[die roll] = 35/12
+  Var[X] = 35/12                                          PASS
+
+=== 5. Binomial distribution (exact) ===
+  Binomial(10, 1/3):
+    P(X=0) = 1024/59049
+    P(X=1) = 5120/59049
+    P(X=2) = 1280/6561
+    P(X=3) = 5120/19683
+    P(X=4) = 4480/19683
+    P(X=5) = 896/6561
+  binomial PMF sums to 1                                  PASS
+  E[Binom(10,1/3)] = 10/3                                 PASS
+
+=== 6. Conditional probability chain ===
+  Sequential Bayesian updates:
+    prior: 1/2
+    after evidence 1 (LR=3): 3/4 = 0.7500
+    after evidence 2 (LR=1/2): 3/5 = 0.6000
+    after evidence 3 (LR=4): 6/7 = 0.8571
+  Bayesian posterior is exact rational                    PASS
+  final posterior = 6/7                                   PASS
+
+==================================================
+GYM 11 RESULTS: 13 passed, 0 failed
+==================================================
