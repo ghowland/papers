@@ -1,0 +1,70 @@
+{
+  "title": "Computational State Primitives, Universal Data Pathing, and Session Management",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "VDR-5 specified the knowledge architecture for an exact-arithmetic language model: scoped knowledge bases, constraints, provenance, and first-class data surfacing. VDR-6 specified the execution layer: 255 computational primitives, command tokens, operational environments, and credential gating. VDR-7 specified the complete lifecycle: training, feedback, evaluation, deployment, monitoring, and retirement as KB operations. All three papers describe systems that store knowledge and execute operations. None of them address the LLM's own runtime working memory, the addressing system that connects the growing KB tree, or the ability to capture and restore the live state of a session.\n\nThis paper specifies three tightly integrated capabilities. Runtime data primitives \u2014 LRU caches, counters, locks, queues, stacks, ring buffers, and bitsets \u2014 give the LLM bounded, named, scoped working memory inside the KB struct, accessible through command tokens. Universal dotted-path addressing with integer ID acceleration gives every KB, every data primitive, and every fact a structured namespace with O(1) runtime access. Session snapshots, cloning, and disposable operational clones give the system the ability to capture complete live state atomically, fork sessions for experimentation, and maintain stability through controlled recycling of drift-prone clones.\n\nThe paper also specifies how command tokens use dotted-path references to minimize the LLM's generative burden \u2014 command construction becomes reference selection from a known vocabulary, not freeform text generation.\n\nThe three capabilities depend on each other. Data primitives create state worth snapshotting. Dotted paths give snapshots efficient references to that state. Session management provides the lifecycle for data primitives that would otherwise accumulate drift indefinitely. Together they complete the runtime layer that sits between the knowledge architecture (VDR-5) and the execution layer (VDR-6).",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-8-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-8-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
