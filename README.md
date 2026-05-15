@@ -116,8 +116,7 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[@HOWL-VDR-1-2026](papers/papers/VDR/HOWL-VDR-1-2026/manuscript.md)** | **VDR Arithmetic: Value, Decimal, Remainder** | Exact Finite Arithmetic in Irreducible Triple Form. |
-
----
+| **[@HOWL-VDR-2-2026](papers/papers/VDR/HOWL-VDR-2-2026/manuscript.md)** | **VDR Gym** | Exact Arithmetic Across Fifteen Domains. |
 
 ## Math
 *Mathematical foundations and geometric theory.*
