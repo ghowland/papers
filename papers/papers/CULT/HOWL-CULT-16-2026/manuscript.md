@@ -7,7 +7,7 @@
 
 **Date:** May 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20195364
 
 **Domain:** Philosophy of Science / Institutional Analysis / Metrology
 

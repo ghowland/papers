@@ -1,0 +1,100 @@
+{
+  "created": "2026-05-15T03:51:01.600840+00:00",
+  "modified": "2026-05-15T03:51:01.735763+00:00",
+  "id": 20195364,
+  "conceptrecid": "20195363",
+  "metadata": {
+    "title": "It's Hard: Why the Physics Community Will Never Close Its Open Problems",
+    "publication_date": "2026-04",
+    "description": "Physics has a phrase it reaches for when its open problems remain open. The phrase is \"it's hard.\"\n\nUnifying gravity with quantum mechanics is hard. Explaining why the cosmological constant is small is hard. Measuring the gravitational constant precisely is hard. Understanding why certain parameters are zero is hard. The phrase appears in grant applications, in public lectures, in responses to outside questions, and in the introductions of papers that propose new approaches to old problems. It is delivered with the authority of people who work with the fundamental constituents of reality. The implication is clear: the problem is hard, the people working on it are the best qualified to assess its difficulty, and if it hasn't been solved yet, that tells you about the depth of the problem, not about the competence of the community.\n\nIn any engineering discipline, the phrase would not survive first contact with a project review. If an engineer said \"the sensors don't converge, and it's hard,\" the project manager would ask: what have you done to identify the source of the non-convergence? What variables have you correlated against? What's your instrumentation plan? \"It's hard\" is not a status report. It's the absence of one. It tells you nothing about what has been tried, what has been ruled out, what the next step is, or when the problem will be closed. It functions as a request to stop asking.\n\nThis paper makes one claim: the major open problems in physics are not hard. They are kept open by identifiable structural features of the institution that practices physics. Each feature is mechanical. Each can be described without invoking difficulty. Each prevents closure in a specific, traceable way. The paper will identify each feature, demonstrate its effect, and commit to falsification conditions that would prove the analysis wrong.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "culture"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/CULT/HOWL-CULT-16-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-16-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20195364",
+      "recid": 20195364
+    }
+  },
+  "title": "It's Hard: Why the Physics Community Will Never Close Its Open Problems",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20195364",
+    "html": "https://zenodo.org/deposit/20195364",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20195364/files",
+    "bucket": "https://zenodo.org/api/files/d58c4f6b-933a-45a9-bd37-0653f4d8c47b",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20195364",
+    "latest_draft_html": "https://zenodo.org/deposit/20195364",
+    "publish": "https://zenodo.org/api/deposit/depositions/20195364/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20195364/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20195364/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20195364/actions/newversion"
+  },
+  "record_id": 20195364,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}
