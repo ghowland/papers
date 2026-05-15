@@ -1,0 +1,70 @@
+{
+  "title": "VDR Arithmetic: Value, Decimal, Remainder",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Floating-point and decimal arithmetic systems lose exact equality under repeated operations. This loss is structural \u2014 it comes from representing values as single scalars that discard intermediate structure at every step. This paper introduces VDR, an arithmetic system that represents every value as a finite tree of integer triples `[V, D, R]` where V is the value slot, D is the denominator frame, and R is the remainder \u2014 exact unresolved structure that scalar systems would discard. The remainder is not error. It is part of the value.\n\nThe system provides exact rational arithmetic with zero drift over arbitrary operation chains, exact matrix inversion of ill-conditioned matrices where floating-point fails, recursive construction of irrational values where every expansion step is itself exact, and discrete calculus operators where every derivative and integral is an exact rational at every step size. A working Python implementation accompanies this paper. Every claim is verified by executable tests. The code is the specification.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-1-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-1-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
