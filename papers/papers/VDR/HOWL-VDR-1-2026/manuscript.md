@@ -800,8 +800,6 @@ VDR does not claim to replace the real numbers, continuous calculus, or floating
 
 The library is published. The tests pass. The code is the specification.
 
----
-
 ## Appendix A. Axioms
 
 The following axioms define the admissible structure of terminating VDR.

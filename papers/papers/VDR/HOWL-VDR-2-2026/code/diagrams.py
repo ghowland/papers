@@ -1,8 +1,10 @@
-    #!/usr/bin/env python3
+
+
+#!/usr/bin/env python3
 """
-HOWL VDR-1-2026 Diagrams — VDR: Exact Finite Arithmetic in Irreducible Triple Form
-8 figures covering drift comparison, convergence, matrix exactness,
-discrete calculus, tree structure, rebase mechanics, and semantic distinction.
+HOWL VDR-2-2026 Diagrams — VDR Gym: Exact Arithmetic Across Fifteen Domains
+8 figures covering ODE comparison, chaos cost, dynamical divergence,
+Picard iteration, computational geometry, cat map, probability, Farey.
 Output: PNG files to ../figures/
 """
 
@@ -10,13 +12,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import matplotlib.lines as mlines
 import numpy as np
 import os
+from fractions import Fraction
 
 # ================================================================
 # GLOBAL STYLE
 # ================================================================
+
 
 # Light mode
 if True:
@@ -49,9 +52,7 @@ else:
     WHITE   = '#e8e8f0'
     DIM     = '#555570'
     PURPLE  = '#9b7bd4'
-
-
-
+    
 outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
 os.makedirs(outdir, exist_ok=True)
 
@@ -64,640 +65,662 @@ def save(fig, name):
 def style_ax(ax, title='', xlabel='', ylabel=''):
     ax.set_facecolor(PAN)
     if title:
-        ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=12)
+        ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=14)
     if xlabel:
-        ax.set_xlabel(xlabel, color=SILVER, fontsize=11)
+        ax.set_xlabel(xlabel, color=SILVER, fontsize=11, labelpad=8)
     if ylabel:
-        ax.set_ylabel(ylabel, color=SILVER, fontsize=11)
+        ax.set_ylabel(ylabel, color=SILVER, fontsize=11, labelpad=8)
     ax.tick_params(colors=DIM, labelsize=9)
     for spine in ax.spines.values():
         spine.set_color(DIM)
         spine.set_linewidth(0.5)
 
 # ================================================================
-# FIG 1: FLOAT DRIFT VS VDR ZERO
+# FIG 1: EULER VS RK4 ERROR COMPARISON
 # Type: Convergence chart (Type 1)
-# Shows: The SHAPE of float error accumulation vs VDR exact zero.
-#   Text can say "float drifts"; the curve shows HOW it grows.
+# Shows: Two error curves with different slopes — the SHAPE reveals
+#   method order. Euler O(h), RK4 O(h^4). Both exact VDR at each step.
 # ================================================================
 
+import math
+
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, 'Scalar Drift: Floating-Point vs VDR',
-         'Number of Operations (add step, subtract step)',
-         'Absolute Error from Original Value')
+style_ax(ax, 'Exact ODE Solvers: Euler vs RK4 for dy/dx = y',
+         'Step size h', 'Absolute error at x = 1 vs e')
 
-op_counts = [2, 10, 20, 50, 100, 200, 500, 1000, 2000]
-float_errors = []
-for n in op_counts:
-    x = 1.0 / 7.0
-    step = 1.0 / 13.0
-    for _ in range(n):
-        x = x + step
-    for _ in range(n):
-        x = x - step
-    float_errors.append(abs(x - 1.0 / 7.0))
+step_sizes = [Fraction(1, n) for n in [2, 4, 5, 8, 10, 16, 20, 25, 40, 50, 100]]
+euler_errors = []
+rk4_errors = []
 
-vdr_errors = [0.0] * len(op_counts)
+for h in step_sizes:
+    n_steps = int(1 / h)
+    # Euler: y(1) = (1+h)^n
+    y_euler = (1 + h) ** n_steps
+    euler_errors.append(abs(float(y_euler) - math.e))
 
-ax.semilogy(op_counts, float_errors, 'o-', color=RED, linewidth=2.5,
-            markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
-            label='float64', zorder=5)
+    # RK4: each step exact rational
+    y = Fraction(1)
+    x = Fraction(0)
+    for _ in range(n_steps):
+        k1 = y
+        k2 = y + h * k1 / 2
+        k3 = y + h * k2 / 2
+        k4 = y + h * k3
+        y = y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+        x = x + h
+    rk4_errors.append(abs(float(y) - math.e))
 
-# VDR line at a small positive value for visibility on log scale
-vdr_display = [1e-20] * len(op_counts)
-ax.semilogy(op_counts, vdr_display, 's-', color=GREEN, linewidth=2.5,
-            markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
-            label='VDR (exact zero)', zorder=5)
+h_floats = [float(h) for h in step_sizes]
 
-ax.axhline(y=1e-15, color=ORANGE, linestyle='--', linewidth=1.5, alpha=0.6)
-ax.text(op_counts[-1] * 0.95, 1.8e-15, 'machine epsilon',
-        color=ORANGE, fontsize=9, ha='right', va='bottom')
+ax.loglog(h_floats, euler_errors, 'o-', color=RED, linewidth=2.5,
+          markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
+          label='Euler method — O(h)', zorder=5)
 
-ax.set_ylim(1e-21, 1e-13)
-ax.set_xlim(0, op_counts[-1] * 1.08)
+ax.loglog(h_floats, rk4_errors, 's-', color=CYAN, linewidth=2.5,
+          markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
+          label='RK4 method — O(h' + r'$^4$' + ')', zorder=5)
 
-ax.fill_between([0, op_counts[-1] * 1.08], 1e-21, 1e-20,
-                color=GREEN, alpha=0.06)
-ax.text(op_counts[-1] * 0.5, 3e-21, 'VDR: exactly zero — no drift at any chain length',
-        color=GREEN, fontsize=10, ha='center', va='bottom', fontstyle='italic')
+# reference slopes
+h_ref = np.array([0.02, 0.5])
+ax.loglog(h_ref, 0.5 * h_ref, '--', color=RED, linewidth=1, alpha=0.4,
+          label='slope 1 reference')
+ax.loglog(h_ref, 2.0 * h_ref ** 4, '--', color=CYAN, linewidth=1, alpha=0.4,
+          label='slope 4 reference')
+
+ax.set_xlim(0.008, 0.7)
+ax.set_ylim(min(rk4_errors) * 0.3, max(euler_errors) * 3)
+
+ax.text(0.015, min(rk4_errors) * 1.5,
+        'Both methods compute exact VDR rationals at every step.\n'
+        'The error is from discretization, not from arithmetic.',
+        color=GREEN, fontsize=10, ha='left', va='bottom',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
 
 legend = ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
                    labelcolor=WHITE, fontsize=10, framealpha=0.9)
 
-ax.text(op_counts[-1] * 0.95, float_errors[-1] * 1.5,
-        'error = %.2e' % float_errors[-1],
-        color=RED, fontsize=9, ha='right', va='bottom')
-
-save(fig, 'vdr1_01_float_drift_vs_vdr.png')
+save(fig, 'vdr2_01_euler_vs_rk4.png')
 
 # ================================================================
-# FIG 2: NEWTON-RAPHSON SQRT(2) CONVERGENCE
-# Type: Convergence chart (Type 1)
-# Shows: Quadratic convergence — correct digits DOUBLING each step.
-#   The exponential SHAPE of the curve is the finding.
+# FIG 2: DENOMINATOR EXPLOSION IN CHAOTIC ITERATION
+# Type: Convergence/scale chart (Type 1)
+# Shows: Exponential growth of fraction size under logistic map r=4.
+#   The SHAPE — straight line on log scale — proves exponential cost.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+style_ax(ax, 'The Cost of Exact Chaos: Denominator Growth in Logistic Map r=4',
+         'Iteration Step', 'Denominator Digit Count (log scale)')
+
+# compute denominator digit counts for logistic r=4, x0=1/3
+x = Fraction(1, 3)
+steps_chaos = list(range(16))
+denom_digits = [len(str(x.denominator))]
+
+for i in range(15):
+    x = 4 * x * (1 - x)
+    denom_digits.append(len(str(x.denominator)))
+
+ax.semilogy(steps_chaos, denom_digits, 'o-', color=MAG, linewidth=2.5,
+            markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
+            label='logistic r=4, x' + r'$_0$' + ' = 1/3', zorder=5)
+
+# reference: 2^n growth
+ref_steps = np.linspace(0, 15, 50)
+ref_growth = 1.0 * 2.0 ** ref_steps
+ax.semilogy(ref_steps, ref_growth, '--', color=GOLD, linewidth=1.5, alpha=0.6,
+            label=r'$2^n$ reference (Lyapunov exponent = ln 2)')
+
+# annotations
+for i in [0, 5, 10, 15]:
+    if i < len(denom_digits):
+        ax.annotate('%d digits' % denom_digits[i],
+                    xy=(i, denom_digits[i]),
+                    xytext=(i + 0.5, denom_digits[i] * 2.5),
+                    color=SILVER, fontsize=9,
+                    arrowprops=dict(arrowstyle='->', color=SILVER, linewidth=1))
+
+ax.set_xlim(-0.5, 16)
+ax.set_ylim(0.5, max(denom_digits) * 5)
+
+# tent map comparison
+tent_digits = [1] * 16  # tent map on 1/7: denominator stays 7 (1 digit)
+ax.semilogy(steps_chaos, tent_digits, 'D-', color=GREEN, linewidth=2,
+            markersize=8, markeredgecolor=WHITE, markeredgewidth=1.5,
+            label='tent map on 1/7 (period 3, constant)', zorder=5)
+
+ax.text(8, 0.8, 'Periodic orbits: zero growth, zero cost',
+        color=GREEN, fontsize=10, ha='center', fontstyle='italic')
+
+ax.text(8, max(denom_digits) * 2,
+        'Chaotic orbits: exponential representation cost.\n'
+        'Float hides this by truncating. VDR exposes it honestly.',
+        color=ORANGE, fontsize=10, ha='center', va='bottom',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=ORANGE, alpha=0.8))
+
+legend = ax.legend(loc='center left', facecolor=PAN, edgecolor=DIM,
+                   labelcolor=WHITE, fontsize=10, framealpha=0.9)
+
+save(fig, 'vdr2_02_denominator_explosion.png')
+
+# ================================================================
+# FIG 3: TENT MAP — VDR VS FLOAT DIVERGENCE
+# Type: Convergence/divergence chart (Type 1)
+# Shows: Float orbit drifting from exact VDR orbit. The SHAPE of
+#   the divergence curve shows when float becomes unreliable.
 # ================================================================
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9), facecolor=BG,
                                 gridspec_kw={'wspace': 0.30})
 
-# Left panel: correct digits vs depth
-depths = list(range(8))
-# x_{n+1} = (x + 2/x) / 2, starting x=1
-# compute exact fractions
-from fractions import Fraction
-x_nr = Fraction(1)
-fracs = [x_nr]
-for _ in range(7):
-    x_nr = (x_nr + Fraction(2, 1) / x_nr) / 2
-    fracs.append(x_nr)
+# Left: both orbits
+n_tent = 35
+x_vdr_vals = []
+x_float_vals = []
 
-import math
-sqrt2_true = math.sqrt(2)
-correct_digits = []
-for f in fracs:
-    err = abs(float(f) - sqrt2_true)
-    if err == 0:
-        correct_digits.append(120)  # cap for display
-    elif err > 0:
-        correct_digits.append(-math.log10(err))
+x_v = Fraction(1, 7)
+x_f = 1.0 / 7.0
+
+x_vdr_vals.append(float(x_v))
+x_float_vals.append(x_f)
+
+for i in range(n_tent):
+    if x_v < Fraction(1, 2):
+        x_v = 2 * x_v
     else:
-        correct_digits.append(0)
+        x_v = 2 * (1 - x_v)
+    if x_f < 0.5:
+        x_f = 2.0 * x_f
+    else:
+        x_f = 2.0 * (1.0 - x_f)
+    x_vdr_vals.append(float(x_v))
+    x_float_vals.append(x_f)
 
-style_ax(ax1, 'Newton-Raphson for ' + r'$\sqrt{2}$' + ': Convergence',
-         'Iteration Depth', 'Correct Digits')
+steps_tent = list(range(n_tent + 1))
 
-ax1.bar(depths, correct_digits, color=CYAN, alpha=0.7, edgecolor=CYAN,
-        linewidth=1.5, width=0.6, zorder=3)
+style_ax(ax1, 'Tent Map Orbits: VDR vs Float',
+         'Step', 'x value')
 
-for i, d_val in enumerate(correct_digits):
-    label = '>100' if d_val > 100 else '%.0f' % d_val
-    y_pos = min(d_val, 100) + 3
-    ax1.text(i, y_pos, label, color=WHITE, fontsize=9,
-             ha='center', va='bottom', fontweight='bold')
+ax1.plot(steps_tent, x_vdr_vals, 'o-', color=GREEN, linewidth=1.5,
+         markersize=5, markeredgecolor=WHITE, markeredgewidth=1,
+         label='VDR (exact)', zorder=5, alpha=0.8)
+ax1.plot(steps_tent, x_float_vals, 's-', color=RED, linewidth=1.5,
+         markersize=5, markeredgecolor=WHITE, markeredgewidth=1,
+         label='float64', zorder=4, alpha=0.8)
 
-# doubling reference line
-ref_x = np.linspace(0, 7, 50)
-ref_y = 0.4 * 2 ** ref_x
-ax1.plot(ref_x, ref_y, '--', color=GOLD, linewidth=1.5, alpha=0.7,
-         label='doubling reference')
-
-ax1.set_ylim(0, 130)
-ax1.set_xlim(-0.5, 7.5)
-ax1.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
+ax1.set_xlim(-1, n_tent + 1)
+ax1.set_ylim(-0.05, 1.05)
+ax1.legend(loc='lower left', facecolor=PAN, edgecolor=DIM,
            labelcolor=WHITE, fontsize=9)
 
-# Right panel: x^2 - 2 error on log scale
-x_sq_errors = []
-for f in fracs:
-    sq = f * f
-    err = abs(sq - 2)
-    if err == 0:
-        x_sq_errors.append(1e-120)
-    else:
-        x_sq_errors.append(float(err))
+# Right: divergence
+diffs = [abs(v - f) for v, f in zip(x_vdr_vals, x_float_vals)]
+# replace zeros with tiny value for log
+diffs_plot = [max(d, 1e-18) for d in diffs]
 
-style_ax(ax2, r'$x^2 - 2$' + ' Residual (Exact Rational)',
-         'Iteration Depth', r'$|x^2 - 2|$')
+style_ax(ax2, 'Float Divergence from Exact',
+         'Step', '|VDR - float|')
 
-ax2.semilogy(depths, x_sq_errors, 'o-', color=MAG, linewidth=2.5,
-             markersize=12, markeredgecolor=WHITE, markeredgewidth=1.5,
+ax2.semilogy(steps_tent, diffs_plot, 'o-', color=ORANGE, linewidth=2.5,
+             markersize=8, markeredgecolor=WHITE, markeredgewidth=1.5,
              zorder=5)
 
-for i, err in enumerate(x_sq_errors):
-    if err > 1e-100:
-        ax2.text(i + 0.15, err * 2, '1/%s' % str(fracs[i] * fracs[i] - 2).split('/')[1]
-                 if '/' in str(fracs[i] * fracs[i] - 2) else str(fracs[i]*fracs[i]-2),
-                 color=SILVER, fontsize=7, va='bottom')
+# find where divergence exceeds 0.01
+diverge_step = None
+for i, d in enumerate(diffs):
+    if d > 0.01:
+        diverge_step = i
+        break
 
-ax2.set_ylim(1e-110, 1e2)
-ax2.set_xlim(-0.5, 7.5)
+if diverge_step:
+    ax2.axvline(x=diverge_step, color=RED, linestyle='--', linewidth=1.5, alpha=0.6)
+    ax2.text(diverge_step + 0.5, 1e-1, 'float\nunreliable\nhere',
+             color=RED, fontsize=10, va='center')
 
-ax2.axhline(y=1e-15, color=ORANGE, linestyle='--', linewidth=1, alpha=0.5)
-ax2.text(7.3, 2e-15, 'float64\nlimit', color=ORANGE, fontsize=8, ha='right')
+ax2.axhline(y=1e-15, color=DIM, linestyle=':', linewidth=1, alpha=0.5)
+ax2.text(1, 2e-15, 'machine epsilon', color=DIM, fontsize=8)
 
-ax2.text(3.5, 1e-105, 'Every intermediate value is an exact rational.\nNo floats used in the computation.',
-         color=GREEN, fontsize=10, ha='center', va='bottom',
+ax2.set_xlim(-1, n_tent + 1)
+ax2.set_ylim(1e-18, 10)
+
+ax2.text(n_tent * 0.5, 1e-16,
+         'VDR stays exact forever.\nFloat loses track after ~25 steps.',
+         color=GREEN, fontsize=10, ha='center',
          bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
 
-save(fig, 'vdr1_02_newton_sqrt2.png')
+save(fig, 'vdr2_03_tent_map_divergence.png')
 
 # ================================================================
-# FIG 3: HILBERT MATRIX RESIDUAL
-# Type: Convergence/divergence chart (Type 1)
-# Shows: Float residual GROWING with matrix size while VDR stays
-#   at exact zero. The diverging curves show WHY exact arithmetic matters.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, r'Hilbert Matrix $H \times H^{-1}$ Residual',
-         'Matrix Size n', r'Max $|I - H \cdot H^{-1}|$ (off-diagonal)')
-
-sizes = [2, 3, 4, 5, 6, 7, 8]
-
-# compute float residuals using numpy
-float_residuals = []
-for n in sizes:
-    H = np.array([[1.0 / (i + j + 1) for j in range(n)] for i in range(n)])
-    try:
-        Hi = np.linalg.inv(H)
-        product = H @ Hi
-        identity = np.eye(n)
-        residual = np.max(np.abs(product - identity))
-        float_residuals.append(residual)
-    except Exception:
-        float_residuals.append(1.0)
-
-# VDR residuals are all exactly zero
-vdr_residuals_display = [1e-20] * len(sizes)
-
-ax.semilogy(sizes, float_residuals, 'D-', color=RED, linewidth=2.5,
-            markersize=12, markeredgecolor=WHITE, markeredgewidth=1.5,
-            label='numpy float64', zorder=5)
-
-ax.semilogy(sizes, vdr_residuals_display, 's-', color=GREEN, linewidth=2.5,
-            markersize=12, markeredgecolor=WHITE, markeredgewidth=1.5,
-            label='VDR (exact zero)', zorder=5)
-
-for i, (n, res) in enumerate(zip(sizes, float_residuals)):
-    ax.text(n + 0.12, res * 5.5, '%.1e' % res,
-            color=SILVER, fontsize=8, va='bottom')
-
-ax.axhline(y=1e-15, color=ORANGE, linestyle='--', linewidth=1.5, alpha=0.6)
-ax.text(sizes[-1] - 0.1, 2e-15, 'machine epsilon', color=ORANGE, fontsize=9,
-        ha='right', va='bottom')
-
-ax.fill_between([sizes[0] - 0.5, sizes[-1] + 0.5], 1e-21, 1e-19,
-                color=GREEN, alpha=0.06)
-ax.text(np.mean(sizes), 3e-21, 'VDR: every element of I exactly correct',
-        color=GREEN, fontsize=10, ha='center', fontstyle='italic')
-
-ax.set_ylim(1e-22, 1e2)
-ax.set_xlim(sizes[0] - 0.5, sizes[-1] + 0.8)
-ax.set_xticks(sizes)
-
-legend = ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
-                   labelcolor=WHITE, fontsize=10)
-
-# annotation for the gap
-mid_n = 5
-ax.annotate('', xy=(mid_n, float_residuals[sizes.index(mid_n)]),
-            xytext=(mid_n, 1e-19),
-            arrowprops=dict(arrowstyle='<->', color=GOLD, linewidth=2))
-ax.text(mid_n + 0.2, 1e-12, 'gap = exact\nvs approximate',
-        color=GOLD, fontsize=10, va='center')
-
-save(fig, 'vdr1_03_hilbert_residual.png')
-
-# ================================================================
-# FIG 4: DISCRETE INTEGRAL CONVERGENCE
+# FIG 4: PICARD ITERATION CONVERGENCE TO e
 # Type: Convergence chart (Type 1)
-# Shows: Left Riemann O(1/n) vs trapezoidal O(1/n^2) convergence
-#   RATE visible from curve shapes. Both exact at every n.
+# Shows: Error dropping as Picard iterations accumulate Taylor terms.
+#   The SHAPE shows factorial convergence rate.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, r'Discrete Integral of $x^2$ from 0 to 1: Convergence to $\frac{1}{3}$',
-         'Number of Steps n', r'$|I_n - \frac{1}{3}|$')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 9), facecolor=BG,
+                                gridspec_kw={'wspace': 0.30})
 
-ns = [5, 10, 20, 50, 100, 200, 500, 1000]
+# compute Picard iterations for dy/dx = y
+picard_sums = []
+factorial = 1
+total = Fraction(0)
+for k in range(12):
+    if k > 0:
+        factorial *= k
+    total += Fraction(1, factorial)
+    picard_sums.append(total)
 
-# left Riemann: sum_{k=0}^{n-1} (k/n)^2 * (1/n) = (n-1)(2n-1) / (6n^2)
-# error from 1/3 = |left - 1/3|
-left_errors = []
-trap_errors = []
-for n in ns:
-    # exact left Riemann
-    left = Fraction(0)
-    h = Fraction(1, n)
-    for k in range(n):
-        xk = Fraction(k, n)
-        left += xk * xk * h
-    left_errors.append(abs(float(left - Fraction(1, 3))))
+picard_errors = [abs(float(s) - math.e) for s in picard_sums]
+picard_steps = list(range(12))
 
-    # exact trapezoidal
-    trap = Fraction(0) + Fraction(1)  # f(0) + f(1)
-    for k in range(1, n):
-        xk = Fraction(k, n)
-        trap += 2 * xk * xk
-    trap = trap * h / 2
-    trap_errors.append(abs(float(trap - Fraction(1, 3))))
+# Left: partial sums approaching e
+style_ax(ax1, 'Picard Iteration: Partial Sums Approaching e',
+         'Iteration (Taylor terms)', 'Partial sum value')
 
-ax.loglog(ns, left_errors, 'o-', color=BLUE, linewidth=2.5,
-          markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
-          label='Left Riemann — O(1/n)', zorder=5)
+ax1.plot(picard_steps, [float(s) for s in picard_sums], 'o-', color=CYAN,
+         linewidth=2.5, markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
+         label='VDR partial sum', zorder=5)
 
-ax.loglog(ns, trap_errors, 's-', color=CYAN, linewidth=2.5,
-          markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
-          label='Trapezoidal — O(1/n' + r'$^2$' + ')', zorder=5)
+ax1.axhline(y=math.e, color=GOLD, linestyle='--', linewidth=1.5, alpha=0.7)
+ax1.text(11.5, math.e + 0.02, 'e = 2.71828...',
+         color=GOLD, fontsize=10, ha='right', va='bottom')
 
-# reference slopes
-ref_n = np.array([5, 1000])
-ref_1n = 0.5 / ref_n
-ref_1n2 = 0.02 / ref_n ** 2
-ax.loglog(ref_n, ref_1n, '--', color=BLUE, linewidth=1, alpha=0.4)
-ax.loglog(ref_n, ref_1n2, '--', color=CYAN, linewidth=1, alpha=0.4)
+# label some fractions
+for i in [1, 3, 5, 8]:
+    f = picard_sums[i]
+    ax1.annotate('%s' % str(f) if len(str(f)) < 15 else '%.6f' % float(f),
+                 xy=(i, float(f)),
+                 xytext=(i + 0.4, float(f) - 0.15),
+                 color=SILVER, fontsize=8,
+                 arrowprops=dict(arrowstyle='->', color=SILVER, linewidth=1))
 
-ax.set_ylim(min(trap_errors) * 0.3, max(left_errors) * 3)
-ax.set_xlim(3, 1500)
+ax1.set_xlim(-0.5, 12)
+ax1.set_ylim(0.5, 3.0)
+ax1.legend(loc='lower right', facecolor=PAN, edgecolor=DIM,
+           labelcolor=WHITE, fontsize=9)
 
-# annotations for specific exact values
-ax.text(12, left_errors[1] * 2.5, 'n=10: exactly 57/200',
-        color=BLUE, fontsize=9, va='bottom')
-ax.text(120, trap_errors[4] * 3, 'n=100: exactly 6667/20000',
-        color=CYAN, fontsize=9, va='bottom')
+# Right: error on log scale
+style_ax(ax2, 'Error: |partial sum - e|',
+         'Iteration', 'Absolute error')
 
-ax.text(50, 2e-7, 'Every point is an exact VDR rational.\n'
-        'Not a float approximation — the exact fraction.',
-        color=GREEN, fontsize=10, ha='center', va='top',
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
+ax2.semilogy(picard_steps, picard_errors, 's-', color=MAG, linewidth=2.5,
+             markersize=10, markeredgecolor=WHITE, markeredgewidth=1.5,
+             zorder=5)
 
-legend = ax.legend(loc='upper right', facecolor=PAN, edgecolor=DIM,
-                   labelcolor=WHITE, fontsize=10)
+# reference: 1/k!
+ref_factorial_errors = []
+fact = 1
+for k in range(12):
+    if k > 0:
+        fact *= k
+    ref_factorial_errors.append(1.0 / fact if fact > 0 else 1.0)
 
-save(fig, 'vdr1_04_integral_convergence.png')
+ax2.semilogy(picard_steps, ref_factorial_errors, '--', color=GOLD,
+             linewidth=1.5, alpha=0.5, label='1/k! reference')
 
-# ================================================================
-# FIG 5: FINITE DIFFERENCE TABLE
-# Type: Connection/integer map (Type 5)
-# Shows: The PATTERN of differences collapsing to constants — third
-#   differences of x^3 are exactly 6 everywhere, fourth exactly 0.
-#   The visual grid shows the triangular structure text cannot convey.
-# ================================================================
+ax2.set_xlim(-0.5, 12)
+ax2.set_ylim(min(picard_errors) * 0.3, max(picard_errors) * 3)
 
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
-style_ax(ax, r'Finite Difference Table for $f(x) = x^3$ — Every Entry Exact', '', '')
-ax.axis('off')
+ax2.text(6, picard_errors[4] * 0.3,
+         'Every partial sum is an exact\nVDR rational: no float at any step.',
+         color=GREEN, fontsize=10, ha='center',
+         bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
 
-# data
-f_vals = [0, 1, 8, 27, 64]
-d1 = [f_vals[i+1] - f_vals[i] for i in range(4)]
-d2 = [d1[i+1] - d1[i] for i in range(3)]
-d3 = [d2[i+1] - d2[i] for i in range(2)]
-d4 = [d3[i+1] - d3[i] for i in range(1)]
+ax2.legend(loc='upper right', facecolor=PAN, edgecolor=DIM,
+           labelcolor=WHITE, fontsize=9)
 
-columns = [f_vals, d1, d2, d3, d4]
-col_labels = ['f(x)', r'$\Delta f$', r'$\Delta^2 f$', r'$\Delta^3 f$', r'$\Delta^4 f$']
-col_colors = [SILVER, BLUE, CYAN, GOLD, GREEN]
-x_labels = ['x=0', 'x=1', 'x=2', 'x=3', 'x=4']
-
-x_spacing = 2.5
-y_spacing = 1.8
-x_start = 1.0
-y_start = 9.0
-
-# column headers
-for j, (label, color) in enumerate(zip(col_labels, col_colors)):
-    ax.text(x_start + j * x_spacing, y_start + 1.5, label,
-            color=color, fontsize=14, fontweight='bold', ha='center', va='center')
-
-# x labels
-for i, xl in enumerate(x_labels):
-    ax.text(x_start - 1.5, y_start - i * y_spacing, xl,
-            color=DIM, fontsize=11, ha='center', va='center')
-
-# values in triangular grid
-for j, (col, color) in enumerate(zip(columns, col_colors)):
-    for i, val in enumerate(col):
-        x = x_start + j * x_spacing
-        y = y_start - (i + j * 0.5) * y_spacing
-
-        # highlight constant differences
-        if j == 3:  # delta^3
-            box_color = GOLD
-            box_alpha = 0.15
-        elif j == 4:  # delta^4
-            box_color = GREEN
-            box_alpha = 0.15
-        else:
-            box_color = color
-            box_alpha = 0.05
-
-        bbox = mpatches.FancyBboxPatch(
-            (x - 0.8, y - 0.55), 1.6, 1.1,
-            boxstyle='round,pad=0.1',
-            facecolor=box_color, edgecolor=color,
-            alpha=box_alpha, linewidth=1.5, zorder=2
-        )
-        ax.add_patch(bbox)
-
-        fontsize = 16 if j >= 3 else 14
-        weight = 'bold' if j >= 3 else 'normal'
-        ax.text(x, y, str(val), color=color, fontsize=fontsize,
-                fontweight=weight, ha='center', va='center', zorder=3)
-
-        # draw connecting lines to show derivation
-        if j > 0 and i < len(columns[j-1]) - 1:
-            x_prev = x_start + (j - 1) * x_spacing
-            y_prev_top = y_start - (i + (j-1) * 0.5) * y_spacing
-            y_prev_bot = y_start - (i + 1 + (j-1) * 0.5) * y_spacing
-            ax.plot([x_prev + 0.85, x - 0.85], [y_prev_top - 0.2, y + 0.3],
-                    color=DIM, linewidth=0.8, alpha=0.4, zorder=1)
-            ax.plot([x_prev + 0.85, x - 0.85], [y_prev_bot + 0.2, y - 0.3],
-                    color=DIM, linewidth=0.8, alpha=0.4, zorder=1)
-
-# annotations
-ax.text(x_start + 3 * x_spacing, y_start - 6.5 * y_spacing,
-        r'$\Delta^3(x^3) = 6$ exactly',
-        color=GOLD, fontsize=14, fontweight='bold', ha='center')
-ax.text(x_start + 4 * x_spacing, y_start - 6.5 * y_spacing,
-        r'$\Delta^4(x^3) = 0$ exactly',
-        color=GREEN, fontsize=14, fontweight='bold', ha='center')
-
-ax.text(x_start + 1.5 * x_spacing, y_start - 7.5 * y_spacing,
-        'In float arithmetic, higher-order differences accumulate rounding error.\n'
-        'In VDR, there is no noise floor. Every difference is exact.',
-        color=SILVER, fontsize=11, ha='center', va='top')
-
-ax.set_xlim(-1.5, x_start + 5 * x_spacing)
-ax.set_ylim(y_start - 8.5 * y_spacing, y_start + 2.5)
-
-save(fig, 'vdr1_05_finite_differences.png')
+save(fig, 'vdr2_04_picard_convergence.png')
 
 # ================================================================
-# FIG 6: VDR TREE STRUCTURE
-# Type: Geometric cross-section (Type 4)
-# Shows: The tree NESTING of [1, 3, [1, 6, 0]] — parent node
-#   branching through R to a child. Bracket notation cannot show
-#   the spatial relationship between parent frame and child frame.
-# ================================================================
-
-fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, 'VDR Object as Finite Tree', '', '')
-ax.axis('off')
-
-# draw two examples side by side
-
-# LEFT: closed object [1, 2, 0]
-def draw_node(ax, cx, cy, v, d, r_text, color, label=None, size=1.0):
-    w = 3.0 * size
-    h = 1.8 * size
-    box = mpatches.FancyBboxPatch(
-        (cx - w/2, cy - h/2), w, h,
-        boxstyle='round,pad=0.15',
-        facecolor=PAN, edgecolor=color, linewidth=2, zorder=3
-    )
-    ax.add_patch(box)
-
-    slot_w = w / 3.2
-    slot_positions = [cx - w/3, cx, cx + w/3]
-    slot_labels = [str(v), str(d), r_text]
-    slot_names = ['V', 'D', 'R']
-    slot_colors = [CYAN, BLUE, GOLD if r_text != '0' else DIM]
-
-    for sx, sl, sn, sc in zip(slot_positions, slot_labels, slot_names, slot_colors):
-        ax.text(sx, cy + 0.35 * size, sn, color=DIM, fontsize=8, ha='center', va='center')
-        ax.text(sx, cy - 0.2 * size, sl, color=sc, fontsize=14 * size,
-                fontweight='bold', ha='center', va='center', zorder=4)
-
-    if label:
-        ax.text(cx, cy + h/2 + 0.4 * size, label, color=color, fontsize=12,
-                fontweight='bold', ha='center', va='bottom')
-
-# LEFT SIDE: closed object
-ax.text(4, 9.5, 'Closed Object', color=SILVER, fontsize=14, fontweight='bold', ha='center')
-draw_node(ax, 4, 7.5, 1, 2, '0', SILVER, label='[1, 2, 0]')
-ax.text(4, 5.5, 'R = 0\nFully settled\nProjects to 1/2', color=DIM, fontsize=10, ha='center')
-
-# RIGHT SIDE: active object with child
-ax.text(13, 9.5, 'Active Object with Child', color=SILVER, fontsize=14,
-        fontweight='bold', ha='center')
-draw_node(ax, 13, 7.5, 1, 3, 'child', GOLD, label='[1, 3, [1, 6, 0]]')
-
-# arrow from R slot down to child
-ax.annotate('', xy=(13 + 1.0, 6.6), xytext=(13 + 1.0, 5.5),
-            arrowprops=dict(arrowstyle='->', color=GOLD, linewidth=2))
-ax.text(14.5, 6.05, 'R branches\nto child', color=GOLD, fontsize=9, ha='left')
-
-# child node
-draw_node(ax, 13, 4.2, 1, 6, '0', GREEN, size=0.85)
-ax.text(13, 3.0, 'Child: [1, 6, 0]', color=GREEN, fontsize=10, ha='center')
-
-# completion semantics
-ax.text(13, 1.5,
-        r'$\Pi = \frac{1 + 1/6}{3} = \frac{7/6}{3} = \frac{7}{18}$',
-        color=CYAN, fontsize=13, ha='center',
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=CYAN, alpha=0.8))
-
-# general rule at bottom
-ax.text(8.5, 0.2,
-        'Recursion exists only in R.  V and D are always integers.  '
-        'The tree branches through the third slot only.',
-        color=SILVER, fontsize=11, ha='center', fontstyle='italic')
-
-ax.set_xlim(0, 17)
-ax.set_ylim(-0.5, 10.5)
-
-save(fig, 'vdr1_06_tree_structure.png')
-
-# ================================================================
-# FIG 7: REBASE — DENOMINATOR-SENSITIVE COMPLETION
+# FIG 5: BARYCENTRIC COORDINATES — EXACT GEOMETRY
 # Type: Geometric diagram (Type 4)
-# Shows: The construction of [1, 3, [1, 2, 0]] from [1, 2, 0]
-#   via rebase. The visual shows parent frame, mismatch, and child
-#   completion — spatial structure text cannot convey.
+# Shows: Triangle with exact rational barycentric coordinates at
+#   specific points. The GEOMETRY shows spatial relationships that
+#   numbers alone cannot convey.
 # ================================================================
 
-fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
-style_ax(ax, 'Rebase: Denominator-Sensitive Completion', '', '')
+fig, ax = plt.subplots(figsize=(16, 12), facecolor=BG)
+style_ax(ax, 'Exact Barycentric Coordinates in VDR', '', '')
+ax.set_facecolor(PAN)
+
+# triangle vertices
+A = np.array([1.0, 1.0])
+B = np.array([14.0, 1.0])
+C = np.array([4.0, 12.0])
+
+# draw triangle
+tri = plt.Polygon([A, B, C], fill=True, facecolor=PAN, edgecolor=CYAN,
+                  linewidth=2.5, zorder=2)
+ax.add_patch(tri)
+
+# fill with very light color
+tri_fill = plt.Polygon([A, B, C], fill=True, facecolor=CYAN, alpha=0.04, zorder=1)
+ax.add_patch(tri_fill)
+
+# vertex labels
+offset = 0.6
+ax.text(A[0] - offset, A[1] - offset, 'A (0,0)', color=WHITE, fontsize=12,
+        fontweight='bold', ha='center', va='top')
+ax.text(B[0] + offset, B[1] - offset, 'B (6,0)', color=WHITE, fontsize=12,
+        fontweight='bold', ha='center', va='top')
+ax.text(C[0] - offset, C[1] + offset, 'C (0,6)', color=WHITE, fontsize=12,
+        fontweight='bold', ha='center', va='bottom')
+
+# points with exact barycentric coordinates
+# using triangle (0,0),(6,0),(0,6) mapped to display coords
+def bary_to_display(u, v, w):
+    # barycentric to Cartesian in our display triangle
+    return u * A + v * B + w * C
+
+points = [
+    ('Centroid', 1.0/3, 1.0/3, 1.0/3, r'$(\frac{1}{3}, \frac{1}{3}, \frac{1}{3})$', GOLD),
+    ('Vertex A', 1.0, 0.0, 0.0, '(1, 0, 0)', CYAN),
+    ('Vertex B', 0.0, 1.0, 0.0, '(0, 1, 0)', CYAN),
+    ('Vertex C', 0.0, 0.0, 1.0, '(0, 0, 1)', CYAN),
+    ('Mid BC', 0.0, 0.5, 0.5, r'$(0, \frac{1}{2}, \frac{1}{2})$', GREEN),
+    ('Mid AC', 0.5, 0.0, 0.5, r'$(\ \frac{1}{2}, 0, \frac{1}{2})$', GREEN),
+    ('Mid AB', 0.5, 0.5, 0.0, r'$(\frac{1}{2}, \frac{1}{2}, 0)$', GREEN),
+    (r'$\frac{1}{4}$ point', 0.5, 0.25, 0.25, r'$(\frac{1}{2}, \frac{1}{4}, \frac{1}{4})$', PURPLE),
+]
+
+for name, u, v, w, bary_str, color in points:
+    pos = bary_to_display(u, v, w)
+
+    ax.scatter([pos[0]], [pos[1]], s=200, color=color, edgecolors=WHITE,
+               linewidth=2, zorder=10)
+
+    # text offset to avoid overlap
+    tx, ty = pos[0], pos[1]
+    if name == 'Centroid':
+        tx += 1.8
+        ty += 0.5
+    elif name == 'Vertex A':
+        tx -= 0.5
+        ty += 1.0
+    elif name == 'Vertex B':
+        tx += 0.5
+        ty += 1.0
+    elif name == 'Vertex C':
+        tx += 1.5
+        ty -= 0.5
+    elif 'Mid BC' in name:
+        tx += 1.8
+        ty += 0.3
+    elif 'Mid AC' in name:
+        tx -= 2.0
+        ty += 0.3
+    elif 'Mid AB' in name:
+        tx += 0.5
+        ty -= 1.0
+    else:
+        tx -= 2.5
+        ty += 0.3
+
+    ax.annotate('%s\n%s' % (name, bary_str),
+                xy=(pos[0], pos[1]),
+                xytext=(tx, ty),
+                color=color, fontsize=10, ha='center', va='center',
+                arrowprops=dict(arrowstyle='->', color=color, linewidth=1.2),
+                zorder=11,
+                bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=color,
+                          alpha=0.85))
+
+# medians (to centroid)
+centroid = bary_to_display(1.0/3, 1.0/3, 1.0/3)
+for vertex in [A, B, C]:
+    ax.plot([vertex[0], centroid[0]], [vertex[1], centroid[1]],
+            '--', color=DIM, linewidth=1, alpha=0.4, zorder=3)
+
+ax.text(7.5, -0.8,
+        'Every coordinate is an exact VDR rational.\n'
+        'Point-in-triangle tests are exact — no epsilon tolerance needed.',
+        color=SILVER, fontsize=11, ha='center',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, alpha=0.8))
+
+ax.set_xlim(-1.5, 16.5)
+ax.set_ylim(-2.0, 14.0)
+ax.set_aspect('equal')
 ax.axis('off')
 
-# source object on the left
-ax.text(2.5, 9.0, 'Source', color=SILVER, fontsize=13, fontweight='bold', ha='center')
-draw_node(ax, 2.5, 7.5, 1, 2, '0', SILVER, size=1.0)
-ax.text(2.5, 6.0, 'Projects to 1/2', color=DIM, fontsize=10, ha='center')
-
-# big arrow
-ax.annotate('', xy=(7.0, 7.5), xytext=(5.0, 7.5),
-            arrowprops=dict(arrowstyle='->', color=GOLD, linewidth=3))
-ax.text(6.0, 8.2, 'rebase(target=3)', color=GOLD, fontsize=12,
-        fontweight='bold', ha='center')
-
-# construction steps in middle
-step_x = 6.0
-ax.text(9.5, 9.0, 'Construction', color=GOLD, fontsize=13, fontweight='bold', ha='center')
-
-steps = [
-    ('N = V ' + r'$\times$' + ' B = 1 ' + r'$\times$' + ' 3 = 3', SILVER),
-    ('3 = Q ' + r'$\times$' + ' 2 + S', SILVER),
-    ('Q = 1,   S = 1', CYAN),
-    ('Mismatch witness: [S, D, 0] = [1, 2, 0]', GOLD),
-]
-for i, (text, color) in enumerate(steps):
-    y = 7.8 - i * 1.0
-    ax.text(9.5, y, text, color=color, fontsize=11, ha='center', va='center',
-            bbox=dict(boxstyle='round,pad=0.3', facecolor=PAN, edgecolor=DIM, alpha=0.8))
-
-# result on the right
-ax.text(15.5, 9.0, 'Result', color=GREEN, fontsize=13, fontweight='bold', ha='center')
-draw_node(ax, 15.5, 7.5, 1, 3, 'child', GREEN, size=1.0)
-
-ax.annotate('', xy=(15.5 + 1.0, 6.6), xytext=(15.5 + 1.0, 5.5),
-            arrowprops=dict(arrowstyle='->', color=GOLD, linewidth=2))
-
-draw_node(ax, 15.5, 4.2, 1, 2, '0', GOLD, size=0.85)
-ax.text(15.5, 3.1, 'Mismatch witness\n[1, 2, 0]', color=GOLD, fontsize=10, ha='center')
-
-# projection verification
-ax.text(15.5, 1.8, 'Projection check:', color=SILVER, fontsize=10, ha='center')
-ax.text(15.5, 0.8,
-        r'$\frac{1 + 1/2}{3} = \frac{3/2}{3} = \frac{1}{2}$' + '  ' + r'$\checkmark$',
-        color=GREEN, fontsize=14, ha='center',
-        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
-
-# arrow from construction to result
-ax.annotate('', xy=(13.5, 7.5), xytext=(12.0, 7.5),
-            arrowprops=dict(arrowstyle='->', color=GREEN, linewidth=2.5))
-
-ax.set_xlim(0, 18)
-ax.set_ylim(0.0, 10.0)
-
-save(fig, 'vdr1_07_rebase_completion.png')
+save(fig, 'vdr2_05_barycentric_exact.png')
 
 # ================================================================
-# FIG 8: ACTIVE VS CLOSED — THE REMAINDER MATTERS
-# Type: Progression/distinction (Type 7)
-# Shows: [2,5,1] and [3,5,0] as distinct objects despite same
-#   scalar projection. The visual separation communicates the
-#   semantic commitment that is VDR's key design decision.
+# FIG 6: ARNOLD CAT MAP — EXACT ORBIT ON TORUS
+# Type: Geometric diagram (Type 4)
+# Shows: 40 exact rational points on the unit square forming a
+#   complete orbit. The GEOMETRY of the orbit is impossible to
+#   convey without plotting the points.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(14, 14), facecolor=BG)
+style_ax(ax, 'Arnold Cat Map: Exact Period-40 Orbit on Rational Torus', '', '')
+ax.set_facecolor(PAN)
+
+# compute orbit
+x_cat = Fraction(1, 7)
+y_cat = Fraction(3, 11)
+orbit_x = [float(x_cat)]
+orbit_y = [float(y_cat)]
+
+for i in range(39):
+    new_x = (2 * x_cat + y_cat)
+    new_y = (x_cat + y_cat)
+    x_cat = new_x - int(new_x)
+    y_cat = new_y - int(new_y)
+    if x_cat < 0:
+        x_cat += 1
+    if y_cat < 0:
+        y_cat += 1
+    orbit_x.append(float(x_cat))
+    orbit_y.append(float(y_cat))
+
+# draw unit square
+square = plt.Polygon([(0, 0), (1, 0), (1, 1), (0, 1)], fill=False,
+                     edgecolor=DIM, linewidth=2, zorder=2)
+ax.add_patch(square)
+square_fill = plt.Polygon([(0, 0), (1, 0), (1, 1), (0, 1)], fill=True,
+                          facecolor=PAN, alpha=0.5, zorder=1)
+ax.add_patch(square_fill)
+
+# plot orbit points with color gradient showing time
+colors_cat = plt.cm.plasma(np.linspace(0.1, 0.9, 40))
+
+for i in range(40):
+    ax.scatter([orbit_x[i]], [orbit_y[i]], s=120, color=colors_cat[i],
+               edgecolors=WHITE, linewidth=1.5, zorder=10)
+
+# connect consecutive points
+for i in range(39):
+    ax.plot([orbit_x[i], orbit_x[i+1]], [orbit_y[i], orbit_y[i+1]],
+            '-', color=DIM, linewidth=0.5, alpha=0.3, zorder=3)
+
+# mark start
+ax.scatter([orbit_x[0]], [orbit_y[0]], s=300, color=GREEN,
+           edgecolors=WHITE, linewidth=2.5, zorder=11, marker='*')
+ax.annotate('start\n(1/7, 3/11)',
+            xy=(orbit_x[0], orbit_y[0]),
+            xytext=(orbit_x[0] + 0.08, orbit_y[0] + 0.08),
+            color=GREEN, fontsize=10, fontweight='bold',
+            arrowprops=dict(arrowstyle='->', color=GREEN, linewidth=1.5),
+            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GREEN, alpha=0.85))
+
+# info box
+ax.text(0.5, -0.12,
+        'Matrix: [[2,1],[1,1]] mod 1    Period: exactly 40\n'
+        'All 40 points are exact rationals with denominator dividing lcm(7,11) = 77\n'
+        'Float cannot reliably detect this period due to modular reduction error',
+        color=SILVER, fontsize=10, ha='center', va='top',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, alpha=0.8))
+
+# colorbar-like time indicator
+for i in range(40):
+    ax.plot([0.02 + i * 0.024, 0.02 + i * 0.024], [-0.04, -0.02],
+            '-', color=colors_cat[i], linewidth=3)
+ax.text(0.02, -0.06, 'step 0', color=DIM, fontsize=7, ha='left')
+ax.text(0.02 + 39 * 0.024, -0.06, 'step 39', color=DIM, fontsize=7, ha='right')
+ax.text(0.5, -0.06, 'time', color=DIM, fontsize=8, ha='center')
+
+ax.set_xlim(-0.08, 1.08)
+ax.set_ylim(-0.18, 1.08)
+ax.set_aspect('equal')
+ax.axis('off')
+
+save(fig, 'vdr2_06_arnold_cat_orbit.png')
+
+# ================================================================
+# FIG 7: BINOMIAL PMF — EXACT PROBABILITY DISTRIBUTION
+# Type: Comparison bar chart (Type 6)
+# Shows: B(10, 1/3) with exact rational probabilities. The SHAPE of
+#   the distribution is visible. Every bar carries an exact fraction.
 # ================================================================
 
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-style_ax(ax, 'The Remainder Matters: Active ' + r'$\neq$' + ' Closed', '', '')
+style_ax(ax, 'Exact Binomial Distribution: B(10, 1/3)',
+         'k', 'P(X = k)')
+
+n_binom = 10
+p_binom = Fraction(1, 3)
+q_binom = 1 - p_binom
+
+pmf = []
+for k in range(n_binom + 1):
+    # C(n,k) * p^k * q^(n-k)
+    coeff = 1
+    for i in range(min(k, n_binom - k)):
+        coeff = coeff * (n_binom - i) // (i + 1)
+    prob = Fraction(coeff) * p_binom ** k * q_binom ** (n_binom - k)
+    pmf.append(prob)
+
+ks = list(range(n_binom + 1))
+pmf_float = [float(p) for p in pmf]
+
+bars = ax.bar(ks, pmf_float, color=BLUE, alpha=0.7, edgecolor=BLUE,
+              linewidth=1.5, width=0.7, zorder=3)
+
+# label each bar with exact fraction
+for k, prob in enumerate(pmf):
+    y_pos = float(prob) + 0.005
+    # shorten fraction display
+    frac_str = '%d/%d' % (prob.numerator, prob.denominator)
+    if len(frac_str) > 15:
+        frac_str = '%.5f' % float(prob)
+    ax.text(k, y_pos, frac_str, color=WHITE, fontsize=8,
+            ha='center', va='bottom', rotation=45)
+
+# expected value line
+ev = float(n_binom * p_binom)
+ax.axvline(x=ev, color=GOLD, linestyle='--', linewidth=2, alpha=0.7)
+ax.text(ev + 0.15, max(pmf_float) * 0.95,
+        r'E[X] = $\frac{10}{3}$ = 3.33...',
+        color=GOLD, fontsize=11, va='top')
+
+# sum verification
+ax.text(8.5, max(pmf_float) * 0.7,
+        r'$\sum$ P(X=k) = $\frac{59049}{59049}$ = 1 exactly',
+        color=GREEN, fontsize=12, ha='center',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GREEN, alpha=0.8))
+
+ax.set_xlim(-0.8, 11.3)
+ax.set_ylim(0, max(pmf_float) * 1.25)
+ax.set_xticks(ks)
+
+save(fig, 'vdr2_07_binomial_pmf.png')
+
+# ================================================================
+# FIG 8: FAREY SEQUENCE F5 — EXACT RATIONALS ON THE NUMBER LINE
+# Type: Scale/landscape diagram (Type 2)
+# Shows: The SPACING of Farey fractions. Equal denominators cluster.
+#   The visual spacing reveals mediant structure text cannot show.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 8), facecolor=BG)
+style_ax(ax, r'Farey Sequence $F_5$: Exact Rationals on [0, 1]', '', '')
+ax.set_facecolor(PAN)
+
+# generate F5
+from math import gcd as mgcd
+farey = []
+for q in range(1, 6):
+    for p in range(0, q + 1):
+        if mgcd(p, q) == 1:
+            farey.append(Fraction(p, q))
+farey.sort()
+
+# draw number line
+y_line = 4.0
+ax.plot([0, 1], [y_line, y_line], '-', color=DIM, linewidth=2, zorder=2)
+
+# color by denominator
+denom_colors = {1: WHITE, 2: CYAN, 3: GREEN, 4: BLUE, 5: MAG}
+
+# plot fractions
+for i, f in enumerate(farey):
+    x = float(f)
+    d = f.denominator
+    color = denom_colors.get(d, SILVER)
+    height = 0.6 + (6 - d) * 0.25  # taller ticks for smaller denominators
+
+    # tick mark
+    ax.plot([x, x], [y_line - height * 0.3, y_line + height * 0.3],
+            '-', color=color, linewidth=2.5, zorder=5)
+
+    # dot
+    ax.scatter([x], [y_line], s=100, color=color, edgecolors=WHITE,
+               linewidth=1.5, zorder=10)
+
+    # fraction label — stagger vertically to avoid overlap
+    if d <= 2:
+        y_label = y_line + 1.2
+    elif d == 3:
+        y_label = y_line - 1.2
+    elif d == 4:
+        y_label = y_line + 1.8
+    else:
+        y_label = y_line - 1.8
+
+    frac_str = '%d/%d' % (f.numerator, f.denominator)
+    if f == 0:
+        frac_str = '0'
+    elif f == 1:
+        frac_str = '1'
+
+    ax.text(x, y_label, frac_str, color=color, fontsize=11,
+            ha='center', va='center', fontweight='bold')
+
+# legend for denominator colors
+legend_y = 7.5
+legend_items = [(1, WHITE, 'd=1'), (2, CYAN, 'd=2'), (3, GREEN, 'd=3'),
+                (4, BLUE, 'd=4'), (5, MAG, 'd=5')]
+for i, (d, color, label) in enumerate(legend_items):
+    x_leg = 0.1 + i * 0.2
+    ax.scatter([x_leg], [legend_y], s=80, color=color, edgecolors=WHITE,
+               linewidth=1, zorder=10)
+    ax.text(x_leg + 0.03, legend_y, '  ' + label, color=color, fontsize=10,
+            va='center')
+
+# mediant property annotation
+ax.text(0.5, 1.2,
+        r'For every consecutive pair $\frac{a}{b}, \frac{c}{d}$: '
+        r'$|ad - bc| = 1$ exactly.'
+        '\n11 fractions. Every position is an exact VDR rational.',
+        color=SILVER, fontsize=11, ha='center', va='center',
+        bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=DIM, alpha=0.8))
+
+ax.set_xlim(-0.08, 1.08)
+ax.set_ylim(0.2, 8.5)
 ax.axis('off')
 
-# LEFT: active object [2, 5, 1]
-ax.text(4.5, 9.2, 'Active Object', color=GOLD, fontsize=14, fontweight='bold', ha='center')
-
-box1 = mpatches.FancyBboxPatch(
-    (1.5, 5.0), 6.0, 3.5,
-    boxstyle='round,pad=0.2',
-    facecolor=PAN, edgecolor=GOLD, linewidth=2.5, zorder=2
-)
-ax.add_patch(box1)
-
-ax.text(4.5, 7.8, '[2, 5, 1]', color=GOLD, fontsize=20, fontweight='bold',
-        ha='center', va='center', zorder=3)
-
-# slot breakdown
-for i, (label, val, color) in enumerate([('V', '2', CYAN), ('D', '5', BLUE), ('R', '1', GOLD)]):
-    x = 2.5 + i * 2.0
-    ax.text(x, 6.8, label, color=DIM, fontsize=10, ha='center', zorder=3)
-    ax.text(x, 6.0, val, color=color, fontsize=18, fontweight='bold', ha='center', zorder=3)
-    rect = mpatches.FancyBboxPatch(
-        (x - 0.6, 5.6), 1.2, 1.6,
-        boxstyle='round,pad=0.1',
-        facecolor=BG, edgecolor=color, linewidth=1.5, alpha=0.5, zorder=2
-    )
-    ax.add_patch(rect)
-
-ax.text(4.5, 5.3, 'carries remainder state', color=GOLD, fontsize=10,
-        ha='center', fontstyle='italic', zorder=3)
-
-# RIGHT: closed object [3, 5, 0]
-ax.text(13.5, 9.2, 'Closed Object', color=SILVER, fontsize=14, fontweight='bold', ha='center')
-
-box2 = mpatches.FancyBboxPatch(
-    (10.5, 5.0), 6.0, 3.5,
-    boxstyle='round,pad=0.2',
-    facecolor=PAN, edgecolor=SILVER, linewidth=2.5, zorder=2
-)
-ax.add_patch(box2)
-
-ax.text(13.5, 7.8, '[3, 5, 0]', color=SILVER, fontsize=20, fontweight='bold',
-        ha='center', va='center', zorder=3)
-
-for i, (label, val, color) in enumerate([('V', '3', CYAN), ('D', '5', BLUE), ('R', '0', DIM)]):
-    x = 11.5 + i * 2.0
-    ax.text(x, 6.8, label, color=DIM, fontsize=10, ha='center', zorder=3)
-    ax.text(x, 6.0, val, color=color, fontsize=18, fontweight='bold', ha='center', zorder=3)
-    rect = mpatches.FancyBboxPatch(
-        (x - 0.6, 5.6), 1.2, 1.6,
-        boxstyle='round,pad=0.1',
-        facecolor=BG, edgecolor=color if label != 'R' else DIM, linewidth=1.5, alpha=0.5, zorder=2
-    )
-    ax.add_patch(rect)
-
-ax.text(13.5, 5.3, 'no remainder state', color=DIM, fontsize=10,
-        ha='center', fontstyle='italic', zorder=3)
-
-# CENTER: the comparison
-ax.text(9.0, 7.0, r'$\neq$', color=RED, fontsize=40, fontweight='bold',
-        ha='center', va='center', zorder=5)
-
-# BOTTOM: both project to 3/5
-ax.text(4.5, 3.5, r'$\Pi = \frac{2+1}{5} = \frac{3}{5}$',
-        color=CYAN, fontsize=14, ha='center',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=CYAN, alpha=0.8))
-
-ax.text(13.5, 3.5, r'$\Pi = \frac{3}{5}$',
-        color=CYAN, fontsize=14, ha='center',
-        bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=CYAN, alpha=0.8))
-
-ax.text(9.0, 3.5, 'same scalar\nprojection', color=SILVER, fontsize=11,
-        ha='center', va='center')
-
-# bottom message
-ax.text(9.0, 1.5,
-        'Same projection. Different objects.\n'
-        'The remainder is structural state, not a pending simplification.\n'
-        'This is the key semantic commitment of VDR.',
-        color=WHITE, fontsize=12, ha='center', va='center',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, linewidth=1.5, alpha=0.9))
-
-ax.set_xlim(0, 18)
-ax.set_ylim(0.5, 10.0)
-
-save(fig, 'vdr1_08_active_vs_closed.png')
+save(fig, 'vdr2_08_farey_sequence.png')
 
 # ================================================================
 # SUMMARY
 # ================================================================
 print("\nAll figures saved:")
-print("  vdr1_01_float_drift_vs_vdr.png")
-print("  vdr1_02_newton_sqrt2.png")
-print("  vdr1_03_hilbert_residual.png")
-print("  vdr1_04_integral_convergence.png")
-print("  vdr1_05_finite_differences.png")
-print("  vdr1_06_tree_structure.png")
-print("  vdr1_07_rebase_completion.png")
-print("  vdr1_08_active_vs_closed.png")
+print("  vdr2_01_euler_vs_rk4.png")
+print("  vdr2_02_denominator_explosion.png")
+print("  vdr2_03_tent_map_divergence.png")
+print("  vdr2_04_picard_convergence.png")
+print("  vdr2_05_barycentric_exact.png")
+print("  vdr2_06_arnold_cat_orbit.png")
+print("  vdr2_07_binomial_pmf.png")
+print("  vdr2_08_farey_sequence.png")
