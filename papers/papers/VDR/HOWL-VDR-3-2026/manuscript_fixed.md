@@ -1,4 +1,5 @@
 # VDR Gym Extension
+
 ## Exact Arithmetic Across Twenty-Three Domains
 
 **Registry:** [@HOWL-VDR-3-2026]
@@ -52,7 +53,6 @@ The eight new gyms answer the first question. The MATH integration answers the s
 | 22 | Wavelets | 18 | 18 | 0 | Complete |
 | 23 | Q335 transcendental arithmetic | 16 | 13 | 3 | Multiplication precision boundary |
 | **Total** | | **157** | **152** | **5** | |
-
 Combined with VDR-2's 282 tests across 15 domains, the total is now 434 tests across 23 domains with 434 passing and zero VDR computation errors. Every failure is traceable to a test-design issue or a known precision boundary, never to incorrect VDR arithmetic.
 
 ---
@@ -79,9 +79,9 @@ Every exercise passed except one. The gym implements Dijkstra's algorithm with e
 
 ## 4. Game Theory (Gym 17): 24/24
 
-Every exercise passed. The gym implements 2×2 zero-sum minimax, matching pennies, battle of the sexes (non-zero-sum with mixed Nash equilibrium), Shapley values for 3-player cooperative games, dominated strategy elimination, Cournot duopoly, and rock-paper-scissors verification.
+Every exercise passed. The gym implements 2 $\times$ 2 zero-sum minimax, matching pennies, battle of the sexes (non-zero-sum with mixed Nash equilibrium), Shapley values for 3-player cooperative games, dominated strategy elimination, Cournot duopoly, and rock-paper-scissors verification.
 
-**2×2 zero-sum minimax.** For the payoff matrix [[3,-1],[-2,4]], the mixed strategy Nash equilibrium is p* = 3/5, q* = 1/2, with game value exactly 1. The expected payoff at equilibrium is verified to equal the game value by direct computation of the four-term bilinear form. Every coefficient is an exact VDR rational.
+**2 $\times$ 2 zero-sum minimax.** For the payoff matrix [[3,-1],[-2,4]], the mixed strategy Nash equilibrium is p* = 3/5, q* = 1/2, with game value exactly 1. The expected payoff at equilibrium is verified to equal the game value by direct computation of the four-term bilinear form. Every coefficient is an exact VDR rational.
 
 **Matching pennies.** The symmetric game [[1,-1],[-1,1]] yields the unique equilibrium p* = q* = 1/2 with value 0. Both the probabilities and the value are exact rationals.
 
@@ -91,7 +91,7 @@ Every exercise passed. The gym implements 2×2 zero-sum minimax, matching pennie
 
 **Cournot duopoly.** Two firms with rational cost parameters (c₁ = 1, c₂ = 2) in a linear demand market (P = 10 - Q/2). The Nash equilibrium quantities are q₁* = 20/3 and q₂* = 14/3. The equilibrium price is 13/3. Firm 1's profit is exactly 200/9. All computed by direct rational solution of the first-order conditions.
 
-**Rock-paper-scissors.** The 3×3 zero-sum game is verified at the known equilibrium (1/3, 1/3, 1/3). The expected payoff for each pure column strategy under the mixed row strategy is exactly 0, confirming indifference.
+**Rock-paper-scissors.** The 3 $\times$ 3 zero-sum game is verified at the known equilibrium (1/3, 1/3, 1/3). The expected payoff for each pure column strategy under the mixed row strategy is exactly 0, confirming indifference.
 
 ---
 
@@ -113,13 +113,13 @@ Every exercise passed. The gym implements GF(p) field arithmetic, Hamming(7,4) e
 
 Every exercise passed. The gym implements simplicial boundary operators, verifies the fundamental chain complex property d∘d = 0, computes Betti numbers via exact rank computation, and verifies Euler characteristics for triangles, hollow triangles, tetrahedra, and disconnected components.
 
-**Triangle boundary operators.** The boundary matrices B₁ (edges → vertices, 3×3) and B₂ (faces → edges, 1×3) are constructed with exact integer entries (+1, -1, 0). The composition ∂₁ ∘ ∂₂ is computed as the matrix product B₁ᵀ · B₂ᵀ and verified to be the zero matrix. This is the fundamental property of chain complexes — the boundary of a boundary is zero — verified by exact VDR integer matrix multiplication.
+**Triangle boundary operators.** The boundary matrices B₁ (edges → vertices, 3 $\times$ 3) and B₂ (faces → edges, 1 $\times$ 3) are constructed with exact integer entries (+1, -1, 0). The composition ∂₁ ∘ ∂₂ is computed as the matrix product B₁ᵀ · B₂ᵀ and verified to be the zero matrix. This is the fundamental property of chain complexes — the boundary of a boundary is zero — verified by exact VDR integer matrix multiplication.
 
 **Betti numbers of the filled triangle.** β₀ = 3 - rank(B₁) = 3 - 2 = 1 (one connected component). β₁ = 3 - rank(B₁) - rank(B₂) = 3 - 2 - 1 = 0 (no holes, because the face fills the loop). All ranks computed by exact VDR Gaussian elimination.
 
 **Hollow triangle.** Without the 2-simplex (face), β₁ = 3 - 2 = 1. The triangle boundary is a 1-cycle. Euler characteristic χ = 3 - 3 = 0.
 
-**Tetrahedron surface.** Boundary matrices B₁ (6 edges × 4 vertices) and B₂ (4 faces × 6 edges). The composition ∂₁ ∘ ∂₂ = 0 verified exactly. Betti numbers: β₀ = 1, β₁ = 0, β₂ = 1. Euler characteristic χ = 4 - 6 + 4 = 2, matching both the simplex count and the alternating sum of Betti numbers. The surface of the tetrahedron is topologically a 2-sphere, and β₂ = 1 confirms this.
+**Tetrahedron surface.** Boundary matrices B₁ (6 edges  $\times$  4 vertices) and B₂ (4 faces  $\times$  6 edges). The composition ∂₁ ∘ ∂₂ = 0 verified exactly. Betti numbers: β₀ = 1, β₁ = 0, β₂ = 1. Euler characteristic χ = 4 - 6 + 4 = 2, matching both the simplex count and the alternating sum of Betti numbers. The surface of the tetrahedron is topologically a 2-sphere, and β₂ = 1 confirms this.
 
 **Disconnected components.** Two isolated edges on 4 vertices give β₀ = 4 - 2 = 2, correctly detecting two connected components.
 
@@ -131,15 +131,15 @@ Every Betti number is computed from exact matrix rank. No numerical tolerance is
 
 Every exercise passed. The gym implements min-plus (tropical) matrix multiplication, tropical determinant, shortest path as tropical matrix power, lattice Gram matrices, exact Gram-Schmidt coefficients, lattice size reduction, and the Lovász condition for LLL.
 
-**Tropical matrix multiplication.** The min-plus product of two 3×3 distance matrices is computed. Each entry C[i][j] = min over k of (A[i][k] + B[k][j]). The 2-hop shortest path from node 0 to node 2 is correctly computed as 3 (path 0→1→2, costs 2+1). Every comparison is exact VDR rational comparison — no floating-point ordering errors.
+**Tropical matrix multiplication.** The min-plus product of two 3 $\times$ 3 distance matrices is computed. Each entry C[i][j] = min over k of (A[i][k] + B[k][j]). The 2-hop shortest path from node 0 to node 2 is correctly computed as 3 (path 0→1→2, costs 2+1). Every comparison is exact VDR rational comparison — no floating-point ordering errors.
 
-**Tropical determinant.** Defined as the minimum over all permutations of the sum of entries along the permutation. For a 3×3 matrix, all 6 permutations are evaluated exactly. The tropical identity matrix (0 on diagonal, ∞ off diagonal) has tropical determinant 0.
+**Tropical determinant.** Defined as the minimum over all permutations of the sum of entries along the permutation. For a 3 $\times$ 3 matrix, all 6 permutations are evaluated exactly. The tropical identity matrix (0 on diagonal, ∞ off diagonal) has tropical determinant 0.
 
 **Shortest path as tropical power.** A 4-node graph with rational weights (1/3, 1/4, 1/2) is raised to the third tropical power, producing all-pairs shortest paths. The shortest path from node 1 to node 3 is 3/4 (= 1/4 + 1/2), computed exactly.
 
-**Lattice Gram-Schmidt.** For the 2D lattice basis v₁ = (3,1), v₂ = (1,2), the Gram matrix has entries g₁₁ = 10, g₁₂ = 5, g₂₂ = 5, with determinant 25 (the square of the fundamental domain volume). The Gram-Schmidt coefficient μ₂₁ = 5/10 = 1/2, computed as an exact VDR rational. The orthogonalized vector v₂* = (-1/2, 3/2) is verified to satisfy v₁ · v₂* = 0 exactly.
+**Lattice Gram-Schmidt.** For the 2D lattice basis v₁ = (3,1), v₂ = (1,2), the Gram matrix has entries g₁₁ = 10, g₁₂ = 5, g₂₂ = 5, with determinant 25 (the square of the fundamental domain volume). The Gram-Schmidt coefficient  $\mu$ ₂₁ = 5/10 = 1/2, computed as an exact VDR rational. The orthogonalized vector v₂* = (-1/2, 3/2) is verified to satisfy v₁ · v₂* = 0 exactly.
 
-**LLL conditions.** The Lovász condition |v₂*|² ≥ (3/4 - μ²)|v₁|² is checked exactly: 5/2 < 5 fails, indicating a swap is needed. After swap and size reduction, the reduced basis (1,2), (2,-1) satisfies the Lovász condition: 5 ≥ 15/4. Every comparison is exact rational — no rounding in the LLL condition check, which is a notorious source of correctness issues in floating-point LLL implementations.
+**LLL conditions.** The Lovász condition |v₂*|² ≥ (3/4 -  $\mu$ ²)|v₁|² is checked exactly: 5/2 < 5 fails, indicating a swap is needed. After swap and size reduction, the reduced basis (1,2), (2,-1) satisfies the Lovász condition: 5 ≥ 15/4. Every comparison is exact rational — no rounding in the LLL condition check, which is a notorious source of correctness issues in floating-point LLL implementations.
 
 ---
 
@@ -173,7 +173,7 @@ Every exercise passed. The gym implements the Haar wavelet transform, perfect re
 
 **Parseval energy conservation.** The energy identity E(signal) = 2·(E(averages) + E(details)) is verified exactly for the Haar transform with the 1/2 normalization. The left side and right side are equal as exact VDR rationals.
 
-**Matrix formulation.** The 4-point Haar transform is expressed as a 4×4 matrix H₄. The matrix-vector product H₄ · signal produces the same averages and details as the direct algorithm. The inverse matrix H₄⁻¹ is computed by exact VDR matrix inversion, and H₄⁻¹ · (H₄ · signal) = signal exactly.
+**Matrix formulation.** The 4-point Haar transform is expressed as a 4 $\times$ 4 matrix H₄. The matrix-vector product H₄ · signal produces the same averages and details as the direct algorithm. The inverse matrix H₄⁻¹ is computed by exact VDR matrix inversion, and H₄⁻¹ · (H₄ · signal) = signal exactly.
 
 **Wavelet denoising.** A noisy signal near [10,10,10,10,20,20,20,20] is decomposed, small detail coefficients are zeroed (hard thresholding), and the signal is reconstructed. The denoised signal preserves the large-scale structure: the average of the first half is exactly 10 and the average of the second half is exactly 20. All values remain exact rationals throughout — the thresholding operation (comparison and zeroing) is exact.
 
@@ -185,11 +185,11 @@ Every exercise passed. The gym implements the Haar wavelet transform, perfect re
 
 Thirteen exercises passed. Three failed due to a known precision boundary, not a VDR arithmetic error.
 
-**What passed.** The 22 transcendental constants from MATH-4 are loaded as VDR closed objects [p, 2³³⁵, 0]. Addition of π + e reduces to integer addition of numerators over the shared denominator. Subtraction π - e is integer subtraction. The identity π² ≈ 6·ζ(2) holds with a numerator residual of -2, consistent with the individual rounding errors of the two Q335 projections. The identity ln(10) ≈ ln(2) + ln(5) holds with a residual of 0. The golden ratio identity φ ≈ (1 + √5)/2 holds with a numerator residual of 0. Scalar multiplication (2/3)·π produces the correct exact rational. All 22 numerators have bit-widths in the expected 330-345 range. Total storage is under 2300 digits.
+**What passed.** The 22 transcendental constants from MATH-4 are loaded as VDR closed objects [p, 2³³⁵, 0]. Addition of  $\pi$  + e reduces to integer addition of numerators over the shared denominator. Subtraction  $\pi$  - e is integer subtraction. The identity  $\pi$ ² ≈ 6·ζ(2) holds with a numerator residual of -2, consistent with the individual rounding errors of the two Q335 projections. The identity ln(10) ≈ ln(2) + ln(5) holds with a residual of 0. The golden ratio identity φ ≈ (1 + √5)/2 holds with a numerator residual of 0. Scalar multiplication (2/3)· $\pi$  produces the correct exact rational. All 22 numerators have bit-widths in the expected 330-345 range. Total storage is under 2300 digits.
 
-**QED A₂ coefficient.** The 2-loop electron anomalous magnetic moment coefficient A₂ = 197/144 + π²/12 + 3ζ(3)/4 - (π²/2)·ln(2) is computed using Q335 numerators with exact Fraction arithmetic for the rational coefficients. The result is approximately -0.328479, matching the known value. Every intermediate operation is exact integer or Fraction arithmetic.
+**QED A₂ coefficient.** The 2-loop electron anomalous magnetic moment coefficient A₂ = 197/144 +  $\pi$ ²/12 + 3ζ(3)/4 - ( $\pi$ ²/2)·ln(2) is computed using Q335 numerators with exact Fraction arithmetic for the rational coefficients. The result is approximately -0.328479, matching the known value. Every intermediate operation is exact integer or Fraction arithmetic.
 
-**Elliptic integral K(1/2).** The hypergeometric series ₂F₁(1/2, 1/2; 1; 1/4) is computed to 80 terms as an exact Fraction. Multiplied by the Q335 representation of π/2, this gives K(1/2). The test expected a value near 1.854, but the computation returned approximately 3.864. This is because the hypergeometric series ₂F₁(1/2, 1/2; 1; z) at z = 1/4 converges to K(k)/( π/2) where k² = z = 1/4, meaning k = 1/2. The value K(1/2) ≈ 1.8541 is (π/2) times the hypergeometric sum, but the test multiplied by π/2 twice — once in the series definition and once explicitly. The hypergeometric sum itself at 80 terms gives approximately 1.1803, and multiplied by π/2 ≈ 1.5708 gives ≈ 1.854. The doubled multiplication produced ≈ 3.864. This is a test-authoring error in the application of the series formula.
+**Elliptic integral K(1/2).** The hypergeometric series ₂F₁(1/2, 1/2; 1; 1/4) is computed to 80 terms as an exact Fraction. Multiplied by the Q335 representation of  $\pi$ /2, this gives K(1/2). The test expected a value near 1.854, but the computation returned approximately 3.864. This is because the hypergeometric series ₂F₁(1/2, 1/2; 1; z) at z = 1/4 converges to K(k)/(  $\pi$ /2) where k² = z = 1/4, meaning k = 1/2. The value K(1/2) ≈ 1.8541 is ( $\pi$ /2) times the hypergeometric sum, but the test multiplied by  $\pi$ /2 twice — once in the series definition and once explicitly. The hypergeometric sum itself at 80 terms gives approximately 1.1803, and multiplied by  $\pi$ /2 ≈ 1.5708 gives ≈ 1.854. The doubled multiplication produced ≈ 3.864. This is a test-authoring error in the application of the series formula.
 
 **The three multiplication failures.** Tests 11 and 12 attempted to verify √2² ≈ 2 and ln(2)² ≈ ln²(2) by multiplying Q335 numerators directly. The product of two ~102-digit integers is a ~204-digit integer, living in denominator frame 2⁶⁷⁰, not 2³³⁵. The residual when comparing this against the Q335 representation of the squared value (which was independently projected from the true transcendental) is on the order of 10¹⁰⁰ — far larger than the test's threshold of 10⁵.
 
@@ -205,10 +205,9 @@ The test should have projected the product back to the 2³³⁵ grid before comp
 |-----|------|----------|-----|-----------|-----------|
 | 16 | Max-flow = 7/12 | 7/12 | 0 | BFS loop termination in Ford-Fulkerson | No |
 | 21 | State decays in 5 steps | \|x₅\|² < 1 | \|x₅\|² ≈ 1.004 | Euler discretization needs more steps | No |
-| 23 | K(1/2) ≈ 1.854 | 1.854 | 3.864 | Double application of π/2 factor | No |
+| 23 | K(1/2) ≈ 1.854 | 1.854 | 3.864 | Double application of  $\pi$ /2 factor | No |
 | 23 | √2² - 2 < 10⁵ ulp | small | ~10¹⁰⁰ | Comparison across Q335 vs Q670 frames | No |
 | 23 | ln²(2) consistency | small | ~10¹⁰⁰ | Same frame mismatch | No |
-
 All five failures are test-design errors. Zero are VDR computation errors. The VDR library computed every exact rational correctly across all 157 tests in all 8 new domains.
 
 ---
@@ -223,7 +222,7 @@ VDR-2 stated: "Anything requiring transcendental functions as native objects —
 
 This was wrong. VDR handles transcendentals through two complementary mechanisms.
 
-**Functional remainders** wrap convergent rational series. Each depth produces an exact rational. Newton-Raphson for √2 at depth 7 gives an exact 49-digit fraction whose square differs from 2 by 1/10⁹⁷. The Leibniz series at 101 terms gives an exact rational for π/4 with 250+ digit numerator and denominator. These are not approximations in the float sense — they are exact rationals at each depth. The precision is chosen, not truncated.
+**Functional remainders** wrap convergent rational series. Each depth produces an exact rational. Newton-Raphson for √2 at depth 7 gives an exact 49-digit fraction whose square differs from 2 by 1/10⁹⁷. The Leibniz series at 101 terms gives an exact rational for  $\pi$ /4 with 250+ digit numerator and denominator. These are not approximations in the float sense — they are exact rationals at each depth. The precision is chosen, not truncated.
 
 **Q335 projection** from MATH-4 represents 22 fundamental transcendental constants as single integers over the shared denominator 2³³⁵, verified at 100 digits against mpmath. Addition of any two constants is one integer addition. The rounding error is 10⁶⁶ times smaller than the Planck length. For higher precision, increase the exponent: 2⁶⁶⁸ for 200 digits, 2³³²² for 1000 digits.
 
@@ -231,7 +230,7 @@ Neither mechanism is a compromise. The first gives exact rationals at arbitrary 
 
 ### 12.2 Complete Elliptic Integrals
 
-VDR-2 did not specifically address elliptic integrals. MATH-3 shows they are not a new class of object for VDR. The complete elliptic integral K(k) at rational k is (π/2) times the hypergeometric series ₂F₁(1/2, 1/2; 1; k²). Every coefficient of the series is rational. At rational k², every term is rational. The series converges geometrically with ratio k². The product of the Q335 representation of π/2 with the exact Fraction hypergeometric sum gives K(k) as a standard VDR closed object.
+VDR-2 did not specifically address elliptic integrals. MATH-3 shows they are not a new class of object for VDR. The complete elliptic integral K(k) at rational k is ( $\pi$ /2) times the hypergeometric series ₂F₁(1/2, 1/2; 1; k²). Every coefficient of the series is rational. At rational k², every term is rational. The series converges geometrically with ratio k². The product of the Q335 representation of  $\pi$ /2 with the exact Fraction hypergeometric sum gives K(k) as a standard VDR closed object.
 
 K(1/2) at 500 terms gives approximately 300 digits. K(√3/2) at 500 terms gives approximately 60 digits. K(1/√2) at 500 terms gives approximately 150 digits. All are exact Fraction computations with geometric convergence.
 
@@ -245,7 +244,7 @@ Constants known only to high-precision decimal digits — such as Laporta's six 
 
 ### 12.5 Continuous Probability Distributions
 
-VDR-2 listed normal, exponential, and chi-squared distributions as impossible because their CDFs involve transcendentals (erf, exp). But erf and exp have known convergent series with rational coefficients. The CDF of the normal distribution at a rational argument is a convergent rational series. Each partial sum is an exact VDR rational. The precision is chosen by the number of terms. This is not different from how VDR handles π or e.
+VDR-2 listed normal, exponential, and chi-squared distributions as impossible because their CDFs involve transcendentals (erf, exp). But erf and exp have known convergent series with rational coefficients. The CDF of the normal distribution at a rational argument is a convergent rational series. Each partial sum is an exact VDR rational. The precision is chosen by the number of terms. This is not different from how VDR handles  $\pi$  or e.
 
 ### 12.6 Spectral Methods
 
@@ -302,14 +301,13 @@ Float does not give this knob. VDR with slicing subsumes float's operating regim
 | Control theory | 21 | 13 | 1 test error | Transfer function, Cayley-Hamilton |
 | Wavelets | 22 | 18 | Complete | 64-sample 6-level perfect reconstruction |
 | Q335 transcendentals | 23 | 16 | 3 test errors | QED A₂, 22 constants as integers |
-
 Total: 434 tests across 23 domains. 424 passed. 10 failed due to test-authoring errors. Zero failed due to incorrect VDR computation.
 
 ---
 
 ## 15. What Remains Untested
 
-The gym program has not yet covered representation theory of finite groups, statistical mechanics partition functions, Gröbner bases, tensor algebra, higher-dimensional cubature, or category-theoretic computations. All of these involve rational or integer arithmetic at their core and are expected to work without difficulty at sizes that fit within VDR's current cofactor-expansion limitation (matrices up to approximately 6×6). Gaussian elimination (the top priority on VDR's development roadmap) would extend the practical matrix size to 20-50+, bringing all of these domains into comfortable reach.
+The gym program has not yet covered representation theory of finite groups, statistical mechanics partition functions, Gr\text{ö}bner bases, tensor algebra, higher-dimensional cubature, or category-theoretic computations. All of these involve rational or integer arithmetic at their core and are expected to work without difficulty at sizes that fit within VDR's current cofactor-expansion limitation (matrices up to approximately 6 $\times$ 6). Gaussian elimination (the top priority on VDR's development roadmap) would extend the practical matrix size to 20-50+, bringing all of these domains into comfortable reach.
 
 The complex number extension remains unimplemented. This blocks native eigenvalue computation, the discrete Fourier transform on complex signals, and complex polynomial root finding. The extension is planned and the design space is understood — it is engineering work, not a mathematical obstacle.
 
@@ -319,7 +317,7 @@ The complex number extension remains unimplemented. This blocks native eigenvalu
 
 Twenty-three mathematical domains tested. 434 tests executed. Zero VDR computation errors. Ten test-authoring errors identified and documented. Two domains (chaotic iteration) terminated due to exponential representation cost — a mathematical fact about chaos that VDR exposes honestly while float hides behind silent truncation.
 
-The integration of MATH-3 and MATH-4 resolves the transcendental question that VDR-2 left open. Complete elliptic integrals are rational hypergeometric series times π/2. All odd zeta values are computable to 100+ digits via Borwein acceleration. Twenty-two fundamental transcendental constants are single integers over 2³³⁵. Numerically known constants of any precision are representable as exact rationals over sufficiently large denominators. Nothing is computationally impossible.
+The integration of MATH-3 and MATH-4 resolves the transcendental question that VDR-2 left open. Complete elliptic integrals are rational hypergeometric series times  $\pi$ /2. All odd zeta values are computable to 100+ digits via Borwein acceleration. Twenty-two fundamental transcendental constants are single integers over 2³³⁵. Numerically known constants of any precision are representable as exact rationals over sufficiently large denominators. Nothing is computationally impossible.
 
 VDR has no unique boundaries. Every limitation it has — chaotic dynamics cost, large denominators for transcendentals, algorithm scaling for big matrices — is shared by every other arithmetic system. The difference is that VDR makes costs visible and honest, allows precision to be chosen rather than fixed at 53 bits, and never silently produces garbage while pretending to compute.
 
@@ -353,7 +351,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 18 | Floyd-Warshall 2→1 = 5/6 | 5/6 | 5/6 | PASS |
 | 19 | Adjacency symmetric | symmetric | symmetric | PASS |
 | 20 | A²[0,0] = 49/36 | 49/36 | 49/36 | PASS |
-
 ### A.2 Gym 17: Game Theory (24/24)
 
 | # | Exercise | Expected | Got | Status |
@@ -382,7 +379,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 22 | RPS E(col 1) = 0 | 0 | 0 | PASS |
 | 23 | RPS E(col 2) = 0 | 0 | 0 | PASS |
 | 24 | RPS probs sum to 1 | 1 | 1 | PASS |
-
 ### A.3 Gym 18: Coding Theory (27/27)
 
 | # | Exercise | Expected | Got | Status |
@@ -392,38 +388,36 @@ The code is published. The tests are executable. The results are reproducible. E
 | 3 | inv(3) mod 7 = 5 | 5 | 5 | PASS |
 | 4 | inv(2) mod 7 = 4 | 4 | 4 | PASS |
 | 5 | 2*4 mod 7 = 1 | 1 | 1 | PASS |
-| 6-11 | GF(7) all inverses | a·a⁻¹=1 | verified | PASS ×6 |
+| 6-11 | GF(7) all inverses | a·a⁻¹=1 | verified | PASS  $\times$ 6 |
 | 12 | All 16 codewords syndrome 0 | all zero | all zero | PASS |
 | 13 | encode(1011) syndrome 0 | zero | zero | PASS |
 | 14 | All 7 single-bit errors corrected | all fixed | all fixed | PASS |
 | 15 | Min distance = 3 | 3 | 3 | PASS |
 | 16 | Min weight = 3 | 3 | 3 | PASS |
-| 17-21 | Repetition code (3,1) | correct | correct | PASS ×5 |
-| 22-25 | GF(11) poly eval | 5,9,4,3 | 5,9,4,3 | PASS ×4 |
+| 17-21 | Repetition code (3,1) | correct | correct | PASS  $\times$ 5 |
+| 22-25 | GF(11) poly eval | 5,9,4,3 | 5,9,4,3 | PASS  $\times$ 4 |
 | 26 | Checksum = 2 mod 7 | 2 | 2 | PASS |
 | 27 | Extended checksum = 0 | 0 | 0 | PASS |
-
 ### A.4 Gym 19: Algebraic Topology (16/16)
 
 | # | Exercise | Expected | Got | Status |
 |---|----------|----------|-----|--------|
 | 1 | d∘d = 0 (triangle) | zero matrix | zero matrix | PASS |
-| 2 | beta_0 = 1 (connected) | 1 | 1 | PASS |
-| 3 | beta_1 = 0 (filled) | 0 | 0 | PASS |
-| 4 | beta_2 = 0 | 0 | 0 | PASS |
+| 2 | beta 0 = 1 (connected) | 1 | 1 | PASS |
+| 3 | beta 1 = 0 (filled) | 0 | 0 | PASS |
+| 4 | beta 2 = 0 | 0 | 0 | PASS |
 | 5 | Euler char = 1 | 1 | 1 | PASS |
 | 6 | Euler from Betti = 1 | 1 | 1 | PASS |
 | 7 | Both methods agree | equal | equal | PASS |
-| 8 | Hollow beta_1 = 1 | 1 | 1 | PASS |
+| 8 | Hollow beta 1 = 1 | 1 | 1 | PASS |
 | 9 | Hollow chi = 0 | 0 | 0 | PASS |
 | 10 | Tetrahedron d∘d = 0 | zero | zero | PASS |
-| 11 | Tet beta_0 = 1 | 1 | 1 | PASS |
-| 12 | Tet beta_1 = 0 | 0 | 0 | PASS |
-| 13 | Tet beta_2 = 1 | 1 | 1 | PASS |
+| 11 | Tet beta 0 = 1 | 1 | 1 | PASS |
+| 12 | Tet beta 1 = 0 | 0 | 0 | PASS |
+| 13 | Tet beta 2 = 1 | 1 | 1 | PASS |
 | 14 | Tet chi = 2 | 2 | 2 | PASS |
 | 15 | Tet chi = Betti sum | equal | equal | PASS |
-| 16 | Disconnected beta_0 = 2 | 2 | 2 | PASS |
-
+| 16 | Disconnected beta 0 = 2 | 2 | 2 | PASS |
 ### A.5 Gym 20: Tropical and Lattice (23/23)
 
 | # | Exercise | Expected | Got | Status |
@@ -433,7 +427,7 @@ The code is published. The tests are executable. The results are reproducible. E
 | 3 | W³[0][0] = 0 | 0 | 0 | PASS |
 | 4 | W³[2][1] = 5 | 5 | 5 | PASS |
 | 5 | Tropical det = 3 | 3 | 3 | PASS |
-| 6 | trop_det(I) = 0 | 0 | 0 | PASS |
+| 6 | trop det(I) = 0 | 0 | 0 | PASS |
 | 7 | SP 0→2 = 7/12 | 7/12 | 7/12 | PASS |
 | 8 | SP 0→3 = 1 | 1 | 1 | PASS |
 | 9 | SP 1→3 = 3/4 | 3/4 | 3/4 | PASS |
@@ -441,7 +435,7 @@ The code is published. The tests are executable. The results are reproducible. E
 | 11 | g12 = 5 | 5 | 5 | PASS |
 | 12 | g22 = 5 | 5 | 5 | PASS |
 | 13 | det(Gram) = 25 | 25 | 25 | PASS |
-| 14 | mu_21 = 1/2 | 1/2 | 1/2 | PASS |
+| 14 | mu 21 = 1/2 | 1/2 | 1/2 | PASS |
 | 15 | v2*[0] = -1/2 | -1/2 | -1/2 | PASS |
 | 16 | v2*[1] = 3/2 | 3/2 | 3/2 | PASS |
 | 17 | v1 · v2* = 0 | 0 | 0 | PASS |
@@ -451,7 +445,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 21 | New mu = 0 | 0 | 0 | PASS |
 | 22 | Lovász fails before swap | fails | fails | PASS |
 | 23 | Lovász holds after swap | holds | holds | PASS |
-
 ### A.6 Gym 21: Control Theory (12/13)
 
 | # | Exercise | Expected | Got | Status |
@@ -469,7 +462,6 @@ The code is published. The tests are executable. The results are reproducible. E
 | 11 | State decays | \|x₅\|² < 1 | \|x₅\|² > 1 | **FAIL** |
 | 12 | Gramian det > 0 | positive | positive | PASS |
 | 13 | Gramian symmetric | symmetric | symmetric | PASS |
-
 ### A.7 Gym 22: Wavelets (18/18)
 
 | # | Exercise | Expected | Got | Status |
@@ -492,28 +484,26 @@ The code is published. The tests are executable. The results are reproducible. E
 | 16 | First half avg = 10 | 10 | 10 | PASS |
 | 17 | Second half avg = 20 | 20 | 20 | PASS |
 | 18 | 64-sample 6-level reconstruction | exact | exact | PASS |
-
 ### A.8 Gym 23: Q335 Transcendental (13/16)
 
 | # | Exercise | Expected | Got | Status |
 |---|----------|----------|-----|--------|
 | 1 | All 22 closed | closed | closed | PASS |
 | 2 | 22 constants loaded | 22 | 22 | PASS |
-| 3 | π + e = integer sum | match | match | PASS |
-| 4 | π - e = integer diff | match | match | PASS |
-| 5 | π² - 6ζ(2) ≤ 6 ulp | ≤ 6 | -2 | PASS |
+| 3 |  $\pi$  + e = integer sum | match | match | PASS |
+| 4 |  $\pi$  - e = integer diff | match | match | PASS |
+| 5 |  $\pi$ ² - 6ζ(2) ≤ 6 ulp | ≤ 6 | -2 | PASS |
 | 6 | ln(10) - ln(2) - ln(5) ≤ 2 ulp | ≤ 2 | 0 | PASS |
 | 7 | φ - (1+√5)/2 ≤ 2 ulp | ≤ 2 | 0 | PASS |
 | 8 | A₂ is negative | negative | -0.3285 | PASS |
 | 9 | A₂ ≈ -0.3285 | within 0.001 | verified | PASS |
 | 10 | A₂ exact arithmetic | exact | exact | PASS |
-| 11 | (2/3)π correct | match | match | PASS |
+| 11 | (2/3) $\pi$  correct | match | match | PASS |
 | 12 | K(1/2) ≈ 1.854 | 1.854 | 3.864 | **FAIL** |
 | 13 | All bits in range | 330-345 | verified | PASS |
 | 14 | Total < 2300 digits | < 2300 | verified | PASS |
 | 15 | √2² - 2 small | < 10⁵ | ~10¹⁰⁰ | **FAIL** |
 | 16 | ln²(2) consistent | < 10⁵ | ~10¹⁰⁰ | **FAIL** |
-
 ---
 
 ## Appendix B: Failure Root Cause Summary
@@ -522,16 +512,15 @@ The code is published. The tests are executable. The results are reproducible. E
 |----------|-------|--------------|
 | Algorithm implementation error (max-flow BFS) | 1 | No |
 | Test threshold too tight (Euler decay) | 1 | No |
-| Formula application error (K(1/2) double π/2) | 1 | No |
-| Precision frame mismatch (Q335 × Q335 vs Q335) | 2 | No |
+| Formula application error (K(1/2) double  $\pi$ /2) | 1 | No |
+| Precision frame mismatch (Q335  $\times$  Q335 vs Q335) | 2 | No |
 | VDR computation error | 0 | — |
 | **Total** | **5** | **Zero VDR errors** |
-
 ---
 
 ## Appendix C: The Q335 Constants
 
-All 22 constants as VDR closed objects [p, 2³³⁵, 0]. The integer numerators are listed in MATH-4 Section IV and reproduced in the VDR Technical Specification v3.0 Appendix E. Total storage: 2,238 digits plus the exponent 335. Addition of any two constants: one integer addition. Compression ratio versus MATH-2 pairs: 2.3× for e to 1,280× for eᵖ.
+All 22 constants as VDR closed objects [p, 2³³⁵, 0]. The integer numerators are listed in MATH-4 Section IV and reproduced in the VDR Technical Specification v3.0 Appendix E. Total storage: 2,238 digits plus the exponent 335. Addition of any two constants: one integer addition. Compression ratio versus MATH-2 pairs: 2.3 $\times$  for e to 1,280 $\times$  for eᵖ.
 
 ---
 
@@ -543,7 +532,6 @@ All 22 constants as VDR closed objects [p, 2³³⁵, 0]. The integer numerators 
 | VDR-2 | 15 | 282 | 276 | 6 | 0 |
 | VDR-3 | 8 | 157 | 152 | 5 | 0 |
 | **Total** | **23** | **507** | **496** | **11** | **0** |
-
 Across 507 tests spanning 23 mathematical domains, 4 test layers, and 3 papers: zero VDR computation errors.
 
 ---
@@ -551,11 +539,20 @@ Across 507 tests spanning 23 mathematical domains, 4 test layers, and 3 papers: 
 **END HOWL-VDR-3-2026**
 
 **Registry:** [@HOWL-VDR-3-2026]
+
 **Status:** Complete
+
 **Domain:** Applied Philosophy / Computational Mathematics
+
 **Central Result:** 23 domains tested, 507 total tests, zero VDR computation errors. MATH-3/MATH-4 integration eliminates all previously identified impossibility claims. VDR has no unique computational boundaries.
+
 **Method:** Eight new domain gyms (graph theory, game theory, coding theory, algebraic topology, tropical/lattice algebra, control theory, wavelets, Q335 transcendental arithmetic) plus integration of MATH-3 elliptic integrals and MATH-4 Q335 universal basis.
+
 **Key Finding:** Nothing is computationally impossible for VDR. Every limitation is shared with every other arithmetic system. The difference is honesty — VDR makes costs visible, allows precision to be chosen, and never silently produces garbage.
+
 **Foundation:** VDR-1, VDR-2, MATH-3, MATH-4
+
 **Limitations:** Complex number extension not yet implemented. Cofactor expansion limits practical matrix size. Max-flow implementation needs BFS fix. Five test-design errors documented for correction.
+
 **Falsification:** Any test where VDR produces an incorrect exact rational from correct inputs would falsify the system. 507 tests have not produced one.
+
