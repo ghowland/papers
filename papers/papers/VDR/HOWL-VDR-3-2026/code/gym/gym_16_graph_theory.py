@@ -220,22 +220,22 @@ I4 = Mat.identity(4)
 A_pr = I4 - T.scale(d_pr)
 b_pr = Vec([VDR(1, 8)] * 4)  # (1 - 1/2) / 4 = 1/8
 r_pr = A_pr.solve(b_pr)
-print("  PageRank = %s" % [str(x) for x in r_pr.data])
+print("  PageRank = %s" % [str(x) for x in r_pr._data])
 
 # verify: all positive
-all_pos = all(x > VDR(0) for x in r_pr.data)
+all_pos = all(x > VDR(0) for x in r_pr._data)
 check("all PageRank positive", all_pos)
 
 # verify: sum to 1
-pr_sum = r_pr.data[0]
-for x in r_pr.data[1:]:
+pr_sum = r_pr._data[0]
+for x in r_pr._data[1:]:
     pr_sum = pr_sum + x
 print("  sum = %s" % pr_sum.to_fraction())
 check("PageRank sums to 1", pr_sum == VDR(1))
 
 # page 2 should have highest rank (most inlinks)
-check("page 2 has highest rank", r_pr.data[2] > r_pr.data[0])
-check("page 2 > page 1", r_pr.data[2] > r_pr.data[1])
+check("page 2 has highest rank", r_pr._data[2] > r_pr._data[0])
+check("page 2 > page 1", r_pr._data[2] > r_pr._data[1])
 
 # === 6. Floyd-Warshall all-pairs shortest path ===
 print("\n=== 6. Floyd-Warshall all-pairs shortest path ===")
