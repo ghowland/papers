@@ -118,6 +118,8 @@
 | **[@HOWL-VDR-1-2026](papers/papers/VDR/HOWL-VDR-1-2026/manuscript.md)** | **VDR Arithmetic: Value, Decimal, Remainder** | Exact Finite Arithmetic in Irreducible Triple Form. |
 | **[@HOWL-VDR-2-2026](papers/papers/VDR/HOWL-VDR-2-2026/manuscript.md)** | **VDR Gym** | Exact Arithmetic Across Fifteen Domains. |
 | **[@HOWL-VDR-3-2026](papers/papers/VDR/HOWL-VDR-3-2026/manuscript.md)** | **VDR Gym Extension** | Exact Arithmetic Across Twenty-Three Domains. |
+| **[@HOWL-VDR-4-2026](papers/papers/VDR/HOWL-VDR-4-2026/manuscript.md)** | **Exact-Fraction Language Model Architecture** | From Arithmetic Library to Working Transformer in 24 Modules. |
+| **[@HOWL-VDR-5-2026](papers/papers/VDR/HOWL-VDR-5-2026/manuscript.md)** | **Exact Arithmetic Meets Logical Provenance** | A Specification for Constraint-Grounded Language Models With Full Data Lineage. |
 
 ---
 
