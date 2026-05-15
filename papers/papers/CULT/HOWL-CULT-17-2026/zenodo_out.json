@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-15T04:56:00.994560+00:00",
+  "modified": "2026-05-15T04:58:02.658206+00:00",
+  "id": 20196015,
+  "conceptrecid": "20196014",
+  "metadata": {
+    "title": "No Path: Cross-Domain Derivation by an Outsider Using Commodity Tools",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>Two integers from gauge theory &mdash; 11 and 13 &mdash; were passed through standard cosmological equations to predict how much deuterium, helium, and lithium the universe produced in its first minutes after the Big Bang. The predictions were compared against Planck satellite measurements and precision spectroscopy of distant gas clouds. The results:</div>\n<br>\n<div>Deuterium abundance: predicted 2.531 &times; 10\u207b\u2075, measured 2.527 &times; 10\u207b\u2075. Three-digit agreement. Miss 0.14%. Deviation from measurement: 0.12 standard deviations.</div>\n<br>\n<div>Helium-4 mass fraction: predicted 0.2486, measured 0.2449. Within one standard deviation. Miss 1.53%. Deviation from measurement: 0.94 standard deviations.</div>\n<br>\n<div>Baryon density parameter: predicted 0.049036, measured 0.0490. Miss 727 parts per million.</div>\n<br>\n<div>Lithium-7 abundance: predicted approximately 3&times; higher than observed. This is the known lithium problem &mdash; standard Big Bang Nucleosynthesis predicts too much lithium regardless of input source. The chain reproduces the discrepancy at the correct ratio, confirming it runs the same physics as every other BBN calculation.</div>\n<br>\n<div>The derivation chain crosses three physics domains. It starts in particle physics &mdash; gauge integers from the Standard Model. It crosses into cosmology &mdash; baryon density, photon density, baryon-to-photon ratio. It lands in nuclear physics &mdash; primordial element abundances. The chain spans over twenty-five orders of magnitude in energy scale.</div>\n<br>\n<div>No one in the institutional physics community has published this chain. Not because the equations are secret. Not because the values are unavailable. Not because the computation is beyond current capability. The equations are in textbooks. The values are in reference compilations. The computation is trivial. The chain has not been published because it crosses three departmental boundaries and no department owns it.</div>\n<br>\n<div>The chain was produced by a person with no physics degree, no institutional affiliation, and no publication history in physics journals. The tools were a laptop, Python, and a large language model for search and derivational assistance. The time investment was three months. The physics background was high school level.</div>\n</div>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "culture"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/CULT/HOWL-CULT-17-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-CULT-17-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20196015",
+      "recid": 20196015
+    }
+  },
+  "title": "No Path: Cross-Domain Derivation by an Outsider Using Commodity Tools",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20196015",
+    "html": "https://zenodo.org/deposit/20196015",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20196015/files",
+    "bucket": "https://zenodo.org/api/files/dec8591a-5662-4d0e-a1ba-b5f75ece5e86",
+    "thumb250": "https://zenodo.org/record/20196015/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20196015/thumb10",
+      "50": "https://zenodo.org/record/20196015/thumb50",
+      "100": "https://zenodo.org/record/20196015/thumb100",
+      "250": "https://zenodo.org/record/20196015/thumb250",
+      "750": "https://zenodo.org/record/20196015/thumb750",
+      "1200": "https://zenodo.org/record/20196015/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20196015",
+    "latest_draft_html": "https://zenodo.org/deposit/20196015",
+    "publish": "https://zenodo.org/api/deposit/depositions/20196015/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20196015/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20196015/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20196015/actions/newversion"
+  },
+  "record_id": 20196015,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "9be56cf7-7e21-43be-bb80-651b58f28cba",
+      "filename": "!manuscript.pdf",
+      "filesize": 110369,
+      "checksum": "ecedc07ce64b75326a0a34d846f058d6",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20196015/files/9be56cf7-7e21-43be-bb80-651b58f28cba",
+        "download": "https://zenodo.org/api/records/20196015/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "1ce54c70-d265-496c-9bcc-cf58ddd00ba1",
+      "filename": "HOWL-CULT-17-2026.zip",
+      "filesize": 1395679,
+      "checksum": "091c379cc0cf0e8c3d370229fd8ed4f6",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20196015/files/1ce54c70-d265-496c-9bcc-cf58ddd00ba1",
+        "download": "https://zenodo.org/api/records/20196015/draft/files/HOWL-CULT-17-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
