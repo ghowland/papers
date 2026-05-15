@@ -33,11 +33,15 @@ The execution layer gives the system hands. Pure primitives perform exact comput
 
 The execution layer does not replace the language model. It complements it. The language model recognizes that a sort is needed. The sort primitive performs it correctly. The language model recognizes that code should be tested. The execution primitive runs pytest in a Docker container and stores the results in the KB. The language model frames the results for the user. Each component does what it does best.
 
+![Fig. 1: VDR-6 Identity Card — 262 primitives across 20 categories, 4 environment types, command tokens, and grants.](./figures/vdr6_01_identity_card.png)
+
 ---
 
 ## 2. Pure Primitives
 
 A pure primitive is a function that always produces the same output from the same input, has no side effects, terminates in bounded time, operates on exact VDR types, and carries declarable constraint invariants. Pure primitives do not require authorization grants. They are safe by construction.
+
+![Fig. 5: Primitive Rings — 218 pure and 44 operational primitives distributed across 20 categories by count.](./figures/vdr6_05_primitive_rings.png)
 
 ### 2.1 Category 1: String Operations (17 primitives)
 
@@ -447,6 +451,8 @@ Every operational primitive requires a positive credential grant before executio
 
 ## 4. The Positive Credential Grant System
 
+![Fig. 7: Grant Gate — Every operational primitive passes through authorization. Authorized commands execute. Blocked commands are logged.](./figures/vdr6_07_grant_gated_execution.png)
+
 ### 4.1 Grant Structure
 
 ```
@@ -529,6 +535,8 @@ All transitions are logged as KB facts with timestamp, source, and reason.
 ---
 
 ## 5. Command Tokens
+
+![Fig. 3: Command Token Stream — Text tokens for humans and command tokens for machines interleave in one output stream.](./figures/vdr6_03_command_token_stream.png)
 
 ### 5.1 The Mechanism
 
@@ -623,6 +631,8 @@ The scratchpad computations are exact (executed by primitives). The user-facing 
 ---
 
 ## 6. Operational Environments
+
+![Fig. 4: Unified Environment — Docker, VM, Local, and SSH all present the same 10-operation interface to the LLM.](./figures/vdr6_04_unified_environment.png)
 
 ### 6.1 Environment Types
 
@@ -839,6 +849,8 @@ Each chunk can trigger watches (pattern-matched alerts), constraint checks (reso
 
 ## 8. Direct Data Download
 
+![Fig. 6: Direct vs Regen — KB data served in one exact step versus three lossy steps through LLM tokenization.](./figures/vdr6_06_direct_vs_regen.png)
+
 ### 8.1 The Principle
 
 If data exists at a known address in the system (KB fact, file, task output, checkpoint), the user can download it directly without the LLM regenerating it as tokens. The data is served from its source. The LLM is not a middleman.
@@ -896,6 +908,8 @@ The data block is retrieved, not generated. It cannot hallucinate.
 ---
 
 ## 9. Versioning
+
+![Fig. 8: Version History — Three versions of gym_16 with diffs, tags, and test results at each version.](./figures/vdr6_08_version_history.png)
 
 ### 9.1 Version as KB Fact
 
@@ -1014,6 +1028,8 @@ LLM (next turn, after checking pending tasks):
 ```
 
 Every step is traceable. Every command is logged in the environment KB. Every result is stored in the project KB. The version is created. The project working data is updated. The file is available for direct download. The user sees the framing text, the direct output block, and the attachment.
+
+![Fig. 2: Execution Flow — Write, upload, execute, poll, store, and version an artifact with exact data at every step.](./figures/vdr6_02_execution_flow.png)
 
 ---
 
@@ -1265,3 +1281,719 @@ The system can think, compute, execute, store, verify, and explain. Each capabil
 **Foundation:** VDR-1 through VDR-5, MATH-3, MATH-4
 **Key Principle:** Separation of concerns. The LLM understands intent. Primitives compute. Environments execute. KBs store. Constraints authorize. Surfacing presents. No component does another's job.
 **Falsification:** Seven specific criteria testable by exact comparison and integration testing.
+
+---
+
+# VDR-6 Extended Appendix Tables
+## Complete Reference Material for the Execution Layer
+
+---
+
+## Appendix E: Operational Environment Configuration Reference
+
+### E.1 Docker Environment Specifications
+
+| Field | Type | Required | Default | Example |
+|-------|------|----------|---------|---------|
+| image | atom | Yes | — | "python:3.8-slim" |
+| container_name | atom | No | auto-generated | "vdr_test_env_001" |
+| working_dir | atom | No | "/workspace" | "/workspace" |
+| mount_points | list(pair) | No | [] | [("/home/alice/vdr", "/workspace/vdr")] |
+| exposed_ports | list(number) | No | [] | [8080, 5000] |
+| env_vars | dict | No | {} | {"PYTHONPATH": "/workspace"} |
+| startup_script | atom | No | none | "pip install pytest && pip install fractions" |
+| max_cpu_seconds | number | No | 3600 | 300 |
+| max_memory_mb | number | No | 2048 | 512 |
+| max_disk_mb | number | No | 10240 | 1024 |
+| network_mode | atom | No | "bridge" | "none" for isolation |
+| auto_remove | bool | No | false | true for ephemeral |
+| restart_policy | atom | No | "no" | "on-failure" |
+
+### E.2 VM Environment Specifications
+
+| Field | Type | Required | Default | Example |
+|-------|------|----------|---------|---------|
+| vm_provider | atom | Yes | — | "virtualbox", "qemu", "cloud" |
+| vm_image | atom | Yes | — | "ubuntu-24.04-server" |
+| vm_cpus | number | No | 2 | 4 |
+| vm_memory_mb | number | No | 4096 | 8192 |
+| vm_disk_gb | number | No | 20 | 50 |
+| ssh_port_forward | number | No | 2222 | 2222 |
+| snapshot_on_create | bool | No | true | true |
+| provision_script | atom | No | none | "apt update && apt install python3" |
+
+### E.3 SSH Remote Environment Specifications
+
+| Field | Type | Required | Default | Example |
+|-------|------|----------|---------|---------|
+| host | atom | Yes | — | "gpu01.lab.example.com" |
+| port | number | No | 22 | 22 |
+| username | atom | Yes | — | "alice" |
+| auth_method | atom | Yes | — | "pubkey", "password", "certificate" |
+| key_ref | atom | Conditional | — | "ssh_key_alice_gpu01" |
+| remote_working_dir | atom | No | "~/" | "/home/alice/workspace" |
+| connection_timeout_ms | number | No | 30000 | 10000 |
+| keepalive_interval_s | number | No | 60 | 30 |
+| max_sessions | number | No | 5 | 3 |
+| proxy_command | atom | No | none | "ssh -W %h:%p bastion.example.com" |
+
+### E.4 Local Environment Specifications
+
+| Field | Type | Required | Default | Example |
+|-------|------|----------|---------|---------|
+| working_dir | atom | Yes | — | "/home/alice/projects/vdr" |
+| path_restriction | atom | No | none | "/home/alice/" |
+| shell | atom | No | "/bin/sh" | "/bin/bash" |
+| inherit_env | bool | No | false | true |
+| allowed_executables | list(atom) | No | all | ["python3", "zig", "git"] |
+
+### E.5 Environment State Transitions
+
+| From | To | Trigger | Side Effects | Logged As |
+|------|----|---------|-------------|-----------|
+| (none) | stopped | env_create() | KB created, config stored | env_created(id, type, timestamp) |
+| stopped | starting | env_start() | Container/VM launching | env_starting(id, timestamp) |
+| starting | running | Startup complete | Startup script executed | env_running(id, timestamp, startup_duration_ms) |
+| starting | error | Startup failed | Error details captured | env_error(id, timestamp, reason) |
+| running | stopped | env_stop() | Process graceful shutdown | env_stopped(id, timestamp) |
+| running | error | Runtime failure | Error details captured | env_error(id, timestamp, reason) |
+| stopped | (archived) | env_destroy() | Container removed, KB archived | env_destroyed(id, timestamp) |
+| error | stopped | env_reset() | Error cleared, state reset | env_reset(id, timestamp) |
+| error | (archived) | env_destroy() | Container removed, KB archived | env_destroyed(id, timestamp) |
+
+---
+
+## Appendix F: Task State Machine Reference
+
+### F.1 Task State Transitions
+
+| From | To | Trigger | KB Update | Notification |
+|------|----|---------|----------|-------------|
+| (none) | pending | Command token issued | task asserted with status(pending) | None |
+| pending | running | Environment starts process | started_at set | None |
+| running | completed | Process exits code 0 | completed_at set, result stored | If notify_on_complete |
+| running | failed | Process exits code != 0 | completed_at set, error stored | Always |
+| running | killed | proc_kill() or timeout | completed_at set, kill reason | Always |
+| completed | acknowledged | User acknowledges | acknowledged = true | Stops repeating |
+| failed | acknowledged | User acknowledges | acknowledged = true | Stops repeating |
+
+### F.2 Task Output Processing
+
+| Event | Processing | KB Update | Watch Trigger |
+|-------|-----------|----------|---------------|
+| stdout chunk arrives | Store as OutputChunk | task_output(id, chunk(N), stdout, content) | Checked against output watches |
+| stderr chunk arrives | Store as OutputChunk | task_output(id, chunk(N), stderr, content) | Checked against error watches |
+| Process exit | Capture final state | task status updated, result computed | completion watches fire |
+| Timeout reached | Kill process | task status = killed, reason = timeout | timeout watches fire |
+| Resource limit hit | Kill process | task status = killed, reason = resource_limit | resource watches fire |
+
+### F.3 Task Query Patterns
+
+| Query Pattern | Purpose | Returns |
+|---------------|---------|---------|
+| task(Id, _, _, _, _, status(running), _, _) | All running tasks | Task IDs |
+| task(Id, _, _, env(E), _, _, _, _) | Tasks in specific environment | Task IDs and details |
+| task(Id, _, _, _, _, status(completed), _, _, _, _, _, topic(T), notify(true), ack(false)) | Unacknowledged completed tasks in topic | Notification candidates |
+| task(Id, _, _, _, _, _, started_at(S), completed_at(C), _, _, _, _, _, _), duration(S, C, D), D > 60000 | Long-running tasks (>60s) | Task IDs with durations |
+| task_output(Id, _, stderr, Content), regex_match(Content, "error\|Error\|ERROR") | Tasks with error output | Task IDs with error content |
+| task(Id, _, _, _, grant(G), _, _, _, _, _, _, _, _, _), not(grant_valid(G)) | Tasks whose grants have expired since submission | Security audit candidates |
+
+---
+
+## Appendix G: Direct Download Resource Address Formats
+
+### G.1 Address Syntax
+
+| Scheme | Format | Description | Example |
+|--------|--------|-------------|---------|
+| kb:// | kb://kb_name/predicate/arg1/arg2/... | Specific fact by predicate and args | kb://kb_vdr_training/parameter_value/layer.1.weight/step_0 |
+| kb:// | kb://kb_name/* | All facts in KB | kb://kb_characters_b/* |
+| kb:// | kb://kb_name/?predicate=X&arg1=Y | Query-style filter | kb://kb_vdr_training/?predicate=gradient_at&step=0 |
+| wd:// | wd://topic_name/binding_key | Working data binding | wd://story_b/bob_age |
+| wd:// | wd://topic_name/* | All bindings in topic | wd://story_b/* |
+| fs:// | fs://env_id/absolute/path | File in environment | fs://env_vdr_test/workspace/gym_16.py |
+| fs:// | fs://env_id/path/* | Directory listing | fs://env_vdr_test/workspace/gym/* |
+| task:// | task://task_id/stdout | Task standard output | task://task_047/stdout |
+| task:// | task://task_id/stderr | Task standard error | task://task_047/stderr |
+| task:// | task://task_id/result | Task structured result | task://task_047/result |
+| task:// | task://task_id/chunks | All output chunks | task://task_047/chunks |
+| ckpt:// | ckpt://step_N | Full checkpoint at step N | ckpt://step_100 |
+| ckpt:// | ckpt://step_N/param_path | Single parameter at checkpoint | ckpt://step_100/layer.1.weight |
+| ver:// | ver://project/artifact/N | Specific version content | ver://project_vdr/gym_16/2 |
+| ver:// | ver://project/artifact/latest | Latest version | ver://project_vdr/gym_16/latest |
+| ver:// | ver://project/artifact/tagged/tag | Tagged version | ver://project_vdr/gym_16/tagged/release |
+| diff:// | diff://addr_a/addr_b | Computed diff between two resources | diff://ckpt_step_0/ckpt_step_100 |
+| export:// | export://kb_name | Full KB export as JSON | export://kb_characters_b |
+| export:// | export://kb_name?format=csv | KB export in specified format | export://kb_vdr_training?format=csv |
+| ctx:// | ctx://snapshot_name | Context snapshot | ctx://context_before_refactor |
+| log:// | log://env_id | Execution log for environment | log://env_vdr_test |
+| log:// | log://env_id?operation=fs_write | Filtered execution log | log://env_vdr_test?operation=fs_write |
+
+### G.2 Output Formats for Direct Download
+
+| Resource Type | Default Format | Alternative Formats | Content-Type |
+|---------------|---------------|-------------------|-------------|
+| KB fact(s) | Structured text | JSON, CSV, LaTeX | text/plain, application/json |
+| Working data binding | Key: value text | JSON | text/plain |
+| File | Raw file content | — | Detected from extension |
+| Task stdout/stderr | Raw text | — | text/plain |
+| Task result | Structured result | JSON | application/json |
+| Checkpoint | JSON (all params) | Per-param text | application/json |
+| Version | Raw content | With metadata header | Detected from content |
+| Diff | Unified diff format | Side-by-side, JSON | text/plain |
+| KB export | JSON | CSV, Prolog format | application/json |
+| Execution log | Structured text | JSON, CSV | text/plain |
+
+### G.3 Authorization Matrix for Download
+
+| Resource Scheme | Required Permission | Additional Grant | Notes |
+|----------------|-------------------|-----------------|-------|
+| kb:// | user_can_see(User, KB) | None | KB visibility controls access |
+| wd:// | user_can_see(User, topic_kb) | None | Topic KB visibility |
+| fs:// | user_can_see(User, env_kb) | filesystem read grant | Needs both KB access and fs grant |
+| task:// | task belongs to user's topic | None | Scoped by topic ownership |
+| ckpt:// | user_can_see(User, training_kb) | None | Training KB visibility |
+| ver:// | user_can_see(User, project_kb) | None | Project KB visibility |
+| diff:// | Permission for both source addresses | Per source address | Both ends must be authorized |
+| export:// | user_can_see(User, KB) | None | KB visibility |
+| ctx:// | user owns the context | None | Personal to user |
+| log:// | user_can_see(User, env_kb) | None | Environment KB visibility |
+
+---
+
+## Appendix H: Version Management Reference
+
+### H.1 Version Record Structure
+
+| Field | Type | Required | Description | Example |
+|-------|------|----------|-------------|---------|
+| project | atom | Yes | Project KB name | "project_vdr" |
+| artifact | atom | Yes | Artifact identifier | "gym_16_script" |
+| version_num | number | Yes | Sequential version number | 2 |
+| content_ref | atom | Yes | KB address of content | "kb_vdr_gyms/gym_16_v2" |
+| created_at | timestamp | Yes | Creation time | timestamp(2026, 5, 16, 15, 0, 0) |
+| created_by | atom | Yes | Creator identifier | "system" or "alice" |
+| parent_version | number or none | Yes | Previous version number | 1 |
+| tags | list(atom) | No | Version tags | ["release", "tested"] |
+| test_result | atom | No | Test outcome summary | "20/20 passed" |
+| notes | atom | No | Human-readable description | "fixed maxflow BFS" |
+| size_bytes | number | No | Content size | 4096 |
+| checksum | atom | No | Content hash | "a1b2c3d4..." |
+| diff_from_parent | atom | No | Reference to diff | "kb_vdr_gyms/gym_16_diff_v1_v2" |
+
+### H.2 Version Query Patterns
+
+| Query | Purpose | Example |
+|-------|---------|---------|
+| Latest version | What is the current version? | latest("project_vdr", "gym_16_script", N) |
+| Version by tag | Which version is tagged release? | version(P, A, V, _, _, _, _, tags(T), _, _), member("release", T) |
+| All versions | Full history of artifact | findall(V, version(P, A, V, _, _, _, _, _, _, _), Vs) |
+| Versions with failures | Which versions had test failures? | version(P, A, V, _, _, _, _, _, Result, _), Result \= "all passed" |
+| Versions by author | What did Alice create? | version(P, A, V, _, _, created_by("alice"), _, _, _, _) |
+| Versions in date range | What changed this week? | version(P, A, V, _, created_at(T), _, _, _, _, _), T > start, T < end |
+| Diff chain | How did artifact evolve? | Traverse parent_version links from latest to version 1 |
+| Cross-artifact versions | Everything created at this step | version(P, _, V, _, created_at(T), _, _, _, _, _) for fixed T |
+
+### H.3 Version Operations and Their Command Tokens
+
+| Operation | Command Token | Preconditions | Side Effects |
+|-----------|--------------|---------------|-------------|
+| Create | VERSION_CREATE(project, artifact, content, notes) | Project KB exists | New version fact, content stored, latest updated |
+| Tag | VERSION_TAG(project, artifact, version, tag) | Version exists | Tag added to version record |
+| Untag | VERSION_UNTAG(project, artifact, version, tag) | Tag exists on version | Tag removed |
+| Retrieve | KB_QUERY + DIRECT_OUTPUT(ver://...) | Version exists, user authorized | Content served |
+| Diff | PURE_FN(diff, [content_v1, content_v2]) | Both versions exist | Diff computed (not stored unless explicit) |
+| Rollback | VERSION_CREATE with content from old version | Old version retrievable | New version created with old content |
+| Delete | KB_RETRACT(version record) | Admin authorization | Version record removed (content may be retained) |
+| Freeze | Set version immutable flag | Version exists | Prevents modification of version record |
+
+---
+
+## Appendix I: Scratchpad and Internal Reasoning Reference
+
+### I.1 Scratchpad Entry Types
+
+| Entry Type | Content | Visible To | Surfaceable Via |
+|-----------|---------|-----------|----------------|
+| Pure primitive call | Primitive name, args, result | Owner | /show scratchpad |
+| KB query (internal) | Query, results | Owner | /show scratchpad |
+| Constraint check | Constraint name, result | Owner | /show scratchpad |
+| Grant verification | Grant checked, outcome | Owner | /show scratchpad |
+| Reasoning step | Natural language internal thought | Owner | /show scratchpad |
+| Plan step | Planned action before execution | Owner | /show scratchpad |
+| Error recovery | Failed action, recovery strategy | Owner | /show scratchpad |
+
+### I.2 Scratchpad Retention Policy
+
+| Policy | Retention | Purpose |
+|--------|-----------|---------|
+| Current turn | Always retained during turn processing | Active reasoning |
+| Previous turn | Retained if topic unchanged | Continuity |
+| Older turns | Pruned unless flagged | Memory management |
+| Flagged entries | Retained indefinitely | User or system marked as important |
+| Error entries | Retained for 10 turns | Debugging |
+
+### I.3 Scratchpad Surfacing Commands
+
+| Command | Effect | Authorization |
+|---------|--------|--------------|
+| /show scratchpad | Display current turn's scratchpad | Owner only |
+| /show scratchpad turn(N) | Display specific turn's scratchpad | Owner only |
+| /show scratchpad last(5) | Display last 5 turns' scratchpads | Owner only |
+| /show scratchpad filter(pure_fn) | Show only pure primitive calls | Owner only |
+| /show scratchpad filter(kb_query) | Show only KB queries | Owner only |
+| /scratchpad on | Always show scratchpad in output | Owner only |
+| /scratchpad off | Hide scratchpad (default) | Owner only |
+
+---
+
+## Appendix J: Reminder and Watch Reference
+
+### J.1 Reminder Structure
+
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| name | atom | Yes | — | Unique identifier |
+| condition | fact | Yes | — | Prolog condition to evaluate |
+| message | atom | Yes | — | Message to display when triggered |
+| check_frequency | enum | Yes | — | every_turn, on_topic_enter, on_kb_change, once |
+| requires_ack | bool | No | true | Must user acknowledge? |
+| created_at | number | Yes | current_turn | Turn when created |
+| created_by | atom | Yes | — | "user" or "system" |
+| acknowledged | bool | No | false | Has user acknowledged? |
+| snoozed_until | number | No | none | Turn until which snooze is active |
+| topic | atom | Yes | — | Associated topic |
+| priority | enum | No | normal | low, normal, high, urgent |
+| max_displays | number | No | unlimited | Stop showing after N times |
+| display_count | number | No | 0 | Times shown so far |
+
+### J.2 Watch Structure
+
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| name | atom | Yes | — | Unique identifier |
+| condition | fact | Yes | — | Prolog condition to evaluate |
+| message | atom | Yes | — | Message template with variables |
+| watch_type | enum | Yes | — | on_change, on_threshold, on_pattern |
+| target_kb | atom | No | active | KB to monitor for changes |
+| target_predicate | atom | No | any | Specific predicate to watch |
+| active | bool | No | true | Currently monitoring? |
+| triggered_count | number | No | 0 | Times triggered |
+| last_triggered | number | No | none | Turn when last triggered |
+| topic | atom | Yes | — | Associated topic |
+| auto_dismiss | bool | No | false | Dismiss after first trigger? |
+
+### J.3 Reminder and Watch Lifecycle
+
+| State | Reminders | Watches |
+|-------|-----------|---------|
+| Created | Fact asserted in topic KB | Fact asserted in topic KB |
+| Active | Evaluated per check_frequency | Evaluated on relevant KB changes |
+| Triggered | Condition met, message queued | Condition met, message queued |
+| Displayed | Message shown to user | Message shown to user |
+| Acknowledged | User clicks ack, stops repeating | Resets for next trigger (unless auto_dismiss) |
+| Snoozed | Suppressed for N turns | N/A (watches re-trigger on next change) |
+| Expired | max_displays reached | N/A |
+| Deactivated | Topic parked or closed | Watch disabled by user or topic close |
+
+### J.4 Prompted Constraint Patterns
+
+| User Request | Resulting Reminder/Watch | Type |
+|-------------|------------------------|------|
+| "Remind me about X when we discuss Y" | Reminder on topic_contains(active, "Y") | Reminder, on_topic_enter |
+| "Check each turn if constraints are violated" | Watch on violations(_, Vs), Vs \= [] | Watch, every_turn |
+| "Tell me when the loss drops below 0.01" | Watch on loss_at(_, L), L < 1/100 | Watch, on_change |
+| "Don't let me forget to fix the BFS bug" | Reminder on active_topic("vdr_gyms") | Reminder, on_topic_enter |
+| "Alert if any parameter denominator exceeds 2^64" | Watch on param_denom > 2^64 | Watch, on_change |
+| "Every 10 turns, summarize what we've done" | Reminder on current_turn mod 10 = 0 | Reminder, every_turn |
+| "When Alice pushes code, notify me" | Watch on execution_log(_, "git_push", _, _, user("alice"), _, _, _, _, _, _, _, _) | Watch, on_change |
+
+---
+
+## Appendix K: Fat Struct KB Entry Reference
+
+### K.1 All Fields of a KB Entry
+
+| Field Group | Field | Type | Used By | Description |
+|------------|-------|------|---------|-------------|
+| Identity | id | atom | All | Unique entry identifier |
+| Identity | predicate | atom | All | Fact predicate name |
+| Identity | args | list(term) | All | Fact arguments |
+| Identity | kb | atom | All | Owning KB name |
+| Value | value | term | All | Primary value |
+| Value | value_type | atom | All | VDR term type of value |
+| Provenance | derived_from | derivation | Computed | How this value was produced |
+| Provenance | source | atom | Imported | External source reference |
+| Provenance | created_at | timestamp | All | When entry was created |
+| Provenance | modified_at | timestamp | Mutable | When last modified |
+| Provenance | created_by | atom | All | Who or what created this |
+| Weight Provenance | initialization | init_record | Params | How parameter was initialized |
+| Weight Provenance | gradient_history | list(grad_record) | Params | Gradient at each training step |
+| Weight Provenance | update_history | list(update_record) | Params | Update applied at each step |
+| Weight Provenance | checkpoint_values | list(ckpt_record) | Params | Value at each checkpoint |
+| Weight Provenance | denominator_complexity | denom_record | Params | Denominator size tracking |
+| Data Provenance | data_source | source_record | Data | Original data source |
+| Data Provenance | preprocessing_chain | list(transform_record) | Data | Transforms applied |
+| Data Provenance | confidence | fraction | Data | Source reliability estimate |
+| Data Provenance | quality_flags | list(atom) | Data | Quality annotations |
+| Weighting | data_weight | fraction | Training data | Contribution to training loss |
+| Weighting | provenance_weight | fraction | Derived values | Confidence in derivation chain |
+| Versioning | version | number | Versioned | Current version number |
+| Versioning | version_history | list(version_record) | Versioned | All version records |
+| Constraints | local_constraints | list(constraint) | Constrained | Entry-specific constraints |
+| Tags | tags | list(atom) | Tagged | Classification tags |
+
+### K.2 Population Patterns by Entry Type
+
+| Entry Type | Always Populated | Usually Populated | Rarely Populated |
+|-----------|-----------------|------------------|-----------------|
+| Simple binding | id, predicate, value, kb, created_at | created_by, tags | Everything else |
+| Model parameter | id, predicate, value, kb, created_at, initialization | gradient_history, update_history, denominator_complexity | data_source, confidence |
+| Training data | id, predicate, value, kb, created_at, data_source | data_weight, preprocessing_chain, quality_flags | gradient_history, initialization |
+| Inference result | id, predicate, value, kb, created_at, derived_from | provenance_weight | data_weight, initialization |
+| Attention weight | id, predicate, value, kb, created_at, derived_from | local_constraints (sum_to_one) | gradient_history, data_source |
+| External import | id, predicate, value, kb, created_at, source | confidence, quality_flags | derived_from, initialization |
+| Constraint fact | id, predicate, value, kb, created_at | local_constraints, tags | weighting fields, provenance fields |
+| Version record | id, predicate, value, kb, created_at, version | version_history, tags | weighting, provenance |
+
+---
+
+## Appendix L: Provenance Weight Propagation Reference
+
+### L.1 Provenance Weight Assignment Rules
+
+| Source Type | Default Weight | Adjustable? | Justification |
+|------------|---------------|-------------|---------------|
+| Exact VDR arithmetic | fraction(1, 1) | No | Mathematically guaranteed correct |
+| Truncated Taylor series depth N | fraction(10^N - 1, 10^N) | Yes (by depth) | Known truncation error bound |
+| Q335 projection | fraction(10^100 - 1, 10^100) | Yes (by exponent) | Rounding bounded by 2^-336 |
+| Exact Prolog derivation | fraction(1, 1) | No | Logical derivation is exact |
+| Operational primitive result | fraction(1, 1) | Conditional | Exact if process succeeded |
+| User-stated fact | fraction(1, 2) | Yes | Not independently verified |
+| External import (verified) | fraction(9, 10) | Yes | Source reliability estimate |
+| External import (unverified) | fraction(1, 10) | Yes | Unknown reliability |
+| LLM-generated content | fraction(1, 4) | Yes | Token prediction, not computation |
+| Interpolated or estimated value | fraction(1, 3) | Yes | Approximate by construction |
+
+### L.2 Propagation Rules
+
+| Derivation Pattern | Output Weight | Formula |
+|-------------------|---------------|---------|
+| Single exact source | Same as source | W_out = W_in |
+| Multiple exact sources (AND) | Minimum of sources | W_out = min(W_1, W_2, ..., W_n) |
+| Multiple sources (OR/choice) | Maximum of sources | W_out = max(W_1, W_2, ..., W_n) |
+| Chain of derivations | Minimum along chain | W_out = min(W_step1, W_step2, ...) |
+| Mixed exact and approximate | Minimum (weakest link) | W_out = min(all inputs) |
+| Aggregation over many sources | Weighted average | W_out = vdr_mean(W_1, ..., W_n) |
+| User override | User-specified value | W_out = user_value |
+
+### L.3 Provenance Weight Query Patterns
+
+| Query | Purpose | Returns |
+|-------|---------|---------|
+| effective_provenance_weight(V, W) | What is the confidence in value V? | Exact fraction |
+| weakest_link(V, Source, W) | What is the weakest source in V's derivation? | Source reference and weight |
+| all_weights_above(Threshold, Values) | Which values exceed confidence threshold? | Value list |
+| all_weights_below(Threshold, Values) | Which values are below confidence threshold? | Value list (audit candidates) |
+| weight_distribution(KB, Distribution) | Distribution of provenance weights in a KB | Histogram data |
+
+---
+
+## Appendix M: Data Weight Management Reference
+
+### M.1 Data Weight Operations
+
+| Operation | Effect | Constraint Checked | Logged As |
+|-----------|--------|-------------------|-----------|
+| Set weight | Assign training weight to data point | Total weights normalization | weight_set(sample_id, old_w, new_w, turn) |
+| Normalize weights | Adjust all weights to sum to target | Exact sum verification | weight_normalize(target, turn) |
+| Upweight | Increase specific sample's weight | Total sum after adjustment | weight_adjust(sample_id, delta, turn) |
+| Downweight | Decrease specific sample's weight | Non-negativity | weight_adjust(sample_id, -delta, turn) |
+| Zero weight | Remove sample from training | Sample flagged as excluded | weight_exclude(sample_id, reason, turn) |
+| Restore weight | Re-include excluded sample | Total sum after restore | weight_include(sample_id, turn) |
+| Weight by quality | Set weights proportional to quality | All quality flags checked | weight_by_quality(quality_fn, turn) |
+| Uniform weights | Set all weights equal | Exact sum = 1 | weight_uniform(turn) |
+
+### M.2 Data Weight Constraint Invariants
+
+| Invariant | Condition | Type | On Violation |
+|-----------|-----------|------|-------------|
+| Non-negativity | All data_weight >= 0 | Axiom | Error |
+| Sum to target | sum(data_weights) = declared_target | Operational | Warn and renormalize |
+| No orphan weights | Every weighted sample exists in dataset | Operational | Warn |
+| Weight history complete | Every weight change is logged | Audit | Error |
+| Excluded samples zero | Excluded samples have weight 0 | Operational | Error |
+
+---
+
+## Appendix N: Chunked I/O Processing Reference
+
+### N.1 Chunk Processing Pipeline
+
+| Stage | Input | Processing | Output | KB Update |
+|-------|-------|-----------|--------|----------|
+| 1. Receive | Raw bytes from process | Decode to text, split by newline | Text lines | task_output chunk fact |
+| 2. Classify | Text line | Detect: stdout/stderr, progress, error, result | Classified chunk | Classification tag on chunk |
+| 3. Pattern check | Classified chunk | Match against active watches | Watch trigger events | watch_triggered facts |
+| 4. Constraint check | Classified chunk | Check resource limits, error patterns | Constraint status | constraint_checked facts |
+| 5. Store | Processed chunk | Assert into task KB | — | chunk stored with metadata |
+| 6. Notify (if streaming) | Stored chunk | Format for user display | Display text | notification queued |
+
+### N.2 Chunk Size and Timing Policies
+
+| Policy | Parameter | Default | Adjustable? |
+|--------|-----------|---------|-------------|
+| Max chunk size | Bytes before forced flush | 4096 | Yes, per task |
+| Max chunk delay | Seconds before forced flush | 5 | Yes, per task |
+| Line buffering | Flush on newline? | Yes for stdout, no for binary | Per stream |
+| Progress detection | Regex for progress patterns | "\d+%\|step \d+\|ETA" | Per environment |
+| Error detection | Regex for error patterns | "error\|Error\|ERROR\|FAIL\|panic" | Per environment |
+| Chunk retention | How long to keep chunks | Until task acknowledged | Per retention policy |
+
+### N.3 Streaming vs Polling Comparison
+
+| Aspect | Streaming Mode | Polling Mode |
+|--------|---------------|-------------|
+| User experience | Live output interleaved with conversation | Results on next turn after completion |
+| Latency | Chunk arrives → displayed immediately | Chunk arrives → stored → displayed on poll |
+| Interruption | Can interrupt conversation flow | Never interrupts |
+| Appropriate for | Actively monitored tasks | Background tasks |
+| Activation | /watch task_id | Default |
+| Deactivation | /unwatch task_id | N/A (always polling) |
+| Output volume | Can be noisy for chatty processes | Clean, shows only summary |
+
+---
+
+## Appendix O: Context Assembly Reference
+
+### O.1 Context Components
+
+| Component | Source | Priority | Size Control |
+|-----------|--------|----------|-------------|
+| Active constraints | Effective constraints from in-scope KBs | Highest — always included | Limited by active KB count |
+| System instructions | Global KB rules | Highest — always included | Fixed, small |
+| Working data bindings | Active topic's working data set with inheritance | High — key context | Limited by binding count |
+| Pending items | Active topic's pending list | High — actionable | Limited by pending count |
+| Active reminders | Unacknowledged triggered reminders | High — requires attention | Limited by reminder count |
+| Recent conversation turns | Conversation KB last N turns | Medium — recency | Configurable N (default 20) |
+| Referenced KB facts | Facts explicitly referenced in recent turns | Medium — relevance | Auto-managed |
+| Secondary scope facts | Facts from explicitly activated secondary KBs | Low — supplementary | User-controlled |
+| Scratchpad history | Previous turn's scratchpad entries | Low — continuity | Last turn only by default |
+
+### O.2 Context Size Management
+
+| Strategy | Mechanism | Effect |
+|----------|----------|--------|
+| Turn window | Include last N turns only | Controls conversation history size |
+| Binding pruning | Include only recently accessed bindings | Reduces working data volume |
+| Constraint summary | Include constraint names, not full conditions | Reduces constraint overhead |
+| KB scope limiting | Limit depth of KB inheritance walk | Reduces inherited fact volume |
+| Fact relevance scoring | Prioritize facts referenced in recent turns | Keeps context focused |
+| Explicit inclusion/exclusion | User /context add and /context remove | Direct user control |
+| Compression | Summarize older turns into KB facts | Preserves key information in less space |
+
+### O.3 Context Snapshot Comparison
+
+| Field | Snapshot A | Snapshot B | Diff |
+|-------|-----------|-----------|------|
+| Active KBs | [global, vdr, vdr_core] | [global, vdr, vdr_llm] | Changed: vdr_core → vdr_llm |
+| Constraints | [exact, py38, 30sec] | [exact, py38, softmax_depth] | Removed: 30sec. Added: softmax_depth |
+| Working data | {modules: 24, tests: 705} | {modules: 24, tests: 721, has_autodiff: true} | Added: has_autodiff. Changed: tests |
+| Pending | [gaussian_elim, cross_entropy] | [cross_entropy, better_exp] | Removed: gaussian_elim. Added: better_exp |
+| Reminders | [maxflow_fix] | [] | Removed: maxflow_fix (acknowledged) |
+
+---
+
+## Appendix P: LLM Output Stream Token Classification
+
+### P.1 Token Types in Output Stream
+
+| Token Class | Subtype | Rendered As | Executed? | Logged? |
+|------------|---------|------------|----------|---------|
+| TEXT | prose | Conversation text | No | Turn record |
+| TEXT | code_block | Formatted code | No | Turn record |
+| TEXT | inline_code | Inline formatted | No | Turn record |
+| CMD | PURE_FN | Hidden or bracketed | Yes | Scratchpad + result KB |
+| CMD | OP_FN | Hidden or bracketed | Yes | Execution log |
+| CMD | KB_ASSERT | Hidden | Yes | KB update log |
+| CMD | KB_RETRACT | Hidden | Yes | KB update log |
+| CMD | KB_QUERY | Hidden | Yes | Scratchpad |
+| CMD | ENV_EXEC | Bracketed if show_commands | Yes | Environment log + task |
+| CMD | ENV_UPLOAD | Bracketed if show_commands | Yes | Environment log |
+| CMD | ENV_DOWNLOAD | Bracketed if show_commands | Yes | Environment log |
+| CMD | CTX_ACTIVATE | Hidden | Yes | Context log |
+| CMD | CTX_DEACTIVATE | Hidden | Yes | Context log |
+| CMD | CTX_SNAPSHOT | Hidden | Yes | Snapshot KB created |
+| CMD | VERSION_CREATE | Bracketed if show_commands | Yes | Version record |
+| CMD | VERSION_TAG | Hidden | Yes | Version record |
+| CMD | STORE_RESULT | Hidden | Yes | KB update |
+| CMD | DIRECT_OUTPUT | Data block in response | Yes (data retrieval) | Access log |
+| CMD | ATTACHMENT | Download link in response | Yes (data retrieval) | Access log |
+| META | turn_boundary | Not rendered | N/A | Turn counter |
+| META | scratchpad_start | Not rendered (unless /scratchpad on) | N/A | Scratchpad boundary |
+| META | scratchpad_end | Not rendered (unless /scratchpad on) | N/A | Scratchpad boundary |
+
+### P.2 Output Stream Ordering Rules
+
+| Rule | Description | Rationale |
+|------|-------------|-----------|
+| Scratchpad before output | All scratchpad commands execute before user-facing output begins | Computation must complete before results are framed |
+| Text frames data | TEXT tokens surround DIRECT_OUTPUT blocks | Data needs human context |
+| Commands in causal order | Upload before execute, execute before store_result | Dependencies respected |
+| Notifications at end | Completed task notifications appear after main response | Non-disruptive |
+| Attachments at end | File attachments appear after all text | Clean reading flow |
+
+---
+
+## Appendix Q: Cross-Paper Integration Reference
+
+### Q.1 How VDR-6 Primitives Map to VDR-1 Through VDR-4 Capabilities
+
+| VDR Paper | Capability | VDR-6 Primitive(s) | Category |
+|-----------|-----------|-------------------|----------|
+| VDR-1 | Exact fraction arithmetic | vdr_add through vdr_max (#54-73) | Arithmetic |
+| VDR-1 | Normalization | vdr_simplify (#70) | Arithmetic |
+| VDR-1 | Discrete derivative | Composable from vdr_add, vdr_sub, vdr_div | Arithmetic |
+| VDR-1 | Discrete integral | Composable from vdr_add, vdr_mul (Riemann sum) | Arithmetic |
+| VDR-1 | Rebase and lift | Exposed through KB term operations | KB |
+| VDR-2 | GCD, LCM | vdr_gcd, vdr_lcm (#61-62) | Arithmetic |
+| VDR-2 | Binomial coefficients | vdr_binomial (#78) | Arithmetic |
+| VDR-2 | Fibonacci | vdr_fibonacci (#79) | Arithmetic |
+| VDR-2 | Euler's method | Composable from arithmetic primitives | Arithmetic |
+| VDR-2 | Hilbert matrix | mat_inv, mat_mul, mat_det (#115-118) | Linear Algebra |
+| VDR-3 | Graph algorithms | graph_* (#173-185) | Graph |
+| VDR-3 | Bayesian updating | prob_bayes (#135) | Statistics |
+| VDR-3 | Haar wavelet | Composable from vec_add, vec_scale | Linear Algebra |
+| VDR-3 | Q335 constants | Stored as qbasis terms in KBs | KB |
+| VDR-4 | Softmax | softmax, softmax_surrogate (#139-140) | Statistics |
+| VDR-4 | Autodiff | Node graph through command token sequences | CMD |
+| VDR-4 | Linear layer | mat_matvec, vec_add (#124, 109) | Linear Algebra |
+| VDR-4 | Training loop | Composable from primitives + command tokens | CMD |
+| MATH-3 | Elliptic integrals | Composable from vdr_mul, vdr_sum + series | Arithmetic |
+| MATH-4 | Q335 basis | qbasis term type + vdr_add on integers | KB + Arithmetic |
+
+### Q.2 How VDR-6 Execution Maps to VDR-5 Knowledge Architecture
+
+| VDR-5 Component | VDR-6 Execution Support |
+|-----------------|------------------------|
+| KB fact assertion | KB_ASSERT command token, kb_assert primitive (#204) |
+| KB fact retraction | KB_RETRACT command token, kb_retract primitive (#205) |
+| KB query | KB_QUERY command token, kb_query/kb_query_in/kb_query_across (#206-208) |
+| Scoped search | kb_active_scope (#211) determines primitive search space |
+| Constraint verification | constraint_check, constraint_check_all (#213-214) |
+| Working data set operations | dict_* primitives (#94-108) for binding storage |
+| Topic management | kb_switch_topic (#212) + CTX_ACTIVATE/DEACTIVATE tokens |
+| Direct surfacing | DIRECT_OUTPUT and ATTACHMENT command tokens |
+| Provenance recording | KB_ASSERT after each primitive execution with derivation |
+| Conversation tracking | Turn records as KB facts, topic state updates via KB operations |
+| Reminder and watch evaluation | Prolog rule evaluation using KB primitives every turn |
+| Permission checking | KB query against grant facts before operational primitive execution |
+
+---
+
+## Appendix R: Implementation Test Plan
+
+### R.1 Pure Primitive Test Requirements
+
+| Category | Min Tests | Edge Cases Required | Invariant Tests |
+|----------|----------|-------------------|-----------------|
+| String (17) | 51 (3 per) | Empty string, single char, unicode, max length | Reverse of reverse = identity |
+| List (34) | 102 (3 per) | Empty list, single element, duplicates, nested | Sort permutation, length preservation |
+| Arithmetic (26) | 78 (3 per) | Zero, negative, large numerator/denominator | Commutativity, associativity, identity |
+| Set (14) | 42 (3 per) | Empty set, singleton, disjoint, identical | Union/intersection laws |
+| Dictionary (15) | 45 (3 per) | Empty dict, single entry, overwrite, missing key | Get after set = set value |
+| Linear Algebra (16) | 48 (3 per) | Zero vector/matrix, identity, singular | M * inv(M) = I, det(I) = 1 |
+| Statistics (16) | 48 (3 per) | Single element, all equal, all different | Sum of normalized = 1 |
+| Conversion (14) | 42 (3 per) | Zero, negative, boundary values, max digits | Parse of format = identity |
+| Date/Time (10) | 30 (3 per) | Leap year boundaries, month boundaries, epoch | Date add then subtract = original |
+| Hashing (8) | 24 (3 per) | Empty input, same input twice, long input | Same input → same output (determinism) |
+| Graph (13) | 39 (3 per) | Empty graph, single node, disconnected, cycle | Connected components partition all nodes |
+| Pattern (7) | 21 (3 per) | Empty pattern, no match, full match, special chars | Match is consistent with search |
+| Logic (11) | 33 (3 per) | True/false conditions, empty lists, type errors | Try_catch catches, assert_that asserts |
+| KB (15) | 45 (3 per) | Empty KB, scope boundaries, cross-scope | Assert then query returns asserted fact |
+| **Total minimum** | **648** | | |
+
+### R.2 Operational Primitive Test Requirements
+
+| Category | Min Tests | Environment | Mock Available? |
+|----------|----------|-------------|----------------|
+| Filesystem (15) | 45 | Docker test container | Yes (temp directory) |
+| Compilation (4) | 12 | Docker with compilers | Yes (known source files) |
+| Execution (5) | 15 | Docker test container | Yes (known scripts) |
+| Linting (8) | 24 | Docker with linters | Yes (known source files) |
+| Network (5) | 15 | Docker with network | Partial (mock server) |
+| Process (7) | 21 | Docker test container | Yes (sleep/echo processes) |
+| **Total minimum** | **132** | | |
+
+### R.3 Integration Test Scenarios
+
+| Scenario | Components Tested | Expected Outcome |
+|----------|------------------|-----------------|
+| Write script, run tests, store results | ENV_UPLOAD + ENV_EXEC + STORE_RESULT + VERSION_CREATE | Version created with test results |
+| Sort KB data by key | KB_QUERY + PURE_FN(list_sort_by_key) + DIRECT_OUTPUT | Sorted data served directly |
+| Check constraint, fix violation, re-check | constraint_check_all + identify violation + KB_ASSERT fix + constraint_check_all | All constraints satisfied |
+| Background compile, poll, retrieve errors | ENV_EXEC(async) + POLL + proc_stderr + DIRECT_OUTPUT | Compilation errors surfaced |
+| Cross-scope query with tagged results | kb_query_across + format_table + DIRECT_OUTPUT | All matches from all KBs with source tags |
+| Grant expiration during long task | OP_FN with grant expiring mid-task | Task completes (grant checked at start), logged with warning |
+| Version rollback after failed test | VERSION_CREATE + ENV_EXEC(test) → fail + retrieve old version content + VERSION_CREATE(rollback) | New version with old content |
+| Reminder triggers on topic enter | Switch topic → reminder condition met → notification displayed | User sees reminder, can acknowledge |
+| Direct download large file | ATTACHMENT(fs://env/large_file) | File served without LLM tokenization |
+| Scratchpad computation not surfaced | PURE_FN in scratchpad + TEXT output using result | User sees framed result, not computation |
+
+---
+
+## Appendix S: Cumulative System Statistics
+
+### S.1 Complete Module Count
+
+| Layer | Existing (VDR-1 to VDR-4) | Specified (VDR-5) | Specified (VDR-6) | Total |
+|-------|--------------------------|-------------------|-------------------|-------|
+| Arithmetic | 5 | 0 | 0 | 5 |
+| Transcendental | 3 | 0 | 0 | 3 |
+| ML | 4 | 0 | 0 | 4 |
+| Infrastructure | 8 | 0 | 0 | 8 |
+| Architecture | 4 | 0 | 0 | 4 |
+| Logic/Knowledge | 0 | 3 | 0 | 3 |
+| Execution | 0 | 0 | 3 | 3 |
+| **Total** | **24** | **3** | **3** | **30** |
+
+New VDR-6 modules: `primitives.py` (pure primitive implementations), `operational.py` (operational primitives and grant checking), `command.py` (command token parsing and execution).
+
+### S.2 Complete Test Count
+
+| Source | Tests | Passed | Failed (test error) | Failed (VDR error) |
+|--------|-------|--------|--------------------|--------------------|
+| VDR-1 core tests | 68 | 68 | 0 | 0 |
+| VDR-2 gyms (15 domains) | 282 | 276 | 6 | 0 |
+| VDR-3 gyms (8 domains) | 157 | 152 | 5 | 0 |
+| VDR-4 ML stack | 198 | 196 | 2 | 0 |
+| VDR-6 pure primitives (planned) | 648 | — | — | — |
+| VDR-6 operational (planned) | 132 | — | — | — |
+| VDR-6 integration (planned) | 30+ | — | — | — |
+| **Existing total** | **705** | **692** | **13** | **0** |
+| **Planned total** | **~1515** | — | — | — |
+
+### S.3 Complete Primitive Count
+
+| Type | Categories | Primitives | Authorization |
+|------|-----------|-----------|--------------|
+| Pure | 14 | 218 | None required |
+| Operational | 6 | 44 | Positive grant required |
+| **Total** | **20** | **262** | |
+
+### S.4 Complete Paper Series
+
+| Paper | Registry | Pages | Central Result |
+|-------|----------|-------|----------------|
+| VDR-1 | @HOWL-VDR-1-2026 | 14+19 appendices | Exact arithmetic system |
+| VDR-2 | @HOWL-VDR-2-2026 | 24+17 appendices | 15 domains tested |
+| VDR-3 | @HOWL-VDR-3-2026 | 17+8 appendices | 23 domains, no unique boundaries |
+| VDR-4 | @HOWL-VDR-4-2026 | 16+4 appendices | Working exact transformer |
+| VDR-5 | @HOWL-VDR-5-2026 | 17+15 appendices + addendum | Prolog KB architecture spec |
+| VDR-6 | @HOWL-VDR-6-2026 | 16+19 appendices | 262 primitives, execution layer spec |
+| MATH-3 | @HOWL-MATH-3-2026 | 12+3 appendices | Elliptic integrals, Borwein acceleration |
+| MATH-4 | @HOWL-MATH-4-2026 | 11+2 appendices | Q335 universal basis |
+
+---
+
+**END VDR-6 EXTENDED APPENDIX TABLES**
