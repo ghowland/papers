@@ -16,3 +16,12 @@ from vdr.export import to_decimal, to_float, to_fraction
 import vdr.active_mul
 vdr.active_mul.install()
 
+# Auto-install Functions
+from vdr.fn import (
+    FnRemainder, vdr_fn, resolve, is_functional,
+    make_constant_fn, make_series_fn, make_newton_fn, make_iterative_fn,
+    discrete_derivative, discrete_integral, discrete_integral_trapz,
+    discrete_derivative_nth, resolve_recursive,
+)
+import vdr.fn
+vdr.fn.install()
