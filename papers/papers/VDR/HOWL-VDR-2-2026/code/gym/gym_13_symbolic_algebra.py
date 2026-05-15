@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/env python3
 """
 gym_13_symbolic_algebra.py — VDR exercises in symbolic computation

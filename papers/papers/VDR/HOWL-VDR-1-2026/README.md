@@ -53,8 +53,8 @@ If you use this work in a pedagogical or research context, please cite:
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.zzz},
-  url = {https://zenodo.org/record/zzz},
+  doi = {10.5281/zenodo.20207144},
+  url = {https://zenodo.org/record/20207144},
   note={Howland Archive: HOWL-VDR-1-2026. Prerequisites: None (foundation paper) }
 }
 ```

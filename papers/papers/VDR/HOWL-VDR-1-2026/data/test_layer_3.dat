@@ -1,0 +1,140 @@
+=== 1. FnRemainder construction ===
+  FnRemainder: fn:simple
+  is_functional: True
+  expand(0): [1, 2, 0]
+  expand(3): [4, 5, 0]
+  VDR with fn remainder: [0, 1, fn:simple]
+
+=== 2. Resolve functional VDR ===
+  resolve(depth=0)              [1, 2, 0]   (projects to 1/2)
+  resolve(depth=3)              [4, 5, 0]   (projects to 4/5)
+
+=== 3. Projection fails on unresolved functional ===
+  to_fraction() on functional: Cannot project VDR with functional remainder 'simple'. Call resolve(obj, depth) first.
+  correctly blocked
+
+=== 4. Newton-Raphson for sqrt(2) ===
+  sqrt(2) via Newton-Raphson:
+    depth=0: 1 ≈ 1.000000000000000  x²-2=-1
+    depth=1: 3/2 ≈ 1.500000000000000  x²-2=1/4
+    depth=2: 17/12 ≈ 1.416666666666667  x²-2=1/144
+    depth=3: 577/408 ≈ 1.414215686274510  x²-2=1/166464
+    depth=4: 665857/470832 ≈ 1.414213562374690  x²-2=1/221682772224
+    depth=5: 886731088897/627013566048 ≈ 1.414213562373095  x²-2=1/393146012008229658338304
+    depth=6: 1572584048032918633353217/1111984844349868137938112 ≈ 1.414213562373095  x²-2=1/1236510294063800469693771621893337765354742124544
+    depth=7: 4946041176255201878775086487573351061418968498177/3497379255757941172020851852070562919437964212608 ≈ 1.414213562373095  x²-2=1/12231661658605970488646702209964173639623045564667134286386925224636805727742126817029345426161664
+  depth=7 error: 0.00e+00
+
+=== 5. Newton-Raphson for sqrt(3) ===
+  sqrt(3) via Newton-Raphson:
+    depth=0: ≈ 1.000000000000000  x²-3=-2
+    depth=1: ≈ 2.000000000000000  x²-3=1
+    depth=2: ≈ 1.750000000000000  x²-3=1/16
+    depth=3: ≈ 1.732142857142857  x²-3=1/3136
+    depth=4: ≈ 1.732050810014728  x²-3=1/118026496
+    depth=5: ≈ 1.732050807568877  x²-3=1/167163045568562176
+
+=== 6. Series: Leibniz pi/4 ===
+  Leibniz series for pi/4:
+    1 terms: pi ≈ 4.000000000000  (exact frac: 1)
+    2 terms: pi ≈ 2.666666666667  (exact frac: 2/3)
+    6 terms: pi ≈ 2.976046176046  (exact frac: 2578/3465)
+    11 terms: pi ≈ 3.232315809406  (exact frac: 11757173/14549535)
+    51 terms: pi ≈ 3.161198612987  (exact frac: 86954669143685470216056396050813301139357/110027467159390003025279917226039729050575)
+    101 terms: pi ≈ 3.151493401071  (exact frac: 2076129920762732578967087932119645342804559264402526868906969106922175141164675582890147/2635106162757236442495826303084698495565581115509040892412867358728390766099042109898375)
+
+=== 7. Series: Basel problem (pi^2/6) ===
+  Basel series for pi²/6:
+    1 terms: pi²/6 ≈ 1.000000000000  pi ≈ 2.449489742783
+    6 terms: pi²/6 ≈ 1.491388888889  pi ≈ 2.991376494748
+    21 terms: pi²/6 ≈ 1.598430817609  pi ≈ 3.096866949944
+    101 terms: pi²/6 ≈ 1.635081929790  pi ≈ 3.132170426196
+
+=== 8. Iterative function ===
+  Iterative halving from 1024:
+    depth=0: [1024, 1, 0] = 1024
+    depth=1: [512, 1, 0] = 512
+    depth=2: [256, 1, 0] = 256
+    depth=3: [128, 1, 0] = 128
+    depth=4: [64, 1, 0] = 64
+    depth=5: [32, 1, 0] = 32
+    depth=6: [16, 1, 0] = 16
+    depth=7: [8, 1, 0] = 8
+    depth=8: [4, 1, 0] = 4
+    depth=9: [2, 1, 0] = 2
+    depth=10: [1, 1, 0] = 1
+    depth=11: [1, 2, 0] = 1/2
+
+=== 9. Discrete derivative ===
+  d/dx(x²) at x=3, h=1/1000     [6001, 1000, 0]   (projects to 6001/1000)
+  d/dx(x²) at x=0               [1, 1000, 0]   (projects to 1/1000)
+  d/dx(x²) at x=3, h=1/10⁶      [6000001, 1000000, 0]   (projects to 6000001/1000000)
+
+=== 10. Discrete derivative of x^3 ===
+  d/dx(x³) at x=2, h=1/100      [120601, 10000, 0]   (projects to 120601/10000)
+
+=== 11. Second derivative ===
+  d²/dx²(x³) at x=2, h=1/100    [603, 50, 0]   (projects to 603/50)
+  expected ≈ 12.0600, got = 12.0600
+
+=== 12. Discrete integral of x^2 from 0 to 1 ===
+  n=10: integral=57/200 ≈ 0.2850000000  error=4.83e-02
+  n=100: integral=6567/20000 ≈ 0.3283500000  error=4.98e-03
+  n=1000: integral=665667/2000000 ≈ 0.3328335000  error=5.00e-04
+
+=== 13. Trapezoidal integral of x^2 from 0 to 1 ===
+  n=10: integral=67/200 ≈ 0.3350000000  error=1.67e-03
+  n=100: integral=6667/20000 ≈ 0.3333500000  error=1.67e-05
+  n=1000: integral=666667/2000000 ≈ 0.3333335000  error=1.67e-07
+  n=100 left error: 4.98e-03
+  n=100 trap error: 1.67e-05
+
+=== 14. Integral of 1/x from 1 to 2 (approaches ln 2) ===
+  n=10: ≈ 0.693771403175  (ln2=0.693147180560)  error=6.24e-04
+  n=100: ≈ 0.693153430482  (ln2=0.693147180560)  error=6.25e-06
+  n=1000: ≈ 0.693147243060  (ln2=0.693147180560)  error=6.25e-08
+
+=== 15. FnRemainder negation ===
+  original(3): [4, 1, 0]
+  negated(3):  [-4, 1, 0]
+
+=== 16. FnRemainder lift ===
+  original(2): [1, 4, 0]
+  lifted(2):   [3, 4, 0]
+
+=== 17. FnRemainder combination ===
+  a(3) + b(3): [9, 1, 0]
+  a(3) - b(3): [-1, 1, 0]
+
+=== 18. VDR with frame and functional remainder ===
+  VDR(3,7,fn)                   [3, 7, fn:ratio]   (functional, resolve first)
+  resolved(depth=4)             [3, 7, 0 + VDR(4, 5, 0)]   (projects to 19/35)
+
+=== 19. Resolve recursive ===
+  nested functional VDR: [1, 1, fn:outer]
+  resolve_recursive(depth=3)    [1, 1, 0 + VDR(3, 1, 0 + VDR(1, 5, 0))]   (projects to 21/5)
+
+=== 20. Convergence comparison: Newton vs Series for sqrt(2) ===
+  Newton-Raphson sqrt(2):
+    depth=0: digits=0.4  err=4.14e-01
+    depth=1: digits=1.1  err=8.58e-02
+    depth=2: digits=2.6  err=2.45e-03
+    depth=3: digits=5.7  err=2.12e-06
+    depth=4: digits=11.8  err=1.59e-12
+    depth=5: digits=999.0  err=0.00e+00
+    depth=6: digits=999.0  err=0.00e+00
+    depth=7: digits=999.0  err=0.00e+00
+  Newton depth=7 has >100 correct digits: PASS
+
+=== 21. Exact finite difference table ===
+  Finite difference table for x³:
+    f:    [Fraction(0, 1), Fraction(1, 1), Fraction(8, 1), Fraction(27, 1), Fraction(64, 1)]
+    Δf:   [Fraction(1, 1), Fraction(7, 1), Fraction(19, 1), Fraction(37, 1)]
+    Δ²f:  [Fraction(6, 1), Fraction(12, 1), Fraction(18, 1)]
+    Δ³f:  [Fraction(6, 1), Fraction(6, 1)]
+    Δ⁴f:  [Fraction(0, 1)]
+  Δ³(x³) = 6 exactly, Δ⁴(x³) = 0 exactly: PASS
+
+==================================================
+ALL LAYER 3 TESTS PASSED
+==================================================

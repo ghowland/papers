@@ -1,0 +1,71 @@
+
+=== 1. Construction ===
+  a = 1/2       [1, 2, 0]   (projects to 1/2)
+  b = 1/3       [1, 3, 0]   (projects to 1/3)
+  c = 5         [5, 1, 0]   (projects to 5)
+  d = 7/11      [7, 11, 0]   (projects to 7/11)
+
+=== 2. Closed arithmetic ===
+  a + b         [5, 6, 0]   (projects to 5/6)
+  a - b         [1, 6, 0]   (projects to 1/6)
+  a * b         [1, 6, 0]   (projects to 1/6)
+  a / b         [3, 2, 0]   (projects to 3/2)
+  -a            [-1, 2, 0]   (projects to -1/2)
+
+=== 3. Normalization and equality ===
+  raw [2,4,0]   [2, 4, 0]   (projects to 1/2)
+  normalized    [1, 2, 0]   (projects to 1/2)
+  [2,4,0] == [1,2,0]? True (value eq)
+  [2,4,0] ≡ₛ [1,2,0]? False (structural eq)
+  [1,-2,0]      [1, -2, 0]   (projects to -1/2)
+  normalized    [-1, 2, 0]   (projects to -1/2)
+
+=== 4. Return-to-origin (equality recovery) ===
+  start         [3, 7, 0]   (projects to 3/7)
+  +5/13         [74, 91, 0]   (projects to 74/91)
+  -5/13         [3, 7, 0]   (projects to 3/7)
+  recovered: [3, 7, 0] == [3, 7, 0]? True
+
+=== 5. Multiply/divide roundtrip ===
+  start         [3, 7, 0]   (projects to 3/7)
+  *11/3         [11, 7, 0]   (projects to 11/7)
+  /11/3         [3, 7, 0]   (projects to 3/7)
+  recovered: True
+
+=== 6. Closed rebase ===
+  start         [1, 2, 0]   (projects to 1/2)
+  rebase→4      [1, 2, 0]   (projects to 1/2)
+  rebase→6      [1, 2, 0]   (projects to 1/2)
+
+=== 7. Active rebase (closed source, incompatible target) ===
+  start         [1, 2, 0]   (projects to 1/2)
+  rebase→3      [1, 3, 0 + VDR(1, 2, 0)]   (projects to 1/2)
+  projects to: 1/2
+  depth: 1  size: 4  den_complexity: (2, 5, 2)
+
+=== 8. Active object construction ===
+  [2,5,1]       [2, 5, 1]   (projects to 3/5)
+  [3,5,0]       [3, 5, 0]   (projects to 3/5)
+  [2,5,1] == [3,5,0]? False (Path B: must be False)
+
+=== 9. Active same-frame addition ===
+  p             [2, 5, 1]   (projects to 3/5)
+  q             [3, 5, -1]   (projects to 2/5)
+  p + q         [1, 1, 0]   (projects to 1)
+  result is closed: True
+
+=== 10. Lift ===
+  lift(1, 3) = 3
+  lift([1,3,0], 2)  [2, 3, 0]   (projects to 2/3)
+
+=== 11. Interop with Fraction ===
+  from 22/7     [22, 7, 0]   (projects to 22/7)
+  22/7 + 1      [29, 7, 0]   (projects to 29/7)
+
+=== 12. Long chain drift test ===
+  after 200 ops  [1, 7, 0]   (projects to 1/7)
+  zero drift after 200 operations: PASS
+
+==================================================
+ALL TESTS PASSED
+==================================================
