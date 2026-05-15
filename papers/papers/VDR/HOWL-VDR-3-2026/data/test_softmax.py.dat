@@ -1,0 +1,76 @@
+=== 1. exp series basics ===
+  exp_series(0,10) = [1, 1, 0]
+  PASS: exp_series(0) = 1 exactly
+  exp_series(1,0) = [1, 1, 0]
+  PASS: depth 0 returns 1
+  exp_series(1,3) = [8, 3, 0] = 8/3
+  PASS: exp_series(1,3) = 8/3
+
+=== 2. softmax sums to one ===
+  softmax([1,2,3]) = [Fraction(64826368, 720042809), Fraction(176214841, 720042809), Fraction(479001600, 720042809)]
+  sum = 1
+  PASS: softmax probabilities sum exactly to 1
+  PASS: all softmax outputs are positive
+
+=== 3. equal logits give equal probabilities ===
+  softmax([5,5,5,5]) = [Fraction(1, 4), Fraction(1, 4), Fraction(1, 4), Fraction(1, 4)]
+  PASS: equal logits -> equal outputs
+  PASS: equal logits -> 1/4 each
+
+=== 4. monotonic ordering ===
+  softmax([-1,0,2]) = [Fraction(4341155877, 103317747749), Fraction(11798300672, 103317747749), Fraction(87178291200, 103317747749)]
+  PASS: larger logits produce larger probabilities
+
+=== 5. stabilization invariance ===
+  softmax([1,2,3])      = [Fraction(11798300672, 131047692921), Fraction(32071101049, 131047692921), Fraction(9686476800, 14560854769)]
+  softmax([11,12,13])   = [Fraction(11798300672, 131047692921), Fraction(32071101049, 131047692921), Fraction(9686476800, 14560854769)]
+  PASS: softmax invariant under adding constant shift
+
+=== 6. unstabilized vs stabilized ===
+  stabilized   = [Fraction(11798300672, 131047692921), Fraction(32071101049, 131047692921), Fraction(9686476800, 14560854769)]
+  unstabilized = [Fraction(236975164805, 2632162059534), Fraction(322082640896, 1316081029767), Fraction(7032215313, 10570931966)]
+  PASS: unstabilized softmax still sums to 1
+  PASS: unstabilized softmax outputs are positive
+
+=== 7. logsumexp helper ===
+  shift = [3, 1, 0]
+  denom = [720042809, 479001600, 0] = 720042809/479001600
+  PASS: logsumexp shift is max(logits)
+  PASS: logsumexp denominator is positive
+
+=== 8. rational logits ===
+  softmax([1/2,1/3,1/4]) = [Fraction(3868294502459441978076561408000, 10155365892952414087748468092417), Fraction(3274440602826748212121178275840, 10155365892952414087748468092417), Fraction(3012630787666223897550728408577, 10155365892952414087748468092417)]
+  sum = 1
+  PASS: rational-logit softmax sums to 1
+  PASS: rational-logit softmax positive
+  PASS: ordering preserved for rational logits
+
+=== 9. row-wise matrix softmax ===
+  row 0 = [Fraction(64826368, 720042809), Fraction(176214841, 720042809), Fraction(479001600, 720042809)] sum = 1
+  PASS: row 0 sums to 1
+  row 1 = [Fraction(1, 3), Fraction(1, 3), Fraction(1, 3)] sum = 1
+  PASS: row 1 sums to 1
+  row 2 = [Fraction(479001600, 720042809), Fraction(176214841, 720042809), Fraction(64826368, 720042809)] sum = 1
+  PASS: row 2 sums to 1
+
+=== 10. surrogate softmax ===
+  surrogate softmax([1,2,3]) = [Fraction(4, 29), Fraction(9, 29), Fraction(16, 29)]
+  sum = 1
+  PASS: surrogate softmax sums exactly to 1
+  PASS: surrogate softmax outputs are nonnegative
+  PASS: surrogate ordering preserved
+
+=== 11. equal logits in surrogate softmax ===
+  surrogate softmax([5,5,5,5]) = [Fraction(1, 4), Fraction(1, 4), Fraction(1, 4), Fraction(1, 4)]
+  PASS: surrogate equal logits -> equal outputs
+  PASS: surrogate equal logits -> 1/4 each
+
+=== 12. peakedness ===
+  softmax([0,0,10]) = [Fraction(3737182073, 82537660146), Fraction(3737182073, 82537660146), Fraction(37531648000, 41268830073)]
+  PASS: dominant logit has dominant probability (moderate gap)
+  PASS: dominant logit beats first component (moderate gap)
+
+==================================================
+Softmax test results: 26 passed, 0 failed
+ALL SOFTMAX TESTS PASSED
+==================================================
