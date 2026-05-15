@@ -110,7 +110,7 @@
 
 ---
 
-## Discrete Calculus and Exact Arithmetic: VDR — Value, Denominator, Remainder
+## Discrete Calculus Integer and Exact Rational Arithmetic: VDR — Value, Denominator, Remainder
 *Finite Exact Computation in Irreducible Triple Form.*
 
 | ID | Title | Description |
