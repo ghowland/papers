@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-15-2026] → [@HOWL-VDR-16-2026] → [@HOWL-VDR-17-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20236975
 
 **Date:** May 2026
 
@@ -981,4 +981,355 @@ VDR uses roughly 2.6× more energy per prompt than conventional for a single tur
 The per-prompt cloud cost is lower for VDR despite the per-operation slowdown, because the total GPU-seconds are lower. The token reduction dominates the per-operation cost increase. Over multi-turn interactions, the cost advantage grows because VDR's time is flat per turn while conventional time grows with context.
 
 ---
+
+## Addendum: Case Study — SRE Prometheus Investigation at Scale
+
+### The Scenario
+
+An SRE is troubleshooting a production latency spike. Prometheus is at prom.internal:9090 and exposes a REST API. The dataset is 1MB of JSON containing 15-minute time series for 200 endpoints across 4 service clusters. The SRE wants to filter endpoints by latency threshold, correlate latency spikes with deployment events, identify the top degraded endpoints per cluster, store the results in a versioned project structure for comparison with future runs, and export a summary for the postmortem.
+
+The task involves network operations (prometheus fetch), file-like data handling (1MB JSON), parsing, filtering, sorting, correlation joins, statistical computation, Prolog rule evaluation, operational environment commands (Python script execution for complex transforms), live-state management (counters, queues, ring buffers for tracking), grammar-formatted output, and versioned knowledge base storage with connections for run comparison.
+
+We trace two approaches through the complete task: pure LLM token generation (the conventional approach, which cannot actually complete the task but we estimate its token cost) and VDR-LLM-Prolog orchestration with the full primitive, Prolog, and operational environment stack.
+
+---
+
+### Phase 1: Data Acquisition
+
+**Conventional LLM.**
+
+The SRE pastes a curl command output or describes the prometheus endpoint. The LLM cannot execute network requests. It says "I can't connect to prometheus directly, but here's how you could query it." The SRE manually runs the curl, gets 1MB of JSON, and cannot paste it — it exceeds the context window. They manually truncate to 50 endpoints, losing 150 endpoints of data. They paste roughly 50KB. The LLM processes this through attention — roughly 12,000 tokens of raw JSON consuming the context window. The LLM has seen the data but parsed it through attention, spending thousands of tokens of attention capacity on brackets, commas, and key names.
+
+Tokens generated: 200 (advice on how to query). Tokens consumed in context: 12,000 (truncated pasted JSON). Useful work: zero — the LLM told the user to do the work manually. Data coverage: 25% (50 of 200 endpoints).
+
+**VDR-LLM-Prolog.**
+
+The LLM assesses the request and formalizes the first step: fetch prometheus data. It emits a command token invoking B424 network_fetch with the prometheus query_range API URL, scoped to the relevant metric over the last 15 minutes.
+
+GPU stream 1 is idle at this point. The CPU receives the command token, verifies the network grant (the SRE's session has a network grant scoped to prom.internal:9090/*), and executes the fetch. The 1MB JSON response arrives on the CPU.
+
+The LLM wrote a small Python parsing script earlier in the session — 6 lines, roughly 40 tokens — that extracts the prometheus JSON structure into a normalized form: endpoint name, cluster, timestamp array, value array. The CPU executes this script in the Docker sandbox via B410 execute_python. The script outputs structured JSON.
+
+B246 parse_json on the structured output produces a typed dict. B254 vdr_from_decimal_string converts every metric value to exact VDR fractions at the conversion boundary. Each conversion records the source type (prometheus gauge), original decimal string, converted VDR value, and maximum error. For terminating decimals (which prometheus produces), the error is zero.
+
+The converted data goes into the project knowledge base: root.sessions.sre.incident_2026_05_16.metrics. Each endpoint is a child KB with facts for cluster, endpoint name, and a ring buffer holding the time series. 200 endpoints × 90 data points (one per 10 seconds for 15 minutes) = 18,000 VDR values stored in 200 ring buffers.
+
+LLM tokens: 8 (command token for fetch) + 40 (Python script, written once) + 8 (parse command) + 8 (conversion command). Total: 64 LLM tokens. Data coverage: 100% (all 200 endpoints, all 18,000 data points). The LLM never saw the raw JSON. The 1MB never entered the token stream.
+
+GPU cost: the conversion of 18,000 decimal strings to VDR fractions is 18,000 calls to B254, each a parse plus integer construction. At roughly 50 integer operations per conversion: 900,000 integer operations. On an H100 at 16.9T INT32 ops/sec: 0.00005 ms. Invisible.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Network fetch | CPU (grant check + HTTP) | 8 | 0 | 200 ms (network latency) | Grant verified in 2 μs |
+| Python parse script | LLM generation | 40 | 0 | 400 ms (LLM generates script) | Written once, reusable |
+| Script execution | CPU (Docker sandbox) | 8 | 0 | 150 ms (Python execution) | Sandbox overhead included |
+| JSON parse | CPU + GPU | 8 | ~100K | 0.5 ms | B246 on structured output |
+| VDR conversion | GPU stream 2 | 8 | ~900K | 0.05 ms | B254 on 18,000 values |
+| KB storage | GPU stream 2 | 0 (automated) | ~200K | 0.02 ms | 200 KB nodes + ring buffer writes |
+| **Phase 1 total** | — | **72** | **~1.2M** | **~750 ms** | Dominated by network + script execution |
+
+---
+
+### Phase 2: Filtering and Threshold Analysis
+
+**Conventional LLM.**
+
+The SRE asks "which endpoints have p99 latency above 500ms in the last 5 minutes?" The LLM has 12,000 tokens of truncated JSON in its context. It attempts to parse the JSON through attention, scanning for values above 0.5. It generates reasoning tokens: "Looking at the data, I can see that endpoint /api/users has values of 0.482, 0.510, 0.498..." — generating digits through token prediction, comparing by generating comparison prose. For 50 endpoints with multiple time points, this takes roughly 2,000 tokens of generated reasoning. Some comparisons are wrong because digit prediction is imprecise. The result is a prose list of maybe 8 endpoints that the model thinks exceeded the threshold, with no guarantee of completeness or accuracy. The other 150 endpoints were never seen.
+
+Tokens generated: 2,000. Accuracy: roughly 85% (some comparisons wrong). Coverage: 25%.
+
+**VDR-LLM-Prolog.**
+
+The LLM formalizes the filter: for each endpoint, check whether any value in the last 5 minutes exceeds [500, 1000, 0] (the VDR fraction for 0.5 seconds). This is one Prolog rule assertion plus one command sequence.
+
+The LLM asserts a Prolog rule:
+
+`high_latency(Endpoint, MaxVal) :- endpoint(Endpoint, KB), ring_buffer_read_all(KB, Values), list_filter(Values, greater_than_500ms, Filtered), list_length(Filtered, Count), vdr_greater_than(Count, 0), list_max(Filtered, MaxVal).`
+
+Roughly 30 tokens for the rule formalization. B376 kb_assert stores it.
+
+B378 kb_query evaluates the rule across all 200 endpoints. The Prolog engine's frontier-based execution on GPU retrieves all endpoint facts (one predicate bucket scan — 200 facts), reads each endpoint's ring buffer (200 parallel reads), filters each time series (200 parallel filters comparing each value against the threshold), and collects the results.
+
+GPU execution: 200 endpoints × 30 time points (last 5 minutes at 10-second intervals) = 6,000 VDR comparisons. Each comparison is B017 vdr_compare — roughly 4 integer operations for same-frame Q335 values. Total: 24,000 integer operations. Time: 0.001 ms.
+
+The result is an exact list of endpoints with their maximum latency values, stored as facts in the investigation KB. Say 23 endpoints exceeded the threshold — the exact count, not an approximation.
+
+The LLM reads the structured result: 23 endpoint names with max latency values. Roughly 100 tokens of structured input. It assesses and continues.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Prolog rule formalization | LLM generation | 30 | 0 | 300 ms (LLM generates) | One-time; reusable |
+| Rule assertion | GPU stream 2 | 8 | ~100 | 0.001 ms | B376 kb_assert |
+| Rule evaluation (200 endpoints) | GPU stream 1 | 0 | ~24K | 0.001 ms | Frontier-based parallel filter |
+| Result storage | GPU stream 2 | 0 (automated) | ~5K | 0.001 ms | 23 findings asserted |
+| LLM reads results | LLM input | 0 (reading, not generating) | 0 | included in next generation | 100 tokens structured input |
+| **Phase 2 total** | — | **38** | **~29K** | **~300 ms** | Dominated by LLM rule generation |
+
+---
+
+### Phase 3: Deployment Event Correlation
+
+**Conventional LLM.**
+
+The SRE asks "correlate with deployment events in the last hour." The LLM cannot query prometheus for deployment metadata. The SRE manually runs another curl, truncates the result, and pastes it. Another 3,000 tokens of context consumed. The LLM now has 15,000 tokens of JSON in context, plus 2,000 tokens of its own prior reasoning. It attempts to correlate by generating comparison prose: "The deployment of service-auth at 14:12 appears to coincide with the latency increase in /api/users which started around 14:15..." Token by token, it generates temporal reasoning by producing timestamps and comparing them. For 23 high-latency endpoints and perhaps 8 deployment events, this takes roughly 3,000 tokens of reasoning. Temporal comparisons are done through digit prediction — the model generates "14:12 is before 14:15" as text, not as an integer comparison.
+
+Tokens generated: 3,000. Context consumed: 18,000 cumulative. Accuracy: moderate — temporal proximity through text comparison misses some correlations and misidentifies others.
+
+**VDR-LLM-Prolog.**
+
+The LLM formalizes: fetch deployment events from prometheus label API. One command token for B424 network_fetch. CPU executes with grant check. JSON returns. The LLM's Python script (adapted from phase 1 — roughly 8 tokens to modify) extracts deployment events with service name, timestamp, and version. B246 parse_json. B254 converts timestamps to exact integers. Events stored as facts: fact(deployment, service_auth, 1234567890, version_2_3_1).
+
+Now the correlation. The LLM formalizes a Prolog rule:
+
+`correlated_deploy(Endpoint, Deploy, TimeDelta) :- high_latency(Endpoint, _), endpoint_cluster(Endpoint, Cluster), deployment(Deploy, Cluster, DeployTime, _), first_spike_time(Endpoint, SpikeTime), int_sub(SpikeTime, DeployTime, TimeDelta), vdr_greater_than(TimeDelta, 0), vdr_less_than(TimeDelta, 600).`
+
+This rule: for each high-latency endpoint, find deployments in the same cluster where the first spike occurred within 600 seconds (10 minutes) after the deployment. Roughly 35 tokens for the rule.
+
+A helper rule to find first spike time:
+
+`first_spike_time(Endpoint, Time) :- endpoint(Endpoint, KB), ring_buffer_read_all(KB, Values), list_filter(Values, greater_than_500ms, Filtered), list_head(Filtered, FirstSpike), spike_timestamp(FirstSpike, Time).`
+
+Roughly 25 tokens.
+
+B378 kb_query evaluates the correlation. GPU execution: the Prolog engine joins high_latency results (23 endpoints) with deployment events (8 events) filtered by cluster match, then compares timestamps. This is a hash join on cluster (small hash table — 4 clusters), followed by 23 × 2 (average deployments per cluster) = 46 timestamp comparisons. Each comparison: 4 integer operations. Total: roughly 200 integer operations plus the join overhead of roughly 1,000 operations for hash table build and probe.
+
+Result: say 15 endpoint-deployment correlations with exact time deltas stored as facts with provenance.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Deploy event fetch | CPU (network) | 8 | 0 | 150 ms | Same grant as phase 1 |
+| Script adaptation | LLM generation | 8 | 0 | 80 ms | Minor modification |
+| Script execution | CPU (Docker) | 8 | 0 | 100 ms | Parse deploy events |
+| JSON parse + convert | GPU stream 2 | 8 | ~50K | 0.01 ms | 8 events, small payload |
+| Correlation rule | LLM generation | 35 | 0 | 350 ms | Prolog rule formalization |
+| Helper rule | LLM generation | 25 | 0 | 250 ms | First spike time helper |
+| Rule assertions | GPU stream 2 | 16 | ~200 | 0.002 ms | Two B376 calls |
+| Correlation evaluation | GPU stream 1 | 0 | ~1.2K | 0.001 ms | Hash join + timestamp compare |
+| Result storage | GPU stream 2 | 0 | ~3K | 0.001 ms | 15 correlation facts |
+| **Phase 3 total** | — | **108** | **~54K** | **~930 ms** | Dominated by network + LLM generation |
+
+---
+
+### Phase 4: Statistical Analysis and Ranking
+
+**Conventional LLM.**
+
+The SRE asks "rank the affected endpoints by severity and show me per-cluster breakdown." The LLM's context now has 18,000 tokens of JSON and prior reasoning. It attempts to sort by generating comparison prose. For 23 endpoints, it produces a ranked list through token prediction — generating each rank position by comparing values it generated earlier. Arithmetic for mean, variance, and percentile is digit-by-digit token prediction. The per-cluster grouping is generated prose.
+
+Tokens generated: 2,500. Several ranking errors (positions swapped due to imprecise digit comparison). Arithmetic on means and percentiles contains errors. No downloadable data — everything is prose in the conversation.
+
+**VDR-LLM-Prolog.**
+
+The LLM formalizes a sequence of primitive calls.
+
+Group by cluster: B208 list_group_by on the correlated endpoints by cluster field. One command token, 8 LLM tokens. GPU: one pass over 15 correlation facts grouping by the cluster key. Result: 4 groups stored as a dict.
+
+Per-cluster statistics: for each cluster group, B101 vdr_stat_mean on the max latency values, B102 vdr_stat_variance, B105 vdr_stat_percentile at [95, 100, 0] and [99, 100, 0]. Four command tokens per cluster, 16 clusters × statistics = 64 tokens. But the LLM can formalize this as a loop plan in one command sequence — roughly 20 tokens total.
+
+Sort by severity: B202 list_sort on the correlation facts by time delta (faster correlation = higher severity) and by max latency. Two command tokens, 16 tokens.
+
+GPU execution for all statistics: 4 clusters × ~5 endpoints per cluster × 4 statistical operations. Each stat operation on 5 values: roughly 20 Q335 operations per statistic. Total: 4 × 5 × 4 × 20 = 1,600 Q335 operations. Plus the sort: 15 × log₂(15) × 4 comparisons ≈ 240 comparisons at 4 integer ops each = 960 operations. Grand total: roughly 3,000 Q335 operations.
+
+All results stored as facts in the investigation KB with provenance: which endpoints, which metrics, computed from which ring buffer data, using which primitives.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Group-by formalization | LLM generation | 8 | 0 | 80 ms | One command token |
+| Group-by execution | GPU stream 2 | 0 | ~500 | 0.001 ms | B208 on 15 facts |
+| Statistics plan | LLM generation | 20 | 0 | 200 ms | Batch formalization |
+| Statistics execution | GPU stream 2 | 0 | ~1.6K | 0.001 ms | Mean, var, percentiles |
+| Sort formalization | LLM generation | 16 | 0 | 160 ms | Two sort commands |
+| Sort execution | GPU stream 2 | 0 | ~960 | 0.001 ms | B202 on 15 items |
+| Result storage | GPU stream 2 | 0 | ~2K | 0.001 ms | Stats facts with provenance |
+| **Phase 4 total** | — | **44** | **~5K** | **~440 ms** | Dominated by LLM generation |
+
+---
+
+### Phase 5: Python Analysis for Complex Transform
+
+**Conventional LLM.**
+
+The SRE asks for a rolling window analysis to detect the exact inflection point of each endpoint's degradation. The LLM generates Python code for the user to run — roughly 400 tokens. The SRE manually copies it, runs it, pastes the result back. Another round trip. More context consumed.
+
+Tokens generated: 400 (Python code) + 300 (explanation) = 700. Execution: manual by user. Result: pasted back, consuming more context.
+
+**VDR-LLM-Prolog.**
+
+The LLM writes a Python analysis script for rolling window inflection detection. The script operates on data exported from the investigation KB — B247 format_csv exports the time series data for the 23 high-latency endpoints. The script computes a rolling mean over a 2-minute window and finds the timestamp where the derivative exceeds a threshold.
+
+The LLM writes the script: roughly 60 tokens for a 15-line Python script. B392 file_write stores the exported CSV in the Docker sandbox filesystem. B410 execute_python runs the script. The script outputs JSON with endpoint, inflection timestamp, and pre/post rolling means. The CPU captures the output. B246 parse_json. B254 converts the values to exact VDR. Results stored as facts.
+
+The LLM never ran the Python in its token stream. The script executed in the sandbox. The results came back through the primitive pipeline. The LLM receives structured findings: 23 inflection points with exact timestamps and rolling means.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| CSV export formalization | LLM generation | 8 | 0 | 80 ms | B247 command |
+| CSV export execution | GPU stream 2 | 0 | ~50K | 0.5 ms | Format 23 endpoints × 90 points |
+| File write | CPU (filesystem) | 8 | 0 | 5 ms | B392 to sandbox |
+| Python script generation | LLM generation | 60 | 0 | 600 ms | 15-line inflection detection |
+| Script execution | CPU (Docker) | 8 | 0 | 300 ms | Python rolling window analysis |
+| Result parse + convert | GPU stream 2 | 8 | ~20K | 0.01 ms | 23 inflection results |
+| Result storage | GPU stream 2 | 0 | ~5K | 0.001 ms | Facts with provenance |
+| **Phase 5 total** | — | **92** | **~75K** | **~985 ms** | Dominated by Python execution + LLM script writing |
+
+---
+
+### Phase 6: Versioned Project Storage
+
+**Conventional LLM.**
+
+The SRE asks "save these results so I can compare with the next run." The LLM cannot save anything. It has no persistent state. It suggests the user manually copy the results to a document or spreadsheet. The entire investigation exists only as conversation text that will be lost when the session ends.
+
+Tokens generated: 200 (suggestions for manual saving). Persistent state: zero.
+
+**VDR-LLM-Prolog.**
+
+The LLM formalizes a versioned project structure. This is knowledge base tree construction — the architecture's native operation.
+
+Create the project structure:
+
+root.projects.latency_investigation.runs.run_2026_05_16_1423
+
+Under this KB, child KBs for: raw_metrics (connection to the incident metrics KB via B363 connection_add with relation sourced_from), filtered_results (the 23 high-latency endpoints with threshold facts), correlations (the 15 deployment correlations), statistics (per-cluster stats), inflection_analysis (the 23 inflection points), and metadata (run timestamp, prometheus source URL, threshold used, script versions).
+
+Each child KB gets facts copied or connected from the investigation workspace. B363 connection_add creates typed connections: sourced_from linking the raw metrics to the prometheus source, computed_by linking statistics to the primitives used, analyzed_by linking inflection results to the Python script (script content stored as a fact).
+
+For future comparison, the LLM asserts a Prolog rule at the project level:
+
+`run_comparison(RunA, RunB, Endpoint, DeltaLatency) :- run_endpoint_max(RunA, Endpoint, LatA), run_endpoint_max(RunB, Endpoint, LatB), vdr_sub(LatB, LatA, DeltaLatency).`
+
+Roughly 25 tokens. This rule will work on any future run stored under the same project structure. The next run creates run_2026_05_17_0930, populates the same child KB schema, and the comparison rule automatically produces deltas across all shared endpoints.
+
+Version metadata: B376 kb_assert stores the run's complete configuration — threshold values, time range, cluster list, prometheus endpoint, script hash — as facts. Future runs can query what parameters produced which results.
+
+B368 session_snapshot captures the current live state as a restore point. The investigation can be resumed from this exact state.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Project structure plan | LLM generation | 30 | 0 | 300 ms | Tree structure formalization |
+| KB creation (6 child KBs) | GPU stream 2 | 48 (8 per KB) | ~2K | 0.01 ms | 6 × B376 sequences |
+| Fact migration | GPU stream 2 | 16 | ~10K | 0.05 ms | Copy/connect findings to project |
+| Connection creation | GPU stream 2 | 40 (8 per connection, 5 connections) | ~1K | 0.005 ms | B363 typed connections |
+| Comparison rule assertion | LLM generation | 25 | ~100 | 0.001 ms | Reusable across runs |
+| Metadata assertion | GPU stream 2 | 16 | ~2K | 0.01 ms | Config facts |
+| Session snapshot | GPU stream 2 | 8 | ~5K | 0.05 ms | B368 snapshot |
+| **Phase 6 total** | — | **183** | **~20K** | **~300 ms** | Dominated by LLM generation |
+
+---
+
+### Phase 7: Formatted Output and Export
+
+**Conventional LLM.**
+
+The SRE asks for a summary. The LLM generates a prose summary from its 20,000-token context — roughly 1,500 tokens of generated text with tables formatted character by character. The tables have formatting errors (misaligned columns, inconsistent decimal places). The data in the tables is whatever the LLM recalls from earlier in the conversation, which may differ from what it computed due to context window attention degradation. No export capability — the user manually copies the text.
+
+Tokens generated: 1,500. Formatting errors: 2-5 per table. Data accuracy: degraded from earlier reasoning. Export: manual copy.
+
+**VDR-LLM-Prolog.**
+
+Grammar templates handle all structural output. The LLM fills content slots with prose framing.
+
+An incident summary grammar template (defined at root.templates.incident_summary, inherited, reusable) provides the structure: title, timestamp, summary section, findings table, correlation table, per-cluster breakdown, inflection analysis, methodology notes, and recommendations.
+
+Each data table renders directly from KB facts through grammar. The findings table pulls from filtered_results KB — 23 rows of endpoint name, cluster, max latency (exact VDR fraction rendered through B251 fraction_to_decimal), threshold exceeded by (computed by B002 vdr_sub). The correlation table pulls from the correlations KB — 15 rows of endpoint, deployment, time delta, cluster. The per-cluster breakdown pulls from the statistics KB — 4 rows of cluster name, endpoint count, mean latency, p95, p99 (all exact fractions).
+
+The LLM writes prose framing for each section — roughly 200 tokens total. Observations about the pattern, likely root cause assessment (tagged at 30/100 confidence per the LLM assessment floor), and recommended next steps.
+
+B247 format_csv exports the complete data tables. B392 file_write saves them to the project filesystem. B247 format_json exports the full investigation structure as a machine-readable document.
+
+| Step | Component | LLM Tokens | GPU Ops | Wall Time | Notes |
+|---|---|---|---|---|---|
+| Grammar template instantiation | GPU stream 3 | 0 | ~5K | 0.02 ms | Template from inherited KB |
+| Findings table render | GPU stream 3 | 0 | ~10K | 0.05 ms | 23 rows from KB facts |
+| Correlation table render | GPU stream 3 | 0 | ~7K | 0.03 ms | 15 rows from KB facts |
+| Statistics table render | GPU stream 3 | 0 | ~3K | 0.01 ms | 4 cluster summaries |
+| Inflection table render | GPU stream 3 | 0 | ~10K | 0.05 ms | 23 inflection points |
+| Prose framing | LLM generation | 200 | 0 | 2,000 ms | Actual judgment work |
+| Confidence computation | GPU stream 2 | 0 | ~500 | 0.001 ms | Propagation on findings |
+| CSV export | GPU stream 2 | 8 | ~20K | 0.1 ms | B247 on all tables |
+| JSON export | GPU stream 2 | 8 | ~30K | 0.15 ms | Full investigation structure |
+| File writes | CPU (filesystem) | 16 | 0 | 10 ms | B392 for CSV + JSON |
+| **Phase 7 total** | — | **232** | **~86K** | **~2,010 ms** | Dominated by LLM prose generation |
+
+---
+
+### Complete Investigation Summary
+
+#### Token Accounting
+
+| Phase | Description | Conventional LLM Tokens | VDR LLM Tokens | Conventional Data Coverage | VDR Data Coverage |
+|---|---|---|---|---|---|
+| 1 | Data acquisition | 200 + 12,000 context | 72 | 25% (50/200 endpoints) | 100% (200/200 endpoints) |
+| 2 | Filtering | 2,000 | 38 | ~85% accuracy on 25% data | 100% accuracy on 100% data |
+| 3 | Correlation | 3,000 + 3,000 context | 108 | Moderate accuracy, 25% coverage | Exact, 100% coverage |
+| 4 | Statistics | 2,500 | 44 | Errors in arithmetic, 25% coverage | Exact, 100% coverage |
+| 5 | Complex analysis | 700 | 92 | Manual execution by user | Automated sandbox execution |
+| 6 | Project storage | 200 | 183 | Nothing saved | Full versioned project with comparison rule |
+| 7 | Output and export | 1,500 | 232 | Prose with formatting errors, no export | Grammar-perfect tables, CSV + JSON export |
+| **Total** | — | **10,100 generated + 15,000 context** | **769** | — | — |
+
+VDR token reduction: 92.4%. And the 769 VDR tokens produced a complete, exact, versioned, exportable investigation, while the 10,100 conventional tokens produced approximate prose over 25% of the data with no persistent state.
+
+#### GPU Operation Accounting
+
+| Phase | GPU Integer Ops | Time (H100 est.) | As Equivalent LLM Tokens |
+|---|---|---|---|
+| 1: Acquisition + conversion | 1.2M | 0.5 ms | 0.0001 tokens |
+| 2: Filtering | 29K | 0.003 ms | 0.000002 tokens |
+| 3: Correlation | 54K | 0.014 ms | 0.000004 tokens |
+| 4: Statistics + sort | 5K | 0.003 ms | 0.0000004 tokens |
+| 5: CSV export + result parse | 75K | 0.5 ms | 0.000005 tokens |
+| 6: Project storage | 20K | 0.1 ms | 0.000001 tokens |
+| 7: Table render + exports | 86K | 0.4 ms | 0.000006 tokens |
+| **Total primitives** | **~1.47M** | **~1.5 ms** | **~0.0001 tokens** |
+
+The total primitive GPU computation for the entire investigation is 1.5 milliseconds. This is the compute time for parsing 1MB of JSON, converting 18,000 metric values to exact VDR fractions, filtering 200 endpoints, correlating with deployment events, computing statistics across 4 clusters, sorting and ranking, rendering 4 data tables, and exporting to CSV and JSON. All of it, combined, takes less time than the LLM takes to generate a single token.
+
+#### Wall-Clock Time
+
+| Component | Conventional | VDR | Notes |
+|---|---|---|---|
+| LLM generation | ~100 sec (10,100 tokens at ~100ms/token) | ~8 sec (769 tokens at ~10ms/token with grammar speedup) | Grammar reduces per-token decode cost for structural tokens |
+| User manual work | ~300 sec (curl, truncate, paste, copy results) | 0 sec | All automated through primitives |
+| Network operations | Manual by user | ~350 ms (automated fetches) | Two prometheus API calls |
+| Script execution | Manual by user (another ~60 sec) | ~450 ms (Docker sandbox) | Automated |
+| Data processing | Embedded in LLM generation (inaccurate) | ~1.5 ms (GPU primitives) | 100% accurate |
+| Context re-reading (attention) | ~200 sec cumulative (growing context, re-read every turn) | 0 sec (state in KBs) | No context growth |
+| **Total wall-clock** | **~660 sec (~11 minutes)** | **~9 sec** | **73× faster** |
+
+The conventional approach takes 11 minutes, requires constant manual intervention by the SRE, processes only 25% of the data, produces inaccurate arithmetic, and saves nothing. The VDR approach takes 9 seconds, requires no manual intervention, processes 100% of the data, produces exact results with provenance, and stores everything in a versioned project structure ready for comparison with future investigations.
+
+#### Cost Comparison (H100 at $3.00/hour)
+
+| Metric | Conventional | VDR | Ratio |
+|---|---|---|---|
+| GPU time | ~100 sec (LLM generation only) | ~9 sec (LLM + all primitives) | 11× less GPU time |
+| GPU cost | $0.083 | $0.0075 | 11× cheaper |
+| SRE time (at $150/hr) | ~11 min = $27.50 | ~9 sec = $0.38 (monitoring only) | 72× cheaper in human time |
+| Total cost per investigation | $27.58 | $0.39 | 71× cheaper |
+| Data coverage | 25% | 100% | 4× more data |
+| Accuracy | ~85% (arithmetic errors) | 100% (exact) | — |
+| Persistent state | None | Full versioned project | — |
+| Exportable data | None (manual copy of prose) | CSV + JSON + KB queryable | — |
+| Reproducibility | None (session is gone) | Full (snapshot + versioned project) | — |
+
+#### Future Run Comparison (Phase 6 Payoff)
+
+When the SRE runs the same investigation tomorrow after a fix has been deployed, the second run follows the same phases but with these advantages:
+
+| Component | First Run Cost | Second Run Cost | Savings Source |
+|---|---|---|---|
+| Python parse script | 40 tokens (written) | 8 tokens (reuse command) | Script persists in project KB |
+| Prolog filter rule | 30 tokens (formalized) | 8 tokens (query existing rule) | Rule persists in project KB |
+| Prolog correlation rule | 60 tokens (two rules) | 8 tokens (query existing rules) | Rules persist |
+| Comparison rule | 25 tokens (formalized) | 0 tokens (already exists) | Asserted at project level |
+| Grammar template | 0 tokens (inherited) | 0 tokens | Still inherited |
+| Project structure | 183 tokens (created structure) | 30 tokens (create new run KB under existing structure) | Structure exists |
+| **Total** | **769 tokens** | **~450 tokens** | 42% reduction from accumulated project state |
+
+And the comparison rule automatically produces:
+
+`run_comparison(run_2026_05_16_1423, run_2026_05_17_0930, Endpoint, DeltaLatency)` — for every shared endpoint, the exact latency change as a VDR fraction. No re-derivation. No manual comparison. One Prolog query, evaluated on GPU in 0.001 ms, producing exact deltas with provenance linking both runs.
+
+This is what accumulating exact state means in practice. The first investigation builds the infrastructure. Every subsequent investigation reuses it. The cost per investigation decreases while the capability increases. The conventional LLM starts from zero every time.
 
