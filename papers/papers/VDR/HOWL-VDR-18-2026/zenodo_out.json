@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-18-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20236975/files",
     "bucket": "https://zenodo.org/api/files/c6b3bdcd-1961-4851-834a-efbc0f8001f7",
+    "thumb250": "https://zenodo.org/record/20236975/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20236975/thumb10",
+      "50": "https://zenodo.org/record/20236975/thumb50",
+      "100": "https://zenodo.org/record/20236975/thumb100",
+      "250": "https://zenodo.org/record/20236975/thumb250",
+      "750": "https://zenodo.org/record/20236975/thumb750",
+      "1200": "https://zenodo.org/record/20236975/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20236975",
     "latest_draft_html": "https://zenodo.org/deposit/20236975",
     "publish": "https://zenodo.org/api/deposit/depositions/20236975/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20236975,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "3eb9b69a-9fed-4a1c-80f0-33d14f072178",
+      "filename": "HOWL-VDR-18-2026.zip",
+      "filesize": 2316369,
+      "checksum": "81d271470bf44dab856d21386acfd9a8",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20236975/files/3eb9b69a-9fed-4a1c-80f0-33d14f072178",
+        "download": "https://zenodo.org/api/records/20236975/draft/files/HOWL-VDR-18-2026.zip/content"
+      }
+    },
+    {
+      "id": "f21cda06-59c9-45aa-a877-8278e9e6f48a",
+      "filename": "!manuscript.pdf",
+      "filesize": 207785,
+      "checksum": "2ee7781cce01a92166642b0cde3460b1",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20236975/files/f21cda06-59c9-45aa-a877-8278e9e6f48a",
+        "download": "https://zenodo.org/api/records/20236975/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
