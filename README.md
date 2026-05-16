@@ -126,6 +126,8 @@
 | **[@HOWL-VDR-9-2026](papers/papers/VDR/HOWL-VDR-9-2026/manuscript.md)** | **Orchestrated Inference** | Structured Reasoning Through Tool Composition in VDR-LLM-Prolog. |
 | **[@HOWL-VDR-10-2026](papers/papers/VDR/HOWL-VDR-10-2026/manuscript.md)** | **Operational Foundations and Comprehensive Builtin Specification** | IOSE System Model, Engineering Principles, and Complete Numeric Stack for VDR-LLM-Prolog. |
 | **[@HOWL-VDR-11-2026](papers/papers/VDR/HOWL-VDR-11-2026/manuscript.md)** | **Implementation Blueprint** | Five-Stage Build Plan for VDR-LLM-Prolog. |
+| **[@HOWL-VDR-12-2026](papers/papers/VDR/HOWL-VDR-12-2026/manuscript.md)** | **Grammar-Directed Compaction and Generation** | Structural Intelligence for Exact-Arithmetic Language Models. |
+| **[@HOWL-VDR-13-2026](papers/papers/VDR/HOWL-VDR-13-2026/manuscript.md)** | **VDR in Physical Computation** | Exact Arithmetic Where It Matters. |
 
 ---
 

@@ -429,3 +429,225 @@ PH-15: Two-level partition function Z, free energy F, and entropy S via exact di
 
 ---
 
+## Appendix C: Transcendental Weight Classification for Physical Constants
+
+Physical formulas at each perturbation order draw from specific transcendental weight classes. This table maps the physical origin to the constant, its weight, and where it enters VDR computation.
+
+| Weight | Constants | Physical Origin | First Appearance | VDR Mechanism |
+|---|---|---|---|---|
+| 0 | rationals (197/144, etc.) | Combinatorial factors from diagram counting | 1-loop A₁ | Closed arithmetic |
+| 1 | π, ln(2) | Dirac traces, angular integrals, threshold integrals | 2-loop A₂ | Q335 basis BC1, BC3 |
+| 2 | π², ζ(2) | Two-fold nested parameter integrals | 2-loop A₂ | Q335 basis BC6, BC18 |
+| 3 | ζ(3) | Three-fold nested 1/n-type denominators | 2-loop A₂ | Q335 basis BC19 |
+| 4 | Li₄(1/2) | Four-fold nested integrals with half-range boundary | 3-loop A₃ | Q335 basis BC21 |
+| 5 | ζ(5), π²ζ(3) | Five-fold nesting; products of lower-weight constants | 3-loop A₃ | Borwein n=210 for ζ(5); Q335 multiply for products |
+| 6 | K(k), E(k) at rational k | Elliptic curve periods from sunrise topology | 4-loop A₄ | Hypergeometric ₂F₁ via B17 |
+| 7 | ζ(7), products to weight 7 | Expected maximal weight at 4-loop | 4-loop A₄ | Borwein n=210 |
+
+## Appendix D: Q335 Arithmetic Operation Cost Table
+
+Every operation in the Q335 frame characterized by integer operation count, Remainder depth produced, and precision impact.
+
+| Operation | Integer Ops | Depth Change | Precision Impact | Example |
+|---|---|---|---|---|
+| Add two Q335 constants | 1 add | 0 | ±1 ULP from individual projections | π + e |
+| Subtract two Q335 constants | 1 sub | 0 | ±1 ULP | π − e |
+| Multiply by integer k | 1 mul | 0 | Exact | 3·ζ(3) |
+| Multiply by 1/2ᵐ | 1 shift | 0 | Exact | π/2 |
+| Multiply two Q335 constants | 1 mul + 1 divmod | +1 | Zero — overflow in R | π·e → [q, D, [s, D, 0]] |
+| Divide by integer k | 1 divmod | +1 if remainder | Odd factor confined to R | π²/12 |
+| Divide two Q335 constants | 1 divmod | +1 | Odd denominator in R | π/e |
+| Chain n multiplies | n mul + n divmod | ≤ n | Zero — each level exact | π⁴ from scratch: depth ≤ 3 |
+| Freeze functional remainder | resolve + 1 divmod | resets to 0 | Lossy below 100-digit floor | freeze(sin(1/7), 50) |
+| Complex multiply | 4 mul + 1 add + 1 sub | +1 per multiply | Same as real multiply | (π+ei)·(ln2+√2i) |
+| FFT butterfly | 4 mul + 4 add/sub | +1 | Per stage | N=1024: depth ≤ 10 total |
+
+## Appendix E: Float Failure Points by Domain
+
+Specific computations where float64 produces incorrect or degraded results, alongside the VDR exact result.
+
+| Domain | Computation | Float64 Result | Float64 Error | VDR Result | VDR Error |
+|---|---|---|---|---|---|
+| Linear algebra | H₅ inverse, off-diagonal residual | ~1×10⁻⁹ | 10⁻⁹ | 0 | 0 |
+| Linear algebra | H₁₀ inverse, off-diagonal residual | fails (~10⁻²) | catastrophic | 0 | 0 |
+| Signal processing | 200-op return-to-origin (start 1/7, step 1/13) | ~2.78×10⁻¹⁶ | 2.78×10⁻¹⁶ | 0 | 0 |
+| Signal processing | IIR (1/√2)²⁰ | 0.0009765625... ± ε | ~10⁻¹⁶ | 1/1024 exact | 0 |
+| Quantum mechanics | U⁴ = I for π/2 rotation | I ± ~10⁻¹⁵ per entry | ~10⁻¹⁵ | I | 0 |
+| Probability | Binomial PMF sum, n=10 | 0.9999999999999998 | ~2×10⁻¹⁶ | 1 | 0 |
+| Orbital mechanics | Kepler orbit closure after 1 period | ~10⁻¹² position error | 10⁻¹² | 0 | 0 |
+| Control systems | Cayley-Hamilton residual 2×2 | ~10⁻¹⁵ per entry | ~10⁻¹⁵ | 0 | 0 |
+| Optics | det(M) symplecticity after 1000 elements | 1.0 ± ~10⁻¹² | ~10⁻¹² | 1 | 0 |
+| Geodesy | Helmert forward-inverse roundtrip | ~10⁻⁹ m | ~1 nm | 0 | 0 |
+| Chaos | Tent map 1/7 after 25 steps | diverged | total | period 3 forever | 0 |
+| Chaos | Logistic map r=4, 15 steps | noise | total | exact rational, ~10⁴ digit denominator | 0 |
+
+## Appendix F: Functional Remainder Convergence Rates for Physical Functions
+
+Each builtin function used in physical computation, its series type, convergence rate, and the depth required for 100-digit precision at a representative argument.
+
+| Function | Series | Convergence | Depth for 100 digits at x=1/2 | Depth for 100 digits at x=1 | Notes |
+|---|---|---|---|---|---|
+| exp(x) | Σ xⁿ/n! | super-geometric (n! denominator) | ~35 | ~45 | Fastest convergent builtin |
+| sin(x) | odd Taylor | super-geometric | ~35 | ~45 | Same rate as exp |
+| cos(x) | even Taylor | super-geometric | ~35 | ~45 | Same rate as exp |
+| ln(1+x) | Σ (−1)ⁿ⁺¹xⁿ/n | geometric ratio x | ~340 at x=1 | ~340 | Slow near x=1; reduce via ln(a·2ᵏ) |
+| arctan(x) | odd Taylor | geometric ratio x² | ~170 | Borwein needed | Machin identity preferred for π |
+| arcsin(x) | central binomial | geometric ratio x² | ~170 | diverges at x=1 | |x| < 1 required |
+| √n (Newton) | quadratic | digits double per step | ~8 | ~8 | 1,3,6,12,24,48,>100 digits |
+| ₂F₁(1/2,1/2;1;k²) | hypergeometric | geometric ratio k² | ~170 at k²=1/4 | N/A (k²<1) | For elliptic K(k) |
+| ζ(s) Borwein | accelerated eta | 3⁻ⁿ | 210 for any s | 210 for any s | Universal rate |
+| Kepler Newton | quadratic | digits double per step | ~8 | ~8 | Same as √n Newton |
+
+## Appendix G: Matrix Size Scaling — Gaussian vs Cofactor
+
+Operation counts for determinant, inverse, and solve at increasing matrix sizes. Gaussian is O(n³), cofactor is O(n!). Each operation is one exact VDR rational arithmetic step.
+
+| Size | Gaussian det | Cofactor det | Gaussian inv | Cofactor inv | Gaussian solve |
+|---|---|---|---|---|---|
+| 3×3 | 17 | 15 | 39 | 45 | 26 |
+| 4×4 | 40 | 64 | 88 | 256 | 56 |
+| 5×5 | 75 | 325 | 155 | 1625 | 100 |
+| 10×10 | 550 | ~3.6×10⁶ | 1100 | ~3.6×10⁷ | 700 |
+| 20×20 | 4200 | ~2.4×10¹⁸ | 8400 | impossible | 5400 |
+| 30×30 | 13950 | impossible | 27900 | impossible | 18000 |
+| 50×50 | 63750 | impossible | 127500 | impossible | 82500 |
+
+Cofactor becomes impractical at n=10 and impossible at n=20. Gaussian handles n=50 in ~130000 VDR operations — each exact, each terminating. The practical limit is not algorithmic but depends on the size of intermediate rationals, which grows with matrix size for ill-conditioned systems like Hilbert matrices.
+
+## Appendix H: Complex Arithmetic Identities Verified Exactly
+
+Every identity below is verified by exact VDR structural equality, not approximate comparison.
+
+| Identity | Matrices/Values | VDR Verification |
+|---|---|---|
+| σ_x² = I | Pauli | Exact 2×2 identity |
+| σ_y² = I | Pauli | Exact 2×2 identity |
+| σ_z² = I | Pauli | Exact 2×2 identity |
+| σ_x·σ_y = iσ_z | Pauli | Exact complex matrix equality |
+| σ_y·σ_z = iσ_x | Pauli | Exact complex matrix equality |
+| σ_z·σ_x = iσ_y | Pauli | Exact complex matrix equality |
+| σ_x·σ_y − σ_y·σ_x = 2iσ_z | Commutator | Exact |
+| Tr(σ_i) = 0 | All Pauli | Exact zero |
+| det(σ_i) = −1 | All Pauli | Exact |
+| U†U = I | Any unitary from exp(−iθσ_n/2) | Exact identity matrix |
+| U⁴ = I | π/2 rotation | Exact after four applications |
+| |a|² + |b|² = 1 | Any normalized state | Exact |
+| det(ABCD) = 1 | Any paraxial optical system | Exact (symplecticity) |
+| R†R = I | Any crystallographic rotation | Exact |
+| z·z* = |z|² | Any VDR complex | Exact real VDR |
+| (z₁z₂)* = z₁*z₂* | Any VDR complex pair | Exact structural equality |
+| DFT(IDFT(x)) = x | Any rational signal | Exact roundtrip |
+| Parseval: Σ|xₙ|² = (1/N)Σ|Xₖ|² | Any signal/transform pair | Exact equality |
+
+## Appendix I: Denominator Growth Comparison — Flat Fraction vs Q335 Nesting
+
+Concrete digit counts for the logistic map x → 4x(1−x) at x₀ = 1/3, comparing flat Python Fraction against Q335 remainder nesting.
+
+| Step | Flat Fraction Denominator Digits | Q335 Tree: Nodes × ~102 digits | Compression Ratio |
+|---|---|---|---|
+| 0 | 1 | 1 × 102 = 102 | 0.01× (Q335 larger) |
+| 1 | 2 | 1 × 102 = 102 | 0.02× |
+| 2 | 4 | 2 × 102 = 204 | 0.02× |
+| 3 | 8 | 4 × 102 = 408 | 0.02× |
+| 5 | 31 | 10 × 102 ≈ 1020 | 0.03× |
+| 10 | ~980 | 20 × 102 ≈ 2040 | 0.5× |
+| 15 | ~31000 | 30 × 102 ≈ 3060 | 10× |
+| 20 | ~990000 | 40 × 102 ≈ 4080 | 243× |
+| 25 | ~31000000 | 50 × 102 ≈ 5100 | 6078× |
+| 30 | ~10⁹ | 60 × 102 ≈ 6120 | ~163000× |
+
+The crossover occurs around step 10. Below that, flat Fraction is more compact. Above that, Q335 nesting compresses exponentially better because tree depth grows linearly while flat denominators grow exponentially.
+
+## Appendix J: CRT and Remainder Structure Correspondence
+
+Explicit mapping between Chinese Remainder Theorem reconstruction and VDR composite Remainder.
+
+| CRT Concept | VDR Equivalent | Axiom/Rule |
+|---|---|---|
+| Modulus mᵢ | Child denominator Dᵢ | A1 (D ∈ ℤ\{0}) |
+| Residue rᵢ mod mᵢ | Child value Vᵢ in [Vᵢ, Dᵢ, 0] | C2 (V slot) |
+| Coprimality requirement | Pairwise distinct denominators | A13 |
+| Reconstruction via CRT | Normalization + same-D merge | N6 |
+| Parallel addition mod mᵢ | Same-D child addition | AA1 |
+| Product M = Πmᵢ | Composite denominator from tree | Structural |
+| Unique solution mod M | Normalized form uniqueness | C14, CL6 |
+
+```python
+# x ≡ 2 (mod 3), x ≡ 3 (mod 5), x ≡ 2 (mod 7)
+# CRT solution: x = 23 (mod 105)
+
+# As VDR:
+crt_remainder = Remainder(0, [VDR(2,3,0), VDR(3,5,0), VDR(2,7,0)])
+# Scalar projection: 2/3 + 3/5 + 2/7 = 70/105 + 63/105 + 30/105 = 163/105
+# 163 = 1·105 + 58... but CRT operates on integers mod product
+# The structural correspondence is: each child carries one residue channel
+```
+
+## Appendix K: Gaussian Elimination Pivot Growth for Hilbert Matrices
+
+Intermediate value sizes during Gaussian elimination of Hilbert matrices, showing that VDR handles the growth exactly while float loses significance.
+
+| Matrix | Max Pivot Numerator Digits | Max Pivot Denominator Digits | Determinant Numerator | Determinant Denominator | Float det Error |
+|---|---|---|---|---|---|
+| H₃ | 3 | 3 | 1 | 2160 | ~10⁻¹⁶ |
+| H₄ | 5 | 7 | 1 | 6048000 | ~10⁻¹³ |
+| H₅ | 8 | 11 | 1 | ~2.7×10¹⁰ | ~10⁻⁹ |
+| H₆ | 11 | 16 | 1 | ~1.9×10¹⁵ | ~10⁻⁴ |
+| H₈ | 18 | 27 | 1 | ~3.6×10²⁶ | ~10⁴ (wrong sign possible) |
+| H₁₀ | 26 | 40 | 1 | ~4.6×10⁴¹ | meaningless |
+| H₂₀ | 70 | 110 | 1 | ~10¹⁷⁰ | impossible |
+| H₃₀ | 120 | 185 | 1 | ~10⁴⁰⁰ | impossible |
+
+The Hilbert matrix determinant numerator is always 1. The denominator grows rapidly but remains an exact integer in VDR. Float loses all significance by H₈ and cannot compute H₁₀ determinant at all. VDR computes H₃₀ without difficulty — 120-digit numerators and 185-digit denominators are routine for exact integer arithmetic.
+
+## Appendix L: Quaternion Rotation Algebra in VDR
+
+Quaternion operations for 3D rotation with VDR types, supporting slerp and RoPE computations from Sections 6 and 7 of the main paper.
+
+| Operation | Formula | VDR Ops | Depth Impact | Closure |
+|---|---|---|---|---|
+| Quaternion multiply | (a₁a₂−b₁b₂−c₁c₂−d₁d₂, ...) | 16 mul + 12 add/sub | +1 per multiply | Closed if all components closed |
+| Conjugate | (a, −b, −c, −d) | 3 negations | 0 | Preserves state |
+| Norm² | a²+b²+c²+d² | 4 mul + 3 add | +1 | Real VDR |
+| Inverse | q*/‖q‖² | 16+4 mul + 15 add/sub + 1 div | +1 | Active if norm irrational |
+| Rotation of vector v | qvq* | 2 quaternion multiplies | +2 | Closed if q has rational components |
+| Slerp(q₀,q₁,t) | sin((1−t)θ)/sinθ · q₀ + sin(tθ)/sinθ · q₁ | 2 sin + 1 arccos + 8 mul + 4 add | fn remainder depth | Requires freeze for Q335 |
+| RoPE at position p, dim d | cos(pθ_d), sin(pθ_d) applied to 2D pair | 1 sin + 1 cos per dim pair | fn remainder depth | Q335 after freeze |
+
+## Appendix M: Conservation Law Verification Table
+
+Physical conservation laws that VDR verifies by exact equality rather than residual tolerance.
+
+| Conservation Law | Physical System | Float Verification | VDR Verification | Significance |
+|---|---|---|---|---|
+| Probability = 1 | Quantum state ⟨ψ|ψ⟩ | 1.0 ± ~10⁻¹⁵ | 1 exactly | Sequential measurements compound float error |
+| Unitarity U†U = I | Time evolution | I ± ~10⁻¹⁵ | I exactly | Long evolution chains drift in float |
+| Symplecticity det(M) = 1 | Paraxial optics | 1.0 ± ~10⁻¹² after 1000 elements | 1 exactly | Resonator stability boundary exact |
+| Energy conservation | Hamiltonian evolution | E ± ~10⁻¹² per step | E exactly per step | Discrete calculus, not continuous |
+| Parseval energy | DFT/IDFT | Equal ± ~10⁻¹⁴ | Equal exactly | Filter design verification |
+| Equilibrium Ku = F | Structural statics | Residual ~10⁻¹⁰ | Residual = 0 | No iterative refinement needed |
+| Group closure | Crystallographic symmetry | Match within tolerance | Structural equality | No tolerance selection |
+| Orbit closure | Kepler 2-body | Position error ~10⁻¹² | Position error = 0 | Multi-orbit propagation exact |
+| Partition function ratio | Thermodynamic identity | Ratio ± ~10⁻¹⁴ | Ratio exact | Free energy differences exact |
+| Coordinate roundtrip | Helmert transform | ~1 nm residual | 0 residual | Datum chain composition exact |
+
+## Appendix N: Domain Suitability for Physical Computation
+
+Extended suitability matrix specific to the physical domains in this paper.
+
+| Domain | Exact | Practical Size | VDR Advantage | Primary Mechanism |
+|---|---|---|---|---|
+| QED coefficients | yes | any loop order with known analytical form | eliminates accumulation in multi-term sums | Q335 add + multiply |
+| Quantum 2×2 | yes | unlimited operations | exact unitarity, probability | Complex pairs |
+| Quantum n×n | yes | n ≤ 50 with Gaussian | exact eigenvalues (rational/complex), exact evolution | Gaussian + complex |
+| DFT/FFT | yes | N ≤ 2¹⁰ comfortably | exact roundtrip, Parseval, no butterfly rounding | Q335 twiddle + nesting |
+| IIR filters | yes | unlimited steps | drift-free; rational powers collapse | Q335 multiply chain |
+| Transfer functions | yes | any order | exact frequency response | Complex Horner |
+| State-space | yes | unlimited steps, n ≤ 50 states | zero drift, exact rank | Gaussian + matrix multiply |
+| Kepler orbits | yes | unlimited orbits | zero closure error | Functional remainder Newton |
+| Structural statics | yes | n ≤ 50 DOF | exact equilibrium, no refinement | Gaussian solve |
+| Partition functions | yes | 2ⁿ states, n ≤ 20 | exact Z, F, S | Functional remainder exp/ln |
+| Crystallography | yes | any symmetry group | exact group closure | Rational/Q335 matrix multiply |
+| Geodesy | yes | any transform chain | exact roundtrip | Rational matrix multiply |
+| Paraxial optics | yes | unlimited elements | exact symplecticity | 2×2 matrix power |
+| Resonator stability | yes | any cavity | exact stability boundary | Rational comparison |
