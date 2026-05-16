@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-16T10:50:19.670158+00:00",
+  "modified": "2026-05-16T10:50:19.782210+00:00",
+  "id": 20233098,
+  "conceptrecid": "20233097",
+  "metadata": {
+    "title": "VDR-LLM-Prolog: Prompt Optimization",
+    "publication_date": "2026-04",
+    "description": "VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download \u2014 the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.\n\nThe central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "vdr"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-15-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-15-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20233098",
+      "recid": 20233098
+    }
+  },
+  "title": "VDR-LLM-Prolog: Prompt Optimization",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20233098",
+    "html": "https://zenodo.org/deposit/20233098",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20233098/files",
+    "bucket": "https://zenodo.org/api/files/a3a9f6a9-47cb-423f-829b-1584776ad6af",
+    "thumb250": "https://zenodo.org/record/20233098/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20233098/thumb10",
+      "50": "https://zenodo.org/record/20233098/thumb50",
+      "100": "https://zenodo.org/record/20233098/thumb100",
+      "250": "https://zenodo.org/record/20233098/thumb250",
+      "750": "https://zenodo.org/record/20233098/thumb750",
+      "1200": "https://zenodo.org/record/20233098/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20233098",
+    "latest_draft_html": "https://zenodo.org/deposit/20233098",
+    "publish": "https://zenodo.org/api/deposit/depositions/20233098/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20233098/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20233098/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20233098/actions/newversion"
+  },
+  "record_id": 20233098,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "05eeaf95-bba9-4865-8f2b-6eb538fc67d6",
+      "filename": "!manuscript.pdf",
+      "filesize": 207649,
+      "checksum": "2cb81198cd267ac3ce29c109b1bc21f2",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20233098/files/05eeaf95-bba9-4865-8f2b-6eb538fc67d6",
+        "download": "https://zenodo.org/api/records/20233098/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "82c0f6f2-13b1-45d2-9b94-047c3c6462aa",
+      "filename": "HOWL-VDR-15-2026.zip",
+      "filesize": 2315978,
+      "checksum": "94a99741caf497248d5d663592043331",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20233098/files/82c0f6f2-13b1-45d2-9b94-047c3c6462aa",
+        "download": "https://zenodo.org/api/records/20233098/draft/files/HOWL-VDR-15-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
