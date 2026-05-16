@@ -1,0 +1,248 @@
+============================================================
+  1. Basic Types and Enums
+============================================================
+  PASS: SourceCharacter has PHILOSOPHY
+  PASS: SourceCharacter has SPECIFICATION
+  PASS: ColumnType has ID
+  PASS: ColumnType has ID_REF
+  PASS: Direction has INBOUND
+
+============================================================
+  2. Column and Table Schema
+============================================================
+  PASS: ColumnDef construction
+  PASS: ColumnDef with enum
+  PASS: TableSchema construction
+  PASS: TableSchema has 2 columns
+
+============================================================
+  3. Standard Table Library
+============================================================
+  PASS: STANDARD_TABLES has principles
+  PASS: STANDARD_TABLES has concepts
+  PASS: STANDARD_TABLES has claims
+  PASS: STANDARD_TABLES has relationships
+  PASS: STANDARD_TABLES has section_index
+  PASS: STANDARD_TABLES has operations
+  PASS: STANDARD_TABLES has boundaries
+  PASS: STANDARD_TABLES has entities
+  PASS: STANDARD_TABLES has fields
+  PASS: STANDARD_TABLES has phases
+  PASS: STANDARD_TABLES has builtins
+  PASS: STANDARD_TABLES has constraints_table
+  PASS: STANDARD_TABLES has components
+  PASS: STANDARD_TABLES has test_results
+  PASS: STANDARD_TABLES has failures
+  PASS: STANDARD_TABLES has findings
+  PASS: STANDARD_TABLES has benchmarks
+  PASS: principles id_prefix is P
+  PASS: principles has 3 columns
+  PASS: principles columns are id|principle|rationale
+  PASS: concepts has category enum
+  PASS: concepts category includes anti-pattern
+  PASS: relationships has from|rel|to
+  PASS: relationships rel column is REL_TYPE
+
+============================================================
+  4. Compaction Profiles
+============================================================
+  PASS: PROFILES has PHILOSOPHY
+  PASS: PROFILES has SPECIFICATION
+  PASS: PROFILES has RESEARCH
+  PASS: PROFILES has METHODOLOGY
+  PASS: PROFILES has OPERATIONAL
+  PASS: PROFILES has DATA
+  PASS: PHILOSOPHY requires principles
+  PASS: PHILOSOPHY requires concepts
+  PASS: PHILOSOPHY always has relationships
+  PASS: PHILOSOPHY compression target 85-93
+  PASS: SPECIFICATION requires components
+  PASS: SPECIFICATION optional has builtins
+
+============================================================
+  5. Decode Legend
+============================================================
+  PASS: Legend has 3 entries
+  PASS: Legend get_enum_values works
+  PASS: Legend get_enum_values for missing returns None
+  PASS: Legend notation entry type
+
+============================================================
+  6. Grammar Rule
+============================================================
+  PASS: GrammarRule construction
+  PASS: GrammarRule has 3 slots
+  PASS: GrammarRule has connection_pattern
+  PASS: GrammarRule usage_count starts at 0
+
+============================================================
+  7. Compacted Document Construction
+============================================================
+  FAIL: doc.all_ids has 5 IDs
+  PASS: doc.get_by_id finds C1
+  PASS: doc.get_by_id returns None for missing
+  PASS: doc.relationships has 2 edges
+  PASS: doc.section_index has 2 sections
+  PASS: principles table row_count is 2
+  PASS: concepts get_row by ID works
+  PASS: concepts get_all_ids
+
+============================================================
+  8. KB Infrastructure
+============================================================
+  PASS: PathRegistry root is 0
+  PASS: register returns new ID
+  PASS: resolve returns same ID
+  PASS: re-register returns same ID
+  PASS: child registration works
+  PASS: from_id roundtrip
+  PASS: parent_path works
+  PASS: parent_path of root is None
+  PASS: exists works
+  PASS: exists false for missing
+  PASS: depth of root is 0
+  PASS: depth of root.papers.vdr1 is 2
+  PASS: children_paths finds children
+  PASS: KB construction
+  PASS: KB facts start empty
+  PASS: assert_fact returns Fact
+  PASS: KB has 1 fact
+  PASS: assert_fact is idempotent (same fact)
+  PASS: KB has 2 facts after different fact
+  PASS: query_facts finds matching fact
+  PASS: query_facts without filter returns all
+  PASS: query_facts returns empty for no match
+  PASS: retract_fact returns True on success
+  PASS: KB has 1 fact after retract
+  PASS: retract_fact returns False on miss
+  PASS: Counter inc works
+  PASS: Counter dec works
+  PASS: Counter add works
+  PASS: Counter set works
+  PASS: Counter clamps at max
+  PASS: Counter reset works
+  PASS: Lock starts free
+  PASS: Lock acquire succeeds when free
+  PASS: Lock is held after acquire
+  PASS: Lock holder is set
+  PASS: Lock acquire fails when held
+  PASS: Lock holder unchanged
+  PASS: Lock free after release
+  PASS: reset_live clears counter
+  PASS: reset_live releases lock
+  PASS: reset_live clears working_data
+  PASS: reset_live preserves facts
+
+============================================================
+  9. Compacted Doc → KB Conversion
+============================================================
+  PASS: table_schema facts created
+  PASS: principle facts created
+  PASS: P1 fact has correct principle
+  PASS: concept facts created
+  PASS: C1 fact has correct name
+  PASS: C2 fact has correct category
+  PASS: section_index facts created
+  PASS: decode legend facts created
+  PASS: rel_types decode entry exists
+  PASS: connections created from relationships
+  PASS: constraints created from decode enums
+  PASS: grammars were auto-generated
+  PASS: compact_display grammar exists
+  PASS: document_summary grammar exists
+  PASS: extract_principles grammar exists
+  PASS: extract_concepts grammar exists
+  PASS: detail_principles grammar exists
+  PASS: detail_concepts grammar exists
+  PASS: relationship_display grammar exists
+
+============================================================
+  10. KB → Compacted Doc Roundtrip
+============================================================
+  PASS: Roundtrip produces document
+  PASS: Roundtrip title matches
+  PASS: Roundtrip character matches
+  PASS: Roundtrip has principles table
+  PASS: Roundtrip has concepts table
+  PASS: Roundtrip principles has 2 rows
+  PASS: Roundtrip concepts has 3 rows
+  PASS: Roundtrip C1 name preserved
+  PASS: Roundtrip P1 preserved
+  PASS: Roundtrip has section_index
+  PASS: Roundtrip has decode legend entries
+
+============================================================
+  11. Usage Grammar Generation
+============================================================
+  PASS: reference grammar created
+  PASS: reference grammar has 4 slots
+  PASS: reference grammar on target KB
+  PASS: target KB has connection to source
+  PASS: source KB has reverse connection
+  PASS: comparison grammar created
+  PASS: evidence grammar created
+  PASS: evidence grammar has confidence slot
+  PASS: dependency grammar created
+  PASS: summary grammar created
+  PASS: target KB has 5 usage grammars
+  PASS: target KB has 5 connections
+
+============================================================
+  12. Compaction Pipeline
+============================================================
+  PASS: classify PHILOSOPHY from text
+  PASS: classify API from text
+  PASS: classify DATA from text
+  PASS: classify METHODOLOGY from text
+  PASS: classify SPECIFICATION from text
+  PASS: classify RESEARCH from text
+  PASS: classify MIXED from unknown text
+  PASS: principles applicable to text with principles
+  PASS: principles not applicable to unrelated text
+  PASS: Pipeline produces CompactedDocument
+  PASS: Pipeline document has correct character
+  PASS: Pipeline document has principles table
+  PASS: Pipeline document has concepts table
+  PASS: Pipeline document has relationships table
+  PASS: Pipeline document has section_index table
+  PASS: Pipeline registered KB path
+  PASS: Pipeline KB in all_kbs
+  PASS: Pipeline KB has source_character fact
+  PASS: Pipeline KB has table_schema facts
+  PASS: Pipeline KB has grammars
+  PASS: Pipeline KB has decode legend
+
+============================================================
+  13. Cross-KB Usage Scenario (Integration)
+============================================================
+  PASS: Integration: evidence grammar created on notebook
+  PASS: Integration: notebook connected to vdr1
+  PASS: Integration: vdr1 has reverse connection to notebook
+  PASS: Integration: can query VDR-1 concepts from connection
+  PASS: Integration: evidence fact asserted in notebook
+  PASS: Integration: evidence grammar has confidence slot
+  PASS: Integration: evidence grammar has inbound connection pattern
+
+============================================================
+  14. Grammar Inheritance Through KB Tree
+============================================================
+  PASS: Inheritance: vdr inherits basic_list from root
+  PASS: Inheritance: vdr inherits code_block from project
+  PASS: Inheritance: vdr has 2 inherited grammars
+  PASS: Override: vdr now has its own basic_list
+  PASS: Override: root basic_list is shadowed
+  PASS: Override: code_block still inherited
+
+============================================================
+  RESULTS
+============================================================
+
+  Total:  179
+  Passed: 178
+  Failed: 1
+
+  Failed tests:
+    - doc.all_ids has 5 IDs
+
+  1 TESTS FAILED
+  
