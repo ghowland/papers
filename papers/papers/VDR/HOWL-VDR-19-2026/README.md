@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog: Performance
+# VDR-LLM-Prolog: Self-Extending Architecture
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-The VDR-LLM-Prolog system replaces floating-point arithmetic with exact integer computation. The immediate objection is performance: integer arithmetic on 100-digit numbers must be slower than hardware-accelerated floating-point on 16-bit or 32-bit values. This paper demonstrates that the objection confuses per-operation cost with per-prompt cost. A conventional language model spends thousands of tokens — each requiring a full forward pass through billions of floating-point parameters — on infrastructure work that VDR handles through exact primitive calls costing a few hundred integer operations each. VDR-15 established that the token reduction is 85 to 97 percent. This paper establishes that the integer arithmetic executing those primitives maps efficiently to GPU hardware, that the wider operands are offset by the massive parallelism of modern GPUs, and that several architectural properties of VDR — fixed-frame regularity, grammar-constrained decode, indexed knowledge base scans, and frontier-based Prolog execution — produce GPU utilization patterns that are structurally superior to the irregular, attention-dominated workloads of conventional language model inference. The complete GPU mapping is specified in the supplementary technical specification. This paper explains why it works, what the performance characteristics are, and where the actual bottlenecks lie.
+
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-18-2026,
-  title={ VDR-LLM-Prolog: Performance },
+@article{ HOWL-VDR-19-2026,
+  title={ VDR-LLM-Prolog: Self-Extending Architecture },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20236975},
-  url = {https://zenodo.org/record/20236975},
-  note={Howland Archive: HOWL-VDR-18-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-VDR-19-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

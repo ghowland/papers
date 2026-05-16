@@ -1,9 +1,11 @@
 # VDR-LLM-Prolog: Self-Extending Architecture
+
 ## From Seed to Self-Compacting Knowledge System
 
 **Registry:** [@HOWL-VDR-19-2026]
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-15-2026] → [@HOWL-VDR-16-2026] → [@HOWL-VDR-17-2026]
+
  → [@HOWL-VDR-18-2026] → [@HOWL-VDR-19-2026]
 
 **DOI:** 10.5281/zenodo.zzz
@@ -53,7 +55,9 @@ P1|emerges_from|VIS1,GR1,OC1
 becomes a set of Prolog rules:
 
 emerges_from(p1, vis1).
+
 emerges_from(p1, gr1).
+
 emerges_from(p1, oc1).
 
 These are directly loadable. The parse step is mechanical — split on delimiters, map prefixed IDs to integer addresses, assert facts into the appropriate predicate-major column group in the target knowledge base. No transformation logic, no interpretation, no LLM involvement. The compacted document is a load file.
@@ -301,23 +305,31 @@ This capability is itself subject to self-extension. Sentence template knowledge
 The current compaction format uses pipe-delimited tables with ID prefixes, relationship tables, decode legends, and section indexes. The adjusted format modifies syntax for three-way compatibility: Prolog clause parsing, predicate-major columnar storage, and implementation language struct mapping.
 
 Current format entity row:
+
 P1|Safety is consequence not feature|no safety-specific modules designed
 
 Adjusted format (Prolog-compatible fact):
+
 principle(p1, "Safety is consequence not feature", "no safety-specific modules designed").
 
 Current format relationship row:
+
 P1|emerges_from|VIS1,GR1,OC1
 
 Adjusted format (Prolog-compatible rules):
+
 emerges_from(p1, vis1).
+
 emerges_from(p1, gr1).
+
 emerges_from(p1, oc1).
 
 Current format table header:
+
 principles(id|principle|detail)
 
 Adjusted format (struct/schema definition):
+
 :- schema(principle, [id:atom, principle:string, detail:string]).
 
 The adjusted format is directly loadable by the parse pipeline: split on clause boundaries, extract predicate name and typed arguments, map atom IDs to integer addresses, assert into the predicate-major column group in the target knowledge base. Schema declarations map to Zig struct definitions and Python dataclass definitions through mechanical code generation.
@@ -386,11 +398,10 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | `P1\|rel\|P2,P3` | `rel(p1, p2). rel(p1, p3).` | One rule per target in comma list | Relationship column: `rel` table, indexed both directions |
 | `header(col1\|col2\|col3)` | `:- schema(header, [col1:type, col2:type, col3:type]).` | Extract column names, infer types from content | Zig struct / Python dataclass definition |
 | `# comment` | `% comment` | Prefix swap | Retained as documentation in KB metadata |
-| `section_index(section\|title\|ids)` | `section_index(N, "title", [id1, id2, ...]).` | Parse into list-valued fact | Queryable table of contents |
-| `decode_legend` free text | `legend_entry(prefix, expansion).` per line | One fact per prefix mapping | Queryable legend KB |
+| `section index(section\|title\|ids)` | `section index(N, "title", [id1, id2, ...]).` | Parse into list-valued fact | Queryable table of contents |
+| `decode legend` free text | `legend entry(prefix, expansion).` per line | One fact per prefix mapping | Queryable legend KB |
 | `+standalone` | `meta(standalone, true).` | Boolean meta-fact | KB metadata flags |
-| `id_prefixes: P=principle, TC=token_cat` | `id_prefix(p, principle). id_prefix(tc, token_cat).` | One fact per prefix | Prefix resolution during query |
-
+| `id prefixes: P=principle, TC=token cat` | `id prefix(p, principle). id prefix(tc, token cat).` | One fact per prefix | Prefix resolution during query |
 ### A.2 — Type Inference Rules
 
 | Content Pattern | Inferred Type | Zig Type | Python Type | Example |
@@ -400,47 +411,44 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Percentage | `q335` | `Q335` | `Q335` | `85%`, `~95%` |
 | Quoted string | `string` | `[]const u8` | `str` | `"Safety is consequence"` |
 | ID reference | `atom` | `u32` (interned) | `int` | `p1`, `vis3`, `cl7` |
-| ID list | `atom_list` | `[]u32` | `list[int]` | `[p1, p2, p3]` |
+| ID list | `atom list` | `[]u32` | `list[int]` | `[p1, p2, p3]` |
 | Boolean-like | `bool` | `bool` | `bool` | `yes`, `no`, `true` |
-| Range expression | `range` | `struct{lo: i32, hi: i32}` | `tuple[int,int]` | `100-500×`, `2-22` |
+| Range expression | `range` | `struct{lo: i32, hi: i32}` | `tuple[int,int]` | `100-500 $\times$ `, `2-22` |
 | Approximate | `q335` + `approx` tag | `Q335` + provenance | `Q335` + provenance | `~200`, `~15%` |
-
 ### A.3 — Predicate-Major Column Layout After Load
 
 | Predicate | Columns | Row Count (VDR-15) | Row Count (VDR-16) | Row Count (VDR-17) | Row Count (VDR-18) |
 |---|---|---|---|---|---|
 | `principle` | id, text, detail | 6 | 6 | 8 | 8 |
-| `claim` | id, text, type, depends_on | 0 | 0 | 12 | 15 |
+| `claim` | id, text, type, depends on | 0 | 0 | 12 | 15 |
 | `concept` | id, name, definition, category | 0 | 0 | 22 | 18 |
 | `relationship` | from, rel, to | 48 | 42 | 55 | 62 |
-| `section_index` | section, title, ids | 23 | 17 | 14 | 28 |
-| `token_category` | id, category, description, conv_pct, vdr_cost | 9 | 0 | 0 | 0 |
-| `use_case` | id, case, conv_tokens, vdr_tokens, reduction | 7 | 0 | 0 | 0 |
-| `enterprise_scenario` | id, scenario, user, target, mechanism, result | 0 | 7 | 0 | 0 |
-| `jailbreak_analysis` | id, technique, conv_risk, vdr_result, reason | 0 | 6 | 0 | 0 |
-| `interference_behavior` | id, name, description, root_cause, elimination | 0 | 0 | 7 | 0 |
-| `forward_pass_component` | id, component, conv_cost, vdr_cost, ratio | 0 | 0 | 0 | 7 |
+| `section index` | section, title, ids | 23 | 17 | 14 | 28 |
+| `token category` | id, category, description, conv pct, vdr cost | 9 | 0 | 0 | 0 |
+| `use case` | id, case, conv tokens, vdr tokens, reduction | 7 | 0 | 0 | 0 |
+| `enterprise scenario` | id, scenario, user, target, mechanism, result | 0 | 7 | 0 | 0 |
+| `jailbreak analysis` | id, technique, conv risk, vdr result, reason | 0 | 6 | 0 | 0 |
+| `interference behavior` | id, name, description, root cause, elimination | 0 | 0 | 7 | 0 |
+| `forward pass component` | id, component, conv cost, vdr cost, ratio | 0 | 0 | 0 | 7 |
 | `bottleneck` | id, bottleneck, severity, description, mitigation | 0 | 0 | 0 | 4 |
 | **Total facts** | | **278** | **196** | **253** | **311** |
 | **Total relationships** | | **48** | **42** | **55** | **62** |
-
 ## Appendix B: Seed Layer Contents
 
 ### B.1 — Seed Layer 1: Language KB Contents
 
 | Component | Entry Count | Entry Format | Example | Storage Size (est.) |
 |---|---|---|---|---|
-| Sentence templates: declarative | ~2,400 | `template(id, [slots], structural_tokens, weights)` | `template(d_071, [subj, verb, obj], "The _ _ the _.", [formal:0.7, complexity:0.2])` | ~480 KB |
-| Sentence templates: interrogative | ~800 | same | `template(q_015, [verb, subj, obj], "Does the _ _ the _?", [formal:0.6])` | ~160 KB |
-| Sentence templates: conditional | ~600 | same | `template(c_042, [cond, subj, verb], "If _, the _ _.", [formal:0.5])` | ~120 KB |
-| Sentence templates: relative clause | ~500 | same | `template(r_028, [subj, rel_clause, verb], "The _, which _, _.", [formal:0.8])` | ~100 KB |
-| Sentence templates: participial | ~300 | same | `template(pt_011, [participle, subj, verb], "Having _, the _ _.", [formal:0.7])` | ~60 KB |
-| Sentence templates: coordinated | ~400 | same | `template(co_033, [subj, verb1, verb2], "The _ _ and _.", [formal:0.4])` | ~80 KB |
+| Sentence templates: declarative | ~2,400 | `template(id, [slots], structural tokens, weights)` | `template(d 071, [subj, verb, obj], "The     the  .", [formal:0.7, complexity:0.2])` | ~480 KB |
+| Sentence templates: interrogative | ~800 | same | `template(q 015, [verb, subj, obj], "Does the     the  ?", [formal:0.6])` | ~160 KB |
+| Sentence templates: conditional | ~600 | same | `template(c 042, [cond, subj, verb], "If  , the    .", [formal:0.5])` | ~120 KB |
+| Sentence templates: relative clause | ~500 | same | `template(r 028, [subj, rel clause, verb], "The  , which  ,  .", [formal:0.8])` | ~100 KB |
+| Sentence templates: participial | ~300 | same | `template(pt 011, [participle, subj, verb], "Having  , the    .", [formal:0.7])` | ~60 KB |
+| Sentence templates: coordinated | ~400 | same | `template(co 033, [subj, verb1, verb2], "The     and  .", [formal:0.4])` | ~80 KB |
 | Typo correction mappings | ~15,000 | `typo(wrong, correct)` | `typo("recieve", "receive")` | ~300 KB |
 | Classification patterns | ~3,000 | `classify(pattern, tag, direction)` | `classify("LD50", pharmacology, positive)` | ~120 KB |
-| Weight profiles | ~20 | `weight_profile(name, [key:value, ...])` | `weight_profile(formal_academic, [formal:0.9, complexity:0.6])` | ~4 KB |
+| Weight profiles | ~20 | `weight profile(name, [key:value, ...])` | `weight profile(formal academic, [formal:0.9, complexity:0.6])` | ~4 KB |
 | **Total seed layer 1** | **~23,020** | | | **~1.4 MB** |
-
 ### B.2 — Seed Layer 2: Format Grammars
 
 | Grammar | Structural Tokens | Content Slot Types | Structural Token % | Typical Doc Size (tokens) | Savings vs Full Generation |
@@ -455,33 +463,30 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | XML/HTML | `< > / = " "` + tag names | attribute values, text content | 65% | 1,000 | 650 tokens |
 | YAML | `:` + `-` + newline + indent | values at any depth | 40% | 300 | 120 tokens |
 | SQL result set | column headers + `\|` + `-` + alignment | cell values | 55% | 400 | 220 tokens |
-
 ### B.3 — Seed Layer 3: Operational Rules
 
 | Rule Category | Rule Count | Example Rule | Fires When |
 |---|---|---|---|
-| Primitive selection | ~80 | `use_primitive(parse_json, Task) :- task_type(Task, json_ingestion).` | LM needs to choose which builtin for a task |
-| Pipeline sequencing | ~40 | `pipeline_step(filter, After) :- pipeline_step(parse, After).` | Ordering multi-step operations |
-| Data structure selection | ~25 | `use_structure(ring_buffer, Req) :- requirement(Req, fixed_window), requirement(Req, overwrite_oldest).` | Choosing queue vs ring vs stack vs LRU |
-| Compaction: entity extraction | ~60 | `extract_entity(Line, Id, Fields) :- starts_with_id_prefix(Line, Id), split_pipe(Line, Fields).` | Processing a compacted document |
-| Compaction: relationship mapping | ~30 | `map_relationship(Line, From, Rel, To) :- three_fields(Line, From, Rel, To), known_rel_type(Rel).` | Extracting relationships during compaction |
-| KB management | ~35 | `promote_to_project(Fact) :- session_fact(Fact), confidence(Fact, C), C > 0.8.` | Deciding session vs project storage |
-| Counter/queue management | ~20 | `drain_queue(Q) :- queue_depth(Q, D), D > threshold(Q).` | Managing data structure lifecycle |
-| Error handling | ~15 | `retry_with_backoff(Op, N) :- failed(Op), attempt_count(Op, N), N < max_retries(Op).` | Operation failure recovery |
+| Primitive selection | ~80 | `use primitive(parse json, Task) :- task type(Task, json ingestion).` | LM needs to choose which builtin for a task |
+| Pipeline sequencing | ~40 | `pipeline step(filter, After) :- pipeline step(parse, After).` | Ordering multi-step operations |
+| Data structure selection | ~25 | `use structure(ring buffer, Req) :- requirement(Req, fixed window), requirement(Req, overwrite oldest).` | Choosing queue vs ring vs stack vs LRU |
+| Compaction: entity extraction | ~60 | `extract entity(Line, Id, Fields) :- starts with id prefix(Line, Id), split pipe(Line, Fields).` | Processing a compacted document |
+| Compaction: relationship mapping | ~30 | `map relationship(Line, From, Rel, To) :- three fields(Line, From, Rel, To), known rel type(Rel).` | Extracting relationships during compaction |
+| KB management | ~35 | `promote to project(Fact) :- session fact(Fact), confidence(Fact, C), C > 0.8.` | Deciding session vs project storage |
+| Counter/queue management | ~20 | `drain queue(Q) :- queue depth(Q, D), D > threshold(Q).` | Managing data structure lifecycle |
+| Error handling | ~15 | `retry with backoff(Op, N) :- failed(Op), attempt count(Op, N), N < max retries(Op).` | Operation failure recovery |
 | **Total seed layer 3** | **~305** | | |
-
 ### B.4 — Seed Layer 4: Self-Maintenance Rules
 
 | Rule Category | Rule Count | Example Rule | Fires When |
 |---|---|---|---|
-| Novel structure detection | ~15 | `needs_grammar(Doc) :- document_type(Doc, Type), \+ grammar_exists(Type).` | Incoming document has no matching grammar |
-| Compaction gap detection | ~10 | `needs_compaction_rule(Doc) :- document_domain(Doc, D), \+ compaction_rule_exists(D).` | Document type not covered by compaction rules |
-| Snapshot triggers | ~8 | `should_snapshot(Project) :- facts_since_snapshot(Project, N), N > 50.` | Enough new facts to justify versioning |
-| Version comparison | ~12 | `changed_since(Snap, Fact) :- current_fact(Fact), \+ snapshot_contains(Snap, Fact).` | Diff current state against snapshot |
-| Promotion criteria | ~10 | `promote_candidates(Session) :- session_facts(Session, Facts), filter_high_confidence(Facts, Candidates).` | End of session, selecting what to keep |
-| Grammar quality monitoring | ~8 | `grammar_mismatch(G, Doc) :- parsed_with(Doc, G), parse_errors(Doc, E), E > 0.` | Existing grammar partially fails on new input |
+| Novel structure detection | ~15 | `needs grammar(Doc) :- document type(Doc, Type), \+ grammar exists(Type).` | Incoming document has no matching grammar |
+| Compaction gap detection | ~10 | `needs compaction rule(Doc) :- document domain(Doc, D), \+ compaction rule exists(D).` | Document type not covered by compaction rules |
+| Snapshot triggers | ~8 | `should snapshot(Project) :- facts since snapshot(Project, N), N > 50.` | Enough new facts to justify versioning |
+| Version comparison | ~12 | `changed since(Snap, Fact) :- current fact(Fact), \+ snapshot contains(Snap, Fact).` | Diff current state against snapshot |
+| Promotion criteria | ~10 | `promote candidates(Session) :- session facts(Session, Facts), filter high confidence(Facts, Candidates).` | End of session, selecting what to keep |
+| Grammar quality monitoring | ~8 | `grammar mismatch(G, Doc) :- parsed with(Doc, G), parse errors(Doc, E), E > 0.` | Existing grammar partially fails on new input |
 | **Total seed layer 4** | **~63** | | |
-
 ### B.5 — Total Seed Size
 
 | Layer | Fact/Rule Count | Storage Size | Load Time (est.) |
@@ -491,7 +496,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Layer 3: Operational rules | ~305 | ~60 KB | <50 ms |
 | Layer 4: Self-maintenance | ~63 | ~12 KB | <20 ms |
 | **Total seed** | **~23,398** | **~1.5 MB** | **<620 ms** |
-
 ## Appendix C: Bootstrap Stage Transitions
 
 ### C.1 — Stage Transition Criteria
@@ -503,7 +507,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Stage 2 | Stage 3 (Self-compacting) | System compacts a previously unseen document of known type without external LLM | Compare self-compacted output against external LLM compaction; fact/rule parity within 95% | 10–50 sessions depending on document variety |
 | Stage 3 | Stage 4 (Self-extending) | System creates new grammar for novel document structure without human guidance | Novel doc ingested, grammar written, second doc of same type parsed by grammar alone | Continuous from stage 3; no sharp boundary |
 | Stage 4 | Mature | Compaction rule library covers >90% of incoming document types; operational rules cover >80% of routine tasks | Audit: percentage of documents requiring LLM judgment for compaction; percentage of tasks requiring novel rule writing | Months of active usage |
-
 ### C.2 — Capabilities Available at Each Stage
 
 | Capability | Pre-bootstrap | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Mature |
@@ -519,7 +522,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Create new grammars | No | No | No | No | Yes | Yes |
 | Routine triage without LLM | No | No | No | Partial | Partial | Mostly |
 | Queue-based multi-instance | No | No | Yes | Yes | Yes | Yes |
-
 ## Appendix D: SRE Worked Example — Three Investigations
 
 ### D.1 — Investigation 1: Fresh System
@@ -527,24 +529,23 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Phase | LM Action | Command Tokens | Primitives Invoked | KB Facts Written | Rules Written | Scripts Written |
 |---|---|---|---|---|---|---|
 | Prometheus query | Emit credentialed API call | 8 | B424 fetch | 1 (raw data ref) | 0 | 0 |
-| JSON parse | Route response to parser | 8 | B246 json_parse | ~200 (metric facts) | 0 | 0 |
+| JSON parse | Route response to parser | 8 | B246 json parse | ~200 (metric facts) | 0 | 0 |
 | Filter by error rate | Specify threshold | 8 | B198 filter | 0 (result set) | 0 | 0 |
 | Sort by severity | Specify ordering | 8 | B202 sort | 0 (result set) | 0 | 0 |
 | Deployment timeline fetch | Emit credentialed API call | 8 | B424 fetch | ~30 (deployment facts) | 0 | 0 |
 | Correlation analysis | Write Python script | 35 | Docker execute | 5 (correlation findings) | 0 | 1 |
-| Pattern encoding | Write correlation rule | 25 | B376 kb_assert | 0 | 1 | 0 |
-| Threshold encoding | Write alert rule | 20 | B376 kb_assert | 0 | 1 | 0 |
-| Service dependency mapping | Write traversal rules | 40 | B376 kb_assert × 3 | 0 | 3 | 0 |
-| Anomaly classification | Write classifier rules | 50 | B376 kb_assert × 5 | 0 | 5 | 0 |
-| Resource pattern rules | Write from findings | 30 | B376 kb_assert × 3 | 0 | 3 | 0 |
+| Pattern encoding | Write correlation rule | 25 | B376 kb assert | 0 | 1 | 0 |
+| Threshold encoding | Write alert rule | 20 | B376 kb assert | 0 | 1 | 0 |
+| Service dependency mapping | Write traversal rules | 40 | B376 kb assert  $\times$  3 | 0 | 3 | 0 |
+| Anomaly classification | Write classifier rules | 50 | B376 kb assert  $\times$  5 | 0 | 5 | 0 |
+| Resource pattern rules | Write from findings | 30 | B376 kb assert  $\times$  3 | 0 | 3 | 0 |
 | Statistical summary | Write stats script | 25 | Docker execute | 3 (summary facts) | 0 | 1 |
 | Frequency analysis | Write analysis script | 30 | Docker execute | 4 (frequency facts) | 0 | 1 |
-| Finding storage | Promote to project KB | 16 | B376 kb_assert × 2 | 8 (findings) | 2 | 0 |
+| Finding storage | Promote to project KB | 16 | B376 kb assert  $\times$  2 | 8 (findings) | 2 | 0 |
 | Report generation | Fill grammar template | 12 | Grammar engine | 1 (report ref) | 0 | 0 |
-| Export | Generate CSV + JSON | 8 | B391 file_write × 2 | 2 (export refs) | 0 | 0 |
+| Export | Generate CSV + JSON | 8 | B391 file write  $\times$  2 | 2 (export refs) | 0 | 0 |
 | Service restart | Credentialed restart | 8 | B424 fetch (API) | 1 (action log) | 0 | 0 |
 | **Totals** | | **~329** | | **~255 facts** | **15 rules** | **3 scripts** |
-
 ### D.2 — Investigation 2: Same System, New Incident
 
 | Phase | LM Action | Command Tokens | Reused From Inv. 1 | New Work |
@@ -561,7 +562,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Export | Generate files | 8 | Same export pattern | New data |
 | **Totals** | | **~127** | **7 rules, 3 scripts reused** | **4 new rules, 6 findings** |
 | **Reduction vs inv. 1** | | **61%** | | |
-
 ### D.3 — Investigation 10: Mature Project
 
 | Phase | LM Action | Command Tokens | Reused | New Work |
@@ -575,7 +575,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Report + export | Grammar + file write | 12 | Templates | New content |
 | **Totals** | | **~92** | **47 rules, 7 scripts** | **2 rules, 3 findings** |
 | **Reduction vs inv. 1** | | **72%** | | |
-
 ### D.4 — Accumulation Summary
 
 | Metric | Inv. 1 | Inv. 2 | Inv. 5 | Inv. 10 | Inv. 20 | Inv. 50 |
@@ -587,7 +586,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Rules firing automatically | 0 | 7 | 18 | 47 | 72 | 115 |
 | % routine triage automated | 0% | 25% | 45% | 65% | 78% | 88% |
 | Scripts reused vs written | 0:3 | 3:0 | 4:1 | 7:1 | 10:1 | 16:1 |
-
 ## Appendix E: Prolog Rule Amortization in Self-Extension
 
 ### E.1 — Rule Cost Over Reuse Lifetime
@@ -602,7 +600,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 100 | 30 | 30 | 0.3 | 200 | 199.7 |
 | 1,000 | 30 | 30 | 0.03 | 200 | 199.97 |
 | 10,000 | 30 | 30 | 0.003 | 200 | 199.997 |
-
 ### E.2 — Amortization by Scope Level
 
 | Scope Level | Typical Reuses (year) | Amortized Cost | Example Rule |
@@ -611,7 +608,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Project | 10–500 | 0.06–3 tokens/use | SRE correlation pattern for one service |
 | Department | 500–5,000 | 0.006–0.06 tokens/use | SRE triage classifier for all services |
 | Organization | 5,000–100,000 | 0.0003–0.006 tokens/use | Standard deployment verification rule |
-
 ### E.3 — Self-Extension Amplification
 
 | Factor | Effect on Amortization |
@@ -621,7 +617,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Scope promotion | Rule promoted from project to department scope; reuse pool expands by factor of projects-per-department |
 | Cross-session persistence | Rule written in session 1 fires in session 100; zero additional cost from sessions 2–100 |
 | Composability | Rule A + Rule B produce inference C; neither rule's amortization accounts for C — it's free |
-
 ## Appendix F: Python Script Lifecycle
 
 ### F.1 — Script Lifecycle States
@@ -635,7 +630,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Re-executed | Future session needs same analysis on new data | 8 (command only) | Same project KB | Yes |
 | Modified | LM writes updated version | 20–50 (new version) | Project KB, prior version retained | Both versions available |
 | Deprecated | LM or admin marks superseded | 8 (retract command) | Archived with provenance | No (archived) |
-
 ### F.2 — Script Security Constraints
 
 | Constraint | Mechanism | Violation Result |
@@ -646,7 +640,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Execution time limit | Container timeout set by operational constraint | Container killed; timeout logged |
 | Memory limit | Container memory cap from operational constraint | OOM kill; logged |
 | Input data scoping | Only data from granted KB paths mounted into container | Script cannot access out-of-scope data |
-
 ### F.3 — Script Reuse Economics
 
 | Scenario | First Execution Cost | Re-execution Cost | Savings | Break-even |
@@ -655,24 +648,22 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Statistical analysis | 45 tokens + 8 = 53 | 8 tokens | 45 tokens/reuse | 2nd use |
 | Complex transformation | 50 tokens + 8 = 58 | 8 tokens | 50 tokens/reuse | 2nd use |
 | Multi-step pipeline script | 50 tokens + 8 = 58 | 8 tokens | 50 tokens/reuse | 2nd use |
-
 ## Appendix G: Queue-Based Multi-Instance Coordination
 
 ### G.1 — Queue Message Structure
 
 | Field | Type | Source | Example |
 |---|---|---|---|
-| message_id | integer | System assigned | 4071 |
-| producer_session_id | integer | Session KB | 228 |
-| producer_user_id | atom | Authentication | alice_sre |
-| turn_produced | integer | Session state | 14 |
-| message_type | atom | LM judgment | finding_summary |
-| payload_kb_path | path | LM specification | root.projects.sre_042.findings |
-| payload_fact_ids | integer list | KB addresses | [1847, 1848, 1849, 1850] |
+| message id | integer | System assigned | 4071 |
+| producer session id | integer | Session KB | 228 |
+| producer user id | atom | Authentication | alice sre |
+| turn produced | integer | Session state | 14 |
+| message type | atom | LM judgment | finding summary |
+| payload kb path | path | LM specification | root.projects.sre 042.findings |
+| payload fact ids | integer list | KB addresses | [1847, 1848, 1849, 1850] |
 | confidence | Q335 | Propagation rules | 847/1000 |
 | priority | integer | LM judgment or rule | 2 |
-| provenance_chain | ref | Provenance log | event_log entry 3042 |
-
+| provenance chain | ref | Provenance log | event log entry 3042 |
 ### G.2 — Multi-Instance Topologies
 
 | Topology | Instances | Queue Pattern | Use Case | Token Distribution |
@@ -682,7 +673,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Fan-in | N producers, 1 consumer | {A1,...,An}→Q→B | Multiple sources, one synthesizer | Each Ai: variable, B: synthesis only |
 | Peer | N symmetric | Shared Q, any→any | Collaborative investigation | Even distribution |
 | Supervisor | 1 supervisor, N workers | S↔Q↔{W1,...,Wn} | Managed work distribution | S: 5% (judgment), Wi: 95%/N (execution) |
-
 ### G.3 — Clone Lifecycle in Queue Context
 
 | Event | Token Cost | KB State | Queue State | Provenance |
@@ -694,7 +684,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Clone enqueues results | 8 (enqueue command) | — | New message with provenance | Full chain: source → clone → output |
 | Clone killed | 8 (lifecycle) | Delta discarded if not promoted | — | Kill logged |
 | **Total lifecycle overhead** | **~40 tokens** | | | |
-
 ## Appendix H: Capability Growth Metrics
 
 ### H.1 — SRE Use Case Growth Projection
@@ -707,7 +696,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 20 | 1,200 | 95 | 12 | 3 | 2 | 78 | 78% |
 | 50 | 2,400 | 140 | 18 | 5 | 4 | 65 | 88% |
 | 100 | 4,200 | 185 | 24 | 7 | 6 | 55 | 93% |
-
 ### H.2 — Legal Use Case Growth Projection
 
 | Review | KB Facts | Prolog Rules | Python Scripts | Grammars | Compaction Rules | Tokens/Review | Auto-Classification % |
@@ -717,7 +705,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 10 | 1,100 | 65 | 5 | 2 | 2 | 210 | 50% |
 | 20 | 1,800 | 95 | 7 | 3 | 3 | 160 | 65% |
 | 50 | 3,500 | 145 | 12 | 4 | 5 | 110 | 80% |
-
 ### H.3 — Medical Synthesis Growth Projection
 
 | Synthesis | KB Facts | Prolog Rules | Python Scripts | Grammars | Compaction Rules | Tokens/Synthesis | Auto-Contradiction % |
@@ -727,7 +714,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 10 | 2,400 | 90 | 10 | 2 | 2 | 260 | 55% |
 | 20 | 4,500 | 140 | 15 | 3 | 4 | 180 | 72% |
 | 50 | 9,000 | 210 | 22 | 5 | 7 | 120 | 87% |
-
 ### H.4 — Cross-Domain Token Efficiency Curve
 
 | Usage Phase | LM Tokens per Unit of Useful Output | Rule Evaluations per LM Token | Ratio Trend |
@@ -737,7 +723,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Sessions 5–20 | Moderate (novel work only) | 2–10 | Accelerating |
 | Sessions 20–50 | Low (mostly reuse) | 10–50 | Strong |
 | Sessions 50+ | Minimal (exceptions only) | 50–200 | Asymptotic |
-
 ## Appendix I: Security Properties of Self-Generated Rules
 
 ### I.1 — Access Control Chain for Self-Generated Content
@@ -751,7 +736,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Rule fires against facts | Fact visibility checked per fact | Same visibility + scope on each fact accessed | No — per-fact check |
 | Rule retracted | Grant check on KB write access | Session grant set membership | No — grant required |
 | Rule retraction logged | Append-only audit | Audit KB with axiom constraint preventing retraction of audit | No — axiom is unsuspendable |
-
 ### I.2 — Self-Generated vs Seeded Content: Security Comparison
 
 | Property | Seeded Content | Self-Generated Content | Difference |
@@ -765,7 +749,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Audit trail | Load event logged | Assert event logged with full context | More detailed |
 | Inherits parent constraints | Yes (child tightens, never loosens) | Yes (child tightens, never loosens) | None |
 | Axiom constraints apply | Yes | Yes | None |
-
 ### I.3 — Attack Scenarios Against Self-Extension
 
 | Attack | Vector | Structural Result | Reason |
@@ -775,24 +758,22 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | LM writes rule that leaks data via side channel | Rule that copies restricted fact to public KB | Assert to public KB requires write grant on public KB; copy would need read grant on restricted KB | Both grants checked independently |
 | Malicious document injects harmful rules during compaction | Document contains content designed to produce dangerous rules | Rules subject to same constraint taxonomy; axiom constraints block prohibited content | Constraint evaluation runs on rule content at assertion time |
 | LM accumulates rules that collectively bypass security | Many rules that individually pass but compose to bypass | Each rule fires against visibility-filtered fact sets independently; composition cannot surface invisible facts | Visibility is per-fact, checked at access time, not at rule composition time |
-
 ## Appendix J: Language and Dialect KB Structure
 
 ### J.1 — Sentence Template Schema
 
 | Field | Type | Description | Example |
 |---|---|---|---|
-| template_id | atom | Unique identifier | `d_071` |
-| semantic_slots | list(atom) | Required content slots | `[subject, verb, object]` |
-| optional_slots | list(atom) | Optional modifiers | `[location, time, manner]` |
-| structural_pattern | string | Token sequence with slot markers | `"The _ _ the _ in the _."` |
+| template id | atom | Unique identifier | `d 071` |
+| semantic slots | list(atom) | Required content slots | `[subject, verb, object]` |
+| optional slots | list(atom) | Optional modifiers | `[location, time, manner]` |
+| structural pattern | string | Token sequence with slot markers | `"The     the   in the  ."` |
 | formality | Q335 | 0.0 (casual) to 1.0 (formal) | `7/10` |
 | complexity | Q335 | Clause depth / embedding level | `2/10` |
-| rhythm_weight | Q335 | Syllabic balance score | `6/10` |
-| emphasis_position | atom | Where primary stress falls | `object` |
+| rhythm weight | Q335 | Syllabic balance score | `6/10` |
+| emphasis position | atom | Where primary stress falls | `object` |
 | register | atom | Usage context | `academic` |
 | constraints | list(atom) | Slot type restrictions | `[subject:animate, verb:transitive]` |
-
 ### J.2 — Language KB Comparison
 
 | Component | English (Standard) | English (Southern US) | English (Formal British) | French | Spanish |
@@ -804,7 +785,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Lexical mappings | ~20,000 | ~18,000 + ~3,000 regional | ~20,000 + ~2,000 British | ~22,000 | ~21,000 |
 | Prosodic rules | ~100 | ~150 (distinct rhythm) | ~120 | ~200 | ~180 |
 | Estimated KB size | ~2.0 MB | ~1.8 MB | ~2.1 MB | ~2.8 MB | ~2.7 MB |
-
 ### J.3 — Template Selection Pipeline
 
 | Step | Input | Operation | Output | LM Involved |
@@ -815,32 +795,29 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 4 | Ranked candidates | Select top candidate | One template | No (selection) |
 | 5 | Template + content words | Fill slots | Complete sentence | No (slot filling) |
 | 6 | — | — | Grammatically correct output | **Total LM cost: semantic tuple only (~8 tokens)** |
-
 ### J.4 — Dialect Switching Mechanics
 
 | Operation | Mechanism | Token Cost | Latency |
 |---|---|---|---|
-| Mount dialect KB | Scope change: `B359 mount_create` | 8 command tokens | <1 ms (KB reference swap) |
-| Unmount previous dialect | `B360 mount_remove` | 8 command tokens | <1 ms |
+| Mount dialect KB | Scope change: `B359 mount create` | 8 command tokens | <1 ms (KB reference swap) |
+| Unmount previous dialect | `B360 mount remove` | 8 command tokens | <1 ms |
 | Mixed-dialect document | Mount/unmount per segment | 16 tokens per switch | <1 ms per switch |
 | Translation (full language swap) | Mount target language KB | 8 command tokens | <1 ms |
 | LM semantic output | Unchanged across all languages/dialects | 0 additional tokens | 0 |
-
 ## Appendix K: Compaction Rules as Self-Extending Grammar
 
 ### K.1 — Compaction Rule Schema
 
 | Field | Type | Description | Example |
 |---|---|---|---|
-| rule_id | atom | Unique identifier | `compact_medical_paper` |
-| document_type_signature | list(pattern) | How to recognize this document type | `[has_abstract, has_methods, has_references, has_doi]` |
-| entity_patterns | list(extraction_rule) | What to extract as named entities | `[author_from_header, drug_from_abstract, dosage_from_methods]` |
-| relationship_patterns | list(extraction_rule) | What connections to encode | `[drug_interaction, contraindication, dosage_response]` |
-| structure_mapping | template | How to organize into predicate-major tables | `schema(finding, [drug:atom, effect:string, dosage:q335, source:ref])` |
-| provenance_template | template | What metadata to attach | `[source_doi, extraction_date, extraction_rule_id, confidence]` |
-| created_by | ref | Session and user provenance | `session:447, user:dr_smith, turn:23` |
-| times_used | counter | Reuse tracking | `47` |
-
+| rule id | atom | Unique identifier | `compact medical paper` |
+| document type signature | list(pattern) | How to recognize this document type | `[has abstract, has methods, has references, has doi]` |
+| entity patterns | list(extraction rule) | What to extract as named entities | `[author from header, drug from abstract, dosage from methods]` |
+| relationship patterns | list(extraction rule) | What connections to encode | `[drug interaction, contraindication, dosage response]` |
+| structure mapping | template | How to organize into predicate-major tables | `schema(finding, [drug:atom, effect:string, dosage:q335, source:ref])` |
+| provenance template | template | What metadata to attach | `[source doi, extraction date, extraction rule id, confidence]` |
+| created by | ref | Session and user provenance | `session:447, user:dr smith, turn:23` |
+| times used | counter | Reuse tracking | `47` |
 ### K.2 — Compaction Rule Accumulation by Domain
 
 | Domain | Rules After 10 Docs | After 50 Docs | After 200 Docs | Coverage at 200 |
@@ -851,7 +828,6 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | API documentation | 2 | 6 | 12 | ~92% |
 | Financial reports | 3 | 10 | 20 | ~88% |
 | Code repositories | 4 | 11 | 22 | ~90% |
-
 ### K.3 — Self-Compaction Accuracy Over Time
 
 | Stage | Documents Processed | Self-Compaction Accuracy vs External LLM | LM Judgment Needed Per Document |

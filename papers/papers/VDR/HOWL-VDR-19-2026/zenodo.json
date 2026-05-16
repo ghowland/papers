@@ -1,8 +1,8 @@
 {
-  "title": "VDR-LLM-Prolog: Performance",
+  "title": "VDR-LLM-Prolog: Self-Extending Architecture",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "The VDR-LLM-Prolog system replaces floating-point arithmetic with exact integer computation. The immediate objection is performance: integer arithmetic on 100-digit numbers must be slower than hardware-accelerated floating-point on 16-bit or 32-bit values. This paper demonstrates that the objection confuses per-operation cost with per-prompt cost. A conventional language model spends thousands of tokens \u2014 each requiring a full forward pass through billions of floating-point parameters \u2014 on infrastructure work that VDR handles through exact primitive calls costing a few hundred integer operations each. VDR-15 established that the token reduction is 85 to 97 percent. This paper establishes that the integer arithmetic executing those primitives maps efficiently to GPU hardware, that the wider operands are offset by the massive parallelism of modern GPUs, and that several architectural properties of VDR \u2014 fixed-frame regularity, grammar-constrained decode, indexed knowledge base scans, and frontier-based Prolog execution \u2014 produce GPU utilization patterns that are structurally superior to the irregular, attention-dominated workloads of conventional language model inference. The complete GPU mapping is specified in the supplementary technical specification. This paper explains why it works, what the performance characteristics are, and where the actual bottlenecks lie.",
+  "description": "[Description to be added]",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -12,11 +12,11 @@
     "howland archive",
     "vdr"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-18-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-19-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-18-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-19-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
