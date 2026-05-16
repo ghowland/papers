@@ -42,6 +42,8 @@ Visibility adds a second check. Each KB has a visibility level: public (all user
 
 Both checks — scope and visibility — must pass. Both are integer operations. Neither involves the LLM. Neither is modifiable by any prompt.
 
+![Fig. 8](vdr_system_08_kb_scoping.png)
+
 **Constraints: Rules That Live Where They Govern**
 
 Constraints are structured objects stored inside the KB they govern. Four classes: axioms (never suspended, never overridden — sum-to-one for probabilities, audit immutability), operational (suspendable with logging — rate limits, denominator budgets), legal (jurisdiction-activated — GDPR, HIPAA, export controls), and project (user-configurable — approved languages, NDA protections).
@@ -142,6 +144,8 @@ Modes compose naturally because they all work on the same KB. Abductive → Indu
 
 Confidence is never LLM-generated hedging. It's an exact VDR fraction computed from declared propagation rules. VDR computation = 1/1. Prolog derivation from exact premises = 1/1. Database query = 98/100. Prometheus metric = 95/100. Python script = 95/100. REST API = 85/100. Peer-reviewed claim = 80/100. User-stated fact = 70/100. Web search = 50/100. LLM-generated content = 30/100. Each step type has a formula. Multiple independent sources agreeing: 1 − ∏(1−Cᵢ). Sources conflicting: max(Cᵢ) − penalty. The confidence of any conclusion is traceable through its entire derivation chain as exact arithmetic.
 
+![Fig. 7](vdr_system_07_confidence_chain.png)
+
 **Grammar System: Structural Tokens for Free**
 
 A grammar provides all structural tokens — brackets, pipes, commas, indentation, headers, delimiters — and declares typed slots for content. The LLM fills content slots. The grammar fills everything else. Grammar tokens are free (no forward pass needed) and 100% correct (no mismatched braces, no missing commas, no malformed JSON — by construction).
@@ -153,6 +157,9 @@ Grammars are persistent fields on the KB struct. They inherit through the tree l
 Typed grammar slots constrain the vocabulary for the LLM's softmax. A categorical slot with 4 enum values means softmax over 4 candidates, not 50,000+. A KB identifier slot with 200 entries means softmax over 200. This is structural constraint derived from grammar types and KB declarations, not prompt instruction.
 
 Grammar definition costs 10-30 LLM tokens. Breaks even on first use. Persists in the KB tree. Defined once at org level, available to every session beneath. Grammar amortization at organizational scope with thousands of reuses: cost per use approaches zero.
+
+![Fig. 5](vdr_system_05_token_elimination.png)
+
 
 **Compaction: Information Without Prose**
 
@@ -216,6 +223,8 @@ The crossover calculation: one LLM token costs roughly 10^6 float operations (fu
 
 Six entire error classes are structurally eliminated: arithmetic errors (exact integer primitives, error rate = 0), state loss (KB persistence at integer addresses, error rate = 0), formatting errors (grammar templates, error rate = 0), retrieval errors (KB query by integer address, fabrication risk = 0), deduction errors (Prolog structural unification, error rate = 0), confidence errors (exact VDR fraction from propagation rules, imprecision rate = 0). The remaining error surface: LLM judgment only — intent recognition, step selection, prose generation. These are the LLM's strongest tasks.
 
+![Fig. 2](vdr_system_02_q335_divmod.png)
+
 **Structural Safety: Three Independent Layers**
 
 Safety is not a feature. It's a consequence of how the system was built. No safety-specific modules exist. Safety emerges from KB visibility (built for scoping), grants (built for operation governance), and grammar output validation (built for format correctness).
@@ -241,6 +250,8 @@ Encoding (base64, pig Latin, character spelling): the safety mechanism is access
 Session scoring provides contextual safety without LLM involvement: input classification tags tokens by domain via string matching against a classification KB. Integer counters on the session KB increment (monotonically — harm signals cannot be erased). Prolog rules evaluate counter values against thresholds. A professional chemist with 6 professional signals and 0 harm signals gets access to toxicology data. A harm-intent user with 0 professional signals and 4 harm signals gets denied. The decision is deterministic, reproducible, and involves zero LLM judgment. Thresholds are tunable by one KB assertion — immediate effect, no retraining.
 
 The audit trail is complete because every KB access goes through primitive builtins, every primitive logs, and there is no alternative access path. Every query attempt — granted or denied — is recorded with user ID, target KB path, operation, result, and timestamp in an append-only audit KB protected by an axiom constraint that prevents retraction.
+
+![Fig. 6](vdr_system_06_safety_layers.png)
 
 **Alignment: Honest, Harmless, Helpful Through Structure**
 
@@ -276,6 +287,8 @@ The forward pass is ~150× more expensive per token than float16, weighted acros
 
 The SRE case study validates this end-to-end: 1MB Prometheus JSON with 200 endpoints and 18,000 metric values. Conventional: 10,100 tokens generated, ~11 minutes wall-clock, 25% data coverage (context overflow), arithmetic errors, no persistence. VDR: 769 tokens, ~9 seconds wall-clock, 100% data coverage, exact arithmetic, full versioned project with comparison rules for future investigations. 73× faster. 71× cheaper including human time ($0.39 vs $27.58). The second run on a similar incident is 42% cheaper than the first because accumulated project-level rules and scripts handle known patterns automatically.
 
+![Fig. 3](vdr_system_03_scaling_quadratic_vs_flat.png)
+
 **Self-Extension: Usage Is Training**
 
 The system's knowledge base, rule set, and executable capabilities grow as a natural byproduct of doing work. When the LLM investigates an SRE incident, it writes Prolog rules encoding correlation patterns it discovered, Python scripts for analysis it performed, and stores findings as provenanced facts. All persist, compose with prior state, and are available to every future session with scope access.
@@ -285,6 +298,9 @@ This accumulation has properties that weight-based training cannot provide. It i
 A Prolog rule costs 25-40 tokens to formalize and assert. On first use it replaces 150-300 tokens of conventional LLM reasoning. By the fifth use the amortized cost is negligible. At organizational scope with thousands of reuses, per-use cost approaches zero. Every rule written is an investment that compounds across all future work within scope.
 
 The compaction format adjusted in VDR-19 aligns with three targets simultaneously: Prolog clause syntax (directly loadable), predicate-major columnar GPU storage (directly parseable into the storage format), and Zig struct definitions (directly mappable to implementation types). A compacted document is a load file. No transformation logic, no interpretation, no LLM involvement in loading.
+
+![Fig. 4](vdr_system_04_sre_accumulation.png)
+
 
 **Operational Deployment: Four Prompt Runner Types**
 
