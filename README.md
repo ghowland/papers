@@ -129,6 +129,7 @@
 | **[@HOWL-VDR-12-2026](papers/papers/VDR/HOWL-VDR-12-2026/manuscript.md)** | **Grammar-Directed Compaction and Generation** | Structural Intelligence for Exact-Arithmetic Language Models. |
 | **[@HOWL-VDR-13-2026](papers/papers/VDR/HOWL-VDR-13-2026/manuscript.md)** | **VDR in Physical Computation** | Exact Arithmetic Where It Matters. |
 | **[@HOWL-VDR-14-2026](papers/papers/VDR/HOWL-VDR-14-2026/manuscript.md)** | **VDR-LLM-Prolog** | A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance. |
+| **[@HOWL-VDR-15-2026](papers/papers/VDR/HOWL-VDR-15-2026/manuscript.md)** | **VDR-LLM-Prolog: Prompt Optimization** | How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results. |
 
 ---
 
