@@ -1,304 +1,259 @@
-# VDR-13: COMPLETE EXACT ARITHMETIC — PAPER PLAN
+**VDR-14 Plan: "You Are Here" — Complete System Specification**
 
-## Title
-**VDR-13: Completing the Engineering Surface — Gaussian Elimination, Complex Arithmetic, FFT, and the Q335 Remainder Frame**
+**Purpose:** A single document that tells a new reader what this system is, why it exists, how every piece fits together, and where to go for depth. No prior knowledge required. References previous papers but never depends on having read them.
 
-## Purpose
-This paper closes every outstanding engineering limitation identified in VDR-1 through VDR-3. It does not introduce new mathematics. It applies VDR's existing axioms — particularly that Remainder is a first-class value carrying exact structure the denominator frame cannot absorb — to solve the four problems that remained open: practical large-matrix computation, complex number support, discrete Fourier transforms, and Q335 multiplication without precision loss.
+**Audience:** An engineer who will build this system, or an evaluator deciding whether it's worth building.
+
+**Document character:** Specification (components, concepts, builtins, constraints, boundaries, claims).
+
+**Organizing principle:** Staircase. Each section builds on the one before it. No forward references. A reader who stops at any section has a complete understanding up to that level.
 
 ---
 
-## Section 1: What VDR Is (for new readers)
+**Section 1: The Problem**
 
-VDR is an ordered triple [V, D, R]. V is an integer numerator. D is a nonzero integer denominator. R is the Remainder — not error, not residue, but a first-class result value carrying exact structure that V/D alone cannot represent.
+What's wrong with current LLMs. Three deficiencies: values without provenance (computation is opaque float tensor chain, no way to tell correct from hallucinated), approximate arithmetic (every number is 16/32-bit float, every operation silently truncates, platform-dependent rounding makes runs non-reproducible), stateless conversation (no structured memory, no scoped variables, facts from different topics mixed in flat token sequence, context window overflow). Brief, concrete, no VDR concepts yet. The reader understands what we're solving before we introduce any solution.
 
-When R is zero the object is closed and behaves as the rational number V/D. When R is nonzero it is active — it holds information the denominator frame could not absorb. Remainder is interpreted within the parent's denominator frame: the scalar projection is Π([V,D,R]) = (V + Π(R))/D. The Remainder gets divided by D, not added externally.
+*References: VDR-5 TD1-TD3*
 
-Remainder takes three forms. Atomic: a single integer. Composite: an integer base plus a finite list of child VDR triples. Functional: a callable that takes a depth parameter and returns a concrete VDR — used for series, Newton iterations, and transcendental functions where each depth produces an exact rational.
+---
 
-All recursion occurs exclusively through R. V and D are always integers. Every valid VDR object has finite depth, finite branching, finite total node count. No approximation, no limits, no infinity.
+**Section 2: The Arithmetic Foundation — VDR**
 
-Closed VDR arithmetic is standard exact rational arithmetic — cross-multiply for addition, multiply straight across for multiplication. The closed subset is arithmetically closed under all four operations.
+What VDR is mechanically. The triple [V, D, R]. V is an integer, D is a nonzero integer, R is the remainder — the exact unresolved structure that every other system discards. Closed objects (R=0) behave as rationals. Active objects (R≠0) carry structure. Remainder is not error — it's part of the value.
 
-Active arithmetic handles Remainder through lift (rescaling R when the denominator frame changes), rebase (changing the top-level denominator while preserving exact value), and normalization (a deterministic canonical form procedure that is idempotent).
+How operations work. Divmod splits results into what the current D-frame holds (V) and what it doesn't (R). Denominator never grows because overflow nests into R. Depth replaces denominator growth. The Q335 mechanism — 22 transcendental constants as integers over 2³³⁵, addition is one integer add, multiplication is divmod with exact remainder nesting, 100-digit precision floor.
 
-Prior papers established this system across 23 mathematical domains with 507 tests and zero VDR computation errors. All 11 failures across three papers traced to test-authoring mistakes.
+Functional remainders — functions in R producing exact rationals at chosen depth. Newton √2 doubling digits per step. Taylor series for exp, sin, cos, ln. Each depth is a complete exact value, not an approximation.
 
-References: VDR-1 (core construction, axioms, closed and active arithmetic), VDR-2 (15-domain gym, chaos boundary), VDR-3 (8 additional domains, Q335 basis, transcendental integration).
+What this means: no floats, no drift, no silent truncation. Every value is integers. Every operation is exact. Decimals are import/export format, never used in computation.
 
-## Section 2: What Remained Open
+Proof: 507 tests across 23 mathematical domains (number theory, polynomial algebra, matrix decomposition, cryptography, quantum mechanics, signal processing, control theory, wavelets, algebraic topology, game theory, coding theory, etc.), zero VDR computation errors. All 11 failures traced to wrong test expectations.
 
-Four engineering problems were identified but not solved in prior papers.
+*References: VDR-1 (core arithmetic), VDR-2 (15-domain gym), VDR-3 (8 more domains + Q335), VDR-13 (physical computation + 40 builtins + complex/FFT/modular)*
 
-**Large matrix computation.** Determinant used cofactor expansion, O(n!). Inverse used adjugate method. Solve used Cramer's rule. All exact, all impractical past roughly 10×10. Gaussian elimination at O(n³) was identified as the fix (VDR-2, FW1) but not implemented.
+---
 
-**Complex numbers.** Listed as UI1 in VDR-3 — unimplemented. Blocked eigenvalues, DFT, complex polynomial roots, and transfer function evaluation at complex frequencies.
+**Section 3: Exact LLM Components**
 
-**Q335 multiplication precision.** MATH-4 identified that multiplying two Q335 numerators produces a result in the 2⁶⁷⁰ frame. The only solution offered was projection back to 2³³⁵ with precision loss below the 100-digit floor. Exact multiplication within the Q335 frame was unsolved.
+Every component of a language model expressed in exact VDR arithmetic. The complete path: tokenization → embedding lookup → attention scores (exact matrix multiply) → causal masking → softmax (truncated Taylor or rational surrogate, sum exactly 1) → value mixing → residual addition → feedforward (Linear → ReLU → Linear) → logits → loss → exact gradients (reverse-mode autodiff) → exact optimizer update (SGD/momentum) → exact checkpoint (zero precision loss on save/load).
 
-**FFT.** Blocked by complex numbers and by the question of how twiddle factors work in exact arithmetic.
+Architecture adaptations for VDR: ReLU not GELU (piecewise linear, no erf), rational scaling not LayerNorm (no sqrt), learned embeddings not sinusoidal (no sin/cos), no dropout, single exact precision.
 
-This paper solves all four.
+Denominator management during training: growth pattern from ~2¹⁰ at init to ~2⁴⁵ plateau, Q-basis reprojection when budget exceeded with exact error bound logged. The key distinction: float silently truncates at every step, VDR reprojection is a declared auditable precision decision.
 
-## Section 3: Gaussian Elimination in Exact VDR Arithmetic
+Proof: 198 tests, 196 passed, 2 test-expectation errors, zero VDR computation errors. Attention weights sum to exactly 1. Every intermediate value is an inspectable fraction. Bit-identical reproducibility across platforms.
 
-### 3.1 The Algorithm
+*References: VDR-4 (complete LLM path), VDR-7 (lifecycle and denominator management)*
 
-Standard Gaussian elimination with partial pivoting. The row operations — multiply a row by a scalar, subtract one row from another — are exact VDR rational operations. Pivot selection compares VDR rationals by magnitude. Back-substitution is exact division producing exact VDR rationals.
+---
 
-The key property: every intermediate value is an exact VDR rational. No rounding, no epsilon, no accumulation of error. The algorithm is O(n³) in VDR operations, each operation exact.
+**Section 4: The Knowledge Base Tree**
 
-Determinant is the product of pivots times (-1) raised to the number of row swaps. Inverse is Gaussian elimination on [A|I]. Solve is forward elimination then back-substitution. Rank is the count of nonzero pivots after elimination.
+Everything is a KB. A KB is a fat struct with 26 fields: identity (name, path, integer ID), persistent (facts, rules, constraints, connections, grammars), live (working data, LRUs, counters, locks, queues, stacks, ring buffers, bitsets), structural (parent ID, children IDs, mounts), metadata (visibility, frozen, owner, timestamps).
 
-### 3.2 Why This Was Always Available
+The tree structure. Every KB has a parent. Every KB has children. The entire system — data sources, corpora, models, checkpoints, training logs, feedback, evaluations, deployments, monitoring, user accounts, conversations, inference notebooks — is one tree of KBs addressable by integer.
 
-VDR closed arithmetic supports all four operations exactly. Gaussian elimination uses only multiply, subtract, and divide — all exact in VDR. The algorithm was always compatible; it simply hadn't been wired up. The contribution is engineering completion, not mathematical novelty.
+Dotted paths for humans, integer IDs for machines. `root.models.v3.checkpoint_5000` is the human form. `[0][12][47][203]` is the machine form. Resolution happens once per turn, cached, all operations use integers. Two-integer addressing (kb_id + slot_id) for O(1) access to any data primitive anywhere.
 
-### 3.3 What It Replaces
+Scoped knowledge. Active topic determines which subtree is in scope. Out-of-scope KBs are invisible, not deprioritized. "Bob" in conversation 1 is integer address `[0][conv][1][chars][3]`. "Bob" in conversation 2 is `[0][conv][2][chars][7]`. Different integers, no ambiguity possible.
 
-Cofactor expansion: exact but O(n!) — a 20×20 determinant requires ~2.4×10¹⁸ operations. Gaussian elimination on the same matrix requires ~8000 VDR operations. The adjugate inverse and Cramer's rule solve inherit the same factorial cost. All three are replaced by their Gaussian equivalents for practical use. The cofactor path remains available for verification on small matrices.
+Constraints inside the KB they govern. Inherit through the tree. Child overrides parent. Four domains: axiom (can't suspend), operational, legal, project. Because arithmetic is exact, constraint checking is exact — sum-to-one is 1/1 or it isn't.
 
-### 3.4 Gym 24: Exact Gaussian Elimination
+Connections between KBs. Typed, directed, integer-addressed. 19 standard relationship types covering the full lifecycle. Graph primitives operate on connections for topology queries.
 
-Fourteen exercises verifying correctness, consistency with existing paths, scaling, and robustness.
+Mounts for cross-branch references. Four modes: read-only, read-write, snapshot, mirror. Cycle detection before creation.
 
-**G24-01 through G24-03** cover basic 3×3 systems: unique solution verified against Cramer's rule, determinant via pivot product verified against cofactor, and zero-pivot row swap with solution verified by substitution.
+Safety is the tree, not the LLM. User access determined by position in KB tree and visibility levels (public, internal, owner_only). The LLM doesn't decide what's safe — the tree structure decides. KB data surfaced directly from the KB bypasses LLM token generation — cannot be hallucinated because it's retrieved, not generated.
 
-```python
-A = Mat([[2,1,-1],[4,3,-1],[2,-1,3]])
-b = Vec([1,5,7])
-x_gauss = gaussian_solve(A, b)
-x_cramer = solve(A, b)
-assert x_gauss == x_cramer
-assert A @ x_gauss == b
-```
+Grammars as KB field. Persistent, inheritable, self-describing. The KB knows how to present itself. Grammars parse input and generate output — same structure, both directions. Auto-generated extraction, display, and usage grammars. LLM creates new grammars by asserting facts.
 
-**G24-04 through G24-07** are Hilbert matrix inverses at sizes 4, 5, 10, and 20. Hilbert matrices are the canonical test for exact arithmetic — float fails visibly by size 5. VDR Gaussian must produce H×H⁻¹ = I with exact zero off-diagonal entries at every size. The 4×4 and 5×5 results are verified against the existing adjugate path. The 10×10 and 20×20 are scaling tests where cofactor expansion is impractical.
+*References: VDR-5 (Prolog + scoped KBs + constraints + topics), VDR-8 (data primitives + dotted paths + sessions), VDR-12 (grammars + compaction)*
 
-```python
-H20 = hilbert(20)
-H20inv = gaussian_inverse(H20)
-assert H20 @ H20inv == Mat.identity(20)
-```
+---
 
-**G24-08** tests singular matrix detection. The matrix [[1,2,3],[4,5,6],[7,8,9]] has rank 2. Gaussian elimination must detect the zero pivot with no valid swap and report rank=2, determinant=0.
+**Section 5: The Prolog Engine**
 
-**G24-09** solves a 5×5 system with entries drawn from {1/7, −3/5, 2/3, 11/13, −1/4}, verified against Cramer's rule and by substitution.
+Logic as struct data. Terms: atoms (string equality), variables (?-prefix, bind on match), VDR fractions (cross-multiplication comparison), integers, lists, KB references. Facts: predicate + typed args + provenance (source KB, assertion turn, derivation chain). Rules: head :- body. Depth-first search with backtracking, depth limit 100.
 
-**G24-10** tracks determinant sign through exactly two row swaps, verifying against cofactor.
+Unification uses exact VDR comparison. fraction(1,2) unifies with fraction(2,4) because 1×4 == 2×2. No tolerance, no epsilon.
 
-**G24-11** extracts PLU decomposition from Gaussian elimination and verifies consistency with the existing LU path from Gym 04.
+Prolog compositions as new builtins. A rule chaining existing builtins IS a new operation. Assertable at any scope — root for permanent, session for temporary, project for project-scoped. IOSE properties derivable from composed parts. The system extends itself through use without new code or retraining.
 
-**G24-12** inverts a 30×30 Hilbert matrix — a pure stress test at O(n³) = 27000 VDR operations. Diagonal entries of H×H⁻¹ verified as exactly 1, ten off-diagonal entries spot-checked as exactly 0.
+Operational principles encoded as ~176 Prolog terms (15 axioms, ~80 facts, ~60 rules, 21 constraints) at root.system.oso, always in scope. Knowability spectrum, 90/9/0.9 priorities, data primacy, idempotency, one canonical method — all queryable and enforceable.
 
-```python
-H30 = hilbert(30)
-H30inv = gaussian_inverse(H30)
-I30 = H30 @ H30inv
-for i in range(30):
-    assert I30[i][i] == VDR(1,1,0)
-```
+*References: VDR-5 (Prolog engine spec), VDR-10 (operational principles as Prolog)*
 
-**G24-13** forms and solves normal equations AᵀA x = Aᵀb for an overdetermined 4×3 system.
+---
 
-**G24-14** demonstrates condition number irrelevance. Two right-hand sides for H₅ differing by 10⁻¹⁰ in one entry. Both solutions are exact. The difference between solutions equals the exact solution of H₅ x = δb. No error amplification because there is no error.
+**Section 6: Primitives and Command Tokens**
 
-## Section 4: Complex Numbers as VDR Pairs
+448 builtins across 25 categories. Two classes: pure (404 — no side effects, no grant required, same inputs always produce same outputs, bounded termination) and operational (44 — side effects, positive credential grant required, every execution logged).
 
-### 4.1 Representation
+Pure primitives cover: text (17), collections (36), sets (14), mappings (15), VDR arithmetic (8 closed + 5 active + 3 structure), comparison (10), rounding/extraction (7), number theory (13), list aggregates (8), linear algebra (24), statistics/probability (16), conversion (14), time (10), identity/hashing (8), graphs (13), logic/control (11), integer fast path + bit ops (21), Q-basis (7), functional remainder (8), discrete calculus (6), polynomial (8), finite field (4), Markov (3), graph math (2), denominator management (5), data primitive operations (53), path/mount (17), session (8).
 
-A complex number is an ordered pair (A, B) where A and B are VDR triples. A is the real part, B is the imaginary part. This is a convention on existing types, not a new type.
+Operational primitives cover: filesystem (15), compilation (4), execution (5), linting (8), network (5), process management (7). All grant-gated with default denial.
 
-### 4.2 Arithmetic
+The grant system. A grant is a structured object: operation class, allowed operations, location, issuer, expiration, max uses. Default is denial. No grant, no execution. Grants follow the KB hierarchy. Every use logged.
 
-Addition: (A₁,B₁) + (A₂,B₂) = (A₁+A₂, B₁+B₂). Two VDR additions.
+Command tokens. The LLM's output contains text tokens (rendered as conversation) and command tokens (executed by primitives). A command token is roughly 8 tokens — primitive name from known vocabulary + dotted path references to data. Data stays in the KB, never serialized through the token stream. The LLM selects from ~300 known names and points at known paths. Low-entropy reference selection, not high-entropy syntax generation.
 
-Multiplication: (A₁,B₁)·(A₂,B₂) = (A₁A₂−B₁B₂, A₁B₂+A₂B₁). Four VDR multiplies, one subtraction, one addition.
+The scratchpad. Internal ring buffer for LLM intermediate computation. Primitives and KB queries without surfacing in user output. Owner can inspect.
 
-Conjugate: (A,B)* = (A,−B).
+IOSE model. Every component declares inputs, outputs, side effects, and properties. Declarations are contracts — they're the test spec, the Zig interface contract, and the documentation. Validated before execution (type compatibility, side effect preview) and after (contract verification).
 
-Modulus squared: A²+B². Two multiplies, one addition. Result is a single real VDR.
+*References: VDR-6 (primitives + grants + command tokens + environments), VDR-8 (data primitives + paths + sessions), VDR-10 (IOSE + operational principles + numeric builtins), VDR-13 notebook (40 additional builtins for transcendentals/complex/FFT)*
 
-Inverse: z*/|z|². Conjugate divided by modulus squared.
+---
 
-All operations stay in VDR arithmetic. If both components are closed, the result is closed. If either is active or functional, the result carries the appropriate Remainder structure.
+**Section 7: Sessions and Drift Management**
 
-### 4.3 What This Unblocks
+Live state versus persistent state. Persistent: facts, rules, constraints, connections, grammars — survives reset, always present. Live: data primitives, scratchpad, working data, active scope — cleared by reset, captured by snapshot.
 
-Eigenvalues for 2×2 matrices (all four cases: real rational, complex, repeated, irrational via functional remainder). Transfer function evaluation at complex frequencies. Complex polynomial evaluation. DFT and FFT.
+Session snapshots. Capture all live state atomically. Small (10KB-500KB) because they capture state not knowledge. Restore is atomic. Reset clears live to defaults, persistent untouched.
 
-## Section 5: Q335 Remainder Nesting
+Disposable clones. Build to verified stable state → snapshot → run disposable workers from snapshot → monitor drift constraints (max turns < 200, context saturation < 90%, denominator drift < 2⁴⁸, error rate < 5%) → kill on drift → launch fresh from same frozen baseline. The snapshot never degrades. Work committed via KB_ASSERT survives. Drift dies with the clone.
 
-### 5.1 The Multiplication Solution
+The system improves over conversation length instead of degrading. Every fact asserted is permanent. Every connection is traversable. Every grammar is reusable. Every prior result is integer-addressable. Current LLMs degrade. This system accumulates.
 
-Two Q335 numerators p₁ and p₂, each ~102-digit integers over the shared denominator D = 2³³⁵. Their product p₁·p₂ is a ~204-digit integer. Divmod by D: p₁·p₂ = q·D + s. The result is [q, D, [s, D, 0]].
+*References: VDR-8 (session management + disposable clones)*
 
-The denominator stays D. The overflow goes into R as a first-class value. Zero information lost. The scalar projection Π = (q·D + s)/D² = p₁·p₂/D², identical to the closed form.
+---
 
-```python
-product = p1 * p2
-q, s = divmod(product, D)
-result = VDR(q, D, VDR(s, D, 0))
-# Π(result) = (q*D + s) / D² = p1*p2 / D² — exact
-```
+**Section 8: Orchestrated Inference**
 
-### 5.2 Depth Replaces Denominator Growth
+The LLM does not reason — it orchestrates tools that compute and deduce. Token prediction produces orchestration decisions. Deterministic tools produce computation and deduction. The KB records everything.
 
-Chain n multiplications and the tree grows to depth ≤ n. The denominator never changes from D. This transforms the fundamental problem of exact rational arithmetic — every multiplication potentially doubles denominator digit count — into structured tree growth. Same information, manageable form.
+The loop. Assess (LLM reads state, decides next step) → Formalize (LLM translates step into executable form — Prolog rule, Python script, primitive chain) → Execute (tools run it — Prolog evaluates, Python runs sandboxed, primitives compute) → Store (result into KB with provenance) → Assess again.
 
-The logistic map comparison makes the compression concrete. Five steps at x₀=1/3 with r=4: flat Fraction produces denominator 9³² ≈ 10³⁰ digits. Q335 nesting produces 10 levels at ~102 digits each, totaling ~1020 digits structured. Same exact value, roughly 1000× more compact. The tree is prunable and lazily evaluable.
+Termination: goal satisfaction (Prolog query succeeds), budget exhaustion (counter reaches limit), stall detection (no new evidence for 5 iterations), user intervention.
 
-### 5.3 Division in Q335 Frame
+Backtracking via VDR-8 stack (investigation path) and LRU (attempted approaches with failure reasons). Branching spawns child notebooks with allocated budget.
 
-p₁ divided by p₂: integer division gives p₁ = q·p₂ + s, producing [q, 1, [s, p₂, 0]], then rebased to the D-frame. The odd factor p₂ is confined to the Remainder slot. The working frame stays clean at D = 2³³⁵.
+Four inference modes. Deductive (premises + rules → conclusions, confidence = min of premise confidences). Inductive (observations → ranked hypotheses, confidence = coverage × mean source confidences). Abductive (observation → most likely cause, confidence = explained fraction × min evidence confidences). Analogical (known domain → unfamiliar domain, confidence = analogy strength × source confidence). Modes compose naturally because they operate on the same KB with the same tools.
 
-### 5.4 Precision Proportional to Depth
+Confidence as exact VDR fractions. Source confidences: exact VDR computation 1/1, Prolog derivation 1/1, database 98/100, live metrics 95/100, Python script 95/100, REST API 85/100, user-stated 70/100, web search 50/100, LLM-generated 30/100. Propagation rules computed by arithmetic primitives, not LLM judgment.
 
-Each Q335 node contributes ~102 digits. Read the top level for 100 digits. Read two levels for 200. Depth controls precision without recomputation — you read deeper into the existing tree. This is the precision knob float lacks.
+Inference notebooks. KB subtree with declared schema housing one inference process. Uses existing KB struct. Step queue, investigation stack, findings LRU, budget counters, evidence bitset, metric ring buffer. Templates for common investigation types.
 
-### 5.5 Precomputed Powers
+No new primitives, struct fields, or modules. VDR-9 specifies patterns of use over existing capabilities. If the underlying layers are valid, patterns over them are valid by construction.
 
-For composed constants like π²·ln(2), using the precomputed Q335 numerator for π² (one multiply, depth 1) is cheaper than computing from π (three multiplies, depth ≤ 3). The MATH-4 basis already includes π², π³, π⁴, ln²(2), and ln⁴(2) for this reason.
+*References: VDR-9 (orchestrated inference)*
 
-## Section 6: FFT as Integer Butterflies
+---
 
-### 6.1 Twiddle Factors
+**Section 9: Grammar-Directed Compaction**
 
-The Nth roots of unity ω_N^k = cos(2πk/N) − i·sin(2πk/N) are precomputed as Q335 complex pairs. For N=4 all twiddle factors are in {−1, 0, 1} — exact closed, no Remainder nesting. For N=8 the factor 1/√2 enters as a Q335 projection. General N uses Taylor series for sin and cos resolved to functional remainders then frozen to Q335.
+The compaction problem. Raw prose wastes context. A 300-word concept description compresses to one table row (~40 words, 87% compression) preserving every named concept, relationship, and claim. Across 13 papers: ~150k words → ~26k tokens, ~83% compression.
 
-Twiddle tables are computed once and stored as integers. The freeze operation (resolve functional remainder at chosen depth, project to Q335) is one-way and lossy below the 100-digit floor by design.
+The grammar solution. Structural tokens (pipes, headers, ID prefixes, enum values) provided by grammars for free with 100% correctness. The LLM generates only content tokens — definitions, descriptions, rationale. Roughly 50% of compacted output is grammar-providable, 35% requires LLM judgment.
 
-### 6.2 Butterfly Operations
+Grammars are bidirectional. The same grammar that generates a table row parses one. Output and input use the same structure. Grammar-matched input gives the LLM discrete typed data instead of raw text to interpret.
 
-Each FFT butterfly computes X_even = A + W·B and X_odd = A − W·B. W·B is a complex multiply: four Q335 multiplies plus two add/subs. Each multiply nests one Remainder level.
+Self-describing KBs. A KB with grammars knows its own data (facts), logic (rules), constraints, connections, and presentation. Everything about a KB lives inside the KB.
 
-### 6.3 Depth Bound
+Column types with VDR integration. Fraction columns convert losslessly to VDR. Integer columns promote losslessly. Categorical columns constrain to declared enums. The type system constrains both generation and parsing.
 
-An N-point FFT has log₂(N) stages. N=1024 gives 10 stages, depth ≤ 10. The denominator is always D = 2³³⁵. The entire FFT is integer arithmetic with bounded-depth Remainder trees.
+20 standard table schemas, 6 compaction profiles, 12 source character types, 10-step pipeline (5 deterministic, 2 LLM judgment, 3 hybrid).
 
-Float FFT silently accumulates butterfly rounding errors across all stages with no recovery mechanism. VDR FFT carries the exact value at every stage, with a precision knob controlled by how deep you read the tree.
+Data as dicts. A table row is a dict with keys from column headers. Full primitive treatment — filter, sort, map, reduce. Stored as JSON/JSONB for persistence. Grammar defines schema, schema generates struct, struct validates data, data stored as dicts in KB, addressable by integer path.
 
-### 6.4 Gym Exercises
+Proof: 178/179 tests pass. Roundtrip fidelity verified — compacted doc → KB → compacted doc preserves all tables, rows, relationships exactly.
 
-**G07** verifies exact 4-point IFFT roundtrip and Parseval energy identity (120 = 4×30).
+*References: VDR-12 (grammar-directed compaction + universal compaction system)*
 
-**G17** computes 4-point DFT of a rational signal (1/3, 1/7, 1/11, 1/13) with all coefficients exact rational and Parseval verified exactly.
+---
 
-**G06** tests a single DFT butterfly with ω₈¹, exploiting the common factor 1/√2 to reduce from four multiplies to two.
+**Section 10: The Complete Lifecycle**
 
-**G29** verifies that convolution via DFT gives the same exact result as direct convolution.
+12 phases, all KB operations: data sourcing → corpus preparation → tokenization → model initialization → pre-training → fine-tuning → human feedback → evaluation → deployment → monitoring → updates → retirement.
 
-```python
-x = [VDR(1,3,0), VDR(1,7,0), VDR(1,11,0), VDR(1,13,0)]
-X = dft(x, 4)
-x_back = idft(X, 4)
-assert x_back == x  # exact roundtrip
-energy_time = sum(xi * xi for xi in x)
-energy_freq = sum(complex_mod_sq(Xi) for Xi in X) / VDR(4,1,0)
-assert energy_time == energy_freq  # Parseval exact
-```
+Every phase produces KBs that feed the next. The entire lifecycle from raw data to retired model is one queryable tree. Lineage queries span the whole lifecycle: what data influenced this deployment, what feedback changed this model.
 
-## Section 7: Modular Structure Is Remainder Structure
+Canary deployment with exact thresholds. Latency < baseline × 11/10, compared as exact fraction. Auto-rollback on criterion violation. All decisions logged as KB facts.
 
-VDR's Remainder slot unifies several apparently separate structures in number theory and computer arithmetic.
+UI as API to KB layer. Every UI component is a KB query. Every UI action is a command token. Same grants govern both. One system.
 
-**Continued fractions** are nested quotient-remainder structures. The CF [a₀; a₁, a₂, ...] is a specific case of VDR Remainder nesting where each level performs integer division and the remainder becomes the input to the next level.
+*References: VDR-7 (lifecycle specification)*
 
-**Chinese Remainder Theorem** reconstructs a value from residues at coprime moduli. A VDR composite Remainder with children at coprime denominators carries the same information. Axiom A13 (pairwise distinct denominators in normalized form) reflects coprimality. Normalization rule N6 (same-denominator children merge) reflects the reconstruction.
+---
 
-**Residue number systems** represent integers as tuples of residues mod chosen moduli for parallel addition and multiplication. VDR composite Remainder at different denominators is the same idea lifted to rational arithmetic.
+**Section 11: Physical Computation Domains**
 
-**GF(p) arithmetic** is already remainder arithmetic. VDR performs it natively.
+14 physical domains demonstrated exact: QED coefficients, quantum mechanics, signal processing, control systems, orbital mechanics, structural mechanics, thermodynamics, crystallography, geodesy, optics, DFT/FFT, IIR filters, transfer functions, state-space evolution.
 
-These are not analogies. They are the same mathematical structure — quotient and remainder at a chosen modulus — made recursive and first-class by the VDR Remainder slot.
+12 float failure points where VDR produces zero error. 10 conservation laws verified by exact equality. Complex numbers as VDR pairs. FFT as integer butterflies with depth ≤ 10 for N=1024. Modular arithmetic as remainder structure.
 
-```python
-# CRT: x ≡ 2 (mod 3), x ≡ 3 (mod 5), x ≡ 2 (mod 7)
-# Solution: x = 23 (mod 105)
-# As VDR composite remainder:
-r = VDR(0, 1, Remainder(0, [VDR(2,3,0), VDR(3,5,0), VDR(2,7,0)]))
-# Children at coprime denominators 3, 5, 7 — A13 holds
-```
+40 additional builtins for transcendentals, complex arithmetic, FFT, SLERP, quaternions, modular operations, dynamics, wavelets, lazy computation.
 
-## Section 8: The Builtin Library
+*References: VDR-13 (physical computation), VDR-13 notebook (Q335 nesting + builtins + 35 gym exercises)*
 
-Forty functions covering the complete engineering surface. All are pure — factories returning functional remainders or performing exact integer/rational operations.
+---
 
-**Leaf functions** (depend only on VDR core arithmetic): sqrt via Newton iteration, exp/sin/cos/ln via Taylor series with rational coefficients, power via repeated squaring, mod via integer division.
+**Section 12: Implementation Blueprint**
 
-**Transcendental constants**: π via Machin-type arctangent identity, e via factorial series, ζ(s) via Borwein acceleration (odd s) or closed-form (even s), polylogarithms via direct summation, elliptic K and E via hypergeometric series.
+5 stages, each producing a complete testable system.
 
-**Composition tools**: compose chains two functional remainders (resolve inner at depth, pass to outer). freeze resolves a functional remainder at chosen depth then projects to Q335 — one-way, lossy below the 100-digit floor, by design. resolve_to_depth evaluates a functional remainder to concrete VDR at specified depth.
+Stage 1 — Toy Full Lifecycle: 24 modules, ~150 builtins, ~2800 lines, 150 tests. KBs, facts, Prolog rules, exact arithmetic, data primitives, toy lifecycle loop.
 
-**Complex and transform**: complex pair construction, complex multiply/inverse, twiddle factor generation, DFT, slerp, quaternion multiplication.
+Stage 2 — Upgraded Toy: 37 cumulative modules, ~300 builtins, 350 cumulative tests. Command tokens, paths, scope, constraints, statistics, graphs, scratchpad.
 
-**Modular and iteration**: mod, CRT, logistic step, iterate, period detection via Floyd/Brent on exact VDR equality.
+Stage 3 — Capacity Building: 49 modules, ~400 builtins, 600 tests. Sessions, inference notebooks, Q-basis, functional remainders, discrete calculus, domain math, mounts.
 
-**Linear algebra**: Horner evaluation, Haar wavelet forward/inverse, convolution, lazy matrix construction, transfer function evaluation, Borwein eta acceleration.
+Stage 4 — Full Integration: 58 modules, ~437 builtins, 900 tests. Local environment, grants, filesystem, network, execution, all 4 inference modes, lifecycle pipeline.
 
-Each function has defined edge cases. sqrt(0) returns [0,1,0]. Perfect squares collapse to closed form. Division by zero is an error. Elliptic K at k²≥1 is an error. The library is complete, deterministic, and explicit about its domain.
+Stage 5 — Production: 65 modules, 448 builtins, 1250 tests. Docker/SSH/VM, compilation, linting, feedback, deployment, monitoring, canary, retirement.
 
-## Section 9: Gym Summary — 35 Exercises
+12 layers with explicit dependencies. Cross-stage invariants: IOSE declared on every function, exact arithmetic throughout, KB is single source of truth, data primitives bounded, no silent truncation, tests cumulative.
 
-The notebook specifies 35 gym exercises covering every mechanism introduced in this paper.
+533 functions with full IOSE declarations — inputs, outputs, side effects, properties. Each declaration is the test spec, the Zig interface contract, and the documentation.
 
-G01–G04: Q335 multiply, divide, chained powers, QED A₂ coefficient.
-G05–G06: Complex multiply with Q335 constants, DFT butterfly optimization.
-G07: 4-point IFFT exact roundtrip with Parseval.
-G08: 2×2 eigenvalues across four cases (rational, complex, repeated, irrational).
-G09–G10: Quaternion rotation with Remainder cancellation, slerp at t=1/2.
-G11: RoPE at specific position and dimension.
-G12–G13: Modular exponentiation via Fermat, CRT reconstruction.
-G14–G15: Logistic map Q335 compression, tent map period detection.
-G16–G17: Complex Gram-Schmidt orthogonality, rational signal DFT.
-G18–G19: Complex modulus squared, transfer function at complex frequency.
-G20: RNS correspondence with VDR Remainder children.
-G21–G22: Functional remainder eigenvalues, twiddle table factory.
-G23–G24: Chained irrational rotations, IIR filter with collapsing Remainder.
-G25–G26: Bayesian update with transcendental prior, Horner with functional coefficients.
-G27–G28: Lazy determinant, power series composition.
-G29–G30: Convolution Q335, matrix exponential.
-G31–G32: Logistic map via Q335 frame, Parseval with mixed types.
-G33–G35: Lazy matrix inverse, Haar wavelet Q335, four-level function composition.
+Python first (validates decisions), Zig final (mechanical port via IOSE contracts). Type mappings: dataclass → struct, Dict → HashMap, List → ArrayList, Optional → ?T, Result → error union, int → i128 with BigInt overflow.
 
-Plus Gym 24: 14 exercises for Gaussian elimination (Section 3.4).
+~20,500 total lines (15,500 new + 5,000 existing). 705 existing tests + 1,250 planned = ~1,955 total.
 
-Total: 49 exercises. All verifiable by execution. All exact.
+*References: VDR-11 (implementation blueprint + IOSE function spec + tech spec)*
 
-## Section 10: What Is Now Complete
+---
 
-After this paper, VDR has no remaining engineering limitations.
+**Section 13: The Work Reduction**
 
-**Matrix computation**: O(n³) Gaussian elimination replaces O(n!) cofactor expansion. Practical exact inverse, solve, determinant, and rank for matrices up to at least 30×30.
+What the LLM no longer does: arithmetic (primitives compute exactly), sorting/filtering/counting (list primitives), logical deduction (Prolog engine), state tracking (KB with integer addressing), backtracking memory (stack + LRU), confidence assessment (exact fraction propagation), data transformation (parse/format primitives), structural token generation (grammars provide free), structural token interpretation (grammars parse mechanically).
 
-**Complex arithmetic**: Ordered pairs of VDR triples. All operations exact. Unblocks eigenvalues, DFT, transfer functions, complex polynomial evaluation.
+What the LLM still does: intent recognition, mode selection, formalization (translating intent into executable form), assessment (reading results and deciding next step), natural language framing.
 
-**Q335 multiplication**: Remainder nesting preserves the D = 2³³⁵ frame exactly. Depth replaces denominator growth. Precision proportional to depth read.
+The compound effect: the LLM does ~5% of the work at ~95% of the quality. The other 95% is exact, free, and provenance-tracked. Effective context window dramatically larger because it's not filled with computation working and state recaps. The safest token is the one that was never generated.
 
-**FFT**: Integer butterflies with bounded-depth Remainder trees. Exact roundtrip. Exact Parseval. Precision knob float cannot offer.
+*References: VDR-9 (orchestrated inference), VDR-12 (grammar economics)*
 
-**Transcendental functions**: 40 builtins covering sqrt through hypergeometric ₂F₁, all producing functional remainders with exact rationals at every depth.
+---
 
-**Modular unification**: CRT, RNS, GF(p), continued fractions all recognized as instances of VDR Remainder structure.
+**Section 14: What This System Is and Is Not**
 
-## Section 11: What Remains Outside Scope
+Is: an exact arithmetic computational substrate with structural provenance, scoped knowledge management, deterministic primitives, grammar-directed I/O, and orchestrated inference — where the LLM orchestrates but does not compute.
 
-**Active-by-active division (AA5)**: The current compromise projects the divisor to a rational via Π. The Q335 division path (Section 5.3) handles the practical case of dividing by constants. General active-by-active division is a pure mathematics question deferred to future formalization work.
+Is not: a replacement for real numbers or continuous calculus. Not practical at production LLM scale yet (denominator growth, Zig port needed). Not a guarantee of correct conclusions (premises might be wrong, evidence might be incomplete — provenance makes failures detectable, not preventable).
 
-**Gaussian elimination for VDR**: Specified and demonstrated in this paper. Implementation is engineering execution of a fully specified algorithm.
+Cumulative validation: 705 tests, zero VDR computation errors, 13 test-design failures, 23 mathematical domains, 14 physical domains, complete LLM pipeline demonstrated, 178/179 compaction tests passing.
 
-**PSLQ**: Not a VDR concern. VDR provides exact high-precision constants as substrate. External tools consume them as they wish.
+*References: all papers*
 
-**Formal mathematical proof**: VDR is verified by 507+ executable tests across 23+ domains. Formalization as a mathematical system (axiom verification, completeness proofs) is a separate future effort.
+---
 
-## Appendix A: Builtin Reference Table
-All 40 builtins with signature, mechanism, edge cases, and dependencies.
+**Appendices:**
 
-## Appendix B: Gym 24 Complete Snippets
-All 14 Gaussian elimination exercises with code.
+A — Complete KB struct (26 fields with source paper, type, classification)
+B — Complete builtin index (448 + 40 from VDR-13 notebook, by category with stage assignment)
+C — Complete IOSE function list (533 functions, by stage and module)
+D — Operational principles reference (15 principles with Prolog encoding summary)
+E — Confidence propagation rules (source confidences + propagation formulas)
+F — Compaction profile reference (6 profiles + 20 table schemas)
+G — Zig type mapping reference
+H — Paper cross-reference (VDR-1 through VDR-13 with paper topic, key contribution, test count)
+I — Glossary (every term defined without forward references)
 
-## Appendix C: Notebook Gym Complete Snippets
-All 35 notebook exercises with code.
+---
 
-## Appendix D: Dependency Graph
-Builtin dependency tree from leaf functions through composed operations.
+**Estimated size:** ~8,000-10,000 compacted tokens. Roughly 40-50 tables. Comprehensive but not exhaustive — depth is in the referenced papers, breadth and explanatory clarity is here.
+
+**Validation approach:** A new reader with no prior context should be able to read sections 1-14 sequentially and understand what the system is, why each piece exists, how they fit together, and where to look for implementation detail. If they can't, the document failed.
