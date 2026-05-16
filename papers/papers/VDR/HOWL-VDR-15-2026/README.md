@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog
+# VDR-LLM-Prolog: Prompt Optimization
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-This paper consolidates thirteen prior technical specifications into a single document describing the VDR-LLM-Prolog system: an architecture for language models built on exact integer arithmetic, structural knowledge management, deterministic computation primitives, and orchestrated inference. The system replaces floating-point arithmetic with Value-Denominator-Remainder triples that preserve exact results through arbitrary operation chains, replaces stateless conversation with a scoped knowledge base tree addressable by integer, replaces token-by-token computation with 448 deterministic primitives invoked through structured command tokens, and replaces unstructured reasoning with an orchestrated inference loop where the language model selects and sequences exact tools rather than generating computational results. Every component has been specified with declared inputs, outputs, side effects, and mathematical properties. The arithmetic foundation has been validated across 507 tests in 23 mathematical domains and 14 physical domains with zero computation errors. A complete language model pipeline from tokenization through training has been demonstrated with exact attention weights summing to precisely one, exact gradients, and bit-identical checkpoint reproducibility. This paper provides the entry point for understanding the complete system, the rationale for each architectural decision, and the implementation blueprint for building it.
+This paper analyzes the token economics of the VDR-LLM-Prolog system specified in the preceding fourteen papers. A conventional language model spends 80 to 95 percent of its generated tokens on infrastructure work — input parsing, state reconstruction, arithmetic computation, logical deduction, data retrieval, formatting, and confidence hedging. Every infrastructure token costs a full forward pass, carries a nonzero error probability, produces no provenance, and consumes context window capacity that then cannot be used for the actual task. The VDR-LLM-Prolog system eliminates infrastructure tokens entirely by offloading each infrastructure function to exact primitives, integer-addressed knowledge base lookups, Prolog evaluation, and grammar templates. The language model generates only judgment tokens (reading content that requires human-level assessment, selecting and sequencing tools) and prose tokens (writing natural language for human consumption). Across seven use cases — SRE incident investigation, legal contract review, medical research synthesis, codebase migration, financial portfolio analysis, customer support knowledge base operation, and academic grading — the system reduces language model token generation by 85 to 97 percent compared to conventional language model processing of the same tasks. The per-operation cost of Q335 exact arithmetic is higher than floating-point arithmetic, but the crossover analysis shows that exact arithmetic would need to be roughly 10,000 times slower per operation before the system breaks even on a single conversational turn, and the margin grows with every subsequent turn because conventional token cost scales with conversation length while primitive cost does not. Several use cases that are impossible for conventional language models — processing a 1-megabyte JSON payload, summarizing a 10-megabyte document, analyzing 500 financial positions simultaneously, searching 2,000 support articles by indexed query — become routine because data enters through primitives and never passes through the token stream. This paper introduces no new primitives, struct fields, builtins, or modules. It is a pattern-of-use analysis over the existing specification, demonstrating that the architecture specified in VDR-1 through VDR-14 produces a fundamental change in the economics, accuracy, and capability boundaries of language model prompts.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-14-2026,
-  title={ VDR-LLM-Prolog },
+@article{ HOWL-VDR-15-2026,
+  title={ VDR-LLM-Prolog: Prompt Optimization },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20232194},
-  url = {https://zenodo.org/record/20232194},
-  note={Howland Archive: HOWL-VDR-14-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-VDR-15-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

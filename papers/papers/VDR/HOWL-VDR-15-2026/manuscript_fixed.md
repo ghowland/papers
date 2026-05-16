@@ -1,4 +1,5 @@
 # VDR-LLM-Prolog: Prompt Optimization
+
 ## How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results
 
 **Registry:** [@HOWL-VDR-15-2026]
@@ -448,7 +449,6 @@ The persistent knowledge base also means that day 2 starts where day 1 ended. Th
 | Financial portfolio (500 positions) | 15,000 (partial) | 600 | 96.0% | Approximate arithmetic | Exact arithmetic; zero drift |
 | Customer support (per query) | 500 | 150 | 70.0% | Training data recall | Indexed KB query with provenance |
 | Academic grading (150 essays) | 200,000 (partial) | 57,230 (complete) | 71.4% | Inconsistent; rubric drift | Consistent; clean rubric per essay |
-
 ### A.2: Token Category Breakdown — SRE Incident
 
 | Category | Conventional | VDR-LLM-Prolog | Notes |
@@ -464,7 +464,6 @@ The persistent knowledge base also means that day 2 starts where day 1 ended. Th
 | Judgment (assessment) | 1,500 | 50 | Cleaner input, same task |
 | Prose output | 1,500 | 80 | Grammar handles structure |
 | **Total generated** | **15,000** | **210** | — |
-
 ### A.3: Token Category Breakdown — Financial Portfolio
 
 | Category | Conventional | VDR-LLM-Prolog | Notes |
@@ -480,7 +479,6 @@ The persistent knowledge base also means that day 2 starts where day 1 ended. Th
 | Planning | 500 | 100 | Structured input |
 | Prose commentary | 500 | 300 | Grammar handles data display |
 | **Total generated** | **15,000** | **600** | — |
-
 ### A.4: Token Category Breakdown — Academic Grading
 
 | Category | Conventional | VDR-LLM-Prolog | Notes |
@@ -495,7 +493,6 @@ The persistent knowledge base also means that day 2 starts where day 1 ended. Th
 | Command tokens | 0 | 200 | Primitive invocations |
 | Script authoring | 0 | 30 | Written once |
 | **Total generated** | **200,000** | **57,230** | — |
-
 ---
 
 ## Appendix B: Crossover Analysis
@@ -504,34 +501,31 @@ The persistent knowledge base also means that day 2 starts where day 1 ended. Th
 
 | Saved Tokens | Primitive Ops | Equivalent Token Budget for Primitives | Float Ops per LLM Token | Q335 Ops per Primitive | Required Q335 Slowdown for Breakeven |
 |-------------|-------------|---------------------------------------|----------------------|---------------------|-------------------------------------|
-| 2,790 | 500 | 2,790 × C | ~10⁶ per token | ~10³ per op | ~5,580× |
-| 2,790 | 200 | 2,790 × C | ~10⁶ per token | ~10³ per op | ~13,950× |
-| 2,790 | 50 | 2,790 × C | ~10⁶ per token | ~10³ per op | ~55,800× |
-
+| 2,790 | 500 | 2,790  $\times$  C | ~10⁶ per token | ~10³ per op | ~5,580 $\times$  |
+| 2,790 | 200 | 2,790  $\times$  C | ~10⁶ per token | ~10³ per op | ~13,950 $\times$  |
+| 2,790 | 50 | 2,790  $\times$  C | ~10⁶ per token | ~10³ per op | ~55,800 $\times$  |
 C = cost of one language model forward pass token. Q335 would need to be thousands to tens of thousands of times slower per operation to break even.
 
 ### B.2: Multi-Turn Crossover (SRE Investigation)
 
 | Turn | Conventional Cumulative Tokens | VDR Cumulative LLM Tokens | VDR Cumulative Primitive Ops | Margin (tokens saved) | Required Q335 Slowdown |
 |------|------------------------------|-------------------------|----------------------------|---------------------|----------------------|
-| 1 | 3,000 | 210 | 500 | 2,790 | ~5,580× |
-| 5 | 18,000 | 1,050 | 2,500 | 16,950 | ~6,780× |
-| 10 | 45,000 | 2,100 | 5,000 | 42,900 | ~8,580× |
-| 20 | 120,000 | 4,200 | 10,000 | 115,800 | ~11,580× |
-| 50 | 500,000 | 10,500 | 25,000 | 489,500 | ~19,580× |
-
+| 1 | 3,000 | 210 | 500 | 2,790 | ~5,580 $\times$  |
+| 5 | 18,000 | 1,050 | 2,500 | 16,950 | ~6,780 $\times$  |
+| 10 | 45,000 | 2,100 | 5,000 | 42,900 | ~8,580 $\times$  |
+| 20 | 120,000 | 4,200 | 10,000 | 115,800 | ~11,580 $\times$  |
+| 50 | 500,000 | 10,500 | 25,000 | 489,500 | ~19,580 $\times$  |
 The required slowdown grows with conversation length because conventional token cost scales quadratically (attention re-reading) while primitive cost scales linearly.
 
 ### B.3: Workday Crossover (SRE Team)
 
 | Workload | Conventional Tokens | VDR LLM Tokens | VDR Primitive Ops | Margin | Required Slowdown |
 |----------|-------------------|---------------|-----------------|--------|------------------|
-| 1 incident (20 turns) | 120,000 | 4,200 | 10,000 | 115,800 | ~11,580× |
-| 5 incidents + postmortems | 620,000 | 22,500 | 50,000 | 597,500 | ~11,950× |
-| Full day (all tasks) | 640,000 | 26,000 | 60,000 | 614,000 | ~10,233× |
-| Full week | 3,200,000 | 130,000 | 300,000 | 3,070,000 | ~10,233× |
-
-The margin stabilizes at roughly 10,000× because the ratio of token savings to primitive operations converges. Q335 is nowhere near 10,000 times slower than float. The token economics structurally dominate.
+| 1 incident (20 turns) | 120,000 | 4,200 | 10,000 | 115,800 | ~11,580 $\times$  |
+| 5 incidents + postmortems | 620,000 | 22,500 | 50,000 | 597,500 | ~11,950 $\times$  |
+| Full day (all tasks) | 640,000 | 26,000 | 60,000 | 614,000 | ~10,233 $\times$  |
+| Full week | 3,200,000 | 130,000 | 300,000 | 3,070,000 | ~10,233 $\times$  |
+The margin stabilizes at roughly 10,000 $\times$  because the ratio of token savings to primitive operations converges. Q335 is nowhere near 10,000 times slower than float. The token economics structurally dominate.
 
 ---
 
@@ -543,11 +537,10 @@ Used in: all use cases. Fetches external data, parses it, converts values to exa
 
 | Step | Builtin | Tokens | Purpose |
 |------|---------|--------|---------|
-| Fetch | B391 file_read or B424 network_fetch | ~8 | Raw bytes enter system |
-| Parse | B246 parse_json or B248 parse_csv | ~8 | Typed structure extracted |
-| Convert | B254 vdr_from_decimal_string (per value) | ~8 each | Exact VDR at conversion boundary |
-| Store | B376 kb_assert (per fact) | ~8 each | Provenance-tagged KB storage |
-
+| Fetch | B391 file read or B424 network fetch | ~8 | Raw bytes enter system |
+| Parse | B246 parse json or B248 parse csv | ~8 | Typed structure extracted |
+| Convert | B254 vdr from decimal string (per value) | ~8 each | Exact VDR at conversion boundary |
+| Store | B376 kb assert (per fact) | ~8 each | Provenance-tagged KB storage |
 Total per data source: roughly 32 base tokens plus 16 per extracted value.
 
 ### C.2: Filter-Sort-Aggregate Pattern
@@ -556,12 +549,11 @@ Used in: SRE metrics, portfolio analysis, support KB queries, grading statistics
 
 | Step | Builtin | Tokens | Purpose |
 |------|---------|--------|---------|
-| Filter | B198 list_filter | ~8 | Subset by predicate |
-| Sort | B202 list_sort | ~8 | Order by key |
-| Take | B187 list_take | ~8 | Top N results |
-| Aggregate | B047 vdr_sum or B049 vdr_mean | ~8 | Exact computation |
-| Store | B233 dict_set | ~8 | Results to working data |
-
+| Filter | B198 list filter | ~8 | Subset by predicate |
+| Sort | B202 list sort | ~8 | Order by key |
+| Take | B187 list take | ~8 | Top N results |
+| Aggregate | B047 vdr sum or B049 vdr mean | ~8 | Exact computation |
+| Store | B233 dict set | ~8 | Results to working data |
 Total: roughly 40 tokens for the complete filter-sort-aggregate pipeline on any dataset size.
 
 ### C.3: Hypothesis-Test Pattern
@@ -570,12 +562,11 @@ Used in: SRE investigation, medical contradiction detection, decision analysis.
 
 | Step | Builtin | Tokens | Purpose |
 |------|---------|--------|---------|
-| Formalize rule | B376 kb_assert (Prolog rule) | ~20 | LLM writes the rule |
-| Evaluate | B378 kb_query | ~8 | Prolog engine evaluates |
-| Compute confidence | B003 vdr_mul, B002 vdr_sub | ~16 | Propagation formula |
-| Store finding | B376 kb_assert | ~8 | Provenance-tagged result |
-| Update counters | B298 counter_inc | ~8 | Budget tracking |
-
+| Formalize rule | B376 kb assert (Prolog rule) | ~20 | LLM writes the rule |
+| Evaluate | B378 kb query | ~8 | Prolog engine evaluates |
+| Compute confidence | B003 vdr mul, B002 vdr sub | ~16 | Propagation formula |
+| Store finding | B376 kb assert | ~8 | Provenance-tagged result |
+| Update counters | B298 counter inc | ~8 | Budget tracking |
 Total: roughly 60 tokens per hypothesis tested.
 
 ### C.4: Correlation-Join Pattern
@@ -584,13 +575,12 @@ Used in: SRE deployment correlation, medical contradiction detection, supply cha
 
 | Step | Builtin | Tokens | Purpose |
 |------|---------|--------|---------|
-| Fetch set A | B378 kb_query | ~8 | First data collection |
-| Fetch set B | B378 kb_query | ~8 | Second data collection |
-| Join | B198 list_filter + B196 list_contains | ~16 | Match on shared key |
-| Compare | B017 vdr_compare per pair | ~8 each | Exact comparison |
-| Group | B208 list_group_by | ~8 | Organize results |
-| Sort | B202 list_sort | ~8 | Rank by magnitude |
-
+| Fetch set A | B378 kb query | ~8 | First data collection |
+| Fetch set B | B378 kb query | ~8 | Second data collection |
+| Join | B198 list filter + B196 list contains | ~16 | Match on shared key |
+| Compare | B017 vdr compare per pair | ~8 each | Exact comparison |
+| Group | B208 list group by | ~8 | Organize results |
+| Sort | B202 list sort | ~8 | Rank by magnitude |
 Total: roughly 56 base tokens plus 8 per comparison.
 
 ### C.5: Document Processing Pattern
@@ -599,15 +589,14 @@ Used in: legal contract review, document summarization, academic grading.
 
 | Step | Builtin | Tokens | Purpose |
 |------|---------|--------|---------|
-| Read file | B391 file_read | ~8 | Raw bytes |
-| Extract structure | B410 execute_python (written once) | ~30 first time, ~8 reuse | Parsing script |
-| Parse output | B246 parse_json | ~8 | Typed dict tree |
-| Enumerate sections | B236 dict_keys | ~8 | Section list |
-| Pull section | B229 dict_get per section | ~8 each | Section content |
+| Read file | B391 file read | ~8 | Raw bytes |
+| Extract structure | B410 execute python (written once) | ~30 first time, ~8 reuse | Parsing script |
+| Parse output | B246 parse json | ~8 | Typed dict tree |
+| Enumerate sections | B236 dict keys | ~8 | Section list |
+| Pull section | B229 dict get per section | ~8 each | Section content |
 | LLM reads and judges | — | Varies | Irreducible judgment |
-| Store result | B233 dict_set | ~8 each | Per-section results |
-| Export | B247 format_csv + B392 file_write | ~16 | Final output |
-
+| Store result | B233 dict set | ~8 each | Per-section results |
+| Export | B247 format csv + B392 file write | ~16 | Final output |
 Total infrastructure: roughly 80 base tokens plus 16 per section. LLM tokens scale only with judgment work.
 
 ---
@@ -625,7 +614,6 @@ Total infrastructure: roughly 80 base tokens plus 16 per section. LLM tokens sca
 | Structured report (5 sections) | 2,000 | 500 | 1,500 | 25% | 500 tokens |
 | Incident report template | 800 | 400 | 400 | 50% | 400 tokens |
 | Comparison table (2 items, 10 criteria) | 350 | 210 | 140 | 60% | 210 tokens |
-
 ### D.2: Error Elimination by Format
 
 | Output Format | Common Conventional Errors | Error Probability (conventional) | Error Probability (grammar) |
@@ -635,17 +623,15 @@ Total infrastructure: roughly 80 base tokens plus 16 per section. LLM tokens sca
 | CSV | Unescaped commas, inconsistent quoting, wrong delimiter | ~3-7% per export | 0% |
 | Code syntax | Missing semicolons, mismatched brackets, wrong indentation | ~5-15% per block | 0% for structure |
 | Numbered lists | Misnumbered items, inconsistent formatting | ~3-8% per list | 0% |
-
 ### D.3: Vocabulary Constraint Effect
 
 | Slot Type | Full Vocabulary Size | Constrained Vocabulary Size | Softmax Reduction | Error Rate Reduction |
 |-----------|--------------------|-----------------------------|-------------------|---------------------|
-| Boolean field | 50,000+ | 2 (yes/no) | 25,000× | ~99.99% |
-| Enum (4 values) | 50,000+ | 4 | 12,500× | ~99.99% |
-| KB identifier (200 concepts) | 50,000+ | 200 | 250× | ~99.6% |
-| Numeric (integer, 3 digits) | 50,000+ | 1,000 | 50× | ~98% |
-| Free text | 50,000+ | 50,000+ | 1× | Baseline |
-
+| Boolean field | 50,000+ | 2 (yes/no) | 25,000 $\times$  | ~99.99% |
+| Enum (4 values) | 50,000+ | 4 | 12,500 $\times$  | ~99.99% |
+| KB identifier (200 concepts) | 50,000+ | 200 | 250 $\times$  | ~99.6% |
+| Numeric (integer, 3 digits) | 50,000+ | 1,000 | 50 $\times$  | ~98% |
+| Free text | 50,000+ | 50,000+ | 1 $\times$  | Baseline |
 ---
 
 ## Appendix E: Attention Mechanism Comparison Under Reduced Load
@@ -661,25 +647,22 @@ Total infrastructure: roughly 80 base tokens plus 16 per section. LLM tokens sca
 | Importance weighting | Learned from training | Not needed | Exact confidence fractions |
 | Intent recognition | User message + context | User message + structured summary | Pre-parsed, pre-typed input |
 | Step selection | Full reasoning over context | Selection from known primitives | Low-entropy reference selection |
-
 ### E.2: Mechanism Suitability Under Reduced Load
 
 | Mechanism | Transcendentals | VDR-Native | Denominator Growth | Suitable for Reduced Load | Suitable for Full Load |
 |-----------|----------------|-----------|-------------------|--------------------------|----------------------|
-| SM1 Taylor softmax | Yes | Via Q335 fn_remainder | Moderate (factorial terms) | Yes (overqualified) | Yes |
+| SM1 Taylor softmax | Yes | Via Q335 fn remainder | Moderate (factorial terms) | Yes (overqualified) | Yes |
 | SM2 Rational surrogate | No | Fully native | Low (small powers) | Yes (well-matched) | Approximate shape |
 | SM4 Padé approximant | No | Fully native | Low (polynomial) | Yes (well-matched) | Better than Taylor at same degree |
 | AT4 Linear attention | No | Fully native if kernel is polynomial/ReLU | Minimal | Yes (simplest option) | May underperform on complex tasks |
 | AT5 Surrogate-weighted | No | Fully native | Low | Yes | Yes for pre-structured input |
-
 ### E.3: Computational Cost per Attention Step
 
 | Mechanism | Ops per Query-Key Score | Ops per Normalization | Total per Head per Position | Notes |
 |-----------|------------------------|----------------------|---------------------------|-------|
-| SM1 Taylor (depth 10) | d_k multiplications | ~10 multiply + add per logit | High | Full transcendental computation |
-| SM2 Surrogate | d_k multiplications | 1 subtract + 1 square + 1 sum per logit | Low | Integer arithmetic only |
-| AT4 Linear (ReLU kernel) | d_k multiplications + ReLU | No normalization step | Lowest | No softmax at all |
-
+| SM1 Taylor (depth 10) | d k multiplications | ~10 multiply + add per logit | High | Full transcendental computation |
+| SM2 Surrogate | d k multiplications | 1 subtract + 1 square + 1 sum per logit | Low | Integer arithmetic only |
+| AT4 Linear (ReLU kernel) | d k multiplications + ReLU | No normalization step | Lowest | No softmax at all |
 For pre-structured input with a small number of typed candidates, the difference between mechanisms is minimal. The choice is practical, not architectural.
 
 ---
@@ -696,18 +679,16 @@ For pre-structured input with a small number of typed candidates, the difference
 | Code repository | 200 files | ~500,000 tokens | Cannot hold simultaneously | Routine | B405 tree + B391 per-file |
 | Knowledge base | 2,000 articles | ~5,000,000 tokens | Cannot search | Routine | B404 glob + indexed KB query |
 | Portfolio | 500 positions | ~25,000 tokens | Overflows useful context | Routine | B248 parse + primitives |
-
 ### F.2: Computational Boundaries
 
 | Computation | Scale | Conventional LLM | VDR-LLM-Prolog | Mechanism |
 |------------|-------|-----------------|----------------|-----------|
 | Arithmetic chain | 500 multiplications | Accumulating errors | Exact | VDR primitives |
-| Correlation matrix | 500 × 500 | Cannot compute | Exact | B082, B085 linear algebra |
+| Correlation matrix | 500  $\times$  500 | Cannot compute | Exact | B082, B085 linear algebra |
 | Statistical aggregation | 10,000 values | Cannot hold + compute | Exact | B101-B105 stat primitives |
 | Dependency graph | 200 nodes | Cannot build | Exact | B285, B295 graph primitives |
-| Time series trend | 90 daily points × 50 series | Cannot process all | Exact | B070 discrete derivative |
-| Cross-reference resolution | 2,000 documents | Cannot hold | Constant-time | B380 kb_query_across |
-
+| Time series trend | 90 daily points  $\times$  50 series | Cannot process all | Exact | B070 discrete derivative |
+| Cross-reference resolution | 2,000 documents | Cannot hold | Constant-time | B380 kb query across |
 ### F.3: State Persistence Boundaries
 
 | Scenario | Conventional LLM | VDR-LLM-Prolog | Mechanism |
@@ -717,7 +698,6 @@ For pre-structured input with a small number of typed candidates, the difference
 | Multi-incident correlation | Cannot access prior incidents | Prior incident KBs queryable | Connection traversal |
 | Team knowledge accumulation | Per-conversation only | Organization-wide KB tree | Hierarchical KB structure |
 | Postmortem generation | Requires human reconstruction | Generated from incident KB | Provenance chain |
-
 ---
 
 ## Appendix G: Conversation Length Scaling Data
@@ -732,7 +712,6 @@ For pre-structured input with a small number of typed candidates, the difference
 | 20 | 3,000 | 60,000 | 210 | 500 |
 | 50 | 3,000 | 150,000 | 210 | 500 |
 | 100 | 3,000 | 300,000 | 210 | 500 |
-
 Conventional attention cost grows linearly per turn (all prior history re-read). VDR primitive cost is constant (state at integer addresses).
 
 ### G.2: Cumulative Cost
@@ -745,7 +724,6 @@ Conventional attention cost grows linearly per turn (all prior history re-read).
 | 20 | 690,000 | 5,200 | 133:1 |
 | 50 | 3,900,000 | 13,000 | 300:1 |
 | 100 | 15,300,000 | 26,000 | 588:1 |
-
 The ratio grows continuously because conventional cost is quadratic (sum of linear attention growth) while VDR cost is linear (constant per turn).
 
 ### G.3: Quality Scaling
@@ -758,5 +736,5 @@ The ratio grows continuously because conventional cost is quadratic (sum of line
 | 20 | Significant degradation | Full investigation accumulated | Significant gaps | Complete |
 | 50 | Severe degradation | Mature knowledge base | Majority lost | Complete |
 | 100 | Unreliable | Comprehensive knowledge base | Near-total loss | Complete |
-
 Conventional accuracy degrades because attention dilutes and prior facts compete with noise. VDR accuracy improves because each turn contributes exact, provenance-tagged facts to persistent storage. The curves move in opposite directions.
+
