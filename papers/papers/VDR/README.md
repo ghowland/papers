@@ -129,3 +129,6 @@ Caveats:
 - Titles and scope may continue to evolve as the series expands.
 - Some later entries may refine, supersede, or consolidate prior material.
 - Readers should treat VDR-14 as the current central system-level reference unless a newer consolidation document is added.
+
+# What is VDR-LLM-Prolog?
+
