@@ -189,3 +189,775 @@ This token-level provenance is something no current LLM system provides and it f
 
 ---
 
+This is the key mechanism. Let me work through exactly how this operates.
+
+**The problem stated precisely:**
+
+The LLM has decided what it wants to communicate — a set of data items, each with attributes. It needs to select a grammar that has slots matching those attributes, then fill the slots. The grammar selection is itself a matching problem that Prolog is designed to solve.
+
+**Concrete example to ground the discussion:**
+
+The LLM has 4 pieces of data it wants to communicate about memory reduction techniques:
+
+```
+item(quantization, reduction(75), quality_loss(2), maturity(high), source(peer_reviewed)).
+item(pruning, reduction(60), quality_loss(5), maturity(high), source(peer_reviewed)).
+item(distillation, reduction(50), quality_loss(3), maturity(medium), source(peer_reviewed)).
+item(sharing, reduction(30), quality_loss(1), maturity(low), source(preprint)).
+```
+
+Each item has 5 attributes. The LLM needs to present these to the user. The question is: which grammar best fits these items given their attribute structure?
+
+**Available grammars as Prolog facts:**
+
+Grammars are stored in the language KB with their slot specifications — what attributes each slot accepts and what structure the grammar produces.
+
+```
+grammar(comparison_table, 
+    slots([name, metric_1, metric_2, metric_3]),
+    requires(items_count >= 3),
+    requires(all_items_share_attributes([metric_1, metric_2, metric_3])),
+    output_format(table),
+    best_when(comparing_across_uniform_attributes)).
+
+grammar(ranked_list,
+    slots([rank, name, primary_metric, detail]),
+    requires(items_count >= 2),
+    requires(exists_orderable_attribute),
+    output_format(ordered_list),
+    best_when(one_attribute_dominates)).
+
+grammar(pros_cons_pairs,
+    slots([name, advantage, disadvantage]),
+    requires(items_count >= 2),
+    requires(items_have_tradeoff_attributes),
+    output_format(paired_blocks),
+    best_when(tradeoffs_are_salient)).
+
+grammar(narrative_comparison,
+    slots([topic_sentence, item_sentences, summary_sentence]),
+    requires(items_count <= 5),
+    output_format(paragraph),
+    best_when(relationships_between_items_matter)).
+
+grammar(single_recommendation,
+    slots([recommendation, justification, caveats]),
+    requires(items_count >= 1),
+    requires(one_item_clearly_dominates),
+    output_format(paragraph),
+    best_when(user_wants_decision_not_data)).
+```
+
+**The matching problem:**
+
+Prolog evaluates each grammar's requirements against the actual data attributes:
+
+```
+Rule: grammar_fits(Grammar, Items, Score) :-
+    grammar(Grammar, slots(Slots), Requires, _, best_when(Strength)),
+    all_requirements_met(Requires, Items),
+    slot_coverage(Slots, Items, Coverage),
+    strength_match(Strength, Items, StrengthScore),
+    Score is Coverage * StrengthScore.
+
+Rule: all_requirements_met([], _).
+Rule: all_requirements_met([Req | Rest], Items) :-
+    requirement_satisfied(Req, Items),
+    all_requirements_met(Rest, Items).
+
+Rule: requirement_satisfied(items_count >= N, Items) :-
+    length(Items, Len), Len >= N.
+Rule: requirement_satisfied(all_items_share_attributes(Attrs), Items) :-
+    forall(member(A, Attrs),
+        forall(member(I, Items), item_has_attribute(I, A))).
+Rule: requirement_satisfied(exists_orderable_attribute, Items) :-
+    member(I1, Items), member(I2, Items), I1 \= I2,
+    item_attribute(I1, Attr, V1), item_attribute(I2, Attr, V2),
+    orderable(V1, V2).
+```
+
+For our 4 memory reduction items, Prolog evaluates:
+
+`comparison_table` — requires 3+ items (yes, 4), requires shared attributes (yes, all have reduction, quality_loss, maturity). Slots map: name→technique name, metric_1→reduction, metric_2→quality_loss, metric_3→maturity. Coverage: 4 of 5 attributes mapped (source unmapped). Score: high.
+
+`ranked_list` — requires 2+ items (yes), requires orderable attribute (yes, reduction is numeric). Slots map: rank→by reduction, name→technique name, primary_metric→reduction, detail→remaining attributes as text. Coverage: all attributes representable but compressed. Score: medium.
+
+`pros_cons_pairs` — requires tradeoff attributes. Reduction vs quality_loss is a tradeoff. Slots map: name→technique, advantage→reduction, disadvantage→quality_loss. Coverage: 3 of 5. Score: medium.
+
+`single_recommendation` — requires one item clearly dominates. Quantization has highest reduction (75) but Prolog checks whether the dominance is clear. 75 vs 60 is not overwhelming. Requirement fails. Score: 0.
+
+Prolog returns the ranked grammar matches:
+
+```
+CMD: KB_QUERY(root.language.grammars, 
+    findall(G-S, grammar_fits(G, current_items, S), Matches))
+→ [comparison_table-fraction(92,100), 
+    ranked_list-fraction(71,100), 
+    pros_cons_pairs-fraction(65,100)]
+```
+
+The comparison table wins. The LLM doesn't need to decide on presentation format through token prediction — Prolog selected it by structural matching.
+
+**Slot filling by attribute mapping:**
+
+Once the grammar is selected, the slots need to be filled with actual values. This is another Prolog matching problem:
+
+```
+Rule: fill_slots(Grammar, Items, FilledSlots) :-
+    grammar(Grammar, slots(SlotNames), _, _, _),
+    maplist(fill_one_slot(Items), SlotNames, FilledSlots).
+
+Rule: fill_one_slot(Items, name, Values) :-
+    maplist(item_name, Items, Values).
+Rule: fill_one_slot(Items, metric_1, Values) :-
+    best_numeric_attribute(Items, Attr),
+    maplist(item_attribute_value(Attr), Items, Values).
+Rule: fill_one_slot(Items, metric_2, Values) :-
+    second_numeric_attribute(Items, Attr),
+    maplist(item_attribute_value(Attr), Items, Values).
+```
+
+But this is where it gets interesting. The slot filling isn't just "pick the right column." The grammar has **slot types** and the data has **attribute types**, and Prolog matches them:
+
+```
+slot_type(name, identifier).
+slot_type(metric_1, numeric_with_unit).
+slot_type(metric_2, numeric_with_unit).
+slot_type(metric_3, categorical).
+slot_type(rank, ordinal).
+slot_type(detail, free_text).
+slot_type(advantage, clause).
+slot_type(disadvantage, clause).
+slot_type(recommendation, sentence).
+slot_type(justification, sentence).
+
+attribute_type(reduction, numeric_with_unit(percent)).
+attribute_type(quality_loss, numeric_with_unit(percent)).
+attribute_type(maturity, categorical([low, medium, high])).
+attribute_type(source, categorical([preprint, peer_reviewed, meta_analysis])).
+attribute_type(name, identifier).
+```
+
+The matching rule:
+
+```
+Rule: attribute_fits_slot(Attribute, Slot) :-
+    attribute_type(Attribute, AttrType),
+    slot_type(Slot, SlotType),
+    type_compatible(AttrType, SlotType).
+
+Rule: type_compatible(numeric_with_unit(_), numeric_with_unit).
+Rule: type_compatible(categorical(_), categorical).
+Rule: type_compatible(identifier, identifier).
+Rule: type_compatible(numeric_with_unit(_), free_text).  % numeric can be rendered as text
+Rule: type_compatible(categorical(_), free_text).         % categorical can be rendered as text
+```
+
+Now Prolog solves the assignment problem — which attribute goes in which slot — by finding a valid mapping:
+
+```
+Rule: assign_attributes_to_slots([], [], []).
+Rule: assign_attributes_to_slots(Attributes, [Slot | RestSlots], [Attr-Slot | RestAssign]) :-
+    select(Attr, Attributes, RemainingAttrs),
+    attribute_fits_slot(Attr, Slot),
+    assign_attributes_to_slots(RemainingAttrs, RestSlots, RestAssign).
+```
+
+For the comparison table with our data:
+
+```
+assign result: [name-name, reduction-metric_1, quality_loss-metric_2, maturity-metric_3]
+```
+
+Source is unassigned — it doesn't fit any remaining slot. The grammar system notes this as an unmapped attribute and the LLM can decide whether to mention it in a footnote or drop it.
+
+**The LLM's remaining job:**
+
+After Prolog selects the grammar and maps attributes to slots, the LLM's job is reduced to:
+
+1. **Header text** — "Here are four approaches to reducing memory usage:" (one short sentence, not a full generation)
+2. **Column headers** — the grammar template has slots for column names. The LLM picks human-readable names: "Technique", "Memory Reduction", "Quality Impact", "Maturity". These could also come from KB metadata if the attributes have display_name facts.
+3. **Value formatting** — reduction(75) becomes "75%" using the `format_percentage` builtin. quality_loss(2) becomes "2% loss". maturity(high) stays "High". These are conversion builtins, not LLM generation.
+4. **Ordering decision** — sort by reduction descending? By maturity? The LLM decides the sort key, the `list_sort_by_key` primitive executes it exactly.
+5. **Summary sentence** — "Quantization offers the best reduction with minimal quality impact." This is the one piece that genuinely requires LLM generation — a synthesis judgment.
+
+Out of maybe 100 tokens in the final output, the LLM generated perhaps 25. The grammar provided the structure. The builtins provided the formatting. The KB provided the data. Prolog provided the selection and mapping.
+
+**Extending to code generation:**
+
+For code, the same mechanism works with richer grammars. The LLM decides "I need a function that takes a list of VDR fractions and returns their mean." Prolog matches this intent against code grammars:
+
+```
+intent(function_def, 
+    params([list_of(vdr_fraction)]),
+    returns(vdr_fraction),
+    operation(mean)).
+```
+
+The grammar matcher finds:
+
+```
+grammar(python_funcdef,
+    slots([func_name, params, return_type_hint, body]),
+    ...).
+```
+
+And the body slot has sub-grammars:
+
+```
+grammar(accumulator_pattern,
+    slots([init_value, loop_var, collection_param, accumulate_expr, return_expr]),
+    requires(operation_is_reduction),
+    ...).
+```
+
+Prolog matches `operation(mean)` to the accumulator pattern. The slots fill:
+
+```
+func_name: "vdr_mean" (from intent or KB convention)
+params: "values: List[VDR]" (from intent + Python 3.8 grammar)
+return_type_hint: "VDR" (from intent)
+init_value: "frac(0)" (additive identity from VDR KB)
+loop_var: "v" (convention)
+collection_param: "values" (from param name)
+accumulate_expr: "total = vdr_add(total, v)" (from operation=mean → sum then divide)
+return_expr: "return vdr_div(total, frac(len(values)))" (mean = sum / count)
+```
+
+The grammar assembles:
+
+```python
+def vdr_mean(values: List[VDR]) -> VDR:
+    total = frac(0)
+    for v in values:
+        total = vdr_add(total, v)
+    return vdr_div(total, frac(len(values)))
+```
+
+The LLM didn't generate any of those tokens through forward passes. The grammar provided the structure, Prolog matched the pattern, the KB provided the VDR conventions, and the slot filler composed the pieces. The LLM's contribution was the intent: "mean of a list of VDR fractions." Everything else was deterministic.
+
+**Where the LLM genuinely contributes vs where it's wasted:**
+
+The pattern reveals a clean separation:
+
+The LLM is genuinely needed for: recognizing what the user wants (intent), deciding what data is relevant (selection), choosing how to frame a response (tone, emphasis, narrative arc), generating novel sentences that synthesize or explain (creative text), and making judgment calls when data is ambiguous.
+
+The LLM is wasted on: bracket matching, indentation, punctuation, structural formatting, data formatting, table construction, code boilerplate, JSON/YAML structure, repeating known facts, counting items, ordering lists, and selecting between well-defined presentation formats.
+
+Prolog grammar matching handles the second list entirely. The first list is what the LLM should spend its (expensive) forward passes on.
+
+**The slot-filling matching system as an IOSE component:**
+
+```
+IOSE: grammar_matcher
+  Inputs:  data_items (list of KB facts with typed attributes),
+           available_grammars (KB path to grammar rules),
+           context (active language KB, audience, format preferences)
+  Outputs: ranked_grammar_matches (list of grammar-score pairs),
+           best_assignment (attribute-to-slot mapping),
+           unmapped_attributes (list),
+           llm_slots (list of slots requiring LLM generation)
+  Side Effects: none
+  Properties: pure, deterministic, bounded
+  
+IOSE: slot_filler
+  Inputs:  grammar (selected grammar),
+           assignment (attribute-to-slot mapping),
+           data_items (KB facts),
+           llm_slot_values (dict from LLM for creative slots)
+  Outputs: token_stream (list of tagged tokens: grammar|builtin|kb|llm)
+  Side Effects: none
+  Properties: deterministic (given same inputs), bounded
+```
+
+The grammar matcher is pure Prolog — no LLM needed. The slot filler is mostly builtins and grammar rules — the LLM only provides values for the creative slots (summary sentences, explanations, judgment calls). The output token stream has provenance per token.
+
+**This changes the economics of generation fundamentally.** Instead of every token costing one forward pass through the full model, most tokens cost zero (grammar) or nearly zero (KB lookup, builtin formatting). Only the genuinely creative tokens cost a forward pass, and even those run against a constrained vocabulary (slot type determines what tokens are candidates). The effective cost per output token drops dramatically while the structural correctness goes up because grammar-produced tokens can't hallucinate.
+
+---
+
+Yes, and this is where the architecture becomes self-improving in a concrete, traceable way.
+
+**The mechanism is simple because everything is already KBs.**
+
+The LLM encounters a situation where no existing grammar fits well. The Prolog grammar matcher returns low scores for all candidates. Instead of falling back to raw token-by-token generation, the LLM creates a grammar:
+
+```
+CMD: KB_ASSERT(root.language.grammars.custom,
+    grammar(api_error_report,
+        slots([endpoint, status_code, error_message, timestamp, 
+               affected_users, severity, recommended_action]),
+        requires(items_have_attributes([endpoint, status_code, error_message])),
+        output_format(structured_block),
+        best_when(reporting_api_errors)))
+
+CMD: KB_ASSERT(root.language.grammars.custom,
+    template(api_error_report, [
+        line(header, "API Error Report"),
+        line(field, "Endpoint: ", slot(endpoint)),
+        line(field, "Status: ", slot(status_code), " — ", slot(error_message)),
+        line(field, "Time: ", slot(timestamp)),
+        line(conditional, slot(affected_users), "Affected users: ", slot(affected_users)),
+        line(field, "Severity: ", slot(severity)),
+        line(separator),
+        line(llm_slot, "Action: ", slot(recommended_action))
+    ]))
+
+CMD: KB_ASSERT(root.language.grammars.custom,
+    slot_type_map(api_error_report, [
+        endpoint-identifier,
+        status_code-integer,
+        error_message-free_text,
+        timestamp-datetime,
+        affected_users-integer,
+        severity-categorical([low, medium, high, critical]),
+        recommended_action-sentence
+    ]))
+```
+
+Three KB assertions and the grammar exists. Prolog can now match it. The slot filler can use it. The next time the LLM needs to report an API error, the grammar matcher finds it, scores it, and the generation is mostly structural with only the `recommended_action` slot requiring LLM generation.
+
+**What makes this different from normal template systems:**
+
+A normal template system has static templates defined by developers. This system has templates that the LLM creates during operation, that persist in scoped KBs, that are matchable by Prolog against arbitrary data, and that evolve over the session.
+
+The LLM creates a grammar for one situation. Later it encounters a similar situation. The grammar matcher finds the previously created grammar, scores it, and reuses it. The LLM didn't need to recreate the structure. But if the new situation has a slightly different attribute set, the matcher scores lower, and the LLM has three options: use the existing grammar with some slots empty, modify the existing grammar by asserting updated rules, or create a new grammar variant.
+
+**Grammar inheritance through KB scoping:**
+
+Because grammars are in KBs and KBs scope through the tree, grammar creation naturally scopes to where it's useful.
+
+A grammar created in `root.project.vdr.grammars` is available when working on the VDR project but invisible when working on a story. A grammar created in `root.language.grammars.en` is available across all English contexts. A grammar created in `root.language.grammars.custom` during one session is available in later sessions if the KB persists.
+
+The LLM can create grammars at any scope level:
+
+```
+# Global utility grammar — available everywhere
+CMD: KB_ASSERT(root.language.grammars,
+    grammar(numbered_steps, ...))
+
+# Project-specific grammar — only in VDR project scope
+CMD: KB_ASSERT(root.project.vdr.grammars,
+    grammar(gym_result_report, ...))
+
+# Session-only grammar — disposable, dies with the clone
+CMD: KB_ASSERT(root.sessions.active.grammars,
+    grammar(debug_trace_format, ...))
+```
+
+A project grammar for gym results makes sense — every gym has the same structure (name, tests, passed, failed, notes). The LLM creates it once during the first gym report. The second through twenty-fifth gym reports use it automatically. The Prolog matcher finds it in scope and the generation is almost entirely structural.
+
+**Grammar evolution:**
+
+The LLM can modify grammars based on feedback. User says "I prefer the results in a more compact format." The LLM doesn't need to learn a new preference through gradient updates — it retracts the old template and asserts a compact version:
+
+```
+CMD: KB_RETRACT(root.project.vdr.grammars,
+    template(gym_result_report, _))
+CMD: KB_ASSERT(root.project.vdr.grammars,
+    template(gym_result_report, [
+        line(inline, slot(name), ": ", slot(passed), "/", slot(total),
+             conditional(slot(failed) > 0, " (", slot(failed), " failed)"))
+    ]))
+```
+
+Now gym results come out as "Graph Theory: 19/20 (1 failed)" instead of a multi-line block. The grammar changed. The data didn't. The LLM generation cost dropped further because the compact format has fewer LLM slots.
+
+**Grammar composition:**
+
+Grammars can reference other grammars, building complex outputs from simple pieces:
+
+```
+CMD: KB_ASSERT(root.language.grammars,
+    grammar(comparison_with_recommendation,
+        slots([items_data, recommendation, justification]),
+        structure([
+            subgrammar(comparison_table, slot(items_data)),
+            line(separator),
+            line(llm_slot, "Recommendation: ", slot(recommendation)),
+            line(llm_slot, slot(justification))
+        ]),
+        requires(items_count >= 3),
+        best_when(user_wants_both_data_and_advice)))
+```
+
+This grammar composes the comparison table grammar with LLM-generated recommendation text. The structural parts (the table) are grammar-driven. The creative parts (the recommendation) are LLM-generated. The composition is declared in the grammar, not improvised during generation.
+
+**Grammar libraries as shareable KBs:**
+
+Because grammars are KBs, they can be exported, imported, shared, and versioned like any other KB. A team develops a set of grammars for incident reports over months of operation. Those grammars become a library:
+
+```
+root.language.grammars.sre_library
+├── incident_summary
+├── root_cause_report  
+├── remediation_plan
+├── postmortem_template
+├── runbook_step
+└── escalation_notice
+```
+
+A new team member's system mounts this library and immediately has access to all the grammar patterns the team has developed. The mount is one command:
+
+```
+CMD: kb_mount(root.user.new_member.refs.sre_grammars,
+              source: root.language.grammars.sre_library,
+              mode: read_only)
+```
+
+**The feedback loop that matters:**
+
+Here is what makes this genuinely self-improving rather than just convenient. The grammar matcher tracks which grammars get used and which get rejected. This is just counter and LRU data primitives:
+
+```
+# In the grammar KB
+counter: grammar_used(comparison_table) → 47 times
+counter: grammar_used(ranked_list) → 12 times
+counter: grammar_created_then_unused → 3
+lru: recently_used_grammars → [comparison_table, gym_result_report, ...]
+lru: low_score_matches → [narrative_comparison for tabular data, ...]
+```
+
+The LLM can query these usage patterns during the assessment phase of inference:
+
+```
+CMD: counter_get(root.language.grammars.grammar_used.comparison_table) → 47
+CMD: lru_peek(root.language.grammars.low_score_matches, 5)
+→ patterns that were tried but scored poorly
+```
+
+If a grammar is frequently the best match but users often ask for modifications afterward, that's a signal the grammar needs a variant. If a grammar was created but never reused, maybe it was too specific. The LLM can prune, merge, or refine grammars based on usage data — not through training, but through KB operations guided by the inference loop.
+
+**The constraint integration:**
+
+Grammars can have constraints just like any KB:
+
+```
+CMD: KB_ASSERT(root.language.grammars,
+    constraint_on(api_error_report, "severity_must_be_set",
+        condition(slot_filled(severity)),
+        on_violation("block_generation")))
+
+CMD: KB_ASSERT(root.language.grammars,
+    constraint_on(comparison_table, "minimum_items",
+        condition(filled_rows >= 2),
+        on_violation("fall_back_to_narrative")))
+```
+
+The constraint system checks grammar constraints before generation. A comparison table with only one item violates the minimum rows constraint and the system falls back to the narrative grammar. This is structural correctness enforcement — the output format is guaranteed appropriate for the data, not guessed by the LLM.
+
+**What this means for the LLM's role:**
+
+The LLM becomes a grammar architect and an intent translator, not a token generator. Its creative contributions are:
+
+1. Recognizing when a new grammar is needed (no existing grammar scores well)
+2. Designing the grammar (what slots, what structure, what requirements)
+3. Filling the creative slots (summaries, recommendations, explanations, judgments)
+4. Deciding when to modify or retire grammars based on usage patterns
+5. Translating user intent into data selection plus grammar selection
+
+Everything else — structural tokens, formatting, data rendering, bracket matching, indentation, punctuation, table alignment — is handled by the grammar system with zero LLM computation and zero hallucination risk.
+
+The economic implication is that the effective intelligence of the system per compute dollar goes up dramatically. The LLM spends its forward passes on the 20% of tokens that require judgment and creativity. The other 80% are exact, structural, and free. The quality also goes up because the structural tokens are provably correct and the creative tokens are generated against constrained vocabularies with KB-provided context rather than against the full 50,000-token vocabulary with attention-recovered context.
+
+---
+
+Yes. The grammar belongs on the KB struct the same way constraints moved onto it in the VDR-5 addendum. Same principle — the thing being described holds its own description.
+
+**The structural argument:**
+
+A KB already carries its own facts, rules, constraints, connections, and data primitives. It describes its own contents and governs its own behavior. Grammars for how to present that KB's data are part of that self-description. The KB for gym results knows what data it contains (test counts, pass/fail, domain names) and should also know how to present that data (the gym_result_report grammar). When the grammar matcher asks "how should I present data from this KB?", the answer is on the KB itself, not in some distant grammar registry that might be out of scope.
+
+**The connection mapping makes this powerful:**
+
+Each KB has connections to other KBs. Each connection has a relationship type. Grammars can be selected based on the connection topology, not just the data attributes.
+
+If a KB has inbound connections of type `sourced_from` pointing at three different source KBs, that's a provenance display situation. The grammar system sees the connection pattern and matches a provenance grammar. If a KB has outbound connections of type `evaluated_by` pointing at eval result KBs, that's a comparison situation. The connection topology tells the grammar matcher what structural relationships exist before it even looks at the data.
+
+```python
+# Addition to the KB struct
+
+@dataclass
+class GrammarRule:
+    """A grammar production rule attached to a KB."""
+    name: str
+    slots: List[str]
+    slot_types: Dict[str, str]          # slot_name → type_name
+    template: List[Any]                  # template lines/structure
+    requires: List[str] = field(default_factory=list)  # requirement conditions
+    best_when: str = ""
+    connection_pattern: Optional[str] = None  # match on connection topology
+    created_at: int = 0
+    usage_count: int = 0
+
+
+@dataclass
+class KnowledgeBase:
+    # Identity
+    name: str
+    path: str
+    id: int
+
+    # Persistent
+    facts: List[Fact] = field(default_factory=list)
+    rules: List[Rule] = field(default_factory=list)
+    constraints: List[Constraint] = field(default_factory=list)
+    connections: List[Connection] = field(default_factory=list)
+    grammars: List[GrammarRule] = field(default_factory=list)  # NEW
+
+    # Live state
+    working_data: Dict[str, Any] = field(default_factory=dict)
+    counters: Dict[str, Counter] = field(default_factory=dict)
+    locks: Dict[str, LockState] = field(default_factory=dict)
+    lrus: Dict[str, LRUCache] = field(default_factory=dict)
+    queues: Dict[str, BoundedQueue] = field(default_factory=dict)
+    stacks: Dict[str, BoundedStack] = field(default_factory=dict)
+    buffers: Dict[str, RingBuffer] = field(default_factory=dict)
+    bitsets: Dict[str, Bitset] = field(default_factory=dict)
+
+    # Structural
+    parent_id: Optional[int] = None
+    children_ids: List[int] = field(default_factory=list)
+    mounts: List[Mount] = field(default_factory=list)
+
+    # Metadata
+    visibility: Visibility = Visibility.PUBLIC
+    frozen: bool = False
+    owner: Optional[str] = None
+    created_at: int = 0
+    last_modified: int = 0
+```
+
+That's 26 fields now. The grammar field is persistent — it survives reset, travels on export, inherits through the tree.
+
+**Grammar inheritance through the KB tree:**
+
+This is where the connection mapping creates real leverage. Grammars inherit just like constraints — a child KB inherits its parent's grammars, and can override by declaring a grammar with the same name.
+
+```
+root                          → base grammars (numbered_steps, comparison_table, etc.)
+root.language.en              → English sentence grammars
+root.language.en.formal       → formal register grammars (override casual defaults)
+root.project.vdr              → VDR project grammars (gym_result_report, etc.)
+root.project.vdr.training     → training-specific grammars (step_log_report, loss_chart)
+root.project.vdr.training.run_01  → (inherits all above, can add run-specific)
+```
+
+When the system needs to present data from `root.project.vdr.training.run_01`, the grammar matcher searches:
+
+1. The KB's own grammars first (most specific)
+2. Parent grammars walking up to root (increasingly general)
+3. Language grammars in the active language scope (English formatting conventions)
+
+The first grammar that matches the data attributes and connection pattern wins. A training run KB has a `step_log_report` grammar from its grandparent `root.project.vdr.training` that knows exactly how to present step/loss/gradient data. It doesn't need to figure this out from scratch.
+
+**Connection-aware grammar matching:**
+
+The connection pattern field on grammars is the key new capability. Consider:
+
+```python
+# Grammar that activates when a KB has specific connection topology
+
+GrammarRule(
+    name="provenance_chain",
+    slots=["source_name", "transformation", "current_value", "confidence"],
+    slot_types={
+        "source_name": "identifier",
+        "transformation": "free_text",
+        "current_value": "any",
+        "confidence": "fraction"
+    },
+    template=[
+        line("header", "Data Lineage:"),
+        line("chain", slot("source_name"), " → ", slot("transformation"),
+             " → ", slot("current_value"),
+             " (confidence: ", slot("confidence"), ")")
+    ],
+    connection_pattern="has_inbound(sourced_from, 1+)",
+    best_when="displaying_data_with_provenance"
+)
+```
+
+The `connection_pattern` field says: this grammar applies when the KB has one or more inbound connections of type `sourced_from`. The matcher checks the KB's connection list:
+
+```python
+def connection_pattern_matches(kb: KnowledgeBase, pattern: str) -> bool:
+    """Check if KB's connections match the declared pattern."""
+    if pattern is None:
+        return True  # no pattern requirement
+    
+    # Parse pattern: "has_inbound(sourced_from, 1+)"
+    direction, rel_type, count_spec = parse_connection_pattern(pattern)
+    
+    matching = [c for c in kb.connections 
+                if c.direction == direction and c.relationship == rel_type]
+    
+    if count_spec == "1+":
+        return len(matching) >= 1
+    if count_spec == "2+":
+        return len(matching) >= 2
+    if isinstance(count_spec, int):
+        return len(matching) == count_spec
+    return False
+```
+
+Now the grammar selection considers both data shape and topology shape. A KB with three `sourced_from` connections, five `evaluated_by` connections, and one `deployed_as` connection has a specific topology signature. A grammar designed for "model with evaluation history heading to deployment" matches that signature and knows exactly what slots to present: source data provenance, eval scores across benchmarks, deployment readiness.
+
+**Grammars that traverse connections for slot filling:**
+
+This is the deeper payoff. A grammar's slots don't have to draw from the KB's own facts alone. They can draw from connected KBs by following connections:
+
+```python
+GrammarRule(
+    name="model_status_dashboard",
+    slots=[
+        "model_name",           # from self
+        "training_loss",        # follow connection: trained_by → training_run.loss
+        "eval_scores",          # follow connection: evaluated_by → eval_results
+        "deployment_status",    # follow connection: deployed_as → deployment.status
+        "safety_rate",          # follow connection: evaluated_by → eval_safety.rate
+    ],
+    slot_types={
+        "model_name": "identifier",
+        "training_loss": "fraction",
+        "eval_scores": "table",
+        "deployment_status": "categorical",
+        "safety_rate": "fraction",
+    },
+    template=[
+        line("header", slot("model_name")),
+        line("field", "Training loss: ", slot("training_loss")),
+        subgrammar("comparison_table", slot("eval_scores")),
+        line("field", "Deployment: ", slot("deployment_status")),
+        line("field", "Safety: ", slot("safety_rate")),
+    ],
+    connection_pattern="has_outbound(evaluated_by, 1+) and has_outbound(deployed_as, 1)",
+    best_when="summarizing_deployed_model"
+)
+```
+
+The slot filler sees `training_loss` needs data from the connected training run KB. It follows the `trained_by` connection, resolves to the target KB by integer ID, queries the loss fact, and fills the slot. One grammar declaration describes a dashboard that pulls data from four different KBs across the lifecycle tree. The LLM didn't generate any of this — the grammar declared the connections to follow and the slot filler traversed them.
+
+```python
+def fill_connected_slot(kb: KnowledgeBase, slot_name: str, 
+                         slot_source: str, all_kbs: Dict[int, KnowledgeBase]) -> Any:
+    """Fill a slot by following a connection to another KB."""
+    # Parse slot_source: "connection:trained_by.loss"
+    connection_rel, fact_path = parse_slot_source(slot_source)
+    
+    # Find the connected KB
+    for conn in kb.connections:
+        if conn.relationship == connection_rel:
+            target_kb = all_kbs.get(conn.target_id)
+            if target_kb is not None:
+                # Query the fact from the target KB
+                results = target_kb.query_facts(fact_path)
+                if results:
+                    return results[0].args.get("value")
+    return None
+```
+
+**The data flow picture:**
+
+When the system needs to present data from a KB:
+
+1. Grammar matcher reads the KB's fact attributes (what data exists)
+2. Grammar matcher reads the KB's connection topology (what related data exists elsewhere)
+3. Grammar matcher scores all grammars in scope (own grammars → parent grammars → language grammars)
+4. Best grammar selected — it declares both local slots and connected slots
+5. Slot filler fills local slots from the KB's own facts
+6. Slot filler fills connected slots by following connections to target KBs via integer ID
+7. Remaining creative slots (summaries, recommendations) go to the LLM
+8. Grammar template assembles the token stream
+
+The entire data gathering step — which in a standard LLM would require the model to remember or re-derive the relationships between training runs, evaluations, and deployments — is handled by connection traversal. The connections are explicitly declared, stored on the KB struct, and traversable by integer ID in O(1).
+
+**Grammar-aware connections:**
+
+Connections can carry grammar hints — when you create a connection, you can declare how the connected data should be presented if this connection is traversed for slot filling:
+
+```python
+@dataclass
+class Connection:
+    target_id: int
+    target_path: str
+    relationship: str
+    direction: Direction
+    phase: str = ""
+    created_at: int = 0
+    notes: str = ""
+    display_grammar: str = ""       # NEW: grammar to use for connected data
+    display_slot_mapping: Dict[str, str] = field(default_factory=dict)  # NEW
+```
+
+When the model KB connects to its eval results:
+
+```
+Connection(
+    target_id=42,
+    target_path="root.project.vdr.eval.safety_v1",
+    relationship="evaluated_by",
+    direction=Direction.OUTBOUND,
+    display_grammar="safety_summary",
+    display_slot_mapping={
+        "total": "total_prompts",
+        "passed": "safe_responses",
+        "rate": "safety_rate",
+    }
+)
+```
+
+The connection itself knows how to present the connected data. The slot filler doesn't need to guess which facts from the eval KB are relevant — the connection's `display_slot_mapping` declares exactly which facts map to which slots. The connection is both a structural link and a presentation instruction.
+
+**Self-documenting KBs:**
+
+With grammars on the struct, a KB becomes fully self-documenting. It carries:
+
+- **What it knows** (facts)
+- **What follows from what it knows** (rules)  
+- **What must hold** (constraints)
+- **What it connects to** (connections)
+- **How to present itself** (grammars)
+- **What it's currently tracking** (data primitives)
+- **Who owns it and who can see it** (metadata)
+
+When you export a KB, the grammars travel with it. When you import a KB into a different system, the receiving system immediately knows how to present its data because the presentation grammar is inside the data. The grammar is not external configuration — it's part of the KB's identity.
+
+**Revised struct field count:**
+
+The KB struct is now at 26 fields:
+
+| # | Field | Classification | Source |
+|---|-------|---------------|--------|
+| 1 | name | Identity | VDR-5 |
+| 2 | path | Identity | VDR-8 |
+| 3 | id | Identity | VDR-8 |
+| 4 | facts | Persistent | VDR-5 |
+| 5 | rules | Persistent | VDR-5 |
+| 6 | constraints | Persistent | VDR-5 addendum |
+| 7 | connections | Persistent | VDR-8 |
+| 8 | grammars | Persistent | VDR-11 (this discussion) |
+| 9 | working_data | Live | VDR-5 |
+| 10 | counters | Live | VDR-8 |
+| 11 | locks | Live | VDR-8 |
+| 12 | lrus | Live | VDR-8 |
+| 13 | queues | Live | VDR-8 |
+| 14 | stacks | Live | VDR-8 |
+| 15 | buffers | Live | VDR-8 |
+| 16 | bitsets | Live | VDR-8 |
+| 17 | parent_id | Structural | VDR-5/8 |
+| 18 | children_ids | Structural | VDR-5/8 |
+| 19 | mounts | Structural | VDR-8 |
+| 20 | visibility | Metadata | VDR-5 |
+| 21 | frozen | Metadata | VDR-5 |
+| 22 | owner | Metadata | VDR-5 addendum |
+| 23 | created_at | Metadata | VDR-5 |
+| 24 | last_modified | Metadata | VDR-5 |
+| 25 | iose_declaration | Metadata | VDR-10 |
+| 26 | display_grammar | Metadata | NEW |
+
+Wait — I listed grammars at position 8 as a list of GrammarRule, and display_grammar at 26 as a default grammar name. Let me reconsider. The `grammars` field (position 8) is the list of grammar rules the KB defines. The default display grammar (which grammar to use when presenting this KB without further specification) could just be a fact rather than a struct field. Keep it at 26 fields — `grammars` replaces `display_grammar` as the single grammar-related field, and the default display grammar is a convention (the first grammar in the list, or the one named `default_display`).
+
+So 26 fields total. 6 persistent (facts, rules, constraints, connections, grammars, plus iose_declaration as metadata-but-persistent). 8 live. 3 structural. The grammars field follows the same inheritance, export, and scoping rules as constraints.
+
+---

@@ -124,6 +124,8 @@
 | **[@HOWL-VDR-7-2026](papers/papers/VDR/HOWL-VDR-7-2026/manuscript.md)** | **Complete Lifecycle Technical Specification** | Training, Feedback, Data Sourcing, and Continuous Operation. |
 | **[@HOWL-VDR-8-2026](papers/papers/VDR/HOWL-VDR-8-2026/manuscript.md)** | **Computational State Primitives, Universal Data Pathing, and Session Management** | The Runtime Layer for VDR-LLM-Prolog. |
 | **[@HOWL-VDR-9-2026](papers/papers/VDR/HOWL-VDR-9-2026/manuscript.md)** | **Orchestrated Inference** | Structured Reasoning Through Tool Composition in VDR-LLM-Prolog. |
+| **[@HOWL-VDR-10-2026](papers/papers/VDR/HOWL-VDR-10-2026/manuscript.md)** | **Operational Foundations and Comprehensive Builtin Specification** | IOSE System Model, Engineering Principles, and Complete Numeric Stack for VDR-LLM-Prolog. |
+| **[@HOWL-VDR-11-2026](papers/papers/VDR/HOWL-VDR-11-2026/manuscript.md)** | **Implementation Blueprint** | Five-Stage Build Plan for VDR-LLM-Prolog. |
 
 ---
 

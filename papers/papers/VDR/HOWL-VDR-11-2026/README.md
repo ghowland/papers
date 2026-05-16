@@ -1,4 +1,4 @@
-# Operational Foundations and Comprehensive Builtin Specification
+# Implementation Blueprint
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,17 +6,13 @@
 
 ## Abstract
 
-VDR-1 through VDR-4 built exact arithmetic and a working transformer. VDR-5 through VDR-8 built the knowledge architecture, execution layer, lifecycle, and runtime state. VDR-9 specified Orchestrated Inference — how the tools compose into multi-step reasoning processes. All nine papers specified *what* the system does. None of them specified *how to build it as an engineering system*.
+Ten papers specified the VDR-LLM-Prolog system. VDR-10 provided the engineering foundation — the IOSE system model, operational principles, and comprehensive numeric builtins. This paper specifies how to build it.
 
-This paper provides the engineering foundation. It specifies three things that the prior papers assumed but never formalized.
+The system is built in five stages, each producing a complete, testable, runnable system that handles a full lifecycle at its level of capability. Stage 1 is a toy that can create knowledge bases, assert and query facts, run Prolog rules, perform exact arithmetic, and demonstrate one training-evaluation cycle. Stage 2 adds command tokens, path addressing, scope resolution, constraints, and the scratchpad. Stage 3 adds session management, inference notebooks, Q-basis transcendentals, functional remainders, and domain-specific mathematics. Stage 4 adds operational environments, grants, filesystem and network operations, all four inference modes, and the lifecycle pipeline. Stage 5 completes the system with Docker and SSH environments, compilation, linting, feedback collection, deployment, monitoring, canary deployment, and retirement.
 
-First, the IOSE system model. Every component in VDR-LLM-Prolog — every primitive, every KB operation, every inference notebook, the system itself — is specified as an Inputs/Outputs/Side-Effects node. Components compose into typed networks. Any component can be black-boxed at any level. The IOSE model is the blueprint from which the system is actually constructed.
+The build uses Python 3.8 as the prototype language, leveraging the existing VDR-1 through VDR-4 codebase (~5,000 lines of tested exact arithmetic, linear algebra, and ML stack code). New code is approximately 15,500 lines across 65 modules. Every function has an IOSE declaration — inputs, outputs, side effects, and properties — which simultaneously serves as the test specification, the documentation, and the interface contract for the eventual Zig 0.15.1 production port.
 
-Second, the operational engineering principles. Drawn from twenty-five years of production operations experience, these are not suggestions — they are Prolog facts, rules, and constraints loaded into the root KB. They govern every decision the system makes: the 90/9/0.9 priority system for tradeoffs, the knowability spectrum for evidence trust, the hearsay chain model for provenance degradation, data primacy over logic, comprehensive over aggregated design, idempotency for safe automation, and fifteen other principles that become enforceable system behavior.
-
-Third, the comprehensive numeric builtin specification. The original 58 numeric primitives from VDR-6 are replaced by 173 builtins that expose the full mathematical capability of VDR-1 through VDR-3: exact closed and active arithmetic, lift and rebase, Q-basis transcendental operations, functional remainder series, discrete calculus, full linear algebra, probability and statistics, polynomial algebra, finite field operations, Markov chains, denominator management, integer fast paths, and bit operations. Combined with the non-numeric builtins, the system provides 448 primitives across 22 categories — every one with an IOSE declaration, comprehensively sliced from the whole.
-
-The central claim is that a system specified in IOSE, governed by operational principles, and equipped with comprehensive exact mathematics is buildable, testable, and maintainable. The specification is the blueprint. The principles are the building code. The mathematics is the material.
+The central claim is that a system specified by ten papers, governed by operational engineering principles, and built in disciplined stages with IOSE declarations at every function is not a research prototype — it is an engineering project with a concrete, executable build plan.
 
 ---
 
@@ -56,14 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-10-2026,
-  title={ Operational Foundations and Comprehensive Builtin Specification },
+@article{ HOWL-VDR-11-2026,
+  title={ Implementation Blueprint },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20225433},
-  url = {https://zenodo.org/record/20225433},
-  note={Howland Archive: HOWL-VDR-10-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-VDR-11-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

@@ -536,3 +536,542 @@ Build it in stages. Test it at every stage. Port it to Zig when the Python proto
 - `supplementary/function_iose_5_stages_spec.md`
 - `supplementary/iose_spec_depth.md`
 
+---
+
+# VDR-11 Extended Appendix Tables
+## Complete Reference Material for the Five-Stage Implementation Blueprint
+
+---
+
+## Appendix A: Module Dependency Matrix
+
+### A.1 Import Dependencies by Module
+
+| Module | Imports From | Imported By | Stage |
+|--------|-------------|------------|-------|
+| core/vdr.py | (stdlib only) | primitives/arithmetic, primitives/active_arithmetic, primitives/structure_ops, primitives/linalg_builtins, primitives/statistics | Exists |
+| core/active_mul.py | core/vdr | primitives/active_arithmetic | Exists |
+| core/fn.py | core/vdr | primitives/functional, primitives/discrete_calculus | Exists |
+| core/linalg.py | core/vdr | primitives/linalg_builtins, primitives/markov, primitives/graph_math | Exists |
+| core/types.py | core/vdr | All primitives (dispatch), command/executor | 1 |
+| core/errors.py | (stdlib only) | All modules (Result type) | 1 |
+| kb/knowledge_base.py | core/errors | All kb/, all data_primitives/, session/, inference/, lifecycle/ | 1 |
+| kb/fact_store.py | kb/knowledge_base | kb/rule_engine, kb/scope_resolver, command/executor | 1 |
+| kb/rule_engine.py | kb/knowledge_base, kb/fact_store, core/vdr | kb/constraint_engine, inference/loop, inference/modes | 1 |
+| kb/working_data.py | kb/knowledge_base | kb/scope_resolver, session/snapshot | 1 |
+| kb/constraint_engine.py | kb/knowledge_base, kb/rule_engine | command/executor, inference/loop, lifecycle/training | 2 |
+| kb/scope_resolver.py | kb/knowledge_base, kb/fact_store, kb/working_data, path/mount | command/executor, inference/loop | 2 |
+| path/registry.py | core/errors | path/resolver, command/executor, session/snapshot | 2 |
+| path/resolver.py | path/registry | command/executor, path/mount | 2 |
+| path/mount.py | path/registry, kb/knowledge_base | kb/scope_resolver | 3 |
+| command/token_types.py | (enums only) | command/parser, command/executor | 2 |
+| command/parser.py | command/token_types | command/executor | 2 |
+| command/executor.py | command/parser, iose/registry, path/registry, kb/scope_resolver, primitives/* | inference/loop | 2 |
+| command/scratchpad.py | data_primitives/ring_buffer | command/executor, inference/loop | 2 |
+| session/snapshot.py | kb/knowledge_base, data_primitives/* | session/clone, session/lifecycle | 3 |
+| session/clone.py | session/snapshot | session/lifecycle | 3 |
+| session/lifecycle.py | session/snapshot, session/clone, kb/knowledge_base | inference/loop | 3 |
+| inference/notebook.py | kb/knowledge_base, data_primitives/* | inference/loop | 3 |
+| inference/loop.py | inference/notebook, command/executor, kb/constraint_engine | inference/modes | 3 |
+| inference/confidence.py | core/vdr | inference/loop, inference/provenance | 3 |
+| inference/provenance.py | kb/knowledge_base, inference/confidence | inference/loop | 3 |
+| inference/modes.py | kb/rule_engine, inference/confidence | inference/loop | 4 |
+| env/base.py | core/errors | env/local, env/docker, env/ssh, env/vm | 4 |
+| env/local.py | env/base | ops/*, lifecycle/training | 4 |
+| env/docker.py | env/base | ops/*, lifecycle/* | 5 |
+| env/ssh.py | env/base | ops/*, lifecycle/* | 5 |
+| env/vm.py | env/base | lifecycle/* | 5 |
+| ops/grants.py | kb/knowledge_base | ops/filesystem, ops/execution, ops/network, ops/process, ops/compilation, ops/linting | 4 |
+| ops/filesystem.py | env/base, ops/grants | lifecycle/*, inference/modes | 4 |
+| ops/execution.py | env/base, ops/grants | lifecycle/training, inference/modes | 4 |
+| ops/network.py | env/base, ops/grants | inference/modes, lifecycle/data_pipeline | 4 |
+| ops/process.py | env/base, ops/grants | lifecycle/training | 4 |
+| ops/compilation.py | env/base, ops/grants | lifecycle/training | 5 |
+| ops/linting.py | env/base, ops/grants | lifecycle/evaluation | 5 |
+| lifecycle/data_pipeline.py | kb/knowledge_base, ops/network, ops/filesystem | lifecycle/training | 4 |
+| lifecycle/training.py | kb/knowledge_base, core/vdr, core/linalg, ops/execution | lifecycle/evaluation | 4 |
+| lifecycle/evaluation.py | kb/knowledge_base, ops/execution | lifecycle/deployment | 4 |
+| lifecycle/feedback.py | kb/knowledge_base, lifecycle/training | lifecycle/deployment | 5 |
+| lifecycle/deployment.py | kb/knowledge_base, env/base, lifecycle/evaluation | lifecycle/monitoring | 5 |
+| lifecycle/monitoring.py | kb/knowledge_base, ops/network | lifecycle/deployment | 5 |
+| iose/registry.py | (stdlib only) | All primitives/ (registration), command/executor (lookup) | 1 |
+| iose/validator.py | iose/registry | command/executor | 2 |
+| iose/principles.py | kb/knowledge_base, kb/fact_store, core/vdr | (loaded at startup) | 1 |
+
+### A.2 Circular Dependency Check
+
+| Check | Result | Notes |
+|-------|--------|-------|
+| core/ → kb/ | No | core has zero upward imports |
+| kb/ → primitives/ | No | kb does not import primitives |
+| primitives/ → command/ | No | primitives do not import command |
+| command/ → session/ | No | command does not import session |
+| inference/ → ops/ | No (Stage 3) | Stage 3 inference uses only kb + primitives + command |
+| inference/ → ops/ | Yes (Stage 4) | Stage 4 inference.modes imports ops for external tools — acceptable, both at same stage level |
+| ops/ → lifecycle/ | No | ops does not import lifecycle |
+| lifecycle/ → lifecycle/ | No | lifecycle modules have linear dependency |
+| **Verdict** | **No circular dependencies** | All imports flow downward or laterally within same stage |
+
+---
+
+## Appendix B: Existing VDR-4 Codebase Inventory
+
+### B.1 Module-by-Module Wrapping Plan
+
+| Existing Module | Lines (est.) | Wrapped By | Wrapping Stage | Functions Exposed |
+|----------------|-------------|-----------|---------------|------------------|
+| vdr.py | ~800 | primitives/arithmetic.py | 1 | VDR.__add__, __sub__, __mul__, __truediv__, __neg__, __abs__, __pow__, normalize, compare |
+| active_mul.py | ~400 | primitives/active_arithmetic.py | 2 | active_add, active_mul, active_div |
+| fn.py | ~500 | primitives/functional.py, primitives/discrete_calculus.py | 3 | FnRemainder, resolve, make_newton, make_series, discrete_derivative, left_riemann, trapezoidal |
+| linalg.py | ~600 | primitives/linalg_builtins.py | 2 | Vec ops (6), Mat ops (15), det, inv, solve, rank |
+| export.py | ~150 | primitives/conversion.py | 1 | to_decimal, to_float (at conversion boundary) |
+| exp.py | ~200 | primitives/functional.py | 3 | exact_exp (Taylor series) |
+| logarithm.py | ~200 | primitives/functional.py | 3 | exact_log (series) |
+| basis.py | ~300 | primitives/qbasis.py | 3 | Q335 constants, qbasis_add, qbasis_mul |
+| softmax.py | ~200 | primitives/statistics.py | 2 | softmax, softmax_surrogate |
+| autodiff.py | ~400 | lifecycle/training.py | 4 | backward, compute_gradients |
+| nn.py | ~300 | lifecycle/training.py | 4 | Linear, ReLU, Sequential |
+| losses.py | ~150 | lifecycle/training.py | 4 | mse_loss, l1_loss |
+| optim.py | ~200 | lifecycle/training.py | 4 | SGD, Momentum |
+| rng.py | ~100 | primitives/integer_ops.py | 1 | deterministic_random |
+| init.py | ~150 | lifecycle/training.py | 4 | xavier_rational |
+| sampling.py | ~200 | lifecycle/training.py | 4 | categorical, top_k, nucleus |
+| datasets.py | ~200 | lifecycle/data_pipeline.py | 4 | tokenize, batch |
+| metrics.py | ~100 | lifecycle/evaluation.py | 4 | accuracy, denom_tracking |
+| checkpoint.py | ~200 | lifecycle/training.py | 4 | save, load (exact VDR fractions) |
+| tensor.py | ~200 | primitives/linalg_builtins.py | 2 | batched operations |
+| attention.py | ~300 | lifecycle/training.py | 4 | scores, masking, weighting |
+| transformer.py | ~400 | lifecycle/training.py | 4 | embedding, blocks, LM head |
+| trainer.py | ~300 | lifecycle/training.py | 4 | training loop |
+| **Total** | **~5,550** | | | |
+
+### B.2 Wrapping Pattern
+
+Every existing function is wrapped, not rewritten. The wrapper:
+
+```
+1. Accepts VDRFraction dataclass instances (the IOSE interface)
+2. Converts to existing VDR class instances (the internal representation)
+3. Calls the existing function
+4. Converts the result back to VDRFraction dataclass
+5. Returns Result[VDRFraction] (wrapping any exceptions as Err)
+```
+
+The conversion between VDRFraction (dataclass) and VDR (existing class) is a thin adapter:
+
+```
+VDRFraction(v=3, d=7, r=0) ↔ VDR(3, 7, 0)
+```
+
+Fields are identical. The adapter copies values, does not transform them.
+
+---
+
+## Appendix C: Data Structure Size Estimates
+
+### C.1 Memory Footprint per Instance
+
+| Structure | Python Size (bytes, est.) | Zig Size (bytes, est.) | Notes |
+|-----------|--------------------------|----------------------|-------|
+| VDRFraction (closed, small ints) | 120 | 40 | Python overhead vs Zig struct |
+| VDRFraction (closed, big ints ~100 digits) | 300 | 160 | BigInt storage |
+| VDRFraction (active, 3 children) | 600 | 200 | Recursive structure |
+| Fact (3 args, short predicate) | 400 | 80 | Python string + list overhead |
+| Rule (head + 2 body facts) | 1,200 | 240 | 3 Facts |
+| Constraint | 500 | 120 | Strings + enum |
+| Connection | 400 | 100 | Strings + enum + ints |
+| Counter | 200 | 16 | 4 ints |
+| LockState | 300 | 32 | bool + optional string + optional int |
+| BoundedQueue (capacity 50, empty) | 400 | 64 | List overhead |
+| BoundedQueue (capacity 50, full) | 2,400 | 2,064 | 50 × ~40 bytes per item |
+| BoundedStack (capacity 30, empty) | 300 | 48 | List overhead |
+| RingBuffer (capacity 100, empty) | 500 | 80 | List + 2 ints |
+| LRUCache (capacity 50, empty) | 600 | 128 | Dict + list overhead |
+| Bitset (width 100) | 1,200 | 16 | Python bool list vs Zig packed bits |
+| KnowledgeBase (empty) | 4,000 | 800 | All field initialization |
+| KnowledgeBase (moderate: 50 facts, 10 rules, 5 primitives) | 30,000 | 5,000 | Content dominates |
+| SessionSnapshot (10 KBs, moderate state) | 50,000 | 10,000 | Deep copy of live state |
+| InferenceNotebook (active, mid-investigation) | 80,000 | 15,000 | KB + counters + queues + LRUs + evidence |
+
+### C.2 Scaling Estimates
+
+| Scenario | KBs | Facts (total) | Python Memory | Zig Memory |
+|----------|-----|--------------|---------------|-----------|
+| Toy lifecycle (Stage 1) | 5 | 50 | ~200 KB | ~30 KB |
+| Upgraded toy (Stage 2) | 15 | 200 | ~1 MB | ~150 KB |
+| Active inference (Stage 3) | 30 | 500 | ~3 MB | ~500 KB |
+| Full lifecycle (Stage 4) | 100 | 2,000 | ~15 MB | ~3 MB |
+| Production with history (Stage 5) | 500 | 10,000 | ~80 MB | ~15 MB |
+| Large deployment (post Stage 5) | 2,000 | 50,000 | ~400 MB | ~80 MB |
+
+Python's overhead is approximately 5-6× Zig for the same logical content. The Zig port provides significant memory efficiency for production workloads.
+
+---
+
+## Appendix D: Test Plan Detail
+
+### D.1 Stage 1 Test Breakdown
+
+| Test File | Module Tested | Test Count | Test Types |
+|-----------|-------------|-----------|-----------|
+| test_vdr_wrapping.py | primitives/arithmetic | 10 | Unit: add, sub, mul, div, neg, abs, pow, reciprocal + 2 property (commutative, associative) |
+| test_comparison.py | primitives/comparison | 10 | Unit: compare, equal, lt, le, min, max, sign, is_zero, is_positive, is_negative |
+| test_rounding.py | primitives/rounding | 8 | Unit: floor, ceil, round, truncate, numerator, denominator, simplify + idempotency |
+| test_aggregates.py | primitives/list_aggregates | 8 | Unit: sum, product, mean, dot_product, sum_sq, weighted, harmonic, alternating |
+| test_fact_store.py | kb/fact_store | 10 | Unit: assert, retract, query, exists + idempotency (assert existing, retract missing) |
+| test_rule_engine.py | kb/rule_engine | 15 | Unit: unify atoms, unify vars, unify fractions, unify lists, unify facts, query single, query multiple, backtrack, depth limit, findall |
+| test_working_data.py | kb/working_data | 5 | Unit: set, get, get_local, delete, list_visible |
+| test_kb_lifecycle.py | kb/knowledge_base | 5 | Integration: create, get, delete, parent-child, orphan detection |
+| test_counter.py | data_primitives/counter | 6 | Unit: create, inc, dec, add, reset, set + clamp at bounds |
+| test_lock.py | data_primitives/lock | 5 | Unit: create, acquire, release, check, force_release + acquire-on-held |
+| test_queue.py | data_primitives/queue | 6 | Unit: create, push, pop, peek, clear, to_list + push-when-full |
+| test_stack.py | data_primitives/stack | 5 | Unit: create, push, pop, peek, clear + push-when-full |
+| test_text.py | primitives/text | 17 | Unit: one per builtin (reverse, length, concat, split, slice, char_at, to_chars, chars_to, contains, starts, ends, upper, lower, trim, replace, join, pad_left) |
+| test_collections.py | primitives/collections | 15 | Unit: sample of 15 critical ops (sort, filter, map, reduce, zip, unique, head, tail, nth, take, drop, partition, group_by, frequencies, interleave) |
+| test_sets.py | primitives/sets | 5 | Unit: from_list, union, intersection, difference, is_subset |
+| test_mappings.py | primitives/mappings | 5 | Unit: from_pairs, get, set, merge, invert |
+| test_conversion.py | primitives/conversion | 5 | Unit: to_string, parse_json, format_json, to_fraction, from_decimal_string |
+| test_logic.py | primitives/logic | 3 | Unit: if_then_else, try_catch, findall |
+| test_integer_ops.py | primitives/integer_ops | 5 | Unit: add, mul, mod, range, bit_and |
+| test_iose_registry.py | iose/registry | 5 | Unit: register, get_by_id, get_by_name, all_in_category, count |
+| test_principles.py | iose/principles | 5 | Unit: load, get_knowability, get_priority, priority_winner + check axioms present |
+| test_toy_lifecycle.py | Integration | 5 | Lifecycle: create KB tree, init model, train step, checkpoint, evaluate |
+| **Total** | | **161** | |
+
+### D.2 Stage 2 Test Breakdown
+
+| Test File | Module Tested | Test Count | Key Tests |
+|-----------|-------------|-----------|----------|
+| test_constraint_engine.py | kb/constraint_engine | 10 | check_single, check_all, enforce_warn, enforce_block, add, remove, enable, suspend, idempotent_enable, idempotent_suspend |
+| test_scope_resolver.py | kb/scope_resolver | 15 | build_chain, scoped_query_local, scoped_query_inherited, scoped_query_shadowed, scoped_query_all, resolve_binding_scoped, secondary_scope, out_of_scope_invisible |
+| test_path_registry.py | path/registry | 10 | register, resolve, from_id, exists, sequential_ids, never_reuse_retired, stable_across_calls |
+| test_path_resolver.py | path/resolver | 10 | parent, children, ancestors, depth, common_ancestor, root_has_no_parent, depth_limit |
+| test_command_parser.py | command/parser | 15 | parse_pure_fn, parse_kb_assert, parse_kb_query, parse_path_ref, parse_literal_int, parse_literal_fraction, parse_mixed_stream, parse_malformed_graceful, parse_empty |
+| test_command_executor.py | command/executor | 15 | execute_pure, execute_kb_assert, execute_kb_query, path_resolution, type_validation, chain_execution, scratchpad_recording, error_on_unknown_primitive, error_on_unknown_path |
+| test_scratchpad.py | command/scratchpad | 5 | write, read_recent, clear, capacity_limit, automatic_overwrite |
+| test_active_arithmetic.py | primitives/active_arithmetic | 10 | same_d_add, diff_d_add, active_mul, div_by_closed, div_by_active, remainder_preservation, v1_compromise_documented |
+| test_structure_ops.py | primitives/structure_ops | 8 | lift_atomic, lift_composite, lift_child, lift_composition, rebase_closed, rebase_active, mismatch_witness, projection_closed |
+| test_number_theory.py | primitives/number_theory | 13 | gcd, lcm, mod, div_exact, mod_pow, mod_inv, ext_gcd, is_prime, factorial, binomial, fibonacci, totient, crt |
+| test_linalg_builtins.py | primitives/linalg_builtins | 15 | vec_add, vec_dot, vec_norm_sq, mat_mul, mat_det, mat_inv, mat_solve, mat_rank, mat_pow, gram_schmidt, hilbert_3x3_exact, hilbert_4x4_exact, inv_inv_identity |
+| test_statistics.py | primitives/statistics | 10 | mean, variance, median, softmax_sum_one, surrogate_sum_one, normalize_sum_one, prob_bayes, prob_cdf, expected_value |
+| test_time_ops.py | primitives/time_ops | 5 | from_ymd, to_ymd_roundtrip, diff_days, day_of_week, leap_year |
+| test_identity.py | primitives/identity | 5 | hash_deterministic, base64_roundtrip, hex_roundtrip, crc32, uuid_deterministic |
+| test_graphs.py | primitives/graphs | 10 | from_edges, bfs, dfs, shortest_path, components, connected, topo_sort, cycle_detect, mst, pagerank |
+| test_lru.py | data_primitives/lru | 8 | create, push, get, peek, contains, eviction_on_full, access_updates_order, clear |
+| test_ring_buffer.py | data_primitives/ring_buffer | 6 | create, write, read_all, read_last, overwrite_oldest, clear |
+| test_bitset.py | data_primitives/bitset | 8 | create, set, clear_bit, test, count, all_set, any_set, to_list |
+| test_iose_validator.py | iose/validator | 8 | type_compatible_ok, type_incompatible_caught, se_preview, contract_satisfied, contract_violated_undeclared, contract_violated_missing |
+| test_command_lifecycle.py | Integration | 5 | Full cycle via command tokens: assert, query, compute, store, query |
+| test_scope_lifecycle.py | Integration | 5 | Create tree, switch topic, verify visibility, verify invisibility, cross_scope_query |
+| **Total** | **191** | |
+
+### D.3 Stage 3 Test Breakdown
+
+| Test File | Module Tested | Test Count | Key Tests |
+|-----------|-------------|-----------|----------|
+| test_mount.py | path/mount | 10 | create, remove, cycle_detect, resolve_through_read_only, block_write_on_read_only, snapshot_mount_frozen, mirror_sees_changes |
+| test_qbasis.py | primitives/qbasis | 10 | add_same_exp, sub, mul_with_error_bound, scalar_mul, to_fraction_lossless, get_constant_pi, get_constant_e, precision_bits, pi_plus_e_integer_add |
+| test_functional.py | primitives/functional | 12 | sqrt2_depth7, exp_depth12, log_positive, log_fails_negative, sin_depth10, cos_depth10, resolve_newton, resolve_series, make_newton, make_series, sqrt2_convergence_rate |
+| test_discrete_calculus.py | primitives/discrete_calculus | 10 | derivative_x_squared, nth_derivative, left_riemann_x_squared, trapezoidal_x_squared, finite_diff_cubic, finite_diff_zero_beyond_degree, richardson |
+| test_denom_mgmt.py | primitives/denom_mgmt | 8 | denom_bits, denom_digits, reproject_qbasis_bounded, budget_check_under, budget_check_over, precision_state_closed, precision_state_active |
+| test_polynomial.py | primitives/polynomial | 10 | eval_horner, add, mul, div, gcd, derivative, integral, lagrange_interpolation, lagrange_exact_recovery |
+| test_finite_field.py | primitives/finite_field | 6 | gf_add, gf_mul, gf_inv, gf_pow, all_inverses_in_gf7, inv_fails_at_zero |
+| test_markov.py | primitives/markov | 6 | steady_state_sum_one, steady_state_exact, step, n_steps, n_steps_equals_mat_pow |
+| test_graph_math.py | primitives/graph_math | 4 | adjacency_power_walk_count, pagerank_sum_one, pagerank_exact_via_cramer |
+| test_snapshot.py | session/snapshot | 10 | capture_live_state, create_snapshot, restore_exact, restore_idempotent, snapshot_independence (modify source, snapshot unchanged), snapshot_does_not_capture_persistent |
+| test_clone.py | session/clone | 10 | clone_from_snapshot, clone_live_state_independent, clone_persistent_shared, kill_clone, kill_preserves_persistent, clone_counter_isolated, clone_queue_isolated |
+| test_session_lifecycle.py | session/lifecycle | 8 | reset_clears_all_live, reset_preserves_persistent, list_snapshots, diff_snapshots, info, reset_idempotent |
+| test_notebook.py | inference/notebook | 8 | create_with_schema, create_from_template_sre, create_from_template_research, standard_primitives_present, goal_set, status_active |
+| test_inference_loop.py | inference/loop | 15 | assess_identifies_gap, formalize_produces_artifact, execute_runs_artifact, store_persists_result, budget_exhaustion_halts, stall_detection_backtracks, goal_satisfaction_concludes, full_loop_3_steps, evidence_counter_incremented, steps_since_evidence_reset |
+| test_confidence.py | inference/confidence | 8 | deductive_min, inductive_coverage_times_mean, abductive_explained_fraction, analogical_product, chain_propagation, exact_fractions_throughout |
+| test_provenance.py | inference/provenance | 8 | record_evidence, record_conclusion, trace_derivation, challenge_invalidates, challenge_partial_impact, derivation_chain_complete |
+| test_session_inference_integration.py | Integration | 5 | snapshot_before_inference, clone_runs_inference, clone_results_persist, kill_clone_preserves_conclusion |
+| test_math_integration.py | Integration | 5 | qbasis_in_inference, functional_in_inference, discrete_calc_in_inference |
+| **Total** | **163** | |
+
+### D.4 Stage 4-5 Test Summary
+
+| Stage | Test Category | Test Count | Key Focus Areas |
+|-------|-------------|-----------|----------------|
+| 4 | Grant system | 20 | Verify, use, expire, exhaust, inherit through hierarchy, deny on missing |
+| 4 | Filesystem ops | 30 | Read, write, exists, list, create_dir, delete, glob, diff + grant enforcement |
+| 4 | Script execution | 20 | Python, shell, pytest + async + error handling + grant enforcement |
+| 4 | Network ops | 15 | fetch, post, download + timeout + grant + JSON parsing chain |
+| 4 | Process mgmt | 15 | start, poll, wait, kill, stdout, stderr + background completion |
+| 4 | Inference modes | 40 | Deductive: premises→conclusion. Inductive: evidence→ranking. Abductive: symptoms→causes. Analogical: mapping→transfer. Mode composition chains. |
+| 4 | Lifecycle pipeline | 60 | source→corpus→tokenize→train→checkpoint→evaluate. Each phase produces correct KB tree. Cross-phase queries work. |
+| 4 | Local environment | 20 | All 10 interface methods. File persistence. Process lifecycle. |
+| 4 | Integration | 40 | Full inference with external data. Lifecycle with evaluation gates. Grant enforcement end-to-end. |
+| 4 | IOSE contracts | 40 | All Stage 4 builtins verified against declarations |
+| **Stage 4 subtotal** | | **300** | |
+| 5 | Docker environment | 40 | Container lifecycle. Isolation verification. Mount points. Resource limits. Startup script. |
+| 5 | SSH environment | 30 | Connection. Key auth. Remote exec. File transfer. Timeout. |
+| 5 | VM environment | 20 | Create. Provision. Snapshot. Destroy. |
+| 5 | Compilation | 15 | Python syntax check. Zig compile. C compile. Rust compile. Error reporting. |
+| 5 | Linting | 20 | Python lint. JSON validate. Complexity analysis. Import analysis. |
+| 5 | Feedback | 30 | Pairwise judgment. Agreement computation exact. Reward model training. DPO. |
+| 5 | Deployment | 30 | Create config. Canary. Promotion criteria exact. Rollback. |
+| 5 | Monitoring | 30 | Watch creation. Metric recording. Drift detection. Alert triggering. |
+| 5 | Canary + rollback | 25 | Canary traffic split. Promotion. Auto-rollback on regression. Rollback idempotent. |
+| 5 | Retirement | 15 | Archive. Frozen but queryable. Successor link. No active deployments. |
+| 5 | Full lifecycle | 40 | Raw data → trained → deployed → monitored → updated → retired. Single KB tree. |
+| 5 | End-to-end | 25 | Complete scenario: source bad data, train, detect quality issue, retrain, deploy, canary, promote. |
+| 5 | Zig port prep | 30 | Type mapping verification. Dataclass↔struct equivalence. Result↔error union. |
+| **Stage 5 subtotal** | | **350** | |
+
+---
+
+## Appendix E: Builtin Registration Tables
+
+### E.1 Stage 1 Builtins (151 builtins)
+
+| ID Range | Category | Count | Registration Pattern |
+|----------|----------|-------|---------------------|
+| 1-8 | VDR closed arithmetic | 8 | Wrap vdr.py class methods |
+| 9-18 | Comparison | 10 | Pure, VDRFraction in, simple out |
+| 19-25 | Rounding/extraction | 7 | Pure, VDRFraction in, int or bool out |
+| 26-33 | List aggregates | 8 | Pure, List[VDRFraction] in, VDRFraction out |
+| 34-50 | Text | 17 | Pure, string in, string/bool/int/list out |
+| 51-86 | Collections | 36 | Pure, list in, list/item/bool/int out |
+| 87-100 | Sets | 14 | Pure, set in, set/bool/int out |
+| 101-115 | Mappings | 15 | Pure, dict in, dict/value/list out |
+| 116-129 | Conversion | 14 | Pure (some partial), mixed in/out |
+| 130-140 | Logic | 11 | Pure, mixed in/out |
+| 141-161 | Integer + bit ops | 21 | Pure, int in, int/bool/list out |
+| **Total** | | **161** | |
+
+Note: Stage 1 target was ~150. Actual enumeration produces 161 due to complete category coverage.
+
+### E.2 Stage 2 Additional Builtins (+139, cumulative 300)
+
+| ID Range | Category | Count | Registration Pattern |
+|----------|----------|-------|---------------------|
+| 162-166 | Active arithmetic | 5 | Wrap active_mul.py |
+| 167-169 | Structure ops | 3 | Lift, rebase, projection |
+| 170-182 | Number theory | 13 | Pure, int in, int out |
+| 183-206 | Linear algebra | 24 | Wrap linalg.py |
+| 207-222 | Statistics + probability | 16 | Pure, list/fraction in, fraction/list out |
+| 223-232 | Time | 10 | Pure, int in, int/str out |
+| 233-240 | Identity | 8 | Pure, deterministic |
+| 241-253 | Graphs | 13 | Pure, graph in, list/bool/int out |
+| 254-268 | KB operations | 15 | KB-internal side effects |
+| 269-289 | Data primitives (LRU+ring+bitset) | 21 | KB-internal side effects |
+| 290-297 | Path operations | 8 | Pure |
+| 298-300 | Scratchpad + IOSE validator | 3 | Internal |
+| **Total** | | **139** | |
+
+### E.3 Stage 3 Additional Builtins (+100, cumulative 400)
+
+| ID Range | Category | Count |
+|----------|----------|-------|
+| 301-307 | Q-basis | 7 |
+| 308-315 | Functional remainder | 8 |
+| 316-321 | Discrete calculus | 6 |
+| 322-326 | Denominator management | 5 |
+| 327-334 | Polynomial | 8 |
+| 335-338 | Finite field | 4 |
+| 339-341 | Markov | 3 |
+| 342-343 | Graph math | 2 |
+| 344-360 | Mount operations | 9+8 = path/mount + session ops |
+| **Total** | | **100** |
+
+### E.4 Stage 4 Additional Builtins (+37, cumulative 437)
+
+| ID Range | Category | Count |
+|----------|----------|-------|
+| 361-375 | Filesystem | 15 |
+| 376-380 | Execution | 5 |
+| 381-385 | Network | 5 |
+| 386-392 | Process | 7 |
+| 393-397 | Grant operations | 5 |
+| **Total** | | **37** |
+
+### E.5 Stage 5 Additional Builtins (+11, cumulative 448)
+
+| ID Range | Category | Count |
+|----------|----------|-------|
+| 398-401 | Compilation | 4 |
+| 402-409 | Linting | 8 | 
+| **Total** | | **12** |
+
+Note: Stage 5 also adds lifecycle functions (feedback, deployment, monitoring) but these are system operations rather than registered builtins — they compose builtins rather than being builtins themselves.
+
+---
+
+## Appendix F: Python 3.8 Compatibility Checklist
+
+### F.1 Language Features to Avoid
+
+| Feature | Introduced In | Avoidance Strategy |
+|---------|-------------|-------------------|
+| Walrus operator `:=` | 3.8 (limited) | Avoid in comprehensions; use explicit assignment |
+| f-string `=` debug | 3.8+ only for `=` suffix | Use `"name: %s" % name` or `"name: {}".format(name)` |
+| `match` statement | 3.10 | Use if/elif chains or dict dispatch |
+| `type` alias syntax | 3.12 | Use typing module: `List`, `Dict`, `Optional` |
+| `|` for union types | 3.10 | Use `Union[A, B]` from typing |
+| `@dataclass(slots=True)` | 3.10 | Omit slots parameter |
+| `@dataclass(kw_only=True)` | 3.10 | Omit; use default values |
+| Positional-only parameters `/` | 3.8 | Available but avoid for portability |
+| `dict | dict` merge | 3.9 | Use `{**a, **b}` or `dict_merge` builtin |
+| `list[int]` lowercase generics | 3.9 | Use `List[int]` from typing |
+| `str.removeprefix` | 3.9 | Use `s[len(prefix):]` after startswith check |
+
+### F.2 Required Imports Pattern
+
+```python
+from __future__ import annotations  # Enable postponed evaluation for forward refs
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict, Tuple, Any, Callable, Union
+from enum import Enum
+from fractions import Fraction  # For VDR scalar projection comparison
+import copy  # For session snapshot deep copy
+import json  # For parse_json/format_json
+import os    # For filesystem ops
+import subprocess  # For execution ops (Stage 4+)
+```
+
+---
+
+## Appendix G: Zig Port Type Mapping Reference
+
+### G.1 Complete Type Mapping
+
+| Python Type | Zig Type | Notes |
+|-------------|----------|-------|
+| `int` (small) | `i32` or `i64` | Counter values, IDs, indices |
+| `int` (arbitrary precision) | `i128` with BigInt overflow | VDR numerator/denominator, Q335 numerators |
+| `bool` | `bool` | Direct |
+| `str` | `[]const u8` or `std.ArrayList(u8)` | Immutable vs mutable |
+| `float` | Never used | System is exact-only |
+| `None` | `void` | Return type |
+| `Optional[T]` | `?T` | Nullable |
+| `List[T]` | `std.ArrayList(T)` | Dynamic array |
+| `Dict[str, T]` | `std.StringHashMap(T)` | String-keyed map |
+| `Dict[int, T]` | `std.AutoHashMap(i32, T)` | Integer-keyed map |
+| `Tuple[A, B]` | `struct { a: A, b: B }` | Named fields |
+| `Union[A, B]` | `union(enum) { a: A, b: B }` | Tagged union |
+| `Callable[[A], B]` | `fn (A) B` or `*const fn(A) B` | Function pointer |
+| `Enum` | `const MyEnum = enum { ... }` | Direct |
+| `@dataclass` | `const MyStruct = struct { ... }` | Direct |
+| `Result[T]` (custom) | `MyError!T` (error union) | Zig-native error handling |
+| `try/except` | `catch` / `errdefer` | Different syntax, same semantics |
+| `copy.deepcopy(x)` | Explicit alloc + field copy | Manual but straightforward |
+| `list comprehension` | `for` loop with `append` | Mechanical translation |
+| `dict comprehension` | `for` loop with `put` | Mechanical translation |
+| `@property` | Zig method on struct | `pub fn name(self: *const Self) T` |
+
+### G.2 Performance-Critical Mapping Decisions
+
+| Decision | Python Approach | Zig Approach | Rationale |
+|----------|---------------|-------------|-----------|
+| VDR numerator/denominator | Python arbitrary-precision int | i128 with overflow to BigInt | 99% of values fit in i128; BigInt only for extreme cases (Hilbert, Q335 products) |
+| KB fact storage | List[Fact] with linear scan | ArrayList(Fact) with hash index on predicate | Linear scan is O(n) per query; hash index is O(1) average |
+| Path registry | Dict[str, int] | StringHashMap(i32) | Direct mapping |
+| Scope chain | List[int] | [16]i32 stack-allocated array | Max depth 16 (from VDR-8 spec); avoids allocation |
+| Bitset | List[bool] | std.StaticBitSet(width) or std.DynamicBitSet | Zig has native packed bit operations |
+| Ring buffer | List with modular indexing | Fixed-size array with write_pos | Stack-allocated for small capacity |
+| Deep copy for snapshots | copy.deepcopy | Arena allocator + structured copy | Zig arenas make bulk allocation/deallocation efficient |
+| String interning for predicates | (no interning) | StringPool with integer handles | Reduces memory and enables integer comparison |
+
+---
+
+## Appendix H: Risk Registry
+
+### H.1 Technical Risks
+
+| Risk | Impact | Likelihood | Mitigation | Stage Affected |
+|------|--------|-----------|-----------|---------------|
+| Rule engine too slow for large KBs | Query latency increases with fact count | Medium | Add predicate index (hash map) at Stage 2. Linear scan acceptable for Stage 1 toy sizes. | 2+ |
+| Denominator growth exceeds memory during training | OOM on long training runs | Medium | Denominator management builtins (Stage 3). Budget constraints trigger reprojection. Tested in VDR-1 gyms. | 3+ |
+| Unification on active VDR objects is complex | Edge cases in matching active remainders | Low | Active objects are projected to closed rationals for comparison (existing VDR behavior). | 1 |
+| Command token parsing ambiguity | CMD: prefix appears in user text | Low | Strict prefix syntax: CMD: must be at line start, followed by known primitive name. Unknown primitives are treated as text. | 2 |
+| Session snapshot too large | Snapshot of large live state is slow | Low | Data primitives are bounded (max capacity). Snapshot size is bounded by sum of capacities × entry size. Estimates in Appendix C show <500KB even for large sessions. | 3 |
+| Python prototype too slow for realistic training | Training loops with exact fractions are orders of magnitude slower than float | High (expected) | Prototype validates correctness, not performance. Training on toy models (2-dim, 3-vocab). Production performance comes from Zig port. | All |
+| Docker API changes between Python prototype and Zig port | Docker client library differs | Low | Use subprocess-based Docker CLI wrapper, not library bindings. CLI is stable across languages. | 5 |
+| Q335 numerator multiplication overflow | Product of two 102-digit integers is 204 digits | None (Python handles it) | Python arbitrary precision handles natively. Zig port needs BigInt for this specific operation. | 3 |
+
+### H.2 Process Risks
+
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|-----------|-----------|
+| Scope creep at any stage | Stage never completes | Medium | Each stage has a fixed module list and test count. Stage is done when all tests pass. No new modules added mid-stage. |
+| Tests pass but IOSE not verified | IOSE becomes decorative | Medium | Invariant tests at every stage check that all registered builtins have IOSE declarations. IOSE validator (Stage 2) checks contracts. |
+| Existing VDR-4 code has undocumented behavior | Wrapper produces unexpected results | Low | VDR-4 has 705 tests. Wrapping tests verify same inputs produce same outputs through the wrapper. |
+| Zig port reveals Python-specific assumptions | Some Python idioms don't translate | Medium | Avoid Python-specific patterns from the start. No operator overloading in builtins (use named functions). No exceptions (use Result). No global state (pass KB store explicitly). |
+
+---
+
+## Appendix I: Glossary of Implementation Terms
+
+| Term | Definition | First Appears |
+|------|-----------|--------------|
+| Builtin | A registered primitive function with IOSE declaration. One of 448 operations the system provides. | VDR-6, formalized VDR-10 |
+| IOSE Declaration | Structured record of a function's Inputs, Outputs, Side Effects, and Properties. | VDR-10 |
+| KB Store | The global dictionary mapping integer IDs to KnowledgeBase instances. Single source of truth. | VDR-11 Stage 1 |
+| Result Type | An Ok/Err wrapper returned by functions that can fail. Replaces exceptions for expected failures. | VDR-11 Stage 1 |
+| Wrapping | Creating an IOSE-declared builtin function that delegates to an existing VDR-4 implementation. | VDR-11 Stage 1 |
+| Registration Pattern | The table-driven process of declaring and registering builtins with the global BuiltinRegistry. | VDR-11 §8 |
+| Scope Chain | Ordered list of KB IDs from active topic to root. Determines which facts are visible. | VDR-5, implemented Stage 2 |
+| Turn Counter | Global integer incremented per user interaction. Provides total ordering of events. | VDR-11 §10.3 |
+| Conversion Boundary | The declared point where external approximate data enters the exact VDR system, with logged error bound. | VDR-10, implemented Stage 1 |
+| Toy Lifecycle | The minimal init→train→checkpoint→evaluate→report cycle demonstrated in Stage 1. | VDR-11 §4.1 |
+| Disposable Clone | A session clone launched from a stable snapshot, expected to be killed and relaunched when drift is detected. | VDR-8, implemented Stage 3 |
+| Inference Notebook | A KB subtree with standard schema housing one orchestrated inference investigation. | VDR-9, implemented Stage 3 |
+
+---
+
+## Appendix J: Cumulative System Statistics
+
+### J.1 Complete Paper Series
+
+| Paper | Registry | Central Result |
+|-------|----------|----------------|
+| VDR-1 | @HOWL-VDR-1-2026 | Exact arithmetic in irreducible triple form |
+| VDR-2 | @HOWL-VDR-2-2026 | 15 domains, 282 tests |
+| VDR-3 | @HOWL-VDR-3-2026 | 23 domains, transcendental integration |
+| VDR-4 | @HOWL-VDR-4-2026 | 24-module ML stack, working exact transformer |
+| VDR-5 | @HOWL-VDR-5-2026 | Prolog KB architecture, constraints, scoped knowledge |
+| VDR-6 | @HOWL-VDR-6-2026 | 255 primitives, command tokens, operational environments |
+| VDR-7 | @HOWL-VDR-7-2026 | 12-phase lifecycle, training through retirement |
+| VDR-8 | @HOWL-VDR-8-2026 | Data primitives, dotted paths, session management |
+| VDR-9 | @HOWL-VDR-9-2026 | Orchestrated Inference |
+| VDR-10 | @HOWL-VDR-10-2026 | IOSE system model, operational principles, 448 builtins |
+| **VDR-11** | **@HOWL-VDR-11-2026** | **Five-stage implementation blueprint** |
+
+### J.2 System Capability Progression
+
+| Paper | What It Added | Cumulative Capability |
+|-------|-------------|----------------------|
+| VDR-1–4 | Exact arithmetic + ML stack | Can compute exactly |
+| VDR-5 | Knowledge bases, constraints, scoping | Can know and constrain |
+| VDR-6 | Primitives, commands, environments | Can do and execute |
+| VDR-7 | Lifecycle management | Can train, deploy, and retire |
+| VDR-8 | Runtime state, addressing, sessions | Can remember, address, and recover |
+| VDR-9 | Orchestrated Inference | Can investigate, reason, and conclude |
+| VDR-10 | IOSE model, engineering principles, full math | Can be specified for building |
+| **VDR-11** | **Five-stage build plan** | **Can be built** |
+
+### J.3 Final System Dimensions
+
+| Dimension | Count |
+|-----------|-------|
+| Papers in series | 11 (plus MATH-3, MATH-4) |
+| Total builtins | 448 |
+| Builtin categories | 25 |
+| KB struct fields | 25 |
+| Implementation modules | 65 |
+| Existing code (VDR-4) | ~5,500 lines |
+| New code (Stages 1-5) | ~15,500 lines |
+| Total prototype code | ~21,000 lines |
+| Planned tests | 1,250 |
+| Existing passing tests | 705 |
+| OSO principles in root KB | ~176 Prolog terms |
+| Inference modes | 4 |
+| Environment types | 4 (local, Docker, SSH, VM) |
+| Lifecycle phases | 12 |
+| Number types | 5 (VDR fraction, integer, decimal display, Q-basis, functional remainder) |
+| IOSE-declared components | All 448 builtins + 11 system components |
+
+---
+
+**END VDR-11 EXTENDED APPENDIX TABLES**
