@@ -1540,7 +1540,7 @@ class CompactionPipeline:
         kb_id = self.registry.register(target_path)
         parent_id = self.registry.resolve(parent_path)
         
-        from core.kb import KnowledgeBase as KB
+        KB = KnowledgeBase
         kb = KB(name=target_path.split(".")[-1], path=target_path,
                 id=kb_id, parent_id=parent_id)
         
