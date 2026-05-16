@@ -15,6 +15,110 @@ from enum import Enum
 
 
 # ============================================================
+# ALL ENUMS FIRST (no dependencies on anything else)
+# ============================================================
+
+class SourceCharacter(Enum):
+    PHILOSOPHY = "philosophy"
+    ARCHITECTURE = "architecture"
+    SCHEMA = "schema"
+    OPERATIONAL = "operational"
+    API = "api"
+    METHODOLOGY = "methodology"
+    SYNTHESIS = "synthesis"
+    SPECIFICATION = "specification"
+    RESEARCH = "research"
+    NARRATIVE = "narrative"
+    DATA = "data"
+    MIXED = "mixed"
+
+class ColumnType(Enum):
+    ID = "id"
+    TEXT = "text"
+    IDENTIFIER = "identifier"
+    CATEGORICAL = "categorical"
+    ID_REF = "id_ref"
+    ID_LIST = "id_list"
+    REL_TYPE = "rel_type"
+    FRACTION = "fraction"
+    INTEGER = "integer"
+    BOOLEAN = "boolean"
+    ENUM_LIST = "enum_list"
+
+class Direction(Enum):
+    INBOUND = "inbound"
+    OUTBOUND = "outbound"
+
+class MountMode(Enum):
+    READ_ONLY = "read_only"
+    READ_WRITE = "read_write"
+    SNAPSHOT = "snapshot"
+    MIRROR = "mirror"
+
+class Visibility(Enum):
+    PUBLIC = "public"
+    INTERNAL = "internal"
+    OWNER_ONLY = "owner_only"
+
+class ConstraintScope(Enum):
+    AXIOM = "axiom"
+    OPERATIONAL = "operational"
+    LEGAL = "legal"
+    PROJECT = "project"
+    CONVERSATION = "conversation"
+
+class ConstraintStatus(Enum):
+    ACTIVE = "active"
+    SATISFIED = "satisfied"
+    VIOLATED = "violated"
+    SUSPENDED = "suspended"
+    PARKED = "parked"
+
+
+# ============================================================
+# DATACLASSES (order: no-dependency first, then those that reference earlier ones)
+# ============================================================
+
+# --- These have no dataclass dependencies ---
+
+@dataclass
+class ColumnDef:
+    name: str
+    col_type: ColumnType
+    required: bool = True
+    enum_values: Optional[List[str]] = None
+    description: str = ""
+
+@dataclass
+class Connection:
+    target_id: int
+    target_path: str
+    relationship: str
+    direction: Direction
+    phase: str = ""
+    created_at: int = 0
+    notes: str = ""
+    display_grammar: str = ""
+
+@dataclass
+class Constraint:
+    name: str
+    scope: ConstraintScope = ConstraintScope.OPERATIONAL
+    status: ConstraintStatus = ConstraintStatus.ACTIVE
+    condition: str = ""
+    on_violation: str = "warn"
+    source: str = ""
+
+@dataclass
+class Fact:
+    predicate: str
+    args: Dict[str, Any] = field(default_factory=dict)
+    kb_source: str = ""
+    asserted_at: int = 0
+
+
+
+# ============================================================
 # PART 1: SOURCE CLASSIFICATION AND TABLE SELECTION
 # ============================================================
 
@@ -532,6 +636,253 @@ class DecodeLegend:
 # ============================================================
 # PART 5: THE COMPACTED DOCUMENT
 # ============================================================
+
+class MountMode(Enum):
+    READ_ONLY = "read_only"
+    READ_WRITE = "read_write"
+    SNAPSHOT = "snapshot"
+    MIRROR = "mirror"
+
+class Visibility(Enum):
+    PUBLIC = "public"
+    INTERNAL = "internal"
+    OWNER_ONLY = "owner_only"
+
+class ConstraintScope(Enum):
+    AXIOM = "axiom"
+    OPERATIONAL = "operational"
+    LEGAL = "legal"
+    PROJECT = "project"
+    CONVERSATION = "conversation"
+
+class ConstraintStatus(Enum):
+    ACTIVE = "active"
+    SATISFIED = "satisfied"
+    VIOLATED = "violated"
+    SUSPENDED = "suspended"
+    PARKED = "parked"
+
+@dataclass
+class Connection:
+    target_id: int
+    target_path: str
+    relationship: str
+    direction: Direction
+    phase: str = ""
+    created_at: int = 0
+    notes: str = ""
+    display_grammar: str = ""
+
+@dataclass
+class Constraint:
+    name: str
+    scope: ConstraintScope = ConstraintScope.OPERATIONAL
+    status: ConstraintStatus = ConstraintStatus.ACTIVE
+    condition: str = ""
+    on_violation: str = "warn"
+    source: str = ""
+
+@dataclass
+class Fact:
+    predicate: str
+    args: Dict[str, Any] = field(default_factory=dict)
+    kb_source: str = ""
+    asserted_at: int = 0
+
+@dataclass
+class Counter:
+    value: int = 0
+    min_value: int = 0
+    max_value: int = (2**31) - 1
+
+    def inc(self) -> int:
+        self.value = min(self.value + 1, self.max_value)
+        return self.value
+
+    def dec(self) -> int:
+        self.value = max(self.value - 1, self.min_value)
+        return self.value
+
+    def add(self, delta: int) -> int:
+        self.value = max(self.min_value, min(self.value + delta, self.max_value))
+        return self.value
+
+    def reset(self) -> None:
+        self.value = self.min_value
+
+    def set(self, val: int) -> None:
+        self.value = max(self.min_value, min(val, self.max_value))
+
+    def get(self) -> int:
+        return self.value
+
+
+@dataclass
+class LockState:
+    held: bool = False
+    holder: Optional[str] = None
+    acquired_at: int = 0
+
+    def acquire(self, holder: str = "", turn: int = 0) -> bool:
+        if self.held:
+            return False
+        self.held = True
+        self.holder = holder
+        self.acquired_at = turn
+        return True
+
+    def release(self) -> None:
+        self.held = False
+        self.holder = None
+
+    def check(self) -> bool:
+        return self.held
+
+
+@dataclass
+class GrammarRule:
+    """A grammar production rule attached to a KB.
+    
+    Defines how to present, extract, or transform data from the KB.
+    Lives on the KB struct as a persistent field.
+    Inherits through the KB tree like constraints.
+    
+    IOSE (pure):
+      Inputs: data matching slot types from KB facts
+      Outputs: formatted token stream (for display) or structured data (for extraction)
+      Side Effects: none
+      Properties: deterministic, bounded
+    """
+    name: str
+    slots: List[str]
+    slot_types: Dict[str, str]
+    template: List[Any]                          # template lines/structure
+    requires: List[str] = field(default_factory=list)
+    best_when: str = ""
+    connection_pattern: Optional[str] = None     # match on connection topology
+    created_at: int = 0
+    usage_count: int = 0
+    display_grammar: str = ""                    # added for Connection reference
+    
+
+
+@dataclass
+class KnowledgeBase:
+    name: str
+    path: str
+    id: int
+
+    # Persistent
+    facts: List[Fact] = field(default_factory=list)
+    rules: List[Any] = field(default_factory=list)
+    constraints: List[Constraint] = field(default_factory=list)
+    connections: List[Connection] = field(default_factory=list)
+    grammars: List[GrammarRule] = field(default_factory=list)
+
+    # Live state
+    working_data: Dict[str, Any] = field(default_factory=dict)
+    counters: Dict[str, Counter] = field(default_factory=dict)
+    locks: Dict[str, LockState] = field(default_factory=dict)
+
+    # Structural
+    parent_id: Optional[int] = None
+    children_ids: List[int] = field(default_factory=list)
+
+    # Metadata
+    visibility: Visibility = Visibility.PUBLIC
+    frozen: bool = False
+    owner: Optional[str] = None
+    created_at: int = 0
+    last_modified: int = 0
+
+    def assert_fact(self, predicate: str, args: Optional[Dict[str, Any]] = None,
+                    turn: int = 0) -> Fact:
+        args = args or {}
+        for f in self.facts:
+            if f.predicate == predicate and f.args == args:
+                return f
+        fact = Fact(predicate=predicate, args=args,
+                    kb_source=self.path, asserted_at=turn)
+        self.facts.append(fact)
+        self.last_modified = turn
+        return fact
+
+    def retract_fact(self, predicate: str, args: Optional[Dict[str, Any]] = None,
+                     turn: int = 0) -> bool:
+        args = args or {}
+        for i, f in enumerate(self.facts):
+            if f.predicate == predicate and f.args == args:
+                self.facts.pop(i)
+                self.last_modified = turn
+                return True
+        return False
+
+    def query_facts(self, predicate: str,
+                    match_args: Optional[Dict[str, Any]] = None) -> List[Fact]:
+        results = []
+        for f in self.facts:
+            if f.predicate != predicate:
+                continue
+            if match_args is None:
+                results.append(f)
+            else:
+                if all(f.args.get(k) == v for k, v in match_args.items()):
+                    results.append(f)
+        return results
+
+    def reset_live(self) -> None:
+        self.working_data.clear()
+        for c in self.counters.values():
+            c.reset()
+        for lk in self.locks.values():
+            lk.release()
+
+class PathRegistry:
+    def __init__(self) -> None:
+        self._path_to_id: Dict[str, int] = {}
+        self._id_to_path: List[str] = []
+        self._next_id: int = 0
+        self.register("root")
+
+    def register(self, path: str) -> int:
+        if path in self._path_to_id:
+            return self._path_to_id[path]
+        pid = self._next_id
+        self._next_id += 1
+        self._path_to_id[path] = pid
+        self._id_to_path.append(path)
+        return pid
+
+    def resolve(self, path: str) -> Optional[int]:
+        return self._path_to_id.get(path)
+
+    def from_id(self, pid: int) -> Optional[str]:
+        if 0 <= pid < len(self._id_to_path):
+            return self._id_to_path[pid]
+        return None
+
+    def exists(self, path: str) -> bool:
+        return path in self._path_to_id
+
+    def parent_path(self, path: str) -> Optional[str]:
+        if path == "root":
+            return None
+        parts = path.rsplit(".", 1)
+        if len(parts) == 2:
+            return parts[0]
+        return None
+
+    def children_paths(self, path: str) -> List[str]:
+        prefix = path + "."
+        depth = prefix.count(".")
+        result = []
+        for p in self._path_to_id:
+            if p.startswith(prefix) and p.count(".") == depth:
+                result.append(p)
+        return result
+
+    def depth(self, path: str) -> int:
+        return path.count(".")
 
 @dataclass
 class CompactedRow:
