@@ -482,3 +482,5 @@ Phase 4: Divide each by sum
 **Purpose:** Evaluate a single Prolog constraint condition against the fact store. Each core evaluates one constraint from the active constraint set.
 
 **Inputs:** SRC_ADDR = constraint batch (predicate ID + expected args). Constraint loaded to registers. Fact store scanned for matching facts.
+
+# [Session ended]
