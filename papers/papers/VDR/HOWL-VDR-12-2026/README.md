@@ -1,4 +1,4 @@
-# Implementation Blueprint
+# Grammar-Directed Compaction and Generation
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,13 +6,13 @@
 
 ## Abstract
 
-Ten papers specified the VDR-LLM-Prolog system. VDR-10 provided the engineering foundation — the IOSE system model, operational principles, and comprehensive numeric builtins. This paper specifies how to build it.
+Language models waste most of their computation predicting tokens that are structurally determined. When generating a Python function, the tokens `def`, `(`, `)`, `:`, and the indentation are not creative decisions — they are grammatical facts. When presenting data in a table, the column separators, row boundaries, and alignment characters are format requirements, not content. Current language models spend a full forward pass on every one of these tokens, running attention over the entire context and softmax over the full vocabulary to predict a closing parenthesis that was inevitable the moment the opening parenthesis appeared.
 
-The system is built in five stages, each producing a complete, testable, runnable system that handles a full lifecycle at its level of capability. Stage 1 is a toy that can create knowledge bases, assert and query facts, run Prolog rules, perform exact arithmetic, and demonstrate one training-evaluation cycle. Stage 2 adds command tokens, path addressing, scope resolution, constraints, and the scratchpad. Stage 3 adds session management, inference notebooks, Q-basis transcendentals, functional remainders, and domain-specific mathematics. Stage 4 adds operational environments, grants, filesystem and network operations, all four inference modes, and the lifecycle pipeline. Stage 5 completes the system with Docker and SSH environments, compilation, linting, feedback collection, deployment, monitoring, canary deployment, and retirement.
+This paper specifies two systems that eliminate this waste. The first is Universal Compaction — a formal system for compressing any structured source material into pipe-delimited tables with typed columns, ID-based cross-references, and self-describing grammars, achieving 75-93% compression while preserving every named concept, relationship, and constraint. The second is Grammar-Directed Generation — a system where Prolog grammars provide the structural tokens of output (brackets, punctuation, formatting, boilerplate) while the language model provides only the content tokens (names, values, creative text), reducing the number of forward passes by 40-80% depending on output type.
 
-The build uses Python 3.8 as the prototype language, leveraging the existing VDR-1 through VDR-4 codebase (~5,000 lines of tested exact arithmetic, linear algebra, and ML stack code). New code is approximately 15,500 lines across 65 modules. Every function has an IOSE declaration — inputs, outputs, side effects, and properties — which simultaneously serves as the test specification, the documentation, and the interface contract for the eventual Zig 0.15.1 production port.
+Both systems are built on the VDR-LLM-Prolog architecture: an exact-arithmetic language model where every number is an exact fraction with zero drift (VDR-1 through VDR-4), knowledge is stored in scoped Knowledge Bases with logical provenance (VDR-5), computation is performed by 448 deterministic primitives invoked through command tokens (VDR-6, VDR-8, VDR-10), and structured reasoning is conducted through an orchestrated inference loop (VDR-9). The grammars live on the Knowledge Base struct as a persistent field, inheriting through the KB tree like constraints, and the language model can create new grammars at any time by asserting facts — making the system self-extending.
 
-The central claim is that a system specified by ten papers, governed by operational engineering principles, and built in disciplined stages with IOSE declarations at every function is not a research prototype — it is an engineering project with a concrete, executable build plan.
+A working Python implementation with 178 passing tests validates the compaction system's roundtrip fidelity, grammar generation, cross-KB usage grammar creation, and grammar inheritance with override shadowing.
 
 ---
 
@@ -52,14 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-11-2026,
-  title={ Implementation Blueprint },
+@article{ HOWL-VDR-12-2026,
+  title={ Grammar-Directed Compaction and Generation },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20226180},
-  url = {https://zenodo.org/record/20226180},
-  note={Howland Archive: HOWL-VDR-11-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20226594},
+  url = {https://zenodo.org/record/20226594},
+  note={Howland Archive: HOWL-VDR-12-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
