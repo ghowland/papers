@@ -136,6 +136,7 @@
 | **[@HOWL-VDR-17-2026](papers/papers/VDR/HOWL-VDR-17-2026/manuscript.md)** | **VDR-LLM-Prolog: Alignment** | Helpful, Harmless, Honest Through Structure, Not Interference. |
 | **[@HOWL-VDR-18-2026](papers/papers/VDR/HOWL-VDR-18-2026/manuscript.md)** | **VDR-LLM-Prolog: Performance** | Integer Arithmetic on GPU Hardware: Why Wider Operands on More Cores Outrun Narrower Operands on Fewer Passes. |
 | **[@HOWL-VDR-19-2026](papers/papers/VDR/HOWL-VDR-19-2026/manuscript.md)** | **VDR-LLM-Prolog: Self-Extending Architecture** | From Seed to Self-Compacting Knowledge System. |
+| **[@HOWL-VDR-20-2026](papers/papers/VDR/HOWL-VDR-20-2026/manuscript.md)** | **Operational Deployment** | From Seed to Autonomous Knowledge System. |
 
 ---
 
