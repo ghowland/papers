@@ -1,8 +1,8 @@
 {
-  "title": "manuscript.md",
+  "title": "VDR-LLM-Prolog",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "This paper consolidates thirteen prior technical specifications into a single document describing the VDR-LLM-Prolog system: an architecture for language models built on exact integer arithmetic, structural knowledge management, deterministic computation primitives, and orchestrated inference. The system replaces floating-point arithmetic with Value-Denominator-Remainder triples that preserve exact results through arbitrary operation chains, replaces stateless conversation with a scoped knowledge base tree addressable by integer, replaces token-by-token computation with 448 deterministic primitives invoked through structured command tokens, and replaces unstructured reasoning with an orchestrated inference loop where the language model selects and sequences exact tools rather than generating computational results. Every component has been specified with declared inputs, outputs, side effects, and mathematical properties. The arithmetic foundation has been validated across 507 tests in 23 mathematical domains and 14 physical domains with zero computation errors. A complete language model pipeline from tokenization through training has been demonstrated with exact attention weights summing to precisely one, exact gradients, and bit-identical checkpoint reproducibility. This paper provides the entry point for understanding the complete system, the rationale for each architectural decision, and the implementation blueprint for building it.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",

@@ -37,6 +37,8 @@ These three deficiencies interact. Approximate arithmetic means the model cannot
 
 ## 2. The Arithmetic Foundation
 
+![Fig. 2: Hilbert Matrix — float error escalates from 10⁻¹⁶ to catastrophic. VDR produces exact zero for all sizes.](./figures/vdr14_02_hilbert_error.png)
+
 The VDR system replaces floating-point arithmetic with a representation built entirely on integers. Every value in the system is an ordered triple written [V, D, R], where V is an integer called the value, D is a nonzero integer called the denominator, and R is called the remainder. V and D are always integers. R is where all structural complexity resides.
 
 When R is zero, the triple is called closed, and it behaves exactly as the rational number V/D. The triple [3, 4, 0] represents three-quarters. The triple [7, 1, 0] represents the integer seven. Arithmetic on closed triples is standard rational arithmetic: addition cross-multiplies and sums numerators, multiplication multiplies numerators and denominators, and so on. This closed subclass is arithmetically complete under addition, subtraction, multiplication, and division.
@@ -60,6 +62,12 @@ Decimal numbers appear only at the boundary of the system. When data enters from
 This arithmetic foundation has been tested across 507 exercises spanning 23 mathematical domains: number theory, polynomial algebra, continued fractions, matrix decomposition, recursive sequences, combinatorics, signal processing, computational geometry, differential equations, optimization, probability, cryptographic primitives, symbolic algebra, fixed-point iteration, chaos and sensitivity, graph theory, game theory, coding theory, algebraic topology, tropical and lattice algebra, control theory, wavelets, and transcendental arithmetic. Across all 507 tests, the system produced zero computation errors. Eleven test failures occurred, and every one was traced to an incorrect test expectation — the test was wrong, not the arithmetic.
 
 The system was further applied to 14 physical computation domains: quantum electrodynamics coefficient computation, quantum mechanical spin rotation and measurement, discrete Fourier transforms, infinite impulse response filters, transfer function evaluation, state-space evolution, Kepler orbital mechanics, structural statics, thermodynamic partition functions, crystallographic symmetry operations, geodetic coordinate transformations, and paraxial optics. In every domain, conservation laws that should hold exactly — probability summing to one, unitarity of evolution operators, symplecticity of optical matrices, closure of orbits — were verified by exact structural equality, not by residual tolerance. Float-based computation fails on each of these: Hilbert matrix inversion becomes meaningless by size 10, Kepler orbits fail to close by roughly one part in 10^12, IIR filter outputs drift, and chaotic map trajectories diverge completely. VDR produces zero error in every case.
+
+![Fig. 1: Denominator Growth — flat fraction digits grow exponentially while Q335 tree grows linearly. Crossover at step ~10.](./figures/vdr14_01_denom_growth.png)
+
+![Fig. 3: Convergence Rates — Newton doubles digits per step (~8 for 100 digits), Taylor exp needs ~45, ln needs ~340.](./figures/vdr14_03_convergence_rates.png)
+
+![Fig. 6: Precision Landscape — Float64 at 15-16 digits, Q335 at ~100, an 84-order-of-magnitude gap.](./figures/vdr14_06_precision_landscape.png)
 
 ---
 
@@ -120,6 +128,8 @@ Grammars are a persistent field on the knowledge base struct. They inherit throu
 Three categories of grammars are auto-generated when a knowledge base is loaded. Extraction grammars (one per table) know column names, types, and ID prefixes, enabling exact queries. Display grammars present data in compact, summary, or detailed formats. Usage grammars are generated on demand when one knowledge base references another, creating bidirectional typed connections: reference (cite inline), comparison (side-by-side), evidence (for inference with confidence tracking), dependency (trace chains), and summary (overview). The language model can create new grammars at any time by asserting grammar rule facts into a knowledge base at any scope. A grammar created once is reusable indefinitely with zero language model cost per reuse.
 
 The knowledge base is fully self-describing. It knows its data (facts), follows its logic (rules), enforces its limits (constraints), declares its relationships (connections), and presents itself (grammars). Everything about a knowledge base lives inside the knowledge base.
+
+![Fig. 7: System Architecture — concentric layers from VDR integer core outward through KB, Prolog, primitives, inference, environments, and lifecycle.](./figures/vdr14_07_architecture.png)
 
 ---
 
@@ -275,6 +285,8 @@ The entire lifecycle from raw data to retired model is one queryable tree. Linea
 
 ## 11. The Work Reduction
 
+![Fig. 5: Domain Landscape — 14 physical domains from subatomic to planetary, all computed with exact VDR arithmetic.](./figures/vdr14_05_domain_landscape.png)
+
 The cumulative effect of these architectural decisions is a fundamental change in what the language model does during a conversation.
 
 In a conventional system, the language model performs every task through token generation: computing arithmetic digit by digit, sorting lists by generating comparison prose, deducing logical consequences by writing out reasoning chains, tracking conversational state by recapping prior statements, assessing confidence by generating hedging language, transforming data by producing formatted text, and generating every structural token in its output. Each of these tasks consumes the same computational resources per token, operates at the same error rate, and produces output with no provenance.
@@ -284,6 +296,8 @@ In the VDR-LLM-Prolog system, arithmetic is handled by exact primitives that can
 The language model retains the tasks it performs well: recognizing user intent, selecting the appropriate inference mode for the current situation, formalizing steps into executable form (writing Prolog rules, composing primitive chains, constructing queries), assessing results to determine next steps, and generating natural language to frame results for the user.
 
 The practical consequence is that a response which currently costs hundreds of tokens of unreliable generation — arithmetic working, state recapping, data formatting, hedging, structural syntax — becomes a small number of command tokens (roughly 8 each) plus a grammar-filled template plus a few tokens of natural language framing. The effective context window is dramatically larger because it is not consumed by computation and state management. Every token the language model does not generate is a token that cannot be wrong. The safest token is the one never generated — replaced by an exact primitive call returning a verified result.
+
+![Fig. 8: Float Failure Heatmap — VDR produces exact zero across all 12 domains. Float degrades from acceptable to total loss.](./figures/vdr14_08_float_failure_heatmap.png)
 
 ---
 
@@ -310,6 +324,8 @@ The existing VDR codebase — approximately 5,500 lines across 24 modules with 7
 Five hundred thirty-three functions have full IOSE declarations specifying their module, name, input types, output types, declared side effects, declared properties, and stage assignment. Each declaration serves as the test specification (test the declared inputs, check the declared outputs, verify the declared side effects occurred, confirm the declared properties hold), the Zig interface contract (inputs become typed function parameters, outputs become return types, side effects become documented mutations), and the documentation.
 
 The total system comprises approximately 20,500 lines: 15,500 new and 5,000 existing. It contains 65 modules, 448 registered builtins plus 40 additional from the physical computation specification, and targets 1,250 tests across the five stages.
+
+![Fig. 4: Build Progression — builtins, tests, and modules accumulate across five stages, each producing a complete system.](./figures/vdr14_04_build_progression.png)
 
 ---
 
