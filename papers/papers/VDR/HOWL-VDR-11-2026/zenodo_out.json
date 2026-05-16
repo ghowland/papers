@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-16T05:43:44.491090+00:00",
+  "modified": "2026-05-16T05:43:44.551201+00:00",
+  "id": 20226180,
+  "conceptrecid": "20226179",
+  "metadata": {
+    "title": "Implementation Blueprint",
+    "publication_date": "2026-04",
+    "description": "VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download \u2014 the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.\n\nThe central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "vdr"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-11-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-11-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20226180",
+      "recid": 20226180
+    }
+  },
+  "title": "Implementation Blueprint",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20226180",
+    "html": "https://zenodo.org/deposit/20226180",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20226180/files",
+    "bucket": "https://zenodo.org/api/files/c9b21037-150d-43ee-9929-c62e9886013d",
+    "thumb250": "https://zenodo.org/record/20226180/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20226180/thumb10",
+      "50": "https://zenodo.org/record/20226180/thumb50",
+      "100": "https://zenodo.org/record/20226180/thumb100",
+      "250": "https://zenodo.org/record/20226180/thumb250",
+      "750": "https://zenodo.org/record/20226180/thumb750",
+      "1200": "https://zenodo.org/record/20226180/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20226180",
+    "latest_draft_html": "https://zenodo.org/deposit/20226180",
+    "publish": "https://zenodo.org/api/deposit/depositions/20226180/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20226180/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20226180/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20226180/actions/newversion"
+  },
+  "record_id": 20226180,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "e3651709-00a5-4593-afba-95b18151876f",
+      "filename": "HOWL-VDR-11-2026.zip",
+      "filesize": 2160498,
+      "checksum": "a729197d356f8e01fa08869f1285d9c4",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20226180/files/e3651709-00a5-4593-afba-95b18151876f",
+        "download": "https://zenodo.org/api/records/20226180/draft/files/HOWL-VDR-11-2026.zip/content"
+      }
+    },
+    {
+      "id": "32c86c58-3a0a-4b6f-9143-f4e2d66af53c",
+      "filename": "!manuscript.pdf",
+      "filesize": 171361,
+      "checksum": "748113b550c78c692f79ce9ef5b0937e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20226180/files/32c86c58-3a0a-4b6f-9143-f4e2d66af53c",
+        "download": "https://zenodo.org/api/records/20226180/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
