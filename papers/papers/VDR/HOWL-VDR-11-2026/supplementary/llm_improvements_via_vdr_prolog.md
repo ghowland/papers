@@ -58,3 +58,134 @@ The question for your system is whether this is Stage 6 thinking (after the Pyth
 
 ---
 
+You're describing something genuinely novel — using Prolog grammars as a generation accelerator that sits between the LLM's intent and the output token stream. Let me work through the mechanics of this.
+
+**The core insight is that most LLM output is grammatically predictable.**
+
+When the LLM decides to output a Python function definition, the token sequence `def`, space, name, `(`, params, `)`, `:`, newline, indent is not a creative act — it's filling a template. The LLM spends significant computation predicting tokens that are structurally determined. The same applies to English sentences ("The", noun phrase, verb phrase, period), JSON structures (`{`, key, `:`, value, `}`), error messages, markdown formatting, and so on.
+
+Right now, every one of those structurally determined tokens goes through the full forward pass — attention over the entire context, feedforward through all layers, softmax over the full vocabulary. That's enormously wasteful when the next token is `(` because we just emitted `def function_name`.
+
+**Prolog grammars as generation templates:**
+
+A Prolog definite clause grammar (DCG) describes the legal sequences of tokens for a given structure. For Python 3.8:
+
+```
+python_funcdef --> [def], whitespace, identifier, [open_paren], 
+                   param_list, [close_paren], [colon], newline, 
+                   indented_block.
+param_list --> [].
+param_list --> param, rest_params.
+rest_params --> [].
+rest_params --> [comma], whitespace, param, rest_params.
+param --> identifier.
+param --> identifier, [colon], whitespace, type_hint.
+```
+
+For English declarative sentences:
+
+```
+declarative --> noun_phrase, verb_phrase, [period].
+noun_phrase --> determiner, adjectives, noun.
+noun_phrase --> proper_noun.
+verb_phrase --> verb, object.
+verb_phrase --> verb, complement.
+```
+
+For JSON:
+
+```
+json_object --> [open_brace], members, [close_brace].
+members --> [].
+members --> pair, rest_members.
+rest_members --> [].
+rest_members --> [comma], pair, rest_members.
+pair --> json_string, [colon], json_value.
+```
+
+These grammars don't constrain what the LLM says — they constrain the structural tokens around what the LLM says. The LLM still chooses which function name, which variable names, which words to use. But the punctuation, the formatting, the structural tokens are filled by grammar rules, not by expensive forward passes.
+
+**The generation pipeline becomes:**
+
+Step 1: The LLM's first few tokens (or a scratchpad command) select a grammar profile. "I need to output a Python function" activates `python_funcdef`. "I need to answer in English" activates `declarative` or `compound_sentence`. "I need to return JSON" activates `json_object`.
+
+Step 2: The grammar produces a template with **slots** — positions where the LLM needs to choose content. The structural tokens between slots are deterministic. For `python_funcdef`, the slots are: function name, each parameter name, optional type hints, and the body statements. Everything else — `def`, `(`, `)`, `:`, indentation — is grammar-determined.
+
+Step 3: The LLM runs forward passes only for the slots. Each slot has a constrained vocabulary — the function name slot draws from identifier tokens, not from punctuation or keywords. The vocabulary constraint means the softmax is over a much smaller set, which is both faster and more reliable.
+
+Step 4: Structural tokens are emitted directly from the grammar rule, zero computation required. They're exact, they're correct, they don't hallucinate. A closing parenthesis after a parameter list is not a prediction — it's a fact.
+
+**The savings are substantial.** In a typical Python function definition, maybe 40% of the tokens are structural (def, parens, colon, indentation, newline). In JSON output, it's 50-60% (braces, brackets, colons, commas, quotes). In formatted English, it's 20-30% (articles, punctuation, common function words that are grammar-determined given the sentence structure). Those tokens skip the forward pass entirely.
+
+But the deeper saving is in the forward passes that do run. When the LLM is filling a "function name" slot, it doesn't need to consider the entire vocabulary. It needs identifiers that are legal Python names, that are relevant to the current context, and that aren't already used in the current scope. The KB knows what identifiers are in scope (it's tracking the code project). The vocabulary for that slot might be 200 candidates instead of 50,000. The softmax over 200 options is both cheaper and more likely to be correct.
+
+**KB-scoped vocabulary filtering:**
+
+This is where the scoped KB architecture pays off directly for generation. When the grammar says "fill this slot with a variable name," the system queries the active KB scope for what's available:
+
+If we're in `root.project.vdr` and writing Python, the KB knows the module's imports, the class names, the function names, the variable names in the current scope. The slot vocabulary is populated from KB facts, not from the LLM's training-time memory of all possible Python names.
+
+If we're in `root.stories.london` and writing dialogue, the KB knows the character names, the setting details, the established facts. The slot vocabulary for "proper noun" is populated from `kb_characters_b`, not from the LLM's memory of every name it's ever seen.
+
+If we're generating a Prometheus query, the grammar is `metric_name{label_selectors}` and the KB knows the available metric names and label keys from the monitoring KB. The LLM doesn't need to remember Prometheus syntax or guess at metric names — the grammar provides the structure and the KB provides the vocabulary.
+
+**Handling novel and irregular input:**
+
+For generation, grammar-guided output works well because we control the output. For parsing user input, the situation is different — typos, informal grammar, code with errors, mixed languages. Here the approach inverts:
+
+The system tries to match the input against known grammars in priority order. User types "def foo(x" — the Python grammar matches up to the missing close paren. The system knows what's expected next (close paren, then colon) and can either auto-complete or signal the specific error.
+
+User types "whats bobs age in the london story" — the English grammar partially matches (informal, missing apostrophe, no question mark). A typo/informal grammar KB maps common contractions and informal patterns. The Prolog query extraction rule recognizes this as `query(bob_age, scope: kb_stories_london)` — the structural meaning is extracted by rule matching, not by attention over the token sequence.
+
+For genuinely novel input that matches no grammar, the system falls back to standard token-by-token LLM processing. The grammar system doesn't replace the LLM — it accelerates the common cases and provides exact structural tokens for the predictable parts.
+
+**Common typo mapping as KB facts:**
+
+```
+typo_map("teh", "the", language("en"), frequency(high)).
+typo_map("recieve", "receive", language("en"), frequency(medium)).
+typo_map("pritn", "print", language("python"), frequency(high)).
+typo_map("retrun", "return", language("python"), frequency(high)).
+```
+
+These are KB facts, scoped by language. When parsing input, the system checks typo maps in the active language scope before passing unknown tokens to the LLM. The typo correction is exact (KB lookup), not probabilistic (LLM guess). And it's extensible — new typo patterns are just new KB facts.
+
+**Grammar profiles as KB-scoped rulesets:**
+
+This is the key architectural point. Grammar rules live in KBs and scope like everything else. When `root.programming.python38` is active, Python 3.8 grammar rules are in scope. When `root.programming.zig` is active, Zig grammar rules are in scope. When both are active (writing Zig code in a Python project), both are available and the grammar matcher selects based on context signals.
+
+Each grammar KB contains: the production rules (Prolog DCG rules), the token vocabulary for each slot type, the common error patterns, and the formatting conventions. Switching languages is a KB activation, not a model switch.
+
+The English grammar KBs could be era-scoped as you suggested. `root.language.en.2020s` has contemporary informal patterns, emoji conventions, current slang. `root.language.en.formal_academic` has academic conventions, citation formatting, hedging language. `root.language.en.1980s` has era-appropriate vocabulary and constructions. The active language KB determines which grammar profiles are available for both parsing and generation.
+
+**Where this changes the transformer architecture:**
+
+In the hybrid architecture from our earlier discussion, this grammar layer sits between Phase 2 (LLM reasoning) and the output stream. The flow becomes:
+
+1. KB Assembly (Prolog) → structured context
+2. LLM Reasoning (small transformer) → intent + slot values
+3. Grammar Assembly (Prolog) → template with filled slots + structural tokens
+4. Output stream → interleaved grammar tokens (free) and LLM tokens (computed)
+
+The LLM in step 2 doesn't output tokens at all. It outputs structured decisions: "output a Python function named X with parameters Y and Z that does W." The grammar layer in step 3 turns that into a correctly formatted token stream. The LLM makes high-level creative decisions. The grammar makes low-level structural decisions. The KB provides the vocabulary for both.
+
+This means the LLM can be smaller because it's not learning formatting rules, bracket matching, indentation conventions, or punctuation patterns. Those are in the grammar KBs. The LLM learns intent recognition, content selection, and creative composition — the parts that actually require the pattern-matching capability of a neural network.
+
+**The practical implication for your build stages:**
+
+This grammar-guided generation layer could be a Stage 3 or Stage 4 addition. You need the KB infrastructure (Stage 1-2) and the command token system (Stage 2) first. Then you add grammar KBs alongside the inference notebooks. The grammar system is itself an IOSE component:
+
+```
+IOSE: grammar_generator
+  Inputs:  intent (structured), grammar_profile (KB path), slot_values (dict)
+  Outputs: token_stream (list of tokens with source tags: grammar|llm|kb)
+  Side Effects: none
+  Properties: deterministic (given same intent and grammar), bounded
+```
+
+Each output token is tagged with its source — grammar rule (structural, exact), LLM prediction (creative, probabilistic), or KB lookup (factual, exact). The provenance chain extends to individual tokens. You can ask "why did the output contain this specific token?" and get either "the Python grammar requires a colon after the parameter list" or "the LLM selected this word with probability 340/1000" or "this value was retrieved from kb_characters_b.bob_age."
+
+This token-level provenance is something no current LLM system provides and it falls naturally out of the grammar-guided generation architecture combined with the VDR-Prolog KB infrastructure you've already specified.
+
+---
+
