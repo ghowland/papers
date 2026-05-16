@@ -14,7 +14,7 @@ For irrationals and transcendentals that can't be closed rationals, functional r
 
 The arithmetic has been validated across 884 tests spanning 23 mathematical domains (number theory, polynomial algebra, continued fractions, matrix decomposition, combinatorics, signal processing, computational geometry, differential equations, optimization, probability, cryptography, symbolic algebra, graph theory, game theory, coding theory, algebraic topology, tropical algebra, control theory, wavelets) and 14 physical domains (QED, quantum mechanics, signal processing, control systems, orbital mechanics, structural mechanics, thermodynamics, crystallography, geodesy, optics). Zero VDR computation errors. Every failure — all 14 — traced to wrong test expectations, never to wrong arithmetic.
 
-![Fig. 1](./figures/vdr_system_01_triple_nesting.png)
+![Fig. 1](../figures/vdr_system_01_triple_nesting.png)
 
 **Knowledge Bases: Where Everything Lives**
 
@@ -42,7 +42,7 @@ Visibility adds a second check. Each KB has a visibility level: public (all user
 
 Both checks — scope and visibility — must pass. Both are integer operations. Neither involves the LLM. Neither is modifiable by any prompt.
 
-![Fig. 8](./figures/vdr_system_08_kb_scoping.png)
+![Fig. 8](../figures/vdr_system_08_kb_scoping.png)
 
 **Constraints: Rules That Live Where They Govern**
 
@@ -144,7 +144,7 @@ Modes compose naturally because they all work on the same KB. Abductive → Indu
 
 Confidence is never LLM-generated hedging. It's an exact VDR fraction computed from declared propagation rules. VDR computation = 1/1. Prolog derivation from exact premises = 1/1. Database query = 98/100. Prometheus metric = 95/100. Python script = 95/100. REST API = 85/100. Peer-reviewed claim = 80/100. User-stated fact = 70/100. Web search = 50/100. LLM-generated content = 30/100. Each step type has a formula. Multiple independent sources agreeing: 1 − ∏(1−Cᵢ). Sources conflicting: max(Cᵢ) − penalty. The confidence of any conclusion is traceable through its entire derivation chain as exact arithmetic.
 
-![Fig. 7](./figures/vdr_system_07_confidence_chain.png)
+![Fig. 7](../figures/vdr_system_07_confidence_chain.png)
 
 **Grammar System: Structural Tokens for Free**
 
@@ -158,7 +158,7 @@ Typed grammar slots constrain the vocabulary for the LLM's softmax. A categorica
 
 Grammar definition costs 10-30 LLM tokens. Breaks even on first use. Persists in the KB tree. Defined once at org level, available to every session beneath. Grammar amortization at organizational scope with thousands of reuses: cost per use approaches zero.
 
-![Fig. 5](./figures/vdr_system_05_token_elimination.png)
+![Fig. 5](../figures/vdr_system_05_token_elimination.png)
 
 
 **Compaction: Information Without Prose**
@@ -223,7 +223,7 @@ The crossover calculation: one LLM token costs roughly 10^6 float operations (fu
 
 Six entire error classes are structurally eliminated: arithmetic errors (exact integer primitives, error rate = 0), state loss (KB persistence at integer addresses, error rate = 0), formatting errors (grammar templates, error rate = 0), retrieval errors (KB query by integer address, fabrication risk = 0), deduction errors (Prolog structural unification, error rate = 0), confidence errors (exact VDR fraction from propagation rules, imprecision rate = 0). The remaining error surface: LLM judgment only — intent recognition, step selection, prose generation. These are the LLM's strongest tasks.
 
-![Fig. 2](./figures/vdr_system_02_q335_divmod.png)
+![Fig. 2](../figures/vdr_system_02_q335_divmod.png)
 
 **Structural Safety: Three Independent Layers**
 
@@ -251,7 +251,7 @@ Session scoring provides contextual safety without LLM involvement: input classi
 
 The audit trail is complete because every KB access goes through primitive builtins, every primitive logs, and there is no alternative access path. Every query attempt — granted or denied — is recorded with user ID, target KB path, operation, result, and timestamp in an append-only audit KB protected by an axiom constraint that prevents retraction.
 
-![Fig. 6](./figures/vdr_system_06_safety_layers.png)
+![Fig. 6](../figures/vdr_system_06_safety_layers.png)
 
 **Alignment: Honest, Harmless, Helpful Through Structure**
 
@@ -287,7 +287,7 @@ The forward pass is ~150× more expensive per token than float16, weighted acros
 
 The SRE case study validates this end-to-end: 1MB Prometheus JSON with 200 endpoints and 18,000 metric values. Conventional: 10,100 tokens generated, ~11 minutes wall-clock, 25% data coverage (context overflow), arithmetic errors, no persistence. VDR: 769 tokens, ~9 seconds wall-clock, 100% data coverage, exact arithmetic, full versioned project with comparison rules for future investigations. 73× faster. 71× cheaper including human time ($0.39 vs $27.58). The second run on a similar incident is 42% cheaper than the first because accumulated project-level rules and scripts handle known patterns automatically.
 
-![Fig. 3](./figures/vdr_system_03_scaling_quadratic_vs_flat.png)
+![Fig. 3](../figures/vdr_system_03_scaling_quadratic_vs_flat.png)
 
 **Self-Extension: Usage Is Training**
 
@@ -299,7 +299,7 @@ A Prolog rule costs 25-40 tokens to formalize and assert. On first use it replac
 
 The compaction format adjusted in VDR-19 aligns with three targets simultaneously: Prolog clause syntax (directly loadable), predicate-major columnar GPU storage (directly parseable into the storage format), and Zig struct definitions (directly mappable to implementation types). A compacted document is a load file. No transformation logic, no interpretation, no LLM involvement in loading.
 
-![Fig. 4](./figures/vdr_system_04_sre_accumulation.png)
+![Fig. 4](../figures/vdr_system_04_sre_accumulation.png)
 
 
 **Operational Deployment: Four Prompt Runner Types**
