@@ -3,7 +3,7 @@
     "title": "VDR-LLM-Prolog: Self-Extending Architecture",
     "registry_id": "HOWL-VDR-19-2026",
     "series_path": "[@HOWL-VDR-1-2026] \u2192 [@HOWL-VDR-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026]  \u2192 ... \u2192 [@HOWL-VDR-15-2026] \u2192 [@HOWL-VDR-16-2026] \u2192 [@HOWL-VDR-17-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.20237978",
     "abstract": "",
     "dependencies": [],
     "raw_content_preview": "# VDR-LLM-Prolog: Self-Extending Architecture ## From Seed to Self-Compacting Knowledge System  **Registry:** [@HOWL-VDR-19-2026]  **Series Path:** [@HOWL-VDR-1-2026] \u2192 [@HOWL-VDR-2-2026] \u2192 [@HOWL-MAT..."
