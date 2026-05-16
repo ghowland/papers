@@ -1,4 +1,4 @@
-# Orchestrated Inference
+# Operational Foundations and Comprehensive Builtin Specification
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,13 +6,17 @@
 
 ## Abstract
 
-The prior papers in this series built a language model architecture with exact arithmetic (VDR-1 through VDR-4), scoped knowledge bases with constraints and provenance (VDR-5), 333 deterministic primitives invoked through compact command tokens (VDR-6, VDR-8), a complete model lifecycle as KB operations (VDR-7), runtime data primitives for working memory (VDR-8), universal dotted-path addressing (VDR-8), and session snapshots with disposable cloning (VDR-8). Each paper added a capability. None of them specified how those capabilities compose into multi-step inference processes.
+VDR-1 through VDR-4 built exact arithmetic and a working transformer. VDR-5 through VDR-8 built the knowledge architecture, execution layer, lifecycle, and runtime state. VDR-9 specified Orchestrated Inference — how the tools compose into multi-step reasoning processes. All nine papers specified *what* the system does. None of them specified *how to build it as an engineering system*.
 
-This paper specifies Orchestrated Inference — the pattern by which the language model uses its tools to conduct structured investigations that produce traceable, quantified conclusions. The language model does not reason. It orchestrates. It selects and sequences exact tools — Prolog for logical deduction, Python for numerical computation, pure primitives for data manipulation, operational primitives for external data acquisition — in a loop that produces inferences neither the language model nor any single tool could produce alone.
+This paper provides the engineering foundation. It specifies three things that the prior papers assumed but never formalized.
 
-The paper defines the orchestrated inference loop (assess → formalize → execute → store → assess), inference notebooks as standard KB schemas for housing investigations, four inference modes (deductive, inductive, abductive, analogical) with their characteristic tool signatures, external data integration patterns for bringing real-world data into the exact system, and inference provenance that gives every conclusion a complete, queryable derivation chain with exact confidence scores.
+First, the IOSE system model. Every component in VDR-LLM-Prolog — every primitive, every KB operation, every inference notebook, the system itself — is specified as an Inputs/Outputs/Side-Effects node. Components compose into typed networks. Any component can be black-boxed at any level. The IOSE model is the blueprint from which the system is actually constructed.
 
-The central claim is precise: the language model predicts tokens; the tools compute and deduce; the composition produces structured inferences; the KB records everything. Orchestrated Inference is not artificial reasoning. It is a reasoning exoskeleton — external structure that compensates for the language model's computational unreliability while leveraging its strength at pattern recognition, intent mapping, and natural language formalization.
+Second, the operational engineering principles. Drawn from twenty-five years of production operations experience, these are not suggestions — they are Prolog facts, rules, and constraints loaded into the root KB. They govern every decision the system makes: the 90/9/0.9 priority system for tradeoffs, the knowability spectrum for evidence trust, the hearsay chain model for provenance degradation, data primacy over logic, comprehensive over aggregated design, idempotency for safe automation, and fifteen other principles that become enforceable system behavior.
+
+Third, the comprehensive numeric builtin specification. The original 58 numeric primitives from VDR-6 are replaced by 173 builtins that expose the full mathematical capability of VDR-1 through VDR-3: exact closed and active arithmetic, lift and rebase, Q-basis transcendental operations, functional remainder series, discrete calculus, full linear algebra, probability and statistics, polynomial algebra, finite field operations, Markov chains, denominator management, integer fast paths, and bit operations. Combined with the non-numeric builtins, the system provides 448 primitives across 22 categories — every one with an IOSE declaration, comprehensively sliced from the whole.
+
+The central claim is that a system specified in IOSE, governed by operational principles, and equipped with comprehensive exact mathematics is buildable, testable, and maintainable. The specification is the blueprint. The principles are the building code. The mathematics is the material.
 
 ---
 
@@ -52,14 +56,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-9-2026,
-  title={ Orchestrated Inference },
+@article{ HOWL-VDR-10-2026,
+  title={ Operational Foundations and Comprehensive Builtin Specification },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20217696},
-  url = {https://zenodo.org/record/20217696},
-  note={Howland Archive: HOWL-VDR-9-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20225433},
+  url = {https://zenodo.org/record/20225433},
+  note={Howland Archive: HOWL-VDR-10-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

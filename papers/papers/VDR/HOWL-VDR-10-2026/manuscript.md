@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → [@HOWL-VDR-3-2026] → [@HOWL-VDR-4-2026] → [@HOWL-LLM-1-2026] → [@HOWL-VDR-5-2026] → [@HOWL-VDR-6-2026] → [@HOWL-VDR-7-2026] → [@HOWL-VDR-8-2026] → [@HOWL-VDR-9-2026] → [@HOWL-VDR-10-2026]
 
-**DOI:** 10.5281/zenodo.20217696
+**DOI:** 10.5281/zenodo.20225433
 
 **Date:** May 2026
 
@@ -565,3 +565,693 @@ The specification is the blueprint. The principles are the building code. The ma
 **Foundation:** VDR-1 through VDR-9, MATH-3, MATH-4, Old School Operations
 **Key Principles:** (1) Every component is an IOSE node. (2) Operational principles are enforceable Prolog facts, not suggestions. (3) The numeric stack exposes all tested VDR capabilities as builtins. (4) Comprehensive slicing ensures no gaps. (5) The specification is the blueprint for building the system.
 **Falsification:** Seven criteria testable by IOSE contract verification, principle encoding testing, numeric invariant verification, conversion boundary checking, type dispatch correctness, gap detection, and overlap detection.
+
+---
+
+# VDR-10 Extended Appendix Tables
+## Complete Reference Material for IOSE System Model, Operational Principles, and Comprehensive Numeric Stack
+
+---
+
+## Appendix A: IOSE Declaration Registry — Complete Component List
+
+### A.1 Top-Level System Decomposition
+
+| Component | Category | Logic Type | Inputs | Outputs | Side Effects | Children |
+|-----------|----------|-----------|--------|---------|-------------|----------|
+| vdr_llm_prolog_system | composite | operational | user_prompt, context, active_kbs | response_text, kb_mutations, direct_data | env_ops, grant_consumption, session_changes | All below |
+| kb_engine | composite | operational | op_type, kb_path, fact_or_query | query_results, success | fact_assert, fact_retract, mutation_log | scope_resolver, fact_store, rule_engine |
+| prolog_engine | pure | operational | query, in_scope_kbs | bindings, success_or_fail | none | unifier, backtracker, cut_handler |
+| primitive_executor | composite | operational | primitive_id, resolved_args | result | per_primitive_declared | pure_dispatch, op_dispatch, type_checker |
+| environment_manager | composite | operational | env_id, op, args, grant | exec_result, exit_code | process, file, network, grant_dec, exec_log | docker_mgr, vm_mgr, ssh_mgr, local_mgr |
+| session_manager | composite | operational | operation, session_name | session_state | capture, restore, clear, clone, kill | snapshot_engine, clone_manager, reset_handler |
+| command_token_parser | pure | operational | raw_token_stream | parsed_commands, text_segments | none | tokenizer, path_resolver, arg_resolver |
+| path_registry | operational | operational | dotted_path | integer_id | id_assigned_if_new | path_store, slot_registry |
+| grant_verifier | pure | operational | operation, location, user | authorized_or_denied | grant_use_decremented | grant_store, hierarchy_walker |
+| constraint_checker | pure | operational | constraint_set | violations_list | none | evaluator, reporter |
+| inference_orchestrator | composite | operational | notebook_path, problem | conclusion, confidence | kb_asserts, rules_written, evidence_stored | loop_engine, mode_selector, budget_manager |
+
+### A.2 IOSE Property Definitions
+
+| Property | Meaning | Verification Method | Applies To |
+|----------|---------|-------------------|-----------|
+| pure | No side effects whatsoever | Run twice, compare system state | Pure primitives |
+| deterministic | Same inputs always produce same outputs | Run N times, compare outputs | All pure, most operational |
+| bounded | Terminates in time proportional to input size | Analysis or empirical bound | All pure (required) |
+| idempotent | f(f(x)) = f(x) | Apply twice, compare | session_restore, bitset_set, etc. |
+| commutative | f(a,b) = f(b,a) | Swap args, compare | vdr_add, vdr_mul, set_union |
+| associative | f(f(a,b),c) = f(a,f(b,c)) | Group differently, compare | vdr_add, vdr_mul, list_concat |
+| invertible | There exists g such that g(f(x)) = x | Apply inverse, compare | vdr_neg, mat_transpose |
+| partial | May fail on some valid-typed inputs | Test failure cases | vdr_div (zero), dict_get (missing key) |
+| lossless | No information lost in transformation | Roundtrip test | integer→fraction, cf roundtrip |
+| lossy | Information may be lost | Compare with source | fraction→decimal display |
+
+### A.3 IOSE Side Effect Taxonomy
+
+| Side Effect | Category | Reversible | Logged | Requires Grant |
+|------------|----------|-----------|--------|---------------|
+| kb_fact_added | KB state | Yes (retract) | Yes | No (scoped by permissions) |
+| kb_fact_removed | KB state | Yes (re-assert) | Yes | No (scoped by permissions) |
+| mutation_logged | KB metadata | No (append-only) | Inherent | No |
+| scope_changed | Context state | Yes (switch back) | Yes | No |
+| constraint_added | KB state | Yes (remove) | Yes | No |
+| constraint_removed | KB state | Yes (re-add) | Yes | No |
+| constraint_activated | KB state | Yes (suspend) | Yes | No |
+| constraint_suspended | KB state | Yes (activate) | Yes | No |
+| primitive_created | KB live state | Yes (destroy) | Yes | No |
+| counter_mutated | KB live state | Depends (set=yes, inc=no) | Yes | No |
+| lru_entry_added | KB live state | Yes (evict) | Yes | No |
+| queue_mutated | KB live state | No (pop is destructive) | Yes | No |
+| stack_mutated | KB live state | No (pop is destructive) | Yes | No |
+| ring_mutated | KB live state | No (overwrite is destructive) | Yes | No |
+| lock_state_changed | KB live state | Yes (acquire/release) | Yes | No |
+| bitset_mutated | KB live state | Yes (set/clear) | Yes | No |
+| live_state_captured | Session | No (read-only capture) | Yes | No |
+| live_state_overwritten | Session | Yes (restore different) | Yes | No |
+| live_state_cleared | Session | Yes (restore from snapshot) | Yes | No |
+| clone_created | Session | Yes (kill) | Yes | No |
+| clone_destroyed | Session | No | Yes | No |
+| file_accessed | Filesystem | No | Yes | Yes (read grant) |
+| file_created_or_overwritten | Filesystem | Partial (delete) | Yes | Yes (write grant) |
+| file_appended | Filesystem | No | Yes | Yes (write grant) |
+| directory_created | Filesystem | Yes (delete) | Yes | Yes (write grant) |
+| file_or_directory_removed | Filesystem | No | Yes | Yes (delete grant) |
+| file_moved | Filesystem | Yes (move back) | Yes | Yes (write grant) |
+| file_copied | Filesystem | Yes (delete copy) | Yes | Yes (write grant) |
+| cpu_used | Computation | No | Yes | Yes (compile/execute grant) |
+| process_created | Process | Yes (kill) | Yes | Yes (process grant) |
+| process_terminated | Process | No | Yes | Yes (process grant) |
+| network_request | Network | No | Yes | Yes (network grant) |
+| grant_use_decremented | Authorization | No | Yes | Inherent |
+| execution_logged | Audit | No (append-only) | Inherent | No |
+| mount_created | Path structure | Yes (unmount) | Yes | Conditional (read_write needs grant) |
+| mount_removed | Path structure | Yes (re-mount) | Yes | No |
+| connection_added | KB structure | Yes (remove) | Yes | No |
+| connection_removed | KB structure | Yes (re-add) | Yes | No |
+| id_assigned | Path registry | No (permanent) | Yes | No |
+
+---
+
+## Appendix B: Operational Principle Cross-Reference Matrix
+
+### B.1 Principles Applied by System Phase
+
+| Principle | Prompt-Time | Inference (VDR-9) | Training (VDR-7) | Deployment | Monitoring | Session Mgmt |
+|-----------|------------|-------------------|-------------------|-----------|-----------|-------------|
+| Control is foundation | ✓ KB read before respond | ✓ Evidence gathering | ✓ Loss/gradient tracking | ✓ Health checks | ✓ Metric collection | ✓ State capture |
+| Knowability spectrum | ✓ Source trust for answers | ✓ Evidence confidence | ✓ Data source ratings | ✓ Metric reliability | ✓ Staleness tracking | — |
+| 90/9/0.9 priorities | ✓ Correctness over speed | ✓ Exact over approximate | ✓ Quality over speed | ✓ Safety over throughput | ✓ Alert priority | — |
+| Personal vs hearsay | ✓ Verify user claims | ✓ Chain confidence | ✓ Source verification | ✓ Health check verify | ✓ Cross-source verify | — |
+| Data primacy | ✓ KB facts over LLM memory | ✓ Evidence over rules | ✓ Data quality first | ✓ Config as data | ✓ Metrics as data | ✓ State as data |
+| Comprehensive | ✓ Complete KB scope | ✓ Evidence dimensions | ✓ Corpus coverage | ✓ Eval suite complete | ✓ Metric coverage | ✓ Full state capture |
+| Idempotency | — | ✓ Evidence re-assertion | ✓ Checkpoint restore | ✓ Rollback | — | ✓ Session restore |
+| One way to do it | ✓ Canonical KB ops | ✓ Canonical tool chain | ✓ Canonical training loop | ✓ Canonical deploy | ✓ Canonical alerting | ✓ Canonical snapshot |
+| Ops vs app logic | ✓ KB engine = ops | ✓ Prolog = ops, Python = app | ✓ Loop = ops, forward = app | ✓ Serving = ops | ✓ Collection = ops | ✓ Manager = ops |
+| Control vs understanding model | ✓ KB over context window | ✓ KB over LLM memory | ✓ Checkpoint over estimate | ✓ Config KB over assumption | ✓ Prometheus over guess | ✓ Snapshot over recall |
+| Knowing the present | — | ✓ Evidence freshness | ✓ Metric lag awareness | ✓ Health check lag | ✓ All data aged | — |
+| Population stats | — | ✓ Confidence is population | ✓ Denom growth is population | — | ✓ Error rates are population | ✓ Drift thresholds are population |
+| Force multiplier | — | ✓ Overconfidence check | ✓ Verify before automate | ✓ Canary before full | ✓ Auto-rollback risk | ✓ Verify snapshot before clone |
+| Aggregated danger | ✓ No orphan KBs | ✓ Notebook has goal first | ✓ Corpus categories first | ✓ Eval before deploy | — | — |
+| No logic in data store | ✓ KB stores facts not procs | ✓ Rules are data | ✓ Config is data | ✓ Deploy config is data | ✓ Alert rules are data | — |
+
+### B.2 Principle Conflict Resolution
+
+| Conflict | Principle A | Principle B | Resolution | Example |
+|----------|-----------|-----------|-----------|---------|
+| Speed vs correctness | Correctness (90) | Speed (0.9) | Correctness wins by 100x | Take extra query to verify rather than guess |
+| Exact vs fast | Exact evidence (90) | Fast approximate (9) | Exact wins by 10x | Use VDR computation over LLM estimate |
+| Comprehensive vs available | Define whole first (90) | Ship what exists (9) | Define whole, ship incrementally | Spec all 448 builtins, implement in phases |
+| Verify vs deploy | Verify snapshot (90) | Deploy clone quickly (9) | Verify first | Run tests on stable operator before cloning |
+| Data quality vs volume | Quality (90) | Quantity (9) | Quality wins by 10x | Filter low-quality sources even if corpus shrinks |
+| Freshness vs availability | Fresh evidence (high) | Stale but available (low) | Refresh if budget allows, warn if not | Re-query Prometheus if data older than threshold |
+| One way vs flexibility | Canonical method (high) | Custom approach (lower) | Canonical unless 10x advantage | Use kb_assert not direct manipulation |
+
+### B.3 Principle Encoding Statistics
+
+| Encoding Type | Count | Examples |
+|--------------|-------|---------|
+| Axioms (non-negotiable) | 15 | control_is_foundation, data_primary_over_logic, all_data_is_aged |
+| Facts (knowability levels, source mappings) | ~80 | knowability_level(fully_knowable, 1/1, ...), source_knowability(prometheus_live, controlled_with_lag) |
+| Rules (decision procedures) | ~60 | evidence_cascade, priority_winner, should_verify, arithmetic_dispatch |
+| Constraints (enforceable) | 21 | source_must_have_knowability, no_overconfident_conclusions, one_canonical_method |
+| **Total Prolog terms in root.system.oso** | **~176** | |
+
+---
+
+## Appendix C: Number Type Conversion Matrix
+
+### C.1 All Type-to-Type Conversions
+
+| From → To | Method | Lossless? | Error Bound | Builtin | Notes |
+|-----------|--------|-----------|-------------|---------|-------|
+| integer → vdr_fraction | [N, 1, 0] | Yes | 0 | vdr_from_integer | Free promotion |
+| integer → qbasis | [N * 2^k, 2^k, 0] | Yes | 0 | implicit | Integer times shared denominator |
+| integer → decimal_display | str(N) | Yes | 0 | to_string | Integers display exactly |
+| vdr_fraction → integer | floor/ceil/round/trunc | No (unless D=1) | up to 1 | vdr_floor etc. | Check vdr_is_integer first |
+| vdr_fraction → decimal_display | long division to N digits | No | ≤ 5 × 10^(-N-1) | vdr_to_decimal_string | Lossy display, source retained |
+| vdr_fraction → qbasis | round(V/D × 2^k) | No | ≤ 2^(-k-1) | vdr_reproject_qbasis | Bounded, declared |
+| vdr_fraction → continued_fraction | Euclidean algorithm | Yes (rationals) | 0 | vdr_to_continued_fraction | Lossless for rationals |
+| qbasis → vdr_fraction | [p, 2^k, 0] | Yes | 0 | qbasis_to_fraction | qbasis IS a fraction |
+| qbasis → integer | round(p / 2^k) | No | ≤ 0.5 | vdr_round(qbasis_to_fraction(...)) | Composed |
+| qbasis → decimal_display | via fraction | No | bounded by fraction→decimal | composed | Two-step |
+| functional_remainder → vdr_fraction | resolve(fn, depth) | Yes (at depth) | 0 (result is exact at that depth) | fn_resolve | Not an approximation — exact at depth |
+| decimal_string → vdr_fraction | parse "3.14" → [314, 100, 0] | Yes (terminating) | 0 for terminating | vdr_from_decimal_string | Conversion boundary entry point |
+| ratio_string → vdr_fraction | parse "3/7" → [3, 7, 0] | Yes | 0 | vdr_from_ratio_string | Exact |
+| continued_fraction → vdr_fraction | evaluate CF | Yes | 0 | vdr_from_continued_fraction | Exact |
+| vdr_fraction → egyptian | greedy algorithm | Yes | 0 (sum recovers original) | vdr_to_egyptian | Lossless decomposition |
+| vdr_fraction → mixed | integer part + proper fraction | Yes | 0 | vdr_to_mixed | Lossless |
+
+### C.2 Conversion Boundary Logging Format
+
+```
+ConversionBoundaryFact = struct {
+    source_type: Text,              // "decimal_string", "prometheus_float", etc.
+    target_type: Text,              // "vdr_fraction"
+    original_representation: Text,  // "4237.5" as string
+    converted_value: vdr_fraction,  // [8475, 2, 0]
+    method: Text,                   // "decimal_string_to_fraction"
+    max_error: vdr_fraction,        // [0, 1, 0] for terminating decimals
+    turn: integer,
+    notebook: Text,                 // inference notebook path if applicable
+};
+```
+
+### C.3 External Data Source to VDR Conversion Paths
+
+| External Source | Raw Format | Parse Step | Convert Step | Final VDR Type | Chain Length |
+|----------------|-----------|-----------|-------------|---------------|-------------|
+| Prometheus metric | JSON float string | parse_json → dict_get | vdr_from_decimal_string | vdr_fraction (closed) | 6 links |
+| REST API numeric | JSON number string | parse_json → dict_get | vdr_from_decimal_string | vdr_fraction (closed) | 5 links |
+| CSV cell | delimiter-separated string | parse_csv → list_nth | vdr_from_decimal_string | vdr_fraction (closed) | 4 links |
+| Database integer | integer | — | vdr_from_integer | vdr_fraction [N,1,0] | 2 links |
+| Database decimal | decimal string | — | vdr_from_decimal_string | vdr_fraction (closed) | 3 links |
+| User typed "3/7" | ratio string | — | vdr_from_ratio_string | vdr_fraction [3,7,0] | 2 links |
+| User typed "0.5" | decimal string | — | vdr_from_decimal_string | vdr_fraction [1,2,0] | 2 links |
+| Q335 constant lookup | name string | — | qbasis_get_constant | qbasis [p, 2^335, 0] | 1 link |
+| Newton sqrt(2) | depth integer | — | fn_sqrt(2, depth) | vdr_fraction (exact at depth) | 1 link |
+
+---
+
+## Appendix D: VDR Arithmetic Invariant Test Matrix
+
+### D.1 Closed Arithmetic Invariants
+
+| Invariant | Test Method | VDR-1 Tests | VDR-2 Tests | Total Passing | Expected |
+|-----------|-----------|-------------|-------------|--------------|----------|
+| a + 0 = a | Random a, verify | 10 | 20 | 30 | 30 |
+| a * 1 = a | Random a, verify | 10 | 20 | 30 | 30 |
+| a + (-a) = 0 | Random a, verify | 10 | 20 | 30 | 30 |
+| a * (1/a) = 1 | Random nonzero a, verify | 10 | 20 | 30 | 30 |
+| a + b = b + a | Random a, b, verify | 10 | 20 | 30 | 30 |
+| a * b = b * a | Random a, b, verify | 10 | 20 | 30 | 30 |
+| (a+b)+c = a+(b+c) | Random a, b, c, verify | 10 | 20 | 30 | 30 |
+| (a*b)*c = a*(b*c) | Random a, b, c, verify | 10 | 20 | 30 | 30 |
+| a*(b+c) = a*b+a*c | Random a, b, c, verify | 10 | 20 | 30 | 30 |
+| 200-op roundtrip = 0 drift | Start 1/7, step 1/13 | 1 | 1 | 2 | 2 |
+| 2000-op roundtrip = 0 drift | Start 1/7, step 1/13 | — | 1 | 1 | 1 |
+| Hilbert 3×3 inv exact | M*inv(M)=I | 1 | 1 | 2 | 2 |
+| Hilbert 4×4 inv exact | M*inv(M)=I | 1 | 1 | 2 | 2 |
+| Hilbert 5×5 inv exact | M*inv(M)=I | — | 1 | 1 | 1 |
+| inv(inv(M)) = M | Random M | 1 | 5 | 6 | 6 |
+| det(I) = 1 | Various sizes | 3 | 5 | 8 | 8 |
+| det(A*B) = det(A)*det(B) | Random A, B | — | 5 | 5 | 5 |
+
+### D.2 Active Arithmetic Invariants
+
+| Invariant | Test Method | Verified In | Status |
+|-----------|-----------|-------------|--------|
+| Active add preserves exact remainder structure | Construct known active, add, inspect R | VDR-1 | Passing |
+| Lift composition: lift(lift(R,a),b) = lift(R,a*b) | Random R, a, b | VDR-1 | Passing |
+| Lift identity: lift(R, 1) = R | Random R | VDR-1 | Passing |
+| Lift negation: lift(R, -1) = -R | Random R | VDR-1 | Passing |
+| Rebase preserves value: Pi(rebase(x, B)) = Pi(x) | Random x, B | VDR-1 | Passing |
+| Same-D rebase is identity | x with denominator D, rebase to D | VDR-1 | Passing |
+| Active neg: -(-x) = x | Random active x | VDR-1 | Passing |
+| Active add commutative | Random active a, b | VDR-1 | Passing |
+
+### D.3 Normalization Invariants
+
+| Invariant | Test Method | Verified | Status |
+|-----------|-----------|----------|--------|
+| Idempotent: normalize(normalize(x)) = normalize(x) | Random x of all types | VDR-1 | Passing |
+| Structural equality after normalization implies value equality | Random pairs | VDR-1 | Passing |
+| Value-equal objects normalize to structurally equal | [1,2,0] and [2,4,0] | VDR-1 | Passing |
+| Sign convention: D always positive after normalization | Random with negative D | VDR-1 | Passing |
+| GCD reduction: gcd(V,D) = 1 for closed normalized | Random closed | VDR-1 | Passing |
+| No zero-sum children after normalization | Construct, normalize | VDR-1 | Passing |
+| Children sorted by denominator magnitude | Construct, normalize, inspect | VDR-1 | Passing |
+
+---
+
+## Appendix E: VDR Gym Results Mapped to Builtins
+
+### E.1 Which Builtins Each Gym Domain Exercises
+
+| Gym | Domain | Primary Builtins Used | Secondary Builtins | Tests |
+|-----|--------|----------------------|-------------------|-------|
+| 01 | Number theory | vdr_gcd, vdr_lcm, vdr_mod, vdr_euler_totient, vdr_harmonic_sum | vdr_add, vdr_div, vdr_binomial | 37 |
+| 02 | Polynomial algebra | poly_eval, poly_add, poly_mul, poly_div, poly_gcd, poly_lagrange | vdr_mul, vdr_add, vdr_pow | 23 |
+| 03 | Continued fractions | vdr_to_continued_fraction, vdr_from_continued_fraction | vdr_floor, vdr_sub, vdr_reciprocal | 31 |
+| 04 | Matrix decomposition | vdr_mat_mul, vdr_mat_inv, vdr_mat_det, vdr_mat_solve, vdr_mat_pow | vdr_vec_dot, vdr_mat_transpose | 13 |
+| 05 | Recursive sequences | vdr_fibonacci, vdr_add, vdr_mul, vdr_pow | vdr_sub, vdr_binomial | 15 |
+| 06 | Combinatorics | vdr_binomial, vdr_factorial, vdr_sum | vdr_mul, vdr_div, int_pow | 31 |
+| 07 | Signal processing | vdr_dot_product, vdr_mat_matvec, vdr_sum | vdr_mul, vdr_add | 11 |
+| 08 | Computational geometry | vdr_vec_sub, vdr_vec_dot, vdr_mat_det | vdr_div, vdr_compare | 19 |
+| 09 | Differential equations | vdr_discrete_derivative, vdr_left_riemann, vdr_trapezoidal | vdr_add, vdr_mul, vdr_div, fn_exp | 10 |
+| 10 | Optimization | fn_sqrt, vdr_discrete_derivative | vdr_sub, vdr_div, vdr_compare | 8 |
+| 11 | Probability | vdr_prob_bayes, vdr_prob_normalize, vdr_prob_expected, markov_steady_state | vdr_mat_solve, vdr_sum, vdr_binomial | 13 |
+| 12 | Cryptographic primitives | vdr_mod_pow, vdr_mod_inv, vdr_extended_gcd, vdr_chinese_remainder | gf_add, gf_mul, gf_inv | 37 |
+| 13 | Symbolic algebra | poly_derivative, poly_integral, poly_eval, vdr_sum | vdr_pow, vdr_mul, vdr_div | 20 |
+| 14 | Fixed-point iteration | fn_sqrt, vdr_compare, vdr_abs | vdr_sub, vdr_div | partial |
+| 15 | Chaos and sensitivity | vdr_mul, vdr_mod, vdr_abs | vdr_sub, vdr_denominator | partial |
+| 16 | Graph theory | vdr_mat_mul, vdr_mat_pow, pagerank_exact, vdr_compare | vdr_add, vdr_min | 20 |
+| 17 | Game theory | vdr_mat_solve, vdr_prob_normalize | vdr_sub, vdr_div, vdr_compare | 24 |
+| 18 | Coding theory | gf_add, gf_mul, gf_inv, gf_pow | vdr_mod, int_mod | 27 |
+| 19 | Algebraic topology | vdr_mat_mul, vdr_mat_rank | vdr_mat_add, vdr_mat_scale | 16 |
+| 20 | Tropical/lattice | vdr_min, vdr_mat_mul (min-plus), vdr_mat_gram_schmidt | vdr_vec_dot, vdr_compare | 23 |
+| 21 | Control theory | vdr_mat_pow, vdr_mat_det, vdr_mat_mul | vdr_mat_matvec, poly_eval | 13 |
+| 22 | Wavelets | vdr_vec_add, vdr_vec_sub, vdr_vec_scale, vdr_mat_mul | vdr_mat_inv, vdr_dot_product | 18 |
+| 23 | Q335 transcendentals | qbasis_add, qbasis_sub, qbasis_mul, qbasis_scalar_mul | vdr_add, vdr_mul, fn_exp | 16 |
+
+### E.2 Builtin Coverage by Gym Tests
+
+| Builtin Category | Gyms Exercising | Total Tests | Coverage Level |
+|-----------------|----------------|-------------|---------------|
+| VDR closed arithmetic | All 23 | 507 | Complete |
+| VDR active arithmetic | 01, 05, 14, 15 | ~50 | Moderate |
+| Lift and rebase | 03, 14 | ~20 | Light |
+| Comparison | All 23 | 507 | Complete |
+| Number theory | 01, 06, 12 | 105 | Heavy |
+| Q-basis | 23 | 16 | Light |
+| Functional remainder | 09, 10, 14 | ~25 | Moderate |
+| Discrete calculus | 09 | 10 | Light |
+| Linear algebra | 04, 07, 08, 16-22 | ~150 | Heavy |
+| Probability/statistics | 11, 17 | 37 | Moderate |
+| Polynomial | 02, 13, 21 | ~55 | Moderate |
+| Finite field | 18 | 27 | Focused |
+| Markov | 11, 21 | ~15 | Light |
+| Integer fast path | 01, 06, 12, 18 | ~80 | Moderate |
+
+---
+
+## Appendix F: Denominator Growth Reference
+
+### F.1 Growth by Operation Type
+
+| Operation | Input Denom Sizes | Output Denom Size | Growth Factor | Notes |
+|-----------|------------------|-------------------|---------------|-------|
+| Closed addition (a/b + c/d) | b, d | b × d (before GCD) | Up to b × d | GCD reduction may shrink |
+| Closed multiplication (a/b × c/d) | b, d | b × d (before GCD) | Up to b × d | GCD reduction may shrink |
+| Closed division (a/b ÷ c/d) | b, d | b × c (before GCD) | Up to b × c | Uses numerator of divisor |
+| Active addition (same D) | D | D | 1 (no growth) | Best case |
+| Active addition (diff D) | D₁, D₂ | D₁ × D₂ | Up to D₁ × D₂ | Frame expansion |
+| Active multiplication | D₁, D₂ | D₁ × D₂ | Up to D₁ × D₂ | Plus remainder growth |
+| Matrix multiplication (n×n) | D_max | D_max^(2n) worst case | Exponential in dimension | GCD helps in practice |
+| Softmax (Taylor depth N) | D_logits | (N!)^len × D_logits | Very large | Q-basis reprojection recommended |
+| SGD update (1 step) | D_param, D_lr, D_grad | D_param × D_lr × D_grad | Triple product | Reprojection at checkpoints |
+
+### F.2 Denominator Growth During Training (Empirical Estimates)
+
+| Training Phase | Steps | Typical Denom Bits | After Reprojection | Notes |
+|---------------|-------|-------------------|-------------------|-------|
+| Initialization (Xavier) | 0 | 10-15 | — | Small from initialization |
+| Early training | 1-1000 | 15-25 | — | Linear growth |
+| Mid training | 1000-10000 | 25-40 | 35 (at checkpoint) | Reprojection resets |
+| Late training | 10000-50000 | 35-50 | 35 (at each checkpoint) | Stable with reprojection |
+| Fine-tuning (small LR) | +5000 | 25-35 | — | Slow growth |
+| RLHF/DPO | variable | 30-45 | monitor closely | Reward signal can spike growth |
+
+### F.3 Reprojection Error Bounds
+
+| Q-basis Exponent K | Precision (decimal digits) | Error Bound | Relative to Planck Length | Sufficient For |
+|--------------------|--------------------------|-----------|-----------------------------|---------------|
+| 53 | ~16 | 2^(-54) ≈ 5.6 × 10^(-17) | 10^(-18) larger than Planck | Float64 equivalent |
+| 100 | ~30 | 2^(-101) ≈ 3.9 × 10^(-31) | 10^4 smaller than Planck | Scientific computation |
+| 200 | ~60 | 2^(-201) | 10^34 smaller than Planck | High-precision research |
+| 335 | ~100 | 2^(-336) | 10^66 smaller than Planck | Q335 standard basis |
+| 668 | ~200 | 2^(-669) | 10^168 smaller than Planck | Q335 multiplication products |
+
+---
+
+## Appendix G: Builtin Dependency Graph
+
+### G.1 Which Builtins Depend on Which
+
+| Builtin | Depends On | Used By |
+|---------|-----------|---------|
+| vdr_add | (foundational) | vdr_sum, vdr_mean, stat_variance, vec_add, mat_add, poly_add, discrete_derivative, left_riemann |
+| vdr_mul | (foundational) | vdr_product, vdr_pow, vec_scale, vec_dot, mat_mul, mat_scale, poly_mul, softmax, prob_joint |
+| vdr_div | (foundational) | vdr_mean, vdr_reciprocal, prob_bayes, prob_normalize, discrete_derivative, stat_variance |
+| vdr_neg | (foundational) | vdr_sub, vec_neg, mat subtraction |
+| vdr_sub | vdr_add, vdr_neg | stat_variance, vec_sub, discrete_derivative |
+| vdr_pow | vdr_mul | fn_exp (Taylor), poly_eval (Horner), vdr_mod_pow, mat_pow |
+| vdr_reciprocal | vdr_div | active_div_by_closed, prob_normalize |
+| vdr_gcd | (foundational integer) | vdr_simplify, vdr_lcm, vdr_extended_gcd, vdr_mod_inv |
+| vdr_simplify | vdr_gcd | All arithmetic (normalization) |
+| vdr_compare | vdr_mul (cross-multiply) | vdr_min, vdr_max, list_sort (on fractions), vdr_less_than |
+| vdr_lift | (structure op) | active_add_diff_d, vdr_rebase |
+| vdr_rebase | vdr_lift, vdr_mod | vdr_reproject_qbasis |
+| fn_resolve | (functional op) | fn_sqrt, fn_exp, fn_log, fn_sin, fn_cos, vdr_scalar_projection (on functional R) |
+| fn_exp | vdr_pow, vdr_div, vdr_factorial | vdr_softmax, prob_entropy_terms |
+| vdr_mat_det | vdr_mul, vdr_sub | vdr_mat_inv, vdr_mat_solve, vdr_mat_rank |
+| vdr_mat_inv | vdr_mat_det | vdr_mat_solve (alternative), vdr_mat_gram_schmidt |
+| vdr_mat_mul | vdr_vec_dot | vdr_mat_pow, adjacency_matrix_power, markov_n_steps |
+| vdr_mat_solve | vdr_mat_det | markov_steady_state, pagerank_exact |
+| poly_eval | vdr_mul, vdr_add | poly_lagrange (evaluation check) |
+| vdr_prob_normalize | vdr_sum, vdr_div | vdr_softmax, vdr_prob_conditional, markov_steady_state |
+| vdr_softmax | fn_exp, vdr_prob_normalize | VDR-4 transformer forward pass |
+| qbasis_add | int_add | (standalone for same-exponent) |
+| qbasis_mul | int_mul, bit_shift_right | (requires reprojection for result) |
+
+### G.2 Foundational Builtins (No Dependencies)
+
+| Builtin | Category | Why Foundational |
+|---------|----------|-----------------|
+| vdr_add | closed arithmetic | All arithmetic builds on addition |
+| vdr_mul | closed arithmetic | Multiplication is independent of addition |
+| vdr_neg | closed arithmetic | Negation is structural |
+| vdr_gcd | number theory | GCD is the normalization engine |
+| vdr_compare | comparison | Ordering via cross-multiplication |
+| vdr_lift | structure | Remainder transport |
+| int_add | integer fast path | Integer addition |
+| int_mul | integer fast path | Integer multiplication |
+| bit_and | bit ops | Bitwise foundational |
+
+These must be implemented first. Everything else composes from them.
+
+---
+
+## Appendix H: IOSE Validation Test Plan
+
+### H.1 Type Compatibility Tests
+
+| Test | Chain | Check | Expected |
+|------|-------|-------|----------|
+| Integer→VDR arithmetic | int_add → vdr_add | Output type of int_add (integer) promotes to vdr_fraction input | Pass (lossless promotion) |
+| VDR→list sort | vdr_add → list_sort | List of vdr_fractions as input to list_sort | Pass (list(vdr_fraction) is list) |
+| String→VDR | string_split → vdr_from_decimal_string | String atoms to fraction conversion | Pass (atom → vdr_fraction) |
+| Incompatible | vdr_add → string_length | VDR fraction output → string input | Fail (type mismatch detected) |
+| Incompatible | lock_check → vdr_mat_mul | Boolean output → matrix input | Fail (type mismatch detected) |
+| JSON→VDR chain | parse_json → dict_get → vdr_from_decimal_string | Full Prometheus integration path | Pass |
+| Multi-step inference | net_fetch → parse_json → list_map(to_fraction) → stat_mean → kb_assert | Full evidence pipeline | Pass |
+
+### H.2 Side Effect Preview Tests
+
+| Chain | Expected Side Effects | Grant Required |
+|-------|---------------------|---------------|
+| [kb_assert, kb_assert, counter_inc] | [kb_fact_added ×2, mutation_logged ×2, counter_mutated ×1] | No |
+| [net_fetch, parse_json, vdr_from_decimal_string] | [network_request ×1] | Yes (network) |
+| [fs_read, parse_csv, list_sort] | [file_accessed ×1] | Yes (filesystem read) |
+| [env_exec, store_result, kb_assert] | [arbitrary_side_effects ×1, kb_fact_added ×1] | Yes (execute) |
+| [vdr_add, vdr_mul, vdr_compare] | [] (empty — all pure) | No |
+
+### H.3 Contract Verification Tests
+
+| Component | Declared Output | Actual Output | Declared SE | Actual SE | Verdict |
+|-----------|----------------|---------------|-------------|----------|---------|
+| vdr_add([1,2,0], [1,3,0]) | vdr_fraction | [5,6,0] | [] | [] | Contract satisfied |
+| kb_assert(fact) | void | void | [kb_fact_added] | [kb_fact_added, mutation_logged] | mutation_logged is sub-effect of kb_fact_added — OK |
+| net_fetch(url) without grant | exec_result | — | [network_request] | denied_before_execution | Grant check prevents execution — correct |
+
+---
+
+## Appendix I: Numeric Builtin Count Reconciliation
+
+### I.1 From VDR-6 to VDR-10
+
+| Category | VDR-6 Count | VDR-10 Count | Delta | New Builtins Added |
+|----------|-------------|-------------|-------|-------------------|
+| Basic arithmetic | 26 | 8 closed + 5 active + 3 structure = 16 | -10 | Active arithmetic, lift, rebase, projection split out |
+| Comparison | (included in 26) | 10 | +10 | Dedicated comparison category |
+| Rounding/extraction | (included in 26) | 11 | +11 | Dedicated rounding, extraction, state queries |
+| Number theory | (included in 26) | 13 | +13 | gcd, lcm, mod, mod_pow, mod_inv, ext_gcd, prime test, totient, CRT |
+| List aggregates | (included in 26) | 8 | +8 | sum, product, mean, weighted_sum, dot, sum_sq, harmonic, alternating |
+| Q-basis | 0 | 7 | +7 | Full MATH-4 constant operations |
+| Functional remainder | 0 | 8 | +8 | sqrt, exp, log, sin, cos, resolve, make_newton, make_series |
+| Discrete calculus | 0 | 6 | +6 | derivative, nth derivative, Riemann, trapezoidal, finite diff, Richardson |
+| Linear algebra | 16 | 24 | +8 | vec_new, vec_dim, vec_get, vec_neg, mat_new, mat_dims, mat_get, mat_pow, gram_schmidt |
+| Statistics/probability | 16 | 16 | 0 | Unchanged |
+| Conversion boundaries | 0 | 11 | +11 | from_integer, from_decimal, from_ratio, to_decimal, to_percentage, to_scientific, to_mixed, to/from CF, to_egyptian, format_fraction |
+| Polynomial | 0 | 8 | +8 | eval, add, mul, div, gcd, derivative, integral, Lagrange |
+| Finite field | 0 | 4 | +4 | GF(p) add, mul, inv, pow |
+| Markov | 0 | 3 | +3 | steady_state, step, n_steps |
+| Graph math | 0 | 2 | +2 | adjacency power, pagerank_exact |
+| Integer fast path | 0 | 13 | +13 | Fast integer ops bypassing denominator |
+| Bit operations | 0 | 8 | +8 | AND, OR, XOR, NOT, shifts, popcount, bit_width |
+| Denominator management | 0 | 5 | +5 | denom_bits, denom_digits, reproject, budget_check, precision_state |
+| **Numeric total** | **58** | **173** | **+115** | |
+
+### I.2 Full System Builtin Count
+
+| Category Group | VDR-6 Count | VDR-10 Count | Source |
+|---------------|-------------|-------------|--------|
+| Text | 17 | 17 | Unchanged from VDR-6 |
+| Collections | 34→36 | 36 | Minor additions in VDR-8 |
+| Numeric (all) | 58 | 173 | This paper |
+| Sets | 14 | 14 | Unchanged |
+| Mappings | 15 | 15 | Unchanged |
+| Conversion/formatting (non-numeric) | 14 | 14 | Unchanged |
+| Time | 10 | 10 | Unchanged |
+| Identity | 8 | 8 | Unchanged |
+| Graphs | 13 | 13 | Unchanged |
+| Logic/Control | 11 | 11 | Unchanged |
+| KB Operations | 15 | 15 | Unchanged |
+| Data Primitives | 53 | 53 | From VDR-8 |
+| Path/Mount | 17 | 17 | From VDR-8 |
+| Session | 8 | 8 | From VDR-8 |
+| Filesystem | 15 | 15 | Unchanged |
+| Compilation | 4 | 4 | Unchanged |
+| Execution | 5 | 5 | Unchanged |
+| Linting | 8 | 8 | Unchanged |
+| Network | 5 | 5 | Unchanged |
+| Process | 7 | 7 | Unchanged |
+| **Grand total** | **333** | **448** | **+115 numeric** |
+
+### I.3 Primitive Classification Summary
+
+| Classification | Count | Percentage |
+|---------------|-------|-----------|
+| Pure, deterministic, bounded | 392 | 87.5% |
+| Pure, deterministic, partial (may fail on some inputs) | 12 | 2.7% |
+| Operational (requires grant) | 44 | 9.8% |
+| **Total** | **448** | **100%** |
+| With idempotent property | 47 | 10.5% |
+| With commutative property | 38 | 8.5% |
+| With associative property | 24 | 5.4% |
+| With invertible property | 14 | 3.1% |
+| With lossless property | 11 | 2.5% |
+
+---
+
+## Appendix J: OSO Concept to VDR-LLM-Prolog Mapping
+
+### J.1 Complete Concept Mapping
+
+| OSO Concept ID | OSO Name | VDR System Manifestation | Implemented In |
+|---------------|----------|-------------------------|---------------|
+| C1 | Operations | System lifecycle management | VDR-7 |
+| C2 | Control | KB observation + primitive agency | VDR-5, VDR-6 |
+| C3 | Automation | Disposable clones, inference loop | VDR-8, VDR-9 |
+| C5 | Real | External world (Prometheus, APIs, files) | VDR-6 operational |
+| C6 | Virtual | KB facts, VDR fractions, Prolog rules | VDR-5, VDR-1 |
+| C7 | Knowability | Source confidence spectrum | This paper §3.3 |
+| C8 | Data | KB facts — fully knowable | VDR-5 |
+| C9 | Logic | Prolog rules, Python scripts — partially knowable | VDR-5, VDR-6 |
+| C11 | System | The VDR-LLM-Prolog system as IOSE network | This paper §2 |
+| C12 | Universal Machine | IOSE node model | This paper §2.2 |
+| C13 | IOSE | Input/Output/Side-Effect interface | This paper §2.2 |
+| C14 | Systemic Thinking | IOSE network modeling | This paper §2.3 |
+| C15 | Philosopher's Knife | Slicing the Pie for builtin categories | This paper §15 |
+| C16 | Slicing the Pie | 25 categories covering the whole space | This paper §15 |
+| C17 | Comprehensive System | Top-down spec, no gaps, no overlaps | This paper §3.7 |
+| C18 | Aggregated System | What to avoid during implementation | This paper §3.7 |
+| C19 | Engineering | Efficient use of resources for desired effect | All papers |
+| C20 | Attribute Axis | Knowability, priority, freshness axes | This paper §3 |
+| C21 | Axiomatic Engineering | 90/9/0.9 priority system | This paper §3.4 |
+| C22 | Alignment | Evaluation-based, requires human judgment | This paper §3.14 |
+| C23 | Internal Consistency | Constraint-based, automated | This paper §3.14 |
+| C24 | Impersonal Decision Making | Priority system produces same decision regardless of decider | This paper §3.4 |
+| C25 | Best (anti) | Avoided — system uses explicit tradeoffs | This paper §3.4 |
+| C26 | Better | Explicit comparison with priorities | This paper §3.4 |
+| C29 | Production Environment | Deployment KB from VDR-7 | VDR-7 Phase 9 |
+| C31 | Operational Logic | KB engine, primitive executor, session manager | This paper §3.10 |
+| C32 | Application Logic | User Python scripts, LLM-generated content | This paper §3.10 |
+| C33 | One Way To Do It | One canonical method per task | This paper §3.9 |
+| C35 | DOS | KB tree as unified system | VDR-5 |
+| C36 | Idempotency | Tagged on every operation | This paper §3.8 |
+| C37 | Modeling | Two model types distinguished | This paper §3.11 |
+| C39 | Model for Control | KB, data primitives, snapshots | This paper §3.11 |
+| C40 | Source of Truth | KB engine, Prometheus, deployment KB | This paper §3.11 |
+| C41 | Knowing the Present | All data is aged; freshness tracking | This paper §3.12 |
+| C42 | Black-Boxing | IOSE composite nodes | This paper §2.4 |
+| C47 | Personal Experience | VDR computation, KB verification | This paper §3.5 |
+| C48 | Hearsay | External data, user claims, LLM generation | This paper §3.5 |
+| C54 | Logic in Data Store (anti) | No stored procedures in KB | This paper §3.6 |
+| C55 | Magical Thinking (anti) | Provenance chain prevents "it just happened" | VDR-9 |
+| C66 | Force Multiplier | Automation amplifies both fixes and failures | This paper §3.14 |
+| R1 | 90/9/0.9 | Priority system for all decisions | This paper §3.4 |
+| R2 | 0-1-Infinity | Architecture scaling rule | Applied in VDR-7 |
+| R3 | Idempotency | Safe re-run of operations | This paper §3.8 |
+| R8 | Data Primacy | KB facts over logic | This paper §3.6 |
+| R12 | Verify Personally | Check before trusting hearsay | This paper §3.5 |
+| R16 | Population Stats Only | Confidence is population prediction | This paper §3.13 |
+
+---
+
+## Appendix K: Implementation Phase Dependencies
+
+### K.1 Phase Dependency Graph
+
+```
+Phase 1 (IOSE registry)
+├── Phase 2 (OSO principles KB)
+├── Phase 3 (Number type hierarchy)
+│   ├── Phase 4 (Closed arithmetic)  [mostly exists]
+│   │   ├── Phase 5 (Active arithmetic)  [mostly exists]
+│   │   ├── Phase 6 (Lift, rebase, comparison)  [mostly exists]
+│   │   ├── Phase 7 (Number theory)
+│   │   ├── Phase 8 (Q-basis)
+│   │   ├── Phase 9 (Functional remainder)
+│   │   ├── Phase 10 (Discrete calculus)
+│   │   ├── Phase 11 (Linear algebra)  [mostly exists]
+│   │   │   ├── Phase 12 (Statistics/probability)  [mostly exists]
+│   │   │   └── Phase 13 (Domain math)
+│   │   ├── Phase 14 (Integer fast path)
+│   │   ├── Phase 15 (Denominator management)
+│   │   └── Phase 16 (Conversion boundaries)
+│   └── Phase 17 (IOSE validation)
+└── Phase 18 (Integration testing)
+```
+
+### K.2 What Already Exists vs What Needs Building
+
+| Phase | Status | Existing Code | New Work Needed |
+|-------|--------|-------------|----------------|
+| 1 | New | — | IOSE registry KB, declaration format, query interface |
+| 2 | New | — | Prolog encoding of all OSO principles |
+| 3 | New | VDR type exists | Dispatch layer, promotion rules, boundary logging |
+| 4 | Exists | vdr.py | Wrap as IOSE-declared builtins |
+| 5 | Exists | active_mul.py | Wrap as IOSE-declared builtins |
+| 6 | Exists | vdr.py (lift, rebase) | Wrap as IOSE-declared builtins |
+| 7 | Partial | GCD in vdr.py | mod_pow, mod_inv, ext_gcd, CRT, primality, totient |
+| 8 | Partial | basis.py (Q335) | Full IOSE-declared operations with error tracking |
+| 9 | Exists | fn.py | Wrap as IOSE-declared builtins, add sin/cos |
+| 10 | Exists | fn.py (discrete calc) | Wrap as IOSE-declared builtins, add Richardson |
+| 11 | Exists | linalg.py | Add mat_pow, gram_schmidt, wrap as IOSE |
+| 12 | Exists | softmax.py + ML stack | Wrap stat builtins as IOSE |
+| 13 | Partial | Gym test code | Extract into reusable builtins |
+| 14 | New | — | Integer fast-path dispatch |
+| 15 | Partial | Denominator tracking in trainer | Formalize as builtins |
+| 16 | New | — | Conversion boundary logging |
+| 17 | New | — | Type checker, SE previewer, contract verifier |
+| 18 | New | 705 existing tests | New IOSE contract tests |
+
+---
+
+## Appendix L: Cumulative System Statistics
+
+### L.1 Complete Paper Series
+
+| Paper | Registry | Central Result |
+|-------|----------|----------------|
+| VDR-1 | @HOWL-VDR-1-2026 | Exact arithmetic in irreducible triple form |
+| VDR-2 | @HOWL-VDR-2-2026 | 15 domains, 282 tests |
+| VDR-3 | @HOWL-VDR-3-2026 | 23 domains, transcendental integration |
+| VDR-4 | @HOWL-VDR-4-2026 | 24-module ML stack, working exact transformer |
+| VDR-5 | @HOWL-VDR-5-2026 | Prolog KB architecture, constraints, scoped knowledge |
+| VDR-6 | @HOWL-VDR-6-2026 | 255 primitives, command tokens, operational environments |
+| VDR-7 | @HOWL-VDR-7-2026 | 12-phase lifecycle, training through retirement |
+| VDR-8 | @HOWL-VDR-8-2026 | Data primitives, dotted paths, session management |
+| VDR-9 | @HOWL-VDR-9-2026 | Orchestrated Inference: structured reasoning through tool composition |
+| **VDR-10** | **@HOWL-VDR-10-2026** | **IOSE system model, operational principles, 448 comprehensive builtins** |
+
+### L.2 System Capability Progression
+
+| Paper | What It Added | Cumulative Capability |
+|-------|-------------|----------------------|
+| VDR-1–4 | Exact arithmetic + ML stack | Can compute exactly |
+| VDR-5 | Knowledge bases, constraints, scoping | Can know and constrain |
+| VDR-6 | Primitives, commands, environments | Can do and execute |
+| VDR-7 | Lifecycle management | Can train, deploy, and retire |
+| VDR-8 | Runtime state, addressing, sessions | Can remember, address, and recover |
+| VDR-9 | Orchestrated Inference | Can investigate, reason, and conclude |
+| **VDR-10** | **IOSE model, engineering principles, full math** | **Can be built, tested, and operated** |
+
+### L.3 Complete Module Count
+
+| Layer | Count | Source |
+|-------|-------|-------|
+| Arithmetic | 5 | VDR-1 |
+| Transcendental | 3 | VDR-4 |
+| ML | 4 | VDR-4 |
+| Infrastructure | 8 | VDR-4 |
+| Architecture | 4 | VDR-4 |
+| Logic/Knowledge | 3 | VDR-5 |
+| Execution | 3 | VDR-6 |
+| Lifecycle | 4 | VDR-7 |
+| Runtime state | 3 | VDR-8 |
+| IOSE and principles | 3 (new) | VDR-10 |
+| **Total** | **40** | |
+
+New VDR-10 modules: `iose_registry.py` (IOSE declaration storage, validation, query), `oso_principles.py` (operational engineering KB loading), `numeric_dispatch.py` (type hierarchy, automatic promotion, fast-path selection).
+
+### L.4 Complete Builtin Count
+
+| Type | Count | Source |
+|------|-------|-------|
+| Pure (non-numeric) | 207 | VDR-6, VDR-8 |
+| Pure (numeric) | 197 | VDR-10 (replaces VDR-6's 58) |
+| Operational | 44 | VDR-6 |
+| **Total** | **448** | |
+
+### L.5 Complete Test Count
+
+| Source | Existing | Planned | Total |
+|--------|---------|---------|-------|
+| VDR-1 through VDR-4 | 705 | — | 705 |
+| VDR-6 non-numeric pure | — | 615 | 615 |
+| VDR-6 operational | — | 132 | 132 |
+| VDR-7 lifecycle | — | 200 | 200 |
+| VDR-8 data primitives | — | 129 | 129 |
+| VDR-8 path/session | — | 75 | 75 |
+| VDR-9 inference | — | 100 | 100 |
+| VDR-10 numeric builtins (3 per builtin × 173) | — | 519 | 519 |
+| VDR-10 IOSE validation | — | 80 | 80 |
+| VDR-10 OSO principle encoding | — | 50 | 50 |
+| VDR-10 integration | — | 60 | 60 |
+| **Total** | **705** | **1960** | **2665** |
+
+### L.6 KB Struct Fields (Final)
+
+| Field | Source | Classification |
+|-------|--------|---------------|
+| name | VDR-5 | Identity |
+| path | VDR-8 | Identity |
+| id | VDR-8 | Identity |
+| facts | VDR-5 | Persistent |
+| rules | VDR-5 | Persistent |
+| constraints | VDR-5 addendum | Persistent |
+| connections | VDR-8 | Persistent |
+| working_data | VDR-5 | Live |
+| lrus | VDR-8 | Live |
+| counters | VDR-8 | Live |
+| locks | VDR-8 | Live |
+| queues | VDR-8 | Live |
+| stacks | VDR-8 | Live |
+| buffers | VDR-8 | Live |
+| bitsets | VDR-8 | Live |
+| parent_id | VDR-5/8 | Structural |
+| children_ids | VDR-5/8 | Structural |
+| mounts | VDR-8 | Structural |
+| visibility | VDR-5 | Metadata |
+| frozen | VDR-5 | Metadata |
+| owner | VDR-5 addendum | Metadata |
+| created_at | VDR-5 | Metadata |
+| last_modified | VDR-5 | Metadata |
+| iose_declaration | VDR-10 | Metadata |
+
+24 fields + 1 new IOSE declaration field = **25 fields total**.
+
+---
+
+**END VDR-10 EXTENDED APPENDIX TABLES**
