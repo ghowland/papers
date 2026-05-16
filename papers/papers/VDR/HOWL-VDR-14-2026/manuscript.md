@@ -1,3 +1,5 @@
+# VDR-LLM-Prolog
+## A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance
 
 **Registry:** [@HOWL-VDR-14-2026]
 
@@ -12,8 +14,6 @@
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6.
 
 ---
-
-# VDR-LLM-Prolog: A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance
 
 ## Abstract
 
