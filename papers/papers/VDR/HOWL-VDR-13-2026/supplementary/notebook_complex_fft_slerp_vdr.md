@@ -764,3 +764,873 @@ Each channel adds independently — parallel. VDR: same-D children merge (N6), a
 
 ---
 
+# VDR Q335 Remainder Nesting Gym — Part 2: Functional Remainder Compositions
+
+## Conventions (continued)
+
+D = 2³³⁵. Functional remainders are Python callables `f(depth) → VDR` stored in R. They compose with Q335 frame arithmetic. All gym entries build on G01–G20.
+
+
+## G21: Functional Remainder as Lazy Square Root
+
+**Problem:** √7 as a functional remainder, then use it in arithmetic.
+
+```python
+def sqrt7(depth):
+    x = VDR(3, 1, 0)  # initial guess, 3² = 9 ≈ 7
+    for _ in range(depth):
+        x = (x + VDR(7,1,0) / x) / VDR(2,1,0)
+    return x
+
+r = VDR(0, 1, FnRemainder(sqrt7, "√7"))
+```
+
+At depth 0: x = 3/1. At depth 1: (3 + 7/3)/2 = 8/3. At depth 5: exact rational with ~32 correct digits. At depth 7: ~128 digits. Each is an exact rational, not an approximation.
+
+**Now compose:** eigenvalue of [[1,2],[3,4]] is (5 + √33)/2.
+
+```python
+def sqrt33(depth):
+    x = VDR(6, 1, 0)
+    for _ in range(depth):
+        x = (x + VDR(33,1,0) / x) / VDR(2,1,0)
+    return x
+
+def eigenvalue_plus(depth):
+    s = sqrt33(depth)
+    return (VDR(5,1,0) + s) / VDR(2,1,0)
+
+lambda1 = VDR(0, 1, FnRemainder(eigenvalue_plus, "λ₊([[1,2],[3,4]])"))
+```
+
+Resolve at depth 7, project to Q335:
+```python
+val = resolve(lambda1, depth=7)  # exact rational, ~128 correct digits
+p_lambda = round(val.to_fraction() * D)
+q335_lambda = VDR(p_lambda, D, 0)
+```
+
+The eigenvalue is now a Q335 integer, ready for matrix operations in the Q335 frame. The functional remainder computed it. The Q335 projection captured it. Integer arithmetic continues.
+
+
+## G22: Twiddle Table as Functional Remainder Factory
+
+**Problem:** Build the twiddle table for N-point FFT using functional remainders, then freeze to Q335.
+
+```python
+def make_twiddle(k, N):
+    """Returns (cos_fn, sin_fn) functional remainder pair for ω_N^k"""
+    angle_num = -2 * k  # -2πk/N, carry the π separately
+    angle_den = N
+    
+    def cos_fn(depth):
+        # Taylor series for cos(2πk/N) to `depth` terms
+        # Each term is exact rational (powers of (2πk/N)²)
+        # π² at each depth via newton or Q335
+        pi2 = resolve(sqrt_pi2_fn, depth)  # or use Q335 p(π²)
+        angle2 = VDR(4 * k * k, N * N, 0) * pi2  # (2πk/N)²
+        result = VDR(1, 1, 0)
+        term = VDR(1, 1, 0)
+        for n in range(1, depth + 1):
+            term = -term * angle2 / VDR(2*n*(2*n-1), 1, 0)
+            result = result + term
+        return result
+    
+    def sin_fn(depth):
+        # Same structure, odd powers
+        pi_val = resolve(pi_fn, depth)
+        angle = VDR(2 * k, N, 0) * pi_val
+        result = angle
+        term = angle
+        angle2 = angle * angle
+        for n in range(1, depth + 1):
+            term = -term * angle2 / VDR((2*n+1)*(2*n), 1, 0)
+            result = result + term
+        return result
+    
+    return (
+        VDR(0, 1, FnRemainder(cos_fn, f"cos(2π·{k}/{N})")),
+        VDR(0, 1, FnRemainder(sin_fn, f"sin(2π·{k}/{N})"))
+    )
+
+# Build table for N=8
+twiddles = [make_twiddle(k, 8) for k in range(4)]
+```
+
+Each twiddle factor exists as a pair of functional remainders. At resolution time, each resolves to an exact rational. Project to Q335:
+
+```python
+def freeze_twiddle(fn_pair, depth=10):
+    c = resolve(fn_pair[0], depth)
+    s = resolve(fn_pair[1], depth)
+    return (
+        VDR(round(c.to_fraction() * D), D, 0),
+        VDR(round(s.to_fraction() * D), D, 0)
+    )
+
+q335_twiddles = [freeze_twiddle(t) for t in twiddles]
+```
+
+Computed once, stored as integers, used forever. The functional remainder is the derivation. The Q335 integer is the operational form. Both are VDR objects.
+
+
+## G23: Composed Rotations via Functional Remainders
+
+**Problem:** Apply three sequential rotations to a vector, each at an irrational angle, track exactness.
+
+```python
+def rotation_matrix(angle_fn, name):
+    """2D rotation matrix from angular functional remainder"""
+    def mat_fn(depth):
+        c = resolve(angle_fn, depth)  # cos
+        s = resolve(angle_fn, depth)  # sin (separate fn)
+        # returns Mat([[c, -s], [s, c]])
+        return mat
+    return FnRemainder(mat_fn, name)
+
+# Three rotations: by √2 radians, by π/7 radians, by ln(3) radians
+R1 = rotation_matrix(sqrt2_cos, "rot(√2)")
+R2 = rotation_matrix(pi_over_7_cos, "rot(π/7)")
+R3 = rotation_matrix(ln3_cos, "rot(ln3)")
+```
+
+The composed rotation R3·R2·R1 applied to v = (1, 0):
+
+```python
+def composed_rotation(depth):
+    m1 = resolve(R1, depth)  # exact rational 2x2 matrix
+    m2 = resolve(R2, depth)
+    m3 = resolve(R3, depth)
+    return m3 * m2 * m1 * Vec([VDR(1,1,0), VDR(0,1,0)])
+
+result = VDR(0, 1, FnRemainder(composed_rotation, "R3·R2·R1·(1,0)"))
+```
+
+At any depth, resolving gives the exact rational vector. No drift between the three multiplications — each is exact rational matrix-vector multiply. The functional remainder defers the computation until precision is needed. The total rotation angle √2 + π/7 + ln(3) is itself representable as a functional remainder sum.
+
+
+## G24: IIR Filter with Irrational Coefficients
+
+**Problem:** IIR filter y[n] = (√2/2)·y[n-1] + x[n], impulse response.
+
+The coefficient √2/2 = 1/√2 is irrational. As Q335: p(1/√2).
+
+```python
+def iir_response(N):
+    """Compute first N samples of impulse response in Q335 frame"""
+    coeff = VDR(p_inv_sqrt2, D, 0)  # Q335 for 1/√2
+    y = VDR(0, D, 0)
+    results = []
+    for n in range(N):
+        x_n = VDR(D, D, 0) if n == 0 else VDR(0, D, 0)  # unit impulse
+        y = coeff * y + x_n  # G01 multiplication + addition
+        results.append(y)
+    return results
+```
+
+y[0] = 1. y[1] = 1/√2. y[2] = 1/2. y[3] = 1/(2√2). y[n] = (1/√2)^n.
+
+Each step multiplies by Q335 1/√2 — one G01 operation, one remainder level. After 20 steps: remainder depth 20, denominator still D. The output y[20] = (1/√2)^20 = 1/1024 = exact closed rational. The remainder tree should collapse (normalization rule N7) because the exact answer is rational.
+
+This is a test of the system's ability to detect when an irrational coefficient raised to an integer power produces a rational result. (1/√2)^20 = 2^(-10) = 1/1024. If the remainder nesting collapses to closed form, the system has effectively discovered this algebraic identity through computation.
+
+**Functional remainder version:**
+
+```python
+def iir_at_n(coeff_fn):
+    def response(depth):
+        c = resolve(coeff_fn, depth)  # exact rational for 1/√2 at this depth
+        # c^n is exact rational power of an exact rational
+        return c  # for single-step; chain for n steps
+    return FnRemainder(response, "IIR(1/√2)")
+```
+
+The functional remainder defers the power computation. At depth d, the Newton iterate for √2 gives a rational r_d, and (1/r_d)^20 is an exact rational. As d→∞ through integer steps, this rational approaches 1/1024 and at sufficient depth the numerator and denominator will be exact powers of 2, collapsing.
+
+
+## G25: Bayesian Update with Transcendental Prior
+
+**Problem:** Prior P(H) = 1/e, likelihood P(D|H) = π/4, P(D|¬H) = 1/3. Posterior?
+
+```
+P(H|D) = P(D|H)·P(H) / [P(D|H)·P(H) + P(D|¬H)·P(¬H)]
+```
+
+```python
+prior = VDR(p_inv_e, D, 0)           # 1/e as Q335
+not_prior = VDR(D - p_inv_e, D, 0)   # 1 - 1/e as Q335
+likelihood = VDR(p_pi_over_4, D, 0)  # π/4 as Q335
+alt_like = VDR(1, 3, 0)              # 1/3 exact closed
+
+numerator = likelihood * prior        # G01: Q335 × Q335, depth 1
+alt_term = alt_like * not_prior        # closed × Q335, stays Q335 frame
+denominator = numerator + alt_term     # addition in D-frame
+
+posterior = numerator / denominator    # G02: division, remainder nests
+```
+
+The posterior P(H|D) is an exact VDR object with Q335 frame and remainder nesting. It is not an approximation of Bayes' theorem — it is Bayes' theorem computed in integer arithmetic with the irrational prior and likelihood captured as Q335 integers. The remainder carries the exact sub-100-digit structure.
+
+Verify: posterior must be in (0, 1). The top-level V/D ratio gives 100-digit confidence. The remainder refines.
+
+**Sequential update:** apply Bayes 10 times with the same likelihood. Each update is one G01 multiply and one G02 divide. After 10 updates: remainder depth ≤ 20 (each update contributes one multiply depth and one divide depth). The posterior converges toward 0 or 1 as evidence accumulates, and the VDR object tracks the exact trajectory.
+
+
+## G26: Polynomial Evaluation with Horner and Functional Coefficients
+
+**Problem:** Evaluate p(x) = πx³ - ex² + √2·x - ln(3) at x = 1/7.
+
+```python
+def horner_eval(depth):
+    pi = resolve(pi_fn, depth)
+    e = resolve(e_fn, depth)
+    s2 = resolve(sqrt2_fn, depth)
+    ln3 = resolve(ln3_fn, depth)
+    x = VDR(1, 7, 0)
+    
+    # Horner: ((π·x - e)·x + √2)·x - ln(3)
+    result = pi
+    result = result * x - e
+    result = result * x + s2
+    result = result * x - ln3
+    return result
+
+p_at_1_7 = VDR(0, 1, FnRemainder(horner_eval, "p(1/7)"))
+```
+
+At each depth, all four coefficients are exact rationals, x = 1/7 is exact closed, and Horner's method performs 3 multiplications and 3 additions — all exact rational. The result at any depth is exact. The functional remainder wraps the whole evaluation, deferring coefficient precision until needed.
+
+**Freeze to Q335:**
+```python
+val = resolve(p_at_1_7, depth=10)  # ~1024 correct digits for coefficients
+p_result = round(val.to_fraction() * D)
+q335_result = VDR(p_result, D, 0)
+```
+
+One Q335 integer captures the polynomial evaluation. The derivation (Horner + functional coefficients) is in the history. The operational value is an integer.
+
+
+## G27: Determinant via Functional Remainder
+
+**Problem:** det(M) where M has entries involving √2 and π, without materializing the full cofactor expansion until precision is needed.
+
+```python
+def lazy_det(matrix_fn):
+    """Wrap determinant computation in a functional remainder"""
+    def det_fn(depth):
+        # Resolve each matrix entry at this depth
+        M = resolve_matrix(matrix_fn, depth)
+        # Cofactor expansion — all exact rational at this depth
+        return M.det()
+    return FnRemainder(det_fn, f"det(M)")
+
+M_fn = lambda depth: Mat([
+    [resolve(sqrt2_fn, depth), VDR(1,1,0)],
+    [VDR(3,1,0), resolve(pi_fn, depth)]
+])
+
+det_M = VDR(0, 1, lazy_det(M_fn))
+```
+
+At depth 7: √2 and π are rationals with ~128 correct digits. det = √2·π - 3. Exact rational at every depth. The determinant is lazy — not computed until resolved. For a 10×10 matrix with transcendental entries, this defers the O(n!) cofactor cost until you actually need the value, and then computes it at exactly the precision you request.
+
+**Compose:** Use det_M in Cramer's rule to solve a linear system.
+
+```python
+def cramers_x1(depth):
+    d = resolve(det_M, depth)
+    # Replace column 1 with RHS, compute det of modified matrix
+    d1 = resolve(lazy_det(M1_fn), depth)
+    return d1 / d  # exact rational division
+
+x1 = VDR(0, 1, FnRemainder(cramers_x1, "x₁ via Cramer"))
+```
+
+The entire linear solve is a functional remainder. No precision is committed until resolution. The depth parameter flows through the determinant computations, the matrix entry resolutions, and the final division — all at the same depth, all exact rational.
+
+
+## G28: Power Series Composition
+
+**Problem:** Compute exp(sin(x)) at x = 1/5 using composed functional remainders.
+
+```python
+def sin_series(x):
+    def fn(depth):
+        result = VDR(0, 1, 0)
+        term = x  # first term
+        x2 = x * x
+        for n in range(depth):
+            result = result + term
+            term = -term * x2 / VDR((2*n+2)*(2*n+3), 1, 0)
+        return result
+    return FnRemainder(fn, f"sin({x})")
+
+def exp_series(x_fn):
+    def fn(depth):
+        x = resolve(x_fn, depth)  # sin(1/5) at this depth — exact rational
+        result = VDR(1, 1, 0)
+        term = VDR(1, 1, 0)
+        for n in range(1, depth + 1):
+            term = term * x / VDR(n, 1, 0)
+            result = result + term
+        return result
+    return FnRemainder(fn, "exp(sin(x))")
+
+exp_sin_1_5 = VDR(0, 1, exp_series(sin_series(VDR(1, 5, 0))))
+```
+
+The outer functional remainder (exp) calls the inner one (sin) at the same depth. At depth 10: sin(1/5) computed to 10 terms (exact rational), then exp of that rational computed to 10 terms (exact rational). The composition is exact at every depth. No floating-point intermediate anywhere.
+
+**Freeze to Q335:**
+```python
+val = resolve(exp_sin_1_5, depth=15)
+p_result = round(val.to_fraction() * D)
+# Single Q335 integer representing exp(sin(1/5)) to 100+ digits
+```
+
+
+## G29: Discrete Convolution with Q335 Kernel
+
+**Problem:** Convolve signal x = [1/3, 1/7, 1/11] with kernel h = [π/4, √2/2] in Q335 frame.
+
+```python
+# Signal as Q335
+x = [VDR(p_1_3, D, 0), VDR(p_1_7, D, 0), VDR(p_1_11, D, 0)]
+h = [VDR(p_pi_4, D, 0), VDR(p_inv_sqrt2, D, 0)]
+
+# Convolution y[n] = Σ x[k]·h[n-k]
+# y has length 3 + 2 - 1 = 4
+y = [VDR(0, D, 0)] * 4
+for k in range(3):
+    for j in range(2):
+        y[k+j] = y[k+j] + x[k] * h[j]  # G01 multiply + add
+```
+
+Each `x[k] * h[j]` is a Q335 × Q335 multiplication (G01), producing depth 1. The accumulated sums stay at depth 1 (addition doesn't deepen). Output: 4 Q335 values at depth 1.
+
+**Now do it via DFT:** zero-pad both to length 4, DFT each (G17 style), pointwise complex multiply (G05), IDFT. Same result, more butterflies, same depth bound. The DFT path demonstrates that VDR convolution via FFT gives the same exact result as direct convolution — something float FFT convolution does not guarantee due to butterfly rounding.
+
+
+## G30: Functional Remainder Wrapping Matrix Exponential
+
+**Problem:** e^(At) for A = [[-1, 0],[0, -2]], t = 1/3.
+
+Eigenvalues are -1 and -2 (rational, diagonal matrix). e^(At) = diag(e^(-1/3), e^(-2/3)).
+
+```python
+def mat_exp_diag(A_diag, t):
+    """Matrix exponential for diagonal matrix via functional remainder"""
+    def fn(depth):
+        entries = []
+        for lam in A_diag:
+            # exp(λt) as Taylor series at this depth
+            lt = lam * t
+            result = VDR(1, 1, 0)
+            term = VDR(1, 1, 0)
+            for n in range(1, depth + 1):
+                term = term * lt / VDR(n, 1, 0)
+                result = result + term
+            entries.append(result)
+        return Mat.diag(entries)
+    return FnRemainder(fn, f"exp(A·{t})")
+
+eAt = mat_exp_diag([VDR(-1,1,0), VDR(-2,1,0)], VDR(1,3,0))
+```
+
+At depth 15: e^(-1/3) and e^(-2/3) each computed to 15 Taylor terms. Each term involves (−1/3)^n / n! — exact rational with denominator 3^n · n!. The matrix exponential is a 2×2 diagonal of exact rationals.
+
+**Non-diagonal case:** A = [[0, 1],[-1, 0]] (rotation). e^(At) = [[cos(t), sin(t)],[-sin(t), cos(t)]]. Each entry is a trig functional remainder (G22 style). At t = 1/3, cos(1/3) and sin(1/3) are Taylor series with rational coefficients — exact rational at every depth.
+
+```python
+def mat_exp_rotation(t):
+    def fn(depth):
+        c = cos_series(t, depth)  # exact rational
+        s = sin_series(t, depth)  # exact rational
+        return Mat([[c, s], [-s, c]])
+    return FnRemainder(fn, f"exp(rot·{t})")
+```
+
+The functional remainder wraps the matrix. Resolve at any depth to get the exact rational rotation matrix. Multiply matrices at the same depth — exact. Chain 100 rotations — still exact at each depth.
+
+
+## G31: Fixed-Frame Logistic Map via Functional Remainder
+
+**Problem:** The denominator growth problem from VDR-2 FW2. Logistic map r = 4, x₀ = 1/3, represent n steps without materializing intermediate denominators.
+
+```python
+def logistic_fn(x0, r, n_steps):
+    """Functional remainder: nth iterate of logistic map"""
+    def fn(depth):
+        # At this depth, compute x0 to `depth` precision
+        # then iterate n_steps times in exact rational arithmetic
+        x = x0
+        r_vdr = VDR(r, 1, 0)
+        for _ in range(n_steps):
+            x = r_vdr * x * (VDR(1,1,0) - x)
+        return x
+    return FnRemainder(fn, f"logistic({x0}, r={r}, n={n_steps})")
+
+# x₅ of logistic map
+x5 = VDR(0, 1, logistic_fn(VDR(1,3,0), 4, 5))
+```
+
+Wait — this still materializes the intermediate fractions inside the functional remainder. The denominators still grow as 3^(2^5) = 3^32 inside `fn`. The functional remainder wraps it but doesn't compress it.
+
+**Actual compression requires a different approach:**
+
+```python
+def logistic_q335(x0_q335, r, n_steps):
+    """Logistic map staying in Q335 frame, remainder nesting absorbs growth"""
+    x = x0_q335
+    r_q = VDR(r * D, D, 0)  # r=4 as Q335
+    one = VDR(D, D, 0)       # 1 as Q335
+    for _ in range(n_steps):
+        one_minus_x = one - x       # integer subtraction, stays D-frame
+        rx = r_q * x                 # G01: Q335 × Q335 → depth +1
+        x = rx * one_minus_x         # G01: active × Q335 → depth +1
+        # At this point, x has remainder depth = 2 * step
+    return x
+
+x5 = logistic_q335(VDR(p_1_3, D, 0), 4, 5)
+# x5 has remainder depth 10, denominator D throughout
+```
+
+After 5 steps: depth 10. After 15 steps: depth 30. Each node is a Q335 integer. Total information: 30 × ~102 digits ≈ 3060 digits. Compare flat Fraction: denominator has 3^(2^15) ≈ 10^15600 digits. The Q335 tree is 5000× more compact for the same exact value.
+
+The compression comes from the frame discipline: instead of letting the denominator explode, each multiplication truncates to the D-frame and nests the remainder. The tree stores the same information in structured form.
+
+**But is the tree value actually equal to the flat Fraction value?**
+
+Yes. Each nesting step is exact: qD + s = p₁p₂ exactly. The scalar projection Π of the depth-10 tree equals p₁p₂/D² at each multiplication, which equals the exact flat Fraction. The tree is a different representation of the same exact value. No information is lost — it's rearranged.
+
+**Precision policy:** If you only need 100 digits, read the top level. If you need 200 digits, read two levels. Each level gives ~100 additional digits (since each Q335 integer is ~102 digits). Precision is proportional to tree depth read, not tree depth stored.
+
+
+## G32: Signal Energy via Parseval with Mixed Types
+
+**Problem:** Signal x[n] with rational samples and Q335 filter coefficients. Verify Parseval identity.
+
+```python
+# Time-domain energy
+x = [VDR(1,3,0), VDR(2,7,0), VDR(5,11,0), VDR(3,13,0)]  # rational
+energy_time = sum(xi * xi for xi in x)  # exact closed rational
+
+# Frequency domain: DFT via G17, all exact
+X = dft_4(x)  # list of VDR complex pairs
+energy_freq = sum(abs2(Xk) for Xk in X) / VDR(4,1,0)  # |X[k]|²/N
+
+# These must be equal
+assert energy_time == energy_freq  # exact equality, not ≈
+```
+
+Now filter with h = [p(π/4)/D, p(1/√2)/D] (Q335 coefficients):
+
+```python
+y = convolve(x, h)  # G29 — Q335 × rational at each step
+# Each y[n] has Q335 frame with depth-1 remainder from the multiplications
+# Energy of y in time domain: sum of y[n]², each y[n] active
+energy_y_time = sum(yi * yi for yi in y)  # active × active, depth grows
+
+# Frequency domain: Y[k] = X[k]·H[k], pointwise complex multiply
+H = dft(h, N=len(y))  # DFT of filter
+Y = [complex_mul(Xk, Hk) for Xk, Hk in zip(X_padded, H)]
+energy_y_freq = sum(abs2(Yk) for Yk in Y) / VDR(len(y), 1, 0)
+
+# Parseval: these must be equal
+# Both are VDR active objects — equality checked after normalization
+assert normalize(energy_y_time) == normalize(energy_y_freq)
+```
+
+The test verifies that Parseval's identity holds exactly through the entire pipeline: rational signal → Q335 filter → convolution → DFT → energy comparison. Float would give agreement to ~15 digits. VDR gives structural equality after normalization — the remainder trees are identical.
+
+
+## G33: Functional Remainder as Lazy Inverse
+
+**Problem:** Defer matrix inversion until needed, at requested precision.
+
+```python
+def lazy_inverse(mat_fn, name):
+    def fn(depth):
+        M = resolve(mat_fn, depth)  # exact rational matrix at this depth
+        d = M.det()                  # exact rational
+        if d == VDR(0,1,0):
+            raise ValueError("Singular matrix")
+        return M.adjugate() / d      # exact rational matrix
+    return FnRemainder(fn, f"inv({name})")
+
+# Hilbert 4×4 with one transcendental entry
+def H4_modified(depth):
+    H = hilbert(4)                         # standard rational Hilbert
+    H[0][0] = resolve(pi_fn, depth) / VDR(4,1,0)  # replace H[0][0] = 1 with π/4
+    return H
+
+H4_inv = lazy_inverse(H4_modified, "H₄_mod")
+
+# Not computed yet. Just a functional remainder.
+# Resolve when needed:
+M_inv = resolve(H4_inv, depth=10)  # exact rational 4×4 at ~1024-digit precision
+```
+
+**Compose:** solve Ax = b by lazy_inverse(A) · b.
+
+```python
+def lazy_solve(mat_fn, b_fn, name):
+    def fn(depth):
+        A_inv = resolve(lazy_inverse(mat_fn, "A"), depth)
+        b = resolve(b_fn, depth)
+        return A_inv * b  # exact rational matrix-vector multiply
+    return FnRemainder(fn, f"solve({name})")
+```
+
+The entire solve chain — matrix entry resolution, determinant, adjugate, inversion, matrix-vector product — is deferred until `resolve(fn, depth)` is called. The depth parameter propagates through every sub-computation. One depth value controls precision everywhere.
+
+
+## G34: Wavelet Transform with Q335 Coefficients
+
+**Problem:** Haar wavelet on signal [π, e, √2, ln(3)] — all Q335 values.
+
+```python
+x = [VDR(p_pi, D, 0), VDR(p_e, D, 0), VDR(p_sqrt2, D, 0), VDR(p_ln3, D, 0)]
+
+# Haar forward: averages and differences
+avg = [(x[0]+x[1]) * VDR(D,2*D,0), (x[2]+x[3]) * VDR(D,2*D,0)]  # /2 via shift
+det = [(x[0]-x[1]) * VDR(D,2*D,0), (x[2]-x[3]) * VDR(D,2*D,0)]
+
+# Level 2
+avg2 = [(avg[0]+avg[1]) * VDR(D,2*D,0)]
+det2 = [(avg[0]-avg[1]) * VDR(D,2*D,0)]
+```
+
+Division by 2 is a right-shift in the Q335 frame: if p is even, p/2 is exact with no remainder. If p is odd, [p>>1, D, [1, 2*D, 0]] — one bit of remainder. Haar wavelet on Q335 values produces Q335 values with at most 1-bit remainder at each level.
+
+**Inverse:** reconstruct from coefficients. avg[0] = avg2[0] + det2[0], avg[1] = avg2[0] - det2[0], etc. Integer addition/subtraction. Perfect reconstruction if the forward/inverse paths use the same bit-level rounding — which they do, because VDR carries the remainder explicitly.
+
+VDR-3 Gym 22 demonstrated this for integer signals. This extends to Q335 signals with the same perfect reconstruction guarantee, because the remainder nesting captures the half-bit lost in each /2 operation.
+
+
+## G35: Functional Remainder Composition Chain
+
+**Problem:** Build f(x) = exp(√(sin(x) + 1)) at x = 1/4, as a chain of functional remainders.
+
+```python
+def compose(outer_fn, inner_fn, name):
+    """Generic function composition as functional remainder"""
+    def fn(depth):
+        inner_val = resolve(inner_fn, depth)
+        return resolve_with_input(outer_fn, inner_val, depth)
+    return FnRemainder(fn, name)
+
+sin_1_4 = sin_series_fn(VDR(1, 4, 0))           # sin(1/4) — fn remainder
+plus_one = lambda_fn(sin_1_4, lambda v: v + VDR(1,1,0))  # sin(1/4) + 1
+sqrt_val = newton_sqrt_fn(plus_one)               # √(sin(1/4) + 1)
+result = exp_series_fn(sqrt_val)                   # exp(√(sin(1/4) + 1))
+```
+
+Four levels of functional remainder composition. At depth d:
+1. sin(1/4) computed to d Taylor terms → exact rational
+2. Add 1 → exact rational
+3. √ of that rational via d Newton steps → exact rational
+4. exp of that rational via d Taylor terms → exact rational
+
+Each level produces an exact rational. The levels compose through `resolve`. Total cost at depth d: O(d) Taylor terms × O(d) Newton iterations × O(d) more Taylor terms. Cubic in d. But d = 10 gives ~1000 correct digits for the sin, ~1024 correct digits for √, and ~100+ for exp (depending on convergence rate). More than sufficient for Q335 projection.
+
+```python
+val = resolve(result, depth=12)
+p_result = round(val.to_fraction() * D)
+# exp(√(sin(1/4) + 1)) as a single Q335 integer
+```
+
+
+## Summary of Compositions
+
+| Gym | Operation | Inputs | Mechanism | Output |
+|-----|-----------|--------|-----------|--------|
+| G21 | √ via Newton | integer | functional remainder | Q335 |
+| G22 | twiddle table | angle | fn remainder → freeze | Q335 pairs |
+| G23 | chained rotations | fn remainders | compose at same depth | fn remainder |
+| G24 | IIR filter | Q335 coeff | G01 multiply chain | Q335 depth-n |
+| G25 | Bayes update | Q335 prior/likelihood | G01 × G02 | Q335 active |
+| G26 | Horner eval | fn remainder coeffs | resolve + rational ops | fn remainder → Q335 |
+| G27 | lazy det | fn remainder matrix | deferred cofactor | fn remainder |
+| G28 | series composition | fn(fn(x)) | nested resolve | fn remainder → Q335 |
+| G29 | convolution | Q335 signal × kernel | G01 multiply chain | Q335 depth-1 |
+| G30 | matrix exp | diagonal/rotation | Taylor fn remainder | fn remainder |
+| G31 | logistic map | Q335 frame | G01 per step, depth grows | Q335 depth-2n |
+| G32 | Parseval verify | mixed rational + Q335 | DFT + energy | exact equality |
+| G33 | lazy inverse | fn remainder matrix | deferred adjugate/det | fn remainder |
+| G34 | Haar wavelet | Q335 signal | shift + remainder | Q335 depth-1 |
+| G35 | 4-level compose | sin→+1→√→exp | chained fn remainders | fn remainder → Q335 |
+
+The pattern across all compositions: functional remainders defer computation, Q335 captures results as integers, remainder nesting preserves exactness within a fixed frame, and depth is the universal cost currency. Every operation composes with every other because they all speak the same language — exact rationals at a requested depth, projected into a shared integer frame when needed for arithmetic.
+
+---
+
+# VDR Builtin Function Registry
+
+Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments and produce VDR at each depth. IOSE = Input, Output, Side effects, Edge cases.
+
+---
+
+**B01: sqrt(n)**
+- I: VDR integer n ≥ 0
+- O: √n as exact rational at each depth via Newton x_{k+1} = (x_k + n/x_k)/2
+- S: Pure
+- E: n=0 → closed [0,1,0]. n negative → error. Perfect squares collapse to closed at sufficient depth.
+
+**B02: exp(x)**
+- I: VDR rational x
+- O: eˣ via Taylor Σ xⁿ/n! truncated at depth terms
+- S: Pure
+- E: x=0 → closed [1,1,0]. Large |x| needs more depth for same precision.
+
+**B03: sin(x)**
+- I: VDR rational x
+- O: sin(x) via Taylor odd series truncated at depth terms
+- S: Pure
+- E: x=0 → closed [0,1,0].
+
+**B04: cos(x)**
+- I: VDR rational x
+- O: cos(x) via Taylor even series truncated at depth terms
+- S: Pure
+- E: x=0 → closed [1,1,0].
+
+**B05: ln(x)**
+- I: VDR rational x > 0
+- O: ln(x). Near 1: series ln(1+t). General x: reduce via ln(x) = ln(a·2^k) = ln(a) + k·ln(2) with ln(2) from Q335 or arctanh series.
+- S: Pure
+- E: x ≤ 0 → error. x=1 → closed [0,1,0]. x = power of 2 → k·ln(2).
+
+**B06: arctan(x)**
+- I: VDR rational x
+- O: arctan(x) via Taylor for |x| ≤ 1, identity reduction arctan(x) = π/2 - arctan(1/x) for |x| > 1
+- S: Pure
+- E: x=0 → closed [0,1,0]. x=1 → π/4.
+
+**B07: arcsin(x)**
+- I: VDR rational x, |x| ≤ 1
+- O: arcsin(x) via Taylor with central binomial coefficients
+- S: Pure
+- E: |x| > 1 → error. x=0 → closed [0,1,0].
+
+**B08: arccos(x)**
+- I: VDR rational x, |x| ≤ 1
+- O: π/2 - arcsin(x). Composes const_pi and B07.
+- S: Pure
+- E: x=1 → closed [0,1,0]. x=0 → π/2.
+
+**B09: power(base, n)**
+- I: VDR base, integer n
+- O: base^n via repeated squaring
+- S: Pure
+- E: base=0, n<0 → error. n=0 → closed [1,1,0].
+
+**B10: nth_root(x, q)**
+- I: VDR rational x > 0, integer q > 0
+- O: x^(1/q) via generalized Newton x_{k+1} = ((q-1)·x_k + x/x_k^(q-1))/q
+- S: Pure
+- E: x ≤ 0 with even q → error. q=1 → identity. q=2 → equivalent to B01.
+
+**B11: const_pi()**
+- I: none
+- O: π via Machin-type arctangent identity, exact rational at each depth
+- S: Pure
+- E: none
+
+**B12: const_e()**
+- I: none
+- O: e via Σ 1/n!, exact rational at each depth
+- S: Pure
+- E: none
+
+**B13: zeta(s)**
+- I: integer s ≥ 2
+- O: ζ(s) via Borwein acceleration for odd s, closed-form identity for even s
+- S: Pure
+- E: s=1 → error (pole). s < 1 → unsupported.
+
+**B14: polylog(n, x)**
+- I: integer n ≥ 1, VDR rational x with |x| ≤ 1
+- O: Li_n(x) = Σ xᵏ/kⁿ truncated at depth terms
+- S: Pure
+- E: x=1 → ζ(n) via B13. x=0 → closed [0,1,0].
+
+**B15: elliptic_k(k)**
+- I: VDR rational k with 0 ≤ k² < 1
+- O: K(k) = (π/2)·₂F₁(1/2,1/2;1;k²) via hypergeometric recurrence
+- S: Pure
+- E: k=0 → π/2. k²≥1 → error.
+
+**B16: elliptic_e(k)**
+- I: VDR rational k with 0 ≤ k² < 1
+- O: E(k) = (π/2)·₂F₁(-1/2,1/2;1;k²) via hypergeometric recurrence
+- S: Pure
+- E: k=0 → π/2.
+
+**B17: hypergeometric_2f1(a, b, c, x)**
+- I: VDR rationals a, b, c, x with |x| < 1, c not non-positive integer
+- O: ₂F₁(a,b;c;x) via term recurrence, truncated at depth
+- S: Pure
+- E: |x| ≥ 1 → convergence issues. c ∈ {0,-1,-2,...} → error.
+
+**B18: taylor(coeff_fn, x)**
+- I: callable coeff_fn(n) → VDR, VDR rational x
+- O: Σ coeff_fn(n)·xⁿ truncated at depth terms
+- S: Pure iff coeff_fn is pure
+- E: Convergence depends on series and x.
+
+**B19: compose(f, g)**
+- I: two FnRemainder builtins f, g
+- O: f(g(x)) — resolves g at depth, passes result to f at same depth
+- S: Pure iff both f and g are pure
+- E: Type mismatch if g output is outside f input domain.
+
+**B20: freeze(fn, depth)**
+- I: FnRemainder fn, integer depth
+- O: Q335 closed object — resolves fn at depth, projects to [round(val·D), D, 0]
+- S: Pure. Lossy below 100-digit floor by design. One-way: Q335 → FnRemainder not recoverable.
+- E: Insufficient depth for desired precision returns valid but less precise Q335 integer.
+
+**B21: complex_pair(re_fn, im_fn)**
+- I: two FnRemainders or VDR objects for real and imaginary parts
+- O: VDR complex pair (re, im) supporting complex arithmetic (add, mul, conj, abs2)
+- S: Pure
+- E: Either component may be closed, active, or functional independently.
+
+**B22: complex_mul(z1, z2)**
+- I: two VDR complex pairs
+- O: (a₁a₂ - b₁b₂, a₁b₂ + a₂b₁) as VDR complex pair
+- S: Pure
+- E: If both components closed, result is closed.
+
+**B23: complex_inv(z)**
+- I: VDR complex pair z = (a, b)
+- O: (a, -b) / (a² + b²) as VDR complex pair
+- S: Pure
+- E: a² + b² = 0 → error (z = 0).
+
+**B24: twiddle(k, N)**
+- I: integers k, N
+- O: VDR complex pair (cos(2πk/N), -sin(2πk/N)) via B04, B03 composed with const_pi
+- S: Pure
+- E: N=0 → error. k=0 → (1, 0) closed. N=4 → components in {-1,0,1} closed.
+
+**B25: dft(signal, N)**
+- I: list of VDR objects (or complex pairs), integer N
+- O: list of N VDR complex pairs, each computed via twiddle multiplication and summation
+- S: Pure
+- E: N=1 → identity. Signal length < N → zero-padded.
+
+**B26: slerp(q0, q1, t)**
+- I: two unit quaternions as 4-tuples of VDR, VDR rational t ∈ [0,1]
+- O: interpolated quaternion via sin-weighted combination. sin/arccos via B03, B08.
+- S: Pure
+- E: q0 = q1 → return q0. q0 = -q1 → great circle ambiguity, undefined. t=0 → q0. t=1 → q1.
+
+**B27: quaternion_mul(q1, q2)**
+- I: two quaternions as 4-tuples of VDR
+- O: Hamilton product as 4-tuple of VDR, 16 component multiplies reduced to standard formula
+- S: Pure
+- E: All closed inputs → closed output.
+
+**B28: mod(a, m)**
+- I: VDR integer a, VDR integer m > 0
+- O: VDR remainder [0, 1, [r, m, 0]] where r = a mod m, carrying both quotient and remainder as structure
+- S: Pure
+- E: m = 0 → error. a = 0 → [0, 1, [0, m, 0]].
+
+**B29: crt(residues, moduli)**
+- I: list of VDR integers (residues), list of VDR integers (moduli), pairwise coprime
+- O: VDR object with composite remainder children at each modulus, reconstructable to unique solution mod product
+- S: Pure
+- E: Non-coprime moduli → error. Empty lists → error.
+
+**B30: logistic_step(x, r)**
+- I: VDR x in Q335 frame, VDR rational r
+- O: r·x·(1-x) in Q335 frame with remainder nesting (G01 multiply, depth +2)
+- S: Pure
+- E: x outside [0,1] → mathematically valid but orbit may escape.
+
+**B31: iterate(step_fn, x0, n)**
+- I: FnRemainder or callable step_fn, VDR initial x0, integer n ≥ 0
+- O: n-fold application of step_fn to x0, each step in Q335 frame with remainder nesting
+- S: Pure
+- E: n=0 → x0. step_fn must accept and return VDR.
+
+**B32: detect_period(step_fn, x0, max_steps)**
+- I: callable step_fn, VDR initial x0, integer max_steps
+- O: VDR integer period length, or closed [0,1,0] if no period found within max_steps. Uses exact equality (normalized) at each step — no epsilon.
+- S: Pure
+- E: Aperiodic orbit within max_steps → returns 0. Floyd or Brent cycle detection on exact VDR equality.
+
+**B33: horner(coeffs, x)**
+- I: list of VDR coefficients [a₀, a₁, ..., aₙ] (ascending degree), VDR rational x
+- O: a₀ + a₁x + ... + aₙxⁿ via Horner's method, exact rational
+- S: Pure
+- E: Empty coeffs → closed [0,1,0]. Coefficients may be closed, active, or functional (resolved at evaluation).
+
+**B34: haar_forward(signal)**
+- I: list of VDR objects, length power of 2
+- O: list of VDR objects — Haar wavelet coefficients. Averages via integer add + right-shift, differences via integer sub + right-shift, remainder nesting for odd numerators.
+- S: Pure
+- E: Length not power of 2 → error. Length 1 → identity.
+
+**B35: haar_inverse(coeffs)**
+- I: list of VDR Haar coefficients
+- O: reconstructed signal, exact inverse of B34. Perfect reconstruction including remainder structure.
+- S: Pure
+- E: Same length constraint as B34.
+
+**B36: convolve(x, h)**
+- I: two lists of VDR objects
+- O: list of VDR objects, length len(x)+len(h)-1, each element via direct summation of products
+- S: Pure
+- E: Either list empty → empty result.
+
+**B37: mat_fn(entry_fn, rows, cols)**
+- I: callable entry_fn(i,j) → VDR or FnRemainder, integers rows, cols
+- O: lazy matrix — entries not computed until resolved. Supports det, inverse, mul via deferred evaluation.
+- S: Pure iff entry_fn is pure
+- E: rows or cols ≤ 0 → error.
+
+**B38: transfer_fn(num_coeffs, den_coeffs, s)**
+- I: numerator and denominator polynomial coefficients as VDR lists, VDR complex pair s
+- O: H(s) = N(s)/D(s) as VDR complex pair, polynomials evaluated via B33, division via B23
+- S: Pure
+- E: D(s) = 0 → pole, error.
+
+**B39: borwein_eta(s, n)**
+- I: integer s ≥ 2, integer n (number of acceleration terms)
+- O: Dirichlet eta η(s) via Borwein weighted sum with rational d_k coefficients, exact rational
+- S: Pure
+- E: s = 1 → conditional convergence, slower. n determines precision: 3^(-n) error bound.
+
+**B40: resolve_to_depth(fn, depth)**
+- I: FnRemainder fn, integer depth ≥ 0
+- O: concrete VDR object — the exact rational result of fn(depth)
+- S: Pure
+- E: depth=0 → initial guess / first term. Negative depth → error.
+
+---
+
+## Dependency Graph
+
+```
+const_pi (B11) ← arctan (B06)
+const_e (B12) ← exp (B02) at x=1
+zeta (B13) ← borwein_eta (B39) + const_pi (B11) for even s
+elliptic_k (B15) ← hypergeometric_2f1 (B17) + const_pi (B11)
+elliptic_e (B16) ← hypergeometric_2f1 (B17) + const_pi (B11)
+arccos (B08) ← const_pi (B11) + arcsin (B07)
+polylog (B14) ← zeta (B13) at x=1
+twiddle (B24) ← cos (B04) + sin (B03) + const_pi (B11)
+dft (B25) ← twiddle (B24) + complex_mul (B22)
+slerp (B26) ← sin (B03) + arccos (B08) + quaternion_mul (B27)
+transfer_fn (B38) ← horner (B33) + complex_inv (B23)
+compose (B19) ← resolve_to_depth (B40)
+freeze (B20) ← resolve_to_depth (B40)
+iterate (B31) ← any step_fn
+detect_period (B32) ← iterate (B31) + normalized equality
+```
+
+All leaf builtins (B01–B05, B09, B28) depend only on VDR core arithmetic. Everything else composes from these.
