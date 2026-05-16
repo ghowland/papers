@@ -1,0 +1,70 @@
+{
+  "title": "Grammar-Directed Compaction and Generation",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Language models waste most of their computation predicting tokens that are structurally determined. When generating a Python function, the tokens `def`, `(`, `)`, `:`, and the indentation are not creative decisions \u2014 they are grammatical facts. When presenting data in a table, the column separators, row boundaries, and alignment characters are format requirements, not content. Current language models spend a full forward pass on every one of these tokens, running attention over the entire context and softmax over the full vocabulary to predict a closing parenthesis that was inevitable the moment the opening parenthesis appeared.\n\nThis paper specifies two systems that eliminate this waste. The first is Universal Compaction \u2014 a formal system for compressing any structured source material into pipe-delimited tables with typed columns, ID-based cross-references, and self-describing grammars, achieving 75-93% compression while preserving every named concept, relationship, and constraint. The second is Grammar-Directed Generation \u2014 a system where Prolog grammars provide the structural tokens of output (brackets, punctuation, formatting, boilerplate) while the language model provides only the content tokens (names, values, creative text), reducing the number of forward passes by 40-80% depending on output type.\n\nBoth systems are built on the VDR-LLM-Prolog architecture: an exact-arithmetic language model where every number is an exact fraction with zero drift (VDR-1 through VDR-4), knowledge is stored in scoped Knowledge Bases with logical provenance (VDR-5), computation is performed by 448 deterministic primitives invoked through command tokens (VDR-6, VDR-8, VDR-10), and structured reasoning is conducted through an orchestrated inference loop (VDR-9). The grammars live on the Knowledge Base struct as a persistent field, inheriting through the KB tree like constraints, and the language model can create new grammars at any time by asserting facts \u2014 making the system self-extending.\n\nA working Python implementation with 178 passing tests validates the compaction system's roundtrip fidelity, grammar generation, cross-KB usage grammar creation, and grammar inheritance with override shadowing.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-12-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-12-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
