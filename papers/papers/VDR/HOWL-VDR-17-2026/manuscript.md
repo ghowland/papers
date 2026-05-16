@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-15-2026] → [@HOWL-VDR-16-2026] → [@HOWL-VDR-17-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20236522
 
 **Date:** May 2026
 
@@ -546,6 +546,4 @@ The LLM engages at step 8. Steps 1-7 are structural. The access decision was mad
 | 6 | Content filter checks output | External pattern matching (if exists) | No | Partially |
 
 The LLM is involved in every step except optionally step 6. Every step is probabilistic. The access decision is a behavioral judgment made by the same token prediction mechanism that generates all output.
-
----
 

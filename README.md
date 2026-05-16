@@ -130,6 +130,9 @@
 | **[@HOWL-VDR-13-2026](papers/papers/VDR/HOWL-VDR-13-2026/manuscript.md)** | **VDR in Physical Computation** | Exact Arithmetic Where It Matters. |
 | **[@HOWL-VDR-14-2026](papers/papers/VDR/HOWL-VDR-14-2026/manuscript.md)** | **VDR-LLM-Prolog** | A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance. |
 | **[@HOWL-VDR-15-2026](papers/papers/VDR/HOWL-VDR-15-2026/manuscript.md)** | **VDR-LLM-Prolog: Prompt Optimization** | How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results. |
+| **[@HOWL-VDR-16-2026](papers/papers/VDR/HOWL-VDR-16-2026/manuscript.md)** | **VDR-LLM-Prolog: Safe by Contract** | Structural Safety Through Architecture, Not Behavioral Training. |
+| **[@HOWL-VDR-17-2026](papers/papers/VDR/HOWL-VDR-17-2026/manuscript.md)** | **VDR-LLM-Prolog: Alignment** | Helpful, Harmless, Honest Through Structure, Not Interference. |
+| **[@HOWL-VDR-18-2026](papers/papers/VDR/HOWL-VDR-18-2026/manuscript.md)** | **VDR-LLM-Prolog: Prompt Optimization** | How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results. |
 
 ---
 
