@@ -134,8 +134,6 @@ Caveats:
 
 # What is VDR-LLM-Prolog?
 
-# What is VDR-LLM-Prolog?
-
 Starting from the absolute bottom.
 
 **VDR Arithmetic: The Foundation**
