@@ -3,7 +3,7 @@
     "title": "VDR in Physical Computation",
     "registry_id": "HOWL-VDR-13-2026",
     "series_path": "[@HOWL-VDR-1-2026] \u2192 [@HOWL-VDR-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-2026]  \u2192 [@HOWL-VDR-3-2026] \u2192 [@HOWL-VDR-4-2026] \u2192 [@HOWL-LLM-1-2026] \u2192 [@HOWL-VDR-5-2026] \u2192 [@HOWL-VDR-6-2026] \u2192 [@HOWL-VDR-7-2026] \u2192 [@HOWL-VDR-8-2026] \u2192 [@HOWL-VDR-9-2026] \u2192 [@HOWL-VDR-10-2026] \u2192 [@HOWL-VDR-11-2026] \u2192 [@HOWL-VDR-12-2026] \u2192 [@HOWL-VDR-13-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.20229169",
     "abstract": "",
     "dependencies": [],
     "raw_content_preview": "# VDR in Physical Computation ## Exact Arithmetic Where It Matters  **Registry:** [@HOWL-VDR-13-2026]  **Series Path:** [@HOWL-VDR-1-2026] \u2192 [@HOWL-VDR-2-2026] \u2192 [@HOWL-MATH-3-2026] \u2192 [@HOWL-MATH-4-20..."
