@@ -1,4 +1,5 @@
 # VDR-LLM-Prolog: Performance
+
 ## Integer Arithmetic on GPU Hardware: Why Wider Operands on More Cores Outrun Narrower Operands on Fewer Passes
 
 **Registry:** [@HOWL-VDR-18-2026]
@@ -12,7 +13,9 @@
 **Domain:** Applied Philosophy / Computational Linguistics
 
 **Supplementary Material:**
+
 - `supplementary/gpu_integer_perf_tech_spec.md` — Full GPU technical specification
+
 - `supplementary/gpu_integer_perf_tech_spec_llm_compacted.md` — LLM-compacted form
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6.
@@ -73,13 +76,13 @@ Addition of two Q335 values is limbwise addition with carry propagation. Each of
 
 Multiplication of two Q335 values is a multi-precision multiply producing a full product of approximately 700 bits, followed by a split at bit position 335. The split is a fixed-position operation: the bits above position 335 become the quotient (the new V), the bits below become the remainder. If the remainder is zero, the result is closed and stays in the fast Q335 path. If nonzero, the result becomes an active node with the remainder stored in the append-only arena.
 
-The multiplication itself can use schoolbook multiplication (11 × 11 = 121 limb-by-limb multiplies with accumulation) for the standard case, with optional Karatsuba or Toom-Cook algorithms for larger operands. Schoolbook on 11 limbs produces roughly 200 integer operations — multiplies, adds, and carry propagations. This is more expensive than a single float16 multiply (one operation) by a factor of roughly 200. But this factor is the per-operation cost. The relevant question is how many of these multiplications occur per prompt compared to how many float operations a conventional forward pass requires.
+The multiplication itself can use schoolbook multiplication (11  $\times$  11 = 121 limb-by-limb multiplies with accumulation) for the standard case, with optional Karatsuba or Toom-Cook algorithms for larger operands. Schoolbook on 11 limbs produces roughly 200 integer operations — multiplies, adds, and carry propagations. This is more expensive than a single float16 multiply (one operation) by a factor of roughly 200. But this factor is the per-operation cost. The relevant question is how many of these multiplications occur per prompt compared to how many float operations a conventional forward pass requires.
 
 A conventional language model forward pass for one token through a model with 7 billion parameters requires roughly 14 billion floating-point operations — two operations per parameter (multiply and accumulate) across the forward pass. Generating 3,000 tokens requires roughly 42 trillion floating-point operations.
 
-A VDR prompt with 210 language model tokens requires roughly 2.94 trillion exact integer operations for the forward passes (same 14 billion per token, but with wider integer operands increasing the per-operation cost by roughly the 200× factor, giving approximately 2.8 trillion effective operations for 210 tokens). The 500 primitive calls add perhaps 100,000 Q335 operations — negligible in comparison.
+A VDR prompt with 210 language model tokens requires roughly 2.94 trillion exact integer operations for the forward passes (same 14 billion per token, but with wider integer operands increasing the per-operation cost by roughly the 200 $\times$  factor, giving approximately 2.8 trillion effective operations for 210 tokens). The 500 primitive calls add perhaps 100,000 Q335 operations — negligible in comparison.
 
-The conventional system does 42 trillion float operations. The VDR system does roughly 2.94 trillion integer operations, where each integer operation is wider but the total operation count is 14× lower. The question becomes: can a GPU execute 2.94 trillion wide integer operations faster than 42 trillion narrow float operations? The answer depends on GPU utilization patterns, which the next sections address.
+The conventional system does 42 trillion float operations. The VDR system does roughly 2.94 trillion integer operations, where each integer operation is wider but the total operation count is 14 $\times$  lower. The question becomes: can a GPU execute 2.94 trillion wide integer operations faster than 42 trillion narrow float operations? The answer depends on GPU utilization patterns, which the next sections address.
 
 ---
 
@@ -95,7 +98,7 @@ Knowledge base scans in VDR are structurally regular. Facts are stored in predic
 
 Conventional language model inference has no equivalent to these bulk scan operations because it has no structured data to scan. Everything is in the weight matrices, accessed through matrix multiplication, which is efficient but serves a different purpose — statistical pattern matching rather than exact indexed lookup.
 
-Grammar-constrained decode in VDR further improves utilization. When a grammar declares that the next token must be one of four enum values, the decode step constrains the vocabulary to those four candidates. The softmax (or rational surrogate) computes over 4 values instead of 50,000 or more. This is a 12,500× reduction in decode computation for that token. Conventional language model inference must compute the full vocabulary softmax on every token because it has no structural constraint on what the next token can be. VDR's grammar system provides these constraints as a structural property of the output format, reducing decode cost on every structurally determined token.
+Grammar-constrained decode in VDR further improves utilization. When a grammar declares that the next token must be one of four enum values, the decode step constrains the vocabulary to those four candidates. The softmax (or rational surrogate) computes over 4 values instead of 50,000 or more. This is a 12,500 $\times$  reduction in decode computation for that token. Conventional language model inference must compute the full vocabulary softmax on every token because it has no structural constraint on what the next token can be. VDR's grammar system provides these constraints as a structural property of the output format, reducing decode cost on every structurally determined token.
 
 ---
 
@@ -165,7 +168,7 @@ The supplementary specification describes the mechanism. Each decode stream carr
 
 The GPU kernel builds a vocabulary mask from the candidate set. For small candidate sets (the common case for structural tokens), this is trivial — set a few bits in a mask. For KB identifier references where the candidate set might be 200 items, it is still a small fraction of the full vocabulary. The mask is applied to the logit vector before the surrogate softmax, zeroing out impossible candidates.
 
-The savings compound across a response. VDR-15 established that 40 to 60 percent of tokens in structured output are structural — pipes, headers, delimiters, enum values, type tags. Each structural token has a constrained candidate set, typically between 2 and 20 items. If half the tokens in a 200-token response are grammar-constrained to an average of 10 candidates, that is 100 tokens decoded at 10-candidate cost instead of 50,000-candidate cost — a 5,000× reduction in decode computation for half the response.
+The savings compound across a response. VDR-15 established that 40 to 60 percent of tokens in structured output are structural — pipes, headers, delimiters, enum values, type tags. Each structural token has a constrained candidate set, typically between 2 and 20 items. If half the tokens in a 200-token response are grammar-constrained to an average of 10 candidates, that is 100 tokens decoded at 10-candidate cost instead of 50,000-candidate cost — a 5,000 $\times$  reduction in decode computation for half the response.
 
 ---
 
@@ -243,7 +246,7 @@ The system has genuine performance bottlenecks. Identifying them honestly is mor
 
 The language model forward pass with Q335 arithmetic is the primary bottleneck. Matrix multiplication with 352-bit operands is wider than float16 matrix multiplication by a factor of 22 in operand width. The actual slowdown depends on the multiplication algorithm and GPU integer throughput, but a reasonable estimate is that Q335 matrix multiplication is 100 to 500 times slower per element than float16 matrix multiplication. For the LLM forward pass, which is dominated by matrix multiplications, this is the main cost.
 
-However, VDR-15 established that the VDR system generates 85 to 97 percent fewer LLM tokens than a conventional system for the same tasks. The forward pass cost per token is higher, but the number of tokens is dramatically lower. At 95 percent token reduction, the VDR system executes 5 percent as many forward passes, each roughly 200× more expensive per element, giving a total forward pass cost of roughly 10× the conventional system. This is slower in absolute terms for the LLM component.
+However, VDR-15 established that the VDR system generates 85 to 97 percent fewer LLM tokens than a conventional system for the same tasks. The forward pass cost per token is higher, but the number of tokens is dramatically lower. At 95 percent token reduction, the VDR system executes 5 percent as many forward passes, each roughly 200 $\times$  more expensive per element, giving a total forward pass cost of roughly 10 $\times$  the conventional system. This is slower in absolute terms for the LLM component.
 
 The offsetting factor is that the conventional system's 3,000 tokens include massive amounts of infrastructure work that produces no value — arithmetic through digit prediction, state reconstruction, formatting, hedging. The VDR system's 210 tokens are almost entirely judgment and prose — the high-value output that the user actually wants. The user waits longer per token but waits for fewer tokens, and every token they receive is useful rather than infrastructure.
 
@@ -259,7 +262,7 @@ The fourth bottleneck is host-device synchronization. Every command token the LL
 
 The honest comparison between conventional float-based LLM inference and VDR integer-based inference requires separating the workload into components and comparing each.
 
-For the LLM forward pass in isolation, conventional floating-point is faster per token. Float16 tensor cores achieve peak throughput that Q335 integer arithmetic cannot match on current hardware, because the hardware was designed for float16. The VDR system pays a per-token penalty of roughly 100× to 500× on the forward pass. This is the real cost of exact arithmetic on hardware optimized for approximate arithmetic.
+For the LLM forward pass in isolation, conventional floating-point is faster per token. Float16 tensor cores achieve peak throughput that Q335 integer arithmetic cannot match on current hardware, because the hardware was designed for float16. The VDR system pays a per-token penalty of roughly 100 $\times$  to 500 $\times$  on the forward pass. This is the real cost of exact arithmetic on hardware optimized for approximate arithmetic.
 
 For knowledge base operations, VDR is faster. A conventional LLM has no structured data operations — everything is in the weights, accessed through the forward pass. VDR's indexed predicate scans, scope filters, and connection traversals are standard GPU database operations executing at millions of facts per second. A query that would cost a conventional LLM hundreds of tokens of attention-based "searching" through its context window is one indexed GPU scan in VDR.
 
@@ -267,7 +270,7 @@ For Prolog evaluation, VDR has capability that conventional LLMs lack entirely. 
 
 For decode, VDR is dramatically faster on structured output. Grammar-constrained decode over small candidate sets is orders of magnitude cheaper than full-vocabulary softmax. For free-text output, VDR uses the surrogate softmax which avoids transcendentals but still computes over the full vocabulary, giving roughly comparable cost.
 
-For primitive execution, VDR replaces thousands of LLM tokens with hundreds of integer operations. Sorting 500 items is one GPU sort kernel — roughly 500 × log₂(500) × 200 integer operations for Q335 comparisons, totaling roughly 900,000 operations, equivalent to less than one LLM token. A conventional LLM generates hundreds of tokens to sort the same list through prose comparison.
+For primitive execution, VDR replaces thousands of LLM tokens with hundreds of integer operations. Sorting 500 items is one GPU sort kernel — roughly 500  $\times$  log₂(500)  $\times$  200 integer operations for Q335 comparisons, totaling roughly 900,000 operations, equivalent to less than one LLM token. A conventional LLM generates hundreds of tokens to sort the same list through prose comparison.
 
 For provenance and confidence, VDR adds cost that conventional systems don't have — but the cost is small (one provenance event per operation at append-only arena cost, confidence propagation as parallel integer reductions) and the value is substantial (every result is auditable and carries computed confidence).
 
@@ -289,13 +292,13 @@ The more significant trajectory is the token reduction. As the grammar, knowledg
 
 ## 18. What This Means for Real Workloads
 
-For the SRE incident investigation from VDR-15: 210 LLM tokens plus 500 primitive calls. The 210 tokens cost roughly 210 × 200 = 42,000 token-equivalent operations at the Q335 slowdown factor (versus 3,000 × 1 = 3,000 token-equivalent operations for the conventional system). VDR's forward pass is roughly 14× more expensive in total. But the primitive calls — fetching metrics, parsing JSON, filtering time series, computing correlations, evaluating Prolog rules, propagating confidence — add roughly 100,000 Q335 operations, equivalent to 0.05 token-equivalent operations at the 2-billion-ops-per-token scale. The primitives are computationally invisible.
+For the SRE incident investigation from VDR-15: 210 LLM tokens plus 500 primitive calls. The 210 tokens cost roughly 210  $\times$  200 = 42,000 token-equivalent operations at the Q335 slowdown factor (versus 3,000  $\times$  1 = 3,000 token-equivalent operations for the conventional system). VDR's forward pass is roughly 14 $\times$  more expensive in total. But the primitive calls — fetching metrics, parsing JSON, filtering time series, computing correlations, evaluating Prolog rules, propagating confidence — add roughly 100,000 Q335 operations, equivalent to 0.05 token-equivalent operations at the 2-billion-ops-per-token scale. The primitives are computationally invisible.
 
 Wall-clock time: if the conventional system takes 30 seconds to generate 3,000 tokens, VDR takes roughly 3 seconds for 210 LLM tokens (token generation is roughly proportional to token count, with wider arithmetic partially offset by grammar-constrained decode savings) plus sub-second for all primitive execution. Total roughly 4 seconds versus 30 seconds. The user gets a faster response that is also exact, provenance-tagged, and auditable.
 
-For the 20-turn investigation: the conventional system's per-turn cost escalates because each turn re-processes growing context through attention. By turn 20, context is roughly 60,000 tokens and each turn takes proportionally longer. VDR's per-turn cost is flat — state is in knowledge bases, not the context window. Turn 20 costs the same as turn 1. Over 20 turns, the conventional system's total time might be 10 minutes with degrading quality. VDR's total time might be 80 seconds (20 × 4 seconds) with constant quality and accumulating knowledge.
+For the 20-turn investigation: the conventional system's per-turn cost escalates because each turn re-processes growing context through attention. By turn 20, context is roughly 60,000 tokens and each turn takes proportionally longer. VDR's per-turn cost is flat — state is in knowledge bases, not the context window. Turn 20 costs the same as turn 1. Over 20 turns, the conventional system's total time might be 10 minutes with degrading quality. VDR's total time might be 80 seconds (20  $\times$  4 seconds) with constant quality and accumulating knowledge.
 
-For the financial portfolio analysis: 500 Q335 multiplications (position values), 500 Q335 additions (portfolio sum), correlation matrix computation (roughly 125,000 Q335 operations for 500 × 500 pairwise correlations). Total: roughly 126,000 Q335 operations. At millions of Q335 operations per second on GPU, this completes in well under one second. The conventional LLM cannot perform the task at all — 500 positions exceed context capacity and digit-by-digit arithmetic through token prediction would take thousands of tokens.
+For the financial portfolio analysis: 500 Q335 multiplications (position values), 500 Q335 additions (portfolio sum), correlation matrix computation (roughly 125,000 Q335 operations for 500  $\times$  500 pairwise correlations). Total: roughly 126,000 Q335 operations. At millions of Q335 operations per second on GPU, this completes in well under one second. The conventional LLM cannot perform the task at all — 500 positions exceed context capacity and digit-by-digit arithmetic through token prediction would take thousands of tokens.
 
 For academic grading: 150 essays, each requiring LLM judgment at 300 tokens per essay. The LLM cost is 45,000 tokens regardless of system because this is irreducible judgment work. But the statistical analysis — computing means, variances, percentiles, standard deviations across 150 students and multiple criteria — is pure Q335 arithmetic. A few thousand Q335 operations, completing in milliseconds on GPU. The conventional system cannot compute these statistics at all.
 
@@ -309,29 +312,27 @@ The pattern across all workloads: the LLM forward pass is slower per token on VD
 
 | Operation | Q335 Integer Ops | float16 Ops | Ratio | GPU Parallelism | Effective Throughput Ratio |
 |---|---|---|---|---|---|
-| Addition | ~22 (11 limb adds + carries) | 1 | 22× | Full — uniform work per element | ~22× slower per element, same utilization |
-| Subtraction | ~22 (11 limb subs + borrows) | 1 | 22× | Full | ~22× |
-| Multiplication | ~200 (schoolbook 11×11 + accumulate) | 1 | 200× | Full — uniform work per element | ~200× slower per element |
-| Comparison | 2-22 (fast path to full limb scan) | 1 | 2-22× | Full | 2-22× average |
-| Division (by Q335) | ~400 (multiply + shift + remainder) | 1 | 400× | Full | ~400× |
-| Surrogate softmax (per element) | ~220 (sub + square + div) | ~15 (exp + div) | 15× | Full — no transcendentals | ~15× slower but no divergence |
-| ReLU | 2 (compare + conditional copy) | 2 | 1× | Full | Identical |
+| Addition | ~22 (11 limb adds + carries) | 1 | 22 $\times$  | Full — uniform work per element | ~22 $\times$  slower per element, same utilization |
+| Subtraction | ~22 (11 limb subs + borrows) | 1 | 22 $\times$  | Full | ~22 $\times$  |
+| Multiplication | ~200 (schoolbook 11 $\times$ 11 + accumulate) | 1 | 200 $\times$  | Full — uniform work per element | ~200 $\times$  slower per element |
+| Comparison | 2-22 (fast path to full limb scan) | 1 | 2-22 $\times$  | Full | 2-22 $\times$  average |
+| Division (by Q335) | ~400 (multiply + shift + remainder) | 1 | 400 $\times$  | Full | ~400 $\times$  |
+| Surrogate softmax (per element) | ~220 (sub + square + div) | ~15 (exp + div) | 15 $\times$  | Full — no transcendentals | ~15 $\times$  slower but no divergence |
+| ReLU | 2 (compare + conditional copy) | 2 | 1 $\times$  | Full | Identical |
 | Bit test (scope check) | 1 | N/A | — | Full | No conventional equivalent |
-
 ### A.2: Per-Token Forward Pass Cost
 
 | Component | Conventional (float16) | VDR (Q335 integer) | Ratio | Notes |
 |---|---|---|---|---|
-| Embedding lookup | 1 read per dim | 11 reads per dim (limb width) | 11× | Memory-bound; limb width increases bandwidth |
-| Attention QK^T | d_k multiplies per position pair | d_k × 200 int ops per pair | 200× | Dominated by multiplication cost |
-| Softmax / Surrogate | ~15 ops per element (transcendental) | ~220 ops per element (integer) | 15× | VDR avoids transcendental divergence |
-| Value mixing | d_v multiplies per position | d_v × 200 int ops per position | 200× | Same structure, wider operands |
-| Feedforward (ReLU) | 2 ops per element | 2 ops per element | 1× | Identical — piecewise linear |
-| Feedforward (linear) | d_ff multiplies | d_ff × 200 int ops | 200× | Dominated by multiplication |
-| Layer norm / rational scaling | ~10 ops per element | ~25 ops per element | 2.5× | VDR avoids sqrt; uses mean absolute value |
-| **Total per token** | **~14B float ops** | **~14B × ~150 avg factor** | **~150×** | Weighted average across components |
-
-Per-token cost is roughly 150× higher. But token count is 85-97% lower. Net system cost depends on workload composition.
+| Embedding lookup | 1 read per dim | 11 reads per dim (limb width) | 11 $\times$  | Memory-bound; limb width increases bandwidth |
+| Attention QK^T | d k multiplies per position pair | d k  $\times$  200 int ops per pair | 200 $\times$  | Dominated by multiplication cost |
+| Softmax / Surrogate | ~15 ops per element (transcendental) | ~220 ops per element (integer) | 15 $\times$  | VDR avoids transcendental divergence |
+| Value mixing | d v multiplies per position | d v  $\times$  200 int ops per position | 200 $\times$  | Same structure, wider operands |
+| Feedforward (ReLU) | 2 ops per element | 2 ops per element | 1 $\times$  | Identical — piecewise linear |
+| Feedforward (linear) | d ff multiplies | d ff  $\times$  200 int ops | 200 $\times$  | Dominated by multiplication |
+| Layer norm / rational scaling | ~10 ops per element | ~25 ops per element | 2.5 $\times$  | VDR avoids sqrt; uses mean absolute value |
+| **Total per token** | **~14B float ops** | **~14B  $\times$  ~150 avg factor** | **~150 $\times$ ** | Weighted average across components |
+Per-token cost is roughly 150 $\times$  higher. But token count is 85-97% lower. Net system cost depends on workload composition.
 
 ---
 
@@ -342,8 +343,8 @@ Per-token cost is roughly 150× higher. But token count is 85-97% lower. Net sys
 | Category | Conventional | VDR | Notes |
 |---|---|---|---|
 | LLM tokens generated | 3,000 | 210 | 93% reduction |
-| Forward pass ops per token | 14B float | 14B × 150 = 2.1T int | Per-token cost higher |
-| Total forward pass ops | 42T float | 441T int | VDR forward pass ~10.5× more total ops |
+| Forward pass ops per token | 14B float | 14B  $\times$  150 = 2.1T int | Per-token cost higher |
+| Total forward pass ops | 42T float | 441T int | VDR forward pass ~10.5 $\times$  more total ops |
 | Primitive call ops | 0 (no primitives) | ~100K Q335 ops = ~20M int | Computationally invisible |
 | KB query ops | 0 (attention-based search) | ~50K int ops (scans + filters) | GPU-parallel, sub-millisecond |
 | Prolog evaluation ops | 0 (prose reasoning) | ~10K int ops (unification + join) | GPU-parallel, sub-millisecond |
@@ -351,7 +352,6 @@ Per-token cost is roughly 150× higher. But token count is 85-97% lower. Net sys
 | Confidence computation | 0 (hedging tokens) | ~500 int ops | One VDR multiply per propagation step |
 | Provenance logging | 0 (no provenance) | ~5K int ops (append events) | Append-only, negligible |
 | **Total computation** | **42T float** | **~441T int + ~25M int** | VDR: more total int ops for forward pass, negligible for everything else |
-
 ### B.2: 20-Turn Investigation
 
 | Turn | Conventional Forward Pass Ops | Conventional Attention Ops | VDR Forward Pass Ops | VDR Primitive + KB Ops | VDR Total |
@@ -361,20 +361,18 @@ Per-token cost is roughly 150× higher. But token count is 85-97% lower. Net sys
 | 10 | 42T float | 420T float attention | 441T int | ~25M int | ~441T int |
 | 20 | 42T float | 840T float attention | 441T int | ~25M int | ~441T int |
 | **Cumulative** | **840T float gen** | **~8,820T float attn** | **8,820T int** | **~500M int** | **~8,820T int** |
-
-Conventional cumulative: ~9,660T float (generation + attention, growing quadratically). VDR cumulative: ~8,820T int (flat per turn). At 150× per-operation cost, VDR's 8,820T int ≈ conventional equivalent of ~59T float in raw per-op terms — but spread across a constant attention window rather than a growing one. The actual wall-clock time favors VDR from roughly turn 5 onward because the conventional system's attention cost grows quadratically while VDR's stays flat.
+Conventional cumulative: ~9,660T float (generation + attention, growing quadratically). VDR cumulative: ~8,820T int (flat per turn). At 150 $\times$  per-operation cost, VDR's 8,820T int ≈ conventional equivalent of ~59T float in raw per-op terms — but spread across a constant attention window rather than a growing one. The actual wall-clock time favors VDR from roughly turn 5 onward because the conventional system's attention cost grows quadratically while VDR's stays flat.
 
 ### B.3: Crossover Turn
 
-| Turn | Conventional Total Ops (float) | VDR Total Ops (int, at 150× factor) | VDR Equivalent Float Ops | Ratio (Conv/VDR) |
+| Turn | Conventional Total Ops (float) | VDR Total Ops (int, at 150 $\times$  factor) | VDR Equivalent Float Ops | Ratio (Conv/VDR) |
 |---|---|---|---|---|
-| 1 | 84T | 441T int = 2.94T float-equiv | 2.94T | 28.6× (conventional faster) |
-| 3 | 378T | 1,323T int = 8.82T float-equiv | 8.82T | 42.9× (conventional faster per-op, but doing more total work) |
-| 5 | 840T | 2,205T int = 14.7T float-equiv | 14.7T | 57.1× |
-| 10 | 2,940T | 4,410T int = 29.4T float-equiv | 29.4T | 100× |
-| 20 | 9,660T | 8,820T int = 58.8T float-equiv | 58.8T | 164× |
-
-The "ratio" column shows that VDR's float-equivalent cost stays roughly proportional to turn count (linear), while conventional cost grows quadratically. The crossover in wall-clock time depends on the per-operation speed difference between Q335 int and float16. At 150× per-operation slowdown, VDR breaks even at roughly turn 7-10 for a 7B parameter model. For larger models with larger context windows, the crossover comes earlier because attention cost grows faster.
+| 1 | 84T | 441T int = 2.94T float-equiv | 2.94T | 28.6 $\times$  (conventional faster) |
+| 3 | 378T | 1,323T int = 8.82T float-equiv | 8.82T | 42.9 $\times$  (conventional faster per-op, but doing more total work) |
+| 5 | 840T | 2,205T int = 14.7T float-equiv | 14.7T | 57.1 $\times$  |
+| 10 | 2,940T | 4,410T int = 29.4T float-equiv | 29.4T | 100 $\times$  |
+| 20 | 9,660T | 8,820T int = 58.8T float-equiv | 58.8T | 164 $\times$  |
+The "ratio" column shows that VDR's float-equivalent cost stays roughly proportional to turn count (linear), while conventional cost grows quadratically. The crossover in wall-clock time depends on the per-operation speed difference between Q335 int and float16. At 150 $\times$  per-operation slowdown, VDR breaks even at roughly turn 7-10 for a 7B parameter model. For larger models with larger context windows, the crossover comes earlier because attention cost grows faster.
 
 ---
 
@@ -384,37 +382,34 @@ The "ratio" column shows that VDR's float-equivalent cost stays roughly proporti
 
 | Slot Type | Typical Candidates | Full Vocab | Reduction Factor | Example |
 |---|---|---|---|---|
-| Boolean | 2 | 50,000 | 25,000× | yes/no field |
-| Visibility enum | 3 | 50,000 | 16,667× | public/internal/owner_only |
-| Constraint class enum | 4 | 50,000 | 12,500× | axiom/operational/legal/project |
-| Status enum | 5-8 | 50,000 | 6,250-10,000× | pending/running/completed/failed/killed |
-| Builtin opcode | ~300 | 50,000 | 167× | Primitive name selection |
-| KB identifier | 50-500 | 50,000 | 100-1,000× | Entity reference in scope |
-| Relation type | ~20 | 50,000 | 2,500× | uses/enables/implements/etc |
-| Structural punctuation | 1-5 | 50,000 | 10,000-50,000× | Pipe, comma, brace, bracket |
-| Free text | 50,000 | 50,000 | 1× | Prose content slots |
-
+| Boolean | 2 | 50,000 | 25,000 $\times$  | yes/no field |
+| Visibility enum | 3 | 50,000 | 16,667 $\times$  | public/internal/owner only |
+| Constraint class enum | 4 | 50,000 | 12,500 $\times$  | axiom/operational/legal/project |
+| Status enum | 5-8 | 50,000 | 6,250-10,000 $\times$  | pending/running/completed/failed/killed |
+| Builtin opcode | ~300 | 50,000 | 167 $\times$  | Primitive name selection |
+| KB identifier | 50-500 | 50,000 | 100-1,000 $\times$  | Entity reference in scope |
+| Relation type | ~20 | 50,000 | 2,500 $\times$  | uses/enables/implements/etc |
+| Structural punctuation | 1-5 | 50,000 | 10,000-50,000 $\times$  | Pipe, comma, brace, bracket |
+| Free text | 50,000 | 50,000 | 1 $\times$  | Prose content slots |
 ### C.2: Decode Cost per Token by Slot Type
 
 | Slot Type | Surrogate Softmax Ops (Q335) | Full Vocab Softmax Ops (float16) | Ratio | Notes |
 |---|---|---|---|---|
-| Boolean (2 candidates) | ~440 int ops | ~750K float ops | 1,700× cheaper | 2 squares + 1 sum + 2 divides |
-| Enum (4 candidates) | ~880 int ops | ~750K float ops | 850× cheaper | 4 squares + 1 sum + 4 divides |
-| Builtin opcode (300) | ~66K int ops | ~750K float ops | 11× cheaper | Even at Q335 width, small candidate set wins |
-| KB identifier (200) | ~44K int ops | ~750K float ops | 17× cheaper | — |
-| Free text (50K) | ~11M int ops | ~750K float ops | 0.07× (15× more expensive) | Full vocab VDR more expensive per token |
-
-The per-token cost of constrained decode is dramatically cheaper. The per-token cost of unconstrained free-text decode is roughly 15× more expensive due to Q335 width. The net effect depends on the fraction of tokens that are grammar-constrained versus free-text.
+| Boolean (2 candidates) | ~440 int ops | ~750K float ops | 1,700 $\times$  cheaper | 2 squares + 1 sum + 2 divides |
+| Enum (4 candidates) | ~880 int ops | ~750K float ops | 850 $\times$  cheaper | 4 squares + 1 sum + 4 divides |
+| Builtin opcode (300) | ~66K int ops | ~750K float ops | 11 $\times$  cheaper | Even at Q335 width, small candidate set wins |
+| KB identifier (200) | ~44K int ops | ~750K float ops | 17 $\times$  cheaper | — |
+| Free text (50K) | ~11M int ops | ~750K float ops | 0.07 $\times$  (15 $\times$  more expensive) | Full vocab VDR more expensive per token |
+The per-token cost of constrained decode is dramatically cheaper. The per-token cost of unconstrained free-text decode is roughly 15 $\times$  more expensive due to Q335 width. The net effect depends on the fraction of tokens that are grammar-constrained versus free-text.
 
 ### C.3: Net Decode Cost by Response Type
 
 | Response Type | Total Tokens | Grammar-Constrained % | Avg Constrained Candidates | Constrained Token Cost (Q335) | Free-Text Token Cost (Q335) | Total Decode Cost | Conventional Total Decode Cost | Net Ratio |
 |---|---|---|---|---|---|---|---|---|
-| JSON object (20 fields) | 223 | 74% | ~5 | 165 × 1.1K = 182K | 58 × 11M = 638M | 638M | 223 × 750K = 167M | 3.8× (VDR slower) |
-| Markdown table (20×5) | 367 | 60% | ~3 | 220 × 660 = 145K | 147 × 11M = 1,617M | 1,617M | 367 × 750K = 275M | 5.9× (VDR slower) |
-| Incident report | 210 | 50% | ~8 | 105 × 1.8K = 189K | 105 × 11M = 1,155M | 1,155M | 3,000 × 750K = 2,250M | 0.51× (VDR faster) |
-| SRE metrics table | 80 | 85% | ~4 | 68 × 880 = 60K | 12 × 11M = 132M | 132M | 500 × 750K = 375M | 0.35× (VDR faster) |
-
+| JSON object (20 fields) | 223 | 74% | ~5 | 165  $\times$  1.1K = 182K | 58  $\times$  11M = 638M | 638M | 223  $\times$  750K = 167M | 3.8 $\times$  (VDR slower) |
+| Markdown table (20 $\times$ 5) | 367 | 60% | ~3 | 220  $\times$  660 = 145K | 147  $\times$  11M = 1,617M | 1,617M | 367  $\times$  750K = 275M | 5.9 $\times$  (VDR slower) |
+| Incident report | 210 | 50% | ~8 | 105  $\times$  1.8K = 189K | 105  $\times$  11M = 1,155M | 1,155M | 3,000  $\times$  750K = 2,250M | 0.51 $\times$  (VDR faster) |
+| SRE metrics table | 80 | 85% | ~4 | 68  $\times$  880 = 60K | 12  $\times$  11M = 132M | 132M | 500  $\times$  750K = 375M | 0.35 $\times$  (VDR faster) |
 The critical insight: for VDR responses where the total token count is much lower than conventional (incident report: 210 vs 3,000), VDR is faster even with the per-token Q335 penalty, because the massive token reduction outweighs the per-token cost increase. For responses where VDR and conventional have similar total tokens (pure JSON generation), VDR is slower per token and the grammar savings partially but not fully compensate.
 
 ---
@@ -435,7 +430,6 @@ The critical insight: for VDR responses where the total token count is much lowe
 | Grammar-constrained decode | N/A (always full vocab) | 95%+ (tiny candidate set, trivial computation) | Orders of magnitude less work |
 | Provenance append | N/A (no logging) | 90%+ (atomic bump, bulk copy) | Append-only; minimal synchronization |
 | Counter/bitset mutation | N/A (no live state) | 95%+ (atomic int ops) | Single instruction per element |
-
 ### D.2: Aggregate Utilization by Workload Phase
 
 | Phase | Conventional | VDR | Notes |
@@ -446,7 +440,6 @@ The critical insight: for VDR responses where the total token count is much lowe
 | Structural output | Included in token generation at 70-85% | 90%+ for grammar-provided; 55-75% for content slots | Grammar tokens free; content tokens same as forward pass |
 | State management | N/A (in context window) | 90%+ | Counter/bitset/ring buffer ops trivial |
 | Overall weighted | 70-85% | 65-85% | VDR slightly lower on forward pass, higher on everything else |
-
 ---
 
 ## Appendix E: Memory Layout
@@ -455,24 +448,22 @@ The critical insight: for VDR responses where the total token count is much lowe
 
 | Format | Limb Layout | Bits per Value | Memory per 1K Values | Alignment | Coalesced Access Pattern |
 |---|---|---|---|---|---|
-| 11×u32 portable | [limb0..limb10] contiguous | 352 | 44 KB | 4-byte aligned | 11 coalesced u32 reads per thread |
-| 6×u64 optimized | [limb0..limb5] contiguous | 384 | 48 KB | 8-byte aligned | 6 coalesced u64 reads per thread |
+| 11 $\times$ u32 portable | [limb0..limb10] contiguous | 352 | 44 KB | 4-byte aligned | 11 coalesced u32 reads per thread |
+| 6 $\times$ u64 optimized | [limb0..limb5] contiguous | 384 | 48 KB | 8-byte aligned | 6 coalesced u64 reads per thread |
 | SoA limb-major | limb0[0..N], limb1[0..N], ... | 352 or 384 | 44 or 48 KB | Vector-width aligned | Perfect coalescing — adjacent threads read adjacent memory |
-| T0 dense tensor | SoA limb-major, implicit denominator | 352 or 384 per entry | Row: d_model × 44 bytes | Row-aligned | Standard dense matrix access |
-
+| T0 dense tensor | SoA limb-major, implicit denominator | 352 or 384 per entry | Row: d model  $\times$  44 bytes | Row-aligned | Standard dense matrix access |
 ### E.2: KB Fact Storage Layout
 
 | Column | Type | Bytes per Fact | Access Pattern | Index |
 |---|---|---|---|---|
-| fact_kb_id | u32 | 4 | Coalesced scan | Predicate bucket offset |
-| fact_pred_id | u32 | 4 | Bucket lookup | Primary: pred_id → offset/count |
-| fact_arg_begin | u32 | 4 | Indirect (to term pool) | — |
-| fact_arity | u16 | 2 | Filter | — |
-| fact_turn | u32 | 4 | Filter/sort | — |
-| fact_confidence_ref | u32 | 4 | Lookup | — |
-| fact_derivation_ref | u32 | 4 | Lookup (provenance) | — |
+| fact kb id | u32 | 4 | Coalesced scan | Predicate bucket offset |
+| fact pred id | u32 | 4 | Bucket lookup | Primary: pred id → offset/count |
+| fact arg begin | u32 | 4 | Indirect (to term pool) | — |
+| fact arity | u16 | 2 | Filter | — |
+| fact turn | u32 | 4 | Filter/sort | — |
+| fact confidence ref | u32 | 4 | Lookup | — |
+| fact derivation ref | u32 | 4 | Lookup (provenance) | — |
 | **Total per fact** | — | **26 bytes** | — | — |
-
 1 million facts: ~26 MB. Fits entirely in GPU global memory with room for indexes, terms, and working space. A predicate bucket scan over 10,000 facts is one coalesced read of ~260 KB — well within GPU memory bandwidth for sub-millisecond completion.
 
 ### E.3: Arena Allocation Pattern
@@ -486,7 +477,6 @@ The critical insight: for VDR responses where the total token count is much lowe
 | Binding arena | Binding rows from unification frontiers | 10-100 KB per query | After each query (most bindings are temporary) |
 | Provenance arena | Event records | 1-5 KB per turn | Periodically; append-only so less urgent |
 | Live-state delta | Counter changes, buffer writes, cache updates | 0.5-5 KB per turn | On session reset/clone kill |
-
 Total GPU memory for a typical active session: 50-500 MB including model weights, KB data, arenas, and working space. Well within modern GPU memory capacity (16-80 GB).
 
 ---
@@ -502,7 +492,6 @@ Total GPU memory for a typical active session: 50-500 MB including model weights
 | Stream 2: VDR primitives | Integer ALUs, global memory | Value arenas, live-state arrays | Streams 0, 3, 4 |
 | Stream 3: Grammar mask/prep | Integer ALUs, shared memory | Grammar state, candidate buffers | Streams 0, 1, 2 |
 | Stream 4: Provenance compact | Memory copy engines | Provenance arena, event buffers | All (uses DMA, not ALUs) |
-
 ### F.2: Turn Pipeline Timing (Estimated, SRE Single Turn)
 
 | Step | Component | Duration | Overlaps With |
@@ -519,7 +508,6 @@ Total GPU memory for a typical active session: 50-500 MB including model weights
 | 10. Provenance commit | GPU stream 4 | 0.1 ms | LLM decode on stream 0 |
 | 11. Response assembly | CPU | 0.2 ms | — |
 | **Total wall-clock** | — | **~2-4 seconds** | (dominated by LLM decode of 210 tokens) |
-
 The primitive execution, KB queries, grammar updates, and provenance logging are all overlapped with LLM decode. Their wall-clock cost is effectively zero because they complete while the LLM is still generating the next token.
 
 ---
@@ -535,7 +523,6 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 | Prolog frontier size | Low (small rule sets) | Low (simple queries) | Low (score queries) | Medium (cross-reference queries) | Low (dependency queries) |
 | Host-device sync | Medium (20+ command tokens) | Medium (15+ command tokens) | Low (few commands, mostly judgment) | Medium (15+ command tokens) | High (200+ files, many commands) |
 | Memory (arena growth) | Low (small state) | Low (moderate data) | Low (150 student KBs) | Low (document structure) | Medium (200 file KBs) |
-
 ### G.2: Mitigation Strategies
 
 | Bottleneck | Strategy | Mechanism | Supplementary Spec Reference |
@@ -545,7 +532,6 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 | Prolog frontier explosion | Query planning on CPU; scope restriction; predicate indexing | PG7 deterministic ordering; IX1-IX2 indexes; SC2-SC3 scope filters | PG1-PG7, IX1-IX10 |
 | Host-device sync | Batch command tokens; overlap with LLM decode | OR1-OR2 concurrent streams; batch lowering | OR1-OR2 |
 | Arena memory growth | Periodic compaction; session reset | MM3 compaction; SN4 reset | MM1-MM3, SN1-SN5 |
-
 ---
 
 ## Appendix H: Implementation Phase Performance Targets
@@ -556,10 +542,9 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 |---|---|---|---|
 | Phase 1 | Q335 arithmetic, dense tensor kernels, surrogate attention, confidence | 1M Q335 muls/sec; surrogate softmax 10K rows/sec at d=512 | Arithmetic correctness vs Python VDR reference; softmax sum-to-one verified |
 | Phase 2 | KB metadata + fact tables, scope filtering, interned terms, fact queries | 10M facts/sec scan rate; scope filter <0.1ms for 100K facts | Query correctness vs Python Prolog reference |
-| Phase 3 | Frontier unification, rule joins, binding buffers, live-state primitives | 100K unifications/sec; joins <1ms for 1K×1K frontiers | Derivation correctness; binding consistency |
-| Phase 4 | Active spill arena, normalization, functional remainders | Normalization <10ms for 10K active nodes; fn_sqrt at depth 8 <1ms | Normalized forms match Python reference; convergence rates verified |
+| Phase 3 | Frontier unification, rule joins, binding buffers, live-state primitives | 100K unifications/sec; joins <1ms for 1K $\times$ 1K frontiers | Derivation correctness; binding consistency |
+| Phase 4 | Active spill arena, normalization, functional remainders | Normalization <10ms for 10K active nodes; fn sqrt at depth 8 <1ms | Normalized forms match Python reference; convergence rates verified |
 | Phase 5 | Full command pipeline, grammar decode, provenance, sessions | End-to-end prompt <5sec for 210-token SRE scenario | Full system benchmark against Python prototype |
-
 ### H.2: Phase Dependencies
 
 | Phase | Depends On | Enables |
@@ -569,7 +554,6 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 | Phase 3 | Phases 1+2 (arithmetic + KB data) | Phase 5 (command pipeline needs Prolog and live-state) |
 | Phase 4 | Phase 1 (arithmetic; extends to active/irregular) | Phase 5 (full system needs active value handling) |
 | Phase 5 | All prior phases | Production readiness |
-
 ---
 
 ## Appendix I: Integer ALU Throughput by GPU Generation
@@ -587,7 +571,6 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 | Ada Lovelace (AD102) | 2022 | 128 | 64 | Yes | Doubled INT throughput |
 | Hopper (GH100) | 2022 | 128 | 64 | Yes | Data center focused; strong INT path |
 | Blackwell (GB202) | 2024 | 128+ | 64+ | Yes | Latest generation; INT path continues widening |
-
 ### I.2: Q335 Operation Throughput Estimates by Architecture
 
 | Architecture | SMs | INT32 ops/sec (peak) | Q335 adds/sec (est.) | Q335 muls/sec (est.) | Q335 muls as % of FP16 tensor peak |
@@ -597,7 +580,6 @@ The primitive execution, KB queries, grammar updates, and provenance logging are
 | Hopper (H100, 132 SM) | 132 | 16.9T | 770M | 85M | 0.0085% |
 | Ada (RTX 4090, 128 SM) | 128 | 16.4T | 745M | 83M | 0.05% |
 | Blackwell (B200, est.) | 160+ | 25T+ | 1.1B+ | 125M+ | ~0.01% |
-
 Q335 addition: ~22 INT32 ops per add. Q335 multiplication: ~200 INT32 ops per multiply (schoolbook). The percentage of FP16 tensor peak is low because tensor cores are specialized fixed-function units. But absolute throughput — 50-125 million Q335 multiplies per second — is sufficient for VDR workloads where the total multiply count per prompt is in the thousands to millions, not trillions.
 
 ### I.3: Time to Complete VDR Workload Components (H100 Estimates)
@@ -605,15 +587,14 @@ Q335 addition: ~22 INT32 ops per add. Q335 multiplication: ~200 INT32 ops per mu
 | Workload | Q335 Operations | Time at 85M muls/sec | Conventional Float Equivalent | Notes |
 |---|---|---|---|---|
 | 500 portfolio multiplications | 500 muls | 0.006 ms | Cannot perform (context overflow) | Instantaneous |
-| Correlation matrix (500×500) | 125K muls + 125K adds | 1.5 ms | Cannot perform | Sub-second |
+| Correlation matrix (500 $\times$ 500) | 125K muls + 125K adds | 1.5 ms | Cannot perform | Sub-second |
 | Sort 500 items by Q335 key | ~4,500 comparisons | 0.05 ms | Hundreds of tokens of generated prose | Instantaneous |
 | Sum 500 Q335 values | 500 adds | 0.001 ms | Hundreds of tokens digit accumulation | Instantaneous |
 | Softmax surrogate (1000 elements) | 1K muls + 1K adds + 1K divs | 0.04 ms | ~15 ms for transcendental softmax | Faster despite wider operands |
-| Softmax surrogate (4 elements, grammar) | 4 muls + 4 adds + 4 divs | 0.0002 ms | ~0.06 ms for full-vocab softmax | 300× faster due to candidate reduction |
-| Q335 matrix multiply (512×512) | ~134M muls | 1.6 sec | ~0.01 ms on tensor cores | This is the real bottleneck |
+| Softmax surrogate (4 elements, grammar) | 4 muls + 4 adds + 4 divs | 0.0002 ms | ~0.06 ms for full-vocab softmax | 300 $\times$  faster due to candidate reduction |
+| Q335 matrix multiply (512 $\times$ 512) | ~134M muls | 1.6 sec | ~0.01 ms on tensor cores | This is the real bottleneck |
 | Prolog unification (1000 candidates) | ~5K comparisons | 0.06 ms | N/A — no conventional equivalent | Sub-millisecond |
-
-The 512×512 matrix multiply row shows the honest cost: large matrix operations in Q335 are dramatically slower than tensor core float. The VDR strategy is to minimize how often these occur (fewer LLM tokens) rather than to make them individually competitive.
+The 512 $\times$ 512 matrix multiply row shows the honest cost: large matrix operations in Q335 are dramatically slower than tensor core float. The VDR strategy is to minimize how often these occur (fewer LLM tokens) rather than to make them individually competitive.
 
 ---
 
@@ -623,15 +604,14 @@ The 512×512 matrix multiply row shows the honest cost: large matrix operations 
 
 | Operation | Bytes Read per Element | Bytes Written per Element | Elements per Typical Call | Total Bandwidth | H100 Bandwidth (3.35 TB/s) Utilization |
 |---|---|---|---|---|---|
-| Q335 add (11×u32) | 88 (two operands) | 44 (one result) | 1,000 (vector add) | 132 KB | 0.004% — entirely compute-bound |
-| Q335 mul (11×u32) | 88 | 44 + possible 44 (remainder) | 1,000 | 176 KB | 0.005% — compute-bound |
+| Q335 add (11 $\times$ u32) | 88 (two operands) | 44 (one result) | 1,000 (vector add) | 132 KB | 0.004% — entirely compute-bound |
+| Q335 mul (11 $\times$ u32) | 88 | 44 + possible 44 (remainder) | 1,000 | 176 KB | 0.005% — compute-bound |
 | KB fact scan | 26 per fact (all columns) | 0.125 per fact (bitmask) | 10,000 | 261 KB | 0.008% — trivial |
-| Scope filter (bitset) | 4 per fact (kb_id) + 8 (bitset word) | 0.125 per fact (result bit) | 10,000 | 41 KB | 0.001% — trivial |
+| Scope filter (bitset) | 4 per fact (kb id) + 8 (bitset word) | 0.125 per fact (result bit) | 10,000 | 41 KB | 0.001% — trivial |
 | Term pool lookup | 12 per term (tag + 2 payloads) | 0 (read-only) | 5,000 | 60 KB | 0.002% — trivial |
-| LLM embedding lookup (Q335) | 44 × d_model per token | 44 × d_model per token | 1 token | 44 × 4096 = 176 KB | 0.005% — trivial |
-| LLM weight matrix row (Q335) | 44 × d_model per row | 44 per output element | d_model = 4096 | 176 KB per row | Accumulated over matrix: significant |
+| LLM embedding lookup (Q335) | 44  $\times$  d model per token | 44  $\times$  d model per token | 1 token | 44  $\times$  4096 = 176 KB | 0.005% — trivial |
+| LLM weight matrix row (Q335) | 44  $\times$  d model per row | 44 per output element | d model = 4096 | 176 KB per row | Accumulated over matrix: significant |
 | Provenance event append | 0 (write-only) | 32 per event | 50 per turn | 1.6 KB | 0.00005% — invisible |
-
 VDR primitive operations are universally compute-bound, not memory-bound. The memory bandwidth of modern GPUs is vastly underutilized by VDR arithmetic and KB operations. The LLM forward pass is the only component that approaches significant bandwidth utilization, due to weight matrix reads — identical in structure to conventional LLM inference but with wider entries.
 
 ### J.2: Working Set Sizes
@@ -639,16 +619,15 @@ VDR primitive operations are universally compute-bound, not memory-bound. The me
 | Component | Size | Fits in L2 Cache (50 MB on H100)? | Notes |
 |---|---|---|---|
 | Active session live state | 21 KB typical | Yes | Counters, bitsets, buffers — trivial |
-| Session scope chain | 64 bytes (16 × u32) | Yes | Always in registers or L1 |
+| Session scope chain | 64 bytes (16  $\times$  u32) | Yes | Always in registers or L1 |
 | Predicate bucket index | ~4 KB for 1000 predicates | Yes | One u32 offset + u32 count per predicate |
 | Fact table for one predicate bucket | 2.6 KB per 100 facts | Yes for most buckets | Hot predicates stay cached |
 | Term pool (active subset) | 12 KB per 1000 terms | Yes | Repeatedly accessed during unification |
 | Grammar state + candidates | <1 KB | Yes | Tiny; always in fast memory |
-| Binding frontier (Prolog) | 64 bytes per binding row × frontier size | Yes up to ~750K rows | Moderate frontiers fit; large frontiers spill |
+| Binding frontier (Prolog) | 64 bytes per binding row  $\times$  frontier size | Yes up to ~750K rows | Moderate frontiers fit; large frontiers spill |
 | Q335 tensor row (d=4096) | 176 KB | Partially | Typical matrix row doesn't fit L2; streamed from global |
 | Full KB fact store (100K facts) | 2.6 MB | Yes | Entire moderate KB fits in L2 |
 | Full KB fact store (1M facts) | 26 MB | Yes on H100 (50 MB L2) | Large KBs fit in L2 on data-center GPUs |
-
 Most VDR data structures fit in GPU L2 cache. The LLM weight matrices do not — they stream from global memory, same as conventional inference. The difference is that VDR's non-LLM operations (KB queries, Prolog, primitives) all operate on cache-resident data, giving them near-peak throughput.
 
 ---
@@ -663,7 +642,6 @@ Most VDR data structures fit in GPU L2 cache. The LLM weight matrices do not —
 | 11 (Q335 u32) | 121 muls + ~200 adds | ~50 muls + ~300 adds | ~40 muls + ~400 adds | Schoolbook or Karatsuba | Karatsuba marginal win; depends on GPU add/mul ratio |
 | 22 (Q670, double frame) | 484 muls + ~800 adds | ~120 muls + ~700 adds | ~80 muls + ~900 adds | Karatsuba | Clear win at this size |
 | 44+ (very large rational) | 1936+ muls | ~300 muls + ~1500 adds | ~150 muls + ~2000 adds | Toom-3 or Karatsuba | Large operands justify recursive splitting |
-
 ### K.2: GPU Considerations for Algorithm Selection
 
 | Factor | Favors Schoolbook | Favors Karatsuba/Toom |
@@ -675,7 +653,6 @@ Most VDR data structures fit in GPU L2 cache. The LLM weight matrices do not —
 | Warp utilization | 100% — perfectly uniform | 80-95% — depends on recursion balance |
 | Operand size ≤11 limbs | Optimal or near-optimal | Marginal improvement doesn't justify complexity |
 | Operand size >20 limbs | Increasingly suboptimal | Clearly superior |
-
 For Q335 (11 u32 limbs), schoolbook is recommended for GPU due to perfect uniformity. The supplementary specification's AK2 correctly notes "optional Karatsuba/Toom thresholds for large operands" — meaning the system defaults to schoolbook for Q335 and switches only for larger intermediate values that arise during general rational arithmetic or active value normalization.
 
 ---
@@ -686,12 +663,11 @@ For Q335 (11 u32 limbs), schoolbook is recommended for GPU due to perfect unifor
 
 | Strategy | Mechanism | Setup Cost | Per-Fact Cost | Best For | GPU Kernel Pattern |
 |---|---|---|---|---|---|
-| Linear scan | Check each fact's kb_id against scope chain array | 0 | O(scope_depth) comparisons | Tiny trees (<50 KBs) | Each thread: loop over scope chain |
-| Binary search | Sort scope chain; binary search per fact | O(depth × log(depth)) sort | O(log(scope_depth)) comparisons | Small-medium trees | Each thread: binary search |
-| Bitset | Set bits for visible KB IDs in u64 array | O(scope_depth) bit-sets | 1 bit-test per fact | Medium trees (<4096 KBs) | Each thread: one AND + zero-test |
-| DFS interval | Precomputed in/out interval per KB; interval containment test | O(tree_size) DFS precomputation (once) | 2 integer comparisons per fact | Large trees, subtree queries | Each thread: two comparisons |
-| Interval + shadow | DFS interval with shadow-resolution pass for mounts | O(tree_size) + O(mount_count) | 2-4 integer comparisons per fact | Large trees with mounts | Two-pass: interval test then shadow check |
-
+| Linear scan | Check each fact's kb id against scope chain array | 0 | O(scope depth) comparisons | Tiny trees (<50 KBs) | Each thread: loop over scope chain |
+| Binary search | Sort scope chain; binary search per fact | O(depth  $\times$  log(depth)) sort | O(log(scope depth)) comparisons | Small-medium trees | Each thread: binary search |
+| Bitset | Set bits for visible KB IDs in u64 array | O(scope depth) bit-sets | 1 bit-test per fact | Medium trees (<4096 KBs) | Each thread: one AND + zero-test |
+| DFS interval | Precomputed in/out interval per KB; interval containment test | O(tree size) DFS precomputation (once) | 2 integer comparisons per fact | Large trees, subtree queries | Each thread: two comparisons |
+| Interval + shadow | DFS interval with shadow-resolution pass for mounts | O(tree size) + O(mount count) | 2-4 integer comparisons per fact | Large trees with mounts | Two-pass: interval test then shadow check |
 ### L.2: Visibility Check Cost in Context
 
 | System Size | KBs | Facts | Scope Depth | Strategy | Filter Time (est. H100) | As % of Prompt Time |
@@ -701,7 +677,6 @@ For Q335 (11 u32 limbs), schoolbook is recommended for GPU due to perfect unifor
 | Department | 200 | 50,000 | 6 | Bitset | 0.02 ms | 0.0007% |
 | Organization | 2,000 | 500,000 | 8 | DFS interval | 0.1 ms | 0.003% |
 | Enterprise (full) | 10,000 | 2,000,000 | 10 | DFS interval + shadow | 0.5 ms | 0.017% |
-
 Structural safety (visibility checking) costs at most 0.017% of total prompt time even for the largest enterprise deployment. This confirms VDR-16's claim that structural safety is computationally free relative to the language model's operating cost.
 
 ---
@@ -716,7 +691,6 @@ Structural safety (visibility checking) costs at most 0.017% of total prompt tim
 | Hash join | O(N) build hash table | O(1) avg per probe | O(N) hash table | 100-100K rows | High (parallel build + probe) |
 | Sort-merge | O(N log N) sort both sides | O(1) amortized per row | O(1) extra after sort | 10K-1M rows | High (GPU sort is efficient) |
 | Bitmap semijoin | O(N) build bitmap | O(1) per probe (bit test) | O(domain/8) bitmap | Any size, when join is filter | Very high (trivial per-element) |
-
 ### M.2: Typical VDR Query Join Sizes
 
 | Query Type | Goal Count | Avg Frontier After Goal 1 | After Goal 2 | After Goal 3 | Recommended Strategy |
@@ -728,35 +702,32 @@ Structural safety (visibility checking) costs at most 0.017% of total prompt tim
 | Contradiction detection | 2 | 50-200 (findings) | 5-20 (conflicting pairs) | N/A | Hash join |
 | Cross-reference resolution | 2 | 100-1000 (connections) | 10-100 (matched) | N/A | Hash join or sort-merge |
 | Full audit query | 1-2 | 1K-100K (audit events) | 100-10K (filtered) | N/A | Sort-merge or bitmap |
-
 Most VDR queries produce moderate frontier sizes (10-1000 rows) where hash join is optimal. Pathological frontier explosion (>100K rows) only occurs in broad audit queries, which are infrequent and tolerance of higher latency is acceptable.
 
 ### M.3: Join Execution Time Estimates (H100)
 
 | Frontier Sizes | Strategy | Build Time | Probe Time | Total | Notes |
 |---|---|---|---|---|---|
-| 50 × 50 | Hash join | 0.002 ms | 0.002 ms | 0.004 ms | Trivial |
-| 500 × 500 | Hash join | 0.01 ms | 0.01 ms | 0.02 ms | Sub-millisecond |
-| 5K × 5K | Sort-merge | 0.1 ms | 0.05 ms | 0.15 ms | Well within interactive latency |
-| 50K × 50K | Sort-merge | 1 ms | 0.5 ms | 1.5 ms | Acceptable for audit queries |
-| 500K × 500K | Sort-merge | 15 ms | 5 ms | 20 ms | Large audit query; batch acceptable |
-
+| 50  $\times$  50 | Hash join | 0.002 ms | 0.002 ms | 0.004 ms | Trivial |
+| 500  $\times$  500 | Hash join | 0.01 ms | 0.01 ms | 0.02 ms | Sub-millisecond |
+| 5K  $\times$  5K | Sort-merge | 0.1 ms | 0.05 ms | 0.15 ms | Well within interactive latency |
+| 50K  $\times$  50K | Sort-merge | 1 ms | 0.5 ms | 1.5 ms | Acceptable for audit queries |
+| 500K  $\times$  500K | Sort-merge | 15 ms | 5 ms | 20 ms | Large audit query; batch acceptable |
 ---
 
 ## Appendix N: Functional Remainder Evaluation Cost
 
 ### N.1: Per-Function Evaluation Cost
 
-| Function (fn_id) | Algorithm | Ops per Depth Step | Depth for 100 Digits | Total Q335 Ops | Time (est. H100) |
+| Function (fn id) | Algorithm | Ops per Depth Step | Depth for 100 Digits | Total Q335 Ops | Time (est. H100) |
 |---|---|---|---|---|---|
-| SQRT (Newton) | x_{n+1} = (x_n + S/x_n)/2 | 1 div + 1 add + 1 shift = ~600 ops | 8 | ~4,800 | 0.06 ms |
+| SQRT (Newton) | x {n+1} = (x n + S/x n)/2 | 1 div + 1 add + 1 shift = ~600 ops | 8 | ~4,800 | 0.06 ms |
 | EXP (Taylor) | Σ x^n/n! cumulative | 1 mul + 1 div + 1 add = ~600 ops per term | 45 | ~27,000 | 0.3 ms |
 | LOG (series + reduction) | ln(1+x) series with argument reduction | 1 mul + 1 div + 1 add per term | 340 (at x near 1; much less with reduction) | ~20,000 with reduction | 0.2 ms |
 | SIN (Taylor odd) | Σ (-1)^n x^(2n+1)/(2n+1)! | 2 muls + 1 div + 1 add per term | 45 | ~36,000 | 0.4 ms |
 | COS (Taylor even) | Σ (-1)^n x^(2n)/(2n)! | 2 muls + 1 div + 1 add per term | 45 | ~36,000 | 0.4 ms |
 | ARCTAN (Taylor + Machin) | Series with identity reduction | 1 mul + 1 div + 1 add per term | 170 (without reduction) | ~15,000 with Machin | 0.2 ms |
 | ZETA (Borwein) | Weighted alternating sum with 3^-n convergence | 1 mul + 1 add per term | 210 (for any s≥2) | ~42,000 | 0.5 ms |
-
 ### N.2: Batch Evaluation Throughput
 
 | Scenario | Function Calls | Total Q335 Ops | Time (H100, sequential) | Time (H100, batched parallel) | Notes |
@@ -766,8 +737,7 @@ Most VDR queries produce moderate frontier sizes (10-1000 rows) where hash join 
 | Kepler orbit (50 Newton steps) | 50 sqrt-like iterations | 240K | 3 ms | 0.5 ms batched | Pipeline Newton iterations |
 | Q335 constant resolution (22 constants) | 22 lookups | ~0 (precomputed) | <0.001 ms | <0.001 ms | Constants stored as Q335 limb vectors |
 | Softmax via Taylor exp (1000 elements) | 1000 exp evaluations | 27M | 320 ms sequential | ~0.3 ms batched (1000 parallel) | Why rational surrogate is preferred |
-
-The last row demonstrates why the rational surrogate softmax (ML6) is preferred over Taylor exponential softmax (ML5) for GPU execution. Batched Taylor exp for 1000 elements takes ~0.3 ms. The rational surrogate for the same 1000 elements takes ~0.04 ms — an 8× speedup from avoiding transcendental evaluation entirely, with the same sum-to-one guarantee.
+The last row demonstrates why the rational surrogate softmax (ML6) is preferred over Taylor exponential softmax (ML5) for GPU execution. Batched Taylor exp for 1000 elements takes ~0.3 ms. The rational surrogate for the same 1000 elements takes ~0.04 ms — an 8 $\times$  speedup from avoiding transcendental evaluation entirely, with the same sum-to-one guarantee.
 
 ---
 
@@ -777,12 +747,11 @@ The last row demonstrates why the rational surrogate softmax (ML6) is preferred 
 
 | Source | Where It Occurs | Impact on Correctness | Mitigation | Cost of Mitigation |
 |---|---|---|---|---|
-| Atomic operation ordering | Counter increments, arena allocation | Counter final value correct; intermediate order varies | Final values deterministic; order canonicalized by (turn, batch_seq) | Zero — final values same regardless of order |
+| Atomic operation ordering | Counter increments, arena allocation | Counter final value correct; intermediate order varies | Final values deterministic; order canonicalized by (turn, batch seq) | Zero — final values same regardless of order |
 | Block execution order | All parallel kernels | Results computed in arbitrary block order | Post-sort by canonical key where ordering matters | One radix sort per kernel with ordering requirement |
 | Warp-level reduction order | Sum reductions, max reductions | Floating-point: result varies. Integer: result varies if overflow possible | Q335 addition is associative and commutative for closed values; canonical reduction order for active values | Zero for closed (mathematically identical); sort cost for active |
 | Memory allocation order | Arena bump allocation across blocks | Handle assignment order varies | External handles assigned by CPU in canonical order after kernel completion | One sequential pass over kernel outputs |
-| Provenance event order | Parallel event emission | Events from same turn may appear in arbitrary order | Post-sort by (turn, batch_seq, item_seq) | One radix sort per turn's events |
-
+| Provenance event order | Parallel event emission | Events from same turn may appear in arbitrary order | Post-sort by (turn, batch seq, item seq) | One radix sort per turn's events |
 ### O.2: Determinism Guarantees by Component
 
 | Component | Deterministic? | Condition | Verification Method |
@@ -798,7 +767,6 @@ The last row demonstrates why the rational surrogate softmax (ML6) is preferred 
 | Provenance event content | Yes | Same operations, same inputs | Content identical; ordering canonicalized |
 | Session snapshot | Yes | Same live state | Byte-identical snapshot for same logical state |
 | Forward pass output | Yes | Same weights, same input, same token count | Bit-identical — integer arithmetic is platform-independent |
-
 The last row is the fundamental advantage: VDR's forward pass produces bit-identical outputs on any hardware because integer arithmetic has no platform-dependent rounding behavior. Conventional float-based forward passes are not deterministic across platforms.
 
 ---
@@ -809,20 +777,18 @@ The last row is the fundamental advantage: VDR's forward pass produces bit-ident
 
 | Step | Operation | Operand Size | Result Size | GPU Implementation |
 |---|---|---|---|---|
-| 1. Full multiply | A × B | 335 bits × 335 bits | 670 bits | Schoolbook on 11×u32 limbs → 22 limbs |
+| 1. Full multiply | A  $\times$  B | 335 bits  $\times$  335 bits | 670 bits | Schoolbook on 11 $\times$ u32 limbs → 22 limbs |
 | 2. Extract quotient | Bits [670:335] of product | 335 bits | 335 bits (11 limbs) | Right-shift by 335 bits = skip lower 10.47 limbs → limb-aligned extraction |
 | 3. Extract remainder | Bits [334:0] of product | 335 bits | 335 bits (11 limbs) | Mask lower 335 bits → limb-aligned extraction |
 | 4. Check remainder | remainder == 0? | 335 bits | 1 bit | OR-reduce all 11 limbs; zero-test on result |
-| 5a. If zero | Result is closed Q335 | quotient only | 11 limbs | Store quotient; set tag = QFRAME; set r_ref = 0 |
+| 5a. If zero | Result is closed Q335 | quotient only | 11 limbs | Store quotient; set tag = QFRAME; set r ref = 0 |
 | 5b. If nonzero | Result is active | quotient + remainder | 22 limbs + node | Store quotient as V; allocate AtomicR in arena; store remainder; set tag = ACTIVE |
-
 ### P.2: Bit Alignment Within Limbs
 
 | Layout | Limb Width | Limbs for 335 bits | Wasted Bits | Split Position within Limb Array |
 |---|---|---|---|---|
-| 11 × u32 | 32 | 11 (352 bits) | 17 | Split at bit 335 falls within limb 10 (bits 320-351); requires intra-limb shift |
-| 6 × u64 | 64 | 6 (384 bits) | 49 | Split at bit 335 falls within limb 5 (bits 320-383); requires intra-limb shift |
-
+| 11  $\times$  u32 | 32 | 11 (352 bits) | 17 | Split at bit 335 falls within limb 10 (bits 320-351); requires intra-limb shift |
+| 6  $\times$  u64 | 64 | 6 (384 bits) | 49 | Split at bit 335 falls within limb 5 (bits 320-383); requires intra-limb shift |
 The intra-limb shift is one shift + one mask operation per split — trivial cost. The "wasted" bits above 335 in the top limb are always zero in a properly normalized Q335 value. After multiplication, the product occupies up to 670 bits, spread across 22 u32 limbs or 12 u64 limbs. The quotient extraction starts at limb offset ceil(335/32) = 11, and the remainder is the lower 11 limbs with the top limb masked.
 
 ---
@@ -833,12 +799,11 @@ The intra-limb shift is one shift + one mask operation per split — trivial cos
 
 | Tensor Core Property | Float16/BF16/TF32 | Q335 Integer | Incompatibility |
 |---|---|---|---|
-| Operand width | 16/16/19 bits | 352 bits | 22× wider; doesn't fit tensor core input registers |
-| Accumulator width | 32 bits | 704 bits (full product) | 22× wider; accumulator overflow |
+| Operand width | 16/16/19 bits | 352 bits | 22 $\times$  wider; doesn't fit tensor core input registers |
+| Accumulator width | 32 bits | 704 bits (full product) | 22 $\times$  wider; accumulator overflow |
 | Rounding mode | Round-to-nearest-even | Exact (no rounding) | Tensor cores round by design |
-| Matrix tile size | 16×16 or 8×8 | Same logical tile | Tiles contain 11× more data per element |
+| Matrix tile size | 16 $\times$ 16 or 8 $\times$ 8 | Same logical tile | Tiles contain 11 $\times$  more data per element |
 | Hardware function | Fused multiply-accumulate | Multi-precision multiply + exact accumulate | Different computational primitive |
-
 ### Q.2: Hypothetical Integer Tensor Core Design
 
 | Feature | Description | Benefit for VDR |
@@ -847,8 +812,7 @@ The intra-limb shift is one shift + one mask operation per split — trivial cos
 | Carry-chain hardware | Hardware carry propagation across limb boundaries | Eliminates software carry loop |
 | Exact split unit | Fixed-position bit extraction at configurable split point | Hardware Q335 quotient/remainder extraction |
 | Multi-precision register file | Registers holding 352+ bit values | Eliminates limb-by-limb register management |
-| Estimated speedup over INT32 ALU path | 50-200× for matrix operations | Would close the gap with float tensor cores |
-
+| Estimated speedup over INT32 ALU path | 50-200 $\times$  for matrix operations | Would close the gap with float tensor cores |
 This is engineering, not physics. If exact arithmetic workloads create sufficient market demand, GPU vendors can add integer tensor cores. The computational patterns (multiply-accumulate on fixed-width wide integers with exact accumulation) are simpler than the floating-point tensor core patterns (which must handle denormals, infinities, NaN propagation, and multiple rounding modes).
 
 ---
@@ -859,11 +823,10 @@ This is engineering, not physics. If exact arithmetic workloads create sufficien
 
 | Metric | Measurement | Source | Check Frequency |
 |---|---|---|---|
-| Active fraction per tensor | count(tag == ACTIVE) / total_elements | Per-tensor tag scan | Every tensor operation |
-| Arena growth rate | bytes_allocated / turns_elapsed | Arena bump pointer delta | Every turn |
+| Active fraction per tensor | count(tag == ACTIVE) / total elements | Per-tensor tag scan | Every tensor operation |
+| Arena growth rate | bytes allocated / turns elapsed | Arena bump pointer delta | Every turn |
 | Maximum active tree depth | max(depth) across active nodes | VdrNode depth field | Every normalization pass |
-| Closed-to-active conversion rate | new_active_nodes / total_operations | Counter on spill events | Every operation batch |
-
+| Closed-to-active conversion rate | new active nodes / total operations | Counter on spill events | Every operation batch |
 ### R.2: Threshold Actions
 
 | Active Fraction | Tensor Class | Action | Performance Impact |
@@ -874,16 +837,14 @@ This is engineering, not physics. If exact arithmetic workloads create sufficien
 | 1% - 5% | T1 with tile-local spill tables | Group active entries per tile; batch process | 5-15% overhead |
 | 5% - 10% | T1 transitioning to T2 | Consider reprojection to reduce active count | 15-30% overhead; reprojection may be cheaper |
 | >10% | T2 (sparse active) or host intervention | Switch to sparse representation or reproject entire tensor | 30-50% overhead; reprojection strongly recommended |
-
 ### R.3: Reprojection Decision
 
 | Trigger | Condition | Action | Error Bound | Provenance |
 |---|---|---|---|---|
-| Denominator budget exceeded | vdr_denom_bits(value) > budget_bits | B136 vdr_reproject_qbasis | Exact bound computed and stored | fact(reprojection, value_ref, old_bits, new_bits, error_bound, turn) |
+| Denominator budget exceeded | vdr denom bits(value) > budget bits | B136 vdr reproject qbasis | Exact bound computed and stored | fact(reprojection, value ref, old bits, new bits, error bound, turn) |
 | Active fraction exceeded | tensor active fraction > threshold | Batch AK6 reprojection on all active entries | Per-entry exact bound | Batch provenance events |
 | Training step checkpoint | Every N training steps | Reproject all parameters to Q335 base | Per-parameter exact bound | Checkpoint provenance |
 | Manual trigger | User or system policy | Selective or full reprojection | Exact bound | Policy-driven provenance |
-
 Every reprojection is logged with exact error bounds. No silent precision loss occurs anywhere in the system. This is the fundamental distinction from floating-point: float silently truncates on every operation; VDR reprojection is a declared, auditable, bounded precision decision.
 
 ---
@@ -894,14 +855,13 @@ Every reprojection is logged with exact error bounds. No silent precision loss o
 
 | Sync Point | Direction | Payload Size | Latency | Frequency per Turn | Overlap Possible |
 |---|---|---|---|---|---|
-| Scope chain transfer | Host → Device | 64 bytes | 5-10 μs | 1 | Yes (during LLM prefill) |
-| Command token lowering | Host → Device | ~32 bytes per command | 5-10 μs | 5-50 per turn | Yes (during LLM decode) |
-| Primitive result retrieval | Device → Host | 4-64 bytes per result | 5-10 μs | 5-50 per turn | Yes (buffered, batch retrieved) |
-| Grant verification | Host-only | 0 (no transfer) | 1-5 μs | 5-50 per turn | Yes (CPU-parallel) |
-| Path resolution | Host-only | 0 (no transfer) | 1-10 μs per path | 5-50 per turn | Yes (cached after first resolution) |
-| Grammar state update | Host → Device | 16 bytes per update | 5-10 μs | 10-100 per turn | Yes (during LLM decode) |
-| Provenance batch commit | Device → Host (optional) | 1-5 KB per turn | 10-50 μs | 1 per turn | Yes (stream 4, overlapped) |
-
+| Scope chain transfer | Host → Device | 64 bytes | 5-10  $\mu$ s | 1 | Yes (during LLM prefill) |
+| Command token lowering | Host → Device | ~32 bytes per command | 5-10  $\mu$ s | 5-50 per turn | Yes (during LLM decode) |
+| Primitive result retrieval | Device → Host | 4-64 bytes per result | 5-10  $\mu$ s | 5-50 per turn | Yes (buffered, batch retrieved) |
+| Grant verification | Host-only | 0 (no transfer) | 1-5  $\mu$ s | 5-50 per turn | Yes (CPU-parallel) |
+| Path resolution | Host-only | 0 (no transfer) | 1-10  $\mu$ s per path | 5-50 per turn | Yes (cached after first resolution) |
+| Grammar state update | Host → Device | 16 bytes per update | 5-10  $\mu$ s | 10-100 per turn | Yes (during LLM decode) |
+| Provenance batch commit | Device → Host (optional) | 1-5 KB per turn | 10-50  $\mu$ s | 1 per turn | Yes (stream 4, overlapped) |
 ### S.2: Total Synchronization Overhead per Turn
 
 | Scenario | Command Tokens | Sync Events | Total Sync Latency (non-overlapped) | Total Sync Latency (overlapped with LLM decode) | As % of Turn Time |
@@ -910,7 +870,6 @@ Every reprojection is logged with exact error bounds. No silent precision loss o
 | SRE investigation turn (10 commands) | 10 | ~25 | 0.25 ms | 0.05 ms (mostly overlapped) | 0.002% |
 | Complex analysis (30 commands) | 30 | ~70 | 0.7 ms | 0.15 ms | 0.005% |
 | Bulk migration (100 commands) | 100 | ~200 | 2.0 ms | 0.5 ms | 0.02% |
-
 Host-device synchronization is not a significant bottleneck. The concurrent stream model overlaps most synchronization with LLM decode. The residual non-overlapped sync is sub-millisecond even for complex turns.
 
 ---
@@ -925,11 +884,10 @@ Host-device synchronization is not a significant bottleneck. The concurrent stre
 | Precision | ~2 decimal digits | ~1 decimal digit | ~100 decimal digits |
 | Accuracy loss from quantization | 0.1-2% on benchmarks | 1-5% on benchmarks | 0% (exact) |
 | Tensor core compatible | Yes (INT8 tensor cores) | Yes (INT4 on some architectures) | No (too wide) |
-| Throughput vs FP16 | 2× (8-bit fits 2× per register) | 4× (4-bit fits 4× per register) | 0.005× (22× wider, no tensor cores) |
+| Throughput vs FP16 | 2 $\times$  (8-bit fits 2 $\times$  per register) | 4 $\times$  (4-bit fits 4 $\times$  per register) | 0.005 $\times$  (22 $\times$  wider, no tensor cores) |
 | Reproducible across platforms | No (quantization rounding varies) | No | Yes (integer arithmetic is exact) |
 | Provenance | None | None | Full — every value traced |
 | Suitable for | Production inference (approximate OK) | Edge deployment (approximate OK) | Exact computation with audit requirements |
-
 ### T.2: VDR vs Mixed-Precision Training
 
 | Aspect | FP16/FP32 Mixed Precision | BF16/FP32 Mixed Precision | VDR Q335 Exact |
@@ -939,9 +897,8 @@ Host-device synchronization is not a significant bottleneck. The concurrent stre
 | Loss scaling required | Yes (to prevent underflow) | Less often | No (no underflow possible) |
 | Gradient precision | 16-bit (lossy) | 16-bit (lossy) | Exact integer |
 | Checkpoint reproducibility | No (platform-dependent) | No | Yes (bit-identical) |
-| Training throughput | Baseline | ~Same as FP16 | ~150× slower per token |
+| Training throughput | Baseline | ~Same as FP16 | ~150 $\times$  slower per token |
 | Training token count for equivalent work | Baseline | Same | 85-97% fewer tokens needed |
-
 ---
 
 ## Appendix U: Energy and Cost Estimates
@@ -952,32 +909,29 @@ Host-device synchronization is not a significant bottleneck. The concurrent stre
 |---|---|---|
 | FP16 multiply (tensor core) | 0.1-0.3 | Published GPU power analysis |
 | INT32 multiply (ALU) | 0.1-0.5 | Comparable to FP32 ALU |
-| Q335 multiply (schoolbook, 200 INT32 ops) | 20-100 | 200× INT32 single multiply |
-| Q335 add (22 INT32 ops) | 2-10 | 22× INT32 single add |
+| Q335 multiply (schoolbook, 200 INT32 ops) | 20-100 | 200 $\times$  INT32 single multiply |
+| Q335 add (22 INT32 ops) | 2-10 | 22 $\times$  INT32 single add |
 | DRAM read (64 bytes, one cache line) | 10-50 | GPU memory subsystem |
 | L2 read (64 bytes) | 1-5 | On-chip cache |
-
 ### U.2: Energy per Prompt
 
 | System | Tokens | Ops per Token | Energy per Op | Total Energy | Notes |
 |---|---|---|---|---|---|
 | Conventional (FP16, 7B model) | 3,000 | 14B | 0.2 pJ | 8.4 J | Forward pass dominated |
-| VDR (Q335, 7B model) | 210 | 14B × 150 | 50 pJ avg | 22 J | Higher per-op, fewer tokens |
+| VDR (Q335, 7B model) | 210 | 14B  $\times$  150 | 50 pJ avg | 22 J | Higher per-op, fewer tokens |
 | VDR primitive + KB ops | — | ~25M int ops | 0.3 pJ | 0.0075 J | Negligible energy cost |
 | **Conventional total** | — | — | — | **8.4 J** | — |
 | **VDR total** | — | — | — | **~22 J** | — |
-
-VDR uses roughly 2.6× more energy per prompt than conventional for a single turn. Over 20 turns where conventional attention cost grows quadratically, VDR's flat energy profile catches up. The energy cost is dominated by the LLM forward pass in both systems. VDR's primitive and KB operations are energetically negligible.
+VDR uses roughly 2.6 $\times$  more energy per prompt than conventional for a single turn. Over 20 turns where conventional attention cost grows quadratically, VDR's flat energy profile catches up. The energy cost is dominated by the LLM forward pass in both systems. VDR's primitive and KB operations are energetically negligible.
 
 ### U.3: Cost per Prompt (Cloud GPU Pricing)
 
 | Configuration | GPU | Cost per Hour | Time per Prompt (SRE single turn) | Cost per Prompt | Notes |
 |---|---|---|---|---|---|
-| Conventional (FP16, H100) | 1× H100 | $3.00 | ~30 sec (3000 tokens) | $0.025 | Standard inference |
-| VDR (Q335, H100) | 1× H100 | $3.00 | ~4 sec (210 tokens + primitives) | $0.0033 | 7.5× cheaper per prompt |
-| VDR (Q335, H100, 20-turn) | 1× H100 | $3.00 | ~80 sec total | $0.067 | Flat per turn |
-| Conventional (20-turn) | 1× H100 | $3.00 | ~600 sec total (growing attention) | $0.50 | 7.5× more expensive |
-
+| Conventional (FP16, H100) | 1 $\times$  H100 | $3.00 | ~30 sec (3000 tokens) | $0.025 | Standard inference |
+| VDR (Q335, H100) | 1 $\times$  H100 | $3.00 | ~4 sec (210 tokens + primitives) | $0.0033 | 7.5 $\times$  cheaper per prompt |
+| VDR (Q335, H100, 20-turn) | 1 $\times$  H100 | $3.00 | ~80 sec total | $0.067 | Flat per turn |
+| Conventional (20-turn) | 1 $\times$  H100 | $3.00 | ~600 sec total (growing attention) | $0.50 | 7.5 $\times$  more expensive |
 The per-prompt cloud cost is lower for VDR despite the per-operation slowdown, because the total GPU-seconds are lower. The token reduction dominates the per-operation cost increase. Over multi-turn interactions, the cost advantage grows because VDR's time is flat per turn while conventional time grows with context.
 
 ---

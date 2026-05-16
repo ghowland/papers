@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog: Alignment
+# VDR-LLM-Prolog: Performance
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-The language model industry frames alignment as making models helpful, harmless, and honest through behavioral training — reinforcement learning from human feedback, constitutional AI methods, system prompts, and content classifiers. This paper demonstrates that all three alignment properties are achievable through architectural structure rather than behavioral training, using the VDR-LLM-Prolog system specified in the preceding sixteen papers. Honest becomes structural when every value carries provenance, every computation is reproducible, every confidence is a computed fraction with a visible derivation chain, and the user can inspect and download any of it. Harmless becomes structural when unauthorized data is absent by construction through knowledge base visibility and scope chain resolution, operational commands require positive credential grants, and content constraints operate on knowledge base provenance rather than token similarity. Helpful becomes structural when the model does what the user asked on data matched to the user's verified competence level, without assessing the user's state, substituting its judgment, or deploying unsolicited concern. The system supports tiered access through professional credential verification — a single fact assertion on a user's knowledge base, checked by integer comparison in the primitive layer, unlocking domain-specific knowledge bases that shadow general-public data in the scope chain. A credentialed professional chemist receives professional-grade toxicology data on the first query. An anonymous public user receives general educational information from the same system. Neither receives a wellness check, a refusal, or an assessment of their intent, because the architecture handles safety without needing to assess anyone. This paper introduces no new primitives, struct fields, builtins, or modules. Every mechanism uses existing components from VDR-1 through VDR-16. Alignment is not a feature added to this system. It is a consequence of how the system was built.
+The VDR-LLM-Prolog system replaces floating-point arithmetic with exact integer computation. The immediate objection is performance: integer arithmetic on 100-digit numbers must be slower than hardware-accelerated floating-point on 16-bit or 32-bit values. This paper demonstrates that the objection confuses per-operation cost with per-prompt cost. A conventional language model spends thousands of tokens — each requiring a full forward pass through billions of floating-point parameters — on infrastructure work that VDR handles through exact primitive calls costing a few hundred integer operations each. VDR-15 established that the token reduction is 85 to 97 percent. This paper establishes that the integer arithmetic executing those primitives maps efficiently to GPU hardware, that the wider operands are offset by the massive parallelism of modern GPUs, and that several architectural properties of VDR — fixed-frame regularity, grammar-constrained decode, indexed knowledge base scans, and frontier-based Prolog execution — produce GPU utilization patterns that are structurally superior to the irregular, attention-dominated workloads of conventional language model inference. The complete GPU mapping is specified in the supplementary technical specification. This paper explains why it works, what the performance characteristics are, and where the actual bottlenecks lie.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-17-2026,
-  title={ VDR-LLM-Prolog: Alignment },
+@article{ HOWL-VDR-18-2026,
+  title={ VDR-LLM-Prolog: Performance },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.zzz},
   url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-VDR-17-2026. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-VDR-18-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
