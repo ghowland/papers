@@ -103,6 +103,7 @@ Otherwise:
 | **[HOWL-VDR-22-2026](HOWL-VDR-22-2026/manuscript.md)** | **VDR-LLM-Prolog on Dedicated Silicon** | From FPGA Proof-of-Concept to Integer-Native GPU Architecture. |
 | **[HOWL-VDR-23-2026](HOWL-VDR-23-2026/manuscript.md)** | **VDR-LLM-Prolog: Functional Remainder Hardware** | Adaptive Precision Through Structural Information in Silicon. |
 | **[HOWL-VDR-24-2026](HOWL-VDR-24-2026/manuscript.md)** | **LLM Software** | Configuration and Cloning as Application Development. |
+| **[HOWL-VDR-25-2026](HOWL-VDR-25-2026/manuscript.md)** | **LLM Server Software** | Performing Web and Internet Services via LLM. |
 
 ---
 
