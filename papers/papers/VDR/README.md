@@ -14,7 +14,7 @@ Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and 
 
 ## Quick Deep Dives
 
-- **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)** - 
+- **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)** - Complete VDR-LLM-Prolog system in one document: exact rational arithmetic (VDR triples, Q335 basis, functional remainders), scoped KB tree with 26-field struct, Prolog engine with depth-first unification, 483 builtins across 25 categories, command tokens, environments, sessions with disposable clones, orchestrated inference with four modes and exact confidence fractions, grammar-directed compaction, and 12-phase lifecycle from data sourcing through retirement. 884 tests across 37 domains, zero VDR computation errors. Five-stage build plan, 65 modules, 12 architectural layers.
 
 - **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: LLM sessions configured with KB state and Prolog rules, then snapshot and cloned as running applications. Builtins are Prolog predicates — user-written rules chain them into workflows that execute without LLM involvement. Three execution levels: full LLM judgment, LLM invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones are instances. Drift thresholds enforce freshness.
 
