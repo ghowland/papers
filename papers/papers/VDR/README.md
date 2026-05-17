@@ -12,6 +12,8 @@
 
 Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
 
+- **[Complete Spec](HOWL-VDR-14-2026/manuscript.md)**
+
 ## How Exact Integer Arithmetic Works
 
 **"But you need floats for transcendentals / softmax / training?"**
