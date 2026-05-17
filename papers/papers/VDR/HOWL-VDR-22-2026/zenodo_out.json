@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-17T06:59:27.581164+00:00",
+  "modified": "2026-05-17T06:59:27.636408+00:00",
+  "id": 20252454,
+  "conceptrecid": "20252453",
+  "metadata": {
+    "title": "VDR-LLM-Prolog on Dedicated Silicon",
+    "publication_date": "2026-04",
+    "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "vdr"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-22-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-22-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20252454",
+      "recid": 20252454
+    }
+  },
+  "title": "VDR-LLM-Prolog on Dedicated Silicon",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20252454",
+    "html": "https://zenodo.org/deposit/20252454",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20252454/files",
+    "bucket": "https://zenodo.org/api/files/4ec36c36-eecb-408f-907b-e13be6c85486",
+    "thumb250": "https://zenodo.org/record/20252454/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20252454/thumb10",
+      "50": "https://zenodo.org/record/20252454/thumb50",
+      "100": "https://zenodo.org/record/20252454/thumb100",
+      "250": "https://zenodo.org/record/20252454/thumb250",
+      "750": "https://zenodo.org/record/20252454/thumb750",
+      "1200": "https://zenodo.org/record/20252454/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20252454",
+    "latest_draft_html": "https://zenodo.org/deposit/20252454",
+    "publish": "https://zenodo.org/api/deposit/depositions/20252454/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20252454/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20252454/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20252454/actions/newversion"
+  },
+  "record_id": 20252454,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "9a6fa260-df8e-48e2-b87d-6a707b852b09",
+      "filename": "HOWL-VDR-22-2026.zip",
+      "filesize": 2215736,
+      "checksum": "77d5347924d298c1657210a7bd2b1701",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20252454/files/9a6fa260-df8e-48e2-b87d-6a707b852b09",
+        "download": "https://zenodo.org/api/records/20252454/draft/files/HOWL-VDR-22-2026.zip/content"
+      }
+    },
+    {
+      "id": "8cf2e04f-528b-4c02-b37c-46ab994c0564",
+      "filename": "!manuscript.pdf",
+      "filesize": 153065,
+      "checksum": "e475a6ad73847f5025853eea4022c3d7",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20252454/files/8cf2e04f-528b-4c02-b37c-46ab994c0564",
+        "download": "https://zenodo.org/api/records/20252454/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

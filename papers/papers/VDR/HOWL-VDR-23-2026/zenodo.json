@@ -1,0 +1,70 @@
+{
+  "title": "VDR-LLM-Prolog on Dedicated Silicon",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "The VDR-LLM-Prolog FPGA implementation [@HOWL-VDR-21-2026] validates an architectural principle: Q335 exact integer arithmetic \u2014 where every value is a 384-bit numerator over an implicit fixed denominator of 2^335, and division by that denominator is bit extraction requiring zero logic \u2014 maps naturally to parallel hardware. The FPGA achieves this at 150 MHz on 10 custom cores in a $200 system-on-chip. This paper asks what happens when that architecture moves to dedicated silicon designed for it. Modern GPU fabrication at 4-5nm provides transistor budgets exceeding 80 billion, clock speeds of 2-2.5 GHz, and memory bandwidths of 3-5 TB/s via HBM3. Current GPUs dedicate substantial die area to floating-point units, tensor cores with float accumulation, and special function units for transcendentals (sin, cos, exp, rsqrt) \u2014 none of which VDR-LLM-Prolog uses. This paper specifies an integer-native processor that reclaims that area for wide integer arithmetic: 384-bit ALUs with 1-2 cycle multiply (versus 9 cycles on FPGA), SHR335 as a routing decision (zero gates, zero power, zero latency beyond wire delay \u2014 the same property that makes it zero logic on FPGA, now at thousands of units), and a reduction network that produces exact results at every level. The design targets 5,120 Q335 cores organized into 80 streaming multiprocessors, projecting approximately 5 trillion Q335 multiplications per second \u2014 sufficient that the arithmetic is memory-bandwidth-bound, not compute-bound, on workloads where VDR-18 showed total multiply counts of thousands to millions per prompt. The paper specifies the core microarchitecture, the memory hierarchy, the programming model, the die area estimates, and the performance projections, treating the FPGA's validated ISA principles as the architectural contract and modern GPU fabrication as the implementation technology.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-22-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-22-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
