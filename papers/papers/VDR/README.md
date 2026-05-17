@@ -13,8 +13,10 @@
 Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
 
 - **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)**
-- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)**
-- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)**
+
+- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: applications developed through conversation, not code. Configure an LLM session with structured KB state and Prolog rules, snapshot it as a deployable binary, clone it on demand. Customer support bots, document processors, SRE triage — developed in hours, deployed as snapshots, improved by usage. No developer required.
+
+- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: the same snapshot-and-clone model serving web and internet protocols. HTTP, SMTP, DNS, MQTT, IRC, OAuth — each protocol is a grammar template the clone speaks natively. Backend services developed through conversation, deployed on ports, scaled by cloning. Replaces compiled server code with configured LLM sessions.
 
 ## How Exact Integer Arithmetic Works
 
