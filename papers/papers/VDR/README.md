@@ -60,68 +60,37 @@ Current state:
 
 ---
 
-## Reading Order
-
-For new readers:
-
-1. **VDR-1** — the arithmetic foundation: the triple, closed and active objects, remainder as first-class structure
-2. **VDR-2, VDR-3** — domain validation across 23 mathematical domains with zero computation errors
-3. **VDR-4** — exact-fraction language model: softmax, autodiff, transformer, training, all in exact rationals
-4. **VDR-5 through VDR-12** — knowledge bases, Prolog, primitives, lifecycle, sessions, inference, compaction
-5. **VDR-13** — physical computation: QED, quantum mechanics, signal processing, orbital mechanics, conservation laws
-6. **VDR-14** — consolidated system specification (single entry point for the complete architecture)
-7. **VDR-15 through VDR-20** — prompt optimization, structural safety, alignment, GPU performance, self-extension, deployment
-
-If you want one document:
-
-- **VDR-14** for the complete system architecture
-- **VDR-1** for the arithmetic alone
-- **VDR-11** for the implementation roadmap
-- **VDR-20** for operational deployment
-
 ## Key Numbers
 
 | Metric | Value |
 | :--- | :--- |
 | Total tests | 884 |
 | VDR computation errors | 0 |
-| Mathematical domains validated | 23 |
-| Physical domains validated | 14 |
+| Domains validated | 37 (23 mathematical + 14 physical) |
 | Builtins specified | 448 + 40 extended |
-| KB struct fields | 26 |
-| IOSE declarations | 533 |
 | Q335 precision | ~100 decimal digits |
-| Compaction compression | ~83% average |
 | Token reduction vs conventional | 85–97% |
+| Compaction compression | ~83% average |
 | Existing Python code | ~5,500 lines, 705 tests |
 | Target system size | ~20,500 lines, 65 modules |
 
-## Project Scope
+## Reading Order
 
-The VDR project spans:
+If you want one document: **VDR-14** (consolidated system specification).
 
-- exact finite arithmetic with first-class remainder
-- domain validation across mathematics and physics
-- exact-fraction language model components
-- knowledge-base-centered system design with lexical scoping
-- Prolog-style logic, inference, and constraint propagation
-- 448+ computational primitives with IOSE interface contracts
-- grammar-directed compaction and structured generation
-- structural safety and alignment by architecture, not behavioral training
-- GPU performance mapping for integer arithmetic
-- self-extending and self-training autonomous deployment
+Otherwise:
+
+1. **VDR-1** — arithmetic foundation
+2. **VDR-2, VDR-3** — validation across 23 mathematical domains
+3. **VDR-4** — exact-fraction transformer: softmax, autodiff, training
+4. **VDR-5 through VDR-12** — knowledge bases, Prolog, primitives, sessions, inference, compaction
+5. **VDR-13** — physical computation: QED, quantum mechanics, orbital mechanics, optics
+6. **VDR-14** — complete system specification
+7. **VDR-15 through VDR-20** — prompt optimization, safety, alignment, GPU performance, self-extension, deployment
 
 ---
 
-## Status Footer
-
-Project status: active specification series with validated arithmetic and architectural verification.
-
-- Arithmetic: validated calculus across 37 domains, zero errors
-- System architecture: fully specified from arithmetic through deployment
-- Implementation: Python prototype validated; Zig port and GPU kernels specified but not yet built
-- Papers VDR-14 through VDR-20 extend the consolidated specification into optimization, safety, alignment, performance, self-extension, and operational deployment
-
+Project status: active specification series. Python prototype validated. Zig port and GPU kernels specified but not yet built.
 # What is VDR-LLM-Prolog?
 
 Starting from the absolute bottom.

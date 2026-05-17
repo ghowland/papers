@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>VDR-LLM-Prolog</title>
+  <title> </title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">VDR-LLM-Prolog</h1>
+<h1 class="title"> </h1>
 </header>
 <h1
 id="vdr-value-denominator-remainder-exact-integer-arithmetic-for-llms">VDR
@@ -295,32 +295,6 @@ System.</td>
 </tbody>
 </table>
 <hr />
-<h2 id="reading-order">Reading Order</h2>
-<p>For new readers:</p>
-<ol type="1">
-<li><strong>VDR-1</strong> — the arithmetic foundation: the triple,
-closed and active objects, remainder as first-class structure</li>
-<li><strong>VDR-2, VDR-3</strong> — domain validation across 23
-mathematical domains with zero computation errors</li>
-<li><strong>VDR-4</strong> — exact-fraction language model: softmax,
-autodiff, transformer, training, all in exact rationals</li>
-<li><strong>VDR-5 through VDR-12</strong> — knowledge bases, Prolog,
-primitives, lifecycle, sessions, inference, compaction</li>
-<li><strong>VDR-13</strong> — physical computation: QED, quantum
-mechanics, signal processing, orbital mechanics, conservation laws</li>
-<li><strong>VDR-14</strong> — consolidated system specification (single
-entry point for the complete architecture)</li>
-<li><strong>VDR-15 through VDR-20</strong> — prompt optimization,
-structural safety, alignment, GPU performance, self-extension,
-deployment</li>
-</ol>
-<p>If you want one document:</p>
-<ul>
-<li><strong>VDR-14</strong> for the complete system architecture</li>
-<li><strong>VDR-1</strong> for the arithmetic alone</li>
-<li><strong>VDR-11</strong> for the implementation roadmap</li>
-<li><strong>VDR-20</strong> for operational deployment</li>
-</ul>
 <h2 id="key-numbers">Key Numbers</h2>
 <table>
 <thead>
@@ -339,77 +313,57 @@ deployment</li>
 <td style="text-align: left;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Mathematical domains validated</td>
-<td style="text-align: left;">23</td>
+<td style="text-align: left;">Domains validated</td>
+<td style="text-align: left;">37 (23 mathematical + 14 physical)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Physical domains validated</td>
-<td style="text-align: left;">14</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Builtins specified</td>
 <td style="text-align: left;">448 + 40 extended</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">KB struct fields</td>
-<td style="text-align: left;">26</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;">IOSE declarations</td>
-<td style="text-align: left;">533</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Q335 precision</td>
 <td style="text-align: left;">~100 decimal digits</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Compaction compression</td>
-<td style="text-align: left;">~83% average</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Token reduction vs conventional</td>
 <td style="text-align: left;">85–97%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Compaction compression</td>
+<td style="text-align: left;">~83% average</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Existing Python code</td>
 <td style="text-align: left;">~5,500 lines, 705 tests</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Target system size</td>
 <td style="text-align: left;">~20,500 lines, 65 modules</td>
 </tr>
 </tbody>
 </table>
-<h2 id="project-scope">Project Scope</h2>
-<p>The VDR project spans:</p>
-<ul>
-<li>exact finite arithmetic with first-class remainder</li>
-<li>domain validation across mathematics and physics</li>
-<li>exact-fraction language model components</li>
-<li>knowledge-base-centered system design with lexical scoping</li>
-<li>Prolog-style logic, inference, and constraint propagation</li>
-<li>448+ computational primitives with IOSE interface contracts</li>
-<li>grammar-directed compaction and structured generation</li>
-<li>structural safety and alignment by architecture, not behavioral
-training</li>
-<li>GPU performance mapping for integer arithmetic</li>
-<li>self-extending and self-training autonomous deployment</li>
-</ul>
+<h2 id="reading-order">Reading Order</h2>
+<p>If you want one document: <strong>VDR-14</strong> (consolidated
+system specification).</p>
+<p>Otherwise:</p>
+<ol type="1">
+<li><strong>VDR-1</strong> — arithmetic foundation</li>
+<li><strong>VDR-2, VDR-3</strong> — validation across 23 mathematical
+domains</li>
+<li><strong>VDR-4</strong> — exact-fraction transformer: softmax,
+autodiff, training</li>
+<li><strong>VDR-5 through VDR-12</strong> — knowledge bases, Prolog,
+primitives, sessions, inference, compaction</li>
+<li><strong>VDR-13</strong> — physical computation: QED, quantum
+mechanics, orbital mechanics, optics</li>
+<li><strong>VDR-14</strong> — complete system specification</li>
+<li><strong>VDR-15 through VDR-20</strong> — prompt optimization,
+safety, alignment, GPU performance, self-extension, deployment</li>
+</ol>
 <hr />
-<h2 id="status-footer">Status Footer</h2>
-<p>Project status: active specification series with validated arithmetic
-and architectural verification.</p>
-<ul>
-<li>Arithmetic: validated calculus across 37 domains, zero errors</li>
-<li>System architecture: fully specified from arithmetic through
-deployment</li>
-<li>Implementation: Python prototype validated; Zig port and GPU kernels
-specified but not yet built</li>
-<li>Papers VDR-14 through VDR-20 extend the consolidated specification
-into optimization, safety, alignment, performance, self-extension, and
-operational deployment</li>
-</ul>
-<h1 id="what-is-vdr-llm-prolog">What is VDR-LLM-Prolog?</h1>
+<p>Project status: active specification series. Python prototype
+validated. Zig port and GPU kernels specified but not yet built. # What
+is VDR-LLM-Prolog?</p>
 <p>Starting from the absolute bottom.</p>
 <p><strong>VDR Arithmetic: The Foundation</strong></p>
 <p>Every number in the system is three integers: Value, Denominator,
