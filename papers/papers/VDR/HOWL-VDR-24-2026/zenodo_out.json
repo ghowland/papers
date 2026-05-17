@@ -1,12 +1,12 @@
 {
   "created": "2026-05-17T13:43:51.502126+00:00",
-  "modified": "2026-05-17T13:43:51.593895+00:00",
+  "modified": "2026-05-17T13:57:18.584924+00:00",
   "id": 20258082,
   "conceptrecid": "20258081",
   "metadata": {
-    "title": "LM Software",
-    "publication_date": "2026-04",
-    "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
+    "title": "LM Software: Configuration and Cloning as Application Development",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>This paper defines LM Software &mdash; a new category of software where applications are developed by configuring language model sessions with structured state, encoding logic as Prolog rules over exact arithmetic primitives, validating behavior interactively, snapshotting working state as deployable artifacts, and cloning those artifacts on demand as running instances. The language model is the runtime. A hierarchical knowledge base tree is the address space. Prolog is the programming language. Snapshots are the binaries. Usage improves the application without rebuilding it.</div>\n<br>\n<div>LM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation &mdash; where every session deposits reusable logic that makes future sessions cheaper and more capable.</div>\n<br>\n<div>This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-24-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -78,7 +78,7 @@
       "recid": 20258082
     }
   },
-  "title": "LM Software",
+  "title": "LM Software: Configuration and Cloning as Application Development",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/20258082",
     "html": "https://zenodo.org/deposit/20258082",
@@ -105,23 +105,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "e1d5bf70-e986-4818-9634-5aa72f4cc530",
-      "filename": "HOWL-VDR-24-2026.zip",
-      "filesize": 2217282,
-      "checksum": "f37090790e89b155f61eaf3a88e1fda4",
+      "id": "18fcac8d-e731-4ef8-a132-456d9eac50b7",
+      "filename": "!manuscript.pdf",
+      "filesize": 159310,
+      "checksum": "9b7b709b0b38053b7117e542905ce9ed",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20258082/files/e1d5bf70-e986-4818-9634-5aa72f4cc530",
-        "download": "https://zenodo.org/api/records/20258082/draft/files/HOWL-VDR-24-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20258082/files/18fcac8d-e731-4ef8-a132-456d9eac50b7",
+        "download": "https://zenodo.org/api/records/20258082/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "84c92255-6479-4504-94d2-c2dcb6e56c81",
-      "filename": "!manuscript.pdf",
-      "filesize": 159271,
-      "checksum": "7e80ccf75928f81123fe3751d2969eec",
+      "id": "1c44ab75-0c9f-405f-80b4-2bd5e47fbdea",
+      "filename": "HOWL-VDR-24-2026.zip",
+      "filesize": 2217633,
+      "checksum": "08b7ee88fc7caec7d3491ab41f84456a",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20258082/files/84c92255-6479-4504-94d2-c2dcb6e56c81",
-        "download": "https://zenodo.org/api/records/20258082/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20258082/files/1c44ab75-0c9f-405f-80b4-2bd5e47fbdea",
+        "download": "https://zenodo.org/api/records/20258082/draft/files/HOWL-VDR-24-2026.zip/content"
       }
     }
   ],

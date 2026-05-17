@@ -1,4 +1,4 @@
-# LM Software
+# LLM Software
 ## Configuration and Cloning as Application Development
 
 **Registry:** [@HOWL-VDR-24-2026]
@@ -17,11 +17,11 @@
 
 ## Abstract
 
-This paper defines LM Software — a new category of software where applications are developed by configuring language model sessions with structured state, encoding logic as Prolog rules over exact arithmetic primitives, validating behavior interactively, snapshotting working state as deployable artifacts, and cloning those artifacts on demand as running instances. The language model is the runtime. A hierarchical knowledge base tree is the address space. Prolog is the programming language. Snapshots are the binaries. Usage improves the application without rebuilding it.
+This paper defines LLM Software — a new category of software where applications are developed by configuring language model sessions with structured state, encoding logic as Prolog rules over exact arithmetic primitives, validating behavior interactively, snapshotting working state as deployable artifacts, and cloning those artifacts on demand as running instances. The language model is the runtime. A hierarchical knowledge base tree is the address space. Prolog is the programming language. Snapshots are the binaries. Usage improves the application without rebuilding it.
 
-LM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation — where every session deposits reusable logic that makes future sessions cheaper and more capable.
+LLM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation — where every session deposits reusable logic that makes future sessions cheaper and more capable.
 
-This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.
+This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LLM Software through two complete worked examples.
 
 ---
 
@@ -37,9 +37,9 @@ The industry response has been to wrap LLMs in conventional software. Retrieval-
 
 This works, but it requires conventional software development. Someone must write the retrieval pipeline, the function definitions, the orchestration logic, the error handling, the state management, the deployment infrastructure. The LLM generates text. Everything else is code.
 
-### 1.2 What LM Software Is
+### 1.2 What LLM Software Is
 
-LM Software eliminates the wrapping layer. The application is the configured LLM session itself — its state, its rules, its data, its constraints. There is no separate orchestration code because the orchestration is Prolog rules stored inside the system. There is no external database because the data lives in a hierarchical knowledge base tree that the LLM operates within. There is no deployment pipeline because deployment is cloning a snapshot.
+LLM Software eliminates the wrapping layer. The application is the configured LLM session itself — its state, its rules, its data, its constraints. There is no separate orchestration code because the orchestration is Prolog rules stored inside the system. There is no external database because the data lives in a hierarchical knowledge base tree that the LLM operates within. There is no deployment pipeline because deployment is cloning a snapshot.
 
 Three properties define the category:
 
@@ -49,15 +49,15 @@ Three properties define the category:
 
 **Improved by usage, not releases.** As the application handles tasks, it encodes new patterns as Prolog rules. Each rule makes future tasks cheaper. The application gets better at its job by doing its job, within security constraints that ensure self-improvement cannot compromise the system.
 
-### 1.3 What LM Software Is Not
+### 1.3 What LLM Software Is Not
 
-LM Software does not replace all conventional software. Compute-intensive applications, latency-critical systems, hardware-interfacing code, and real-time control systems remain conventional software. LM Software targets judgment-heavy, data-rich, policy-governed, multi-step workflows where the value is in correctly applying rules to varied inputs: customer support, compliance review, incident investigation, document processing, triage, analysis. Where conventional software requires a developer to anticipate every case in code, LM Software handles novel cases through LLM judgment and encodes the resolution as a rule for next time.
+LLM Software does not replace all conventional software. Compute-intensive applications, latency-critical systems, hardware-interfacing code, and real-time control systems remain conventional software. LLM Software targets judgment-heavy, data-rich, policy-governed, multi-step workflows where the value is in correctly applying rules to varied inputs: customer support, compliance review, incident investigation, document processing, triage, analysis. Where conventional software requires a developer to anticipate every case in code, LLM Software handles novel cases through LLM judgment and encodes the resolution as a rule for next time.
 
 ---
 
 ## 2. The Structural Foundation
 
-LM Software depends on four architectural components that distinguish it from conventional LLM applications. Each is summarized here; full specifications are in [@HOWL-VDR-14-2026].
+LLM Software depends on four architectural components that distinguish it from conventional LLM applications. Each is summarized here; full specifications are in [@HOWL-VDR-14-2026].
 
 ### 2.1 Exact Arithmetic: The VDR Triple
 
@@ -65,7 +65,7 @@ Every number in the system is three integers: Value, Denominator, Remainder [@HO
 
 The system fixes the denominator at 2^335 (called Q335), derived from continued fraction convergents of Euler's number [@HOWL-VDR-4-2026] [@@HOWL-MATH-4-2026]. This gives 100 decimal digits of precision — 10^66 times below the Planck length — for all arithmetic operations. Addition of two values is one integer addition. Multiplication is one integer multiply followed by a bit extraction that separates the quotient from the remainder. The denominator never grows. Overflow goes to remainder tree depth, not denominator magnitude.
 
-This matters for LM Software because every value the system stores, computes, or compares is exact. A confidence score is an exact fraction 85/100, not a float approximation. A threshold comparison is exact integer arithmetic, not floating-point "close enough." Policy rules evaluate to exactly yes or exactly no.
+This matters for LLM Software because every value the system stores, computes, or compares is exact. A confidence score is an exact fraction 85/100, not a float approximation. A threshold comparison is exact integer arithmetic, not floating-point "close enough." Policy rules evaluate to exactly yes or exactly no.
 
 ### 2.2 Knowledge Bases: The Address Space
 
@@ -89,7 +89,7 @@ Humans address KBs by dotted paths: root.products.myapp.support. The runtime add
 
 The Prolog engine is typed structs, not a language runtime [VDR-5, VDR-14]. Facts are predicates with ordered typed arguments and provenance — source KB, turn number, derivation record. Rules are head-body implications: the head pattern matches a query, the body goals are evaluated recursively. Depth-first search with backtracking, depth limit 100.
 
-The critical property for LM Software: the system's 448 builtin primitives are Prolog predicates. kb_assert, queue_push, counter_increment, file_read, json_parse — every operation the system can perform is callable from Prolog. When a user writes a Prolog rule, they are writing a program that chains system operations together. This is programming — control flow, conditionals, data transformation, I/O — expressed as logic rules over typed predicates with exact arithmetic.
+The critical property for LLM Software: the system's 448 builtin primitives are Prolog predicates. kb_assert, queue_push, counter_increment, file_read, json_parse — every operation the system can perform is callable from Prolog. When a user writes a Prolog rule, they are writing a program that chains system operations together. This is programming — control flow, conditionals, data transformation, I/O — expressed as logic rules over typed predicates with exact arithmetic.
 
 Rules compose primitives into new operations. A rule at root scope is permanent and available to everything. A rule at session scope is disposable and dies with the session. A rule at project scope persists across sessions within that project. Properties of composed rules — pure, deterministic, partial — derive from the component primitives.
 
@@ -123,7 +123,7 @@ A KB has visibility: public (all users), internal (operators and owners), or own
 
 A KB has grants: positive credentials that authorize specific operations. No grant means the operation is denied before any logic executes.
 
-When a user builds an LM Software application, they are wiring machines together. A queue at path A, a processor watching path A, results written to path B, a downstream runner watching path B. The topology of machines in the tree is the application architecture. The tree is the wiring diagram.
+When a user builds an LLM Software application, they are wiring machines together. A queue at path A, a processor watching path A, results written to path B, a downstream runner watching path B. The topology of machines in the tree is the application architecture. The tree is the wiring diagram.
 
 ---
 
@@ -147,7 +147,7 @@ This rule pops a message from a queue, parses it as JSON, asserts the parsed dat
 
 ### 4.2 Three Execution Levels
 
-LM Software operates at three levels of automation, and applications move from the first toward the third as they mature:
+LLM Software operates at three levels of automation, and applications move from the first toward the third as they mature:
 
 **Level 1 — Full LLM judgment.** The LLM decides every step at runtime. It reads state from KBs, chooses which primitive to invoke, formulates the call, interprets the result. 50-500 tokens per task. This is how applications begin — during development, everything requires judgment.
 
@@ -230,7 +230,7 @@ When an application is no longer needed, its snapshot KB is archived — frozen 
 
 ## 6. Runner Types as Application Classes
 
-The VDR system defines four runner types [VDR-20], each a different class of LM Software application:
+The VDR system defines four runner types [VDR-20], each a different class of LLM Software application:
 
 ### 6.1 Interactive Runners
 
@@ -260,7 +260,7 @@ These are self-maintenance applications: consistency validators, coverage tracke
 
 ## 7. Inter-Application Communication
 
-LM Software applications communicate through data primitives in the KB tree — the same primitives that give each KB its mechanical ability. Applications do not communicate directly. They read and write shared state at known addresses, decoupled by the data structures between them.
+LLM Software applications communicate through data primitives in the KB tree — the same primitives that give each KB its mechanical ability. Applications do not communicate directly. They read and write shared state at known addresses, decoupled by the data structures between them.
 
 ### 7.1 Queues for Message Passing
 
@@ -437,7 +437,7 @@ The pipeline consists of multiple applications wired through the KB tree:
 
 The workers and pollers communicate entirely through KB state. A worker pops from a queue, writes to a KB, increments a counter. A poller reads counters and queue depths. A supervisor spawns and kills workers based on threshold comparisons. No direct communication between any runners. Decoupled processes coordinating through shared data structures at known integer addresses.
 
-The output KB at root.projects.docprocessing.findings accumulates structured facts from all workers. A downstream application — perhaps an interactive runner for analysts — queries this KB to find patterns, compare documents, trace relationships. The processing pipeline and the analysis application are separate LM Software applications communicating through persistent KB state.
+The output KB at root.projects.docprocessing.findings accumulates structured facts from all workers. A downstream application — perhaps an interactive runner for analysts — queries this KB to find patterns, compare documents, trace relationships. The processing pipeline and the analysis application are separate LLM Software applications communicating through persistent KB state.
 
 ### 9.6 Accumulation
 
@@ -451,7 +451,7 @@ More documents per day? Increase the worker pool by spawning more clones from th
 
 New document type? Develop a new processor session, add rules for the new type, snapshot it. Either update the existing worker snapshot to include the new rules or deploy a separate worker pool for the new type with its own intake queue.
 
-The processing pipeline is LM Software — developed through conversation, deployed as snapshots, scaled by cloning, improved by usage, governed by structure.
+The processing pipeline is LLM Software — developed through conversation, deployed as snapshots, scaled by cloning, improved by usage, governed by structure.
 
 ---
 
@@ -518,7 +518,7 @@ Retraction is clean. The fact is removed from the KB. Downstream facts derived s
 
 ### 11.3 Contrast with Conventional Systems
 
-Stale knowledge in conventional LLM weights is permanent, unidentifiable, and irremediable. Fine-tuning against stale knowledge adds new weight adjustments on top of the old ones. There is no mechanism to find stale knowledge, no mechanism to remove it, and no way to verify that removal was complete. In LM Software, every piece of accumulated knowledge is individually addressable, inspectable, and retractable. Hygiene is a maintenance task, not an impossibility.
+Stale knowledge in conventional LLM weights is permanent, unidentifiable, and irremediable. Fine-tuning against stale knowledge adds new weight adjustments on top of the old ones. There is no mechanism to find stale knowledge, no mechanism to remove it, and no way to verify that removal was complete. In LLM Software, every piece of accumulated knowledge is individually addressable, inspectable, and retractable. Hygiene is a maintenance task, not an impossibility.
 
 ---
 
@@ -526,7 +526,7 @@ Stale knowledge in conventional LLM weights is permanent, unidentifiable, and ir
 
 ### 12.1 Security Is Structure
 
-LM Software applications inherit all security properties from the KB tree architecture [VDR-16, VDR-14]. Security is not configured separately from the application — it falls out of where things are placed in the tree and what grants exist.
+LLM Software applications inherit all security properties from the KB tree architecture [VDR-16, VDR-14]. Security is not configured separately from the application — it falls out of where things are placed in the tree and what grants exist.
 
 **Scope:** Each runner operates at a position in the tree. Its scope walk reaches its own KB, its ancestors to root, and its children. Sibling branches are structurally unreachable. A customer support clone for Customer A cannot access Customer B's session because they are siblings, and the scope walk never traverses siblings.
 
@@ -540,25 +540,25 @@ LM Software applications inherit all security properties from the KB tree archit
 
 ### 12.2 Self-Generated Rules
 
-When an LM Software application writes a Prolog rule during operation, that rule inherits all security properties. It goes through the command token pipeline. It is checked against grants. It is subject to constraints. It is logged with provenance.
+When an LLM Software application writes a Prolog rule during operation, that rule inherits all security properties. It goes through the command token pipeline. It is checked against grants. It is subject to constraints. It is logged with provenance.
 
 A rule the LLM writes cannot grant itself elevated access — grant assertion requires an admin-level grant that runners do not possess. A rule querying out-of-scope data stores successfully but fires with empty results — scope checks happen at query time per fact, not at rule definition time. A rule attempting to copy restricted data to a public KB fails — both read grants on the source and write grants on the destination are checked independently.
 
-The security model does not need to be extended for LM Software. It is the same model that governs all data access in the system. Self-extension is safe because every self-generated artifact passes through the same structural checks as every other artifact.
+The security model does not need to be extended for LLM Software. It is the same model that governs all data access in the system. Self-extension is safe because every self-generated artifact passes through the same structural checks as every other artifact.
 
 ---
 
-## 13. Economics of LM Software
+## 13. Economics of LLM Software
 
 ### 13.1 Development Cost
 
-LM Software development is measured in hours of interactive sessions, not weeks of engineering. A customer support chatbot: 4-8 hours of conversation to load data, write rules, and test scenarios. A file processing pipeline: 8-16 hours to handle a set of document types. A monitoring application: 2-4 hours to configure checks and thresholds.
+LLM Software development is measured in hours of interactive sessions, not weeks of engineering. A customer support chatbot: 4-8 hours of conversation to load data, write rules, and test scenarios. A file processing pipeline: 8-16 hours to handle a set of document types. A monitoring application: 2-4 hours to configure checks and thresholds.
 
 Compare: conventional software development for the same applications requires a developer writing orchestration code, retrieval pipelines, state management, error handling, deployment configuration, and monitoring infrastructure. Weeks to months of engineering time.
 
 ### 13.2 Operational Cost
 
-LM Software operational cost decreases over time. Rule formalization costs 25-40 tokens. Each reuse of that rule replaces 150-300 tokens of conventional LLM reasoning [VDR-19]. By the 5th reuse, amortized cost is under 10 tokens per use. At organizational scope with thousands of reuses, cost per use approaches zero.
+LLM Software operational cost decreases over time. Rule formalization costs 25-40 tokens. Each reuse of that rule replaces 150-300 tokens of conventional LLM reasoning [VDR-19]. By the 5th reuse, amortized cost is under 10 tokens per use. At organizational scope with thousands of reuses, cost per use approaches zero.
 
 The accumulation curve from the SRE case study [VDR-19]: investigation 1 costs 329 command tokens. Investigation 2 costs 42% less due to accumulated rules. Investigation 10 costs 72% less. Investigation 50 costs 88% less. Investigation 100 costs 93% less with 150 rules auto-firing.
 
@@ -588,7 +588,7 @@ Geographic distribution: snapshots are portable. Clone in any datacenter that ha
 
 In a conventional LLM, state is prose in the context window — "as we discussed, the counter is at 7 and we've checked 3 of 5 endpoints and the threshold is 10." That sentence costs tokens to generate, tokens to re-read on every subsequent turn, and grows the context window quadratically.
 
-In LM Software, the counter is an integer at a known offset. The threshold is a fact. The progress is a bitset. Three values at known addresses, totaling perhaps 20 bytes. No prose. No tokens. No context window growth.
+In LLM Software, the counter is an integer at a known offset. The threshold is a fact. The progress is a bitset. Three values at known addresses, totaling perhaps 20 bytes. No prose. No tokens. No context window growth.
 
 ### 14.2 Interned, Not Repeated
 
@@ -610,7 +610,7 @@ A conventional context window scales linearly with knowledge — more knowledge,
 
 ### 15.1 LLM Judgment Bounds Quality
 
-The application is only as good as the LLM judgment that shaped it. Poorly developed sessions produce poor applications — wrong rules, missing edge cases, inappropriate escalation logic. LM Software shifts the bottleneck from developer skill to user judgment, but does not eliminate it.
+The application is only as good as the LLM judgment that shaped it. Poorly developed sessions produce poor applications — wrong rules, missing edge cases, inappropriate escalation logic. LLM Software shifts the bottleneck from developer skill to user judgment, but does not eliminate it.
 
 ### 15.2 Development Investment
 
@@ -626,7 +626,7 @@ Pure Prolog execution handles only cases covered by existing rules. Novel inputs
 
 ### 15.5 Not for All Workloads
 
-LM Software is not appropriate for compute-intensive numerical work, real-time control, hardware interfacing, graphics, or domains where conventional compiled software provides deterministic performance guarantees that LLM-based execution cannot match. LM Software targets judgment-heavy, policy-governed, data-rich workflows where the value is in correctly applying rules to varied inputs.
+LLM Software is not appropriate for compute-intensive numerical work, real-time control, hardware interfacing, graphics, or domains where conventional compiled software provides deterministic performance guarantees that LLM-based execution cannot match. LLM Software targets judgment-heavy, policy-governed, data-rich workflows where the value is in correctly applying rules to varied inputs.
 
 ---
 
@@ -789,7 +789,7 @@ root.managed
 
 ### Appendix I — Conventional Development Lifecycle Comparison
 
-| Phase | Conventional software | LM Software |
+| Phase | Conventional software | LLM Software |
 |---|---|---|
 | Development | Write code in IDE | Interactive conversation |
 | Testing | Unit tests, integration tests | Run scenarios, verify outputs |
@@ -803,7 +803,7 @@ root.managed
 
 ### Appendix J — Comparison with Conventional LLM Applications
 
-| Property | RAG application | LangChain agent | LM Software |
+| Property | RAG application | LangChain agent | LLM Software |
 |---|---|---|---|
 | Orchestration | Developer-written code | Developer-written Python | Prolog rules in KB |
 | State management | External database | External state store | KB facts at integer addresses |
@@ -821,7 +821,7 @@ root.managed
 
 ### Appendix K — Command Token Economics
 
-| Operation | Conventional LLM tokens | LM Software command tokens | Conventional cost per invocation | LM Software cost per invocation | Break-even |
+| Operation | Conventional LLM tokens | LLM Software command tokens | Conventional cost per invocation | LLM Software cost per invocation | Break-even |
 |---|---|---|---|---|---|
 | Query a fact | 50-200 (prose reconstruction) | 8 (path + predicate) | Full forward pass per token | One primitive call | First use |
 | Assert a fact | 100-300 (generate + confirm) | 8 (path + predicate + args) | Full forward pass per token | One primitive call | First use |
@@ -1029,7 +1029,7 @@ root.managed
 | 200 | 4 | 5 | 39 | 48 | 81% | 220 |
 | 500 | 3 | 4 | 36 | 43 | 84% | 260 |
 
-### Appendix X — Error Classification in LM Software
+### Appendix X — Error Classification in LLM Software
 
 | Error class | Source | Detection mechanism | Remediation | Conventional LLM equivalent |
 |---|---|---|---|---|
@@ -1073,7 +1073,7 @@ root.managed
 
 ### Appendix AA — Conventional Software Mapping
 
-| Conventional concept | LM Software equivalent | Implementation | Addressing |
+| Conventional concept | LLM Software equivalent | Implementation | Addressing |
 |---|---|---|---|
 | Executable binary | Snapshot | Frozen live state | root.apps.myapp.snapshots.v3 |
 | Process | Clone | Independent instance from snapshot | root.sessions.sess_NNNN |
@@ -1104,7 +1104,7 @@ root.managed
 
 ### Appendix BB — Failure Mode Comparison
 
-| Failure mode | Conventional LLM | LM Software | Detection difference | Recovery difference |
+| Failure mode | Conventional LLM | LLM Software | Detection difference | Recovery difference |
 |---|---|---|---|---|
 | Hallucinated fact | Occurs silently; undetectable without external verification | Structurally impossible for KB-sourced data; LLM only phrases results from known addresses | Conventional: requires human spot-checking; LM: provenance chain verifiable per fact | Conventional: retrain or hope; LM: fact is either at address or not |
 | Wrong arithmetic | Common; digit-by-digit token prediction | Impossible; exact integer primitives | Conventional: compare against calculator; LM: error rate = 0 by construction | Conventional: regenerate and hope; LM: N/A |
