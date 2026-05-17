@@ -112,8 +112,6 @@ Otherwise:
 
 # What is VDR-LLM-Prolog?
 
-Starting from the absolute bottom.
-
 **VDR Arithmetic: The Foundation**
 
 Every number in the system is three integers: Value, Denominator, Remainder. V and D are plain integers. R is where all the structure lives — it's the only slot that can nest, the only slot that recurses, the only slot that carries active state. When R is zero, you have an exact rational number V/D. When R is nonzero, you have something that carries exact structure beyond what the denominator frame could absorb.
