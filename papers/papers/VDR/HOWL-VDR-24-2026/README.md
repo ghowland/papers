@@ -10,7 +10,7 @@ This paper defines LM Software — a new category of software where applications
 
 LM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation — where every session deposits reusable logic that makes future sessions cheaper and more capable.
 
-This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [VDR-14] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.
+This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.
 
 ---
 
