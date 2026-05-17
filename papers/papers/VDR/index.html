@@ -79,12 +79,14 @@ exact gradient = exact weight update. Reverse-mode autodiff on a
 computation graph where chain rule and quotient rule are exact. ReLU
 gradient is exactly 0 or exactly 1. Checkpoints save every parameter as
 an exact fraction — bit-identical across platforms.</p>
-<p><strong>The catch:</strong> Denominators grow through operations
-(~2^10 at init, ~2^45 after training). When they exceed budget, Q-basis
-reprojection rounds to a 2^K grid with a logged exact error bound. This
-is a declared precision decision, not silent truncation. The
-approximation boundary is a design choice, not a hardware
-constraint.</p>
+<p><strong>Denominator growth:</strong> Solved. Fix D at 2^335 — it
+never changes. Multiply two values: full product, then divmod at bit
+335. Bits above = new V. Bits below = R. That R is itself a [V, D, R]
+triple — the remainder slot is the only slot that nests, forming a
+structural tree. Overflow goes into deeper remainder nesting, not wider
+denominators. Each level of the tree is exact. Precision is how many
+levels deep you carry the remainder tree, and every level you stop at is
+a complete exact value, not a truncated approximation.</p>
 <p><strong>Validated:</strong> 884 tests, zero arithmetic errors. Exact
 Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip.
 Exact orbit closure. Conservation laws verified by equality not
