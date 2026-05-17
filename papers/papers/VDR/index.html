@@ -86,7 +86,10 @@ triple — the remainder slot is the only slot that nests, forming a
 structural tree. Overflow goes into deeper remainder nesting, not wider
 denominators. Each level of the tree is exact. Precision is how many
 levels deep you carry the remainder tree, and every level you stop at is
-a complete exact value, not a truncated approximation.</p>
+a complete exact value, not a truncated approximation. This replaces
+limits, convergence, and infinite series with finite recursive descent
+through exact integer triples — calculus by structure, not by
+approximation.</p>
 <p><strong>Validated:</strong> 884 tests, zero arithmetic errors. Exact
 Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip.
 Exact orbit closure. Conservation laws verified by equality not
