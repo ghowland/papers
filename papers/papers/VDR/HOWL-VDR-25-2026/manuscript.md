@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026] → [@HOWL-VDR-25-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20258674
 
 **Date:** May 2026
 
@@ -55,7 +55,7 @@ Each internet service described in this paper follows the same pattern: a gramma
 
 Every number in VDR-LLM-Prolog is three integers: Value, Denominator, Remainder [@HOWL-VDR-1-2026]. V and D form an exact rational V/D. R is the Remainder — not residual error, but first-class structural information about what the denominator frame could not absorb. When R is zero, the value is a closed rational. When R is nonzero, the value carries exact structure beyond the rational frame. The Remainder is the only slot that nests, the only slot that recurses, the only slot that carries active state.
 
-The system fixes D at 2^335, giving 100 decimal digits of precision — 10^66 times below the Planck length [@HOWLAND-MATH-4-2026]. Addition is one integer addition. Multiplication is one integer multiply plus a bit extraction. The denominator never grows.
+The system fixes D at 2^335, giving 100 decimal digits of precision — 10^66 times below the Planck length [@HOWL-MATH-4-2026]. Addition is one integer addition. Multiplication is one integer multiply plus a bit extraction. The denominator never grows.
 
 This matters for server software because every value the system stores, computes, or compares is exact. A financial transaction amount is a VDR fraction, not a float. A timestamp comparison is exact integer arithmetic. A rate limit threshold is an exact fraction. A metric percentage is an exact ratio of two integers. No rounding surprises. No platform-dependent results.
 
@@ -926,41 +926,6 @@ root
 | IPP | Operation ID | 2-3 | 16 | Integer fact | Big-endian u16 |
 | IPP | Request ID | 4-7 | 32 | Integer fact | Big-endian u32 |
 
-### Appendix M — Text Protocol Command Grammar Templates
-
-| Protocol | Command | Grammar template | Content slots | Structural tokens |
-|---|---|---|---|---|
-| SMTP | EHLO | "EHLO {domain}\r\n" | domain | EHLO, space, CRLF |
-| SMTP | MAIL FROM | "MAIL FROM:<{address}>\r\n" | address | MAIL FROM:<, >, CRLF |
-| SMTP | Response | "{code} {text}\r\n" | code, text | space, CRLF |
-| SMTP | Multi-line resp | "{code}-{text}\r\n" (intermediate) "{code} {text}\r\n" (final) | code, text per line | dash/space, CRLF |
-| IMAP | Tagged response | "{tag} {status} {text}\r\n" | tag, status (OK/NO/BAD), text | spaces, CRLF |
-| IMAP | FETCH response | "* {seq} FETCH ({items})\r\n" | seq, items | *, space, FETCH, parens, CRLF |
-| IMAP | FLAGS | "FLAGS ({flags})" | flags (space-delimited) | FLAGS, parens |
-| POP3 | Response | "+OK {text}\r\n" or "-ERR {text}\r\n" | text | +OK/-ERR, space, CRLF |
-| IRC | PRIVMSG | ":{source} PRIVMSG {target} :{text}\r\n" | source, target, text | colons, PRIVMSG, space, CRLF |
-| IRC | Numeric reply | ":{server} {code} {target} :{text}\r\n" | server, code, target, text | colons, spaces, CRLF |
-| FTP | Response | "{code} {text}\r\n" | code, text | space, CRLF |
-| FTP | LIST entry | "{perms} {links} {owner} {group} {size} {date} {name}\r\n" | all fields | spaces, CRLF |
-| SIP | Request line | "{method} {uri} SIP/2.0\r\n" | method, uri | space, SIP/2.0, CRLF |
-| SIP | Status line | "SIP/2.0 {code} {reason}\r\n" | code, reason | SIP/2.0, space, CRLF |
-| SIP | Via header | "Via: SIP/2.0/{transport} {host}:{port};branch={branch}\r\n" | transport, host, port, branch | Via:, SIP/2.0/, semicolons, CRLF |
-| HTTP | Request line | "{method} {path} HTTP/1.1\r\n" | method, path | space, HTTP/1.1, CRLF |
-| HTTP | Status line | "HTTP/1.1 {code} {reason}\r\n" | code, reason | HTTP/1.1, space, CRLF |
-| HTTP | Header | "{name}: {value}\r\n" | name, value | colon, space, CRLF |
-| HTTP | Chunk | "{hex_size}\r\n{data}\r\n" | hex_size, data | CRLF pairs |
-| Syslog | RFC 5424 | "<{pri}>{ver} {ts} {host} {app} {proc} {msgid} {sd} {msg}" | all fields | angle brackets, spaces |
-| Redis RESP | Simple string | "+{text}\r\n" | text | +, CRLF |
-| Redis RESP | Error | "-{type} {text}\r\n" | type, text | -, space, CRLF |
-| Redis RESP | Integer | ":{value}\r\n" | value | colon, CRLF |
-| Redis RESP | Bulk string | "${length}\r\n{data}\r\n" | length, data | $, CRLF pairs |
-| Redis RESP | Array | "*{count}\r\n{elements}" | count, elements | *, CRLF |
-| OpenMetrics | Counter | "{name}_total{labels} {value} {timestamp}\n" | name, labels, value, timestamp | _total, braces, spaces, newline |
-| OpenMetrics | Gauge | "{name}{labels} {value} {timestamp}\n" | name, labels, value, timestamp | braces, spaces, newline |
-| OpenMetrics | TYPE line | "# TYPE {name} {type}\n" | name, type | # TYPE, space, newline |
-| Atom | Entry | "<entry><id>{id}</id><title>{title}</title><updated>{ts}</updated><content>{body}</content></entry>" | id, title, ts, body | All XML tags |
-| iCalendar | VEVENT | "BEGIN:VEVENT\r\nDTSTART:{start}\r\nDTEND:{end}\r\nSUMMARY:{summary}\r\nEND:VEVENT\r\n" | start, end, summary | BEGIN/END, field names, CRLF |
-
 ### Appendix N — Cryptographic Primitive Usage by Service
 
 | Service | Operation | Primitive | Key storage | Provenance |
@@ -991,26 +956,26 @@ root
 
 | Service | Rate limit type | Counter path | Threshold | Window | Action on breach |
 |---|---|---|---|---|---|
-| HTTP API | Requests per minute per user | root.services.http.limits.{user_id}.rpm | 60/1 | 1 minute (ring buffer) | 429 Too Many Requests |
+| HTTP API | Requests per minute per user | root.services.http.limits.user_id.rpm | 60/1 | 1 minute (ring buffer) | 429 Too Many Requests |
 | HTTP API | Requests per second global | root.services.http.limits.global.rps | 10000/1 | 1 second (counter reset by poller) | 503 Service Unavailable |
-| SMTP | Messages per hour per sender | root.services.email.limits.{sender}.mph | 100/1 | 1 hour (ring buffer) | 421 Try again later |
-| SMTP | Recipients per message | root.services.email.limits.{session}.rcpts | 100/1 | Per message | 452 Too many recipients |
-| SMTP | Connection rate per IP | root.services.email.limits.{ip}.cpm | 10/1 | 1 minute | Connection refused |
-| DNS | Queries per second per IP | root.services.dns.limits.{ip}.qps | 100/1 | 1 second | Drop query (UDP) |
-| MQTT | Publishes per minute per client | root.services.mqtt.limits.{client}.ppm | 1000/1 | 1 minute | DISCONNECT |
-| MQTT | Subscriptions per client | root.services.mqtt.limits.{client}.subs | 50/1 | Lifetime | SUBACK with error |
-| IRC | Messages per second per user | root.services.irc.limits.{user}.mps | 2/1 | 1 second | Temporary mute |
-| SSH | Auth attempts per connection | root.services.ssh.limits.{session}.auth | 3/1 | Per session | Disconnect |
-| SSH | Connections per minute per IP | root.services.ssh.limits.{ip}.cpm | 5/1 | 1 minute | Connection refused |
-| FTP | Failed logins per IP | root.services.ftp.limits.{ip}.fails | 5/1 | 10 minutes | IP blocked (temporary fact) |
-| LDAP | Searches per minute per bind DN | root.services.auth.limits.{dn}.spm | 30/1 | 1 minute | Return sizeLimitExceeded |
-| OAuth | Token requests per minute per client | root.services.auth.limits.{client_id}.tpm | 60/1 | 1 minute | 429 response |
-| Redis | Commands per second per client | root.services.cache.limits.{client}.cps | 10000/1 | 1 second | Slow down response |
-| SIP | INVITE per minute per caller | root.services.voip.limits.{caller}.ipm | 10/1 | 1 minute | 486 Busy Here |
-| GraphQL | Query complexity per request | root.services.http.limits.{user}.complexity | 1000/1 | Per request | 400 Query Too Complex |
-| WebSocket | Frames per second per connection | root.services.http.limits.{session}.fps | 100/1 | 1 second | Close connection |
-| S3 | PUT requests per minute per bucket | root.services.storage.limits.{bucket}.ppm | 3500/1 | 1 minute | 503 SlowDown |
-| Syslog | Messages per second per source | root.services.monitoring.limits.{host}.mps | 500/1 | 1 second | Drop messages |
+| SMTP | Messages per hour per sender | root.services.email.limits.sender.mph | 100/1 | 1 hour (ring buffer) | 421 Try again later |
+| SMTP | Recipients per message | root.services.email.limits.session.rcpts | 100/1 | Per message | 452 Too many recipients |
+| SMTP | Connection rate per IP | root.services.email.limits.ip.cpm | 10/1 | 1 minute | Connection refused |
+| DNS | Queries per second per IP | root.services.dns.limits.ip.qps | 100/1 | 1 second | Drop query (UDP) |
+| MQTT | Publishes per minute per client | root.services.mqtt.limits.client.ppm | 1000/1 | 1 minute | DISCONNECT |
+| MQTT | Subscriptions per client | root.services.mqtt.limits.client.subs | 50/1 | Lifetime | SUBACK with error |
+| IRC | Messages per second per user | root.services.irc.limits.user.mps | 2/1 | 1 second | Temporary mute |
+| SSH | Auth attempts per connection | root.services.ssh.limits.session.auth | 3/1 | Per session | Disconnect |
+| SSH | Connections per minute per IP | root.services.ssh.limits.ip.cpm | 5/1 | 1 minute | Connection refused |
+| FTP | Failed logins per IP | root.services.ftp.limits.ip.fails | 5/1 | 10 minutes | IP blocked (temporary fact) |
+| LDAP | Searches per minute per bind DN | root.services.auth.limits.dn.spm | 30/1 | 1 minute | Return sizeLimitExceeded |
+| OAuth | Token requests per minute per client | root.services.auth.limits.client_id.tpm | 60/1 | 1 minute | 429 response |
+| Redis | Commands per second per client | root.services.cache.limits.client.cps | 10000/1 | 1 second | Slow down response |
+| SIP | INVITE per minute per caller | root.services.voip.limits.caller.ipm | 10/1 | 1 minute | 486 Busy Here |
+| GraphQL | Query complexity per request | root.services.http.limits.user.complexity | 1000/1 | Per request | 400 Query Too Complex |
+| WebSocket | Frames per second per connection | root.services.http.limits.session.fps | 100/1 | 1 second | Close connection |
+| S3 | PUT requests per minute per bucket | root.services.storage.limits.bucket.ppm | 3500/1 | 1 minute | 503 SlowDown |
+| Syslog | Messages per second per source | root.services.monitoring.limits.host.mps | 500/1 | 1 second | Drop messages |
 
 ### Appendix P — Health Check Patterns for Polling Runners
 
@@ -1094,14 +1059,14 @@ root
 
 | Protocol | Error class | Grammar template | Content slots | HTTP equivalent |
 |---|---|---|---|---|
-| SMTP | Temporary failure | "4{xx} {text}\r\n" | sub-code, description | 5xx |
-| SMTP | Permanent failure | "5{xx} {text}\r\n" | sub-code, description | 4xx |
-| SMTP | Auth required | "530 Authentication required\r\n" | None (fixed) | 401 |
-| IMAP | Command failed | "{tag} NO {text}\r\n" | tag, description | 403/404 |
-| IMAP | Bad syntax | "{tag} BAD {text}\r\n" | tag, description | 400 |
-| FTP | Not logged in | "530 Not logged in\r\n" | None (fixed) | 401 |
-| FTP | File not found | "550 {path}: No such file\r\n" | path | 404 |
-| FTP | Permission denied | "550 {path}: Permission denied\r\n" | path | 403 |
+| SMTP | Temporary failure | "4xx text" | sub-code, description | 5xx |
+| SMTP | Permanent failure | "5xx text" | sub-code, description | 4xx |
+| SMTP | Auth required | "530 Authentication required" | None (fixed) | 401 |
+| IMAP | Command failed | "tag NO text" | tag, description | 403/404 |
+| IMAP | Bad syntax | "tag BAD text" | tag, description | 400 |
+| FTP | Not logged in | "530 Not logged in" | None (fixed) | 401 |
+| FTP | File not found | "550 path: No such file" | path | 404 |
+| FTP | Permission denied | "550 path: Permission denied" | path | 403 |
 | DNS | NXDOMAIN | Response with RCODE=3 | Query echoed, no answers | 404 |
 | DNS | SERVFAIL | Response with RCODE=2 | Query echoed, no answers | 500 |
 | DNS | REFUSED | Response with RCODE=5 | Query echoed, no answers | 403 |
@@ -1109,22 +1074,22 @@ root
 | MQTT | Not authorized | SUBACK with failure code | Topic, failure reason | 403 |
 | SSH | Auth failure | USERAUTH_FAILURE | Allowed methods list | 401 |
 | SSH | Channel failure | CHANNEL_OPEN_FAILURE | Reason code, description | 403 |
-| HTTP | Bad request | "HTTP/1.1 400 Bad Request\r\n{headers}\r\n{json_error}\r\n" | headers, error detail | 400 |
-| HTTP | Unauthorized | "HTTP/1.1 401 Unauthorized\r\nWWW-Authenticate: {scheme}\r\n\r\n" | scheme | 401 |
-| HTTP | Forbidden | "HTTP/1.1 403 Forbidden\r\n{headers}\r\n{json_error}\r\n" | headers, error detail | 403 |
-| HTTP | Not found | "HTTP/1.1 404 Not Found\r\n{headers}\r\n{json_error}\r\n" | headers, error detail | 404 |
-| HTTP | Rate limited | "HTTP/1.1 429 Too Many Requests\r\nRetry-After: {seconds}\r\n\r\n" | seconds | 429 |
-| HTTP | Server error | "HTTP/1.1 500 Internal Server Error\r\n{headers}\r\n{json_error}\r\n" | headers, error detail | 500 |
-| GraphQL | Parse error | "{"errors":[{"message":"{msg}","locations":[{"line":{l},"column":{c}}]}]}" | msg, line, col | 400 |
-| GraphQL | Validation error | "{"errors":[{"message":"{msg}","path":[{path}]}]}" | msg, path | 400 |
-| gRPC | Status | Trailer frame: "grpc-status: {code}\r\ngrpc-message: {msg}\r\n" | code (0-16), message | Varies by code |
-| Redis RESP | Error | "-{type} {message}\r\n" | error type, message | Varies |
+| HTTP | Bad request | "HTTP/1.1 400 Bad Requestheadersjson_error" | headers, error detail | 400 |
+| HTTP | Unauthorized | "HTTP/1.1 401 UnauthorizedWWW-Authenticate: scheme" | scheme | 401 |
+| HTTP | Forbidden | "HTTP/1.1 403 Forbiddenheadersjson_error" | headers, error detail | 403 |
+| HTTP | Not found | "HTTP/1.1 404 Not Foundheadersjson_error" | headers, error detail | 404 |
+| HTTP | Rate limited | "HTTP/1.1 429 Too Many RequestsRetry-After: seconds" | seconds | 429 |
+| HTTP | Server error | "HTTP/1.1 500 Internal Server Errorheadersjson_error" | headers, error detail | 500 |
+| GraphQL | Parse error | ""errors":["message":"msg","locations":["line":l,"column":c]]" | msg, line, col | 400 |
+| GraphQL | Validation error | ""errors":["message":"msg","path":[path]]" | msg, path | 400 |
+| gRPC | Status | Trailer frame: "grpc-status: codegrpc-message: msg" | code (0-16), message | Varies by code |
+| Redis RESP | Error | "-type message" | error type, message | Varies |
 | LDAP | Error result | Result message with resultCode and diagnosticMessage | code (0-80), message | Varies |
-| SIP | Client error | "{method} SIP/2.0\r\n" or "SIP/2.0 {code} {reason}\r\n" | code (400-499), reason | 4xx |
-| SIP | Server error | "SIP/2.0 {code} {reason}\r\n" | code (500-599), reason | 5xx |
+| SIP | Client error | "method SIP/2.0" or "SIP/2.0 code reason" | code (400-499), reason | 4xx |
+| SIP | Server error | "SIP/2.0 code reason" | code (500-599), reason | 5xx |
 | RADIUS | Access reject | Access-Reject packet with Reply-Message | rejection reason | 403 |
 | SNMP | Error response | Response PDU with error-status and error-index | status (1-18), index | Varies |
-| S3 | Error response | XML: "<Error><Code>{code}</Code><Message>{msg}</Message><RequestId>{id}</RequestId></Error>" | code, message, request ID | Varies |
+| S3 | Error response | XML: "<Error><Code>code</Code><Message>msg</Message><RequestId>id</RequestId></Error>" | code, message, request ID | Varies |
 | WebSocket | Close frame | Opcode 8, status code (2 bytes), reason text | code (1000-4999), reason | N/A |
 | AMQP | Channel close | channel.close method with reply-code and reply-text | code, text, method-id, class-id | Varies |
 | CoAP | Error response | 4.xx or 5.xx response code with diagnostic payload | code, diagnostic | 4xx/5xx |
@@ -1217,14 +1182,14 @@ root
 
 | Composite service | Components | Wiring | KB tree layout | Clone interaction |
 |---|---|---|---|---|
-| Webmail | HTTP + IMAP + SMTP | HTTP clone reads inbox via IMAP KB facts; compose sends via SMTP outbox queue | root.services.{http,email} with shared user KBs | HTTP clone reads email KBs directly; no IMAP protocol needed internally |
+| Webmail | HTTP + IMAP + SMTP | HTTP clone reads inbox via IMAP KB facts; compose sends via SMTP outbox queue | root.services.http,email with shared user KBs | HTTP clone reads email KBs directly; no IMAP protocol needed internally |
 | Unified messaging | IRC + XMPP + Matrix + SMTP | Bridge clone subscribes to all protocols; cross-posts via queues | root.services.chat.bridge with connection facts to each protocol | Bridge runner pops from each protocol's queue, pushes to others |
-| CI/CD pipeline | HTTP (webhook) + SSH (build) + S3 (artifacts) + SMTP (notification) | Webhook clone triggers build via queue; build clone stores artifacts; notification on completion | root.services.{http,ssh,storage,email} with project KB linking them | Queue chain: webhook→build→artifact→notification |
-| Monitoring dashboard | Prometheus + Syslog + HTTP + SMTP | HTTP clone queries metric and log KBs; alert rules push to email queue | root.services.{monitoring,http,email} with shared alert KB | HTTP clone reads monitoring KBs; alert poller pushes to email queue |
-| Identity platform | LDAP + OAuth + SAML + HTTP | HTTP consent page; LDAP backend auth; OAuth and SAML token generation | root.services.auth.{ldap,oauth,saml} with shared user KB | Auth clones query same user KB; token clones assert to protocol-specific token KBs |
+| CI/CD pipeline | HTTP (webhook) + SSH (build) + S3 (artifacts) + SMTP (notification) | Webhook clone triggers build via queue; build clone stores artifacts; notification on completion | root.services.http,ssh,storage,email with project KB linking them | Queue chain: webhook→build→artifact→notification |
+| Monitoring dashboard | Prometheus + Syslog + HTTP + SMTP | HTTP clone queries metric and log KBs; alert rules push to email queue | root.services.monitoring,http,email with shared alert KB | HTTP clone reads monitoring KBs; alert poller pushes to email queue |
+| Identity platform | LDAP + OAuth + SAML + HTTP | HTTP consent page; LDAP backend auth; OAuth and SAML token generation | root.services.auth.ldap,oauth,saml with shared user KB | Auth clones query same user KB; token clones assert to protocol-specific token KBs |
 | File sharing | S3 + HTTP + WebDAV + FTP | All protocols access same storage KBs; HTTP provides web UI | root.services.storage with protocol-specific handlers | All protocol clones read/write same object KBs with different grammars |
-| IoT platform | MQTT + Kafka + HTTP + Prometheus | MQTT ingests sensor data; Kafka stores streams; HTTP serves API; Prometheus exposes metrics | root.services.{mqtt,streaming,http,monitoring} with shared sensor KBs | MQTT processor writes to Kafka topic KBs; HTTP clone reads them; metrics derived by internal runner |
-| Collaboration suite | CalDAV + CardDAV + XMPP + WebDAV + SMTP | Shared user KBs; calendar invites via email; chat with presence | root.services.{calendar,chat,storage,email} with shared user KBs | Calendar clone sends invite via email queue; chat clone reads presence from user KB |
+| IoT platform | MQTT + Kafka + HTTP + Prometheus | MQTT ingests sensor data; Kafka stores streams; HTTP serves API; Prometheus exposes metrics | root.services.mqtt,streaming,http,monitoring with shared sensor KBs | MQTT processor writes to Kafka topic KBs; HTTP clone reads them; metrics derived by internal runner |
+| Collaboration suite | CalDAV + CardDAV + XMPP + WebDAV + SMTP | Shared user KBs; calendar invites via email; chat with presence | root.services.calendar,chat,storage,email with shared user KBs | Calendar clone sends invite via email queue; chat clone reads presence from user KB |
 
 ### Appendix X — Clone Memory Budget by Service
 
