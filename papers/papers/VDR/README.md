@@ -110,7 +110,6 @@ Otherwise:
 
 ---
 
-Project status: active specification series. Python prototype validated. Zig port and GPU kernels specified but not yet built.
 # What is VDR-LLM-Prolog?
 
 Starting from the absolute bottom.
