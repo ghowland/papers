@@ -12,22 +12,26 @@
 
 Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
 
-## Series Status
+## Status
 
-The VDR arithmetic is a functioning calculus validated across 23 mathematical domains and 14 physical domains with 884 tests and zero VDR computation errors (all 14 failures traced to test expectations, never to arithmetic).
+**What works (validated):**
+- Exact arithmetic across 37 domains — 884 tests, zero computation errors
+- Complete tokenization-through-training LM pipeline in exact fractions (198 tests)
+- Grammar-directed compaction: 83% average compression across 150K words (178/179 tests)
+- Python prototype: ~5,500 lines, 705 passing tests
 
-The inference and knowledge base system is specified and verified at the architectural level: scoped knowledge bases, Prolog-style rule composition, exact confidence propagation, orchestrated inference with four modes, grammar-directed compaction with 83% average compression across 150K words, and structural safety where jailbreaking is impossible for data access.
+**What's specified (architecture verified, not yet built):**
+- 448 builtins across 25 categories, all with declared interfaces
+- Scoped knowledge bases with Prolog engine, typed unification, constraint inheritance
+- Structural safety: jailbreaking provably impossible for data access
+- GPU mapping: Q335 fixed-frame arithmetic, frontier Prolog, 5 concurrent streams
+- Operational deployment: four prompt runner types for autonomous self-training
+- 5-stage build plan targeting 65 modules, ~20,500 lines
 
-The full system specification covers 448+ builtins across 25 categories, a 26-field KB struct, 533 IOSE-declared functions (IOSE = Input/Output/Side-Effects), a 5-stage build plan targeting 65 modules and ~20,500 lines, GPU performance mapping with 5 concurrent execution streams, and operational deployment with four prompt runner types for autonomous self-training.
-
-Current state:
-
-- **Arithmetic**: functioning exact calculus — closed arithmetic, active arithmetic with remainder propagation, Q335 transcendental encoding (22 constants at 100-digit precision), functional remainders for convergent series, discrete calculus, full linear algebra via Gaussian elimination
-- **Domain validation**: 507 exercises across 23 mathematical domains, 15 gym exercises across 14 physical domains, zero computation errors
-- **Exact LM components**: complete tokenization-through-training pipeline in exact fractions, validated with 198 tests
-- **Knowledge base and logic**: 26-field KB struct, lexically scoped tree, Prolog engine with typed unification, constraint inheritance, 178/179 compaction tests passing
-- **System specification**: VDR-14 consolidates VDR-1 through VDR-13 into a single reference; VDR-15 through VDR-20 extend into prompt optimization, safety, alignment, GPU mapping, self-extension, and deployment
-- **Implementation**: Python prototype (~5,500 lines, 705 passing tests) exists for arithmetic and LM components; Zig port specified via IOSE interface contracts but not yet built
+**What's not built yet:**
+- Zig port (specified via interface contracts)
+- GPU kernels (mapped but not implemented)
+- Production-scale deployment
 
 ---
 
