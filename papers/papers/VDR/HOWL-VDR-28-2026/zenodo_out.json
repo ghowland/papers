@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-17T18:12:32.355691+00:00",
-  "modified": "2026-05-17T18:12:32.448294+00:00",
-  "id": 20260561,
-  "conceptrecid": "20260560",
+  "created": "2026-05-17T18:26:51.095188+00:00",
+  "modified": "2026-05-17T18:26:51.179608+00:00",
+  "id": 20260736,
+  "conceptrecid": "20260735",
   "metadata": {
-    "title": "VDR Beyond Language Models",
+    "title": "Exact Rational Arithmetic for Sequential Computation",
     "publication_date": "2026-04",
     "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-27-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-28-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -63,65 +63,65 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-27-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-28-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20260561",
-      "recid": 20260561
+      "doi": "10.5281/zenodo.20260736",
+      "recid": 20260736
     }
   },
-  "title": "VDR Beyond Language Models",
+  "title": "Exact Rational Arithmetic for Sequential Computation",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20260561",
-    "html": "https://zenodo.org/deposit/20260561",
+    "self": "https://zenodo.org/api/deposit/depositions/20260736",
+    "html": "https://zenodo.org/deposit/20260736",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20260561/files",
-    "bucket": "https://zenodo.org/api/files/ba7d308e-df11-4e95-8de3-76b771ada72b",
-    "thumb250": "https://zenodo.org/record/20260561/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/20260736/files",
+    "bucket": "https://zenodo.org/api/files/8847876c-dc95-406e-8f13-2d1729e5cda9",
+    "thumb250": "https://zenodo.org/record/20260736/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20260561/thumb10",
-      "50": "https://zenodo.org/record/20260561/thumb50",
-      "100": "https://zenodo.org/record/20260561/thumb100",
-      "250": "https://zenodo.org/record/20260561/thumb250",
-      "750": "https://zenodo.org/record/20260561/thumb750",
-      "1200": "https://zenodo.org/record/20260561/thumb1200"
+      "10": "https://zenodo.org/record/20260736/thumb10",
+      "50": "https://zenodo.org/record/20260736/thumb50",
+      "100": "https://zenodo.org/record/20260736/thumb100",
+      "250": "https://zenodo.org/record/20260736/thumb250",
+      "750": "https://zenodo.org/record/20260736/thumb750",
+      "1200": "https://zenodo.org/record/20260736/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20260561",
-    "latest_draft_html": "https://zenodo.org/deposit/20260561",
-    "publish": "https://zenodo.org/api/deposit/depositions/20260561/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20260561/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20260561/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20260561/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20260736",
+    "latest_draft_html": "https://zenodo.org/deposit/20260736",
+    "publish": "https://zenodo.org/api/deposit/depositions/20260736/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20260736/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20260736/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20260736/actions/newversion"
   },
-  "record_id": 20260561,
+  "record_id": 20260736,
   "owner": 1539729,
   "files": [
     {
-      "id": "b853ca80-2cc3-4611-8ce5-f85dabe1ecb8",
-      "filename": "HOWL-VDR-27-2026.zip",
-      "filesize": 2428874,
-      "checksum": "e19590af117d51f11ac720455aaa811f",
+      "id": "16ef13c3-eaf0-44bb-a327-1a654badf5f2",
+      "filename": "!manuscript.pdf",
+      "filesize": 156056,
+      "checksum": "98ea82990f5c183494e699abcf53a907",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20260561/files/b853ca80-2cc3-4611-8ce5-f85dabe1ecb8",
-        "download": "https://zenodo.org/api/records/20260561/draft/files/HOWL-VDR-27-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20260736/files/16ef13c3-eaf0-44bb-a327-1a654badf5f2",
+        "download": "https://zenodo.org/api/records/20260736/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "e1d3b3ed-15d9-45f2-8906-9b1b3fdf5e68",
-      "filename": "!manuscript.pdf",
-      "filesize": 104867,
-      "checksum": "a0accdf337b668f4b9db7dbe09ccb501",
+      "id": "629336b7-5d33-48a5-be76-a87cfee3d255",
+      "filename": "HOWL-VDR-28-2026.zip",
+      "filesize": 2491247,
+      "checksum": "c33d3c62aa527ad16c810a4005cf9faa",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20260561/files/e1d3b3ed-15d9-45f2-8906-9b1b3fdf5e68",
-        "download": "https://zenodo.org/api/records/20260561/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20260736/files/629336b7-5d33-48a5-be76-a87cfee3d255",
+        "download": "https://zenodo.org/api/records/20260736/draft/files/HOWL-VDR-28-2026.zip/content"
       }
     }
   ],
