@@ -190,10 +190,10 @@ Production-scale deployment</p>
 <hr />
 <h1 id="what-is-vdr-llm-prolog">What is VDR-LLM-Prolog?</h1>
 <h3 id="layer-1-exact-arithmetic-vdr-1-vdr-2-vdr-3-vdr-13">Layer 1:
-Exact Arithmetic (<embed src="HOWL-VDR-1-2026/manuscript.md" />, <embed
-src="HOWL-VDR-2-2026/manuscript.md" />, <embed
-src="HOWL-VDR-3-2026/manuscript.md" />, <embed
-src="HOWL-VDR-13-2026/manuscript.md" />)</h3>
+Exact Arithmetic (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-1-2026/manuscript.md">VDR-1</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-2-2026/manuscript.md">VDR-2</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-3-2026/manuscript.md">VDR-3</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-13-2026/manuscript.md">VDR-13</a>)</h3>
 <p>The foundation is a number representation: the ordered triple [V, D,
 R] where V is an integer numerator, D is a nonzero integer denominator,
 and R is a remainder. When R is zero, the object is “closed” and behaves
@@ -262,8 +262,8 @@ where float gives meaningless results past H₈.</p>
 <img src="./figures/vdr_system_01_triple_nesting.png" alt="Fig. 1" />
 <figcaption aria-hidden="true">Fig. 1</figcaption>
 </figure>
-<h3 id="layer-2-exact-lm-pipeline-vdr-4">Layer 2: Exact LM Pipeline
-(<embed src="HOWL-VDR-4-2026/manuscript.md" />)</h3>
+<h3 id="layer-2-exact-lm-pipeline-vdr-4">Layer 2: Exact LM Pipeline (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-4-2026/manuscript.md">VDR-4</a>)</h3>
 <p>19 modules built on top of the 5 foundation modules implement a
 complete language model pipeline using only exact fractions.</p>
 <p>Exact softmax: truncated Taylor series where each partial sum is an
@@ -292,7 +292,7 @@ learned rational embeddings instead of sinusoidal positions (sin/cos are
 transcendental).</p>
 <p>198 tests, 196 passed, 2 test-expectation errors, 0 VDR errors.</p>
 <h3 id="layer-3-logic-and-provenance-vdr-5">Layer 3: Logic and
-Provenance (<embed src="HOWL-VDR-5-2026/manuscript.md" />)</h3>
+Provenance (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-5-2026/manuscript.md">VDR-5</a>)</h3>
 <p>Three new modules (prolog.py, conversation.py, surfacing.py) add a
 logic layer on top of exact arithmetic.</p>
 <p>A Prolog-style engine extended with VDR types. Standard terms (atoms,
@@ -331,9 +331,9 @@ structure.</p>
 <figcaption aria-hidden="true">Fig. 8</figcaption>
 </figure>
 <h3 id="layer-4-command-tokens-and-primitives-vdr-6-vdr-10">Layer 4:
-Command Tokens and Primitives (<embed
-src="HOWL-VDR-6-2026/manuscript.md" />, <embed
-src="HOWL-VDR-10-2026/manuscript.md" />)</h3>
+Command Tokens and Primitives (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-6-2026/manuscript.md">VDR-6</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-10-2026/manuscript.md">VDR-10</a>)</h3>
 <p>255 primitives (VDR-6) expanded to 448 (VDR-10) across 25 categories.
 404 pure (no side effects, no grants, deterministic, bounded) plus 44
 operational (require grants: filesystem, compilation, execution,
@@ -376,8 +376,8 @@ Arguments are addresses, not values serialized through the token stream.
 probability versus 
 86% for JSON function calling.</p>
 <h3 id="layer-5-data-primitives-paths-sessions-vdr-8">Layer 5: Data
-Primitives, Paths, Sessions (<embed
-src="HOWL-VDR-8-2026/manuscript.md" />)</h3>
+Primitives, Paths, Sessions (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-8-2026/manuscript.md">VDR-8</a>)</h3>
 <p>Seven types of bounded live state stored inside KBs: LRU cache,
 counter (exact i32 with min/max clamp), lock (non-blocking flag), queue
 (bounded FIFO), stack (bounded LIFO), ring buffer (fixed circular),
@@ -405,7 +405,7 @@ lrus, counters, locks, queues, stacks, buffers, bitsets), structural
 created_at, last_modified).</p>
 <p>Primitive count: 333 (289 pure + 44 operational).</p>
 <h3 id="layer-6-orchestrated-inference-vdr-9">Layer 6: Orchestrated
-Inference (<embed src="HOWL-VDR-9-2026/manuscript.md" />)</h3>
+Inference (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-9-2026/manuscript.md">VDR-9</a>)</h3>
 <p>A usage pattern specification — zero new primitives, zero new
 modules. Defines how the LLM uses everything from layers 1-5 to conduct
 structured investigations.</p>
@@ -443,7 +443,7 @@ assessment step: fixed 30/100 floor.</p>
 <figcaption aria-hidden="true">Fig. 7</figcaption>
 </figure>
 <h3 id="layer-7-lifecycle-management-vdr-7">Layer 7: Lifecycle
-Management (<embed src="HOWL-VDR-7-2026/manuscript.md" />)</h3>
+Management (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-7-2026/manuscript.md">VDR-7</a>)</h3>
 <p>12 lifecycle phases, each producing queryable KBs: data sourcing
 (declare sources with licenses, checksums) → corpus preparation
 (extraction, filtering, dedup, PII removal) → tokenization (vocabulary
@@ -470,8 +470,8 @@ model is one queryable KB tree.</p>
 renders KB data. Same command tokens via API client — one system, not
 two.</p>
 <h3 id="layer-8-grammar-directed-compaction-vdr-12">Layer 8:
-Grammar-Directed Compaction (<embed
-src="HOWL-VDR-12-2026/manuscript.md" />)</h3>
+Grammar-Directed Compaction (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-12-2026/manuscript.md">VDR-12</a>)</h3>
 <p>Compaction removes prose while preserving every named concept,
 relationship, constraint, claim in pipe-delimited tables. 
 83% average
@@ -509,7 +509,7 @@ graph, and presentation instructions.</p>
 <figcaption aria-hidden="true">Fig. 5</figcaption>
 </figure>
 <h3 id="layer-9-implementation-blueprint-vdr-11">Layer 9: Implementation
-Blueprint (<embed src="HOWL-VDR-11-2026/manuscript.md" />)</h3>
+Blueprint (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-11-2026/manuscript.md">VDR-11</a>)</h3>
 <p>65 modules in 12 layers with strict dependency ordering, built in 5
 incremental stages. 
 15,500 new lines on 
@@ -550,7 +550,7 @@ in computation, KB is single source of truth, all primitives bounded, no
 silent truncation, tests cumulative, OSO principles loaded at startup,
 idempotent operations verified.</p>
 <h3 id="layer-10-prompt-optimization-vdr-15">Layer 10: Prompt
-Optimization (<embed src="HOWL-VDR-15-2026/manuscript.md" />)</h3>
+Optimization (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-15-2026/manuscript.md">VDR-15</a>)</h3>
 <p>80-95% of conventional LLM tokens are infrastructure (parsing, state
 reconstruction, arithmetic, deduction, formatting, hedging) served by
 primitives/KB/Prolog/grammar at zero LLM token cost. The LLM generates
@@ -583,7 +583,7 @@ alt="Fig. 3" />
 <figcaption aria-hidden="true">Fig. 3</figcaption>
 </figure>
 <h3 id="layer-11-structural-safety-vdr-16">Layer 11: Structural Safety
-(<embed src="HOWL-VDR-16-2026/manuscript.md" />)</h3>
+(<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-16-2026/manuscript.md">VDR-16</a>)</h3>
 <p>Safety emerges from components built for other purposes — no
 safety-specific modules.</p>
 <p>Three layers: Input filtering (KB visibility + scope chain — integer
@@ -615,8 +615,8 @@ T. Access decisions deterministic and reproducible.</p>
 <img src="./figures/vdr_system_06_safety_layers.png" alt="Fig. 6" />
 <figcaption aria-hidden="true">Fig. 6</figcaption>
 </figure>
-<h3 id="layer-12-alignment-vdr-17">Layer 12: Alignment (<embed
-src="HOWL-VDR-17-2026/manuscript.md" />)</h3>
+<h3 id="layer-12-alignment-vdr-17">Layer 12: Alignment (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-17-2026/manuscript.md">VDR-17</a>)</h3>
 <p>Helpful/harmless/honest through structure not behavior.</p>
 <p>Honest: every value has inspectable provenance, computation is
 reproducible integer arithmetic, confidence is computed exact fraction.
@@ -638,8 +638,8 @@ expertise compounds, cooperation invisible.</p>
 to verify cooperation?” Absurd for tools. Rational for current LLMs.
 Absurd for VDR (same results guaranteed).</p>
 <p>Zero alignment token cost.</p>
-<h3 id="layer-13-gpu-performance-vdr-18">Layer 13: GPU Performance
-(<embed src="HOWL-VDR-18-2026/manuscript.md" />)</h3>
+<h3 id="layer-13-gpu-performance-vdr-18">Layer 13: GPU Performance (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-18-2026/manuscript.md">VDR-18</a>)</h3>
 <p>CPU control plane + GPU data plane. Q335 as 11×u32 limbs with
 implicit denominator. Add 
 22 int ops, multiply 
@@ -670,8 +670,8 @@ conventional 25,100 tokens,
 <img src="./figures/vdr_system_04_sre_accumulation.png" alt="Fig. 4" />
 <figcaption aria-hidden="true">Fig. 4</figcaption>
 </figure>
-<h3 id="layer-14-self-extension-vdr-19">Layer 14: Self-Extension (<embed
-src="HOWL-VDR-19-2026/manuscript.md" />)</h3>
+<h3 id="layer-14-self-extension-vdr-19">Layer 14: Self-Extension (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-19-2026/manuscript.md">VDR-19</a>)</h3>
 <p>Usage is training. Every session can produce persistent Prolog rules,
 Python scripts, grammars, compaction rules that compose with existing
 capabilities. Immediate, inspectable, reversible, scoped, incremental,
@@ -694,7 +694,7 @@ grammars for novel structures) → mature.</p>
 <p>Security inherited: self-generated rules use same pipeline with same
 grants, visibility, scope, audit.</p>
 <h3 id="layer-15-operational-deployment-vdr-20">Layer 15: Operational
-Deployment (<embed src="HOWL-VDR-20-2026/manuscript.md" />)</h3>
+Deployment (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-20-2026/manuscript.md">VDR-20</a>)</h3>
 <p>Four runner types (same infrastructure, different trigger and grant
 scope): Interactive (user input, session duration), polling (timer,
 single cycle fresh each), processor (data arrival, long-lived with
@@ -713,8 +713,8 @@ month 6+.</p>
 year 1. Rule-handled: 15% day 1 → 88% month 1 → 97% year 1.</p>
 <p>Concurrency: append-only arenas, atomic queue ops, zero locking.
 Query latency &lt;1ms to 1M facts, &lt;5ms at 50M.</p>
-<h3 id="layer-16-fpga-accelerator-vdr-21">Layer 16: FPGA Accelerator
-(<embed src="HOWL-VDR-21-2026/manuscript.md" />)</h3>
+<h3 id="layer-16-fpga-accelerator-vdr-21">Layer 16: FPGA Accelerator (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-21-2026/manuscript.md">VDR-21</a>)</h3>
 <p>Custom 10-core Q335 processor on Xilinx Zynq-7020. Each core: 384-bit
 ALU, 8 V-registers + 8 R-registers, 4-stage pipeline at 150 MHz. SHR335
 (Q335 divmod) is fixed wiring — zero logic, zero power, 1 cycle.</p>
@@ -736,7 +736,7 @@ paths for real-time comparison.</p>
 <figcaption aria-hidden="true">Fig. 2</figcaption>
 </figure>
 <h3 id="layer-17-dedicated-silicon-vdr-22">Layer 17: Dedicated Silicon
-(<embed src="HOWL-VDR-22-2026/manuscript.md" />)</h3>
+(<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-22-2026/manuscript.md">VDR-22</a>)</h3>
 <p>Integer-native GPU ASIC: 80 SMs × 64 QIUs = 5,120 QIUs at 2 GHz on
 4nm. Full parallel multiplier (1-2 cycles vs FPGA’s 9). 
 68B
@@ -763,8 +763,8 @@ datacenter, 14,544 QIUs). Same ISA, same IOSE contracts.</p>
 contract, bit-identical results. 
 122-week development path.</p>
 <h3 id="layer-18-functional-remainder-hardware-vdr-23">Layer 18:
-Functional Remainder Hardware (<embed
-src="HOWL-VDR-23-2026/manuscript.md" />)</h3>
+Functional Remainder Hardware (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-23-2026/manuscript.md">VDR-23</a>)</h3>
 <p>Adds the Functional Remainder Unit (FRU) to each QIU: 
 496K
 transistors (7% per-unit increase), 4 recurrence registers, 3KB
@@ -795,8 +795,8 @@ sessions from remainder round-trips. With FRU: no saturation at
 model forward pass 
 1.9× slower per token than H100 float16; net compute
 per prompt favors VDR from first prompt due to token reduction.</p>
-<h3 id="layer-19-llm-software-vdr-24">Layer 19: LLM Software (<embed
-src="HOWL-VDR-24-2026/manuscript.md" />)</h3>
+<h3 id="layer-19-llm-software-vdr-24">Layer 19: LLM Software (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md">VDR-24</a>)</h3>
 <p>Defines the application category: software developed through
 conversation, deployed as snapshots, improved by usage.</p>
 <p>Structural equivalence: LLM = runtime, KB tree = address space,
@@ -825,7 +825,7 @@ forgetting (facts at independent addresses).</p>
 <p>Development: simple chatbot 4 hours vs 2-4 weeks conventional. SRE
 assistant 12 hours vs 6-12 weeks.</p>
 <h3 id="layer-20-llm-server-software-vdr-25">Layer 20: LLM Server
-Software (<embed src="HOWL-VDR-25-2026/manuscript.md" />)</h3>
+Software (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-25-2026/manuscript.md">VDR-25</a>)</h3>
 <p>Extends the LLM Software pattern to network services. 44 protocols
 cataloged, all following one pattern: grammar speaks protocol + Prolog
 rules process requests + KB tree stores state + grants enforce security
