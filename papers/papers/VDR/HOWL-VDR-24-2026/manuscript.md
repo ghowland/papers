@@ -1116,3 +1116,6 @@ root.managed
 | Service degradation over time | Conversation quality degrades with length | Drift thresholds kill and reclone; freshness guaranteed | Conventional: users notice quality drop; LM: counter-based automatic detection | Conventional: restart conversation; LM: automatic reclone from frozen snapshot |
 | Catastrophic forgetting | Fine-tuning damages prior knowledge unpredictably | Impossible; facts at independent integer addresses | Conventional: discover via evaluation suite after damage done; LM: N/A | Conventional: retrain from checkpoint; LM: N/A |
 | Scaling bottleneck | Context window cost grows quadratically | Flat per-turn cost; width scales freely | Conventional: latency increases with conversation length; LM: constant | Conventional: bigger model, more compute; LM: more clones from same snapshot |
+
+---
+

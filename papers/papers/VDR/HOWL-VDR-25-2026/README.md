@@ -1,4 +1,4 @@
-# LLM Software
+# LLM Server Software
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,11 +6,11 @@
 
 ## Abstract
 
-This paper defines LLM Software — a new category of software where applications are developed by configuring language model sessions with structured state, encoding logic as Prolog rules over exact arithmetic primitives, validating behavior interactively, snapshotting working state as deployable artifacts, and cloning those artifacts on demand as running instances. The language model is the runtime. A hierarchical knowledge base tree is the address space. Prolog is the programming language. Snapshots are the binaries. Usage improves the application without rebuilding it.
+This paper demonstrates that web and internet services — HTTP servers, email systems, chat protocols, authentication services, database interfaces, file storage, monitoring, streaming, and IoT infrastructure — can be implemented as LM Software applications within the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026]. Each service is a configured language model session that speaks a protocol through grammar templates, processes requests through Prolog rules over exact arithmetic primitives, and maintains state in a hierarchical knowledge base tree. The language model provides judgment only when requests require interpretation beyond stored rules. Protocol compliance is structural — grammars enforce correct framing, field ordering, and encoding. Security is structural — grants and scope determine what each connection can access. Audit is automatic — every operation is logged with full provenance.
 
-LLM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation — where every session deposits reusable logic that makes future sessions cheaper and more capable.
+This extends the LM Software concept [@HOWL-VDR-24-2026] from application-level programs to infrastructure-level services. The same development lifecycle applies: interactive configuration, testing, snapshotting, clone-per-connection deployment, and improvement through accumulated rules. The result is server software developed through conversation rather than compiled code, deployed as snapshots rather than containers, and governed by exact integer arithmetic rather than approximate floating-point computation.
 
-This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LLM Software through two complete worked examples.
+No prior reading is required. All necessary concepts from the VDR-LLM-Prolog architecture are introduced where first used.
 
 ---
 
@@ -50,14 +50,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-24-2026,
-  title={ LLM Software },
+@article{ HOWL-VDR-25-2026,
+  title={ LLM Server Software },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20258082},
-  url = {https://zenodo.org/record/20258082},
-  note={Howland Archive: HOWL-VDR-24-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.zzz},
+  url = {https://zenodo.org/record/zzz},
+  note={Howland Archive: HOWL-VDR-25-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

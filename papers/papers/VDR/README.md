@@ -13,6 +13,8 @@
 Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
 
 - **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)**
+- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)**
+- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)**
 
 ## How Exact Integer Arithmetic Works
 
