@@ -102,18 +102,17 @@ On GPU, this is a fixed-width uniform workload: every Q335 (2^335) value is 11×
 
 ## Reading Order
 
-If you want one document: **VDR-14** (consolidated system specification).
+If you want one document: **[VDR-14](HOWL-VDR-14-2026/manuscript.md)** (consolidated system specification).
 
 Otherwise:
 
-1. **VDR-1** — arithmetic foundation
-2. **VDR-2, VDR-3** — validation across 23 mathematical domains
-3. **VDR-4** — exact-fraction transformer: softmax, autodiff, training
-4. **VDR-5 through VDR-12** — knowledge bases, Prolog, primitives, sessions, inference, compaction
-5. **VDR-13** — physical computation: QED, quantum mechanics, orbital mechanics, optics
-6. **VDR-14** — complete system specification
-7. **VDR-15 through VDR-20** — prompt optimization, safety, alignment, GPU performance, self-extension, deployment
-
+1. **[VDR-1](HOWL-VDR-1-2026/manuscript.md)** — arithmetic foundation
+2. **[VDR-2](HOWL-VDR-2-2026/manuscript.md)**, **[VDR-3](HOWL-VDR-3-2026/manuscript.md)** — validation across 23 mathematical domains
+3. **[VDR-4](HOWL-VDR-4-2026/manuscript.md)** — exact-fraction transformer: softmax, autodiff, training
+4. **[VDR-5](HOWL-VDR-5-2026/manuscript.md)** through **[VDR-12](HOWL-VDR-12-2026/manuscript.md)** — knowledge bases, Prolog, primitives, sessions, inference, compaction
+5. **[VDR-13](HOWL-VDR-13-2026/manuscript.md)** — physical computation: QED, quantum mechanics, orbital mechanics, optics
+6. **[VDR-14](HOWL-VDR-14-2026/manuscript.md)** — complete system specification
+7. **[VDR-15](HOWL-VDR-15-2026/manuscript.md)** through **[VDR-20](HOWL-VDR-20-2026/manuscript.md)** — prompt optimization, safety, alignment, GPU performance, self-extension, deployment
 ---
 
 # What is VDR-LLM-Prolog?
