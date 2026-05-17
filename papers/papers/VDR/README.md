@@ -77,26 +77,26 @@ Otherwise:
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
-| **[@HOWL-VDR-1-2026](HOWL-VDR-1-2026/manuscript.md)** | **VDR Arithmetic: Value, Denominator, Remainder** | Exact Finite Arithmetic in Irreducible Triple Form. |
-| **[@HOWL-VDR-2-2026](HOWL-VDR-2-2026/manuscript.md)** | **VDR Gym** | Exact Arithmetic Across Fifteen Domains. |
-| **[@HOWL-VDR-3-2026](HOWL-VDR-3-2026/manuscript.md)** | **VDR Gym Extension** | Exact Arithmetic Across Twenty-Three Domains. |
-| **[@HOWL-VDR-4-2026](HOWL-VDR-4-2026/manuscript.md)** | **Exact-Fraction Language Model Architecture** | From Arithmetic Library to Working Transformer in 24 Modules. |
-| **[@HOWL-VDR-5-2026](HOWL-VDR-5-2026/manuscript.md)** | **Exact Arithmetic Meets Logical Provenance** | A Specification for Constraint-Grounded Language Models With Full Data Lineage. |
-| **[@HOWL-VDR-6-2026](HOWL-VDR-6-2026/manuscript.md)** | **Computational Primitives and Operational Environments** | The Execution Layer for VDR-LLM-Prolog. |
-| **[@HOWL-VDR-7-2026](HOWL-VDR-7-2026/manuscript.md)** | **Complete Lifecycle Technical Specification** | Training, Feedback, Data Sourcing, and Continuous Operation. |
-| **[@HOWL-VDR-8-2026](HOWL-VDR-8-2026/manuscript.md)** | **Computational State Primitives, Universal Data Pathing, and Session Management** | The Runtime Layer for VDR-LLM-Prolog. |
-| **[@HOWL-VDR-9-2026](HOWL-VDR-9-2026/manuscript.md)** | **Orchestrated Inference** | Structured Reasoning Through Tool Composition in VDR-LLM-Prolog. |
-| **[@HOWL-VDR-10-2026](HOWL-VDR-10-2026/manuscript.md)** | **Operational Foundations and Comprehensive Builtin Specification** | IOSE System Model, Engineering Principles, and Complete Numeric Stack for VDR-LLM-Prolog. |
-| **[@HOWL-VDR-11-2026](HOWL-VDR-11-2026/manuscript.md)** | **Implementation Blueprint** | Five-Stage Build Plan for VDR-LLM-Prolog. |
-| **[@HOWL-VDR-12-2026](HOWL-VDR-12-2026/manuscript.md)** | **Grammar-Directed Compaction and Generation** | Structural Intelligence for Exact-Arithmetic Language Models. |
-| **[@HOWL-VDR-13-2026](HOWL-VDR-13-2026/manuscript.md)** | **VDR in Physical Computation** | Exact Arithmetic Where It Matters. |
-| **[@HOWL-VDR-14-2026](HOWL-VDR-14-2026/manuscript.md)** | **VDR-LLM-Prolog** | A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance. |
-| **[@HOWL-VDR-15-2026](HOWL-VDR-15-2026/manuscript.md)** | **VDR-LLM-Prolog: Prompt Optimization** | How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results. |
-| **[@HOWL-VDR-16-2026](HOWL-VDR-16-2026/manuscript.md)** | **VDR-LLM-Prolog: Safe by Contract** | Structural Safety Through Architecture, Not Behavioral Training. |
-| **[@HOWL-VDR-17-2026](HOWL-VDR-17-2026/manuscript.md)** | **VDR-LLM-Prolog: Alignment** | Helpful, Harmless, Honest Through Structure, Not Interference. |
-| **[@HOWL-VDR-18-2026](HOWL-VDR-18-2026/manuscript.md)** | **VDR-LLM-Prolog: Performance** | Integer Arithmetic on GPU Hardware: Why Wider Operands on More Cores Outrun Narrower Operands on Fewer Passes. |
-| **[@HOWL-VDR-19-2026](HOWL-VDR-19-2026/manuscript.md)** | **VDR-LLM-Prolog: Self-Extending Architecture** | From Seed to Self-Compacting Knowledge System. |
-| **[@HOWL-VDR-20-2026](HOWL-VDR-20-2026/manuscript.md)** | **VDR-LLM-Prolog: Operational Deployment** | From Seed to Autonomous Knowledge System. |
+| **[HOWL-VDR-1-2026](HOWL-VDR-1-2026/manuscript.md)** | **VDR Arithmetic: Value, Denominator, Remainder** | Exact Finite Arithmetic in Irreducible Triple Form. |
+| **[HOWL-VDR-2-2026](HOWL-VDR-2-2026/manuscript.md)** | **VDR Gym** | Exact Arithmetic Across Fifteen Domains. |
+| **[HOWL-VDR-3-2026](HOWL-VDR-3-2026/manuscript.md)** | **VDR Gym Extension** | Exact Arithmetic Across Twenty-Three Domains. |
+| **[HOWL-VDR-4-2026](HOWL-VDR-4-2026/manuscript.md)** | **Exact-Fraction Language Model Architecture** | From Arithmetic Library to Working Transformer in 24 Modules. |
+| **[HOWL-VDR-5-2026](HOWL-VDR-5-2026/manuscript.md)** | **Exact Arithmetic Meets Logical Provenance** | A Specification for Constraint-Grounded Language Models With Full Data Lineage. |
+| **[HOWL-VDR-6-2026](HOWL-VDR-6-2026/manuscript.md)** | **Computational Primitives and Operational Environments** | The Execution Layer for VDR-LLM-Prolog. |
+| **[HOWL-VDR-7-2026](HOWL-VDR-7-2026/manuscript.md)** | **Complete Lifecycle Technical Specification** | Training, Feedback, Data Sourcing, and Continuous Operation. |
+| **[HOWL-VDR-8-2026](HOWL-VDR-8-2026/manuscript.md)** | **Computational State Primitives, Universal Data Pathing, and Session Management** | The Runtime Layer for VDR-LLM-Prolog. |
+| **[HOWL-VDR-9-2026](HOWL-VDR-9-2026/manuscript.md)** | **Orchestrated Inference** | Structured Reasoning Through Tool Composition in VDR-LLM-Prolog. |
+| **[HOWL-VDR-10-2026](HOWL-VDR-10-2026/manuscript.md)** | **Operational Foundations and Comprehensive Builtin Specification** | IOSE System Model, Engineering Principles, and Complete Numeric Stack for VDR-LLM-Prolog. |
+| **[HOWL-VDR-11-2026](HOWL-VDR-11-2026/manuscript.md)** | **Implementation Blueprint** | Five-Stage Build Plan for VDR-LLM-Prolog. |
+| **[HOWL-VDR-12-2026](HOWL-VDR-12-2026/manuscript.md)** | **Grammar-Directed Compaction and Generation** | Structural Intelligence for Exact-Arithmetic Language Models. |
+| **[HOWL-VDR-13-2026](HOWL-VDR-13-2026/manuscript.md)** | **VDR in Physical Computation** | Exact Arithmetic Where It Matters. |
+| **[HOWL-VDR-14-2026](HOWL-VDR-14-2026/manuscript.md)** | **VDR-LLM-Prolog** | A Complete System Specification for Exact Arithmetic Language Models with Structural Provenance. |
+| **[HOWL-VDR-15-2026](HOWL-VDR-15-2026/manuscript.md)** | **VDR-LLM-Prolog: Prompt Optimization** | How to Do More with Less, Faster, Even with Slower Per-Token Processing and More Accurate Results. |
+| **[HOWL-VDR-16-2026](HOWL-VDR-16-2026/manuscript.md)** | **VDR-LLM-Prolog: Safe by Contract** | Structural Safety Through Architecture, Not Behavioral Training. |
+| **[HOWL-VDR-17-2026](HOWL-VDR-17-2026/manuscript.md)** | **VDR-LLM-Prolog: Alignment** | Helpful, Harmless, Honest Through Structure, Not Interference. |
+| **[HOWL-VDR-18-2026](HOWL-VDR-18-2026/manuscript.md)** | **VDR-LLM-Prolog: Performance** | Integer Arithmetic on GPU Hardware: Why Wider Operands on More Cores Outrun Narrower Operands on Fewer Passes. |
+| **[HOWL-VDR-19-2026](HOWL-VDR-19-2026/manuscript.md)** | **VDR-LLM-Prolog: Self-Extending Architecture** | From Seed to Self-Compacting Knowledge System. |
+| **[HOWL-VDR-20-2026](HOWL-VDR-20-2026/manuscript.md)** | **VDR-LLM-Prolog: Operational Deployment** | From Seed to Autonomous Knowledge System. |
 
 ---
 
