@@ -71,18 +71,20 @@ deposits reusable rules.</p>
 System Spec</a></strong></p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md">LLM
 Configuration and Cloning as Application Development</a></strong> - LLM
-Software: applications developed through conversation, not code.
-Configure an LLM session with structured KB state and Prolog rules,
-snapshot it as a deployable binary, clone it on demand. Customer support
-bots, document processors, SRE triage — developed in hours, deployed as
-snapshots, improved by usage. No developer required.</p></li>
+Software: LLM sessions configured with KB state and Prolog rules, then
+snapshot and cloned as running applications. Builtins are Prolog
+predicates — user-written rules chain them into workflows that execute
+without LLM involvement. Three execution levels: full LLM judgment, LLM
+invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones
+are instances. Drift thresholds enforce freshness.</p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-25-2026/manuscript.md">LLM Session
 Clone as Internet and Web Server Software</a></strong> - LLM Server
-Software: the same snapshot-and-clone model serving web and internet
-protocols. HTTP, SMTP, DNS, MQTT, IRC, OAuth — each protocol is a
-grammar template the clone speaks natively. Backend services developed
-through conversation, deployed on ports, scaled by cloning. Replaces
-compiled server code with configured LLM sessions.</p></li>
+Software: protocol grammars handle wire formats — HTTP, SMTP, DNS, MQTT,
+SSH, and 30+ others. Grammars provide all structural tokens; Prolog
+rules process requests; clones spawn per connection. The LLM fills
+content slots in protocol templates and provides judgment when no stored
+rule matches. Port listeners, session lifecycle, and scaling are
+configured through the same KB primitives.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
 Works</h2>

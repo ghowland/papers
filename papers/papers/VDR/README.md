@@ -14,9 +14,10 @@ Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and 
 
 - **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)**
 
-- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: applications developed through conversation, not code. Configure an LLM session with structured KB state and Prolog rules, snapshot it as a deployable binary, clone it on demand. Customer support bots, document processors, SRE triage — developed in hours, deployed as snapshots, improved by usage. No developer required.
+- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: LLM sessions configured with KB state and Prolog rules, then snapshot and cloned as running applications. Builtins are Prolog predicates — user-written rules chain them into workflows that execute without LLM involvement. Three execution levels: full LLM judgment, LLM invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones are instances. Drift thresholds enforce freshness.
 
-- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: the same snapshot-and-clone model serving web and internet protocols. HTTP, SMTP, DNS, MQTT, IRC, OAuth — each protocol is a grammar template the clone speaks natively. Backend services developed through conversation, deployed on ports, scaled by cloning. Replaces compiled server code with configured LLM sessions.
+
+- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: protocol grammars handle wire formats — HTTP, SMTP, DNS, MQTT, SSH, and 30+ others. Grammars provide all structural tokens; Prolog rules process requests; clones spawn per connection. The LLM fills content slots in protocol templates and provides judgment when no stored rule matches. Port listeners, session lifecycle, and scaling are configured through the same KB primitives.
 
 ## How Exact Integer Arithmetic Works
 
