@@ -26,6 +26,8 @@ No. Every component has an exact integer path.
 
 **Denominator growth:** Solved. Fix D at 2^335 — it never changes. Multiply two values: full product, then divmod at bit 335. Bits above = new V. Bits below = R. That R is itself a [V, D, R] triple — the remainder slot is the only slot that nests, forming a structural tree. Overflow goes into deeper remainder nesting, not wider denominators. Each level of the tree is exact. Precision is how many levels deep you carry the remainder tree, and every level you stop at is a complete exact value, not a truncated approximation. This replaces limits, convergence, and infinite series with finite recursive descent through exact integer triples — calculus by structure, not by approximation.
 
+- **Structural safety**: Jailbreaking is impossible for data access — not difficult, impossible. The LLM never receives unauthorized data because KB visibility (integer comparison) and scope chain (ancestor walk, siblings unreachable) filter before the LLM is involved. No prompt modifies any integer in any access control check. Session identity set at authentication, not extractable from conversation. Three independent layers (input filtering, grant authorization, output validation) must all fail simultaneously for a breach. Zero LLM tokens spent on safety.
+
 **Validated:** 884 tests, zero arithmetic errors. Exact Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip. Exact orbit closure. Conservation laws verified by equality not tolerance.
 
 ## Status

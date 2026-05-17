@@ -90,6 +90,17 @@ a complete exact value, not a truncated approximation. This replaces
 limits, convergence, and infinite series with finite recursive descent
 through exact integer triples — calculus by structure, not by
 approximation.</p>
+<ul>
+<li><strong>Structural safety</strong>: Jailbreaking is impossible for
+data access — not difficult, impossible. The LLM never receives
+unauthorized data because KB visibility (integer comparison) and scope
+chain (ancestor walk, siblings unreachable) filter before the LLM is
+involved. No prompt modifies any integer in any access control check.
+Session identity set at authentication, not extractable from
+conversation. Three independent layers (input filtering, grant
+authorization, output validation) must all fail simultaneously for a
+breach. Zero LLM tokens spent on safety.</li>
+</ul>
 <p><strong>Validated:</strong> 884 tests, zero arithmetic errors. Exact
 Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip.
 Exact orbit closure. Conservation laws verified by equality not
