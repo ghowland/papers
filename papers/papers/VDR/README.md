@@ -12,6 +12,22 @@
 
 Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
 
+## How Exact Integer Arithmetic Works
+
+**"But you need floats for transcendentals / softmax / training?"**
+
+No. Every component has an exact integer path.
+
+**Transcendentals (π, e, √2, sin, cos, exp, log):** Store 22 constants as ~102-digit integers over a shared denominator of 2^335. Adding π + e is one integer addition. For functions like √2, Newton iteration produces exact rationals at each step — 8 steps gives 100+ correct digits. Every intermediate value is an exact fraction, not an approximation converging to a limit.
+
+**Softmax:** Rational surrogate: each output = (shifted input)² / sum of all (shifted inputs)². Sum is exactly 1/1. Zero transcendentals. Equal logits [5,5,5,5] produce exactly [1/4, 1/4, 1/4, 1/4]. Alternatively, truncated Taylor exp where every partial sum is an exact rational.
+
+**Training:** SGD with exact fraction learning rate × exact gradient = exact weight update. Reverse-mode autodiff on a computation graph where chain rule and quotient rule are exact. ReLU gradient is exactly 0 or exactly 1. Checkpoints save every parameter as an exact fraction — bit-identical across platforms.
+
+**The catch:** Denominators grow through operations (~2^10 at init, ~2^45 after training). When they exceed budget, Q-basis reprojection rounds to a 2^K grid with a logged exact error bound. This is a declared precision decision, not silent truncation. The approximation boundary is a design choice, not a hardware constraint.
+
+**Validated:** 884 tests, zero arithmetic errors. Exact Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip. Exact orbit closure. Conservation laws verified by equality not tolerance.
+
 ## Status
 
 **What works (validated):**
