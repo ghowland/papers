@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20260247/files",
     "bucket": "https://zenodo.org/api/files/161c7cc5-06c1-490a-99ef-fa31553723c3",
+    "thumb250": "https://zenodo.org/record/20260247/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20260247/thumb10",
+      "50": "https://zenodo.org/record/20260247/thumb50",
+      "100": "https://zenodo.org/record/20260247/thumb100",
+      "250": "https://zenodo.org/record/20260247/thumb250",
+      "750": "https://zenodo.org/record/20260247/thumb750",
+      "1200": "https://zenodo.org/record/20260247/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20260247",
     "latest_draft_html": "https://zenodo.org/deposit/20260247",
     "publish": "https://zenodo.org/api/deposit/depositions/20260247/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20260247,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "99e650a2-4639-4a48-ad99-980e3e9a12c8",
+      "filename": "!manuscript.pdf",
+      "filesize": 151309,
+      "checksum": "507eef588718db7f439761b2cccf00c8",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/99e650a2-4639-4a48-ad99-980e3e9a12c8",
+        "download": "https://zenodo.org/api/records/20260247/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "8b9b35a6-2ada-471e-938d-5548d569be1c",
+      "filename": "HOWL-VDR-26-2026.zip",
+      "filesize": 2475284,
+      "checksum": "b4061f8febf5320d83bfb4aa014403a8",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/8b9b35a6-2ada-471e-938d-5548d569be1c",
+        "download": "https://zenodo.org/api/records/20260247/draft/files/HOWL-VDR-26-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
