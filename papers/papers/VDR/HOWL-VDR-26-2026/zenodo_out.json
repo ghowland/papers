@@ -1,12 +1,12 @@
 {
   "created": "2026-05-17T17:38:43.343212+00:00",
-  "modified": "2026-05-17T17:38:43.431643+00:00",
+  "modified": "2026-05-17T17:44:35.987002+00:00",
   "id": 20260247,
   "conceptrecid": "20260246",
   "metadata": {
-    "title": "VDR and Diffusion",
-    "publication_date": "2026-04",
-    "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
+    "title": "VDR and Diffusion: Zero-Drift Denoising Through Exact Sequential Arithmetic",
+    "publication_date": "2026-05",
+    "description": "<div>\n<div>Diffusion models generate images and video by iterating a denoising chain &mdash; each step takes the previous step's output, scales by schedule coefficients, subtracts predicted noise, normalizes, and feeds the result forward. In float64 arithmetic, each step introduces approximately 10\u207b&sup1;\u2076 rounding error. Over 50 steps for image generation, this compounds to approximately 10\u207b&sup1;\u2074. Over hundreds or thousands of steps for video generation, where frames condition on prior frames through the same arithmetic chain, the error produces measurable artifacts: color drift, temporal flickering, and structural inconsistency between frames.</div>\n<br>\n<div>This paper implements the complete diffusion process &mdash; noise schedule computation, forward diffusion, reverse denoising, DDIM deterministic sampling, and multi-cycle drift measurement &mdash; in VDR exact integer arithmetic [VDR-1]. Every intermediate value is an exact rational number. Every operation preserves that exactness. The result: zero drift accumulation across arbitrarily long denoising chains. The error at cycle N equals the error at cycle 1, which is the Newton square root residual at the chosen depth (below 10\u207b\u2075\u2070 at depth 10), not a compounding float truncation.</div>\n<br>\n<div>Validated: 37 tests, 33 passed, 4 failed. All 4 failures trace to a normalization presentation issue &mdash; Newton iteration for perfect squares produces correct values that do not reduce to simplest form. Zero arithmetic errors. Zero drift. Zero computation failures.</div>\n<br>\n<div>No prior reading is required. All necessary concepts from VDR arithmetic are introduced where first used.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-26-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/VDR/HOWL-VDR-26-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-26-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -78,7 +78,7 @@
       "recid": 20260247
     }
   },
-  "title": "VDR and Diffusion",
+  "title": "VDR and Diffusion: Zero-Drift Denoising Through Exact Sequential Arithmetic",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/20260247",
     "html": "https://zenodo.org/deposit/20260247",
@@ -105,22 +105,22 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "99e650a2-4639-4a48-ad99-980e3e9a12c8",
+      "id": "2a842846-0620-4e84-9b4c-ac1b98994224",
       "filename": "!manuscript.pdf",
-      "filesize": 151309,
-      "checksum": "507eef588718db7f439761b2cccf00c8",
+      "filesize": 151314,
+      "checksum": "6818d77652dca39e0652de9aabe77957",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/99e650a2-4639-4a48-ad99-980e3e9a12c8",
+        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/2a842846-0620-4e84-9b4c-ac1b98994224",
         "download": "https://zenodo.org/api/records/20260247/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "8b9b35a6-2ada-471e-938d-5548d569be1c",
+      "id": "15e3d037-f018-4761-8f3b-c172f6e9f4e6",
       "filename": "HOWL-VDR-26-2026.zip",
-      "filesize": 2475284,
-      "checksum": "b4061f8febf5320d83bfb4aa014403a8",
+      "filesize": 2475582,
+      "checksum": "763efd6a6fb329c4a83a69cc4af549c6",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/8b9b35a6-2ada-471e-938d-5548d569be1c",
+        "self": "https://zenodo.org/api/deposit/depositions/20260247/files/15e3d037-f018-4761-8f3b-c172f6e9f4e6",
         "download": "https://zenodo.org/api/records/20260247/draft/files/HOWL-VDR-26-2026.zip/content"
       }
     }

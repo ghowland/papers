@@ -1,6 +1,6 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-05-17 17:38:11 UTC
+**Generated:** 2026-05-17 17:58:34 UTC
 
 ## Summary
 
@@ -8,7 +8,7 @@
 - **Valid:** 176
 - **Invalid:** 5
 - **Total Errors:** 7
-- **Total Warnings:** 406
+- **Total Warnings:** 405
 
 ## By Subject
 
@@ -31,8 +31,8 @@
 
 ## By Status
 
-- **Published (has DOI):** 175
-- **Draft (stub .zzz):** 6
+- **Published (has DOI):** 176
+- **Draft (stub .zzz):** 5
 
 ## Validation Issues
 
