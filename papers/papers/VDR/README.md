@@ -19,6 +19,8 @@ Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and 
 
 - **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: protocol grammars handle wire formats — HTTP, SMTP, DNS, MQTT, SSH, and 30+ others. Grammars provide all structural tokens; Prolog rules process requests; clones spawn per connection. The LLM fills content slots in protocol templates and provides judgment when no stored rule matches. Port listeners, session lifecycle, and scaling are configured through the same KB primitives.
 
+- **[VDR and Diffusion](HOWL-VDR-26-2026/manuscript.md)** - Exact Arithmetic for Diffusion Models: noise schedules, forward diffusion, and reverse denoising steps computed as exact VDR fractions. Cumulative products ᾱₜ have zero drift across arbitrary step counts. Square roots of schedule coefficients use Newton iteration producing exact rationals at each depth. The forward process xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε and reverse posterior mean μₜ = (1/√αₜ)(xₜ - βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations — no float truncation compounds through the denoising chain. Forward-reverse roundtrips recover the original signal exactly. Multi-cycle drift does not accumulate because there is no rounding to accumulate. Applicable to temporal coherence in video generation, reproducible inference, and scientific imaging where platform-independent determinism is required.
+
 ## How Exact Integer Arithmetic Works
 
 **"But you need floats for transcendentals / softmax / training?"**
