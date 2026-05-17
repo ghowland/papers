@@ -105,13 +105,13 @@ a complete exact value, not a truncated approximation. This replaces
 limits, convergence, and infinite series with finite recursive descent
 through exact integer triples — calculus by structure, not by
 approximation.</p>
-<p>On GPU, this is a fixed-width uniform workload: every Q335 value is
-11×u32 limbs, every add is ~22 int ops, every multiply is ~200 int ops,
-every value the same shape. No branching, no variable-width operands.
-This is what GPUs are built for — the per-operation cost is ~150×
-float16, but 85-97% fewer tokens means the total compute is lower from
-turn 7-10 onward, and the gap widens every turn because VDR cost is flat
-while conventional attention cost grows quadratically.</p>
+<p>On GPU, this is a fixed-width uniform workload: every Q335 (2^335)
+value is 11×u32 limbs, every add is ~22 int ops, every multiply is ~200
+int ops, every value the same shape. No branching, no variable-width
+operands. This is what GPUs are built for — the per-operation cost is
+~150× float16, but 85-97% fewer tokens means the total compute is lower
+from turn 7-10 onward, and the gap widens every turn because VDR cost is
+flat while conventional attention cost grows quadratically.</p>
 <ul>
 <li><strong>Structural safety</strong>: Jailbreaking is impossible for
 data access — not difficult, impossible. The LLM never receives
