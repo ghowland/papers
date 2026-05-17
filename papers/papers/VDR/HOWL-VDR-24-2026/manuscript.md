@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20258082
 
 **Date:** May 2026
 
@@ -21,7 +21,7 @@ This paper defines LM Software — a new category of software where applications
 
 LM Software is distinct from conventional software (compiled code, static behavior, developer-built), from AI tooling (LLMs wrapped in conventional orchestration code), and from conventional LLM applications (stateless models behind prompt templates). It is software developed by users through conversation, deployed as frozen state snapshots, and improved by usage through rule accumulation — where every session deposits reusable logic that makes future sessions cheaper and more capable.
 
-This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [VDR-14] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.
+This paper introduces all necessary concepts from the VDR-LLM-Prolog architecture [@HOWL-VDR-14-2026] so that no prior reading is required, then develops the theory and practice of LM Software through two complete worked examples.
 
 ---
 
@@ -29,7 +29,7 @@ This paper introduces all necessary concepts from the VDR-LLM-Prolog architectur
 
 ### 1.1 The Conventional LLM Problem
 
-A conventional large language model stores everything it knows as statistical associations between tokens and weights in a single undifferentiated parameter matrix [VDR-14, §1]. Every fact, every rule, every policy, every piece of domain knowledge is compressed into the same shared weights. Nothing is addressable. Nothing is independently queryable. Nothing can be updated without risking interference with everything else.
+A conventional large language model stores everything it knows as statistical associations between tokens and weights in a single undifferentiated parameter matrix [@HOWL-VDR-14-2026]. Every fact, every rule, every policy, every piece of domain knowledge is compressed into the same shared weights. Nothing is addressable. Nothing is independently queryable. Nothing can be updated without risking interference with everything else.
 
 When a conventional LLM is deployed as a chatbot, its knowledge of your product, your policies, your phone numbers, and your business rules exists as statistical tendencies distributed across billions of parameters. It generates answers by predicting what tokens are likely to follow the conversation so far. Your phone number isn't retrieved from a record — it's reconstructed from token co-occurrence patterns. Your return policy isn't evaluated against rules — it's generated as plausible-sounding prose. The model might get these right most of the time. It will sometimes get them wrong, and there is no structural mechanism to prevent this.
 
@@ -57,11 +57,11 @@ LM Software does not replace all conventional software. Compute-intensive applic
 
 ## 2. The Structural Foundation
 
-LM Software depends on four architectural components that distinguish it from conventional LLM applications. Each is summarized here; full specifications are in [VDR-14].
+LM Software depends on four architectural components that distinguish it from conventional LLM applications. Each is summarized here; full specifications are in [@HOWL-VDR-14-2026].
 
 ### 2.1 Exact Arithmetic: The VDR Triple
 
-Every number in the system is three integers: Value, Denominator, Remainder [VDR-1]. V and D are plain integers forming an exact rational number V/D. R is the remainder — not rounding error, but exact structural information about what the denominator frame could not absorb. When R is zero, the value is an exact rational. When R is nonzero, the value carries exact structure beyond the rational frame.
+Every number in the system is three integers: Value, Denominator, Remainder [@HOWL-VDR-1-2026]. V and D are plain integers forming an exact rational number V/D. R is the remainder — not rounding error, but exact structural information about what the denominator frame could not absorb. When R is zero, the value is an exact rational. When R is nonzero, the value carries exact structure beyond the rational frame.
 
 The system fixes the denominator at 2^335 (called Q335), derived from continued fraction convergents of Euler's number [VDR-4/MATH-4]. This gives 100 decimal digits of precision — 10^66 times below the Planck length — for all arithmetic operations. Addition of two values is one integer addition. Multiplication is one integer multiply followed by a bit extraction that separates the quotient from the remainder. The denominator never grows. Overflow goes to remainder tree depth, not denominator magnitude.
 
@@ -819,3 +819,300 @@ root.managed
 
 ---
 
+### Appendix K — Command Token Economics
+
+| Operation | Conventional LLM tokens | LM Software command tokens | Conventional cost per invocation | LM Software cost per invocation | Break-even |
+|---|---|---|---|---|---|
+| Query a fact | 50-200 (prose reconstruction) | 8 (path + predicate) | Full forward pass per token | One primitive call | First use |
+| Assert a fact | 100-300 (generate + confirm) | 8 (path + predicate + args) | Full forward pass per token | One primitive call | First use |
+| Run a stored rule | 150-300 (re-derive reasoning) | 8 (rule invocation) | Full forward pass per token | Prolog evaluation | First use |
+| Execute Python script | 200-500 (generate code) | 8 (execute command) | Full forward pass per token | Docker execution | Second use |
+| Push to queue | N/A (no equivalent) | 8 | N/A | One atomic operation | N/A |
+| Pop from queue | N/A (no equivalent) | 8 | N/A | One atomic operation | N/A |
+| Increment counter | 30-50 (prose state update) | 8 | Full forward pass per token | One integer add | First use |
+| Check bitset | 30-50 (prose enumeration) | 8 | Full forward pass per token | One bitwise operation | First use |
+| Snapshot session | N/A (no equivalent) | 8 | N/A | Atomic state copy | N/A |
+| Clone from snapshot | N/A (no equivalent) | 8 | N/A | State duplication | N/A |
+| Mount KB | N/A (no equivalent) | 8 | N/A | Path resolution | N/A |
+
+### Appendix L — Rule Lifecycle States
+
+| State | Entry condition | Exit condition | LRU updated | Counter updated | Provenance recorded |
+|---|---|---|---|---|---|
+| Draft | LLM writes rule in session scope | Promoted or session ends | No | No | Yes: author, turn, session |
+| Active | Promoted to project/org scope | Flagged or retracted | Yes: on every fire | Yes: fire count, success count | Yes: promotion author, timestamp |
+| Firing | Query matches rule head | Body evaluation completes | Yes: last-fired timestamp | Yes: fire count incremented | Yes: per-invocation log |
+| Succeeded | Body evaluation produces accepted result | Next query | Yes | Yes: success count incremented | Yes: result + downstream facts |
+| Failed | Body evaluation produces rejected result | Next query | Yes | Yes: failure count incremented | Yes: failure reason |
+| Grant-denied | Body invokes builtin lacking grant | Next query | Yes | Yes: denial count incremented | Yes: denied operation, missing grant |
+| Stale | last-fired exceeds staleness threshold | Review or retraction | Frozen | Frozen | Yes: flagged timestamp |
+| Flagged | Stale, failing, or permission-orphaned | Review decision | Frozen | Frozen | Yes: flag reason, thresholds |
+| Retracted | Manual retraction or automated hygiene | Terminal | Removed | Archived | Yes: retraction reason, downstream impact |
+
+### Appendix M — Snapshot Contents Detail
+
+| Component | What is captured | What is not captured | Typical size |
+|---|---|---|---|
+| Working data bindings | All scoped variable bindings in session | Parent KB bindings (accessed via scope walk) | 2-10 KB |
+| Loaded rules (session scope) | Rule structs: predicate ID, argument types, body goals, provenance | Rules at project/org/root scope (persistent, shared) | 5-50 KB |
+| Mounted KB references | Mount table: source path, mode (read-only/read-write/snapshot/mirror) | Mounted KB contents (remain in tree) | 0.5-2 KB |
+| Scope configuration | Active topic path, topic stack, scope chain cache | KB tree structure (remains in tree) | 0.1-1 KB |
+| Counter states | Current value, min, max per session counter | Persistent KB counters (remain in tree) | 0.1-0.5 KB |
+| Queue states | Contents, head position, tail position, capacity | Persistent KB queues (remain in tree) | 0.5-5 KB |
+| Stack states | Contents, top position, capacity | Persistent KB stacks | 0.1-2 KB |
+| LRU cache states | Entries, timestamps, capacity | Persistent KB LRUs | 1-10 KB |
+| Ring buffer states | Contents, write position, capacity | Persistent KB rings | 0.5-5 KB |
+| Bitset states | Bit arrays, width | Persistent KB bitsets | 0.1-1 KB |
+| Lock states | Holder, status per lock | Persistent KB locks | 0.05-0.2 KB |
+| Grammar cache | Parsed grammar state, active grammar ID | Grammar definitions (persistent KB field) | 1-5 KB |
+| Instruction pointer state | Current turn, pending goals, active inference mode | Historical turn data | 0.1-0.5 KB |
+
+### Appendix N — Clone Isolation Verification
+
+| Scenario | Clone A state | Clone B state | Shared state | Structural guarantee |
+|---|---|---|---|---|
+| Two customer support sessions | Customer A order data in session KB | Customer B order data in session KB | Product catalog, policies (read-only) | Siblings: scope walk never traverses |
+| Two file processing workers | Worker A progress bitset, turn counter | Worker B progress bitset, turn counter | Intake queue (atomic pop), findings KB (atomic assert) | Independent live state per clone |
+| Personal scratch vs team experiment | Jane's modifications in her branch | Team modifications in team branch | Source snapshot (frozen, read-only) | Different subtrees, different visibility |
+| Canary deployment v2 vs v3 | v2 clone output at path X | v3 clone output at path Y | Model weights, evaluation data (read-only) | Output paths are siblings, each clone writes only to own path |
+| Worker dies mid-task | Destroyed: all live state gone | Unaffected: independent execution | Committed facts survive in persistent KB | Kill destroys only live state |
+
+### Appendix O — Drift Threshold Configuration
+
+| Metric | Measured by | Typical threshold | Action on breach | Reset mechanism |
+|---|---|---|---|---|
+| Turn count | Counter, incremented per turn | 200 | Kill clone, spawn fresh | New clone starts at 0 |
+| Context saturation | Counter, tracks cumulative token usage | 90% of model capacity | Kill clone, spawn fresh | New clone starts at 0 |
+| Denominator drift | Counter, tracks max denominator bits in session | 2^48 | Kill clone, spawn fresh | New clone starts at Q335 baseline |
+| Error rate | Counter ratio: errors / total operations | 5% | Kill clone, spawn fresh; flag if persistent across clones | New clone starts at 0/0 |
+| Stall detection | Counter, turns since last new evidence | 5 consecutive turns | Backtrack or kill | Backtrack resets counter; kill spawns fresh |
+| Queue backlog | Counter, intake queue depth | Configurable per application | Spawn additional workers | Depth decreases as workers process |
+| Memory pressure | Counter, live state size in bytes | 80% of allocated budget | Snapshot and restart from snapshot | New clone starts at snapshot baseline |
+
+### Appendix P — Data Primitive Capacity Planning
+
+| Primitive | Declared at creation | Enforced on every mutation | Overflow behavior | Typical sizing |
+|---|---|---|---|---|
+| Counter | min, max (signed i64) | Clamps at bounds, no wraparound | Returns clamped value, sets OV flag | min=0, max=10000 for throughput; min=-1000, max=1000 for drift |
+| Queue | max_capacity | Push returns false if full | Producer must handle backpressure | 100-1000 for task queues; 10-50 for priority queues |
+| Stack | max_capacity | Push returns false if full | Caller must handle full stack | 16-64 for investigation paths; 8-16 for backtracking |
+| Ring buffer | fixed_size | Write overwrites oldest | Oldest data lost by design | 60 for per-minute metrics; 24 for per-hour snapshots |
+| LRU cache | max_entries | Evicts least recently used on insert | Oldest unused entry lost by design | 50-200 for approach memoization; 1000-5000 for deduplication |
+| Bitset | fixed_width | No growth; bit index must be < width | Out-of-range index returns error | 200 for endpoint tracking; 64 for feature flags |
+| Lock | N/A (binary) | Single holder | Acquire returns false if held | One per KB requiring batch consistency |
+
+### Appendix Q — Grant Matrix for Runner Types
+
+| Operation class | Interactive runner | Polling runner | Processor runner | Internal runner | Admin |
+|---|---|---|---|---|---|
+| KB read (public) | Yes | Yes | Yes | Yes | Yes |
+| KB read (internal) | If user has access | Yes (monitoring) | Yes (pipeline scope) | Yes (broad read) | Yes |
+| KB read (owner-only) | Own KBs only | No | No | No | Yes |
+| KB assert (session) | Yes | Yes | Yes | Yes (derived only) | Yes |
+| KB assert (project) | If granted | No | Yes (pipeline scope) | Yes (derived only) | Yes |
+| KB retract | If granted | No | No | No | Yes |
+| Queue push | Yes | Yes (routing) | Yes (results) | No | Yes |
+| Queue pop | Yes | Yes (routing) | Yes (task intake) | No | Yes |
+| Counter read | Yes | Yes | Yes | Yes | Yes |
+| Counter mutate | Yes (own session) | Yes (monitoring) | Yes (pipeline) | Yes (derived metrics) | Yes |
+| File read | If granted | No | If granted | No | Yes |
+| File write | If granted | No | If granted | No | Yes |
+| Network fetch | If granted | No | If granted | No | Yes |
+| Script execute | If granted | No | If granted | No | Yes |
+| Clone spawn | No | Yes (worker management) | No | No | Yes |
+| Clone kill | No | Yes (worker management) | No | No | Yes |
+| Snapshot create | Yes | No | No | No | Yes |
+| Grant create/revoke | No | No | No | No | Yes |
+| Constraint modify | No | No | No | No | Yes |
+
+### Appendix R — Prolog Rule Composition Patterns
+
+| Pattern | Structure | Use case | Properties inherited | Example |
+|---|---|---|---|---|
+| Sequential chain | A :- B, C, D. | Pipeline: read → transform → write | Deterministic if all components deterministic | Pop queue, parse, assert, increment |
+| Conditional branch | A :- B, C. A :- B, D. | Route by type: different processing per category | Partial if any branch partial | Different extraction rules per document type |
+| Guard clause | A :- check(X), proceed(X). | Precondition: verify before acting | Bounded by guard evaluation | Check grant before file operation |
+| Accumulator | A(Acc) :- step(Acc, Acc2), A(Acc2). A(Acc) :- done(Acc). | Aggregate: collect results across iteration | Termination guaranteed by depth limit 100 | Sum confidence scores across evidence |
+| Delegation | A :- determine_handler(H), H(Args). | Dispatch: route to specialized rule | Properties of selected handler | Route document to type-specific processor |
+| Negation as failure | A :- B, \+ C. | Exclusion: act only when condition absent | Not purely monotonic | Process only if not already processed (LRU check) |
+| Cut after first | A :- B, !. | First match: stop searching after first success | Deterministic for first-solution queries | Scope chain resolution: nearest ancestor wins |
+| Batch | process_all :- queue_pop(Q, X), handle(X), process_all. process_all. | Drain: process entire queue | Terminates when queue empty | Worker processing intake queue |
+
+### Appendix S — Bootstrap Seed Layer Detail
+
+| Layer | Category | Entry type | Count | Example entries |
+|---|---|---|---|---|
+| Language | Declarative | Sentence template | ~1,200 | "The {subject} {verb} {object} {temporal}." |
+| Language | Interrogative | Sentence template | ~800 | "What {verb} the {subject} {temporal}?" |
+| Language | Conditional | Sentence template | ~600 | "If {condition}, then {consequence}." |
+| Language | Relative | Sentence template | ~400 | "The {subject}, which {verb} {object}, {main_verb}." |
+| Language | Participial | Sentence template | ~300 | "Having {past_participle}, the {subject} {verb}." |
+| Language | Coordinated | Sentence template | ~200 | "{clause_1}, and {clause_2}." |
+| Language | Typo corrections | Pattern → correction | ~15,000 | "recieve" → "receive" |
+| Language | Classification | Pattern → category | ~3,000 | keywords → document_type mapping |
+| Language | Weight profiles | Criteria set | ~20 | formal, casual, technical, empathetic |
+| Format | JSON | Grammar (bidirectional) | 1 | Parse/generate JSON with typed slots |
+| Format | CSV | Grammar (bidirectional) | 1 | Parse/generate CSV with headers |
+| Format | Markdown | Grammar (bidirectional) | 1 | Parse/generate markdown tables and headings |
+| Format | Pipe-delimited | Grammar (bidirectional) | 1 | Parse/generate compacted tables |
+| Format | Prolog clause | Grammar (bidirectional) | 1 | Parse/generate Prolog facts and rules |
+| Format | XML/HTML | Grammar (bidirectional) | 1 | Parse/generate XML elements |
+| Format | YAML | Grammar (bidirectional) | 1 | Parse/generate YAML documents |
+| Format | SQL result | Grammar (bidirectional) | 1 | Parse/generate SQL-style result sets |
+| Format | Zig source | Grammar (parse only) | 1 | Parse Zig struct and function definitions |
+| Format | Python source | Grammar (parse only) | 1 | Parse Python class and function definitions |
+| Operational | Primitive selection | Prolog rule | ~80 | "For sorting, use collection_sort; for filtering, use collection_filter" |
+| Operational | Pipeline sequencing | Prolog rule | ~40 | "Fetch before parse; parse before assert; assert before index" |
+| Operational | Data structure selection | Prolog rule | ~25 | "For FIFO work distribution, use queue; for rollback, use stack" |
+| Operational | Entity extraction | Prolog rule | ~60 | "Capitalized noun phrase after 'caused by' is root_cause entity" |
+| Operational | Relationship mapping | Prolog rule | ~30 | "Entity A 'depends on' entity B produces depends_on(A,B)" |
+| Operational | KB management | Prolog rule | ~35 | "New project creates child KB with standard field set" |
+| Operational | Counter/queue mgmt | Prolog rule | ~20 | "Queue depth > threshold triggers spawn_worker" |
+| Operational | Error handling | Prolog rule | ~15 | "Primitive returns error → log fact, increment error counter, skip item" |
+| Self-maintenance | Novel structure detection | Prolog rule | ~15 | "Input unmatched by all classification patterns → flag for grammar creation" |
+| Self-maintenance | Compaction gap detection | Prolog rule | ~10 | "Entity type present in input but absent in output → extraction rule missing" |
+| Self-maintenance | Snapshot triggers | Prolog rule | ~8 | "Rule count increased by >10 since last snapshot → suggest snapshot" |
+| Self-maintenance | Version comparison | Prolog rule | ~12 | "Diff two snapshot fact sets; report added, removed, modified" |
+| Self-maintenance | Promotion criteria | Prolog rule | ~10 | "Rule fired >5 times with >80% success → suggest promotion to project scope" |
+| Self-maintenance | Grammar quality | Prolog rule | ~8 | "Grammar produces output failing validation >10% → flag for review" |
+
+### Appendix T — KB Tree Depth Analysis
+
+| Level | Typical contents | Scope walk cost to this level | Cumulative visibility checks | Example path |
+|---|---|---|---|---|
+| 0 (root) | System-wide axioms, OSO principles, global constraints | 1 comparison | 1 | root |
+| 1 | Top-level categories: org, products, users, sessions, system | 2 comparisons | 2 | root.org |
+| 2 | Organization: company-wide policies, shared grammars | 3 comparisons | 3 | root.org.acme |
+| 3 | Department: department-level constraints, team structures | 4 comparisons | 4 | root.org.acme.engineering |
+| 4 | Team/product: project-specific rules, data stores | 5 comparisons | 5 | root.org.acme.engineering.platform |
+| 5 | Project: investigation state, processing pipelines | 6 comparisons | 6 | root.org.acme.engineering.platform.sre |
+| 6 | Instance: individual runs, builds, sessions | 7 comparisons | 7 | root.org.acme.engineering.platform.sre.inv_427 |
+| 7-15 | Deep nesting: findings, sub-findings, version branches | 8-16 comparisons | 8-16 | Rare; most applications stay at depth 5-7 |
+| 16 (max) | Hard limit: [16]i32 stack-allocated array | 16 comparisons | 16 | Enforced by implementation; deeper nesting is structural error |
+
+### Appendix U — Semantic Tuple to Prose Pipeline
+
+| Step | Input | Output | LLM involved | Token cost | Deterministic |
+|---|---|---|---|---|---|
+| LLM emits semantic tuple | User query + KB state | (subject, verb, object, modifiers, weight_criteria) | Yes | 8-15 tokens | No (judgment) |
+| Parse slot types | Semantic tuple | Typed slot set: {subject:entity, verb:action, object:entity, temporal:time} | No | 0 | Yes |
+| Filter templates | Typed slot set against template library | Candidate set: 20-100 templates with matching slot signatures | No (Prolog unification) | 0 | Yes |
+| Rank candidates | Weight criteria against candidate attributes | Ranked list by weight match score (Q335 arithmetic) | No | 0 | Yes |
+| Select top | Ranked list | One template | No | 0 | Yes |
+| Fill slots | Template + content values from KB | Complete sentence with structural tokens from grammar, content from KB | No | 0 | Yes |
+| Output | Complete sentence | Natural language response | No | 0 | Yes |
+
+### Appendix V — Application Development Time Estimates
+
+| Application type | Data loading | Rule writing | Testing | Edge cases | Total development | Conventional equivalent |
+|---|---|---|---|---|---|---|
+| Simple FAQ bot | 1 hour | 1 hour | 1 hour | 1 hour | 4 hours | 2-4 weeks |
+| Full support chatbot | 2 hours | 3 hours | 2 hours | 3 hours | 10 hours | 4-8 weeks |
+| Document processor (single type) | 1 hour | 2 hours | 1 hour | 1 hour | 5 hours | 2-4 weeks |
+| Document processor (5 types) | 3 hours | 6 hours | 3 hours | 4 hours | 16 hours | 8-16 weeks |
+| SRE triage assistant | 2 hours | 4 hours | 3 hours | 3 hours | 12 hours | 6-12 weeks |
+| Compliance reviewer | 3 hours | 5 hours | 4 hours | 4 hours | 16 hours | 8-16 weeks |
+| Monitoring poller | 0.5 hours | 1 hour | 0.5 hours | 0.5 hours | 2.5 hours | 1-2 weeks |
+| Queue supervisor | 0.5 hours | 1.5 hours | 1 hour | 0.5 hours | 3.5 hours | 2-3 weeks |
+
+### Appendix W — Accumulation Curve Detail by Execution Level
+
+| Investigation | Level 1 tokens (judgment) | Level 2 tokens (invoke stored) | Level 3 tokens (pure Prolog) | Total tokens | Level 3 percentage | Rules available |
+|---|---|---|---|---|---|---|
+| 1 | 280 | 49 | 0 | 329 | 0% | 15 |
+| 2 | 78 | 41 | 8 | 127 | 6% | 19 |
+| 5 | 55 | 40 | 15 | 110 | 14% | 34 |
+| 10 | 30 | 32 | 30 | 92 | 33% | 64 |
+| 20 | 18 | 22 | 38 | 78 | 49% | 95 |
+| 50 | 10 | 12 | 43 | 65 | 66% | 140 |
+| 100 | 6 | 8 | 41 | 55 | 75% | 185 |
+| 200 | 4 | 5 | 39 | 48 | 81% | 220 |
+| 500 | 3 | 4 | 36 | 43 | 84% | 260 |
+
+### Appendix X — Error Classification in LM Software
+
+| Error class | Source | Detection mechanism | Remediation | Conventional LLM equivalent |
+|---|---|---|---|---|
+| Wrong rule logic | LLM wrote incorrect Prolog during development | Testing against known cases; downstream constraint violation | Retract and rewrite; provenance identifies all derived facts | Undetectable: wrong knowledge in weights |
+| Stale rule | Infrastructure changed, rule no longer matches reality | LRU: last-fired timestamp exceeds threshold | Retract via automated hygiene; flag derived facts | Undetectable: stale knowledge in weights |
+| Missing rule | Novel input has no matching rule | Falls through to LLM judgment (level 1); higher token cost | Write new rule from successful judgment | N/A: every input is level 1 |
+| Grant-orphaned rule | Rule requires grant that was revoked or expired | Grant denial counter; zero successes since creation | Retract or issue new grant | N/A: no equivalent grant system |
+| Scope mismatch | Rule placed at wrong scope level | Fires with empty results or unintended matches | Move rule to correct scope via retract + assert at new path | N/A: no scoping in weights |
+| Constraint violation | Rule produces output violating inherited constraint | Constraint evaluation catches at assertion time; blocks storage | Fix rule to satisfy constraints | Undetectable: no constraint system |
+| Capacity overflow | Queue full, counter at max, LRU evicting too fast | Primitive returns false/clamped value; counter flag | Increase capacity or add backpressure handling | N/A: no bounded data primitives |
+| Drift degradation | Clone has processed too many turns; accumulated context noise | Drift counter exceeds threshold | Kill and reclone from frozen snapshot | Undetectable: conversation quality degrades silently |
+
+### Appendix Y — Persistent vs Live State Interaction
+
+| Event | Persistent state effect | Live state effect | Snapshot captures | Clone inherits |
+|---|---|---|---|---|
+| kb_assert to project KB | Fact added with provenance | None | No (already persistent) | Visible via scope walk |
+| kb_assert to session KB | None (session scope) | Fact added to session | Yes | Yes (independent copy) |
+| counter_increment | None | Counter value changes | Yes (current value) | Yes (snapshotted value) |
+| queue_push | None | Item added to queue | Yes (queue contents) | Yes (snapshotted contents) |
+| rule promoted to project | Rule added to project KB | Removed from session live state | No (now persistent) | Visible via scope walk |
+| rule retracted from project | Rule removed from project KB | None | No (persistent change) | Retracted rule invisible |
+| snapshot taken | None | Frozen atomically into snapshot | Self | Source for future clones |
+| clone spawned | Shared read-only access | Duplicated from snapshot | N/A (clone is target) | All live state from snapshot |
+| clone killed | Committed facts survive | All live state destroyed | N/A | N/A |
+| session reset | None | All live state cleared | N/A (cleared, not captured) | N/A |
+| mount created | Connection fact if persistent mount | Mount table entry | Yes (mount table) | Yes (mount references) |
+| constraint added at project | Constraint added to project KB | None | No (persistent) | Inherited via tree |
+
+### Appendix Z — Multi-Language Support via KB Mounting
+
+| Operation | Mechanism | Token cost | Latency | State change |
+|---|---|---|---|---|
+| Set primary language | Mount language KB at session scope | 8 tokens | <1 ms | Scope includes language templates |
+| Switch language mid-conversation | Unmount current, mount target | 16 tokens | <2 ms | Scope swap; semantic pipeline unchanged |
+| Mixed-language document | Mount/unmount per segment | 16 per switch | <1 ms per switch | Temporary scope changes |
+| Add dialect variant | Mount dialect KB as child of language KB | 8 tokens | <1 ms | Dialect shadows base where it differs |
+| LLM semantic output | Unchanged across all languages | 0 additional | 0 | Semantic tuple is language-independent |
+| Template library per language | Separate KB per language, same template schema | 0 (pre-loaded) | 0 (scope walk finds templates) | Templates matched by slot type, not language |
+| Custom terminology | Assert domain terms into mounted language KB | 8 per term | <1 ms per term | Terms shadow general vocabulary |
+
+### Appendix AA — Conventional Software Mapping
+
+| Conventional concept | LM Software equivalent | Implementation | Addressing |
+|---|---|---|---|
+| Executable binary | Snapshot | Frozen live state | root.apps.myapp.snapshots.v3 |
+| Process | Clone | Independent instance from snapshot | root.sessions.sess_NNNN |
+| Thread pool | Worker clone set | Multiple clones from same snapshot | Polled via counter at known path |
+| Message queue | Queue primitive | Bounded FIFO on KB | root.projects.X.intake |
+| Semaphore | Counter with bounds | Signed integer with min/max clamp | root.projects.X.metrics.active_workers |
+| Mutex | Lock primitive | Non-blocking acquire/release/check | root.projects.X.locks.batch_write |
+| Shared memory | Persistent KB (read-only mount) | Facts at integer addresses | Any persistent KB path |
+| Process-local memory | Session KB (live state) | Independent per clone | root.sessions.sess_NNNN.* |
+| Environment variable | Working data binding | Scoped variable, inherits through tree | Scope walk resolves nearest binding |
+| Configuration file | Configuration KB | Facts with provenance | root.products.myapp.config |
+| Database | KB subtree | Facts, rules, constraints, grammars | root.data.* |
+| Cron job | Polling runner | Timer-spawned, fresh each cycle | Snapshot + schedule |
+| Daemon | Processor runner | Long-lived, respawned at drift threshold | Snapshot + data connection |
+| Health check | Drift threshold | Counter comparisons per cycle | Counter at known path + threshold rule |
+| Log file | Append-only audit KB | Every operation logged with provenance | root.system.audit |
+| Version control | Snapshot versioning | Multiple snapshots as sibling KBs | root.apps.myapp.snapshots.v1, v2, v3 |
+| Rollback | Clone from earlier snapshot | Identical mechanism, earlier artifact | Clone from v2 instead of v3 |
+| Canary deploy | Parallel clones from different snapshots | Two snapshot versions, output comparison | Supervisor compares output KBs |
+| Load balancer | Atomic queue pop | Multiple workers pop from same queue | Queue at shared path |
+| Container | Clone with grants | Isolation via scope + visibility + grants | Session KB + grant set |
+| Orchestrator | Supervisor runner | Monitors counters, spawns/kills workers | Snapshot with monitoring rules |
+| CI/CD pipeline | Waterfall topology | Queue chain with stage-specific workers | root.pipeline.stage1_queue, stage2_queue |
+| API endpoint | Interactive runner with typed input grammar | Clone-per-request, grammar validates input | Snapshot + input grammar |
+| Webhook handler | Processor runner on event trigger | Long-lived, responds to external events | Snapshot + event connection |
+| Batch job | Processor runner draining queue | Clone processes queue to empty, then dies | Snapshot + intake queue |
+| Package manager | KB mount system | Mount shared KBs from library paths | root.libraries.* mounted at project scope |
+
+### Appendix BB — Failure Mode Comparison
+
+| Failure mode | Conventional LLM | LM Software | Detection difference | Recovery difference |
+|---|---|---|---|---|
+| Hallucinated fact | Occurs silently; undetectable without external verification | Structurally impossible for KB-sourced data; LLM only phrases results from known addresses | Conventional: requires human spot-checking; LM: provenance chain verifiable per fact | Conventional: retrain or hope; LM: fact is either at address or not |
+| Wrong arithmetic | Common; digit-by-digit token prediction | Impossible; exact integer primitives | Conventional: compare against calculator; LM: error rate = 0 by construction | Conventional: regenerate and hope; LM: N/A |
+| Policy misapplication | LLM paraphrases policy incorrectly from RAG context | Prolog evaluates policy rule exactly; LLM phrases the result | Conventional: audit individual responses manually; LM: rule evaluation is logged with inputs and outputs | Conventional: edit prompt, re-index, hope; LM: fix rule, immediate effect |
+| Cross-user data leak | Possible via shared context or model state | Structurally impossible; sibling clones cannot see each other | Conventional: security audit, penetration testing; LM: structural proof | Conventional: patch, investigate breach; LM: N/A |
+| Stale information | Permanent in weights; undetectable | Detectable via LRU timestamps; retractable | Conventional: unknown until user reports; LM: automated staleness detection | Conventional: retrain; LM: retract fact, assert updated fact |
+| Prompt injection | Possible; behavioral training is statistical | Data access immune; LLM can influence primitive selection but not bypass grants or scope | Conventional: red-team, patch, repeat; LM: structural immunity for data access | Conventional: add more training; LM: N/A for data; grant system for operations |
+| Context overflow | Information lost permanently | Impossible; state in KBs at integer addresses, not context window | Conventional: truncation happens silently; LM: N/A | Conventional: summarize and hope; LM: N/A |
+| Service degradation over time | Conversation quality degrades with length | Drift thresholds kill and reclone; freshness guaranteed | Conventional: users notice quality drop; LM: counter-based automatic detection | Conventional: restart conversation; LM: automatic reclone from frozen snapshot |
+| Catastrophic forgetting | Fine-tuning damages prior knowledge unpredictably | Impossible; facts at independent integer addresses | Conventional: discover via evaluation suite after damage done; LM: N/A | Conventional: retrain from checkpoint; LM: N/A |
+| Scaling bottleneck | Context window cost grows quadratically | Flat per-turn cost; width scales freely | Conventional: latency increases with conversation length; LM: constant | Conventional: bigger model, more compute; LM: more clones from same snapshot |
