@@ -97,7 +97,8 @@ Otherwise:
 | **[HOWL-VDR-18-2026](HOWL-VDR-18-2026/manuscript.md)** | **VDR-LLM-Prolog: Performance** | Integer Arithmetic on GPU Hardware: Why Wider Operands on More Cores Outrun Narrower Operands on Fewer Passes. |
 | **[HOWL-VDR-19-2026](HOWL-VDR-19-2026/manuscript.md)** | **VDR-LLM-Prolog: Self-Extending Architecture** | From Seed to Self-Compacting Knowledge System. |
 | **[HOWL-VDR-20-2026](HOWL-VDR-20-2026/manuscript.md)** | **VDR-LLM-Prolog: Operational Deployment** | From Seed to Autonomous Knowledge System. |
-| **[HOWL-VDR-21-2026](papers/papers/VDR/HOWL-VDR-21-2026/manuscript.md)** | **VDR-LLM-Prolog on FPGA** | Exact Integer Arithmetic in Custom Silicon: A 10-Core Q335 Processor on Zynq-7020. |
+| **[HOWL-VDR-21-2026](HOWL-VDR-21-2026/manuscript.md)** | **VDR-LLM-Prolog on FPGA** | Exact Integer Arithmetic in Custom Silicon: A 10-Core Q335 Processor on Zynq-7020. |
+| **[HOWL-VDR-22-2026](HOWL-VDR-22-2026/manuscript.md)** | **VDR-LLM-Prolog on Dedicated Silicon** | From FPGA Proof-of-Concept to Integer-Native GPU Architecture. |
 
 ---
 
