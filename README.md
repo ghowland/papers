@@ -143,6 +143,9 @@
 | **[HOWL-VDR-24-2026](papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md)** | **LLM Software** | Configuration and Cloning as Application Development. |
 | **[HOWL-VDR-25-2026](papers/papers/VDR/HOWL-VDR-25-2026/manuscript.md)** | **LLM Server Software** | Performing Web and Internet Services via LLM. |
 | **[HOWL-VDR-26-2026](papers/papers/VDR/HOWL-VDR-26-2026/manuscript.md)** | **VDR and Diffusion** | Zero-Drift Denoising Through Exact Sequential Arithmetic. |
+| **[HOWL-VDR-27-2026](papers/papers/VDR/HOWL-VDR-27-2026/manuscript.md)** | **VDR Beyond Language Models** | Exact Sequential Arithmetic Across Computational Domains. |
+| **[HOWL-VDR-28-2026](papers/papers/VDR/HOWL-VDR-28-2026/manuscript.md)** | **VDR ** | Zero-Drift Denoising Through Exact Sequential Arithmetic. |
+
 
 ---
 

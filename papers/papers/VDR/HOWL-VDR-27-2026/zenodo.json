@@ -1,8 +1,8 @@
 {
-  "title": "VDR and Diffusion",
+  "title": "VDR Beyond Language Models",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "Diffusion models generate images and video by iterating a denoising chain \u2014 each step takes the previous step's output, scales by schedule coefficients, subtracts predicted noise, normalizes, and feeds the result forward. In float64 arithmetic, each step introduces approximately 10\u207b\u00b9\u2076 rounding error. Over 50 steps for image generation, this compounds to approximately 10\u207b\u00b9\u2074. Over hundreds or thousands of steps for video generation, where frames condition on prior frames through the same arithmetic chain, the error produces measurable artifacts: color drift, temporal flickering, and structural inconsistency between frames.\n\nThis paper implements the complete diffusion process \u2014 noise schedule computation, forward diffusion, reverse denoising, DDIM deterministic sampling, and multi-cycle drift measurement \u2014 in VDR exact integer arithmetic [VDR-1]. Every intermediate value is an exact rational number. Every operation preserves that exactness. The result: zero drift accumulation across arbitrarily long denoising chains. The error at cycle N equals the error at cycle 1, which is the Newton square root residual at the chosen depth (below 10\u207b\u2075\u2070 at depth 10), not a compounding float truncation.\n\nValidated: 37 tests, 33 passed, 4 failed. All 4 failures trace to a normalization presentation issue \u2014 Newton iteration for perfect squares produces correct values that do not reduce to simplest form. Zero arithmetic errors. Zero drift. Zero computation failures.\n\nNo prior reading is required. All necessary concepts from VDR arithmetic are introduced where first used.",
+  "description": "The zero-drift property demonstrated for diffusion models in [VDR-26] \u2014 where arithmetic error does not accumulate across sequential computation chains \u2014 applies to any domain where each step's output feeds the next step's input. This paper maps VDR exact arithmetic to twelve computational domains beyond language models: autoregressive generation (speech, music, protein), normalizing flows, Kalman filtering and state estimation, cryptographic protocols, financial computation, control systems, physics simulation, blockchain and consensus, geodesy and navigation, game theory and mechanism design, digital signal processing, and quantum computing primitives. In every domain, the structural problem is the same: float arithmetic introduces per-step error that compounds through the chain. VDR eliminates the per-step error entirely. The remaining errors \u2014 model approximation, measurement noise, basis set truncation \u2014 are the domain's problems, not the arithmetic's.\n\nNo prior reading is required. VDR arithmetic concepts are summarized where first used; full specifications are in [VDR-1] and [VDR-14].",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -12,11 +12,11 @@
     "howland archive",
     "vdr"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-26-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-27-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-26-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-27-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

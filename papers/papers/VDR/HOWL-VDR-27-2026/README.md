@@ -1,4 +1,4 @@
-# VDR and Diffusion
+# VDR Beyond Language Models
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,13 +6,9 @@
 
 ## Abstract
 
-Diffusion models generate images and video by iterating a denoising chain — each step takes the previous step's output, scales by schedule coefficients, subtracts predicted noise, normalizes, and feeds the result forward. In float64 arithmetic, each step introduces approximately 10⁻¹⁶ rounding error. Over 50 steps for image generation, this compounds to approximately 10⁻¹⁴. Over hundreds or thousands of steps for video generation, where frames condition on prior frames through the same arithmetic chain, the error produces measurable artifacts: color drift, temporal flickering, and structural inconsistency between frames.
+The zero-drift property demonstrated for diffusion models in [VDR-26] — where arithmetic error does not accumulate across sequential computation chains — applies to any domain where each step's output feeds the next step's input. This paper maps VDR exact arithmetic to twelve computational domains beyond language models: autoregressive generation (speech, music, protein), normalizing flows, Kalman filtering and state estimation, cryptographic protocols, financial computation, control systems, physics simulation, blockchain and consensus, geodesy and navigation, game theory and mechanism design, digital signal processing, and quantum computing primitives. In every domain, the structural problem is the same: float arithmetic introduces per-step error that compounds through the chain. VDR eliminates the per-step error entirely. The remaining errors — model approximation, measurement noise, basis set truncation — are the domain's problems, not the arithmetic's.
 
-This paper implements the complete diffusion process — noise schedule computation, forward diffusion, reverse denoising, DDIM deterministic sampling, and multi-cycle drift measurement — in VDR exact integer arithmetic [VDR-1]. Every intermediate value is an exact rational number. Every operation preserves that exactness. The result: zero drift accumulation across arbitrarily long denoising chains. The error at cycle N equals the error at cycle 1, which is the Newton square root residual at the chosen depth (below 10⁻⁵⁰ at depth 10), not a compounding float truncation.
-
-Validated: 37 tests, 33 passed, 4 failed. All 4 failures trace to a normalization presentation issue — Newton iteration for perfect squares produces correct values that do not reduce to simplest form. Zero arithmetic errors. Zero drift. Zero computation failures.
-
-No prior reading is required. All necessary concepts from VDR arithmetic are introduced where first used.
+No prior reading is required. VDR arithmetic concepts are summarized where first used; full specifications are in [VDR-1] and [VDR-14].
 
 ---
 
@@ -52,14 +48,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-26-2026,
-  title={ VDR and Diffusion },
+@article{ HOWL-VDR-27-2026,
+  title={ VDR Beyond Language Models },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20260247},
-  url = {https://zenodo.org/record/20260247},
-  note={Howland Archive: HOWL-VDR-26-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20260561},
+  url = {https://zenodo.org/record/20260561},
+  note={Howland Archive: HOWL-VDR-27-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

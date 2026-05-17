@@ -1,0 +1,100 @@
+{
+  "created": "2026-05-17T18:12:32.355691+00:00",
+  "modified": "2026-05-17T18:12:32.448294+00:00",
+  "id": 20260561,
+  "conceptrecid": "20260560",
+  "metadata": {
+    "title": "VDR Beyond Language Models",
+    "publication_date": "2026-04",
+    "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "vdr"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-27-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-27-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20260561",
+      "recid": 20260561
+    }
+  },
+  "title": "VDR Beyond Language Models",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20260561",
+    "html": "https://zenodo.org/deposit/20260561",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20260561/files",
+    "bucket": "https://zenodo.org/api/files/ba7d308e-df11-4e95-8de3-76b771ada72b",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20260561",
+    "latest_draft_html": "https://zenodo.org/deposit/20260561",
+    "publish": "https://zenodo.org/api/deposit/depositions/20260561/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20260561/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20260561/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20260561/actions/newversion"
+  },
+  "record_id": 20260561,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}

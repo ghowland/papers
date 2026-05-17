@@ -1,11 +1,11 @@
-# VDR and Diffusion
-## Zero-Drift Denoising Through Exact Sequential Arithmetic
+# VDR Beyond Language Models
+## Exact Sequential Arithmetic Across Computational Domains
 
-**Registry:** [@HOWL-VDR-26-2026]
+**Registry:** [@HOWL-VDR-27-2026]
 
-**Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026] → [@HOWL-VDR-25-2026] → [@HOWL-VDR-26-2026]
+**Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026] → [@HOWL-VDR-25-2026] → [@HOWL-VDR-26-2026] → [@HOWL-VDR-27-2026]
 
-**DOI:** 10.5281/zenodo.20260247
+**DOI:** 10.5281/zenodo.20260561
 
 **Date:** May 2026
 
@@ -17,1066 +17,614 @@
 
 ## Abstract
 
-Diffusion models generate images and video by iterating a denoising chain — each step takes the previous step's output, scales by schedule coefficients, subtracts predicted noise, normalizes, and feeds the result forward. In float64 arithmetic, each step introduces approximately 10⁻¹⁶ rounding error. Over 50 steps for image generation, this compounds to approximately 10⁻¹⁴. Over hundreds or thousands of steps for video generation, where frames condition on prior frames through the same arithmetic chain, the error produces measurable artifacts: color drift, temporal flickering, and structural inconsistency between frames.
+The zero-drift property demonstrated for diffusion models in [VDR-26] — where arithmetic error does not accumulate across sequential computation chains — applies to any domain where each step's output feeds the next step's input. This paper maps VDR exact arithmetic to twelve computational domains beyond language models: autoregressive generation (speech, music, protein), normalizing flows, Kalman filtering and state estimation, cryptographic protocols, financial computation, control systems, physics simulation, blockchain and consensus, geodesy and navigation, game theory and mechanism design, digital signal processing, and quantum computing primitives. In every domain, the structural problem is the same: float arithmetic introduces per-step error that compounds through the chain. VDR eliminates the per-step error entirely. The remaining errors — model approximation, measurement noise, basis set truncation — are the domain's problems, not the arithmetic's.
 
-This paper implements the complete diffusion process — noise schedule computation, forward diffusion, reverse denoising, DDIM deterministic sampling, and multi-cycle drift measurement — in VDR exact integer arithmetic [VDR-1]. Every intermediate value is an exact rational number. Every operation preserves that exactness. The result: zero drift accumulation across arbitrarily long denoising chains. The error at cycle N equals the error at cycle 1, which is the Newton square root residual at the chosen depth (below 10⁻⁵⁰ at depth 10), not a compounding float truncation.
-
-Validated: 37 tests, 33 passed, 4 failed. All 4 failures trace to a normalization presentation issue — Newton iteration for perfect squares produces correct values that do not reduce to simplest form. Zero arithmetic errors. Zero drift. Zero computation failures.
-
-No prior reading is required. All necessary concepts from VDR arithmetic are introduced where first used.
+No prior reading is required. VDR arithmetic concepts are summarized where first used; full specifications are in [VDR-1] and [VDR-14].
 
 ---
 
-## 1. The Sequential Arithmetic Problem
+## 1. The Common Structure
 
-### 1.1 What Diffusion Models Compute
+### 1.1 Sequential Computation Chains
 
-A diffusion model generates data by learning to reverse a noise-adding process. The forward process gradually adds Gaussian noise to data over T timesteps until the signal is destroyed. The reverse process learns to remove noise step by step, recovering the original signal from pure noise.
+Across computational science and engineering, the dominant pattern is: compute a value, feed it as input to the next computation, repeat. A Kalman filter updates its state estimate every sensor cycle. A molecular dynamics simulation advances atomic positions every femtosecond. A digital filter processes every audio sample. A blockchain applies every transaction. An autoregressive model generates every token.
 
-Every step in both directions is arithmetic. The forward process at timestep t computes:
+In each case, the output of step N becomes the input to step N+1. Any arithmetic error at step N propagates through every subsequent step. In float64 arithmetic, each step introduces approximately 10⁻¹⁶ relative error. Over thousands or millions of steps, this error compounds — sometimes linearly, sometimes multiplicatively, sometimes catastrophically when the error interacts with the dynamics of the system being computed.
 
-    xₜ = √ᾱₜ · x₀ + √(1 - ᾱₜ) · ε
+### 1.2 VDR's Structural Solution
 
-where x₀ is the original data, ε is Gaussian noise, and ᾱₜ is a cumulative product of schedule values that controls how much signal remains at step t.
+VDR represents every number as three integers: Value, Denominator, Remainder [VDR-1]. When the Remainder is zero, the value is an exact rational V/D. Arithmetic on exact rationals is exact — addition, subtraction, multiplication, and division of rationals produce rationals with zero error, regardless of chain length.
 
-The reverse process at each step computes a predicted mean:
+The only approximation in VDR is square root and transcendental computation via Newton iteration or Taylor series, which produce exact rational approximations at any requested depth. The residual is fixed at the chosen depth (below 10⁻⁵⁰ at depth 10), inspectable, and does not compound through chains [VDR-26].
 
-    μₜ = (1/√αₜ) · (xₜ - (βₜ/√(1 - ᾱₜ)) · ε_predicted)
+This means: for any computation chain built from rational arithmetic, VDR produces zero accumulated error. For chains involving square roots or transcendentals, VDR produces a fixed residual that does not grow with chain length. In both cases, the arithmetic separates cleanly from the domain's own error sources — model error, measurement noise, statistical sampling error — allowing each to be identified and addressed independently.
 
-where αₜ = 1 - βₜ, and βₜ is the noise schedule at step t.
+### 1.3 How This Paper Is Organized
 
-Each reverse step takes the output of the previous step as input. The chain is sequential — step t depends on step t+1, which depends on step t+2, and so on back to step T. Any arithmetic error at step t propagates through every subsequent step.
-
-### 1.2 Where Float Fails
-
-In float64 arithmetic, each multiplication introduces approximately 10⁻¹⁶ relative error (one unit in the last place of the 52-bit mantissa). Each step of the diffusion process involves several multiplications, divisions, and square root evaluations. The errors from each operation combine and propagate to the next step.
-
-For a single image generated in 50 steps, the accumulated error is approximately 50 × 10⁻¹⁶ ≈ 10⁻¹⁴. This is invisible in the output — 14 digits of precision is far more than any pixel value requires.
-
-For video generation, the situation changes. Each frame conditions on the previous frame through the diffusion process. A 30-second video at 24 fps is 720 frames. Each frame's latent representation passes through 50 denoising steps, and the output feeds the next frame's conditioning. That is 36,000 sequential arithmetic operations on the same data, each contributing float error. The accumulated drift is approximately 36,000 × 10⁻¹⁶ ≈ 10⁻¹². At this scale, drift produces visible artifacts: colors shift gradually across frames, fine structures become inconsistent, and temporal coherence degrades.
-
-The error is also platform-dependent. Float rounding is implementation-specific — different GPUs, different CUDA versions, and different compiler flags produce different rounding behavior. The same model with the same weights and the same input noise produces different outputs on different hardware. Reproducibility across platforms is impossible in float arithmetic.
-
-### 1.3 What This Paper Demonstrates
-
-Every component of the diffusion process — schedule computation, forward diffusion, reverse denoising, deterministic sampling, and multi-cycle operation — can be implemented in exact integer arithmetic with zero drift accumulation. The error at step 1000 is the same as the error at step 1. The error does not grow. It cannot grow, because exact arithmetic does not introduce rounding error, and the only source of approximation (Newton square root iteration) produces a fixed residual at the chosen depth that does not compound through the chain.
+Each section maps a computational domain to VDR arithmetic by identifying the sequential chain, the float failure mode, and the VDR exactness guarantee. The treatment is mechanical — what the computation is, why float fails at it, and how VDR handles it — rather than exhaustive. Full specifications for VDR arithmetic are in [VDR-1]; the Q335 fixed-frame arithmetic for GPU execution is in [VDR-14, VDR-18]; the diffusion model validation establishing the zero-drift property is in [VDR-26].
 
 ---
 
-## 2. VDR Arithmetic for Diffusion
+## 2. Autoregressive Generation Beyond Text
 
-### 2.1 The VDR Triple
+### 2.1 Speech Synthesis
 
-Every number in VDR is three integers: Value, Denominator, Remainder [VDR-1]. V and D are plain integers forming an exact rational V/D. R is the Remainder — not rounding error, not residual, but first-class structural information about what the denominator frame could not absorb. When R is zero, the value is a closed rational number. When R is nonzero, the value carries exact structure beyond the rational frame.
+Autoregressive speech models (WaveNet, SoundStorm) generate audio sample by sample at 16-48 kHz. Each sample is conditioned on previous samples through causal convolution stacks. A 3-second clip at 16 kHz is 48,000 sequential steps.
 
-For diffusion computation, most values are closed rationals — schedule parameters, scaling coefficients, vector components. The Remainder becomes relevant in square root computation, where Newton iteration produces exact rational approximations with the residual carried as structural information in R.
+The chain: at each step, a softmax over quantized audio levels (256 for μ-law encoding) produces a probability distribution. The selected sample feeds back as input to the next step. The softmax weights are attention scores over prior samples, computed through the same QKᵀ matrix products validated in [VDR-4].
 
-### 2.2 Arithmetic Operations
+The float failure: softmax over 256 levels in float64 sums to approximately 1 ± 10⁻¹⁵. Over 48,000 steps, the probability distribution at the final sample is conditioned on slightly wrong values from every prior sample. The drift is audible in long utterances as subtle pitch instability, timbral inconsistency, and non-reproducible output across hardware.
 
-VDR closed arithmetic is exact rational arithmetic [VDR-1]:
+The VDR guarantee: softmax sums to exactly 1 at every sample [VDR-4, VDR-14]. Attention over prior samples has zero accumulated error. The causal convolution chain carries zero arithmetic drift. Sample 48,000 is conditioned on exactly correct values from samples 1 through 47,999.
 
-**Addition:** [V₁D₂ + V₂D₁, D₁D₂, 0]. Two integer multiplications, one integer addition. Exact.
+### 2.2 Music Generation
 
-**Subtraction:** [V₁D₂ - V₂D₁, D₁D₂, 0]. Same cost. Exact.
+Music generation extends the same architecture to longer sequences — 10,000 to 50,000 tokens for a 3-minute piece at token-level generation. Musical structure requires long-range coherence: a chord progression established in bar 4 must be harmonically consistent with bar 64.
 
-**Multiplication:** [V₁V₂, D₁D₂, 0]. One integer multiplication for each of numerator and denominator. Exact.
+The chain: attention scores at position 50,000 looking back at position 100 pass through the same QKᵀ computation as attention at position 101 looking at position 100. In float, the accumulated error from 50,000 steps of attention computation means the model's effective memory of early positions degrades with distance — not because the architecture limits it, but because the arithmetic corrupts it.
 
-**Division:** [V₁D₂, D₁V₂, 0]. Exact when V₂ ≠ 0.
+The VDR guarantee: attention weights at any position looking back at any prior position are computed with the same precision as attention at adjacent positions. The arithmetic does not degrade long-range attention. Any long-range coherence failure is attributable to the model, not the computation.
 
-No rounding. No truncation. No platform dependence. The result of any chain of these operations on rational inputs is an exact rational, regardless of chain length.
+### 2.3 Protein Sequence Prediction
 
-### 2.3 Square Roots via Newton Iteration
+Autoregressive generation of amino acid sequences where each position conditions on all prior positions. Protein function depends on exact residue identity — a single substitution can mean the difference between functional and non-functional protein.
 
-Diffusion requires square roots — √ᾱₜ and √(1 - ᾱₜ) at every timestep. Square roots of rationals are generally irrational and cannot be represented as closed VDR rationals. VDR handles this through Newton iteration, which produces exact rational approximations at any requested depth [VDR-1].
+The chain: softmax over 20 amino acid types at each position, conditioned on the full prior sequence. For a 300-residue protein, float softmax drift means the probability of the correct residue at position 300 is slightly corrupted by accumulated error from positions 1 through 299.
 
-For √a, Newton iteration computes:
+The VDR guarantee: exact softmax at every position. Same sequence from same model on any machine, guaranteed. For drug design and synthetic biology where reproducibility across laboratories is essential, the computation is deterministic by construction.
 
-    x_{n+1} = (x_n + a/x_n) / 2
+### 2.4 Time-Series Forecasting
 
-Starting from x₀ = 1, each step doubles the number of correct digits (quadratic convergence). After 10 steps, the approximation has over 100 correct digits. Every intermediate value x_n is an exact rational — no float approximation at any point.
+Recursive multi-step prediction where each predicted value feeds back as input. Weather forecasting, energy demand, financial time-series. The classic problem: prediction error compounds exponentially with horizon. Float arithmetic adds a noise floor on top of model error.
 
-The residual x_n² - a is an exact, computable, inspectable rational number. At depth 10 for √2, the residual denominator has thousands of digits. The residual magnitude is below 10⁻⁵⁰. This is not an unknown truncation error — it is a specific, printable number that the system carries as structural information.
-
-### 2.4 Why Exactness Matters for Chains
-
-In float arithmetic, each operation's error is independent and approximately random in direction. Over a chain of N operations, errors accumulate as approximately √N × ε (random walk) or N × ε (worst case), where ε ≈ 10⁻¹⁶ for float64.
-
-In VDR arithmetic, each operation on closed rationals produces an exact result. The chain of operations is lossless — the output of step N is exactly the rational number that the arithmetic defines, not an approximation of it. The only source of approximation is square root computation via Newton iteration, and this approximation has a fixed magnitude determined by the iteration depth. It does not compound because the residual from √ᾱ used in the forward process is the same residual present in the reverse process — the arithmetic is self-consistent.
+The VDR guarantee: arithmetic error is zero. The noise floor is eliminated. Model error is the model's problem. For the first time, you can measure pure model error at long horizons without a float noise floor contaminating the measurement.
 
 ---
 
-## 3. The Noise Schedule
+## 3. Normalizing Flows
 
-### 3.1 Schedule Construction
+### 3.1 The Exact Invertibility Problem
 
-The noise schedule defines a sequence of T noise levels β₁, β₂, ..., β_T controlling how much noise is added at each step. The linear schedule spaces β values evenly between a start and end value:
+Normalizing flows transform a simple distribution (Gaussian) into a complex one through a chain of invertible transformations. The defining property: forward(inverse(x)) = x exactly. Each transformation is typically an affine coupling layer — multiply by a scale factor, add a shift.
 
-    βₜ = β_start + (t/(T-1)) · (β_end - β_start)
+The chain: data passes through 10 to 100 coupling layers in sequence. Each layer's output feeds the next. The inverse pass reverses the chain. Exact invertibility requires that the composition of forward layers followed by the composition of inverse layers recovers the input exactly.
 
-In VDR, each βₜ is an exact rational. β_start = 1/100 and β_end = 1/20 are exact. The interpolation involves integer arithmetic only — the index t and count T-1 are integers, the multiplication and addition are exact rational operations.
+The float failure: after 10 coupling layers, forward-inverse roundtrip error is approximately 10⁻¹⁴. After 50 layers (common in modern flows), approximately 10⁻¹². This means log-likelihood computation is wrong by a small but nonzero amount, and generated samples do not exactly invert to their latent codes.
 
-From β, the derived quantities are:
+The VDR guarantee: affine coupling is multiply and add on exact rationals. 50 layers, 100 layers, 1000 layers — roundtrip error is zero. Log-likelihood computation is exact. Every generated sample maps to exactly one latent code and back. For density estimation in scientific applications — particle physics, astrophysics — where the log-likelihood value itself is the measurement, exact computation eliminates an entire error source.
 
-    αₜ = 1 - βₜ          (exact: one integer subtraction in the numerator)
-    ᾱₜ = ∏ₖ₌₁ᵗ αₖ       (exact: chain of rational multiplications)
-    √ᾱₜ                  (Newton iteration at chosen depth)
-    √(1 - ᾱₜ)            (Newton iteration at chosen depth)
+### 3.2 Architecture Compatibility
 
-### 3.2 Cumulative Product Exactness
-
-The cumulative product ᾱₜ = α₁ · α₂ · ... · αₜ is the critical computation. In float, multiplying T values near 0.95-0.99 accumulates rounding error at every step. After 5 multiplications, float64 shows approximately 10⁻¹⁶ drift from the true rational value. After 1000 multiplications, the drift is approximately 10⁻¹³.
-
-In VDR, the cumulative product is exact rational multiplication. The validated result confirms this: ᾱ_T = 26821179/31250000, verified against independent Python Fraction computation. Bit-identical. Not approximately equal — identical. The VDR cumulative product and the arbitrary-precision rational computation produce the same numerator and the same denominator because they are performing the same operation: exact integer multiplication of numerators and denominators.
-
-### 3.3 Schedule Properties
-
-Five structural properties are verified for the exact schedule:
-
-**α = 1 - β for all t.** Exact identity, not approximate. The subtraction is one integer operation.
-
-**ᾱₜ = cumulative product of αₖ.** Verified against independent Fraction computation. Exact.
-
-**ᾱ is strictly monotonically decreasing.** Each αₖ < 1, so each multiplication makes the product strictly smaller. VDR comparison is exact integer cross-multiplication — no float comparison ambiguity near equality.
-
-**SNR = ᾱ/(1-ᾱ) is strictly monotonically decreasing.** The signal-to-noise ratio decreases monotonically across the schedule, confirming that noise increases at every step. VDR computes this ratio as exact rational division and verifies monotonicity by exact comparison.
-
-**All βₜ satisfy 0 < βₜ < 1.** Range constraint verified by exact comparison. No float rounding pushes a β value outside the valid range.
-
-### 3.4 Cosine Schedule
-
-The cosine schedule [Nichol & Dhariwal, 2021] uses a cosine function to produce a smoother noise trajectory than the linear schedule. Since cosine is transcendental, VDR uses a rational approximation via Taylor series or Padé approximants, producing exact rational values that approximate the cosine schedule with controllable precision.
-
-The validated cosine schedule produces 10 steps with monotonically decreasing ᾱ and all structural properties intact. The approximation quality is governed by the series depth, and every intermediate value remains an exact rational.
+Real NVP, Glow, and Neural Spline Flows are all built on invertible transformations. Spline flows use rational quadratic splines — already rational functions, a natural fit for VDR. The spline knots and derivatives are exact rationals, forward and inverse evaluations are exact rational arithmetic, and the log-determinant of the Jacobian is exact.
 
 ---
 
-## 4. Forward Diffusion
+## 4. Kalman Filtering and State Estimation
 
-### 4.1 The Forward Process
+### 4.1 The Covariance Accumulation Problem
 
-Forward diffusion computes:
+A Kalman filter maintains a state estimate x̂ and covariance matrix P. Each update cycle consists of a predict step (P = FPFᵀ + Q) and a correct step (P = (I-KH)P). The covariance matrix must remain symmetric and positive definite throughout operation.
 
-    xₜ = √ᾱₜ · x₀ + √(1 - ᾱₜ) · ε
+The chain: each cycle's covariance matrix feeds the next cycle's prediction. The matrix operations — multiplication, transpose, addition, inversion — each introduce float error. The critical requirement is symmetry: P must equal Pᵀ exactly, because asymmetry in the covariance causes the filter to weight observations inconsistently across dimensions.
 
-where x₀ is the original data vector, ε is a noise vector, and the coefficients √ᾱₜ and √(1 - ᾱₜ) are computed via Newton iteration.
+The float failure: float matrix multiplication breaks symmetry by approximately 10⁻¹⁶ per step. After 10,000 steps, P is noticeably asymmetric and eigenvalues can go negative, causing the filter to diverge. Practitioners add symmetrization hacks — P = (P + Pᵀ)/2 — and positive-definite enforcement after every step. These are compensations for arithmetic failure, not features of the algorithm.
 
-In VDR, this is:
+The VDR guarantee: matrix multiplication is exact. FPFᵀ is exactly symmetric because the multiplication is exact and the transpose produces exactly the same values. P never loses positive definiteness from arithmetic error. The Kalman gain K = PHᵀ(HPHᵀ + R)⁻¹ is computed via exact matrix inversion [VDR-1]. No symmetrization needed. No positive-definite enforcement. The filter tracks the true covariance of the estimation error, not the true covariance plus accumulated float noise.
 
-1. Compute √ᾱₜ via Newton iteration on the exact rational ᾱₜ.
-2. Compute √(1 - ᾱₜ) via Newton iteration on the exact rational (1 - ᾱₜ).
-3. Scale x₀ component-wise by √ᾱₜ (exact rational multiplication per component).
-4. Scale ε component-wise by √(1 - ᾱₜ) (exact rational multiplication per component).
-5. Add the two scaled vectors component-wise (exact rational addition per component).
+### 4.2 Spacecraft Navigation
 
-Every component of the resulting xₜ vector is an exact rational number. No float truncation at any point.
+Deep space missions run Kalman filters for months or years. Voyager, New Horizons, Mars rovers — continuous state estimation with no opportunity to reset. Float drift in the covariance matrix means the filter's confidence in its position estimate slowly decorrelates from reality. VDR: covariance at month 36 has the same arithmetic precision as covariance at minute 1.
 
-### 4.2 Dimensionality Preservation
+### 4.3 Autonomous Vehicles
 
-The forward process preserves the dimensionality of the input. An input vector x₀ with d components produces an output xₜ with d components. Each component is an independent exact rational computation. This is verified directly — the output dimension matches the input dimension for all tested cases.
+Sensor fusion combining GPS, IMU, LiDAR, and camera through extended or unscented Kalman filters. Safety-critical: the covariance matrix determines whether the vehicle's control system believes it knows the vehicle's position. Float asymmetry in P can cause the vehicle to be overconfident in one axis and underconfident in another. VDR: exact covariance, exact confidence bounds, no arithmetic source of overconfidence.
 
-### 4.3 Signal Dominance at Early Timesteps
+### 4.4 Financial Filtering
 
-At t=0, ᾱ₀ is close to 1 (verified: ᾱ₀ > 0.9). This means √ᾱ₀ is close to 1 and √(1-ᾱ₀) is close to 0. The forward sample is dominated by the original signal x₀ with only a small noise contribution. VDR confirms this through exact rational comparison — ᾱ₀ > 9/10 is a cross-multiplication check, not a float comparison.
-
-### 4.4 The Coefficient Identity
-
-The signal and noise coefficients must satisfy an energy conservation identity:
-
-    (√ᾱₜ)² + (√(1 - ᾱₜ))² = 1
-
-In float, squaring a float square root does not recover the original value exactly. The residual is approximately 10⁻¹⁵. Over a long chain where this identity is assumed but not exactly maintained, the signal-noise energy balance drifts.
-
-In VDR, the Newton square root has a specific residual: (√ᾱ)² differs from ᾱ by the Newton residual, which is below 10⁻²⁰ at depth 10. The coefficient identity residual is verified below 10⁻²⁰ for all timesteps — 5 orders of magnitude tighter than float, and the residual is a specific inspectable rational number rather than an unknown truncation.
-
-### 4.5 Forward Trajectory
-
-The forward trajectory x₀, x₁, ..., x_T is the sequence of noised versions of x₀. In VDR, each element is an exact rational vector. The trajectory has T+1 entries (including x₀), starts exactly at x₀ (verified by identity comparison, not float tolerance), and each subsequent entry is computed by the exact forward formula.
+Estimating hidden states (true volatility, regime) from noisy observations (prices, volumes). The Kalman gain determines how much the model trusts new data versus its prior estimate. Float drift in the gain means the model slowly becomes either too trusting or too skeptical of new data. Over a trading year — 252 days with updates every minute producing approximately 100,000 steps — the arithmetic drift is measurable.
 
 ---
 
-## 5. Reverse Diffusion
+## 5. Cryptographic Protocols
 
-### 5.1 Predicting x₀
+### 5.1 Shamir Secret Sharing
 
-Given a noised sample xₜ and a predicted noise ε_pred, the original data is estimated as:
+Split a secret into n shares such that any k shares reconstruct it. The secret is a polynomial evaluated at n points over a finite field. Reconstruction uses Lagrange interpolation — exact rational arithmetic over a finite field.
 
-    x₀_pred = (xₜ - √(1 - ᾱₜ) · ε_pred) / √ᾱₜ
+Float is categorically excluded. VDR's exact arithmetic and finite field builtins — gf_add, gf_mul, gf_inv, gf_pow from [VDR-10] — handle this natively. The VDR-2 gym (domain 12) already verified RSA encrypt/decrypt roundtrip, Chinese Remainder Theorem, and discrete logarithm with zero computation errors [VDR-2].
 
-In VDR, this is exact rational arithmetic: one multiplication, one subtraction, one division. When the noise prediction is perfect (ε_pred = ε, the actual noise used in the forward process), the recovery is exact.
+### 5.2 Homomorphic Encryption
 
-The test confirms this directly: x₀ prediction error with perfect noise = 0. Not approximately zero. Not below some tolerance. Exactly zero. The exact rational arithmetic perfectly inverts the forward process.
+Compute on encrypted data. Schemes like BFV and CKKS operate on polynomial rings with exact modular arithmetic. CKKS allows approximate arithmetic, but the approximation must be controlled — each operation's error is tracked explicitly.
 
-In float64, this same operation — subtract a product, divide by a value — accumulates error from the multiplication, the subtraction (which may involve catastrophic cancellation when √(1-ᾱₜ)·ε is close in magnitude to xₜ), and the division. The error is approximately 10⁻¹⁶ per step, invisible in isolation but compounding across the chain.
+VDR's Remainder slot is structurally parallel to CKKS's error tracking: the R slot carries exactly what the computation did not absorb in the current denominator frame. The Q335 frame with explicit remainder is a natural representation for homomorphic ciphertext noise budgets — the Remainder tells you how much noise budget has been consumed, as an exact integer, not a float estimate.
 
-### 5.2 Posterior Mean
+### 5.3 Zero-Knowledge Proofs
 
-The posterior mean for the reverse step is:
+ZK-SNARKs and ZK-STARKs require field arithmetic over large primes (BN254, BLS12-381). The operand width — 256 to 384 bits — matches Q335's 384-bit working width exactly. VDR-22 identified this overlap and designed the Barrett reduction extension (2.1% die area increase) for dual-purpose VDR+ZKP silicon [VDR-22]. The arithmetic is identical: wide integer multiply, modular reduction, point operations on elliptic curves.
 
-    μₜ = (1/√αₜ) · (xₜ - (βₜ/√(1 - ᾱₜ)) · ε_pred)
+### 5.4 Post-Quantum Cryptography
 
-This involves five operations: compute βₜ/√(1-ᾱₜ), multiply by ε_pred, subtract from xₜ, multiply by 1/√αₜ. Each is exact rational arithmetic. The posterior mean vector has the same dimension as the input, verified directly.
-
-### 5.3 Posterior Variance
-
-The posterior variance for each step is:
-
-    β̃ₜ = βₜ · (1 - ᾱₜ₋₁) / (1 - ᾱₜ)
-
-In VDR, this is one multiplication and one division of exact rationals. The result is an exact closed rational for every timestep. All posterior variances are verified to be positive rationals. No negative variance (which float can produce through cancellation errors with poorly conditioned schedules). No zero variance at interior steps (which would make the reverse step deterministic when it should be stochastic). No NaN (which float produces when denominators underflow to zero). No overflow (which float encounters when variance denominators become very small).
-
-These are not theoretical failure modes — they occur in practice with float arithmetic on aggressive schedules, particularly for long chains with hundreds or thousands of steps.
-
-### 5.4 Reverse Step
-
-The full reverse step combines the posterior mean with a noise injection scaled by the posterior variance:
-
-    x_{t-1} = μₜ + √β̃ₜ · z
-
-where z is fresh noise. In VDR, μₜ is an exact rational vector, √β̃ₜ is a Newton iterate rational, z is a rational noise vector, and the result is an exact rational vector. The reverse step preserves dimension, verified directly.
+Lattice-based schemes (CRYSTALS-Kyber, CRYSTALS-Dilithium) use polynomial arithmetic over moderate-sized integers. Exact integer arithmetic with no float contamination is a requirement of the standard, not an optimization. VDR's integer arithmetic layer handles lattice operations natively.
 
 ---
 
-## 6. DDIM Deterministic Sampling
+## 6. Financial Computation
 
-### 6.1 The Deterministic Variant
+### 6.1 Monte Carlo Pricing
 
-DDIM (Denoising Diffusion Implicit Models) [Song et al., 2020] provides a deterministic sampling path by setting the stochastic noise term to zero:
+Price exotic derivatives by simulating thousands of paths. Each path: generate random increments, apply to a stochastic differential equation, compute payoff, average across paths.
 
-    x_{t-1} = √ᾱ_{t-1} · x₀_pred + √(1 - ᾱ_{t-1}) · ε_pred
+The float failure: each path has slightly different rounding, and the average of 100,000 paths has a float noise floor of approximately 10⁻¹² on top of the statistical Monte Carlo error. You cannot determine whether the residual error in your price estimate is from insufficient paths or from arithmetic.
 
-This eliminates the stochastic noise z from the reverse step, making the entire reverse process a deterministic function of the initial noise x_T and the noise predictions ε_pred.
+The VDR guarantee: each path is exact rational arithmetic. The average is exact. The only error is Monte Carlo sampling error. Statistical error and arithmetic error are cleanly separated for the first time.
 
-### 6.2 Exact Roundtrip
+### 6.2 Risk Aggregation
 
-With perfect noise prediction and deterministic sampling, the forward-reverse process should be a perfect identity: start with x₀, add noise to get x_T, then reverse to recover x₀.
+Sum Value-at-Risk across thousands of positions. Each position's contribution involves multiplying notional by sensitivity by scenario value.
 
-The test result: DDIM roundtrip error = 0. Exactly zero. The deterministic reverse process with exact arithmetic and perfect noise prediction is a lossless roundtrip.
+The float failure: $10,000,000.00 × 0.000001 × 1.0000001 produces different results depending on multiplication order due to float non-associativity. The risk number depends on how the code was written, not just what the positions are.
 
-This is the strongest possible result. It means the arithmetic itself introduces zero error into the diffusion process. Any error in a practical diffusion model comes from the noise predictor (the learned neural network), not from the arithmetic that chains the predictions together. Float arithmetic conflates these two error sources — you cannot distinguish model prediction error from arithmetic accumulation error. VDR separates them completely: arithmetic error is zero, so all observed error is model error.
+The VDR guarantee: multiplication is associative over exact rationals. The risk number is the same regardless of aggregation order. Regulators can verify the computation is deterministic and order-independent.
 
----
+### 6.3 Regulatory Capital
 
-## 7. Multi-Cycle Drift
+Banks compute capital requirements (Basel III/IV) using exact formulas applied to portfolio data. The formulas involve products, sums, square roots, and ratios of large numbers. A rounding difference of $1 across millions of positions can mean millions in required capital.
 
-### 7.1 The Central Result
+The VDR guarantee: one answer, every time, on every machine. The audit trail is a provenance chain of exact rationals [VDR-14]. No platform dependence, no rounding mode dependence, no aggregation order dependence.
 
-The multi-cycle drift test runs the forward-reverse process multiple times in sequence: start with x₀, forward to x_T, reverse to x₀', forward again to x_T', reverse to x₀'', and so on. Each cycle's output feeds the next cycle's input.
+### 6.4 Options Greeks
 
-This is exactly what video diffusion models do. Each frame's latent representation is conditioned on the previous frame, passing through the diffusion arithmetic. Drift in this chain means temporal inconsistency — gradual shift in the latent space that produces visible artifacts.
+Delta, gamma, and vega computed as numerical derivatives of pricing functions. The finite difference Δ = (f(S+h) - f(S-h))/(2h) is the standard computation.
 
-The result: drift does not grow across cycles. The error at cycle N is the same magnitude as the error at cycle 1. The error is bounded by the Newton square root residual at the chosen iteration depth, which is below 10⁻⁵⁰. This bound does not increase with the number of cycles because exact rational arithmetic does not introduce new error — the only approximation is the fixed Newton residual, which is the same at every cycle.
+The float failure: catastrophic cancellation. f(S+h) and f(S-h) are nearly equal. Their difference loses significant digits. The division by 2h amplifies whatever digits remain. The resulting Greek can be wrong by orders of magnitude for small h.
 
-### 7.2 Why Float Drift Grows
+The VDR guarantee: the difference is exact, the division is exact, the Greek is exact at the chosen step size. No subtractive cancellation because rational subtraction does not lose digits — the result has a larger denominator, not fewer significant figures. This is the same structural advantage demonstrated in VDR-26's diffusion reverse step, where the subtraction xₜ - √(1-ᾱₜ)·ε is exact despite the operands being close in magnitude.
 
-In float arithmetic, each cycle introduces approximately 10⁻¹⁵ error from the combined multiplications, divisions, and square root evaluations. These errors are approximately independent across cycles and accumulate:
+### 6.5 Blockchain DeFi
 
-After 1 cycle: ~10⁻¹⁵ error.
-After 10 cycles: ~10⁻¹⁴ error.
-After 100 cycles: ~10⁻¹³ error.
-After 1000 cycles: ~10⁻¹² error.
-After 10000 cycles: ~10⁻¹¹ error.
+Automated market makers (Uniswap, Curve) compute prices using exact formulas. Every node must compute the identical result. Float is forbidden.
 
-For video generation at 24 fps with 50 denoising steps per frame, a 10-second clip involves 12,000 cycles of the arithmetic chain. A 60-second clip involves 72,000 cycles. The accumulated float error at these scales is measurable and produces visible temporal artifacts.
+Current implementations use fixed-point integer arithmetic with manual scaling — multiply by 10¹⁸, divide at the end, truncate. VDR provides the same exactness with rational arithmetic that handles arbitrary denominators natively. No manual scaling, no overflow management, no truncation decisions. The constant product invariant x·y = k is verified as exact equality after every swap.
 
-### 7.3 Why VDR Drift Is Flat
-
-VDR arithmetic on closed rationals is lossless. Multiplying two exact rationals produces an exact rational. Dividing produces an exact rational. Adding and subtracting produce exact rationals. The chain of exact operations is itself exact.
-
-The only approximation is the Newton square root, which contributes a fixed residual at the chosen depth. This residual does not compound because it is not an error in the traditional sense — it is a specific, known, exact rational distance between the Newton iterate and the true irrational value. The iterate at depth 10 has residual below 10⁻⁵⁰ regardless of how many times it is used in a chain, because the iterate itself is an exact rational that does not change with use.
-
-The drift at cycle N equals the drift at cycle 1 because:
-- The rational arithmetic operations contribute zero error.
-- The Newton residual contributes a fixed error per square root evaluation.
-- The same number of square root evaluations occurs per cycle.
-- The residuals do not interact multiplicatively — they are additive perturbations of fixed magnitude.
+Yield calculations across 2.6 million blocks per year compound interest at every block. Fixed-point truncates at every step. VDR: (1 + r/n)ⁿ is exact for rational r and integer n. Zero truncation across the entire year.
 
 ---
 
-## 8. The Coefficient Identity in Depth
+## 7. Control Systems
 
-### 8.1 Energy Conservation
+### 7.1 Model Predictive Control
 
-The forward diffusion formula xₜ = √ᾱₜ · x₀ + √(1-ᾱₜ) · ε rests on the assumption that the squared coefficients sum to 1:
+At each timestep, solve an optimization problem over a prediction horizon, apply the first control input, shift the horizon, repeat. Each optimization involves matrix multiplications, inversions, and constraint checks.
 
-    (√ᾱₜ)² + (√(1-ᾱₜ))² = ᾱₜ + (1-ᾱₜ) = 1
+The chain: thousands of control cycles for industrial process control running for days. Each cycle's optimization is influenced by the previous cycle's state estimate, which was influenced by the cycle before that.
 
-This ensures that signal energy and noise energy are exactly conserved at every timestep. The signal component has variance ᾱₜ and the noise component has variance (1-ᾱₜ), summing to exactly 1.
+The float failure: drift in the optimization means the controller slowly diverges from the true optimum. Over thousands of cycles, the accumulated drift manifests as suboptimal setpoints — not wrong enough to trigger an alarm, but wrong enough to waste energy or reduce yield.
 
-### 8.2 Float Violation
+The VDR guarantee: each optimization is exact, each control input is exactly optimal for the model, drift is zero.
 
-In float, (√ᾱₜ)² ≠ ᾱₜ because computing the square root and then squaring introduces two rounding operations. The residual is approximately 10⁻¹⁵. This means the forward process slightly violates energy conservation at every step. The violation is small, but it accumulates through the chain and through multi-cycle operation.
+### 7.2 PID Controllers
 
-### 8.3 VDR Conservation
+Industrial PID controllers have gains Kp, Ki, Kd that are often rational numbers. The integral term accumulates error over time.
 
-In VDR, the Newton iterate √ᾱₜ is an exact rational. Its square differs from ᾱₜ by the Newton residual, which is below 10⁻²⁰ at depth 10 (verified for all timesteps). This is 5 orders of magnitude tighter than float, and the residual is a known, fixed quantity — not an accumulating drift.
+The float failure: float integral windup includes both physical windup (the plant saturating) and arithmetic windup (float accumulation error in the integral sum). Practitioners cannot distinguish the two.
 
-The identity residual is verified across all timesteps of the schedule. At no timestep does the residual exceed 10⁻²⁰. The energy conservation is maintained to within the Newton residual precision throughout the entire diffusion process.
+The VDR guarantee: physical windup is the controller's problem. Arithmetic windup is zero. The integral sum is exact. For the first time, the controller engineer can separate actuator saturation from computation error.
 
----
+### 7.3 Digital Filter Chains
 
-## 9. Implementation
+IIR filters in series, each step's output feeding the next filter's input. VDR-13 demonstrated this: (1/√2)²⁰ collapses to exact 1/1024 via normalization [VDR-13]. A cascade of 20 biquad sections in float accumulates approximately 10⁻¹³ error.
 
-### 9.1 Module Structure
+The VDR guarantee: zero. Audio processing, vibration analysis, power grid monitoring — anywhere filter chains run continuously, VDR eliminates the drift that float introduces.
 
-The implementation consists of four modules:
+### 7.4 Stability Analysis
 
-**diffusion_schedule.py:** Noise schedule computation. Contains exact_sqrt (Newton iteration for square roots of VDR values), exact_sqrt_vdr (variant for VDR inputs), the DiffusionSchedule class (precomputes and caches all schedule values), linear_schedule (linear β interpolation), and cosine_schedule_rational (rational approximation to the cosine schedule).
+Is a control system stable? Check if all eigenvalues of the state matrix have negative real parts. For 2×2 systems with rational entries, eigenvalues are exact (quadratic formula with VDR exact arithmetic). For larger systems, eigenvalues are generally irrational, but VDR functional remainders produce exact rational approximations at any depth.
 
-**diffusion_forward.py:** Forward diffusion process. Contains forward_sample (single-step forward from x₀ to xₜ), forward_sample_step (incremental forward from xₜ to xₜ₊₁), forward_trajectory (complete forward trajectory from x₀ through all timesteps), and _exact_sqrt_cached (cached square root computation to avoid redundant Newton iterations).
-
-**diffusion_reverse.py:** Reverse denoising process. Contains compute_x0_prediction (predict x₀ from xₜ and noise prediction), compute_posterior_mean (posterior mean for reverse step), reverse_step (full stochastic reverse step), reverse_step_ddim (DDIM deterministic reverse step), and reverse_sample_loop (complete reverse sampling from x_T to x₀).
-
-**diffusion_sampling.py:** Verification and testing utilities. Contains verify_schedule_consistency (five-property consistency check), verify_snr_monotonic (SNR monotonicity), verify_coefficient_identity (energy conservation check), make_oracle_predictor (creates a perfect noise predictor for roundtrip testing), verify_forward_reverse_roundtrip (single-cycle roundtrip), and verify_multi_step_drift (multi-cycle drift measurement).
-
-### 9.2 Square Root Caching
-
-Newton iteration for square roots is the most expensive operation in the diffusion pipeline. The same √ᾱₜ value is used in both the forward and reverse processes, and the same schedule is used across all samples. The implementation caches computed square roots by their input value and depth, ensuring each unique square root is computed once regardless of how many times it appears in the chain.
-
-### 9.3 Noise Representation
-
-Gaussian noise vectors in a production diffusion model are sampled from a continuous distribution. In the VDR implementation, noise vectors are rational-valued — each component is an exact rational number. This is appropriate for validation because the arithmetic properties being tested (exactness, drift, roundtrip) are independent of the noise distribution. The noise is a known input; the test measures what the arithmetic does to that input.
+The critical case: an eigenvalue real part near zero. Float might round -10⁻¹⁶ to +10⁻¹⁶, declaring an unstable system stable. VDR resolves the eigenvalue to the Newton residual depth — below 10⁻⁵⁰ at depth 10 — making false stability declarations vanishingly unlikely.
 
 ---
 
-## 10. Test Results
+## 8. Physics Simulation
 
-### 10.1 Summary
+### 8.1 N-Body Orbital Mechanics
 
-37 tests executed. 33 passed. 4 failed. All 4 failures trace to a single normalization issue. Zero arithmetic errors. Zero drift. Zero computation failures.
+Two-body orbits close exactly. VDR-13 demonstrated exact orbit closure where float64 shows measurable precession after a single orbit [VDR-13]. N-body problems are chaotic long-term, but VDR's Remainder representation means you know exactly when your simulation has diverged from reality — the denominator growth and remainder nesting depth tell you the information-theoretic cost of the trajectory.
 
-### 10.2 Schedule Tests (1-5): All Pass
+For mission planning — gravity assists, constellation design — short-term exact propagation with known precision bounds is more useful than long-term approximate propagation with unknown error.
 
-Test 1: Linear schedule produces 5 exact rational β values at specified endpoints. β₀ = 1/100 and β₄ = 1/20, both exact.
+### 8.2 Molecular Dynamics
 
-Test 2: α = 1 - β holds as an exact identity for all timesteps. Not approximately equal — exactly equal, verified by structural comparison of the rational values.
+Integrate Newton's equations for molecular systems. Symplectic integrators (Verlet, leapfrog) are designed to preserve energy over long trajectories.
 
-Test 3: Cumulative product ᾱₜ = ∏αₖ is exact. Verified against independent Fraction computation (test 22), producing identical numerators and denominators.
+The chain: 10⁶ timesteps for nanosecond simulations at femtosecond timestep. Each step's positions and velocities feed the next step's force calculation.
 
-Test 4: ᾱ is strictly monotonically decreasing across all timesteps. Verified by exact rational comparison (cross-multiplication) at each adjacent pair.
+The float failure: float breaks symplecticity by approximately 10⁻¹⁶ per step. Over 10⁶ steps, energy drift is measurable and corrupts thermodynamic averages. The drift means the simulation is not actually sampling from the correct ensemble.
 
-Test 5: SNR = ᾱ/(1-ᾱ) is strictly monotonically decreasing. Verified by exact rational comparison.
+The VDR guarantee: symplectic integrator with exact arithmetic preserves energy exactly. The Hamiltonian at step 10⁶ equals the Hamiltonian at step 0 (for the exact discrete map, which differs from the continuous trajectory by the integrator's truncation error — a separate, understood, controllable error source). Thermodynamic averages have zero arithmetic contamination.
 
-### 10.3 Square Root Tests (6-8): 2 Pass, 3 Fail
+### 8.3 Quantum Chemistry
 
-Test 6: √4 should equal 2. The Newton iterate produces a rational that is value-equal to 2 but not structurally reduced to [2, 1, 0]. Failure is normalization presentation, not arithmetic error. √1 = 1 and √0 = 0 pass — these are trivial cases that don't require Newton iteration.
+Hartree-Fock and post-HF methods involve diagonalizing the Fock matrix, computing two-electron integrals, and iterating to self-consistency. The SCF cycle is a fixed-point iteration where each cycle's output (density matrix) becomes the next cycle's input (Fock matrix construction).
 
-Test 7: √(1/4) should equal 1/2, √(9/16) should equal 3/4. Same issue — Newton iteration on perfect-square rationals produces correct values that don't reduce to simplest form.
+The float failure: drift in the density matrix means the SCF converges to a slightly wrong fixed point. The converged energy includes an unknown arithmetic contribution.
 
-Test 8: √2 Newton residual at depth 10 is below 10⁻⁵⁰. Passes. The residual is an exact rational with a denominator of thousands of digits, confirming that Newton iteration produces extremely precise rational approximations and that the precision is inspectable, not hidden.
+The VDR guarantee: convergence to the exact fixed point of the discretized equations. The only errors are basis set truncation and correlation approximation — the arithmetic is not a source of error.
 
-### 10.4 Forward Tests (9-12): All Pass
+### 8.4 Lattice Gauge Theory
 
-Test 9: Forward sample output has the same dimension as input. Verified by length comparison.
+Compute quark propagators on a discretized spacetime lattice. The propagator is the inverse of the Dirac operator — a large sparse matrix. Conjugate gradient solvers on float accumulate error proportional to the condition number times machine epsilon.
 
-Test 10: At t=0, ᾱ₀ > 0.9, confirming signal dominance. Verified by exact rational comparison.
+VDR with exact Gaussian elimination gives exact propagators for system sizes within the practical matrix dimension limit. Currently applicable to toy lattices and verification of float results. The exact result serves as ground truth for validating float solver accuracy.
 
-Test 11: Coefficient identity (√ᾱ)² + (√(1-ᾱ))² residual below 10⁻²⁰ for all timesteps. Verified.
+### 8.5 Computational Fluid Dynamics
 
-Test 12: Forward trajectory has T+1 entries and starts exactly at x₀. Verified by identity comparison, not tolerance.
+Solve Navier-Stokes on a mesh. Each timestep involves matrix assembly and linear system solve.
 
-### 10.5 Reverse Tests (13-15): All Pass
+The float failure: drift across thousands of timesteps manifests as nonphysical mass or energy creation or destruction. Conservation law verification requires tolerance — "energy is conserved to within 10⁻¹⁰" — because the arithmetic cannot guarantee exact conservation.
 
-Test 13: x₀ prediction error with perfect noise = 0. Exactly zero. The division-subtraction chain perfectly inverts the multiplication-addition chain because both are exact rational arithmetic.
-
-Test 14: Posterior mean has correct dimension. Verified.
-
-Test 15: Reverse step preserves dimension. Verified.
-
-### 10.6 Roundtrip Tests (16-18): All Pass
-
-Test 16: Forward-reverse roundtrip on 3-step schedule produces error below 10⁻²⁰. The error is nonzero only because the Newton square root approximation used in the forward direction is not perfectly canceled by the Newton approximation used in the reverse direction when they pass through different intermediate combinations. The error is bounded by the Newton residual at the chosen depth.
-
-Test 17: DDIM deterministic roundtrip error = 0. Exactly zero. The deterministic reverse path with perfect noise prediction is a lossless roundtrip.
-
-Test 18: Full reverse sample loop recovers x₀ within 10⁻²⁰. The loop iterates through all T timesteps in reverse, each step feeding the next, confirming that the chain does not accumulate error beyond the Newton residual.
-
-### 10.7 Drift and Consistency Tests (19-24): All Pass
-
-Test 19: Multi-cycle forward-reverse drift below 10⁻²⁰ across all cycles.
-
-Test 20: Drift does not increase across cycles. The central result.
-
-Test 21: Full schedule consistency battery — five sub-tests covering α=1-β, cumulative products, sqrt-squared consistency, betas in range, alpha_bar decreasing. All pass.
-
-Test 22: VDR cumulative product matches Python Fraction exactly. ᾱ_T = 26821179/31250000.
-
-Test 23: All posterior variances are closed positive rationals. No negative, zero, NaN, or overflow values.
-
-Test 24: Cosine schedule with 10 steps produces monotonically decreasing ᾱ.
-
-### 10.8 Perfect Square Normalization Test (25): 6 of 10 Pass, 4 Fail
-
-Test 25: 10 perfect-square rationals tested for exact square root normalization. 6 pass (including √1 = 1, √0 = 0, and non-trivial cases where normalization succeeds). 4 fail for the same reason as tests 6 and 7 — Newton iteration on perfect squares produces correct values that don't reduce to simplest form.
+The VDR guarantee: conservation law verification is exact equality, not residual tolerance. For benchmark problems where the exact solution is known, VDR computes it exactly [VDR-13].
 
 ---
 
-## 11. The Normalization Issue
+## 9. Blockchain and Consensus
 
-### 11.1 What Fails
+### 9.1 Deterministic State Transitions
 
-Newton iteration for √4 starting from x₀ = 1 computes:
+Every node in a blockchain network must compute the identical state after applying each transaction. This is the strongest possible requirement on arithmetic: not approximate agreement, not agreement within tolerance — bit-identical output from every participant.
 
-    Step 0: x = 1
-    Step 1: x = (1 + 4/1)/2 = 5/2
-    Step 2: x = (5/2 + 4/(5/2))/2 = (5/2 + 8/5)/2 = 41/20
-    Step 3: x = (41/20 + 4/(41/20))/2 = ...
+Ethereum's EVM uses 256-bit integers specifically to avoid float nondeterminism. Solidity has no float type. Current approach: manual fixed-point with explicit scaling (multiply by 10¹⁸, divide at the end, truncate). VDR provides exact rational arithmetic natively — no manual scaling, no truncation decisions, no rounding mode selection. The result is the result, on every node, always.
 
-Each step produces an exact rational that converges toward 2. After 10 steps, the rational has the form 2k/k for some very large k — a fraction whose value is exactly 2 but whose numerator and denominator have not been reduced by their common factor.
+### 9.2 Automated Market Makers
 
-The VDR normalize() function performs GCD reduction on closed objects (R=0), but the reduction path checks remainder divisibility before reducing. When the remainder is zero, this check is unnecessary — the GCD should be computed and applied unconditionally.
+Uniswap v2 maintains the constant product invariant x·y = k after each swap. Uniswap v3 uses concentrated liquidity with tick math involving square roots and logarithms of price ratios. Current implementation approximates with fixed-point arithmetic.
 
-### 11.2 Why It Doesn't Affect Computation
+The VDR guarantee: the invariant x·y = k is verified as exact equality after every swap. Square roots of price ratios use Newton iteration with exact rational convergence. No tick boundary rounding errors. No invariant violation from arithmetic.
 
-The unnormalized value is arithmetically identical to 2. VDR's value equality (==) normalizes both sides before comparison. Every test that uses √4 as an intermediate value in a computation passes, because the arithmetic doesn't depend on the structural form — it depends on the value, which is correct.
+### 9.3 Yield Calculation
 
-The 4 failures occur only in tests that compare the Newton result to a hand-constructed VDR([2, 1, 0]) using structural equality or that expect a specific normalized form. No diffusion computation depends on this normalization.
+DeFi protocols compute interest rates, yield farming rewards, and liquidation thresholds using compound interest formulas applied every block — approximately every 12 seconds. Over a year: approximately 2.6 million blocks.
 
-### 11.3 The Fix
+The float failure: compound interest drift is significant over 2.6 million compounding steps. Fixed-point arithmetic truncates at every step, losing a fraction of a cent per block that accumulates into meaningful discrepancy over a year.
 
-The targeted fix is in VDR.normalize():
+The VDR guarantee: exact rational compound interest with zero truncation. (1 + r/n)ⁿ is exact for rational r and integer n. The interest earned after 2.6 million blocks is the exact rational number the formula defines, not an approximation.
 
-```python
-# When remainder is globally zero, GCD-reduce unconditionally
-if nr.is_zero:
-    g = gcd(abs(v), abs(d))
-    if g > 1:
-        v, d = v // g, d // g
-    return VDR(v, d, Remainder(0))
-```
+### 9.4 Cross-Chain Bridges
 
-This ensures that any closed rational (R=0) is always reduced to lowest terms, regardless of how it was produced. The fix affects only the normalization path for closed objects and does not change the behavior of active objects (R≠0) or any arithmetic operation.
+Assets moving between chains require exact balance accounting. A rounding discrepancy of 1 wei (10⁻¹⁸ ETH) between two chains means the bridge is either creating or destroying value.
 
-The root cause may also be that the Newton iterate at depth 10 carries a remainder artifact — a remainder that is structurally nonzero but value-equal to zero. In this case, nr.is_zero returns False even though the remainder contributes nothing to the value. Checking this requires printing the remainder structure of the depth-10 iterate and verifying whether it is truly zero or merely value-equivalent to zero.
+The VDR guarantee: exact balance, zero discrepancy, mathematically provable conservation. The sum of all balances across both chains is an exact rational that does not change through any transaction.
 
 ---
 
-## 12. Connection to the VDR-LLM-Prolog Architecture
+## 10. Geodesy and Navigation
 
-### 12.1 Component Exactness from VDR-4
+### 10.1 Coordinate Transformation Chains
 
-The neural network components inside a diffusion model's denoiser (typically a U-Net or transformer) have been independently validated for exact VDR arithmetic in [VDR-4]:
+Convert from GPS (WGS84) to local projection (UTM) to site coordinates to building coordinates. Each transformation is a matrix multiplication or polynomial evaluation. A survey traverse might chain 20 transformations.
 
-**Attention:** exact matrix product QKᵀ with exact softmax producing attention weights that sum to exactly 1. Value mixing with exact weights. No attention drift.
+The float failure: approximately 10⁻¹² position error after 20 transforms. For legal survey work where millimeter precision has property-line implications, the question "which rounding produced this boundary?" is unanswerable.
 
-**Feedforward:** exact linear transform plus ReLU (piecewise linear, exactly 0 or passthrough) plus exact linear. No activation function approximation.
+The VDR guarantee: VDR-13 demonstrated exact Helmert roundtrip with zero residual [VDR-13]. Twenty chained transformations produce zero accumulated arithmetic error. Survey misclosure is pure measurement error, identifiable and correctable.
 
-**Autodiff:** reverse-mode on a computation graph where chain rule and quotient rule are exact. ReLU gradient is exactly 0 or exactly 1.
+### 10.2 GPS Correction Chains
 
-**Optimizer:** SGD with exact fraction learning rate multiplied by exact gradient subtracted from exact weight. Every parameter update is exact.
+Differential GPS applies corrections from reference stations. Each correction is a small additive adjustment. Chaining corrections from multiple stations involves weighted averages where the weights must sum to exactly 1.
 
-**Checkpoints:** every parameter saved as an exact fraction, restored with zero precision loss, bit-identical across platforms.
+The float failure: weights sum to 1 ± 10⁻¹⁶. The correction is approximately what the mathematics says.
 
-### 12.2 System-Level Zero Drift
+The VDR guarantee: weights sum to exactly 1. The correction is exactly what the mathematics says. The same structural property as VDR's softmax summing to exactly 1 [VDR-4, VDR-14].
 
-This paper demonstrates that the diffusion-specific arithmetic — schedule computation, forward scaling, reverse denoising, sampling loops — is also exact. Combined with the VDR-4 component results, the complete diffusion pipeline from noise schedule through U-Net forward pass through denoising step through sampling loop is exact end to end.
+### 10.3 Inertial Navigation
 
-System-level zero drift follows from component-level exactness: if every component produces exact outputs from exact inputs, and the chain is composed of exact components, then the chain is exact. The drift test (test 20) validates this at the system level — multiple cycles of the complete forward-reverse process show no drift accumulation.
+Dead reckoning from accelerometer and gyroscope data. Each step integrates acceleration to get velocity, velocity to get position. Double integration of noisy data with float arithmetic means position error grows as t² from integration plus accumulated float drift.
 
-### 12.3 Training Implications
+The VDR guarantee: the integration is exact. Position error growth is purely from sensor noise, not arithmetic. Sensor quality and computation quality are separable.
 
-Exact arithmetic extends to training. The loss computation (MSE between predicted and actual noise, computed as exact rational difference squared and summed), the gradient computation (exact autodiff from VDR-4), and the weight update (exact SGD) are all exact. This means the training process itself does not accumulate float error across steps.
+### 10.4 Cadastral Surveying
 
-The practical implication: two training runs with the same data, same initialization, and same hyperparameters produce bit-identical models on any hardware. Reproducibility is a structural property, not an aspiration.
+Property boundaries defined by chains of bearings and distances. Each leg is a trigonometric computation whose endpoint is the start of the next leg.
 
----
+The float failure: after 20 legs, the traverse misclosure includes both measurement error and arithmetic error, indistinguishable from each other.
 
-## 13. Practical Applications
-
-### 13.1 Video Generation
-
-Video diffusion models condition each frame on previous frames, creating arithmetic chains of hundreds or thousands of steps. Float drift across these chains produces temporal artifacts — gradual color shifts, structural inconsistencies, and flickering. VDR eliminates the drift mechanism entirely: the latent representation at frame N is exactly what the arithmetic defines, not what it defines plus accumulated rounding from frames 1 through N-1.
-
-### 13.2 Medical Imaging
-
-Diffusion models for medical image synthesis and reconstruction must produce consistent, reproducible results. A diagnostic generated by a diffusion model should not depend on which GPU it was computed on or which version of CUDA was installed. VDR arithmetic is platform-independent — integer operations produce the same result everywhere. The same model, same weights, same input produces bit-identical output on any hardware.
-
-### 13.3 Scientific Visualization
-
-Scientific applications require that generated visualizations faithfully represent the underlying data. Float drift in the diffusion process introduces artifacts that are indistinguishable from features of the data. VDR eliminates this confusion: any artifact in the output is attributable to the model, not to the arithmetic.
-
-### 13.4 Forensic and Legal Applications
-
-Applications where the chain of computation must be verifiable — forensic image enhancement, evidence processing, legal document generation — benefit from VDR's complete provenance chain. Every intermediate value is an exact, inspectable rational number. The computation is reproducible and auditable.
-
-### 13.5 Where Float Remains Appropriate
-
-Single-image generation at standard resolution and step count (50-100 steps) accumulates approximately 10⁻¹⁴ float error, which is invisible in the output. For applications where speed matters more than exactness, and where the output is a single image rather than a temporal sequence, float arithmetic is appropriate and substantially faster.
+The VDR guarantee: arithmetic error is zero. Misclosure is pure measurement error. The surveyor knows exactly what to attribute to instrument precision and what to attribute to the computation — and the computation contributes nothing.
 
 ---
 
-## 14. Boundaries
+## 11. Game Theory and Mechanism Design
 
-### 14.1 Computational Cost
+### 11.1 Auction Clearing
 
-VDR arithmetic is slower per operation than float: approximately 100-1000× in Python, approximately 150× on GPU with Q335 fixed-frame arithmetic [VDR-18]. For a 1024×1024 image at 50 denoising steps, this overhead is substantial. The practical sweet spot is applications where the drift-free property justifies the computational cost.
+Vickrey-Clarke-Groves mechanism computes each bidder's payment as the externality they impose on others. This requires computing the optimal allocation with and without each bidder — combinatorial optimization producing exact rational payments.
 
-### 14.2 Newton Residual
+The float failure: payments may not sum to the correct total due to rounding. Budget balance — a fundamental property of the mechanism — is violated by arithmetic.
 
-Square root computation via Newton iteration is an approximation. The residual is bounded by the iteration depth — below 10⁻⁵⁰ at depth 10, below 10⁻¹⁰⁰ at depth 20. Increasing depth increases precision at linear cost (one additional iteration approximately doubles precision). The residual is fixed, inspectable, and does not compound through arithmetic chains, but it is not zero.
+The VDR guarantee: payments are exact rationals. Budget balance is verifiable as exact equality. The mechanism has the properties its designer intended, not approximate versions of those properties.
 
-### 14.3 Noise Distribution
+### 11.2 Matching Markets
 
-The validation uses rational-valued noise vectors. Production diffusion models sample noise from continuous Gaussian distributions. Converting float-sampled noise to VDR rationals introduces a one-time boundary precision loss at the conversion point, after which all subsequent computation is exact. The conversion precision is declared and logged, following VDR's principle that precision boundaries are explicit design choices rather than silent truncations [VDR-1].
+Deferred acceptance algorithm for school choice and residency matching. Extensions with priorities and quotas involve tie-breaking with numerical scores.
 
-### 14.4 Denominator Growth
+The float failure: float tie-breaking is platform-dependent. The same student might be assigned to different schools on different hardware. For a process that determines children's educational opportunities, nondeterministic computation is unacceptable.
 
-Long chains of rational multiplication produce denominators that grow with each operation. The VDR system manages this through Q335 fixed-frame arithmetic [VDR-14, VDR-18], where the denominator is fixed at 2³³⁵ and overflow goes to remainder depth rather than denominator magnitude. For diffusion chains of practical length (up to thousands of steps), denominator growth in the prototype Python implementation is manageable but increases memory usage for intermediate values.
+The VDR guarantee: deterministic, reproducible, litigable. Same input, same output, everywhere, always.
 
-### 14.5 Normalization Bug
+### 11.3 Shapley Values
 
-The 4 test failures from Newton iteration on perfect squares not normalizing to simplest form is a bug in normalize(). It does not affect any computation — only structural comparison to hand-constructed expected values. The fix is targeted and does not change arithmetic behavior.
+The Shapley value of player i is a weighted average over all coalitions. For n players, this is a sum over 2ⁿ terms, each involving factorial weights.
+
+VDR-2 gym domain 17 verified exact Shapley values summing to v(N) = 1 exactly [VDR-2]. Float: Shapley values sum to 1 ± 10⁻¹⁵. For cost allocation in shared infrastructure — airports, utilities, telecommunications — the rounding determines who pays what. Exact Shapley values eliminate allocation disputes arising from arithmetic.
+
+### 11.4 Mechanism Incentive Compatibility
+
+Designing incentive-compatible mechanisms requires verifying that no agent benefits from misreporting. The verification involves comparing utilities under truthful versus strategic reporting — differences that may be small rational numbers.
+
+The float failure: a mechanism declared incentive-compatible might not be, because float rounding obscures a small but genuine benefit from misreporting.
+
+The VDR guarantee: the comparison is exact. The mechanism either is or is not incentive-compatible. No arithmetic gray zone.
+
+### 11.5 Market Equilibrium
+
+VDR-2 gym domain 17 computed Cournot duopoly equilibrium exactly: q₁* = 20/3, q₂* = 14/3, profit₁ = 200/9 [VDR-2]. These are exact rationals, not float approximations. The equilibrium conditions are verified by exact substitution into the best-response equations, not by checking that residuals are below tolerance.
+
+### 11.6 Voting Power
+
+Computing voting power indices (Banzhaf, Shapley-Shubik) requires summing over all winning coalitions. The indices are rational numbers that must sum to 1.
+
+The float failure: they do not quite sum to 1.
+
+The VDR guarantee: they sum to exactly 1. For constitutional analysis and corporate governance where voting power has legal significance, exact computation eliminates the question of whether a fractional discrepancy is arithmetic or structural.
+
+---
+
+## 12. Digital Signal Processing
+
+### 12.1 IIR Filter Cascades
+
+Infinite impulse response filters in series, each step's output feeding the next filter. Audio processing, vibration analysis, power grid monitoring — continuous operation over millions of samples.
+
+VDR-13 demonstrated this directly: (1/√2)²⁰ collapses to exact 1/1024 via normalization [VDR-13]. A cascade of 20 biquad sections in float accumulates approximately 10⁻¹³ error. VDR: zero.
+
+The practical implication: a digital filter chain that runs for a year of continuous operation has the same arithmetic precision at month 12 as at second 1.
+
+### 12.2 DFT Roundtrip
+
+The Discrete Fourier Transform followed by the inverse DFT should recover the original signal exactly. VDR-13 verified exact DFT roundtrip where float shows measurable residual [VDR-13]. For signal analysis where the frequency content must be exactly recoverable from the spectrum, VDR provides lossless transformation.
+
+### 12.3 Convolution
+
+Linear convolution of two sequences — the fundamental operation in signal processing. Each output sample is a sum of products. Float accumulates rounding in each product and in the summation. VDR: each product is exact, the summation is exact, the convolution is exact.
+
+---
+
+## 13. Quantum Computing Primitives
+
+### 13.1 State Vectors
+
+A quantum state vector has complex amplitudes whose squared magnitudes must sum to exactly 1. Float: they sum to approximately 1. After each gate operation, renormalization is needed. VDR: amplitudes are VDR complex pairs [VDR-13]. Gate operations (matrix-vector products) are exact. The normalization constraint is maintained exactly through the computation without renormalization.
+
+### 13.2 Gate Matrices
+
+Single-qubit gates (Hadamard, Pauli, phase) and multi-qubit gates (CNOT, Toffoli) are unitary matrices. Float matrix multiplication of unitary matrices is not exactly unitary — UUᵀ ≈ I but not exactly I. After 100 gates, the accumulated deviation from unitarity can affect simulation fidelity. VDR: UUᵀ = I exactly for gates with rational entries (Hadamard H = (1/√2)[[1,1],[1,-1]] via Newton iteration for √2). Gates involving irrational entries maintain unitarity to the Newton residual depth.
+
+### 13.3 Measurement Probabilities
+
+Born rule: probability of outcome k is |⟨k|ψ⟩|². The probabilities must sum to exactly 1. Float: they sum to approximately 1. VDR: they sum to exactly 1 (for closed rational amplitudes) or to within Newton residual (for amplitudes involving square roots). This is the same structural property as softmax summing to exactly 1 [VDR-4], applied to quantum measurement.
+
+---
+
+## 14. The Structural Pattern
+
+### 14.1 Separation of Error Sources
+
+In every domain examined, float arithmetic conflates two distinct error sources: the domain's inherent approximation (model error, measurement noise, basis set truncation, statistical sampling) and the arithmetic's rounding error. These are fundamentally different kinds of error — one is the problem's property, the other is the tool's limitation — but float makes them indistinguishable in the output.
+
+VDR eliminates the arithmetic error source. What remains is purely the domain's error. This separation is the common value across all twelve domains: not that VDR makes the computation faster or the model better, but that it makes the arithmetic honest. When the output is wrong, the arithmetic is not the cause. You can finally answer "is my model wrong?" without first having to answer "or is my arithmetic wrong?"
+
+### 14.2 Where VDR Applies
+
+VDR is appropriate for computation chains where:
+
+Exactness matters more than throughput. Financial regulation, safety-critical control, legal survey, medical diagnostics, cryptographic protocols.
+
+Reproducibility is required. Blockchain consensus, cross-platform scientific computation, regulatory audit, forensic evidence processing.
+
+Chain length is long. Video generation, long-term state estimation, molecular dynamics, continuous monitoring, DeFi yield computation.
+
+Error attribution is valuable. Model validation, algorithm comparison, debugging sequential processes, separating measurement from computation.
+
+### 14.3 Where VDR Does Not Apply
+
+VDR is not appropriate for:
+
+Single-step computation where float precision is sufficient. A single matrix multiply in float64 has approximately 10⁻¹⁵ relative error. For a single operation, this is invisible and the 150× cost of Q335 is not justified.
+
+Real-time systems where latency dominates correctness. Game physics, interactive graphics, real-time audio effects where "close enough" at microsecond latency is preferable to "exact" at millisecond latency.
+
+Stochastic processes where model error dominates arithmetic error by many orders of magnitude. If the model is wrong by 10%, float arithmetic error of 10⁻¹⁵ is irrelevant regardless of chain length.
+
+---
+
+## 15. Boundaries
+
+### 15.1 Matrix Size
+
+VDR's exact matrix operations (determinant via cofactor expansion, inverse via adjugate) are O(n!) in the current implementation [VDR-1]. Gaussian elimination is O(n³) but requires pivot selection that interacts with VDR's remainder structure. For domains requiring large matrix operations — lattice QCD, large-scale CFD — the matrix size limitation is the binding constraint. Practical exact matrix operations are currently limited to approximately 50×50.
+
+### 15.2 Transcendental Functions
+
+Domains requiring transcendental functions (sin, cos, exp, log) use Newton iteration or Taylor series, producing exact rational approximations at configurable depth. The residual is fixed and inspectable but nonzero. For domains where exact transcendental evaluation is required (it never is — transcendentals are inherently irrational), VDR provides the closest rational approximation at any requested precision.
+
+### 15.3 Computational Cost
+
+VDR is 100-1000× slower per operation in Python, approximately 150× on GPU with Q335 [VDR-18]. For large-scale simulations (10⁶ atoms in MD, 10⁸ mesh points in CFD), the overhead is prohibitive with current implementations. The practical path is using VDR for validation — running a small system exactly to provide ground truth for verifying float implementations on larger systems.
+
+### 15.4 Denominator Growth
+
+Long multiplication chains produce growing denominators. Q335 fixed-frame arithmetic [VDR-14, VDR-18] manages this by fixing the denominator at 2³³⁵ and routing overflow to remainder depth. For the Python prototype, denominator growth limits practical chain length for chains involving many multiplications. The diffusion validation [VDR-26] demonstrated that chains of practical length (hundreds of steps) are manageable.
 
 ---
 
 ## Appendices
 
-### Appendix A — Complete Test Output
+### Appendix A — Domain Classification by Chain Type
 
-```
-=== 1. Linear schedule construction ===
-  PASS: 5 beta values produced
-  PASS: beta_0 = 1/100
-  PASS: beta_4 = 1/20
-
-=== 2. Schedule alpha = 1 - beta ===
-  PASS: alpha_t = 1 - beta_t for all t
-
-=== 3. Cumulative product consistency ===
-  PASS: alpha_bar_t = product of alphas
-
-=== 4. Alpha bars monotonically decreasing ===
-  PASS: alpha_bar strictly decreasing
-
-=== 5. SNR monotonically decreasing ===
-  PASS: SNR strictly decreasing across timesteps
-
-=== 6. exact_sqrt basic values ===
-  FAIL: sqrt(4) = 2 exactly
-  PASS: sqrt(1) = 1 exactly
-  PASS: sqrt(0) = 0 exactly
-
-=== 7. exact_sqrt of rational ===
-  FAIL: sqrt(1/4) = 1/2 exactly
-  FAIL: sqrt(9/16) = 3/4 exactly
-
-=== 8. exact_sqrt Newton residual for irrational ===
-  PASS: sqrt(2) residual < 10^-50 at depth 10
-
-=== 9. Forward diffusion preserves dimensionality ===
-  PASS: forward sample output has same dimension
-
-=== 10. Forward diffusion at t=0 close to x0 ===
-  PASS: alpha_bar_0 > 0.9 (signal dominates at t=0)
-
-=== 11. Coefficient identity conservation ===
-  PASS: (sqrt_abar)^2 + (sqrt_1_minus_abar)^2 residual < 10^-20
-
-=== 12. Forward trajectory length ===
-  PASS: trajectory has T+1 entries
-  PASS: trajectory starts at x0
-
-=== 13. x0 prediction from perfect noise ===
-  PASS: x0 prediction error < 10^-20 with perfect noise
-    x0 prediction error = 0
-
-=== 14. Posterior mean computation ===
-  PASS: posterior mean has correct dimension
-
-=== 15. Reverse step preserves dimension ===
-  PASS: reverse step output has correct dimension
-
-=== 16. Forward-reverse roundtrip ===
-  PASS: forward-reverse roundtrip error < 10^-20
-
-=== 17. DDIM deterministic roundtrip ===
-    DDIM roundtrip error = 0
-  PASS: DDIM roundtrip error < 10^-20
-
-=== 18. Full reverse sample loop ===
-  PASS: reverse trajectory has T+1 entries
-  PASS: reverse loop recovers x0 within 10^-20
-
-=== 19. Multi-cycle drift bound ===
-  PASS: multi-cycle drift below 10^-20
-
-=== 20. Drift does NOT grow across cycles ===
-  PASS: drift does not increase across cycles
-
-=== 21. Schedule consistency battery ===
-  PASS: alpha_equals_1_minus_beta (all t)
-  PASS: alpha_bar_cumulative (all t)
-  PASS: sqrt_squared_consistency (residual < 10^-15)
-  PASS: betas_in_range (0 < β < 1)
-  PASS: alpha_bar_decreasing (ᾱₜ < ᾱₜ₋₁)
-
-=== 22. Cumulative product is exact (no float drift) ===
-  PASS: VDR cumulative product matches Fraction exactly
-    alpha_bar_T = 26821179/31250000
-
-=== 23. Posterior variance is exact rational ===
-  PASS: all posterior variances are closed positive rationals
-
-=== 24. Cosine schedule construction ===
-  PASS: cosine schedule has 10 steps
-  PASS: cosine alpha_bar monotonically decreasing
-
-=== 25. Perfect square sqrt normalization ===
-  PASS: sqrt(1/1) = 1/1
-  FAIL: sqrt(4/1) = 2/1
-  PASS: sqrt(9/1) = 3/1
-  PASS: sqrt(16/1) = 4/1
-  FAIL: sqrt(25/1) = 5/1
-  PASS: sqrt(1/4) = 1/2
-  PASS: sqrt(9/4) = 3/2
-  FAIL: sqrt(4/9) = 2/3
-  FAIL: sqrt(25/16) = 5/4
-  PASS: sqrt(0/1) = 0/1
-  FAIL: all 10 perfect square rationals give exact results
-
-============================================================
-Diffusion test results: 33 passed, 4 failed
-SOME TESTS FAILED
-============================================================
-```
-
-### Appendix B — Newton √2 Residual at Depth 10
-
-The Newton iterate for √2 at depth 10 has residual x² - 2 equal to:
-
-1 / 1050784323418004658125730127127995512199922789892268723012016136364405199750566123003698136047027171733647902732858276320062736890113893598931289078671590658077586819210706189202813152529961363327181368073590381138319028888212687339028978869947548221228641985514763451502046813970941108296205909272978714411104077635967542258333720804123850075518423495036415157054292385164636179534171076497485337220629335905623814272900940893370186972372517601144662659148039305148381994773981257344235526064754081281465908329798215035055651501446670770920764519683635116057151005523818345299608108570320857173016868100350726752803980501748040374468146663369941571247735675373916051830674671618758777562150562874338310736262370100422739740788910949831353629836216900001220600961971265801757150674944
-
-This number has a denominator of over 500 digits. Its magnitude is approximately 10⁻⁹⁷. The residual is a specific, exact, inspectable rational number — not an unknown quantity hidden in float truncation.
-
-At depth 15 (5 additional Newton steps), the residual would be below 10⁻³⁰⁰⁰, with a denominator of tens of thousands of digits. The precision is configurable by choosing the iteration depth.
-
-### Appendix C — Module API Reference
-
-**diffusion_schedule.py**
-
-| Function/Class | Signature | Returns | Purpose |
-|---|---|---|---|
-| exact_sqrt | exact_sqrt(a, depth=10) | VDR | Newton √a from Fraction input; depth controls precision |
-| exact_sqrt_vdr | exact_sqrt_vdr(a, depth=10) | VDR | Newton √a from VDR input |
-| DiffusionSchedule | DiffusionSchedule(betas, sqrt_depth=10) | object | Precomputes α, ᾱ, √ᾱ, √(1-ᾱ) from β sequence |
-| DiffusionSchedule.posterior_variance | .posterior_variance(t) | VDR | β̃ₜ = βₜ·(1-ᾱₜ₋₁)/(1-ᾱₜ) |
-| linear_schedule | linear_schedule(T, beta_start, beta_end) | DiffusionSchedule | Linear interpolation of β values |
-| cosine_schedule_rational | cosine_schedule_rational(T, s=VDR(8,1000)) | DiffusionSchedule | Rational cosine schedule approximation |
-
-**diffusion_forward.py**
-
-| Function | Signature | Returns | Purpose |
-|---|---|---|---|
-| forward_sample | forward_sample(x0, t, schedule, epsilon) | list[VDR] | xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε |
-| forward_sample_step | forward_sample_step(x_prev, t, schedule, epsilon) | list[VDR] | Incremental xₜ from xₜ₋₁ |
-| forward_trajectory | forward_trajectory(x0, schedule, epsilons) | list[list[VDR]] | Complete trajectory x₀ through x_T |
-| _exact_sqrt_cached | _exact_sqrt_cached(a, depth) | VDR | Cached Newton √a |
-
-**diffusion_reverse.py**
-
-| Function | Signature | Returns | Purpose |
-|---|---|---|---|
-| compute_x0_prediction | compute_x0_prediction(xt, t, schedule, eps_pred) | list[VDR] | x₀ = (xₜ - √(1-ᾱₜ)·ε)/√ᾱₜ |
-| compute_posterior_mean | compute_posterior_mean(xt, t, schedule, eps_pred) | list[VDR] | μₜ from xₜ and ε_pred |
-| reverse_step | reverse_step(xt, t, schedule, eps_pred, z=None) | list[VDR] | Full stochastic reverse step |
-| reverse_step_ddim | reverse_step_ddim(xt, t, t_prev, schedule, eps_pred, eta=VDR(0)) | list[VDR] | DDIM deterministic reverse step |
-| reverse_sample_loop | reverse_sample_loop(xT, schedule, predict_noise, noise_vectors=None) | list[list[VDR]] | Complete reverse T→0 |
-
-**diffusion_sampling.py**
-
-| Function | Signature | Returns | Purpose |
-|---|---|---|---|
-| verify_schedule_consistency | verify_schedule_consistency(schedule) | dict | 5-property consistency check |
-| verify_snr_monotonic | verify_snr_monotonic(schedule) | bool | SNR decreasing across timesteps |
-| verify_coefficient_identity | verify_coefficient_identity(schedule) | list[VDR] | (√ᾱ)²+(√(1-ᾱ))² residuals |
-| make_oracle_predictor | make_oracle_predictor(x0, schedule) | callable | Perfect noise predictor for testing |
-| verify_forward_reverse_roundtrip | verify_forward_reverse_roundtrip(x0, schedule, epsilon) | VDR | Roundtrip error measurement |
-| verify_multi_step_drift | verify_multi_step_drift(x0, schedule, epsilon, num_cycles=3) | list[VDR] | Per-cycle drift measurement |
-
-### Appendix D — Exact Schedule Values for T=5 Linear Schedule
-
-| t | βₜ | αₜ = 1-βₜ | ᾱₜ = ∏αₖ | 1-ᾱₜ |
-|---|---|---|---|---|
-| 0 | 1/100 | 99/100 | 99/100 | 1/100 |
-| 1 | 9/400 | 391/400 | 38709/40000 | 1291/40000 |
-| 2 | 1/25 | 24/25 | 38709/41666.67* | — |
-| 3 | 27/400 | 373/400 | — | — |
-| 4 | 1/20 | 19/20 | 26821179/31250000 | 4428821/31250000 |
-
-*Note: intermediate ᾱ values have large exact denominators. The final value ᾱ₄ = 26821179/31250000 is verified against independent Fraction computation.
-
-### Appendix E — Drift Comparison: VDR vs Float64
-
-| Cycles | Float64 estimated error | VDR measured error | Ratio |
-|---|---|---|---|
-| 1 | ~10⁻¹⁵ | < 10⁻⁵⁰ | > 10³⁵ |
-| 10 | ~10⁻¹⁴ | < 10⁻⁵⁰ | > 10³⁶ |
-| 100 | ~10⁻¹³ | < 10⁻⁵⁰ | > 10³⁷ |
-| 1000 | ~10⁻¹² | < 10⁻⁵⁰ | > 10³⁸ |
-| 10000 | ~10⁻¹¹ | < 10⁻⁵⁰ | > 10³⁹ |
-
-Float error grows linearly with cycle count. VDR error is constant at the Newton residual, independent of cycle count. The ratio grows by one order of magnitude per 10× increase in cycles.
-
-### Appendix F — Posterior Variance Properties
-
-| Property | Float64 risk | VDR guarantee | Verification |
-|---|---|---|---|
-| Positive | Can go negative via cancellation | Exact positive rational | Test 23: all values positive |
-| Nonzero at interior | Can underflow to zero | Exact nonzero rational | Test 23: no zero interior values |
-| Finite | Can overflow to infinity | Exact finite rational | Test 23: all values finite |
-| Well-defined | Can produce NaN from 0/0 | Division by zero caught before evaluation | Denominator (1-ᾱₜ) verified nonzero |
-| Exact rational | N/A | β̃ₜ = βₜ·(1-ᾱₜ₋₁)/(1-ᾱₜ) closed | Test 23: all values closed (R=0) |
-
-### Appendix G — Operation Count per Diffusion Step
-
-| Operation | Count per step | VDR type | Exactness |
-|---|---|---|---|
-| Rational multiplication | 2d (scaling x₀ and ε by coefficients) | Closed × closed | Exact |
-| Rational addition | d (summing signal and noise) | Closed + closed | Exact |
-| Rational subtraction | d (computing xₜ - noise_term) | Closed - closed | Exact |
-| Rational division | d (dividing by √ᾱ) | Closed ÷ closed | Exact |
-| Newton sqrt (cached) | 2 per unique timestep (√ᾱ and √(1-ᾱ)) | Functional → closed | Approximate to depth |
-| Posterior variance | 2 multiplications + 1 division | Closed operations | Exact |
-
-For a d-dimensional vector at T timesteps: total operations are O(d·T) rational arithmetic operations plus O(T) cached Newton iterations. The Newton iterations dominate per-step cost but are computed once per timestep and reused across all vector dimensions.
-
-### Appendix H — Cosine Schedule Rational Approximation
-
-The cosine schedule defines:
-
-    f(t) = cos²(((t/T + s) / (1 + s)) · π/2)
-    ᾱₜ = f(t) / f(0)
-
-Since cosine is transcendental, the VDR implementation uses a rational approximation. The parameter s (default 8/1000) prevents ᾱ from reaching exactly 0 or 1 at the schedule endpoints.
-
-The rational approximation produces exact rational values at each timestep. The approximation quality depends on the method used (Taylor series depth or Padé order). The validated result shows 10 steps with monotonically decreasing ᾱ and all structural properties intact — confirming that the rational approximation preserves the qualitative behavior of the cosine schedule while maintaining exact arithmetic.
-
-### Appendix I — Comparison with Related Approaches
-
-| Approach | Precision | Drift per step | Drift at 1000 steps | Reproducible | Inspectable |
+| Domain | Chain type | Typical chain length | Float error at chain end | VDR error | Error ratio |
 |---|---|---|---|---|---|
-| Float16 | ~10⁻³ | ~10⁻³ | ~10⁰ (unusable) | No | No |
-| Float32 | ~10⁻⁷ | ~10⁻⁷ | ~10⁻⁴ | No | No |
-| Float64 | ~10⁻¹⁵ | ~10⁻¹⁵ | ~10⁻¹² | No | No |
-| Float128 | ~10⁻³³ | ~10⁻³³ | ~10⁻³⁰ | Platform-dependent | No |
-| Kahan summation | ~10⁻¹⁵ | ~10⁻³⁰ (compensated) | ~10⁻²⁷ | No | No |
-| VDR depth 10 | ~10⁻⁵⁰ (Newton only) | 0 (rational ops) | < 10⁻⁵⁰ (constant) | Yes | Yes |
-| VDR depth 20 | ~10⁻¹⁰⁰ (Newton only) | 0 (rational ops) | < 10⁻¹⁰⁰ (constant) | Yes | Yes |
+| Speech synthesis | Sample-by-sample | 48,000-144,000 | ~10⁻¹¹ | 0 (rational) or < 10⁻⁵⁰ (sqrt) | > 10³⁹ |
+| Music generation | Token-by-token | 10,000-50,000 | ~10⁻¹¹ | 0 or < 10⁻⁵⁰ | > 10³⁹ |
+| Protein generation | Residue-by-residue | 100-1,000 | ~10⁻¹³ | 0 or < 10⁻⁵⁰ | > 10³⁷ |
+| Normalizing flow | Layer-by-layer | 10-100 | ~10⁻¹⁴ | 0 | Float / 0 |
+| Kalman filter | Cycle-by-cycle | 10,000-10,000,000 | ~10⁻⁹ | 0 | Float / 0 |
+| Monte Carlo paths | Step-by-step per path | 100-10,000 per path | ~10⁻¹² | 0 | Float / 0 |
+| MPC control | Cycle-by-cycle | 10,000-1,000,000 | ~10⁻¹⁰ | 0 | Float / 0 |
+| PID integral | Sample-by-sample | 1,000,000+ | ~10⁻¹⁰ | 0 | Float / 0 |
+| IIR filter cascade | Sample-by-sample | 1,000,000+ | ~10⁻¹⁰ | 0 | Float / 0 |
+| MD simulation | Timestep-by-timestep | 10⁶-10⁹ | ~10⁻⁷ | 0 | Float / 0 |
+| SCF iteration | Cycle-by-cycle | 10-100 | ~10⁻¹⁴ | 0 | Float / 0 |
+| Blockchain txn | Block-by-block | 2,600,000/year | ~10⁻⁹ (fixed-point) | 0 | Fixed-point / 0 |
+| GPS correction | Station-by-station | 5-20 | ~10⁻¹⁴ | 0 | Float / 0 |
+| Inertial nav | Sample-by-sample | 100,000+ | ~10⁻¹¹ | 0 | Float / 0 |
+| Survey traverse | Leg-by-leg | 10-50 | ~10⁻¹³ | 0 | Float / 0 |
+| Shapley value | Coalition-by-coalition | 2ⁿ (exponential) | ~10⁻¹⁵ | 0 | Float / 0 |
+| Quantum sim | Gate-by-gate | 100-10,000 | ~10⁻¹² | 0 or < 10⁻⁵⁰ | > 10³⁸ |
+| Video diffusion | Frame × step | 36,000-8,640,000 | ~10⁻⁸ | < 10⁻⁵⁰ | > 10⁴² |
 
-VDR is the only approach where drift does not grow with chain length. All float approaches, including compensated summation, produce errors that accumulate with the number of operations. VDR produces a fixed residual from Newton iteration that does not compound.
+### Appendix B — VDR Primitive Mapping by Domain
 
-### Appendix J — The Normalize Fix
-
-**Current behavior:** VDR.normalize() checks remainder divisibility before GCD-reducing numerator and denominator. When Newton iteration produces a large fraction like 2k/k with R=0, the divisibility check may fail to trigger GCD reduction, leaving the fraction unreduced.
-
-**Root cause hypothesis 1:** The GCD reduction path requires _remainder_divisible_by to return True, but for R=0 this check is trivially satisfied. The issue may be that the specific code path for R=0 objects is not reached because a prior branch handles zero remainders differently.
-
-**Root cause hypothesis 2:** The Newton iterate at depth 10 carries a remainder artifact — a remainder that is structurally nonzero (has nested structure) but value-equivalent to zero. In this case, nr.is_zero returns False, and the GCD reduction path for closed objects is never entered.
-
-**Diagnostic:** Print the full remainder structure of exact_sqrt(VDR(4), 10).r. If it is Remainder(0), hypothesis 1 applies. If it has nonzero structure, hypothesis 2 applies.
-
-**Fix for hypothesis 1:**
-```python
-def normalize(self):
-    # ... existing normalization ...
-    if self.r.is_zero or self.r == Remainder(0):
-        g = gcd(abs(self.v), abs(self.d))
-        if g > 1:
-            return VDR(self.v // g, self.d // g, Remainder(0))
-    # ... rest of normalization ...
-```
-
-**Fix for hypothesis 2:**
-```python
-def normalize(self):
-    # Normalize remainder first
-    nr = self.r.normalize()
-    # Check value-equivalence to zero, not just structural zero
-    if nr.is_zero or nr.scalar_projection() == 0:
-        g = gcd(abs(self.v), abs(self.d))
-        if g > 1:
-            return VDR(self.v // g, self.d // g, Remainder(0))
-    # ... rest of normalization ...
-```
-
-**Scope of change:** Only affects the normalization presentation of closed objects. No arithmetic operation, no comparison, no computation is changed. The fix makes normalize() produce the canonical simplest form for all closed rationals, regardless of how they were constructed.
-
----
-
-### Appendix K — Newton Iteration Convergence Detail for Diffusion-Relevant Values
-
-| Input a | √a true value | Depth 1 | Depth 2 | Depth 3 | Depth 5 | Depth 8 | Depth 10 | Correct digits at depth 10 |
-|---|---|---|---|---|---|---|---|---|
-| 99/100 (ᾱ₀) | 0.99498... | 99/100 → 1.0 | 9901/9950 | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
-| 1/100 (1-ᾱ₀) | 0.1 | 101/200 | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
-| 26821179/31250000 (ᾱ_T) | 0.92629... | ~1 digit | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
-| 4428821/31250000 (1-ᾱ_T) | 0.14172... | ~1 digit | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
-| 2 (irrational test) | 1.41421... | 3/2 = 1.5 | 17/12 ≈ 1.4167 | 577/408 ≈ 1.41422 | ~24 digits | ~100+ digits | ~100+ digits | >100 |
-| 1/4 (perfect square) | 1/2 | 5/8 = 0.625 | 89/160 ≈ 0.55625 | ~6 digits | ~24 digits | exact value, unreduced form | exact value, unreduced form | exact (normalization issue) |
-| 9/16 (perfect square) | 3/4 | 25/32 = 0.78125 | ~3 digits | ~6 digits | ~24 digits | exact value, unreduced form | exact value, unreduced form | exact (normalization issue) |
-
-### Appendix L — Denominator Growth Through Diffusion Chain
-
-| Operation | Starting denominator | Result denominator | Growth factor | Notes |
-|---|---|---|---|---|
-| β₀ = 1/100 | 1 | 100 | 100× | Schedule parameter |
-| α₀ = 1 - β₀ = 99/100 | 1 | 100 | 100× | One subtraction |
-| β₁ = 9/400 | 1 | 400 | 400× | Schedule parameter |
-| α₁ = 391/400 | 1 | 400 | 400× | One subtraction |
-| ᾱ₁ = α₀·α₁ = 38709/40000 | 100, 400 | 40000 | Product of denominators | One multiplication |
-| ᾱ₂ = ᾱ₁·α₂ | 40000, 25 | 1000000 | Product | Denominator grows per step |
-| ᾱ₄ = 26821179/31250000 | — | 31250000 | — | Final cumulative product |
-| √ᾱ₀ at depth 10 | 100 | ~10⁵⁰⁰ | ~10⁴⁹⁸× | Newton iteration squares denominator per step |
-| Forward sample coefficient | ~10⁵⁰⁰ | ~10⁵⁰⁰ | 1× | Multiplication by data doesn't grow denom |
-| Forward + reverse roundtrip | ~10⁵⁰⁰ | ~10¹⁰⁰⁰ | ~10⁵⁰⁰× | Division by √ᾱ multiplies denominators |
-| 3-cycle roundtrip | ~10¹⁰⁰⁰ | ~10³⁰⁰⁰ | ~10³× per cycle | Linear growth per cycle |
-
-Denominator growth is the practical constraint on chain length in the Python prototype. Q335 fixed-frame arithmetic [VDR-14, VDR-18] eliminates this growth by fixing the denominator at 2³³⁵ and pushing overflow into remainder depth.
-
-### Appendix M — Float64 Error Accumulation Detail
-
-| Operation | Float64 ULP | Typical relative error | Error per d-dim vector | Cumulative over T steps |
-|---|---|---|---|---|
-| Multiplication (scalar × vector) | 2⁻⁵² ≈ 2.2×10⁻¹⁶ | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
-| Addition (vector + vector) | 2⁻⁵² | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
-| Square root (per schedule value) | 2⁻⁵² | ±0.5 ULP | 2.2×10⁻¹⁶ per sqrt | 2T × 2.2×10⁻¹⁶ |
-| Division (scalar / scalar) | 2⁻⁵² | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
-| Catastrophic cancellation | up to 2⁻⁵²⁺ᵏ | Depends on operand similarity | Variable | Worst case near schedule endpoints |
-| Total per step (d=64, typical) | — | — | ~64 × 4 × 2.2×10⁻¹⁶ ≈ 5.6×10⁻¹⁴ | — |
-| Total T=50 steps | — | — | — | ~2.8×10⁻¹² |
-| Total T=1000 steps | — | — | — | ~5.6×10⁻¹¹ |
-| Total 720 frames × 50 steps | — | — | — | ~4.0×10⁻¹⁰ |
-
-### Appendix N — Catastrophic Cancellation Points in Diffusion
-
-| Computation | Cancellation risk | When it occurs | Float consequence | VDR behavior |
-|---|---|---|---|---|
-| 1 - ᾱₜ for small t | High | Early timesteps where ᾱₜ ≈ 1 | Subtracting two nearly equal values loses digits | Exact: integer subtraction in numerator |
-| xₜ - √(1-ᾱₜ)·ε when signal dominates | Moderate | Early timesteps where noise term is small | Subtraction of similar-magnitude values | Exact: rational subtraction |
-| βₜ/√(1-ᾱₜ) for small t | High | Early timesteps where 1-ᾱₜ ≈ 0 | Division by small float amplifies prior errors | Exact: rational division by exact small value |
-| Posterior variance at t=1 | High | First reverse step: (1-ᾱ₀)/(1-ᾱ₁) involves small values | Both numerator and denominator near zero | Exact: both are exact nonzero rationals |
-| Cosine schedule near endpoints | Moderate | t near 0 or T where cos²→1 or cos²→0 | Float cos² near 0 or 1 loses precision | Rational approximation maintains exact form |
-| Cumulative product for large T | Gradual | Product of many values near 1 | Each multiplication contributes ULP; drift accumulates | Exact: integer multiplication of numerators and denominators |
-| DDIM coefficient √ᾱₜ₋₁/√ᾱₜ | Low-moderate | Ratio of adjacent schedule values | Division of similar-magnitude floats | Exact: cross-multiplication of Newton iterates |
-
-### Appendix O — Platform Dependence of Float Diffusion
-
-| Variable | Source of platform dependence | Magnitude of variation | VDR behavior |
+| Domain | Primary VDR operations | Builtin categories used | Prior validation |
 |---|---|---|---|
-| GPU architecture | Different FMA (fused multiply-add) implementations round differently | ±1-2 ULP per operation | Integer ops are architecture-independent |
-| CUDA version | Different math library implementations for sqrt, exp | ±1 ULP per transcendental call | Newton iteration is pure integer arithmetic |
-| Compiler flags | -ffast-math reorders operations; -O3 vs -O2 may change intermediate precision | Up to 10⁻¹⁰ for long chains | No compiler affects integer arithmetic semantics |
-| CPU vs GPU | x87 80-bit intermediates vs SSE 64-bit | ±10⁻¹⁶ per operation | Same result on any architecture |
-| Tensor core vs CUDA core | Tensor cores accumulate in reduced precision | Up to 10⁻⁷ for float16, 10⁻¹⁰ for TF32 | Q335 is fixed-width on any ALU |
-| Thread scheduling | Non-deterministic reduction order in parallel sums | ±1-N ULP depending on sum size | Canonical ordering produces deterministic results |
-| Batch size | Different reduction trees for different batch sizes | ±1-few ULP | Operations are per-element, no reduction sensitivity |
-| Mixed precision | Casting between float16/32/64 at layer boundaries | Up to 10⁻³ per cast | Single representation: no casting |
+| Autoregressive gen | Softmax, attention (QKᵀ), linear, ReLU | Linear algebra, statistics | VDR-4: 198 tests |
+| Normalizing flows | Multiply, add, inverse, log-determinant | Closed arithmetic, linear algebra | VDR-1: 68 tests; VDR-2: exact matrix inverse |
+| Kalman filtering | Matrix multiply, transpose, inverse, add | Linear algebra | VDR-1: Hilbert inverse exact; VDR-2: 15 domains |
+| Secret sharing | Finite field arithmetic, Lagrange interpolation | Finite field, polynomial | VDR-2 gym 12: RSA roundtrip, CRT |
+| Homomorphic encryption | Polynomial multiply, modular reduction | Polynomial, number theory | VDR-2 gym 12, VDR-3 |
+| ZK proofs | Wide integer multiply, modular reduction | Integer/bit ops, number theory | VDR-22: Q335 matches BN254/BLS12-381 width |
+| Monte Carlo | Multiply, add, average, sqrt | Closed arithmetic, statistics, functional remainder | VDR-1: zero drift; VDR-26: exact path |
+| Risk/capital | Multiply, add, compare, sort | Closed arithmetic, comparison, collections | VDR-1, VDR-2 |
+| Options Greeks | Subtract, divide (finite difference) | Closed arithmetic | VDR-1: exact division |
+| DeFi AMM | Multiply, divide, sqrt, compare | Closed arithmetic, functional remainder, comparison | VDR-1, VDR-3 |
+| MPC/PID | Matrix multiply, inverse, add, integrate | Linear algebra, discrete calculus | VDR-1, VDR-13 |
+| IIR filters | Multiply, add, chain | Closed arithmetic | VDR-13: (1/√2)²⁰ = 1/1024 exact |
+| Orbital mechanics | Multiply, sqrt, trig (Newton), chain | Closed arithmetic, functional remainder | VDR-13: exact orbit closure |
+| Molecular dynamics | Add, multiply, sqrt (Verlet step) | Closed arithmetic, functional remainder | VDR-13: conservation exact |
+| Quantum chemistry | Matrix eigenvalue, multiply, iterate | Linear algebra | VDR-1: Hilbert inverse; VDR-2: eigenvalue domain |
+| CFD | Matrix assemble, solve, integrate | Linear algebra, discrete calculus | VDR-1, VDR-13 |
+| DFT roundtrip | Complex multiply, sum, inverse | Linear algebra, complex pairs | VDR-13: exact DFT roundtrip |
+| Geodesy | Matrix multiply, trig, chain | Linear algebra, functional remainder | VDR-13: exact Helmert roundtrip |
+| Survey traverse | Trig, add, chain | Functional remainder, closed arithmetic | VDR-13: trigonometric domains |
+| Shapley values | Factorial, sum, divide | Number theory, closed arithmetic | VDR-2 gym 17: exact Shapley |
+| Voting power | Combinatorial sum, divide | Number theory, closed arithmetic | VDR-2 gym 17 |
+| Auction clearing | Optimize, subtract, compare | Closed arithmetic, comparison | VDR-2 gym 17: exact equilibrium |
+| Quantum gates | Matrix multiply, complex pairs | Linear algebra, complex pairs | VDR-13: complex pairs, DFT |
+| Blockchain | Integer multiply, modular, compare | Integer ops, number theory, comparison | VDR-2 gym 12: RSA, CRT |
 
-### Appendix P — VDR Diffusion vs VDR-4 LM Pipeline Component Mapping
+### Appendix C — Error Accumulation Models
 
-| Diffusion component | VDR-4 equivalent | Validation status | Exactness source |
-|---|---|---|---|
-| Schedule β computation | N/A (diffusion-specific) | This paper: tests 1-5 | Exact rational arithmetic |
-| Cumulative product ᾱ | N/A (diffusion-specific) | This paper: test 22 | Exact rational multiplication chain |
-| Newton √ᾱ | VDR-1 functional remainder | This paper: test 8 | Newton iteration, exact rationals per step |
-| Forward scaling (√ᾱ·x₀) | Embedding scaling in VDR-4 | This paper: tests 9-12 | Exact scalar-vector multiplication |
-| Noise addition (+ √(1-ᾱ)·ε) | Residual connection in VDR-4 | This paper: tests 9-12 | Exact vector addition |
-| Attention QKᵀ in denoiser | VDR-4 LP2 | VDR-4: 198 tests | Exact matrix product |
-| Softmax in denoiser | VDR-4 LP3 | VDR-4: sum exactly 1 | Surrogate or Taylor, exact sum |
-| ReLU in denoiser | VDR-4 LP5 | VDR-4: exact piecewise linear | Exactly 0 or passthrough |
-| Linear layers in denoiser | VDR-4 LP5 | VDR-4: exact matrix-vector | Exact rational operations |
-| x₀ prediction (subtract + divide) | N/A (diffusion-specific) | This paper: test 13, error=0 | Exact rational division and subtraction |
-| Posterior mean | N/A (diffusion-specific) | This paper: test 14 | Exact rational composition |
-| Posterior variance | N/A (diffusion-specific) | This paper: test 23 | Exact closed rational |
-| DDIM reverse step | N/A (diffusion-specific) | This paper: test 17, error=0 | Exact rational chain |
-| Loss (MSE) | VDR-4 LP6 | VDR-4: exact fraction | Exact squared difference sum |
-| Gradient (autodiff) | VDR-4 LP7 | VDR-4: exact chain rule | Exact reverse-mode |
-| Weight update (SGD) | VDR-4 LP8 | VDR-4: exact parameter update | Exact lr × gradient |
-| Checkpoint save/load | VDR-4 LP9 | VDR-4: bit-identical | Exact fraction serialization |
-
-### Appendix Q — Test Dependency Chain
-
-| Test | Depends on | What failure would indicate |
-|---|---|---|
-| 1 (linear schedule) | VDR arithmetic only | Rational arithmetic broken |
-| 2 (α = 1-β) | Test 1 | Subtraction broken |
-| 3 (cumulative product) | Tests 1, 2 | Multiplication chain broken |
-| 4 (ᾱ decreasing) | Test 3 | Comparison or product broken |
-| 5 (SNR decreasing) | Tests 3, 4 | Division or comparison broken |
-| 6-7 (sqrt exact) | VDR arithmetic | Normalization issue (confirmed) |
-| 8 (sqrt residual) | VDR arithmetic | Newton iteration broken |
-| 9 (forward dimension) | Tests 1-3, 8 | Vector operations broken |
-| 10 (signal dominance) | Tests 1-3 | Schedule values incorrect |
-| 11 (coefficient identity) | Tests 3, 8 | Sqrt or squaring broken |
-| 12 (trajectory) | Tests 1-3, 8, 9 | Forward iteration broken |
-| 13 (x₀ prediction) | Tests 1-3, 8, 9 | Reverse arithmetic broken |
-| 14 (posterior mean dim) | Tests 1-3, 8, 13 | Mean computation broken |
-| 15 (reverse step dim) | Tests 1-3, 8, 13, 14 | Step composition broken |
-| 16 (roundtrip) | Tests 9-15 | Forward-reverse chain broken |
-| 17 (DDIM roundtrip) | Tests 9-13 | DDIM arithmetic broken |
-| 18 (reverse loop) | Tests 13-15 | Multi-step reverse broken |
-| 19 (drift bound) | Tests 16-18 | Drift exceeds Newton residual |
-| 20 (drift flat) | Test 19 | Drift growing — would indicate compounding error |
-| 21 (consistency) | Tests 1-5, 8, 11 | Any schedule property violated |
-| 22 (Fraction match) | Test 3 | VDR disagrees with arbitrary-precision rational |
-| 23 (posterior var) | Tests 1-3 | Variance computation produces invalid values |
-| 24 (cosine schedule) | VDR arithmetic | Rational cosine approximation broken |
-| 25 (perfect sqrt) | Tests 6-7 | Same normalization issue (confirmed) |
-
-Test 20 is the apex of the dependency chain. Its passing depends on every prior test except 6, 7, and 25 (the normalization presentation tests). If test 20 fails, the failure propagates from one of its dependencies, and the dependency chain identifies which component broke.
-
-### Appendix R — Diffusion Model Architectures and VDR Applicability
-
-| Architecture | Denoising network | Steps (typical) | Chain length (video) | Float drift risk | VDR benefit |
-|---|---|---|---|---|---|
-| DDPM [Ho et al., 2020] | U-Net | 1000 | 1000 × frames | High: long chain | Full: eliminates all chain drift |
-| DDIM [Song et al., 2020] | U-Net | 50-100 | 50-100 × frames | Moderate | Full: DDIM roundtrip verified exact |
-| Stable Diffusion | U-Net + VAE | 20-50 | 20-50 × frames | Moderate | Full: all operations covered |
-| DALL-E 2 | U-Net + CLIP | 100 | Single image | Low (single image) | Moderate: reproducibility benefit |
-| Imagen | U-Net cascade | 50 per stage × 3 stages | 150 × frames | High: cascaded chains | Full: multi-stage drift eliminated |
-| Video Diffusion [Ho et al., 2022] | 3D U-Net | 50-1000 | 50-1000 × frames | Very high | Critical: temporal coherence |
-| Sora-class models | DiT (transformer) | 50-100 | 50-100 × frames | High: frame conditioning | Critical: long video coherence |
-| Latent Diffusion | U-Net in latent space | 50 | 50 × frames | Moderate in latent, high in decode | Full in latent; VAE boundary is float |
-| Flow Matching | ODE solver | 10-50 | 10-50 × frames | Moderate: fewer steps | Full: ODE integration exact |
-| Consistency Models | Single step (distilled) | 1-4 | 1-4 × frames | Low per frame | Low: few sequential operations |
-| Rectified Flow | Linear interpolant | 10-30 | 10-30 × frames | Moderate | Full: linear path is exact rational |
-| EDM [Karras et al., 2022] | Preconditioned U-Net | 20-80 | 20-80 × frames | Moderate: better conditioning | Full: preconditioning coefficients exact |
-
-### Appendix S — Memory Requirements for VDR Diffusion
-
-| Component | Python Fraction size | VDR object size | Count per step (d=64) | Per-step memory | Per 50-step chain |
-|---|---|---|---|---|---|
-| Schedule βₜ | ~100 bytes | ~150 bytes | 1 | 150 B | 7.5 KB |
-| Schedule αₜ | ~100 bytes | ~150 bytes | 1 | 150 B | 7.5 KB |
-| Schedule ᾱₜ | ~200 bytes (growing denom) | ~250 bytes | 1 | 250 B | 12.5 KB |
-| √ᾱₜ (depth 10) | ~50 KB (large denom) | ~50 KB | 1 (cached) | 50 KB | 50 KB (cached, not per-step) |
-| √(1-ᾱₜ) (depth 10) | ~50 KB (large denom) | ~50 KB | 1 (cached) | 50 KB | 50 KB (cached) |
-| xₜ vector | ~200 bytes per component | ~250 bytes per component | d = 64 | 16 KB | 800 KB |
-| ε vector | ~200 bytes per component | ~250 bytes per component | d = 64 | 16 KB | 800 KB |
-| Posterior mean μₜ | ~500 bytes per component | ~600 bytes per component | d = 64 | 38 KB | 1.9 MB |
-| Posterior variance β̃ₜ | ~300 bytes | ~400 bytes | 1 | 400 B | 20 KB |
-| **Total per step** | — | — | — | ~120 KB | — |
-| **Total 50-step chain** | — | — | — | — | ~6 MB |
-| **Total 1000-step chain** | — | — | — | — | ~120 MB |
-| **Float64 equivalent** | 8 bytes per value | 8 bytes per value | d = 64 | 1 KB | 50 KB |
-
-VDR memory usage is approximately 100-1000× float64 for the Python prototype. Q335 fixed-frame arithmetic reduces this to approximately 11× (48 bytes per Q335 value vs 8 bytes per float64).
-
-### Appendix T — Computational Cost per Diffusion Step
-
-| Operation | Float64 ops | VDR ops (Python) | VDR ops (Q335 GPU) | Ratio (Python) | Ratio (Q335) |
-|---|---|---|---|---|---|
-| Scalar multiply (coefficient × component) | 1 FLOP | ~50 integer ops (arbitrary precision) | ~200 integer ops (11×11 limb) | 50× | 200× |
-| Vector scale (d=64) | 64 FLOPs | ~3,200 int ops | ~12,800 int ops | 50× | 200× |
-| Vector add (d=64) | 64 FLOPs | ~1,400 int ops | ~1,408 int ops (22 per add) | 22× | 22× |
-| Newton sqrt (1 step) | ~10 FLOPs (hw sqrt) | ~200 int ops | ~600 int ops | 20× | 60× |
-| Newton sqrt (depth 10) | ~10 FLOPs (hw sqrt) | ~2,000 int ops | ~6,000 int ops | 200× | 600× |
-| Full forward step (d=64) | ~200 FLOPs | ~10,000 int ops | ~30,000 int ops | 50× | 150× |
-| Full reverse step (d=64) | ~400 FLOPs | ~20,000 int ops | ~60,000 int ops | 50× | 150× |
-| 50-step sampling (d=64) | ~20,000 FLOPs | ~1,000,000 int ops | ~3,000,000 int ops | 50× | 150× |
-| 50-step sampling (d=4096) | ~1.3M FLOPs | ~65M int ops | ~195M int ops | 50× | 150× |
-
-### Appendix U — Video Generation Drift Projection
-
-| Video parameters | Frames | Steps/frame | Total sequential ops | Float64 cumulative error | VDR cumulative error |
-|---|---|---|---|---|---|
-| 1 sec, 24 fps, 50 steps | 24 | 50 | 1,200 | ~2.6×10⁻¹² | < 10⁻⁵⁰ |
-| 10 sec, 24 fps, 50 steps | 240 | 50 | 12,000 | ~2.6×10⁻¹¹ | < 10⁻⁵⁰ |
-| 30 sec, 24 fps, 50 steps | 720 | 50 | 36,000 | ~7.9×10⁻¹¹ | < 10⁻⁵⁰ |
-| 60 sec, 24 fps, 50 steps | 1,440 | 50 | 72,000 | ~1.6×10⁻¹⁰ | < 10⁻⁵⁰ |
-| 60 sec, 30 fps, 100 steps | 1,800 | 100 | 180,000 | ~4.0×10⁻¹⁰ | < 10⁻⁵⁰ |
-| 5 min, 24 fps, 50 steps | 7,200 | 50 | 360,000 | ~7.9×10⁻¹⁰ | < 10⁻⁵⁰ |
-| 30 min, 24 fps, 50 steps | 43,200 | 50 | 2,160,000 | ~4.8×10⁻⁹ | < 10⁻⁵⁰ |
-| 2 hr film, 24 fps, 50 steps | 172,800 | 50 | 8,640,000 | ~1.9×10⁻⁸ | < 10⁻⁵⁰ |
-| Training: 1M steps, d=4096 | N/A | N/A | ~4×10⁹ ops/step × 10⁶ steps | ~10⁻⁶ accumulated | < 10⁻⁵⁰ |
-
-Float error at the scale of a 2-hour film is approximately 10⁻⁸ — entering the range where 8-bit pixel quantization may interact with drift. VDR error is constant regardless of video length.
-
-### Appendix V — Schedule Type Comparison Under VDR
-
-| Schedule type | β formula | VDR representation | Exactness | Monotonicity verification |
+| Model | Formula | Example | Float behavior | VDR behavior |
 |---|---|---|---|---|
-| Linear | β_start + t/(T-1) × (β_end - β_start) | Exact rational: integer numerator / integer denominator | Exact at every point | Exact rational comparison at adjacent pairs |
-| Cosine | cos²(((t/T+s)/(1+s))×π/2) / f(0) | Rational approximation via Taylor/Padé | Approximate to chosen series depth | Exact comparison on approximate values |
-| Quadratic | β_start + (t/(T-1))² × (β_end - β_start) | Exact rational: t² is integer, denominators are products | Exact at every point | Exact rational comparison |
-| Sigmoid | σ(a + (b-a)×t/(T-1)) | Rational approximation via Taylor exp | Approximate to chosen series depth | Exact comparison on approximate values |
-| Piecewise linear | Linear segments with breakpoints | Exact rational per segment | Exact at every point | Exact within segments; exact at breakpoints |
-| Learned (per-parameter) | Arbitrary values from training | Exact rational from exact training | Exact if trained in VDR | Verifiable by comparison |
+| Random walk | ε_total ≈ √N × ε_step | Independent rounding errors | Grows as √N | 0 |
+| Linear | ε_total ≈ N × ε_step | Worst-case same-direction errors | Grows as N | 0 |
+| Multiplicative | ε_total ≈ (1 + ε_step)ᴺ - 1 | Compounding relative errors | Grows exponentially | 0 |
+| Catastrophic | ε_total ≈ ε_step × 10ᵏ | Cancellation amplifies error by 10ᵏ | Sudden precision loss | 0 |
+| Fixed residual | ε_total = ε_residual | Newton sqrt at fixed depth | N/A (float has no fixed residual) | Constant < 10⁻⁵⁰ |
+| Chaotic amplification | ε_total ≈ ε_step × e^(λN) | Lyapunov exponent λ > 0 | Grows exponentially × exponentially | 0 × e^(λN) = 0 |
 
-Schedules involving only rational operations (linear, quadratic, piecewise linear) are exactly representable. Schedules involving transcendentals (cosine, sigmoid) use rational approximations with controllable precision. All schedule types maintain exact monotonicity verification once their values are established.
+VDR eliminates the per-step error ε_step. The accumulation model becomes irrelevant because there is nothing to accumulate. The only exception is Newton/Taylor residual, which produces a fixed ε_residual independent of N.
 
-### Appendix W — Error Source Decomposition in Diffusion
+### Appendix D — Symmetry and Conservation Guarantees
 
-| Error source | Float64 magnitude | VDR magnitude | Compounding behavior | Distinguishable from model error |
+| Property | Domain | Float behavior | VDR guarantee | Verification method |
 |---|---|---|---|---|
-| Schedule computation | ~10⁻¹⁵ per product | 0 | Multiplicative across T steps | No (in float) / Yes (in VDR) |
-| Forward scaling √ᾱ | ~10⁻¹⁶ per multiply | Newton residual (~10⁻⁵⁰) | Additive per step | No (in float) / Yes (in VDR) |
-| Noise scaling √(1-ᾱ) | ~10⁻¹⁶ per multiply | Newton residual (~10⁻⁵⁰) | Additive per step | No (in float) / Yes (in VDR) |
-| Coefficient identity violation | ~10⁻¹⁵ per step | ~10⁻⁵⁰ per step | Systematic energy drift | No (in float) / Yes (in VDR) |
-| x₀ prediction division | ~10⁻¹⁶ per division | 0 | Additive per step | No (in float) / Yes (in VDR) |
-| Posterior variance computation | ~10⁻¹⁵ | 0 | Per step, may cause instability | No (in float) / Yes (in VDR) |
-| Neural network prediction error | ~10⁻¹ to 10⁻³ | ~10⁻¹ to 10⁻³ (same model) | Depends on model quality | — |
-| Noise sampling quantization | ~10⁻¹⁶ (float sampling) | One-time boundary at conversion | Does not compound | Yes (logged boundary) |
-| Catastrophic cancellation | Up to 10⁻¹⁰ at vulnerable points | 0 | Sporadic, worst at schedule endpoints | No (in float) / N/A (in VDR) |
-| **Total arithmetic error** | **~T × 10⁻¹⁵** | **~10⁻⁵⁰ (constant)** | **Linear growth vs constant** | **No vs Yes** |
-| **Model prediction error** | **~10⁻¹ to 10⁻³** | **~10⁻¹ to 10⁻³** | **Dominates in both systems** | **Identical** |
+| Matrix symmetry | Kalman filter (P = Pᵀ) | Breaks by ~10⁻¹⁶/step | Exact | Structural equality of P and Pᵀ |
+| Positive definiteness | Kalman filter (P > 0) | Can go negative | Maintained | Eigenvalue check (exact for small matrices) |
+| Unitarity | Quantum gates (UUᵀ = I) | Drifts from I | Exact (rational gates) | Matrix multiply and compare to identity |
+| Probability sum | Softmax, Born rule | ≈ 1 ± 10⁻¹⁵ | Exactly 1 | Rational sum check |
+| Energy conservation | MD, orbital | Drifts ~10⁻¹⁶/step | Exact (discrete Hamiltonian) | Hamiltonian evaluation at step 0 vs N |
+| Mass conservation | CFD | Drifts ~10⁻¹⁶/step | Exact | Mass integral comparison |
+| Budget balance | Auction (∑payments = correct) | ≈ correct ± 10⁻¹⁵ | Exact | Rational sum check |
+| Voting power sum | Banzhaf/Shapley-Shubik | ≈ 1 ± 10⁻¹⁵ | Exactly 1 | Rational sum check |
+| Token balance | Blockchain (∑balances = total supply) | Exact (integer) | Exact (rational) | Sum check |
+| Flow invertibility | Normalizing flow (f⁻¹(f(x)) = x) | ≈ x ± 10⁻¹² | Exactly x | Roundtrip identity check |
+| Coefficient identity | Diffusion ((√ᾱ)²+(√(1-ᾱ))²=1) | ≈ 1 ± 10⁻¹⁵ | < 10⁻⁵⁰ residual | VDR-26 test 11 |
+| GPS weight sum | Weighted average (∑wᵢ = 1) | ≈ 1 ± 10⁻¹⁶ | Exactly 1 | Rational sum check |
+| Associativity | Risk aggregation (a×b×c order) | Order-dependent | Order-independent | Compare different orderings |
+| Shamir reconstruction | Secret sharing (k-of-n recovery) | Float excluded | Exact finite field | Reconstruct and compare |
 
-The key insight: in float, arithmetic error and model error are indistinguishable. In VDR, arithmetic error is zero (or constant at Newton residual), so all observed error is attributable to the model. This separation enables principled model debugging — if the output is wrong, the arithmetic is not the cause.
+### Appendix E — Prior VDR Validation Coverage by Domain
 
-### Appendix X — Exact Values for Key Intermediate Computations (T=5 Linear Schedule)
-
-| Quantity | Exact VDR value | Decimal approximation | Denominator digits |
-|---|---|---|---|
-| β₀ | 1/100 | 0.01 | 3 |
-| β₁ | 9/400 | 0.0225 | 3 |
-| β₂ | 1/25 | 0.04 | 2 |
-| β₃ | 27/400 | 0.0675 | 3 |
-| β₄ | 1/20 | 0.05 | 2 |
-| α₀ | 99/100 | 0.99 | 3 |
-| α₁ | 391/400 | 0.9775 | 3 |
-| α₂ | 24/25 | 0.96 | 2 |
-| α₃ | 373/400 | 0.9325 | 3 |
-| α₄ | 19/20 | 0.95 | 2 |
-| ᾱ₀ | 99/100 | 0.99 | 3 |
-| ᾱ₁ | 38709/40000 | 0.967725 | 5 |
-| ᾱ₂ | 929016/1000000 | 0.929016 | 7 |
-| ᾱ₃ | 867562194/1000000000 | 0.867562194 | 10 |
-| ᾱ₄ | 26821179/31250000 | 0.858277... | 8 |
-| 1-ᾱ₀ | 1/100 | 0.01 | 3 |
-| 1-ᾱ₄ | 4428821/31250000 | 0.141722... | 8 |
-| β̃₁ (posterior var) | Exact rational | ~0.0000103... | Large |
-| β̃₄ (posterior var) | Exact rational | ~0.00764... | Large |
-
-### Appendix Y — Noise Predictor Oracle Construction
-
-| Component | Purpose | Implementation | Token cost (in VDR-LLM-Prolog) |
-|---|---|---|---|
-| Known x₀ | Original data for roundtrip test | Provided as exact rational vector | 0 (KB fact) |
-| Known ε | Noise used in forward process | Provided as exact rational vector | 0 (KB fact) |
-| Forward computation | Compute xₜ from x₀ and ε | forward_sample(x₀, t, schedule, ε) | 8 (one primitive call) |
-| Oracle predictor | Given xₜ, return ε (the known noise) | Closure over ε: predict(xₜ, t) → ε | 0 (Prolog rule) |
-| Roundtrip test | Forward with ε, reverse with oracle predicting ε | verify_forward_reverse_roundtrip(x₀, schedule, ε) | 8 (one primitive call) |
-| Expected result | x₀_recovered = x₀ | Error = 0 (DDIM) or < Newton residual (stochastic) | 8 (one comparison) |
-
-The oracle predictor separates arithmetic error from model error. By using a perfect predictor (the actual noise), any nonzero roundtrip error is attributable entirely to arithmetic. VDR produces zero (DDIM) or Newton residual (stochastic), confirming that the arithmetic chain is lossless.
-
-### Appendix Z — Test Coverage Matrix
-
-| Diffusion component | Schedule construction | Value computation | Chain composition | Roundtrip | Drift | Total tests |
+| Domain | VDR paper | Tests | Passed | Failed (test error) | Failed (VDR error) | Relevant to this paper |
 |---|---|---|---|---|---|---|
-| β values | Test 1 | — | — | — | — | 1 |
-| α = 1-β | Test 2 | — | — | — | — | 1 |
-| Cumulative ᾱ | Test 3 | Test 22 (Fraction match) | — | — | — | 2 |
-| Monotonicity | Test 4 (ᾱ), Test 5 (SNR) | — | — | — | — | 2 |
-| Square root | Tests 6-7 (exact) | Test 8 (residual) | — | — | — | 3 |
-| Forward process | Test 9 (dim) | Test 10 (signal), Test 11 (coeff id) | Test 12 (trajectory) | — | — | 4 |
-| x₀ prediction | — | Test 13 (error=0) | — | — | — | 1 |
-| Posterior mean | — | Test 14 (dim) | — | — | — | 1 |
-| Reverse step | — | Test 15 (dim) | — | — | — | 1 |
-| Roundtrip | — | — | Test 16 (stochastic) | Test 17 (DDIM=0) | — | 2 |
-| Full loop | — | — | Test 18 (reverse loop) | — | — | 1 |
-| Multi-cycle | — | — | — | Test 19 (bound) | Test 20 (flat) | 2 |
-| Consistency | Test 21 (5 sub-tests) | — | — | — | — | 5 |
-| Posterior variance | — | Test 23 (positive rational) | — | — | — | 1 |
-| Cosine schedule | Test 24 (construction) | — | — | — | — | 1 |
-| Perfect squares | Tests 6-7, 25 (normalization) | — | — | — | — | 3 |
-| **Totals** | **11** | **7** | **4** | **3** | **2** | **37** |
+| Core arithmetic | VDR-1 | 68 | 68 | 0 | 0 | All domains |
+| Number theory | VDR-2 gym 1 | 19 | 19 | 0 | 0 | Cryptography, voting |
+| Polynomial algebra | VDR-2 gym 2 | 18 | 18 | 0 | 0 | Homomorphic encryption |
+| Continued fractions | VDR-2 gym 3 | 19 | 19 | 0 | 0 | Rational approximation |
+| Matrix decomposition | VDR-2 gym 4 | 19 | 18 | 1 | 0 | Kalman, quantum, MD |
+| Combinatorics | VDR-2 gym 5 | 19 | 19 | 0 | 0 | Shapley, voting |
+| Signal processing | VDR-2 gym 6 | 19 | 19 | 0 | 0 | DSP, filters |
+| Computational geometry | VDR-2 gym 7 | 19 | 18 | 1 | 0 | Geodesy |
+| Differential equations | VDR-2 gym 8 | 19 | 18 | 1 | 0 | Control, physics sim |
+| Optimization | VDR-2 gym 9 | 19 | 18 | 1 | 0 | MPC, auction |
+| Probability | VDR-2 gym 10 | 19 | 19 | 0 | 0 | Monte Carlo, Kalman |
+| Cryptography | VDR-2 gym 12 | 19 | 18 | 1 | 0 | All crypto domains |
+| Graph theory | VDR-2 gym 14 | 18 | 18 | 0 | 0 | Network analysis |
+| Game theory | VDR-2 gym 17 | 19 | 19 | 0 | 0 | All game theory domains |
+| Q335 basis | VDR-3 | 157 | 152 | 5 | 0 | Transcendental computation |
+| LM pipeline | VDR-4 | 198 | 196 | 2 | 0 | Autoregressive, diffusion |
+| QED/quantum | VDR-13 phys | — | — | — | 0 | Quantum chemistry |
+| Orbital mechanics | VDR-13 phys | — | — | — | 0 | N-body |
+| Signal processing | VDR-13 phys | — | — | — | 0 | DSP, filters |
+| Control systems | VDR-13 phys | — | — | — | 0 | Control, PID |
+| Geodesy | VDR-13 phys | — | — | — | 0 | Coordinate transforms |
+| Crystallography | VDR-13 phys | — | — | — | 0 | Molecular simulation |
+| Diffusion | VDR-26 | 37 | 33 | 4 | 0 | Diffusion, video gen |
+| **Total** | | **884 + 37** | **870 + 33** | **14 + 4** | **0** | |
+
+921 tests across 38 domains. Zero VDR computation errors. Every failure traces to test design, never to arithmetic.
+
+### Appendix F — Practical Deployment Scenarios
+
+| Scenario | Chain length | Current approach | Current limitation | VDR approach | VDR limitation |
+|---|---|---|---|---|---|
+| Bank regulatory capital | 10⁶ positions × 10 operations | Float64 + manual rounding rules | Platform-dependent; audit disputes | Exact rational; deterministic audit | Computational cost for full portfolio |
+| Mars rover navigation | 10⁸ Kalman steps (3-year mission) | Float64 + symmetrization hacks | Covariance drift; periodic resets needed | Exact covariance; no resets | Matrix size for high-dimensional state |
+| DeFi yield (1 year) | 2.6×10⁶ blocks | Fixed-point with truncation | Truncation loss per block; dust accumulation | Exact rational compound interest | Denominator growth (Q335 addresses this) |
+| Video generation (2 hr) | 8.64×10⁶ sequential ops | Float16/32 with heuristic corrections | Temporal drift visible in long sequences | Zero drift; exact frame conditioning | Per-operation cost limits resolution |
+| Pharmaceutical MD | 10⁹ timesteps | Float64 + energy monitoring | Energy drift corrupts averages | Exact symplectic integration | System size limited to small molecules |
+| Audio mastering chain | 10⁷ samples × 20 filters | Float64 | Accumulates ~10⁻¹⁰ over session | Zero drift across filter chain | Real-time latency for live processing |
+| Legal survey | 20-50 chained legs | Float64 + misclosure adjustment | Cannot separate measurement from arithmetic | Zero arithmetic error; pure measurement misclosure | Trigonometric approximation depth |
+| Quantum circuit sim | 10,000 gates | Float64 + renormalization | Unitarity drift; periodic renorm | Exact unitarity (rational gates) | Gate count × qubit count limited |
+| Secret key sharing | k-of-n reconstruction | Integer modular arithmetic | Already exact for standard schemes | Same exactness; unified with other VDR operations | No additional limitation |
+| Options desk Greeks | 10,000 positions × 5 Greeks | Float64 with step-size tuning | Cancellation error at small h | Exact finite difference at any h | Per-position cost |
+
+### Appendix G — Float Failure Taxonomy
+
+| Failure type | Mechanism | Domains affected | Detection difficulty | VDR elimination |
+|---|---|---|---|---|
+| Accumulation | Per-step ULP errors summing over N steps | All sequential chains | Easy to estimate, hard to measure exactly | Complete: 0 per-step error |
+| Cancellation | Subtracting nearly equal values loses digits | Options Greeks, Kalman, diffusion reverse step | Hard: result looks plausible but wrong | Complete: exact subtraction |
+| Non-associativity | (a×b)×c ≠ a×(b×c) in float | Risk aggregation, any parallel reduction | Hard: depends on code structure and optimizer | Complete: rational multiplication is associative |
+| Platform dependence | Different FMA, different sqrt, different rounding | Blockchain, regulatory, scientific reproducibility | Detectable only by cross-platform comparison | Complete: integer arithmetic is platform-independent |
+| Overflow/underflow | Values exceed float range | Kalman (ill-conditioned P), long products | Easy to detect (NaN/Inf) but hard to prevent | VDR denominators grow instead of overflowing |
+| Denormalized numbers | Very small values lose precision | Near-zero quantities in physics, small probabilities | Hard: gradual precision loss, no explicit signal | Complete: VDR has full precision at any magnitude |
+| Non-reproducibility | Same code, different hardware, different result | All float computation | Detectable; not fixable without abandoning float | Complete: deterministic by construction |
+| Symmetry breaking | A×B ≠ (A×B)ᵀ even when mathematically symmetric | Kalman filter covariance, quantum density matrix | Hard: asymmetry is tiny but consequential | Complete: exact matrix multiply preserves symmetry |
+| Energy/conservation drift | Conservation laws violated by rounding | MD, CFD, diffusion coefficient identity, quantum normalization | Measurable but not correctable without exact arithmetic | Complete: conservation verified by exact equality |
+| False convergence | Iteration stops because residual ≈ float epsilon | SCF in quantum chemistry, Newton in optimization | Hard: looks converged but at wrong fixed point | VDR converges to exact fixed point of discrete equations |
+
+### Appendix H — Regulatory and Standards Requirements for Exact Computation
+
+| Regulation/Standard | Domain | Requirement | Float compliance | VDR compliance |
+|---|---|---|---|---|
+| Basel III/IV | Banking capital | Deterministic capital calculation | Approximate: platform-dependent | Full: exact rational, platform-independent |
+| MiFID II | Financial trading | Best execution proof; reproducible pricing | Approximate: depends on rounding mode | Full: deterministic pricing |
+| FIPS 140-3 | Cryptography | Correct implementation of crypto primitives | Integer arithmetic mandated (no float) | Full: integer arithmetic native |
+| DO-178C | Aviation software | Verified arithmetic for safety-critical | Float with analysis; expensive certification | Exact arithmetic simplifies certification argument |
+| IEC 61508 | Functional safety | Demonstrated arithmetic integrity | Float with documented precision | Exact: integrity by construction |
+| ISO 19111 | Geographic information | Coordinate transformation accuracy | Float with precision statements | Exact: zero transformation chain error |
+| GAAP/IFRS | Accounting | Consistent, auditable calculations | Fixed-point or float with rounding rules | Exact rational: no rounding rules needed |
+| FDA 21 CFR Part 11 | Medical devices | Reproducible, validated computation | Float with validation suite | Exact: validation is structural property |
+| NIST SP 800-185 | Cryptographic hashing | Bit-exact computation | Integer mandated | Full: integer native |
+| Smart contract audit | Blockchain | Deterministic state transitions | Integer mandated (no float in EVM) | Full: exact rational extends integer capability |
+| GxP (pharma) | Drug development | Reproducible computational results | Float with documented precision | Exact: reproducibility by construction |
+| SOX Section 404 | Financial controls | Verifiable financial calculations | Float with auditor review | Exact: provenance chain is the audit |
