@@ -40,7 +40,7 @@ No. Every component has an exact integer path.
 - 448 builtins across 25 categories, all with declared interfaces
 - Scoped knowledge bases with Prolog engine, typed unification, constraint inheritance
 - Structural safety: jailbreaking provably impossible for data access
-- GPU mapping: Q335 fixed-frame arithmetic, frontier Prolog, 5 concurrent streams
+- GPU mapping: 2^335 fixed-frame arithmetic, frontier Prolog, 5 concurrent streams
 - Operational deployment: four prompt runner types for autonomous self-training
 - 5-stage build plan targeting 65 modules, ~20,500 lines
 
@@ -88,7 +88,7 @@ No. Every component has an exact integer path.
 | VDR computation errors | 0 |
 | Domains validated | 37 (23 mathematical + 14 physical) |
 | Builtins specified | 448 + 40 extended |
-| Q335 precision | ~100 decimal digits |
+| 2^335 precision | ~100 decimal digits |
 | Token reduction vs conventional | 85–97% |
 | Compaction compression | ~83% average |
 | Existing Python code | ~5,500 lines, 705 tests |
@@ -332,7 +332,7 @@ Reduction across seven validated use cases: SRE incident investigation 98.6% (15
 
 Conventional cost scales quadratically with conversation length because each turn re-reads all prior history through attention. VDR cost is flat per turn because state lives in KBs at integer addresses. Turn 20 costs the same as turn 1. The ratio grows continuously: turn 1 is 23:1, turn 5 is 46:1, turn 10 is 75:1, turn 20 is 133:1, turn 50 is 300:1, turn 100 is 588:1.
 
-The crossover calculation: one LLM token costs roughly 10^6 float operations (full forward pass + softmax over 50K+ vocabulary). One Q335 operation costs roughly 10^3 integer operations. So one LLM token buys 1,000-10,000 Q335 operations. For Q335 to be a net loss, it would need to be roughly 10,000× slower than float per operation. Actual slowdown is 100-1,000×. The margin is 10-100× on a single turn and grows with conversation length.
+The crossover calculation: one LLM token costs roughly 10^6 float operations (full forward pass + softmax over 50K+ vocabulary). One Q335 (2^335) operation costs roughly 10^3 integer operations. So one LLM token buys 1,000-10,000 Q335 operations. For Q335 to be a net loss, it would need to be roughly 10,000× slower than float per operation. Actual slowdown is 100-1,000×. The margin is 10-100× on a single turn and grows with conversation length.
 
 Six entire error classes are structurally eliminated: arithmetic errors (exact integer primitives, error rate = 0), state loss (KB persistence at integer addresses, error rate = 0), formatting errors (grammar templates, error rate = 0), retrieval errors (KB query by integer address, fabrication risk = 0), deduction errors (Prolog structural unification, error rate = 0), confidence errors (exact VDR fraction from propagation rules, imprecision rate = 0). The remaining error surface: LLM judgment only — intent recognition, step selection, prose generation. These are the LLM's strongest tasks.
 

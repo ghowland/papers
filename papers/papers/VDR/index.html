@@ -99,7 +99,7 @@ tokenization-through-training LM pipeline in exact fractions (198 tests)
 built):</strong> - 448 builtins across 25 categories, all with declared
 interfaces - Scoped knowledge bases with Prolog engine, typed
 unification, constraint inheritance - Structural safety: jailbreaking
-provably impossible for data access - GPU mapping: Q335 fixed-frame
+provably impossible for data access - GPU mapping: 2^335 fixed-frame
 arithmetic, frontier Prolog, 5 concurrent streams - Operational
 deployment: four prompt runner types for autonomous self-training -
 5-stage build plan targeting 65 modules, ~20,500 lines</p>
@@ -328,7 +328,7 @@ System.</td>
 <td style="text-align: left;">448 + 40 extended</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q335 precision</td>
+<td style="text-align: left;">2^335 precision</td>
 <td style="text-align: left;">~100 decimal digits</td>
 </tr>
 <tr class="even">
@@ -820,11 +820,11 @@ is flat per turn because state lives in KBs at integer addresses. Turn
 300:1, turn 100 is 588:1.</p>
 <p>The crossover calculation: one LLM token costs roughly 10^6 float
 operations (full forward pass + softmax over 50K+ vocabulary). One Q335
-operation costs roughly 10^3 integer operations. So one LLM token buys
-1,000-10,000 Q335 operations. For Q335 to be a net loss, it would need
-to be roughly 10,000× slower than float per operation. Actual slowdown
-is 100-1,000×. The margin is 10-100× on a single turn and grows with
-conversation length.</p>
+(2^335) operation costs roughly 10^3 integer operations. So one LLM
+token buys 1,000-10,000 Q335 operations. For Q335 to be a net loss, it
+would need to be roughly 10,000× slower than float per operation. Actual
+slowdown is 100-1,000×. The margin is 10-100× on a single turn and grows
+with conversation length.</p>
 <p>Six entire error classes are structurally eliminated: arithmetic
 errors (exact integer primitives, error rate = 0), state loss (KB
 persistence at integer addresses, error rate = 0), formatting errors
