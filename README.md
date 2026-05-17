@@ -140,7 +140,8 @@
 | **[HOWL-VDR-21-2026](papers/papers/VDR/HOWL-VDR-21-2026/manuscript.md)** | **VDR-LLM-Prolog on FPGA** | Exact Integer Arithmetic in Custom Silicon: A 10-Core Q335 Processor on Zynq-7020. |
 | **[HOWL-VDR-22-2026](papers/papers/VDR/HOWL-VDR-22-2026/manuscript.md)** | **VDR-LLM-Prolog on Dedicated Silicon** | From FPGA Proof-of-Concept to Integer-Native GPU Architecture. |
 | **[HOWL-VDR-23-2026](papers/papers/VDR/HOWL-VDR-23-2026/manuscript.md)** | **VDR-LLM-Prolog: Functional Remainder Hardware** | Adaptive Precision Through Structural Information in Silicon. |
- 
+| **[HOWL-VDR-24-2026](papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md)** | **LM Software** | Configuration and Cloning as Application Development. |
+
 ---
 
 ## Math
