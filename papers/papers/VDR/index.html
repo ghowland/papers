@@ -4,7 +4,15 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title> </title>
+  <title>VDR — Exact Integer Arithmetic for LLMs</title>
+<meta property="og:title" content="VDR — Exact Integer Arithmetic for LLMs">
+<meta property="og:description" content="884 tests, zero arithmetic errors. 85-97% fewer tokens. Jailbreaking impossible for data access. Replace floating-point with exact integer triples and let the LLM orchestrate tools instead of generating computation as text.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VDR — Exact Integer Arithmetic for LLMs">
+<meta name="twitter:description" content="884 tests, zero arithmetic errors. 85-97% fewer tokens. Jailbreaking impossible for data access. Replace floating-point with exact integer triples and let the LLM orchestrate tools instead of generating computation as text.">
+<meta name="description" content="VDR: exact finite arithmetic in irreducible triple form. 884 tests across 37 domains, zero errors. Complete LLM architecture with scoped knowledge bases, Prolog engine, and structural safety.">
+
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -68,7 +76,8 @@ Works</h2>
 training?”</strong></p>
 <p>No. Every component has an exact integer path.</p>
 <p><strong>Transcendentals (π, e, √2, sin, cos, exp, log):</strong>
-Store 22 constants as ~102-digit integers over a shared denominator of
+Store 22 constants as 
+102-digit integers over a shared denominator of
 2^335. Adding π + e is one integer addition. For functions like √2,
 Newton iteration produces exact rationals at each step — 8 steps gives
 100+ correct digits. Every intermediate value is an exact fraction, not
@@ -99,10 +108,13 @@ limits, convergence, and infinite series with finite recursive descent
 through exact integer triples — calculus by structure, not by
 approximation.</p>
 <p>On GPU, this is a fixed-width uniform workload: every Q335 (2^335)
-value is 11×u32 limbs, every add is ~22 int ops, every multiply is ~200
+value is 11×u32 limbs, every add is 
+22 int ops, every multiply is 
+200
 int ops, every value the same shape. No branching, no variable-width
 operands. This is what GPUs are built for — the per-operation cost is
-~150× float16, but 85-97% fewer tokens means the total compute is lower
+
+150× float16, but 85-97% fewer tokens means the total compute is lower
 from turn 7-10 onward, and the gap widens every turn because VDR cost is
 flat while conventional attention cost grows quadratically.</p>
 <ul>
@@ -131,7 +143,8 @@ tolerance.</p>
 domains — 884 tests, zero computation errors - Complete
 tokenization-through-training LM pipeline in exact fractions (198 tests)
 - Grammar-directed compaction: 83% average compression across 150K words
-(178/179 tests) - Python prototype: ~5,500 lines, 705 passing tests</p>
+(178/179 tests) - Python prototype: 
+5,500 lines, 705 passing tests</p>
 <p><strong>What’s specified (architecture verified, not yet
 built):</strong> - 448 builtins across 25 categories, all with declared
 interfaces - Scoped knowledge bases with Prolog engine, typed
@@ -139,7 +152,8 @@ unification, constraint inheritance - Structural safety: jailbreaking
 provably impossible for data access - GPU mapping: 2^335 fixed-frame
 arithmetic, frontier Prolog, 5 concurrent streams - Operational
 deployment: four prompt runner types for autonomous self-training -
-5-stage build plan targeting 65 modules, ~20,500 lines</p>
+5-stage build plan targeting 65 modules, 
+20,500 lines</p>
 <p><strong>What’s not built yet:</strong> - Zig port (specified via
 interface contracts) - GPU kernels (mapped but not implemented) -
 Production-scale deployment</p>
@@ -366,7 +380,8 @@ System.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2^335 precision</td>
-<td style="text-align: left;">~100 decimal digits</td>
+<td style="text-align: left;">
+100 decimal digits</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Token reduction vs conventional</td>
@@ -374,15 +389,18 @@ System.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Compaction compression</td>
-<td style="text-align: left;">~83% average</td>
+<td style="text-align: left;">
+83% average</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Existing Python code</td>
-<td style="text-align: left;">~5,500 lines, 705 tests</td>
+<td style="text-align: left;">
+5,500 lines, 705 tests</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Target system size</td>
-<td style="text-align: left;">~20,500 lines, 65 modules</td>
+<td style="text-align: left;">
+20,500 lines, 65 modules</td>
 </tr>
 </tbody>
 </table>
@@ -425,7 +443,8 @@ multiply of numerators, then divmod at bit position 335 — bits above 335
 become the new V, bits below become R. The denominator never grows.
 Overflow goes to tree depth, not denominator magnitude. This is Q335: 22
 transcendental constants (π, e, ln2, ζ(3), √2, φ, and others) stored as
-~102-digit integers over a shared denominator of 2^335. Adding π + e is
+
+102-digit integers over a shared denominator of 2^335. Adding π + e is
 one integer addition. The precision floor is 100 decimal digits — 10^66
 times below the Planck length, exceeding float by 85 orders of
 magnitude.</p>
@@ -537,7 +556,9 @@ permanent and available to everything. A rule at session scope is
 disposable and dies with the session. Properties of composed rules —
 pure, deterministic, partial — derive from the component primitives.</p>
 <p>At root.system.oso, 15 operational engineering principles are encoded
-as approximately 176 Prolog terms: 15 axioms, ~80 facts, ~60 rules, 21
+as approximately 176 Prolog terms: 15 axioms, 
+80 facts, 
+60 rules, 21
 constraints. These include the knowability spectrum (VDR computation =
 1/1 confidence, LLM-generated content = 30/100) and the priority system
 (correctness 10× more important than completeness 10× more important
@@ -573,14 +594,19 @@ the test spec, the documentation, and the Zig interface contract.</p>
 <p>The LLM doesn’t generate computation, formatting, or state
 management. It emits command tokens — structured invocations roughly 8
 LLM tokens each. A command token carries a type tag, a primitive name
-(from a vocabulary of ~300 known names), arguments (path references or
+(from a vocabulary of 
+300 known names), arguments (path references or
 literals), an optional result storage path, and an await flag.</p>
 <p>The command vocabulary is about 300 primitive names plus 200 paths.
 That’s roughly 6 bits of entropy per token. Compare to full vocabulary
 generation at roughly 15 bits per token. Lower entropy means fewer
 possible wrong answers per token position. A command token sequence has
-~99.2% probability of being error-free. JSON function calling: ~86%.
-Free-form code: ~60.5%. Natural language reasoning: ~13.3%.</p>
+
+99.2% probability of being error-free. JSON function calling: 
+86%.
+Free-form code: 
+60.5%. Natural language reasoning: 
+13.3%.</p>
 <p>The LLM picks a primitive from a known finite set and points at data
 by dotted path. The executor resolves the path to an integer ID once,
 then downstream operations use the integer. Data stays in the KB. The
@@ -709,9 +735,14 @@ indentation, headers, delimiters — and declares typed slots for content.
 The LLM fills content slots. The grammar fills everything else. Grammar
 tokens are free (no forward pass needed) and 100% correct (no mismatched
 braces, no missing commas, no malformed JSON — by construction).</p>
-<p>Savings by output type: Python ~40% structural tokens eliminated,
-JSON ~55%, formatted tables ~65%, English prose with data ~30%,
-compacted pipe-delimited tables ~80%.</p>
+<p>Savings by output type: Python 
+40% structural tokens eliminated,
+JSON 
+55%, formatted tables 
+65%, English prose with data 
+30%,
+compacted pipe-delimited tables 
+80%.</p>
 <p>Grammars are persistent fields on the KB struct. They inherit through
 the tree like constraints. They travel on export. They’re bidirectional
 — the same grammar generates structured output and parses structured
@@ -762,9 +793,12 @@ grouped by common prefix is a predicate-major column group. The
 adjustment in VDR-19 aligns compaction syntax with Prolog clause syntax,
 columnar GPU storage, and Zig struct definitions simultaneously. The
 compacted document is a load file.</p>
-<p>Across the paper series: ~150,000 words of prose compressed to
-~26,200 tokens in compacted form. 575 unique IDs. 257 relationships.
-~83% average compression.</p>
+<p>Across the paper series: 
+150,000 words of prose compressed to
+
+26,200 tokens in compacted form. 575 unique IDs. 257 relationships.
+
+83% average compression.</p>
 <p><strong>The Complete LLM Pipeline: Exact End to End</strong></p>
 <p>Every component of a language model architecture has been expressed
 in exact VDR fraction arithmetic and validated:</p>
@@ -789,8 +823,11 @@ subtracted from exact weight. Momentum with exact velocity accumulation.
 Every parameter update is exact.</p>
 <p>Checkpoints: every parameter saved as exact fraction, restored with
 zero precision loss, bit-identical across platforms.</p>
-<p>Denominator management: growth from ~2^10 at initialization to ~2^20
-by step 1000, plateauing around ~2^45 with small learning rate. When
+<p>Denominator management: growth from 
+2^10 at initialization to 
+2^20
+by step 1000, plateauing around 
+2^45 with small learning rate. When
 denominators exceed budget: Q-basis reprojection — round to 2^K grid,
 log exact error bound. Every reprojection is a declared, auditable
 precision decision, not silent truncation.</p>
@@ -840,7 +877,8 @@ zero (Prolog evaluation). Formatting costs zero (grammar templates).
 Hedging costs zero (replaced by exact confidence fractions). The LLM
 generates only judgment tokens (intent recognition, step selection,
 formalization, assessment) and prose tokens (natural language for human
-consumption), plus command tokens (~8 per primitive invocation).</p>
+consumption), plus command tokens (
+8 per primitive invocation).</p>
 <p>Reduction across seven validated use cases: SRE incident
 investigation 98.6% (15,000 conventional → 210 VDR), legal contract
 review 96.2%, medical synthesis 94.1%, codebase migration 93.3%,
@@ -978,8 +1016,10 @@ decisions. GPU handles the data plane: parallel numeric work, KB scans,
 Prolog evaluation, LLM forward pass, grammar masking, live-state
 mutations.</p>
 <p>Q335 on GPU: numerators stored as 11×u32 limbs (352 bits) or 6×u64
-(384 bits) with implicit denominator. Addition = ~22 integer operations
-(11 limb adds + carries). Multiplication = ~200 integer operations
+(384 bits) with implicit denominator. Addition = 
+22 integer operations
+(11 limb adds + carries). Multiplication = 
+200 integer operations
 (schoolbook 11×11). Comparison = 2-22 integer operations (fast path on
 first differing limb to full scan). The workload is perfectly uniform —
 every value has the same width, every operation has the same shape. This
@@ -999,7 +1039,8 @@ operations, high GPU efficiency.</p>
 <p>Rational surrogate softmax on GPU: each output = (z_i − max + c)² /
 Σ(z_j − max + c)². Row max → shift → square → sum reduction → divide.
 Zero transcendentals. No warp divergence (every thread executes the same
-operations). Sum exactly 1/1. ~15× more integer ops per element than
+operations). Sum exactly 1/1. 
+15× more integer ops per element than
 float exponential softmax, but no transcendental divergence and no
 branch divergence — net GPU utilization 80-95% versus 40-60% for
 conventional softmax.</p>
@@ -1021,19 +1062,23 @@ decode at effectively zero additional wall-clock cost.</p>
 <p>Memory: append-only arenas with bump-pointer allocation. One atomic
 increment per allocation. No malloc in GPU kernels. No fragmentation.
 Coalesced memory access by construction.</p>
-<p>The forward pass is ~150× more expensive per token than float16,
+<p>The forward pass is 
+150× more expensive per token than float16,
 weighted across all components (embedding 11×, attention QKᵀ 200×,
 surrogate softmax 15×, feedforward ReLU 1×, feedforward linear 200×).
 But the system generates 85-97% fewer LLM tokens. At 95% token
 reduction: 0.05 × 150 = 7.5× the total forward pass computation of
-conventional. Net cost ~10× for a single turn. But VDR’s per-turn cost
+conventional. Net cost 
+10× for a single turn. But VDR’s per-turn cost
 is flat (state in KBs) while conventional grows quadratically
 (re-reading growing history). The wall-clock crossover favors VDR from
 turn 7-10 onward for a 7B model, earlier for larger models.</p>
 <p>The SRE case study validates this end-to-end: 1MB Prometheus JSON
 with 200 endpoints and 18,000 metric values. Conventional: 10,100 tokens
-generated, ~11 minutes wall-clock, 25% data coverage (context overflow),
-arithmetic errors, no persistence. VDR: 769 tokens, ~9 seconds
+generated, 
+11 minutes wall-clock, 25% data coverage (context overflow),
+arithmetic errors, no persistence. VDR: 769 tokens, 
+9 seconds
 wall-clock, 100% data coverage, exact arithmetic, full versioned project
 with comparison rules for future investigations. 73× faster. 71× cheaper
 including human time ($0.39 vs $27.58). The second run on a similar
@@ -1126,34 +1171,44 @@ write positions. Snapshot consistency means readers see a coherent state
 without blocking writers. This falls out naturally from the
 integer-addressed, append-only storage design.</p>
 <p><strong>The Implementation Blueprint: Five Stages</strong></p>
-<p>Stage 1 (Toy Full Lifecycle): 24 modules, ~161 builtins, ~2,800
+<p>Stage 1 (Toy Full Lifecycle): 24 modules, 
+161 builtins, 
+2,800
 lines, 150 tests. Creates KBs, asserts and queries facts, runs Prolog
 rules with unification and backtracking, does exact VDR arithmetic,
 manages counters and locks and queues and stacks, executes one complete
 lifecycle pass from initialization through training to checkpoint to
 evaluation to report.</p>
-<p>Stage 2 (Upgraded Toy): 37 modules, ~300 builtins, ~3,200 lines, 200
+<p>Stage 2 (Upgraded Toy): 37 modules, 
+300 builtins, 
+3,200 lines, 200
 tests (350 cumulative). Command tokens replace API calls. Path
 addressing with integer ID acceleration. Scope resolution with topic
 switching. Constraints fire on violations. Scratchpad. Active
 arithmetic. Linear algebra. Statistics. Graphs.</p>
-<p>Stage 3 (Capacity Building): 49 modules, ~400 builtins, ~3,000 lines,
+<p>Stage 3 (Capacity Building): 49 modules, 
+400 builtins, 
+3,000 lines,
 250 tests (600 cumulative). Session snapshots and clones. Inference
 notebooks with the assess-formalize-execute-store loop. Q-basis
 transcendentals. Functional remainders. Discrete calculus. Domain math
 (polynomial, finite field, Markov, graph). Denominator management. Mount
 system.</p>
-<p>Stage 4 (Full Integration): 58 modules, ~437 builtins, ~3,500 lines,
+<p>Stage 4 (Full Integration): 58 modules, 
+437 builtins, 
+3,500 lines,
 300 tests (900 cumulative). Sandboxed local environments. Filesystem,
 network, and process operations. Positive credential grants. All four
 inference modes. The lifecycle pipeline from data sourcing through
 evaluation.</p>
-<p>Stage 5 (Production Completion): 65 modules, 448 builtins, ~3,000
+<p>Stage 5 (Production Completion): 65 modules, 448 builtins, 
+3,000
 lines, 350 tests (1,250 cumulative). Docker, SSH, and VM environments.
 Compilation and linting. Feedback collection, reward models, and DPO.
 Deployment with canary and rollback. Monitoring and drift detection.
 Retirement and audit archival.</p>
-<p>12 architectural layers with strict dependency ordering. ~20,500
+<p>12 architectural layers with strict dependency ordering. 
+20,500
 total lines (15,500 new + 5,000 existing VDR-4 code wrapped in IOSE
 declarations without modification). Cross-stage invariants enforced at
 every stage: every function has IOSE declaration before implementation,
