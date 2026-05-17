@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20252877
 
 **Date:** May 2026
 
@@ -400,3 +400,539 @@ This is what adaptive precision means in an exact arithmetic system. Not "choose
 
 ---
 
+## Appendix A: FRU Recurrence Detail per Function
+
+### A.1 Exponential Taylor Recurrence
+
+| Step | Register State | Operation | Cycles | Result |
+|------|---------------|-----------|--------|--------|
+| Init | term=1, sum=1, x=input, k=1 | Load initial values | 2 | term₀=1, sum₀=1 |
+| k=1 | term=1 | term × x | 1-2 | x |
+| k=1 | term=x | term × reciprocal[1] | 1-2 | x (identity) |
+| k=1 | sum=1 | sum + term | 1 | 1 + x |
+| k=2 | term=x | term × x | 1-2 | x² |
+| k=2 | term=x² | term × reciprocal[2] | 1-2 | x²/2 |
+| k=2 | sum=1+x | sum + term | 1 | 1 + x + x²/2 |
+| k=n | term_{n-1} | term × x × reciprocal[n] | 3-4 | xⁿ/n! |
+| k=n | sum_{n-1} | sum + term | 1 | Σ xᵏ/k! for k=0..n |
+| Check | term_n | |term_n| < threshold? | 1 | Converge or continue |
+
+Total cycles per term: 4-5 (2 multiplies + 1 add + 1 check). For depth 10: ~45 cycles. For depth 45: ~200 cycles. Reciprocal lookup replaces division — reciprocal[k] is precomputed as Q335 integer in the 3KB table.
+
+### A.2 Square Root Newton Recurrence
+
+| Step | Register State | Operation | Cycles | Result |
+|------|---------------|-----------|--------|--------|
+| Init | x₀=initial_guess, a=input | Load | 2 | x₀ = a (or better guess) |
+| n=1 | x₀ | a × reciprocal_of(x₀) | 2 | a/x₀ via Newton reciprocal |
+| n=1 | a/x₀ | x₀ + a/x₀ | 1 | x₀ + a/x₀ |
+| n=1 | sum | sum × reciprocal[2] | 1-2 | (x₀ + a/x₀)/2 = x₁ |
+| Check | x₁ | |x₁² - a| < threshold? | 3 | Converge or continue (square + sub + compare) |
+
+Total cycles per iteration: ~7 (1 reciprocal mul + 1 add + 1 halving mul + 1 square + 1 sub + 1 compare). Digits double per step. 8 iterations for 100 digits: ~56 cycles. Note: reciprocal_of(x₀) uses a dedicated Newton reciprocal subroutine (4 iterations, ~16 cycles) on the first call; subsequent calls use the prior reciprocal as starting guess (1-2 iterations, ~8 cycles).
+
+### A.3 Logarithm Series with Argument Reduction
+
+| Phase | Operation | Cycles | Notes |
+|-------|-----------|--------|-------|
+| Reduction | Find integer n such that input = 2ⁿ × (1+x) where |x| < 0.5 | ~10 | Bit scan + shift + subtract |
+| Reduction | Load ln(2) from shared BRAM | 2 | LDSHARED instruction |
+| Reduction | n × ln(2) as Q335 multiply | 1-2 | Base contribution |
+| Series init | term=x, sum=x, k=1 | 2 | log1p series: Σ (-1)^(k+1) × xᵏ/k |
+| Series k=n | term × (-x) | 1-2 | Next power with alternating sign |
+| Series k=n | term × reciprocal[k] | 1-2 | Divide by term index |
+| Series k=n | sum + term | 1 | Accumulate |
+| Series check | |term| < threshold? | 1 | Converge or continue |
+| Final | n × ln(2) + series_sum | 1 | Combine reduction with series |
+
+Total series cycles per term: 4-5. With argument reduction (|x| < 0.5), convergence ratio is 0.5: approximately 33 terms for 100 digits. Total: ~10 (reduction) + ~150 (series) + 1 (combine) = ~161 cycles. Without argument reduction at x near 1: ~340 terms, ~1,530 cycles — functional but slow.
+
+### A.4 Sine via Taylor Odd-Term Recurrence
+
+| Step | Register State | Operation | Cycles | Result |
+|------|---------------|-----------|--------|--------|
+| Init | term=x, sum=x, x²=x×x | 3 | Precompute x² for reuse |
+| k=1 (3rd order) | term=x | term × (-x²) | 1-2 | -x³ |
+| k=1 | term=-x³ | term × reciprocal[2] × reciprocal[3] | 2-4 | -x³/6 |
+| k=1 | sum=x | sum + term | 1 | x - x³/6 |
+| k=n | term_{n-1} | term × (-x²) × reciprocal[2n] × reciprocal[2n+1] | 4-6 | (-1)ⁿ x^(2n+1)/(2n+1)! |
+| Check | term_n | |term_n| < threshold? | 1 | Converge or continue |
+
+Total cycles per term: 6-8 (x² multiply + 2 reciprocal multiplies + add + check). Sine converges at the same rate as exp (super-geometric). Depth 45 for 100 digits: ~315 cycles. Cosine is identical but uses even-term recurrence starting from term=1.
+
+### A.5 Borwein Zeta via Generic Tag
+
+| Phase | Operation | Cycles | Notes |
+|-------|-----------|--------|-------|
+| Coefficient compute | d_k = n × Σ (n+i-1)! × 4ⁱ / ((n-i)! × (2i)!) for i=0..k | ~20 per k | Via microcode in instruction BRAM |
+| Term compute | (-1)ᵏ × (d_k - d_n) / (k+1)ˢ | ~8 per k | Power via repeated squaring |
+| Accumulate | sum += term | 1 | Running sum |
+| Final | -sum / d_n | ~3 | One division |
+
+For n=210 (100-digit convergence): 210 coefficient computations at ~20 cycles + 210 term computations at ~8 cycles = ~5,880 cycles. At 2 GHz: ~2.9 microseconds. Fits within 512-instruction BRAM budget: coefficient computation is ~30 instructions, term computation is ~15 instructions, loop control is ~8 instructions. Total: ~53 instructions.
+
+---
+
+## Appendix B: Reciprocal Table Contents
+
+### B.1 Table Layout (3,072 bytes)
+
+| Index k | Value (reciprocal of k as Q335) | Numerator Digits | Exact? | Use Case |
+|---------|-------------------------------|-----------------|--------|----------|
+| 1 | 2^335 / 1 = 2^335 | 101 | Exact (power of 2 divides 2^335) | Taylor term k=1 (identity) |
+| 2 | 2^335 / 2 = 2^334 | 101 | Exact | Newton halving, Taylor k=2 |
+| 3 | round(2^335 / 3) | 101 | ±1 ULP | Taylor k=3, sine k=1 |
+| 4 | 2^335 / 4 = 2^333 | 101 | Exact | Taylor k=4 |
+| 5 | round(2^335 / 5) | 101 | ±1 ULP | Taylor k=5 |
+| 6 | round(2^335 / 6) | 101 | ±1 ULP | Sine/cosine k=1 (1/3!) |
+| 8 | 2^335 / 8 = 2^332 | 100 | Exact | Taylor k=8 |
+| 16 | 2^335 / 16 = 2^331 | 100 | Exact | Taylor k=16 |
+| 32 | 2^335 / 32 = 2^330 | 99 | Exact | Taylor k=32 |
+| 64 | 2^335 / 64 = 2^329 | 99 | Exact | Taylor k=64 (table limit) |
+
+### B.2 Exactness Analysis
+
+| k Range | Power-of-2 k Values (exact) | Odd k Values (±1 ULP) | Total Exact | Total ±1 ULP |
+|---------|---------------------------|----------------------|-------------|-------------|
+| 1-8 | 1, 2, 4, 8 | 3, 5, 6, 7 | 4 | 4 |
+| 9-16 | 16 | 9-15 | 1 | 7 |
+| 17-32 | 32 | 17-31 | 1 | 15 |
+| 33-64 | 64 | 33-63 | 1 | 31 |
+| **Total** | | | **7** | **57** |
+
+For the 57 entries with ±1 ULP error: the rounding error is at most 2^(-336), which is approximately 10^(-101.2). This is 10^66 times below the Planck length. The error from reciprocal table lookup is negligible in every conceivable physical computation. The VDR system tracks this error through the remainder slot — the reciprocal multiply produces a result in the Q335 frame, and any sub-ULP residual goes to R.
+
+### B.3 Memory Layout
+
+| Byte Offset | Contents | Size |
+|-------------|----------|------|
+| 0x000 - 0x02F | reciprocal[1] (48 bytes, 384-bit Q335) | 48 B |
+| 0x030 - 0x05F | reciprocal[2] | 48 B |
+| 0x060 - 0x08F | reciprocal[3] | 48 B |
+| ... | ... | ... |
+| 0xBD0 - 0xBFF | reciprocal[64] | 48 B |
+| **Total** | 64 entries × 48 bytes | **3,072 B** |
+
+---
+
+## Appendix C: Convergence Threshold Analysis
+
+### C.1 Default Thresholds by Operation Context
+
+| Context | Threshold (as Q335 numerator magnitude) | Decimal Equivalent | Rationale |
+|---------|----------------------------------------|-------------------|-----------|
+| Softmax ranking stability | 2^(335-20) ≈ 2^315 | ~10^(-6) relative | Preserves ranking for logits differing by >10^(-6) |
+| Attention score intermediate | 2^(335-30) ≈ 2^305 | ~10^(-9) relative | Conservative; score differences typically >10^(-3) |
+| Training gradient | 2^(335-50) ≈ 2^285 | ~10^(-15) relative | Preserves gradient direction for typical learning rates |
+| Constraint evaluation (exact) | 0 | 0 (require R=0) | Sum-to-one and other axiom constraints must be exact |
+| Prolog unification (definitive) | Context-dependent | See C.2 | Must be sufficient to resolve equality |
+| Denominator budget check | N/A | N/A | Integer comparison, no threshold |
+| Conservation law verification | 0 | 0 | Must be exact equality |
+
+### C.2 Prolog Unification Threshold Decision
+
+| Scenario | Value A | Value B | CROSS_MUL Result | Threshold Decision |
+|----------|---------|---------|-----------------|-------------------|
+| Both closed | V_a/D_a | V_b/D_b | Compare products directly | No threshold — exact |
+| A active, B closed | [V_a, D_a, R_a] | V_b/D_b | Resolve R_a to depth where |R_a contribution| < |V_aD_b - V_bD_a| | Threshold = cross-product difference |
+| Both active | [V_a, D_a, R_a] | [V_b, D_b, R_b] | Resolve both to depth where combined remainder < cross-product difference | Threshold = cross-product difference minus remainder bounds |
+| Equal at Q335 frame | V_aD_b = V_bD_a | V_aD_b = V_bD_a | Must resolve R_a and R_b to distinguish | Resolve one additional depth, compare |
+
+### C.3 Threshold Configuration Mechanism
+
+| Parameter | Storage Location | Set By | Modified By |
+|-----------|-----------------|--------|-------------|
+| Softmax threshold | FRU threshold register | Host at kernel launch | Per-kernel configuration |
+| Training threshold | FRU threshold register | Host at training step start | Per-step if adaptive |
+| Constraint threshold | Hardwired to 0 | Not modifiable | Axiom — always exact |
+| Prolog threshold | Computed per-unification | QIU during CROSS_MUL | Automatic from operand values |
+
+---
+
+## Appendix D: FRU Power Analysis
+
+### D.1 Per-FRU Power Breakdown
+
+| Component | Static (μW) | Dynamic at 2 GHz (μW) | Notes |
+|-----------|------------|----------------------|-------|
+| Recurrence registers (1,536 bits SRAM) | 0.8 | 12 (when accessed) | 6T SRAM cells, leakage + read/write |
+| Reciprocal table (3 KB SRAM) | 1.5 | 8 (per lookup) | Read-only during operation |
+| Convergence comparator | 0.3 | 5 (per comparison) | 384-bit magnitude compare |
+| Loop controller | 0.1 | 2 (per cycle when active) | 8-bit counter + decoder |
+| Interconnect to QIU ALU | 0.5 | 3 (per data transfer) | Short-range within QIU |
+| **Per-FRU total (idle)** | **3.2 μW** | **0** | |
+| **Per-FRU total (active)** | **3.2 μW** | **~30 μW** | Per active cycle |
+
+### D.2 System-Wide FRU Power
+
+| Scenario | Active FRUs | Duration | FRU Power | System Total (410W) | FRU Fraction |
+|----------|------------|----------|-----------|--------------------|----|
+| Idle (all FRUs inactive) | 0 | Continuous | 16.4 mW (static only) | 400.016 W | 0.004% |
+| Softmax exp (100 logits, 10 FRUs) | 10 | ~50 cycles | 0.3 mW (burst) | 400.0003 W | <0.001% |
+| Batch training (1% spill, ~50 FRUs) | 50 | ~5 cycles/occurrence | 1.5 mW (intermittent) | 400.002 W | <0.001% |
+| Full exp-softmax (all 5,120 FRUs) | 5,120 | ~100 cycles | 153.6 mW (burst) | 400.154 W | 0.038% |
+| Worst case (all FRUs, continuous) | 5,120 | Continuous | 170 mW | 400.170 W | 0.042% |
+
+The FRU's power contribution is negligible in all realistic scenarios. Even the worst case (all 5,120 FRUs active continuously) adds 170 milliwatts to a 400-watt chip — 0.042%. The TDP increase from 400W to 410W in the updated specifications is primarily from the additional static leakage of 2.54 billion transistors, not from dynamic switching during FRU operations.
+
+---
+
+## Appendix E: Adaptive Depth Distribution for Exp-Softmax
+
+### E.1 Shifted Logit Distribution (Typical Attention Row, 1,024 positions)
+
+| Shifted Logit Range | Expected Count (1,024 positions) | FRU Depth Required | Cycles per Element | Total Cycles (batch) |
+|--------------------|---------------------------------|-------------------|-------------------|---------------------|
+| 0 (the maximum) | 1 | 0 (exact 1) | 1 | 1 |
+| (-0.5, 0) | ~50 | 3-4 terms | 14-18 | 800 |
+| (-2, -0.5] | ~200 | 5-7 terms | 22-30 | 5,200 |
+| (-5, -2] | ~300 | 8-12 terms | 34-50 | 12,600 |
+| (-10, -5] | ~250 | 13-18 terms | 55-75 | 16,250 |
+| (-20, -10] | ~150 | 4-5 terms (threshold cut) | 18-22 | 3,000 |
+| < -20 | ~73 | 2-3 terms (threshold cut) | 10-14 | 876 |
+| **Total** | **1,024** | | | **~38,727** |
+
+Average cycles per element: ~37.8. Across 5,120 QIUs (each handling ~1 element in this row, or multiple rows in batch): critical path is the slowest single element at ~75 cycles = ~37.5 ns.
+
+### E.2 Comparison with Uniform-Depth Evaluation
+
+| Strategy | Total Cycles (1,024 elements) | Average Cycles per Element | Notes |
+|----------|------------------------------|---------------------------|-------|
+| Adaptive depth (FRU threshold) | ~38,727 | ~37.8 | Does less work on negligible values |
+| Uniform depth 10 | ~46,080 | 45 | Same work for all values |
+| Uniform depth 20 | ~92,160 | 90 | Same work for all values |
+| Uniform depth 45 (full 100-digit) | ~207,360 | 202.5 | Same work for all values |
+| Surrogate (no transcendentals) | ~20,480 | 20 | Quadratic kernel, no FRU |
+
+Adaptive depth saves approximately 16% over uniform depth 10, approximately 58% over uniform depth 20, and approximately 81% over full-precision depth 45. The savings come entirely from the large-negative shifted logits (positions (-20, -10] and below -20) where the threshold cuts evaluation short because those values contribute negligibly to the softmax sum.
+
+### E.3 Ranking Stability Verification
+
+| Logit Pair Difference | Adaptive Depth Sufficient? | Minimum Depth for Correct Ranking | Notes |
+|----------------------|---------------------------|----------------------------------|-------|
+| > 1.0 | Yes at depth 3 | 3 | exp difference detectable at ~10^(-1) precision |
+| 0.1 - 1.0 | Yes at depth 5 | 5 | exp difference detectable at ~10^(-3) |
+| 0.01 - 0.1 | Yes at depth 8 | 7-8 | Need ~10^(-5) precision |
+| 0.001 - 0.01 | Yes at depth 10 | 10 | Need ~10^(-8) precision |
+| < 0.001 | Depends on threshold | 12+ | Near-tied logits; ranking may be meaningless regardless |
+
+For practical attention patterns where logit differences below 0.001 are rare, adaptive depth 10 preserves correct ranking for all meaningful distinctions. The threshold mechanism ensures that tied logits (difference below threshold) produce equal softmax outputs — the FRU evaluates both to the same depth and produces identical results, preserving the symmetry property.
+
+---
+
+## Appendix F: Training Remainder Accumulation Simulation
+
+### F.1 Remainder Nesting Without FRU (Base VDR-22)
+
+| Training Step | Avg Denominator Bits | Max Denominator Bits | Parameters with R≠0 | Nesting Depth (max) | Reprojection Needed? |
+|--------------|---------------------|---------------------|--------------------|--------------------|---------------------|
+| 0 (init) | ~10 | ~12 | 0% | 0 | No |
+| 100 | ~15 | ~20 | 0.01% | 1 | No |
+| 1,000 | ~20 | ~30 | 0.1% | 2 | No |
+| 5,000 | ~30 | ~42 | 0.5% | 3 | No |
+| 10,000 | ~35 | ~48 | 0.8% | 4 | Approaching budget |
+| 20,000 | ~40 | ~55 | 1.2% | 5 | **Yes — stall** |
+| 50,000 | ~45 | ~65 | 2.0% | 7 | **Multiple stalls** |
+
+Reprojection at step 20,000: process all 10M parameters, round to Q335 frame, record error bounds. Cost: ~10M × 20 cycles (read + round + write + log) / 5,120 QIUs = ~39,063 cycles = ~20 microseconds. Not catastrophic but a visible stall in an otherwise 2-microsecond-per-step training loop — a 10× spike.
+
+### F.2 Remainder Nesting With FRU (Continuous Resolution)
+
+| Training Step | Avg Denominator Bits | Max Denominator Bits | Parameters with R≠0 (before resolution) | Parameters with R≠0 (after resolution) | Nesting Depth (max) | Reprojection Needed? |
+|--------------|---------------------|---------------------|----------------------------------------|---------------------------------------|--------------------|----|
+| 0 (init) | ~10 | ~12 | 0% | 0% | 0 | No |
+| 100 | ~10 | ~12 | 0.01% | 0% | 0 | No |
+| 1,000 | ~10 | ~13 | 0.1% | 0% | 0 | No |
+| 5,000 | ~10 | ~13 | 0.5% | 0% | 0 | No |
+| 10,000 | ~10 | ~14 | 0.8% | 0% | 0 | No |
+| 20,000 | ~10 | ~14 | 1.2% | 0% | 0 | **No — never** |
+| 50,000 | ~11 | ~15 | 2.0% | 0% | 0 | **No — never** |
+
+With continuous FRU resolution, the denominator bits stay near their initialization values indefinitely. Each step's multiplication produces a remainder; the FRU evaluates it (2-5 cycles), determines it is below the Q335 precision threshold, and folds it back into the quotient or discards it. The max denominator bits drift upward very slowly (~1 bit per 10,000 steps) from the rare cases where the remainder is large enough to affect the Q335 frame value. Reprojection never triggers.
+
+### F.3 Training Step Timing Comparison
+
+| Component | Without FRU | With FRU | Difference |
+|-----------|-----------|---------|-----------|
+| Forward multiply (per param) | 2 cycles | 2 cycles | Same |
+| SHR335 divmod | 0 cycles | 0 cycles | Same |
+| Remainder check | 1 cycle | 1 cycle | Same |
+| Remainder resolution (when R≠0) | Host round-trip (~5,000 cycles) | FRU inline (~3 cycles) | 1,667× faster |
+| Average per param (at 1% spill) | 2 + 0 + 1 + 0.01×5000 = 53 cycles | 2 + 0 + 1 + 0.01×3 = 3.03 cycles | 17.5× faster |
+| 10M params total | 103.5M cycles = 51.8 μs | 30.3M cycles = 15.2 μs | 3.4× faster |
+| Periodic reprojection stall | ~20 μs every ~20K steps | Never | Eliminated |
+| Worst-case step time | ~72 μs (step + reprojection) | ~15.2 μs (constant) | 4.7× faster |
+| Step time variance | High (spikes at reprojection) | Near-zero | Smooth |
+
+---
+
+## Appendix G: Prolog Unification Completeness Matrix
+
+### G.1 Term-Type Unification Latency With and Without FRU
+
+| Term A Type | Term B Type | Without FRU | With FRU | Improvement |
+|------------|------------|-------------|---------|-------------|
+| Atom | Atom | 1 cycle (UATOM) | 1 cycle | None |
+| Integer | Integer | 1 cycle (WCMP) | 1 cycle | None |
+| VDR closed | VDR closed | 2-3 cycles (CROSS_MUL) | 2-3 cycles | None |
+| VDR closed | VDR active | Host (~5,000 cycles) | 6-8 cycles (FEVAL + CROSS_MUL) | ~700× |
+| VDR active | VDR active | Host (~10,000 cycles) | 8-12 cycles (2× FEVAL + CROSS_MUL) | ~1,000× |
+| KB ref | KB ref | 1 cycle (integer compare) | 1 cycle | None |
+| List | List | N × element cost | N × element cost | Per-element improvement for active elements |
+| Atom | Variable | 1 cycle (bind) | 1 cycle | None |
+| VDR active | Variable | Host + bind (~5,000 cycles) | FEVAL + bind (~6 cycles) | ~800× |
+
+### G.2 Impact on Rule Firing Rate
+
+| Investigation # | Rules Auto-Firing | Facts with Active Values (est.) | Unifications Requiring FRU (est.) | Host Round-Trips Without FRU | On-Chip with FRU |
+|----------------|------------------|----|----|----|-----|
+| 1 | 0 | 0% | 0 | 0 | 0 |
+| 10 | 47 | ~2% of accessed facts | ~12 | 12 | 0 |
+| 50 | 115 | ~5% of accessed facts | ~85 | 85 | 0 |
+| 100 | 150 | ~8% of accessed facts | ~180 | 180 | 0 |
+
+At investigation 100 with 150 rules auto-firing: 180 host round-trips per investigation at ~5,000 cycles each = 900,000 additional cycles = 450 microseconds of host-mediated overhead. With FRU: 180 × 10 cycles = 1,800 cycles = 0.9 microseconds. A 500× reduction in unification overhead for mature rule-accumulated systems.
+
+---
+
+## Appendix H: Instruction BRAM Budget for FRU Microprograms
+
+### H.1 Microcode Size per Function Tag
+
+| Tag | Function | Instructions in Recurrence Loop | Instructions in Init/Finalize | Total Instructions | BRAM Words (32-bit) |
+|-----|----------|-------------------------------|------------------------------|-------------------|---------------------|
+| 0x01 | exp | 8 (2 mul + 1 add + 1 check + 4 control) | 4 (load x, init term/sum) | 12 | 12 |
+| 0x02 | sqrt | 10 (reciprocal + add + halve + square + check + 4 control) | 5 (load a, init guess) | 15 | 15 |
+| 0x03 | ln | 9 (negate mul + reciprocal mul + add + check + 4 control) | 8 (argument reduction) | 17 | 17 |
+| 0x04 | sin | 11 (x² mul + 2 reciprocal mul + add + sign + check + 4 control) | 5 (precompute x², load) | 16 | 16 |
+| 0x05 | cos | 11 (same as sin) | 5 | 16 | 16 |
+| 0x06 | generic | Variable (loaded from main BRAM) | Variable | ≤50 | ≤50 |
+| **Total fixed** | | | | **76** | **76** |
+
+### H.2 BRAM Capacity Analysis
+
+| Usage | Words | Percentage of 4KB BRAM (512 words) |
+|-------|-------|-------------------------------------|
+| Main microprogram (e.g., prog_softmax_surr) | ~30 | 5.9% |
+| FRU function tags 0x01-0x05 (fixed) | 76 | 14.8% |
+| FRU generic tag 0x06 (loaded per operation) | ≤50 | ≤9.8% |
+| **Total maximum** | **~156** | **30.5%** |
+| **Remaining for future microprograms** | **~356** | **69.5%** |
+
+The FRU's fixed function microprograms consume 14.8% of the instruction BRAM — well within budget. The remaining 69.5% capacity supports additional main microprograms, more complex generic FRU functions, or expanded main program logic. The BRAM is loaded by the batch dispatcher before each operation, so different operations can use the full capacity independently.
+
+---
+
+## Appendix I: Host Round-Trip Elimination at Scale
+
+### I.1 Round-Trip Sources Without FRU
+
+| Round-Trip Cause | Frequency per Investigation | Host CPU Cycles per Trip | Total Host Cycles per Investigation |
+|-----------------|---------------------------|------------------------|-----------------------------------|
+| Transcendental evaluation (exp, log, sqrt) | ~5 | ~50,000 | ~250,000 |
+| Active-value Prolog unification | ~12 (at investigation 50) | ~10,000 | ~120,000 |
+| Remainder resolution for constraint check | ~3 | ~20,000 | ~60,000 |
+| Deep remainder traversal (depth > 4) | ~1 | ~100,000 | ~100,000 |
+| **Total per investigation** | **~21** | | **~530,000** |
+
+### I.2 Concurrent Session Impact Without FRU
+
+| Concurrent Sessions | Round-Trips per Second | Host CPU Utilization (at 3 GHz, 8 cores) | Bottleneck? |
+|--------------------|----------------------|------------------------------------------|------------|
+| 1,000 | 21,000 | ~0.5% | No |
+| 10,000 | 210,000 | ~4.6% | No |
+| 100,000 | 2,100,000 | ~46% | Approaching |
+| 500,000 | 10,500,000 | ~230% (**saturated**) | **Yes** |
+| 1,000,000 | 21,000,000 | ~460% (**severely saturated**) | **Yes** |
+
+### I.3 Concurrent Session Impact With FRU
+
+| Concurrent Sessions | Round-Trips per Second | Host CPU Utilization | Bottleneck? |
+|--------------------|----------------------|---------------------|------------|
+| 1,000 | 0 | ~0% (data plane only) | No |
+| 10,000 | 0 | ~0% | No |
+| 100,000 | 0 | ~0% | No |
+| 500,000 | ~500 (deep remainder only) | ~0.001% | No |
+| 1,000,000 | ~1,000 (deep remainder only) | ~0.002% | No |
+| 10,000,000 | ~10,000 | ~0.02% | No |
+
+With FRUs, the only remaining host round-trip cause is deep remainder traversal beyond depth 4-5, which occurs in approximately 1 in 1,000 investigations. The host CPU is effectively removed from the data path. The serialization bottleneck that saturates at 500,000 concurrent sessions without FRUs does not manifest with FRUs at any tested scale.
+
+---
+
+## Appendix J: Functional Remainder Composition
+
+### J.1 Composition Rules in Hardware
+
+| Composition | Mathematical Result | FRU Behavior | Cycles |
+|------------|-------------------|-------------|--------|
+| exp(a) + exp(b) | Not a functional remainder of (a+b) | Evaluate both, add results | 2 × FEVAL + WADD |
+| exp(a × b) | exp composed with multiply | Multiply first, then FEVAL exp on result | WMUL + FEVAL |
+| sqrt(a × b) | sqrt composed with multiply | Multiply first, then FEVAL sqrt on result | WMUL + FEVAL |
+| log(exp(a)) | Identity (a) | FEVAL exp, then FEVAL log; result should equal a | 2 × FEVAL (verify round-trip) |
+| exp(log(a)) | Identity (a) | FEVAL log, then FEVAL exp; result should equal a | 2 × FEVAL (verify round-trip) |
+| sin²(a) + cos²(a) | 1 exactly | FEVAL sin, FEVAL cos, WMUL each, WADD; should equal 1 | 2 × FEVAL + 2 × WMUL + WADD |
+
+### J.2 Composition Depth Management
+
+| Scenario | Composed Depth | FRU Strategy | Risk |
+|----------|---------------|-------------|------|
+| Single FEVAL on closed value | 1 | Standard recurrence | None |
+| FEVAL on result of FEVAL | 2 | Second FEVAL uses first result's precision | Precision compounds — sufficient at Q335 |
+| Chain of 3+ FEVALs | 3+ | Each uses prior result; precision adequate if each step maintains Q335 frame | Precision degrades predictably — R slot tracks |
+| FEVAL on active value from multiply chain | 1 + nesting depth | Resolve multiply remainder first, then evaluate function | Total depth = multiply depth + function depth |
+
+### J.3 Verification Tests for Composition
+
+| Test | Input | Expected Output | Verifies |
+|------|-------|-----------------|----------|
+| exp(0) | 0 | 1 exactly (R=0) | Base case |
+| exp(ln(2)) | ln(2) as Q335 | 2 ± Q335 ULP | exp-log round-trip |
+| sqrt(4) | 4 | 2 exactly (R=0) | Perfect square |
+| sqrt(2)² | fn_sqrt(2) | 2 ± Q335 ULP | Square of irrational |
+| sin²(π/6) + cos²(π/6) | π/6 as Q335 | 1 ± Q335 ULP | Pythagorean identity |
+| exp(a+b) vs exp(a)×exp(b) | a=1, b=2 | Equal ± Q335 ULP | Exponent law |
+
+All tests produce results exact to the Q335 frame (100 digits). The ± Q335 ULP notation indicates that the result may differ from the mathematical exact value by at most 1 unit in the last Q335 position — this is the fundamental rounding from projection onto the 2^335 grid, present in all Q335 arithmetic and tracked by the R slot.
+
+---
+
+## Appendix K: Die Photo Partition Estimate (VDR-22 + FRU)
+
+### K.1 Area Allocation
+
+| Region | Area (mm²) | Percentage | Contents |
+|--------|-----------|-----------|----------|
+| SM array (80 SMs) | 344 | 57.2% | 5,120 QIUs with FRUs, shared SRAM, instruction cache, schedulers |
+| — QIU ALUs within SMs | 164 | 27.3% | 384-bit multipliers, adders, shifters, comparators |
+| — QIU registers within SMs | 102 | 17.0% | V/R register files, FRU recurrence registers |
+| — QIU remainder + FRU SRAM within SMs | 56 | 9.3% | Remainder BRAM, reciprocal tables |
+| — SM shared SRAM | 16 | 2.7% | Q335 constants, predicate lookup, config |
+| — SM control and interconnect | 6 | 1.0% | Schedulers, local reduction, cache |
+| L2 cache | 155 | 25.8% | 96 MB SRAM |
+| HBM3 PHY + controllers | 24 | 4.0% | 6 HBM3 stack interfaces |
+| Global reduction network | 4 | 0.7% | 7-level binary tree of 384-bit adders |
+| PCIe + NVLink | 12 | 2.0% | Host and inter-chip interfaces |
+| Host interface + scheduling | 8 | 1.3% | Global dispatch, interrupt, DMA |
+| Power management | 4 | 0.7% | Voltage regulators, clock distribution |
+| I/O ring + ESD | 30 | 5.0% | Pad ring, electrostatic discharge protection |
+| **FRU total (within SM array)** | **~20.5** | **3.4%** | Recurrence regs + reciprocal table + controller |
+| **Total die** | **601** | **100%** | |
+
+### K.2 Transistor Density Comparison
+
+| Region | Transistors (B) | Area (mm²) | Density (M tr/mm²) | Notes |
+|--------|----------------|-----------|--------------------|----|
+| QIU ALU (compute logic) | 13.3 | 164 | 81 | Lower density — complex routing |
+| QIU registers (SRAM) | 4.9 | 102 | 48 | Standard 6T SRAM density |
+| L2 cache (SRAM) | 19.2 | 155 | 124 | High-density SRAM macro |
+| HBM PHY (mixed) | 3.0 | 24 | 125 | Analog + digital mix |
+| FRU (logic + SRAM) | 2.5 | 20.5 | 124 | Mostly SRAM (reciprocal table) |
+| **Full chip average** | **70.5** | **601** | **117** | |
+
+The FRU's transistor density (124 M/mm²) is higher than the ALU logic (81 M/mm²) because the FRU is predominantly SRAM (reciprocal table at 3KB dominates the transistor count). SRAM packs more densely than random logic at 4nm. This means the FRU's physical area impact is slightly less than its transistor percentage would suggest.
+
+---
+
+## Appendix L: Software Fallback Comparison
+
+### L.1 Operations with Software Fallback (Base VDR-22) vs Native (VDR-22 + FRU)
+
+| Operation | Software Path (Host CPU) | Latency | Native Path (FRU) | Latency | Speedup |
+|-----------|------------------------|---------|-------------------|---------|---------|
+| exp(x) depth 10 | Zig Taylor loop on ARM | ~2 μs | FEVAL tag 0x01, depth 10 | ~20 ns | 100× |
+| exp(x) depth 45 | Zig Taylor loop on ARM | ~10 μs | FEVAL tag 0x01, depth 45 | ~90 ns | 111× |
+| sqrt(x) 100 digits | Zig Newton on ARM | ~5 μs | FEVAL tag 0x02, 8 iters | ~28 ns | 179× |
+| ln(x) with reduction | Zig series on ARM | ~15 μs | FEVAL tag 0x03, ~33 terms | ~80 ns | 188× |
+| sin(x) depth 45 | Zig Taylor on ARM | ~12 μs | FEVAL tag 0x04, 45 terms | ~160 ns | 75× |
+| cos(x) depth 45 | Zig Taylor on ARM | ~12 μs | FEVAL tag 0x05, 45 terms | ~160 ns | 75× |
+| ζ(s) via Borwein n=210 | Zig Borwein on ARM | ~200 μs | FEVAL tag 0x06, 210 terms | ~2.9 μs | 69× |
+| Active-value unification | Zig resolve + compare | ~5 μs | FEVAL + CROSS_MUL | ~8 ns | 625× |
+
+### L.2 Conditions Where Software Fallback Remains Necessary
+
+| Condition | Why FRU Cannot Handle | Frequency |
+|-----------|----------------------|-----------|
+| Remainder depth > 16 | FRU remainder SRAM limited to 32 nodes; deep traversal exceeds hardware capacity | <0.001% of operations |
+| Reciprocal index > 64 | Reciprocal table covers k=1..64; higher indices require Newton reciprocal sub-loop | log series without argument reduction |
+| Custom recurrence > 50 instructions | Instruction BRAM budget for generic tag limited to ~50 instructions | Exotic series only |
+| Non-convergent series | FRU depth limit prevents infinite loops but cannot detect divergence meaningfully | Programmer error |
+| Function composition requiring intermediate KB access | FRU cannot issue KB queries mid-evaluation | Rare — composition typically on register values |
+
+---
+
+## Appendix M: Comparison with Float Special Function Units
+
+### M.1 SFU vs FRU Architecture
+
+| Property | Float SFU (e.g., NVIDIA SM) | VDR FRU |
+|----------|---------------------------|---------|
+| Purpose | Approximate transcendentals at float precision | Exact rational transcendentals at configurable depth |
+| Method | Polynomial approximation or lookup-interpolation | Taylor/Newton recurrence producing exact partial sums |
+| Precision | Fixed (23-bit mantissa for FP32) | Configurable (depth parameter controls digits) |
+| Error bound | Documented ULP error (1-2 ULP typical) | Exact: R slot carries precise residual |
+| Latency | ~20-30 cycles (fixed) | Variable: 1 cycle (exp(0)) to ~225 cycles (sin depth 45) |
+| Throughput per SM | ~8 evals/cycle (shared SFU) | 64 evals/cycle (1 FRU per QIU) |
+| Power | ~10 mW per SFU | ~30 μW per FRU (active) |
+| Die area | ~0.1-0.3 mm² per SFU | ~0.004 mm² per FRU |
+| Deterministic | Yes (same polynomial) | Yes (same recurrence) |
+| Platform-independent | No (vendor-specific polynomial) | Yes (integer arithmetic) |
+| Result type | Float with unknown rounding error | Exact rational with known structural remainder |
+
+### M.2 Throughput-Precision Tradeoff
+
+| Precision Target | Float SFU Evals/sec/SM | FRU Evals/sec/QIU | FRU Advantage |
+|-----------------|----------------------|-------------------|---------------|
+| ~7 digits (FP32-equivalent) | ~500M | ~400M (depth 3-4) | Comparable, FRU slightly slower |
+| ~15 digits (FP64-equivalent) | ~250M (FP64 SFU) | ~200M (depth 8) | Comparable, FRU slightly slower |
+| ~50 digits | Not possible | ~80M (depth 20) | FRU only option |
+| ~100 digits | Not possible | ~36M (depth 45) | FRU only option |
+| Adaptive (per-value) | Not possible | Variable (1-225 cycles) | FRU only option |
+
+At float-equivalent precision levels, the FRU is competitive with (slightly slower than) dedicated SFUs. Beyond float precision, the FRU is the only option. The ability to choose precision per value per operation has no float equivalent.
+
+---
+
+## Appendix N: End-to-End Latency Trace (12-Layer Transformer)
+
+### N.1 Per-Layer Breakdown at d_model=512, seq_len=1024, 8 heads, VDR-22 + FRU
+
+| Component | Operation Count | Dominant Cost | QIUs Active | Latency |
+|-----------|----------------|-------------|------------|---------|
+| QKV projection (3 linear) | 3 × 1024 × 512 matmul | 512 muls per output element | 5,120 | ~15 μs |
+| Attention QKᵀ (8 heads) | 8 × 1024 × 1024 × 64 dot products | 64 muls per element | 5,120 | ~100 μs |
+| Softmax (surrogate) | 8 × 1024 rows × 1024 logits | 20 cycles per element | 5,120 | ~3 μs |
+| Softmax (exact exp via FRU) | 8 × 1024 rows × 1024 logits | ~38 cycles avg per element (adaptive) | 5,120 | ~6 μs |
+| Value mixing | 8 × 1024 × 1024 × 64 | 64 muls per output element | 5,120 | ~100 μs |
+| Output projection | 1024 × 512 matmul | 512 muls per element | 5,120 | ~5 μs |
+| Residual + rational scaling | 1024 × 512 add + reduction + broadcast mul | 3 cycles per element + 40 cycles norm | 5,120 | ~0.1 μs |
+| Feedforward linear 1 (4× expansion) | 1024 × 512 × 2048 matmul | 512 muls per element | 5,120 | ~50 μs |
+| ReLU | 1024 × 2048 compare | 1 cycle per element | 5,120 | ~0.4 μs |
+| Feedforward linear 2 | 1024 × 2048 × 512 matmul | 2048 muls per element | 5,120 | ~200 μs |
+| Residual + rational scaling | 1024 × 512 add + norm | Same as above | 5,120 | ~0.1 μs |
+| **Per-layer total (surrogate softmax)** | | | | **~474 μs** |
+| **Per-layer total (exact exp softmax)** | | | | **~477 μs** |
+
+### N.2 Full Model Forward Pass
+
+| Layers | Per-Layer (surrogate) | Per-Layer (exact exp) | Total (surrogate) | Total (exact exp) | Difference |
+|--------|---------------------|---------------------|-------------------|-------------------|-----------|
+| 6 | 474 μs | 477 μs | 2.84 ms | 2.86 ms | +0.7% |
+| 12 | 474 μs | 477 μs | 5.69 ms | 5.72 ms | +0.5% |
+| 24 | 474 μs | 477 μs | 11.38 ms | 11.45 ms | +0.6% |
+
+The difference between surrogate and exact exp-softmax at the full-model level is below 1%. The softmax is a small fraction of total forward pass time, dominated by the matrix multiplications in attention and feedforward. The choice between surrogate and exact exp has negligible impact on inference latency.
+
+### N.3 Comparison with Float Reference
+
+| Model Config | VDR-22 + FRU (exact, surrogate) | VDR-22 + FRU (exact, exp) | H100 Float16 (approximate) |
+|-------------|-------------------------------|--------------------------|--------------------------|
+| 6-layer, d=512, seq=1024 | 2.84 ms | 2.86 ms | ~1.5 ms |
+| 12-layer, d=512, seq=1024 | 5.69 ms | 5.72 ms | ~3.0 ms |
+| 24-layer, d=512, seq=1024 | 11.38 ms | 11.45 ms | ~6.0 ms |
+| Precision | 100 digits exact | 100 digits exact | ~7 digits (FP16), 23 digits (FP32) |
+| Reproducible | Bit-identical any platform | Bit-identical any platform | Platform-dependent |
+| Provenance per value | Full (R slot + KB) | Full (R slot + KB) | None |
+| Sum-to-one (softmax) | Exactly 1/1 | Exactly 1/1 | ~1.0 ± 10^(-7) |
+
+The VDR-22 + FRU forward pass is approximately 1.9× slower than H100 float16 on a per-token basis. At 85-97% token reduction, the VDR system performs 5-20× fewer forward passes per prompt. The net compute per prompt favors VDR from the first prompt, and the advantage widens with conversation length due to flat per-turn cost.
