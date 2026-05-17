@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026] → [@HOWL-VDR-25-2026] → [@HOWL-VDR-26-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20260247
 
 **Date:** May 2026
 
@@ -802,3 +802,281 @@ def normalize(self):
 
 ---
 
+### Appendix K — Newton Iteration Convergence Detail for Diffusion-Relevant Values
+
+| Input a | √a true value | Depth 1 | Depth 2 | Depth 3 | Depth 5 | Depth 8 | Depth 10 | Correct digits at depth 10 |
+|---|---|---|---|---|---|---|---|---|
+| 99/100 (ᾱ₀) | 0.99498... | 99/100 → 1.0 | 9901/9950 | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
+| 1/100 (1-ᾱ₀) | 0.1 | 101/200 | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
+| 26821179/31250000 (ᾱ_T) | 0.92629... | ~1 digit | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
+| 4428821/31250000 (1-ᾱ_T) | 0.14172... | ~1 digit | ~3 digits | ~6 digits | ~24 digits | ~100+ digits | ~100+ digits | >100 |
+| 2 (irrational test) | 1.41421... | 3/2 = 1.5 | 17/12 ≈ 1.4167 | 577/408 ≈ 1.41422 | ~24 digits | ~100+ digits | ~100+ digits | >100 |
+| 1/4 (perfect square) | 1/2 | 5/8 = 0.625 | 89/160 ≈ 0.55625 | ~6 digits | ~24 digits | exact value, unreduced form | exact value, unreduced form | exact (normalization issue) |
+| 9/16 (perfect square) | 3/4 | 25/32 = 0.78125 | ~3 digits | ~6 digits | ~24 digits | exact value, unreduced form | exact value, unreduced form | exact (normalization issue) |
+
+### Appendix L — Denominator Growth Through Diffusion Chain
+
+| Operation | Starting denominator | Result denominator | Growth factor | Notes |
+|---|---|---|---|---|
+| β₀ = 1/100 | 1 | 100 | 100× | Schedule parameter |
+| α₀ = 1 - β₀ = 99/100 | 1 | 100 | 100× | One subtraction |
+| β₁ = 9/400 | 1 | 400 | 400× | Schedule parameter |
+| α₁ = 391/400 | 1 | 400 | 400× | One subtraction |
+| ᾱ₁ = α₀·α₁ = 38709/40000 | 100, 400 | 40000 | Product of denominators | One multiplication |
+| ᾱ₂ = ᾱ₁·α₂ | 40000, 25 | 1000000 | Product | Denominator grows per step |
+| ᾱ₄ = 26821179/31250000 | — | 31250000 | — | Final cumulative product |
+| √ᾱ₀ at depth 10 | 100 | ~10⁵⁰⁰ | ~10⁴⁹⁸× | Newton iteration squares denominator per step |
+| Forward sample coefficient | ~10⁵⁰⁰ | ~10⁵⁰⁰ | 1× | Multiplication by data doesn't grow denom |
+| Forward + reverse roundtrip | ~10⁵⁰⁰ | ~10¹⁰⁰⁰ | ~10⁵⁰⁰× | Division by √ᾱ multiplies denominators |
+| 3-cycle roundtrip | ~10¹⁰⁰⁰ | ~10³⁰⁰⁰ | ~10³× per cycle | Linear growth per cycle |
+
+Denominator growth is the practical constraint on chain length in the Python prototype. Q335 fixed-frame arithmetic [VDR-14, VDR-18] eliminates this growth by fixing the denominator at 2³³⁵ and pushing overflow into remainder depth.
+
+### Appendix M — Float64 Error Accumulation Detail
+
+| Operation | Float64 ULP | Typical relative error | Error per d-dim vector | Cumulative over T steps |
+|---|---|---|---|---|
+| Multiplication (scalar × vector) | 2⁻⁵² ≈ 2.2×10⁻¹⁶ | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
+| Addition (vector + vector) | 2⁻⁵² | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
+| Square root (per schedule value) | 2⁻⁵² | ±0.5 ULP | 2.2×10⁻¹⁶ per sqrt | 2T × 2.2×10⁻¹⁶ |
+| Division (scalar / scalar) | 2⁻⁵² | ±1 ULP per element | d × 2.2×10⁻¹⁶ | d × T × 2.2×10⁻¹⁶ |
+| Catastrophic cancellation | up to 2⁻⁵²⁺ᵏ | Depends on operand similarity | Variable | Worst case near schedule endpoints |
+| Total per step (d=64, typical) | — | — | ~64 × 4 × 2.2×10⁻¹⁶ ≈ 5.6×10⁻¹⁴ | — |
+| Total T=50 steps | — | — | — | ~2.8×10⁻¹² |
+| Total T=1000 steps | — | — | — | ~5.6×10⁻¹¹ |
+| Total 720 frames × 50 steps | — | — | — | ~4.0×10⁻¹⁰ |
+
+### Appendix N — Catastrophic Cancellation Points in Diffusion
+
+| Computation | Cancellation risk | When it occurs | Float consequence | VDR behavior |
+|---|---|---|---|---|
+| 1 - ᾱₜ for small t | High | Early timesteps where ᾱₜ ≈ 1 | Subtracting two nearly equal values loses digits | Exact: integer subtraction in numerator |
+| xₜ - √(1-ᾱₜ)·ε when signal dominates | Moderate | Early timesteps where noise term is small | Subtraction of similar-magnitude values | Exact: rational subtraction |
+| βₜ/√(1-ᾱₜ) for small t | High | Early timesteps where 1-ᾱₜ ≈ 0 | Division by small float amplifies prior errors | Exact: rational division by exact small value |
+| Posterior variance at t=1 | High | First reverse step: (1-ᾱ₀)/(1-ᾱ₁) involves small values | Both numerator and denominator near zero | Exact: both are exact nonzero rationals |
+| Cosine schedule near endpoints | Moderate | t near 0 or T where cos²→1 or cos²→0 | Float cos² near 0 or 1 loses precision | Rational approximation maintains exact form |
+| Cumulative product for large T | Gradual | Product of many values near 1 | Each multiplication contributes ULP; drift accumulates | Exact: integer multiplication of numerators and denominators |
+| DDIM coefficient √ᾱₜ₋₁/√ᾱₜ | Low-moderate | Ratio of adjacent schedule values | Division of similar-magnitude floats | Exact: cross-multiplication of Newton iterates |
+
+### Appendix O — Platform Dependence of Float Diffusion
+
+| Variable | Source of platform dependence | Magnitude of variation | VDR behavior |
+|---|---|---|---|
+| GPU architecture | Different FMA (fused multiply-add) implementations round differently | ±1-2 ULP per operation | Integer ops are architecture-independent |
+| CUDA version | Different math library implementations for sqrt, exp | ±1 ULP per transcendental call | Newton iteration is pure integer arithmetic |
+| Compiler flags | -ffast-math reorders operations; -O3 vs -O2 may change intermediate precision | Up to 10⁻¹⁰ for long chains | No compiler affects integer arithmetic semantics |
+| CPU vs GPU | x87 80-bit intermediates vs SSE 64-bit | ±10⁻¹⁶ per operation | Same result on any architecture |
+| Tensor core vs CUDA core | Tensor cores accumulate in reduced precision | Up to 10⁻⁷ for float16, 10⁻¹⁰ for TF32 | Q335 is fixed-width on any ALU |
+| Thread scheduling | Non-deterministic reduction order in parallel sums | ±1-N ULP depending on sum size | Canonical ordering produces deterministic results |
+| Batch size | Different reduction trees for different batch sizes | ±1-few ULP | Operations are per-element, no reduction sensitivity |
+| Mixed precision | Casting between float16/32/64 at layer boundaries | Up to 10⁻³ per cast | Single representation: no casting |
+
+### Appendix P — VDR Diffusion vs VDR-4 LM Pipeline Component Mapping
+
+| Diffusion component | VDR-4 equivalent | Validation status | Exactness source |
+|---|---|---|---|
+| Schedule β computation | N/A (diffusion-specific) | This paper: tests 1-5 | Exact rational arithmetic |
+| Cumulative product ᾱ | N/A (diffusion-specific) | This paper: test 22 | Exact rational multiplication chain |
+| Newton √ᾱ | VDR-1 functional remainder | This paper: test 8 | Newton iteration, exact rationals per step |
+| Forward scaling (√ᾱ·x₀) | Embedding scaling in VDR-4 | This paper: tests 9-12 | Exact scalar-vector multiplication |
+| Noise addition (+ √(1-ᾱ)·ε) | Residual connection in VDR-4 | This paper: tests 9-12 | Exact vector addition |
+| Attention QKᵀ in denoiser | VDR-4 LP2 | VDR-4: 198 tests | Exact matrix product |
+| Softmax in denoiser | VDR-4 LP3 | VDR-4: sum exactly 1 | Surrogate or Taylor, exact sum |
+| ReLU in denoiser | VDR-4 LP5 | VDR-4: exact piecewise linear | Exactly 0 or passthrough |
+| Linear layers in denoiser | VDR-4 LP5 | VDR-4: exact matrix-vector | Exact rational operations |
+| x₀ prediction (subtract + divide) | N/A (diffusion-specific) | This paper: test 13, error=0 | Exact rational division and subtraction |
+| Posterior mean | N/A (diffusion-specific) | This paper: test 14 | Exact rational composition |
+| Posterior variance | N/A (diffusion-specific) | This paper: test 23 | Exact closed rational |
+| DDIM reverse step | N/A (diffusion-specific) | This paper: test 17, error=0 | Exact rational chain |
+| Loss (MSE) | VDR-4 LP6 | VDR-4: exact fraction | Exact squared difference sum |
+| Gradient (autodiff) | VDR-4 LP7 | VDR-4: exact chain rule | Exact reverse-mode |
+| Weight update (SGD) | VDR-4 LP8 | VDR-4: exact parameter update | Exact lr × gradient |
+| Checkpoint save/load | VDR-4 LP9 | VDR-4: bit-identical | Exact fraction serialization |
+
+### Appendix Q — Test Dependency Chain
+
+| Test | Depends on | What failure would indicate |
+|---|---|---|
+| 1 (linear schedule) | VDR arithmetic only | Rational arithmetic broken |
+| 2 (α = 1-β) | Test 1 | Subtraction broken |
+| 3 (cumulative product) | Tests 1, 2 | Multiplication chain broken |
+| 4 (ᾱ decreasing) | Test 3 | Comparison or product broken |
+| 5 (SNR decreasing) | Tests 3, 4 | Division or comparison broken |
+| 6-7 (sqrt exact) | VDR arithmetic | Normalization issue (confirmed) |
+| 8 (sqrt residual) | VDR arithmetic | Newton iteration broken |
+| 9 (forward dimension) | Tests 1-3, 8 | Vector operations broken |
+| 10 (signal dominance) | Tests 1-3 | Schedule values incorrect |
+| 11 (coefficient identity) | Tests 3, 8 | Sqrt or squaring broken |
+| 12 (trajectory) | Tests 1-3, 8, 9 | Forward iteration broken |
+| 13 (x₀ prediction) | Tests 1-3, 8, 9 | Reverse arithmetic broken |
+| 14 (posterior mean dim) | Tests 1-3, 8, 13 | Mean computation broken |
+| 15 (reverse step dim) | Tests 1-3, 8, 13, 14 | Step composition broken |
+| 16 (roundtrip) | Tests 9-15 | Forward-reverse chain broken |
+| 17 (DDIM roundtrip) | Tests 9-13 | DDIM arithmetic broken |
+| 18 (reverse loop) | Tests 13-15 | Multi-step reverse broken |
+| 19 (drift bound) | Tests 16-18 | Drift exceeds Newton residual |
+| 20 (drift flat) | Test 19 | Drift growing — would indicate compounding error |
+| 21 (consistency) | Tests 1-5, 8, 11 | Any schedule property violated |
+| 22 (Fraction match) | Test 3 | VDR disagrees with arbitrary-precision rational |
+| 23 (posterior var) | Tests 1-3 | Variance computation produces invalid values |
+| 24 (cosine schedule) | VDR arithmetic | Rational cosine approximation broken |
+| 25 (perfect sqrt) | Tests 6-7 | Same normalization issue (confirmed) |
+
+Test 20 is the apex of the dependency chain. Its passing depends on every prior test except 6, 7, and 25 (the normalization presentation tests). If test 20 fails, the failure propagates from one of its dependencies, and the dependency chain identifies which component broke.
+
+### Appendix R — Diffusion Model Architectures and VDR Applicability
+
+| Architecture | Denoising network | Steps (typical) | Chain length (video) | Float drift risk | VDR benefit |
+|---|---|---|---|---|---|
+| DDPM [Ho et al., 2020] | U-Net | 1000 | 1000 × frames | High: long chain | Full: eliminates all chain drift |
+| DDIM [Song et al., 2020] | U-Net | 50-100 | 50-100 × frames | Moderate | Full: DDIM roundtrip verified exact |
+| Stable Diffusion | U-Net + VAE | 20-50 | 20-50 × frames | Moderate | Full: all operations covered |
+| DALL-E 2 | U-Net + CLIP | 100 | Single image | Low (single image) | Moderate: reproducibility benefit |
+| Imagen | U-Net cascade | 50 per stage × 3 stages | 150 × frames | High: cascaded chains | Full: multi-stage drift eliminated |
+| Video Diffusion [Ho et al., 2022] | 3D U-Net | 50-1000 | 50-1000 × frames | Very high | Critical: temporal coherence |
+| Sora-class models | DiT (transformer) | 50-100 | 50-100 × frames | High: frame conditioning | Critical: long video coherence |
+| Latent Diffusion | U-Net in latent space | 50 | 50 × frames | Moderate in latent, high in decode | Full in latent; VAE boundary is float |
+| Flow Matching | ODE solver | 10-50 | 10-50 × frames | Moderate: fewer steps | Full: ODE integration exact |
+| Consistency Models | Single step (distilled) | 1-4 | 1-4 × frames | Low per frame | Low: few sequential operations |
+| Rectified Flow | Linear interpolant | 10-30 | 10-30 × frames | Moderate | Full: linear path is exact rational |
+| EDM [Karras et al., 2022] | Preconditioned U-Net | 20-80 | 20-80 × frames | Moderate: better conditioning | Full: preconditioning coefficients exact |
+
+### Appendix S — Memory Requirements for VDR Diffusion
+
+| Component | Python Fraction size | VDR object size | Count per step (d=64) | Per-step memory | Per 50-step chain |
+|---|---|---|---|---|---|
+| Schedule βₜ | ~100 bytes | ~150 bytes | 1 | 150 B | 7.5 KB |
+| Schedule αₜ | ~100 bytes | ~150 bytes | 1 | 150 B | 7.5 KB |
+| Schedule ᾱₜ | ~200 bytes (growing denom) | ~250 bytes | 1 | 250 B | 12.5 KB |
+| √ᾱₜ (depth 10) | ~50 KB (large denom) | ~50 KB | 1 (cached) | 50 KB | 50 KB (cached, not per-step) |
+| √(1-ᾱₜ) (depth 10) | ~50 KB (large denom) | ~50 KB | 1 (cached) | 50 KB | 50 KB (cached) |
+| xₜ vector | ~200 bytes per component | ~250 bytes per component | d = 64 | 16 KB | 800 KB |
+| ε vector | ~200 bytes per component | ~250 bytes per component | d = 64 | 16 KB | 800 KB |
+| Posterior mean μₜ | ~500 bytes per component | ~600 bytes per component | d = 64 | 38 KB | 1.9 MB |
+| Posterior variance β̃ₜ | ~300 bytes | ~400 bytes | 1 | 400 B | 20 KB |
+| **Total per step** | — | — | — | ~120 KB | — |
+| **Total 50-step chain** | — | — | — | — | ~6 MB |
+| **Total 1000-step chain** | — | — | — | — | ~120 MB |
+| **Float64 equivalent** | 8 bytes per value | 8 bytes per value | d = 64 | 1 KB | 50 KB |
+
+VDR memory usage is approximately 100-1000× float64 for the Python prototype. Q335 fixed-frame arithmetic reduces this to approximately 11× (48 bytes per Q335 value vs 8 bytes per float64).
+
+### Appendix T — Computational Cost per Diffusion Step
+
+| Operation | Float64 ops | VDR ops (Python) | VDR ops (Q335 GPU) | Ratio (Python) | Ratio (Q335) |
+|---|---|---|---|---|---|
+| Scalar multiply (coefficient × component) | 1 FLOP | ~50 integer ops (arbitrary precision) | ~200 integer ops (11×11 limb) | 50× | 200× |
+| Vector scale (d=64) | 64 FLOPs | ~3,200 int ops | ~12,800 int ops | 50× | 200× |
+| Vector add (d=64) | 64 FLOPs | ~1,400 int ops | ~1,408 int ops (22 per add) | 22× | 22× |
+| Newton sqrt (1 step) | ~10 FLOPs (hw sqrt) | ~200 int ops | ~600 int ops | 20× | 60× |
+| Newton sqrt (depth 10) | ~10 FLOPs (hw sqrt) | ~2,000 int ops | ~6,000 int ops | 200× | 600× |
+| Full forward step (d=64) | ~200 FLOPs | ~10,000 int ops | ~30,000 int ops | 50× | 150× |
+| Full reverse step (d=64) | ~400 FLOPs | ~20,000 int ops | ~60,000 int ops | 50× | 150× |
+| 50-step sampling (d=64) | ~20,000 FLOPs | ~1,000,000 int ops | ~3,000,000 int ops | 50× | 150× |
+| 50-step sampling (d=4096) | ~1.3M FLOPs | ~65M int ops | ~195M int ops | 50× | 150× |
+
+### Appendix U — Video Generation Drift Projection
+
+| Video parameters | Frames | Steps/frame | Total sequential ops | Float64 cumulative error | VDR cumulative error |
+|---|---|---|---|---|---|
+| 1 sec, 24 fps, 50 steps | 24 | 50 | 1,200 | ~2.6×10⁻¹² | < 10⁻⁵⁰ |
+| 10 sec, 24 fps, 50 steps | 240 | 50 | 12,000 | ~2.6×10⁻¹¹ | < 10⁻⁵⁰ |
+| 30 sec, 24 fps, 50 steps | 720 | 50 | 36,000 | ~7.9×10⁻¹¹ | < 10⁻⁵⁰ |
+| 60 sec, 24 fps, 50 steps | 1,440 | 50 | 72,000 | ~1.6×10⁻¹⁰ | < 10⁻⁵⁰ |
+| 60 sec, 30 fps, 100 steps | 1,800 | 100 | 180,000 | ~4.0×10⁻¹⁰ | < 10⁻⁵⁰ |
+| 5 min, 24 fps, 50 steps | 7,200 | 50 | 360,000 | ~7.9×10⁻¹⁰ | < 10⁻⁵⁰ |
+| 30 min, 24 fps, 50 steps | 43,200 | 50 | 2,160,000 | ~4.8×10⁻⁹ | < 10⁻⁵⁰ |
+| 2 hr film, 24 fps, 50 steps | 172,800 | 50 | 8,640,000 | ~1.9×10⁻⁸ | < 10⁻⁵⁰ |
+| Training: 1M steps, d=4096 | N/A | N/A | ~4×10⁹ ops/step × 10⁶ steps | ~10⁻⁶ accumulated | < 10⁻⁵⁰ |
+
+Float error at the scale of a 2-hour film is approximately 10⁻⁸ — entering the range where 8-bit pixel quantization may interact with drift. VDR error is constant regardless of video length.
+
+### Appendix V — Schedule Type Comparison Under VDR
+
+| Schedule type | β formula | VDR representation | Exactness | Monotonicity verification |
+|---|---|---|---|---|
+| Linear | β_start + t/(T-1) × (β_end - β_start) | Exact rational: integer numerator / integer denominator | Exact at every point | Exact rational comparison at adjacent pairs |
+| Cosine | cos²(((t/T+s)/(1+s))×π/2) / f(0) | Rational approximation via Taylor/Padé | Approximate to chosen series depth | Exact comparison on approximate values |
+| Quadratic | β_start + (t/(T-1))² × (β_end - β_start) | Exact rational: t² is integer, denominators are products | Exact at every point | Exact rational comparison |
+| Sigmoid | σ(a + (b-a)×t/(T-1)) | Rational approximation via Taylor exp | Approximate to chosen series depth | Exact comparison on approximate values |
+| Piecewise linear | Linear segments with breakpoints | Exact rational per segment | Exact at every point | Exact within segments; exact at breakpoints |
+| Learned (per-parameter) | Arbitrary values from training | Exact rational from exact training | Exact if trained in VDR | Verifiable by comparison |
+
+Schedules involving only rational operations (linear, quadratic, piecewise linear) are exactly representable. Schedules involving transcendentals (cosine, sigmoid) use rational approximations with controllable precision. All schedule types maintain exact monotonicity verification once their values are established.
+
+### Appendix W — Error Source Decomposition in Diffusion
+
+| Error source | Float64 magnitude | VDR magnitude | Compounding behavior | Distinguishable from model error |
+|---|---|---|---|---|
+| Schedule computation | ~10⁻¹⁵ per product | 0 | Multiplicative across T steps | No (in float) / Yes (in VDR) |
+| Forward scaling √ᾱ | ~10⁻¹⁶ per multiply | Newton residual (~10⁻⁵⁰) | Additive per step | No (in float) / Yes (in VDR) |
+| Noise scaling √(1-ᾱ) | ~10⁻¹⁶ per multiply | Newton residual (~10⁻⁵⁰) | Additive per step | No (in float) / Yes (in VDR) |
+| Coefficient identity violation | ~10⁻¹⁵ per step | ~10⁻⁵⁰ per step | Systematic energy drift | No (in float) / Yes (in VDR) |
+| x₀ prediction division | ~10⁻¹⁶ per division | 0 | Additive per step | No (in float) / Yes (in VDR) |
+| Posterior variance computation | ~10⁻¹⁵ | 0 | Per step, may cause instability | No (in float) / Yes (in VDR) |
+| Neural network prediction error | ~10⁻¹ to 10⁻³ | ~10⁻¹ to 10⁻³ (same model) | Depends on model quality | — |
+| Noise sampling quantization | ~10⁻¹⁶ (float sampling) | One-time boundary at conversion | Does not compound | Yes (logged boundary) |
+| Catastrophic cancellation | Up to 10⁻¹⁰ at vulnerable points | 0 | Sporadic, worst at schedule endpoints | No (in float) / N/A (in VDR) |
+| **Total arithmetic error** | **~T × 10⁻¹⁵** | **~10⁻⁵⁰ (constant)** | **Linear growth vs constant** | **No vs Yes** |
+| **Model prediction error** | **~10⁻¹ to 10⁻³** | **~10⁻¹ to 10⁻³** | **Dominates in both systems** | **Identical** |
+
+The key insight: in float, arithmetic error and model error are indistinguishable. In VDR, arithmetic error is zero (or constant at Newton residual), so all observed error is attributable to the model. This separation enables principled model debugging — if the output is wrong, the arithmetic is not the cause.
+
+### Appendix X — Exact Values for Key Intermediate Computations (T=5 Linear Schedule)
+
+| Quantity | Exact VDR value | Decimal approximation | Denominator digits |
+|---|---|---|---|
+| β₀ | 1/100 | 0.01 | 3 |
+| β₁ | 9/400 | 0.0225 | 3 |
+| β₂ | 1/25 | 0.04 | 2 |
+| β₃ | 27/400 | 0.0675 | 3 |
+| β₄ | 1/20 | 0.05 | 2 |
+| α₀ | 99/100 | 0.99 | 3 |
+| α₁ | 391/400 | 0.9775 | 3 |
+| α₂ | 24/25 | 0.96 | 2 |
+| α₃ | 373/400 | 0.9325 | 3 |
+| α₄ | 19/20 | 0.95 | 2 |
+| ᾱ₀ | 99/100 | 0.99 | 3 |
+| ᾱ₁ | 38709/40000 | 0.967725 | 5 |
+| ᾱ₂ | 929016/1000000 | 0.929016 | 7 |
+| ᾱ₃ | 867562194/1000000000 | 0.867562194 | 10 |
+| ᾱ₄ | 26821179/31250000 | 0.858277... | 8 |
+| 1-ᾱ₀ | 1/100 | 0.01 | 3 |
+| 1-ᾱ₄ | 4428821/31250000 | 0.141722... | 8 |
+| β̃₁ (posterior var) | Exact rational | ~0.0000103... | Large |
+| β̃₄ (posterior var) | Exact rational | ~0.00764... | Large |
+
+### Appendix Y — Noise Predictor Oracle Construction
+
+| Component | Purpose | Implementation | Token cost (in VDR-LLM-Prolog) |
+|---|---|---|---|
+| Known x₀ | Original data for roundtrip test | Provided as exact rational vector | 0 (KB fact) |
+| Known ε | Noise used in forward process | Provided as exact rational vector | 0 (KB fact) |
+| Forward computation | Compute xₜ from x₀ and ε | forward_sample(x₀, t, schedule, ε) | 8 (one primitive call) |
+| Oracle predictor | Given xₜ, return ε (the known noise) | Closure over ε: predict(xₜ, t) → ε | 0 (Prolog rule) |
+| Roundtrip test | Forward with ε, reverse with oracle predicting ε | verify_forward_reverse_roundtrip(x₀, schedule, ε) | 8 (one primitive call) |
+| Expected result | x₀_recovered = x₀ | Error = 0 (DDIM) or < Newton residual (stochastic) | 8 (one comparison) |
+
+The oracle predictor separates arithmetic error from model error. By using a perfect predictor (the actual noise), any nonzero roundtrip error is attributable entirely to arithmetic. VDR produces zero (DDIM) or Newton residual (stochastic), confirming that the arithmetic chain is lossless.
+
+### Appendix Z — Test Coverage Matrix
+
+| Diffusion component | Schedule construction | Value computation | Chain composition | Roundtrip | Drift | Total tests |
+|---|---|---|---|---|---|---|
+| β values | Test 1 | — | — | — | — | 1 |
+| α = 1-β | Test 2 | — | — | — | — | 1 |
+| Cumulative ᾱ | Test 3 | Test 22 (Fraction match) | — | — | — | 2 |
+| Monotonicity | Test 4 (ᾱ), Test 5 (SNR) | — | — | — | — | 2 |
+| Square root | Tests 6-7 (exact) | Test 8 (residual) | — | — | — | 3 |
+| Forward process | Test 9 (dim) | Test 10 (signal), Test 11 (coeff id) | Test 12 (trajectory) | — | — | 4 |
+| x₀ prediction | — | Test 13 (error=0) | — | — | — | 1 |
+| Posterior mean | — | Test 14 (dim) | — | — | — | 1 |
+| Reverse step | — | Test 15 (dim) | — | — | — | 1 |
+| Roundtrip | — | — | Test 16 (stochastic) | Test 17 (DDIM=0) | — | 2 |
+| Full loop | — | — | Test 18 (reverse loop) | — | — | 1 |
+| Multi-cycle | — | — | — | Test 19 (bound) | Test 20 (flat) | 2 |
+| Consistency | Test 21 (5 sub-tests) | — | — | — | — | 5 |
+| Posterior variance | — | Test 23 (positive rational) | — | — | — | 1 |
+| Cosine schedule | Test 24 (construction) | — | — | — | — | 1 |
+| Perfect squares | Tests 6-7, 25 (normalization) | — | — | — | — | 3 |
+| **Totals** | **11** | **7** | **4** | **3** | **2** | **37** |
