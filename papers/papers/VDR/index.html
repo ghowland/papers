@@ -39,20 +39,22 @@
 <header id="title-block-header">
 <h1 class="title"> </h1>
 </header>
-<h1
-id="vdr---value-denominator-remainder-exact-integer-arithmetic-for-llms">VDR
-- Value, Denominator, Remainder: Exact Integer Arithmetic for LLMs</h1>
+<h1 id="vdr-exact-integer-arithmetic-for-llms">VDR: Exact Integer
+Arithmetic for LLMs</h1>
+<h2 id="value-denominator-remainder">Value, Denominator, Remainder</h2>
 <p><strong>The problem:</strong> floating-point arithmetic silently
 truncates, accumulates error, and produces platform-dependent results.
 LLMs spend 80-95% of their tokens on infrastructure (formatting,
 arithmetic, state tracking, hedging) that could be handled by exact
 tools.</p>
 <p><strong>VDR is:</strong> an exact finite arithmetic system where
-every number is three integers [Value, Denominator, Remainder] and the
-Remainder is not rounding error - it’s first-class structure. Built
-outward into a complete LLM architecture with scoped knowledge bases, a
-built-in Prolog engine for logical deduction, and 448 exact primitives
-the model orchestrates instead of generating computation as text.</p>
+every number is three integers <a
+href="#value-denominator-remainder">Value, Denominator, Remainder</a>
+and the Remainder is not rounding error - it’s first-class structure.
+Built outward into a complete LLM architecture with scoped knowledge
+bases, a built-in Prolog engine for logical deduction, and 448 exact
+primitives the model orchestrates instead of generating computation as
+text.</p>
 <p><strong>Results:</strong> 884 tests across 37 domains, zero
 arithmetic errors. 85-97% token reduction vs conventional LLMs.
 Jailbreaking provably impossible for data access. SRE investigation: 73×

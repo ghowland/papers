@@ -1,4 +1,5 @@
-# VDR - Value, Denominator, Remainder: Exact Integer Arithmetic for LLMs
+# VDR: Exact Integer Arithmetic for LLMs
+## Value, Denominator, Remainder
 
 **The problem:** floating-point arithmetic silently truncates, accumulates error, and produces platform-dependent results. LLMs spend 80-95% of their tokens on infrastructure (formatting, arithmetic, state tracking, hedging) that could be handled by exact tools.
 
