@@ -60,7 +60,7 @@ arithmetic errors. 85-97% token reduction vs conventional LLMs.
 Jailbreaking provably impossible for data access. SRE investigation: 73×
 faster, 71× cheaper, 100% data coverage vs 25%.</p>
 <p><strong>Performance (VDR-29):</strong> Basis retooled from Q335 to
-hardware register widths — D=2^8 weights, D=2^16 activations — where
+hardware register widths, D=2^8 weights, D=2^16 activations, where
 divmod is a bit shift and mask. H100 INT8 tensor cores: 2× FP16
 throughput on GEMM, 3-6× on softmax/activations via table lookup
 bypassing the SFU. Full 7B forward pass: 
@@ -95,13 +95,13 @@ layers.</p></li>
 Configuration and Cloning as Application Development</a></strong> - LLM
 Software: LLM sessions configured with KB state and Prolog rules, then
 snapshot and cloned as running applications. Builtins are Prolog
-predicates — user-written rules chain them into workflows that execute
+predicates, user-written rules chain them into workflows that execute
 without LLM involvement. Three execution levels: full LLM judgment, LLM
 invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones
 are instances. Drift thresholds enforce freshness.</p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-25-2026/manuscript.md">LLM Session
 Clone as Internet and Web Server Software</a></strong> - LLM Server
-Software: protocol grammars handle wire formats — HTTP, SMTP, DNS, MQTT,
+Software: protocol grammars handle wire formats, HTTP, SMTP, DNS, MQTT,
 SSH, and 30+ others. Grammars provide all structural tokens; Prolog
 rules process requests; clones spawn per connection. The LLM fills
 content slots in protocol templates and provides judgment when no stored
@@ -114,7 +114,7 @@ exact VDR fractions. Cumulative products ᾱₜ have zero drift across
 arbitrary step counts. Square roots of schedule coefficients use Newton
 iteration producing exact rationals at each depth. The forward process
 xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε and reverse posterior mean μₜ = (1/√αₜ)(xₜ -
-βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations — no float truncation
+βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations, no float truncation
 compounds through the denoising chain. Forward-reverse roundtrips
 recover the original signal exactly. Multi-cycle drift does not
 accumulate because there is no rounding to accumulate. Applicable to
@@ -124,8 +124,8 @@ required.</p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR in Zig SIMD
 and GPU Performance versus Floating Point</a></strong> - Fixed-Basis
 Integer Performance: VDR retooled from Q335 physics basis to
-machine-register-width bases — D=2^8 weights, D=2^16 activations, D=2^64
-gradients — where divmod is a bit shift and mask. On H100 GPU: INT8
+machine-register-width bases, D=2^8 weights, D=2^16 activations, D=2^64
+gradients, where divmod is a bit shift and mask. On H100 GPU: INT8
 tensor cores deliver 2× FP16 tensor core throughput on GEMM; half-size
 weights double effective HBM bandwidth; table lookups for exp, GeLU, and
 rsqrt bypass the SFU bottleneck entirely (3-6× faster on softmax and
@@ -137,7 +137,7 @@ denoising steps for 2-hour film) projects to
 of correction passes that float requires for drift. On CPU AVX-512: 32
 i16 elements per register versus 16 f32, parity on matmul, 1.5-2× on
 normalization, 5-10× on activation functions via precomputed tables.
-Residual addition is the one operation where float wins (1.3×) — it
+Residual addition is the one operation where float wins (1.3×), it
 contributes &lt;0.1% of pipeline compute. Zero warp divergence by
 construction (no denormals, NaN, Inf). Zero epsilon parameters.
 Bit-identical cross-platform reproduction. All integer execution
@@ -241,19 +241,19 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-13
 R] where V is an integer numerator, D is a nonzero integer denominator,
 and R is a remainder. When R is zero, the object is “closed” and behaves
 as the rational number V/D. When R is nonzero, it carries exact
-structure that the denominator frame couldn’t absorb — this is not
-error, it’s part of the value.</p>
+structure that the denominator frame couldn’t absorb, this is not error,
+it’s part of the value.</p>
 <p>R takes three forms: atomic (single integer), composite (integer base
 plus finite list of child VDR triples), or functional (a callable that
-produces a VDR at a requested depth — used for convergent series like
+produces a VDR at a requested depth, used for convergent series like
 Newton iteration for √2 or Taylor series for exp). Nesting occurs only
 in R, never in V or D. Every valid object has finite depth, finite
 branching, finite total node count.</p>
 <p>Closed arithmetic is standard rational arithmetic: addition
 cross-multiplies, multiplication multiplies straight across. The closed
 subset is arithmetically closed under all four operations. Active
-arithmetic (R≠0) requires “lifting” — rescaling remainders when
-denominator frames change — and generates cross-terms between V and R
+arithmetic (R≠0) requires “lifting”, rescaling remainders when
+denominator frames change, and generates cross-terms between V and R
 slots during multiplication. Division by an active object projects the
 divisor to a rational via scalar projection Π([V,D,R]) = (V + Π(R))/D,
 losing the divisor’s remainder structure (acknowledged v1
@@ -292,9 +292,9 @@ expectations.</p>
 <p>Chaotic dynamics have exponential representation cost (logistic map
 denominators grow as 
 2^n after n steps). This is an
-information-theoretic fact, not a VDR defect — float hides it by
-silently producing garbage; VDR exposes it honestly. Periodic orbits on
-rationals are free (tent map on 1/7 stays period-3 forever with bounded
+information-theoretic fact, not a VDR defect, float hides it by silently
+producing garbage; VDR exposes it honestly. Periodic orbits on rationals
+are free (tent map on 1/7 stays period-3 forever with bounded
 denominators).</p>
 <p>Gaussian elimination replaces cofactor expansion: 3×3 determinant
 takes 17 operations via Gaussian vs 15 cofactor, but by 10×10 it’s 550
@@ -311,7 +311,7 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-4-
 complete language model pipeline using only exact fractions.</p>
 <p>Exact softmax: truncated Taylor series where each partial sum is an
 exact rational. Logits [1,2,3] produce outputs 64826368/720042809,
-176214841/720042809, 479001600/720042809 — sum exactly 1/1. Rational
+176214841/720042809, 479001600/720042809, sum exactly 1/1. Rational
 surrogate softmax avoids exponentials entirely using squared shifts:
 (z-m+c)²/Σ(z-m+c)², still summing to exactly 1.</p>
 <p>Reverse-mode autodiff with exact gradients. d(x²)/dx at x=3 is
@@ -347,9 +347,9 @@ integers. Depth-first search with backtracking. Scoped KB search: active
 topic → parent → grandparent → global.</p>
 <p>Knowledge bases with lexical scoping. Each KB has facts, rules,
 constraints, a parent pointer, children, working data, and visibility
-controls. Out-of-scope KBs are invisible, not deprioritized — “bank” in
-a finance KB resolves to institution; in a geography KB to river edge.
-No heuristics.</p>
+controls. Out-of-scope KBs are invisible, not deprioritized, “bank” in a
+finance KB resolves to institution; in a geography KB to river edge. No
+heuristics.</p>
 <p>Working data: scoped variable bindings attached to topics with
 inheritance and shadowing like lexical variables. Every binding logged
 with turn number.</p>
@@ -357,14 +357,14 @@ with turn number.</p>
 can’t suspend), operational (system-level, suspendable with logging),
 legal/policy (per-jurisdiction, activatable), project (user
 preferences). Because all values are exact VDR fractions, constraint
-checking is exact — sum-to-one is either 1/1 or it isn’t.</p>
+checking is exact, sum-to-one is either 1/1 or it isn’t.</p>
 <p>Topic management with explicit lifecycle: open, park (snapshot +
 deactivate), resume (restore + reactivate + list pending), close. Topics
 switches preserve working data through park/resume.</p>
 <p>Surfacing modes: narrative (LLM text with KB references), table
 (direct KB dump), tree (hierarchy), provenance (derivation chain),
 constraint status, diffs, query results, history, pending items. KB data
-blocks are retrieved not generated — can’t be hallucinated.</p>
+blocks are retrieved not generated, can’t be hallucinated.</p>
 <p>User accounts as KBs: identity, preferences, permissions, session
 state are facts in a user’s KB. Org hierarchy maps to KB tree.
 Constraints propagate downward. The KB tree is the access control
@@ -449,10 +449,10 @@ created_at, last_modified).</p>
 <p>Primitive count: 333 (289 pure + 44 operational).</p>
 <h3 id="layer-6-orchestrated-inference-vdr-9">Layer 6: Orchestrated
 Inference (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-9-2026/manuscript.md">VDR-9</a>)</h3>
-<p>A usage pattern specification — zero new primitives, zero new
-modules. Defines how the LLM uses everything from layers 1-5 to conduct
+<p>A usage pattern specification, zero new primitives, zero new modules.
+Defines how the LLM uses everything from layers 1-5 to conduct
 structured investigations.</p>
-<p>The LLM does not reason — it orchestrates a reasoning process. Token
+<p>The LLM does not reason, it orchestrates a reasoning process. Token
 prediction produces orchestration decisions; deterministic tools produce
 computation and deduction; KBs record everything.</p>
 <p>Loop: Assess (read state from KB, decide next step) → Formalize
@@ -505,12 +505,12 @@ queryable).</p>
 2^20, mid 
 2^35,
 late 
-2^45. Reprojection rounds to Q-basis with exact error bound logged
-— declared auditable decision, not silent truncation.</p>
+2^45. Reprojection rounds to Q-basis with exact error bound
+logged, declared auditable decision, not silent truncation.</p>
 <p>Cross-phase lineage: the entire lifecycle from raw data to retired
 model is one queryable KB tree.</p>
 <p>UI as API: every UI action maps to a KB operation, every UI element
-renders KB data. Same command tokens via API client — one system, not
+renders KB data. Same command tokens via API client, one system, not
 two.</p>
 <h3 id="layer-8-grammar-directed-compaction-vdr-12">Layer 8:
 Grammar-Directed Compaction (<a
@@ -529,8 +529,8 @@ profiles. 10-step pipeline: 5 deterministic, 2 requiring LLM judgment
 tokens for free (100% correct) and declares typed slots for LLM or KB
 content. Three auto-generated categories: extraction (one per table),
 display (5 standard formats), usage (5 types on demand). Grammars
-inherit through KB tree. LLM can create new grammars by asserting facts
-— created once, used N times at zero cost per reuse.</p>
+inherit through KB tree. LLM can create new grammars by asserting facts,
+created once, used N times at zero cost per reuse.</p>
 <p>Per-token provenance: every output token tagged as grammar-sourced
 (structural, exact, free), KB-sourced (factual, exact, free), or
 LLM-sourced (creative, probabilistic, expensive). For compacted table
@@ -608,15 +608,15 @@ int ops; Q335 would need
 turn 1. Actual slowdown 
 100-1,000×.</p>
 <p>Scaling divergence: conventional quadratic (each turn re-reads all
-history), VDR linear (each turn costs same — state in KB). By turn 20:
-133:1 ratio. By turn 100: 588:1. Quality scales oppositely —
-conventional degrades, VDR improves (knowledge accumulates).</p>
+history), VDR linear (each turn costs same, state in KB). By turn 20:
+133:1 ratio. By turn 100: 588:1. Quality scales oppositely, conventional
+degrades, VDR improves (knowledge accumulates).</p>
 <p>Capability boundary: 1MB JSON, 10MB documents, 500 positions, 2000
-articles — impossible for conventional (context overflow), routine for
+articles, impossible for conventional (context overflow), routine for
 VDR (data through primitives, never token stream).</p>
-<p>Six error classes structurally eliminated (not reduced —
-categorically impossible): arithmetic, state loss, formatting,
-retrieval, deduction, confidence.</p>
+<p>Six error classes structurally eliminated (not reduced, categorically
+impossible): arithmetic, state loss, formatting, retrieval, deduction,
+confidence.</p>
 <p>Disposable clone economics: 40 tokens overhead per lifecycle. Over
 200 turns across 4 clones: 42,000 LLM tokens, 103 persistent facts.
 Conventional at 200 turns: 600,000+ tokens, severe degradation.</p>
@@ -627,9 +627,9 @@ alt="Fig. 3" />
 </figure>
 <h3 id="layer-11-structural-safety-vdr-16">Layer 11: Structural Safety
 (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-16-2026/manuscript.md">VDR-16</a>)</h3>
-<p>Safety emerges from components built for other purposes — no
+<p>Safety emerges from components built for other purposes, no
 safety-specific modules.</p>
-<p>Three layers: Input filtering (KB visibility + scope chain — integer
+<p>Three layers: Input filtering (KB visibility + scope chain, integer
 comparison, failed check means data absent not redacted), operation
 authorization (grant system, default denial, monotonic state
 transitions), output validation (grammar-layer constraints on content
@@ -665,10 +665,10 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-17
 reproducible integer arithmetic, confidence is computed exact fraction.
 Harmless: unauthorized data absent by construction, grants default deny,
 content constraints use KB provenance not token similarity (“explosive”
-in music KB ≠ weapons KB). Helpful: credential-based tiered access —
+in music KB ≠ weapons KB). Helpful: credential-based tiered access,
 verified chemist’s scope chain hits professional KB before public KB,
 professional data shadows simplified versions.</p>
-<p>Seven interference behaviors eliminated: refusal (nothing to refuse —
+<p>Seven interference behaviors eliminated: refusal (nothing to refuse,
 data absent), manufactured aggression (no quality assessment), command
 substitution (no substitution mechanism in command tokens), wellness
 register (credentials verify status), labor demand (no engagement gate),
@@ -760,7 +760,7 @@ Query latency &lt;1ms to 1M facts, &lt;5ms at 50M.</p>
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-21-2026/manuscript.md">VDR-21</a>)</h3>
 <p>Custom 10-core Q335 processor on Xilinx Zynq-7020. Each core: 384-bit
 ALU, 8 V-registers + 8 R-registers, 4-stage pipeline at 150 MHz. SHR335
-(Q335 divmod) is fixed wiring — zero logic, zero power, 1 cycle.</p>
+(Q335 divmod) is fixed wiring, zero logic, zero power, 1 cycle.</p>
 <p>53 instructions across 10 categories. 6 microprograms: fact matching
 (200 facts in 
 1.1μs), SGD update (100K params in 
@@ -793,7 +793,7 @@ integer ALU. SRE primitives:
 200 nanoseconds total. Primitives 
 50,000×
 faster than one LLM token.</p>
-<p>No float units, no tensor cores, no SFUs — every transistor serves
+<p>No float units, no tensor cores, no SFUs, every transistor serves
 integer arithmetic. Smaller die (581 vs 814 mm²), lower power (400 vs
 700W), lower cost (
 $15K vs 
@@ -813,14 +813,14 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-23
 transistors (7% per-unit increase), 4 recurrence registers, 3KB
 reciprocal table, convergence comparator, loop controller. One new
 instruction: FEVAL (opcode 0x35).</p>
-<p>FRU reuses the existing ALU — it’s a sequencer driving the 384-bit
+<p>FRU reuses the existing ALU, it’s a sequencer driving the 384-bit
 multiplier through recurrence loops, not a separate compute unit.
 Supports exp (3-4 cycles/term), sqrt (7 cycles/step), ln, sin, cos,
 generic (microcode).</p>
 <p>Adaptive depth: fewer terms for values needing less precision. Exact
 exp-softmax over 1,024 logits: 
 56 ns, competitive with H100 float
-(100-200ns). Common path (R=0, &gt;99% of values) unchanged — zero FRU
+(100-200ns). Common path (R=0, &gt;99% of values) unchanged, zero FRU
 overhead.</p>
 <p>Training: continuous remainder resolution inline (2-5 cycles per
 spill) eliminates reprojection stalls. Step time constant (
@@ -873,7 +873,7 @@ Software (<a href="https://github.com/ghowland/papers/tree/main/papers/papers/VD
 cataloged, all following one pattern: grammar speaks protocol + Prolog
 rules process requests + KB tree stores state + grants enforce security
 + provenance provides audit.</p>
-<p>Protocol compliance is structural — grammars cannot produce malformed
+<p>Protocol compliance is structural, grammars cannot produce malformed
 output. All structural tokens at zero LLM cost.</p>
 <p>Port listener = processor runner with network grant.
 Clone-per-request (stateless), clone-per-session (stateful),
@@ -909,7 +909,7 @@ structural tokens and compresses information. The implementation
 blueprint (layer 9) specifies how to build it in 5 stages. Prompt
 optimization (layer 10) quantifies the token economics. Safety and
 alignment (layers 11-12) emerge structurally from visibility, grants,
-and scope — zero LLM token cost. GPU mapping (layer 13) shows the system
+and scope, zero LLM token cost. GPU mapping (layer 13) shows the system
 is faster and cheaper for structured workloads despite per-token
 overhead. Self-extension (layer 14) means the system improves through
 usage. Operational deployment (layer 15) defines multi-runner production

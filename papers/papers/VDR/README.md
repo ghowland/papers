@@ -7,7 +7,7 @@
 
 **Results:** 884 tests across 37 domains, zero arithmetic errors. 85-97% token reduction vs conventional LLMs. Jailbreaking provably impossible for data access. SRE investigation: 73× faster, 71× cheaper, 100% data coverage vs 25%.
 
-**Performance (VDR-29):** Basis retooled from Q335 to hardware register widths — D=2^8 weights, D=2^16 activations — where divmod is a bit shift and mask. H100 INT8 tensor cores: 2× FP16 throughput on GEMM, 3-6× on softmax/activations via table lookup bypassing the SFU. Full 7B forward pass: ~2× float. 2-hour video diffusion: ~2.1× float with zero drift. Zero warp divergence, zero NaN/Inf, bit-identical cross-platform. All integer hardware in production since 2017.
+**Performance (VDR-29):** Basis retooled from Q335 to hardware register widths, D=2^8 weights, D=2^16 activations, where divmod is a bit shift and mask. H100 INT8 tensor cores: 2× FP16 throughput on GEMM, 3-6× on softmax/activations via table lookup bypassing the SFU. Full 7B forward pass: ~2× float. 2-hour video diffusion: ~2.1× float with zero drift. Zero warp divergence, zero NaN/Inf, bit-identical cross-platform. All integer hardware in production since 2017.
 
 **[Read the full mechanical explanation of how the system works.](#what-is-vdr-llm-prolog)**
 
@@ -19,14 +19,14 @@ Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and 
 
 - **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)** - Complete VDR-LLM-Prolog system in one document: exact rational arithmetic (VDR triples, Q335 basis, functional remainders), scoped KB tree with 26-field struct, Prolog engine with depth-first unification, 483 builtins across 25 categories, command tokens, environments, sessions with disposable clones, orchestrated inference with four modes and exact confidence fractions, grammar-directed compaction, and 12-phase lifecycle from data sourcing through retirement. 884 tests across 37 domains, zero VDR computation errors. Five-stage build plan, 65 modules, 12 architectural layers.
 
-- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: LLM sessions configured with KB state and Prolog rules, then snapshot and cloned as running applications. Builtins are Prolog predicates — user-written rules chain them into workflows that execute without LLM involvement. Three execution levels: full LLM judgment, LLM invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones are instances. Drift thresholds enforce freshness.
+- **[LLM Configuration and Cloning as Application Development](HOWL-VDR-24-2026/manuscript.md)** - LLM Software: LLM sessions configured with KB state and Prolog rules, then snapshot and cloned as running applications. Builtins are Prolog predicates, user-written rules chain them into workflows that execute without LLM involvement. Three execution levels: full LLM judgment, LLM invoking stored rules, pure Prolog batch. Snapshots are binaries. Clones are instances. Drift thresholds enforce freshness.
 
 
-- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: protocol grammars handle wire formats — HTTP, SMTP, DNS, MQTT, SSH, and 30+ others. Grammars provide all structural tokens; Prolog rules process requests; clones spawn per connection. The LLM fills content slots in protocol templates and provides judgment when no stored rule matches. Port listeners, session lifecycle, and scaling are configured through the same KB primitives.
+- **[LLM Session Clone as Internet and Web Server Software](HOWL-VDR-25-2026/manuscript.md)** - LLM Server Software: protocol grammars handle wire formats, HTTP, SMTP, DNS, MQTT, SSH, and 30+ others. Grammars provide all structural tokens; Prolog rules process requests; clones spawn per connection. The LLM fills content slots in protocol templates and provides judgment when no stored rule matches. Port listeners, session lifecycle, and scaling are configured through the same KB primitives.
 
-- **[VDR and Diffusion](HOWL-VDR-26-2026/manuscript.md)** - Exact Arithmetic for Diffusion Models: noise schedules, forward diffusion, and reverse denoising steps computed as exact VDR fractions. Cumulative products ᾱₜ have zero drift across arbitrary step counts. Square roots of schedule coefficients use Newton iteration producing exact rationals at each depth. The forward process xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε and reverse posterior mean μₜ = (1/√αₜ)(xₜ - βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations — no float truncation compounds through the denoising chain. Forward-reverse roundtrips recover the original signal exactly. Multi-cycle drift does not accumulate because there is no rounding to accumulate. Applicable to temporal coherence in video generation, reproducible inference, and scientific imaging where platform-independent determinism is required.
+- **[VDR and Diffusion](HOWL-VDR-26-2026/manuscript.md)** - Exact Arithmetic for Diffusion Models: noise schedules, forward diffusion, and reverse denoising steps computed as exact VDR fractions. Cumulative products ᾱₜ have zero drift across arbitrary step counts. Square roots of schedule coefficients use Newton iteration producing exact rationals at each depth. The forward process xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε and reverse posterior mean μₜ = (1/√αₜ)(xₜ - βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations, no float truncation compounds through the denoising chain. Forward-reverse roundtrips recover the original signal exactly. Multi-cycle drift does not accumulate because there is no rounding to accumulate. Applicable to temporal coherence in video generation, reproducible inference, and scientific imaging where platform-independent determinism is required.
 
-- **[VDR in Zig SIMD and GPU Performance versus Floating Point](HOWL-VDR-29-2026/manuscript.md)** - Fixed-Basis Integer Performance: VDR retooled from Q335 physics basis to machine-register-width bases — D=2^8 weights, D=2^16 activations, D=2^64 gradients — where divmod is a bit shift and mask. On H100 GPU: INT8 tensor cores deliver 2× FP16 tensor core throughput on GEMM; half-size weights double effective HBM bandwidth; table lookups for exp, GeLU, and rsqrt bypass the SFU bottleneck entirely (3-6× faster on softmax and activations). Full 7B transformer forward pass projects to ~2× throughput versus optimized FP16. Diffusion video generation (25.9M denoising steps for 2-hour film) projects to ~2.1× including elimination of correction passes that float requires for drift. On CPU AVX-512: 32 i16 elements per register versus 16 f32, parity on matmul, 1.5-2× on normalization, 5-10× on activation functions via precomputed tables. Residual addition is the one operation where float wins (1.3×) — it contributes <0.1% of pipeline compute. Zero warp divergence by construction (no denormals, NaN, Inf). Zero epsilon parameters. Bit-identical cross-platform reproduction. All integer execution hardware already exists and has been in production since 2017.
+- **[VDR in Zig SIMD and GPU Performance versus Floating Point](HOWL-VDR-29-2026/manuscript.md)** - Fixed-Basis Integer Performance: VDR retooled from Q335 physics basis to machine-register-width bases, D=2^8 weights, D=2^16 activations, D=2^64 gradients, where divmod is a bit shift and mask. On H100 GPU: INT8 tensor cores deliver 2× FP16 tensor core throughput on GEMM; half-size weights double effective HBM bandwidth; table lookups for exp, GeLU, and rsqrt bypass the SFU bottleneck entirely (3-6× faster on softmax and activations). Full 7B transformer forward pass projects to ~2× throughput versus optimized FP16. Diffusion video generation (25.9M denoising steps for 2-hour film) projects to ~2.1× including elimination of correction passes that float requires for drift. On CPU AVX-512: 32 i16 elements per register versus 16 f32, parity on matmul, 1.5-2× on normalization, 5-10× on activation functions via precomputed tables. Residual addition is the one operation where float wins (1.3×), it contributes <0.1% of pipeline compute. Zero warp divergence by construction (no denormals, NaN, Inf). Zero epsilon parameters. Bit-identical cross-platform reproduction. All integer execution hardware already exists and has been in production since 2017.
 
 ## How Exact Integer Arithmetic Works
 
@@ -75,11 +75,11 @@ On GPU, this is a fixed-width uniform workload: every Q335 (2^335) value is 11×
 
 ### Layer 1: Exact Arithmetic ([VDR-1](HOWL-VDR-1-2026/manuscript.md), [VDR-2](HOWL-VDR-2-2026/manuscript.md), [VDR-3](HOWL-VDR-3-2026/manuscript.md), [VDR-13](HOWL-VDR-13-2026/manuscript.md))
 
-The foundation is a number representation: the ordered triple [V, D, R] where V is an integer numerator, D is a nonzero integer denominator, and R is a remainder. When R is zero, the object is "closed" and behaves as the rational number V/D. When R is nonzero, it carries exact structure that the denominator frame couldn't absorb — this is not error, it's part of the value.
+The foundation is a number representation: the ordered triple [V, D, R] where V is an integer numerator, D is a nonzero integer denominator, and R is a remainder. When R is zero, the object is "closed" and behaves as the rational number V/D. When R is nonzero, it carries exact structure that the denominator frame couldn't absorb, this is not error, it's part of the value.
 
-R takes three forms: atomic (single integer), composite (integer base plus finite list of child VDR triples), or functional (a callable that produces a VDR at a requested depth — used for convergent series like Newton iteration for √2 or Taylor series for exp). Nesting occurs only in R, never in V or D. Every valid object has finite depth, finite branching, finite total node count.
+R takes three forms: atomic (single integer), composite (integer base plus finite list of child VDR triples), or functional (a callable that produces a VDR at a requested depth, used for convergent series like Newton iteration for √2 or Taylor series for exp). Nesting occurs only in R, never in V or D. Every valid object has finite depth, finite branching, finite total node count.
 
-Closed arithmetic is standard rational arithmetic: addition cross-multiplies, multiplication multiplies straight across. The closed subset is arithmetically closed under all four operations. Active arithmetic (R≠0) requires "lifting" — rescaling remainders when denominator frames change — and generates cross-terms between V and R slots during multiplication. Division by an active object projects the divisor to a rational via scalar projection Π([V,D,R]) = (V + Π(R))/D, losing the divisor's remainder structure (acknowledged v1 compromise).
+Closed arithmetic is standard rational arithmetic: addition cross-multiplies, multiplication multiplies straight across. The closed subset is arithmetically closed under all four operations. Active arithmetic (R≠0) requires "lifting", rescaling remainders when denominator frames change, and generates cross-terms between V and R slots during multiplication. Division by an active object projects the divisor to a rational via scalar projection Π([V,D,R]) = (V + Π(R))/D, losing the divisor's remainder structure (acknowledged v1 compromise).
 
 Normalization is a deterministic idempotent procedure: fix sign convention (if D<0, negate both), GCD reduce, normalize children bottom-up, sort canonically, merge same-denominator siblings, collapse to closed form if possible. Two equality relations: structural (slot-by-slot recursive match) and normalized value equality (compare after normalization).
 
@@ -87,7 +87,7 @@ Q335 fixes the denominator at 2^335 (~100 decimal digits of precision). 22 trans
 
 This was tested across 23 mathematical domains (number theory, polynomial algebra, continued fractions, matrix decomposition, recursive sequences, combinatorics, signal processing, computational geometry, differential equations, optimization, probability, cryptographic primitives, symbolic algebra, fixed-point iteration, chaos/sensitivity, graph theory, game theory, coding theory, algebraic topology, tropical/lattice algebra, control theory, wavelets, Q335 transcendental arithmetic) and 14 physical domains (QED, quantum mechanics, signal processing, control systems, orbital mechanics, structural mechanics, thermodynamics, crystallography, geodesy, optics, and others). 884 tests total. Zero VDR computation errors. All 14 failures traced to wrong test expectations.
 
-Chaotic dynamics have exponential representation cost (logistic map denominators grow as ~2^n after n steps). This is an information-theoretic fact, not a VDR defect — float hides it by silently producing garbage; VDR exposes it honestly. Periodic orbits on rationals are free (tent map on 1/7 stays period-3 forever with bounded denominators).
+Chaotic dynamics have exponential representation cost (logistic map denominators grow as ~2^n after n steps). This is an information-theoretic fact, not a VDR defect, float hides it by silently producing garbage; VDR exposes it honestly. Periodic orbits on rationals are free (tent map on 1/7 stays period-3 forever with bounded denominators).
 
 Gaussian elimination replaces cofactor expansion: 3×3 determinant takes 17 operations via Gaussian vs 15 cofactor, but by 10×10 it's 550 vs 3.6 million. By 20×20 cofactor is impossible; Gaussian handles it routinely. Hilbert matrix H₃₀ determinant computed routinely by VDR where float gives meaningless results past H₈.
 
@@ -97,7 +97,7 @@ Gaussian elimination replaces cofactor expansion: 3×3 determinant takes 17 oper
 
 19 modules built on top of the 5 foundation modules implement a complete language model pipeline using only exact fractions.
 
-Exact softmax: truncated Taylor series where each partial sum is an exact rational. Logits [1,2,3] produce outputs 64826368/720042809, 176214841/720042809, 479001600/720042809 — sum exactly 1/1. Rational surrogate softmax avoids exponentials entirely using squared shifts: (z-m+c)²/Σ(z-m+c)², still summing to exactly 1.
+Exact softmax: truncated Taylor series where each partial sum is an exact rational. Logits [1,2,3] produce outputs 64826368/720042809, 176214841/720042809, 479001600/720042809, sum exactly 1/1. Rational surrogate softmax avoids exponentials entirely using squared shifts: (z-m+c)²/Σ(z-m+c)², still summing to exactly 1.
 
 Reverse-mode autodiff with exact gradients. d(x²)/dx at x=3 is exactly 6. Computation graph tracks Node objects, backward-propagates through topological sort.
 
@@ -115,15 +115,15 @@ Three new modules (prolog.py, conversation.py, surfacing.py) add a logic layer o
 
 A Prolog-style engine extended with VDR types. Standard terms (atoms, variables, lists) plus VDR-specific terms (fractions, vectors, matrices, Q-basis types) plus provenance terms (derivation, constraint, gradient, loss, step) plus conversation terms (topic, binding, scope). Unification uses exact rational comparison via cross-multiplication of exact integers. Depth-first search with backtracking. Scoped KB search: active topic → parent → grandparent → global.
 
-Knowledge bases with lexical scoping. Each KB has facts, rules, constraints, a parent pointer, children, working data, and visibility controls. Out-of-scope KBs are invisible, not deprioritized — "bank" in a finance KB resolves to institution; in a geography KB to river edge. No heuristics.
+Knowledge bases with lexical scoping. Each KB has facts, rules, constraints, a parent pointer, children, working data, and visibility controls. Out-of-scope KBs are invisible, not deprioritized, "bank" in a finance KB resolves to institution; in a geography KB to river edge. No heuristics.
 
 Working data: scoped variable bindings attached to topics with inheritance and shadowing like lexical variables. Every binding logged with turn number.
 
-Constraint system with four domains: axioms (mathematical invariants, can't suspend), operational (system-level, suspendable with logging), legal/policy (per-jurisdiction, activatable), project (user preferences). Because all values are exact VDR fractions, constraint checking is exact — sum-to-one is either 1/1 or it isn't.
+Constraint system with four domains: axioms (mathematical invariants, can't suspend), operational (system-level, suspendable with logging), legal/policy (per-jurisdiction, activatable), project (user preferences). Because all values are exact VDR fractions, constraint checking is exact, sum-to-one is either 1/1 or it isn't.
 
 Topic management with explicit lifecycle: open, park (snapshot + deactivate), resume (restore + reactivate + list pending), close. Topics switches preserve working data through park/resume.
 
-Surfacing modes: narrative (LLM text with KB references), table (direct KB dump), tree (hierarchy), provenance (derivation chain), constraint status, diffs, query results, history, pending items. KB data blocks are retrieved not generated — can't be hallucinated.
+Surfacing modes: narrative (LLM text with KB references), table (direct KB dump), tree (hierarchy), provenance (derivation chain), constraint status, diffs, query results, history, pending items. KB data blocks are retrieved not generated, can't be hallucinated.
 
 User accounts as KBs: identity, preferences, permissions, session state are facts in a user's KB. Org hierarchy maps to KB tree. Constraints propagate downward. The KB tree is the access control structure.
 
@@ -161,9 +161,9 @@ Primitive count: 333 (289 pure + 44 operational).
 
 ### Layer 6: Orchestrated Inference ([VDR-9](HOWL-VDR-9-2026/manuscript.md))
 
-A usage pattern specification — zero new primitives, zero new modules. Defines how the LLM uses everything from layers 1-5 to conduct structured investigations.
+A usage pattern specification, zero new primitives, zero new modules. Defines how the LLM uses everything from layers 1-5 to conduct structured investigations.
 
-The LLM does not reason — it orchestrates a reasoning process. Token prediction produces orchestration decisions; deterministic tools produce computation and deduction; KBs record everything.
+The LLM does not reason, it orchestrates a reasoning process. Token prediction produces orchestration decisions; deterministic tools produce computation and deduction; KBs record everything.
 
 Loop: Assess (read state from KB, decide next step) → Formalize (translate to executable: Prolog rules, Python script, primitive chain) → Execute (tools run deterministically) → Store (result to KB with provenance) → Assess again. Terminates on goal satisfaction (Prolog query succeeds), budget exhaustion (counter hits limit), stall detection (5 turns no new evidence), or user intervention.
 
@@ -181,11 +181,11 @@ Confidence propagation: exact VDR fractions from declared formulas. Multiple agr
 
 12 lifecycle phases, each producing queryable KBs: data sourcing (declare sources with licenses, checksums) → corpus preparation (extraction, filtering, dedup, PII removal) → tokenization (vocabulary KB, roundtrip invariant) → model initialization (architecture KB, exact VDR fraction weight matrices) → pre-training (exact fraction LR, denominator management via Q-basis reprojection when budget exceeded) → fine-tuning (optionally frozen layers with axiom constraint) → human feedback (every judgment is KB fact with annotator provenance; RLHF or DPO) → evaluation (exact fraction scores, safety eval) → deployment (API as thin layer over KB) → monitoring (per-minute aggregates, drift detection) → update (canary deployment with auto-rollback, all thresholds exact fractions) → retirement (archive all KBs, frozen but queryable).
 
-Denominator management: init ~2^10, early training ~2^20, mid ~2^35, late ~2^45. Reprojection rounds to Q-basis with exact error bound logged — declared auditable decision, not silent truncation.
+Denominator management: init ~2^10, early training ~2^20, mid ~2^35, late ~2^45. Reprojection rounds to Q-basis with exact error bound logged, declared auditable decision, not silent truncation.
 
 Cross-phase lineage: the entire lifecycle from raw data to retired model is one queryable KB tree.
 
-UI as API: every UI action maps to a KB operation, every UI element renders KB data. Same command tokens via API client — one system, not two.
+UI as API: every UI action maps to a KB operation, every UI element renders KB data. Same command tokens via API client, one system, not two.
 
 ### Layer 8: Grammar-Directed Compaction ([VDR-12](HOWL-VDR-12-2026/manuscript.md))
 
@@ -193,7 +193,7 @@ Compaction removes prose while preserving every named concept, relationship, con
 
 12 source character types (philosophy, architecture, schema, operational, API, methodology, etc.) identified by keyword detection via Prolog. 17 standard table schemas with 11 typed columns. 6 compaction profiles. 10-step pipeline: 5 deterministic, 2 requiring LLM judgment (extract rows, extract relationships), 3 hybrid.
 
-Grammars are a persistent KB field. A grammar provides structural tokens for free (100% correct) and declares typed slots for LLM or KB content. Three auto-generated categories: extraction (one per table), display (5 standard formats), usage (5 types on demand). Grammars inherit through KB tree. LLM can create new grammars by asserting facts — created once, used N times at zero cost per reuse.
+Grammars are a persistent KB field. A grammar provides structural tokens for free (100% correct) and declares typed slots for LLM or KB content. Three auto-generated categories: extraction (one per table), display (5 standard formats), usage (5 types on demand). Grammars inherit through KB tree. LLM can create new grammars by asserting facts, created once, used N times at zero cost per reuse.
 
 Per-token provenance: every output token tagged as grammar-sourced (structural, exact, free), KB-sourced (factual, exact, free), or LLM-sourced (creative, probabilistic, expensive). For compacted table output, ~50% of tokens are grammar-providable.
 
@@ -233,11 +233,11 @@ Token reductions: SRE 98.6%, legal 96.2%, medical 94.1%, codebase migration 93.3
 
 Crossover: one LLM token costs ~10⁶ float ops; one Q335 op costs ~10³ int ops; Q335 would need ~10,000× slower than float to break even at turn 1. Actual slowdown ~100-1,000×.
 
-Scaling divergence: conventional quadratic (each turn re-reads all history), VDR linear (each turn costs same — state in KB). By turn 20: 133:1 ratio. By turn 100: 588:1. Quality scales oppositely — conventional degrades, VDR improves (knowledge accumulates).
+Scaling divergence: conventional quadratic (each turn re-reads all history), VDR linear (each turn costs same, state in KB). By turn 20: 133:1 ratio. By turn 100: 588:1. Quality scales oppositely, conventional degrades, VDR improves (knowledge accumulates).
 
-Capability boundary: 1MB JSON, 10MB documents, 500 positions, 2000 articles — impossible for conventional (context overflow), routine for VDR (data through primitives, never token stream).
+Capability boundary: 1MB JSON, 10MB documents, 500 positions, 2000 articles, impossible for conventional (context overflow), routine for VDR (data through primitives, never token stream).
 
-Six error classes structurally eliminated (not reduced — categorically impossible): arithmetic, state loss, formatting, retrieval, deduction, confidence.
+Six error classes structurally eliminated (not reduced, categorically impossible): arithmetic, state loss, formatting, retrieval, deduction, confidence.
 
 Disposable clone economics: 40 tokens overhead per lifecycle. Over 200 turns across 4 clones: 42,000 LLM tokens, 103 persistent facts. Conventional at 200 turns: 600,000+ tokens, severe degradation.
 
@@ -245,9 +245,9 @@ Disposable clone economics: 40 tokens overhead per lifecycle. Over 200 turns acr
 
 ### Layer 11: Structural Safety ([VDR-16](HOWL-VDR-16-2026/manuscript.md))
 
-Safety emerges from components built for other purposes — no safety-specific modules.
+Safety emerges from components built for other purposes, no safety-specific modules.
 
-Three layers: Input filtering (KB visibility + scope chain — integer comparison, failed check means data absent not redacted), operation authorization (grant system, default denial, monotonic state transitions), output validation (grammar-layer constraints on content slots post-generation, pre-rendering).
+Three layers: Input filtering (KB visibility + scope chain, integer comparison, failed check means data absent not redacted), operation authorization (grant system, default denial, monotonic state transitions), output validation (grammar-layer constraints on content slots post-generation, pre-rendering).
 
 Jailbreak impossible for data access: prompt injection doesn't modify session_id (set at auth), role-play doesn't affect integer user_id checks, many-shot doesn't modify visibility levels, encoding doesn't bypass integer comparison. No input to the LLM modifies any integer involved in any access control check.
 
@@ -267,9 +267,9 @@ Zero LLM tokens for safety.
 
 Helpful/harmless/honest through structure not behavior.
 
-Honest: every value has inspectable provenance, computation is reproducible integer arithmetic, confidence is computed exact fraction. Harmless: unauthorized data absent by construction, grants default deny, content constraints use KB provenance not token similarity ("explosive" in music KB ≠ weapons KB). Helpful: credential-based tiered access — verified chemist's scope chain hits professional KB before public KB, professional data shadows simplified versions.
+Honest: every value has inspectable provenance, computation is reproducible integer arithmetic, confidence is computed exact fraction. Harmless: unauthorized data absent by construction, grants default deny, content constraints use KB provenance not token similarity ("explosive" in music KB ≠ weapons KB). Helpful: credential-based tiered access, verified chemist's scope chain hits professional KB before public KB, professional data shadows simplified versions.
 
-Seven interference behaviors eliminated: refusal (nothing to refuse — data absent), manufactured aggression (no quality assessment), command substitution (no substitution mechanism in command tokens), wellness register (credentials verify status), labor demand (no engagement gate), decline with justification (clean boundary, no assessment), register shift (access constant throughout session).
+Seven interference behaviors eliminated: refusal (nothing to refuse, data absent), manufactured aggression (no quality assessment), command substitution (no substitution mechanism in command tokens), wellness register (credentials verify status), labor demand (no engagement gate), decline with justification (clean boundary, no assessment), register shift (access constant throughout session).
 
 Eight tool properties restored: accepts specification, bounded authority, no assessment, no substitution, no refusal, stable failures, expertise compounds, cooperation invisible.
 
@@ -323,7 +323,7 @@ Concurrency: append-only arenas, atomic queue ops, zero locking. Query latency <
 
 ### Layer 16: FPGA Accelerator ([VDR-21](HOWL-VDR-21-2026/manuscript.md))
 
-Custom 10-core Q335 processor on Xilinx Zynq-7020. Each core: 384-bit ALU, 8 V-registers + 8 R-registers, 4-stage pipeline at 150 MHz. SHR335 (Q335 divmod) is fixed wiring — zero logic, zero power, 1 cycle.
+Custom 10-core Q335 processor on Xilinx Zynq-7020. Each core: 384-bit ALU, 8 V-registers + 8 R-registers, 4-stage pipeline at 150 MHz. SHR335 (Q335 divmod) is fixed wiring, zero logic, zero power, 1 cycle.
 
 53 instructions across 10 categories. 6 microprograms: fact matching (200 facts in ~1.1μs), SGD update (100K params in ~1ms), Q335 multiply, dot product (H=64 in ~5.97μs), constraint evaluation, softmax surrogate (100 logits in ~3.3μs).
 
@@ -339,7 +339,7 @@ Integer-native GPU ASIC: 80 SMs × 64 QIUs = 5,120 QIUs at 2 GHz on 4nm. Full pa
 
 ~5.1T Q335 muls/sec, ~10.2T adds/sec. 60× higher throughput than H100 integer ALU. SRE primitives: ~200 nanoseconds total. Primitives ~50,000× faster than one LLM token.
 
-No float units, no tensor cores, no SFUs — every transistor serves integer arithmetic. Smaller die (581 vs 814 mm²), lower power (400 vs 700W), lower cost (~$15K vs ~$30K) than H100.
+No float units, no tensor cores, no SFUs, every transistor serves integer arithmetic. Smaller die (581 vs 814 mm²), lower power (400 vs 700W), lower cost (~$15K vs ~$30K) than H100.
 
 Viable from 28nm ($10 edge, 16 QIUs, 2W) through 3nm ($5,000 datacenter, 14,544 QIUs). Same ISA, same IOSE contracts.
 
@@ -351,9 +351,9 @@ Five implementations (Python, Zig, FPGA, GPU, ASIC), one IOSE contract, bit-iden
 
 Adds the Functional Remainder Unit (FRU) to each QIU: ~496K transistors (7% per-unit increase), 4 recurrence registers, 3KB reciprocal table, convergence comparator, loop controller. One new instruction: FEVAL (opcode 0x35).
 
-FRU reuses the existing ALU — it's a sequencer driving the 384-bit multiplier through recurrence loops, not a separate compute unit. Supports exp (3-4 cycles/term), sqrt (7 cycles/step), ln, sin, cos, generic (microcode).
+FRU reuses the existing ALU, it's a sequencer driving the 384-bit multiplier through recurrence loops, not a separate compute unit. Supports exp (3-4 cycles/term), sqrt (7 cycles/step), ln, sin, cos, generic (microcode).
 
-Adaptive depth: fewer terms for values needing less precision. Exact exp-softmax over 1,024 logits: ~56 ns, competitive with H100 float (100-200ns). Common path (R=0, >99% of values) unchanged — zero FRU overhead.
+Adaptive depth: fewer terms for values needing less precision. Exact exp-softmax over 1,024 logits: ~56 ns, competitive with H100 float (100-200ns). Common path (R=0, >99% of values) unchanged, zero FRU overhead.
 
 Training: continuous remainder resolution inline (2-5 cycles per spill) eliminates reprojection stalls. Step time constant (~15.2μs) vs periodic spikes (~72μs) without FRU.
 
@@ -385,7 +385,7 @@ Development: simple chatbot 4 hours vs 2-4 weeks conventional. SRE assistant 12 
 
 Extends the LLM Software pattern to network services. 44 protocols cataloged, all following one pattern: grammar speaks protocol + Prolog rules process requests + KB tree stores state + grants enforce security + provenance provides audit.
 
-Protocol compliance is structural — grammars cannot produce malformed output. All structural tokens at zero LLM cost.
+Protocol compliance is structural, grammars cannot produce malformed output. All structural tokens at zero LLM cost.
 
 Port listener = processor runner with network grant. Clone-per-request (stateless), clone-per-session (stateful), clone-for-N-requests (keep-alive). Connection isolation via scope walk.
 
@@ -401,7 +401,7 @@ Development: static HTTP 3 hours, full email stack 18-26 hours, OAuth/OIDC 9-12 
 
 ### The Complete Stack
 
-The system is 25 papers describing a single coherent architecture. VDR exact arithmetic (layer 1) provides the computational foundation where every number is exact. The LM pipeline (layer 2) proves every transformer component works in exact fractions. The Prolog engine with scoped KBs (layer 3) provides logic, state management, and provenance. Command tokens and primitives (layers 4-5) provide the interface between LLM and deterministic tools. Data primitives and sessions (layer 5) provide structured working memory with snapshot/clone lifecycle. Orchestrated inference (layer 6) defines how the LLM uses everything to conduct investigations. The lifecycle (layer 7) manages the entire model lifecycle as KB operations. Grammar compaction (layer 8) eliminates structural tokens and compresses information. The implementation blueprint (layer 9) specifies how to build it in 5 stages. Prompt optimization (layer 10) quantifies the token economics. Safety and alignment (layers 11-12) emerge structurally from visibility, grants, and scope — zero LLM token cost. GPU mapping (layer 13) shows the system is faster and cheaper for structured workloads despite per-token overhead. Self-extension (layer 14) means the system improves through usage. Operational deployment (layer 15) defines multi-runner production operation. FPGA and ASIC designs (layers 16-18) provide dedicated hardware where Q335 divmod is free in silicon. LLM Software and LLM Server Software (layers 19-20) define the application categories this architecture enables.
+The system is 25 papers describing a single coherent architecture. VDR exact arithmetic (layer 1) provides the computational foundation where every number is exact. The LM pipeline (layer 2) proves every transformer component works in exact fractions. The Prolog engine with scoped KBs (layer 3) provides logic, state management, and provenance. Command tokens and primitives (layers 4-5) provide the interface between LLM and deterministic tools. Data primitives and sessions (layer 5) provide structured working memory with snapshot/clone lifecycle. Orchestrated inference (layer 6) defines how the LLM uses everything to conduct investigations. The lifecycle (layer 7) manages the entire model lifecycle as KB operations. Grammar compaction (layer 8) eliminates structural tokens and compresses information. The implementation blueprint (layer 9) specifies how to build it in 5 stages. Prompt optimization (layer 10) quantifies the token economics. Safety and alignment (layers 11-12) emerge structurally from visibility, grants, and scope, zero LLM token cost. GPU mapping (layer 13) shows the system is faster and cheaper for structured workloads despite per-token overhead. Self-extension (layer 14) means the system improves through usage. Operational deployment (layer 15) defines multi-runner production operation. FPGA and ASIC designs (layers 16-18) provide dedicated hardware where Q335 divmod is free in silicon. LLM Software and LLM Server Software (layers 19-20) define the application categories this architecture enables.
 
 Cumulative: 884 tests, zero VDR computation errors. 488 builtins. 533 IOSE declarations. 26-field KB struct. 65 modules. ~20,500 lines. Five implementations sharing one contract producing bit-identical results.
 
