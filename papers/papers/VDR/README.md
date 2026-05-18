@@ -451,6 +451,7 @@ Otherwise:
 | **[HOWL-VDR-26-2026](HOWL-VDR-26-2026/manuscript.md)** | **VDR and Diffusion** | Zero-Drift Denoising Through Exact Sequential Arithmetic. |
 | **[HOWL-VDR-27-2026](HOWL-VDR-27-2026/manuscript.md)** | **VDR Beyond Language Models** | Exact Sequential Arithmetic Across Computational Domains. |
 | **[HOWL-VDR-28-2026](HOWL-VDR-28-2026/manuscript.md)** | **Exact Rational Arithmetic for Sequential Computation** | VDR Applied to Twenty Domains Where Decimal Truncation Compounds. |
+| **[HOWL-VDR-29-2026](HOWL-VDR-29-2026/manuscript.md)** | **VDR in Zig SIMD and GPU Performance versus Floating Point** | Fixed-Basis Integer Arithmetic on Production Hardware. |
 
 ---
 
