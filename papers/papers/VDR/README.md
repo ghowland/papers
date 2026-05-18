@@ -15,7 +15,7 @@
 
 **tl;dr:** Replace floating-point with exact integer triples. Put data in knowledge bases at integer addresses instead of the LLM's context window. Let the LLM pick tools from a menu instead of generating computation as text. 
 
-Result: exact arithmetic, 85-97% fewer tokens, provably secure data access, and a system that gets smarter with use because every session deposits reusable rules.
+**Result:** VDR arithmetic has zero rounding error, builtins handle 85-97% of tokens the LLM currently generates as text, data access is gated by Prolog unification against scoped KB permissions (no prompt path bypasses it), and solved problems persist as reusable Prolog rules available to subsequent sessions.
 
 ## Quick Deep Dives
 
