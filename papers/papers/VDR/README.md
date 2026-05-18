@@ -478,4 +478,4 @@ Otherwise:
 
 ---
 
-Contact: https://www.linkedin.com/in/ghowland/
+**Contact:** [https://www.linkedin.com/in/ghowland/](https://www.linkedin.com/in/ghowland/)
