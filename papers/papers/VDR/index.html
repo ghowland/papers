@@ -91,6 +91,34 @@ grammar-directed compaction, and 12-phase lifecycle from data sourcing
 through retirement. 884 tests across 37 domains, zero VDR computation
 errors. Five-stage build plan, 65 modules, 12 architectural
 layers.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR in Zig SIMD
+and GPU Performance versus Floating Point</a></strong> - Fixed-Basis
+Integer Performance: basis retooled from Q335 to hardware register
+widths (D=2^8 weights, D=2^16 activations) where divmod is a shift and
+mask. H100 INT8 tensor cores: 2× FP16 on GEMM, 3-6× on
+softmax/activations via table lookup bypassing SFU. Full 7B forward
+pass: 
+2× float. 2-hour video diffusion: 
+2.1× with zero drift
+correction. CPU AVX-512: parity on matmul, 5-10× on activations. Zero
+warp divergence, NaN/Inf, or epsilon parameters. Bit-identical
+cross-platform. All required integer hardware in production since
+2017.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">Economics of
+Scale: Floating Point vs Exact Integer ML Models</a></strong> - Cost at
+Scale: <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR-29</a> performance
+projections translated to dollar and watt costs across datacenter fleet
+operations. 2× inference throughput halves GPU-hours per million tokens.
+Half-size INT8 weights halve model storage and HBM residency, doubling
+models per node. Elimination of NaN/Inf debugging, loss scaling, epsilon
+tuning, and drift correction passes reduces engineering overhead.
+Bit-identical reproduction eliminates non-determinism costs in CI/CD,
+A/B testing, and regulatory compliance. Long-chain diffusion for video
+generation: 2.1× throughput compounds with zero-correction to roughly
+halve rendering cost per hour of output. Training: 1.5-1.7× throughput
+plus elimination of loss scaling failures and gradient clipping
+instability. Break-even analysis for kernel development investment
+against projected fleet savings.</p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-24-2026/manuscript.md">LLM
 Configuration and Cloning as Application Development</a></strong> - LLM
 Software: LLM sessions configured with KB state and Prolog rules, then
@@ -121,34 +149,6 @@ accumulate because there is no rounding to accumulate. Applicable to
 temporal coherence in video generation, reproducible inference, and
 scientific imaging where platform-independent determinism is
 required.</p></li>
-<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR in Zig SIMD
-and GPU Performance versus Floating Point</a></strong> - Fixed-Basis
-Integer Performance: basis retooled from Q335 to hardware register
-widths (D=2^8 weights, D=2^16 activations) where divmod is a shift and
-mask. H100 INT8 tensor cores: 2× FP16 on GEMM, 3-6× on
-softmax/activations via table lookup bypassing SFU. Full 7B forward
-pass: 
-2× float. 2-hour video diffusion: 
-2.1× with zero drift
-correction. CPU AVX-512: parity on matmul, 5-10× on activations. Zero
-warp divergence, NaN/Inf, or epsilon parameters. Bit-identical
-cross-platform. All required integer hardware in production since
-2017.</p></li>
-<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">Economics of
-Scale: Floating Point vs Exact Integer ML Models</a></strong> - Cost at
-Scale: <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR-29</a> performance
-projections translated to dollar and watt costs across datacenter fleet
-operations. 2× inference throughput halves GPU-hours per million tokens.
-Half-size INT8 weights halve model storage and HBM residency, doubling
-models per node. Elimination of NaN/Inf debugging, loss scaling, epsilon
-tuning, and drift correction passes reduces engineering overhead.
-Bit-identical reproduction eliminates non-determinism costs in CI/CD,
-A/B testing, and regulatory compliance. Long-chain diffusion for video
-generation: 2.1× throughput compounds with zero-correction to roughly
-halve rendering cost per hour of output. Training: 1.5-1.7× throughput
-plus elimination of loss scaling failures and gradient clipping
-instability. Break-even analysis for kernel development investment
-against projected fleet savings.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
 Works</h2>
