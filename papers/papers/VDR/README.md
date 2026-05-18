@@ -475,3 +475,7 @@ Otherwise:
 | Compaction compression | ~83% average |
 | Existing Python code | ~5,500 lines, 705 tests |
 | Target system size | ~20,500 lines, 65 modules |
+
+---
+
+Contact: https://www.linkedin.com/in/ghowland/
