@@ -1,0 +1,70 @@
+{
+  "title": "Exact Rational Arithmetic for Sequential Computation",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Decimal arithmetic \u2014 including arbitrary-precision libraries like mpmath \u2014 represents numbers in base 10. The only fractions with terminating decimal representations are those whose denominators factor exclusively into 2s and 5s. Every other fraction \u2014 1/3, 1/7, 1/11, 1/13, every fraction whose denominator contains any prime factor other than 2 or 5 \u2014 becomes an infinite repeating decimal that must be truncated. This truncation is not a precision issue solvable by carrying more digits. It is a structural incompatibility between the representation and the value.\n\nThis paper identifies twenty computational domains where this structural incompatibility produces materially wrong results, and demonstrates that VDR exact rational arithmetic [VDR-1] eliminates the problem entirely. VDR represents 1/3 as [1, 3, 0] \u2014 exact, with zero truncation. Chains of operations on exact rationals produce exact rationals. The denominator grows but nothing is discarded. This is not \"more precision.\" It is a categorically different relationship with the numbers.\n\nNo prior reading is required. VDR arithmetic is summarized where first used; full specifications are in [VDR-1] and [VDR-14].",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-28-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-28-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
