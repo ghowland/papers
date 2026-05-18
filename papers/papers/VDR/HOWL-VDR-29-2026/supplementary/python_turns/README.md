@@ -899,9 +899,10 @@ period = detect_period(orbit)   # 3
 
 # Logistic map: exact but exponential denominator growth at r=4
 x = logistic_map(VDR(1, 3), VDR(4))   # VDR(8, 9) exact
-# WARNING: step 10 ~258 digits, step 20 ~260,000 digits.
-# This is information-theoretic (Lyapunov exponent ln(2)), not a VDR defect.
-# Float hides this cost by silent truncation. VDR exposes it honestly.
+# NOTE: In flat Fraction, denominator digits grow as ~2^n (step 10: ~258,
+# step 20: ~260,000). VDR with Q335 frame avoids this — D stays 2^335,
+# tree depth grows by 1 per step. Step 20 in Q335: ~4,080 tree digits,
+# not ~260,000. Cost is tree depth, not denominator explosion.
 ```
 
 Periodic rational orbits under chaotic maps are computationally free — denominators stay bounded.
@@ -1329,7 +1330,7 @@ set_default(bits=3322)   # 1000 digits
 
 ## Honest Boundaries
 
-**Chaotic dynamics:** exact representation has exponential cost. Logistic map at r=4: denominator digits ≈ 2^n after n steps. This is information-theoretic (Lyapunov exponent ln(2) forces it), shared by all arithmetic systems. Float hides this cost by silent truncation. VDR exposes it honestly. Periodic orbits on rationals are free.
+**Chaotic dynamics:** exact representation of chaotic orbits has real computational cost. In flat Fraction representation, logistic map at r=4 has denominator digits growing as ~2^n after n steps. VDR with Q335 fixed-frame avoids denominator explosion — D stays at 2^335 and the remainder tree grows linearly (one ~102-digit level per step). At step 30: flat Fraction needs ~10^9 digits; Q335 tree needs ~6,120 digits (~163,000× compression). The cost in VDR is tree depth, not denominator explosion. Periodic rational orbits are computationally free — denominators stay bounded.
 
 **No native irrationals or complex numbers.** Functional remainders produce exact rationals approaching irrationals at any depth. Complex extension is engineering work, not mathematical obstacle.
 
