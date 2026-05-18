@@ -1,4 +1,4 @@
-# Exact Rational Arithmetic for Sequential Computation
+# VDR in Zig SIMD and GPU Performance versus Floating Point
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,11 +6,13 @@
 
 ## Abstract
 
-Decimal arithmetic — including arbitrary-precision libraries like mpmath — represents numbers in base 10. The only fractions with terminating decimal representations are those whose denominators factor exclusively into 2s and 5s. Every other fraction — 1/3, 1/7, 1/11, 1/13, every fraction whose denominator contains any prime factor other than 2 or 5 — becomes an infinite repeating decimal that must be truncated. This truncation is not a precision issue solvable by carrying more digits. It is a structural incompatibility between the representation and the value.
+Every floating-point operation can round. One rounding is negligible. Millions compound. This paper presents performance projections for VDR — Value, Denominator, Remainder — exact integer arithmetic implemented in Zig targeting AVX-512 SIMD and NVIDIA H100 GPU tensor cores. VDR eliminates accumulated arithmetic error by replacing floating-point operations with integer multiply, shift, and mask on a fixed power-of-two denominator basis, storing exact remainders rather than discarding them.
 
-This paper identifies twenty computational domains where this structural incompatibility produces materially wrong results, and demonstrates that VDR exact rational arithmetic [VDR-1] eliminates the problem entirely. VDR represents 1/3 as [1, 3, 0] — exact, with zero truncation. Chains of operations on exact rationals produce exact rationals. The denominator grows but nothing is discarded. This is not "more precision." It is a categorically different relationship with the numbers.
+The reference VDR implementation (vdr-math, Python) uses a 335-bit basis tuned for physics and transcendental computation. This paper retunes the basis to match machine register widths for LLM inference and diffusion model workloads: 8-bit for weights, 16-bit for activations, 64-bit for gradient accumulation. At these widths, VDR's divmod operation reduces to a bit shift and mask — native hardware operations on all modern processors.
 
-No prior reading is required. VDR arithmetic is summarized where first used; full specifications are in [VDR-1] and [VDR-14].
+Projected results on H100: 1.6-1.8× throughput improvement on GEMM via INT8 tensor cores, 3-4× improvement on softmax via elimination of the Special Function Unit bottleneck, 2× effective memory bandwidth from half-size weights, and zero accumulated drift over arbitrarily long operation chains. Full transformer forward pass for a 7B parameter model projects to approximately 2× throughput versus optimized FP16, with exact results at every step.
+
+All projections are conservative estimates based on published hardware specifications. VDR delivers exact arithmetic not by trading performance for correctness, but by targeting integer execution units that are faster than their floating-point counterparts for the operations ML pipelines actually perform.
 
 ---
 
@@ -50,14 +52,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-28-2026,
-  title={ Exact Rational Arithmetic for Sequential Computation },
+@article{ HOWL-VDR-29-2026,
+  title={ VDR in Zig SIMD and GPU Performance versus Floating Point },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20260736},
-  url = {https://zenodo.org/record/20260736},
-  note={Howland Archive: HOWL-VDR-28-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20266675},
+  url = {https://zenodo.org/record/20266675},
+  note={Howland Archive: HOWL-VDR-29-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
