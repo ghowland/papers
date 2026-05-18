@@ -161,6 +161,22 @@ accumulate because there is no rounding to accumulate. Applicable to
 temporal coherence in video generation, reproducible inference, and
 scientific imaging where platform-independent determinism is
 required.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-31-2026/manuscript.md">Example: VDR Toy
+LLM</a></strong> - Exact Rational Transformer: a complete single-block
+causal transformer (181 parameters, 5-token vocabulary) trained and
+generating text using the Python <a
+href="https://github.com/ghowland/vdr-math/">vdr-math</a> library at
+fixed D = 2^32 with no floating-point. Basis-aware operators
+automatically divmod products back to frame, preventing denominator
+growth that otherwise reaches 10^105 after 10 multiplications. A
+quadratic softmax surrogate eliminates transcendentals; probabilities
+sum to 1 by construction. 23 mixed-frame sources across 8 ML modules
+identified and fixed. Nine verification tests pass including
+bit-identical determinism across runs, exact weight-update equality, and
+all denominators confirmed at 2^32 through forward and backward passes.
+Worst softmax residual: 9.07 × 10^-13. Demonstrates that
+fixed-denominator rational arithmetic supports a complete LLM pipeline
+end-to-end.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
 Works</h2>
@@ -1212,6 +1228,13 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30
 vs Exact Integer ML Models</strong></td>
 <td style="text-align: left;">Why the Current Architecture Costs More,
 Delivers Less, and Cannot Improve, and What Replaces It.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-31-2026/manuscript.md">HOWL-VDR-31-2026</a></strong></td>
+<td style="text-align: left;"><strong>VDR Toy LLM</strong></td>
+<td style="text-align: left;">Exact Rational Arithmetic in a Transformer
+Language Model Using Fixed-Denominator VDR Triples.</td>
 </tr>
 </tbody>
 </table>

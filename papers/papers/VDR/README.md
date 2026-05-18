@@ -31,6 +31,8 @@
 
 - **[VDR and Diffusion](HOWL-VDR-26-2026/manuscript.md)** - Exact Arithmetic for Diffusion Models: noise schedules, forward diffusion, and reverse denoising steps computed as exact VDR fractions. Cumulative products ᾱₜ have zero drift across arbitrary step counts. Square roots of schedule coefficients use Newton iteration producing exact rationals at each depth. The forward process xₜ = √ᾱₜ·x₀ + √(1-ᾱₜ)·ε and reverse posterior mean μₜ = (1/√αₜ)(xₜ - βₜ/√(1-ᾱₜ)·ε_pred) are exact rational operations, no float truncation compounds through the denoising chain. Forward-reverse roundtrips recover the original signal exactly. Multi-cycle drift does not accumulate because there is no rounding to accumulate. Applicable to temporal coherence in video generation, reproducible inference, and scientific imaging where platform-independent determinism is required.
 
+- **[Example: VDR Toy LLM](HOWL-VDR-31-2026/manuscript.md)** - Exact Rational Transformer: a complete single-block causal transformer (181 parameters, 5-token vocabulary) trained and generating text using the Python [vdr-math](https://github.com/ghowland/vdr-math/) library at fixed D = 2^32 with no floating-point. Basis-aware operators automatically divmod products back to frame, preventing denominator growth that otherwise reaches 10^105 after 10 multiplications. A quadratic softmax surrogate eliminates transcendentals; probabilities sum to 1 by construction. 23 mixed-frame sources across 8 ML modules identified and fixed. Nine verification tests pass including bit-identical determinism across runs, exact weight-update equality, and all denominators confirmed at 2^32 through forward and backward passes. Worst softmax residual: 9.07 × 10^-13. Demonstrates that fixed-denominator rational arithmetic supports a complete LLM pipeline end-to-end.
+
 ## How Exact Integer Arithmetic Works
 
 **"But you need floats for transcendentals / softmax / training?"**
@@ -460,6 +462,7 @@ Otherwise:
 | **[HOWL-VDR-28-2026](HOWL-VDR-28-2026/manuscript.md)** | **Exact Rational Arithmetic for Sequential Computation** | VDR Applied to Twenty Domains Where Decimal Truncation Compounds. |
 | **[HOWL-VDR-29-2026](HOWL-VDR-29-2026/manuscript.md)** | **VDR in Zig SIMD and GPU Performance versus Floating Point** | Fixed-Basis Integer Arithmetic on Production Hardware. |
 | **[HOWL-VDR-30-2026](HOWL-VDR-30-2026/manuscript.md)** | **Economics of Scale: Floating Point vs Exact Integer ML Models** | Why the Current Architecture Costs More, Delivers Less, and Cannot Improve, and What Replaces It. |
+| **[HOWL-VDR-31-2026](HOWL-VDR-31-2026/manuscript.md)** | **VDR Toy LLM** | Exact Rational Arithmetic in a Transformer Language Model Using Fixed-Denominator VDR Triples. |
 
 ---
 
