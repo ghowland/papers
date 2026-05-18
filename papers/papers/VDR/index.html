@@ -121,7 +121,7 @@ accumulate because there is no rounding to accumulate. Applicable to
 temporal coherence in video generation, reproducible inference, and
 scientific imaging where platform-independent determinism is
 required.</p></li>
-<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-26-2026/manuscript.md">VDR in Zig SIMD
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR in Zig SIMD
 and GPU Performance versus Floating Point</a></strong> - Fixed-Basis
 Integer Performance: basis retooled from Q335 to hardware register
 widths (D=2^8 weights, D=2^16 activations) where divmod is a shift and
@@ -134,6 +134,21 @@ correction. CPU AVX-512: parity on matmul, 5-10× on activations. Zero
 warp divergence, NaN/Inf, or epsilon parameters. Bit-identical
 cross-platform. All required integer hardware in production since
 2017.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">Economics of
+Scale: Floating Point vs Exact Integer ML Models</a></strong> - Cost at
+Scale: <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR-29</a> performance
+projections translated to dollar and watt costs across datacenter fleet
+operations. 2× inference throughput halves GPU-hours per million tokens.
+Half-size INT8 weights halve model storage and HBM residency, doubling
+models per node. Elimination of NaN/Inf debugging, loss scaling, epsilon
+tuning, and drift correction passes reduces engineering overhead.
+Bit-identical reproduction eliminates non-determinism costs in CI/CD,
+A/B testing, and regulatory compliance. Long-chain diffusion for video
+generation: 2.1× throughput compounds with zero-correction to roughly
+halve rendering cost per hour of output. Training: 1.5-1.7× throughput
+plus elimination of loss scaling failures and gradient clipping
+instability. Break-even analysis for kernel development investment
+against projected fleet savings.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
 Works</h2>
@@ -1179,6 +1194,14 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29
 Performance versus Floating Point</strong></td>
 <td style="text-align: left;">Fixed-Basis Integer Arithmetic on
 Production Hardware.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">HOWL-VDR-30-2026</a></strong></td>
+<td style="text-align: left;"><strong>Economics of Scale: Floating Point
+vs Exact Integer ML Models</strong></td>
+<td style="text-align: left;">Why the Current Architecture Costs More,
+Delivers Less, and Cannot Improve, and What Replaces It.</td>
 </tr>
 </tbody>
 </table>
