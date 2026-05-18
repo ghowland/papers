@@ -1,8 +1,8 @@
 {
-  "title": "Exact Rational Arithmetic for Sequential Computation",
+  "title": "VDR in Zig SIMD and GPU Performance versus Floating Point",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "Decimal arithmetic \u2014 including arbitrary-precision libraries like mpmath \u2014 represents numbers in base 10. The only fractions with terminating decimal representations are those whose denominators factor exclusively into 2s and 5s. Every other fraction \u2014 1/3, 1/7, 1/11, 1/13, every fraction whose denominator contains any prime factor other than 2 or 5 \u2014 becomes an infinite repeating decimal that must be truncated. This truncation is not a precision issue solvable by carrying more digits. It is a structural incompatibility between the representation and the value.\n\nThis paper identifies twenty computational domains where this structural incompatibility produces materially wrong results, and demonstrates that VDR exact rational arithmetic [VDR-1] eliminates the problem entirely. VDR represents 1/3 as [1, 3, 0] \u2014 exact, with zero truncation. Chains of operations on exact rationals produce exact rationals. The denominator grows but nothing is discarded. This is not \"more precision.\" It is a categorically different relationship with the numbers.\n\nNo prior reading is required. VDR arithmetic is summarized where first used; full specifications are in [VDR-1] and [VDR-14].",
+  "description": "Every floating-point operation can round. One rounding is negligible. Millions compound. This paper presents performance projections for VDR \u2014 Value, Denominator, Remainder \u2014 exact integer arithmetic implemented in Zig targeting AVX-512 SIMD and NVIDIA H100 GPU tensor cores. VDR eliminates accumulated arithmetic error by replacing floating-point operations with integer multiply, shift, and mask on a fixed power-of-two denominator basis, storing exact remainders rather than discarding them.\n\nThe reference VDR implementation (vdr-math, Python) uses a 335-bit basis tuned for physics and transcendental computation. This paper retunes the basis to match machine register widths for LLM inference and diffusion model workloads: 8-bit for weights, 16-bit for activations, 64-bit for gradient accumulation. At these widths, VDR's divmod operation reduces to a bit shift and mask \u2014 native hardware operations on all modern processors.\n\nProjected results on H100: 1.6-1.8\u00d7 throughput improvement on GEMM via INT8 tensor cores, 3-4\u00d7 improvement on softmax via elimination of the Special Function Unit bottleneck, 2\u00d7 effective memory bandwidth from half-size weights, and zero accumulated drift over arbitrarily long operation chains. Full transformer forward pass for a 7B parameter model projects to approximately 2\u00d7 throughput versus optimized FP16, with exact results at every step.\n\nAll projections are conservative estimates based on published hardware specifications. VDR delivers exact arithmetic not by trading performance for correctness, but by targeting integer execution units that are faster than their floating-point counterparts for the operations ML pipelines actually perform.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -12,11 +12,11 @@
     "howland archive",
     "vdr"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-28-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-29-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-28-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-29-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

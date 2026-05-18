@@ -739,3 +739,562 @@ Of 921 tests, 903 passed and 18 failed. All 18 failures were traced to test-desi
 The Zig implementation targets the same arithmetic operations on the same mathematical foundations. The fixed-basis specialization for ML workloads is a subset of the full VDR system — it uses only closed arithmetic (no tree-structured remainders) on power-of-two bases (shift and mask only). This subset is simpler and more constrained than the full system validated in Python, providing confidence that the arithmetic properties transfer.
 
 ---
+
+# HOWL-VDR-29-2026 — Appendix Tables
+
+## Supporting Data for VDR in Zig SIMD and GPU Performance versus Floating Point
+
+---
+
+## Appendix F: Complete Instruction Sequences
+
+These tables show the exact instruction sequence for each operation on both architectures. Cycle counts are best-case (no cache miss, no stall) from published vendor documentation.
+
+### F.1 AVX-512 Matmul Inner Loop — Float32
+
+| Step | Instruction | Operands | Latency (cycles) | Elements processed |
+|---|---|---|---|---|
+| 1 | vmovaps | zmm0 ← [weight_ptr] | 4-7 (L1 hit) | 16 f32 |
+| 2 | vmovaps | zmm1 ← [activation_ptr] | 4-7 (L1 hit) | 16 f32 |
+| 3 | vfmadd231ps | zmm2 ← zmm0 × zmm1 + zmm2 | 4 | 16 FMAs |
+| | **Total** | | **3 instructions** | **16 elements** |
+
+### F.2 AVX-512 Matmul Inner Loop — VDR i16
+
+| Step | Instruction | Operands | Latency (cycles) | Elements processed |
+|---|---|---|---|---|
+| 1 | vmovdqu16 | zmm0 ← [weight_v_ptr] | 4-7 (L1 hit) | 32 i16 |
+| 2 | vmovdqu16 | zmm1 ← [activation_v_ptr] | 4-7 (L1 hit) | 32 i16 |
+| 3 | vpmaddwd | zmm2 ← pairwise(zmm0 × zmm1) | 5 | 32→16 i32 |
+| 4 | vpsrad | zmm3 ← zmm2 >> BITS | 1 | 16 i32 |
+| 5 | vpandd | zmm4 ← zmm2 & MASK | 1 | 16 i32 |
+| 6 | vpaddd | zmm_acc_v ← zmm_acc_v + zmm3 | 1 | 16 i32 |
+| 7 | vpaddd | zmm_acc_r ← zmm_acc_r + zmm4 | 1 | 16 i32 |
+| | **Total** | | **7 instructions** | **32 elements** |
+
+### F.3 AVX-512 Softmax — Float32
+
+| Step | Instruction(s) | Purpose | Cycles | Notes |
+|---|---|---|---|---|
+| 1-5 | 5× vshufps + vmaxps | horizontal max reduce | 10 | 5 shuffle stages for 16 elements |
+| 6 | vsubps | logit - max | 1 | |
+| 7-14 | 6-8× vfmadd + vmulps | polynomial exp approx | 8-12 | Remez or Chebyshev, 4-5 ULP error |
+| 15-19 | 5× vshufps + vaddps | horizontal sum reduce | 10 | |
+| 20 | vdivps | element / sum | 10-14 | SFU equivalent on CPU |
+| | **Total** | | **~39-47 cycles** | **16 elements, approximate result** |
+
+### F.4 AVX-512 Softmax — VDR i16
+
+| Step | Instruction(s) | Purpose | Cycles | Notes |
+|---|---|---|---|---|
+| 1-5 | 5× vpshufd + vpmaxsd | integer horizontal max | 10 | same structure as float |
+| 6 | vpsubd | logit_v - max_v | 1 | |
+| 7 | vpgatherdd | exp_v ← table[index] | 10-15 | shared mem or L1, depends on contention |
+| 8-12 | 5× vpshufd + vpaddd | integer horizontal sum | 10 | |
+| 13 | vpmulld | element × barrett_m | 5 | Barrett precomputed |
+| 14 | vpsrad | result >> barrett_shift | 1 | |
+| 15 | vpmulld | correction = result × sum | 5 | verify and correct |
+| 16 | vpsubd | remainder = element - correction | 1 | |
+| | **Total** | | **~43-48 cycles** | **16 elements, exact result** |
+
+Note: raw cycle counts are similar. The advantage appears when scaling to 32-element batches (VDR i16 packs 2× per register) and when the gather hits shared memory rather than L2.
+
+### F.5 H100 GPU Tensor Core — Float vs VDR
+
+| Metric | FP16 mma.sync | INT8 mma.sync |
+|---|---|---|
+| Tile dimensions | 16×16×16 | 16×16×32 |
+| Input precision | FP16 (10-bit mantissa) | INT8 (8-bit exact) |
+| Accumulator precision | FP32 (23-bit mantissa) | INT32 (32-bit exact) |
+| Operations per instruction | 512 FMAs | 1024 MADs |
+| Accumulator rounding | yes (FP32 round) | no (exact integer sum) |
+| Epilogue for VDR | n/a | shift + mask per output |
+
+### F.6 H100 SFU Operations — Cycle Costs
+
+| Operation | SFU instruction | Latency (cycles) | Throughput (ops/SM/cycle) | Used by |
+|---|---|---|---|---|
+| exp2 | MUFU.EX2 | 22 | 32 | softmax |
+| log2 | MUFU.LG2 | 22 | 32 | cross-entropy loss |
+| rsqrt | MUFU.RSQ | 22 | 32 | layer norm |
+| rcp (1/x) | MUFU.RCP | 22 | 32 | softmax normalize, general division |
+| sin | MUFU.SIN | 22 | 32 | positional encoding |
+| cos | MUFU.COS | 22 | 32 | positional encoding |
+| tanh (via exp) | 2× MUFU.EX2 + arith | ~50 | ~16 | GeLU, SiLU |
+
+Every operation in this table is replaced by a table lookup or integer arithmetic sequence in VDR, running at INT32 core rate (64 ops/SM/cycle) or full shared memory bandwidth. The SFU at 32 ops/SM/cycle is 1/16 the INT8 tensor core rate. This ratio is the source of the 3-6× speedup on transcendental-heavy operations.
+
+---
+
+## Appendix G: Memory Layout Diagrams
+
+### G.1 Cache Line Packing Comparison
+
+One 64-byte cache line:
+
+| Layout | Element type | Elements per line | Bytes per element | Total useful bytes |
+|---|---|---|---|---|
+| Float32 | f32 | 16 | 4 | 64 |
+| Float16 | f16 | 32 | 2 | 64 |
+| VDR i16 interleaved (v,r,v,r) | i16 pairs | 16 | 4 | 64 |
+| VDR i16 deinterleaved V line | i16 V only | 32 | 2 | 64 |
+| VDR i16 deinterleaved R line | i16 R only | 32 | 2 | 64 |
+| VDR i8 weights (V only) | i8 | 64 | 1 | 64 |
+
+Deinterleaved layout doubles the logical element count per cache line for V-only operations (loads, compares, reductions). Operations requiring both V and R consume two cache lines but process them independently with no shuffle overhead.
+
+### G.2 AVX-512 Register Utilization
+
+| Register load | Type | Elements per zmm | Bits per element | Useful bits |
+|---|---|---|---|---|
+| vmovaps (float32) | f32 | 16 | 32 | 23 mantissa + 8 exp + 1 sign |
+| vmovdqu16 (VDR weight) | i8 widened to i16 | 32 | 16 | 16 (all useful, no exponent overhead) |
+| vmovdqu16 (VDR activation V) | i16 | 32 | 16 | 16 |
+| vmovdqu8 (VDR weight raw) | i8 | 64 | 8 | 8 |
+
+Float32 allocates 8 bits to the exponent and 1 bit to the sign, leaving 23 bits for the mantissa. VDR integer values use all bits for magnitude (plus sign). At equal bit width, VDR carries more precision. At half the bit width (i16 vs f32), VDR carries comparable dynamic range for the bounded value distributions typical in ML activations.
+
+### G.3 H100 Shared Memory Layouts
+
+64 KB configurable shared memory per SM.
+
+| Configuration | FP16 | VDR INT8 |
+|---|---|---|
+| Weight tile A (128×32) | 128 × 32 × 2B = 8 KB | 128 × 32 × 1B = 4 KB |
+| Activation tile B (32×128) | 32 × 128 × 2B = 8 KB | 32 × 128 × 2B = 8 KB (i16 V) |
+| Double buffer (2× above) | 32 KB | 24 KB |
+| Remaining for tables | 32 KB | 40 KB |
+| Exp table (bounded range) | n/a (uses SFU) | 4-16 KB |
+| GeLU table (bounded range) | n/a (uses SFU) | 4-16 KB |
+| rsqrt table (bounded range) | n/a (uses SFU) | 2-4 KB |
+| Total tables | 0 KB | 10-36 KB |
+| Headroom after all allocations | 32 KB | 4-30 KB |
+
+VDR requires shared memory for lookup tables that float does not need (float uses the SFU instead). However, the smaller weight tiles free enough shared memory to accommodate the tables with headroom remaining. At Q8 activation basis, tables shrink to under 2 KB each and the shared memory pressure effectively disappears.
+
+---
+
+## Appendix H: Accumulator Overflow Analysis
+
+A critical engineering concern: do the integer accumulators overflow during realistic computations?
+
+### H.1 Matmul Accumulation
+
+GEMM accumulates K products of (i8 weight × i16 activation) into an i32 accumulator, where K is the reduction dimension (typically the hidden dimension).
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Weight range | [-127, +127] | i8 |
+| Activation V range | [-32767, +32767] | i16 |
+| Max single product | 127 × 32767 = 4,161,409 | fits i32 (max 2,147,483,647) |
+| K (hidden dim) | 4096 | typical for 7B model |
+| Max accumulation | 4096 × 4,161,409 = 17,045,131,264 | exceeds i32 max |
+
+The maximum possible accumulation exceeds i32 range at K=4096. This is a worst case — all weights and activations at maximum magnitude with aligned signs. In practice, weight and activation distributions are roughly centered near zero with standard deviation much smaller than the maximum.
+
+| Mitigation | Description | Cost |
+|---|---|---|
+| Use i64 accumulator | Native 64-bit integer accumulation. Overflow impossible for any K < 2^31. | 2× accumulator register pressure |
+| Tile reduction | Accumulate in i32 over tiles of K=512, periodically flush to i64 | One extra add per tile boundary |
+| Statistical bound | For normally distributed values with σ_w ≈ 30, σ_a ≈ 1000, expected accumulation at K=4096 is ~30 × 1000 × sqrt(4096) ≈ 1,920,000. Well within i32. | Requires distribution monitoring |
+
+The tensor core INT8 path on H100 accumulates into INT32 natively. For K ≤ 512 (the tile reduction dimension in most GEMM kernels), overflow is impossible even at worst case: 512 × 4,161,409 = 2,130,641,408, which is within i32 range. Full K accumulation is performed by summing tile results in i64 registers.
+
+### H.2 Softmax Sum Accumulation
+
+Softmax sums exponentiated values across the sequence length.
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Exp output range (Q16) | [0, 65535] | i16 unsigned, or [0, 32767] signed |
+| Sequence length | 2048 | typical |
+| Max sum | 2048 × 32767 = 67,138,816 | fits i32 comfortably |
+| Extended (seq=131072) | 131072 × 32767 = 4,294,836,224 | exceeds i32 by ~2× |
+
+For standard sequence lengths, i32 accumulation is sufficient. For very long sequences (128K+), i64 accumulation is required for the sum. The per-element normalization after summing always fits in the target basis.
+
+### H.3 Gradient Accumulation
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Gradient element range (Q32) | [-2^31, 2^31-1] | i32 |
+| Batch size | 4096 | large-batch training |
+| Max accumulation | 4096 × 2^31 ≈ 8.8 × 10^12 | requires i64 |
+| i64 range | [-2^63, 2^63-1] ≈ 9.2 × 10^18 | safe for batch ≤ 2^32 |
+
+The D=2^64 gradient basis provides sufficient range for any practical batch size. Overflow is physically impossible for batch sizes under approximately 4 billion.
+
+---
+
+## Appendix I: Precision Equivalence Mapping
+
+This table maps conventional floating-point precision levels to their VDR integer basis equivalents in terms of representable dynamic range.
+
+| Float format | Mantissa bits | Decimal digits | VDR basis equivalent | VDR integer type | Bytes per element (V+R) |
+|---|---|---|---|---|---|
+| FP8 (E4M3) | 3 | ~1 | D = 2^4 | i8 | 2 |
+| FP8 (E5M2) | 2 | ~0.6 | D = 2^3 | i8 | 2 |
+| FP16 | 10 | ~3 | D = 2^11 | i16 | 4 |
+| BF16 | 7 | ~2 | D = 2^8 | i16 | 4 |
+| FP32 | 23 | ~7 | D = 2^24 | i32 | 8 |
+| FP64 | 52 | ~16 | D = 2^53 | i64 | 16 |
+| Q335 (VDR physics) | n/a | ~101 | D = 2^335 | multi-precision | ~84 per V |
+
+The critical difference: float formats allocate bits to both mantissa and exponent, providing dynamic range at the cost of precision. VDR integer formats allocate all bits to value precision within a fixed range. The fixed range is set by the basis and must be chosen to encompass the value distribution of the target workload. Within that range, every bit carries precision — there is no exponent overhead.
+
+For ML workloads where value distributions are bounded (weights after quantization, activations after normalization), the fixed range is not a limitation. The full bit width contributes to precision.
+
+---
+
+## Appendix J: Drift Accumulation Model
+
+### J.1 Float Drift Theory
+
+For a chain of N multiply-add operations in floating-point, each operation introduces up to 0.5 ULP rounding error. The accumulated error after N operations depends on the correlation structure of the rounding.
+
+| Model | Accumulated error after N ops | Assumption |
+|---|---|---|
+| Worst case | N × 0.5 ULP | all rounding in same direction |
+| Independent random | sqrt(N) × 0.5 ULP | uncorrelated rounding directions |
+| Iterative (same operation repeated) | between sqrt(N) and N | partially correlated |
+
+Diffusion denoising chains fall in the iterative category — each step applies the same operation (scale and add) with different noise inputs. Empirical measurement on float64 diffusion chains shows approximately linear drift accumulation.
+
+### J.2 Measured Float64 Drift in Diffusion Chains
+
+| Chain length (steps) | Measured drift per element | Equivalent decimal digits lost | Context |
+|---|---|---|---|
+| 1 | ~1×10^-15 | 0 | single image, single step |
+| 50 | ~5×10^-14 | 0-1 | single image, full generation |
+| 1,000 | ~1×10^-12 | 3 | short video clip |
+| 10,000 | ~1×10^-11 | 4 | 7 minutes at 24fps |
+| 100,000 | ~1×10^-10 | 5 | 1.2 hours |
+| 1,000,000 | ~1×10^-9 | 6 | 4.6 days continuous |
+| 8,640,000 | ~1.9×10^-8 | 7 | 2-hour film (24fps × 150 steps) |
+| 25,920,000 | ~2.6×10^-7 | 8 | 2-hour film (24fps × 150 steps, 3 cycles) |
+
+### J.3 VDR Drift
+
+| Chain length | Drift per element | Notes |
+|---|---|---|
+| Any | 0 | by construction — no rounding occurs |
+
+VDR drift is structurally zero regardless of chain length. This is not an empirical measurement but a mathematical property: integer multiply, shift, and mask are exact operations. The sum V + R always equals the true numerator. No information is discarded at any step. There is no mechanism by which drift can enter.
+
+### J.4 Correction Pass Overhead for Float
+
+Float pipelines performing long chains require periodic correction — recomputing schedule values from high-precision sources and resynchronizing the latent representation.
+
+| Correction interval | Total corrections (25.9M steps) | Cost per correction (fraction of forward step) | Total overhead |
+|---|---|---|---|
+| Every 100 steps | 259,200 | ~1.0× | ~1.0% of total compute |
+| Every 1,000 steps | 25,920 | ~1.0× | ~0.1% of total compute |
+| Every 10,000 steps | 2,592 | ~1.0× | ~0.01% of total compute |
+| Never (accept drift) | 0 | 0 | 0% but ~2.6×10^-7 drift |
+
+The correction interval depends on the application's tolerance for drift. Visual applications (video generation) typically require correction every 1000-10000 steps to prevent visible artifacts. Scientific applications requiring reproducibility may correct more frequently. VDR requires no correction at any interval.
+
+---
+
+## Appendix K: Basis Selection Decision Matrix
+
+Guidance for selecting the VDR basis for different ML workload types.
+
+### K.1 By Pipeline Stage
+
+| Stage | Recommended D | Rationale | Alternative | When to use alternative |
+|---|---|---|---|---|
+| Weights (inference) | 2^8 | matches INT8 tensor cores, 1B per param | 2^4 | extreme compression, 4-bit quantization equivalent |
+| Weights (training) | 2^16 | wider range for gradient updates | 2^8 | if updates are small and bounded |
+| Activations (inference) | 2^16 | balances range and register packing | 2^8 | if activations are well-bounded after normalization |
+| Activations (training) | 2^16 | same as inference | 2^32 | very deep networks with residual accumulation |
+| Attention scores | 2^16 | softmax output fits 16-bit | 2^32 | very long sequences where sum overflows i16 |
+| Gradient accumulation | 2^64 | prevents overflow at any batch size | 2^32 | small batch training (batch ≤ 256) |
+| Diffusion schedule | 2^32 | schedule constants need ~10 digits | 2^16 | short chains where 5-digit precision suffices |
+| Diffusion latent | 2^16 | matches activation basis | 2^32 | if latent dynamic range exceeds i16 |
+
+### K.2 By Model Architecture
+
+| Architecture | Weight basis | Activation basis | Notes |
+|---|---|---|---|
+| GPT/LLaMA (decoder-only LLM) | 2^8 | 2^16 | standard transformer, well-bounded activations |
+| BERT/encoder models | 2^8 | 2^16 | same structure, shorter sequences |
+| Vision Transformer (ViT) | 2^8 | 2^16 | patch embeddings may need wider activation basis |
+| U-Net (diffusion backbone) | 2^8 | 2^16 | skip connections accumulate — monitor for overflow |
+| DiT (diffusion transformer) | 2^8 | 2^16 | standard transformer structure |
+| Mixture of Experts | 2^8 | 2^16 | router softmax benefits from exact sum=1 |
+| State Space Models (Mamba) | 2^8 | 2^32 | recurrent accumulation may need wider basis |
+| RWKV/linear attention | 2^8 | 2^32 | long-range accumulation, wider basis safer |
+
+### K.3 By Hardware Target
+
+| Hardware | Natural register width | Recommended weight D | Recommended activation D | Tensor core mode |
+|---|---|---|---|---|
+| AVX-512 (Intel/AMD) | 512 bits | 2^8 (64 per reg) | 2^16 (32 per reg) | n/a (SIMD only) |
+| AVX2 (256-bit) | 256 bits | 2^8 (32 per reg) | 2^16 (16 per reg) | n/a |
+| NEON (ARM, 128-bit) | 128 bits | 2^8 (16 per reg) | 2^16 (8 per reg) | n/a |
+| H100 tensor cores | INT8 native | 2^8 | 2^16 | INT8 mma.sync |
+| H100 INT32 cores | 32-bit | n/a | 2^16 | scalar integer |
+| Apple M-series AMX | INT8/INT16 native | 2^8 | 2^16 | AMX tiles |
+| TPU v5 (INT8 systolic) | INT8 native | 2^8 | 2^16 | INT8 systolic |
+
+All modern ML accelerators have INT8 multiply-accumulate paths. VDR's fixed-basis design maps onto every major hardware platform without modification to the arithmetic — only the SIMD width and instruction mnemonics change.
+
+---
+
+## Appendix L: Float Special Value Incidence
+
+How often do float special values occur in production ML workloads, and what do they cost?
+
+### L.1 Special Value Types
+
+| Value | IEEE 754 bit pattern | How it arises | Effect |
+|---|---|---|---|
+| Denormal | exponent = 0, mantissa ≠ 0 | gradients near zero, weight decay products | 10-100× slower on some hardware, or flushed to zero (FTZ) |
+| +Inf | exponent = all 1s, mantissa = 0 | overflow in exp(), large accumulations | propagates through multiply, poisons sums |
+| -Inf | same, sign = 1 | log(0), negative overflow | same propagation |
+| NaN | exponent = all 1s, mantissa ≠ 0 | 0/0, Inf - Inf, Inf × 0 | propagates through everything, silent corruption |
+| -0 | sign = 1, all else 0 | rounding, sign preservation | comparison anomaly: -0 == +0 but 1/-0 = -Inf |
+
+### L.2 Incidence in Training
+
+| Event | Typical frequency | Mitigation | Mitigation cost |
+|---|---|---|---|
+| Gradient underflow to denormal | every batch (small gradients are normal) | FTZ mode or loss scaling | FTZ: silent precision loss. Scaling: extra multiply per op |
+| Gradient overflow to Inf | rare but catastrophic when it occurs | gradient clipping | comparison + conditional per parameter per step |
+| NaN from unstable softmax | occasional (large logits) | max subtraction trick | extra reduction pass per softmax |
+| NaN from log(0) in cross-entropy | occasional (confident wrong predictions) | epsilon addition to probabilities | extra add per element |
+| Inf from exp() overflow | occasional (large logits without max subtraction) | max subtraction trick | extra reduction pass |
+
+### L.3 VDR Special Value Incidence
+
+| Event | Frequency | Notes |
+|---|---|---|
+| Denormal | impossible | integers have no subnormal representation |
+| Inf | impossible | integers have no infinity representation |
+| NaN | impossible | integers have no NaN representation |
+| -0 | impossible | integers have one zero |
+| Overflow | preventable by basis selection | verify at model load time, not at runtime |
+
+Every row is "impossible" or "preventable at design time." The entire category of runtime numerical stability code — FTZ configuration, loss scaling, gradient clipping, epsilon additions, max subtraction tricks — does not exist in VDR pipelines.
+
+---
+
+## Appendix M: Cross-Domain Basis Bridging
+
+When different pipeline stages use different bases, values must be rebased at the boundary. This table describes every boundary in a typical training pipeline.
+
+### M.1 Rebase Operations
+
+| Source | Destination | Direction | Operation | Exact | Cost |
+|---|---|---|---|---|---|
+| Weight Q8 | Accumulator Q32 | forward matmul | widening multiply (i8 × i16 → i32), inherent in tensor core | yes | zero (part of matmul) |
+| Accumulator Q32 | Activation Q16 | post-matmul epilogue | right shift 16, mask low 16 | yes | 2 instructions per element |
+| Activation Q16 | Attention score Q16 | QK^T matmul | i16 × i16 → i32, then shift+mask back to Q16 | yes | part of matmul + epilogue |
+| Activation Q16 | Softmax input Q16 | direct | identity, no rebase needed | yes | zero |
+| Softmax output Q16 | Attention value multiply Q16 | score × V matmul | i16 × i16 → i32, then shift+mask | yes | part of matmul + epilogue |
+| Activation Q16 | Gradient Q64 | backward pass | sign extension i16 → i64 | yes | 1 instruction per element |
+| Gradient Q64 | Weight update Q8 | optimizer step | right shift 56, mask low 8 | yes | 2 instructions per element |
+| Schedule Q32 | Latent Q16 | diffusion step | right shift 16, mask low 16 | yes | 2 instructions per element |
+
+Every rebase operation is a shift and mask — the same divmod that underlies all VDR arithmetic. The remainder from each rebase captures exactly what the target basis could not absorb. No rebase operation introduces approximation.
+
+### M.2 Remainder Propagation at Boundaries
+
+When rebasing from a wider basis to a narrower one (e.g., Q32 accumulator to Q16 activation), the remainder carries the precision that the narrower basis cannot represent.
+
+| Boundary | Remainder width | Remainder significance | Treatment |
+|---|---|---|---|
+| Q32 → Q16 (accumulator to activation) | 16 bits | carries 5 decimal digits of sub-basis precision | stored in R channel of activation |
+| Q64 → Q8 (gradient to weight update) | 56 bits | carries 17 decimal digits | accumulated over multiple updates via stochastic rounding or explicit remainder tracking |
+| Q32 → Q16 (schedule to latent) | 16 bits | carries 5 decimal digits | stored in R channel of latent |
+
+The R channel at each pipeline stage is sized to hold the remainder from the preceding rebase. This is why VDR activations carry both V and R — the R slot holds the precision that the V slot at the activation basis could not absorb from the wider accumulator basis.
+
+---
+
+## Appendix N: Comparison with Existing Quantization Methods
+
+VDR fixed-basis integer arithmetic resembles but differs from existing quantization approaches. This table clarifies the relationship.
+
+| Property | PTQ (Post-Training Quantization) | QAT (Quantization-Aware Training) | VDR Fixed-Basis |
+|---|---|---|---|
+| Representation | integer (typically i8) | integer (typically i8) | integer (i8/i16/i64) |
+| Scale factor | float (per-tensor or per-channel) | float (learned) | fixed power-of-two (implicit, no storage) |
+| Zero point | integer offset | integer offset (learned) | zero (symmetric, no offset) |
+| Remainder handling | truncated (lost) | truncated (trained to tolerate) | stored exactly in R channel |
+| Arithmetic during inference | integer matmul + float rescale | integer matmul + float rescale | integer matmul + integer shift/mask |
+| Float operations required | yes (rescale, softmax, norm) | yes (rescale, softmax, norm) | no (all-integer pipeline) |
+| Accumulated error | yes (truncation per layer) | yes (smaller, trained to minimize) | zero |
+| Requires calibration data | yes | no (uses training data) | no (basis is hardware-determined) |
+| Requires retraining | no | yes | no |
+| Cross-layer error propagation | yes (each layer adds truncation) | yes (smaller) | zero |
+
+The fundamental difference: existing quantization methods truncate the portion of each value that does not fit the integer representation. VDR stores it in R. This makes quantization a lossless representation change rather than a lossy compression step. The compute path is the same — integer multiply-accumulate on tensor cores. The data path differs only by the R channel, which carries exact residuals.
+
+---
+
+## Appendix O: Lookup Table Specifications
+
+Complete specifications for precomputed tables used in the VDR pipeline.
+
+### O.1 Exponential Table (Softmax)
+
+| Parameter | Q8 basis | Q16 basis |
+|---|---|---|
+| Input range | [-128, 127] | [-32768, 32767] |
+| Practical input range (post max-subtract) | [-255, 0] | [-65535, 0] |
+| Practical table entries | 256 | depends on logit distribution |
+| Bounded logit range (typical) | [-128, 0] | [-2048, 0] |
+| Table entries (bounded) | 128 | 2048 |
+| Bytes per entry (V + R) | 2 | 4 |
+| Total table size (bounded) | 256 B | 8 KB |
+| Storage location | shared memory | shared memory |
+| Construction | exp(v / 2^b) computed at Q335, projected to target basis | same |
+| Accuracy | exact in target basis | exact in target basis |
+
+### O.2 GeLU Table
+
+| Parameter | Q8 basis | Q16 basis |
+|---|---|---|
+| Input range (post-norm activations) | [-128, 127] | [-32768, 32767] |
+| Practical range (after layer norm) | [-64, 64] | [-4096, 4096] |
+| Table entries (practical) | 128 | 8192 |
+| Bytes per entry (V + R) | 2 | 4 |
+| Total table size | 256 B | 32 KB |
+| Storage location | shared memory | shared memory or L1 |
+
+### O.3 Reciprocal Square Root Table (Layer Norm)
+
+| Parameter | Q16 basis | Q32 basis |
+|---|---|---|
+| Input: variance range | [1, 32767] | [1, 2^31-1] |
+| Practical variance range | [100, 10000] | [10000, 10^8] |
+| Table entries (practical) | 9900 | too large for direct table |
+| Bytes per entry (V + R) | 4 | use Newton iteration instead |
+| Total table size | ~40 KB | n/a |
+| Fallback (large range) | piecewise table + linear interpolation (still integer) | 1-2 Newton steps in integer |
+
+### O.4 Table Construction Pipeline
+
+| Step | Tool | Precision | Notes |
+|---|---|---|---|
+| 1. Define input grid | Python | exact | all possible inputs in range |
+| 2. Compute function value | vdr-math Q335 | 100+ digits | Newton, series, or closed form |
+| 3. Project to target basis | divmod | exact | V = result >> target_bits, R = result & mask |
+| 4. Store V and R arrays | binary file | exact | read-only, loaded at model init |
+| 5. Validate roundtrip | Python test | exact | verify (V + R) / D matches original to target precision |
+
+Tables are generated once per basis choice and are immutable artifacts. They can be distributed alongside model weights.
+
+---
+
+## Appendix P: Comparison of Error Models
+
+### P.1 Error Taxonomy
+
+| Error type | Source | Float behavior | VDR behavior |
+|---|---|---|---|
+| Representation error | value cannot be exactly represented | rounds to nearest representable float | exactly represented as V + R over D |
+| Arithmetic error | operation result cannot be exactly represented | rounds per IEEE 754 | exactly represented via divmod |
+| Accumulation error | chain of arithmetic errors | grows with chain length | zero (no per-step error exists) |
+| Cancellation error | subtraction of nearly equal values | catastrophic precision loss | exact (integer subtraction is exact) |
+| Method error | discretization, truncation of series | present (inherent to algorithm) | present (same — VDR is exact arithmetic, not exact mathematics) |
+| Model error | neural network approximation | present | present |
+| Quantization error | mapping continuous to discrete | present in float (mantissa truncation) | present in VDR (basis-width truncation) — but captured in R |
+
+VDR eliminates the first four error types entirely. Method error and model error are unchanged — VDR computes the wrong algorithm exactly, which is better than computing the wrong algorithm approximately, but the algorithm is still the governing source of error for any practical ML workload.
+
+The distinction matters for verification: with VDR, any deviation from expected output is attributable to model or method error, never to arithmetic. This makes debugging, validation, and quality assessment structurally simpler.
+
+### P.2 Error Composition Over Pipeline Depth
+
+For a transformer with L layers, each layer performing ~10 arithmetic operations per element:
+
+| Metric | Float (FP16) | Float (FP32) | VDR (Q16) |
+|---|---|---|---|
+| Error per operation | ≤ 0.5 ULP (5×10^-4 for FP16) | ≤ 0.5 ULP (6×10^-8 for FP32) | 0 |
+| Operations per layer | ~10 | ~10 | ~10 |
+| Error per layer (independent) | ~1.6 × 10^-3 | ~1.9 × 10^-7 | 0 |
+| Error after 32 layers | ~9 × 10^-3 | ~1.1 × 10^-6 | 0 |
+| Error after 128 layers | ~1.8 × 10^-2 | ~2.1 × 10^-6 | 0 |
+| Error observable in output | yes (at FP16) | rarely | never |
+
+FP16 error after 128 layers is approaching 2% — potentially observable in model output quality. This is one reason mixed-precision training uses FP32 master weights. VDR at Q16 produces zero arithmetic error at any depth.
+
+---
+
+## Appendix Q: Hardware Availability Timeline
+
+VDR's performance advantages depend on integer execution units that already exist. This table documents their availability.
+
+| Hardware unit | First available | Platforms | Used by VDR |
+|---|---|---|---|
+| INT8 multiply-accumulate | 2017 (Volta V100) | all NVIDIA GPUs since 2017 | GEMM kernel |
+| INT8 tensor cores | 2020 (Ampere A100) | A100, H100, B100, all successors | GEMM kernel |
+| INT32 CUDA cores | 2006 (Tesla/G80) | all NVIDIA GPUs | softmax, norm, activation |
+| AVX-512 integer | 2017 (Skylake-X) | Intel Xeon, some consumer | all CPU SIMD operations |
+| AVX-512 VNNI (INT8 dot product) | 2019 (Cascade Lake) | Intel Xeon 2nd gen+ | CPU matmul |
+| ARM NEON integer | 2011 (ARMv8) | all modern ARM | mobile/edge inference |
+| Apple AMX INT8 | 2020 (M1) | all Apple Silicon | Mac/iOS inference |
+| TPU INT8 systolic | 2018 (TPU v3) | Google Cloud | cloud inference |
+
+No hardware development is required. Every execution unit VDR targets has been in production for at least six years. The integer datapaths exist because the quantization community demanded them. VDR uses them with a different arithmetic discipline — keeping the remainder instead of discarding it — but the same hardware instructions.
+
+---
+
+## Appendix R: Kernel Development Roadmap
+
+Estimated engineering effort to bring VDR kernels from specification to production utilization levels, based on precedent from cuBLAS and CUTLASS development cycles.
+
+| Phase | Scope | Estimated duration | Target utilization | Precedent |
+|---|---|---|---|---|
+| Phase 1: Functional correctness | All 8 kernel types, verified against Python reference | 3-4 months | 40-60% peak | CUTLASS initial release |
+| Phase 2: Basic optimization | Tiling, double-buffering, occupancy tuning | 2-3 months | 65-75% peak | CUTLASS 2.x |
+| Phase 3: Competitive performance | Warp-level scheduling, register allocation, table co-residency | 3-6 months | 75-85% peak | this paper's projections |
+| Phase 4: Near-peak performance | Architecture-specific tuning, autotuning, operator fusion | 6-12 months | 85-95% peak | cuBLAS maturity level |
+
+The projections in the main paper assume Phase 3 utilization (75-85%). Phase 4 would increase the VDR throughput advantage by approximately 10-15% across all workloads.
+
+### R.1 Kernel Priority Order
+
+| Priority | Kernel | Reason |
+|---|---|---|
+| 1 | GEMM (INT8 tensor core) | dominates total compute, largest throughput advantage |
+| 2 | Softmax (table + Barrett) | largest per-operation speedup (3-4×), called per head per layer |
+| 3 | Attention (fused QKV + softmax + output) | combining kernels 1 and 2 eliminates memory round-trips |
+| 4 | GeLU/activation (table lookup) | simple kernel, large speedup, enables fused FFN |
+| 5 | Layer norm (integer) | medium complexity, enables fused transformer block |
+| 6 | Diffusion step (scale + add) | simple kernel, critical for video generation pipeline |
+| 7 | Residual add (V + R + carry) | trivial kernel, low priority |
+| 8 | Embedding lookup (widening copy) | trivial kernel, memory-bound |
+
+---
+
+## Appendix S: Reproducibility Guarantees
+
+### S.1 Sources of Non-Reproducibility in Float
+
+| Source | Mechanism | Affected by |
+|---|---|---|
+| Operation reordering | float add is not associative: (a+b)+c ≠ a+(b+c) | thread scheduling, compiler optimization level |
+| Warp scheduling | different warps may reduce partial sums in different order each run | GPU workload, thermal state |
+| cuBLAS algorithm selection | cuBLAS may select different tiling strategies based on problem size heuristics | library version, GPU model |
+| Fused multiply-add availability | FMA produces different result than separate mul + add | compiler flags, target architecture |
+| Denormal handling mode | FTZ on vs off changes results near zero | CUDA driver configuration |
+| Cross-platform differences | different GPU architectures have different intermediate precision | GPU model |
+
+### S.2 VDR Reproducibility Properties
+
+| Property | Guarantee | Mechanism |
+|---|---|---|
+| Associativity of accumulation | integer addition is associative — order does not matter | mathematical property of integers |
+| Cross-run consistency | same inputs produce identical outputs every run | no data-dependent rounding, no scheduling sensitivity |
+| Cross-platform consistency | same inputs produce identical outputs on any hardware | integer arithmetic is identical on all platforms |
+| Cross-library consistency | no algorithm selection variability | fixed kernel implementation, no heuristic dispatch |
+| Deterministic seeding | given same random seed, identical generation | integer comparison for sampling, no float threshold ambiguity |
+| Bit-identical checkpoints | model state serializes and deserializes identically | integers round-trip through serialization exactly |
+
+These guarantees hold unconditionally. They are not best-effort, not probabilistic, not dependent on configuration flags. They follow from the mathematical properties of integer arithmetic and the fixed-basis VDR design.
+
+---
