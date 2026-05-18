@@ -197,8 +197,7 @@ operands. This is what GPUs are built for - the per-operation cost is
 150× float16, but 85-97% fewer tokens means the total compute is lower
 from turn 7-10 onward, and the gap widens every turn because VDR cost is
 flat while conventional attention cost grows quadratically.</p>
-<ul>
-<li><strong>Structural safety</strong>: for data access, jailbreaking is
+<p><strong>Structural safety</strong>: for data access, jailbreaking is
 impossible - not difficult, impossible. The LLM never receives
 unauthorized data because KB visibility (integer comparison) and scope
 chain (ancestor walk, siblings unreachable) filter before the LLM is
@@ -212,8 +211,7 @@ do: change the user ID, modify the scope chain, bypass visibility
 checks, execute operations without grants, or surface data the session
 is not authorized to see. The LLM is an untrusted component operating
 between pre-filtered input and post-validated output. Zero LLM tokens
-spent on safety.</li>
-</ul>
+spent on safety.</p>
 <p><strong>Validated:</strong> 884 tests, zero arithmetic errors. Exact
 Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip.
 Exact orbit closure. Conservation laws verified by equality not
