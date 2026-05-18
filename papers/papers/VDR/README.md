@@ -7,6 +7,8 @@
 
 **Results:** 884 tests across 37 domains, zero arithmetic errors. 85-97% token reduction vs conventional LLMs. Jailbreaking provably impossible for data access. SRE investigation: 73× faster, 71× cheaper, 100% data coverage vs 25%.
 
+**Performance (VDR-29):** Basis retooled from Q335 to hardware register widths — D=2^8 weights, D=2^16 activations — where divmod is a bit shift and mask. H100 INT8 tensor cores: 2× FP16 throughput on GEMM, 3-6× on softmax/activations via table lookup bypassing the SFU. Full 7B forward pass: ~2× float. 2-hour video diffusion: ~2.1× float with zero drift. Zero warp divergence, zero NaN/Inf, bit-identical cross-platform. All integer hardware in production since 2017.
+
 **[Read the full mechanical explanation of how the system works.](#what-is-vdr-llm-prolog)**
 
 **tl;dr:** Replace floating-point with exact integer triples. Put data in knowledge bases at integer addresses instead of the LLM's context window. Let the LLM pick tools from a menu instead of generating computation as text. 
