@@ -147,6 +147,7 @@
 | **[HOWL-VDR-28-2026](papers/papers/VDR/HOWL-VDR-28-2026/manuscript.md)** | **Exact Rational Arithmetic for Sequential Computation** | VDR Applied to Twenty Domains Where Decimal Truncation Compounds. |
 | **[HOWL-VDR-29-2026](papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md)** | **VDR in Zig SIMD and GPU Performance versus Floating Point** | Fixed-Basis Integer Arithmetic on Production Hardware. |
 | **[HOWL-VDR-30-2026](papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md)** | **Economics of Scale: Floating Point vs Exact Integer ML Models** | Why the Current Architecture Costs More, Delivers Less, and Cannot Improve, and What Replaces It. |
+| **[HOWL-VDR-31-2026](papers/papers/VDR/HOWL-VDR-31-2026/manuscript.md)** | **VDR Toy LLM** | Exact Rational Arithmetic in a Transformer Language Model Using Fixed-Denominator VDR Triples. |
 
 ---
 
