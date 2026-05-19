@@ -47,6 +47,11 @@ truncates, accumulates error, and produces platform-dependent results.
 LLMs spend 80-95% of their tokens on infrastructure (formatting,
 arithmetic, state tracking, hedging) that could be handled by exact
 tools.</p>
+<p><strong>tl;dr:</strong> Replace floating-point with exact integer
+triples. Data in knowledge bases, not the context window. LLM does
+judgment, tools do everything else. 97% of tokens eliminated, 3%
+retained. Sessions never degrade. Solved problems stay solved at zero
+cost.</p>
 <p><strong>VDR is:</strong> an exact finite arithmetic system where
 every number is three integers <a
 href="#value-denominator-remainder">Value, Denominator, Remainder</a>
@@ -107,11 +112,6 @@ processing is impossible and VDR is routine. Conservative compound: 71×
 single session, 
 8,000× mature deployment, 30× blended datacenter. All
 pre-optimization floors.</p>
-<p><strong>tl;dr:</strong> Replace floating-point with exact integer
-triples. Data in knowledge bases, not the context window. LLM does
-judgment, tools do everything else. 97% of tokens eliminated, 3%
-retained. Sessions never degrade. Solved problems stay solved at zero
-cost.</p>
 <p><strong><a href="#what-is-vdr-llm-prolog">Read the full mechanical
 explanation of how the system works.</a></strong></p>
 <h2 id="vdr-llm-prolog-quick-deep-dives">VDR-LLM-Prolog Quick Deep

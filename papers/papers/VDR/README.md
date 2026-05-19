@@ -3,6 +3,8 @@
 
 **The problem:** floating-point arithmetic silently truncates, accumulates error, and produces platform-dependent results. LLMs spend 80-95% of their tokens on infrastructure (formatting, arithmetic, state tracking, hedging) that could be handled by exact tools.
 
+**tl;dr:** Replace floating-point with exact integer triples. Data in knowledge bases, not the context window. LLM does judgment, tools do everything else. 97% of tokens eliminated, 3% retained. Sessions never degrade. Solved problems stay solved at zero cost.
+
 **VDR is:** an exact finite arithmetic system where every number is three integers [Value, Denominator, Remainder] and the Remainder is not rounding error - it's first-class structure. Built outward into a complete LLM architecture with scoped knowledge bases, a built-in Prolog engine for logical deduction, and 448 exact primitives the model orchestrates instead of generating computation as text.
 
 - [vdr-math Python Library](https://github.com/ghowland/vdr-math) - Python exact arithmetic library — every value is a [V, D, R] triple with fixed denominator and exact remainder tracking.
@@ -14,8 +16,6 @@
 **Economics ([VDR-30](HOWL-VDR-30-2026/manuscript.md)):** 2× inference throughput halves GPU-hours per million tokens. Half-size INT8 weights double models per node. 85-97% token reduction from builtins eliminates the majority of LLM compute spent on formatting, arithmetic, and state tracking. Bit-identical reproduction removes non-determinism costs from CI/CD, compliance, and debugging. Video diffusion rendering cost roughly halved from throughput plus zero drift correction. Training 1.5-1.7× cheaper with no loss scaling failures.
 
 **Result:** Sessions never degrade — three independent layers (exact data at integer addresses, bounded working memory, exact integer attention) are each structurally incapable of degrading. 97% of conventional tokens are infrastructure replaced by KB addressing, grammars, primitives, and Prolog; 3% is judgment retained. Solved problems persist as Prolog rules: investigation 100 costs 55 tokens versus 329 at investigation 1. Data scales to 1GB where conventional processing is impossible and VDR is routine. Conservative compound: 71× single session, ~8,000× mature deployment, 30× blended datacenter. All pre-optimization floors.
-
-**tl;dr:** Replace floating-point with exact integer triples. Data in knowledge bases, not the context window. LLM does judgment, tools do everything else. 97% of tokens eliminated, 3% retained. Sessions never degrade. Solved problems stay solved at zero cost.
 
 **[Read the full mechanical explanation of how the system works.](#what-is-vdr-llm-prolog)**
 
