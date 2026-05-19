@@ -1,0 +1,58 @@
+VDR Toy LLM ΓÇö Q16 Integer Arithmetic
+D = 65536 (2^16)
+
+=== TRAINING ===
+  epoch  1  loss_q16=+813897669  softmax_sum=65536: yes
+  epoch  2  loss_q16=+681887000  softmax_sum=65536: yes
+  epoch  3  loss_q16=+632863604  softmax_sum=65536: yes
+  epoch  4  loss_q16=+609789303  softmax_sum=65536: yes
+  epoch  5  loss_q16=+595141490  softmax_sum=65536: yes
+  epoch  6  loss_q16=+583835043  softmax_sum=65536: yes
+  epoch  7  loss_q16=+574148174  softmax_sum=65536: yes
+  epoch  8  loss_q16=+565505939  softmax_sum=65536: yes
+  epoch  9  loss_q16=+557508954  softmax_sum=65536: yes
+  epoch 10  loss_q16=+550170700  softmax_sum=65536: yes
+  epoch 11  loss_q16=+545300482  softmax_sum=65536: yes
+  epoch 12  loss_q16=+541494324  softmax_sum=65536: yes
+  epoch 13  loss_q16=+537714046  softmax_sum=65536: yes
+  epoch 14  loss_q16=+533942738  softmax_sum=65536: yes
+  epoch 15  loss_q16=+530120728  softmax_sum=65536: yes
+  epoch 16  loss_q16=+526204802  softmax_sum=65536: yes
+  epoch 17  loss_q16=+522304657  softmax_sum=65536: yes
+  epoch 18  loss_q16=+518205379  softmax_sum=65536: yes
+  epoch 19  loss_q16=+514140949  softmax_sum=65536: yes
+  epoch 20  loss_q16=+509806555  softmax_sum=65536: yes
+
+=== GENERATION ===
+prompt: the cat sat on
+greedy: the cat sat on mat mat on mat
+
+step-by-step:
+  step 1: [0.1440, 0.1142, 0.0000, 0.2665, 0.4751] -> mat
+  step 2: [0.2456, 0.1038, 0.0000, 0.3243, 0.3262] -> mat
+  step 3: [0.2454, 0.1039, 0.0000, 0.3260, 0.3245] -> on
+  step 4: [0.1463, 0.1091, 0.0000, 0.2766, 0.4678] -> mat
+
+=== VERIFICATION ===
+  softmax_sum            [PASS]
+  attention_weights      [PASS]
+  determinism            [PASS]
+  loss_monotonicity      [PASS] 813897669 -> 509806555
+  weight_update          [PASS]
+
+=== PERFORMANCE ===
+  forward pass:      100000 iters in 68 ms  (688 ns/iter, 0 us/iter)
+  train step:        50000 iters in 57 ms  (1159 ns/iter, 1 us/iter)
+  train epoch:       25000 iters in 58 ms  (2354 ns/iter, 2 us/iter)
+  generation:        100000 iters in 282 ms  (2822 ns/iter, 2 us/iter, 1417434 tok/s)
+  softmax surrogate: 1000000 iters in 0 ms  (0 ns/iter)
+  dot product (d=4): 10000000 iters in 0 ms  (0 ns/iter)
+
+=== SUMMARY ===
+  model params:      181 (i16 weights + i16 bias)
+  model memory:      ~2368 bytes
+  D = 65536 (2^16), precision floor = 1.53e-5
+  float operations:  0
+  heap allocations:  0
+
+done.

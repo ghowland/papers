@@ -1,0 +1,70 @@
+{
+  "title": "VDR-LLM-Prolog: The Compound Architecture Performance Gains",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Thirty-two papers in the VDR series each prove an independent result: exact arithmetic with zero error, instruction-level equivalence with quantized inference, 85-97% token elimination for structured tasks, linear scaling versus quadratic, self-improving rule accumulation, zero-drift diffusion chains, structural safety without token cost, and grammar-directed generation that eliminates forward passes on deterministic tokens. Each paper is conservative, staying within its own scope. None multiplies the results together.\n\nThis paper performs that multiplication. The axes of improvement are independent \u2014 hardware speedup does not depend on token reduction, token reduction does not depend on rule accumulation, rule accumulation does not depend on scaling behavior. When independent multipliers compound across a real workload over a real deployment timeline, the combined effect ranges from 2\u00d7 for pure creative writing to over 8,000\u00d7 for mature structured enterprise workloads. These are not projections from novel research. They are arithmetic consequences of measured baselines and known operations on shipping hardware.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-33-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-33-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
