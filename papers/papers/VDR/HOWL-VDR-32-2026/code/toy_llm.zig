@@ -792,7 +792,8 @@ fn mse_grad(pred: *const [VOCAB_SIZE]i16, target: *const [VOCAB_SIZE]i32, grad: 
     for (0..VOCAB_SIZE) |i| {
         const item: i32 = @intCast(target[i]);
         const diff: i32 = @as(i32, pred[i]) - item;
-        grad[i] = @divTrunc(2 * diff, VOCAB_SIZE);
+        const vocab_size: i32 = @intCast(VOCAB_SIZE);
+        grad[i] = @divTrunc(2 * diff, vocab_size);
     }
 }
 
