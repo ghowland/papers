@@ -1,4 +1,4 @@
-# VDR Toy LLM
+# VDR-Zig Q16 Integer LLM
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-We present a complete transformer language model — embedding, self-attention, feed-forward network, backpropagation, weight updates, and text generation — running entirely in exact rational arithmetic with no floating-point operations. The model uses the vdr-math Python library, which represents every value as an ordered triple [V, D, R] (Value, Denominator, Remainder) with a fixed denominator D = 2^32. We describe the denominator growth problem that arises when standard rational arithmetic operators are applied in a fixed-frame system, the operator-level solution we implemented to prevent it, and the quadratic softmax surrogate that eliminates transcendental functions from the forward pass. The resulting toy model — 181 parameters, vocabulary of 5, trained for 20 epochs on a 6-word corpus — passes 9 verification tests including bit-identical determinism across runs and exact sum-to-one softmax outputs. All denominators remain at 2^32 through every operation chain. The work demonstrates that a fixed-denominator rational arithmetic system can support a complete LLM training and inference pipeline, and identifies the engineering steps required to scale beyond toy dimensions.
+We benchmark a single-block transformer language model implemented in Zig using Q16 fixed-denominator integer arithmetic (D = 2^16 = 65536). The implementation uses no floating-point operations, no heap allocations, and no SIMD intrinsics. On a 2019 laptop (Intel Core i7-10th gen class, single core, scalar execution), the model achieves 688 ns per forward pass, 1,159 ns per training step, and 1.42 million tokens per second for greedy generation. All 5 verification tests pass including bit-identical determinism and exact softmax sum-to-one. From this scalar baseline, we project performance under SIMD vectorization, GPU integer tensor cores, and datacenter-scale deployment, comparing directly against conventional float16/float32 and quantized INT8 inference at each level. The central finding is that VDR Q16 arithmetic maps to the same hardware instructions as quantized integer inference — widening multiply-accumulate with right-shift epilogue — placing it at computational parity with INT8/INT16 quantization while providing stronger precision guarantees.
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-31-2026,
-  title={ VDR Toy LLM },
+@article{ HOWL-VDR-32-2026,
+  title={ VDR-Zig Q16 Integer LLM },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20276904},
-  url = {https://zenodo.org/record/20276904},
-  note={Howland Archive: HOWL-VDR-31-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20280821},
+  url = {https://zenodo.org/record/20280821},
+  note={Howland Archive: HOWL-VDR-32-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
