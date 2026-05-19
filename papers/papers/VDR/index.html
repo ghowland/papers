@@ -70,6 +70,17 @@ diffusion:
 2.1× float with zero drift. Zero warp divergence, zero
 NaN/Inf, bit-identical cross-platform. All integer hardware in
 production since 2017.</p>
+<p><strong>Toy Baseline (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">VDR-32</a>):</strong> <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">VDR-29</a> projections validated
+against measured hardware. Single-file Zig transformer at Q16: 688
+ns/forward, 1.42M tok/sec on a 2019 laptop scalar CPU — 170,000× over
+Python reference. Confirms the instruction-level equivalence: VDR Q16
+compiles to the same widening multiply-accumulate + right-shift as
+INT8/INT16 quantized inference. Exact softmax sum = D every epoch,
+byte-identical determinism, zero float operations, 2,368 bytes total
+memory. The per-parameter cost of 3.80 ns scales linearly to the VDR-29
+SIMD and tensor core projections.</p>
 <p><strong>Economics (<a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">VDR-30</a>):</strong> 2× inference
 throughput halves GPU-hours per million tokens. Half-size INT8 weights
@@ -177,6 +188,19 @@ all denominators confirmed at 2^32 through forward and backward passes.
 Worst softmax residual: 9.07 × 10^-13. Demonstrates that
 fixed-denominator rational arithmetic supports a complete LLM pipeline
 end-to-end.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">Example: VDR
+Performance Toy LLM in Zig</a></strong> - Integer Transformer
+Performance Baseline: the Python toy LLM reimplemented in single-file
+Zig at Q16 (D = 2^16) with zero floating-point, zero heap allocations,
+2,368 bytes total model memory. ReleaseFast on a 2019 laptop: 688
+ns/forward, 1.42M tokens/sec — 170,000× faster than Python. Core
+finding: VDR Q16 multiply-accumulate is the same instruction sequence as
+INT8/INT16 quantized inference (widening multiply, accumulate,
+right-shift), placing it at computational parity on identical hardware.
+Projected A100: 45 ms for 7B forward matching float16 throughput. Unlike
+existing quantized systems that convert to float for softmax, VDR stays
+integer end-to-end — exact softmax sum, bit-identical determinism, 2.6×
+lower energy per MAC, at zero additional compute cost.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
 Works</h2>
@@ -1235,6 +1259,14 @@ href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-31
 <td style="text-align: left;"><strong>VDR Toy LLM</strong></td>
 <td style="text-align: left;">Exact Rational Arithmetic in a Transformer
 Language Model Using Fixed-Denominator VDR Triples.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">HOWL-VDR-32-2026</a></strong></td>
+<td style="text-align: left;"><strong>VDR-Zig Q16 Integer
+LLM</strong></td>
+<td style="text-align: left;">Performance Baseline and Datacenter
+Projection for Fixed-Denominator Integer Transformer Inference.</td>
 </tr>
 </tbody>
 </table>
