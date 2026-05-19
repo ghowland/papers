@@ -153,7 +153,7 @@ const ForwardCache = struct {
     V_proj: [SEQ_LEN]Vec16(DIM),
     scores: [SEQ_LEN][SEQ_LEN]i16,
     shifted: [SEQ_LEN][SEQ_LEN]i16,
-    weights: [SEQ_LEN][SEQ_LEN]i16,
+    weights: [SEQ_LEN][SEQ_LEN]i32,
     attn_out: [SEQ_LEN]Vec16(DIM),
     post_wo: [SEQ_LEN]Vec16(DIM),
     post_attn_res: [SEQ_LEN]Vec16(DIM),
@@ -171,7 +171,7 @@ const ForwardCache = struct {
             .V_proj = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .scores = [_][SEQ_LEN]i16{[_]i16{0} ** SEQ_LEN} ** SEQ_LEN,
             .shifted = [_][SEQ_LEN]i16{[_]i16{0} ** SEQ_LEN} ** SEQ_LEN,
-            .weights = [_][SEQ_LEN]i16{[_]i16{0} ** SEQ_LEN} ** SEQ_LEN,
+            .weights = [_][SEQ_LEN]i32{[_]i32{0} ** SEQ_LEN} ** SEQ_LEN,
             .attn_out = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .post_wo = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .post_attn_res = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
@@ -239,13 +239,13 @@ const ToyTransformer = struct {
         // init embeddings: values in [-3, 3] scaled to Q16 as val * 8192
         for (0..VOCAB_SIZE) |t| {
             for (0..DIM) |d| {
-                model.token_emb[t].v[d] = rng.next_i16_range(-3, 3) * 8192;
+                model.token_emb[t].v[d] = rng.next_i16_range(-3, 3) * 4096;
                 model.token_emb[t].r[d] = 0;
             }
         }
         for (0..SEQ_LEN) |p| {
             for (0..DIM) |d| {
-                model.pos_emb[p].v[d] = rng.next_i16_range(-3, 3) * 8192;
+                model.pos_emb[p].v[d] = rng.next_i16_range(-3, 3) * 4096;
                 model.pos_emb[p].r[d] = 0;
             }
         }
@@ -309,14 +309,14 @@ const ToyTransformer = struct {
 fn init_mat(comptime ROWS: usize, comptime COLS: usize, out: *[ROWS][COLS]i16, rng: *LCG) void {
     for (0..ROWS) |i| {
         for (0..COLS) |j| {
-            out[i][j] = rng.next_i16_range(-3, 3) * 8192;
+            out[i][j] = rng.next_i16_range(-3, 3) * 4096;
         }
     }
 }
 
 fn init_vec16(comptime N: usize, out: *[N]i16, rng: *LCG) void {
     for (0..N) |i| {
-        out[i] = rng.next_i16_range(-1, 1) * 8192;
+        out[i] = rng.next_i16_range(-1, 1) * 4096;
     }
 }
 
@@ -412,7 +412,7 @@ fn attention_scores(cache: *ForwardCache) void {
 fn softmax_surrogate(
     comptime N: usize,
     scores: *const [N]i16,
-    probs: *[N]i16,
+    probs: *[N]i32,
     shifted_out: *[N]i16,
 ) void {
     // find min
@@ -432,7 +432,7 @@ fn softmax_surrogate(
     }
 
     if (sum_sq == 0) {
-        const uniform: i16 = @intCast(@divTrunc(@as(i64, D), @as(i64, N)));
+        const uniform: i32 = @intCast(@divTrunc(@as(i64, D), @as(i64, N)));
         for (0..N) |i| {
             probs[i] = uniform;
         }
@@ -456,7 +456,7 @@ fn softmax_surrogate(
 fn softmax_surrogate_backward(
     comptime N: usize,
     grad_probs: *const [N]i32,
-    probs: *const [N]i16,
+    probs: *const [N]i32,
     shifted: *const [N]i16,
     grad_scores: *[N]i32,
 ) void {
@@ -470,7 +470,6 @@ fn softmax_surrogate_backward(
         return;
     }
 
-    // dot(grad_probs, probs) in Q16 scaling
     var dot_gp: i64 = 0;
     for (0..N) |i| {
         dot_gp += @as(i64, grad_probs[i]) * @as(i64, probs[i]);
@@ -506,12 +505,11 @@ fn attention_mix(cache: *ForwardCache) void {
 
 fn attention_mix_backward(
     grad_attn_out: *const [SEQ_LEN][DIM]i32,
-    weights: *const [SEQ_LEN][SEQ_LEN]i16,
+    weights: *const [SEQ_LEN][SEQ_LEN]i32,
     v_proj: *const [SEQ_LEN]Vec16(DIM),
     grad_weights: *[SEQ_LEN][SEQ_LEN]i32,
     grad_v: *[SEQ_LEN][DIM]i32,
 ) void {
-    // grad_weights[i][j] = dot(grad_attn_out[i], V[j])
     for (0..SEQ_LEN) |i| {
         for (0..SEQ_LEN) |j| {
             var acc: i64 = 0;
@@ -522,7 +520,6 @@ fn attention_mix_backward(
         }
     }
 
-    // grad_V[j][d] = sum_i weights[i][j] * grad_attn_out[i][d]
     for (0..SEQ_LEN) |j| {
         for (0..DIM) |d| {
             var acc: i64 = 0;
@@ -779,7 +776,7 @@ fn sgd_step(model: *ToyTransformer) void {
 // Loss
 // ─────────────────────────────────────────────────────────────────────
 
-fn mse_loss(pred: *const [VOCAB_SIZE]i16, target: *const [VOCAB_SIZE]i32) i64 {
+fn mse_loss(pred: *const [VOCAB_SIZE]i32, target: *const [VOCAB_SIZE]i32) i64 {
     var total: i64 = 0;
     for (0..VOCAB_SIZE) |i| {
         const diff: i64 = @as(i64, pred[i]) - @as(i64, target[i]);
@@ -788,10 +785,9 @@ fn mse_loss(pred: *const [VOCAB_SIZE]i16, target: *const [VOCAB_SIZE]i32) i64 {
     return @divTrunc(total, VOCAB_SIZE);
 }
 
-fn mse_grad(pred: *const [VOCAB_SIZE]i16, target: *const [VOCAB_SIZE]i32, grad: *[VOCAB_SIZE]i32) void {
+fn mse_grad(pred: *const [VOCAB_SIZE]i32, target: *const [VOCAB_SIZE]i32, grad: *[VOCAB_SIZE]i32) void {
     for (0..VOCAB_SIZE) |i| {
-        const item: i32 = @intCast(target[i]);
-        const diff: i32 = @as(i32, pred[i]) - item;
+        const diff: i32 = pred[i] - target[i];
         const vocab_size: i32 = @intCast(VOCAB_SIZE);
         grad[i] = @divTrunc(2 * diff, vocab_size);
     }
@@ -815,7 +811,7 @@ fn train_step(model: *ToyTransformer, context: [SEQ_LEN]u8, target_id: u8) i64 {
     forward(model, context);
 
     // softmax on last position
-    var probs: [VOCAB_SIZE]i16 = undefined;
+    var probs: [VOCAB_SIZE]i32 = undefined;
     var shifted: [VOCAB_SIZE]i16 = undefined;
     softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
@@ -863,9 +859,9 @@ fn train_epoch(model: *ToyTransformer, windows: []const Window) i64 {
 // Generation
 // ─────────────────────────────────────────────────────────────────────
 
-fn sample_greedy(probs: *const [VOCAB_SIZE]i16) u8 {
+fn sample_greedy(probs: *const [VOCAB_SIZE]i32) u8 {
     var best: u8 = 0;
-    var best_val: i16 = probs[0];
+    var best_val: i32 = probs[0];
     for (1..VOCAB_SIZE) |i| {
         if (probs[i] > best_val) {
             best_val = probs[i];
@@ -876,7 +872,7 @@ fn sample_greedy(probs: *const [VOCAB_SIZE]i16) u8 {
 }
 
 fn generate(model: *ToyTransformer, prompt: [SEQ_LEN]u8, max_tokens: usize, output: []u8) usize {
-    var ids: [SEQ_LEN + 20]u8 = undefined; // max generation
+    var ids: [SEQ_LEN + 20]u8 = undefined;
     @memcpy(ids[0..SEQ_LEN], &prompt);
     var len: usize = SEQ_LEN;
 
@@ -885,7 +881,7 @@ fn generate(model: *ToyTransformer, prompt: [SEQ_LEN]u8, max_tokens: usize, outp
         @memcpy(&context, ids[len - SEQ_LEN .. len]);
         forward(model, context);
 
-        var probs: [VOCAB_SIZE]i16 = undefined;
+        var probs: [VOCAB_SIZE]i32 = undefined;
         var shifted: [VOCAB_SIZE]i16 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
@@ -904,12 +900,12 @@ fn generate(model: *ToyTransformer, prompt: [SEQ_LEN]u8, max_tokens: usize, outp
 fn verify_softmax_sum(model: *ToyTransformer, windows: []const Window) bool {
     for (windows) |w| {
         forward(model, w.context);
-        var probs: [VOCAB_SIZE]i16 = undefined;
+        var probs: [VOCAB_SIZE]i32 = undefined;
         var shifted: [VOCAB_SIZE]i16 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
-        var total: i32 = 0;
+        var total: i64 = 0;
         for (0..VOCAB_SIZE) |i| {
-            total += @as(i32, probs[i]);
+            total += @as(i64, probs[i]);
         }
         if (total != D) return false;
     }
@@ -942,9 +938,9 @@ fn verify_attention_weights(model: *ToyTransformer, windows: []const Window) boo
     for (windows) |w| {
         forward(model, w.context);
         for (0..SEQ_LEN) |i| {
-            var total: i32 = 0;
+            var total: i64 = 0;
             for (0..SEQ_LEN) |j| {
-                total += @as(i32, model.cache.weights[i][j]);
+                total += @as(i64, model.cache.weights[i][j]);
             }
             if (total != D) return false;
         }
@@ -960,14 +956,14 @@ fn print_token(id: u8) void {
     print("{s}", .{vocab[id]});
 }
 
-fn print_probs(probs: *const [VOCAB_SIZE]i16) void {
+fn print_probs(probs: *const [VOCAB_SIZE]i32) void {
     print("[", .{});
     for (0..VOCAB_SIZE) |i| {
         if (i > 0) print(", ", .{});
-        // print as fixed point: value / 65536
-        const v: i32 = @as(i32, probs[i]);
-        const whole: i32 = @divTrunc(v * 10000, D);
-        print("0.{d:0>4}", .{@as(u32, @intCast(if (whole < 0) -whole else whole))});
+        const v: i64 = @as(i64, probs[i]);
+        const whole: i64 = @divTrunc(v * 10000, D);
+        const abs_whole: u64 = @intCast(if (whole < 0) -whole else whole);
+        print("0.{d:0>4}", .{abs_whole});
     }
     print("]", .{});
 }
@@ -1004,12 +1000,12 @@ pub fn main() !void {
         var sum_ok = true;
         for (&windows) |w| {
             forward(&model, w.context);
-            var probs: [VOCAB_SIZE]i16 = undefined;
+            var probs: [VOCAB_SIZE]i32 = undefined;
             var shifted: [VOCAB_SIZE]i16 = undefined;
             softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
-            var total: i32 = 0;
+            var total: i64 = 0;
             for (0..VOCAB_SIZE) |i| {
-                total += @as(i32, probs[i]);
+                total += @as(i64, probs[i]);
             }
             if (total != D) sum_ok = false;
         }
@@ -1046,7 +1042,7 @@ pub fn main() !void {
         @memcpy(&context, step_ids[step_len - SEQ_LEN .. step_len]);
         forward(&model, context);
 
-        var probs: [VOCAB_SIZE]i16 = undefined;
+        var probs: [VOCAB_SIZE]i32 = undefined;
         var shifted: [VOCAB_SIZE]i16 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
