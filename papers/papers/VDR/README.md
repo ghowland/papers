@@ -469,7 +469,7 @@ Otherwise:
 
 ---
 
-## Key Numbers for Python Implementation
+## Key Numbers for VDR-LLM-Prolog Python Implementation
 
 | Metric | Value |
 | :--- | :--- |
