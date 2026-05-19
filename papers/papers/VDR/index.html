@@ -55,17 +55,35 @@ Built outward into a complete LLM architecture with scoped knowledge
 bases, a built-in Prolog engine for logical deduction, and 448 exact
 primitives the model orchestrates instead of generating computation as
 text.</p>
-<p><strong>Performance (<a
-href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR-29</a>):</strong> Basis
-retooled from Q335 to hardware register widths, D=2^8 weights, D=2^16
-activations, where divmod is a bit shift and mask. H100 INT8 tensor
-cores: 2× FP16 throughput on GEMM, 3-6× on softmax/activations via table
-lookup bypassing the SFU. Full 7B forward pass: 
-2× float. 2-hour video
-diffusion: 
-2.1× float with zero drift. Zero warp divergence, zero
-NaN/Inf, bit-identical cross-platform. All integer hardware in
-production since 2017.</p>
+<p><strong>Combined Performance (<a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR-29</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-30-2026/manuscript.md">VDR-30</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">VDR-32</a>, <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-33-2026/manuscript.md">VDR-33</a>):</strong> Five
+independent axes multiply. <em>Hardware:</em> INT8 tensor cores 2× FP16
+on GEMM, 3-6× on softmax/activations via table lookup bypassing SFU, 
+2×
+full 7B forward pass, 2.6× less energy per MAC. <em>Token
+elimination:</em> 85-97% of tokens are infrastructure (parsing,
+arithmetic, state tracking, deduction, formatting, hedging) replaced by
+builtins, KB addressing, Prolog, and nested grammars at zero LLM cost.
+<em>Scaling:</em> quadratic attention → linear KB access; 588:1 ratio at
+turn 100. <em>Accumulation:</em> Prolog rules from prior sessions
+compound; investigation 100 costs 55 tokens versus 329 at investigation
+1, 93% auto-triage at zero LLM cost. <em>Compound:</em> single SRE
+session 71× ($0.39 vs $27.58), mature structured deployment 
+8,000×,
+blended datacenter 30× conservative (420 GPUs → 14). All
+pre-optimization baselines.</p>
+<p><strong>Toy Baseline (VDR-32):</strong> Hardware axis validated
+against measured data. Single-file Zig transformer at Q16: 688
+ns/forward, 1.42M tok/sec on a 2019 laptop scalar CPU — 170,000× over
+Python reference. Confirms instruction-level equivalence: VDR Q16
+compiles to the same widening multiply-accumulate + right-shift as
+INT8/INT16 quantized inference. Exact softmax sum = D every epoch,
+byte-identical determinism, zero float operations, 2,368 bytes total
+memory. The per-parameter cost of 3.80 ns scales linearly to SIMD and
+tensor core projections.</p>
 <p><strong>Toy Baseline (<a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">VDR-32</a>):</strong> <a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-32-2026/manuscript.md">VDR-29</a> projections validated
@@ -102,7 +120,8 @@ Prolog rules available to subsequent sessions.</p>
 Library</a> - Python exact arithmetic library — every value is a [V, D,
 R] triple with fixed denominator and exact remainder tracking.</li>
 </ul>
-<h2 id="quick-deep-dives">Quick Deep Dives</h2>
+<h2 id="vdr-llm-prolog-quick-deep-dives">VDR-LLM-Prolog Quick Deep
+Dives</h2>
 <ul>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-14-2026/manuscript.md">Consolidated
 System Spec</a></strong> - Complete VDR-LLM-Prolog system in one
@@ -115,6 +134,21 @@ grammar-directed compaction, and 12-phase lifecycle from data sourcing
 through retirement. 884 tests across 37 domains, zero VDR computation
 errors. Five-stage build plan, 65 modules, 12 architectural
 layers.</p></li>
+<li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-33-2026/manuscript.md">The Compound
+Architecture Performance Gains</a></strong> - Position paper multiplying
+independent results from VDR-1 through VDR-32. Five axes compound: 
+2×
+hardware (INT8 tensor cores, SFU elimination), 85-97% token elimination
+(grammars, builtins, KB addressing, Prolog replace infrastructure
+tokens), linear-vs-quadratic scaling (588:1 at turn 100), rule
+accumulation (93% auto-triage by investigation 100), and engineering
+cost elimination (determinism, structural safety). Single SRE session:
+71×. Mature structured deployment: 
+8,000×. Blended datacenter: 30× (420
+GPUs → 14). Information-theoretic analysis of grammar nesting, sentence
+templates, and command token entropy. Session architecture with sign-bit
+global/ephemeral lifecycle. All pre-optimization baselines on shipping
+hardware. 921 tests, zero arithmetic errors.</p></li>
 <li><p><strong><a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-29-2026/manuscript.md">VDR in Zig SIMD
 and GPU Performance versus Floating Point</a></strong> - Fixed-Basis
 Integer Performance: basis retooled from Q335 to hardware register
