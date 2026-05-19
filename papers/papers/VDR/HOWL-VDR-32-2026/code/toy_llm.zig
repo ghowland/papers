@@ -338,13 +338,10 @@ fn linear_forward(
         for (0..COLS) |j| {
             acc += @as(i64, weight[i][j]) * @as(i64, input[j]);
         }
-        // rebase to Q16
-        const v_raw: i64 = @divTrunc(acc, D);
-        const r_raw: i64 = @rem(acc, D);
-        // add bias
-        const with_bias: i64 = v_raw * D + r_raw + @as(i64, bias[i]) * D;
-        out_v[i] = @intCast(@divTrunc(with_bias, D));
-        out_r[i] = @intCast(@rem(with_bias, D));
+        // rebase to Q16 and add bias
+        const v_raw: i64 = @divTrunc(acc, D) + @as(i64, bias[i]);
+        out_v[i] = @intCast(v_raw);
+        out_r[i] = 0;
     }
 }
 
@@ -592,7 +589,7 @@ fn relu_backward(comptime N: usize, pre_relu_v: *const [N]i16, grad_out: *const 
 fn residual_add(comptime N: usize, a: *const Vec16(N), b: *const Vec16(N), out: *Vec16(N)) void {
     for (0..N) |i| {
         const sum: i32 = @as(i32, a.v[i]) + @as(i32, b.v[i]);
-        out.v[i] = @intCast(@as(i32, @truncate(@as(i64, sum) & 0xFFFF)));
+        out.v[i] = if (sum > 32767) 32767 else if (sum < -32768) -32768 else @intCast(sum);
         out.r[i] = 0;
     }
 }
