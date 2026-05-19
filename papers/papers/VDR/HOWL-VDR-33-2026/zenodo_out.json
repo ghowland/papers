@@ -1,6 +1,6 @@
 {
   "created": "2026-05-19T09:59:31.458971+00:00",
-  "modified": "2026-05-19T09:59:31.678399+00:00",
+  "modified": "2026-05-19T10:33:14.124262+00:00",
   "id": 20284066,
   "conceptrecid": "20284065",
   "metadata": {
@@ -63,10 +63,10 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       },
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       }
     ],
     "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-33-2026.\n\nDependencies: HOWL Foundation Only.",
@@ -105,23 +105,23 @@
   "owner": 1539729,
   "files": [
     {
-      "id": "b794c866-7ac9-4c0d-8221-7cc9b1f47e95",
-      "filename": "!manuscript.pdf",
-      "filesize": 91687,
-      "checksum": "e4d7281b93a83763097b9fcd4c554eae",
+      "id": "61c220c9-105c-49b1-a7ea-513e463c29c9",
+      "filename": "HOWL-VDR-33-2026.zip",
+      "filesize": 4664360,
+      "checksum": "8b294e7dd89686758ec33014989506b0",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20284066/files/b794c866-7ac9-4c0d-8221-7cc9b1f47e95",
-        "download": "https://zenodo.org/api/records/20284066/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20284066/files/61c220c9-105c-49b1-a7ea-513e463c29c9",
+        "download": "https://zenodo.org/api/records/20284066/draft/files/HOWL-VDR-33-2026.zip/content"
       }
     },
     {
-      "id": "56cbe1b0-8aaa-4126-8f41-0c9af7e4c2b0",
-      "filename": "HOWL-VDR-33-2026.zip",
-      "filesize": 140540,
-      "checksum": "fc58b2e2b8e615cc2a9d3f5c06a3d3c3",
+      "id": "d61b1089-b55b-4101-8ee7-1eab430c698d",
+      "filename": "!manuscript.pdf",
+      "filesize": 142126,
+      "checksum": "3ef6c4b30f7bca6c949f1f4b98b197d6",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20284066/files/56cbe1b0-8aaa-4126-8f41-0c9af7e4c2b0",
-        "download": "https://zenodo.org/api/records/20284066/draft/files/HOWL-VDR-33-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20284066/files/d61b1089-b55b-4101-8ee7-1eab430c698d",
+        "download": "https://zenodo.org/api/records/20284066/draft/files/!manuscript.pdf/content"
       }
     }
   ],

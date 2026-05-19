@@ -468,6 +468,7 @@ Otherwise:
 | **[HOWL-VDR-30-2026](HOWL-VDR-30-2026/manuscript.md)** | **Economics of Scale: Floating Point vs Exact Integer ML Models** | Why the Current Architecture Costs More, Delivers Less, and Cannot Improve, and What Replaces It. |
 | **[HOWL-VDR-31-2026](HOWL-VDR-31-2026/manuscript.md)** | **VDR Toy LLM** | Exact Rational Arithmetic in a Transformer Language Model Using Fixed-Denominator VDR Triples. |
 | **[HOWL-VDR-32-2026](HOWL-VDR-32-2026/manuscript.md)** | **VDR-Zig Q16 Integer LLM** | Performance Baseline and Datacenter Projection for Fixed-Denominator Integer Transformer Inference. |
+| **[HOWL-VDR-33-2026](HOWL-VDR-33-2026/manuscript.md)** | **VDR-LLM-Prolog: The Compound Architecture Performance Gains** | Exact Integer Arithmetic as Foundation for Complete LLM System Redesign. |
 
 ---
 
