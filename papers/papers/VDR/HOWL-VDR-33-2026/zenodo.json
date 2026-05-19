@@ -1,8 +1,8 @@
 {
-  "title": "manuscript.md",
+  "title": "VDR-LLM-Prolog: The Compound Architecture Performance Gains",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "Thirty-two papers in the VDR series each prove an independent result: exact arithmetic with zero error, instruction-level equivalence with quantized inference, 85-97% token elimination for structured tasks, linear scaling versus quadratic, self-improving rule accumulation, zero-drift diffusion chains, structural safety without token cost, and grammar-directed generation that eliminates forward passes on deterministic tokens. Each paper is conservative, staying within its own scope. None multiplies the results together.\n\nThis paper performs that multiplication. The axes of improvement are independent \u2014 hardware speedup does not depend on token reduction, token reduction does not depend on rule accumulation, rule accumulation does not depend on scaling behavior. When independent multipliers compound across a real workload over a real deployment timeline, the combined effect ranges from 2\u00d7 for pure creative writing to over 8,000\u00d7 for mature structured enterprise workloads. These are not projections from novel research. They are arithmetic consequences of measured baselines and known operations on shipping hardware.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",

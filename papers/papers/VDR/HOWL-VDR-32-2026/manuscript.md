@@ -688,3 +688,4 @@ Every existing quantized system converts back to float for at least the softmax 
 
 The weight format of VDR Q8/Q16 (INT8 weights with INT16 activations) is byte-identical to SmoothQuant's storage format. The difference is entirely in how the arithmetic is performed and what happens to the rounding residual.
 
+
