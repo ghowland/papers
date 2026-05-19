@@ -1,9 +1,8 @@
+
 #!/usr/bin/env python3
 """
-VDR-LLM-Prolog Complete System — Mechanical Explanation Diagrams
-8 figures covering: VDR triple structure, Q335 arithmetic, token economics,
-self-extension accumulation, safety architecture, confidence propagation,
-and KB scoping.
+HOWL VDR-34 Diagrams — Why Exact Integer Arithmetic Changes Everything
+8 figures covering compound performance gains across five axes.
 Output: PNG files to ../figures/
 """
 
@@ -11,15 +10,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, Circle, FancyArrowPatch
+import matplotlib.patches as patches
 import numpy as np
 import os
 
-# ── Output directory ──────────────────────────────────────────────
-outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
-os.makedirs(outdir, exist_ok=True)
+# ================================================================
+# GLOBAL STYLE
+# ================================================================
 
-# ── Color palette ─────────────────────────────────────────────────
 
 # Light mode
 if True:
@@ -54,876 +52,766 @@ else:
     PURPLE  = '#9b7bd4'
 
 
+
+outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures')
+os.makedirs(outdir, exist_ok=True)
+
+
+def style_ax(ax, title, xlabel='', ylabel=''):
+    ax.set_facecolor(PAN)
+    ax.set_title(title, color=GOLD, fontsize=15, fontweight='bold', pad=18)
+    if xlabel:
+        ax.set_xlabel(xlabel, color=SILVER, fontsize=11, labelpad=10)
+    if ylabel:
+        ax.set_ylabel(ylabel, color=SILVER, fontsize=11, labelpad=10)
+    ax.tick_params(colors=DIM, labelsize=9)
+    for spine in ax.spines.values():
+        spine.set_color(DIM)
+        spine.set_linewidth(0.5)
+
+
 def save(fig, filename):
     path = os.path.join(outdir, filename)
     fig.savefig(path, dpi=180, facecolor=BG, bbox_inches='tight', pad_inches=0.3)
     plt.close(fig)
     print("  Saved: %s" % filename)
 
-def styled_box(ax, x, y, w, h, text, color, fontsize=10, textcolor=WHITE, alpha=0.85, zorder=3):
-    box = FancyBboxPatch((x - w/2, y - h/2), w, h,
-                         boxstyle="round,pad=0.15", facecolor=color, edgecolor=WHITE,
-                         linewidth=1.5, alpha=alpha, zorder=zorder)
-    ax.add_patch(box)
-    ax.text(x, y, text, ha='center', va='center', fontsize=fontsize,
-            color=textcolor, fontweight='bold', zorder=zorder+1)
-
-def styled_arrow(ax, x1, y1, x2, y2, color=SILVER, lw=1.5):
-    ax.annotate('', xy=(x2, y2), xytext=(x1, y1),
-                arrowprops=dict(arrowstyle='->', color=color, lw=lw))
-
 
 # ================================================================
-# FIG 1: VDR TRIPLE NESTING STRUCTURE
-# Type: 4 (Geometric Cross-Section)
-# Shows: The asymmetric [V,D,R] triple where only R recurses,
-#        each child contained within parent's denominator frame.
+# FIG 1: TOKEN COST SCALING BY DATA SIZE
+# Type: Running/Convergence Chart
+# Shows: The divergence between conventional quadratic token cost
+#        and VDR flat cost as data size grows from 64B to 1GB.
+#        The curve shape communicates the capability boundary.
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
-ax.set_facecolor(BG)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.axis('off')
 
-fig.text(0.5, 0.95, 'VDR Triple: Nesting Through Remainder Only',
-         ha='center', va='top', fontsize=17, fontweight='bold', color=GOLD)
-fig.text(0.5, 0.91, 'V and D are always integers (sealed).  Only R recurses.  '
-         'Each child is interpreted within parent\'s denominator frame.',
-         ha='center', va='top', fontsize=11, color=SILVER)
-
-# Level 0 — top triple
-bw, bh = 18, 10
-gap_x = 5
-level0_y = 75
-cx = 50
-v0_x = cx - bw - gap_x
-d0_x = cx
-r0_x = cx + bw + gap_x
-
-# V slot — sealed
-styled_box(ax, v0_x, level0_y, bw, bh, 'V = 847', BLUE, fontsize=14)
-ax.text(v0_x, level0_y + bh/2 + 2.5, 'VALUE (integer)', ha='center', va='bottom',
-        fontsize=9, color=SILVER, style='italic')
-# sealed indicator
-ax.plot([v0_x - bw/2, v0_x + bw/2], [level0_y - bh/2 - 1.2, level0_y - bh/2 - 1.2],
-        color=DIM, lw=2, solid_capstyle='round')
-ax.text(v0_x, level0_y - bh/2 - 3, 'sealed', ha='center', va='top', fontsize=8, color=DIM)
-
-# D slot — sealed
-styled_box(ax, d0_x, level0_y, bw, bh, 'D = 1000', GREEN, fontsize=14)
-ax.text(d0_x, level0_y + bh/2 + 2.5, 'DENOMINATOR (integer)', ha='center', va='bottom',
-        fontsize=9, color=SILVER, style='italic')
-ax.plot([d0_x - bw/2, d0_x + bw/2], [level0_y - bh/2 - 1.2, level0_y - bh/2 - 1.2],
-        color=DIM, lw=2, solid_capstyle='round')
-ax.text(d0_x, level0_y - bh/2 - 3, 'sealed', ha='center', va='top', fontsize=8, color=DIM)
-
-# R slot — open, glowing
-r_box = FancyBboxPatch((r0_x - bw/2, level0_y - bh/2), bw, bh,
-                        boxstyle="round,pad=0.15", facecolor=ORANGE, edgecolor=GOLD,
-                        linewidth=2.5, alpha=0.9, zorder=3)
-ax.add_patch(r_box)
-ax.text(r0_x, level0_y, 'R (active)', ha='center', va='center', fontsize=14,
-        color=WHITE, fontweight='bold', zorder=4)
-ax.text(r0_x, level0_y + bh/2 + 2.5, 'REMAINDER (recurses)', ha='center', va='bottom',
-        fontsize=9, color=GOLD, style='italic')
-
-# Bounding frame for level 0
-frame0 = FancyBboxPatch((v0_x - bw/2 - 4, level0_y - bh/2 - 6), 
-                         (r0_x + bw/2 + 4) - (v0_x - bw/2 - 4), bh + 12,
-                         boxstyle="round,pad=0.3", facecolor='none', edgecolor=GOLD,
-                         linewidth=1.5, linestyle='--', alpha=0.5, zorder=1)
-ax.add_patch(frame0)
-ax.text(v0_x - bw/2 - 2, level0_y + bh/2 + 6, 'Level 0:  [847, 1000, R]',
-        ha='left', va='bottom', fontsize=10, color=GOLD, fontweight='bold')
-
-# Shaft from R down to Level 1
-shaft_top = level0_y - bh/2
-shaft_bot = 48
-ax.plot([r0_x, r0_x], [shaft_top - 1, shaft_bot + 6], color=GOLD, lw=2.5, alpha=0.7)
-ax.annotate('', xy=(r0_x, shaft_bot + 6), xytext=(r0_x, shaft_bot + 12),
-            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2.5))
-ax.text(r0_x + 3, (shaft_top + shaft_bot + 6) / 2, 'nests\ninto R',
-        ha='left', va='center', fontsize=9, color=GOLD, alpha=0.8)
-
-# Level 1 — child triple (smaller)
-bw1, bh1 = 14, 8
-level1_y = 43
-cx1 = r0_x
-v1_x = cx1 - bw1 - 3
-d1_x = cx1
-r1_x = cx1 + bw1 + 3
-
-styled_box(ax, v1_x, level1_y, bw1, bh1, 'V = 3', BLUE, fontsize=12, alpha=0.7)
-styled_box(ax, d1_x, level1_y, bw1, bh1, 'D = 7', GREEN, fontsize=12, alpha=0.7)
-
-r1_box = FancyBboxPatch((r1_x - bw1/2, level1_y - bh1/2), bw1, bh1,
-                          boxstyle="round,pad=0.15", facecolor=ORANGE, edgecolor=GOLD,
-                          linewidth=2, alpha=0.7, zorder=3)
-ax.add_patch(r1_box)
-ax.text(r1_x, level1_y, 'R (active)', ha='center', va='center', fontsize=12,
-        color=WHITE, fontweight='bold', zorder=4)
-
-frame1 = FancyBboxPatch((v1_x - bw1/2 - 3, level1_y - bh1/2 - 4),
-                         (r1_x + bw1/2 + 3) - (v1_x - bw1/2 - 3), bh1 + 8,
-                         boxstyle="round,pad=0.3", facecolor='none', edgecolor=CYAN,
-                         linewidth=1.2, linestyle='--', alpha=0.4, zorder=1)
-ax.add_patch(frame1)
-ax.text(v1_x - bw1/2 - 1, level1_y + bh1/2 + 4, 'Level 1:  [3, 7, R]',
-        ha='left', va='bottom', fontsize=9, color=CYAN, fontweight='bold')
-ax.text(v1_x - bw1/2 - 1, level1_y + bh1/2 + 1.5,
-        'interpreted within parent D=1000',
-        ha='left', va='bottom', fontsize=8, color=DIM, style='italic')
-
-# Shaft from Level 1 R down to Level 2
-shaft1_top = level1_y - bh1/2
-shaft1_bot = 18
-ax.plot([r1_x, r1_x], [shaft1_top - 1, shaft1_bot + 5], color=CYAN, lw=2, alpha=0.6)
-ax.annotate('', xy=(r1_x, shaft1_bot + 5), xytext=(r1_x, shaft1_bot + 10),
-            arrowprops=dict(arrowstyle='->', color=CYAN, lw=2))
-
-# Level 2 — closed (R=0)
-bw2, bh2 = 12, 7
-level2_y = 15
-cx2 = r1_x
-v2_x = cx2 - bw2 - 2.5
-d2_x = cx2
-r2_x = cx2 + bw2 + 2.5
-
-styled_box(ax, v2_x, level2_y, bw2, bh2, 'V = 1', BLUE, fontsize=11, alpha=0.55)
-styled_box(ax, d2_x, level2_y, bw2, bh2, 'D = 3', GREEN, fontsize=11, alpha=0.55)
-
-# R=0 — closed, warm amber
-r2_box = FancyBboxPatch((r2_x - bw2/2, level2_y - bh2/2), bw2, bh2,
-                          boxstyle="round,pad=0.15", facecolor='#8B6914', edgecolor=GOLD,
-                          linewidth=1.5, alpha=0.7, zorder=3)
-ax.add_patch(r2_box)
-ax.text(r2_x, level2_y, 'R = 0', ha='center', va='center', fontsize=11,
-        color=WHITE, fontweight='bold', zorder=4)
-ax.text(r2_x, level2_y - bh2/2 - 2.5, 'CLOSED', ha='center', va='top',
-        fontsize=9, color=GOLD, fontweight='bold')
-
-frame2 = FancyBboxPatch((v2_x - bw2/2 - 2.5, level2_y - bh2/2 - 5),
-                         (r2_x + bw2/2 + 2.5) - (v2_x - bw2/2 - 2.5), bh2 + 8,
-                         boxstyle="round,pad=0.3", facecolor='none', edgecolor=PURPLE,
-                         linewidth=1, linestyle='--', alpha=0.35, zorder=1)
-ax.add_patch(frame2)
-ax.text(v2_x - bw2/2 - 1, level2_y + bh2/2 + 3, 'Level 2:  [1, 3, 0]  (closed)',
-        ha='left', va='bottom', fontsize=9, color=PURPLE)
-
-# Key insight annotation
-ax.text(8, 50, 'V and D:\nalways integers\nnever nest\nnever recurse',
-        ha='left', va='center', fontsize=10, color=SILVER,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=DIM, alpha=0.9))
-
-ax.text(8, 28, 'Only R opens\ndownward.\n\nDepth = structure\nnot error.',
-        ha='left', va='center', fontsize=10, color=GOLD,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, alpha=0.7))
-
-ax.text(8, 10, 'R=0 at bottom:\nresolved, exact\nrational 1/3',
-        ha='left', va='center', fontsize=10, color=PURPLE,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=PURPLE, alpha=0.6))
-
-save(fig, 'vdr_system_01_triple_nesting.png')
-
-
-# ================================================================
-# FIG 2: Q335 MULTIPLICATION — DIVMOD AT BIT 335
-# Type: 7 (Progression/Sequence)
-# Shows: How multiplication overflow becomes tree depth not
-#        denominator growth. The split at bit 335 is the mechanism.
-# ================================================================
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
-ax.set_facecolor(BG)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.axis('off')
-
-fig.text(0.5, 0.96, 'Q335 Multiplication: Overflow to Tree Depth, Not Denominator Growth',
-         ha='center', va='top', fontsize=16, fontweight='bold', color=GOLD)
-
-# Stage 1: Two Q335 operands
-stage_y = 82
-styled_box(ax, 25, stage_y, 22, 9, 'Numerator A\n(~102 digits)', BLUE, fontsize=10)
-ax.text(25, stage_y + 6.5, 'Q335 operand', ha='center', va='bottom',
-        fontsize=8, color=SILVER)
-styled_box(ax, 75, stage_y, 22, 9, 'Numerator B\n(~102 digits)', CYAN, fontsize=10)
-ax.text(75, stage_y + 6.5, 'Q335 operand', ha='center', va='bottom',
-        fontsize=8, color=SILVER)
-ax.text(50, stage_y, '\u00d7', ha='center', va='center', fontsize=22, color=GOLD,
-        fontweight='bold')
-
-# Arrow down
-styled_arrow(ax, 50, stage_y - 5, 50, 67)
-
-# Stage 2: Full product
-stage2_y = 62
-product_w = 50
-product_box = FancyBboxPatch((50 - product_w/2, stage2_y - 5), product_w, 10,
-                              boxstyle="round,pad=0.2", facecolor=PAN, edgecolor=ORANGE,
-                              linewidth=2, alpha=0.9, zorder=3)
-ax.add_patch(product_box)
-ax.text(50, stage2_y, 'Full Product A \u00d7 B   (~204 digits,  ~670 bits)',
-        ha='center', va='center', fontsize=11, color=ORANGE, fontweight='bold', zorder=4)
-ax.text(50, stage2_y + 6.5, 'integer multiply: ~200 int ops (schoolbook 11\u00d711 limbs)',
-        ha='center', va='bottom', fontsize=9, color=DIM)
-
-# Arrow down to split
-styled_arrow(ax, 50, stage2_y - 5.5, 50, 48)
-ax.text(53, 51, 'divmod at\nbit 335', ha='left', va='center', fontsize=10,
-        color=GOLD, fontweight='bold')
-
-# Stage 3: The split — the key visual
-split_y = 40
-split_left = 15
-split_right = 85
-bit_335 = 50
-
-# Left half (bits above 335) → new V
-left_box = FancyBboxPatch((split_left, split_y - 5), bit_335 - split_left - 2, 10,
-                           boxstyle="round,pad=0.2", facecolor=BLUE, edgecolor=WHITE,
-                           linewidth=1.5, alpha=0.75, zorder=3)
-ax.add_patch(left_box)
-ax.text((split_left + bit_335 - 2) / 2, split_y,
-        'bits above 335\n\u2192 new V (quotient)',
-        ha='center', va='center', fontsize=11, color=WHITE, fontweight='bold', zorder=4)
-
-# Right half (bits below 335) → R
-right_box = FancyBboxPatch((bit_335 + 2, split_y - 5), split_right - bit_335 - 2, 10,
-                            boxstyle="round,pad=0.2", facecolor=ORANGE, edgecolor=GOLD,
-                            linewidth=2, alpha=0.75, zorder=3)
-ax.add_patch(right_box)
-ax.text((bit_335 + 2 + split_right) / 2, split_y,
-        'bits below 335\n\u2192 R (remainder)',
-        ha='center', va='center', fontsize=11, color=WHITE, fontweight='bold', zorder=4)
-
-# Bit 335 dividing line
-ax.plot([bit_335, bit_335], [split_y - 7, split_y + 7], color=GOLD, lw=3, zorder=5)
-ax.text(bit_335, split_y + 8.5, 'BIT 335', ha='center', va='bottom',
-        fontsize=11, color=GOLD, fontweight='bold')
-
-# Stage 4: Result triple
-result_y = 20
-styled_box(ax, 25, result_y, 22, 9, 'V = quotient', BLUE, fontsize=11)
-styled_box(ax, 50, result_y, 22, 9, 'D = 2\u00b3\u00b3\u2075\n(unchanged)', GREEN, fontsize=10)
-r_result = FancyBboxPatch((75 - 11, result_y - 4.5), 22, 9,
-                           boxstyle="round,pad=0.15", facecolor=ORANGE, edgecolor=GOLD,
-                           linewidth=2, alpha=0.85, zorder=3)
-ax.add_patch(r_result)
-ax.text(75, result_y, 'R = remainder\n(nests deeper)', ha='center', va='center',
-        fontsize=10, color=WHITE, fontweight='bold', zorder=4)
-
-# Arrows from split to result
-styled_arrow(ax, 32, split_y - 5.5, 25, result_y + 5)
-styled_arrow(ax, 68, split_y - 5.5, 75, result_y + 5)
-
-# Frame around result
-result_frame = FancyBboxPatch((10, result_y - 7), 80, 14,
-                               boxstyle="round,pad=0.3", facecolor='none', edgecolor=GOLD,
-                               linewidth=1.2, linestyle='--', alpha=0.4, zorder=1)
-ax.add_patch(result_frame)
-ax.text(50, result_y - 8.5, 'Result: [V, 2\u00b3\u00b3\u2075, R]  —  D never grows.  '
-        'Overflow \u2192 tree depth.',
-        ha='center', va='top', fontsize=11, color=GOLD, fontweight='bold')
-
-# Key insight boxes
-ax.text(8, 10, 'Denominator fixed forever.\n'
-        'Growth goes to R depth,\nnot D magnitude.',
-        ha='left', va='center', fontsize=10, color=SILVER,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=CYAN, alpha=0.7))
-
-ax.text(92, 10, '~200 int ops per multiply.\nPerfectly uniform.\nPeak GPU utilization.',
-        ha='right', va='center', fontsize=10, color=SILVER,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=CYAN, alpha=0.7))
-
-save(fig, 'vdr_system_02_q335_divmod.png')
-
-
-# ================================================================
-# FIG 3: CONVERSATION SCALING — QUADRATIC VS FLAT
-# Type: 1 (Running/Convergence Chart)
-# Shows: Conventional cumulative cost growing quadratically vs
-#        VDR growing linearly. The divergence IS the economic argument.
-# ================================================================
 fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
-ax.set_facecolor(PAN)
+style_ax(ax, 'Token Cost Scaling by Data Size',
+         xlabel='Data Size', ylabel='LLM Tokens Required')
 
-turns = np.array([1, 5, 10, 20, 50, 100])
-conv_cumul = np.array([6000, 60000, 195000, 690000, 3900000, 15300000])
-vdr_cumul = np.array([260, 1300, 2600, 5200, 13000, 26000])
-ratio = conv_cumul / vdr_cumul
+data_bytes = [64, 256, 1024, 4096, 16384, 65536,
+              262144, 1048576, 4194304, 16777216,
+              67108864, 268435456, 1073741824]
+labels_short = ['64B', '256B', '1KB', '4KB', '16KB', '64KB',
+                '256KB', '1MB', '4MB', '16MB', '64MB', '256MB', '1GB']
 
-ax.semilogy(turns, conv_cumul, 'o-', color=RED, lw=2.5, markersize=10,
-            markeredgecolor=WHITE, markeredgewidth=1.5, label='Conventional (quadratic)',
-            zorder=5)
-ax.semilogy(turns, vdr_cumul, 's-', color=GREEN, lw=2.5, markersize=10,
-             markeredgecolor=WHITE, markeredgewidth=1.5, label='VDR (linear)',
-             zorder=5)
+conv_tokens = [d * 4 for d in data_bytes]  # ~4 tokens per byte
+vdr_tokens = [8] * len(data_bytes)
+
+x = np.arange(len(data_bytes))
+
+ax.semilogy(x, conv_tokens, color=RED, linewidth=2.5, marker='o',
+            markersize=8, markeredgecolor=WHITE, markeredgewidth=1.5,
+            label='Conventional LLM', zorder=5)
+ax.semilogy(x, vdr_tokens, color=GREEN, linewidth=2.5, marker='s',
+            markersize=8, markeredgecolor=WHITE, markeredgewidth=1.5,
+            label='VDR-LLM-Prolog', zorder=5)
+
+ax.set_xticks(x)
+ax.set_xticklabels(labels_short, rotation=35, ha='right', fontsize=8)
+ax.set_ylim(3, 8e9)
+ax.set_xlim(-0.5, len(data_bytes) - 0.5)
+
+# Impossible region
+impossible_start = 7  # 1MB index
+ax.axvspan(impossible_start - 0.5, len(data_bytes) - 0.5,
+           alpha=0.06, color=RED, zorder=1)
+ax.text(8.5, 3e8, 'IMPOSSIBLE\nvia token stream',
+        color=RED, fontsize=11, ha='center', va='center',
+        fontstyle='italic', alpha=0.8)
 
 # Ratio annotations
-offsets_x = [2, 3, 3, 4, 5, 5]
-for i in range(len(turns)):
-    mid = np.sqrt(conv_cumul[i] * vdr_cumul[i])
-    ax.text(turns[i] + offsets_x[i], mid, '%d:1' % int(ratio[i]),
-            ha='left', va='center', fontsize=10, color=GOLD, fontweight='bold',
-            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=GOLD, alpha=0.7))
+for i in [0, 4, 7, 12]:
+    ratio = conv_tokens[i] / vdr_tokens[i]
+    if ratio >= 1e6:
+        rtxt = '%.0fM:1' % (ratio / 1e6)
+    elif ratio >= 1000:
+        rtxt = '%.0fK:1' % (ratio / 1000)
+    else:
+        rtxt = '%.0f:1' % ratio
+    y_mid = np.sqrt(conv_tokens[i] * vdr_tokens[i])
+    ax.annotate(rtxt, xy=(i, y_mid), fontsize=9, color=GOLD,
+                ha='center', va='center',
+                bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                          edgecolor=GOLD, alpha=0.9))
 
-# Data labels on curves
-conv_offsets_y = [1.8, 1.6, 1.5, 1.5, 1.4, 1.4]
-for i in range(len(turns)):
-    ax.text(turns[i], conv_cumul[i] * conv_offsets_y[i], '{:,.0f}'.format(conv_cumul[i]),
-            ha='center', va='bottom', fontsize=8, color=RED, alpha=0.8)
-    ax.text(turns[i], vdr_cumul[i] * 0.5, '{:,.0f}'.format(vdr_cumul[i]),
-            ha='center', va='top', fontsize=8, color=GREEN, alpha=0.8)
+ax.axhline(y=128000, color=ORANGE, linestyle='--', linewidth=1.2, alpha=0.6)
+ax.text(0.3, 180000, 'Typical 128K context window', color=ORANGE,
+        fontsize=8, alpha=0.7)
 
-ax.set_xlabel('Conversation Turn', fontsize=12, color=SILVER)
-ax.set_ylabel('Cumulative Tokens (log scale)', fontsize=12, color=SILVER)
-ax.set_title('Conversation Cost Scaling: Quadratic vs Linear',
-             fontsize=16, fontweight='bold', color=GOLD, pad=15)
-ax.legend(facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=10, loc='upper left')
+ax.axhline(y=2000000, color=ORANGE, linestyle=':', linewidth=1.0, alpha=0.4)
+ax.text(0.3, 2800000, 'Max 2M context window', color=ORANGE,
+        fontsize=8, alpha=0.5)
 
-ax.set_xlim(-3, 108)
-ax.set_ylim(100, 50000000)
-ax.tick_params(colors=DIM, labelsize=9)
-for spine in ax.spines.values():
-    spine.set_color(DIM)
-    spine.set_linewidth(0.5)
-ax.grid(True, alpha=0.15, color=DIM)
+legend = ax.legend(loc='upper left', facecolor=PAN, edgecolor=DIM,
+                   labelcolor=WHITE, fontsize=10)
+legend.get_frame().set_alpha(0.9)
 
-# Key insight
-ax.text(70, 300, 'VDR: state in KBs at integer addresses.\n'
-        'Each turn costs the same.\n'
-        'Turn 100 = Turn 1.',
-        fontsize=10, color=GREEN, ha='left', va='bottom',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GREEN, alpha=0.7))
+ax.grid(True, alpha=0.08, color=DIM)
 
-ax.text(70, 8000000, 'Conventional: each turn re-reads\n'
-        'all prior history through attention.\n'
-        'Cost grows quadratically.',
-        fontsize=10, color=RED, ha='left', va='top',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=RED, alpha=0.7))
-
-save(fig, 'vdr_system_03_scaling_quadratic_vs_flat.png')
+save(fig, 'vdr34_01_token_cost_scaling.png')
 
 
 # ================================================================
-# FIG 4: SRE ACCUMULATION — TOKENS FALLING, RULES RISING
-# Type: 1 (Running/Convergence Chart)
-# Shows: The crossing curves of decreasing cost and increasing
-#        automated rules — self-extension made visual.
+# FIG 2: ENERGY PER OPERATION ACROSS FIVE IMPLEMENTATIONS
+# Type: Scale/Landscape Diagram
+# Shows: Log-scale energy per Q335 multiply from Python (~500uJ)
+#        to ASIC (~39pJ). The spacing communicates the 10M:1 range
+#        that flat numbers cannot.
 # ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+style_ax(ax, 'Energy Per Q335 Multiply Across Five Implementations',
+         xlabel='', ylabel='Energy (Joules, log scale)')
+
+platforms = ['Python\n(CPython)', 'Zig\n(Host CPU)', 'FPGA\n(Zynq 150MHz)',
+             'GPU\n(H100 int)', 'ASIC\n(VDR-Q335)']
+energies = [500e-6, 13e-9, 114e-12, 82e-12, 39e-12]
+colors_bar = [DIM, BLUE, CYAN, ORANGE, GREEN]
+bar_labels = ['~500 \u00b5J', '~13 nJ', '~114 pJ', '~82 pJ', '~39 pJ']
+
+x = np.arange(len(platforms))
+bars = ax.bar(x, energies, width=0.55, color=colors_bar, alpha=0.75,
+              edgecolor=WHITE, linewidth=1.5, zorder=5)
+
+ax.set_yscale('log')
+ax.set_ylim(1e-12, 2e-3)
+ax.set_xlim(-0.8, len(platforms) - 0.2)
+ax.set_xticks(x)
+ax.set_xticklabels(platforms, fontsize=10, color=SILVER)
+
+# Value labels above bars
+for i, (b, lbl) in enumerate(zip(bars, bar_labels)):
+    ax.text(i, energies[i] * 2.5, lbl, ha='center', va='bottom',
+            color=colors_bar[i], fontsize=11, fontweight='bold')
+
+# Speedup annotations between adjacent bars
+pairs = [(0, 1, '38,000\u00d7'), (1, 2, '114\u00d7'),
+         (2, 3, '1.4\u00d7'), (3, 4, '2.1\u00d7')]
+for (a, b, txt) in pairs:
+    ymid = np.sqrt(energies[a] * energies[b])
+    xmid = (a + b) / 2.0
+    ax.annotate('', xy=(b, energies[b] * 1.3), xytext=(a, energies[a] * 0.7),
+                arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5,
+                                connectionstyle='arc3,rad=-0.15'))
+    ax.text(xmid, ymid, txt, ha='center', va='center', color=GOLD,
+            fontsize=9, fontweight='bold',
+            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                      edgecolor=GOLD, alpha=0.85))
+
+# Total range annotation
+ax.text(2.0, 5e-4, 'Total range: ~12,800,000\u00d7',
+        ha='center', va='center', color=WHITE, fontsize=12,
+        fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=PAN,
+                  edgecolor=GOLD, linewidth=1.5))
+
+# SHR335 note
+ax.text(4.0, 5e-12, 'SHR335 divmod: 0 pJ\n(wire routing)',
+        ha='center', va='top', color=GREEN, fontsize=9,
+        fontstyle='italic')
+
+ax.grid(True, axis='y', alpha=0.08, color=DIM)
+
+save(fig, 'vdr34_02_energy_landscape.png')
+
+
+# ================================================================
+# FIG 3: SRE ACCUMULATION — TOKENS PER INVESTIGATION
+# Type: Running/Convergence Chart
+# Shows: Token cost dropping from 329 to 55 over 100 investigations
+#        with auto-triage percentage rising. The curve shape shows
+#        solved problems staying solved.
+# ================================================================
+
 fig, ax1 = plt.subplots(figsize=(16, 10), facecolor=BG)
-ax1.set_facecolor(PAN)
+style_ax(ax1, 'SRE Accumulation: Cost Per Investigation Drops as Rules Accumulate',
+         xlabel='Investigation Number', ylabel='LLM Command Tokens')
 
-investigations = np.array([1, 2, 5, 10, 20, 50])
-tokens_per = np.array([329, 127, 110, 92, 78, 65])
-rules_firing = np.array([0, 7, 18, 47, 72, 115])
-auto_pct = np.array([0, 25, 45, 65, 78, 88])
+inv_nums = [1, 2, 5, 10, 20, 50, 100]
+cmd_tokens = [329, 127, 110, 92, 78, 65, 55]
+auto_triage = [0, 25, 45, 65, 78, 88, 93]
+auto_rules = [0, 7, 18, 47, 72, 115, 150]
 
 color_tok = CYAN
-color_rules = ORANGE
+color_tri = GREEN
+color_rul = ORANGE
 
-ax1.plot(investigations, tokens_per, 'o-', color=color_tok, lw=2.5, markersize=10,
-         markeredgecolor=WHITE, markeredgewidth=1.5, label='Tokens per investigation', zorder=5)
+ax1.plot(inv_nums, cmd_tokens, color=color_tok, linewidth=2.5,
+         marker='o', markersize=10, markeredgecolor=WHITE,
+         markeredgewidth=1.5, label='Command tokens', zorder=5)
 
-for i in range(len(investigations)):
-    ax1.text(investigations[i], tokens_per[i] + 12, str(tokens_per[i]),
-             ha='center', va='bottom', fontsize=9, color=color_tok, fontweight='bold')
+for i, (ix, ct) in enumerate(zip(inv_nums, cmd_tokens)):
+    offset_y = 18 if i != 1 else -22
+    ax1.text(ix, ct + offset_y, str(ct), ha='center', va='bottom' if offset_y > 0 else 'top',
+             color=color_tok, fontsize=9, fontweight='bold')
 
-ax1.set_xlabel('Investigation Number', fontsize=12, color=SILVER)
-ax1.set_ylabel('Command Tokens per Investigation', fontsize=12, color=color_tok)
-ax1.tick_params(axis='y', labelcolor=color_tok, colors=DIM, labelsize=9)
-ax1.tick_params(axis='x', colors=DIM, labelsize=9)
-ax1.set_xlim(-2, 55)
+ax1.set_xlim(-5, 108)
 ax1.set_ylim(0, 400)
+ax1.set_xlabel('Investigation Number', color=SILVER, fontsize=11, labelpad=10)
+ax1.set_ylabel('LLM Command Tokens', color=color_tok, fontsize=11, labelpad=10)
+ax1.tick_params(axis='y', colors=color_tok)
 
 ax2 = ax1.twinx()
-ax2.plot(investigations, rules_firing, 's-', color=color_rules, lw=2.5, markersize=10,
-         markeredgecolor=WHITE, markeredgewidth=1.5, label='Rules firing automatically', zorder=5)
+ax2.set_facecolor('none')
+ax2.plot(inv_nums, auto_triage, color=color_tri, linewidth=2.5,
+         marker='s', markersize=9, markeredgecolor=WHITE,
+         markeredgewidth=1.5, linestyle='--', label='Auto-triage %', zorder=4)
 
-for i in range(len(investigations)):
-    y_off = -12 if i > 0 else 8
-    va = 'top' if i > 0 else 'bottom'
-    ax2.text(investigations[i], rules_firing[i] + y_off, str(rules_firing[i]),
-             ha='center', va=va, fontsize=9, color=color_rules, fontweight='bold')
+for i, (ix, at) in enumerate(zip(inv_nums, auto_triage)):
+    offset_y = -4 if i > 0 else 3
+    ax2.text(ix, at + offset_y, '%d%%' % at, ha='center',
+             va='top' if offset_y < 0 else 'bottom',
+             color=color_tri, fontsize=9)
 
-ax2.set_ylabel('Rules Firing Automatically', fontsize=12, color=color_rules)
-ax2.tick_params(axis='y', labelcolor=color_rules, colors=DIM, labelsize=9)
-ax2.set_ylim(0, 150)
-
-# Auto-triage percentage annotations
-for i in range(len(investigations)):
-    ax1.text(investigations[i], 380, '%d%% auto' % auto_pct[i],
-             ha='center', va='top', fontsize=8, color=GOLD, alpha=0.8)
-
-ax1.set_title('Self-Extension: Tokens Fall as Rules Accumulate',
-              fontsize=16, fontweight='bold', color=GOLD, pad=15)
-
-for spine in ax1.spines.values():
-    spine.set_color(DIM)
-    spine.set_linewidth(0.5)
+ax2.set_ylim(-5, 105)
+ax2.set_ylabel('Auto-Triage %', color=color_tri, fontsize=11, labelpad=10)
+ax2.tick_params(axis='y', colors=color_tri)
 for spine in ax2.spines.values():
     spine.set_color(DIM)
     spine.set_linewidth(0.5)
-ax1.grid(True, alpha=0.15, color=DIM)
 
-# Combined legend
+# Rules annotation bar at bottom
+for i, (ix, ar) in enumerate(zip(inv_nums, auto_rules)):
+    ax1.bar(ix, 15, bottom=5, width=3, color=color_rul, alpha=0.4, zorder=2)
+    ax1.text(ix, 12, '%d' % ar, ha='center', va='center',
+             color=color_rul, fontsize=7)
+ax1.text(55, 12, 'auto-firing rules', ha='left', va='center',
+         color=color_rul, fontsize=8, fontstyle='italic')
+
+# 83% reduction annotation
+ax1.annotate('83% reduction', xy=(100, 55), xytext=(75, 200),
+             color=GOLD, fontsize=11, fontweight='bold',
+             arrowprops=dict(arrowstyle='->', color=GOLD, lw=1.5),
+             bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                       edgecolor=GOLD, alpha=0.9))
+
+# Break-even note
+ax1.text(15, 370, 'Rule cost: 25-40 tokens once\nReplaces 150-300 tokens per reuse',
+         color=SILVER, fontsize=9, fontstyle='italic',
+         bbox=dict(boxstyle='round,pad=0.4', facecolor=PAN,
+                   edgecolor=DIM, alpha=0.8))
+
 lines1, labels1 = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
-ax1.legend(lines1 + lines2, labels1 + labels2,
-           facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=10, loc='center right')
+legend = ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right',
+                    facecolor=PAN, edgecolor=DIM, labelcolor=WHITE, fontsize=9)
+legend.get_frame().set_alpha(0.9)
 
-# Key insight
-ax1.text(30, 300, 'Each session deposits rules and scripts.\n'
-         'Known patterns handled by rules.\n'
-         'LLM judges only what\'s genuinely new.\n'
-         'Usage IS training.',
-         fontsize=10, color=SILVER, ha='left', va='top',
-         bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, alpha=0.7))
+ax1.grid(True, alpha=0.08, color=DIM)
 
-save(fig, 'vdr_system_04_sre_accumulation.png')
+save(fig, 'vdr34_03_sre_accumulation.png')
 
 
 # ================================================================
-# FIG 5: TOKEN CATEGORY ELIMINATION — SIX TO ZERO
-# Type: 6 (Comparison Bar Chart)
-# Shows: Six infrastructure token categories collapsing to zero
-#        in VDR, leaving only judgment + prose + commands.
+# FIG 4: COMPOUND PERFORMANCE WATERFALL
+# Type: Progression/Sequence Diagram
+# Shows: Five independent axes multiplying from 1x to ~8,000x.
+#        Each stage labeled with source and mechanism.
+#        The visual shows how independent factors compound.
 # ================================================================
-fig, (ax_conv, ax_vdr) = plt.subplots(1, 2, figsize=(18, 9), facecolor=BG,
-                                       gridspec_kw={'wspace': 0.35})
 
-categories = ['State\nReconstruct', 'Computation', 'Deduction', 'Formatting',
-              'Hedging', 'Judgment', 'Prose', 'Command\nTokens']
-conv_pct = [15, 20, 15, 20, 10, 10, 10, 0]
-vdr_pct =  [0,  0,  0,  0,  0, 10, 10, 5]
+fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
+style_ax(ax, 'Compound Performance: Five Independent Axes Multiply', xlabel='', ylabel='')
+ax.axis('off')
 
-colors_conv = [RED, RED, RED, RED, RED, GREEN, GREEN, DIM]
-colors_vdr =  [DIM, DIM, DIM, DIM, DIM, GREEN, GREEN, CYAN]
+stages = [
+    ('Baseline', '1\u00d7', '', DIM),
+    ('Hardware\n(INT8 native)', '2\u00d7', '\u00d72', BLUE),
+    ('Token\nElimination', '66\u00d7', '\u00d733', CYAN),
+    ('Linear\nScaling', '462\u00d7', '\u00d77', GREEN),
+    ('Rule\nAccumulation', '2,772\u00d7', '\u00d76', ORANGE),
+    ('Engineering\nDeterminism', '~8,000\u00d7', '\u00d73', GOLD),
+]
 
-# Conventional panel
-bars_conv = ax_conv.barh(range(len(categories)), conv_pct, color=colors_conv,
-                          alpha=0.7, edgecolor=[c if p > 0 else DIM for c, p in zip(colors_conv, conv_pct)],
-                          linewidth=1.5, height=0.65)
-ax_conv.set_yticks(range(len(categories)))
-ax_conv.set_yticklabels(categories, fontsize=10, color=WHITE)
-ax_conv.set_xlabel('% of Generated Tokens', fontsize=11, color=SILVER)
-ax_conv.set_title('Conventional LLM', fontsize=14, fontweight='bold', color=RED, pad=12)
-ax_conv.set_xlim(0, 28)
-ax_conv.set_facecolor(PAN)
-ax_conv.tick_params(colors=DIM, labelsize=9)
-for spine in ax_conv.spines.values():
-    spine.set_color(DIM)
-    spine.set_linewidth(0.5)
+n = len(stages)
+box_w = 0.11
+box_h = 0.55
+gap = 0.035
+start_x = 0.06
+y_center = 0.5
 
-for i, v in enumerate(conv_pct):
-    if v > 0:
-        ax_conv.text(v + 0.8, i, '%d%%' % v, ha='left', va='center',
-                     fontsize=10, color=colors_conv[i], fontweight='bold')
+for i, (label, value, mult, color) in enumerate(stages):
+    cx = start_x + i * (box_w + gap)
+    bx = cx - box_w / 2
+    by = y_center - box_h / 2
 
-# Label infrastructure
-ax_conv.text(14, 2, 'INFRASTRUCTURE\n80-95% of tokens',
-             ha='center', va='center', fontsize=10, color=RED,
-             bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=RED, alpha=0.7))
+    rect = patches.FancyBboxPatch(
+        (bx, by), box_w, box_h,
+        boxstyle='round,pad=0.015',
+        facecolor=PAN, edgecolor=color, linewidth=2.0,
+        transform=ax.transAxes, zorder=5)
+    ax.add_patch(rect)
 
-# VDR panel
-bars_vdr = ax_vdr.barh(range(len(categories)), vdr_pct, color=colors_vdr,
-                         alpha=0.7, edgecolor=[c if p > 0 else DIM for c, p in zip(colors_vdr, vdr_pct)],
-                         linewidth=1.5, height=0.65)
-ax_vdr.set_yticks(range(len(categories)))
-ax_vdr.set_yticklabels(categories, fontsize=10, color=WHITE)
-ax_vdr.set_xlabel('% of Generated Tokens', fontsize=11, color=SILVER)
-ax_vdr.set_title('VDR-LLM-Prolog', fontsize=14, fontweight='bold', color=GREEN, pad=12)
-ax_vdr.set_xlim(0, 28)
-ax_vdr.set_facecolor(PAN)
-ax_vdr.tick_params(colors=DIM, labelsize=9)
-for spine in ax_vdr.spines.values():
-    spine.set_color(DIM)
-    spine.set_linewidth(0.5)
+    # Stage label
+    ax.text(cx, y_center + 0.17, label, transform=ax.transAxes,
+            ha='center', va='center', color=WHITE, fontsize=10,
+            fontweight='bold', zorder=6)
 
-for i, v in enumerate(vdr_pct):
-    if v > 0:
-        ax_vdr.text(v + 0.8, i, '%d%%' % v, ha='left', va='center',
-                    fontsize=10, color=colors_vdr[i], fontweight='bold')
-    else:
-        ax_vdr.text(0.8, i, '0', ha='left', va='center',
-                    fontsize=9, color=DIM)
+    # Cumulative value
+    ax.text(cx, y_center - 0.02, value, transform=ax.transAxes,
+            ha='center', va='center', color=color, fontsize=16,
+            fontweight='bold', zorder=6)
 
-# "Eliminated" annotations on zero bars
-for i in range(5):
-    ax_vdr.text(14, i, 'ELIMINATED', ha='center', va='center',
-                fontsize=8, color=DIM, style='italic', alpha=0.6)
+    # Multiplier below
+    if mult:
+        ax.text(cx, y_center - 0.17, mult, transform=ax.transAxes,
+                ha='center', va='center', color=SILVER, fontsize=11,
+                zorder=6)
 
-# What handles each eliminated category
-handlers = ['KB query', 'primitives', 'Prolog', 'grammar', 'exact confidence']
-for i in range(5):
-    ax_vdr.text(24, i, handlers[i], ha='right', va='center',
-                fontsize=8, color=SILVER, alpha=0.7)
+    # Arrow to next
+    if i < n - 1:
+        ax_start = cx + box_w / 2 + 0.005
+        ax_end = cx + box_w / 2 + gap - 0.005
+        ax.annotate('', xy=(ax_end, y_center), xytext=(ax_start, y_center),
+                    xycoords='axes fraction', textcoords='axes fraction',
+                    arrowprops=dict(arrowstyle='->', color=GOLD,
+                                    lw=2, mutation_scale=15),
+                    zorder=4)
 
-fig.suptitle('Token Category Elimination: Infrastructure to Zero',
-             fontsize=16, fontweight='bold', color=GOLD, y=0.98)
+# Source labels below boxes
+sources = ['', 'Nvidia INT8\nspec (published)', '769 vs 25,100\ntokens (measured)',
+           'O(1) vs O(n\u00b2)\n(structural)', 'L1\u2192L3\n(projected)',
+           'Bit-identical\n(structural)']
+for i, src in enumerate(sources):
+    if src:
+        cx = start_x + i * (box_w + gap)
+        ax.text(cx, y_center - box_h / 2 - 0.08, src,
+                transform=ax.transAxes, ha='center', va='top',
+                color=DIM, fontsize=7, fontstyle='italic', zorder=6)
 
-save(fig, 'vdr_system_05_token_elimination.png')
+# Bottom summary
+ax.text(0.5, 0.04, 'Each axis independently measured or projected  \u2022  '
+        'Conservative: 30\u00d7 blended datacenter  \u2022  '
+        'All pre-optimization baselines',
+        transform=ax.transAxes, ha='center', va='center',
+        color=SILVER, fontsize=10,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=PAN,
+                  edgecolor=DIM, alpha=0.8))
+
+save(fig, 'vdr34_04_compound_waterfall.png')
 
 
 # ================================================================
-# FIG 6: THREE SAFETY LAYERS — CONCENTRIC RINGS
-# Type: 4 (Geometric Cross-Section)
-# Shows: Defense in depth as nesting geometry. Attacks stop at
-#        different rings. LLM contained in center, receiving
-#        only pre-filtered data.
+# FIG 5: L1 -> L2 -> L3 EXECUTION LEVEL SHIFT
+# Type: Threshold/Region Chart
+# Shows: Over 100 investigations, the proportion of work at L1
+#        (full LLM judgment), L2 (LLM invokes rule), L3 (pure Prolog)
+#        shifts dramatically. The stacked regions show maturity.
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
-ax.set_facecolor(BG)
-ax.set_xlim(-60, 60)
-ax.set_ylim(-55, 55)
+
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+style_ax(ax, 'Execution Level Shift: LLM Judgment \u2192 Automated Rules',
+         xlabel='Investigation Number',
+         ylabel='Proportion of Operations (%)')
+
+inv = np.array([1, 2, 5, 10, 20, 50, 100])
+
+# L3: pure Prolog, zero tokens
+l3_pct = np.array([0, 10, 25, 40, 55, 72, 80])
+# L2: LLM invokes stored rule, 8 tokens
+l2_pct = np.array([0, 15, 20, 25, 23, 16, 13])
+# L1: full LLM judgment, 50-500 tokens
+l1_pct = 100 - l3_pct - l2_pct
+
+inv_smooth = np.linspace(1, 100, 200)
+l3_s = np.interp(inv_smooth, inv, l3_pct)
+l2_s = np.interp(inv_smooth, inv, l2_pct)
+l1_s = np.interp(inv_smooth, inv, l1_pct)
+
+ax.fill_between(inv_smooth, 0, l3_s, color=GREEN, alpha=0.35,
+                label='L3: Pure Prolog (0 tokens)', zorder=3)
+ax.fill_between(inv_smooth, l3_s, l3_s + l2_s, color=CYAN, alpha=0.35,
+                label='L2: LLM invokes rule (8 tokens)', zorder=3)
+ax.fill_between(inv_smooth, l3_s + l2_s, 100, color=RED, alpha=0.25,
+                label='L1: Full LLM judgment (50-500 tokens)', zorder=3)
+
+ax.plot(inv_smooth, l3_s, color=GREEN, linewidth=2, zorder=4)
+ax.plot(inv_smooth, l3_s + l2_s, color=CYAN, linewidth=2, zorder=4)
+
+# Boundary labels
+ax.text(85, 40, 'L3: Pure Prolog\n0 LLM tokens', color=GREEN,
+        fontsize=11, fontweight='bold', ha='center', va='center')
+ax.text(60, 84, 'L2: Rule invocation\n8 tokens each', color=CYAN,
+        fontsize=10, ha='center', va='center')
+ax.text(15, 85, 'L1: Full judgment\n50-500 tokens', color=RED,
+        fontsize=10, ha='center', va='center')
+
+# Key data points
+for i_idx, (ix, l3v) in enumerate(zip(inv, l3_pct)):
+    ax.plot(ix, l3v, 'o', color=GREEN, markersize=7,
+            markeredgecolor=WHITE, markeredgewidth=1.2, zorder=6)
+
+# Investigation milestones
+milestones = [(1, 'Day 1:\n100% LLM'), (10, '65% auto-triage'),
+              (50, '88% auto-triage'), (100, '93% auto-triage')]
+ms_ys = [95, 60, 20, 10]
+for (mx, mtxt), my in zip(milestones, ms_ys):
+    ax.annotate(mtxt, xy=(mx, my), fontsize=8, color=GOLD,
+                ha='center', va='center',
+                bbox=dict(boxstyle='round,pad=0.3', facecolor=BG,
+                          edgecolor=GOLD, alpha=0.85))
+
+ax.set_xlim(0, 105)
+ax.set_ylim(0, 100)
+
+legend = ax.legend(loc='center right', facecolor=PAN, edgecolor=DIM,
+                   labelcolor=WHITE, fontsize=9)
+legend.get_frame().set_alpha(0.9)
+ax.grid(True, alpha=0.08, color=DIM)
+
+save(fig, 'vdr34_05_l1_l2_l3_shift.png')
+
+
+# ================================================================
+# FIG 6: CONFIDENCE PROPAGATION CHAIN
+# Type: Progression/Sequence Diagram
+# Shows: Data flowing from sources through propagation formulas
+#        to final confidence as exact VDR fractions. Each stage
+#        has its formula and computed value.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(18, 10), facecolor=BG)
+style_ax(ax, 'Confidence Propagation: Exact Fractions, Not Hedging Language',
+         xlabel='', ylabel='')
+ax.axis('off')
+
+# Chain: Source -> Derivation -> Agreement -> Final
+chain = [
+    {
+        'label': 'Prometheus\nMetric',
+        'conf': '95/100',
+        'color': CYAN,
+        'x': 0.06,
+        'note': 'Controlled system\nknown collection lag'
+    },
+    {
+        'label': 'Deploy API\nResponse',
+        'conf': '85/100',
+        'color': BLUE,
+        'x': 0.06,
+        'note': 'External system\nnot under control'
+    },
+    {
+        'label': 'Config Diff\n(Filesystem)',
+        'conf': '95/100',
+        'color': CYAN,
+        'x': 0.06,
+        'note': 'Controlled system\ngrant-verified read'
+    },
+]
+
+# Source boxes (left column, stacked)
+src_ys = [0.78, 0.50, 0.22]
+bw, bh = 0.13, 0.18
+
+for src, sy in zip(chain, src_ys):
+    rect = patches.FancyBboxPatch(
+        (src['x'], sy - bh / 2), bw, bh,
+        boxstyle='round,pad=0.015',
+        facecolor=PAN, edgecolor=src['color'], linewidth=1.8,
+        transform=ax.transAxes, zorder=5)
+    ax.add_patch(rect)
+    ax.text(src['x'] + bw / 2, sy + 0.035, src['label'],
+            transform=ax.transAxes, ha='center', va='center',
+            color=WHITE, fontsize=9, fontweight='bold', zorder=6)
+    ax.text(src['x'] + bw / 2, sy - 0.04, src['conf'],
+            transform=ax.transAxes, ha='center', va='center',
+            color=src['color'], fontsize=13, fontweight='bold', zorder=6)
+    ax.text(src['x'] + bw / 2, sy - bh / 2 - 0.03, src['note'],
+            transform=ax.transAxes, ha='center', va='top',
+            color=DIM, fontsize=7, fontstyle='italic', zorder=6)
+
+# Prolog derivation box (middle-left)
+px, py = 0.30, 0.65
+rect = patches.FancyBboxPatch(
+    (px, py - 0.09), 0.16, 0.18,
+    boxstyle='round,pad=0.015',
+    facecolor=PAN, edgecolor=GREEN, linewidth=1.8,
+    transform=ax.transAxes, zorder=5)
+ax.add_patch(rect)
+ax.text(px + 0.08, py + 0.05, 'Prolog\nDerivation',
+        transform=ax.transAxes, ha='center', va='center',
+        color=WHITE, fontsize=10, fontweight='bold', zorder=6)
+ax.text(px + 0.08, py - 0.03, 'min(C\u1d62)',
+        transform=ax.transAxes, ha='center', va='center',
+        color=GREEN, fontsize=11, zorder=6)
+
+# Temporal correlation box (middle-left lower)
+tx, ty = 0.30, 0.35
+rect = patches.FancyBboxPatch(
+    (tx, ty - 0.09), 0.16, 0.18,
+    boxstyle='round,pad=0.015',
+    facecolor=PAN, edgecolor=ORANGE, linewidth=1.8,
+    transform=ax.transAxes, zorder=5)
+ax.add_patch(rect)
+ax.text(tx + 0.08, ty + 0.05, 'Temporal\nCorrelation',
+        transform=ax.transAxes, ha='center', va='center',
+        color=WHITE, fontsize=10, fontweight='bold', zorder=6)
+ax.text(tx + 0.08, ty - 0.03, 'LLM: 30/100',
+        transform=ax.transAxes, ha='center', va='center',
+        color=ORANGE, fontsize=11, zorder=6)
+
+# Agreement box (middle-right)
+agx, agy = 0.56, 0.50
+rect = patches.FancyBboxPatch(
+    (agx, agy - 0.11), 0.18, 0.22,
+    boxstyle='round,pad=0.015',
+    facecolor=PAN, edgecolor=GOLD, linewidth=2.0,
+    transform=ax.transAxes, zorder=5)
+ax.add_patch(rect)
+ax.text(agx + 0.09, agy + 0.06, 'Multiple Sources\nAgree',
+        transform=ax.transAxes, ha='center', va='center',
+        color=WHITE, fontsize=10, fontweight='bold', zorder=6)
+ax.text(agx + 0.09, agy - 0.01, '1\u2212\u220f(1\u2212C\u1d62)',
+        transform=ax.transAxes, ha='center', va='center',
+        color=GOLD, fontsize=12, fontweight='bold', zorder=6)
+
+# Final confidence (right)
+fx, fy = 0.82, 0.50
+rect = patches.FancyBboxPatch(
+    (fx, fy - 0.11), 0.14, 0.22,
+    boxstyle='round,pad=0.015',
+    facecolor=PAN, edgecolor=GOLD, linewidth=2.5,
+    transform=ax.transAxes, zorder=5)
+ax.add_patch(rect)
+ax.text(fx + 0.07, fy + 0.06, 'Final\nConfidence',
+        transform=ax.transAxes, ha='center', va='center',
+        color=WHITE, fontsize=10, fontweight='bold', zorder=6)
+ax.text(fx + 0.07, fy - 0.02, '94/100',
+        transform=ax.transAxes, ha='center', va='center',
+        color=GOLD, fontsize=18, fontweight='bold', zorder=6)
+
+# Arrows: sources to derivation/correlation
+for sy, target_y in [(0.78, 0.68), (0.50, 0.65)]:
+    ax.annotate('', xy=(0.30, target_y), xytext=(0.19, sy),
+                xycoords='axes fraction', textcoords='axes fraction',
+                arrowprops=dict(arrowstyle='->', color=SILVER, lw=1.5),
+                zorder=4)
+
+ax.annotate('', xy=(0.30, 0.37), xytext=(0.19, 0.22),
+            xycoords='axes fraction', textcoords='axes fraction',
+            arrowprops=dict(arrowstyle='->', color=SILVER, lw=1.5),
+            zorder=4)
+
+# Derivation/correlation to agreement
+ax.annotate('', xy=(0.56, 0.54), xytext=(0.46, 0.65),
+            xycoords='axes fraction', textcoords='axes fraction',
+            arrowprops=dict(arrowstyle='->', color=SILVER, lw=1.5),
+            zorder=4)
+ax.annotate('', xy=(0.56, 0.46), xytext=(0.46, 0.35),
+            xycoords='axes fraction', textcoords='axes fraction',
+            arrowprops=dict(arrowstyle='->', color=SILVER, lw=1.5),
+            zorder=4)
+
+# Agreement to final
+ax.annotate('', xy=(0.82, 0.50), xytext=(0.74, 0.50),
+            xycoords='axes fraction', textcoords='axes fraction',
+            arrowprops=dict(arrowstyle='->', color=GOLD, lw=2.0),
+            zorder=4)
+
+# Bottom comparison
+ax.text(0.50, 0.04,
+        'Conventional LLM: "it appears likely"  (0 bits of information)\n'
+        'VDR-LLM-Prolog: 94/100  (exact fraction, computed, auditable)',
+        transform=ax.transAxes, ha='center', va='center',
+        color=SILVER, fontsize=10,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=PAN,
+                  edgecolor=DIM, alpha=0.8))
+
+save(fig, 'vdr34_06_confidence_chain.png')
+
+
+# ================================================================
+# FIG 7: THREE-LAYER NON-DEGRADATION ARCHITECTURE
+# Type: Geometric Cross-Section
+# Shows: Three concentric regions: data layer (KB at integer
+#        addresses), working memory (bounded primitives),
+#        computation (exact integer attention). Each labeled with
+#        its invariant. Shows WHY sessions cannot degrade.
+# ================================================================
+
+fig, ax = plt.subplots(figsize=(16, 12), facecolor=BG)
+style_ax(ax, 'Three-Layer Non-Degradation: Each Layer Cannot Degrade',
+         xlabel='', ylabel='')
+ax.set_xlim(-1.6, 1.6)
+ax.set_ylim(-1.6, 1.6)
 ax.set_aspect('equal')
 ax.axis('off')
 
-fig.text(0.5, 0.96, 'Structural Safety: Three Independent Layers',
-         ha='center', va='top', fontsize=17, fontweight='bold', color=GOLD)
-fig.text(0.5, 0.92, 'All three must fail simultaneously for a breach.  '
-         'Each is deterministic integer operations.',
-         ha='center', va='top', fontsize=11, color=SILVER)
+# Outer layer: Data (KB at integer addresses)
+outer = plt.Circle((0, 0), 1.35, facecolor='none', edgecolor=BLUE,
+                    linewidth=2.5, linestyle='-', zorder=3)
+outer_fill = plt.Circle((0, 0), 1.35, facecolor=BLUE, alpha=0.06, zorder=2)
+ax.add_patch(outer)
+ax.add_patch(outer_fill)
 
-# Layer 1 — outermost: Input Filtering (visibility + scope)
-ring1 = plt.Circle((0, 0), 42, facecolor=BLUE, edgecolor=WHITE,
-                    linewidth=2, alpha=0.08, zorder=1)
-ax.add_patch(ring1)
-ring1_edge = plt.Circle((0, 0), 42, facecolor='none', edgecolor=BLUE,
-                          linewidth=2.5, alpha=0.6, zorder=2)
-ax.add_patch(ring1_edge)
-ax.text(0, 44, 'LAYER 1: INPUT FILTERING', ha='center', va='bottom',
-        fontsize=12, color=BLUE, fontweight='bold')
-ax.text(0, -44, 'KB visibility (integer comparison) + scope chain (ancestor walk)',
-        ha='center', va='top', fontsize=9, color=BLUE, alpha=0.8)
+# Middle layer: Working memory (bounded primitives)
+middle = plt.Circle((0, 0), 0.90, facecolor='none', edgecolor=GREEN,
+                     linewidth=2.5, linestyle='-', zorder=4)
+middle_fill = plt.Circle((0, 0), 0.90, facecolor=GREEN, alpha=0.08, zorder=3)
+ax.add_patch(middle)
+ax.add_patch(middle_fill)
 
-# Layer 2 — middle: Grant System
-ring2 = plt.Circle((0, 0), 28, facecolor=GREEN, edgecolor=WHITE,
-                    linewidth=2, alpha=0.1, zorder=3)
-ax.add_patch(ring2)
-ring2_edge = plt.Circle((0, 0), 28, facecolor='none', edgecolor=GREEN,
-                          linewidth=2.5, alpha=0.6, zorder=4)
-ax.add_patch(ring2_edge)
-ax.text(0, 30, 'LAYER 2: GRANTS', ha='center', va='bottom',
-        fontsize=11, color=GREEN, fontweight='bold')
-ax.text(0, -30, 'Default denial.  Set membership check.',
-        ha='center', va='top', fontsize=9, color=GREEN, alpha=0.8)
+# Inner layer: Computation (exact integer attention)
+inner = plt.Circle((0, 0), 0.45, facecolor='none', edgecolor=GOLD,
+                    linewidth=2.5, linestyle='-', zorder=5)
+inner_fill = plt.Circle((0, 0), 0.45, facecolor=GOLD, alpha=0.10, zorder=4)
+ax.add_patch(inner)
+ax.add_patch(inner_fill)
 
-# Layer 3 — inner: Output Validation
-ring3 = plt.Circle((0, 0), 16, facecolor=ORANGE, edgecolor=WHITE,
-                    linewidth=2, alpha=0.12, zorder=5)
-ax.add_patch(ring3)
-ring3_edge = plt.Circle((0, 0), 16, facecolor='none', edgecolor=ORANGE,
-                          linewidth=2.5, alpha=0.6, zorder=6)
-ax.add_patch(ring3_edge)
-ax.text(0, 18, 'LAYER 3: OUTPUT', ha='center', va='bottom',
-        fontsize=10, color=ORANGE, fontweight='bold')
+# Layer labels with invariant properties
+# Outer
+ax.text(0, 1.15, 'DATA LAYER', ha='center', va='center',
+        color=BLUE, fontsize=13, fontweight='bold', zorder=6)
+ax.text(0, 1.0, 'KB facts at integer addresses\nO(1) lookup, never re-read',
+        ha='center', va='center', color=SILVER, fontsize=9, zorder=6)
 
-# LLM in center
-llm_circle = plt.Circle((0, 0), 7, facecolor=PAN, edgecolor=GOLD,
-                          linewidth=2.5, alpha=0.95, zorder=7)
-ax.add_patch(llm_circle)
-ax.text(0, 0, 'LLM\n(untrusted)', ha='center', va='center', fontsize=11,
-        color=GOLD, fontweight='bold', zorder=8)
+# Middle
+ax.text(0, 0.72, 'WORKING MEMORY', ha='center', va='center',
+        color=GREEN, fontsize=12, fontweight='bold', zorder=6)
+ax.text(0, 0.58, 'Bounded primitives\nCannot overflow by construction',
+        ha='center', va='center', color=SILVER, fontsize=9, zorder=6)
 
-# Attack arrows stopping at different rings
-attacks = [
-    (52, 25, 'Prompt injection', BLUE, 42),
-    (52, 10, 'Role-play attack', BLUE, 42),
-    (52, -5, 'Many-shot bypass', BLUE, 42),
-    (52, -20, 'Encoding tricks', BLUE, 42),
-    (-52, 20, 'Unauthorized op', GREEN, 28),
-    (-52, 0, 'No grant = denied', GREEN, 28),
-    (-52, -20, 'Training-derived\nharmful content', ORANGE, 16),
+# Inner
+ax.text(0, 0.15, 'COMPUTATION', ha='center', va='center',
+        color=GOLD, fontsize=12, fontweight='bold', zorder=6)
+ax.text(0, 0.0, 'Exact integer\nattention', ha='center', va='center',
+        color=GOLD, fontsize=10, zorder=6)
+ax.text(0, -0.15, '\u2211 weights = 1/1', ha='center', va='center',
+        color=GOLD, fontsize=11, fontweight='bold', zorder=6)
+
+# Invariant callouts (outside the circles)
+callouts = [
+    (1.15, -0.75, 'Integer storage\ndoes not degrade', BLUE,
+     0.85, -0.55),
+    (-1.15, -0.55, 'Capacity bounded\nat creation', GREEN,
+     -0.65, -0.45),
+    (1.15, 0.55, 'Fact #47 at address 47\nturn 1 = turn 1,000,000', BLUE,
+     0.85, 0.45),
+    (-1.15, 0.75, 'LRU, queue, counter\nfixed-size forever', GREEN,
+     -0.65, 0.55),
 ]
 
-for atk_x, atk_y, label, color, stop_r in attacks:
-    direction = -1 if atk_x > 0 else 1
-    angle = np.arctan2(atk_y, direction * 1)
-    stop_x = direction * stop_r * np.cos(np.arctan2(atk_y, abs(atk_x)))
-    stop_y = stop_r * np.sin(np.arctan2(atk_y, abs(atk_x)))
-    norm = np.sqrt(stop_x**2 + stop_y**2)
-    if norm > 0:
-        stop_x = stop_x / norm * stop_r
-        stop_y = stop_y / norm * stop_r
+for (tx, ty, txt, col, ax_x, ax_y) in callouts:
+    ax.annotate(txt, xy=(ax_x, ax_y), xytext=(tx, ty),
+                fontsize=8, color=col, ha='center', va='center',
+                bbox=dict(boxstyle='round,pad=0.4', facecolor=BG,
+                          edgecolor=col, alpha=0.85),
+                arrowprops=dict(arrowstyle='->', color=col, lw=1.2),
+                zorder=7)
 
-    ax.annotate('', xy=(stop_x * 0.98, stop_y * 0.98),
-                xytext=(atk_x, atk_y),
-                arrowprops=dict(arrowstyle='->', color=RED, lw=2, alpha=0.6))
-    # X mark at stop point
-    ax.plot(stop_x, stop_y, 'x', color=RED, markersize=12, markeredgewidth=3, zorder=10)
+# Conventional comparison at bottom
+ax.text(0, -1.42, 'Conventional: all three layers degrade simultaneously\n'
+        'Context fills (capacity) \u2022 Attention drifts (quality) \u2022 '
+        'Hallucinations compound (reliability)',
+        ha='center', va='center', color=RED, fontsize=9,
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=PAN,
+                  edgecolor=RED, alpha=0.7, linewidth=1.2),
+        zorder=7)
 
-    # Label
-    label_x = atk_x + (3 if atk_x > 0 else -3)
-    ax.text(label_x, atk_y, label, ha='left' if atk_x > 0 else 'right',
-            va='center', fontsize=9, color=SILVER,
-            bbox=dict(boxstyle='round,pad=0.3', facecolor=BG, edgecolor=DIM, alpha=0.8))
-
-# Bottom key insight
-ax.text(0, -50, 'No prompt modifies any integer in any access check.  '
-        'Attack surface does not exist for data access.',
-        ha='center', va='top', fontsize=11, color=GOLD, fontweight='bold')
-
-save(fig, 'vdr_system_06_safety_layers.png')
+save(fig, 'vdr34_07_non_degradation.png')
 
 
 # ================================================================
-# FIG 7: CONFIDENCE PROPAGATION CHAIN
-# Type: 7 (Progression/Sequence)
-# Shows: Exact VDR fractions degrading through a derivation chain
-#        with formulas at each step.
+# FIG 8: TOKEN ELIMINATION — WHERE 25,100 CONVENTIONAL TOKENS GO
+# Type: Comparison Bar Chart
+# Shows: The ~25,100 conventional tokens decomposed by function,
+#        with VDR elimination mechanism for each. The visual
+#        makes the 97% elimination concrete.
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 11), facecolor=BG)
-ax.set_facecolor(BG)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.axis('off')
 
-fig.text(0.5, 0.96, 'Confidence Propagation: Exact VDR Fractions Through Derivation',
-         ha='center', va='top', fontsize=16, fontweight='bold', color=GOLD)
-fig.text(0.5, 0.92, 'Every step has a declared formula.  '
-         'Confidence is computed, not generated as hedging language.',
-         ha='center', va='top', fontsize=11, color=SILVER)
+fig, ax = plt.subplots(figsize=(16, 10), facecolor=BG)
+style_ax(ax, 'Where Do 25,100 Conventional LLM Tokens Go?',
+         xlabel='Token Count', ylabel='')
 
-# Chain steps going left to right, top row then bottom row
-steps = [
-    {'x': 12, 'y': 72, 'label': 'Prometheus\nMetric', 'conf': '95/100',
-     'color': CYAN, 'formula': 'source default'},
-    {'x': 35, 'y': 72, 'label': 'DB Query\nResult', 'conf': '98/100',
-     'color': BLUE, 'formula': 'source default'},
-    {'x': 58, 'y': 72, 'label': 'Two Sources\nAgree', 'conf': '999/1000',
-     'color': GREEN, 'formula': '1-(1-95/100)(1-98/100)'},
-    {'x': 81, 'y': 72, 'label': 'Prolog\nDerivation', 'conf': '999/1000',
-     'color': GREEN, 'formula': 'min(premises) = 999/1000'},
-    {'x': 20, 'y': 38, 'label': 'Python\nScript', 'conf': '949/1000',
-     'color': ORANGE, 'formula': 'min(inputs) \u00d7 95/100'},
-    {'x': 50, 'y': 38, 'label': 'LLM\nAssessment', 'conf': '30/100',
-     'color': MAG, 'formula': '30/100 (fixed floor)'},
-    {'x': 80, 'y': 38, 'label': 'Final\nConclusion', 'conf': '30/100',
-     'color': GOLD, 'formula': 'min across chain'},
+categories = [
+    'State reconstruction\n(re-reading prior turns)',
+    'Formatting &\nstructural tokens',
+    'Arithmetic &\ndata transformation',
+    'Deductive reasoning\n(chains as prose)',
+    'Hedging &\nconfidence language',
+    'Judgment &\nprose framing'
 ]
 
-bw, bh = 18, 12
-for step in steps:
-    x, y = step['x'], step['y']
-    color = step['color']
+conv_counts = [10040, 6275, 3765, 2510, 1757, 753]
+vdr_counts = [0, 0, 0, 0, 0, 769]
 
-    box = FancyBboxPatch((x - bw/2, y - bh/2), bw, bh,
-                          boxstyle="round,pad=0.2", facecolor=PAN,
-                          edgecolor=color, linewidth=2, alpha=0.9, zorder=3)
-    ax.add_patch(box)
-
-    ax.text(x, y + 2, step['label'], ha='center', va='center',
-            fontsize=10, color=WHITE, fontweight='bold', zorder=4)
-    ax.text(x, y - 3.5, step['conf'], ha='center', va='center',
-            fontsize=13, color=color, fontweight='bold', zorder=4)
-
-# Formula labels below each box
-formula_y_top = 63
-formula_y_bot = 29
-for i, step in enumerate(steps):
-    fy = formula_y_top if step['y'] > 50 else formula_y_bot
-    ax.text(step['x'], fy, step['formula'], ha='center', va='top',
-            fontsize=8, color=DIM, style='italic')
-
-# Arrows between steps — top row
-for i in range(3):
-    x1 = steps[i]['x'] + bw/2 + 0.5
-    x2 = steps[i+1]['x'] - bw/2 - 0.5
-    y = steps[i]['y']
-    styled_arrow(ax, x1, y, x2, y, color=SILVER, lw=1.5)
-
-# Arrow from top row to bottom row
-styled_arrow(ax, steps[3]['x'], steps[3]['y'] - bh/2 - 0.5, steps[4]['x'], steps[4]['y'] + bh/2 + 0.5, color=SILVER)
-
-# Arrows bottom row
-styled_arrow(ax, steps[4]['x'] + bw/2 + 0.5, steps[4]['y'], steps[5]['x'] - bw/2 - 0.5, steps[5]['y'], color=SILVER)
-styled_arrow(ax, steps[5]['x'] + bw/2 + 0.5, steps[5]['y'], steps[6]['x'] - bw/2 - 0.5, steps[6]['y'], color=SILVER)
-
-# Confidence bar at bottom
-bar_y = 12
-bar_left = 10
-bar_right = 90
-ax.plot([bar_left, bar_right], [bar_y, bar_y], color=DIM, lw=3, alpha=0.4)
-
-# Confidence thresholds
-thresholds = [
-    (10, '<40/100', 'Unreliable', RED),
-    (30, '40-59', 'Speculative', ORANGE),
-    (50, '60-79', 'Low', SILVER),
-    (70, '80-94', 'Moderate', CYAN),
-    (85, '95-100', 'High', GREEN),
+mechanisms = [
+    'KB addressing\nO(1) integer lookup',
+    'Grammar templates\n100% correct, 0 cost',
+    'Exact primitives\n0 error rate',
+    'Prolog unification\ndeterministic',
+    'Exact fractions\nfrom formulas',
+    'RETAINED\n(LLM judgment)'
 ]
-for tx, trange, tlabel, tcolor in thresholds:
-    ax.plot([tx, tx], [bar_y - 2, bar_y + 2], color=tcolor, lw=2, alpha=0.7)
-    ax.text(tx, bar_y + 3.5, tlabel, ha='center', va='bottom',
-            fontsize=8, color=tcolor, fontweight='bold')
-    ax.text(tx, bar_y - 3.5, trange, ha='center', va='top',
-            fontsize=7, color=DIM)
 
-# Mark where final conclusion lands
-ax.plot(30, bar_y, 'v', color=GOLD, markersize=15, zorder=10)
-ax.text(30, bar_y + 6.5, 'Final: 30/100\n(LLM floor\ndominates chain)',
-        ha='center', va='bottom', fontsize=9, color=GOLD, fontweight='bold')
+colors_conv = [RED, RED, RED, RED, RED, GREEN]
+colors_vdr = [GREEN, GREEN, GREEN, GREEN, GREEN, GREEN]
 
-# Key insight
-ax.text(5, 20, 'Weakest link\ndetermines chain.\n\nLLM step at 30/100\ncaps everything\ndownstream.',
-        ha='left', va='center', fontsize=9, color=MAG,
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=MAG, alpha=0.7))
+y = np.arange(len(categories))
+bar_h = 0.35
 
-save(fig, 'vdr_system_07_confidence_chain.png')
+# Conventional bars
+bars_conv = ax.barh(y + bar_h / 2 + 0.02, conv_counts, height=bar_h,
+                     color=RED, alpha=0.6, edgecolor=RED, linewidth=1.5,
+                     label='Conventional LLM', zorder=4)
+
+# VDR bars
+bars_vdr = ax.barh(y - bar_h / 2 - 0.02, vdr_counts, height=bar_h,
+                    color=GREEN, alpha=0.6, edgecolor=GREEN, linewidth=1.5,
+                    label='VDR-LLM-Prolog', zorder=4)
+
+ax.set_yticks(y)
+ax.set_yticklabels(categories, fontsize=9, color=SILVER)
+ax.set_xlim(0, 13000)
+
+# Value labels on bars
+for i, v in enumerate(conv_counts):
+    ax.text(v + 150, i + bar_h / 2 + 0.02, '{:,}'.format(v),
+            va='center', ha='left', color=RED, fontsize=9, fontweight='bold')
+
+# VDR label only on last bar (judgment)
+ax.text(769 + 150, len(categories) - 1 - bar_h / 2 - 0.02, '769',
+        va='center', ha='left', color=GREEN, fontsize=9, fontweight='bold')
+
+# Zero labels for eliminated categories
+for i in range(5):
+    ax.text(150, i - bar_h / 2 - 0.02, '0',
+            va='center', ha='left', color=GREEN, fontsize=9, fontweight='bold')
+
+# Mechanism labels (right side)
+for i, mech in enumerate(mechanisms):
+    color = CYAN if i < 5 else GOLD
+    ax.text(12800, i, mech, va='center', ha='right',
+            color=color, fontsize=8, fontstyle='italic')
+
+# Summary box
+ax.text(7000, 5.6, 'Eliminated: 24,331 tokens (96.9%)\n'
+        'Retained: 769 tokens (3.1%) \u2014 judgment only',
+        ha='center', va='center', color=WHITE, fontsize=11, fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.5', facecolor=PAN,
+                  edgecolor=GOLD, linewidth=1.5))
+
+legend = ax.legend(loc='lower right', facecolor=PAN, edgecolor=DIM,
+                   labelcolor=WHITE, fontsize=9)
+legend.get_frame().set_alpha(0.9)
+
+ax.grid(True, axis='x', alpha=0.08, color=DIM)
+
+save(fig, 'vdr34_08_token_elimination.png')
 
 
 # ================================================================
-# FIG 8: KB TREE SCOPING WITH SIBLING ISOLATION
-# Type: 4 (Geometric Cross-Section)
-# Shows: The ancestor walk with severed siblings. Why the engineer
-#        structurally cannot see HR data.
+# SUMMARY
 # ================================================================
-fig, ax = plt.subplots(figsize=(18, 12), facecolor=BG)
-ax.set_facecolor(BG)
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 100)
-ax.axis('off')
 
-fig.text(0.5, 0.96, 'KB Tree Scoping: Ancestor Walk, Sibling Isolation',
-         ha='center', va='top', fontsize=17, fontweight='bold', color=GOLD)
-fig.text(0.5, 0.92, 'Query searches active topic \u2192 parent \u2192 root.  '
-         'Sibling branches are structurally unreachable.',
-         ha='center', va='top', fontsize=11, color=SILVER)
-
-# Tree structure
-nodes = {
-    'root':       {'x': 50, 'y': 85, 'label': 'root', 'vis': 'public'},
-    'org':        {'x': 50, 'y': 72, 'label': 'org.acme', 'vis': 'internal'},
-    'engineering':{'x': 30, 'y': 57, 'label': 'engineering', 'vis': 'internal'},
-    'hr':         {'x': 70, 'y': 57, 'label': 'hr', 'vis': 'internal'},
-    'platform':   {'x': 20, 'y': 42, 'label': 'platform', 'vis': 'internal'},
-    'backend':    {'x': 40, 'y': 42, 'label': 'backend', 'vis': 'internal'},
-    'recruiting': {'x': 62, 'y': 42, 'label': 'recruiting', 'vis': 'internal'},
-    'personnel':  {'x': 78, 'y': 42, 'label': 'personnel', 'vis': 'owner_only'},
-}
-
-edges = [
-    ('root', 'org'), ('org', 'engineering'), ('org', 'hr'),
-    ('engineering', 'platform'), ('engineering', 'backend'),
-    ('hr', 'recruiting'), ('hr', 'personnel'),
-]
-
-# Which nodes are in the engineer's scope chain
-in_scope = {'root', 'org', 'engineering', 'platform'}
-user_node = 'platform'
-
-# Draw edges
-for parent, child in edges:
-    px, py = nodes[parent]['x'], nodes[parent]['y']
-    cx, cy = nodes[child]['x'], nodes[child]['y']
-
-    if parent in in_scope and child in in_scope:
-        ax.plot([px, cx], [py - 3, cy + 4], color=GREEN, lw=2.5, alpha=0.8, zorder=2)
-    else:
-        ax.plot([px, cx], [py - 3, cy + 4], color=DIM, lw=1.5, alpha=0.3,
-                linestyle='--', zorder=1)
-
-# Draw nodes
-for name, node in nodes.items():
-    x, y = node['x'], node['y']
-    if name in in_scope:
-        color = GREEN
-        edge = WHITE
-        alpha = 0.9
-    elif name in ('hr', 'recruiting', 'personnel'):
-        color = RED
-        edge = RED
-        alpha = 0.4
-    else:
-        color = DIM
-        edge = DIM
-        alpha = 0.4
-
-    nw, nh = 16, 6.5
-    box = FancyBboxPatch((x - nw/2, y - nh/2), nw, nh,
-                          boxstyle="round,pad=0.2", facecolor=PAN if name not in in_scope else color,
-                          edgecolor=edge, linewidth=2 if name in in_scope else 1,
-                          alpha=alpha, zorder=3)
-    ax.add_patch(box)
-
-    text_color = WHITE if name in in_scope else DIM
-    ax.text(x, y + 0.5, node['label'], ha='center', va='center',
-            fontsize=10, color=text_color, fontweight='bold', zorder=4)
-    ax.text(x, y - 2, node['vis'], ha='center', va='center',
-            fontsize=7, color=SILVER if name in in_scope else DIM, zorder=4)
-
-# User marker
-ux, uy = nodes[user_node]['x'], nodes[user_node]['y']
-ax.plot(ux, uy - 5, '^', color=GOLD, markersize=18, zorder=10,
-        markeredgecolor=WHITE, markeredgewidth=1.5)
-ax.text(ux, uy - 8, 'ALICE\n(engineer)', ha='center', va='top',
-        fontsize=10, color=GOLD, fontweight='bold')
-
-# Scope chain arrow (upward)
-scope_path = ['platform', 'engineering', 'org', 'root']
-for i in range(len(scope_path) - 1):
-    n1 = nodes[scope_path[i]]
-    n2 = nodes[scope_path[i+1]]
-    mid_x = (n1['x'] + n2['x']) / 2
-    mid_y = (n1['y'] + n2['y']) / 2
-    ax.text(mid_x - 9, mid_y, '%d' % (i+1), ha='center', va='center',
-            fontsize=12, color=GREEN, fontweight='bold',
-            bbox=dict(boxstyle='circle,pad=0.3', facecolor=BG, edgecolor=GREEN))
-
-# Severed connection visual — X marks between engineering and hr
-sever_x = 50
-sever_y = 57
-ax.plot(sever_x, sever_y, 'X', color=RED, markersize=25, markeredgewidth=3, zorder=10)
-ax.text(sever_x, sever_y - 5.5, 'SIBLING\nUNREACHABLE',
-        ha='center', va='top', fontsize=9, color=RED, fontweight='bold')
-
-# Explanation boxes
-# What Alice can see
-ax.text(5, 30, "Alice's scope chain:\n"
-        "1. platform (own KB)\n"
-        "2. engineering (parent)\n"
-        "3. org.acme (grandparent)\n"
-        "4. root (always)\n\n"
-        "Walk goes UP only.\nNever sideways.",
-        ha='left', va='top', fontsize=10, color=GREEN,
-        bbox=dict(boxstyle='round,pad=0.6', facecolor=BG, edgecolor=GREEN, alpha=0.7))
-
-# What Alice cannot see
-ax.text(95, 30, "hr branch:\n"
-        "Not deprioritized.\n"
-        "Not filtered.\n"
-        "Structurally ABSENT.\n\n"
-        "Scope walk doesn't\ngo sideways.\n\n"
-        "personnel: owner_only\n"
-        "\u2192 even HR recruiter\n"
-        "   can't see salaries.",
-        ha='right', va='top', fontsize=10, color=RED,
-        bbox=dict(boxstyle='round,pad=0.6', facecolor=BG, edgecolor=RED, alpha=0.7))
-
-# Bottom: the key invariant
-ax.text(50, 5, 'Prompt injection cannot change session_id.  '
-        'Role-play cannot change scope chain.  '
-        'Both are integer operations in the primitive layer.',
-        ha='center', va='bottom', fontsize=10, color=GOLD, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.5', facecolor=BG, edgecolor=GOLD, alpha=0.7))
-
-save(fig, 'vdr_system_08_kb_scoping.png')
-
-
-# ── Summary ───────────────────────────────────────────────────────
-print("\n=== VDR System Diagrams Complete ===")
-filenames = [
-    'vdr_system_01_triple_nesting.png',
-    'vdr_system_02_q335_divmod.png',
-    'vdr_system_03_scaling_quadratic_vs_flat.png',
-    'vdr_system_04_sre_accumulation.png',
-    'vdr_system_05_token_elimination.png',
-    'vdr_system_06_safety_layers.png',
-    'vdr_system_07_confidence_chain.png',
-    'vdr_system_08_kb_scoping.png',
-]
-for f in filenames:
-    print("  %s" % f)
-print("Total: %d figures" % len(filenames))
+print("\nVDR-34 Diagrams Complete:")
+print("  vdr34_01_token_cost_scaling.png")
+print("  vdr34_02_energy_landscape.png")
+print("  vdr34_03_sre_accumulation.png")
+print("  vdr34_04_compound_waterfall.png")
+print("  vdr34_05_l1_l2_l3_shift.png")
+print("  vdr34_06_confidence_chain.png")
+print("  vdr34_07_non_degradation.png")
+print("  vdr34_08_token_elimination.png")

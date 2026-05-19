@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog: The Compound Architecture Performance Gains
+# Why Exact Integer Arithmetic Changes Everything About LLM Systems
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,9 +6,7 @@
 
 ## Abstract
 
-Thirty-two papers in the VDR series each prove an independent result: exact arithmetic with zero error, instruction-level equivalence with quantized inference, 85-97% token elimination for structured tasks, linear scaling versus quadratic, self-improving rule accumulation, zero-drift diffusion chains, structural safety without token cost, and grammar-directed generation that eliminates forward passes on deterministic tokens. Each paper is conservative, staying within its own scope. None multiplies the results together.
-
-This paper performs that multiplication. The axes of improvement are independent — hardware speedup does not depend on token reduction, token reduction does not depend on rule accumulation, rule accumulation does not depend on scaling behavior. When independent multipliers compound across a real workload over a real deployment timeline, the combined effect ranges from 2× for pure creative writing to over 8,000× for mature structured enterprise workloads. These are not projections from novel research. They are arithmetic consequences of measured baselines and known operations on shipping hardware.
+Current LLM architectures use the language model for everything: arithmetic, data access, state tracking, formatting, deduction, safety enforcement, and confidence estimation. The model is one component doing the work of ten, at the cost and error rate of the most expensive and least reliable component in the system. VDR-LLM-Prolog replaces this with a system where each component operates in its natural shape: exact integer arithmetic for computation, scoped knowledge bases at integer addresses for data, Prolog for deduction, grammars for structural tokens, integer visibility checks for safety, and the LLM exclusively for judgment. Five independent performance axes multiply: ~2× hardware throughput from eliminating float overhead, 85-97% token elimination from routing infrastructure work to deterministic tools, linear-versus-quadratic scaling from KB addressing instead of context-window re-reading, logarithmic cost reduction from accumulated Prolog rules that automate solved problems, and engineering cost elimination from bit-identical determinism. Conservative blended result: 30× at datacenter scale. Single structured session: 71×. Mature deployment at six months: ~8,000×. All numbers are floors derived from measured implementations and published hardware specifications. This paper provides the complete mechanical accounting.
 
 ---
 
@@ -48,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-VDR-33-2026,
-  title={ VDR-LLM-Prolog: The Compound Architecture Performance Gains },
+@article{ HOWL-VDR-34-2026,
+  title={ Why Exact Integer Arithmetic Changes Everything About LLM Systems },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20284066},
-  url = {https://zenodo.org/record/20284066},
-  note={Howland Archive: HOWL-VDR-33-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20287232},
+  url = {https://zenodo.org/record/20287232},
+  note={Howland Archive: HOWL-VDR-34-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

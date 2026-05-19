@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-VDR-1-2026] → [@HOWL-VDR-2-2026] → [@HOWL-MATH-3-2026] → [@HOWL-MATH-4-2026]  → ... → [@HOWL-VDR-14-2026] → ... → [@HOWL-VDR-21-2026] → [@HOWL-VDR-22-2026] → [@HOWL-VDR-23-2026] → [@HOWL-VDR-24-2026] → [@HOWL-VDR-25-2026] → [@HOWL-VDR-26-2026] → [@HOWL-VDR-27-2026] → [@HOWL-VDR-28-2026] → [@HOWL-VDR-29-2026] → [@HOWL-VDR-30-2026] → [@HOWL-VDR-31-2026] → [@HOWL-VDR-32-2026] → [@HOWL-VDR-33-2026] → [@HOWL-VDR-34-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20287232
 
 **Date:** May 2026
 
@@ -98,6 +98,8 @@ Information destruction times billions of operations equals noise. And you canno
 
 ## 4. The Complete System
 
+![Fig. 7: Three-Layer Non-Degradation — data, working memory, and computation each structurally incapable of degrading.](./figures/vdr34_07_non_degradation.png)
+
 ### 4.1 Knowledge Bases at Integer Addresses
 
 Every piece of data in VDR-LLM-Prolog lives in a scoped knowledge base at an integer address. A KB is a 26-field struct containing: identity (name, dotted path, sequential integer ID), persistent state (facts, rules, constraints, connections, grammars), live state (working data, LRU caches, counters, locks, queues, stacks, ring buffers, bitsets), structural links (parent ID, children IDs, mounts), and metadata (visibility level, frozen flag, owner, timestamps).
@@ -186,6 +188,8 @@ NaN/Inf checking. Epsilon parameters. Loss scaling. Gradient clipping. Renormali
 
 ## 6. Performance Axis 2 — Token Elimination: The LLM Does Less
 
+![Fig. 8: Token Elimination — 96.9% of conventional tokens are infrastructure eliminated by primitives, grammars, Prolog, and KB addressing.](./figures/vdr34_08_token_elimination.png)
+
 ### 6.1 Where Tokens Go in Conventional Systems
 
 A conventional LLM generating a response to a structured query spends its token budget on: parsing the input (understanding structure), arithmetic (computing values digit by digit), state reconstruction (re-reading prior turns to recall what was established), deduction (generating reasoning chains as prose), formatting (producing every structural character), hedging (generating confidence language like "approximately" and "it appears"), and judgment (deciding what to do, how to frame it, what matters).
@@ -214,6 +218,8 @@ The LLM selects a primitive name from ~300 known names and points at data via do
 
 ## 7. Performance Axis 3 — Scaling: Linear Versus Quadratic
 
+![Fig. 1: Token Cost Scaling by Data Size — conventional grows linearly with data, VDR stays flat at 8 tokens regardless of size.](./figures/vdr34_01_token_cost_scaling.png)
+
 ### 7.1 The Structural Difference
 
 Conventional LLM attention is O(n²) in context length. Every turn adds tokens to the context. Every subsequent turn re-reads all prior tokens through the attention mechanism. The cost of the session is the sum of a growing series.
@@ -237,6 +243,8 @@ At 1GB (~335 million tokens), conventional processing is impossible. VDR: same 8
 ---
 
 ## 8. Performance Axis 4 — Accumulation: Solved Problems Stay Solved
+
+![Fig. 5: L1→L2→L3 Execution Level Shift — full LLM judgment gives way to pure Prolog over 100 investigations.](./figures/vdr34_05_l1_l2_l3_shift.png)
 
 ### 8.1 The Three Execution Levels
 
@@ -293,6 +301,10 @@ VDR: run forward, run backward, compare. Equal or not equal. Integer comparison.
 ## 10. The SRE Deep Dive — Anatomy of a Non-Degrading Investigation
 
 This section traces every token, every primitive call, every KB operation, and every data flow through an SRE incident investigation. Two scenarios: a fresh system on day 3, and a mature system at month 6. Both demonstrate the mechanical reasons why sessions do not degrade.
+
+![Fig. 3: SRE Accumulation — command tokens per investigation drop from 329 to 55 as Prolog rules automate triage.](./figures/vdr34_03_sre_accumulation.png)
+
+![Fig. 6: Confidence Propagation — exact VDR fractions flow from sources through formulas to final confidence, replacing hedging language.](./figures/vdr34_06_confidence_chain.png)
 
 ### 10.1 Fresh System, Day 3
 
@@ -454,6 +466,8 @@ Development time projections: static HTTP server ~3 hours, full email stack ~18-
 
 ## 12. Hardware Path: From CPU to Dedicated Silicon
 
+![Fig. 2: Energy Per Q335 Multiply — from 500μJ in Python to 39pJ on ASIC, a 12.8 million× range.](./figures/vdr34_02_energy_landscape.png)
+
 ### 12.1 The Key Observation
 
 SHR335 — the Q335 divmod operation — is bit extraction. Bits above position 335 are the quotient. Bits below are the remainder. In hardware this is fixed wiring: zero logic gates, zero transistors, zero power, zero latency beyond wire delay. The most frequent operation in the system is free in silicon.
@@ -483,6 +497,8 @@ Python (reference), Zig (CPU), FPGA (proof of concept), GPU (production), ASIC (
 ---
 
 ## 13. The Compound Accounting
+
+![Fig. 4: Compound Performance Waterfall — five independent axes multiply from 1× to ~8,000×.](./figures/vdr34_04_compound_waterfall.png)
 
 ### 13.1 The Five Axes
 
