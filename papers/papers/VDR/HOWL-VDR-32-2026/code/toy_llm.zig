@@ -152,7 +152,7 @@ const ForwardCache = struct {
     K: [SEQ_LEN]Vec16(DIM),
     V_proj: [SEQ_LEN]Vec16(DIM),
     scores: [SEQ_LEN][SEQ_LEN]i16,
-    shifted: [SEQ_LEN][SEQ_LEN]i16,
+    shifted: [SEQ_LEN][SEQ_LEN]i32,
     weights: [SEQ_LEN][SEQ_LEN]i32,
     attn_out: [SEQ_LEN]Vec16(DIM),
     post_wo: [SEQ_LEN]Vec16(DIM),
@@ -170,7 +170,7 @@ const ForwardCache = struct {
             .K = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .V_proj = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .scores = [_][SEQ_LEN]i16{[_]i16{0} ** SEQ_LEN} ** SEQ_LEN,
-            .shifted = [_][SEQ_LEN]i16{[_]i16{0} ** SEQ_LEN} ** SEQ_LEN,
+            .shifted = [_][SEQ_LEN]i32{[_]i32{0} ** SEQ_LEN} ** SEQ_LEN,
             .weights = [_][SEQ_LEN]i32{[_]i32{0} ** SEQ_LEN} ** SEQ_LEN,
             .attn_out = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
             .post_wo = [_]Vec16(DIM){Vec16(DIM).zero()} ** SEQ_LEN,
@@ -413,7 +413,7 @@ fn softmax_surrogate(
     comptime N: usize,
     scores: *const [N]i16,
     probs: *[N]i32,
-    shifted_out: *[N]i16,
+    shifted_out: *[N]i32,
 ) void {
     // find min
     var min_val: i16 = scores[0];
@@ -421,11 +421,11 @@ fn softmax_surrogate(
         if (scores[i] < min_val) min_val = scores[i];
     }
 
-    // compute shifted and squares
+    // compute shifted and squares in i32/i64
     var sum_sq: i64 = 0;
     var squares: [N]i64 = undefined;
     for (0..N) |i| {
-        shifted_out[i] = scores[i] - min_val;
+        shifted_out[i] = @as(i32, scores[i]) - @as(i32, min_val);
         const s: i64 = @as(i64, shifted_out[i]);
         squares[i] = s * s;
         sum_sq += squares[i];
@@ -457,7 +457,7 @@ fn softmax_surrogate_backward(
     comptime N: usize,
     grad_probs: *const [N]i32,
     probs: *const [N]i32,
-    shifted: *const [N]i16,
+    shifted: *const [N]i32,
     grad_scores: *[N]i32,
 ) void {
     var sum_sq: i64 = 0;
@@ -812,7 +812,7 @@ fn train_step(model: *ToyTransformer, context: [SEQ_LEN]u8, target_id: u8) i64 {
 
     // softmax on last position
     var probs: [VOCAB_SIZE]i32 = undefined;
-    var shifted: [VOCAB_SIZE]i16 = undefined;
+    var shifted: [VOCAB_SIZE]i32 = undefined;
     softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
     // one-hot
@@ -882,7 +882,7 @@ fn generate(model: *ToyTransformer, prompt: [SEQ_LEN]u8, max_tokens: usize, outp
         forward(model, context);
 
         var probs: [VOCAB_SIZE]i32 = undefined;
-        var shifted: [VOCAB_SIZE]i16 = undefined;
+        var shifted: [VOCAB_SIZE]i32 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
         ids[len] = sample_greedy(&probs);
@@ -901,7 +901,7 @@ fn verify_softmax_sum(model: *ToyTransformer, windows: []const Window) bool {
     for (windows) |w| {
         forward(model, w.context);
         var probs: [VOCAB_SIZE]i32 = undefined;
-        var shifted: [VOCAB_SIZE]i16 = undefined;
+        var shifted: [VOCAB_SIZE]i32 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
         var total: i64 = 0;
         for (0..VOCAB_SIZE) |i| {
@@ -1001,7 +1001,7 @@ pub fn main() !void {
         for (&windows) |w| {
             forward(&model, w.context);
             var probs: [VOCAB_SIZE]i32 = undefined;
-            var shifted: [VOCAB_SIZE]i16 = undefined;
+            var shifted: [VOCAB_SIZE]i32 = undefined;
             softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
             var total: i64 = 0;
             for (0..VOCAB_SIZE) |i| {
@@ -1043,7 +1043,7 @@ pub fn main() !void {
         forward(&model, context);
 
         var probs: [VOCAB_SIZE]i32 = undefined;
-        var shifted: [VOCAB_SIZE]i16 = undefined;
+        var shifted: [VOCAB_SIZE]i32 = undefined;
         softmax_surrogate(VOCAB_SIZE, &model.cache.logits[SEQ_LEN - 1].v, &probs, &shifted);
 
         const next_id = sample_greedy(&probs);
