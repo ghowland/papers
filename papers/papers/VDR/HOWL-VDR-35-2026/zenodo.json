@@ -1,0 +1,70 @@
+{
+  "title": "Why Exact Integer Arithmetic Changes Everything About LLM Systems",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Current LLM architectures use the language model for everything: arithmetic, data access, state tracking, formatting, deduction, safety enforcement, and confidence estimation. The model is one component doing the work of ten, at the cost and error rate of the most expensive and least reliable component in the system. VDR-LLM-Prolog replaces this with a system where each component operates in its natural shape: exact integer arithmetic for computation, scoped knowledge bases at integer addresses for data, Prolog for deduction, grammars for structural tokens, integer visibility checks for safety, and the LLM exclusively for judgment. Five independent performance axes multiply: ~2\u00d7 hardware throughput from eliminating float overhead, 85-97% token elimination from routing infrastructure work to deterministic tools, linear-versus-quadratic scaling from KB addressing instead of context-window re-reading, logarithmic cost reduction from accumulated Prolog rules that automate solved problems, and engineering cost elimination from bit-identical determinism. Conservative blended result: 30\u00d7 at datacenter scale. Single structured session: 71\u00d7. Mature deployment at six months: ~8,000\u00d7. All numbers are floors derived from measured implementations and published hardware specifications. This paper provides the complete mechanical accounting.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-34-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-34-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
