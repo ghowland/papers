@@ -494,7 +494,7 @@ fn attention_mix(cache: *ForwardCache) void {
                 acc += @as(i64, cache.weights[i][j]) * @as(i64, cache.V_proj[j].v[d]);
             }
             cache.attn_out[i].v[d] = @intCast(@divTrunc(acc, D));
-            cache.attn_out[i].r[d] = @intCast(@rem(acc, D));
+            cache.attn_out[i].r[d] = 0;
         }
     }
 }
