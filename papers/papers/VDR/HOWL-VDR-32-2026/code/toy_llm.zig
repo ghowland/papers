@@ -975,17 +975,16 @@ fn q16_to_f32(v: i16) f32 {
 // ─────────────────────────────────────────────────────────────────────
 
 pub fn main() !void {
-    // Arena: 1MB, never grows
     var arena_buf: [1024 * 1024]u8 = undefined;
-    _ = &arena_buf; // arena exists but model is stack-allocated at these sizes
+    _ = &arena_buf;
 
     print("VDR Toy LLM — Q16 Integer Arithmetic\n", .{});
     print("D = {d} (2^16)\n\n", .{D});
 
+    // ── Functional run ─────────────────────────────────────────────
     var model = ToyTransformer.init(SEED);
     const windows = make_windows();
 
-    // ── Train ──────────────────────────────────────────────────────
     print("=== TRAINING ===\n", .{});
     var loss_history: [N_EPOCHS]i64 = undefined;
 
@@ -993,7 +992,6 @@ pub fn main() !void {
         const avg_loss = train_epoch(&model, &windows);
         loss_history[epoch] = avg_loss;
 
-        // check softmax sum
         var sum_ok = true;
         for (&windows) |w| {
             forward(&model, w.context);
@@ -1007,8 +1005,6 @@ pub fn main() !void {
             if (total != D) sum_ok = false;
         }
 
-        const loss_display: f32 = @as(f32, @floatFromInt(avg_loss)) / 65536.0;
-        _ = loss_display;
         print("  epoch {d:2}  loss_q16={d:10}  softmax_sum={d}: {s}\n", .{
             epoch + 1,
             avg_loss,
@@ -1017,10 +1013,9 @@ pub fn main() !void {
         });
     }
 
-    // ── Generate ───────────────────────────────────────────────────
+    // ── Generation ─────────────────────────────────────────────────
     print("\n=== GENERATION ===\n", .{});
-    print("prompt: the cat sat on\n", .{});
-    print("greedy: ", .{});
+    print("prompt: the cat sat on\ngreedy: ", .{});
 
     var output: [20]u8 = undefined;
     const len = generate(&model, .{ 0, 1, 2, 3 }, 4, &output);
@@ -1028,10 +1023,8 @@ pub fn main() !void {
         if (i > 0) print(" ", .{});
         print_token(output[i]);
     }
-    print("\n", .{});
+    print("\n\nstep-by-step:\n", .{});
 
-    // show step-by-step
-    print("\nstep-by-step:\n", .{});
     var step_ids: [SEQ_LEN + 4]u8 = .{ 0, 1, 2, 3, 0, 0, 0, 0 };
     var step_len: usize = SEQ_LEN;
     for (0..4) |step| {
@@ -1052,56 +1045,177 @@ pub fn main() !void {
         print(" -> {s}\n", .{vocab[next_id]});
     }
 
-    // ── Verify ─────────────────────────────────────────────────────
+    // ── Verification ───────────────────────────────────────────────
     print("\n=== VERIFICATION ===\n", .{});
-
-    // softmax sum
     {
-        var verify_model = ToyTransformer.init(SEED);
-        const ok = verify_softmax_sum(&verify_model, &windows);
-        print("  softmax_sum            [{s}]\n", .{if (ok) "PASS" else "FAIL"});
+        var vm = ToyTransformer.init(SEED);
+        print("  softmax_sum            [{s}]\n", .{if (verify_softmax_sum(&vm, &windows)) "PASS" else "FAIL"});
     }
-
-    // attention weights
     {
-        var verify_model = ToyTransformer.init(SEED);
-        const ok = verify_attention_weights(&verify_model, &windows);
-        print("  attention_weights      [{s}]\n", .{if (ok) "PASS" else "FAIL"});
+        var vm = ToyTransformer.init(SEED);
+        print("  attention_weights      [{s}]\n", .{if (verify_attention_weights(&vm, &windows)) "PASS" else "FAIL"});
     }
-
-    // determinism
+    print("  determinism            [{s}]\n", .{if (verify_determinism()) "PASS" else "FAIL"});
     {
-        const ok = verify_determinism();
-        print("  determinism            [{s}]\n", .{if (ok) "PASS" else "FAIL"});
+        const ok = loss_history[N_EPOCHS - 1] < loss_history[0];
+        print("  loss_monotonicity      [{s}] {d} -> {d}\n", .{ if (ok) "PASS" else "FAIL", loss_history[0], loss_history[N_EPOCHS - 1] });
     }
-
-    // loss monotonicity
-    {
-        const first_loss = loss_history[0];
-        const last_loss = loss_history[N_EPOCHS - 1];
-        const ok = last_loss < first_loss;
-        print("  loss_monotonicity      [{s}] {d} -> {d}\n", .{ if (ok) "PASS" else "FAIL", first_loss, last_loss });
-    }
-
-    // weight update exactness
     {
         var m1 = ToyTransformer.init(SEED);
         const w_old = m1.wq.v[0][0];
         _ = train_step(&m1, windows[0].context, windows[0].target);
         const w_new = m1.wq.v[0][0];
         const grad = m1.wq_g.v[0][0];
-
-        // check: w_old - w_new == (LR * grad) / D
         const delta: i32 = @as(i32, w_old) - @as(i32, w_new);
         const expected: i32 = @intCast(@divTrunc(@as(i64, LR) * @as(i64, grad), D));
-        const ok = delta == expected;
-        print("  weight_update          [{s}]\n", .{if (ok) "PASS" else "FAIL"});
+        print("  weight_update          [{s}]\n", .{if (delta == expected) "PASS" else "FAIL"});
     }
 
-    print("\n=== DENOMINATOR REPORT ===\n", .{});
-    print("  all denominators implicit D={d} (2^16)\n", .{D});
-    print("  no D field exists — frame is structural, not stored\n", .{});
-    print("  D stability guaranteed by shift+mask epilogue\n", .{});
+    // ── Performance ────────────────────────────────────────────────
+    print("\n=== PERFORMANCE ===\n", .{});
+
+    var timer = std.time.Timer.start() catch {
+        print("  timer unavailable\n", .{});
+        return;
+    };
+
+    // -- Forward pass throughput --
+    const FWD_ITERS: usize = 100_000;
+    {
+        var perf_model = ToyTransformer.init(SEED);
+        const t0 = timer.read();
+        for (0..FWD_ITERS) |_| {
+            forward(&perf_model, .{ 0, 1, 2, 3 });
+        }
+        const t1 = timer.read();
+        const fwd_ns = t1 - t0;
+        const fwd_per_ns = fwd_ns / FWD_ITERS;
+        const fwd_per_us = fwd_per_ns / 1000;
+        print("  forward pass:      {d} iters in {d} ms  ({d} ns/iter, {d} us/iter)\n", .{
+            FWD_ITERS,
+            fwd_ns / 1_000_000,
+            fwd_per_ns,
+            fwd_per_us,
+        });
+    }
+
+    // -- Train step throughput --
+    const TRAIN_ITERS: usize = 50_000;
+    {
+        var perf_model = ToyTransformer.init(SEED);
+        const t0 = timer.read();
+        for (0..TRAIN_ITERS) |_| {
+            _ = train_step(&perf_model, .{ 0, 1, 2, 3 }, 0);
+        }
+        const t1 = timer.read();
+        const train_ns = t1 - t0;
+        const train_per_ns = train_ns / TRAIN_ITERS;
+        const train_per_us = train_per_ns / 1000;
+        print("  train step:        {d} iters in {d} ms  ({d} ns/iter, {d} us/iter)\n", .{
+            TRAIN_ITERS,
+            train_ns / 1_000_000,
+            train_per_ns,
+            train_per_us,
+        });
+    }
+
+    // -- Full epoch throughput --
+    const EPOCH_ITERS: usize = 25_000;
+    {
+        var perf_model = ToyTransformer.init(SEED);
+        const t0 = timer.read();
+        for (0..EPOCH_ITERS) |_| {
+            _ = train_epoch(&perf_model, &windows);
+        }
+        const t1 = timer.read();
+        const epoch_ns = t1 - t0;
+        const epoch_per_ns = epoch_ns / EPOCH_ITERS;
+        const epoch_per_us = epoch_per_ns / 1000;
+        print("  train epoch:       {d} iters in {d} ms  ({d} ns/iter, {d} us/iter)\n", .{
+            EPOCH_ITERS,
+            epoch_ns / 1_000_000,
+            epoch_per_ns,
+            epoch_per_us,
+        });
+    }
+
+    // -- Generation throughput --
+    const GEN_ITERS: usize = 100_000;
+    {
+        var perf_model = ToyTransformer.init(SEED);
+        // train first so weights are meaningful
+        for (0..N_EPOCHS) |_| {
+            _ = train_epoch(&perf_model, &windows);
+        }
+        var gen_output: [20]u8 = undefined;
+        const t0 = timer.read();
+        for (0..GEN_ITERS) |_| {
+            _ = generate(&perf_model, .{ 0, 1, 2, 3 }, 4, &gen_output);
+        }
+        const t1 = timer.read();
+        const gen_ns = t1 - t0;
+        const gen_per_ns = gen_ns / GEN_ITERS;
+        const gen_per_us = gen_per_ns / 1000;
+        const tokens_per_sec = if (gen_per_ns > 0) 4 * 1_000_000_000 / gen_per_ns else 0;
+        print("  generation:        {d} iters in {d} ms  ({d} ns/iter, {d} us/iter, {d} tok/s)\n", .{
+            GEN_ITERS,
+            gen_ns / 1_000_000,
+            gen_per_ns,
+            gen_per_us,
+            tokens_per_sec,
+        });
+    }
+
+    // -- Softmax throughput --
+    const SM_ITERS: usize = 1_000_000;
+    {
+        var sm_input: [VOCAB_SIZE]i16 = .{ 1000, 2000, 3000, 500, 1500 };
+        var sm_probs: [VOCAB_SIZE]i32 = undefined;
+        var sm_shifted: [VOCAB_SIZE]i32 = undefined;
+        const t0 = timer.read();
+        for (0..SM_ITERS) |iter| {
+            sm_input[0] = @intCast(@as(i32, @intCast(iter & 0x7FFF)));
+            softmax_surrogate(VOCAB_SIZE, &sm_input, &sm_probs, &sm_shifted);
+        }
+        const t1 = timer.read();
+        const sm_ns = t1 - t0;
+        const sm_per_ns = sm_ns / SM_ITERS;
+        print("  softmax surrogate: {d} iters in {d} ms  ({d} ns/iter)\n", .{
+            SM_ITERS,
+            sm_ns / 1_000_000,
+            sm_per_ns,
+        });
+    }
+
+    // -- Dot product throughput --
+    const DOT_ITERS: usize = 10_000_000;
+    {
+        var a_arr: [DIM]i16 = .{ 4096, -8192, 12288, -4096 };
+        const b_arr: [DIM]i16 = .{ 8192, 4096, -4096, 12288 };
+        var sink: i16 = 0;
+        const t0 = timer.read();
+        for (0..DOT_ITERS) |iter| {
+            a_arr[0] = @intCast(@as(i32, @intCast(iter & 0x3FFF)) - 8192);
+            const result = dot_q16(DIM, a_arr, b_arr);
+            sink +%= result.v;
+        }
+        const t1 = timer.read();
+        const dot_ns = t1 - t0;
+        const dot_per_ns = dot_ns / DOT_ITERS;
+        print("  dot product (d=4): {d} iters in {d} ms  ({d} ns/iter)\n", .{
+            DOT_ITERS,
+            dot_ns / 1_000_000,
+            dot_per_ns,
+        });
+    }
+
+    // -- Summary --
+    print("\n=== SUMMARY ===\n", .{});
+    print("  model params:      181 (i16 weights + i16 bias)\n", .{});
+    print("  model memory:      ~{d} bytes\n", .{@sizeOf(ToyTransformer)});
+    print("  D = {d} (2^16), precision floor = 1.53e-5\n", .{D});
+    print("  float operations:  0\n", .{});
+    print("  heap allocations:  0\n", .{});
 
     print("\ndone.\n", .{});
 }
