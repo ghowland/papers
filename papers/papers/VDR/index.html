@@ -1338,9 +1338,13 @@ Management.</td>
 </tbody>
 </table>
 <hr />
-<h2 id="key-numbers-for-vdr-llm-prolog-python-implementation">Key
-Numbers for VDR-LLM-Prolog Python Implementation</h2>
+<h2 id="key-numbers-for-tensorprolog">Key Numbers for <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">TensorProlog</a></h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric</th>
@@ -1349,8 +1353,8 @@ Numbers for VDR-LLM-Prolog Python Implementation</h2>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Total tests</td>
-<td style="text-align: left;">884</td>
+<td style="text-align: left;">VDR arithmetic tests</td>
+<td style="text-align: left;">884 across 37 domains</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">VDR computation errors</td>
@@ -1358,51 +1362,95 @@ Numbers for VDR-LLM-Prolog Python Implementation</h2>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Domains validated</td>
-<td style="text-align: left;">37 (23 mathematical + 14 physical)</td>
+<td style="text-align: left;">23 mathematical + 14 physical</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Builtins specified</td>
 <td style="text-align: left;">448 + 40 extended</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2^335 precision</td>
-<td style="text-align: left;">
-100 decimal digits</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Token reduction vs conventional</td>
-<td style="text-align: left;">85–97%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Compaction compression</td>
-<td style="text-align: left;">
-83% average</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Existing Python code</td>
+<td style="text-align: left;">Python reference implementation</td>
 <td style="text-align: left;">
 5,500 lines, 705 tests</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">Zig Q16 toy LLM</td>
+<td style="text-align: left;">688 ns/forward, 1.42M tok/sec, 0 float
+ops</td>
+</tr>
 <tr class="odd">
-<td style="text-align: left;">Target system size</td>
+<td style="text-align: left;">Token reduction vs conventional LLM</td>
+<td style="text-align: left;">85–97%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grammar-directed compaction</td>
 <td style="text-align: left;">
-20,500 lines, 65 modules</td>
+83% average compression</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TensorProlog API surface</td>
+<td style="text-align: left;">
+580 functions across 23 modules</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conventional CUDA API replaced</td>
+<td style="text-align: left;">
+4,000+ functions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TensorProlog implementation target</td>
+<td style="text-align: left;">
+30,000 lines, 168 files, 612 tests</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Build phases</td>
+<td style="text-align: left;">6 (CPU-only through multi-GPU
+production)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GCP estimated test cost</td>
+<td style="text-align: left;">
+$2,200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q16 precision floor</td>
+<td style="text-align: left;">1/65536 ≈ 1.53 × 10⁻⁵</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q335 precision floor</td>
+<td style="text-align: left;">
+10⁻¹⁰¹ (
+100 decimal digits)</td>
 </tr>
 </tbody>
 </table>
-<p>These numbers are from the Python reference implementation using Q335
-(D = 2^335, 
-100 decimal digits). Q335 was chosen to demonstrate exact
-arithmetic at a precision level beyond any possible objection — 66
-orders of magnitude below the Planck length. The VDR-31 and VDR-32 toy
-LLM results subsequently proved that production-scale precision (Q16,
-Q32) is sufficient for complete transformer training and inference with
-exact softmax, bit-identical determinism, and monotonic loss
-convergence. The production implementation will use hardware-aligned
-frames (Q16 for weights, Q32 for accumulators) matching the Zig
-baseline, not Q335. The math is the same. The precision floor drops from
-10^-101 to 10^-5 or 10^-10. The operations drop from arbitrary-precision
-Python integers to single-cycle machine instructions.</p>
+<p>The 884-test arithmetic foundation was validated using Q335 (D =
+2^335, approximately 100 decimal digits). Q335 was chosen to demonstrate
+exact arithmetic at a precision level beyond any possible objection — 66
+orders of magnitude below the Planck length. VDR-31 and VDR-32
+subsequently proved that hardware-aligned precision (Q16, Q32) is
+sufficient for complete transformer training and inference with exact
+softmax sum, bit-identical determinism, and monotonic integer loss
+convergence. TensorProlog targets Q16 for model weights and inference,
+Q32 for intermediate accumulation, and Q335 only for transcendental
+computation via the Functional Remainder Unit. The arithmetic is the
+same at every Q-basis — fixed denominator, widening multiply, remainder
+in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰.
+The operations drop from arbitrary-precision Python integers to
+single-cycle machine instructions on existing GPU INT8 tensor cores.</p>
+<p>The <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">TensorProlog</a> system
+builds on this foundation by adding GPU compute kernels, knowledge base
+operations, parallel Prolog unification, grammar-directed structural
+token generation, session lifecycle management with exact
+snapshot/clone/kill, autonomous runner execution, and server
+infrastructure with integer credential enforcement. The conventional
+CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced
+by 580 TensorProlog functions — a 28.6× reduction in
+equivalent-capability API surface from eliminating float precision
+variants, plus 470 new functions providing capabilities (persistent KB
+state, deterministic deduction, structural safety, autonomous operation)
+that have no equivalent in the conventional stack at any function
+count.</p>
 <hr />
 <p><strong>Contact:</strong> <a
 href="https://www.linkedin.com/in/ghowland/">https://www.linkedin.com/in/ghowland/</a></p>

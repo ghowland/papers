@@ -478,21 +478,29 @@ Otherwise:
 
 ---
 
-## Key Numbers for VDR-LLM-Prolog Python Implementation
+## Key Numbers for [TensorProlog](HOWL-VDR-35-2026/manuscript.md)
 
 | Metric | Value |
 | :--- | :--- |
-| Total tests | 884 |
+| VDR arithmetic tests | 884 across 37 domains |
 | VDR computation errors | 0 |
-| Domains validated | 37 (23 mathematical + 14 physical) |
+| Domains validated | 23 mathematical + 14 physical |
 | Builtins specified | 448 + 40 extended |
-| 2^335 precision | ~100 decimal digits |
-| Token reduction vs conventional | 85–97% |
-| Compaction compression | ~83% average |
-| Existing Python code | ~5,500 lines, 705 tests |
-| Target system size | ~20,500 lines, 65 modules |
+| Python reference implementation | ~5,500 lines, 705 tests |
+| Zig Q16 toy LLM | 688 ns/forward, 1.42M tok/sec, 0 float ops |
+| Token reduction vs conventional LLM | 85–97% |
+| Grammar-directed compaction | ~83% average compression |
+| TensorProlog API surface | ~580 functions across 23 modules |
+| Conventional CUDA API replaced | ~4,000+ functions |
+| TensorProlog implementation target | ~30,000 lines, 168 files, 612 tests |
+| Build phases | 6 (CPU-only through multi-GPU production) |
+| GCP estimated test cost | ~$2,200 |
+| Q16 precision floor | 1/65536 ≈ 1.53 × 10⁻⁵ |
+| Q335 precision floor | ~10⁻¹⁰¹ (~100 decimal digits) |
 
-These numbers are from the Python reference implementation using Q335 (D = 2^335, ~100 decimal digits). Q335 was chosen to demonstrate exact arithmetic at a precision level beyond any possible objection — 66 orders of magnitude below the Planck length. The VDR-31 and VDR-32 toy LLM results subsequently proved that production-scale precision (Q16, Q32) is sufficient for complete transformer training and inference with exact softmax, bit-identical determinism, and monotonic loss convergence. The production implementation will use hardware-aligned frames (Q16 for weights, Q32 for accumulators) matching the Zig baseline, not Q335. The math is the same. The precision floor drops from 10^-101 to 10^-5 or 10^-10. The operations drop from arbitrary-precision Python integers to single-cycle machine instructions.
+The 884-test arithmetic foundation was validated using Q335 (D = 2^335, approximately 100 decimal digits). Q335 was chosen to demonstrate exact arithmetic at a precision level beyond any possible objection — 66 orders of magnitude below the Planck length. VDR-31 and VDR-32 subsequently proved that hardware-aligned precision (Q16, Q32) is sufficient for complete transformer training and inference with exact softmax sum, bit-identical determinism, and monotonic integer loss convergence. TensorProlog targets Q16 for model weights and inference, Q32 for intermediate accumulation, and Q335 only for transcendental computation via the Functional Remainder Unit. The arithmetic is the same at every Q-basis — fixed denominator, widening multiply, remainder in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰. The operations drop from arbitrary-precision Python integers to single-cycle machine instructions on existing GPU INT8 tensor cores.
+
+The [TensorProlog](HOWL-VDR-35-2026/manuscript.md) system builds on this foundation by adding GPU compute kernels, knowledge base operations, parallel Prolog unification, grammar-directed structural token generation, session lifecycle management with exact snapshot/clone/kill, autonomous runner execution, and server infrastructure with integer credential enforcement. The conventional CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced by 580 TensorProlog functions — a 28.6× reduction in equivalent-capability API surface from eliminating float precision variants, plus 470 new functions providing capabilities (persistent KB state, deterministic deduction, structural safety, autonomous operation) that have no equivalent in the conventional stack at any function count.
 
 ---
 
