@@ -473,7 +473,8 @@ Otherwise:
 | **[HOWL-VDR-31-2026](HOWL-VDR-31-2026/manuscript.md)** | **VDR Toy LLM** | Exact Rational Arithmetic in a Transformer Language Model Using Fixed-Denominator VDR Triples. |
 | **[HOWL-VDR-32-2026](HOWL-VDR-32-2026/manuscript.md)** | **VDR-Zig Q16 Integer LLM** | Performance Baseline and Datacenter Projection for Fixed-Denominator Integer Transformer Inference. |
 | **[HOWL-VDR-33-2026](HOWL-VDR-33-2026/manuscript.md)** | **VDR-LLM-Prolog: The Compound Architecture Performance Gains** | Exact Integer Arithmetic as Foundation for Complete LLM System Redesign. |
-| **[HOWL-VDR-34-2026](HOWL-VDR-33-2026/manuscript.md)** | **Why Exact Integer Arithmetic Changes Everything About LLM Systems** | A Mechanical Accounting of Compound Performance Gains from Arithmetic Through Silicon. |
+| **[HOWL-VDR-34-2026](HOWL-VDR-34-2026/manuscript.md)** | **Why Exact Integer Arithmetic Changes Everything About LLM Systems** | A Mechanical Accounting of Compound Performance Gains from Arithmetic Through Silicon. |
+| **[HOWL-VDR-35-2026](HOWL-VDR-35-2026/manuscript.md)** | **VDR-LLM-Prolog Integer GPU Compute Stack: TensorProlog** | A GPU Compute Architecture for Exact Integer Inference, Knowledge Operations, and Autonomous Session Management. |
 
 ---
 
