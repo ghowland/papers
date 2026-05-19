@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-19T13:09:39.868578+00:00",
-  "modified": "2026-05-19T13:09:40.018843+00:00",
-  "id": 20287232,
-  "conceptrecid": "20287231",
+  "created": "2026-05-19T15:07:23.107284+00:00",
+  "modified": "2026-05-19T15:07:23.283801+00:00",
+  "id": 20289699,
+  "conceptrecid": "20289698",
   "metadata": {
-    "title": "Why Exact Integer Arithmetic Changes Everything About LLM Systems",
+    "title": "VDR-LLM-Prolog Integer GPU Compute Stack: TensorProlog",
     "publication_date": "2026-04",
     "description": "VDR-19 describes how a hybrid LLM-integer-Prolog architecture bootstraps from an initial seed of operational competence and extends its own capability monotonically through normal usage. The LLM emits structured command tokens that write Prolog rules, execute sandboxed Python scripts, store provenanced facts in scoped knowledge bases, and route data between typed structures by reference \u2014 never processing data through its token stream. Each session leaves behind persistent, inspectable, reversible infrastructure that all future sessions within scope can query and build upon. The paper specifies the bootstrap pipeline from initial seed layers (language templates, format grammars, operational rules, self-maintenance rules) through staged transitions to full autonomous self-compaction, where the system ingests, structures, and indexes new documents without external assistance.\n\nThe paper introduces a compaction format bridging conventional LLM prose and VDR's typed storage, where pipe-delimited tables with ID-prefixed rows and explicit relationship declarations parse directly into Prolog-compatible facts, predicate-major columnar storage, and implementation language structs. Worked examples trace three SRE investigations on the same system showing accumulation in practice: the first investigation writes fifteen rules and three scripts at full token cost, the tenth reuses forty-seven rules and seven scripts with seventy-two percent token reduction, and routine triage becomes substantially automated as the knowledge base matures. Self-extension inherits all VDR security and alignment properties \u2014 visibility, scope, grants, output constraints, provenance, and audit \u2014 because it operates through the same structural mechanisms, creating no new attack surface. This paper introduces no new primitives, builtins, struct fields, or modules; all mechanisms use existing VDR-1 through VDR-18 components.",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-34-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-35-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -69,59 +69,59 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-34-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-35-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20287232",
-      "recid": 20287232
+      "doi": "10.5281/zenodo.20289699",
+      "recid": 20289699
     }
   },
-  "title": "Why Exact Integer Arithmetic Changes Everything About LLM Systems",
+  "title": "VDR-LLM-Prolog Integer GPU Compute Stack: TensorProlog",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20287232",
-    "html": "https://zenodo.org/deposit/20287232",
+    "self": "https://zenodo.org/api/deposit/depositions/20289699",
+    "html": "https://zenodo.org/deposit/20289699",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20287232/files",
-    "bucket": "https://zenodo.org/api/files/11384a6f-3d38-4c7d-aa39-1d18bbd401a1",
-    "thumb250": "https://zenodo.org/record/20287232/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/20289699/files",
+    "bucket": "https://zenodo.org/api/files/c5364284-f416-4931-9909-414c5ce12549",
+    "thumb250": "https://zenodo.org/record/20289699/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20287232/thumb10",
-      "50": "https://zenodo.org/record/20287232/thumb50",
-      "100": "https://zenodo.org/record/20287232/thumb100",
-      "250": "https://zenodo.org/record/20287232/thumb250",
-      "750": "https://zenodo.org/record/20287232/thumb750",
-      "1200": "https://zenodo.org/record/20287232/thumb1200"
+      "10": "https://zenodo.org/record/20289699/thumb10",
+      "50": "https://zenodo.org/record/20289699/thumb50",
+      "100": "https://zenodo.org/record/20289699/thumb100",
+      "250": "https://zenodo.org/record/20289699/thumb250",
+      "750": "https://zenodo.org/record/20289699/thumb750",
+      "1200": "https://zenodo.org/record/20289699/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20287232",
-    "latest_draft_html": "https://zenodo.org/deposit/20287232",
-    "publish": "https://zenodo.org/api/deposit/depositions/20287232/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20287232/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20287232/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20287232/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20289699",
+    "latest_draft_html": "https://zenodo.org/deposit/20289699",
+    "publish": "https://zenodo.org/api/deposit/depositions/20289699/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20289699/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20289699/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20289699/actions/newversion"
   },
-  "record_id": 20287232,
+  "record_id": 20289699,
   "owner": 1539729,
   "files": [
     {
-      "id": "ca1a946d-ef55-4529-8f05-847930275dd6",
-      "filename": "HOWL-VDR-34-2026.zip",
-      "filesize": 7182009,
-      "checksum": "c21e7570d664c01c628ba6cebb1df6fd",
+      "id": "e42b28ed-dc21-4020-a346-9f8a6193ef7e",
+      "filename": "HOWL-VDR-35-2026.zip",
+      "filesize": 1691673,
+      "checksum": "9abb339c6c8dc18c2f427eaf25660fa3",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20287232/files/ca1a946d-ef55-4529-8f05-847930275dd6",
-        "download": "https://zenodo.org/api/records/20287232/draft/files/HOWL-VDR-34-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20289699/files/e42b28ed-dc21-4020-a346-9f8a6193ef7e",
+        "download": "https://zenodo.org/api/records/20289699/draft/files/HOWL-VDR-35-2026.zip/content"
       }
     },
     {
-      "id": "ead40190-f73e-4283-8609-8a37bb0febc0",
+      "id": "e2e2755e-c35f-40ad-b0b1-ae4fb808c5db",
       "filename": "!manuscript.pdf",
-      "filesize": 1538430,
-      "checksum": "ed9f565a770312392f7d131c069339ce",
+      "filesize": 172431,
+      "checksum": "9154d6247701e630eeaa42fde5cad37e",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20287232/files/ead40190-f73e-4283-8609-8a37bb0febc0",
-        "download": "https://zenodo.org/api/records/20287232/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20289699/files/e2e2755e-c35f-40ad-b0b1-ae4fb808c5db",
+        "download": "https://zenodo.org/api/records/20289699/draft/files/!manuscript.pdf/content"
       }
     }
   ],
