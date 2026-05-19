@@ -1,0 +1,70 @@
+{
+  "title": "VDR Toy LLM",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "We present a complete transformer language model \u2014 embedding, self-attention, feed-forward network, backpropagation, weight updates, and text generation \u2014 running entirely in exact rational arithmetic with no floating-point operations. The model uses the vdr-math Python library, which represents every value as an ordered triple [V, D, R] (Value, Denominator, Remainder) with a fixed denominator D = 2^32. We describe the denominator growth problem that arises when standard rational arithmetic operators are applied in a fixed-frame system, the operator-level solution we implemented to prevent it, and the quadratic softmax surrogate that eliminates transcendental functions from the forward pass. The resulting toy model \u2014 181 parameters, vocabulary of 5, trained for 20 epochs on a 6-word corpus \u2014 passes 9 verification tests including bit-identical determinism across runs and exact sum-to-one softmax outputs. All denominators remain at 2^32 through every operation chain. The work demonstrates that a fixed-denominator rational arithmetic system can support a complete LLM training and inference pipeline, and identifies the engineering steps required to scale beyond toy dimensions.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "vdr"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-VDR-31-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/VDR/HOWL-VDR-31-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
