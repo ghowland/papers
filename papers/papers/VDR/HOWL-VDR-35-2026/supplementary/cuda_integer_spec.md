@@ -12,7 +12,7 @@ You're right. Let me search for what exists and what the paper requires.Now I ha
 
 ## 1. Design Premise
 
-Current CUDA exists because GPUs have float hardware and integer hardware and the software must manage both. H100 SXM delivers 3,958 TOPS INT8 Tensor Core throughput alongside 1,979 TFLOPS FP16 — two complete datapaths on one die. Each SM contains FP32 cores, FP64 cores, INT32 cores, and Tensor Cores. Special Function Units handle transcendentals like sine and cosine. The entire Transformer Engine exists to intelligently manage and dynamically choose between FP8 and 16-bit calculations, automatically handling re-casting and scaling between FP8 and 16-bit in each layer.
+CUDA exists because GPUs have float hardware and integer hardware and the software must manage both. H100 SXM delivers 3,958 TOPS INT8 Tensor Core throughput alongside 1,979 TFLOPS FP16 — two complete datapaths on one die. Each SM contains FP32 cores, FP64 cores, INT32 cores, and Tensor Cores. Special Function Units handle transcendentals like sine and cosine. The entire Transformer Engine exists to intelligently manage and dynamically choose between FP8 and 16-bit calculations, automatically handling re-casting and scaling between FP8 and 16-bit in each layer.
 
 TensorProlog eliminates all of this. One datapath. One type system. One execution model. Everything is integer.
 
@@ -100,7 +100,7 @@ Same set for `.q32` and `.q335`. The `.q335` variants operate on 384-bit limb ar
 
 ### 3.2 Eliminated Instructions
 
-Everything in the current CUDA Math API's float sections. All of it:
+Everything in the CUDA Math API's float sections. All of it:
 
 - No `__fadd_rn`, `__fmul_rz`, `__fdiv_rd` — no rounding mode suffixes because integers don't round
 - No `__expf`, `__logf`, `__sinf`, `__cosf` — no SFU transcendentals
@@ -141,13 +141,13 @@ vdr.fru.unify.q335  pred, a, b         // active-value unification with remainde
 
 ```
 vdr.mma.q16.m16n16k16  dst, src_a, src_b, acc
-    // 16×16×16 integer MMA — same tile shape as current tensor core MMA
+    // 16×16×16 integer MMA — same tile shape as tensor core MMA
     // inputs: i16, accumulator: i32
     // every element of the result is exact
     // no mixed precision — input and output are both integer at declared Q-basis
 ```
 
-This replaces the current zoo of `mma.sync` variants with their format permutations (`.f16`, `.bf16`, `.tf32`, `.f64`, `.s8`, `.u8`, `.s4`, `.u4`). One instruction. One datapath. One behavior.
+This replaces the zoo of `mma.sync` variants with their format permutations (`.f16`, `.bf16`, `.tf32`, `.f64`, `.s8`, `.u8`, `.s4`, `.u4`). One instruction. One datapath. One behavior.
 
 ---
 
@@ -155,7 +155,7 @@ This replaces the current zoo of `mma.sync` variants with their format permutati
 
 ### 4.1 KB-Oriented Shared Memory
 
-Current CUDA shared memory is a flat scratchpad. TensorProlog shared memory is structured as a KB cache.
+CUDA shared memory is a flat scratchpad. TensorProlog shared memory is structured as a KB cache.
 
 ```
 __shared__ vdr_kb_cache kb_local;    // fixed-size KB struct cache in shared memory
@@ -190,11 +190,11 @@ __global__ vdr_kb_store {
 
 ### 4.3 Register File
 
-Current PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. TensorProlog extends to 384-bit registers for Q335 limb operations. The register file is typed — `vdr_q16`, `vdr_q32`, or `vdr_q335` — and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
+PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. TensorProlog extends to 384-bit registers for Q335 limb operations. The register file is typed — `vdr_q16`, `vdr_q32`, or `vdr_q335` — and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
 
 ### 4.4 No Texture Units, No Surface Units
 
-Current CUDA includes texture memory, surface memory, samplers, and filtering hardware. These serve graphics workloads and are unused in integer compute. Removed. The transistor budget goes to more integer ALUs and larger KB caches.
+CUDA includes texture memory, surface memory, samplers, and filtering hardware. These serve graphics workloads and are unused in integer compute. Removed. The transistor budget goes to more integer ALUs and larger KB caches.
 
 ---
 
@@ -202,13 +202,13 @@ Current CUDA includes texture memory, surface memory, samplers, and filtering ha
 
 ### 5.1 Warps — Simplified
 
-Warp divergence, where threads follow different execution paths, degrades performance because divergent paths are executed serially. In current CUDA, the primary sources of divergence are: NaN/Inf checks (some threads have special values, others don't), mixed-precision branching (Transformer Engine selecting between FP8 and FP16 per layer), subnormal handling, and data-dependent transcendental computation in SFUs.
+Warp divergence, where threads follow different execution paths, degrades performance because divergent paths are executed serially. In CUDA, the primary sources of divergence are: NaN/Inf checks (some threads have special values, others don't), mixed-precision branching (Transformer Engine selecting between FP8 and FP16 per layer), subnormal handling, and data-dependent transcendental computation in SFUs.
 
 TensorProlog warps have zero divergence sources in the arithmetic. Integer add takes the same cycles regardless of input value. Integer multiply takes the same cycles regardless of input value. There are no special values, no special cases, no data-dependent paths. Every thread in a warp executes the same instruction in the same number of cycles every time. Full warp utilization, every cycle, by construction.
 
 ### 5.2 Kernel Types
 
-Three kernel categories replace the single generic CUDA kernel:
+Three kernel categories replace the single generic CUDA-like kernel:
 
 ```
 // MAC kernel — pure matrix multiply-accumulate
@@ -231,7 +231,7 @@ The runtime schedules these differently. MAC kernels get maximum SM allocation a
 
 ### 5.3 Stream Model — Session Streams
 
-Current CUDA has generic streams for overlapping compute and memory transfer. TensorProlog adds session-aware streams:
+CUDA has generic streams for overlapping compute and memory transfer. TensorProlog adds session-aware streams:
 
 ```
 TensorPrologSessionStream_t session;
@@ -265,7 +265,7 @@ Integer type checking. Q-basis tracking and enforcement. KB struct layout. Widen
 
 **KB access fusion.** Multiple sequential KB queries to the same KB can be fused into a single shared-memory load of the KB struct, followed by register-level field extraction. The compiler recognizes `kb_query(kb, 3); kb_query(kb, 7); kb_query(kb, 12);` and transforms it into one load and three register reads.
 
-**MAC chain optimization.** A sequence of multiply-accumulate operations at the same Q-basis compiles to a single tensor-core MMA instruction with the appropriate tile dimensions, exactly as current CUDA compiles float GEMM to tensor-core `mma.sync`. The only difference is the type is always integer and the accumulator width is always 2× the input width.
+**MAC chain optimization.** A sequence of multiply-accumulate operations at the same Q-basis compiles to a single tensor-core MMA instruction with the appropriate tile dimensions, exactly as CUDA compiles float GEMM to tensor-core `mma.sync`. The only difference is the type is always integer and the accumulator width is always 2× the input width.
 
 ---
 
@@ -404,7 +404,7 @@ Phase 3: Full integer-native GPU with FRU per compute unit, dedicated KB cache h
 
 ## 10. API Surface Comparison
 
-Current CUDA: ~4,000+ API functions across CUDA Runtime, Driver API, cuBLAS, cuDNN, cuFFT, cuSPARSE, cuSOLVER, cuRAND, TensorRT, NCCL, Thrust, CUB, CUTLASS.
+CUDA: ~4,000+ API functions across CUDA Runtime, Driver API, cuBLAS, cuDNN, cuFFT, cuSPARSE, cuSOLVER, cuRAND, TensorRT, NCCL, Thrust, CUB, CUTLASS.
 
 TensorProlog: ~600 API functions. ~50 core runtime (memory, streams, sessions, launch). ~20 VDR math (GEMM, softmax, attention, elementwise, reproject). ~30 Prolog (KB load, query, assert, fire, snapshot, clone). ~448 primitives (the builtins, exposed as device functions). ~50 grammar (load, render, validate, compose).
 
@@ -414,7 +414,7 @@ The reduction is not from missing functionality. It's from the removal of precis
 
 ## 11. Determinism Guarantee
 
-TensorProlog provides a guarantee that current CUDA explicitly does not: same program, same input, same output, across all devices, all driver versions, all execution orderings. This is possible because:
+TensorProlog provides a guarantee that CUDA explicitly does not: same program, same input, same output, across all devices, all driver versions, all execution orderings. This is possible because:
 
 - Integer arithmetic has no rounding modes
 - Integer addition is associative (float addition is not)
