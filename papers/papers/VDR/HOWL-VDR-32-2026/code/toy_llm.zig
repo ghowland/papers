@@ -136,10 +136,11 @@ inline fn dot_q16(comptime N: usize, a: [N]i16, b: [N]i16) struct { v: i16, r: i
     for (0..N) |i| {
         acc += @as(i64, a[i]) * @as(i64, b[i]);
     }
-    return .{
-        .v = @intCast(@divTrunc(acc, D)),
-        .r = @intCast(@rem(acc, D)),
-    };
+    const v_raw: i64 = @divTrunc(acc, D);
+    const v: i16 = if (v_raw > 32767) 32767 else if (v_raw < -32768) -32768 else @intCast(v_raw);
+    const r_raw: i64 = @rem(acc, D);
+    const r: i16 = if (r_raw > 32767) 32767 else if (r_raw < -32768) -32768 else @intCast(r_raw);
+    return .{ .v = v, .r = r };
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -340,7 +341,7 @@ fn linear_forward(
         }
         // rebase to Q16 and add bias
         const v_raw: i64 = @divTrunc(acc, D) + @as(i64, bias[i]);
-        out_v[i] = @intCast(v_raw);
+        out_v[i] = if (v_raw > 32767) 32767 else if (v_raw < -32768) -32768 else @intCast(v_raw);
         out_r[i] = 0;
     }
 }
@@ -604,7 +605,7 @@ fn forward(model: *ToyTransformer, token_ids: [SEQ_LEN]u8) void {
         const tid: usize = token_ids[pos];
         for (0..DIM) |d| {
             const sum: i32 = @as(i32, model.token_emb[tid].v[d]) + @as(i32, model.pos_emb[pos].v[d]);
-            model.cache.embedded[pos].v[d] = @intCast(sum);
+            model.cache.embedded[pos].v[d] = if (sum > 32767) 32767 else if (sum < -32768) -32768 else @intCast(sum);
             model.cache.embedded[pos].r[d] = 0;
         }
     }
