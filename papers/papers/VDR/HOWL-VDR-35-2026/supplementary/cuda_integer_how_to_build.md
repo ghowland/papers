@@ -797,7 +797,7 @@ Phase 6: Production Integration        ~3,000 lines    3-4 weeks
 Total:                                 ~30,000 lines   16-23 weeks
 ```
 
-Paper estimated ~20,500 lines across 65 modules. The difference is server infrastructure, protocol handlers, GCP integration, and CUDA kernels that the paper's build plan didn't include (it specified the architecture, not the deployment).
+Paper estimated ~20,500 lines across 65 modules. The difference is server infrastructure, protocol handlers, GCP integration, and CUDA-like kernels that the paper's build plan didn't include (it specified the architecture, not the deployment).
 
 ---
 
@@ -1541,7 +1541,7 @@ test/             ~50 files  (~5,000 lines of tests)
 Total: ~168 files, ~30,000 lines of code, ~5,000 lines of tests
 
 External dependencies: ZERO for Phases 1-4 (pure Zig).
-Phase 5: CUDA toolkit (for GPU kernel compilation).
+Phase 5: CUDA-like toolkit (for GPU kernel compilation).
 Phase 6: GCP SDK (for deployment automation).
 
 The system has no dependency on PyTorch, TensorFlow, JAX, ONNX,

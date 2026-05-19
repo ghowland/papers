@@ -1221,11 +1221,11 @@ TensorPrologProfileVerifyDeterminism(kernel: *const void, args: **void, grid: Te
 
 | Module | Functions | Replaces |
 |--------|-----------|----------|
-| core | 11 | CUDA Runtime init/device |
-| memory | 10 | CUDA memory management |
-| stream | 10 | CUDA streams/events |
+| core | 11 | TensorProlog Runtime init/device |
+| memory | 10 | TensorProlog memory management |
+| stream | 10 | TensorProlog streams/events |
 | session | 10 | Nothing — new capability |
-| launch | 5 | CUDA kernel launch |
+| launch | 5 | TensorProlog kernel launch |
 | vdr_math | 17 | cuBLAS (~200+ functions) |
 | attention | 3 | cuDNN attention (~50+ functions) |
 | training | 10 | Custom training loops + AMP |
@@ -1247,4 +1247,4 @@ TensorPrologProfileVerifyDeterminism(kernel: *const void, args: **void, grid: Te
 
 **What's gone:** ~3,400+ API functions from float precision variants, mixed-precision management, format conversion, NaN handling, loss scaling, Transformer Engine, TensorRT calibration, SFU scheduling.
 
-**What's new:** ~90 functions across session/KB/Prolog/grammar/runner/safety/confidence that enable the architectural capabilities the paper describes — autonomous operation, persistent state, structural safety, exact provenance — none of which exist in any form in current CUDA.
+**What's new:** ~90 functions across session/KB/Prolog/grammar/runner/safety/confidence that enable the architectural capabilities the paper describes — autonomous operation, persistent state, structural safety, exact provenance — none of which exist in any form in CUDA.
