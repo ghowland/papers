@@ -471,6 +471,8 @@ Otherwise:
 
 ## Key Numbers for VDR-LLM-Prolog Python Implementation
 
+These numbers are from the Python reference implementation using Q335 (D = 2^335, ~100 decimal digits). Q335 was chosen to demonstrate exact arithmetic at a precision level beyond any possible objection — 66 orders of magnitude below the Planck length. The VDR-31 and VDR-32 toy LLM results subsequently proved that production-scale precision (Q16, Q32) is sufficient for complete transformer training and inference with exact softmax, bit-identical determinism, and monotonic loss convergence. The production implementation will use hardware-aligned frames (Q16 for weights, Q32 for accumulators) matching the Zig baseline, not Q335. The math is the same. The precision floor drops from 10^-101 to 10^-5 or 10^-10. The operations drop from arbitrary-precision Python integers to single-cycle machine instructions.
+
 | Metric | Value |
 | :--- | :--- |
 | Total tests | 884 |
