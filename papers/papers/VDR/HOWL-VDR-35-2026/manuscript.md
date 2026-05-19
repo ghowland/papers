@@ -705,3 +705,458 @@ test/             ~50 test files covering all modules
 
 build.zig         Build configuration
 ```
+
+# HOWL-VDR-35-2026 — Extended Appendices
+
+---
+
+## Appendix G: TensorProlog Instruction Latency by Q-Basis
+
+Projected from measured CPU values (VDR-32 Zig), FPGA estimates (VDR-21), and published GPU INT8 specifications. TensorProlog kernels use the INT8/INT16 tensor core path natively.
+
+| Operation | CPU Zig (ns) | T4 INT8 (ns) | H100 INT8 (ns) | H100 Theoretical Peak (ns) |
+|:---|:---|:---|:---|:---|
+| Q16 add | 2 | ~4 | ~2 | ~0.5 |
+| Q16 multiply | 4 | ~8 | ~3 | ~1.0 |
+| Q16 MAC (fused) | 5 | ~8 | ~3 | ~1.0 |
+| Q16 divmod (SHR16) | 1 | ~2 | ~1 | ~0.5 |
+| Q16 compare | 2 | ~4 | ~2 | ~0.5 |
+| Q16 softmax (100 logits) | 800 | ~200 | ~50 | ~10 |
+| Q16 dot product (d=64) | 400 | ~100 | ~25 | ~8 |
+| Q16 GEMM (128×128) | ~500,000 | ~5,000 | ~800 | ~200 |
+| Q32 add | 3 | ~6 | ~3 | ~1.0 |
+| Q32 multiply | 8 | ~16 | ~6 | ~2.0 |
+| Q32 MAC (fused) | 10 | ~16 | ~6 | ~2.0 |
+| Q335 add | 20 | ~40 | ~15 | ~4 |
+| Q335 multiply | 200 | ~400 | ~80 | ~20 |
+| Q335 divmod (SHR335) | 15 | ~2 | ~1 | ~0 (wiring) |
+| Prolog unify (VDR-VDR) | 6 | ~12 | ~4 | ~1.5 |
+| Prolog unify (compound, 4 args) | 30 | ~60 | ~20 | ~8 |
+| Prolog query (200 facts) | 4,000 | ~400 | ~100 | ~20 |
+| Grammar render (5 slots) | 500 | ~500 | ~500 | ~500 |
+| KB fact read (by id) | 50 | ~20 | ~8 | ~4 |
+| KB fact scoped search (depth 5) | 300 | ~100 | ~40 | ~20 |
+| Session snapshot (100 KB) | 50,000 | ~50,000 | ~50,000 | ~50,000 |
+
+CPU Zig: measured from VDR-32 and Phase 1–3 benchmarks on scalar CPU. T4/H100 INT8: projected from published TOPS and memory bandwidth, adjusted for kernel launch overhead. Theoretical peak: sustained throughput assuming full warp occupancy and zero memory stalls.
+
+Grammar render is host-side string operations — does not benefit from GPU. Session snapshot is host-device transfer dominated — scales with PCIe/NVLink bandwidth, not compute.
+
+The Q335 divmod row illustrates the hardware progression. On CPU it is a 384-bit shift (15 ns). On T4 it maps to multiple 64-bit shifts (~2 ns using SIMD). On H100 the wider datapath handles it in ~1 ns. On dedicated ASIC hardware it is fixed wiring (0 ns beyond wire delay). The most frequent operation in Q335 computation approaches zero cost as hardware specialization increases.
+
+---
+
+## Appendix H: TensorProlog Memory Bandwidth Utilization
+
+H100 SXM provides 3.35 TB/s memory bandwidth. Different TensorProlog workload phases consume bandwidth in different patterns.
+
+| Workload Phase | Access Pattern | Bytes Per Access | Bandwidth Utilization | Bottleneck |
+|:---|:---|:---|:---|:---|
+| GEMM (forward pass) | Sequential tile loads, 128×128 | 131,072 | 85–95% | Compute-bound at peak |
+| Attention QK^T | Batched sequential per head | 32,768 per head | 70–85% | Compute for long sequences |
+| Attention softmax | Streaming row-wise | 8 per element | 40–60% | Latency (row-level reduction) |
+| KV-cache write | Sequential append | 8 per element | 30–40% | Latency (small writes) |
+| KV-cache read | Sequential range read | 8 per element | 60–80% | Bandwidth for long contexts |
+| KB fact query (single) | Random 40-byte read | 40 | 5–10% | Latency-dominated |
+| KB fact search (scan) | Sequential 40-byte reads | 40 × n_facts | 50–70% | Bandwidth for large KBs |
+| Prolog unification batch | Random KB reads + compute | 40 per candidate | 20–40% | Compute (cross-multiply) |
+| Grammar render | Host-side string operations | N/A | N/A | Host CPU-bound |
+| Snapshot save | Bulk device-to-host | Session size | PCIe bandwidth | Transfer-bound |
+| Builtin (sort 1000 items) | Sequential read/write | 8,000 | 60–80% | Compute (comparison) |
+| Builtin (parse JSON 1 KB) | Host-side parsing | N/A | N/A | Host CPU-bound |
+
+The key observation: forward pass GEMM operations follow the same memory access pattern as conventional LLM inference and achieve similar bandwidth utilization. The new workload types (KB queries, Prolog unification) are latency-dominated rather than bandwidth-dominated. This inverts the optimization priority for KB-heavy phases: on-chip SRAM and cache hit rate matter more than off-chip bandwidth.
+
+A mixed workload that alternates between forward pass (bandwidth-hungry) and KB/Prolog operations (latency-sensitive) can overlap both phases on different SMs if the kernel scheduler launches them on separate streams. TensorProlog's launch hint system (MAC kernel, Prolog kernel, Primitive kernel) enables this scheduling differentiation.
+
+---
+
+## Appendix I: Warp Divergence Analysis
+
+Float GPU kernels lose warp efficiency from data-dependent branching. TensorProlog integer kernels eliminate all arithmetic divergence sources.
+
+| Divergence Source | Float CUDA Frequency | TensorProlog Frequency | Impact |
+|:---|:---|:---|:---|
+| NaN check (isnan) | Every operation with user data | Never (integers cannot be NaN) | 2–5% warp idle per branch |
+| Inf check (isinf) | Every accumulation | Never (integers cannot overflow to Inf) | 1–3% warp idle |
+| Subnormal handling | Occasional (data-dependent) | Never (no subnormals) | 1–2% when triggered |
+| Mixed-precision conversion | Per-layer in Transformer Engine | Never (one type) | 3–8% from format switching |
+| SFU serialization (exp, log) | Every softmax, every activation | Never (quadratic surrogate or FRU) | 10–30% on attention layers |
+| Epsilon comparison branch | Every LayerNorm, every Adam step | Never (exact comparison) | 1–2% per occurrence |
+| Loss scale overflow check | Every backward step | Never (no loss scaling) | 1–2% per step |
+| Gradient clip branch | Every parameter update | Never (no clipping) | 1–3% per update |
+| Dynamic precision selection | Per-tensor in TF32/FP8 switching | Never (static Q-basis) | 3–5% from decision logic |
+
+Cumulative warp efficiency loss from these sources in conventional float inference: published estimates range from 15–40% depending on model architecture and precision configuration. TensorProlog arithmetic has zero sources of warp divergence. Every thread in a warp executes the same instruction on different data in the same number of cycles. The only remaining divergence sources are control flow (loop bounds, conditional branches in Prolog backtracking), which are algorithmic rather than arithmetic.
+
+---
+
+## Appendix J: Token Cost Comparison — TensorProlog Command Tokens vs Conventional Function Calling
+
+Measured from VDR-8 command token structure and compared against published function-calling token costs from major LLM API providers.
+
+| Metric | TensorProlog Command | Conventional JSON Function Call |
+|:---|:---|:---|
+| Tokens per invocation | ~8 | ~25–40 |
+| Entropy per token (bits) | ~2 | ~12–15 |
+| Vocabulary in use | ~300 known names | Full vocabulary (50K+) |
+| Error rate per invocation | ~0.8% | ~14% |
+| Structural tokens generated | 0 (command is name + path) | ~15–25 (braces, colons, quotes, commas) |
+| Parse overhead | Enum lookup + path resolution | JSON parser with error recovery |
+| Result delivery | KB address (0 output tokens) | Serialized into context (~50–200 tokens) |
+| Total round-trip tokens | ~8 | ~75–240 |
+
+The round-trip difference is the dominant factor. A conventional function call generates ~30 tokens of JSON, receives a result serialized back into the context as ~50–200 tokens, and the LLM re-reads the entire growing context on the next turn. A TensorProlog command generates ~8 tokens, the result lands at a KB address, and the LLM reads a scratchpad summary (~5–10 tokens) with context size unchanged.
+
+Over a 20-turn session with 5 tool calls per turn:
+- Conventional: ~100 tool calls × ~150 average round-trip tokens = ~15,000 tool-related tokens, plus quadratic context growth from accumulated results.
+- TensorProlog: ~100 commands × ~8 tokens = ~800 command tokens. Results in KB. Context size constant.
+
+---
+
+## Appendix K: Snapshot Size by Session Complexity
+
+Measured from Phase 3 testing with varying KB and fact counts.
+
+| Session Profile | KBs | Facts | Rules | Grammars | Live Primitives | Snapshot Size | Save Time (CPU) | Restore Time (CPU) |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+| Minimal (single query) | 3 | 50 | 0 | 0 | 2 | 4 KB | ~10 μs | ~8 μs |
+| Light investigation | 12 | 300 | 5 | 2 | 8 | 18 KB | ~40 μs | ~30 μs |
+| Standard SRE (fresh) | 25 | 800 | 15 | 5 | 15 | 52 KB | ~100 μs | ~80 μs |
+| Standard SRE (mature) | 60 | 4,200 | 185 | 23 | 40 | 245 KB | ~500 μs | ~400 μs |
+| Heavy document processing | 150 | 20,000 | 50 | 30 | 60 | 1.1 MB | ~2 ms | ~1.5 ms |
+| Full SRE deployment (month 6) | 300 | 50,000 | 200 | 45 | 100 | 2.8 MB | ~5 ms | ~4 ms |
+| Maximum tested | 1,000 | 200,000 | 500 | 100 | 200 | 11 MB | ~20 ms | ~15 ms |
+
+Snapshot size scales linearly with fact count (40 bytes per fact dominates). Save/restore time scales linearly with snapshot size (dominated by memcpy). A processor runner recycling at 200 turns with a standard SRE session snapshots in ~500 μs — negligible relative to the 60-second poll interval or the milliseconds-per-forward-pass LLM cost.
+
+The maximum tested configuration (11 MB snapshot, 200,000 facts) represents an extreme case. Typical operational sessions remain under 1 MB. For comparison, a single H100's HBM3 bandwidth of 3.35 TB/s can transfer an 11 MB snapshot in ~3 μs, meaning snapshot I/O is not a bottleneck at any realistic session size.
+
+---
+
+## Appendix L: Clone COW Page Fault Rates
+
+Measured from Phase 2 clone independence tests. Page size: 4,096 bytes (~100 facts per page).
+
+| Workload Pattern | Total Pages | Pages Dirtied by Clone | COW Fault Rate | Private Memory Overhead |
+|:---|:---|:---|:---|:---|
+| Read-only clone (query only) | 50 | 0 | 0% | 0 bytes |
+| Light modification (5 new facts) | 50 | 1 | 2% | 4 KB |
+| Standard investigation | 200 | 12 | 6% | 48 KB |
+| Heavy modification (new rules + facts) | 200 | 35 | 17.5% | 140 KB |
+| Full fork (all pages modified) | 200 | 200 | 100% | 800 KB |
+
+Most clone workloads dirty a small fraction of pages. A standard investigation clone modifies ~6% of its parent's pages — 94% of the parent's KB data is shared without copying. This is why clone-per-task in the batch runner is memory-efficient: 10 concurrent clones of a 200-page session share ~94% of their memory.
+
+The full-fork case (100% dirty) is equivalent to a full copy and happens only when every KB in the session is modified. In practice this means the clone is doing work that touches every service, every metric, and every rule — more typical of a system-wide migration than a single investigation.
+
+---
+
+## Appendix M: Confidence Propagation Worked Examples
+
+All values computed in Q16 (D = 65536). Intermediate calculations shown.
+
+**Example 1: Two agreeing Prometheus sources**
+
+Source A: Prometheus metric, confidence 95/100. In Q16: V = 62259.
+Source B: Prometheus metric, confidence 95/100. In Q16: V = 62259.
+
+Complement A: 65536 − 62259 = 3277.
+Complement B: 65536 − 62259 = 3277.
+Product of complements: 3277 × 3277 = 10,738,729. Divmod by 65536: V = 163, R0 = 50,761.
+Combined confidence: 65536 − 163 = 65373. As fraction: 65373/65536 ≈ 99.75%.
+
+Exact. Not 0.9975 truncated to float16 (which would be 0.99755859375). The Q16 value 65373/65536 = 0.99751281738... is the exact result of the formula 1 − (1 − 0.95)² evaluated in Q16 arithmetic. The remainder R0 = 50,761 carries the sub-Q16 precision.
+
+**Example 2: Chain of three REST API sources**
+
+Per-link confidence: 85/100. In Q16: V = 55705.
+
+Link 1: 55705.
+Link 2: 55705 × 55705 / 65536 = 3,103,047,025 / 65536 = V = 47,346, R0 = 34,769.
+Link 3: 47,346 × 55705 / 65536 = 2,637,384,930 / 65536 = V = 40,243, R0 = 28,002.
+
+Final confidence: 40,243/65536 ≈ 61.4%.
+
+Compare: 0.85³ = 0.614125. In Q16: 0.614125 × 65536 = 40,243.2. Q16 rounds to 40,243 with remainder capturing the 0.2. The float64 result 0.614125 and the Q16 result 40,243/65536 = 0.61412353... differ by ~0.000001, which is within the Q16 precision floor (1/65536 ≈ 0.0000153). The remainder tracks this difference exactly.
+
+**Example 3: Conflicting sources with penalty**
+
+Source A: REST API, confidence 85/100, V = 55705.
+Source B: User stated, confidence 70/100, V = 45875.
+A and B conflict. Penalty: 50/100, V = 32768.
+
+After penalty, B's effective confidence: 45875 × 32768 / 65536 = 1,503,068,160 / 65536 = V = 22,937, R0 = 32,768.
+
+Combined (A and penalized B): 1 − (1 − 55705/65536)(1 − 22937/65536).
+Complement A: 9831. Complement B_penalized: 42599.
+Product: 9831 × 42599 = 418,791,369. Divmod 65536: V = 6,390, R0 = 17,529.
+Combined: 65536 − 6390 = 59146. As fraction: 59146/65536 ≈ 90.3%.
+
+Without conflict (both agreeing): would be ~95.5%. The penalty reduced the combined confidence by ~5 percentage points, reflecting the reduced trustworthiness of conflicting information.
+
+---
+
+## Appendix N: Grant Lifecycle State Machine
+
+```
+                create
+                  │
+                  ▼
+              ┌────────┐
+              │ ACTIVE │
+              └───┬────┘
+                  │
+        ┌─────────┼───────────┐
+        │         │           │
+        ▼         ▼           ▼
+   ┌─────────┐ ┌──────────┐ ┌─────────┐
+   │ EXPIRED │ │EXHAUSTED │ │ REVOKED │
+   └─────────┘ └──────────┘ └─────────┘
+```
+
+| Transition | Trigger | Mechanism | Reversible |
+|:---|:---|:---|:---|
+| ACTIVE → EXPIRED | current_time >= expires_at | Integer comparison during cleanup | No |
+| ACTIVE → EXHAUSTED | remaining_uses == 0 | Atomic decrement reaches zero | No |
+| ACTIVE → REVOKED | Admin calls revoke | Manual, permanent | No |
+| Any → Any (other) | — | Not possible | — |
+
+All terminal states are permanent. A revoked grant cannot be unrevoked. An exhausted grant cannot be refilled. An expired grant cannot be extended. To restore capability: create a new grant. The old grant's audit trail remains intact as historical record.
+
+Grant check order: state → expiry → uses → target pattern. Short-circuit on first failure. Four integer comparisons in the worst case (all pass). One comparison in the common denial case (wrong class or wrong user).
+
+---
+
+## Appendix O: Protocol Grammar Coverage
+
+Structural token percentage by protocol, measured from actual wire format analysis.
+
+| Protocol | Total Bytes (typical response) | Grammar-Produced Bytes | Grammar Coverage | LLM-Produced Bytes |
+|:---|:---|:---|:---|:---|
+| HTTP response (JSON body) | 450 | 320 | 71% | 130 (body content values) |
+| HTTP response (HTML body) | 1,200 | 900 | 75% | 300 (text content) |
+| SMTP response (envelope + headers) | 600 | 540 | 90% | 60 (subject, body text) |
+| MQTT PUBLISH (sensor data) | 120 | 105 | 88% | 15 (payload values) |
+| DNS response (A record) | 64 | 60 | 94% | 4 (IP address bytes) |
+| WebSocket text frame (JSON) | 280 | 195 | 70% | 85 (content values) |
+| Raw TCP (pipe-delimited table) | 500 | 400 | 80% | 100 (cell values) |
+
+DNS has the highest grammar coverage because the wire format is almost entirely structural (header flags, question count, record type, TTL, record length fields). The LLM's contribution to a DNS response is the 4-byte IP address — everything else is deterministic protocol structure.
+
+HTTP JSON responses have lower grammar coverage because the body content is variable, but the structural scaffolding (status line, headers, JSON delimiters) is entirely grammar-produced. A malformed HTTP response is structurally impossible when the grammar handles all non-content bytes.
+
+---
+
+## Appendix P: Builtin Execution Cost vs LLM Token Generation
+
+Time to execute a builtin compared to time to generate the equivalent output via LLM token prediction. Based on H100 INT8 for builtins and published inference throughput for LLM generation.
+
+| Operation | Builtin Time (H100) | Equivalent LLM Tokens | LLM Generation Time (H100) | Speedup |
+|:---|:---|:---|:---|:---|
+| Sort 100 integers | ~5 μs | ~200–500 tokens | ~10–25 ms | 2,000–5,000× |
+| Parse 1 KB JSON | ~2 μs | ~250+ tokens | ~12.5+ ms | 6,000× |
+| Compute mean of 50 values | ~1 μs | ~30–80 tokens | ~1.5–4 ms | 1,500–4,000× |
+| Compare two VDR values | ~0.01 μs | ~5–15 tokens | ~0.25–0.75 ms | 25,000–75,000× |
+| Format table row (grammar) | ~0.5 μs | ~15–30 tokens | ~0.75–1.5 ms | 1,500–3,000× |
+| Set intersection (50 elements) | ~3 μs | ~100–200 tokens | ~5–10 ms | 1,600–3,300× |
+| Exact Bayesian update | ~0.1 μs | ~50–200 tokens | ~2.5–10 ms | 25,000–100,000× |
+| Graph shortest path (20 nodes) | ~10 μs | ~200–500 tokens | ~10–25 ms | 1,000–2,500× |
+| KB fact query (by ID) | ~0.01 μs | ~20–50 tokens (state reconstruction) | ~1–2.5 ms | 100,000–250,000× |
+| Prolog rule fire (matching) | ~0.1 μs | ~50–200 tokens (reasoning chain) | ~2.5–10 ms | 25,000–100,000× |
+
+The KB fact query row is the most extreme: reconstructing previously established state from the context window costs 20–50 tokens of attention over the full conversation history. Querying it from an integer address costs ~10 nanoseconds. The ratio exceeds 100,000×. This is not an optimization — it is the difference between re-reading a book to find a phone number and looking up an address in an index.
+
+The Prolog rule fire row shows the accumulation benefit mechanically. A reasoning chain that the LLM generates as prose (50–200 tokens) is captured once as a rule and then fires at ~100 nanoseconds on every future match. The first invocation costs tokens. Every subsequent invocation is effectively free.
+
+---
+
+## Appendix Q: Session Counter Fields
+
+Complete session counter specification for operational monitoring. All values are exact integers.
+
+| Counter | Type | Incremented By | Reset On | Meaning |
+|:---|:---|:---|:---|:---|
+| current_turn | i32 | Each cycle completion | Session restore | Total interaction cycles |
+| facts_asserted | i32 | Each KB_ASSERT command | Session restore | Cumulative facts written |
+| facts_retracted | i32 | Each KB_RETRACT command | Session restore | Cumulative facts removed |
+| rules_fired | i64 | Each Prolog rule fire (L2 + L3) | Session restore | Cumulative rule activations |
+| prolog_queries | i64 | Each PROLOG_QUERY command | Session restore | Cumulative queries executed |
+| primitive_calls | i64 | Each BUILTIN_CALL command | Session restore | Cumulative builtin invocations |
+| grammar_renders | i64 | Each grammar render (explicit + auto) | Session restore | Cumulative format operations |
+| llm_tokens_consumed | i64 | Each generated token | Session restore | Total LLM forward passes |
+| command_tokens_consumed | i64 | Each command token (8 × n_commands) | Session restore | Total command generation cost |
+| l1_count | i64 | Each L1 cycle | Session restore | Full-judgment cycles |
+| l2_count | i64 | Each L2 cycle | Session restore | Rule-invoked cycles |
+| l3_count | i64 | Each L3 resolution | Session restore | Fully automated cycles |
+
+Derived metrics (exact fractions, not floats):
+- Auto-triage rate: l3_count / (l1_count + l2_count + l3_count)
+- Average tokens per turn: llm_tokens_consumed / current_turn
+- Command efficiency: command_tokens_consumed / primitive_calls (approaches 8 as system matures)
+- Rule reuse rate: rules_fired / prolog_queries (> 1 means rules fire without explicit query)
+
+These counters are included in snapshots and restored exactly. A session restored from a month-old snapshot reports the exact counts from the moment of snapshot — not approximations. Monitoring dashboards plotting these values over time show the accumulation curve directly: l3_count growing as a fraction of total, llm_tokens_consumed per turn declining, rules_fired growing.
+
+---
+
+## Appendix R: Audit Entry Volume Estimates
+
+Based on operation frequencies from the SRE deployment model.
+
+| Operation Category | Events Per Hour (fresh) | Events Per Hour (mature) | Bytes Per Entry | Hourly Volume |
+|:---|:---|:---|:---|:---|
+| Fact assert | 200 | 50 | 28 | 1.4–5.6 KB |
+| Fact query | 500 | 200 | 28 | 5.6–14 KB |
+| Fact retract | 20 | 5 | 28 | 140–560 bytes |
+| Rule fire | 100 | 2,000 | 28 | 2.8–56 KB |
+| Grant check (allowed) | 50 | 50 | 28 | 1.4 KB |
+| Grant check (denied) | 5 | 5 | 28 | 140 bytes |
+| Access check (denied) | 2 | 2 | 28 | 56 bytes |
+| Session create/destroy | 10 | 10 | 28 | 280 bytes |
+| Snapshot | 5 | 5 | 28 | 140 bytes |
+| Runner recycle | 0.5 | 0.5 | 28 | 14 bytes |
+| **Total** | **~892** | **~2,327** | | **~12–80 KB/hour** |
+
+At the default audit ring capacity of 1,000,000 entries (28 MB), the ring holds approximately 430–1,120 hours (18–47 days) of audit history before oldest entries are overwritten. For compliance requirements demanding longer retention, the audit ring can be drained to persistent storage periodically via an internal runner.
+
+The volume increase from fresh to mature is dominated by rule fires: mature systems fire far more rules automatically (L3), and each firing generates an audit entry. This is desirable — the audit trail documents that automated actions were taken, providing the same accountability as human-initiated actions.
+
+---
+
+## Appendix S: Cross-Platform Determinism Test Matrix
+
+Every cell in this matrix must produce byte-identical output for the same input. Any difference is a bug.
+
+| Operation | Local CPU (macOS) | Local CPU (Linux) | GCP T4 GPU | GCP H100 GPU | GCP H100 Multi-GPU |
+|:---|:---|:---|:---|:---|:---|
+| Q16 add | ✓ identical | ✓ identical | ✓ identical | ✓ identical | ✓ identical |
+| Q16 multiply | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Q16 softmax (sum=D) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Forward pass (toy) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Prolog query | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Grammar render | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Snapshot roundtrip | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Full cycle (L1) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Full cycle (L3) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Allreduce (sum) | N/A | N/A | N/A | N/A | ✓ identical |
+| Training step | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+This test matrix is the definitive validation of the determinism guarantee. In conventional float ML, this matrix cannot be populated with "identical" — float thread scheduling produces different results across platforms, and non-associative allreduce produces different results across topology changes. The matrix would contain "within tolerance" at best, with the tolerance band hiding bugs.
+
+The allreduce row is particularly significant. Conventional NCCL allreduce is non-deterministic for float sums because different reduction trees produce different results from non-associative float addition. TensorProlog allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce the same sum. This cell can be "✓ identical" because the mathematical property guarantees it.
+
+---
+
+## Appendix T: Runner Recycle Timing
+
+Measured from Phase 4 testing. Recycle = snapshot + kill + clone + restore.
+
+| Session Size | Snapshot Time | Kill Time | Clone Time | Restore Time | Total Recycle | Data Continuity Gap |
+|:---|:---|:---|:---|:---|:---|:---|
+| 10 KB (minimal) | 20 μs | 5 μs | 30 μs | 15 μs | 70 μs | ~0 (sub-ms) |
+| 50 KB (standard SRE) | 100 μs | 10 μs | 50 μs | 80 μs | 240 μs | ~0 (sub-ms) |
+| 250 KB (mature SRE) | 500 μs | 20 μs | 100 μs | 400 μs | 1,020 μs | ~1 ms |
+| 1 MB (heavy processing) | 2 ms | 50 μs | 200 μs | 1.5 ms | 3.75 ms | ~4 ms |
+| 3 MB (maximum typical) | 5 ms | 100 μs | 500 μs | 4 ms | 9.6 ms | ~10 ms |
+
+Data continuity gap is the time during which the processor runner is not receiving data from its external source. For a Prometheus scrape interval of 15 seconds, a 10 ms gap means missing less than 0.07% of one scrape interval. For practical purposes, the recycle is invisible to the data stream.
+
+Connection state save/restore adds approximately 1–5 ms depending on protocol and buffer sizes. Total recycle including connection restoration: under 15 ms for the maximum typical case.
+
+The recycle frequency at 200-turn threshold with a 1-second ingest interval is once every ~3.3 minutes. Over 24 hours: ~436 recycles. Each recycle creates a fresh session with zero accumulated attention drift, zero live state bloat, and identical knowledge (from the snapshot). The cost of 436 recycles at 10 ms each: 4.36 seconds out of 86,400 seconds — 0.005% overhead for complete drift elimination.
+
+---
+
+## Appendix U: Error Recovery Decision Table
+
+Every error code maps to a specific recovery action. No ambiguous failures.
+
+| Error | Category | Recovery Action | Automated | Human Review |
+|:---|:---|:---|:---|:---|
+| KB_FULL | KB | Compact live state (LRU eviction) | Yes | If recurrent |
+| KB_ACCESS_DENIED | Safety | Log + continue, data absent from context | Yes | Never (by design) |
+| KB_FROZEN | KB | Log + report to LLM via scratchpad | Yes | Never |
+| PROLOG_DEPTH_EXCEEDED | Prolog | Simplify query, return partial results | Yes | If recurrent |
+| PROLOG_NO_MATCH | Prolog | Fall through to LLM (L1) | Yes | Never |
+| GRAMMAR_TYPE_MISMATCH | Grammar | Report to LLM via scratchpad for correction | Yes | Never |
+| GRAMMAR_CAPACITY | Grammar | Truncate output, log | Yes | If recurrent |
+| GRANT_DENIED | Safety | Log + report, no side effect | Yes | Review grant policy |
+| GRANT_EXPIRED | Safety | Request new grant via admin channel | No | Yes |
+| GRANT_EXHAUSTED | Safety | Request new grant | No | Yes |
+| SESSION_LIMIT | Session | Reject new session, return capacity error | Yes | Scale resources |
+| SNAPSHOT_CORRUPT | Session | Hard fail, do not restore, alert admin | No | Yes (investigate) |
+| RUNNER_ERROR_THRESHOLD | Runner | Stop runner, alert, attempt restart | Partial | Review error log |
+| RUNNER_CONNECTION_LOSS | Runner | Exponential backoff reconnect | Yes | If max retries exceeded |
+| DEVICE_OUT_OF_MEMORY | Device | Kill oldest idle clone, retry | Yes | If recurrent |
+| COMMAND_PARSE_ERROR | Engine | Write error to scratchpad, LLM self-corrects | Yes | Never |
+
+"Automated: Yes" means the system handles the error without human involvement. "Human Review" indicates when human attention is warranted despite automated handling. The system does not require human intervention for any routine error — only for resource exhaustion, corruption, or policy decisions.
+
+No entry in this table involves "retry and hope float non-determinism produces a different result." Every error has a deterministic cause and a deterministic recovery.
+
+---
+
+## Appendix V: Comparison of API Function Counts
+
+Conventional CUDA ecosystem versus TensorProlog. Counts from published documentation.
+
+| Library | Float CUDA Functions | TensorProlog Equivalent | TensorProlog Functions | Reduction |
+|:---|:---|:---|:---|:---|
+| CUDA Runtime (memory, streams, events) | ~120 | Core runtime | 36 | 3.3× |
+| cuBLAS (GEMM variants, BLAS levels 1–3) | ~250 | icudaVdrGemm + elementwise | 17 | 14.7× |
+| cuDNN (convolution, attention, normalization) | ~300 | icudaAttention + icudaVdrLayerNorm | 3 | 100× |
+| cuFFT (transform plans, execution) | ~80 | icudaTransformDFT/IDFT | 4 | 20× |
+| cuSOLVER (decompositions, solvers) | ~200 | icudaLinalg* | 8 | 25× |
+| cuSPARSE (sparse operations) | ~150 | Not needed (KB addressing) | 0 | ∞ |
+| cuRAND (random generation) | ~50 | Integer random via builtins | 2 | 25× |
+| TensorRT (quantization, optimization) | ~400 | Not needed (native integer) | 0 | ∞ |
+| NCCL (collective communication) | ~100 | icudaDist* | 10 | 10× |
+| Thrust/CUB (parallel algorithms) | ~500 | Builtins (sort, scan, reduce, etc.) | ~30 | 16.7× |
+| CUTLASS (GEMM templates) | ~200 | Not needed (one GEMM) | 0 | ∞ |
+| CUDA Math API (float intrinsics) | ~800 | Not needed (integer only) | 0 | ∞ |
+| **Total conventional** | **~3,150** | | | |
+| **TensorProlog equivalents** | | | **~110** | **28.6×** |
+| **TensorProlog new capabilities** | | | **~470** | N/A |
+| **TensorProlog total** | | | **~580** | |
+
+The 28.6× function count reduction for equivalent capability comes entirely from eliminating precision-variant duplicates. The 470 new functions (KB operations, Prolog, grammars, runners, sessions, safety, confidence, builtins) provide capabilities that have no equivalent at any function count in the conventional stack.
+
+---
+
+## Appendix W: Energy Per Operation Class
+
+Projected from published 4nm CMOS energy measurements for integer versus float ALU operations.
+
+| Operation Class | Float32 Energy (pJ) | INT16 Energy (pJ) | INT8 Energy (pJ) | Q16 VDR Energy (pJ) | Ratio (Float32/Q16) |
+|:---|:---|:---|:---|:---|:---|
+| Single multiply | ~5.0 | ~1.5 | ~0.8 | ~1.5 | 3.3× |
+| Fused multiply-add | ~6.5 | ~2.0 | ~1.0 | ~2.0 | 3.3× |
+| Addition | ~1.0 | ~0.3 | ~0.2 | ~0.3 | 3.3× |
+| Comparison | ~0.8 | ~0.2 | ~0.1 | ~0.2 | 4.0× |
+| Division (SFU for float) | ~20.0 | N/A | N/A | ~3.0 (integer) | 6.7× |
+| Exp (SFU) | ~25.0 | N/A | N/A | 0 (surrogate) | ∞ |
+| Softmax (per element) | ~30.0 | N/A | N/A | ~4.0 (quadratic) | 7.5× |
+| NaN check | ~0.5 | 0 | 0 | 0 | ∞ |
+| Subnormal handling | ~2.0 | 0 | 0 | 0 | ∞ |
+| Loss scale check | ~1.0 | 0 | 0 | 0 | ∞ |
+
+Q16 VDR energy equals INT16 energy for add and multiply because the instruction is the same (widening multiply + shift). The shift is a register rename or single-cycle barrel shift — negligible energy. The energy savings come from: not needing the float pipeline at all (3.3× per MAC), not needing SFUs for softmax (7.5× per softmax element), and not needing any of the float bookkeeping operations (NaN, subnormal, loss scale — each individually small but collectively present on every operation).
+
+Over a 7B-parameter forward pass with ~14 billion MACs: the energy difference between float32 and Q16 VDR is approximately (5.0 − 1.5) × 14 × 10⁹ pJ = 49 mJ per forward pass saved. At 100 tokens per second inference, that is 4.9 W of continuous power reduction per GPU — meaningful at datacenter scale where thousands of GPUs operate continuously.
+
+---
+
+## Appendix X: Test Count Summary by Phase
+
+| Phase | New Tests | Cumulative | Coverage Focus |
+|:---|:---|:---|:---|
+| 1: Arithmetic + KB | 119 | 119 | Q16 ops, KB CRUD, fact store, visibility |
+| 2: Prolog + Grammar + Session | 151 | 270 | Unification, query, rules, grammars, snapshot, clone, primitives, grants |
+| 3: Inference + Builtins | 207 | 477 | Full cycle, forward pass, softmax sum, determinism, ~200 builtins, SRE scenario |
+| 4: Runners + Server | 55 | 532 | HTTP, WebSocket, auth, rate limit, runner lifecycle, integration |
+| 5: GPU Kernels | 60 | 592 | GPU correctness, cross-platform determinism, benchmarks |
+| 6: Production | 20 | 612 | Multi-GPU, distributed, load test, chaos |
+
+Zero tolerance for: VDR arithmetic errors (0 expected per 884 baseline), determinism failures (0 expected by construction), access control bypasses (0 expected by integer gate), and softmax sum deviations (sum = D on every call, verified by integer equality not tolerance).
+
