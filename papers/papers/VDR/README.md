@@ -17,6 +17,8 @@
 
 **Result:** VDR arithmetic has zero rounding error, builtins handle 85-97% of tokens the LLM currently generates as text, data access is gated by Prolog unification against scoped KB permissions (no prompt path bypasses it), and solved problems persist as reusable Prolog rules available to subsequent sessions.
 
+- [vdr-math Python Library](https://github.com/ghowland/vdr-math) - Python exact arithmetic library — every value is a [V, D, R] triple with fixed denominator and exact remainder tracking.
+
 ## Quick Deep Dives
 
 - **[Consolidated System Spec](HOWL-VDR-14-2026/manuscript.md)** - Complete VDR-LLM-Prolog system in one document: exact rational arithmetic (VDR triples, Q335 basis, functional remainders), scoped KB tree with 26-field struct, Prolog engine with depth-first unification, 483 builtins across 25 categories, command tokens, environments, sessions with disposable clones, orchestrated inference with four modes and exact confidence fractions, grammar-directed compaction, and 12-phase lifecycle from data sourcing through retirement. 884 tests across 37 domains, zero VDR computation errors. Five-stage build plan, 65 modules, 12 architectural layers.
