@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog ICUDA Technical Specification
+# VDR-LLM-Prolog TensorProlog Technical Specification
 
 ## Complete System Integration Layer
 
@@ -8,9 +8,9 @@
 
 ## 1. Scope
 
-This spec covers the layer between ICUDA (the GPU compute API) and VDR-LLM-Prolog (the application architecture). ICUDA provides integer arithmetic on GPU. VDR-LLM-Prolog provides KBs, Prolog, grammars, runners, sessions, builtins, safety, and the LLM-as-judgment-component model. This spec defines how the full system runs on ICUDA hardware — the orchestration, data flow, memory management, scheduling, and lifecycle that turns raw integer GPU compute into the operational system described in the paper.
+This spec covers the layer between TensorProlog (the GPU compute API) and VDR-LLM-Prolog (the application architecture). TensorProlog provides integer arithmetic on GPU. VDR-LLM-Prolog provides KBs, Prolog, grammars, runners, sessions, builtins, safety, and the LLM-as-judgment-component model. This spec defines how the full system runs on TensorProlog hardware — the orchestration, data flow, memory management, scheduling, and lifecycle that turns raw integer GPU compute into the operational system described in the paper.
 
-The paper's VDR-14 consolidated specification defines WHAT the system does. The ICUDA spec defines HOW the GPU computes. This spec defines HOW THE SYSTEM RUNS — the integration contract between architecture and silicon.
+The paper's VDR-14 consolidated specification defines WHAT the system does. The TensorProlog spec defines HOW the GPU computes. This spec defines HOW THE SYSTEM RUNS — the integration contract between architecture and silicon.
 
 ---
 
@@ -47,7 +47,7 @@ The paper's VDR-14 consolidated specification defines WHAT the system does. The 
 │  └──────┘ └──────┘ └──────┘ └────────┘ └──────────┘      │
 │                                                              │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │              ICUDA Hardware Layer                     │   │
+│  │              TensorProlog Hardware Layer                     │   │
 │  │  Integer ALUs │ KB Cache │ FRU │ Warp Scheduler      │   │
 │  └──────────────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────────────┘
@@ -744,17 +744,17 @@ vlp_session_manager_init(config: *vlp_system_config) -> vlp_status
   Side effects: device memory allocated, seed KBs populated.
 
 vlp_session_create(config: *vlp_session_config) -> vlp_session_handle
-  Allocates session in session table. Creates session-bound ICUDA stream.
+  Allocates session in session table. Creates session-bound TensorProlog stream.
   Initializes session KB subtree with root pointing to config.kb_root_id.
   Allocates live state region for session's bounded primitives.
   Sets up COW (copy-on-write) page table if session is a clone.
   Returns opaque handle used by all subsequent session operations.
-  Side effects: session table entry, ICUDA stream, KB allocations.
+  Side effects: session table entry, TensorProlog stream, KB allocations.
 
 vlp_session_destroy(handle: vlp_session_handle) -> vlp_status
   If auto_snapshot configured: calls vlp_session_snapshot first.
   Frees session's live state region. Frees session's COW pages.
-  Marks session table entry as available. Destroys ICUDA stream.
+  Marks session table entry as available. Destroys TensorProlog stream.
   Persistent KB facts written during session remain in fact store
   (unless session was COW and changes weren't merged).
   Side effects: memory freed, stream destroyed, audit entry written.
@@ -762,7 +762,7 @@ vlp_session_destroy(handle: vlp_session_handle) -> vlp_status
 vlp_session_snapshot(handle: vlp_session_handle) -> vlp_snapshot_handle
   Atomic capture:
   1. Pause all runners owned by this session (wait for current iteration).
-  2. Fence all pending ICUDA operations on session stream.
+  2. Fence all pending TensorProlog operations on session stream.
   3. Copy session's KB subtree (persistent + live) to host memory.
      For COW sessions: resolve all COW pages to concrete copies.
   4. Copy session metadata (counters, runner states).
@@ -825,7 +825,7 @@ vlp_runner_create_poller(config: *vlp_poller_config) -> vlp_runner_handle
     poll_fn: callback — the function called each cycle
     max_consecutive_errors: i32 — auto-stop threshold
   poll_fn signature: (session: vlp_session_handle) -> vlp_status
-  Each invocation gets a fresh ICUDA stream on the session.
+  Each invocation gets a fresh TensorProlog stream on the session.
   The LLM context is fresh each cycle — no attention degradation.
   Side effects: runner table entry allocated.
 
@@ -994,40 +994,40 @@ vlp_command_execute(session: vlp_session_handle, command: *vlp_command) -> vlp_c
 
        CMD_KB_ASSERT:
          Validate fact type against KB constraints.
-         Call icudaKBFactAssert. Write provenance with session's user_id,
+         Call TensorPrologKBFactAssert. Write provenance with session's user_id,
          current timestamp, and LLM_GENERATED confidence (30/100).
          Update KB.last_modified.
          Return: slot_id of asserted fact.
 
        CMD_KB_QUERY:
-         Call icudaKBFactQuery or icudaKBFactScopedSearch.
+         Call TensorPrologKBFactQuery or TensorPrologKBFactScopedSearch.
          Return: matching facts (copied to session scratchpad for LLM inspection).
          The LLM reads the scratchpad — a few tokens. Not the raw data.
 
        CMD_KB_RETRACT:
-         Call icudaKBFactRetract. Write audit entry.
+         Call TensorPrologKBFactRetract. Write audit entry.
          Return: success/not_found.
 
        CMD_PROLOG_QUERY:
-         Parse query terms. Call icudaPrologQuery.
+         Parse query terms. Call TensorPrologPrologQuery.
          Return: matching bindings (copied to scratchpad).
 
        CMD_PROLOG_ASSERT_RULE:
          Parse rule head, body, actions. Validate term types.
-         Call icudaPrologRuleAssert. This is the LLM formalizing judgment
+         Call TensorPrologPrologRuleAssert. This is the LLM formalizing judgment
          as a deterministic rule. Cost: ~25-40 LLM tokens for the command.
          Value: fires at zero LLM cost on every future match.
          Return: rule_id.
 
        CMD_BUILTIN_CALL:
          Look up builtin by id. Validate argument types.
-         Execute builtin on device (dispatch to appropriate ICUDA kernel).
+         Execute builtin on device (dispatch to appropriate TensorProlog kernel).
          Result lands at KB address, not in token stream.
          Return: result_kb_id + result_slot_id.
 
        CMD_GRAMMAR_RENDER:
          Load grammar from KB. Populate fills from KB facts or command args.
-         Call icudaGrammarRender. Output bytes go to session output buffer.
+         Call TensorPrologGrammarRender. Output bytes go to session output buffer.
          Every structural byte from grammar. Zero LLM forward passes for structure.
          Return: rendered byte count.
 
@@ -1107,10 +1107,10 @@ vlp_llm_engine_init(model_config: *vlp_model_config) -> vlp_status
   Precomputes attention scale factor as exact VDR fraction.
   Side effects: model_weights region populated.
 
-vlp_llm_forward(session: vlp_session_handle, input_ids: *i32, n_tokens: i32, logits: *vlp_q16, stream: icudaStream_t) -> vlp_status
+vlp_llm_forward(session: vlp_session_handle, input_ids: *i32, n_tokens: i32, logits: *vlp_q16, stream: TensorPrologStream_t) -> vlp_status
   Full forward pass through the model.
   Dispatches the GEMM/attention/layernorm/softmax sequence from
-  ICUDA Cookbook 1.2. All on the session's stream.
+  TensorProlog Cookbook 1.2. All on the session's stream.
   KV-cache managed in session's KB (see 6.1.1).
   Output: logits for each input position, vlp_q16 array.
   Side effects: KV-cache KB updated with new K,V entries.
@@ -1871,7 +1871,7 @@ vlp_capacity_estimate(config: *vlp_capacity_config) -> vlp_capacity_result
     live_state_memory_bytes: i64,     // from session count * avg live size
     total_device_memory_bytes: i64,   // sum of all regions
     n_devices_required: i32,          // ceil(total / device_memory)
-    tokens_per_second_estimate: i64,  // from ICUDA device throughput
+    tokens_per_second_estimate: i64,  // from TensorProlog device throughput
   All integer calculations. No "approximately."
 ```
 
@@ -1982,7 +1982,7 @@ enum vlp_error_category: i8 {
     ERR_CAT_SESSION     = 5,   // session limit, snapshot failure, clone failure
     ERR_CAT_GRANT       = 6,   // grant denied, expired, exhausted, revoked
     ERR_CAT_RUNNER      = 7,   // runner error threshold, connection loss
-    ERR_CAT_DEVICE      = 8,   // ICUDA device error, out of memory
+    ERR_CAT_DEVICE      = 8,   // TensorProlog device error, out of memory
     ERR_CAT_SYSTEM      = 9,   // initialization failure, corrupt state
 };
 
@@ -2048,7 +2048,7 @@ vlp_error_recover(session: vlp_session_handle, error: vlp_status) -> vlp_recover
 INVARIANT_1: Softmax outputs sum to D exactly.
   For every softmax call, for every row, the sum of outputs equals
   the denominator of the Q-basis. Not approximately. Exactly.
-  Checked by: icudaAttentionVerifySoftmaxSum (zero violations expected).
+  Checked by: TensorPrologAttentionVerifySoftmaxSum (zero violations expected).
 
 INVARIANT_2: KB facts at integer addresses are exact.
   Fact N at address N returns exactly what was asserted.
@@ -2150,18 +2150,18 @@ Stage 4: Operations
   Estimated: ~3,000 lines Zig.
 
 Stage 5: Scale
-  - ICUDA GPU kernel implementations of all engines
+  - TensorProlog GPU kernel implementations of all engines
   - Multi-device model parallelism
   - KB replication and sync
   - Distributed training (allreduce)
   - FPGA/ASIC kernel variants (when hardware available)
   - Production serving infrastructure (continuous batching, session pools)
   Deliverable: production-scale deployment on GPU hardware.
-  Estimated: ~5,000 lines Zig + ICUDA kernels.
+  Estimated: ~5,000 lines Zig + TensorProlog kernels.
 
 Total estimated: ~24,500 lines.
 Paper's estimate: ~20,500 lines across 65 modules.
-Difference: ICUDA integration layer adds ~4,000 lines.
+Difference: TensorProlog integration layer adds ~4,000 lines.
 ```
 
 ---

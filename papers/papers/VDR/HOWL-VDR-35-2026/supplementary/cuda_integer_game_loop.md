@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog ICUDA Runtime Engine
+# VDR-LLM-Prolog TensorProlog Runtime Engine
 
 ## Server Core, Runner Orchestration, Session Flow, Kernel Inner Loop
 
@@ -19,7 +19,7 @@ fn vlp_cycle(
     output: *vlp_output_buffer,
     kb_store: *vlp_kb_store,
     llm_engine: *vlp_llm_engine,
-    stream: icudaStream_t,
+    stream: TensorPrologStream_t,
 ) -> vlp_cycle_result {
 
     // ── Phase 0: Pre-LLM Rule Evaluation ──
@@ -309,16 +309,16 @@ fn vlp_poller_main(runner: *vlp_runner) -> void {
         vlp_output_buffer_init(&output, runner.output_buf, POLL_OUTPUT_CAPACITY);
 
         // Create fresh stream for this cycle
-        var stream: icudaStream_t = undefined;
-        icudaStreamCreateWithSession(&stream, runner.session);
+        var stream: TensorPrologStream_t = undefined;
+        TensorPrologStreamCreateWithSession(&stream, runner.session);
 
         // Run the universal cycle
         var result = vlp_cycle(
             runner.session, &input, &output,
             runner.kb_store, runner.llm_engine, stream);
 
-        icudaStreamSynchronize(stream);
-        icudaStreamDestroy(stream);
+        TensorPrologStreamSynchronize(stream);
+        TensorPrologStreamDestroy(stream);
 
         // Update runner stats
         runner.iterations_completed += 1;
@@ -410,8 +410,8 @@ fn vlp_processor_main(runner: *vlp_runner) -> void {
         var compact_input: vlp_input = undefined;
         vlp_input_from_raw_data(&compact_input, &data);
 
-        var stream: icudaStream_t = undefined;
-        icudaStreamCreateWithSession(&stream, runner.session);
+        var stream: TensorPrologStream_t = undefined;
+        TensorPrologStreamCreateWithSession(&stream, runner.session);
 
         // Attempt pure-Prolog compaction first
         var n_fired: i32 = 0;
@@ -435,8 +435,8 @@ fn vlp_processor_main(runner: *vlp_runner) -> void {
                 runner.kb_store, runner.llm_engine, stream);
         }
 
-        icudaStreamSynchronize(stream);
-        icudaStreamDestroy(stream);
+        TensorPrologStreamSynchronize(stream);
+        TensorPrologStreamDestroy(stream);
 
         turn_count += 1;
         runner.iterations_completed += 1;
@@ -541,8 +541,8 @@ fn vlp_internal_main(runner: *vlp_runner) -> void {
     while (runner.state == RUNNER_RUNNING) {
         vlp_timer_wait(timer);
 
-        var stream: icudaStream_t = undefined;
-        icudaStreamCreateWithSession(&stream, runner.session);
+        var stream: TensorPrologStream_t = undefined;
+        TensorPrologStreamCreateWithSession(&stream, runner.session);
 
         // Call the configured compute function.
         // Typical implementations:
@@ -568,8 +568,8 @@ fn vlp_internal_main(runner: *vlp_runner) -> void {
 
         var status = runner.config.compute_fn(runner.session, runner.kb_store, stream);
 
-        icudaStreamSynchronize(stream);
-        icudaStreamDestroy(stream);
+        TensorPrologStreamSynchronize(stream);
+        TensorPrologStreamDestroy(stream);
 
         runner.iterations_completed += 1;
         runner.last_iteration_timestamp = vlp_timestamp_now();
@@ -623,7 +623,7 @@ fn vlp_batch_main(runner: *vlp_runner) -> void {
             // Pop task from queue
             var task: vlp_fact = undefined;
             var popped: bool = false;
-            icudaQueuePop(runner.kb_store, runner.config.task_queue_kb_id,
+            TensorPrologQueuePop(runner.kb_store, runner.config.task_queue_kb_id,
                 runner.config.task_queue_name, &task, &popped);
 
             if (!popped) break; // queue empty
@@ -678,15 +678,15 @@ fn vlp_batch_task_execute(clone: *vlp_batch_clone) -> void {
     var output: vlp_output_buffer = undefined;
     vlp_output_buffer_init(&output, clone.output_buf, BATCH_OUTPUT_CAPACITY);
 
-    var stream: icudaStream_t = undefined;
-    icudaStreamCreateWithSession(&stream, clone.session);
+    var stream: TensorPrologStream_t = undefined;
+    TensorPrologStreamCreateWithSession(&stream, clone.session);
 
     // Run the universal cycle — same code path as everything else
     vlp_cycle(clone.session, &input, &output,
         clone.kb_store, clone.llm_engine, stream);
 
-    icudaStreamSynchronize(stream);
-    icudaStreamDestroy(stream);
+    TensorPrologStreamSynchronize(stream);
+    TensorPrologStreamDestroy(stream);
 
     clone.completed = true;
 }
@@ -737,7 +737,7 @@ struct vlp_server {
 struct vlp_server_connection {
     socket: os_socket_t,
     session: vlp_session_handle,
-    stream: icudaStream_t,
+    stream: TensorPrologStream_t,
     credential: vlp_server_credential,
     state: vlp_connection_state_enum,  // HANDSHAKE, ACTIVE, DRAINING, CLOSED
     created_at: i32,
@@ -940,8 +940,8 @@ fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connectio
     }
 
     // Create session-bound stream
-    var stream: icudaStream_t = undefined;
-    icudaStreamCreateWithSession(&stream, session);
+    var stream: TensorPrologStream_t = undefined;
+    TensorPrologStreamCreateWithSession(&stream, session);
 
     conn.session = session;
     conn.stream = stream;
@@ -1049,8 +1049,8 @@ fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connectio
             vlp_session_create(&new_session, &session_config);
             vlp_session_restore(new_session, conn_snapshot);
 
-            icudaStreamDestroy(conn.stream);
-            icudaStreamCreateWithSession(&conn.stream, new_session);
+            TensorPrologStreamDestroy(conn.stream);
+            TensorPrologStreamCreateWithSession(&conn.stream, new_session);
             conn.session = new_session;
         }
 
@@ -1084,7 +1084,7 @@ fn vlp_server_close_connection(server: *vlp_server, conn: *vlp_server_connection
     }
 
     if (conn.stream.id >= 0) {
-        icudaStreamDestroy(conn.stream);
+        TensorPrologStreamDestroy(conn.stream);
     }
 
     // Log
@@ -1887,7 +1887,7 @@ fn vlp_rate_limit_check(
     var counter_value: i32 = 0;
     var counter_window_start: i32 = 0;
 
-    icudaCounterGet(kb_store, limiter.counter_kb_id,
+    TensorPrologCounterGet(kb_store, limiter.counter_kb_id,
         &counter_name_buf, &counter_value);
 
     // Check window
@@ -1899,7 +1899,7 @@ fn vlp_rate_limit_check(
     // Is current request in the same window?
     if (now - counter_window_start >= limiter.window_seconds) {
         // New window. Reset counter.
-        icudaCounterReset(kb_store, limiter.counter_kb_id, &counter_name_buf);
+        TensorPrologCounterReset(kb_store, limiter.counter_kb_id, &counter_name_buf);
         counter_value = 0;
         // Update window start
         window_fact.value.v = now;
@@ -1919,7 +1919,7 @@ fn vlp_rate_limit_check(
     }
 
     // Allow and increment
-    icudaCounterIncrement(kb_store, limiter.counter_kb_id,
+    TensorPrologCounterIncrement(kb_store, limiter.counter_kb_id,
         &counter_name_buf, 1);
 
     return vlp_rate_limit_result{

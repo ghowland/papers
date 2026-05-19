@@ -2,7 +2,7 @@ You're right. Let me search for what exists and what the paper requires.Now I ha
 
 ---
 
-# ICUDA — Integer Compute Unified Device Architecture
+# TensorProlog — Integer Compute Unified Device Architecture
 
 ## Spec for VDR-Native GPU Computing
 
@@ -14,9 +14,9 @@ You're right. Let me search for what exists and what the paper requires.Now I ha
 
 Current CUDA exists because GPUs have float hardware and integer hardware and the software must manage both. H100 SXM delivers 3,958 TOPS INT8 Tensor Core throughput alongside 1,979 TFLOPS FP16 — two complete datapaths on one die. Each SM contains FP32 cores, FP64 cores, INT32 cores, and Tensor Cores. Special Function Units handle transcendentals like sine and cosine. The entire Transformer Engine exists to intelligently manage and dynamically choose between FP8 and 16-bit calculations, automatically handling re-casting and scaling between FP8 and 16-bit in each layer.
 
-ICUDA eliminates all of this. One datapath. One type system. One execution model. Everything is integer.
+TensorProlog eliminates all of this. One datapath. One type system. One execution model. Everything is integer.
 
-Existing research validates the approach. I-ViT demonstrated that integer-only INT8 quantization achieves comparable or slightly higher accuracy than full-precision baselines, achieving 3.72–4.11× inference speedup on GPU integer arithmetic units. I-BERT performed end-to-end integer-only BERT inference without any floating point calculation, achieving 2.4–4.0× speedup for INT8 inference on a T4 GPU. SwiftTron showed that INT8 adders and multipliers have roughly an order of magnitude less area and power overhead than FP32 equivalents. These results were achieved on hardware designed for floats, with integers as a secondary path. ICUDA targets hardware where integers are the only path.
+Existing research validates the approach. I-ViT demonstrated that integer-only INT8 quantization achieves comparable or slightly higher accuracy than full-precision baselines, achieving 3.72–4.11× inference speedup on GPU integer arithmetic units. I-BERT performed end-to-end integer-only BERT inference without any floating point calculation, achieving 2.4–4.0× speedup for INT8 inference on a T4 GPU. SwiftTron showed that INT8 adders and multipliers have roughly an order of magnitude less area and power overhead than FP32 equivalents. These results were achieved on hardware designed for floats, with integers as a secondary path. TensorProlog targets hardware where integers are the only path.
 
 ---
 
@@ -155,7 +155,7 @@ This replaces the current zoo of `mma.sync` variants with their format permutati
 
 ### 4.1 KB-Oriented Shared Memory
 
-Current CUDA shared memory is a flat scratchpad. ICUDA shared memory is structured as a KB cache.
+Current CUDA shared memory is a flat scratchpad. TensorProlog shared memory is structured as a KB cache.
 
 ```
 __shared__ vdr_kb_cache kb_local;    // fixed-size KB struct cache in shared memory
@@ -190,7 +190,7 @@ __global__ vdr_kb_store {
 
 ### 4.3 Register File
 
-Current PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. ICUDA extends to 384-bit registers for Q335 limb operations. The register file is typed — `vdr_q16`, `vdr_q32`, or `vdr_q335` — and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
+Current PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. TensorProlog extends to 384-bit registers for Q335 limb operations. The register file is typed — `vdr_q16`, `vdr_q32`, or `vdr_q335` — and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
 
 ### 4.4 No Texture Units, No Surface Units
 
@@ -204,7 +204,7 @@ Current CUDA includes texture memory, surface memory, samplers, and filtering ha
 
 Warp divergence, where threads follow different execution paths, degrades performance because divergent paths are executed serially. In current CUDA, the primary sources of divergence are: NaN/Inf checks (some threads have special values, others don't), mixed-precision branching (Transformer Engine selecting between FP8 and FP16 per layer), subnormal handling, and data-dependent transcendental computation in SFUs.
 
-ICUDA warps have zero divergence sources in the arithmetic. Integer add takes the same cycles regardless of input value. Integer multiply takes the same cycles regardless of input value. There are no special values, no special cases, no data-dependent paths. Every thread in a warp executes the same instruction in the same number of cycles every time. Full warp utilization, every cycle, by construction.
+TensorProlog warps have zero divergence sources in the arithmetic. Integer add takes the same cycles regardless of input value. Integer multiply takes the same cycles regardless of input value. There are no special values, no special cases, no data-dependent paths. Every thread in a warp executes the same instruction in the same number of cycles every time. Full warp utilization, every cycle, by construction.
 
 ### 5.2 Kernel Types
 
@@ -231,16 +231,16 @@ The runtime schedules these differently. MAC kernels get maximum SM allocation a
 
 ### 5.3 Stream Model — Session Streams
 
-Current CUDA has generic streams for overlapping compute and memory transfer. ICUDA adds session-aware streams:
+Current CUDA has generic streams for overlapping compute and memory transfer. TensorProlog adds session-aware streams:
 
 ```
-icudaSessionStream_t session;
-icudaSessionCreate(&session, kb_root_id, user_id, visibility_level);
+TensorPrologSessionStream_t session;
+TensorPrologSessionCreate(&session, kb_root_id, user_id, visibility_level);
 
 // All kernels launched on this stream inherit the session's
 // KB scope, user credentials, and visibility constraints.
 // The access check is integer comparison, not a software guard.
-icudaLaunchKernel(mac_kernel, grid, block, args, session);
+TensorPrologLaunchKernel(mac_kernel, grid, block, args, session);
 ```
 
 The session stream carries the integer credentials. The hardware enforces visibility. A kernel launched on session stream S can only access KBs that pass the integer visibility check for S's user_id. This is the structural safety from Section 4.5 of the paper, implemented at the stream scheduler level.
@@ -271,106 +271,106 @@ Integer type checking. Q-basis tracking and enforcement. KB struct layout. Widen
 
 ## 7. Runtime Library
 
-### 7.1 icudaVDR — Replaces cuBLAS, cuDNN, cuFFT
+### 7.1 TensorPrologVDR — Replaces cuBLAS, cuDNN, cuFFT
 
 ```c
 // Matrix multiply — always integer, always exact
-icudaStatus_t icudaVdrGemm(
-    icudaVdrQBasis_t qbasis,     // Q16, Q32, or Q335
+TensorPrologStatus_t TensorPrologVdrGemm(
+    TensorPrologVdrQBasis_t qbasis,     // Q16, Q32, or Q335
     int m, int n, int k,
     const void* A, const void* B, void* C,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 
 // Softmax — quadratic surrogate, sum = D exactly
-icudaStatus_t icudaVdrSoftmax(
-    icudaVdrQBasis_t qbasis,
+TensorPrologStatus_t TensorPrologVdrSoftmax(
+    TensorPrologVdrQBasis_t qbasis,
     const void* logits, void* probs, int n,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 
 // Attention — fused QKV with exact integer softmax
-icudaStatus_t icudaVdrAttention(
-    icudaVdrQBasis_t qbasis,
+TensorPrologStatus_t TensorPrologVdrAttention(
+    TensorPrologVdrQBasis_t qbasis,
     const void* Q, const void* K, const void* V,
     void* output, int seq_len, int d_model, int n_heads,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 
 // Exact exp-softmax via FRU (when hardware supports it)
-icudaStatus_t icudaVdrExpSoftmax(
-    icudaVdrQBasis_t qbasis,
+TensorPrologStatus_t TensorPrologVdrExpSoftmax(
+    TensorPrologVdrQBasis_t qbasis,
     const void* logits, void* probs, int n,
     int fru_depth,                // recurrence depth bound
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 ```
 
 No `cublasSgemm` / `cublasDgemm` / `cublasHgemm` / `cublasGemmEx` with their format negotiation. One function. One type parameter. One behavior.
 
-### 7.2 icudaProlog — New
+### 7.2 TensorPrologProlog — New
 
 ```c
 // Load KB subtree into device memory
-icudaStatus_t icudaPrologLoadKB(
+TensorPrologStatus_t TensorPrologPrologLoadKB(
     int kb_id, int depth,     // load subtree to this depth
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 
 // Execute query against loaded KBs
-icudaStatus_t icudaPrologQuery(
-    const icudaVdrTerm_t* query,
-    icudaVdrTerm_t* results, int max_results,
+TensorPrologStatus_t TensorPrologPrologQuery(
+    const TensorPrologVdrTerm_t* query,
+    TensorPrologVdrTerm_t* results, int max_results,
     int* n_results,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 
 // Assert new fact
-icudaStatus_t icudaPrologAssert(
+TensorPrologStatus_t TensorPrologPrologAssert(
     int kb_id, int slot_id,
-    const icudaVdrTerm_t* fact,
-    icudaSessionStream_t stream
+    const TensorPrologVdrTerm_t* fact,
+    TensorPrologSessionStream_t stream
 );
 
 // Fire all matching rules against current KB state
-icudaStatus_t icudaPrologFireRules(
+TensorPrologStatus_t TensorPrologPrologFireRules(
     int kb_id,
-    icudaVdrTerm_t* fired_results, int max_results,
+    TensorPrologVdrTerm_t* fired_results, int max_results,
     int* n_fired,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 ```
 
-### 7.3 icudaPrim — 448 Builtins as Device Functions
+### 7.3 TensorPrologPrim — 448 Builtins as Device Functions
 
 ```c
 // Every pure builtin from the paper's Appendix L
 // compiled to device code, callable from any kernel
-__device__ icudaStatus_t icudaPrimSort(vdr_q16* data, int n);
-__device__ icudaStatus_t icudaPrimParseJson(const u8* input, int len, int target_kb_id);
-__device__ icudaStatus_t icudaPrimVdrAdd(vdr_q16* dst, vdr_q16 a, vdr_q16 b);
-__device__ icudaStatus_t icudaPrimListFilter(vdr_q16* data, int n, pred* mask, vdr_q16* out, int* n_out);
+__device__ TensorPrologStatus_t TensorPrologPrimSort(vdr_q16* data, int n);
+__device__ TensorPrologStatus_t TensorPrologPrimParseJson(const u8* input, int len, int target_kb_id);
+__device__ TensorPrologStatus_t TensorPrologPrimVdrAdd(vdr_q16* dst, vdr_q16 a, vdr_q16 b);
+__device__ TensorPrologStatus_t TensorPrologPrimListFilter(vdr_q16* data, int n, pred* mask, vdr_q16* out, int* n_out);
 // ... 444 more
 ```
 
-### 7.4 icudaGrammar — Structural Token Generation
+### 7.4 TensorPrologGrammar — Structural Token Generation
 
 ```c
 // Load grammar template from KB
-icudaStatus_t icudaGrammarLoad(
+TensorPrologStatus_t TensorPrologGrammarLoad(
     int kb_id, int grammar_slot,
-    icudaGrammar_t* grammar,
-    icudaSessionStream_t stream
+    TensorPrologGrammar_t* grammar,
+    TensorPrologSessionStream_t stream
 );
 
 // Fill grammar slots with KB data, produce output
 // Every structural token comes from the grammar.
 // The LLM never generates a bracket.
-icudaStatus_t icudaGrammarRender(
-    icudaGrammar_t* grammar,
-    icudaVdrSlotFill_t* fills, int n_fills,
+TensorPrologStatus_t TensorPrologGrammarRender(
+    TensorPrologGrammar_t* grammar,
+    TensorPrologVdrSlotFill_t* fills, int n_fills,
     u8* output, int* output_len,
-    icudaSessionStream_t stream
+    TensorPrologSessionStream_t stream
 );
 ```
 
@@ -378,11 +378,11 @@ icudaStatus_t icudaGrammarRender(
 
 ## 8. What's Removed from the Software Stack
 
-**cuBLAS** — replaced by `icudaVdrGemm`. One function instead of hundreds of precision-variant entry points.
+**cuBLAS** — replaced by `TensorPrologVdrGemm`. One function instead of hundreds of precision-variant entry points.
 
-**cuDNN** — replaced by `icudaVdrAttention` and a handful of layer functions. No precision negotiation, no Transformer Engine switching, no mixed-precision graph optimization.
+**cuDNN** — replaced by `TensorPrologVdrAttention` and a handful of layer functions. No precision negotiation, no Transformer Engine switching, no mixed-precision graph optimization.
 
-**cuFFT** — replaced by exact integer DFT via `icudaVdrDFT`. The twiddle factors are exact VDR fractions. The roundtrip is exact (the paper validates this in Appendix H).
+**cuFFT** — replaced by exact integer DFT via `TensorPrologVdrDFT`. The twiddle factors are exact VDR fractions. The roundtrip is exact (the paper validates this in Appendix H).
 
 **NCCL** — simplified. Multi-GPU communication sends integers. No mixed-precision reduction, no loss-scaling synchronization across nodes. Allreduce is integer addition, which is commutative and associative regardless of reduction order. Current float allreduce is non-deterministic because float addition is not associative — different reduction trees produce different results. Integer allreduce is deterministic. The distributed training determinism problem disappears.
 
@@ -394,7 +394,7 @@ icudaStatus_t icudaGrammarRender(
 
 ## 9. Migration Path
 
-Phase 1: ICUDA library runs on existing H100 hardware using the INT8 tensor core path. Performance is 2× FP16 on existing silicon because you're using the fast integer datapath that's already there, and skipping everything else. This works today — the I-ViT and I-BERT papers already demonstrated it.
+Phase 1: TensorProlog library runs on existing H100 hardware using the INT8 tensor core path. Performance is 2× FP16 on existing silicon because you're using the fast integer datapath that's already there, and skipping everything else. This works today — the I-ViT and I-BERT papers already demonstrated it.
 
 Phase 2: Next-generation GPU removes SFUs and float tensor cores. The freed die area becomes more integer ALUs and larger on-chip SRAM for KB caching. Performance jump from increased integer unit count on same die area.
 
@@ -406,15 +406,15 @@ Phase 3: Full integer-native GPU with FRU per compute unit, dedicated KB cache h
 
 Current CUDA: ~4,000+ API functions across CUDA Runtime, Driver API, cuBLAS, cuDNN, cuFFT, cuSPARSE, cuSOLVER, cuRAND, TensorRT, NCCL, Thrust, CUB, CUTLASS.
 
-ICUDA: ~600 API functions. ~50 core runtime (memory, streams, sessions, launch). ~20 VDR math (GEMM, softmax, attention, elementwise, reproject). ~30 Prolog (KB load, query, assert, fire, snapshot, clone). ~448 primitives (the builtins, exposed as device functions). ~50 grammar (load, render, validate, compose).
+TensorProlog: ~600 API functions. ~50 core runtime (memory, streams, sessions, launch). ~20 VDR math (GEMM, softmax, attention, elementwise, reproject). ~30 Prolog (KB load, query, assert, fire, snapshot, clone). ~448 primitives (the builtins, exposed as device functions). ~50 grammar (load, render, validate, compose).
 
-The reduction is not from missing functionality. It's from the removal of precision-variant duplicates. Current cuBLAS has dozens of GEMM entry points for different type combinations. ICUDA has one. Current cuDNN has hundreds of functions for different layer types at different precisions. ICUDA has a handful, each with a Q-basis parameter.
+The reduction is not from missing functionality. It's from the removal of precision-variant duplicates. Current cuBLAS has dozens of GEMM entry points for different type combinations. TensorProlog has one. Current cuDNN has hundreds of functions for different layer types at different precisions. TensorProlog has a handful, each with a Q-basis parameter.
 
 ---
 
 ## 11. Determinism Guarantee
 
-ICUDA provides a guarantee that current CUDA explicitly does not: same program, same input, same output, across all devices, all driver versions, all execution orderings. This is possible because:
+TensorProlog provides a guarantee that current CUDA explicitly does not: same program, same input, same output, across all devices, all driver versions, all execution orderings. This is possible because:
 
 - Integer arithmetic has no rounding modes
 - Integer addition is associative (float addition is not)
@@ -422,4 +422,4 @@ ICUDA provides a guarantee that current CUDA explicitly does not: same program, 
 - No data-dependent execution paths (no NaN branching)
 - Allreduce produces the same result regardless of reduction tree
 
-The guarantee is: if `icudaVdrGemm` returns a result on device A, the same call with the same inputs on device B produces bit-identical output. This eliminates tolerance-based testing, enables binary diff debugging across machines, and makes regulatory compliance documentation trivial.
+The guarantee is: if `TensorPrologVdrGemm` returns a result on device A, the same call with the same inputs on device B produces bit-identical output. This eliminates tolerance-based testing, enables binary diff debugging across machines, and makes regulatory compliance documentation trivial.
