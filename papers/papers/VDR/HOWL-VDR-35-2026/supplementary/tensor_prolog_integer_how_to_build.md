@@ -17,7 +17,7 @@ Phase 1: Arithmetic + KB Store          → can test locally, no GPU
 Phase 2: Prolog + Grammar + Session     → can test locally, no GPU
 Phase 3: Inference Loop + Builtins      → needs CPU LLM (toy model)
 Phase 4: Runners + Server               → needs CPU, network
-Phase 5: TensorProlog GPU Kernels              → needs GCP GPU instance
+Phase 5: VDRProlog GPU Kernels              → needs GCP GPU instance
 Phase 6: Production Integration         → needs GCP, multi-instance
 ```
 
@@ -606,8 +606,8 @@ The universal cycle from Section 1 of this document. The game loop. Every runner
 ```
 pub fn forward(model: *const Model, input_ids: []const i32, kv_cache: *KVCache, logits: []Q16) -> void
 // Full transformer forward pass in Q16. CPU scalar.
-// Same code as the TensorProlog Cookbook 1.2, but calling Q16.mul/Q16.add
-// instead of TensorPrologVdrGemm.
+// Same code as the VDRProlog Cookbook 1.2, but calling Q16.mul/Q16.add
+// instead of VDRPrologVdrGemm.
 //
 // For Phase 3 testing: use the VDR-32 toy model (181 params, 5-token vocab).
 // The forward pass is verified correct by the existing 688ns benchmark.
@@ -714,7 +714,7 @@ src/
 
 ---
 
-### 1.6 Phase 5: TensorProlog GPU Kernels
+### 1.6 Phase 5: VDRProlog GPU Kernels
 
 The system moves to GPU. This is the first phase that requires GCP.
 
@@ -723,7 +723,7 @@ The system moves to GPU. This is the first phase that requires GCP.
 ```
 src/
 ├── gpu/
-│   ├── device.zig           # TensorProlog device init, memory layout, stream management
+│   ├── device.zig           # VDRProlog device init, memory layout, stream management
 │   ├── kernel_mac.zig       # Q16 matrix multiply-accumulate kernel
 │   ├── kernel_softmax.zig   # quadratic softmax surrogate kernel
 │   ├── kernel_attention.zig # fused attention kernel
@@ -791,7 +791,7 @@ Phase 1: Arithmetic + KB Store         ~2,500 lines    1-2 weeks
 Phase 2: Prolog + Grammar + Session    ~5,500 lines    2-3 weeks
 Phase 3: Inference Loop + Builtins     ~7,000 lines    3-4 weeks
 Phase 4: Runners + Server              ~6,000 lines    3-4 weeks
-Phase 5: TensorProlog GPU Kernels             ~6,000 lines    4-6 weeks
+Phase 5: VDRProlog GPU Kernels             ~6,000 lines    4-6 weeks
 Phase 6: Production Integration        ~3,000 lines    3-4 weeks
 
 Total:                                 ~30,000 lines   16-23 weeks

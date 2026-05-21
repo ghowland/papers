@@ -1,10 +1,10 @@
-# TensorProlog Build Turn Plan
+# VDRProlog Build Turn Plan
 
 ## Repository Setup Script
 
 ```bash
 #!/bin/bash
-# TensorProlog repository structure
+# VDRProlog repository structure
 # Run from project root
 
 mkdir -p src/vdr
@@ -280,7 +280,7 @@ touch scripts/setup_gcp.sh
 touch scripts/upload_and_test.sh
 touch scripts/bench.sh
 
-echo "TensorProlog repository structure created: $(find src -name '*.zig' | wc -l) source files, $(find test -name '*.zig' | wc -l) test files"
+echo "VDRProlog repository structure created: $(find src -name '*.zig' | wc -l) source files, $(find test -name '*.zig' | wc -l) test files"
 ```
 
 ---

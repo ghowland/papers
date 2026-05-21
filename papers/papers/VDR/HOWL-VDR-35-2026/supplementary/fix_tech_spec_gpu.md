@@ -14,7 +14,7 @@ From the analysis, the rewrite needs to:
 
 The data types, memory layout, session model, safety model, invariants, and host-side orchestration (Sections 3, 4.1, 4.2, 5, 7-18) remain unchanged — only Section 4.3 (shared memory), Section 6 (device engines), and the bridge layer need rewriting.
 
-One question before I write: the spec references "TensorProlog Hardware Layer" as a custom silicon concept (integer ALUs, KB Cache, FRU, Warp Scheduler). Should the rewrite target **commodity Vulkan GPU hardware** (T4, L4, H100 — what you'd actually run on GCP today), or should it preserve the aspirational custom hardware path alongside? I'll assume commodity Vulkan as the primary target with a note about future custom silicon, since that's what you're actually building toward with this project. Agree?
+One question before I write: the spec references "VDRProlog Hardware Layer" as a custom silicon concept (integer ALUs, KB Cache, FRU, Warp Scheduler). Should the rewrite target **commodity Vulkan GPU hardware** (T4, L4, H100 — what you'd actually run on GCP today), or should it preserve the aspirational custom hardware path alongside? I'll assume commodity Vulkan as the primary target with a note about future custom silicon, since that's what you're actually building toward with this project. Agree?
 
 Actually — you said write it, so I'll proceed with commodity Vulkan as primary, custom silicon as noted future path.
 

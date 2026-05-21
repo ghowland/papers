@@ -1,4 +1,4 @@
-# TensorProlog Workflow Cookbook
+# VDRProlog Workflow Cookbook
 
 ## Complete ML Practitioner Reference
 
@@ -14,14 +14,14 @@ The starting point for any LLM work. Weights arrive as integer checkpoints.
 
 ```
 // Initialize device
-TensorPrologInit(0);
-TensorPrologDevice_t dev;
-TensorPrologDeviceGet(&dev, 0);
-TensorPrologDeviceSetCurrent(dev);
+VDRPrologInit(0);
+VDRPrologDevice_t dev;
+VDRPrologDeviceGet(&dev, 0);
+VDRPrologDeviceSetCurrent(dev);
 
 // Check capabilities
-TensorPrologDeviceProps_t props;
-TensorPrologDeviceGetProperties(&props, dev);
+VDRPrologDeviceProps_t props;
+VDRPrologDeviceGetProperties(&props, dev);
 // props.max_q_basis tells you Q16/Q32/Q335 support
 // props.has_fru tells you if transcendentals are hardware-accelerated
 // props.kb_cache_size_bytes tells you how many KBs fit in shared memory
@@ -29,10 +29,10 @@ TensorPrologDeviceGetProperties(&props, dev);
 // Allocate model weights
 i64 n_params = 7_000_000_000;  // 7B model
 void* weights;
-TensorPrologMallocTyped(&weights, TensorProlog_Q16, n_params);
+VDRPrologMallocTyped(&weights, VDRProlog_Q16, n_params);
 
 // Load checkpoint — bit-identical to what was saved, always, on any device
-TensorPrologTrainCheckpointLoad(weights, NULL, TensorProlog_Q16, n_params,
+VDRPrologTrainCheckpointLoad(weights, NULL, VDRProlog_Q16, n_params,
     "/models/llama-vdr-7b-q16.ckpt", stream);
 
 // No precision negotiation. No mixed-precision config.
@@ -54,7 +54,7 @@ The fundamental operation. Input tokens → output logits.
 // embedding table is weights[0..vocab_size * d_model]
 // input_ids is array of i32 token indices
 // embedded is output: array of vdr_q16 vectors
-TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
     seq_len, d_model, vocab_size,
     &one_q16, one_hot_input, seq_len,
     embedding_table, vocab_size,
@@ -66,11 +66,11 @@ TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
 for (i32 layer = 0; layer < n_layers; layer++) {
 
     // Layer norm — exact mean and variance
-    TensorPrologVdrLayerNorm(TensorProlog_Q16, hidden, normed,
+    VDRPrologVdrLayerNorm(VDRProlog_Q16, hidden, normed,
         gamma[layer], beta[layer], d_model, 0, stream);
 
     // QKV projection — single GEMM, split output
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, 3 * d_model, d_model,
         &one_q16, normed, seq_len,
         qkv_weights[layer], d_model,
@@ -78,34 +78,34 @@ for (i32 layer = 0; layer < n_layers; layer++) {
     // Split qkv_out into Q, K, V by pointer arithmetic — no copy
 
     // Attention — fused, exact
-    TensorPrologAttentionConfig_t attn_cfg = {
-        .qbasis = TensorProlog_Q16,
+    VDRPrologAttentionConfig_t attn_cfg = {
+        .qbasis = VDRProlog_Q16,
         .seq_len = seq_len,
         .d_model = d_model,
         .n_heads = n_heads,
         .d_head = d_model / n_heads,
         .causal_mask = true,
-        .softmax_type = TensorProlog_SOFTMAX_QUADRATIC,
+        .softmax_type = VDRProlog_SOFTMAX_QUADRATIC,
     };
-    TensorPrologAttentionForward(&attn_cfg, Q, K, V, attn_out, NULL, stream);
+    VDRPrologAttentionForward(&attn_cfg, Q, K, V, attn_out, NULL, stream);
     // attn_out attention weights sum to 65536 per row. Exactly.
     // Not 65535.99. Not 65536.01. 65536.
 
     // Output projection
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, d_model, d_model,
         &one_q16, attn_out, seq_len,
         out_proj_weights[layer], d_model,
         &zero_q16, projected, seq_len, stream);
 
     // Residual add — exact
-    TensorPrologVdrAdd(TensorProlog_Q16, hidden, projected, hidden, seq_len * d_model, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, hidden, projected, hidden, seq_len * d_model, stream);
 
     // MLP: norm → up-project → activation → down-project → residual
-    TensorPrologVdrLayerNorm(TensorProlog_Q16, hidden, normed,
+    VDRPrologVdrLayerNorm(VDRProlog_Q16, hidden, normed,
         mlp_gamma[layer], mlp_beta[layer], d_model, 0, stream);
 
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, mlp_dim, d_model,
         &one_q16, normed, seq_len,
         mlp_up[layer], d_model,
@@ -114,29 +114,29 @@ for (i32 layer = 0; layer < n_layers; layer++) {
     // Activation: quadratic surrogate or exact GELU via FRU
     // Quadratic: element-wise square, normalized — same pattern as softmax
     // Or if FRU available:
-    // TensorPrologFRUExp(TensorProlog_Q16, mlp_hidden, ...) for exact GELU
+    // VDRPrologFRUExp(VDRProlog_Q16, mlp_hidden, ...) for exact GELU
 
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, d_model, mlp_dim,
         &one_q16, mlp_activated, seq_len,
         mlp_down[layer], mlp_dim,
         &zero_q16, mlp_out, seq_len, stream);
 
-    TensorPrologVdrAdd(TensorProlog_Q16, hidden, mlp_out, hidden, seq_len * d_model, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, hidden, mlp_out, hidden, seq_len * d_model, stream);
 }
 
 // Final layer norm + logit projection
-TensorPrologVdrLayerNorm(TensorProlog_Q16, hidden, normed_final,
+VDRPrologVdrLayerNorm(VDRProlog_Q16, hidden, normed_final,
     final_gamma, final_beta, d_model, 0, stream);
 
-TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
     seq_len, vocab_size, d_model,
     &one_q16, normed_final, seq_len,
     lm_head, d_model,
     &zero_q16, logits, seq_len, stream);
 
 // Softmax over vocabulary — exact
-TensorPrologVdrSoftmax(TensorProlog_Q16, logits_last_pos, probs, vocab_size, stream);
+VDRPrologVdrSoftmax(VDRProlog_Q16, logits_last_pos, probs, vocab_size, stream);
 // probs sums to 65536. Pick the highest. That's your next token.
 ```
 
@@ -148,15 +148,15 @@ TensorPrologVdrSoftmax(TensorProlog_Q16, logits_last_pos, probs, vocab_size, str
 
 ```
 // Create compute graph for backward pass
-TensorPrologComputeGraph_t graph;
-TensorPrologTrainComputeGraphCreate(&graph);
+VDRPrologComputeGraph_t graph;
+VDRPrologTrainComputeGraphCreate(&graph);
 
 // Optimizer state
 void *m_state, *v_state;  // Adam first/second moments
-TensorPrologMallocTyped(&m_state, TensorProlog_Q16, n_params);
-TensorPrologMallocTyped(&v_state, TensorProlog_Q16, n_params);
-TensorPrologMemset(m_state, 0, n_params * 8);
-TensorPrologMemset(v_state, 0, n_params * 8);
+VDRPrologMallocTyped(&m_state, VDRProlog_Q16, n_params);
+VDRPrologMallocTyped(&v_state, VDRProlog_Q16, n_params);
+VDRPrologMemset(m_state, 0, n_params * 8);
+VDRPrologMemset(v_state, 0, n_params * 8);
 
 // Learning rate as exact fraction: 3/10000 at Q16
 // V = 65536 * 3 / 10000 = 19, D = 65536
@@ -174,32 +174,32 @@ for (i32 epoch = 0; epoch < n_epochs; epoch++) {
         load_batch(train_data, batch, input_ids, target_ids);
 
         // Forward pass with graph recording
-        TensorPrologTrainComputeGraphRecord(graph, true);
+        VDRPrologTrainComputeGraphRecord(graph, true);
         // ... (same forward pass as 1.2, operations recorded in graph)
-        TensorPrologTrainComputeGraphRecord(graph, false);
+        VDRPrologTrainComputeGraphRecord(graph, false);
 
         // Loss — exact cross-entropy
-        TensorPrologTrainComputeLoss(TensorProlog_Q16, logits, target_ids, &loss,
+        VDRPrologTrainComputeLoss(VDRProlog_Q16, logits, target_ids, &loss,
             vocab_size, batch_size, stream);
         // loss is a VDR scalar. Compare to previous batch by integer comparison.
         // Monotonic decrease is verifiable by < operator. Not by "is it within epsilon."
 
         // Backward — exact gradients
-        TensorPrologTrainBackwardPass(graph, &loss, stream);
+        VDRPrologTrainBackwardPass(graph, &loss, stream);
         // Every gradient is exact. Chain rule on exact values = exact derivatives.
         // No gradient explosion from accumulated float error.
         // No gradient underflow from vanishing float precision.
         // No loss scaling needed. No gradient clipping needed.
 
         // Update — exact Adam
-        TensorPrologTrainAdamUpdate(TensorProlog_Q16, weights, gradients, m_state, v_state,
+        VDRPrologTrainAdamUpdate(VDRProlog_Q16, weights, gradients, m_state, v_state,
             &lr, &beta1, &beta2, epoch * n_batches + batch, n_params, stream);
         // Parameters change by exactly lr * adjusted_gradient.
         // Not by approximately lr * approximately adjusted_gradient.
     }
 
     // Checkpoint — bit-identical save
-    TensorPrologTrainCheckpointSave(weights, optimizer_state, TensorProlog_Q16, n_params,
+    VDRPrologTrainCheckpointSave(weights, optimizer_state, VDRProlog_Q16, n_params,
         checkpoint_path, stream);
     // Resume on a different machine: identical training trajectory.
     // Not "similar." Identical. Every parameter, every gradient, every update.
@@ -212,32 +212,32 @@ for (i32 epoch = 0; epoch < n_epochs; epoch++) {
 
 ### 1.4 KV-Cache for Autoregressive Generation
 
-In conventional LLMs, KV-cache avoids recomputing attention for previous tokens. In TensorProlog, the cache is KB-resident.
+In conventional LLMs, KV-cache avoids recomputing attention for previous tokens. In VDRProlog, the cache is KB-resident.
 
 ```
 // Create session for generation
-TensorPrologSessionConfig_t sess_cfg = {
+VDRPrologSessionConfig_t sess_cfg = {
     .kb_root_id = model_kb_root,
     .user_id = user_id,
-    .visibility_level = TensorProlog_VIS_INTERNAL,
+    .visibility_level = VDRProlog_VIS_INTERNAL,
     .max_kb_count = 1000,
     .max_live_memory_bytes = 64 * 1024 * 1024,  // 64MB for KV cache
 };
-TensorPrologSession_t session;
-TensorPrologSessionCreate(&session, &sess_cfg);
+VDRPrologSession_t session;
+VDRPrologSessionCreate(&session, &sess_cfg);
 
-TensorPrologStream_t gen_stream;
-TensorPrologStreamCreateWithSession(&gen_stream, session);
+VDRPrologStream_t gen_stream;
+VDRPrologStreamCreateWithSession(&gen_stream, session);
 
 // KV cache lives in a KB — addressed by layer_id + position
-TensorPrologKBConfig_t kv_cfg = {
+VDRPrologKBConfig_t kv_cfg = {
     .name = "kv_cache",
     .parent_id = model_kb_root,
-    .visibility = TensorProlog_VIS_INTERNAL,
+    .visibility = VDRProlog_VIS_INTERNAL,
     .max_facts = n_layers * max_seq_len * 2,  // K and V per layer per position
 };
 i32 kv_kb_id;
-TensorPrologKBCreate(kb_store, &kv_kb_id, &kv_cfg);
+VDRPrologKBCreate(kb_store, &kv_kb_id, &kv_cfg);
 
 // Generate tokens autoregressively
 for (i32 step = 0; step < max_gen_len; step++) {
@@ -253,35 +253,35 @@ for (i32 step = 0; step < max_gen_len; step++) {
         // Store in KB
         i32 k_slot = layer * max_seq_len * 2 + step * 2;
         i32 v_slot = k_slot + 1;
-        TensorPrologKBFactAssert(kb_store, kv_kb_id, k_slot, &k_current);
-        TensorPrologKBFactAssert(kb_store, kv_kb_id, v_slot, &v_current);
+        VDRPrologKBFactAssert(kb_store, kv_kb_id, k_slot, &k_current);
+        VDRPrologKBFactAssert(kb_store, kv_kb_id, v_slot, &v_current);
 
         // Attention: Q against all cached K, V up to current position
         // Load cached K, V from KB into device buffer
         for (i32 pos = 0; pos <= step; pos++) {
-            TensorPrologKBFactQuery(kb_store, kv_kb_id,
+            VDRPrologKBFactQuery(kb_store, kv_kb_id,
                 layer * max_seq_len * 2 + pos * 2, &cached_k[pos]);
-            TensorPrologKBFactQuery(kb_store, kv_kb_id,
+            VDRPrologKBFactQuery(kb_store, kv_kb_id,
                 layer * max_seq_len * 2 + pos * 2 + 1, &cached_v[pos]);
         }
         // Or batch-load the range — same O(1) per fact
 
         // Attention for this layer, this position
-        TensorPrologAttentionConfig_t step_cfg = {
-            .qbasis = TensorProlog_Q16,
+        VDRPrologAttentionConfig_t step_cfg = {
+            .qbasis = VDRProlog_Q16,
             .seq_len = step + 1,
             .d_model = d_model,
             .n_heads = n_heads,
             .d_head = d_model / n_heads,
             .causal_mask = false,  // all positions visible (we only have up to current)
-            .softmax_type = TensorProlog_SOFTMAX_QUADRATIC,
+            .softmax_type = VDRProlog_SOFTMAX_QUADRATIC,
         };
-        TensorPrologAttentionForward(&step_cfg, q_current, cached_k, cached_v,
+        VDRPrologAttentionForward(&step_cfg, q_current, cached_k, cached_v,
             attn_out, NULL, gen_stream);
     }
 
     // Final logits → softmax → sample
-    TensorPrologVdrSoftmax(TensorProlog_Q16, logits, probs, vocab_size, gen_stream);
+    VDRPrologVdrSoftmax(VDRProlog_Q16, logits, probs, vocab_size, gen_stream);
 
     // Greedy: find max
     // Or sampling: use probs as exact distribution for weighted random
@@ -303,16 +303,16 @@ for (i32 step = 0; step < max_gen_len; step++) {
 
 ```
 // Initialize across 8 GPUs
-TensorPrologComm_t comm;
-TensorPrologDistCommCreate(&comm, 8, rank);
+VDRPrologComm_t comm;
+VDRPrologDistCommCreate(&comm, 8, rank);
 
 // Each rank loads the same checkpoint — bit-identical on all ranks
-TensorPrologTrainCheckpointLoad(weights, opt_state, TensorProlog_Q16, n_params, path, stream);
+VDRPrologTrainCheckpointLoad(weights, opt_state, VDRProlog_Q16, n_params, path, stream);
 // Verification: allreduce the checksum, confirm identical
 i32 local_checksum = compute_integer_checksum(weights, n_params);
 i32 global_checksum;
-TensorPrologDistAllReduce(&local_checksum, &global_checksum, 1, TensorProlog_Q16,
-    TensorProlog_SUM, comm, stream);
+VDRPrologDistAllReduce(&local_checksum, &global_checksum, 1, VDRProlog_Q16,
+    VDRProlog_SUM, comm, stream);
 // global_checksum == local_checksum * 8 if all ranks identical. Integer check.
 
 for (i32 step = 0; step < total_steps; step++) {
@@ -322,22 +322,22 @@ for (i32 step = 0; step < total_steps; step++) {
 
     // Forward + backward (same as 1.3)
     forward_pass(weights, input_ids, logits, graph, stream);
-    TensorPrologTrainComputeLoss(TensorProlog_Q16, logits, target_ids, &loss,
+    VDRPrologTrainComputeLoss(VDRProlog_Q16, logits, target_ids, &loss,
         vocab_size, batch_size, stream);
-    TensorPrologTrainBackwardPass(graph, &loss, stream);
+    VDRPrologTrainBackwardPass(graph, &loss, stream);
 
     // AllReduce gradients — THIS IS THE CRITICAL DIFFERENCE
-    TensorPrologDistAllReduce(gradients, gradients_reduced, n_params,
-        TensorProlog_Q16, TensorProlog_SUM, comm, stream);
+    VDRPrologDistAllReduce(gradients, gradients_reduced, n_params,
+        VDRProlog_Q16, VDRProlog_SUM, comm, stream);
     // Integer sum is associative. Ring reduce, tree reduce, butterfly reduce —
     // ALL produce bit-identical results. ALWAYS.
     // Conventional float allreduce is non-deterministic because float addition
     // is non-associative. Different reduction orders → different sums.
     // This is why distributed float training is non-reproducible.
-    // This is why TensorProlog distributed training IS reproducible.
+    // This is why VDRProlog distributed training IS reproducible.
 
     // All ranks apply identical update to identical parameters
-    TensorPrologTrainAdamUpdate(TensorProlog_Q16, weights, gradients_reduced, m, v,
+    VDRPrologTrainAdamUpdate(VDRProlog_Q16, weights, gradients_reduced, m, v,
         &lr, &beta1, &beta2, step, n_params, stream);
     // After update, all 8 ranks have bit-identical weights.
     // Not "approximately the same weights." Identical.
@@ -345,7 +345,7 @@ for (i32 step = 0; step < total_steps; step++) {
 }
 ```
 
-**What's eliminated:** The entire class of "distributed training non-determinism" bugs. In conventional systems, running the same training job twice on the same hardware can produce different models because allreduce ordering varies. In TensorProlog, same data + same hyperparameters = same model. Every time. This also means: if rank 3 produces a different loss than rank 0 at any step, it's a real bug, not float noise. Binary search to find it.
+**What's eliminated:** The entire class of "distributed training non-determinism" bugs. In conventional systems, running the same training job twice on the same hardware can produce different models because allreduce ordering varies. In VDRProlog, same data + same hyperparameters = same model. Every time. This also means: if rank 3 produces a different loss than rank 0 at any step, it's a real bug, not float noise. Binary search to find it.
 
 ---
 
@@ -353,17 +353,17 @@ for (i32 step = 0; step < total_steps; step++) {
 
 ```
 // Load base model (frozen)
-TensorPrologTrainCheckpointLoad(base_weights, NULL, TensorProlog_Q16, n_base_params, base_path, stream);
+VDRPrologTrainCheckpointLoad(base_weights, NULL, VDRProlog_Q16, n_base_params, base_path, stream);
 
 // Allocate LoRA adapters — small exact integer matrices
 i32 lora_rank = 16;
 void *lora_A, *lora_B;  // per layer
 for (i32 layer = 0; layer < n_layers; layer++) {
-    TensorPrologMallocTyped(&lora_A[layer], TensorProlog_Q16, d_model * lora_rank);
-    TensorPrologMallocTyped(&lora_B[layer], TensorProlog_Q16, lora_rank * d_model);
+    VDRPrologMallocTyped(&lora_A[layer], VDRProlog_Q16, d_model * lora_rank);
+    VDRPrologMallocTyped(&lora_B[layer], VDRProlog_Q16, lora_rank * d_model);
     // Initialize A: small random integers
     // Initialize B: zeros (standard LoRA init)
-    TensorPrologMemset(lora_B[layer], 0, lora_rank * d_model * 8);
+    VDRPrologMemset(lora_B[layer], 0, lora_rank * d_model * 8);
 }
 
 for (i32 step = 0; step < finetune_steps; step++) {
@@ -371,37 +371,37 @@ for (i32 step = 0; step < finetune_steps; step++) {
     // Forward: base_out + lora_B @ lora_A @ input
     for (i32 layer = 0; layer < n_layers; layer++) {
         // Base path (frozen, no gradient)
-        TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+        VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
             seq_len, d_model, d_model,
             &one_q16, hidden, seq_len,
             base_weights_layer[layer], d_model,
             &zero_q16, base_out, seq_len, stream);
 
         // LoRA path (trainable)
-        TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+        VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
             seq_len, lora_rank, d_model,
             &one_q16, hidden, seq_len,
             lora_A[layer], d_model,
             &zero_q16, lora_mid, seq_len, stream);
 
-        TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+        VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
             seq_len, d_model, lora_rank,
             &one_q16, lora_mid, seq_len,
             lora_B[layer], lora_rank,
             &zero_q16, lora_out, seq_len, stream);
 
         // Combine: exact addition
-        TensorPrologVdrAdd(TensorProlog_Q16, base_out, lora_out, combined, seq_len * d_model, stream);
+        VDRPrologVdrAdd(VDRProlog_Q16, base_out, lora_out, combined, seq_len * d_model, stream);
     }
 
     // Loss + backward only through LoRA parameters
     // Gradients for base_weights are not computed (not in graph)
     // Gradients for lora_A, lora_B are exact
-    TensorPrologTrainAdamUpdate(TensorProlog_Q16, lora_params, lora_grads, ...);
+    VDRPrologTrainAdamUpdate(VDRProlog_Q16, lora_params, lora_grads, ...);
 }
 
 // Save LoRA adapter — tiny checkpoint, bit-identical
-TensorPrologTrainCheckpointSave(lora_all, NULL, TensorProlog_Q16, total_lora_params,
+VDRPrologTrainCheckpointSave(lora_all, NULL, VDRProlog_Q16, total_lora_params,
     "lora-adapter-q16.ckpt", stream);
 
 // Merge LoRA into base (optional, for deployment):
@@ -411,7 +411,7 @@ TensorPrologTrainCheckpointSave(lora_all, NULL, TensorProlog_Q16, total_lora_par
 // quantization loss from merging.
 ```
 
-**What's different:** LoRA in conventional systems often trains in FP16/BF16, then quantizes back to INT8 for deployment, losing precision in the merge. TensorProlog LoRA trains in Q16, merges in Q16, deploys in Q16. The merged model is exactly base + delta. No merge artifacts.
+**What's different:** LoRA in conventional systems often trains in FP16/BF16, then quantizes back to INT8 for deployment, losing precision in the merge. VDRProlog LoRA trains in Q16, merges in Q16, deploys in Q16. The merged model is exactly base + delta. No merge artifacts.
 
 ---
 
@@ -425,18 +425,18 @@ void* model_weights;  // loaded once
 void handle_request(i32 user_id, i32* prompt_tokens, i32 prompt_len) {
 
     // Session isolates this request's KV-cache and state
-    TensorPrologSessionConfig_t cfg = {
+    VDRPrologSessionConfig_t cfg = {
         .kb_root_id = serving_root,
         .user_id = user_id,
-        .visibility_level = TensorProlog_VIS_OWNER_ONLY,
+        .visibility_level = VDRProlog_VIS_OWNER_ONLY,
         .max_kb_count = 100,
         .max_live_memory_bytes = 16 * 1024 * 1024,
     };
-    TensorPrologSession_t session;
-    TensorPrologSessionCreate(&session, &cfg);
+    VDRPrologSession_t session;
+    VDRPrologSessionCreate(&session, &cfg);
 
-    TensorPrologStream_t stream;
-    TensorPrologStreamCreateWithSession(&stream, session);
+    VDRPrologStream_t stream;
+    VDRPrologStreamCreateWithSession(&stream, session);
 
     // Safety: user_id determines KB visibility
     // This user can only see their own KBs and public KBs
@@ -455,8 +455,8 @@ void handle_request(i32 user_id, i32* prompt_tokens, i32 prompt_len) {
     }
 
     // Cleanup
-    TensorPrologStreamDestroy(stream);
-    TensorPrologSessionDestroy(session);
+    VDRPrologStreamDestroy(stream);
+    VDRPrologSessionDestroy(session);
     // KV-cache gone. User state gone. Clean isolation.
 }
 
@@ -468,11 +468,11 @@ void handle_request(i32 user_id, i32* prompt_tokens, i32 prompt_len) {
 
 // For persistent conversations (chatbot):
 // Don't destroy the session. Snapshot it.
-TensorPrologSessionSnapshot(session, &snapshot);
-TensorPrologSnapshotSave(&snapshot, user_session_path);
+VDRPrologSessionSnapshot(session, &snapshot);
+VDRPrologSnapshotSave(&snapshot, user_session_path);
 // Next conversation turn: restore and continue
-TensorPrologSnapshotLoad(&snapshot, user_session_path);
-TensorPrologSessionRestore(session, &snapshot);
+VDRPrologSnapshotLoad(&snapshot, user_session_path);
+VDRPrologSessionRestore(session, &snapshot);
 // KV-cache restored. Conversation continues from exact prior state.
 ```
 
@@ -487,23 +487,23 @@ void run_eval(void* model_weights, eval_dataset_t* eval) {
     i32 total = eval->n_examples;
 
     for (i32 i = 0; i < total; i++) {
-        TensorPrologSession_t session;
-        TensorPrologSessionCreate(&session, &eval_cfg);
-        TensorPrologStream_t stream;
-        TensorPrologStreamCreateWithSession(&stream, session);
+        VDRPrologSession_t session;
+        VDRPrologSessionCreate(&session, &eval_cfg);
+        VDRPrologStream_t stream;
+        VDRPrologStreamCreateWithSession(&stream, session);
 
         // Forward pass
         forward_pass(model_weights, eval->examples[i].tokens,
             eval->examples[i].len, logits, stream);
 
-        TensorPrologVdrSoftmax(TensorProlog_Q16, logits, probs, vocab_size, stream);
+        VDRPrologVdrSoftmax(VDRProlog_Q16, logits, probs, vocab_size, stream);
 
         // Compare prediction to target
         i32 predicted = argmax(probs, vocab_size);
         if (predicted == eval->examples[i].target) total_correct++;
 
-        TensorPrologStreamDestroy(stream);
-        TensorPrologSessionDestroy(session);
+        VDRPrologStreamDestroy(stream);
+        VDRPrologSessionDestroy(session);
     }
 
     // Accuracy as exact fraction
@@ -515,7 +515,7 @@ void run_eval(void* model_weights, eval_dataset_t* eval) {
 
     // Verify determinism explicitly
     bool identical;
-    TensorPrologProfileVerifyDeterminism(forward_kernel, args, grid, block, 5, &identical);
+    VDRPrologProfileVerifyDeterminism(forward_kernel, args, grid, block, 5, &identical);
     // identical == true. Guaranteed. Or your hardware is broken.
 }
 ```
@@ -526,54 +526,54 @@ void run_eval(void* model_weights, eval_dataset_t* eval) {
 
 ### 1.9 The VDR-LLM-Prolog Session — Full System
 
-Everything above was raw TensorProlog for model computation. This workflow shows the full system from the paper: LLM + KB + Prolog + grammars + runners.
+Everything above was raw VDRProlog for model computation. This workflow shows the full system from the paper: LLM + KB + Prolog + grammars + runners.
 
 ```
 // ========================================
 // Session Setup: SRE Investigation System
 // ========================================
 
-TensorPrologSession_t sre_session;
-TensorPrologSessionCreate(&sre_session, &sre_cfg);
-TensorPrologStream_t sre_stream;
-TensorPrologStreamCreateWithSession(&sre_stream, sre_session);
+VDRPrologSession_t sre_session;
+VDRPrologSessionCreate(&sre_session, &sre_cfg);
+VDRPrologStream_t sre_stream;
+VDRPrologStreamCreateWithSession(&sre_stream, sre_session);
 
 // Create KB tree for SRE domain
 i32 root_kb, services_kb, incidents_kb, rules_kb, grammars_kb;
-TensorPrologKBCreate(kb_store, &root_kb, &(TensorPrologKBConfig_t){
-    .name = "sre_root", .parent_id = -1, .visibility = TensorProlog_VIS_INTERNAL });
-TensorPrologKBCreate(kb_store, &services_kb, &(TensorPrologKBConfig_t){
+VDRPrologKBCreate(kb_store, &root_kb, &(VDRPrologKBConfig_t){
+    .name = "sre_root", .parent_id = -1, .visibility = VDRProlog_VIS_INTERNAL });
+VDRPrologKBCreate(kb_store, &services_kb, &(VDRPrologKBConfig_t){
     .name = "services", .parent_id = root_kb });
-TensorPrologKBCreate(kb_store, &incidents_kb, &(TensorPrologKBConfig_t){
+VDRPrologKBCreate(kb_store, &incidents_kb, &(VDRPrologKBConfig_t){
     .name = "incidents", .parent_id = root_kb });
-TensorPrologKBCreate(kb_store, &rules_kb, &(TensorPrologKBConfig_t){
+VDRPrologKBCreate(kb_store, &rules_kb, &(VDRPrologKBConfig_t){
     .name = "triage_rules", .parent_id = root_kb });
-TensorPrologKBCreate(kb_store, &grammars_kb, &(TensorPrologKBConfig_t){
+VDRPrologKBCreate(kb_store, &grammars_kb, &(VDRPrologKBConfig_t){
     .name = "grammars", .parent_id = root_kb });
 
 // Load seed rules (the 150+ accumulated triage rules)
 load_seed_rules(kb_store, rules_kb, "sre_rules.snapshot");
 
 // Create SRE findings grammar
-TensorPrologGrammar_t findings_grammar;
-TensorPrologGrammarCreate(&findings_grammar,
+VDRPrologGrammar_t findings_grammar;
+VDRPrologGrammarCreate(&findings_grammar,
     "| {service:text} | {error_rate:vdr_value} | {confidence:vdr_value} "
     "| {cause:text} | {status:enum(investigating|confirmed|resolved)} |");
-TensorPrologGrammarStoreInKB(kb_store, grammars_kb, 0, findings_grammar);
+VDRPrologGrammarStoreInKB(kb_store, grammars_kb, 0, findings_grammar);
 
 // ========================================
 // Processor Runner: Continuous Prometheus Ingest
 // ========================================
 
-TensorPrologRunner_t prom_runner;
-TensorPrologRunnerCreateProcessor(&prom_runner, &(TensorPrologProcessorConfig_t){
+VDRPrologRunner_t prom_runner;
+VDRPrologRunnerCreateProcessor(&prom_runner, &(VDRPrologProcessorConfig_t){
     .session = prom_session,  // separate session for isolation
-    .source_type = TensorProlog_SOURCE_PROMETHEUS,
+    .source_type = VDRProlog_SOURCE_PROMETHEUS,
     .connection_params = prom_connection_bytes,
     .ingest_fn = prometheus_ingest,    // compacts metrics to KB facts
     .max_turns_before_recycle = 200,   // fresh LLM every 200 turns
 });
-TensorPrologRunnerStart(prom_runner);
+VDRPrologRunnerStart(prom_runner);
 // Now running continuously. Every metric lands as an exact VDR fraction
 // at an integer KB address. No LLM involved. No tokens spent.
 
@@ -581,21 +581,21 @@ TensorPrologRunnerStart(prom_runner);
 // Polling Runner: Rule Evaluation Every 60s
 // ========================================
 
-TensorPrologRunner_t poll_runner;
-TensorPrologRunnerCreatePoller(&poll_runner, &(TensorPrologPollerConfig_t){
+VDRPrologRunner_t poll_runner;
+VDRPrologRunnerCreatePoller(&poll_runner, &(VDRPrologPollerConfig_t){
     .interval_ms = 60000,
     .session = poll_session,
     .poll_fn = triage_poll,
     .max_consecutive_errors = 5,
 });
-TensorPrologRunnerStart(poll_runner);
+VDRPrologRunnerStart(poll_runner);
 
 // triage_poll implementation:
-TensorPrologStatus_t triage_poll(TensorPrologSession_t session) {
+VDRPrologStatus_t triage_poll(VDRPrologSession_t session) {
     // Fire all triage rules against current metric state
-    TensorPrologPrologFired_t fired[256];
+    VDRPrologPrologFired_t fired[256];
     i32 n_fired;
-    TensorPrologPrologFireAndCommit(kb_store, rules_kb, &n_fired, stream);
+    VDRPrologPrologFireAndCommit(kb_store, rules_kb, &n_fired, stream);
     // n_fired rules matched. Results committed as KB facts.
     // Zero LLM tokens. Pure Prolog unification over exact integers.
 
@@ -604,34 +604,34 @@ TensorPrologStatus_t triage_poll(TensorPrologSession_t session) {
         if (fired[i].action == ACTION_CREATE_INCIDENT) {
             // Create incident KB
             i32 inc_kb;
-            TensorPrologKBCreate(kb_store, &inc_kb, &(TensorPrologKBConfig_t){
+            VDRPrologKBCreate(kb_store, &inc_kb, &(VDRPrologKBConfig_t){
                 .name = fired[i].incident_name,
                 .parent_id = incidents_kb,
             });
             // Assert findings
-            TensorPrologKBFactAssert(kb_store, inc_kb, SLOT_SERVICE, &fired[i].service);
-            TensorPrologKBFactAssert(kb_store, inc_kb, SLOT_ERROR_RATE, &fired[i].rate);
-            TensorPrologKBFactAssert(kb_store, inc_kb, SLOT_CONFIDENCE, &fired[i].confidence);
+            VDRPrologKBFactAssert(kb_store, inc_kb, SLOT_SERVICE, &fired[i].service);
+            VDRPrologKBFactAssert(kb_store, inc_kb, SLOT_ERROR_RATE, &fired[i].rate);
+            VDRPrologKBFactAssert(kb_store, inc_kb, SLOT_CONFIDENCE, &fired[i].confidence);
             // Confidence is exact VDR fraction from propagation:
             // Prometheus metric confidence 95/100, rule derivation 1/1,
             // combined: 95/100. Not "approximately 0.95."
 
             // Render findings table via grammar — zero LLM tokens
-            TensorPrologGrammar_t grammar;
-            TensorPrologGrammarLoadFromKB(kb_store, grammars_kb, 0, &grammar);
-            TensorPrologGrammarFill_t fills[] = {
+            VDRPrologGrammar_t grammar;
+            VDRPrologGrammarLoadFromKB(kb_store, grammars_kb, 0, &grammar);
+            VDRPrologGrammarFill_t fills[] = {
                 { .slot = "service", .text = fired[i].service_name },
                 { .slot = "error_rate", .vdr_value = fired[i].rate },
                 { .slot = "confidence", .vdr_value = fired[i].confidence },
                 { .slot = "cause", .text = fired[i].cause_name },
                 { .slot = "status", .enum_value = "investigating" },
             };
-            TensorPrologGrammarRender(grammar, fills, 5, output_buf, OUT_CAP, &out_len);
+            VDRPrologGrammarRender(grammar, fills, 5, output_buf, OUT_CAP, &out_len);
             // Every pipe, every space, every header came from the grammar.
             // LLM contribution: zero.
         }
     }
-    return TensorProlog_OK;
+    return VDRProlog_OK;
 }
 
 // ========================================
@@ -643,26 +643,26 @@ TensorPrologStatus_t triage_poll(TensorPrologSession_t session) {
 // Rule Hygiene: Monthly Pruning
 // ========================================
 
-TensorPrologRunner_t hygiene_runner;
-TensorPrologRunnerCreateInternal(&hygiene_runner, &(TensorPrologInternalConfig_t){
+VDRPrologRunner_t hygiene_runner;
+VDRPrologRunnerCreateInternal(&hygiene_runner, &(VDRPrologInternalConfig_t){
     .session = hygiene_session,
     .interval_ms = 86400000 * 30,  // monthly
     .compute_fn = rule_hygiene,
 });
 
-TensorPrologStatus_t rule_hygiene(TensorPrologSession_t session) {
+VDRPrologStatus_t rule_hygiene(VDRPrologSession_t session) {
     i32 candidates[100];
     i32 n_candidates;
-    TensorPrologPrologHygiene(kb_store, rules_kb,
+    VDRPrologPrologHygiene(kb_store, rules_kb,
         90,       // stale_days
         20, 100,  // min_success_rate = 20/100
         candidates, 100, &n_candidates, stream);
     // candidates contains rule_ids that are stale or failing.
     // Log them. Optionally retract:
     for (i32 i = 0; i < n_candidates; i++) {
-        TensorPrologPrologRuleRetract(kb_store, rules_kb, candidates[i]);
+        VDRPrologPrologRuleRetract(kb_store, rules_kb, candidates[i]);
     }
-    return TensorProlog_OK;
+    return VDRProlog_OK;
 }
 ```
 
@@ -678,7 +678,7 @@ Draft model generates candidates fast, main model verifies in parallel.
 // Both produce exact softmax distributions.
 
 void speculative_generate(void* main_weights, void* draft_weights,
-                           TensorPrologSession_t session, TensorPrologStream_t stream) {
+                           VDRPrologSession_t session, VDRPrologStream_t stream) {
 
     i32 K = 5;  // speculate 5 tokens ahead
 
@@ -687,7 +687,7 @@ void speculative_generate(void* main_weights, void* draft_weights,
         i32 draft_tokens[K];
         for (i32 i = 0; i < K; i++) {
             forward_pass_decode_step(draft_weights, draft_session, draft_stream);
-            TensorPrologVdrSoftmax(TensorProlog_Q16, draft_logits, draft_probs, vocab_size, draft_stream);
+            VDRPrologVdrSoftmax(VDRProlog_Q16, draft_logits, draft_probs, vocab_size, draft_stream);
             draft_tokens[i] = argmax(draft_probs, vocab_size);
         }
 
@@ -697,7 +697,7 @@ void speculative_generate(void* main_weights, void* draft_weights,
 
         // Accept/reject by exact comparison
         for (i32 i = 0; i < K; i++) {
-            TensorPrologVdrSoftmax(TensorProlog_Q16, main_logits[i], main_probs, vocab_size, stream);
+            VDRPrologVdrSoftmax(VDRProlog_Q16, main_logits[i], main_probs, vocab_size, stream);
 
             // main_probs[draft_tokens[i]] is the main model's exact probability
             // for the draft token. Compare exactly.
@@ -707,7 +707,7 @@ void speculative_generate(void* main_weights, void* draft_weights,
 
             // Accept if main_prob >= draft_prob (or sampling criterion)
             i32 cmp;
-            TensorPrologVdrCompare(TensorProlog_Q16, &main_prob, &draft_prob, &cmp, 1, stream);
+            VDRPrologVdrCompare(VDRProlog_Q16, &main_prob, &draft_prob, &cmp, 1, stream);
             if (cmp >= 0) {
                 accept(draft_tokens[i]);
             } else {
@@ -734,12 +734,12 @@ void speculative_generate(void* main_weights, void* draft_weights,
 
 void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
                i32 top_k, void* input, void* output, i32 seq_len,
-               TensorPrologStream_t stream) {
+               VDRPrologStream_t stream) {
 
     // Router forward: input → gating logits
     void* gate_logits;
-    TensorPrologMallocTyped(&gate_logits, TensorProlog_Q16, seq_len * n_experts);
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologMallocTyped(&gate_logits, VDRProlog_Q16, seq_len * n_experts);
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, n_experts, d_model,
         &one_q16, input, seq_len,
         router_weights, d_model,
@@ -747,7 +747,7 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
 
     // Softmax per token over experts — exact
     for (i32 pos = 0; pos < seq_len; pos++) {
-        TensorPrologVdrSoftmax(TensorProlog_Q16,
+        VDRPrologVdrSoftmax(VDRProlog_Q16,
             gate_logits + pos * n_experts,
             gate_probs + pos * n_experts,
             n_experts, stream);
@@ -764,15 +764,15 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
     }
 
     // Dispatch to selected experts, weighted combine
-    TensorPrologMemset(output, 0, seq_len * d_model * 8);
+    VDRPrologMemset(output, 0, seq_len * d_model * 8);
     for (i32 e = 0; e < top_k; e++) {
         // Expert forward pass
-        TensorPrologVdrGemm(TensorProlog_Q16, ...);  // expert MLP
+        VDRPrologVdrGemm(VDRProlog_Q16, ...);  // expert MLP
 
         // Weighted add to output — exact
-        TensorPrologVdrScale(TensorProlog_Q16, expert_out, &selected_weights[e],
+        VDRPrologVdrScale(VDRProlog_Q16, expert_out, &selected_weights[e],
             scaled, seq_len * d_model, stream);
-        TensorPrologVdrAdd(TensorProlog_Q16, output, scaled, output,
+        VDRPrologVdrAdd(VDRProlog_Q16, output, scaled, output,
             seq_len * d_model, stream);
     }
     // Output is exact weighted sum of exactly top-K experts.
@@ -780,7 +780,7 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
 }
 ```
 
-**Key insight:** MoE routing is notoriously sensitive to float precision because expert selection happens at decision boundaries. Tokens near the boundary between expert 3 and expert 4 can be routed differently on different hardware due to float rounding in the softmax. TensorProlog routing is deterministic: same input always selects the same experts.
+**Key insight:** MoE routing is notoriously sensitive to float precision because expert selection happens at decision boundaries. Tokens near the boundary between expert 3 and expert 4 can be routed differently on different hardware due to float rounding in the softmax. VDRProlog routing is deterministic: same input always selects the same experts.
 
 ---
 
@@ -792,7 +792,7 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
 void dpo_training_step(void* policy_weights, void* ref_weights,
                         i32* chosen_tokens, i32 chosen_len,
                         i32* rejected_tokens, i32 rejected_len,
-                        vdr_q16 beta, TensorPrologStream_t stream) {
+                        vdr_q16 beta, VDRPrologStream_t stream) {
 
     // Forward pass: policy log-probs for chosen and rejected
     forward_pass(policy_weights, chosen_tokens, chosen_len, chosen_logits, stream);
@@ -807,11 +807,11 @@ void dpo_training_step(void* policy_weights, void* ref_weights,
     // log_ratio_rejected = sum(log_policy_rejected - log_ref_rejected)
 
     // With FRU:
-    TensorPrologFRULog(TensorProlog_Q16, policy_chosen_probs, log_policy_chosen, chosen_len, 8, stream);
-    TensorPrologFRULog(TensorProlog_Q16, ref_chosen_probs, log_ref_chosen, chosen_len, 8, stream);
-    TensorPrologVdrSub(TensorProlog_Q16, log_policy_chosen, log_ref_chosen,
+    VDRPrologFRULog(VDRProlog_Q16, policy_chosen_probs, log_policy_chosen, chosen_len, 8, stream);
+    VDRPrologFRULog(VDRProlog_Q16, ref_chosen_probs, log_ref_chosen, chosen_len, 8, stream);
+    VDRPrologVdrSub(VDRProlog_Q16, log_policy_chosen, log_ref_chosen,
         log_ratio_chosen_per_token, chosen_len, stream);
-    TensorPrologVdrReduce(TensorProlog_Q16, log_ratio_chosen_per_token, TensorProlog_SUM,
+    VDRPrologVdrReduce(VDRProlog_Q16, log_ratio_chosen_per_token, VDRProlog_SUM,
         &zero_q16, &log_ratio_chosen, chosen_len, stream);
     // Same for rejected
 
@@ -819,13 +819,13 @@ void dpo_training_step(void* policy_weights, void* ref_weights,
     // All exact VDR operations. No float noise in the preference signal.
     // The model learns from exact preference gradients, not noisy approximations.
 
-    TensorPrologVdrSub(TensorProlog_Q16, &log_ratio_chosen, &log_ratio_rejected, &margin, 1, stream);
-    TensorPrologVdrMul(TensorProlog_Q16, &beta, &margin, &scaled_margin, 1, stream);
+    VDRPrologVdrSub(VDRProlog_Q16, &log_ratio_chosen, &log_ratio_rejected, &margin, 1, stream);
+    VDRPrologVdrMul(VDRProlog_Q16, &beta, &margin, &scaled_margin, 1, stream);
     // sigmoid via FRU or rational approximation
     // loss = -log(sigmoid_result)
     // backward through exact computation graph
-    TensorPrologTrainBackwardPass(graph, &loss, stream);
-    TensorPrologTrainAdamUpdate(TensorProlog_Q16, policy_weights, gradients, ...);
+    VDRPrologTrainBackwardPass(graph, &loss, stream);
+    VDRPrologTrainAdamUpdate(VDRProlog_Q16, policy_weights, gradients, ...);
 }
 ```
 
@@ -839,12 +839,12 @@ void dpo_training_step(void* policy_weights, void* ref_weights,
 // Merge two fine-tuned models by exact weighted average
 void merge_models(void* model_a, void* model_b, vdr_q16 weight_a,
                    vdr_q16 weight_b, void* merged, i64 n_params,
-                   TensorPrologStream_t stream) {
+                   VDRPrologStream_t stream) {
 
     // merged = weight_a * model_a + weight_b * model_b
-    TensorPrologVdrScale(TensorProlog_Q16, model_a, &weight_a, scaled_a, n_params, stream);
-    TensorPrologVdrScale(TensorProlog_Q16, model_b, &weight_b, scaled_b, n_params, stream);
-    TensorPrologVdrAdd(TensorProlog_Q16, scaled_a, scaled_b, merged, n_params, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, model_a, &weight_a, scaled_a, n_params, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, model_b, &weight_b, scaled_b, n_params, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, scaled_a, scaled_b, merged, n_params, stream);
 
     // That's it. The merged model is exactly the weighted average.
     // weight_a = 7/10, weight_b = 3/10:
@@ -866,17 +866,17 @@ void merge_models(void* model_a, void* model_b, vdr_q16 weight_a,
 
 ```
 // Periodically check that your Q-basis is sufficient
-void remainder_health_check(void* weights, i64 n_params, TensorPrologStream_t stream) {
+void remainder_health_check(void* weights, i64 n_params, VDRPrologStream_t stream) {
 
     void* magnitudes;
-    TensorPrologMallocTyped(&magnitudes, TensorProlog_Q16, n_params);
+    VDRPrologMallocTyped(&magnitudes, VDRProlog_Q16, n_params);
 
-    TensorPrologVdrRemainderMagnitude(TensorProlog_Q16, weights, magnitudes, n_params, stream);
+    VDRPrologVdrRemainderMagnitude(VDRProlog_Q16, weights, magnitudes, n_params, stream);
 
     // Compute statistics on remainder magnitudes
     vdr_q16 max_remainder, mean_remainder;
-    TensorPrologBuiltinMaxBy(TensorProlog_Q16, magnitudes, magnitudes, &max_remainder, n_params);
-    TensorPrologStatsMean(TensorProlog_Q16, magnitudes, &mean_remainder, n_params, stream);
+    VDRPrologBuiltinMaxBy(VDRProlog_Q16, magnitudes, magnitudes, &max_remainder, n_params);
+    VDRPrologStatsMean(VDRProlog_Q16, magnitudes, &mean_remainder, n_params, stream);
 
     // If max_remainder is large relative to D, you need deeper R slots or higher Q-basis.
     // If mean_remainder is near zero, Q16 is sufficient for this model.
@@ -885,14 +885,14 @@ void remainder_health_check(void* weights, i64 n_params, TensorPrologStream_t st
     // Compare to threshold
     vdr_q16 threshold = { .v = 655, .r0 = 0 };  // ~1% of D
     i32 cmp;
-    TensorPrologVdrCompare(TensorProlog_Q16, &max_remainder, &threshold, &cmp, 1, stream);
+    VDRPrologVdrCompare(VDRProlog_Q16, &max_remainder, &threshold, &cmp, 1, stream);
     if (cmp > 0) {
         // Consider reprojecting to Q32 for this layer
-        TensorPrologVdrReproject(TensorProlog_Q16, TensorProlog_Q32, weights_layer, weights_layer_q32,
+        VDRPrologVdrReproject(VDRProlog_Q16, VDRProlog_Q32, weights_layer, weights_layer_q32,
             layer_params, stream);
     }
 
-    TensorPrologFree(magnitudes);
+    VDRPrologFree(magnitudes);
 }
 ```
 
@@ -915,7 +915,7 @@ void remainder_health_check(void* weights, i64 n_params, TensorPrologStream_t st
 
 void forward_diffusion(void* x_0, void* noise, void* x_t,
                         vdr_q16 alpha_bar_t, i32 n_pixels,
-                        TensorPrologStream_t stream) {
+                        VDRPrologStream_t stream) {
 
     // x_t = sqrt(alpha_bar_t) * x_0 + sqrt(1 - alpha_bar_t) * noise
     // sqrt via FRU — exact to declared depth
@@ -923,13 +923,13 @@ void forward_diffusion(void* x_0, void* noise, void* x_t,
     vdr_q16 one_minus_alpha = { .v = 65536 - alpha_bar_t.v, .r0 = 0 };
 
     void *sqrt_alpha, *sqrt_one_minus;
-    TensorPrologFRUSqrt(TensorProlog_Q16, &alpha_bar_t, sqrt_alpha, 6, stream);
-    TensorPrologFRUSqrt(TensorProlog_Q16, &one_minus_alpha, sqrt_one_minus, 6, stream);
+    VDRPrologFRUSqrt(VDRProlog_Q16, &alpha_bar_t, sqrt_alpha, 6, stream);
+    VDRPrologFRUSqrt(VDRProlog_Q16, &one_minus_alpha, sqrt_one_minus, 6, stream);
 
     // Scale and add — exact
-    TensorPrologVdrScale(TensorProlog_Q16, x_0, sqrt_alpha, term1, n_pixels, stream);
-    TensorPrologVdrScale(TensorProlog_Q16, noise, sqrt_one_minus, term2, n_pixels, stream);
-    TensorPrologVdrAdd(TensorProlog_Q16, term1, term2, x_t, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, x_0, sqrt_alpha, term1, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, noise, sqrt_one_minus, term2, n_pixels, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, term1, term2, x_t, n_pixels, stream);
 
     // x_t is the exact noised version at timestep t.
     // Apply the exact inverse: x_0 = (x_t - sqrt(1-a)*noise) / sqrt(a)
@@ -945,7 +945,7 @@ void forward_diffusion(void* x_0, void* noise, void* x_t,
 ```
 void reverse_step(void* model_weights, void* x_t, void* x_t_minus_1,
                    vdr_q16 alpha_t, vdr_q16 alpha_bar_t, vdr_q16 alpha_bar_t_minus_1,
-                   i32 n_pixels, TensorPrologSession_t session, TensorPrologStream_t stream) {
+                   i32 n_pixels, VDRPrologSession_t session, VDRPrologStream_t stream) {
 
     // Predict noise using U-Net
     unet_forward(model_weights, x_t, t, predicted_noise, session, stream);
@@ -958,33 +958,33 @@ void reverse_step(void* model_weights, void* x_t, void* x_t_minus_1,
     vdr_q16 one_minus_alpha_t, recip_sqrt_alpha;
     one_minus_alpha_t.v = 65536 - alpha_t.v;
 
-    TensorPrologFRUSqrt(TensorProlog_Q16, &alpha_t, &sqrt_alpha, 6, stream);
-    TensorPrologVdrDiv(TensorProlog_Q16, &one_q16, &sqrt_alpha, &recip_sqrt_alpha, 1, stream);
+    VDRPrologFRUSqrt(VDRProlog_Q16, &alpha_t, &sqrt_alpha, 6, stream);
+    VDRPrologVdrDiv(VDRProlog_Q16, &one_q16, &sqrt_alpha, &recip_sqrt_alpha, 1, stream);
 
     vdr_q16 one_minus_alpha_bar;
     one_minus_alpha_bar.v = 65536 - alpha_bar_t.v;
-    TensorPrologFRUSqrt(TensorProlog_Q16, &one_minus_alpha_bar, &sqrt_one_minus_abar, 6, stream);
+    VDRPrologFRUSqrt(VDRProlog_Q16, &one_minus_alpha_bar, &sqrt_one_minus_abar, 6, stream);
 
     // coeff = (1-alpha_t) / sqrt(1-alpha_bar_t)
-    TensorPrologVdrDiv(TensorProlog_Q16, &one_minus_alpha_t, &sqrt_one_minus_abar, &coeff, 1, stream);
+    VDRPrologVdrDiv(VDRProlog_Q16, &one_minus_alpha_t, &sqrt_one_minus_abar, &coeff, 1, stream);
 
     // x_t - coeff * predicted_noise
-    TensorPrologVdrScale(TensorProlog_Q16, predicted_noise, &coeff, scaled_noise, n_pixels, stream);
-    TensorPrologVdrSub(TensorProlog_Q16, x_t, scaled_noise, adjusted, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, predicted_noise, &coeff, scaled_noise, n_pixels, stream);
+    VDRPrologVdrSub(VDRProlog_Q16, x_t, scaled_noise, adjusted, n_pixels, stream);
 
     // mu = recip_sqrt_alpha * adjusted
-    TensorPrologVdrScale(TensorProlog_Q16, adjusted, &recip_sqrt_alpha, mu, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, adjusted, &recip_sqrt_alpha, mu, n_pixels, stream);
 
     // Add scheduled noise for steps > 0 (stochastic)
     // sigma_t = known exact schedule value
     // x_{t-1} = mu + sigma_t * z, where z is integer noise
-    TensorPrologVdrScale(TensorProlog_Q16, random_noise, &sigma_t, noise_term, n_pixels, stream);
-    TensorPrologVdrAdd(TensorProlog_Q16, mu, noise_term, x_t_minus_1, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, random_noise, &sigma_t, noise_term, n_pixels, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, mu, noise_term, x_t_minus_1, n_pixels, stream);
 }
 
 // Full denoising loop
 void denoise(void* model_weights, void* x_T, void* x_0,
-              i32 n_steps, i32 n_pixels, TensorPrologSession_t session, TensorPrologStream_t stream) {
+              i32 n_steps, i32 n_pixels, VDRPrologSession_t session, VDRPrologStream_t stream) {
 
     void* x_current = x_T;
     for (i32 t = n_steps - 1; t >= 0; t--) {
@@ -1009,7 +1009,7 @@ void denoise(void* model_weights, void* x_T, void* x_0,
 
 ```
 void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
-                              TensorPrologComputeGraph_t graph, TensorPrologStream_t stream) {
+                              VDRPrologComputeGraph_t graph, VDRPrologStream_t stream) {
 
     // Sample random timestep
     i32 t = random_int(0, n_timesteps);
@@ -1023,24 +1023,24 @@ void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
     forward_diffusion(x_0, noise, x_t, alpha_bars[t], n_pixels, stream);
 
     // Record compute graph
-    TensorPrologTrainComputeGraphRecord(graph, true);
+    VDRPrologTrainComputeGraphRecord(graph, true);
 
     // Predict noise — U-Net forward
     unet_forward(unet_weights, x_t, t, predicted_noise, session, stream);
 
-    TensorPrologTrainComputeGraphRecord(graph, false);
+    VDRPrologTrainComputeGraphRecord(graph, false);
 
     // MSE loss between predicted and actual noise — exact
-    TensorPrologVdrSub(TensorProlog_Q16, predicted_noise, noise, diff, n_pixels, stream);
-    TensorPrologVdrMul(TensorProlog_Q16, diff, diff, squared, n_pixels, stream);  // element-wise square
-    TensorPrologStatsMean(TensorProlog_Q16, squared, &mse_loss, n_pixels, stream);
+    VDRPrologVdrSub(VDRProlog_Q16, predicted_noise, noise, diff, n_pixels, stream);
+    VDRPrologVdrMul(VDRProlog_Q16, diff, diff, squared, n_pixels, stream);  // element-wise square
+    VDRPrologStatsMean(VDRProlog_Q16, squared, &mse_loss, n_pixels, stream);
     // mse_loss is an exact VDR fraction.
 
     // Backward — exact gradients through the U-Net
-    TensorPrologTrainBackwardPass(graph, &mse_loss, stream);
+    VDRPrologTrainBackwardPass(graph, &mse_loss, stream);
 
     // Update
-    TensorPrologTrainAdamUpdate(TensorProlog_Q16, unet_weights, gradients, ...);
+    VDRPrologTrainAdamUpdate(VDRProlog_Q16, unet_weights, gradients, ...);
 }
 ```
 
@@ -1051,16 +1051,16 @@ void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
 ```
 void cfg_guided_denoise(void* model_weights, void* x_t, void* x_t_minus_1,
                           i32* conditioning, vdr_q16 guidance_scale,
-                          i32 n_pixels, TensorPrologStream_t stream) {
+                          i32 n_pixels, VDRPrologStream_t stream) {
 
     // Predict noise conditioned and unconditioned
     unet_forward(model_weights, x_t, t, conditioning, cond_noise, stream);
     unet_forward(model_weights, x_t, t, NULL, uncond_noise, stream);
 
     // Guided noise = uncond + scale * (cond - uncond)
-    TensorPrologVdrSub(TensorProlog_Q16, cond_noise, uncond_noise, diff, n_pixels, stream);
-    TensorPrologVdrScale(TensorProlog_Q16, diff, &guidance_scale, scaled_diff, n_pixels, stream);
-    TensorPrologVdrAdd(TensorProlog_Q16, uncond_noise, scaled_diff, guided_noise, n_pixels, stream);
+    VDRPrologVdrSub(VDRProlog_Q16, cond_noise, uncond_noise, diff, n_pixels, stream);
+    VDRPrologVdrScale(VDRProlog_Q16, diff, &guidance_scale, scaled_diff, n_pixels, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, uncond_noise, scaled_diff, guided_noise, n_pixels, stream);
 
     // guided_noise is the exact interpolation at the declared guidance scale.
     // guidance_scale = 7.5 in conventional float.
@@ -1083,17 +1083,17 @@ void cfg_guided_denoise(void* model_weights, void* x_t, void* x_t_minus_1,
 
 void vae_encode(void* encoder_weights, void* image, void* latent,
                  i32 height, i32 width, i32 channels, i32 latent_dim,
-                 TensorPrologStream_t stream) {
+                 VDRPrologStream_t stream) {
 
     // Convolution layers — exact integer MAC
     for (i32 layer = 0; layer < n_encoder_layers; layer++) {
-        TensorPrologTransformConv2D(TensorProlog_Q16,
+        VDRPrologTransformConv2D(VDRProlog_Q16,
             current_feature_map, conv_kernel[layer], next_feature_map,
             h, w, kernel_h, kernel_w, stream);
 
         // Activation — exact via integer surrogate or FRU
         // Batch norm — exact mean and variance
-        TensorPrologVdrLayerNorm(TensorProlog_Q16, next_feature_map, normed,
+        VDRPrologVdrLayerNorm(VDRProlog_Q16, next_feature_map, normed,
             bn_gamma[layer], bn_beta[layer], feature_size, 0, stream);
     }
 
@@ -1104,7 +1104,7 @@ void vae_encode(void* encoder_weights, void* image, void* latent,
 
 void vae_decode(void* decoder_weights, void* latent, void* reconstructed,
                  i32 latent_dim, i32 height, i32 width, i32 channels,
-                 TensorPrologStream_t stream) {
+                 VDRPrologStream_t stream) {
 
     // Transpose convolutions — exact integer MAC
     // Mirror of encoder. Exact reconstruction at sufficient model capacity.
@@ -1126,11 +1126,11 @@ void vae_decode(void* decoder_weights, void* latent, void* reconstructed,
 ```
 // DDIM uses deterministic sampling — no random noise added at each step.
 // In float, "deterministic" DDIM still produces slightly different results
-// on different hardware. In TensorProlog, truly deterministic.
+// on different hardware. In VDRProlog, truly deterministic.
 
 void ddim_step(void* model_weights, void* x_t, void* x_t_minus_1,
                 vdr_q16 alpha_bar_t, vdr_q16 alpha_bar_t_minus_1,
-                i32 n_pixels, TensorPrologStream_t stream) {
+                i32 n_pixels, VDRPrologStream_t stream) {
 
     // Predict noise
     unet_forward(model_weights, x_t, t, predicted_noise, stream);
@@ -1168,17 +1168,17 @@ void ddim_step(void* model_weights, void* x_t, void* x_t_minus_1,
 
 void vit_forward(void* vit_weights, void* image_patches, void* class_logits,
                   i32 n_patches, i32 patch_dim, i32 n_classes,
-                  TensorPrologStream_t stream) {
+                  VDRPrologStream_t stream) {
 
     // Patch embedding — linear projection
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         n_patches, d_model, patch_dim,
         &one_q16, image_patches, n_patches,
         patch_embed_weights, patch_dim,
         &zero_q16, embedded, n_patches, stream);
 
     // Add positional embedding — exact
-    TensorPrologVdrAdd(TensorProlog_Q16, embedded, pos_embeddings, embedded,
+    VDRPrologVdrAdd(VDRProlog_Q16, embedded, pos_embeddings, embedded,
         n_patches * d_model, stream);
 
     // Transformer layers — identical to LLM
@@ -1188,18 +1188,18 @@ void vit_forward(void* vit_weights, void* image_patches, void* class_logits,
     }
 
     // CLS token → classification head
-    TensorPrologVdrGemm(TensorProlog_Q16, NO_TRANS, NO_TRANS,
+    VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         1, n_classes, d_model,
         &one_q16, cls_hidden, 1,
         classifier_weights, d_model,
         &zero_q16, class_logits, 1, stream);
 
-    TensorPrologVdrSoftmax(TensorProlog_Q16, class_logits, class_probs, n_classes, stream);
+    VDRPrologVdrSoftmax(VDRProlog_Q16, class_logits, class_probs, n_classes, stream);
     // Exact class probabilities summing to D.
 }
 
 // This is I-ViT's result validated: integer-only ViT achieves comparable
-// accuracy to float. TensorProlog makes it the default, not a special mode.
+// accuracy to float. VDRProlog makes it the default, not a special mode.
 ```
 
 ---
@@ -1211,11 +1211,11 @@ void vit_forward(void* vit_weights, void* image_patches, void* class_logits,
 
 void ppo_step(void* policy_weights, void* value_weights,
                void* states, void* actions, void* rewards,
-               i32 n_steps, TensorPrologStream_t stream) {
+               i32 n_steps, VDRPrologStream_t stream) {
 
     // Value function — exact
     void* values;
-    TensorPrologMallocTyped(&values, TensorProlog_Q16, n_steps);
+    VDRPrologMallocTyped(&values, VDRProlog_Q16, n_steps);
     for (i32 t = 0; t < n_steps; t++) {
         value_network_forward(value_weights, states + t * state_dim, &values[t], stream);
     }
@@ -1227,18 +1227,18 @@ void ppo_step(void* policy_weights, void* value_weights,
     // The sum accumulates exactly — no float drift over long episodes.
 
     void* advantages;
-    TensorPrologMallocTyped(&advantages, TensorProlog_Q16, n_steps);
+    VDRPrologMallocTyped(&advantages, VDRProlog_Q16, n_steps);
     vdr_q16 gae_accumulator = { .v = 0, .r0 = 0 };
 
     for (i32 t = n_steps - 1; t >= 0; t--) {
         // delta = reward + gamma * V[t+1] - V[t]
-        TensorPrologVdrMul(TensorProlog_Q16, &gamma, &values[t+1], &gamma_v_next, 1, stream);
-        TensorPrologVdrAdd(TensorProlog_Q16, &rewards[t], &gamma_v_next, &r_plus_gv, 1, stream);
-        TensorPrologVdrSub(TensorProlog_Q16, &r_plus_gv, &values[t], &delta, 1, stream);
+        VDRPrologVdrMul(VDRProlog_Q16, &gamma, &values[t+1], &gamma_v_next, 1, stream);
+        VDRPrologVdrAdd(VDRProlog_Q16, &rewards[t], &gamma_v_next, &r_plus_gv, 1, stream);
+        VDRPrologVdrSub(VDRProlog_Q16, &r_plus_gv, &values[t], &delta, 1, stream);
 
         // accumulator = delta + gamma * lambda * accumulator
-        TensorPrologVdrMul(TensorProlog_Q16, &gamma_lambda, &gae_accumulator, &discounted, 1, stream);
-        TensorPrologVdrAdd(TensorProlog_Q16, &delta, &discounted, &gae_accumulator, 1, stream);
+        VDRPrologVdrMul(VDRProlog_Q16, &gamma_lambda, &gae_accumulator, &discounted, 1, stream);
+        VDRPrologVdrAdd(VDRProlog_Q16, &delta, &discounted, &gae_accumulator, 1, stream);
 
         advantages[t] = gae_accumulator;
         // After 10,000 steps this accumulator has zero float drift.
@@ -1263,12 +1263,12 @@ void ppo_step(void* policy_weights, void* value_weights,
 void gnn_message_pass(void* node_features, void* edge_index,
                         void* edge_weights, void* updated_features,
                         i32 n_nodes, i32 n_edges, i32 feature_dim,
-                        TensorPrologStream_t stream) {
+                        VDRPrologStream_t stream) {
 
     // For each node: aggregate neighbor features weighted by edge weight
     // Conventional GNNs accumulate float error proportional to node degree.
     // High-degree nodes (hubs) get noisier representations than low-degree nodes.
-    // TensorProlog: all aggregations exact. Hub nodes and leaf nodes computed with
+    // VDRProlog: all aggregations exact. Hub nodes and leaf nodes computed with
     // identical precision.
 
     for (i32 node = 0; node < n_nodes; node++) {
@@ -1276,21 +1276,21 @@ void gnn_message_pass(void* node_features, void* edge_index,
         for (i32 e = 0; e < node_degree[node]; e++) {
             i32 neighbor = neighbors[node][e];
             // Scale neighbor features by edge weight — exact
-            TensorPrologVdrScale(TensorProlog_Q16,
+            VDRPrologVdrScale(VDRProlog_Q16,
                 node_features + neighbor * feature_dim,
                 &edge_weights[edge_id],
                 scaled_neighbor, feature_dim, stream);
             // Accumulate — exact
-            TensorPrologVdrAdd(TensorProlog_Q16, aggregated, scaled_neighbor,
+            VDRPrologVdrAdd(VDRProlog_Q16, aggregated, scaled_neighbor,
                 aggregated, feature_dim, stream);
         }
         // Normalize by degree — exact division
         vdr_q16 degree_vdr = { .v = node_degree[node] * 65536, .r0 = 0 };
-        TensorPrologVdrDiv(TensorProlog_Q16, aggregated, &degree_vdr,
+        VDRPrologVdrDiv(VDRProlog_Q16, aggregated, &degree_vdr,
             updated_features + node * feature_dim, feature_dim, stream);
     }
     // Use graph builtins for structure operations:
-    TensorPrologBuiltinGraphPageRankExact(TensorProlog_Q16, adjacency, ranks, n_iters, stream);
+    VDRPrologBuiltinGraphPageRankExact(VDRProlog_Q16, adjacency, ranks, n_iters, stream);
     // PageRank as exact VDR fractions. Converges to exact steady state.
 }
 ```
@@ -1302,7 +1302,7 @@ void gnn_message_pass(void* node_features, void* edge_index,
 ```
 void lstm_forward(void* weights, void* input_seq, void* output_seq,
                    i32 seq_len, i32 input_dim, i32 hidden_dim,
-                   TensorPrologStream_t stream) {
+                   VDRPrologStream_t stream) {
 
     vdr_q16 h[MAX_HIDDEN], c[MAX_HIDDEN];
     memset(h, 0, hidden_dim * sizeof(vdr_q16));
@@ -1313,15 +1313,15 @@ void lstm_forward(void* weights, void* input_seq, void* output_seq,
         // All computed via FRU exact transcendentals or integer surrogates
 
         // input gate
-        TensorPrologVdrGemm(TensorProlog_Q16, ..., input[t], W_i, ..., gate_i_pre, stream);
+        VDRPrologVdrGemm(VDRProlog_Q16, ..., input[t], W_i, ..., gate_i_pre, stream);
         // sigmoid via FRU or rational approximation
-        TensorPrologFRUExp(TensorProlog_Q16, negated_gate_i_pre, exp_neg, 6, stream);
+        VDRPrologFRUExp(VDRProlog_Q16, negated_gate_i_pre, exp_neg, 6, stream);
         // sigmoid = 1 / (1 + exp(-x)) — exact
 
         // Cell update: c = f*c + i*g — exact
-        TensorPrologVdrMul(TensorProlog_Q16, f_gate, c, fc, hidden_dim, stream);
-        TensorPrologVdrMul(TensorProlog_Q16, i_gate, g_gate, ig, hidden_dim, stream);
-        TensorPrologVdrAdd(TensorProlog_Q16, fc, ig, c, hidden_dim, stream);
+        VDRPrologVdrMul(VDRProlog_Q16, f_gate, c, fc, hidden_dim, stream);
+        VDRPrologVdrMul(VDRProlog_Q16, i_gate, g_gate, ig, hidden_dim, stream);
+        VDRPrologVdrAdd(VDRProlog_Q16, fc, ig, c, hidden_dim, stream);
 
         // Hidden: h = o * tanh(c) — exact
         // After 10,000 timesteps: zero accumulated drift in hidden state.
@@ -1338,35 +1338,35 @@ void lstm_forward(void* weights, void* input_seq, void* output_seq,
 ```
 void exact_cosine_similarity(void* embeddings_a, void* embeddings_b,
                               void* similarities, i32 n_pairs, i32 dim,
-                              TensorPrologStream_t stream) {
+                              VDRPrologStream_t stream) {
 
     for (i32 i = 0; i < n_pairs; i++) {
         vdr_q16 dot, norm_a, norm_b;
 
-        TensorPrologVdrDot(TensorProlog_Q16,
+        VDRPrologVdrDot(VDRProlog_Q16,
             embeddings_a + i * dim, embeddings_b + i * dim,
             &dot, dim, stream);
 
-        TensorPrologVdrDot(TensorProlog_Q16,
+        VDRPrologVdrDot(VDRProlog_Q16,
             embeddings_a + i * dim, embeddings_a + i * dim,
             &norm_a_sq, dim, stream);
 
-        TensorPrologVdrDot(TensorProlog_Q16,
+        VDRPrologVdrDot(VDRProlog_Q16,
             embeddings_b + i * dim, embeddings_b + i * dim,
             &norm_b_sq, dim, stream);
 
-        TensorPrologFRUSqrt(TensorProlog_Q16, &norm_a_sq, &norm_a, 6, stream);
-        TensorPrologFRUSqrt(TensorProlog_Q16, &norm_b_sq, &norm_b, 6, stream);
+        VDRPrologFRUSqrt(VDRProlog_Q16, &norm_a_sq, &norm_a, 6, stream);
+        VDRPrologFRUSqrt(VDRProlog_Q16, &norm_b_sq, &norm_b, 6, stream);
 
-        TensorPrologVdrMul(TensorProlog_Q16, &norm_a, &norm_b, &norm_product, 1, stream);
-        TensorPrologVdrDiv(TensorProlog_Q16, &dot, &norm_product, &similarities[i], 1, stream);
+        VDRPrologVdrMul(VDRProlog_Q16, &norm_a, &norm_b, &norm_product, 1, stream);
+        VDRPrologVdrDiv(VDRProlog_Q16, &dot, &norm_product, &similarities[i], 1, stream);
     }
 
     // Similarity is exact VDR fraction.
     // Ranking by similarity: sort by exact integer comparison.
     // No "these two documents have the same similarity score due to float rounding"
     // producing unstable rankings. If they're different, the ranking is stable.
-    TensorPrologBuiltinSort(TensorProlog_Q16, similarities, n_pairs);
+    VDRPrologBuiltinSort(VDRProlog_Q16, similarities, n_pairs);
 }
 ```
 
@@ -1385,7 +1385,7 @@ void exact_cosine_similarity(void* embeddings_a, void* embeddings_b,
 // - Deploy quantized model
 // - Hope the calibration held for production data
 //
-// In TensorProlog:
+// In VDRProlog:
 // - Train in Q16 integers
 // - Deploy in Q16 integers
 //
@@ -1420,7 +1420,7 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
     // Accuracy B: correct_b / n_examples — exact fraction
     // Comparison: exact integer comparison
     i32 cmp;
-    TensorPrologVdrCompare(TensorProlog_Q16, &accuracy_a, &accuracy_b, &cmp, 1, stream);
+    VDRPrologVdrCompare(VDRProlog_Q16, &accuracy_a, &accuracy_b, &cmp, 1, stream);
 
     // If cmp > 0: model A is better. Period.
     // Not "model A is better with p < 0.05 after accounting for evaluation noise."
@@ -1432,7 +1432,7 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
     // Run this test 100 times: same numbers, 100 times.
     // In conventional A/B testing, float nondeterminism adds variance
     // to the evaluation itself, requiring larger test sets to achieve
-    // statistical significance. TensorProlog evaluation variance is zero.
+    // statistical significance. VDRProlog evaluation variance is zero.
     // Every sample counts at full weight.
 }
 ```
@@ -1444,27 +1444,27 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
 ```
 void distillation_step(void* teacher_weights, void* student_weights,
                         i32* input_ids, i32 seq_len, vdr_q16 temperature,
-                        vdr_q16 alpha, TensorPrologStream_t stream) {
+                        vdr_q16 alpha, VDRPrologStream_t stream) {
 
     // Teacher forward — exact soft targets
     forward_pass(teacher_weights, input_ids, seq_len, teacher_logits, stream);
     // Divide logits by temperature — exact
-    TensorPrologVdrDiv(TensorProlog_Q16, teacher_logits, &temperature,
+    VDRPrologVdrDiv(VDRProlog_Q16, teacher_logits, &temperature,
         teacher_scaled, seq_len * vocab_size, stream);
-    TensorPrologVdrSoftmax(TensorProlog_Q16, teacher_scaled, teacher_soft_targets,
+    VDRPrologVdrSoftmax(VDRProlog_Q16, teacher_scaled, teacher_soft_targets,
         vocab_size, stream);
     // Teacher soft targets: exact probability distribution.
     // The dark knowledge (non-peak probabilities) is represented exactly.
     // In float distillation, small probabilities in the teacher's output
     // get rounded to zero or near-zero, losing the inter-class relationships
-    // that make distillation work. In TensorProlog, if the teacher assigns
+    // that make distillation work. In VDRProlog, if the teacher assigns
     // probability 3/65536 to class 47, the student sees exactly 3/65536.
 
     // Student forward
     forward_pass(student_weights, input_ids, seq_len, student_logits, stream);
-    TensorPrologVdrDiv(TensorProlog_Q16, student_logits, &temperature,
+    VDRPrologVdrDiv(VDRProlog_Q16, student_logits, &temperature,
         student_scaled, seq_len * vocab_size, stream);
-    TensorPrologVdrSoftmax(TensorProlog_Q16, student_scaled, student_probs, vocab_size, stream);
+    VDRPrologVdrSoftmax(VDRProlog_Q16, student_scaled, student_probs, vocab_size, stream);
 
     // KL divergence loss — exact
     // KL(teacher || student) = sum(teacher * log(teacher/student))
@@ -1472,8 +1472,8 @@ void distillation_step(void* teacher_weights, void* student_weights,
 
     // Combined loss: alpha * KL_loss + (1-alpha) * CE_loss
     // alpha is exact fraction. Weighting is exact.
-    TensorPrologTrainBackwardPass(graph, &combined_loss, stream);
-    TensorPrologTrainAdamUpdate(TensorProlog_Q16, student_weights, gradients, ...);
+    VDRPrologTrainBackwardPass(graph, &combined_loss, stream);
+    VDRPrologTrainAdamUpdate(VDRProlog_Q16, student_weights, gradients, ...);
 }
 ```
 
@@ -1486,10 +1486,10 @@ void distillation_step(void* teacher_weights, void* student_weights,
 
 // Client side:
 void federated_client_train(void* local_weights, train_data_t* local_data,
-                             void* weight_delta, TensorPrologStream_t stream) {
+                             void* weight_delta, VDRPrologStream_t stream) {
 
     // Copy global weights
-    TensorPrologMemcpy(local_weights, global_weights, n_params * 8, DeviceToDevice);
+    VDRPrologMemcpy(local_weights, global_weights, n_params * 8, DeviceToDevice);
 
     // Train locally for K steps
     for (i32 step = 0; step < K; step++) {
@@ -1497,7 +1497,7 @@ void federated_client_train(void* local_weights, train_data_t* local_data,
     }
 
     // Compute delta: local - global — exact
-    TensorPrologVdrSub(TensorProlog_Q16, local_weights, global_weights, weight_delta,
+    VDRPrologVdrSub(VDRProlog_Q16, local_weights, global_weights, weight_delta,
         n_params, stream);
 
     // Send weight_delta to server. Integers. Bit-identical transmission.
@@ -1506,24 +1506,24 @@ void federated_client_train(void* local_weights, train_data_t* local_data,
 
 // Server side:
 void federated_aggregate(void** client_deltas, i32 n_clients,
-                           void* global_weights, TensorPrologStream_t stream) {
+                           void* global_weights, VDRPrologStream_t stream) {
 
     // Average deltas — exact
     void* sum_delta;
-    TensorPrologMallocTyped(&sum_delta, TensorProlog_Q16, n_params);
-    TensorPrologMemset(sum_delta, 0, n_params * 8);
+    VDRPrologMallocTyped(&sum_delta, VDRProlog_Q16, n_params);
+    VDRPrologMemset(sum_delta, 0, n_params * 8);
 
     for (i32 c = 0; c < n_clients; c++) {
-        TensorPrologVdrAdd(TensorProlog_Q16, sum_delta, client_deltas[c], sum_delta,
+        VDRPrologVdrAdd(VDRProlog_Q16, sum_delta, client_deltas[c], sum_delta,
             n_params, stream);
     }
 
     // Divide by n_clients — exact
     vdr_q16 n_clients_vdr = { .v = n_clients * 65536, .r0 = 0 };
-    TensorPrologVdrDiv(TensorProlog_Q16, sum_delta, &n_clients_vdr, avg_delta, n_params, stream);
+    VDRPrologVdrDiv(VDRProlog_Q16, sum_delta, &n_clients_vdr, avg_delta, n_params, stream);
 
     // Apply to global model
-    TensorPrologVdrAdd(TensorProlog_Q16, global_weights, avg_delta, global_weights, n_params, stream);
+    VDRPrologVdrAdd(VDRProlog_Q16, global_weights, avg_delta, global_weights, n_params, stream);
 
     // Deterministic aggregation means:
     // - Same client updates in any order → same global model
@@ -1537,7 +1537,7 @@ void federated_aggregate(void** client_deltas, i32 n_clients,
 
 ### 3.10 Workflow Summary Table
 
-| Workflow | Key TensorProlog Modules | What's Eliminated |
+| Workflow | Key VDRProlog Modules | What's Eliminated |
 |---|---|---|
 | LLM inference | vdr_math, attention, session | Quantization, mixed-precision config |
 | LLM training | training, vdr_math, distributed | Loss scaling, gradient clipping, warmup, NaN recovery |

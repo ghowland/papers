@@ -1,6 +1,6 @@
 ```zig
 // ============================================================
-// TensorProlog — Complete Function Signature Reference
+// VDRProlog — Complete Function Signature Reference
 // Zig 0.14 — Every module, every public function
 // ============================================================
 

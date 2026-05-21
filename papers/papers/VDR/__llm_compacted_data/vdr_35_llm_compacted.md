@@ -28,7 +28,7 @@ SM4|open question|whether quadratic gradient landscape matches exp-softmax at pr
 KG1|struct|256 bytes padded for cache alignment; 26 fields: identity (name, path, i32 id), persistent (facts, rules, constraints, connections, grammars), live (working data, LRU, counters, locks, queues, stacks, ring buffers, bitsets), structural (parent_id, children_ids, mounts), metadata (visibility, frozen, owner, timestamps)
 KG2|memory layout|contiguous GPU global memory; fixed struct size → zero fragmentation; 100K KBs + 10M facts + 100K rules + 10K sessions ≈ 2.2 GB device memory (negligible vs 56 GB for 7B Q16 model)
 KG3|shared memory cache|16 KB structs + 512 facts fit in ~24 KB shared memory (H100 has 228 KB/SM); Prolog loads candidates here for parallel unification
-KG4|access pattern|small random reads by integer ID (latency-sensitive); opposite of weight-matrix sequential tile loads (bandwidth-sensitive); TensorProlog exposes scheduling hints: MAC kernels vs Prolog kernels vs Primitive kernels
+KG4|access pattern|small random reads by integer ID (latency-sensitive); opposite of weight-matrix sequential tile loads (bandwidth-sensitive); VDRProlog exposes scheduling hints: MAC kernels vs Prolog kernels vs Primitive kernels
 
 # prolog_gpu(id|aspect|description)
 PG1|parallelization|load candidate facts into shared memory (512/SM); distribute across warps (32 threads each handle one candidate); cross-multiply comparison per thread; warp-level vote filters matches; surviving candidates for recursive body evaluation
@@ -41,7 +41,7 @@ GR2|replacement|template declares typed slots; grammar fills structural bytes vi
 GR3|guarantees|syntactic correctness by construction; JSON cannot be malformed; grammars persist in KBs, inherit through tree, zero cost per reuse
 
 # sessions(id|aspect|description)
-SS1|isolation|user_id (i32) + visibility (enum) + KB root (i32) + grants + resource limits; TensorProlog stream carries credentials; every kernel inherits them; every KB access checks via integer comparison
+SS1|isolation|user_id (i32) + visibility (enum) + KB root (i32) + grants + resource limits; VDRProlog stream carries credentials; every kernel inherits them; every KB access checks via integer comparison
 SS2|snapshots|atomic capture of all session state: KBs, facts, rules, terms, grammars, live state (7 primitives), grants; contiguous binary blob + CRC32 checksum; bit-identical restore because integers
 SS3|clones|COW sharing of parent's persistent KBs; first write copies page to private region; parent never sees clone modifications; clone never sees parent changes
 SS4|recycle|snapshot → kill (destroy drift) → clone from snapshot (fresh session with identical knowledge); "snapshot is factory, clones disposable, knowledge persists, drift dies"
@@ -161,7 +161,7 @@ GC4|T4 sustained test|Phase 5-6|~48|$0.35|$17
 GC5|total|||—|~$2,127
 
 # invariants(id|invariant|verification)
-IV1|softmax sum = D exactly|TensorPrologAttentionVerifySoftmaxSum; zero violations
+IV1|softmax sum = D exactly|VDRPrologAttentionVerifySoftmaxSum; zero violations
 IV2|KB facts at integer addresses are exact|assert-query roundtrip, byte comparison
 IV3|bounded primitives respect declared capacity|push at capacity returns false / evicts oldest
 IV4|snapshot restore is bit-identical|save, modify, restore, memcmp entire state
@@ -173,10 +173,10 @@ IV9|Prolog unification uses exact comparison|cross-multiply, no tolerance parame
 IV10|audit log append-only and complete|count entries, match to operation count
 
 # eliminated_components(id|component|reason|replacement)
-EL_1|cuBLAS precision variants|one integer type per Q-basis|TensorPrologVdrGemm with Q-basis param
-EL_2|cuDNN mixed-precision layers|no precision mixing|TensorPrologAttentionForward
+EL_1|cuBLAS precision variants|one integer type per Q-basis|VDRPrologVdrGemm with Q-basis param
+EL_2|cuDNN mixed-precision layers|no precision mixing|VDRPrologAttentionForward
 EL_3|TensorRT quantization calibration|model is integer natively|not needed
-EL_4|NCCL non-deterministic allreduce|integer sum associative|TensorPrologDistAllReduce (deterministic)
+EL_4|NCCL non-deterministic allreduce|integer sum associative|VDRPrologDistAllReduce (deterministic)
 EL_5|loss scaling (GradScaler)|integers cannot overflow to Inf|not needed
 EL_6|gradient clipping|exact gradients don't explode|not needed
 EL_7|NaN detection and recovery|integers cannot be NaN|not needed
@@ -188,7 +188,7 @@ EL_12|Transformer Engine FP8/FP16 switching|one type, no switching|not needed
 EL_13|mixed-precision conversion functions|no implicit conversion|explicit reproject only
 EL_14|tolerance-based testing|exact comparison|byte-identical comparison
 
-# warp_divergence(id|source|float_frequency|tensorprolog_frequency|impact)
+# warp_divergence(id|source|float_frequency|VDRProlog_frequency|impact)
 WD1|NaN check|every operation|never|2-5% warp idle
 WD2|Inf check|every accumulation|never|1-3%
 WD3|subnormal handling|occasional|never|1-2%
@@ -198,7 +198,7 @@ WD6|epsilon comparison|every LayerNorm/Adam|never|1-2%
 WD7|loss scale overflow|every backward|never|1-2%
 WD8|gradient clip branch|every param update|never|1-3%
 WD9|dynamic precision selection|per-tensor|never|3-5%
-# cumulative float loss: 15-40%; TensorProlog: zero arithmetic divergence; remaining divergence only from algorithmic control flow
+# cumulative float loss: 15-40%; VDRProlog: zero arithmetic divergence; remaining divergence only from algorithmic control flow
 
 # instruction_latency(id|operation|cpu_zig_ns|t4_ns|h100_ns|h100_theoretical_ns)
 IL1|Q16 add|2|~4|~2|~0.5
@@ -222,7 +222,7 @@ MW3|attention softmax|streaming row-wise|40-60%|latency (row reduction)
 MW4|KB fact query (single)|random 40-byte read|5-10%|latency-dominated
 MW5|KB fact search (scan)|sequential 40-byte reads|50-70%|bandwidth for large KBs
 MW6|Prolog unification batch|random KB reads + compute|20-40%|compute (cross-multiply)
-# key: forward pass same pattern as conventional LLM (bandwidth); KB/Prolog operations invert to latency-sensitive; TensorProlog scheduling hints enable overlapping both on different SMs
+# key: forward pass same pattern as conventional LLM (bandwidth); KB/Prolog operations invert to latency-sensitive; VDRProlog scheduling hints enable overlapping both on different SMs
 
 # clone_cow_faults(id|workload|total_pages|dirtied|fault_rate|private_overhead)
 CW1|read-only clone|50|0|0%|0 bytes
@@ -231,7 +231,7 @@ CW3|heavy modification|200|35|17.5%|140 KB
 CW4|full fork|200|200|100%|800 KB
 # most clones dirty <10% of pages; 10 concurrent standard clones share ~94% memory
 
-# command_token_comparison(id|metric|tensorprolog|conventional_json)
+# command_token_comparison(id|metric|VDRProlog|conventional_json)
 TC1|tokens per invocation|~8|~25-40
 TC2|entropy per token|~2 bits|~12-15 bits
 TC3|vocabulary|~300 known names|50K+ full vocab
@@ -239,7 +239,7 @@ TC4|error rate per invocation|~0.8%|~14%
 TC5|structural tokens generated|0|~15-25
 TC6|result delivery|KB address (0 output tokens)|serialized into context (~50-200 tokens)
 TC7|total round-trip|~8 tokens|~75-240 tokens
-# 20-turn session with 5 calls/turn: TensorProlog ~800 command tokens vs conventional ~15,000 tool tokens + quadratic context growth
+# 20-turn session with 5 calls/turn: VDRProlog ~800 command tokens vs conventional ~15,000 tool tokens + quadratic context growth
 
 # builtin_vs_llm_speedup(id|operation|builtin_time_h100|equiv_llm_tokens|llm_time_h100|speedup)
 BV1|sort 100 integers|~5 μs|200-500|10-25 ms|2,000-5,000×
@@ -355,7 +355,7 @@ BV4|demonstrates|KG2
 9|Runners|RN1-RN4,RT1-RT4
 10|Server Architecture|SV1-SV6
 11|Confidence Propagation|CF1-CF3
-12|TensorProlog API Surface|AP1-AP20
+12|VDRProlog API Surface|AP1-AP20
 13|Implementation|BP1-BP6,FS1-FS20
 14|Testing|IV1-IV10,ST1-ST2,XP1-XP2
 15|GCP Deployment|GC1-GC5
@@ -388,7 +388,7 @@ W|Energy Per Operation|EG1-EG6
 X|Test Count Summary|BP1-BP6
 
 # decode_legend
-# TensorProlog: GPU compute layer for VDR-LLM-Prolog; replaces entire float stack with integer operations + KB + Prolog + grammars + sessions + runners + server
+# VDRProlog: GPU compute layer for VDR-LLM-Prolog; replaces entire float stack with integer operations + KB + Prolog + grammars + sessions + runners + server
 # Q16/Q32/Q335: fixed-denominator VDR types at D=2^16/2^32/2^335; denominator is compile-time constant, never stored
 # divmod: shift+mask when D is power-of-two; zero logic gates in silicon
 # quadratic softmax surrogate: (shifted)²/Σ(shifted)²; sums to D exactly; integer multiply+divide, no SFU
