@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog Integer GPU Compute Stack: TensorProlog
+# VDR-LLM-Prolog Integer GPU Compute Stack: VDRProlog
 ## A GPU Compute Architecture for Exact Integer Inference, Knowledge Operations, and Autonomous Session Management
 
 **Registry:** [@HOWL-VDR-35-2026]
@@ -17,7 +17,7 @@
 
 ## Abstract
 
-Current GPU compute stacks route integer inference through hardware designed for floating-point arithmetic, then compensate with conversion layers, precision negotiation, NaN handling, loss scaling, and rounding mode management. VDR-LLM-Prolog eliminates floating-point computation entirely — the model's forward pass, attention mechanism, softmax, training loop, and all infrastructure operations run on exact integer arithmetic with fixed denominators. TensorProlog is the GPU compute layer built for this architecture. It defines: a type system with three fixed-denominator Q-bases (Q16, Q32, Q335) and no float types; an instruction set where multiply-accumulate is a widening integer multiply plus bit shift; a memory model organized around fixed-size knowledge base structs at integer addresses; session-scoped streams with integer credential enforcement; a Prolog engine parallelized as batched cross-multiply unification across warps; grammar-directed structural token generation that bypasses the LLM forward pass; a runner system that provides autonomous background execution with snapshot-based recycling; and a server layer that clones sessions per connection with time-bounded integer credentials. The spec covers 23 modules, approximately 580 API functions (versus ~4,000+ in CUDA), approximately 30,000 lines of implementation across 168 files, and builds in six phases from pure-Zig CPU arithmetic through GCP GPU deployment. The entire float software stack — cuBLAS precision variants, cuDNN mixed-precision management, TensorRT quantization calibration, NCCL non-deterministic allreduce, loss scaling, gradient clipping, NaN recovery, and the Transformer Engine — is replaced, not optimized.
+Current GPU compute stacks route integer inference through hardware designed for floating-point arithmetic, then compensate with conversion layers, precision negotiation, NaN handling, loss scaling, and rounding mode management. VDR-LLM-Prolog eliminates floating-point computation entirely — the model's forward pass, attention mechanism, softmax, training loop, and all infrastructure operations run on exact integer arithmetic with fixed denominators. VDRProlog is the GPU compute layer built for this architecture. It defines: a type system with three fixed-denominator Q-bases (Q16, Q32, Q335) and no float types; an instruction set where multiply-accumulate is a widening integer multiply plus bit shift; a memory model organized around fixed-size knowledge base structs at integer addresses; session-scoped streams with integer credential enforcement; a Prolog engine parallelized as batched cross-multiply unification across warps; grammar-directed structural token generation that bypasses the LLM forward pass; a runner system that provides autonomous background execution with snapshot-based recycling; and a server layer that clones sessions per connection with time-bounded integer credentials. The spec covers 23 modules, approximately 580 API functions (versus ~4,000+ in CUDA), approximately 30,000 lines of implementation across 168 files, and builds in six phases from pure-Zig CPU arithmetic through GCP GPU deployment. The entire float software stack — cuBLAS precision variants, cuDNN mixed-precision management, TensorRT quantization calibration, NCCL non-deterministic allreduce, loss scaling, gradient clipping, NaN recovery, and the Transformer Engine — is replaced, not optimized.
 
 ---
 
@@ -31,7 +31,7 @@ Integer arithmetic has none of these failure modes. Integers cannot be NaN. Inte
 
 VDR arithmetic fixes the denominator at creation, represents every value as three integers (Value, Denominator, Remainder), and pushes overflow into an inspectable remainder slot rather than discarding it silently. When the denominator is a power of two, the divmod operation that separates quotient from remainder is a bit shift — zero logic gates in hardware, a single instruction on CPU, fixed wiring on an ASIC. The Q16 multiply-accumulate sequence (widening multiply, accumulate, right-shift by 16) is instruction-identical to INT8/INT16 quantized inference on existing tensor cores.
 
-TensorProlog is the compute layer that results from removing float arithmetic from the GPU programming model and replacing it with VDR integer operations, knowledge base addressing, Prolog unification, grammar-directed generation, session lifecycle management, and autonomous runner execution.
+VDRProlog is the compute layer that results from removing float arithmetic from the GPU programming model and replacing it with VDR integer operations, knowledge base addressing, Prolog unification, grammar-directed generation, session lifecycle management, and autonomous runner execution.
 
 ---
 
@@ -39,7 +39,7 @@ TensorProlog is the compute layer that results from removing float arithmetic fr
 
 ### 2.1 The Type System
 
-TensorProlog provides three fixed-denominator VDR types. No float types exist anywhere in the system.
+VDRProlog provides three fixed-denominator VDR types. No float types exist anywhere in the system.
 
 **Q16** is the primary operational type. D = 65536 = 2^16. The struct is 8 bytes: a 32-bit integer value, a 16-bit integer remainder, and 16 bits of padding for alignment. Precision floor is 1/65536 ≈ 1.53 × 10⁻⁵. This is the inference type — model weights, activations, attention scores, gradients, and optimizer state all live in Q16.
 
@@ -87,7 +87,7 @@ Accessing a fact is two integer operations: kb_id to locate the KB struct, slot_
 
 KB structs occupy a contiguous region of GPU global memory. Fixed struct size means zero fragmentation and predictable cache behavior. A reference deployment with 100,000 KBs, 10 million facts, 100,000 rules, and 10,000 sessions requires approximately 2.2 GB of device memory for the entire infrastructure — negligible relative to model weights (56 GB for a 7B-parameter Q16 model). The infrastructure overhead is smaller than most float precision-management bookkeeping.
 
-Shared memory on each SM serves as a KB cache. 16 KB structs and 512 facts fit in approximately 24 KB of shared memory, well within the H100's 228 KB per SM. A Prolog query loads candidate facts into this cache, runs cross-multiply unification in parallel across warps, and writes results back. The access pattern is small random reads by integer ID, not large sequential tile loads — the opposite of conventional weight-matrix access. This means the memory controller should optimize for latency rather than bandwidth when serving KB operations, a scheduling hint that TensorProlog exposes through distinct kernel launch types (MAC kernels for matrix work, Prolog kernels for KB-heavy work).
+Shared memory on each SM serves as a KB cache. 16 KB structs and 512 facts fit in approximately 24 KB of shared memory, well within the H100's 228 KB per SM. A Prolog query loads candidate facts into this cache, runs cross-multiply unification in parallel across warps, and writes results back. The access pattern is small random reads by integer ID, not large sequential tile loads — the opposite of conventional weight-matrix access. This means the memory controller should optimize for latency rather than bandwidth when serving KB operations, a scheduling hint that VDRProlog exposes through distinct kernel launch types (MAC kernels for matrix work, Prolog kernels for KB-heavy work).
 
 ### 3.3 Bounded Data Primitives
 
@@ -135,7 +135,7 @@ Grammars persist in KBs. They inherit through the KB tree (a child KB inherits i
 
 ### 6.1 Session Isolation
 
-Each session has: a user_id (i32), a visibility level (enum), a KB root (i32), a set of grants, and bounded resource limits. The session's TensorProlog stream carries these credentials. Every kernel launched on that stream inherits them. Every KB access checks them — two integer comparisons per ancestor in the scope walk. Data that fails the check is absent from the session's view. Not filtered. Not redacted. Absent. The query path never touches the data.
+Each session has: a user_id (i32), a visibility level (enum), a KB root (i32), a set of grants, and bounded resource limits. The session's VDRProlog stream carries these credentials. Every kernel launched on that stream inherits them. Every KB access checks them — two integer comparisons per ancestor in the scope walk. Data that fails the check is absent from the session's view. Not filtered. Not redacted. Absent. The query path never touches the data.
 
 ### 6.2 Snapshots
 
@@ -231,7 +231,7 @@ Runners provide autonomous execution. Each runner type is a loop around the univ
 
 A poller executes the universal cycle on a timer (configurable interval, default 60 seconds). Input is synthetic ("poll cycle N"). Phase 0 fires all triage rules against current KB state. If rules handle everything, zero LLM tokens are consumed. Output goes to a notification KB or external webhook.
 
-Each poll cycle gets a fresh TensorProlog stream. The LLM's KV-cache is not carried between cycles. No attention degradation accumulates across polls.
+Each poll cycle gets a fresh VDRProlog stream. The LLM's KV-cache is not carried between cycles. No attention degradation accumulates across polls.
 
 ### 9.3 Processor
 
@@ -273,7 +273,7 @@ When the credential expires, the server sends a protocol-appropriate response (H
 
 ### 10.3 Request Processing
 
-Each request is transformed into a vlp_input and passed to the universal cycle. The cycle runs on the connection's session-bound TensorProlog stream. The output is transformed into a protocol response via grammar templates.
+Each request is transformed into a vlp_input and passed to the universal cycle. The cycle runs on the connection's session-bound VDRProlog stream. The output is transformed into a protocol response via grammar templates.
 
 Protocol grammars handle wire format. An HTTP response consists of: a status line grammar (`HTTP/1.1 {status_code:integer} {reason:text}`), header grammars (`{name:text}: {value:text}`), and a body grammar appropriate to the content type. Every structural byte of the HTTP response — every colon after a header name, every , every brace in JSON — comes from the grammar. The LLM generates content that fills grammar slots. The grammar generates everything else.
 
@@ -301,11 +301,11 @@ Provenance tracking follows the derivation chain: if a fact was derived by a Pro
 
 ---
 
-## 12. TensorProlog API Surface
+## 12. VDRProlog API Surface
 
 ### 12.1 Module Structure
 
-TensorProlog consists of 23 modules totaling approximately 580 functions.
+VDRProlog consists of 23 modules totaling approximately 580 functions.
 
 **Core runtime** (36 functions): device management, memory allocation with Q-basis typing, session-scoped streams, event timing, kernel launch with scheduling hints (MAC/Prolog/Primitive).
 
@@ -351,7 +351,7 @@ TensorProlog consists of 23 modules totaling approximately 580 functions.
 
 Approximately 3,400+ API functions from the CUDA ecosystem: cuBLAS precision variants, cuDNN layer functions at multiple precisions, cuFFT float transform plans, cuSOLVER float decompositions, cuSPARSE float sparse operations, TensorRT quantization calibration and precision selection, NCCL non-deterministic reduction operations, the entire Thrust and CUB template library for float types, and CUTLASS mixed-precision GEMM kernels.
 
-The reduction is not from missing functionality. It is from the removal of precision-variant duplicates. cuBLAS GEMM has entry points for every combination of input type, output type, accumulator type, and compute type. TensorProlog GEMM has one entry point with a Q-basis parameter.
+The reduction is not from missing functionality. It is from the removal of precision-variant duplicates. cuBLAS GEMM has entry points for every combination of input type, output type, accumulator type, and compute type. VDRProlog GEMM has one entry point with a Q-basis parameter.
 
 ### 12.3 What's New
 
@@ -379,7 +379,7 @@ The system builds in six phases. Each phase produces a testable system. Each pha
 
 **Phase 4: Runners + Server.** Thread pool for runner scheduling. Four runner types (poller, processor with recycle, internal, batch with clone-per-task). HTTP and WebSocket server (accept loop, connection handler with clone-from-template, authentication via auth KB, credential lifecycle with integer expiry, rate limiting via bounded counters, health/metrics endpoint with grammar-rendered JSON, idle connection reaper, graceful shutdown with session snapshotting). Grant-gated operational builtins (filesystem, network, execute, compile, process). Configuration file parsing. ~6,000 lines. Testable locally. Deliverable: the system is a network-accessible daemon with autonomous background processing.
 
-**Phase 5: TensorProlog GPU Kernels.** Device initialization and memory layout. GPU kernels: Q16 matrix multiply-accumulate, quadratic softmax, fused attention, exact layer normalization, elementwise operations, parallel Prolog unification, parallel sort. KB store on device memory. Host-device transfer. Profiling. ~6,000 lines (Zig + CUDA C). Requires GPU — first GCP phase. Deliverable: all operations from Phases 1–4 run on GPU with identical results (verified by cross-platform determinism tests comparing GPU output to CPU reference, byte-by-byte).
+**Phase 5: VDRProlog GPU Kernels.** Device initialization and memory layout. GPU kernels: Q16 matrix multiply-accumulate, quadratic softmax, fused attention, exact layer normalization, elementwise operations, parallel Prolog unification, parallel sort. KB store on device memory. Host-device transfer. Profiling. ~6,000 lines (Zig + CUDA C). Requires GPU — first GCP phase. Deliverable: all operations from Phases 1–4 run on GPU with identical results (verified by cross-platform determinism tests comparing GPU output to CPU reference, byte-by-byte).
 
 **Phase 6: Production Integration.** Multi-device model parallelism. Distributed deterministic allreduce. KB replication and sync. Load balancing. Monitoring (Prometheus-compatible metrics export). Full protocol implementations (SMTP, MQTT, DNS). ~3,000 lines. Requires multi-GPU GCP instances. Deliverable: production-scale deployment.
 
@@ -410,7 +410,7 @@ test/          ~50 files     ~5,000 lines
 Total:        ~168 files    ~30,000 lines code + ~5,000 lines tests
 ```
 
-The paper series estimated ~20,500 lines across 65 modules for the VDR-LLM-Prolog system. The additional ~10,000 lines cover: TensorProlog GPU kernel implementations, server infrastructure (HTTP/WebSocket handling, connection management, TLS), protocol grammars, GCP deployment integration, and comprehensive test coverage. These are the components that bridge between the paper's architectural specification and a running system on real hardware.
+The paper series estimated ~20,500 lines across 65 modules for the VDR-LLM-Prolog system. The additional ~10,000 lines cover: VDRProlog GPU kernel implementations, server infrastructure (HTTP/WebSocket handling, connection management, TLS), protocol grammars, GCP deployment integration, and comprehensive test coverage. These are the components that bridge between the paper's architectural specification and a running system on real hardware.
 
 ---
 
@@ -418,7 +418,7 @@ The paper series estimated ~20,500 lines across 65 modules for the VDR-LLM-Prolo
 
 ### 14.1 Test Strategy
 
-Every operation is tested for correctness, and every operation is tested for determinism. These are different properties. Correctness means the output is the right value. Determinism means the output is the same value every time, on every platform. In float systems, you can have correctness-within-tolerance without determinism (two runs produce different but both "correct" results). In TensorProlog, correctness and determinism are the same test: if the output is wrong, the determinism test fails, because the wrong output differs from the right output that was produced last time.
+Every operation is tested for correctness, and every operation is tested for determinism. These are different properties. Correctness means the output is the right value. Determinism means the output is the same value every time, on every platform. In float systems, you can have correctness-within-tolerance without determinism (two runs produce different but both "correct" results). In VDRProlog, correctness and determinism are the same test: if the output is wrong, the determinism test fails, because the wrong output differs from the right output that was produced last time.
 
 ### 14.2 Test Phases
 
@@ -499,7 +499,7 @@ These capabilities have no equivalent in CUDA, cuDNN, TensorRT, or any component
 
 NCCL's allreduce is non-deterministic for float types because float addition is non-associative. Different reduction tree topologies (ring, tree, butterfly) produce different sums. Two training runs on the same hardware with the same data produce different models.
 
-TensorProlog's allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce bit-identical results. Same data, same hyperparameters, same model. Every time, on every cluster topology. This single property eliminates the entire category of distributed training non-reproducibility, which is a significant source of engineering cost and debugging difficulty in production ML systems.
+VDRProlog's allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce bit-identical results. Same data, same hyperparameters, same model. Every time, on every cluster topology. This single property eliminates the entire category of distributed training non-reproducibility, which is a significant source of engineering cost and debugging difficulty in production ML systems.
 
 ---
 
@@ -533,7 +533,7 @@ The paper does not project performance numbers for this scenario because it has 
 
 ## 19. Conclusion
 
-TensorProlog is what the GPU compute layer looks like when you remove the assumption that ML computation requires floating-point arithmetic. The type system is simpler (3 types instead of 12+). The instruction set is simpler (integer MAC instead of format-negotiated mixed-precision). The warp model is simpler (no divergence from data-dependent special cases). The runtime library is simpler (580 functions instead of 4,000+). The compiler is simpler (no precision tracking, no NaN propagation). The profiler is simpler (one compute type). The distributed training story is simpler (deterministic allreduce from associative integer addition). The debugging story is simpler (two runs either match bit-for-bit or there is a bug, and the bug cannot hide in float tolerance).
+VDRProlog is what the GPU compute layer looks like when you remove the assumption that ML computation requires floating-point arithmetic. The type system is simpler (3 types instead of 12+). The instruction set is simpler (integer MAC instead of format-negotiated mixed-precision). The warp model is simpler (no divergence from data-dependent special cases). The runtime library is simpler (580 functions instead of 4,000+). The compiler is simpler (no precision tracking, no NaN propagation). The profiler is simpler (one compute type). The distributed training story is simpler (deterministic allreduce from associative integer addition). The debugging story is simpler (two runs either match bit-for-bit or there is a bug, and the bug cannot hide in float tolerance).
 
 What's added — KB operations, Prolog unification, grammar rendering, session management, runner scheduling, and structural safety — are capabilities that conventional CUDA cannot provide because they require persistent state, deterministic comparison, and autonomous execution, none of which are possible when the fundamental arithmetic is non-deterministic.
 
@@ -547,7 +547,7 @@ Nothing described here requires hardware that does not exist. H100 INT8 tensor c
 
 ---
 
-## Appendix A: TensorProlog Module Summary
+## Appendix A: VDRProlog Module Summary
 
 | Module | Functions | Replaces | New Capability |
 |:---|:---|:---|:---|
@@ -606,7 +606,7 @@ Storage: boot disks (100–500 GB SSD), model checkpoints, snapshots. Approximat
 
 | # | Invariant | Verification Method |
 |:---|:---|:---|
-| 1 | Softmax sum = D | TensorPrologAttentionVerifySoftmaxSum, zero violations |
+| 1 | Softmax sum = D | VDRPrologAttentionVerifySoftmaxSum, zero violations |
 | 2 | KB facts at integer addresses are exact | Assert-query roundtrip, byte comparison |
 | 3 | Bounded primitives respect declared capacity | Push at capacity returns false / evicts oldest |
 | 4 | Snapshot restore is bit-identical | Save, modify, restore, memcmp entire state |
@@ -621,12 +621,12 @@ Storage: boot disks (100–500 GB SSD), model checkpoints, snapshots. Approximat
 
 ## Appendix E: Conventional Stack Elimination
 
-| Eliminated Component | Reason | TensorProlog Replacement |
+| Eliminated Component | Reason | VDRProlog Replacement |
 |:---|:---|:---|
-| cuBLAS precision variants | One integer type per Q-basis | TensorPrologVdrGemm with Q-basis parameter |
-| cuDNN mixed-precision layers | No precision mixing | TensorPrologAttentionForward |
+| cuBLAS precision variants | One integer type per Q-basis | VDRPrologVdrGemm with Q-basis parameter |
+| cuDNN mixed-precision layers | No precision mixing | VDRPrologAttentionForward |
 | TensorRT quantization calibration | No quantization step | Model is integer natively |
-| NCCL non-deterministic allreduce | Integer sum is associative | TensorPrologDistAllReduce (deterministic) |
+| NCCL non-deterministic allreduce | Integer sum is associative | VDRPrologDistAllReduce (deterministic) |
 | Loss scaling (GradScaler) | Integers cannot overflow to Inf | Not needed |
 | Gradient clipping | Exact gradients don't explode | Not needed |
 | NaN detection and recovery | Integers cannot be NaN | Not needed |
@@ -694,9 +694,9 @@ build.zig         Build configuration
 
 ---
 
-## Appendix G: TensorProlog Instruction Latency by Q-Basis
+## Appendix G: VDRProlog Instruction Latency by Q-Basis
 
-Projected from measured CPU values (VDR-32 Zig), FPGA estimates (VDR-21), and published GPU INT8 specifications. TensorProlog kernels use the INT8/INT16 tensor core path natively.
+Projected from measured CPU values (VDR-32 Zig), FPGA estimates (VDR-21), and published GPU INT8 specifications. VDRProlog kernels use the INT8/INT16 tensor core path natively.
 
 | Operation | CPU Zig (ns) | T4 INT8 (ns) | H100 INT8 (ns) | H100 Theoretical Peak (ns) |
 |:---|:---|:---|:---|:---|
@@ -730,9 +730,9 @@ The Q335 divmod row illustrates the hardware progression. On CPU it is a 384-bit
 
 ---
 
-## Appendix H: TensorProlog Memory Bandwidth Utilization
+## Appendix H: VDRProlog Memory Bandwidth Utilization
 
-H100 SXM provides 3.35 TB/s memory bandwidth. Different TensorProlog workload phases consume bandwidth in different patterns.
+H100 SXM provides 3.35 TB/s memory bandwidth. Different VDRProlog workload phases consume bandwidth in different patterns.
 
 | Workload Phase | Access Pattern | Bytes Per Access | Bandwidth Utilization | Bottleneck |
 |:---|:---|:---|:---|:---|
@@ -751,15 +751,15 @@ H100 SXM provides 3.35 TB/s memory bandwidth. Different TensorProlog workload ph
 
 The key observation: forward pass GEMM operations follow the same memory access pattern as conventional LLM inference and achieve similar bandwidth utilization. The new workload types (KB queries, Prolog unification) are latency-dominated rather than bandwidth-dominated. This inverts the optimization priority for KB-heavy phases: on-chip SRAM and cache hit rate matter more than off-chip bandwidth.
 
-A mixed workload that alternates between forward pass (bandwidth-hungry) and KB/Prolog operations (latency-sensitive) can overlap both phases on different SMs if the kernel scheduler launches them on separate streams. TensorProlog's launch hint system (MAC kernel, Prolog kernel, Primitive kernel) enables this scheduling differentiation.
+A mixed workload that alternates between forward pass (bandwidth-hungry) and KB/Prolog operations (latency-sensitive) can overlap both phases on different SMs if the kernel scheduler launches them on separate streams. VDRProlog's launch hint system (MAC kernel, Prolog kernel, Primitive kernel) enables this scheduling differentiation.
 
 ---
 
 ## Appendix I: Warp Divergence Analysis
 
-Float GPU kernels lose warp efficiency from data-dependent branching. TensorProlog integer kernels eliminate all arithmetic divergence sources.
+Float GPU kernels lose warp efficiency from data-dependent branching. VDRProlog integer kernels eliminate all arithmetic divergence sources.
 
-| Divergence Source | Float CUDA Frequency | TensorProlog Frequency | Impact |
+| Divergence Source | Float CUDA Frequency | VDRProlog Frequency | Impact |
 |:---|:---|:---|:---|
 | NaN check (isnan) | Every operation with user data | Never (integers cannot be NaN) | 2–5% warp idle per branch |
 | Inf check (isinf) | Every accumulation | Never (integers cannot overflow to Inf) | 1–3% warp idle |
@@ -771,15 +771,15 @@ Float GPU kernels lose warp efficiency from data-dependent branching. TensorProl
 | Gradient clip branch | Every parameter update | Never (no clipping) | 1–3% per update |
 | Dynamic precision selection | Per-tensor in TF32/FP8 switching | Never (static Q-basis) | 3–5% from decision logic |
 
-Cumulative warp efficiency loss from these sources in conventional float inference: published estimates range from 15–40% depending on model architecture and precision configuration. TensorProlog arithmetic has zero sources of warp divergence. Every thread in a warp executes the same instruction on different data in the same number of cycles. The only remaining divergence sources are control flow (loop bounds, conditional branches in Prolog backtracking), which are algorithmic rather than arithmetic.
+Cumulative warp efficiency loss from these sources in conventional float inference: published estimates range from 15–40% depending on model architecture and precision configuration. VDRProlog arithmetic has zero sources of warp divergence. Every thread in a warp executes the same instruction on different data in the same number of cycles. The only remaining divergence sources are control flow (loop bounds, conditional branches in Prolog backtracking), which are algorithmic rather than arithmetic.
 
 ---
 
-## Appendix J: Token Cost Comparison — TensorProlog Command Tokens vs Conventional Function Calling
+## Appendix J: Token Cost Comparison — VDRProlog Command Tokens vs Conventional Function Calling
 
 Measured from VDR-8 command token structure and compared against published function-calling token costs from major LLM API providers.
 
-| Metric | TensorProlog Command | Conventional JSON Function Call |
+| Metric | VDRProlog Command | Conventional JSON Function Call |
 |:---|:---|:---|
 | Tokens per invocation | ~8 | ~25–40 |
 | Entropy per token (bits) | ~2 | ~12–15 |
@@ -790,11 +790,11 @@ Measured from VDR-8 command token structure and compared against published funct
 | Result delivery | KB address (0 output tokens) | Serialized into context (~50–200 tokens) |
 | Total round-trip tokens | ~8 | ~75–240 |
 
-The round-trip difference is the dominant factor. A conventional function call generates ~30 tokens of JSON, receives a result serialized back into the context as ~50–200 tokens, and the LLM re-reads the entire growing context on the next turn. A TensorProlog command generates ~8 tokens, the result lands at a KB address, and the LLM reads a scratchpad summary (~5–10 tokens) with context size unchanged.
+The round-trip difference is the dominant factor. A conventional function call generates ~30 tokens of JSON, receives a result serialized back into the context as ~50–200 tokens, and the LLM re-reads the entire growing context on the next turn. A VDRProlog command generates ~8 tokens, the result lands at a KB address, and the LLM reads a scratchpad summary (~5–10 tokens) with context size unchanged.
 
 Over a 20-turn session with 5 tool calls per turn:
 - Conventional: ~100 tool calls × ~150 average round-trip tokens = ~15,000 tool-related tokens, plus quadratic context growth from accumulated results.
-- TensorProlog: ~100 commands × ~8 tokens = ~800 command tokens. Results in KB. Context size constant.
+- VDRProlog: ~100 commands × ~8 tokens = ~800 command tokens. Results in KB. Context size constant.
 
 ---
 
@@ -1028,7 +1028,7 @@ Every cell in this matrix must produce byte-identical output for the same input.
 
 This test matrix is the definitive validation of the determinism guarantee. In conventional float ML, this matrix cannot be populated with "identical" — float thread scheduling produces different results across platforms, and non-associative allreduce produces different results across topology changes. The matrix would contain "within tolerance" at best, with the tolerance band hiding bugs.
 
-The allreduce row is particularly significant. Conventional NCCL allreduce is non-deterministic for float sums because different reduction trees produce different results from non-associative float addition. TensorProlog allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce the same sum. This cell can be "✓ identical" because the mathematical property guarantees it.
+The allreduce row is particularly significant. Conventional NCCL allreduce is non-deterministic for float sums because different reduction trees produce different results from non-associative float addition. VDRProlog allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce the same sum. This cell can be "✓ identical" because the mathematical property guarantees it.
 
 ---
 
@@ -1083,9 +1083,9 @@ No entry in this table involves "retry and hope float non-determinism produces a
 
 ## Appendix V: Comparison of API Function Counts
 
-Conventional CUDA ecosystem versus TensorProlog. Counts from published documentation.
+Conventional CUDA ecosystem versus VDRProlog. Counts from published documentation.
 
-| Library | Float CUDA Functions | TensorProlog Equivalent | TensorProlog Functions | Reduction |
+| Library | Float CUDA Functions | VDRProlog Equivalent | VDRProlog Functions | Reduction |
 |:---|:---|:---|:---|:---|
 | CUDA Runtime (memory, streams, events) | ~120 | Core runtime | 36 | 3.3× |
 | cuBLAS (GEMM variants, BLAS levels 1–3) | ~250 | icudaVdrGemm + elementwise | 17 | 14.7× |
@@ -1100,9 +1100,9 @@ Conventional CUDA ecosystem versus TensorProlog. Counts from published documenta
 | CUTLASS (GEMM templates) | ~200 | Not needed (one GEMM) | 0 | ∞ |
 | CUDA Math API (float intrinsics) | ~800 | Not needed (integer only) | 0 | ∞ |
 | **Total conventional** | **~3,150** | | | |
-| **TensorProlog equivalents** | | | **~110** | **28.6×** |
-| **TensorProlog new capabilities** | | | **~470** | N/A |
-| **TensorProlog total** | | | **~580** | |
+| **VDRProlog equivalents** | | | **~110** | **28.6×** |
+| **VDRProlog new capabilities** | | | **~470** | N/A |
+| **VDRProlog total** | | | **~580** | |
 
 The 28.6× function count reduction for equivalent capability comes entirely from eliminating precision-variant duplicates. The 470 new functions (KB operations, Prolog, grammars, runners, sessions, safety, confidence, builtins) provide capabilities that have no equivalent at any function count in the conventional stack.
 
