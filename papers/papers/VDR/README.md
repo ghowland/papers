@@ -474,11 +474,11 @@ Otherwise:
 | **[HOWL-VDR-32-2026](HOWL-VDR-32-2026/manuscript.md)** | **VDR-Zig Q16 Integer LLM** | Performance Baseline and Datacenter Projection for Fixed-Denominator Integer Transformer Inference. |
 | **[HOWL-VDR-33-2026](HOWL-VDR-33-2026/manuscript.md)** | **VDR-LLM-Prolog: The Compound Architecture Performance Gains** | Exact Integer Arithmetic as Foundation for Complete LLM System Redesign. |
 | **[HOWL-VDR-34-2026](HOWL-VDR-34-2026/manuscript.md)** | **Why Exact Integer Arithmetic Changes Everything About LLM Systems** | A Mechanical Accounting of Compound Performance Gains from Arithmetic Through Silicon. |
-| **[HOWL-VDR-35-2026](HOWL-VDR-35-2026/manuscript.md)** | **VDR-LLM-Prolog Integer GPU Compute Stack: TensorProlog** | A GPU Compute Architecture for Exact Integer Inference, Knowledge Operations, and Autonomous Session Management. |
+| **[HOWL-VDR-35-2026](HOWL-VDR-35-2026/manuscript.md)** | **VDR-LLM-Prolog Integer GPU Compute Stack: VDRProlog** | A GPU Compute Architecture for Exact Integer Inference, Knowledge Operations, and Autonomous Session Management. |
 
 ---
 
-## Key Numbers for [TensorProlog](HOWL-VDR-35-2026/manuscript.md)
+## Key Numbers for [VDRProlog](HOWL-VDR-35-2026/manuscript.md)
 
 | Metric | Value |
 | :--- | :--- |
@@ -490,17 +490,17 @@ Otherwise:
 | Zig Q16 toy LLM | 688 ns/forward, 1.42M tok/sec, 0 float ops |
 | Token reduction vs conventional LLM | 85–97% |
 | Grammar-directed compaction | ~83% average compression |
-| TensorProlog API surface | ~580 functions across 23 modules |
+| VDRProlog API surface | ~580 functions across 23 modules |
 | Conventional CUDA API replaced | ~4,000+ functions |
-| TensorProlog implementation target | ~30,000 lines, 168 files, 612 tests |
+| VDRProlog implementation target | ~30,000 lines, 168 files, 612 tests |
 | Build phases | 6 (CPU-only through multi-GPU production) |
 | GCP estimated test cost | ~$2,200 |
 | Q16 precision floor | 1/65536 ≈ 1.53 × 10⁻⁵ |
 | Q335 precision floor | ~10⁻¹⁰¹ (~100 decimal digits) |
 
-The 884-test arithmetic foundation was validated using Q335 (D = 2^335, approximately 100 decimal digits). Q335 was chosen to demonstrate exact arithmetic at a precision level beyond any possible objection — 66 orders of magnitude below the Planck length. VDR-31 and VDR-32 subsequently proved that hardware-aligned precision (Q16, Q32) is sufficient for complete transformer training and inference with exact softmax sum, bit-identical determinism, and monotonic integer loss convergence. TensorProlog targets Q16 for model weights and inference, Q32 for intermediate accumulation, and Q335 only for transcendental computation via the Functional Remainder Unit. The arithmetic is the same at every Q-basis — fixed denominator, widening multiply, remainder in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰. The operations drop from arbitrary-precision Python integers to single-cycle machine instructions on existing GPU INT8 tensor cores.
+The 884-test arithmetic foundation was validated using Q335 (D = 2^335, approximately 100 decimal digits). Q335 was chosen to demonstrate exact arithmetic at a precision level beyond any possible objection — 66 orders of magnitude below the Planck length. VDR-31 and VDR-32 subsequently proved that hardware-aligned precision (Q16, Q32) is sufficient for complete transformer training and inference with exact softmax sum, bit-identical determinism, and monotonic integer loss convergence. VDRProlog targets Q16 for model weights and inference, Q32 for intermediate accumulation, and Q335 only for transcendental computation via the Functional Remainder Unit. The arithmetic is the same at every Q-basis — fixed denominator, widening multiply, remainder in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰. The operations drop from arbitrary-precision Python integers to single-cycle machine instructions on existing GPU INT8 tensor cores.
 
-The [TensorProlog](HOWL-VDR-35-2026/manuscript.md) system builds on this foundation by adding GPU compute kernels, knowledge base operations, parallel Prolog unification, grammar-directed structural token generation, session lifecycle management with exact snapshot/clone/kill, autonomous runner execution, and server infrastructure with integer credential enforcement. The conventional CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced by 580 TensorProlog functions — a 28.6× reduction in equivalent-capability API surface from eliminating float precision variants, plus 470 new functions providing capabilities (persistent KB state, deterministic deduction, structural safety, autonomous operation) that have no equivalent in the conventional stack at any function count.
+The [VDRProlog](HOWL-VDR-35-2026/manuscript.md) system builds on this foundation by adding GPU compute kernels, knowledge base operations, parallel Prolog unification, grammar-directed structural token generation, session lifecycle management with exact snapshot/clone/kill, autonomous runner execution, and server infrastructure with integer credential enforcement. The conventional CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced by 580 VDRProlog functions — a 28.6× reduction in equivalent-capability API surface from eliminating float precision variants, plus 470 new functions providing capabilities (persistent KB state, deterministic deduction, structural safety, autonomous operation) that have no equivalent in the conventional stack at any function count.
 
 ---
 

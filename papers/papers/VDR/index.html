@@ -1330,7 +1330,7 @@ Performance Gains from Arithmetic Through Silicon.</td>
 <td style="text-align: left;"><strong><a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">HOWL-VDR-35-2026</a></strong></td>
 <td style="text-align: left;"><strong>VDR-LLM-Prolog Integer GPU Compute
-Stack: TensorProlog</strong></td>
+Stack: VDRProlog</strong></td>
 <td style="text-align: left;">A GPU Compute Architecture for Exact
 Integer Inference, Knowledge Operations, and Autonomous Session
 Management.</td>
@@ -1338,8 +1338,8 @@ Management.</td>
 </tbody>
 </table>
 <hr />
-<h2 id="key-numbers-for-tensorprolog">Key Numbers for <a
-href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">TensorProlog</a></h2>
+<h2 id="key-numbers-for-vdrprolog">Key Numbers for <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDRProlog</a></h2>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1388,7 +1388,7 @@ ops</td>
 83% average compression</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">TensorProlog API surface</td>
+<td style="text-align: left;">VDRProlog API surface</td>
 <td style="text-align: left;">
 580 functions across 23 modules</td>
 </tr>
@@ -1398,7 +1398,7 @@ ops</td>
 4,000+ functions</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">TensorProlog implementation target</td>
+<td style="text-align: left;">VDRProlog implementation target</td>
 <td style="text-align: left;">
 30,000 lines, 168 files, 612 tests</td>
 </tr>
@@ -1431,26 +1431,25 @@ orders of magnitude below the Planck length. VDR-31 and VDR-32
 subsequently proved that hardware-aligned precision (Q16, Q32) is
 sufficient for complete transformer training and inference with exact
 softmax sum, bit-identical determinism, and monotonic integer loss
-convergence. TensorProlog targets Q16 for model weights and inference,
-Q32 for intermediate accumulation, and Q335 only for transcendental
+convergence. VDRProlog targets Q16 for model weights and inference, Q32
+for intermediate accumulation, and Q335 only for transcendental
 computation via the Functional Remainder Unit. The arithmetic is the
 same at every Q-basis — fixed denominator, widening multiply, remainder
 in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰.
 The operations drop from arbitrary-precision Python integers to
 single-cycle machine instructions on existing GPU INT8 tensor cores.</p>
-<p>The <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">TensorProlog</a> system
+<p>The <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDRProlog</a> system
 builds on this foundation by adding GPU compute kernels, knowledge base
 operations, parallel Prolog unification, grammar-directed structural
 token generation, session lifecycle management with exact
 snapshot/clone/kill, autonomous runner execution, and server
 infrastructure with integer credential enforcement. The conventional
 CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced
-by 580 TensorProlog functions — a 28.6× reduction in
-equivalent-capability API surface from eliminating float precision
-variants, plus 470 new functions providing capabilities (persistent KB
-state, deterministic deduction, structural safety, autonomous operation)
-that have no equivalent in the conventional stack at any function
-count.</p>
+by 580 VDRProlog functions — a 28.6× reduction in equivalent-capability
+API surface from eliminating float precision variants, plus 470 new
+functions providing capabilities (persistent KB state, deterministic
+deduction, structural safety, autonomous operation) that have no
+equivalent in the conventional stack at any function count.</p>
 <hr />
 <p><strong>Contact:</strong> <a
 href="https://www.linkedin.com/in/ghowland/">https://www.linkedin.com/in/ghowland/</a></p>
