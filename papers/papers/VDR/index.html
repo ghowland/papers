@@ -310,6 +310,13 @@ spent on safety.</p>
 Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip.
 Exact orbit closure. Conservation laws verified by equality not
 tolerance.</p>
+<p><strong>Why use Q335 (2^335) as a basis?</strong> Q335 (2^335, 
+100
+decimal digits, 66 orders of magnitude below Planck length) was used
+across 884 tests in 37 domains to prove exact integer arithmetic beyond
+any precision objection; production uses Q16/Q32 where VDR
+multiply-accumulate compiles to the same single-cycle instructions as
+INT8 quantized inference.</p>
 <h2 id="status">Status</h2>
 <p><strong>What works (validated):</strong> - Exact arithmetic across 37
 domains - 884 tests, zero computation errors - Complete

@@ -61,6 +61,8 @@ On GPU, this is a fixed-width uniform workload: every Q335 (2^335) value is 11×
 
 **Validated:** 884 tests, zero arithmetic errors. Exact Hilbert matrix inverse where float64 fails at 5×5. Exact DFT roundtrip. Exact orbit closure. Conservation laws verified by equality not tolerance.
 
+**Why use Q335 (2^335) as a basis?** Q335 (2^335, ~100 decimal digits, 66 orders of magnitude below Planck length) was used across 884 tests in 37 domains to prove exact integer arithmetic beyond any precision objection; production uses Q16/Q32 where VDR multiply-accumulate compiles to the same single-cycle instructions as INT8 quantized inference.
+
 ## Status
 
 **What works (validated):**
