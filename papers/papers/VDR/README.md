@@ -504,7 +504,7 @@ The 884-test arithmetic foundation was validated using Q335 (D = 2^335, approxim
 
 The [VDRProlog](HOWL-VDR-35-2026/manuscript.md) system builds on this foundation by adding GPU compute kernels, knowledge base operations, parallel Prolog unification, grammar-directed structural token generation, session lifecycle management with exact snapshot/clone/kill, autonomous runner execution, and server infrastructure with integer credential enforcement. The conventional CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced by 580 VDRProlog functions — a 28.6× reduction in equivalent-capability API surface from eliminating float precision variants, plus 470 new functions providing capabilities (persistent KB state, deterministic deduction, structural safety, autonomous operation) that have no equivalent in the conventional stack at any function count.
 
-### VDRProlog development is parked until this PTX compilation problem is solved
+### VDRProlog development is parked until the PTX compilation problem is solved
 
 VDR-Prolog GPU kernel compiles to valid PTX in Zig 0.16.0 Debug mode but NVIDIA's JIT crashes on the debug panic stubs, and all Release modes strip the kernel entry point despite `comptime { _ = &main; }` — blocked until Zig fixes nvptx64 function retention in Release builds or Debug PTX emission compatibility with NVIDIA's JIT compiler.
 
