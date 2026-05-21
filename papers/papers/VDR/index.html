@@ -1457,6 +1457,21 @@ API surface from eliminating float precision variants, plus 470 new
 functions providing capabilities (persistent KB state, deterministic
 deduction, structural safety, autonomous operation) that have no
 equivalent in the conventional stack at any function count.</p>
+<h3
+id="vdrprolog-development-is-parked-until-this-ptx-compilation-problem-is-solved">VDRProlog
+development is parked until this PTX compilation problem is solved</h3>
+<p>VDR-Prolog GPU kernel compiles to valid PTX in Zig 0.16.0 Debug mode
+but NVIDIA’s JIT crashes on the debug panic stubs, and all Release modes
+strip the kernel entry point despite
+<code>comptime { _ = &amp;main; }</code> — blocked until Zig fixes
+nvptx64 function retention in Release builds or Debug PTX emission
+compatibility with NVIDIA’s JIT compiler.</p>
+<p>Alternatively, the SPIR-V/Vulkan path is blocked by Zig 0.16.0
+lacking gpu.binding(), <span class="citation"
+data-cites="setExecProperty">@setExecProperty</span>, and <span
+class="citation" data-cites="fence">@fence</span>(.workgroup), plus a
+linker bug preventing .spv file output (ziglang/zig#23883) — either
+backend becoming functional unblocks GPU compute for the project.</p>
 <hr />
 <p><strong>Contact:</strong> <a
 href="https://www.linkedin.com/in/ghowland/">https://www.linkedin.com/in/ghowland/</a></p>
