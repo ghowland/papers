@@ -62,7 +62,7 @@ primitives the model orchestrates instead of generating computation as
 text.</p>
 <ul>
 <li><a href="https://github.com/ghowland/vdr-math">vdr-math Python
-Library</a> - Python exact arithmetic library — every value is a [V, D,
+Library</a> - Python exact arithmetic library, every value is a [V, D,
 R] triple with fixed denominator and exact remainder tracking.</li>
 </ul>
 <p><strong>VDR-LLM-Prolog</strong> is the complete system built on VDR
@@ -87,14 +87,14 @@ verified, but not currently a complete system.</li>
 <p><strong>Why It Compounds (<a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-34-2026/manuscript.md">VDR-34</a>):</strong> Mechanical
 accounting traced turn by turn through SRE incidents. Fresh system day
-3: 570 tokens over 7 turns — acquires data, builds KB structure, creates
-first rule and grammar. Mature system month 6: 132 tokens over 5 turns —
+3: 570 tokens over 7 turns, acquires data, builds KB structure, creates
+first rule and grammar. Mature system month 6: 132 tokens over 5 turns,
 auto-triage already identified root cause, stored scripts re-executed.
 Conventional: 25,100 tokens, degrading quality, no persistent artifacts.
 Three non-degradation layers (exact KB data, bounded primitives, exact
 integer attention) each structurally incapable of degrading. Token
 elimination decomposed: 40% state reconstruction, 25% formatting, 15%
-arithmetic, 10% deduction, 7% hedging — all replaced; 3% judgment
+arithmetic, 10% deduction, 7% hedging, all replaced; 3% judgment
 retained. L1→L2→L3 execution shift from 100% LLM to 93% pure Prolog over
 100 investigations. Data scales from 2.5:1 at 64 bytes to
 impossible-versus-routine at 1GB. All numbers traced to measured
@@ -109,7 +109,7 @@ tracking. Bit-identical reproduction removes non-determinism costs from
 CI/CD, compliance, and debugging. Video diffusion rendering cost roughly
 halved from throughput plus zero drift correction. Training 1.5-1.7×
 cheaper with no loss scaling failures.</p>
-<p><strong>Result:</strong> Sessions never degrade — three independent
+<p><strong>Result:</strong> Sessions never degrade, three independent
 layers (exact data at integer addresses, bounded working memory, exact
 integer attention) are each structurally incapable of degrading. 97% of
 conventional tokens are infrastructure replaced by KB addressing,
@@ -243,13 +243,13 @@ Performance Toy LLM in Zig</a></strong> - Integer Transformer
 Performance Baseline: the Python toy LLM reimplemented in single-file
 Zig at Q16 (D = 2^16) with zero floating-point, zero heap allocations,
 2,368 bytes total model memory. ReleaseFast on a 2019 laptop: 688
-ns/forward, 1.42M tokens/sec — 170,000× faster than Python. Core
-finding: VDR Q16 multiply-accumulate is the same instruction sequence as
+ns/forward, 1.42M tokens/sec, 170,000× faster than Python. Core finding:
+VDR Q16 multiply-accumulate is the same instruction sequence as
 INT8/INT16 quantized inference (widening multiply, accumulate,
 right-shift), placing it at computational parity on identical hardware.
 Projected A100: 45 ms for 7B forward matching float16 throughput. Unlike
 existing quantized systems that convert to float for softmax, VDR stays
-integer end-to-end — exact softmax sum, bit-identical determinism, 2.6×
+integer end-to-end, exact softmax sum, bit-identical determinism, 2.6×
 lower energy per MAC, at zero additional compute cost.</p></li>
 </ul>
 <h2 id="how-exact-integer-arithmetic-works">How Exact Integer Arithmetic
@@ -1441,7 +1441,7 @@ $2,200</td>
 </table>
 <p>The 884-test arithmetic foundation was validated using Q335 (D =
 2^335, approximately 100 decimal digits). Q335 was chosen to demonstrate
-exact arithmetic at a precision level beyond any possible objection — 66
+exact arithmetic at a precision level beyond any possible objection, 66
 orders of magnitude below the Planck length. VDR-31 and VDR-32
 subsequently proved that hardware-aligned precision (Q16, Q32) is
 sufficient for complete transformer training and inference with exact
@@ -1449,7 +1449,7 @@ softmax sum, bit-identical determinism, and monotonic integer loss
 convergence. VDR-Prolog targets Q16 for model weights and inference, Q32
 for intermediate accumulation, and Q335 only for transcendental
 computation via the Functional Remainder Unit. The arithmetic is the
-same at every Q-basis — fixed denominator, widening multiply, remainder
+same at every Q-basis, fixed denominator, widening multiply, remainder
 in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰.
 The operations drop from arbitrary-precision Python integers to
 single-cycle machine instructions on existing GPU INT8 tensor cores.</p>
@@ -1460,7 +1460,7 @@ token generation, session lifecycle management with exact
 snapshot/clone/kill, autonomous runner execution, and server
 infrastructure with integer credential enforcement. The conventional
 CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced
-by 580 VDR-Prolog functions — a 28.6× reduction in equivalent-capability
+by 580 VDR-Prolog functions, a 28.6× reduction in equivalent-capability
 API surface from eliminating float precision variants, plus 470 new
 functions providing capabilities (persistent KB state, deterministic
 deduction, structural safety, autonomous operation) that have no
@@ -1471,14 +1471,14 @@ development is parked until the PTX compilation problem is solved</h3>
 <p>VDR-Prolog GPU kernel compiles to valid PTX in Zig 0.16.0 Debug mode
 but NVIDIA’s JIT crashes on the debug panic stubs, and all Release modes
 strip the kernel entry point despite
-<code>comptime { _ = &amp;main; }</code> — blocked until Zig fixes
+<code>comptime { _ = &amp;main; }</code>, blocked until Zig fixes
 nvptx64 function retention in Release builds or Debug PTX emission
 compatibility with NVIDIA’s JIT compiler.</p>
 <p>Alternatively, the SPIR-V/Vulkan path is blocked by Zig 0.16.0
 lacking gpu.binding(), <span class="citation"
 data-cites="setExecProperty">@setExecProperty</span>, and <span
 class="citation" data-cites="fence">@fence</span>(.workgroup), plus a
-linker bug preventing .spv file output (ziglang/zig#23883) — either
+linker bug preventing .spv file output (ziglang/zig#23883), either
 backend becoming functional unblocks GPU compute for the project.</p>
 <p>But stopping the GPU path lead to the CPU only project: “VDR-Prolog
 CPU”</p>
