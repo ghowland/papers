@@ -59,12 +59,10 @@ and the Remainder is not rounding error - it’s first-class structure.
 Built outward into a complete LLM architecture with scoped knowledge
 bases, a built-in Prolog engine for logical deduction, and 448 exact
 primitives the model orchestrates instead of generating computation as
-text.</p>
-<ul>
-<li><a href="https://github.com/ghowland/vdr-math">vdr-math Python
-Library</a> - Python exact arithmetic library — every value is a [V, D,
-R] triple with fixed denominator and exact remainder tracking.</li>
-</ul>
+text. <!--  --> - <a
+href="https://github.com/ghowland/vdr-math">vdr-math Python Library</a>
+- Python exact arithmetic library — every value is a [V, D, R] triple
+with fixed denominator and exact remainder tracking.</p>
 <p><strong>VDR-LLM-Prolog</strong> is the complete system built on VDR
 arithmetic. The LLM orchestrates instead of computing: data lives in
 scoped KBs at integer addresses, deduction runs through Prolog over
@@ -77,7 +75,7 @@ full LLM judgment (50-500 tokens), LLM invoking stored rules (8 tokens),
 pure Prolog batch (0 tokens). Applications develop through conversation
 and improve through usage.</p>
 <ul>
-<li><a href="https://github.com/ghowland/VDRPrologCPU">VDR-Prolog CPU
+<li><a href="https://github.com/ghowland/VDR-PrologCPU">VDR-Prolog CPU
 only Model</a> - Exact integer LLM inference engine with Prolog
 knowledge base and hierarchical KB tree. CPU only, no floats, no GPU,
 arena-only memory. Typed relations, structural addressing. Zig 0.15.1.
@@ -1345,7 +1343,7 @@ Performance Gains from Arithmetic Through Silicon.</td>
 <td style="text-align: left;"><strong><a
 href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">HOWL-VDR-35-2026</a></strong></td>
 <td style="text-align: left;"><strong>VDR-LLM-Prolog Integer GPU Compute
-Stack: VDRProlog</strong></td>
+Stack: VDR-Prolog</strong></td>
 <td style="text-align: left;">A GPU Compute Architecture for Exact
 Integer Inference, Knowledge Operations, and Autonomous Session
 Management.</td>
@@ -1353,8 +1351,8 @@ Management.</td>
 </tbody>
 </table>
 <hr />
-<h2 id="key-numbers-for-vdrprolog">Key Numbers for <a
-href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDRProlog</a></h2>
+<h2 id="key-numbers-for-vdr-prolog">Key Numbers for <a
+href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDR-Prolog</a></h2>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1403,7 +1401,7 @@ ops</td>
 83% average compression</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">VDRProlog API surface</td>
+<td style="text-align: left;">VDR-Prolog API surface</td>
 <td style="text-align: left;">
 580 functions across 23 modules</td>
 </tr>
@@ -1413,7 +1411,7 @@ ops</td>
 4,000+ functions</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">VDRProlog implementation target</td>
+<td style="text-align: left;">VDR-Prolog implementation target</td>
 <td style="text-align: left;">
 30,000 lines, 168 files, 612 tests</td>
 </tr>
@@ -1446,27 +1444,27 @@ orders of magnitude below the Planck length. VDR-31 and VDR-32
 subsequently proved that hardware-aligned precision (Q16, Q32) is
 sufficient for complete transformer training and inference with exact
 softmax sum, bit-identical determinism, and monotonic integer loss
-convergence. VDRProlog targets Q16 for model weights and inference, Q32
+convergence. VDR-Prolog targets Q16 for model weights and inference, Q32
 for intermediate accumulation, and Q335 only for transcendental
 computation via the Functional Remainder Unit. The arithmetic is the
 same at every Q-basis — fixed denominator, widening multiply, remainder
 in a known slot. The precision floor drops from 10⁻¹⁰¹ to 10⁻⁵ or 10⁻¹⁰.
 The operations drop from arbitrary-precision Python integers to
 single-cycle machine instructions on existing GPU INT8 tensor cores.</p>
-<p>The <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDRProlog</a> system
+<p>The <a href="https://github.com/ghowland/papers/tree/main/papers/papers/VDR/HOWL-VDR-35-2026/manuscript.md">VDR-Prolog</a> system
 builds on this foundation by adding GPU compute kernels, knowledge base
 operations, parallel Prolog unification, grammar-directed structural
 token generation, session lifecycle management with exact
 snapshot/clone/kill, autonomous runner execution, and server
 infrastructure with integer credential enforcement. The conventional
 CUDA stack (cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL) is replaced
-by 580 VDRProlog functions — a 28.6× reduction in equivalent-capability
+by 580 VDR-Prolog functions — a 28.6× reduction in equivalent-capability
 API surface from eliminating float precision variants, plus 470 new
 functions providing capabilities (persistent KB state, deterministic
 deduction, structural safety, autonomous operation) that have no
 equivalent in the conventional stack at any function count.</p>
 <h3
-id="vdrprolog-development-is-parked-until-the-ptx-compilation-problem-is-solved">VDRProlog
+id="vdr-prolog-development-is-parked-until-the-ptx-compilation-problem-is-solved">VDR-Prolog
 development is parked until the PTX compilation problem is solved</h3>
 <p>VDR-Prolog GPU kernel compiles to valid PTX in Zig 0.16.0 Debug mode
 but NVIDIA’s JIT crashes on the debug panic stubs, and all Release modes
@@ -1480,6 +1478,21 @@ data-cites="setExecProperty">@setExecProperty</span>, and <span
 class="citation" data-cites="fence">@fence</span>(.workgroup), plus a
 linker bug preventing .spv file output (ziglang/zig#23883) — either
 backend becoming functional unblocks GPU compute for the project.</p>
+<p>But stopping the GPU path lead to the CPU only project: “VDR-Prolog
+CPU”</p>
+<h3 id="vdr-prolog-cpu">VDR-Prolog CPU</h3>
+<p>Integer-exact LLM and knowledge system. No floats, no GPU, CPU only.
+Structured knowledge stored in hierarchical tree of knowledge bases with
+120+ typed relations queried through Prolog operations. Transformer
+trains and predicts over knowledge base tokens using fixed-point
+arithmetic with exact remainder tracking. Arena-only memory, zero
+allocation after init. Zig 0.15.1.</p>
+<p>Core arithmetic, KB tree, typed queries, transformer verified, but
+not currently a complete system.</p>
+<ul>
+<li><a href="https://github.com/ghowland/VDR-PrologCPU">VDR-Prolog CPU
+only Model</a></li>
+</ul>
 <hr />
 <p><strong>Contact:</strong> <a
 href="https://www.linkedin.com/in/ghowland/">https://www.linkedin.com/in/ghowland/</a></p>
