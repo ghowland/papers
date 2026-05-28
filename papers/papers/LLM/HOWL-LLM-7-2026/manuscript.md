@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-LLM-2-2026] → [@HOWL-LLM-3-2026] → [@HOWL-LLM-4-2026] → [@HOWL-LLM-5-2026] → [@HOWL-LLM-7-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20431667
 
 **Date:** May 2026
 
