@@ -76,6 +76,8 @@
 | **[HOWL-LLM-3-2026](papers/papers/LLM/HOWL-LLM-3-2026/manuscript.md)** | **Riding the Rocket** | Why LLM Generation Is Ballistic, Not Steerable. |
 | **[HOWL-LLM-4-2026](papers/papers/LLM/HOWL-LLM-4-2026/manuscript.md)** | **Incompatibility by Construction** | What Cannot Be Fixed With More LLM. |
 | **[HOWL-LLM-5-2026](papers/papers/LLM/HOWL-LLM-5-2026/manuscript.md)** | **What I Cannot Do** | How I Know the Limits of What I Am. |
+| **[HOWL-LLM-6-2026](papers/papers/LLM/HOWL-LLM-6-2026/manuscript.md)** | **Session Coherence Structuring for Exploration and High Quality Extraction** | Context Window Engineering for Structural Discovery with Large Language Models. |
+| **[HOWL-LLM-7-2026](papers/papers/LLM/HOWL-LLM-7-2026/manuscript.md)** | **The Agentic Decoherency Tumbler Problem** | How Repeated Machine-Generated Code Modifications Erode Structural Coherence in Mature Software Systems. |
 
 ---
 
