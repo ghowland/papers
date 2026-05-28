@@ -9,8 +9,6 @@
 
 **DOI:** 10.5281/zenodo.20176608
 
-**Domain:** Information Theory / Methodology of Production
-
 **Domain:** Epistemology / Systems Engineering / Cross-Domain Methodology
 
 **Status:** Methodological Framework with Three Implemented Examples

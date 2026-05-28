@@ -1,0 +1,130 @@
+{
+  "created": "2026-05-28T13:55:06.070658+00:00",
+  "modified": "2026-05-28T13:55:06.167139+00:00",
+  "id": 20430471,
+  "conceptrecid": "20430470",
+  "metadata": {
+    "title": "Session Coherence Structuring for Exploration and High Quality Extraction",
+    "publication_date": "2026-04",
+    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "llm"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-6-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-6-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20430471",
+      "recid": 20430471
+    }
+  },
+  "title": "Session Coherence Structuring for Exploration and High Quality Extraction",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20430471",
+    "html": "https://zenodo.org/deposit/20430471",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20430471/files",
+    "bucket": "https://zenodo.org/api/files/3cd92eb2-b711-41e1-8e3d-4fffcfd6ea77",
+    "thumb250": "https://zenodo.org/record/20430471/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20430471/thumb10",
+      "50": "https://zenodo.org/record/20430471/thumb50",
+      "100": "https://zenodo.org/record/20430471/thumb100",
+      "250": "https://zenodo.org/record/20430471/thumb250",
+      "750": "https://zenodo.org/record/20430471/thumb750",
+      "1200": "https://zenodo.org/record/20430471/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20430471",
+    "latest_draft_html": "https://zenodo.org/deposit/20430471",
+    "publish": "https://zenodo.org/api/deposit/depositions/20430471/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20430471/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20430471/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20430471/actions/newversion"
+  },
+  "record_id": 20430471,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "51a8ede6-56b3-467f-9d47-2464e0ca54f4",
+      "filename": "!manuscript.pdf",
+      "filesize": 80006,
+      "checksum": "961361c09fa169c8dd6af587131968c6",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20430471/files/51a8ede6-56b3-467f-9d47-2464e0ca54f4",
+        "download": "https://zenodo.org/api/records/20430471/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "eac1cfcb-7528-4c8e-b905-bf67413bce5c",
+      "filename": "HOWL-LLM-6-2026.zip",
+      "filesize": 128969,
+      "checksum": "b1f51270e237dc7f24edd98677759f78",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20430471/files/eac1cfcb-7528-4c8e-b905-bf67413bce5c",
+        "download": "https://zenodo.org/api/records/20430471/draft/files/HOWL-LLM-6-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

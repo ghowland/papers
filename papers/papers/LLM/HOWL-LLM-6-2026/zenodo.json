@@ -1,0 +1,70 @@
+{
+  "title": "Session Coherence Structuring for Exploration and High Quality Extraction",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "This paper presents a method for using large language models as high-speed exploration engines for structural discovery across domains. The method \u2014 Session Coherence Structuring \u2014 treats the LLM's context window as an append-only, finite, partially uncontrolled medium that must be deliberately managed across the full session trajectory to produce internally consistent, structurally sound output.\n\nThe core claim is that LLMs do not generate ideas, nor do humans extract them unaided. Structural discoveries \u2014 cross-domain invariants, minimal system architectures, conceptual unifications \u2014 emerge from a feedback loop in which the LLM provides rapid expansion across its training distribution and the human provides directional prompts, significance judgments, and course corrections. The quality of the output depends not on any single prompt but on the cumulative signal density and topical coherence maintained across the full session.\n\nThe paper identifies three session phases \u2014 loading, alignment, and generation \u2014 and describes the mechanics of each. It defines the human and LLM functions as distinct and complementary. It catalogs failure modes including context contamination, incoherence amplification, shaped responses, and premature data injection. It proposes session engineering practices derived from empirical use across mathematical research and software architecture. It provides falsification criteria for every major claim.\n\nNo claims are made about LLM cognition, understanding, or reasoning. The method operates entirely within the established mechanics of token prediction, attention weighting, and context window constraints.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "llm"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-6-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-6-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
