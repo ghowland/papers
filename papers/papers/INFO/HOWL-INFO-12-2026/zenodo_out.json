@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-09T19:23:50.943474+00:00",
+  "modified": "2026-06-09T19:23:51.081449+00:00",
+  "id": 20616841,
+  "conceptrecid": "20616840",
+  "metadata": {
+    "title": "Information Processing Requires Reduction to Cardinality One",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-12-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-12-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20616841",
+      "recid": 20616841
+    }
+  },
+  "title": "Information Processing Requires Reduction to Cardinality One",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20616841",
+    "html": "https://zenodo.org/deposit/20616841",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20616841/files",
+    "bucket": "https://zenodo.org/api/files/22d031bd-2687-4332-98ab-039aafe4cca9",
+    "thumb250": "https://zenodo.org/record/20616841/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20616841/thumb10",
+      "50": "https://zenodo.org/record/20616841/thumb50",
+      "100": "https://zenodo.org/record/20616841/thumb100",
+      "250": "https://zenodo.org/record/20616841/thumb250",
+      "750": "https://zenodo.org/record/20616841/thumb750",
+      "1200": "https://zenodo.org/record/20616841/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20616841",
+    "latest_draft_html": "https://zenodo.org/deposit/20616841",
+    "publish": "https://zenodo.org/api/deposit/depositions/20616841/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20616841/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20616841/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20616841/actions/newversion"
+  },
+  "record_id": 20616841,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "11c098ea-dc9e-47e3-a14c-d90e7a071898",
+      "filename": "!manuscript.pdf",
+      "filesize": 105230,
+      "checksum": "3657f28ad68ddec8317111a970a4a8ac",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20616841/files/11c098ea-dc9e-47e3-a14c-d90e7a071898",
+        "download": "https://zenodo.org/api/records/20616841/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "889e3adf-f74d-4897-a20e-5b1c8f5aecae",
+      "filename": "HOWL-INFO-12-2026.zip",
+      "filesize": 155541,
+      "checksum": "f41d00942941acfcc0c4ef0337dc2bed",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20616841/files/889e3adf-f74d-4897-a20e-5b1c8f5aecae",
+        "download": "https://zenodo.org/api/records/20616841/draft/files/HOWL-INFO-12-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

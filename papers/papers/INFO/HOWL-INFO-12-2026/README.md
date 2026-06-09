@@ -1,4 +1,4 @@
-# The Relationship of Zero, One, and Infinity in Information Processing
+# Information Processing Requires Reduction to Cardinality One
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-INFO-11-2026,
-  title={ The Relationship of Zero, One, and Infinity in Information Processing },
+@article{ HOWL-INFO-12-2026,
+  title={ Information Processing Requires Reduction to Cardinality One },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20616701},
-  url = {https://zenodo.org/record/20616701},
-  note={Howland Archive: HOWL-INFO-11-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20616841},
+  url = {https://zenodo.org/record/20616841},
+  note={Howland Archive: HOWL-INFO-12-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
