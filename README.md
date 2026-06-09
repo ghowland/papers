@@ -244,6 +244,7 @@
 | **[HOWL-PHYS-55-2026](papers/papers/PHYS/HOWL-PHYS-55-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum Spec** | Substrate Specification, Dual-Geometry Integration, and Coordinated Falsification Program. |
 | **[HOWL-PHYS-56-2026](papers/papers/PHYS/HOWL-PHYS-56-2026/manuscript.md)** | **Planck Cell-Tick Remainder Momentum III** | The Coordinated Falsification Program for PCTRM. |
 | **[HOWL-PHYS-57-2026](papers/papers/PHYS/HOWL-PHYS-57-2026/manuscript.md)** | **Universal Structural Claim** | Falsification of the Channel × Level Universality Claim in PCTRM. |
+| **[HOWL-PHYS-58-2026](papers/papers/PHYS/HOWL-PHYS-58-2026/manuscript.md)** | **Channel Geometric Mismatch and the Domain Impedance Z** | The Velocity-Dependent L1/L2 Framework Applied to PCTRM Channel Mechanics. |
 
 ---
 

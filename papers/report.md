@@ -1,14 +1,14 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-06-09 20:41:35 UTC
+**Generated:** 2026-06-09 20:55:00 UTC
 
 ## Summary
 
 - **Total Papers:** 198
-- **Valid:** 192
-- **Invalid:** 6
-- **Total Errors:** 9
-- **Total Warnings:** 445
+- **Valid:** 193
+- **Invalid:** 5
+- **Total Errors:** 7
+- **Total Warnings:** 444
 
 ## By Subject
 
@@ -31,8 +31,8 @@
 
 ## By Status
 
-- **Published (has DOI):** 192
-- **Draft (stub .zzz):** 6
+- **Published (has DOI):** 193
+- **Draft (stub .zzz):** 5
 
 ## Validation Issues
 
@@ -49,10 +49,6 @@
   - ❌ Missing Registry field in frontmatter
 
 **HOWL-PHYS-41-2026**
-  - ❌ Missing Registry field in frontmatter
-
-**HOWL-PHYS-58-2026**
-  - ❌ Missing title (H1)
   - ❌ Missing Registry field in frontmatter
 
 **HOWL-VDR-36-2026**

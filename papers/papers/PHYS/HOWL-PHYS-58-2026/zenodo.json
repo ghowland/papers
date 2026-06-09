@@ -1,5 +1,5 @@
 {
-  "title": "manuscript.md",
+  "title": "Channel Geometric Mismatch and the Domain Impedance Z",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
@@ -10,17 +10,13 @@
   "keywords": [
     "HOWL framework",
     "howland archive",
-    "discrete spacetime",
-    "physics",
-    "zero free parameters",
-    "falsifiable physics",
-    "theoretical derivation"
+    "physics"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-44-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-PHYS-58-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/PHYS/HOWL-PHYS-57-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/PHYS/HOWL-PHYS-58-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

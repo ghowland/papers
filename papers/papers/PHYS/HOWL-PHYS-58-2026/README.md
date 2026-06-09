@@ -1,4 +1,4 @@
-# manuscript.md
+# Channel Geometric Mismatch and the Domain Impedance Z
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-PHYS-44-2026,
-  title={ manuscript.md },
+@article{ HOWL-PHYS-58-2026,
+  title={ Channel Geometric Mismatch and the Domain Impedance Z },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.zzz},
-  url = {https://zenodo.org/record/zzz},
-  note={Howland Archive: HOWL-PHYS-44-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20617609},
+  url = {https://zenodo.org/record/20617609},
+  note={Howland Archive: HOWL-PHYS-58-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

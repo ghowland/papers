@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "manuscript.md",
-    "registry_id": "HOWL-PHYS-44-2026",
-    "series_path": "[@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "title": "Channel Geometric Mismatch and the Domain Impedance Z",
+    "registry_id": "HOWL-PHYS-58-2026",
+    "series_path": "[@HOWL-PHYS-55-2026] \u2192 [@HOWL-PHYS-56-2026] \u2192 [@HOWL-PHYS-57-2026] \u2192 [@HOWL-PHYS-58-2026]",
+    "doi": "10.5281/zenodo.20617609",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": " **Registry:** [@HOWL-PHYS-44-2026]  **Series Path:** [@HOWL-PHYS-41-2026] \u2192 [@HOWL-PHYS-42-2026] \u2192 [@HOWL-PHYS-43-2026] \u2192 [@HOWL-PHYS-44-2026]  **DOI:** 10.5281/zenodo.zzz  **Date:** April 10, 2026  ..."
+    "raw_content_preview": "# Channel Geometric Mismatch and the Domain Impedance Z ## The Velocity-Dependent L1/L2 Framework Applied to PCTRM Channel Mechanics  **Registry:** [@HOWL-PHYS-58-2026]  **Series Path:** [@HOWL-PHYS-5..."
 }
