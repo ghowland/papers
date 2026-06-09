@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-09T16:05:21.604186+00:00",
+  "modified": "2026-06-09T16:05:21.690986+00:00",
+  "id": 20614224,
+  "conceptrecid": "20614223",
+  "metadata": {
+    "title": "Name Driven Development",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-11-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-11-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20614224",
+      "recid": 20614224
+    }
+  },
+  "title": "Name Driven Development",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20614224",
+    "html": "https://zenodo.org/deposit/20614224",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20614224/files",
+    "bucket": "https://zenodo.org/api/files/fec714ed-cd03-42d8-b8f2-afd59f9417aa",
+    "thumb250": "https://zenodo.org/record/20614224/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20614224/thumb10",
+      "50": "https://zenodo.org/record/20614224/thumb50",
+      "100": "https://zenodo.org/record/20614224/thumb100",
+      "250": "https://zenodo.org/record/20614224/thumb250",
+      "750": "https://zenodo.org/record/20614224/thumb750",
+      "1200": "https://zenodo.org/record/20614224/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20614224",
+    "latest_draft_html": "https://zenodo.org/deposit/20614224",
+    "publish": "https://zenodo.org/api/deposit/depositions/20614224/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20614224/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20614224/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20614224/actions/newversion"
+  },
+  "record_id": 20614224,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "45139d08-4172-458f-a341-bb816a619326",
+      "filename": "!manuscript.pdf",
+      "filesize": 64755,
+      "checksum": "fa85c0e42c43f440a77ffb0264d2e379",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20614224/files/45139d08-4172-458f-a341-bb816a619326",
+        "download": "https://zenodo.org/api/records/20614224/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "3d7a4c71-2ddb-4a5a-9014-75ab52af4c96",
+      "filename": "HOWL-COMP-11-2026.zip",
+      "filesize": 1651512,
+      "checksum": "47a8e16a9e5c5b656455adb41cebf5f3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20614224/files/3d7a4c71-2ddb-4a5a-9014-75ab52af4c96",
+        "download": "https://zenodo.org/api/records/20614224/draft/files/HOWL-COMP-11-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

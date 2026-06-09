@@ -1,6 +1,6 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-06-09 15:11:18 UTC
+**Generated:** 2026-06-09 16:05:39 UTC
 
 ## Summary
 
@@ -8,7 +8,7 @@
 - **Valid:** 188
 - **Invalid:** 6
 - **Total Errors:** 9
-- **Total Warnings:** 436
+- **Total Warnings:** 435
 
 ## By Subject
 
@@ -31,8 +31,8 @@
 
 ## By Status
 
-- **Published (has DOI):** 187
-- **Draft (stub .zzz):** 7
+- **Published (has DOI):** 188
+- **Draft (stub .zzz):** 6
 
 ## Validation Issues
 
@@ -72,10 +72,9 @@
   - ⚠️  Missing ::: {#refs} ::: delimiter
 
 **HOWL-COMP-11-2026**
-  - ⚠️  DOI is stub (.zzz)
   - ⚠️  Missing ## References section
   - ⚠️  Missing ::: {#refs} ::: delimiter
-  - ... and 1 more
+  - ⚠️  No abstract section found
 
 **HOWL-COMP-3-2026**
   - ⚠️  No abstract section found
