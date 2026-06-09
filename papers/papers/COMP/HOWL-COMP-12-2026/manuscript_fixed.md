@@ -1,4 +1,5 @@
 # Closed Loop Architecture
+
 ## A Complete OS in Four Flat Lists
 
 **Registry:** [@HOWL-COMP-12-2026]
@@ -350,7 +351,6 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | G35 | Environment Variable Set | Infinity | Per-process environment block. Load, set, unset, export. |
 | G36 | Cron Job | Infinity | Scheduled recurring task. Schedule, execute, complete, fail, reschedule. |
 | G37 | Log Entry | Infinity | Log record. Buffer, write, rotate, archive, delete. |
-
 **Summary:** 2 Zero, 15 One, 20 Infinity. Total: 37 EntityGroups.
 
 ---
@@ -361,498 +361,461 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV1 | BIOS_Power_On_Self_Test | diagnostic_result:bool | Hardware self-test at power on |
-| EV2 | BIOS_Hardware_Enumerated | device_count:i32 | All hardware detected |
-| EV3 | BIOS_Boot_Device_Selected | device_path:Text | Boot device chosen |
-| EV4 | BIOS_MBR_Loaded | sector_address:i32 | Master boot record read |
-| EV5 | BIOS_Bootloader_Transferred | entry_address:i32 | Control passed to bootloader |
-
+| EV1 | BIOS Power On Self Test | diagnostic result:bool | Hardware self-test at power on |
+| EV2 | BIOS Hardware Enumerated | device count:i32 | All hardware detected |
+| EV3 | BIOS Boot Device Selected | device path:Text | Boot device chosen |
+| EV4 | BIOS MBR Loaded | sector address:i32 | Master boot record read |
+| EV5 | BIOS Bootloader Transferred | entry address:i32 | Control passed to bootloader |
 #### B.2 — Bootloader (G2, Zero)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV6 | Bootloader_Stage1_Loaded | load_address:i32 | First stage loaded from MBR |
-| EV7 | Bootloader_Stage2_Loaded | load_address:i32 | Second stage loaded |
-| EV8 | Bootloader_Kernel_Located | kernel_path:Text | Kernel image found on disk |
-| EV9 | Bootloader_Kernel_Loaded_To_Memory | memory_address:i32, kernel_size:i32 | Kernel copied to RAM |
-| EV10 | Bootloader_Initrd_Loaded | memory_address:i32, initrd_size:i32 | Initial ramdisk copied to RAM |
-| EV11 | Bootloader_Kernel_Parameters_Set | param_string:Text | Boot parameters configured |
-| EV12 | Bootloader_Control_Transferred | entry_address:i32 | Execution jumps to kernel |
-
+| EV6 | Bootloader Stage1 Loaded | load address:i32 | First stage loaded from MBR |
+| EV7 | Bootloader Stage2 Loaded | load address:i32 | Second stage loaded |
+| EV8 | Bootloader Kernel Located | kernel path:Text | Kernel image found on disk |
+| EV9 | Bootloader Kernel Loaded To Memory | memory address:i32, kernel size:i32 | Kernel copied to RAM |
+| EV10 | Bootloader Initrd Loaded | memory address:i32, initrd size:i32 | Initial ramdisk copied to RAM |
+| EV11 | Bootloader Kernel Parameters Set | param string:Text | Boot parameters configured |
+| EV12 | Bootloader Control Transferred | entry address:i32 | Execution jumps to kernel |
 #### B.3 — Kernel (G3, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV13 | Kernel_Entered | entry_address:i32 | First kernel instruction |
-| EV14 | Kernel_Page_Tables_Initialized | page_count:i32 | Virtual memory mapping set up |
-| EV15 | Kernel_Memory_Manager_Started | total_memory:i32 | Allocator active |
-| EV16 | Kernel_Interrupt_Table_Built | vector_count:i32 | Interrupt handlers registered |
-| EV17 | Kernel_Timer_Started | frequency_hz:i32 | System clock ticking |
-| EV18 | Kernel_Console_Initialized | console_device:Text | Kernel console output available |
-| EV19 | Kernel_PCI_Bus_Enumerated | device_count:i32 | PCI devices discovered |
-| EV20 | Kernel_Block_Devices_Discovered | device_count:i32 | Storage devices found |
-| EV21 | Kernel_Root_Filesystem_Mounted | device_path:Text, mount_point:Text | Root filesystem available |
-| EV22 | Kernel_Initrd_Unpacked | file_count:i32 | Initial ramdisk contents extracted |
-| EV23 | Kernel_Modules_Loaded | module_count:i32 | Kernel modules from initrd loaded |
-| EV24 | Kernel_Root_Switched | new_root:Text | Pivot from initrd to real root |
-| EV25 | Kernel_Panic | reason:Text | Unrecoverable error, system halt |
-
+| EV13 | Kernel Entered | entry address:i32 | First kernel instruction |
+| EV14 | Kernel Page Tables Initialized | page count:i32 | Virtual memory mapping set up |
+| EV15 | Kernel Memory Manager Started | total memory:i32 | Allocator active |
+| EV16 | Kernel Interrupt Table Built | vector count:i32 | Interrupt handlers registered |
+| EV17 | Kernel Timer Started | frequency hz:i32 | System clock ticking |
+| EV18 | Kernel Console Initialized | console device:Text | Kernel console output available |
+| EV19 | Kernel PCI Bus Enumerated | device count:i32 | PCI devices discovered |
+| EV20 | Kernel Block Devices Discovered | device count:i32 | Storage devices found |
+| EV21 | Kernel Root Filesystem Mounted | device path:Text, mount point:Text | Root filesystem available |
+| EV22 | Kernel Initrd Unpacked | file count:i32 | Initial ramdisk contents extracted |
+| EV23 | Kernel Modules Loaded | module count:i32 | Kernel modules from initrd loaded |
+| EV24 | Kernel Root Switched | new root:Text | Pivot from initrd to real root |
+| EV25 | Kernel Panic | reason:Text | Unrecoverable error, system halt |
 #### B.4 — Init System (G4, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV26 | Init_Process_Started | pid:i32 | PID 1 running |
-| EV27 | Init_Runlevel_Determined | runlevel:i32 | Target runlevel read from config |
-| EV28 | Init_Hostname_Set | hostname:Text | System hostname applied |
-| EV29 | Init_Sysctl_Applied | param_count:i32 | Kernel parameters tuned |
-| EV30 | Init_Udev_Started | pid:i32 | Device manager daemon launched |
-| EV31 | Init_Devices_Populated | device_count:i32 | Device scan complete |
-| EV32 | Init_Filesystems_Checked | clean_count:i32, dirty_count:i32 | fsck results |
-| EV33 | Init_Filesystems_Mounted | mount_count:i32 | fstab entries mounted |
-| EV34 | Init_Swap_Enabled | swap_size:i32 | Swap partitions active |
-| EV35 | Init_Clock_Synchronized | offset_ms:f32 | System clock synced |
-| EV36 | Init_Loopback_Interface_Up | address:Text | Loopback interface configured |
-| EV37 | Init_Network_Interfaces_Configured | interface_count:i32 | Network interfaces up |
-| EV38 | Init_Firewall_Rules_Applied | rule_count:i32 | Packet filter rules loaded |
-| EV39 | Init_DNS_Resolver_Configured | nameserver_count:i32 | DNS resolution ready |
-| EV40 | Init_Failed | reason:Text | Init step failed |
-
+| EV26 | Init Process Started | pid:i32 | PID 1 running |
+| EV27 | Init Runlevel Determined | runlevel:i32 | Target runlevel read from config |
+| EV28 | Init Hostname Set | hostname:Text | System hostname applied |
+| EV29 | Init Sysctl Applied | param count:i32 | Kernel parameters tuned |
+| EV30 | Init Udev Started | pid:i32 | Device manager daemon launched |
+| EV31 | Init Devices Populated | device count:i32 | Device scan complete |
+| EV32 | Init Filesystems Checked | clean count:i32, dirty count:i32 | fsck results |
+| EV33 | Init Filesystems Mounted | mount count:i32 | fstab entries mounted |
+| EV34 | Init Swap Enabled | swap size:i32 | Swap partitions active |
+| EV35 | Init Clock Synchronized | offset ms:f32 | System clock synced |
+| EV36 | Init Loopback Interface Up | address:Text | Loopback interface configured |
+| EV37 | Init Network Interfaces Configured | interface count:i32 | Network interfaces up |
+| EV38 | Init Firewall Rules Applied | rule count:i32 | Packet filter rules loaded |
+| EV39 | Init DNS Resolver Configured | nameserver count:i32 | DNS resolution ready |
+| EV40 | Init Failed | reason:Text | Init step failed |
 #### B.5 — Memory Manager (G5, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV41 | MemoryManager_Initialized | total_pages:i32 | Allocator structures set up |
-| EV42 | MemoryManager_Page_Allocated | page_address:i32, requesting_process_id:i32 | Page given to requester |
-| EV43 | MemoryManager_Page_Freed | page_address:i32 | Page returned to pool |
-| EV44 | MemoryManager_Compaction_Started | fragmentation_ratio:f32 | Defragmentation begun |
-| EV45 | MemoryManager_Compaction_Completed | pages_moved:i32 | Defragmentation finished |
-| EV46 | MemoryManager_Reclaim_Started | target_pages:i32 | Cache eviction begun |
-| EV47 | MemoryManager_Reclaim_Completed | pages_reclaimed:i32 | Cache eviction finished |
-| EV48 | MemoryManager_OOM_Triggered | requesting_process_id:i32 | Out of memory, victim selection begins |
-| EV49 | MemoryManager_OOM_Kill | killed_process_id:i32, memory_freed:i32 | Victim terminated |
-| EV50 | MemoryManager_Degraded | free_ratio:f32 | Free pages below warning threshold |
-| EV51 | MemoryManager_Critical | free_pages:i32 | Free pages below critical threshold |
-
+| EV41 | MemoryManager Initialized | total pages:i32 | Allocator structures set up |
+| EV42 | MemoryManager Page Allocated | page address:i32, requesting process id:i32 | Page given to requester |
+| EV43 | MemoryManager Page Freed | page address:i32 | Page returned to pool |
+| EV44 | MemoryManager Compaction Started | fragmentation ratio:f32 | Defragmentation begun |
+| EV45 | MemoryManager Compaction Completed | pages moved:i32 | Defragmentation finished |
+| EV46 | MemoryManager Reclaim Started | target pages:i32 | Cache eviction begun |
+| EV47 | MemoryManager Reclaim Completed | pages reclaimed:i32 | Cache eviction finished |
+| EV48 | MemoryManager OOM Triggered | requesting process id:i32 | Out of memory, victim selection begins |
+| EV49 | MemoryManager OOM Kill | killed process id:i32, memory freed:i32 | Victim terminated |
+| EV50 | MemoryManager Degraded | free ratio:f32 | Free pages below warning threshold |
+| EV51 | MemoryManager Critical | free pages:i32 | Free pages below critical threshold |
 #### B.6 — Scheduler (G6, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV52 | Scheduler_Initialized | cpu_count:i32 | Per-CPU run queues created |
-| EV53 | Scheduler_Context_Switch | from_process_id:i32, to_process_id:i32, cpu_id:i32 | CPU switches processes |
-| EV54 | Scheduler_Rebalance_Started | imbalance_ratio:f32 | Load rebalance begun |
-| EV55 | Scheduler_Rebalance_Completed | migrations:i32 | Rebalance finished |
-| EV56 | Scheduler_Priority_Adjusted | process_id:i32, old_priority:i32, new_priority:i32 | Anti-starvation adjustment |
-| EV57 | Scheduler_Process_Migrated | process_id:i32, from_cpu:i32, to_cpu:i32 | Process moved to different CPU |
-| EV58 | Scheduler_Preemption | process_id:i32, reason:Text | Forced switch from current process |
-| EV59 | Scheduler_Overloaded | run_queue_length:i32 | Excessive run queue depth |
-
+| EV52 | Scheduler Initialized | cpu count:i32 | Per-CPU run queues created |
+| EV53 | Scheduler Context Switch | from process id:i32, to process id:i32, cpu id:i32 | CPU switches processes |
+| EV54 | Scheduler Rebalance Started | imbalance ratio:f32 | Load rebalance begun |
+| EV55 | Scheduler Rebalance Completed | migrations:i32 | Rebalance finished |
+| EV56 | Scheduler Priority Adjusted | process id:i32, old priority:i32, new priority:i32 | Anti-starvation adjustment |
+| EV57 | Scheduler Process Migrated | process id:i32, from cpu:i32, to cpu:i32 | Process moved to different CPU |
+| EV58 | Scheduler Preemption | process id:i32, reason:Text | Forced switch from current process |
+| EV59 | Scheduler Overloaded | run queue length:i32 | Excessive run queue depth |
 #### B.7 — VFS (G7, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV60 | VFS_Initialized | filesystem_type_count:i32 | VFS layer active |
-| EV61 | VFS_Filesystem_Registered | filesystem_type:Text | New filesystem type available |
-| EV62 | VFS_Mount_Completed | device:Text, mount_point:Text, filesystem_type:Text | Filesystem attached to VFS |
-| EV63 | VFS_Unmount_Completed | mount_point:Text | Filesystem detached |
-| EV64 | VFS_File_Opened | fd:i32, path:Text, process_id:i32 | File descriptor created |
-| EV65 | VFS_File_Closed | fd:i32, process_id:i32 | File descriptor released |
-| EV66 | VFS_Sync_Completed | mount_point:Text, pages_flushed:i32 | Dirty pages flushed |
-| EV67 | VFS_Path_Resolved | path:Text, inode:i32 | Path walked to inode |
-
+| EV60 | VFS Initialized | filesystem type count:i32 | VFS layer active |
+| EV61 | VFS Filesystem Registered | filesystem type:Text | New filesystem type available |
+| EV62 | VFS Mount Completed | device:Text, mount point:Text, filesystem type:Text | Filesystem attached to VFS |
+| EV63 | VFS Unmount Completed | mount point:Text | Filesystem detached |
+| EV64 | VFS File Opened | fd:i32, path:Text, process id:i32 | File descriptor created |
+| EV65 | VFS File Closed | fd:i32, process id:i32 | File descriptor released |
+| EV66 | VFS Sync Completed | mount point:Text, pages flushed:i32 | Dirty pages flushed |
+| EV67 | VFS Path Resolved | path:Text, inode:i32 | Path walked to inode |
 #### B.8 — Network Stack (G8, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV68 | NetworkStack_Initialized | protocol_count:i32 | Protocol handlers registered |
-| EV69 | NetworkStack_Packet_Received | interface_id:i32, size:i32, protocol:Text | Inbound packet for processing |
-| EV70 | NetworkStack_Packet_Sent | interface_id:i32, size:i32, protocol:Text | Outbound packet transmitted |
-| EV71 | NetworkStack_Packet_Dropped | reason:Text | Packet discarded |
-| EV72 | NetworkStack_Congestion_Detected | interface_id:i32, drop_rate:f32 | Drop rate exceeded threshold |
-| EV73 | NetworkStack_Congestion_Cleared | interface_id:i32 | Drop rate returned to normal |
-| EV74 | NetworkStack_Route_Updated | destination:Text, gateway:Text, interface_id:i32 | Routing table modified |
-| EV75 | NetworkStack_Retransmit | connection_id:i32, segment_id:i32 | Lost segment resent |
-
+| EV68 | NetworkStack Initialized | protocol count:i32 | Protocol handlers registered |
+| EV69 | NetworkStack Packet Received | interface id:i32, size:i32, protocol:Text | Inbound packet for processing |
+| EV70 | NetworkStack Packet Sent | interface id:i32, size:i32, protocol:Text | Outbound packet transmitted |
+| EV71 | NetworkStack Packet Dropped | reason:Text | Packet discarded |
+| EV72 | NetworkStack Congestion Detected | interface id:i32, drop rate:f32 | Drop rate exceeded threshold |
+| EV73 | NetworkStack Congestion Cleared | interface id:i32 | Drop rate returned to normal |
+| EV74 | NetworkStack Route Updated | destination:Text, gateway:Text, interface id:i32 | Routing table modified |
+| EV75 | NetworkStack Retransmit | connection id:i32, segment id:i32 | Lost segment resent |
 #### B.9 — Display Server (G9, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV76 | DisplayServer_Started | backend:Text | Compositor initialized |
-| EV77 | DisplayServer_Frame_Composited | window_count:i32, frame_time_ms:f32 | One frame rendered |
-| EV78 | DisplayServer_Input_Routed | window_id:i32, input_type:Text | Input delivered to window |
-| EV79 | DisplayServer_Session_Manager_Started | pid:i32 | Session manager launched |
-| EV80 | DisplayServer_Login_Screen_Rendered | display_id:i32 | Login prompt visible |
-| EV81 | DisplayServer_Suspended | reason:Text | Display off |
-| EV82 | DisplayServer_Resumed | resume_time_ms:f32 | Display restored |
-| EV83 | DisplayServer_Failed | reason:Text | Unrecoverable display error |
-
+| EV76 | DisplayServer Started | backend:Text | Compositor initialized |
+| EV77 | DisplayServer Frame Composited | window count:i32, frame time ms:f32 | One frame rendered |
+| EV78 | DisplayServer Input Routed | window id:i32, input type:Text | Input delivered to window |
+| EV79 | DisplayServer Session Manager Started | pid:i32 | Session manager launched |
+| EV80 | DisplayServer Login Screen Rendered | display id:i32 | Login prompt visible |
+| EV81 | DisplayServer Suspended | reason:Text | Display off |
+| EV82 | DisplayServer Resumed | resume time ms:f32 | Display restored |
+| EV83 | DisplayServer Failed | reason:Text | Unrecoverable display error |
 #### B.10 — Audio Mixer (G10, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV84 | AudioMixer_Initialized | device:Text, sample_rate:i32 | Audio hardware opened |
-| EV85 | AudioMixer_Channels_Mixed | channel_count:i32 | Active streams combined |
-| EV86 | AudioMixer_Volume_Adjusted | channel:Text, volume:f32 | Volume changed |
-| EV87 | AudioMixer_Muted | reason:Text | All output silenced |
-| EV88 | AudioMixer_Unmuted | — | Output restored |
-| EV89 | AudioMixer_Suspended | — | Hardware released |
-| EV90 | AudioMixer_Resumed | — | Hardware reacquired |
-| EV91 | AudioMixer_Failed | reason:Text | Unrecoverable audio error |
-
+| EV84 | AudioMixer Initialized | device:Text, sample rate:i32 | Audio hardware opened |
+| EV85 | AudioMixer Channels Mixed | channel count:i32 | Active streams combined |
+| EV86 | AudioMixer Volume Adjusted | channel:Text, volume:f32 | Volume changed |
+| EV87 | AudioMixer Muted | reason:Text | All output silenced |
+| EV88 | AudioMixer Unmuted | — | Output restored |
+| EV89 | AudioMixer Suspended | — | Hardware released |
+| EV90 | AudioMixer Resumed | — | Hardware reacquired |
+| EV91 | AudioMixer Failed | reason:Text | Unrecoverable audio error |
 #### B.11 — Device Manager (G11, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV92 | DeviceManager_Started | — | Device manager daemon running |
-| EV93 | DeviceManager_Bus_Scanned | bus_type:Text, device_count:i32 | Bus enumeration complete |
-| EV94 | DeviceManager_Driver_Matched | device_id:i32, driver:Text | Driver found for device |
-| EV95 | DeviceManager_Driver_Loaded | device_id:i32, driver:Text | Kernel module loaded for device |
-| EV96 | DeviceManager_Node_Created | device_path:Text | /dev entry created |
-| EV97 | DeviceManager_Node_Removed | device_path:Text | /dev entry removed |
-| EV98 | DeviceManager_Event_Notified | device_id:i32, event_type:Text | Listeners notified of device change |
-| EV99 | DeviceManager_Failed | reason:Text | Device manager error |
-
+| EV92 | DeviceManager Started | — | Device manager daemon running |
+| EV93 | DeviceManager Bus Scanned | bus type:Text, device count:i32 | Bus enumeration complete |
+| EV94 | DeviceManager Driver Matched | device id:i32, driver:Text | Driver found for device |
+| EV95 | DeviceManager Driver Loaded | device id:i32, driver:Text | Kernel module loaded for device |
+| EV96 | DeviceManager Node Created | device path:Text | /dev entry created |
+| EV97 | DeviceManager Node Removed | device path:Text | /dev entry removed |
+| EV98 | DeviceManager Event Notified | device id:i32, event type:Text | Listeners notified of device change |
+| EV99 | DeviceManager Failed | reason:Text | Device manager error |
 #### B.12 — Swap Manager (G12, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV100 | SwapManager_Activated | device:Text, size:i32 | Swap partition enabled |
-| EV101 | SwapManager_Deactivated | device:Text | Swap partition disabled |
-| EV102 | SwapManager_Page_Written | page_address:i32 | Page swapped out |
-| EV103 | SwapManager_Page_Read | page_address:i32 | Page swapped in |
-| EV104 | SwapManager_Defragment_Started | fragmentation_ratio:f32 | Swap defrag begun |
-| EV105 | SwapManager_Defragment_Completed | pages_moved:i32 | Swap defrag finished |
-| EV106 | SwapManager_Full | used_ratio:f32 | Swap space exhausted |
-| EV107 | SwapManager_Degraded | io_rate:f32 | Excessive swap IO, possible thrashing |
-
+| EV100 | SwapManager Activated | device:Text, size:i32 | Swap partition enabled |
+| EV101 | SwapManager Deactivated | device:Text | Swap partition disabled |
+| EV102 | SwapManager Page Written | page address:i32 | Page swapped out |
+| EV103 | SwapManager Page Read | page address:i32 | Page swapped in |
+| EV104 | SwapManager Defragment Started | fragmentation ratio:f32 | Swap defrag begun |
+| EV105 | SwapManager Defragment Completed | pages moved:i32 | Swap defrag finished |
+| EV106 | SwapManager Full | used ratio:f32 | Swap space exhausted |
+| EV107 | SwapManager Degraded | io rate:f32 | Excessive swap IO, possible thrashing |
 #### B.13 — Firewall (G13, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV108 | Firewall_Ruleset_Loaded | rule_count:i32 | Packet filter rules active |
-| EV109 | Firewall_Packet_Allowed | source:Text, destination:Text, port:i32 | Packet passed |
-| EV110 | Firewall_Packet_Dropped | source:Text, destination:Text, port:i32, rule_id:i32 | Packet silently discarded |
-| EV111 | Firewall_Packet_Rejected | source:Text, destination:Text, port:i32, rule_id:i32 | Packet discarded with ICMP response |
-| EV112 | Firewall_Ruleset_Reloaded | rule_count:i32 | Rules hot-reloaded |
-| EV113 | Firewall_Failed | reason:Text | Firewall error |
-
+| EV108 | Firewall Ruleset Loaded | rule count:i32 | Packet filter rules active |
+| EV109 | Firewall Packet Allowed | source:Text, destination:Text, port:i32 | Packet passed |
+| EV110 | Firewall Packet Dropped | source:Text, destination:Text, port:i32, rule id:i32 | Packet silently discarded |
+| EV111 | Firewall Packet Rejected | source:Text, destination:Text, port:i32, rule id:i32 | Packet discarded with ICMP response |
+| EV112 | Firewall Ruleset Reloaded | rule count:i32 | Rules hot-reloaded |
+| EV113 | Firewall Failed | reason:Text | Firewall error |
 #### B.14 — DNS Resolver (G14, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV114 | DNSResolver_Configured | nameserver_count:i32 | Resolver ready |
-| EV115 | DNSResolver_Query_Resolved | hostname:Text, address:Text, ttl:i32 | Successful resolution |
-| EV116 | DNSResolver_Query_Failed | hostname:Text, reason:Text | Resolution failed |
-| EV117 | DNSResolver_Cache_Hit | hostname:Text | Served from cache |
-| EV118 | DNSResolver_Cache_Evicted | entry_count:i32 | Expired entries removed |
-| EV119 | DNSResolver_Failover | from_server:Text, to_server:Text | Switched nameserver |
-| EV120 | DNSResolver_Failed | reason:Text | Resolver error |
-
+| EV114 | DNSResolver Configured | nameserver count:i32 | Resolver ready |
+| EV115 | DNSResolver Query Resolved | hostname:Text, address:Text, ttl:i32 | Successful resolution |
+| EV116 | DNSResolver Query Failed | hostname:Text, reason:Text | Resolution failed |
+| EV117 | DNSResolver Cache Hit | hostname:Text | Served from cache |
+| EV118 | DNSResolver Cache Evicted | entry count:i32 | Expired entries removed |
+| EV119 | DNSResolver Failover | from server:Text, to server:Text | Switched nameserver |
+| EV120 | DNSResolver Failed | reason:Text | Resolver error |
 #### B.15 — Session Manager (G15, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV121 | SessionManager_Started | — | Session manager running |
-| EV122 | SessionManager_Login_Presented | display_id:i32 | Login prompt shown |
-| EV123 | SessionManager_Credentials_Received | username:Text | User submitted credentials |
-| EV124 | SessionManager_Session_Created | session_id:i32, user_id:i32 | New session allocated |
-| EV125 | SessionManager_Session_Destroyed | session_id:i32 | Session cleaned up |
-| EV126 | SessionManager_Session_Switched | from_session_id:i32, to_session_id:i32 | Active session changed |
-| EV127 | SessionManager_Session_Locked | session_id:i32 | Session locked |
-| EV128 | SessionManager_Failed | reason:Text | Session manager error |
-
+| EV121 | SessionManager Started | — | Session manager running |
+| EV122 | SessionManager Login Presented | display id:i32 | Login prompt shown |
+| EV123 | SessionManager Credentials Received | username:Text | User submitted credentials |
+| EV124 | SessionManager Session Created | session id:i32, user id:i32 | New session allocated |
+| EV125 | SessionManager Session Destroyed | session id:i32 | Session cleaned up |
+| EV126 | SessionManager Session Switched | from session id:i32, to session id:i32 | Active session changed |
+| EV127 | SessionManager Session Locked | session id:i32 | Session locked |
+| EV128 | SessionManager Failed | reason:Text | Session manager error |
 #### B.16 — System Logger (G16, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV129 | SystemLogger_Started | log_path:Text | Logger running |
-| EV130 | SystemLogger_Entry_Written | severity:i32, source:Text | Log entry recorded |
-| EV131 | SystemLogger_Buffer_Flushed | entry_count:i32 | Buffer written to disk |
-| EV132 | SystemLogger_Log_Rotated | old_path:Text, new_path:Text | Log file cycled |
-| EV133 | SystemLogger_Log_Forwarded | destination:Text, entry_count:i32 | Entries sent to remote |
-| EV134 | SystemLogger_Buffer_Full | buffered_count:i32 | Buffer capacity reached |
-| EV135 | SystemLogger_Failed | reason:Text | Logger error |
-
+| EV129 | SystemLogger Started | log path:Text | Logger running |
+| EV130 | SystemLogger Entry Written | severity:i32, source:Text | Log entry recorded |
+| EV131 | SystemLogger Buffer Flushed | entry count:i32 | Buffer written to disk |
+| EV132 | SystemLogger Log Rotated | old path:Text, new path:Text | Log file cycled |
+| EV133 | SystemLogger Log Forwarded | destination:Text, entry count:i32 | Entries sent to remote |
+| EV134 | SystemLogger Buffer Full | buffered count:i32 | Buffer capacity reached |
+| EV135 | SystemLogger Failed | reason:Text | Logger error |
 #### B.17 — Package Manager (G17, One)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV136 | PackageManager_Index_Refreshed | package_count:i32 | Package database updated |
-| EV137 | PackageManager_Dependencies_Resolved | package:Text, dependency_count:i32 | Dependency graph computed |
-| EV138 | PackageManager_Package_Downloaded | package:Text, size:i32 | Package fetched |
-| EV139 | PackageManager_Package_Installed | package:Text, version:Text | Package configured |
-| EV140 | PackageManager_Package_Removed | package:Text | Package uninstalled |
-| EV141 | PackageManager_Integrity_Verified | checked_count:i32, failed_count:i32 | Installed packages checked |
-| EV142 | PackageManager_Failed | package:Text, reason:Text | Package operation failed |
-
+| EV136 | PackageManager Index Refreshed | package count:i32 | Package database updated |
+| EV137 | PackageManager Dependencies Resolved | package:Text, dependency count:i32 | Dependency graph computed |
+| EV138 | PackageManager Package Downloaded | package:Text, size:i32 | Package fetched |
+| EV139 | PackageManager Package Installed | package:Text, version:Text | Package configured |
+| EV140 | PackageManager Package Removed | package:Text | Package uninstalled |
+| EV141 | PackageManager Integrity Verified | checked count:i32, failed count:i32 | Installed packages checked |
+| EV142 | PackageManager Failed | package:Text, reason:Text | Package operation failed |
 #### B.18 — Process (G18, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV143 | Process_Created | pid:i32, parent_pid:i32 | New process allocated |
-| EV144 | Process_Forked | parent_pid:i32, child_pid:i32 | Fork completed |
-| EV145 | Process_Exec | pid:i32, executable:Text | Process image replaced |
-| EV146 | Process_Ready | pid:i32 | On run queue, waiting for CPU |
-| EV147 | Process_Running | pid:i32, cpu_id:i32 | Executing on CPU |
-| EV148 | Process_Blocked | pid:i32, reason:Text | Waiting on resource |
-| EV149 | Process_Sleeping | pid:i32, duration_ms:i32 | Sleep syscall |
-| EV150 | Process_Resumed | pid:i32 | Unblocked, back to ready |
-| EV151 | Process_Syscall | pid:i32, syscall_id:i32 | Trap to kernel |
-| EV152 | Process_Page_Fault | pid:i32, address:i32, fault_type:Text | Virtual page missing |
-| EV153 | Process_Signal_Received | pid:i32, signal:i32 | Signal delivered |
-| EV154 | Process_Yielded | pid:i32 | Voluntary CPU release |
-| EV155 | Process_Exited | pid:i32, exit_code:i32 | Exit syscall or fatal signal |
-| EV156 | Process_Zombie | pid:i32 | Exited, parent hasn't waited |
-| EV157 | Process_Waited | parent_pid:i32, child_pid:i32, exit_code:i32 | Parent collected exit status |
-| EV158 | Process_Terminated | pid:i32 | Fully cleaned up |
-
+| EV143 | Process Created | pid:i32, parent pid:i32 | New process allocated |
+| EV144 | Process Forked | parent pid:i32, child pid:i32 | Fork completed |
+| EV145 | Process Exec | pid:i32, executable:Text | Process image replaced |
+| EV146 | Process Ready | pid:i32 | On run queue, waiting for CPU |
+| EV147 | Process Running | pid:i32, cpu id:i32 | Executing on CPU |
+| EV148 | Process Blocked | pid:i32, reason:Text | Waiting on resource |
+| EV149 | Process Sleeping | pid:i32, duration ms:i32 | Sleep syscall |
+| EV150 | Process Resumed | pid:i32 | Unblocked, back to ready |
+| EV151 | Process Syscall | pid:i32, syscall id:i32 | Trap to kernel |
+| EV152 | Process Page Fault | pid:i32, address:i32, fault type:Text | Virtual page missing |
+| EV153 | Process Signal Received | pid:i32, signal:i32 | Signal delivered |
+| EV154 | Process Yielded | pid:i32 | Voluntary CPU release |
+| EV155 | Process Exited | pid:i32, exit code:i32 | Exit syscall or fatal signal |
+| EV156 | Process Zombie | pid:i32 | Exited, parent hasn't waited |
+| EV157 | Process Waited | parent pid:i32, child pid:i32, exit code:i32 | Parent collected exit status |
+| EV158 | Process Terminated | pid:i32 | Fully cleaned up |
 #### B.19 — Thread (G19, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV159 | Thread_Created | thread_id:i32, process_id:i32 | Thread allocated |
-| EV160 | Thread_Started | thread_id:i32 | Thread running |
-| EV161 | Thread_Blocked | thread_id:i32, reason:Text | Waiting on lock/IO |
-| EV162 | Thread_Resumed | thread_id:i32 | Unblocked |
-| EV163 | Thread_Joined | thread_id:i32, joining_thread_id:i32 | Another thread waiting on this one |
-| EV164 | Thread_Detached | thread_id:i32 | Detached from parent |
-| EV165 | Thread_Lock_Acquired | thread_id:i32, mutex_id:i32 | Mutex obtained |
-| EV166 | Thread_Lock_Released | thread_id:i32, mutex_id:i32 | Mutex released |
-| EV167 | Thread_Condition_Wait | thread_id:i32, condition_id:i32 | Waiting on condition variable |
-| EV168 | Thread_Condition_Signaled | thread_id:i32, condition_id:i32 | Condition variable signaled |
-| EV169 | Thread_Terminated | thread_id:i32 | Thread done |
-
+| EV159 | Thread Created | thread id:i32, process id:i32 | Thread allocated |
+| EV160 | Thread Started | thread id:i32 | Thread running |
+| EV161 | Thread Blocked | thread id:i32, reason:Text | Waiting on lock/IO |
+| EV162 | Thread Resumed | thread id:i32 | Unblocked |
+| EV163 | Thread Joined | thread id:i32, joining thread id:i32 | Another thread waiting on this one |
+| EV164 | Thread Detached | thread id:i32 | Detached from parent |
+| EV165 | Thread Lock Acquired | thread id:i32, mutex id:i32 | Mutex obtained |
+| EV166 | Thread Lock Released | thread id:i32, mutex id:i32 | Mutex released |
+| EV167 | Thread Condition Wait | thread id:i32, condition id:i32 | Waiting on condition variable |
+| EV168 | Thread Condition Signaled | thread id:i32, condition id:i32 | Condition variable signaled |
+| EV169 | Thread Terminated | thread id:i32 | Thread done |
 #### B.20 — File (G20, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV170 | File_Opened | fd:i32, path:Text, mode:Text, process_id:i32 | Descriptor created |
-| EV171 | File_Read | fd:i32, bytes:i32 | Data read |
-| EV172 | File_Written | fd:i32, bytes:i32 | Data written |
-| EV173 | File_Seeked | fd:i32, position:i32 | Position changed |
-| EV174 | File_Locked | fd:i32, lock_type:Text | File lock acquired |
-| EV175 | File_Unlocked | fd:i32 | File lock released |
-| EV176 | File_Synced | fd:i32 | Dirty data flushed |
-| EV177 | File_Error | fd:i32, error:Text | IO error |
-| EV178 | File_Closed | fd:i32 | Descriptor released |
-
+| EV170 | File Opened | fd:i32, path:Text, mode:Text, process id:i32 | Descriptor created |
+| EV171 | File Read | fd:i32, bytes:i32 | Data read |
+| EV172 | File Written | fd:i32, bytes:i32 | Data written |
+| EV173 | File Seeked | fd:i32, position:i32 | Position changed |
+| EV174 | File Locked | fd:i32, lock type:Text | File lock acquired |
+| EV175 | File Unlocked | fd:i32 | File lock released |
+| EV176 | File Synced | fd:i32 | Dirty data flushed |
+| EV177 | File Error | fd:i32, error:Text | IO error |
+| EV178 | File Closed | fd:i32 | Descriptor released |
 #### B.21 — Filesystem Mount (G21, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV179 | Filesystem_Check_Started | device:Text | fsck begun |
-| EV180 | Filesystem_Check_Completed | device:Text, clean:bool | fsck result |
-| EV181 | Filesystem_Mount_Started | device:Text, mount_point:Text, fs_type:Text | Mount in progress |
-| EV182 | Filesystem_Mounted | device:Text, mount_point:Text | Mount complete |
-| EV183 | Filesystem_Remounted | mount_point:Text, new_options:Text | Mount options changed |
-| EV184 | Filesystem_Sync_Completed | mount_point:Text, pages_flushed:i32 | Dirty pages written |
-| EV185 | Filesystem_Unmount_Started | mount_point:Text | Unmount in progress |
-| EV186 | Filesystem_Unmounted | mount_point:Text | Unmount complete |
-| EV187 | Filesystem_Error | mount_point:Text, error:Text | Filesystem error |
-
+| EV179 | Filesystem Check Started | device:Text | fsck begun |
+| EV180 | Filesystem Check Completed | device:Text, clean:bool | fsck result |
+| EV181 | Filesystem Mount Started | device:Text, mount point:Text, fs type:Text | Mount in progress |
+| EV182 | Filesystem Mounted | device:Text, mount point:Text | Mount complete |
+| EV183 | Filesystem Remounted | mount point:Text, new options:Text | Mount options changed |
+| EV184 | Filesystem Sync Completed | mount point:Text, pages flushed:i32 | Dirty pages written |
+| EV185 | Filesystem Unmount Started | mount point:Text | Unmount in progress |
+| EV186 | Filesystem Unmounted | mount point:Text | Unmount complete |
+| EV187 | Filesystem Error | mount point:Text, error:Text | Filesystem error |
 #### B.22 — Network Connection (G22, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV188 | Connection_Initiated | connection_id:i32, local_address:Text, remote_address:Text | Connect syscall |
-| EV189 | Connection_SYN_Sent | connection_id:i32 | TCP handshake begun |
-| EV190 | Connection_Established | connection_id:i32 | Handshake complete |
-| EV191 | Connection_Data_Sent | connection_id:i32, bytes:i32 | Data transmitted |
-| EV192 | Connection_Data_Received | connection_id:i32, bytes:i32 | Data received |
-| EV193 | Connection_Retransmit | connection_id:i32, segment_id:i32 | Lost segment resent |
-| EV194 | Connection_Window_Reduced | connection_id:i32, new_window:i32 | Congestion backoff |
-| EV195 | Connection_Close_Initiated | connection_id:i32 | Graceful close begun |
-| EV196 | Connection_Close_Wait | connection_id:i32 | Waiting for remote FIN |
-| EV197 | Connection_Time_Wait | connection_id:i32 | 2MSL timer running |
-| EV198 | Connection_Reset | connection_id:i32, reason:Text | Forced close |
-| EV199 | Connection_Terminated | connection_id:i32 | Fully closed |
-
+| EV188 | Connection Initiated | connection id:i32, local address:Text, remote address:Text | Connect syscall |
+| EV189 | Connection SYN Sent | connection id:i32 | TCP handshake begun |
+| EV190 | Connection Established | connection id:i32 | Handshake complete |
+| EV191 | Connection Data Sent | connection id:i32, bytes:i32 | Data transmitted |
+| EV192 | Connection Data Received | connection id:i32, bytes:i32 | Data received |
+| EV193 | Connection Retransmit | connection id:i32, segment id:i32 | Lost segment resent |
+| EV194 | Connection Window Reduced | connection id:i32, new window:i32 | Congestion backoff |
+| EV195 | Connection Close Initiated | connection id:i32 | Graceful close begun |
+| EV196 | Connection Close Wait | connection id:i32 | Waiting for remote FIN |
+| EV197 | Connection Time Wait | connection id:i32 | 2MSL timer running |
+| EV198 | Connection Reset | connection id:i32, reason:Text | Forced close |
+| EV199 | Connection Terminated | connection id:i32 | Fully closed |
 #### B.23 — User Account (G23, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV200 | Account_Created | user_id:i32, username:Text | User added to system |
-| EV201 | Account_Activated | user_id:i32 | Login enabled |
-| EV202 | Account_Locked | user_id:i32, reason:Text | Login temporarily blocked |
-| EV203 | Account_Unlocked | user_id:i32 | Lock removed |
-| EV204 | Account_Disabled | user_id:i32, reason:Text | Administratively blocked |
-| EV205 | Account_Deleted | user_id:i32 | User removed |
-| EV206 | Account_Password_Changed | user_id:i32 | Credentials updated |
-| EV207 | Account_Permissions_Updated | user_id:i32, groups:Text | Group memberships changed |
-
+| EV200 | Account Created | user id:i32, username:Text | User added to system |
+| EV201 | Account Activated | user id:i32 | Login enabled |
+| EV202 | Account Locked | user id:i32, reason:Text | Login temporarily blocked |
+| EV203 | Account Unlocked | user id:i32 | Lock removed |
+| EV204 | Account Disabled | user id:i32, reason:Text | Administratively blocked |
+| EV205 | Account Deleted | user id:i32 | User removed |
+| EV206 | Account Password Changed | user id:i32 | Credentials updated |
+| EV207 | Account Permissions Updated | user id:i32, groups:Text | Group memberships changed |
 #### B.24 — User Session (G24, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV208 | Session_Credentials_Entered | session_id:i32, username:Text | User submitted login |
-| EV209 | Session_Authenticated | session_id:i32, user_id:i32 | Credentials valid |
-| EV210 | Session_Authentication_Failed | session_id:i32, reason:Text | Credentials invalid |
-| EV211 | Session_Created | session_id:i32, user_id:i32 | Session allocated |
-| EV212 | Session_Environment_Loaded | session_id:i32, var_count:i32 | Profile and env vars applied |
-| EV213 | Session_Autostart_Launched | session_id:i32, app_count:i32 | Session applications started |
-| EV214 | Session_Desktop_Rendered | session_id:i32 | Desktop visible |
-| EV215 | Session_Input_Ready | session_id:i32 | User can interact |
-| EV216 | Session_Locked | session_id:i32 | Screen locked |
-| EV217 | Session_Unlocked | session_id:i32 | Lock removed |
-| EV218 | Session_Suspended | session_id:i32 | Session paused |
-| EV219 | Session_Resumed | session_id:i32 | Session restored |
-| EV220 | Session_Logout | session_id:i32 | User logged out |
-| EV221 | Session_Terminated | session_id:i32 | Session cleaned up |
-
+| EV208 | Session Credentials Entered | session id:i32, username:Text | User submitted login |
+| EV209 | Session Authenticated | session id:i32, user id:i32 | Credentials valid |
+| EV210 | Session Authentication Failed | session id:i32, reason:Text | Credentials invalid |
+| EV211 | Session Created | session id:i32, user id:i32 | Session allocated |
+| EV212 | Session Environment Loaded | session id:i32, var count:i32 | Profile and env vars applied |
+| EV213 | Session Autostart Launched | session id:i32, app count:i32 | Session applications started |
+| EV214 | Session Desktop Rendered | session id:i32 | Desktop visible |
+| EV215 | Session Input Ready | session id:i32 | User can interact |
+| EV216 | Session Locked | session id:i32 | Screen locked |
+| EV217 | Session Unlocked | session id:i32 | Lock removed |
+| EV218 | Session Suspended | session id:i32 | Session paused |
+| EV219 | Session Resumed | session id:i32 | Session restored |
+| EV220 | Session Logout | session id:i32 | User logged out |
+| EV221 | Session Terminated | session id:i32 | Session cleaned up |
 #### B.25 — Device (G25, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV222 | Device_Discovered | device_id:i32, bus_type:Text, vendor_id:i32, product_id:i32 | Hardware detected |
-| EV223 | Device_Driver_Loading | device_id:i32, driver:Text | Driver load in progress |
-| EV224 | Device_Driver_Loaded | device_id:i32, driver:Text | Driver loaded |
-| EV225 | Device_Initializing | device_id:i32 | Device init sequence running |
-| EV226 | Device_Self_Test_Passed | device_id:i32 | Self-test success |
-| EV227 | Device_Self_Test_Failed | device_id:i32, reason:Text | Self-test failure |
-| EV228 | Device_Ready | device_id:i32 | Device operational |
-| EV229 | Device_Error | device_id:i32, error:Text, error_count:i32 | Device error |
-| EV230 | Device_Reset | device_id:i32 | Recovery attempt |
-| EV231 | Device_Suspended | device_id:i32 | Low power state |
-| EV232 | Device_Resumed | device_id:i32 | Woken from suspend |
-| EV233 | Device_Removed | device_id:i32 | Hotplug removal or unrecoverable |
-
+| EV222 | Device Discovered | device id:i32, bus type:Text, vendor id:i32, product id:i32 | Hardware detected |
+| EV223 | Device Driver Loading | device id:i32, driver:Text | Driver load in progress |
+| EV224 | Device Driver Loaded | device id:i32, driver:Text | Driver loaded |
+| EV225 | Device Initializing | device id:i32 | Device init sequence running |
+| EV226 | Device Self Test Passed | device id:i32 | Self-test success |
+| EV227 | Device Self Test Failed | device id:i32, reason:Text | Self-test failure |
+| EV228 | Device Ready | device id:i32 | Device operational |
+| EV229 | Device Error | device id:i32, error:Text, error count:i32 | Device error |
+| EV230 | Device Reset | device id:i32 | Recovery attempt |
+| EV231 | Device Suspended | device id:i32 | Low power state |
+| EV232 | Device Resumed | device id:i32 | Woken from suspend |
+| EV233 | Device Removed | device id:i32 | Hotplug removal or unrecoverable |
 #### B.26 — Kernel Module (G26, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV234 | Module_Load_Started | module_name:Text | Module load begun |
-| EV235 | Module_Loaded | module_name:Text | Module in kernel memory |
-| EV236 | Module_Init_Completed | module_name:Text | Module init function succeeded |
-| EV237 | Module_Init_Failed | module_name:Text, reason:Text | Module init function failed |
-| EV238 | Module_Unload_Started | module_name:Text | Module unload begun |
-| EV239 | Module_Unloaded | module_name:Text | Module removed from kernel |
-
+| EV234 | Module Load Started | module name:Text | Module load begun |
+| EV235 | Module Loaded | module name:Text | Module in kernel memory |
+| EV236 | Module Init Completed | module name:Text | Module init function succeeded |
+| EV237 | Module Init Failed | module name:Text, reason:Text | Module init function failed |
+| EV238 | Module Unload Started | module name:Text | Module unload begun |
+| EV239 | Module Unloaded | module name:Text | Module removed from kernel |
 #### B.27 — Service (G27, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV240 | Service_Start_Requested | service_id:i32, service_name:Text | Start command issued |
-| EV241 | Service_Started | service_id:i32, pid:i32 | Process launched |
-| EV242 | Service_Running | service_id:i32 | Healthy and operational |
-| EV243 | Service_Health_Check_Passed | service_id:i32 | Periodic check succeeded |
-| EV244 | Service_Health_Check_Failed | service_id:i32, reason:Text | Periodic check failed |
-| EV245 | Service_Degraded | service_id:i32, reason:Text | Partially functional |
-| EV246 | Service_Failed | service_id:i32, exit_code:i32 | Process died or unresponsive |
-| EV247 | Service_Restart_Requested | service_id:i32, restart_count:i32 | Auto-restart triggered |
-| EV248 | Service_Restarted | service_id:i32, pid:i32 | New process launched |
-| EV249 | Service_Reload_Requested | service_id:i32 | Config reload triggered |
-| EV250 | Service_Reloaded | service_id:i32 | Config applied without restart |
-| EV251 | Service_Stop_Requested | service_id:i32 | Stop command issued |
-| EV252 | Service_Stopped | service_id:i32 | Process terminated cleanly |
-| EV253 | Service_Escalated | service_id:i32, reason:Text | Retries exhausted, reported to Init |
-
+| EV240 | Service Start Requested | service id:i32, service name:Text | Start command issued |
+| EV241 | Service Started | service id:i32, pid:i32 | Process launched |
+| EV242 | Service Running | service id:i32 | Healthy and operational |
+| EV243 | Service Health Check Passed | service id:i32 | Periodic check succeeded |
+| EV244 | Service Health Check Failed | service id:i32, reason:Text | Periodic check failed |
+| EV245 | Service Degraded | service id:i32, reason:Text | Partially functional |
+| EV246 | Service Failed | service id:i32, exit code:i32 | Process died or unresponsive |
+| EV247 | Service Restart Requested | service id:i32, restart count:i32 | Auto-restart triggered |
+| EV248 | Service Restarted | service id:i32, pid:i32 | New process launched |
+| EV249 | Service Reload Requested | service id:i32 | Config reload triggered |
+| EV250 | Service Reloaded | service id:i32 | Config applied without restart |
+| EV251 | Service Stop Requested | service id:i32 | Stop command issued |
+| EV252 | Service Stopped | service id:i32 | Process terminated cleanly |
+| EV253 | Service Escalated | service id:i32, reason:Text | Retries exhausted, reported to Init |
 #### B.28 — Window (G28, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV254 | Window_Created | window_id:i32, process_id:i32, title:Text | Surface allocated |
-| EV255 | Window_Shown | window_id:i32 | Made visible |
-| EV256 | Window_Hidden | window_id:i32 | Removed from composition |
-| EV257 | Window_Focused | window_id:i32 | Receiving input |
-| EV258 | Window_Unfocused | window_id:i32 | Lost input focus |
-| EV259 | Window_Minimized | window_id:i32 | Reduced to taskbar |
-| EV260 | Window_Maximized | window_id:i32 | Filled screen |
-| EV261 | Window_Restored | window_id:i32 | Returned to normal size |
-| EV262 | Window_Resized | window_id:i32, width:i32, height:i32 | Geometry changed |
-| EV263 | Window_Moved | window_id:i32, x:i32, y:i32 | Position changed |
-| EV264 | Window_Closed | window_id:i32 | Destroyed |
-
+| EV254 | Window Created | window id:i32, process id:i32, title:Text | Surface allocated |
+| EV255 | Window Shown | window id:i32 | Made visible |
+| EV256 | Window Hidden | window id:i32 | Removed from composition |
+| EV257 | Window Focused | window id:i32 | Receiving input |
+| EV258 | Window Unfocused | window id:i32 | Lost input focus |
+| EV259 | Window Minimized | window id:i32 | Reduced to taskbar |
+| EV260 | Window Maximized | window id:i32 | Filled screen |
+| EV261 | Window Restored | window id:i32 | Returned to normal size |
+| EV262 | Window Resized | window id:i32, width:i32, height:i32 | Geometry changed |
+| EV263 | Window Moved | window id:i32, x:i32, y:i32 | Position changed |
+| EV264 | Window Closed | window id:i32 | Destroyed |
 #### B.29 — Network Interface (G29, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV265 | Interface_Detected | interface_id:i32, name:Text, mac:Text | Hardware or virtual interface found |
-| EV266 | Interface_Configuring | interface_id:i32 | Configuration in progress |
-| EV267 | Interface_Address_Assigned | interface_id:i32, address:Text, mask:Text | IP address applied |
-| EV268 | Interface_Up | interface_id:i32 | Interface operational |
-| EV269 | Interface_Degraded | interface_id:i32, reason:Text | Errors above threshold |
-| EV270 | Interface_Down | interface_id:i32 | Interface disabled |
-| EV271 | Interface_DHCP_Renewed | interface_id:i32, address:Text, lease_seconds:i32 | DHCP lease refreshed |
-| EV272 | Interface_Failed | interface_id:i32, reason:Text | Unrecoverable interface error |
-| EV273 | Interface_Reset | interface_id:i32 | Recovery attempted |
-
+| EV265 | Interface Detected | interface id:i32, name:Text, mac:Text | Hardware or virtual interface found |
+| EV266 | Interface Configuring | interface id:i32 | Configuration in progress |
+| EV267 | Interface Address Assigned | interface id:i32, address:Text, mask:Text | IP address applied |
+| EV268 | Interface Up | interface id:i32 | Interface operational |
+| EV269 | Interface Degraded | interface id:i32, reason:Text | Errors above threshold |
+| EV270 | Interface Down | interface id:i32 | Interface disabled |
+| EV271 | Interface DHCP Renewed | interface id:i32, address:Text, lease seconds:i32 | DHCP lease refreshed |
+| EV272 | Interface Failed | interface id:i32, reason:Text | Unrecoverable interface error |
+| EV273 | Interface Reset | interface id:i32 | Recovery attempted |
 #### B.30 — Permission Rule (G30, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV274 | Permission_Granted | rule_id:i32, subject_id:i32, resource:Text, action:Text | ACL entry created |
-| EV275 | Permission_Evaluated | rule_id:i32, result:bool | Access check performed |
-| EV276 | Permission_Expired | rule_id:i32 | Time-based deactivation |
-| EV277 | Permission_Revoked | rule_id:i32 | Explicitly removed |
-
+| EV274 | Permission Granted | rule id:i32, subject id:i32, resource:Text, action:Text | ACL entry created |
+| EV275 | Permission Evaluated | rule id:i32, result:bool | Access check performed |
+| EV276 | Permission Expired | rule id:i32 | Time-based deactivation |
+| EV277 | Permission Revoked | rule id:i32 | Explicitly removed |
 #### B.31 — Timer (G31, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV278 | Timer_Armed | timer_id:i32, duration_ms:i32, callback_event_id:i32 | Timer started |
-| EV279 | Timer_Fired | timer_id:i32, callback_event_id:i32 | Timer expired, callback emitted |
-| EV280 | Timer_Reset | timer_id:i32, new_duration_ms:i32 | Timer restarted |
-| EV281 | Timer_Cancelled | timer_id:i32 | Timer deactivated |
-
+| EV278 | Timer Armed | timer id:i32, duration ms:i32, callback event id:i32 | Timer started |
+| EV279 | Timer Fired | timer id:i32, callback event id:i32 | Timer expired, callback emitted |
+| EV280 | Timer Reset | timer id:i32, new duration ms:i32 | Timer restarted |
+| EV281 | Timer Cancelled | timer id:i32 | Timer deactivated |
 #### B.32 — Signal (G32, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV282 | Signal_Sent | signal_id:i32, signal_number:i32, source_pid:i32, target_pid:i32 | Signal queued |
-| EV283 | Signal_Delivered | signal_id:i32 | Signal presented to target |
-| EV284 | Signal_Handled | signal_id:i32, handler_address:i32 | Custom handler executed |
-| EV285 | Signal_Ignored | signal_id:i32 | Signal masked |
-| EV286 | Signal_Default_Action | signal_id:i32, action:Text | Default behavior (term, stop, core) |
-
+| EV282 | Signal Sent | signal id:i32, signal number:i32, source pid:i32, target pid:i32 | Signal queued |
+| EV283 | Signal Delivered | signal id:i32 | Signal presented to target |
+| EV284 | Signal Handled | signal id:i32, handler address:i32 | Custom handler executed |
+| EV285 | Signal Ignored | signal id:i32 | Signal masked |
+| EV286 | Signal Default Action | signal id:i32, action:Text | Default behavior (term, stop, core) |
 #### B.33 — Pipe (G33, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV287 | Pipe_Created | pipe_id:i32, read_fd:i32, write_fd:i32 | Pipe allocated |
-| EV288 | Pipe_Written | pipe_id:i32, bytes:i32 | Data written to pipe |
-| EV289 | Pipe_Read | pipe_id:i32, bytes:i32 | Data read from pipe |
-| EV290 | Pipe_Full | pipe_id:i32 | Buffer capacity reached |
-| EV291 | Pipe_End_Closed | pipe_id:i32, end:Text | One end closed |
-| EV292 | Pipe_Broken | pipe_id:i32 | Writer gone |
-
+| EV287 | Pipe Created | pipe id:i32, read fd:i32, write fd:i32 | Pipe allocated |
+| EV288 | Pipe Written | pipe id:i32, bytes:i32 | Data written to pipe |
+| EV289 | Pipe Read | pipe id:i32, bytes:i32 | Data read from pipe |
+| EV290 | Pipe Full | pipe id:i32 | Buffer capacity reached |
+| EV291 | Pipe End Closed | pipe id:i32, end:Text | One end closed |
+| EV292 | Pipe Broken | pipe id:i32 | Writer gone |
 #### B.34 — Shared Memory Region (G34, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV293 | SharedMem_Allocated | region_id:i32, size:i32 | Region reserved |
-| EV294 | SharedMem_Mapped | region_id:i32, process_id:i32, address:i32 | Attached to process address space |
-| EV295 | SharedMem_Unmapped | region_id:i32, process_id:i32 | Detached from process |
-| EV296 | SharedMem_Synced | region_id:i32 | Flushed to backing store |
-| EV297 | SharedMem_Freed | region_id:i32 | Region released |
-
+| EV293 | SharedMem Allocated | region id:i32, size:i32 | Region reserved |
+| EV294 | SharedMem Mapped | region id:i32, process id:i32, address:i32 | Attached to process address space |
+| EV295 | SharedMem Unmapped | region id:i32, process id:i32 | Detached from process |
+| EV296 | SharedMem Synced | region id:i32 | Flushed to backing store |
+| EV297 | SharedMem Freed | region id:i32 | Region released |
 #### B.35 — Environment Variable Set (G35, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV298 | EnvVars_Loaded | process_id:i32, var_count:i32 | Environment inherited or read from profile |
-| EV299 | EnvVar_Set | process_id:i32, key:Text, value:Text | Variable added or updated |
-| EV300 | EnvVar_Unset | process_id:i32, key:Text | Variable removed |
-| EV301 | EnvVars_Exported | process_id:i32, child_pid:i32 | Environment passed to child process |
-
+| EV298 | EnvVars Loaded | process id:i32, var count:i32 | Environment inherited or read from profile |
+| EV299 | EnvVar Set | process id:i32, key:Text, value:Text | Variable added or updated |
+| EV300 | EnvVar Unset | process id:i32, key:Text | Variable removed |
+| EV301 | EnvVars Exported | process id:i32, child pid:i32 | Environment passed to child process |
 #### B.36 — Cron Job (G36, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV302 | CronJob_Scheduled | job_id:i32, expression:Text | Job registered with timer |
-| EV303 | CronJob_Executing | job_id:i32, pid:i32 | Job process launched |
-| EV304 | CronJob_Completed | job_id:i32, exit_code:i32 | Job finished successfully |
-| EV305 | CronJob_Failed | job_id:i32, exit_code:i32, reason:Text | Job exited with error |
-| EV306 | CronJob_Rescheduled | job_id:i32, next_time:f32 | Next run time calculated |
-
+| EV302 | CronJob Scheduled | job id:i32, expression:Text | Job registered with timer |
+| EV303 | CronJob Executing | job id:i32, pid:i32 | Job process launched |
+| EV304 | CronJob Completed | job id:i32, exit code:i32 | Job finished successfully |
+| EV305 | CronJob Failed | job id:i32, exit code:i32, reason:Text | Job exited with error |
+| EV306 | CronJob Rescheduled | job id:i32, next time:f32 | Next run time calculated |
 #### B.37 — Log Entry (G37, Infinity)
 
 | ID | Event | Carries | Description |
 |----|-------|---------|-------------|
-| EV307 | Log_Buffered | entry_id:i32, severity:i32, source:Text, message:Text | Entry accepted into memory buffer |
-| EV308 | Log_Written | entry_id:i32 | Entry flushed to disk |
-| EV309 | Log_Rotated | entry_id:i32, new_file:Text | Entry's file rotated |
-| EV310 | Log_Archived | entry_id:i32 | Rotated file compressed |
-| EV311 | Log_Deleted | entry_id:i32 | Archive aged out and removed |
-
+| EV307 | Log Buffered | entry id:i32, severity:i32, source:Text, message:Text | Entry accepted into memory buffer |
+| EV308 | Log Written | entry id:i32 | Entry flushed to disk |
+| EV309 | Log Rotated | entry id:i32, new file:Text | Entry's file rotated |
+| EV310 | Log Archived | entry id:i32 | Rotated file compressed |
+| EV311 | Log Deleted | entry id:i32 | Archive aged out and removed |
 **Event count summary:** 311 total events across 37 EntityGroups.
 
 ---
@@ -1154,7 +1117,6 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | FL289 | EV308 | EV309 | branch | Written, may rotate |
 | FL290 | EV309 | EV310 | linear | Rotated, archive |
 | FL291 | EV310 | EV311 | linear | Archived, eventually delete |
-
 #### C.2 — Inter-Group Flows
 
 | ID | From | To | Type | Description |
@@ -1174,20 +1136,20 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | FL304 | EV80 | EV121 | linear | DisplayServer login rendered, SessionManager starts |
 | FL305 | EV34 | EV100 | linear | Init swap enabled, SwapManager activates |
 | FL306 | EV30 | EV92 | linear | Init udev started, DeviceManager starts |
-| FL307 | EV92 | EV222 | fan_out | DeviceManager started, discover each device |
-| FL308 | EV27 | EV240 | fan_out | Init runlevel determined, start each service in runlevel |
-| FL309 | EV31 | EV265 | fan_out | Init devices populated, detect each network interface |
-| FL310 | EV32 | EV179 | fan_out | Init filesystems checked, check each filesystem |
-| FL311 | EV33 | EV181 | fan_out | Init filesystems mounted, mount each filesystem |
-| FL312 | EV52 | EV143 | fan_out | Scheduler initialized, processes can be created |
-| FL313 | EV121 | EV208 | fan_out | SessionManager started, user sessions can begin |
-| FL314 | EV76 | EV254 | fan_out | DisplayServer started, windows can be created |
-| FL315 | EV129 | EV307 | fan_out | SystemLogger started, log entries can be buffered |
-| FL316 | EV68 | EV188 | fan_out | NetworkStack initialized, connections can be initiated |
-| FL317 | EV108 | EV274 | fan_out | Firewall loaded, permission rules can be granted |
-| FL318 | EV84 | EV85 | fan_out | AudioMixer initialized, channels mixed from process streams |
+| FL307 | EV92 | EV222 | fan out | DeviceManager started, discover each device |
+| FL308 | EV27 | EV240 | fan out | Init runlevel determined, start each service in runlevel |
+| FL309 | EV31 | EV265 | fan out | Init devices populated, detect each network interface |
+| FL310 | EV32 | EV179 | fan out | Init filesystems checked, check each filesystem |
+| FL311 | EV33 | EV181 | fan out | Init filesystems mounted, mount each filesystem |
+| FL312 | EV52 | EV143 | fan out | Scheduler initialized, processes can be created |
+| FL313 | EV121 | EV208 | fan out | SessionManager started, user sessions can begin |
+| FL314 | EV76 | EV254 | fan out | DisplayServer started, windows can be created |
+| FL315 | EV129 | EV307 | fan out | SystemLogger started, log entries can be buffered |
+| FL316 | EV68 | EV188 | fan out | NetworkStack initialized, connections can be initiated |
+| FL317 | EV108 | EV274 | fan out | Firewall loaded, permission rules can be granted |
+| FL318 | EV84 | EV85 | fan out | AudioMixer initialized, channels mixed from process streams |
 | FL319 | EV242 | EV129 | converge | Service[logging] running, SystemLogger fully operational |
-| FL320 | EV228 | EV21 | converge | Device[root_disk] ready, Kernel can mount root |
+| FL320 | EV228 | EV21 | converge | Device[root disk] ready, Kernel can mount root |
 | FL321 | EV228 | EV95 | converge | Device[any] ready, DeviceManager creates node |
 | FL322 | EV182 | EV33 | converge | All Filesystems mounted, Init mount step complete |
 | FL323 | EV268 | EV37 | converge | All Interfaces up, Init network configured |
@@ -1196,28 +1158,27 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | FL326 | EV199 | EV68 | converge | Connection terminated, NetworkStack reclaims socket |
 | FL327 | EV264 | EV76 | converge | Window closed, DisplayServer removes from compositor |
 | FL328 | EV308 | EV129 | converge | LogEntry written, SystemLogger updates buffer count |
-| FL329 | EV228 | EV240 | fan_out | Device[gpu] ready, Service[display_driver] starts |
-| FL330 | EV242 | EV240 | fan_out | Service[network_manager] running, Service[vpn] can start |
-| FL331 | EV242 | EV240 | fan_out | Service[dbus] running, dependent Services can start |
-| FL332 | EV143 | EV159 | fan_out | Process created, Threads can be created within it |
-| FL333 | EV143 | EV298 | fan_out | Process created, EnvironmentVars loaded for it |
-| FL334 | EV143 | EV170 | fan_out | Process created, Files can be opened by it |
-| FL335 | EV143 | EV287 | fan_out | Process created, Pipes can be created by it |
-| FL336 | EV143 | EV293 | fan_out | Process created, SharedMem can be allocated by it |
-| FL337 | EV147 | EV282 | fan_out | Process running, Signals can be sent to it |
-| FL338 | EV147 | EV151 | fan_out | Process running, Syscalls invoke kernel services |
-| FL339 | EV151 | EV170 | fan_out | Process syscall[open], File opened |
-| FL340 | EV151 | EV188 | fan_out | Process syscall[connect], Connection initiated |
-| FL341 | EV151 | EV287 | fan_out | Process syscall[pipe], Pipe created |
-| FL342 | EV151 | EV293 | fan_out | Process syscall[mmap], SharedMem allocated |
-| FL343 | EV151 | EV278 | fan_out | Process syscall[timer_create], Timer armed |
+| FL329 | EV228 | EV240 | fan out | Device[gpu] ready, Service[display driver] starts |
+| FL330 | EV242 | EV240 | fan out | Service[network manager] running, Service[vpn] can start |
+| FL331 | EV242 | EV240 | fan out | Service[dbus] running, dependent Services can start |
+| FL332 | EV143 | EV159 | fan out | Process created, Threads can be created within it |
+| FL333 | EV143 | EV298 | fan out | Process created, EnvironmentVars loaded for it |
+| FL334 | EV143 | EV170 | fan out | Process created, Files can be opened by it |
+| FL335 | EV143 | EV287 | fan out | Process created, Pipes can be created by it |
+| FL336 | EV143 | EV293 | fan out | Process created, SharedMem can be allocated by it |
+| FL337 | EV147 | EV282 | fan out | Process running, Signals can be sent to it |
+| FL338 | EV147 | EV151 | fan out | Process running, Syscalls invoke kernel services |
+| FL339 | EV151 | EV170 | fan out | Process syscall[open], File opened |
+| FL340 | EV151 | EV188 | fan out | Process syscall[connect], Connection initiated |
+| FL341 | EV151 | EV287 | fan out | Process syscall[pipe], Pipe created |
+| FL342 | EV151 | EV293 | fan out | Process syscall[mmap], SharedMem allocated |
+| FL343 | EV151 | EV278 | fan out | Process syscall[timer create], Timer armed |
 | FL344 | EV279 | EV303 | linear | Timer[cron] fired, CronJob executes |
-| FL345 | EV303 | EV143 | fan_out | CronJob executing, Process created for it |
-| FL346 | EV211 | EV143 | fan_out | UserSession created, session processes spawned |
-| FL347 | EV211 | EV298 | fan_out | UserSession created, session env vars loaded |
-| FL348 | EV155 | EV282 | fan_out | Process exited, Signals sent to children |
-| FL349 | EV292 | EV153 | fan_out | Pipe broken, Signal to writing process |
-
+| FL345 | EV303 | EV143 | fan out | CronJob executing, Process created for it |
+| FL346 | EV211 | EV143 | fan out | UserSession created, session processes spawned |
+| FL347 | EV211 | EV298 | fan out | UserSession created, session env vars loaded |
+| FL348 | EV155 | EV282 | fan out | Process exited, Signals sent to children |
+| FL349 | EV292 | EV153 | fan out | Pipe broken, Signal to writing process |
 **Flow count summary:** 291 intra-group + 58 inter-group = 349 total flows.
 
 ---
@@ -1229,497 +1190,460 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
 | EC1 | EV1 | true | Initial event, no precondition |
-| EC2 | EV2 | event_completed(ev1) | POST passed |
-| EC3 | EV3 | event_completed(ev2) | Hardware enumerated |
-| EC4 | EV4 | event_completed(ev3) | Boot device selected |
-| EC5 | EV5 | event_completed(ev4) | MBR loaded |
-
+| EC2 | EV2 | event completed(ev1) | POST passed |
+| EC3 | EV3 | event completed(ev2) | Hardware enumerated |
+| EC4 | EV4 | event completed(ev3) | Boot device selected |
+| EC5 | EV5 | event completed(ev4) | MBR loaded |
 #### D.2 — Bootloader (G2, Zero)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC6 | EV6 | event_completed(ev5) | BIOS transferred control |
-| EC7 | EV7 | event_completed(ev6) | Stage1 loaded |
-| EC8 | EV8 | event_completed(ev7) | Stage2 loaded |
-| EC9 | EV9 | event_completed(ev8) | Kernel located |
-| EC10 | EV10 | event_completed(ev9) | Kernel in memory |
-| EC11 | EV11 | event_completed(ev10) | Initrd loaded |
-| EC12 | EV12 | event_completed(ev11) | Params set |
-
+| EC6 | EV6 | event completed(ev5) | BIOS transferred control |
+| EC7 | EV7 | event completed(ev6) | Stage1 loaded |
+| EC8 | EV8 | event completed(ev7) | Stage2 loaded |
+| EC9 | EV9 | event completed(ev8) | Kernel located |
+| EC10 | EV10 | event completed(ev9) | Kernel in memory |
+| EC11 | EV11 | event completed(ev10) | Initrd loaded |
+| EC12 | EV12 | event completed(ev11) | Params set |
 #### D.3 — Kernel (G3, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC13 | EV13 | event_completed(ev12) | Bootloader transferred control |
-| EC14 | EV14 | event_completed(ev13) | Kernel entered |
-| EC15 | EV15 | event_completed(ev14) | Page tables initialized |
-| EC16 | EV16 | event_completed(ev15) | Memory manager started |
-| EC17 | EV17 | event_completed(ev16) | Interrupt table built |
-| EC18 | EV18 | event_completed(ev17) | Timer started |
-| EC19 | EV19 | event_completed(ev17) | Timer started, parallel with console |
-| EC20 | EV20 | event_completed(ev18), event_completed(ev19) | Console and PCI both done |
-| EC21 | EV21 | event_completed(ev20), device_ready(Self, root_disk, DevicePath) | Block devices found and root device ready |
-| EC22 | EV22 | event_completed(ev21) | Root filesystem mounted |
-| EC23 | EV23 | event_completed(ev22), filesystem_contains(initrd, modules) | Initrd unpacked and modules present |
-| EC24 | EV24 | event_completed(ev23), filesystem_mounted(Self, root, RootPath) | Modules loaded and root mounted |
-| EC25 | EV25 | unrecoverable_error(Self, Reason) | Any unrecoverable kernel error |
-
+| EC13 | EV13 | event completed(ev12) | Bootloader transferred control |
+| EC14 | EV14 | event completed(ev13) | Kernel entered |
+| EC15 | EV15 | event completed(ev14) | Page tables initialized |
+| EC16 | EV16 | event completed(ev15) | Memory manager started |
+| EC17 | EV17 | event completed(ev16) | Interrupt table built |
+| EC18 | EV18 | event completed(ev17) | Timer started |
+| EC19 | EV19 | event completed(ev17) | Timer started, parallel with console |
+| EC20 | EV20 | event completed(ev18), event completed(ev19) | Console and PCI both done |
+| EC21 | EV21 | event completed(ev20), device ready(Self, root disk, DevicePath) | Block devices found and root device ready |
+| EC22 | EV22 | event completed(ev21) | Root filesystem mounted |
+| EC23 | EV23 | event completed(ev22), filesystem contains(initrd, modules) | Initrd unpacked and modules present |
+| EC24 | EV24 | event completed(ev23), filesystem mounted(Self, root, RootPath) | Modules loaded and root mounted |
+| EC25 | EV25 | unrecoverable error(Self, Reason) | Any unrecoverable kernel error |
 #### D.4 — Init System (G4, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC26 | EV26 | event_completed(ev24) | Kernel root switched |
-| EC27 | EV27 | event_completed(ev26), config_readable(inittab, RunLevel) | Init started, inittab readable |
-| EC28 | EV28 | event_completed(ev27) | Runlevel determined |
-| EC29 | EV29 | event_completed(ev28), config_readable(sysctl_conf, Params) | Hostname set, sysctl config readable |
-| EC30 | EV30 | event_completed(ev29) | Sysctl applied |
-| EC31 | EV31 | event_completed(ev30), device_scan_complete(Count), Count > 0 | Udev started, devices found |
-| EC32 | EV32 | event_completed(ev31) | Devices populated |
-| EC33 | EV33 | event_completed(ev32), all_checks_passed(true) | Filesystems checked and clean |
-| EC34 | EV34 | event_completed(ev33), device_ready(swap, SwapPath) | Filesystems mounted, swap device ready |
-| EC35 | EV35 | event_completed(ev34) | Swap enabled, parallel with loopback |
-| EC36 | EV36 | event_completed(ev34) | Swap enabled, parallel with clock |
-| EC37 | EV37 | event_completed(ev35), event_completed(ev36), network_interface_exists(Iface, Count), Count > 0 | Clock synced, loopback up, interfaces exist |
-| EC38 | EV38 | event_completed(ev37), config_readable(firewall_rules, Rules) | Network configured, rules readable |
-| EC39 | EV39 | event_completed(ev38), network_interface_active(Iface, true) | Firewall applied, interface active |
-| EC40 | EV40 | error_occurred(Self, Step, Reason) | Any init step failed |
-
+| EC26 | EV26 | event completed(ev24) | Kernel root switched |
+| EC27 | EV27 | event completed(ev26), config readable(inittab, RunLevel) | Init started, inittab readable |
+| EC28 | EV28 | event completed(ev27) | Runlevel determined |
+| EC29 | EV29 | event completed(ev28), config readable(sysctl conf, Params) | Hostname set, sysctl config readable |
+| EC30 | EV30 | event completed(ev29) | Sysctl applied |
+| EC31 | EV31 | event completed(ev30), device scan complete(Count), Count > 0 | Udev started, devices found |
+| EC32 | EV32 | event completed(ev31) | Devices populated |
+| EC33 | EV33 | event completed(ev32), all checks passed(true) | Filesystems checked and clean |
+| EC34 | EV34 | event completed(ev33), device ready(swap, SwapPath) | Filesystems mounted, swap device ready |
+| EC35 | EV35 | event completed(ev34) | Swap enabled, parallel with loopback |
+| EC36 | EV36 | event completed(ev34) | Swap enabled, parallel with clock |
+| EC37 | EV37 | event completed(ev35), event completed(ev36), network interface exists(Iface, Count), Count > 0 | Clock synced, loopback up, interfaces exist |
+| EC38 | EV38 | event completed(ev37), config readable(firewall rules, Rules) | Network configured, rules readable |
+| EC39 | EV39 | event completed(ev38), network interface active(Iface, true) | Firewall applied, interface active |
+| EC40 | EV40 | error occurred(Self, Step, Reason) | Any init step failed |
 #### D.5 — Memory Manager (G5, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC41 | EV41 | event_completed(ev15) | Kernel memory manager started |
-| EC42 | EV42 | initialized(Self, true), page_available(Self, Address) | Initialized and free page exists |
-| EC43 | EV43 | page_allocated(Self, Address), refcount(Self, Address, 0) | Page allocated and no references |
-| EC44 | EV44 | free_page_ratio(Self, R), R < 0.3, fragmentation_ratio(Self, F), F > 0.5 | Low free pages and high fragmentation |
-| EC45 | EV45 | compaction_running(Self, true) | Compaction was started |
-| EC46 | EV46 | free_page_ratio(Self, R), R < 0.2 | Very low free pages |
-| EC47 | EV47 | reclaim_running(Self, true) | Reclaim was started |
-| EC48 | EV48 | free_page_ratio(Self, R), R < 0.05, reclaim_exhausted(Self, true) | Critical, nothing left to reclaim |
-| EC49 | EV49 | oom_triggered(Self, true), victim_selected(Self, PID) | OOM triggered, victim identified |
-| EC50 | EV50 | free_page_ratio(Self, R), R < 0.3 | Entering degraded |
-| EC51 | EV51 | free_page_ratio(Self, R), R < 0.05 | Entering critical |
-
+| EC41 | EV41 | event completed(ev15) | Kernel memory manager started |
+| EC42 | EV42 | initialized(Self, true), page available(Self, Address) | Initialized and free page exists |
+| EC43 | EV43 | page allocated(Self, Address), refcount(Self, Address, 0) | Page allocated and no references |
+| EC44 | EV44 | free page ratio(Self, R), R < 0.3, fragmentation ratio(Self, F), F > 0.5 | Low free pages and high fragmentation |
+| EC45 | EV45 | compaction running(Self, true) | Compaction was started |
+| EC46 | EV46 | free page ratio(Self, R), R < 0.2 | Very low free pages |
+| EC47 | EV47 | reclaim running(Self, true) | Reclaim was started |
+| EC48 | EV48 | free page ratio(Self, R), R < 0.05, reclaim exhausted(Self, true) | Critical, nothing left to reclaim |
+| EC49 | EV49 | oom triggered(Self, true), victim selected(Self, PID) | OOM triggered, victim identified |
+| EC50 | EV50 | free page ratio(Self, R), R < 0.3 | Entering degraded |
+| EC51 | EV51 | free page ratio(Self, R), R < 0.05 | Entering critical |
 #### D.6 — Scheduler (G6, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC52 | EV52 | event_completed(ev41) | Memory manager initialized |
-| EC53 | EV53 | run_queue_nonempty(Self, true) | At least one process ready |
-| EC54 | EV54 | run_queue_imbalance(Self, R), R > 0.3 | Significant CPU load imbalance |
-| EC55 | EV55 | rebalance_running(Self, true) | Rebalance was started |
-| EC56 | EV56 | starvation_detected(Self, PID, D), D > 5.0 | Process starved 5+ seconds |
-| EC57 | EV57 | process_on_wrong_cpu(Self, PID, Cur, Best), Cur \= Best | Process affinity mismatch |
-| EC58 | EV58 | timeslice_exhausted(Self, PID, true) | Current process used its quantum |
-| EC59 | EV59 | run_queue_length(Self, L), L > 100 | Run queue excessively long |
-
+| EC52 | EV52 | event completed(ev41) | Memory manager initialized |
+| EC53 | EV53 | run queue nonempty(Self, true) | At least one process ready |
+| EC54 | EV54 | run queue imbalance(Self, R), R > 0.3 | Significant CPU load imbalance |
+| EC55 | EV55 | rebalance running(Self, true) | Rebalance was started |
+| EC56 | EV56 | starvation detected(Self, PID, D), D > 5.0 | Process starved 5+ seconds |
+| EC57 | EV57 | process on wrong cpu(Self, PID, Cur, Best), Cur \= Best | Process affinity mismatch |
+| EC58 | EV58 | timeslice exhausted(Self, PID, true) | Current process used its quantum |
+| EC59 | EV59 | run queue length(Self, L), L > 100 | Run queue excessively long |
 #### D.7 — VFS (G7, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC60 | EV60 | event_completed(ev21) | Kernel root filesystem mounted |
+| EC60 | EV60 | event completed(ev21) | Kernel root filesystem mounted |
 | EC61 | EV61 | initialized(Self, true) | VFS initialized |
-| EC62 | EV62 | filesystem_type_registered(Self, T), device_ready(DevID, true) | Type registered, device ready |
-| EC63 | EV63 | mount_active(Self, MP), no_open_files(Self, MP) | Mount exists, no open files |
-| EC64 | EV64 | mount_active(Self, MP), path_valid(Self, Path) | Mount active, path resolves |
-| EC65 | EV65 | fd_open(Self, FD, true) | File descriptor is open |
-| EC66 | EV66 | mount_active(Self, MP), dirty_pages(Self, MP, C), C > 0 | Dirty pages exist |
-| EC67 | EV67 | mount_active(Self, MP) | Mount active for path resolution |
-
+| EC62 | EV62 | filesystem type registered(Self, T), device ready(DevID, true) | Type registered, device ready |
+| EC63 | EV63 | mount active(Self, MP), no open files(Self, MP) | Mount exists, no open files |
+| EC64 | EV64 | mount active(Self, MP), path valid(Self, Path) | Mount active, path resolves |
+| EC65 | EV65 | fd open(Self, FD, true) | File descriptor is open |
+| EC66 | EV66 | mount active(Self, MP), dirty pages(Self, MP, C), C > 0 | Dirty pages exist |
+| EC67 | EV67 | mount active(Self, MP) | Mount active for path resolution |
 #### D.8 — Network Stack (G8, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC68 | EV68 | event_completed(ev37) | Init network interfaces configured |
-| EC69 | EV69 | initialized(Self, true), packet_in_buffer(Self, Iface, true) | Inbound packet waiting |
-| EC70 | EV70 | initialized(Self, true), packet_in_outbound_queue(Self, true) | Outbound packet queued |
-| EC71 | EV71 | packet_matches_drop_rule(Self, Pkt, true) | Packet matches drop condition |
-| EC72 | EV72 | drop_rate(Self, Iface, R), R > 0.05 | Drop rate exceeds 5% |
-| EC73 | EV73 | drop_rate(Self, Iface, R), R < 0.01 | Drop rate below 1% |
-| EC74 | EV74 | route_change_pending(Self, true) | Routing update received |
-| EC75 | EV75 | segment_ack_timeout(Self, CID, SID, true) | ACK timeout on segment |
-
+| EC68 | EV68 | event completed(ev37) | Init network interfaces configured |
+| EC69 | EV69 | initialized(Self, true), packet in buffer(Self, Iface, true) | Inbound packet waiting |
+| EC70 | EV70 | initialized(Self, true), packet in outbound queue(Self, true) | Outbound packet queued |
+| EC71 | EV71 | packet matches drop rule(Self, Pkt, true) | Packet matches drop condition |
+| EC72 | EV72 | drop rate(Self, Iface, R), R > 0.05 | Drop rate exceeds 5% |
+| EC73 | EV73 | drop rate(Self, Iface, R), R < 0.01 | Drop rate below 1% |
+| EC74 | EV74 | route change pending(Self, true) | Routing update received |
+| EC75 | EV75 | segment ack timeout(Self, CID, SID, true) | ACK timeout on segment |
 #### D.9 — Display Server (G9, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC76 | EV76 | event_completed(ev39), gpu_device_ready(true) | Init complete, GPU ready |
-| EC77 | EV77 | running(Self, true), frame_due(Self, true) | Compositor running, frame tick |
-| EC78 | EV78 | running(Self, true), input_pending(Self, true) | Input event waiting |
-| EC79 | EV79 | event_completed(ev76) | Display server started |
-| EC80 | EV80 | event_completed(ev79) | Session manager started |
-| EC81 | EV81 | suspend_requested(Self, true) | System suspend requested |
-| EC82 | EV82 | resume_requested(Self, true) | System resume requested |
-| EC83 | EV83 | unrecoverable_error(Self, Reason) | Display server error |
-
+| EC76 | EV76 | event completed(ev39), gpu device ready(true) | Init complete, GPU ready |
+| EC77 | EV77 | running(Self, true), frame due(Self, true) | Compositor running, frame tick |
+| EC78 | EV78 | running(Self, true), input pending(Self, true) | Input event waiting |
+| EC79 | EV79 | event completed(ev76) | Display server started |
+| EC80 | EV80 | event completed(ev79) | Session manager started |
+| EC81 | EV81 | suspend requested(Self, true) | System suspend requested |
+| EC82 | EV82 | resume requested(Self, true) | System resume requested |
+| EC83 | EV83 | unrecoverable error(Self, Reason) | Display server error |
 #### D.10 — Audio Mixer (G10, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC84 | EV84 | event_completed(ev39), audio_device_ready(true) | Init complete, audio device ready |
-| EC85 | EV85 | running(Self, true), active_channels(Self, C), C > 0 | Running, channels to mix |
-| EC86 | EV86 | running(Self, true), volume_change_requested(Self, Ch, V) | Volume change request |
-| EC87 | EV87 | running(Self, true), mute_requested(Self, true) | Mute requested |
-| EC88 | EV88 | muted(Self, true), unmute_requested(Self, true) | Unmute requested |
-| EC89 | EV89 | running(Self, true), suspend_requested(Self, true) | Suspend requested |
-| EC90 | EV90 | suspended(Self, true), resume_requested(Self, true) | Resume requested |
-| EC91 | EV91 | unrecoverable_error(Self, Reason) | Audio error |
-
+| EC84 | EV84 | event completed(ev39), audio device ready(true) | Init complete, audio device ready |
+| EC85 | EV85 | running(Self, true), active channels(Self, C), C > 0 | Running, channels to mix |
+| EC86 | EV86 | running(Self, true), volume change requested(Self, Ch, V) | Volume change request |
+| EC87 | EV87 | running(Self, true), mute requested(Self, true) | Mute requested |
+| EC88 | EV88 | muted(Self, true), unmute requested(Self, true) | Unmute requested |
+| EC89 | EV89 | running(Self, true), suspend requested(Self, true) | Suspend requested |
+| EC90 | EV90 | suspended(Self, true), resume requested(Self, true) | Resume requested |
+| EC91 | EV91 | unrecoverable error(Self, Reason) | Audio error |
 #### D.11 — Device Manager (G11, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC92 | EV92 | event_completed(ev30) | Init udev started |
-| EC93 | EV93 | running(Self, true), bus_scan_requested(Self, BusType) | Bus scan triggered |
-| EC94 | EV94 | device_discovered(DID), driver_exists(DID, Driver) | Device found, driver available |
-| EC95 | EV95 | driver_matched(DID, Driver), module_available(Driver) | Driver matched, module loadable |
-| EC96 | EV96 | driver_loaded(DID, true) | Driver loaded for device |
-| EC97 | EV97 | device_removed(DID, true) | Device hotplug removal |
-| EC98 | EV98 | device_state_changed(DID, true) | Any device state change |
-| EC99 | EV99 | unrecoverable_error(Self, Reason) | Device manager error |
-
+| EC92 | EV92 | event completed(ev30) | Init udev started |
+| EC93 | EV93 | running(Self, true), bus scan requested(Self, BusType) | Bus scan triggered |
+| EC94 | EV94 | device discovered(DID), driver exists(DID, Driver) | Device found, driver available |
+| EC95 | EV95 | driver matched(DID, Driver), module available(Driver) | Driver matched, module loadable |
+| EC96 | EV96 | driver loaded(DID, true) | Driver loaded for device |
+| EC97 | EV97 | device removed(DID, true) | Device hotplug removal |
+| EC98 | EV98 | device state changed(DID, true) | Any device state change |
+| EC99 | EV99 | unrecoverable error(Self, Reason) | Device manager error |
 #### D.12 — Swap Manager (G12, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC100 | EV100 | event_completed(ev34), swap_device_valid(Device) | Init swap enabled, device valid |
-| EC101 | EV101 | active(Self, Device), deactivate_requested(Self, Device) | Deactivation requested |
-| EC102 | EV102 | active(Self, true), page_swap_out_requested(Self, Addr) | Swap out from memory manager |
-| EC103 | EV103 | active(Self, true), page_swap_in_requested(Self, Addr) | Swap in from memory manager |
-| EC104 | EV104 | active(Self, true), fragmentation_ratio(Self, R), R > 0.5 | High fragmentation |
+| EC100 | EV100 | event completed(ev34), swap device valid(Device) | Init swap enabled, device valid |
+| EC101 | EV101 | active(Self, Device), deactivate requested(Self, Device) | Deactivation requested |
+| EC102 | EV102 | active(Self, true), page swap out requested(Self, Addr) | Swap out from memory manager |
+| EC103 | EV103 | active(Self, true), page swap in requested(Self, Addr) | Swap in from memory manager |
+| EC104 | EV104 | active(Self, true), fragmentation ratio(Self, R), R > 0.5 | High fragmentation |
 | EC105 | EV105 | defragmenting(Self, true) | Defrag was started |
-| EC106 | EV106 | usage_ratio(Self, R), R > 0.95 | Swap nearly full |
-| EC107 | EV107 | io_rate(Self, R), R > 1000 | Excessive swap IO |
-
+| EC106 | EV106 | usage ratio(Self, R), R > 0.95 | Swap nearly full |
+| EC107 | EV107 | io rate(Self, R), R > 1000 | Excessive swap IO |
 #### D.13 — Firewall (G13, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC108 | EV108 | event_completed(ev38), rules_valid(Self, true) | Init firewall applied, rules valid |
-| EC109 | EV109 | packet_evaluated(Self, Pkt), rule_result(Self, Pkt, allow) | Packet matches allow |
-| EC110 | EV110 | packet_evaluated(Self, Pkt), rule_result(Self, Pkt, drop) | Packet matches drop |
-| EC111 | EV111 | packet_evaluated(Self, Pkt), rule_result(Self, Pkt, reject) | Packet matches reject |
-| EC112 | EV112 | reload_requested(Self, true), rules_valid(Self, true) | Reload requested, new rules valid |
-| EC113 | EV113 | unrecoverable_error(Self, Reason) | Firewall error |
-
+| EC108 | EV108 | event completed(ev38), rules valid(Self, true) | Init firewall applied, rules valid |
+| EC109 | EV109 | packet evaluated(Self, Pkt), rule result(Self, Pkt, allow) | Packet matches allow |
+| EC110 | EV110 | packet evaluated(Self, Pkt), rule result(Self, Pkt, drop) | Packet matches drop |
+| EC111 | EV111 | packet evaluated(Self, Pkt), rule result(Self, Pkt, reject) | Packet matches reject |
+| EC112 | EV112 | reload requested(Self, true), rules valid(Self, true) | Reload requested, new rules valid |
+| EC113 | EV113 | unrecoverable error(Self, Reason) | Firewall error |
 #### D.14 — DNS Resolver (G14, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC114 | EV114 | event_completed(ev39), config_readable(resolv_conf, Servers) | Init DNS configured, resolv.conf readable |
-| EC115 | EV115 | query_pending(Self, H), resolution_succeeded(Self, H, Addr) | Query resolved |
-| EC116 | EV116 | query_pending(Self, H), resolution_failed(Self, H, Reason) | Query failed |
-| EC117 | EV117 | query_pending(Self, H), cache_contains(Self, H, true), cache_ttl_valid(Self, H, true) | Cache hit, not expired |
-| EC118 | EV118 | cache_size(Self, S), cache_max(Self, M), S > M | Cache exceeds max |
-| EC119 | EV119 | resolution_failed(Self, H, R), alternate_server_available(Self, Srv) | Failure, alternate exists |
-| EC120 | EV120 | unrecoverable_error(Self, Reason) | Resolver error |
-
+| EC114 | EV114 | event completed(ev39), config readable(resolv conf, Servers) | Init DNS configured, resolv.conf readable |
+| EC115 | EV115 | query pending(Self, H), resolution succeeded(Self, H, Addr) | Query resolved |
+| EC116 | EV116 | query pending(Self, H), resolution failed(Self, H, Reason) | Query failed |
+| EC117 | EV117 | query pending(Self, H), cache contains(Self, H, true), cache ttl valid(Self, H, true) | Cache hit, not expired |
+| EC118 | EV118 | cache size(Self, S), cache max(Self, M), S > M | Cache exceeds max |
+| EC119 | EV119 | resolution failed(Self, H, R), alternate server available(Self, Srv) | Failure, alternate exists |
+| EC120 | EV120 | unrecoverable error(Self, Reason) | Resolver error |
 #### D.15 — Session Manager (G15, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC121 | EV121 | event_completed(ev80) | Display server login rendered |
-| EC122 | EV122 | running(Self, true), no_active_session(Self, true) | Running, no session active |
-| EC123 | EV123 | login_presented(Self, true), credentials_submitted(Self, U) | Login shown, credentials received |
-| EC124 | EV124 | credentials_valid(Self, U, true), session_slot_available(Self, true) | Valid credentials, slot open |
-| EC125 | EV125 | session_active(Self, SID), logout_requested(Self, SID) | Session exists, logout requested |
-| EC126 | EV126 | session_active(Self, F), session_active(Self, T), switch_requested(Self, T) | Both sessions exist, switch requested |
-| EC127 | EV127 | session_active(Self, SID), lock_requested(Self, SID) | Session active, lock requested |
-| EC128 | EV128 | unrecoverable_error(Self, Reason) | Session manager error |
-
+| EC121 | EV121 | event completed(ev80) | Display server login rendered |
+| EC122 | EV122 | running(Self, true), no active session(Self, true) | Running, no session active |
+| EC123 | EV123 | login presented(Self, true), credentials submitted(Self, U) | Login shown, credentials received |
+| EC124 | EV124 | credentials valid(Self, U, true), session slot available(Self, true) | Valid credentials, slot open |
+| EC125 | EV125 | session active(Self, SID), logout requested(Self, SID) | Session exists, logout requested |
+| EC126 | EV126 | session active(Self, F), session active(Self, T), switch requested(Self, T) | Both sessions exist, switch requested |
+| EC127 | EV127 | session active(Self, SID), lock requested(Self, SID) | Session active, lock requested |
+| EC128 | EV128 | unrecoverable error(Self, Reason) | Session manager error |
 #### D.16 — System Logger (G16, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC129 | EV129 | event_completed(ev39) | Init DNS configured |
-| EC130 | EV130 | running(Self, true), entry_pending(Self, true) | Running, log entry waiting |
-| EC131 | EV131 | buffer_count(Self, C), C > 0, flush_requested(Self, true) | Buffer has entries, flush triggered |
-| EC132 | EV132 | log_file_size(Self, P, S), max_size(Self, P, M), S > M | Log file exceeds max |
-| EC133 | EV133 | running(Self, true), remote_configured(Self, D), entry_pending_forward(Self, true) | Remote configured, entry to forward |
-| EC134 | EV134 | buffer_count(Self, C), buffer_max(Self, M), C >= M | Buffer full |
-| EC135 | EV135 | unrecoverable_error(Self, Reason) | Logger error |
-
+| EC129 | EV129 | event completed(ev39) | Init DNS configured |
+| EC130 | EV130 | running(Self, true), entry pending(Self, true) | Running, log entry waiting |
+| EC131 | EV131 | buffer count(Self, C), C > 0, flush requested(Self, true) | Buffer has entries, flush triggered |
+| EC132 | EV132 | log file size(Self, P, S), max size(Self, P, M), S > M | Log file exceeds max |
+| EC133 | EV133 | running(Self, true), remote configured(Self, D), entry pending forward(Self, true) | Remote configured, entry to forward |
+| EC134 | EV134 | buffer count(Self, C), buffer max(Self, M), C >= M | Buffer full |
+| EC135 | EV135 | unrecoverable error(Self, Reason) | Logger error |
 #### D.17 — Package Manager (G17, One)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC136 | EV136 | refresh_requested(Self, true), network_available(true) | Refresh requested, network up |
-| EC137 | EV137 | index_current(Self, true), install_requested(Self, Pkg) | Index current, install requested |
-| EC138 | EV138 | dependencies_resolved(Self, Pkg, true), download_source_available(Self, true) | Deps resolved, source reachable |
-| EC139 | EV139 | package_downloaded(Self, Pkg, true), checksum_valid(Self, Pkg, true) | Downloaded, verified |
-| EC140 | EV140 | remove_requested(Self, Pkg), no_dependents(Self, Pkg, true) | Remove requested, nothing depends on it |
-| EC141 | EV141 | verify_requested(Self, true) | Integrity check requested |
-| EC142 | EV142 | operation_failed(Self, Pkg, Reason) | Any package operation failed |
-
+| EC136 | EV136 | refresh requested(Self, true), network available(true) | Refresh requested, network up |
+| EC137 | EV137 | index current(Self, true), install requested(Self, Pkg) | Index current, install requested |
+| EC138 | EV138 | dependencies resolved(Self, Pkg, true), download source available(Self, true) | Deps resolved, source reachable |
+| EC139 | EV139 | package downloaded(Self, Pkg, true), checksum valid(Self, Pkg, true) | Downloaded, verified |
+| EC140 | EV140 | remove requested(Self, Pkg), no dependents(Self, Pkg, true) | Remove requested, nothing depends on it |
+| EC141 | EV141 | verify requested(Self, true) | Integrity check requested |
+| EC142 | EV142 | operation failed(Self, Pkg, Reason) | Any package operation failed |
 #### D.18 — Process (G18, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC143 | EV143 | fork_requested(Parent, true) | Parent requested fork |
-| EC144 | EV144 | process_entity(Self), fork_executing(Self, true) | Fork in progress |
-| EC145 | EV145 | process_entity(Self), exec_requested(Self, Executable) | Exec requested |
-| EC146 | EV146 | process_entity(Self), resources_allocated(Self, true) | Process resources ready |
-| EC147 | EV147 | process_entity(Self), scheduled(Self, CPU) | Scheduler assigned CPU |
-| EC148 | EV148 | process_entity(Self), waiting_on(Self, Resource, true) | Waiting for IO/lock |
-| EC149 | EV149 | process_entity(Self), sleep_requested(Self, Duration) | Sleep syscall |
-| EC150 | EV150 | process_entity(Self), wait_condition_met(Self, true) | Blocked condition resolved |
-| EC151 | EV151 | process_entity(Self), syscall_requested(Self, SyscallID) | Trap to kernel |
-| EC152 | EV152 | process_entity(Self), page_not_present(Self, Address) | Virtual page missing |
-| EC153 | EV153 | process_entity(Self), signal_pending(Self, Signal) | Signal queued |
-| EC154 | EV154 | process_entity(Self), yield_requested(Self, true) | Voluntary yield |
-| EC155 | EV155 | process_entity(Self), exit_requested(Self, ExitCode) | Exit syscall or fatal signal |
-| EC156 | EV156 | process_entity(Self), exited(Self, true), parent_alive(Self, true) | Exited, parent hasn't waited |
-| EC157 | EV157 | process_entity(Self), zombie(Self, true), parent_waiting(Self, true) | Parent called wait |
-| EC158 | EV158 | process_entity(Self), waited(Self, true) | Wait collected |
-
+| EC143 | EV143 | fork requested(Parent, true) | Parent requested fork |
+| EC144 | EV144 | process entity(Self), fork executing(Self, true) | Fork in progress |
+| EC145 | EV145 | process entity(Self), exec requested(Self, Executable) | Exec requested |
+| EC146 | EV146 | process entity(Self), resources allocated(Self, true) | Process resources ready |
+| EC147 | EV147 | process entity(Self), scheduled(Self, CPU) | Scheduler assigned CPU |
+| EC148 | EV148 | process entity(Self), waiting on(Self, Resource, true) | Waiting for IO/lock |
+| EC149 | EV149 | process entity(Self), sleep requested(Self, Duration) | Sleep syscall |
+| EC150 | EV150 | process entity(Self), wait condition met(Self, true) | Blocked condition resolved |
+| EC151 | EV151 | process entity(Self), syscall requested(Self, SyscallID) | Trap to kernel |
+| EC152 | EV152 | process entity(Self), page not present(Self, Address) | Virtual page missing |
+| EC153 | EV153 | process entity(Self), signal pending(Self, Signal) | Signal queued |
+| EC154 | EV154 | process entity(Self), yield requested(Self, true) | Voluntary yield |
+| EC155 | EV155 | process entity(Self), exit requested(Self, ExitCode) | Exit syscall or fatal signal |
+| EC156 | EV156 | process entity(Self), exited(Self, true), parent alive(Self, true) | Exited, parent hasn't waited |
+| EC157 | EV157 | process entity(Self), zombie(Self, true), parent waiting(Self, true) | Parent called wait |
+| EC158 | EV158 | process entity(Self), waited(Self, true) | Wait collected |
 #### D.19 — Thread (G19, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC159 | EV159 | thread_create_requested(Parent, ProcessID) | Creation requested |
-| EC160 | EV160 | thread_entity(Self), resources_allocated(Self, true) | Resources ready |
-| EC161 | EV161 | thread_entity(Self), waiting_on(Self, Resource, true) | Blocked on lock/condition/IO |
-| EC162 | EV162 | thread_entity(Self), wait_condition_met(Self, true) | Unblocked |
-| EC163 | EV163 | thread_entity(Self), join_requested(Self, JoiningThread) | Another thread joining |
-| EC164 | EV164 | thread_entity(Self), detach_requested(Self, true) | Detach from parent |
-| EC165 | EV165 | thread_entity(Self), mutex_available(Self, MutexID) | Mutex is free |
-| EC166 | EV166 | thread_entity(Self), mutex_held(Self, MutexID) | This thread holds mutex |
-| EC167 | EV167 | thread_entity(Self), condition_wait_requested(Self, CondID) | Waiting on condition |
-| EC168 | EV168 | thread_entity(Self), condition_signaled(Self, CondID) | Condition signaled |
-| EC169 | EV169 | thread_entity(Self), exit_requested(Self, true) | Thread termination |
-
+| EC159 | EV159 | thread create requested(Parent, ProcessID) | Creation requested |
+| EC160 | EV160 | thread entity(Self), resources allocated(Self, true) | Resources ready |
+| EC161 | EV161 | thread entity(Self), waiting on(Self, Resource, true) | Blocked on lock/condition/IO |
+| EC162 | EV162 | thread entity(Self), wait condition met(Self, true) | Unblocked |
+| EC163 | EV163 | thread entity(Self), join requested(Self, JoiningThread) | Another thread joining |
+| EC164 | EV164 | thread entity(Self), detach requested(Self, true) | Detach from parent |
+| EC165 | EV165 | thread entity(Self), mutex available(Self, MutexID) | Mutex is free |
+| EC166 | EV166 | thread entity(Self), mutex held(Self, MutexID) | This thread holds mutex |
+| EC167 | EV167 | thread entity(Self), condition wait requested(Self, CondID) | Waiting on condition |
+| EC168 | EV168 | thread entity(Self), condition signaled(Self, CondID) | Condition signaled |
+| EC169 | EV169 | thread entity(Self), exit requested(Self, true) | Thread termination |
 #### D.20 — File (G20, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC170 | EV170 | file_open_requested(ProcessID, Path, Mode) | Open syscall |
-| EC171 | EV171 | file_entity(Self), open(Self, true), read_requested(Self, true) | Open, read requested |
-| EC172 | EV172 | file_entity(Self), open(Self, true), write_requested(Self, true), writable(Self, true) | Open, writable, write requested |
-| EC173 | EV173 | file_entity(Self), open(Self, true), seek_requested(Self, Pos) | Seek requested |
-| EC174 | EV174 | file_entity(Self), open(Self, true), lock_requested(Self, LT), not_locked(Self, true) | Open, unlocked, lock requested |
-| EC175 | EV175 | file_entity(Self), locked(Self, true), unlock_requested(Self, true) | Locked, unlock requested |
-| EC176 | EV176 | file_entity(Self), open(Self, true), sync_requested(Self, true) | Sync requested |
-| EC177 | EV177 | file_entity(Self), io_error(Self, Error) | IO error occurred |
-| EC178 | EV178 | file_entity(Self), open(Self, true), close_requested(Self, true) | Close requested |
-
+| EC170 | EV170 | file open requested(ProcessID, Path, Mode) | Open syscall |
+| EC171 | EV171 | file entity(Self), open(Self, true), read requested(Self, true) | Open, read requested |
+| EC172 | EV172 | file entity(Self), open(Self, true), write requested(Self, true), writable(Self, true) | Open, writable, write requested |
+| EC173 | EV173 | file entity(Self), open(Self, true), seek requested(Self, Pos) | Seek requested |
+| EC174 | EV174 | file entity(Self), open(Self, true), lock requested(Self, LT), not locked(Self, true) | Open, unlocked, lock requested |
+| EC175 | EV175 | file entity(Self), locked(Self, true), unlock requested(Self, true) | Locked, unlock requested |
+| EC176 | EV176 | file entity(Self), open(Self, true), sync requested(Self, true) | Sync requested |
+| EC177 | EV177 | file entity(Self), io error(Self, Error) | IO error occurred |
+| EC178 | EV178 | file entity(Self), open(Self, true), close requested(Self, true) | Close requested |
 #### D.21 — Filesystem Mount (G21, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC179 | EV179 | mount_entity(Self), check_requested(Self, true) | fsck requested |
-| EC180 | EV180 | mount_entity(Self), check_running(Self, true) | fsck completed |
-| EC181 | EV181 | mount_entity(Self), checked(Self, clean), device_ready(Self, Device) | Clean, device ready |
-| EC182 | EV182 | mount_entity(Self), mount_in_progress(Self, true) | Mount completing |
-| EC183 | EV183 | mount_entity(Self), mounted(Self, true), remount_requested(Self, Opts) | Remount requested |
-| EC184 | EV184 | mount_entity(Self), mounted(Self, true), dirty_pages(Self, C), C > 0 | Dirty pages to flush |
-| EC185 | EV185 | mount_entity(Self), mounted(Self, true), unmount_requested(Self, true), no_open_files(Self, true) | Unmount requested, no open files |
-| EC186 | EV186 | mount_entity(Self), unmounting(Self, true) | Unmount completing |
-| EC187 | EV187 | mount_entity(Self), error_occurred(Self, Error) | Filesystem error |
-
+| EC179 | EV179 | mount entity(Self), check requested(Self, true) | fsck requested |
+| EC180 | EV180 | mount entity(Self), check running(Self, true) | fsck completed |
+| EC181 | EV181 | mount entity(Self), checked(Self, clean), device ready(Self, Device) | Clean, device ready |
+| EC182 | EV182 | mount entity(Self), mount in progress(Self, true) | Mount completing |
+| EC183 | EV183 | mount entity(Self), mounted(Self, true), remount requested(Self, Opts) | Remount requested |
+| EC184 | EV184 | mount entity(Self), mounted(Self, true), dirty pages(Self, C), C > 0 | Dirty pages to flush |
+| EC185 | EV185 | mount entity(Self), mounted(Self, true), unmount requested(Self, true), no open files(Self, true) | Unmount requested, no open files |
+| EC186 | EV186 | mount entity(Self), unmounting(Self, true) | Unmount completing |
+| EC187 | EV187 | mount entity(Self), error occurred(Self, Error) | Filesystem error |
 #### D.22 — Network Connection (G22, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC188 | EV188 | connect_requested(ProcessID, LocalAddr, RemoteAddr) | Connect syscall |
-| EC189 | EV189 | connection_entity(Self), initiated(Self, true) | Connection initiated |
-| EC190 | EV190 | connection_entity(Self), syn_acked(Self, true) | SYN-ACK received |
-| EC191 | EV191 | connection_entity(Self), established(Self, true), send_buffer_nonempty(Self, true) | Data to send |
-| EC192 | EV192 | connection_entity(Self), established(Self, true), recv_buffer_nonempty(Self, true) | Data received |
-| EC193 | EV193 | connection_entity(Self), established(Self, true), ack_timeout(Self, SegID) | Segment ACK timed out |
-| EC194 | EV194 | connection_entity(Self), established(Self, true), loss_detected(Self, true) | Packet loss detected |
-| EC195 | EV195 | connection_entity(Self), established(Self, true), close_requested(Self, true) | Close initiated |
-| EC196 | EV196 | connection_entity(Self), fin_received(Self, true) | FIN from remote |
-| EC197 | EV197 | connection_entity(Self), both_fins_sent(Self, true) | Both sides closing |
-| EC198 | EV198 | connection_entity(Self), reset_requested(Self, true) | RST condition |
-| EC199 | EV199 | connection_entity(Self), time_wait_expired(Self, true) | 2MSL timer expired |
-
+| EC188 | EV188 | connect requested(ProcessID, LocalAddr, RemoteAddr) | Connect syscall |
+| EC189 | EV189 | connection entity(Self), initiated(Self, true) | Connection initiated |
+| EC190 | EV190 | connection entity(Self), syn acked(Self, true) | SYN-ACK received |
+| EC191 | EV191 | connection entity(Self), established(Self, true), send buffer nonempty(Self, true) | Data to send |
+| EC192 | EV192 | connection entity(Self), established(Self, true), recv buffer nonempty(Self, true) | Data received |
+| EC193 | EV193 | connection entity(Self), established(Self, true), ack timeout(Self, SegID) | Segment ACK timed out |
+| EC194 | EV194 | connection entity(Self), established(Self, true), loss detected(Self, true) | Packet loss detected |
+| EC195 | EV195 | connection entity(Self), established(Self, true), close requested(Self, true) | Close initiated |
+| EC196 | EV196 | connection entity(Self), fin received(Self, true) | FIN from remote |
+| EC197 | EV197 | connection entity(Self), both fins sent(Self, true) | Both sides closing |
+| EC198 | EV198 | connection entity(Self), reset requested(Self, true) | RST condition |
+| EC199 | EV199 | connection entity(Self), time wait expired(Self, true) | 2MSL timer expired |
 #### D.23 — User Account (G23, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC200 | EV200 | account_create_requested(Username) | Admin create request |
-| EC201 | EV201 | account_entity(Self), created(Self, true), activation_approved(Self, true) | Created, approved |
-| EC202 | EV202 | account_entity(Self), active(Self, true), lock_condition(Self, Reason) | Lock triggered |
-| EC203 | EV203 | account_entity(Self), locked(Self, true), unlock_authorized(Self, true) | Unlock authorized |
-| EC204 | EV204 | account_entity(Self), active(Self, true), disable_requested(Self, Reason) | Admin disable |
-| EC205 | EV205 | account_entity(Self), disabled(Self, true), delete_requested(Self, true) | Admin delete |
-| EC206 | EV206 | account_entity(Self), active(Self, true), password_change_requested(Self, true) | Password change |
-| EC207 | EV207 | account_entity(Self), active(Self, true), permission_change_requested(Self, Groups) | Permission update |
-
+| EC200 | EV200 | account create requested(Username) | Admin create request |
+| EC201 | EV201 | account entity(Self), created(Self, true), activation approved(Self, true) | Created, approved |
+| EC202 | EV202 | account entity(Self), active(Self, true), lock condition(Self, Reason) | Lock triggered |
+| EC203 | EV203 | account entity(Self), locked(Self, true), unlock authorized(Self, true) | Unlock authorized |
+| EC204 | EV204 | account entity(Self), active(Self, true), disable requested(Self, Reason) | Admin disable |
+| EC205 | EV205 | account entity(Self), disabled(Self, true), delete requested(Self, true) | Admin delete |
+| EC206 | EV206 | account entity(Self), active(Self, true), password change requested(Self, true) | Password change |
+| EC207 | EV207 | account entity(Self), active(Self, true), permission change requested(Self, Groups) | Permission update |
 #### D.24 — User Session (G24, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC208 | EV208 | session_entity(Self), login_presented(true), credentials_entered(Self, Username) | Credentials submitted |
-| EC209 | EV209 | session_entity(Self), credentials_valid(Self, true) | Valid credentials |
-| EC210 | EV210 | session_entity(Self), credentials_valid(Self, false) | Invalid credentials |
-| EC211 | EV211 | session_entity(Self), authenticated(Self, true), session_slot_available(true) | Authenticated, slot open |
-| EC212 | EV212 | session_entity(Self), created(Self, true), home_directory_accessible(Self, true) | Session created, home accessible |
-| EC213 | EV213 | session_entity(Self), environment_loaded(Self, true), autostart_list_resolved(Self, true) | Env loaded, autostart ready |
-| EC214 | EV214 | session_entity(Self), autostart_complete(Self, true), window_manager_ready(Self, true) | Autostart done, WM ready |
-| EC215 | EV215 | session_entity(Self), desktop_rendered(Self, true), input_focus_granted(Self, true) | Desktop rendered, input active |
-| EC216 | EV216 | session_entity(Self), active(Self, true), idle_time(Self, T), idle_lock_threshold(Self, Th), T > Th | Idle exceeded lock threshold |
-| EC217 | EV217 | session_entity(Self), locked(Self, true), credentials_valid(Self, true) | Locked, re-authenticated |
-| EC218 | EV218 | session_entity(Self), active(Self, true), suspend_requested(Self, true) | Suspend requested |
-| EC219 | EV219 | session_entity(Self), suspended(Self, true), resume_requested(Self, true) | Resume requested |
-| EC220 | EV220 | session_entity(Self), active(Self, true), logout_requested(Self, true) | Logout requested |
-| EC221 | EV221 | session_entity(Self), logout_complete(Self, true) | Logout cleanup done |
-
+| EC208 | EV208 | session entity(Self), login presented(true), credentials entered(Self, Username) | Credentials submitted |
+| EC209 | EV209 | session entity(Self), credentials valid(Self, true) | Valid credentials |
+| EC210 | EV210 | session entity(Self), credentials valid(Self, false) | Invalid credentials |
+| EC211 | EV211 | session entity(Self), authenticated(Self, true), session slot available(true) | Authenticated, slot open |
+| EC212 | EV212 | session entity(Self), created(Self, true), home directory accessible(Self, true) | Session created, home accessible |
+| EC213 | EV213 | session entity(Self), environment loaded(Self, true), autostart list resolved(Self, true) | Env loaded, autostart ready |
+| EC214 | EV214 | session entity(Self), autostart complete(Self, true), window manager ready(Self, true) | Autostart done, WM ready |
+| EC215 | EV215 | session entity(Self), desktop rendered(Self, true), input focus granted(Self, true) | Desktop rendered, input active |
+| EC216 | EV216 | session entity(Self), active(Self, true), idle time(Self, T), idle lock threshold(Self, Th), T > Th | Idle exceeded lock threshold |
+| EC217 | EV217 | session entity(Self), locked(Self, true), credentials valid(Self, true) | Locked, re-authenticated |
+| EC218 | EV218 | session entity(Self), active(Self, true), suspend requested(Self, true) | Suspend requested |
+| EC219 | EV219 | session entity(Self), suspended(Self, true), resume requested(Self, true) | Resume requested |
+| EC220 | EV220 | session entity(Self), active(Self, true), logout requested(Self, true) | Logout requested |
+| EC221 | EV221 | session entity(Self), logout complete(Self, true) | Logout cleanup done |
 #### D.25 — Device (G25, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC222 | EV222 | hardware_detected(BusType, VID, PID), not(device_entity_exists(VID, PID)) | Hardware found, no existing entity |
-| EC223 | EV223 | device_entity(Self), discovered(Self, true), driver_available(Self, Driver) | Discovered, driver exists |
-| EC224 | EV224 | device_entity(Self), driver_loading(Self, true) | Driver load completed |
-| EC225 | EV225 | device_entity(Self), driver_loaded(Self, true), resources_allocated(Self, true) | Driver loaded, resources ready |
-| EC226 | EV226 | device_entity(Self), initializing(Self, true), self_test_result(Self, pass) | Self test passed |
-| EC227 | EV227 | device_entity(Self), initializing(Self, true), self_test_result(Self, fail) | Self test failed |
-| EC228 | EV228 | device_entity(Self), self_test_passed(Self, true) | Test passed, device ready |
-| EC229 | EV229 | device_entity(Self), ready(Self, true), error_detected(Self, Error) | Error on ready device |
-| EC230 | EV230 | device_entity(Self), error_state(Self, true), reset_possible(Self, true), recent_reset_count(Self, N), N < 3 | Can reset, retries remaining |
-| EC231 | EV231 | device_entity(Self), ready(Self, true), suspend_requested(Self, true) | Suspend requested |
-| EC232 | EV232 | device_entity(Self), suspended(Self, true), resume_requested(Self, true) | Resume requested |
-| EC233 | EV233 | device_entity(Self), removal_detected(Self, true) | Hotplug removal or unrecoverable |
-
+| EC222 | EV222 | hardware detected(BusType, VID, PID), not(device entity exists(VID, PID)) | Hardware found, no existing entity |
+| EC223 | EV223 | device entity(Self), discovered(Self, true), driver available(Self, Driver) | Discovered, driver exists |
+| EC224 | EV224 | device entity(Self), driver loading(Self, true) | Driver load completed |
+| EC225 | EV225 | device entity(Self), driver loaded(Self, true), resources allocated(Self, true) | Driver loaded, resources ready |
+| EC226 | EV226 | device entity(Self), initializing(Self, true), self test result(Self, pass) | Self test passed |
+| EC227 | EV227 | device entity(Self), initializing(Self, true), self test result(Self, fail) | Self test failed |
+| EC228 | EV228 | device entity(Self), self test passed(Self, true) | Test passed, device ready |
+| EC229 | EV229 | device entity(Self), ready(Self, true), error detected(Self, Error) | Error on ready device |
+| EC230 | EV230 | device entity(Self), error state(Self, true), reset possible(Self, true), recent reset count(Self, N), N < 3 | Can reset, retries remaining |
+| EC231 | EV231 | device entity(Self), ready(Self, true), suspend requested(Self, true) | Suspend requested |
+| EC232 | EV232 | device entity(Self), suspended(Self, true), resume requested(Self, true) | Resume requested |
+| EC233 | EV233 | device entity(Self), removal detected(Self, true) | Hotplug removal or unrecoverable |
 #### D.26 — Kernel Module (G26, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC234 | EV234 | module_load_requested(ModName), module_available(ModName) | Load requested, module exists |
-| EC235 | EV235 | module_entity(Self), loading(Self, true) | Load completed |
-| EC236 | EV236 | module_entity(Self), loaded(Self, true), init_result(Self, success) | Init succeeded |
-| EC237 | EV237 | module_entity(Self), loaded(Self, true), init_result(Self, failure) | Init failed |
-| EC238 | EV238 | module_entity(Self), running(Self, true), unload_requested(Self, true), refcount(Self, 0) | Unload requested, not in use |
-| EC239 | EV239 | module_entity(Self), unloading(Self, true) | Unload completed |
-
+| EC234 | EV234 | module load requested(ModName), module available(ModName) | Load requested, module exists |
+| EC235 | EV235 | module entity(Self), loading(Self, true) | Load completed |
+| EC236 | EV236 | module entity(Self), loaded(Self, true), init result(Self, success) | Init succeeded |
+| EC237 | EV237 | module entity(Self), loaded(Self, true), init result(Self, failure) | Init failed |
+| EC238 | EV238 | module entity(Self), running(Self, true), unload requested(Self, true), refcount(Self, 0) | Unload requested, not in use |
+| EC239 | EV239 | module entity(Self), unloading(Self, true) | Unload completed |
 #### D.27 — Service (G27, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC240 | EV240 | service_entity(Self), start_requested(Self, true), dependencies_met(Self, true) | Start requested, deps running |
-| EC241 | EV241 | service_entity(Self), starting(Self, true), process_alive(Self, PID) | Process launched |
-| EC242 | EV242 | service_entity(Self), started(Self, true), health_check_passed(Self, true) | Started, first health check passed |
-| EC243 | EV243 | service_entity(Self), running(Self, true), health_check_due(Self, true), health_check_result(Self, pass) | Periodic check passed |
-| EC244 | EV244 | service_entity(Self), running(Self, true), health_check_due(Self, true), health_check_result(Self, fail) | Periodic check failed |
-| EC245 | EV245 | service_entity(Self), health_fail_count(Self, N), N > 1, N < 3 | Multiple failures, not terminal |
-| EC246 | EV246 | service_entity(Self), process_alive(Self, false) | Process died |
-| EC247 | EV247 | service_entity(Self), failed(Self, true), restart_policy(Self, auto), restart_count(Self, N), max_restarts(Self, M), N < M | Auto restart, retries remaining |
-| EC248 | EV248 | service_entity(Self), restarting(Self, true), restart_delay_elapsed(Self, true) | Restart delay passed |
-| EC249 | EV249 | service_entity(Self), running(Self, true), reload_requested(Self, true) | Reload requested |
-| EC250 | EV250 | service_entity(Self), reloading(Self, true) | Reload completed |
-| EC251 | EV251 | service_entity(Self), running(Self, true), stop_requested(Self, true) | Stop requested |
-| EC252 | EV252 | service_entity(Self), stopping(Self, true), process_alive(Self, false) | Process terminated |
-| EC253 | EV253 | service_entity(Self), failed(Self, true), restart_count(Self, N), max_restarts(Self, M), N >= M | Retries exhausted |
-
+| EC240 | EV240 | service entity(Self), start requested(Self, true), dependencies met(Self, true) | Start requested, deps running |
+| EC241 | EV241 | service entity(Self), starting(Self, true), process alive(Self, PID) | Process launched |
+| EC242 | EV242 | service entity(Self), started(Self, true), health check passed(Self, true) | Started, first health check passed |
+| EC243 | EV243 | service entity(Self), running(Self, true), health check due(Self, true), health check result(Self, pass) | Periodic check passed |
+| EC244 | EV244 | service entity(Self), running(Self, true), health check due(Self, true), health check result(Self, fail) | Periodic check failed |
+| EC245 | EV245 | service entity(Self), health fail count(Self, N), N > 1, N < 3 | Multiple failures, not terminal |
+| EC246 | EV246 | service entity(Self), process alive(Self, false) | Process died |
+| EC247 | EV247 | service entity(Self), failed(Self, true), restart policy(Self, auto), restart count(Self, N), max restarts(Self, M), N < M | Auto restart, retries remaining |
+| EC248 | EV248 | service entity(Self), restarting(Self, true), restart delay elapsed(Self, true) | Restart delay passed |
+| EC249 | EV249 | service entity(Self), running(Self, true), reload requested(Self, true) | Reload requested |
+| EC250 | EV250 | service entity(Self), reloading(Self, true) | Reload completed |
+| EC251 | EV251 | service entity(Self), running(Self, true), stop requested(Self, true) | Stop requested |
+| EC252 | EV252 | service entity(Self), stopping(Self, true), process alive(Self, false) | Process terminated |
+| EC253 | EV253 | service entity(Self), failed(Self, true), restart count(Self, N), max restarts(Self, M), N >= M | Retries exhausted |
 #### D.28 — Window (G28, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC254 | EV254 | window_create_requested(ProcessID, Title) | Process requested window |
-| EC255 | EV255 | window_entity(Self), created(Self, true), show_requested(Self, true) | Show requested |
-| EC256 | EV256 | window_entity(Self), visible(Self, true), hide_requested(Self, true) | Hide requested |
-| EC257 | EV257 | window_entity(Self), visible(Self, true), focus_requested(Self, true) | Focus requested |
-| EC258 | EV258 | window_entity(Self), focused(Self, true), focus_lost(Self, true) | Another window took focus |
-| EC259 | EV259 | window_entity(Self), visible(Self, true), minimize_requested(Self, true) | Minimize requested |
-| EC260 | EV260 | window_entity(Self), visible(Self, true), maximize_requested(Self, true) | Maximize requested |
-| EC261 | EV261 | window_entity(Self), minimized_or_maximized(Self, true), restore_requested(Self, true) | Restore requested |
-| EC262 | EV262 | window_entity(Self), visible(Self, true), resize_requested(Self, W, H) | Resize requested |
-| EC263 | EV263 | window_entity(Self), visible(Self, true), move_requested(Self, X, Y) | Move requested |
-| EC264 | EV264 | window_entity(Self), close_requested(Self, true) | Close requested |
-
+| EC254 | EV254 | window create requested(ProcessID, Title) | Process requested window |
+| EC255 | EV255 | window entity(Self), created(Self, true), show requested(Self, true) | Show requested |
+| EC256 | EV256 | window entity(Self), visible(Self, true), hide requested(Self, true) | Hide requested |
+| EC257 | EV257 | window entity(Self), visible(Self, true), focus requested(Self, true) | Focus requested |
+| EC258 | EV258 | window entity(Self), focused(Self, true), focus lost(Self, true) | Another window took focus |
+| EC259 | EV259 | window entity(Self), visible(Self, true), minimize requested(Self, true) | Minimize requested |
+| EC260 | EV260 | window entity(Self), visible(Self, true), maximize requested(Self, true) | Maximize requested |
+| EC261 | EV261 | window entity(Self), minimized or maximized(Self, true), restore requested(Self, true) | Restore requested |
+| EC262 | EV262 | window entity(Self), visible(Self, true), resize requested(Self, W, H) | Resize requested |
+| EC263 | EV263 | window entity(Self), visible(Self, true), move requested(Self, X, Y) | Move requested |
+| EC264 | EV264 | window entity(Self), close requested(Self, true) | Close requested |
 #### D.29 — Network Interface (G29, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC265 | EV265 | interface_hardware_detected(Name, MAC) | Hardware detected |
-| EC266 | EV266 | interface_entity(Self), detected(Self, true), config_available(Self, true) | Detected, config exists |
-| EC267 | EV267 | interface_entity(Self), configuring(Self, true), address_assigned(Self, Addr, Mask) | Address obtained |
-| EC268 | EV268 | interface_entity(Self), address_assigned(Self, true), link_up(Self, true) | Address and link ready |
-| EC269 | EV269 | interface_entity(Self), up(Self, true), error_rate(Self, R), R > 0.01 | Errors exceeding threshold |
-| EC270 | EV270 | interface_entity(Self), up(Self, true), down_requested(Self, true) | Down requested |
-| EC271 | EV271 | interface_entity(Self), up(Self, true), dhcp_lease_expiring(Self, true), dhcp_renew_succeeded(Self, Addr, Lease) | DHCP renewal |
-| EC272 | EV272 | interface_entity(Self), error_rate(Self, R), R > 0.1 | Severe errors |
-| EC273 | EV273 | interface_entity(Self), failed_or_degraded(Self, true), reset_requested(Self, true) | Reset requested |
-
+| EC265 | EV265 | interface hardware detected(Name, MAC) | Hardware detected |
+| EC266 | EV266 | interface entity(Self), detected(Self, true), config available(Self, true) | Detected, config exists |
+| EC267 | EV267 | interface entity(Self), configuring(Self, true), address assigned(Self, Addr, Mask) | Address obtained |
+| EC268 | EV268 | interface entity(Self), address assigned(Self, true), link up(Self, true) | Address and link ready |
+| EC269 | EV269 | interface entity(Self), up(Self, true), error rate(Self, R), R > 0.01 | Errors exceeding threshold |
+| EC270 | EV270 | interface entity(Self), up(Self, true), down requested(Self, true) | Down requested |
+| EC271 | EV271 | interface entity(Self), up(Self, true), dhcp lease expiring(Self, true), dhcp renew succeeded(Self, Addr, Lease) | DHCP renewal |
+| EC272 | EV272 | interface entity(Self), error rate(Self, R), R > 0.1 | Severe errors |
+| EC273 | EV273 | interface entity(Self), failed or degraded(Self, true), reset requested(Self, true) | Reset requested |
 #### D.30 — Permission Rule (G30, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC274 | EV274 | permission_grant_requested(SubjectID, Resource, Action) | Grant requested |
-| EC275 | EV275 | permission_entity(Self), active(Self, true), access_requested(Self, SubjectID) | Access check |
-| EC276 | EV276 | permission_entity(Self), active(Self, true), expiry_time(Self, T), current_time(Now), Now > T | Expired |
-| EC277 | EV277 | permission_entity(Self), active(Self, true), revoke_requested(Self, true) | Revocation |
-
+| EC274 | EV274 | permission grant requested(SubjectID, Resource, Action) | Grant requested |
+| EC275 | EV275 | permission entity(Self), active(Self, true), access requested(Self, SubjectID) | Access check |
+| EC276 | EV276 | permission entity(Self), active(Self, true), expiry time(Self, T), current time(Now), Now > T | Expired |
+| EC277 | EV277 | permission entity(Self), active(Self, true), revoke requested(Self, true) | Revocation |
 #### D.31 — Timer (G31, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC278 | EV278 | timer_create_requested(Duration, CallbackEventID) | Timer arm requested |
-| EC279 | EV279 | timer_entity(Self), armed(Self, true), elapsed(Self, E), duration(Self, D), E >= D | Timer expired |
-| EC280 | EV280 | timer_entity(Self), armed(Self, true), reset_requested(Self, NewDuration) | Reset requested |
-| EC281 | EV281 | timer_entity(Self), armed(Self, true), cancel_requested(Self, true) | Cancel requested |
-
+| EC278 | EV278 | timer create requested(Duration, CallbackEventID) | Timer arm requested |
+| EC279 | EV279 | timer entity(Self), armed(Self, true), elapsed(Self, E), duration(Self, D), E >= D | Timer expired |
+| EC280 | EV280 | timer entity(Self), armed(Self, true), reset requested(Self, NewDuration) | Reset requested |
+| EC281 | EV281 | timer entity(Self), armed(Self, true), cancel requested(Self, true) | Cancel requested |
 #### D.32 — Signal (G32, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC282 | EV282 | signal_send_requested(SourcePID, TargetPID, SignalNum) | kill/raise syscall |
-| EC283 | EV283 | signal_entity(Self), pending(Self, true), target_ready(Self, TargetPID) | Target can receive |
-| EC284 | EV284 | signal_entity(Self), delivered(Self, true), handler_registered(Self, Handler) | Custom handler exists |
-| EC285 | EV285 | signal_entity(Self), delivered(Self, true), signal_masked(Self, true) | Signal in mask |
-| EC286 | EV286 | signal_entity(Self), delivered(Self, true), not(handler_registered(Self, _)), not(signal_masked(Self, true)) | No handler, not masked |
-
+| EC282 | EV282 | signal send requested(SourcePID, TargetPID, SignalNum) | kill/raise syscall |
+| EC283 | EV283 | signal entity(Self), pending(Self, true), target ready(Self, TargetPID) | Target can receive |
+| EC284 | EV284 | signal entity(Self), delivered(Self, true), handler registered(Self, Handler) | Custom handler exists |
+| EC285 | EV285 | signal entity(Self), delivered(Self, true), signal masked(Self, true) | Signal in mask |
+| EC286 | EV286 | signal entity(Self), delivered(Self, true), not(handler registered(Self,  )), not(signal masked(Self, true)) | No handler, not masked |
 #### D.33 — Pipe (G33, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC287 | EV287 | pipe_create_requested(ProcessID) | Pipe syscall |
-| EC288 | EV288 | pipe_entity(Self), open(Self, true), write_requested(Self, true), not(full(Self, true)) | Write requested, space available |
-| EC289 | EV289 | pipe_entity(Self), open(Self, true), read_requested(Self, true), data_available(Self, true) | Read requested, data present |
-| EC290 | EV290 | pipe_entity(Self), open(Self, true), buffer_full(Self, true) | Buffer capacity reached |
-| EC291 | EV291 | pipe_entity(Self), open(Self, true), end_close_requested(Self, End) | One end closing |
-| EC292 | EV292 | pipe_entity(Self), write_end_closed(Self, true) | Writer gone |
-
+| EC287 | EV287 | pipe create requested(ProcessID) | Pipe syscall |
+| EC288 | EV288 | pipe entity(Self), open(Self, true), write requested(Self, true), not(full(Self, true)) | Write requested, space available |
+| EC289 | EV289 | pipe entity(Self), open(Self, true), read requested(Self, true), data available(Self, true) | Read requested, data present |
+| EC290 | EV290 | pipe entity(Self), open(Self, true), buffer full(Self, true) | Buffer capacity reached |
+| EC291 | EV291 | pipe entity(Self), open(Self, true), end close requested(Self, End) | One end closing |
+| EC292 | EV292 | pipe entity(Self), write end closed(Self, true) | Writer gone |
 #### D.34 — Shared Memory Region (G34, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC293 | EV293 | shm_allocate_requested(ProcessID, Size) | mmap/shmget syscall |
-| EC294 | EV294 | shm_entity(Self), allocated(Self, true), map_requested(Self, ProcessID) | Map requested |
-| EC295 | EV295 | shm_entity(Self), mapped(Self, ProcessID), unmap_requested(Self, ProcessID) | Unmap requested |
-| EC296 | EV296 | shm_entity(Self), mapped_count(Self, C), C > 0, sync_requested(Self, true) | Sync requested |
-| EC297 | EV297 | shm_entity(Self), mapped_count(Self, 0), free_requested(Self, true) | No mappings, free requested |
-
+| EC293 | EV293 | shm allocate requested(ProcessID, Size) | mmap/shmget syscall |
+| EC294 | EV294 | shm entity(Self), allocated(Self, true), map requested(Self, ProcessID) | Map requested |
+| EC295 | EV295 | shm entity(Self), mapped(Self, ProcessID), unmap requested(Self, ProcessID) | Unmap requested |
+| EC296 | EV296 | shm entity(Self), mapped count(Self, C), C > 0, sync requested(Self, true) | Sync requested |
+| EC297 | EV297 | shm entity(Self), mapped count(Self, 0), free requested(Self, true) | No mappings, free requested |
 #### D.35 — Environment Variable Set (G35, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC298 | EV298 | env_load_requested(ProcessID) | Process starting, load env |
-| EC299 | EV299 | env_entity(Self), loaded(Self, true), set_requested(Self, Key, Value) | Set var requested |
-| EC300 | EV300 | env_entity(Self), loaded(Self, true), unset_requested(Self, Key) | Unset var requested |
-| EC301 | EV301 | env_entity(Self), loaded(Self, true), export_requested(Self, ChildPID) | Fork/exec inheriting env |
-
+| EC298 | EV298 | env load requested(ProcessID) | Process starting, load env |
+| EC299 | EV299 | env entity(Self), loaded(Self, true), set requested(Self, Key, Value) | Set var requested |
+| EC300 | EV300 | env entity(Self), loaded(Self, true), unset requested(Self, Key) | Unset var requested |
+| EC301 | EV301 | env entity(Self), loaded(Self, true), export requested(Self, ChildPID) | Fork/exec inheriting env |
 #### D.36 — Cron Job (G36, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC302 | EV302 | cron_schedule_requested(Expression, Command) | Crontab entry |
-| EC303 | EV303 | cron_entity(Self), scheduled(Self, true), timer_fired(Self, true) | Cron timer expired |
-| EC304 | EV304 | cron_entity(Self), executing(Self, true), process_exited(Self, 0) | Job exited success |
-| EC305 | EV305 | cron_entity(Self), executing(Self, true), process_exited(Self, Code), Code \= 0 | Job exited failure |
-| EC306 | EV306 | cron_entity(Self), completed_or_failed(Self, true) | Ready to reschedule |
-
+| EC302 | EV302 | cron schedule requested(Expression, Command) | Crontab entry |
+| EC303 | EV303 | cron entity(Self), scheduled(Self, true), timer fired(Self, true) | Cron timer expired |
+| EC304 | EV304 | cron entity(Self), executing(Self, true), process exited(Self, 0) | Job exited success |
+| EC305 | EV305 | cron entity(Self), executing(Self, true), process exited(Self, Code), Code \= 0 | Job exited failure |
+| EC306 | EV306 | cron entity(Self), completed or failed(Self, true) | Ready to reschedule |
 #### D.37 — Log Entry (G37, Infinity)
 
 | ID | Event | Constraint | Note |
 |----|-------|-----------|------|
-| EC307 | EV307 | log_submit_requested(Severity, Source, Message) | Any system submits log |
-| EC308 | EV308 | log_entity(Self), buffered(Self, true), flush_triggered(Self, true) | Buffer flushed |
-| EC309 | EV309 | log_entity(Self), written(Self, true), rotation_triggered(Self, true) | File rotated |
-| EC310 | EV310 | log_entity(Self), rotated(Self, true), archive_triggered(Self, true) | Old file archived |
-| EC311 | EV311 | log_entity(Self), archived(Self, true), age(Self, A), max_age(MA), A > MA | Aged past retention |
-
+| EC307 | EV307 | log submit requested(Severity, Source, Message) | Any system submits log |
+| EC308 | EV308 | log entity(Self), buffered(Self, true), flush triggered(Self, true) | Buffer flushed |
+| EC309 | EV309 | log entity(Self), written(Self, true), rotation triggered(Self, true) | File rotated |
+| EC310 | EV310 | log entity(Self), rotated(Self, true), archive triggered(Self, true) | Old file archived |
+| EC311 | EV311 | log entity(Self), archived(Self, true), age(Self, A), max age(MA), A > MA | Aged past retention |
 **Constraint count summary:** 311 total constraints, one per event.
 
 ---
@@ -1730,42 +1654,41 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 |-------|-------------|--------|-------------|--------------|-------------------|
 | G1 BIOS | Zero | — | — | — | — |
 | G2 Bootloader | Zero | — | — | — | — |
-| G3 Kernel | One | Unloaded → Initializing → MemoryReady → HardwareReady → FilesystemReady → Running → Panic | 12 | None | force_action |
-| G4 Init System | One | NotStarted → Starting → ConfiguringSystem → ConfiguringDevices → ConfiguringFilesystems → ConfiguringNetwork → Ready → Failed | 13 | None | force_action |
+| G3 Kernel | One | Unloaded → Initializing → MemoryReady → HardwareReady → FilesystemReady → Running → Panic | 12 | None | force action |
+| G4 Init System | One | NotStarted → Starting → ConfiguringSystem → ConfiguringDevices → ConfiguringFilesystems → ConfiguringNetwork → Ready → Failed | 13 | None | force action |
 | G5 Memory Manager | One | Inactive → Initializing → Running → Degraded → Critical | 8 | MemoryPressureResponse | pressure |
 | G6 Scheduler | One | Inactive → Running → Overloaded → Degraded | 7 | SchedulingDecision | resource |
-| G7 VFS | One | Inactive → Initializing → Running → Degraded | 9 | None | force_action |
+| G7 VFS | One | Inactive → Initializing → Running → Degraded | 9 | None | force action |
 | G8 Network Stack | One | Inactive → Initializing → Running → Degraded → Congested | 7 | CongestionResponse | pressure |
-| G9 Display Server | One | Inactive → Starting → Running → Suspended → Failed | 8 | None | force_action |
-| G10 Audio Mixer | One | Inactive → Initializing → Running → Muted → Failed | 8 | None | force_action |
-| G11 Device Manager | One | Inactive → Running → Failed | 6 | None | force_action |
+| G9 Display Server | One | Inactive → Starting → Running → Suspended → Failed | 8 | None | force action |
+| G10 Audio Mixer | One | Inactive → Initializing → Running → Muted → Failed | 8 | None | force action |
+| G11 Device Manager | One | Inactive → Running → Failed | 6 | None | force action |
 | G12 Swap Manager | One | Inactive → Active → Full → Degraded | 5 | SwapPressureResponse | pressure |
-| G13 Firewall | One | Inactive → Loading → Active → Failed | 7 | None | force_action |
-| G14 DNS Resolver | One | Inactive → Configured → Running → Failed | 5 | None | force_action |
-| G15 Session Manager | One | Inactive → Running → Failed | 6 | None | force_action |
+| G13 Firewall | One | Inactive → Loading → Active → Failed | 7 | None | force action |
+| G14 DNS Resolver | One | Inactive → Configured → Running → Failed | 5 | None | force action |
+| G15 Session Manager | One | Inactive → Running → Failed | 6 | None | force action |
 | G16 System Logger | One | Inactive → Running → BufferFull → Failed | 5 | LogPressureResponse | pressure |
-| G17 Package Manager | One | Inactive → Ready → Updating → Installing → Failed | 6 | None | force_action |
-| G18 Process | Infinity | Created → Ready → Running → Blocked → Sleeping → Zombie → Terminated | 8 | None | force_action |
-| G19 Thread | Infinity | Created → Ready → Running → Blocked → Terminated | 7 | None | force_action |
-| G20 File | Infinity | Closed → Open → Locked → Error | 8 | None | force_action |
-| G21 Filesystem Mount | Infinity | Unmounted → Checking → Mounting → Mounted → ReadOnly → Unmounting → Failed | 5 | None | force_action |
+| G17 Package Manager | One | Inactive → Ready → Updating → Installing → Failed | 6 | None | force action |
+| G18 Process | Infinity | Created → Ready → Running → Blocked → Sleeping → Zombie → Terminated | 8 | None | force action |
+| G19 Thread | Infinity | Created → Ready → Running → Blocked → Terminated | 7 | None | force action |
+| G20 File | Infinity | Closed → Open → Locked → Error | 8 | None | force action |
+| G21 Filesystem Mount | Infinity | Unmounted → Checking → Mounting → Mounted → ReadOnly → Unmounting → Failed | 5 | None | force action |
 | G22 Network Connection | Infinity | Closed → SynSent → Established → CloseWait → TimeWait → Terminated | 7 | ConnectionHealth | pressure |
-| G23 User Account | Infinity | Inactive → Active → Locked → Disabled → Deleted | 8 | None | force_action |
+| G23 User Account | Infinity | Inactive → Active → Locked → Disabled → Deleted | 8 | None | force action |
 | G24 User Session | Infinity | Authenticating → Active → Locked → Suspended → Terminated | 8 | SessionIdleResponse | user-facing |
 | G25 Device | Infinity | Discovered → DriverLoading → Initializing → Ready → Error → Suspended → Removed | 7 | DeviceErrorRecovery | recovery |
-| G26 Kernel Module | Infinity | Unloaded → Loading → Loaded → Failed → Unloading | 4 | None | force_action |
+| G26 Kernel Module | Infinity | Unloaded → Loading → Loaded → Failed → Unloading | 4 | None | force action |
 | G27 Service | Infinity | Stopped → Starting → Running → Degraded → Failed → Restarting → Stopping | 6 | ServiceHealthMonitor | health |
-| G28 Window | Infinity | Created → Visible → Focused → Minimized → Maximized → Closed | 10 | None | force_action |
-| G29 Network Interface | Infinity | Down → Configuring → Up → Degraded → Failed | 6 | None | force_action |
-| G30 Permission Rule | Infinity | Inactive → Active → Expired → Revoked | 4 | None | force_action |
-| G31 Timer | Infinity | Inactive → Armed → Fired → Repeating → Cancelled | 4 | None | force_action |
-| G32 Signal | Infinity | Pending → Delivered → Handled → Ignored | 5 | None | force_action |
-| G33 Pipe | Infinity | Created → Open → Full → Closed → Broken | 5 | None | force_action |
-| G34 Shared Memory Region | Infinity | Allocated → Mapped → Shared → Unmapped → Freed | 5 | None | force_action |
-| G35 Environment Variable Set | Infinity | Empty → Loaded → Modified | 4 | None | force_action |
-| G36 Cron Job | Infinity | Inactive → Scheduled → Executing → Completed → Failed | 5 | None | force_action |
-| G37 Log Entry | Infinity | Buffered → Written → Rotated → Archived → Deleted | 5 | None | force_action |
-
+| G28 Window | Infinity | Created → Visible → Focused → Minimized → Maximized → Closed | 10 | None | force action |
+| G29 Network Interface | Infinity | Down → Configuring → Up → Degraded → Failed | 6 | None | force action |
+| G30 Permission Rule | Infinity | Inactive → Active → Expired → Revoked | 4 | None | force action |
+| G31 Timer | Infinity | Inactive → Armed → Fired → Repeating → Cancelled | 4 | None | force action |
+| G32 Signal | Infinity | Pending → Delivered → Handled → Ignored | 5 | None | force action |
+| G33 Pipe | Infinity | Created → Open → Full → Closed → Broken | 5 | None | force action |
+| G34 Shared Memory Region | Infinity | Allocated → Mapped → Shared → Unmapped → Freed | 5 | None | force action |
+| G35 Environment Variable Set | Infinity | Empty → Loaded → Modified | 4 | None | force action |
+| G36 Cron Job | Infinity | Inactive → Scheduled → Executing → Completed → Failed | 5 | None | force action |
+| G37 Log Entry | Infinity | Buffered → Written → Rotated → Archived → Deleted | 5 | None | force action |
 **Behavior set summary:** 9 behavior sets out of 37 EntityGroups. 28 EntityGroups are entirely deterministic.
 
 ---
@@ -1776,11 +1699,10 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| FreePageRatio | free_pages / total_pages | 0–1 | InverseLinear | 1.0 | Low ratio = high urgency |
-| SwapUsageRatio | swap_used / swap_total | 0–1 | Quadratic | 0.8 | High swap = running out of options |
-| AllocationFailureRate | recent_failures / recent_requests | 0–1 | Exponential | 1.2 | Active failures = immediate problem |
-| PageFaultRate | faults_per_second / max_expected | 0–1 | Linear | 0.6 | Background pressure signal |
-
+| FreePageRatio | free pages / total pages | 0–1 | InverseLinear | 1.0 | Low ratio = high urgency |
+| SwapUsageRatio | swap used / swap total | 0–1 | Quadratic | 0.8 | High swap = running out of options |
+| AllocationFailureRate | recent failures / recent requests | 0–1 | Exponential | 1.2 | Active failures = immediate problem |
+| PageFaultRate | faults per second / max expected | 0–1 | Linear | 0.6 | Background pressure signal |
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | Free pages healthy |
@@ -1788,17 +1710,15 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | ReclaimPages | ReclaimPages | Low free pages, cache evictable |
 | SwapOut | SwapOut | Very low free pages, must use disk |
 | ReportOOM | ReportOOM | Critical, nothing left |
-
 #### F.2 — SchedulingDecision (G6, Scheduler)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| RunQueueLength | queue_length / max_expected | 0–1 | Linear | 1.0 | Process pressure |
-| CPULoadImbalance | variance_across_cpus / max_variance | 0–1 | Quadratic | 0.8 | Rebalance signal |
-| CurrentProcessTimeSlice | time_used / quantum | 0–1 | Linear | 1.0 | Preemption signal |
+| RunQueueLength | queue length / max expected | 0–1 | Linear | 1.0 | Process pressure |
+| CPULoadImbalance | variance across cpus / max variance | 0–1 | Quadratic | 0.8 | Rebalance signal |
+| CurrentProcessTimeSlice | time used / quantum | 0–1 | Linear | 1.0 | Preemption signal |
 | InteractiveProcessWaiting | bool 0/1 | 0–1 | Step | 0.9 | Interactive priority boost |
 | RealTimeProcessPending | bool 0/1 | 0–1 | Step | 1.5 | RT always preempts |
-
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | ContinueCurrent | — | Time slice not exhausted |
@@ -1806,64 +1726,56 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | RebalanceQueues | RebalanceQueues | CPUs unevenly loaded |
 | MigrateProcess | MigrateProcess | Process on wrong CPU |
 | AdjustPriorities | AdjustPriorities | Starvation detected |
-
 #### F.3 — CongestionResponse (G8, Network Stack)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| PacketDropRate | drops / total_packets | 0–1 | Exponential | 1.2 | Primary congestion signal |
+| PacketDropRate | drops / total packets | 0–1 | Exponential | 1.2 | Primary congestion signal |
 | RetransmitRate | retransmits / sent | 0–1 | Quadratic | 1.0 | Loss indicator |
-| BufferOccupancy | buffer_used / buffer_total | 0–1 | Linear | 0.8 | Backpressure signal |
-| ActiveConnectionCount | connections / max_connections | 0–1 | Linear | 0.5 | Scale factor |
-
+| BufferOccupancy | buffer used / buffer total | 0–1 | Linear | 0.8 | Backpressure signal |
+| ActiveConnectionCount | connections / max connections | 0–1 | Linear | 0.5 | Scale factor |
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | ReduceWindow | ManageCongestionWindow | Moderate congestion, back off |
 | DropLowPriority | DropPacket | High congestion, shed non-critical |
 | RetransmitCritical | RetransmitPacket | Loss on critical connections |
 | ResetCongested | — | Congestion cleared, return to Running |
-
 #### F.4 — SwapPressureResponse (G12, Swap Manager)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
 | SwapUsageRatio | used / total | 0–1 | Quadratic | 1.0 | Space pressure |
-| SwapIORate | reads_writes_per_second / max_expected | 0–1 | Exponential | 1.2 | Thrashing signal |
-| FreeSwapPages | free_pages / total_pages | 0–1 | InverseLinear | 0.8 | Absolute space remaining |
-| MemoryPressureLevel | memory_manager.free_ratio | 0–1 | Linear | 0.6 | Cross-group pressure context |
-
+| SwapIORate | reads writes per second / max expected | 0–1 | Exponential | 1.2 | Thrashing signal |
+| FreeSwapPages | free pages / total pages | 0–1 | InverseLinear | 0.8 | Absolute space remaining |
+| MemoryPressureLevel | memory manager.free ratio | 0–1 | Linear | 0.6 | Cross-group pressure context |
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | Swap healthy |
 | DefragmentSwap | DefragmentSwap | High fragmentation |
 | AlertMemoryManager | — | Swap filling, memory manager should reclaim harder |
 | DeactivateSwapPartition | DeactivateSwapPartition | Swap device failing |
-
 #### F.5 — LogPressureResponse (G16, System Logger)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| BufferOccupancy | buffer_used / buffer_total | 0–1 | Quadratic | 1.0 | Buffer pressure |
-| LogRatePerSecond | entries_per_second / max_expected | 0–1 | Linear | 0.8 | Burst signal |
-| DiskSpaceRemaining | free_space / partition_size | 0–1 | InverseLinear | 1.0 | Storage pressure |
+| BufferOccupancy | buffer used / buffer total | 0–1 | Quadratic | 1.0 | Buffer pressure |
+| LogRatePerSecond | entries per second / max expected | 0–1 | Linear | 0.8 | Burst signal |
+| DiskSpaceRemaining | free space / partition size | 0–1 | InverseLinear | 1.0 | Storage pressure |
 | CriticalEntryPending | bool 0/1 | 0–1 | Step | 1.5 | Critical severity demands flush |
-
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | Buffer healthy |
 | FlushBuffer | FlushBuffer | Buffer filling or critical pending |
 | RotateLog | RotateLog | Disk space low |
 | ForwardLog | ForwardLog | Local disk critical, send to remote |
-
 #### F.6 — ConnectionHealth (G22, Network Connection)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| RoundTripTime | rtt / max_acceptable_rtt | 0–1 | Quadratic | 0.8 | Latency |
+| RoundTripTime | rtt / max acceptable rtt | 0–1 | Quadratic | 0.8 | Latency |
 | PacketLossRate | lost / sent | 0–1 | Exponential | 1.2 | Path quality |
 | WindowUtilization | used / available | 0–1 | Linear | 0.6 | Saturation |
-| IdleTime | seconds_idle / max_idle | 0–1 | Linear | 0.5 | Possibly dead connection |
-
+| IdleTime | seconds idle / max idle | 0–1 | Linear | 0.5 | Possibly dead connection |
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | Connection healthy |
@@ -1871,33 +1783,29 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | Retransmit | Retransmit | Specific segment lost |
 | Close | Close | Idle too long |
 | Reset | Reset | Unrecoverable state |
-
 #### F.7 — SessionIdleResponse (G24, User Session)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| IdleTime | seconds_since_input / max_idle | 0–1 | Linear | 1.0 | Primary idle signal |
-| BatteryLevel | battery_percent | 0–1 | InverseLinear | 0.6 | Power save urgency |
-| ActiveProcessCount | active_processes / expected | 0–1 | Linear | 0.4 | User activity proxy |
+| IdleTime | seconds since input / max idle | 0–1 | Linear | 1.0 | Primary idle signal |
+| BatteryLevel | battery percent | 0–1 | InverseLinear | 0.6 | Power save urgency |
+| ActiveProcessCount | active processes / expected | 0–1 | Linear | 0.4 | User activity proxy |
 | UnsavedWork | bool 0/1 | 0–1 | Step | 2.0 | Blocks aggressive power save |
-
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | User active |
 | DimScreen | — | Idle threshold 1 |
 | LockScreen | LockSession | Idle threshold 2 |
 | SuspendSession | SuspendSession | Idle threshold 3, blocked if unsaved work |
-
 #### F.8 — ServiceHealthMonitor (G27, Service)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
 | HealthCheckResult | pass=0, fail=1 | 0–1 | Step | 1.5 | Primary health signal |
-| MemoryUsage | rss / memory_limit | 0–1 | Quadratic | 0.8 | Possible leak |
-| CPUUsage | cpu_percent / 100 | 0–1 | Linear | 0.6 | Possible runaway |
-| RestartCount | recent_restarts / max_restarts | 0–1 | Exponential | 1.0 | Flapping signal |
-| DependencyHealth | unhealthy_deps / total_deps | 0–1 | Step | 1.2 | External failure |
-
+| MemoryUsage | rss / memory limit | 0–1 | Quadratic | 0.8 | Possible leak |
+| CPUUsage | cpu percent / 100 | 0–1 | Linear | 0.6 | Possible runaway |
+| RestartCount | recent restarts / max restarts | 0–1 | Exponential | 1.0 | Flapping signal |
+| DependencyHealth | unhealthy deps / total deps | 0–1 | Step | 1.2 | External failure |
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | DoNothing | — | All healthy |
@@ -1905,23 +1813,20 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | Restart | Restart | Health check failing |
 | Escalate | Escalate | Repeated failures |
 | Stop | Stop | Dependency down |
-
 #### F.9 — DeviceErrorRecovery (G25, Device)
 
 | Consideration | Input Source | Range | Curve | Weight | Description |
 |--------------|-------------|-------|-------|--------|-------------|
-| ErrorCount | errors / max_tolerable | 0–1 | Linear | 1.0 | Cumulative errors |
-| ErrorRate | errors_per_second / max_rate | 0–1 | Exponential | 1.2 | Getting worse |
-| TimeSinceLastReset | seconds / min_reset_interval | 0–1 | InverseLinear | 0.8 | Already tried recently |
+| ErrorCount | errors / max tolerable | 0–1 | Linear | 1.0 | Cumulative errors |
+| ErrorRate | errors per second / max rate | 0–1 | Exponential | 1.2 | Getting worse |
+| TimeSinceLastReset | seconds / min reset interval | 0–1 | InverseLinear | 0.8 | Already tried recently |
 | DeviceCriticality | bool 0/1 (root disk, boot NIC) | 0–1 | Step | 2.0 | Critical device escalates |
-
 | Behavior | Action | Description |
 |----------|--------|-------------|
 | Reset | Reset | Errors low, try recovery |
 | Suspend | Suspend | Errors climbing, take offline |
 | Remove | Remove | Unrecoverable or reset failed |
 | EscalateToKernel | — | Critical device failing |
-
 ---
 
 ### Table G: Specification Summary
@@ -1944,7 +1849,6 @@ Closed Loop Architecture is not a new programming paradigm or a new runtime. It 
 | Deterministic EntityGroups | 28 |
 | Behavior Set Considerations (total) | 38 |
 | Behavior Set Behaviors (total) | 41 |
-
 ---
 
 *HOWL-COMP-12-2026 Appendix. Supporting Tables for Closed Loop Architecture: A Complete OS in Four Flat Lists.*
