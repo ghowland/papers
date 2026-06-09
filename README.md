@@ -178,6 +178,7 @@
 | **[HOWL-MATH-10-2026](papers/papers/MATH/HOWL-MATH-10-2026/manuscript.md)** | **The Derivation-as-Proof Principle** | When Surplus Predictions Constitute Evidence. |
 | **[HOWL-MATH-11-2026](papers/papers/MATH/HOWL-MATH-11-2026/manuscript.md)** | **β = π/4** | The Metric Conversion Factor Between L1 and L2 on Circular Geometry. |
 | **[HOWL-MATH-12-2026](papers/papers/MATH/HOWL-MATH-12-2026/manuscript.md)** | **β⁰ Has Two Geometries** | The Toroidal Extension of the L1/L2 Framework. |
+| **[HOWL-MATH-13-2026](papers/papers/MATH/HOWL-MATH-13-2026/manuscript.md)** | **The Velocity-Dependent Geometric Ratio** | The L1/L2 Conversion Factor Under Lorentz Contraction. |
 
 ---
 
