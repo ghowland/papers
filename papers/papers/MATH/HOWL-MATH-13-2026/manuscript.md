@@ -39,6 +39,8 @@ This paper removes the rest-frame assumption. It derives the velocity-dependent 
 
 ## II. A CIRCLE IN MOTION
 
+![Fig. 1: Circle to Ellipse Under Lorentz Contraction — the physical shape change at v=0, 0.5c, 0.9c, and 0.99c with L1/L2 perimeters labeled.](./figures/math13_01_circle_ellipse_progression.png)
+
 ### 2.1 The Contraction
 
 Special relativity requires that an object moving at velocity v relative to an observer is contracted along the axis of motion by the Lorentz factor:
@@ -105,6 +107,8 @@ where γ = 1/√(1 − v²/c²) and E is the complete elliptic integral of the s
 
 This is the central result of the paper.
 
+![Fig. 2: The velocity-dependent β(v) from π/4 at rest to 1 at light speed. Flat below v=0.5c, steep above v=0.9c.](./figures/math13_02_beta_v_main_curve.png)
+
 ---
 
 ## III. THE TWO ENDPOINTS
@@ -136,6 +140,8 @@ Between these endpoints, β(v) measures how much circularity remains in the geom
 ---
 
 ## IV. MONOTONICITY
+
+![Fig. 3: Decomposition of β(v) into E(v/c) and (1+1/γ). The denominator falls faster, driving the ratio upward.](./figures/math13_03_numerator_denominator.png)
 
 ### 4.1 The Claim
 
@@ -237,15 +243,21 @@ The correction becomes significant in three regimes:
 
 **Photon interactions.** Any interaction between a photon (v = c, β = 1) and a stationary target (v = 0, β = π/4) involves two geometric regimes. The aperture or cross-section of the target is at rest-frame β. The photon itself carries no circular geometry, its β is 1. The interaction mediates between these two regimes. This is the regime where the domain-specific impedance Z absorbs the mismatch between the two β values.
 
+![Fig. 5: Percentage deviation of β(v) from π/4 with 1%, 5%, and 10% measurement precision thresholds marked.](./figures/math13_05_correction_thresholds.png)
+
 ### 6.3 The Photon Regime
 
 A stationary circular aperture of diameter d has geometric cross-section β · d² = (π/4)d². Electromagnetic radiation passes through it at c, with β = 1. The aperture presents π/4 of its bounding area to the radiation. The radiation, being fully rectilinear in its geometry, "sees" the full bounding area. The efficiency of the coupling, how much of the incident radiation actually passes through the circular opening, is bounded by the ratio of the aperture's β to the radiation's β, which is (π/4)/1 = π/4.
 
 This is the same aperture efficiency η ≈ 0.55–0.75 that appears as Z in the antenna equation (MATH-1, domain 7). The theoretical maximum coupling of a circular aperture to a plane wave is π/4 ≈ 0.785, and measured efficiencies fall below this due to additional losses (edge diffraction, feed blockage, surface errors). The velocity framework provides a geometric interpretation for the theoretical maximum: it is the mismatch between the rest-frame β of the aperture and the light-speed β of the radiation.
 
+![Fig. 6: A circular aperture at β=π/4 receiving radiation at β=1. The mismatch sets the theoretical maximum efficiency at π/4.](./figures/math13_06_antenna_beta_mismatch.png)
+
 ---
 
 ## VII. THE THREE-PARAMETER FAMILY
+
+![Fig. 7: Two independent mechanisms moving β from π/4 toward 1 — Lorentz contraction (left) and Lp metric change (right).](./figures/math13_07_beta_v_vs_beta_p.png)
 
 ### 7.1 Three Axes of the L1/L2 Framework
 
@@ -288,6 +300,8 @@ Three independent ways to modify the L1/L2 conversion. Three independent paramet
 ---
 
 ## VIII. THE OPERATIONAL PI SPECTRUM
+
+![Fig. 4: The operational circumference ratio 4β(v) from π at rest to 4 at light speed, with physical regimes marked.](./figures/math13_04_operational_pi_spectrum.png)
 
 ### 8.1 π as an Endpoint, Not a Constant
 
@@ -342,6 +356,8 @@ The paper does not address the physical interpretation of the light-speed limit 
 The paper does not compute the composition of the velocity axis with the manifold axis or the metric axis. These are open questions identified in Section VII.
 
 The paper does not propose specific experimental tests beyond identifying the regimes where the correction exceeds measurement precision (Section VI). Specific predictions for particle scattering cross-sections, astrophysical observations, or laboratory measurements require detailed calculation in each domain and are deferred to subsequent work.
+
+![Fig. 8: MATH-13 identity card — central formula, endpoints, three-axis family, series connections.](./figures/math13_08_identity_card.png)
 
 ---
 
