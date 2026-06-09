@@ -54,6 +54,7 @@
 | **[HOWL-COMP-9-2026](papers/papers/COMP/HOWL-COMP-9-2026/manuscript.md)** | **Building Applications with OpsDB Application Architecture** | A Construction Reference for the OpsDB Application Platform. |
 | **[HOWL-COMP-10-2026](papers/papers/COMP/HOWL-COMP-10-2026/manuscript.md)** | **Tall-Infra Data-Only Execution** | The End of the Software Layer Is in Sight. |
 | **[HOWL-COMP-11-2026](papers/papers/COMP/HOWL-COMP-11-2026/manuscript.md)** | **Name Driven Development** | Enumeration as Architecture. |
+| **[HOWL-COMP-12-2026](papers/papers/COMP/HOWL-COMP-12-2026/manuscript.md)** | **Closed Loop Architecture** | A Complete OS in Four Flat Lists. |
 
 ---
 

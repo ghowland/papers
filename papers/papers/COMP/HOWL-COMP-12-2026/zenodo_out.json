@@ -1,0 +1,100 @@
+{
+  "created": "2026-06-09T17:09:49.812177+00:00",
+  "modified": "2026-06-09T17:09:49.941471+00:00",
+  "id": 20615398,
+  "conceptrecid": "20615397",
+  "metadata": {
+    "title": "Closed Loop Architecture",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-12-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-12-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20615398",
+      "recid": 20615398
+    }
+  },
+  "title": "Closed Loop Architecture",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20615398",
+    "html": "https://zenodo.org/deposit/20615398",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20615398/files",
+    "bucket": "https://zenodo.org/api/files/099c4c78-51aa-4dc9-9f2a-90c7508fcfb0",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20615398",
+    "latest_draft_html": "https://zenodo.org/deposit/20615398",
+    "publish": "https://zenodo.org/api/deposit/depositions/20615398/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20615398/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20615398/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20615398/actions/newversion"
+  },
+  "record_id": 20615398,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}
