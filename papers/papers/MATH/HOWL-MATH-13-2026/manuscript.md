@@ -7,7 +7,7 @@
 
 **Date:** June 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20617514
 
 **Domain:** Metric Geometry / Special Relativity / L1/L2 Conversion Theory
 

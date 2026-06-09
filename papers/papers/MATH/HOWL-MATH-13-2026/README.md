@@ -1,4 +1,4 @@
-# β⁰ Has Two Geometries
+# The Velocity-Dependent Geometric Ratio
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-MATH-12-2026,
-  title={ β⁰ Has Two Geometries },
+@article{ HOWL-MATH-13-2026,
+  title={ The Velocity-Dependent Geometric Ratio },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.19665820},
-  url = {https://zenodo.org/record/19665820},
-  note={Howland Archive: HOWL-MATH-12-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20617514},
+  url = {https://zenodo.org/record/20617514},
+  note={Howland Archive: HOWL-MATH-13-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
