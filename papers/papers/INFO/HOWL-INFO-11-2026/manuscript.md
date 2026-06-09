@@ -7,7 +7,7 @@
 
 **Date:** June 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.20616701
 
 **Domain:** Information Theory / Systems Architecture / Foundations of Computation
 

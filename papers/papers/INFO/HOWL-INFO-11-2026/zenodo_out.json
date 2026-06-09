@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-14T07:09:09.335294+00:00",
-  "modified": "2026-05-14T07:14:05.052464+00:00",
-  "id": 20176608,
-  "conceptrecid": "20176607",
+  "created": "2026-06-09T19:10:53.897886+00:00",
+  "modified": "2026-06-09T19:10:53.995934+00:00",
+  "id": 20616701,
+  "conceptrecid": "20616700",
   "metadata": {
-    "title": "Achieving High Output and High Quality",
+    "title": "The Relationship of Zero, One, and Infinity in Information Processing",
     "publication_date": "2026-04",
     "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-10-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-11-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -63,65 +63,65 @@
     "imprint_publisher": "Zenodo",
     "communities": [
       {
-        "identifier": "zenodo"
+        "identifier": "howland-archive"
       },
       {
-        "identifier": "howland-archive"
+        "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-9-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-11-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20176608",
-      "recid": 20176608
+      "doi": "10.5281/zenodo.20616701",
+      "recid": 20616701
     }
   },
-  "title": "Achieving High Output and High Quality",
+  "title": "The Relationship of Zero, One, and Infinity in Information Processing",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20176608",
-    "html": "https://zenodo.org/deposit/20176608",
+    "self": "https://zenodo.org/api/deposit/depositions/20616701",
+    "html": "https://zenodo.org/deposit/20616701",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20176608/files",
-    "bucket": "https://zenodo.org/api/files/0be46cec-f07c-4d71-a6ce-99d4225400de",
-    "thumb250": "https://zenodo.org/record/20176608/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/20616701/files",
+    "bucket": "https://zenodo.org/api/files/933df20f-1b9f-4f24-a0c6-ccfe9dbac4ff",
+    "thumb250": "https://zenodo.org/record/20616701/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20176608/thumb10",
-      "50": "https://zenodo.org/record/20176608/thumb50",
-      "100": "https://zenodo.org/record/20176608/thumb100",
-      "250": "https://zenodo.org/record/20176608/thumb250",
-      "750": "https://zenodo.org/record/20176608/thumb750",
-      "1200": "https://zenodo.org/record/20176608/thumb1200"
+      "10": "https://zenodo.org/record/20616701/thumb10",
+      "50": "https://zenodo.org/record/20616701/thumb50",
+      "100": "https://zenodo.org/record/20616701/thumb100",
+      "250": "https://zenodo.org/record/20616701/thumb250",
+      "750": "https://zenodo.org/record/20616701/thumb750",
+      "1200": "https://zenodo.org/record/20616701/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20176608",
-    "latest_draft_html": "https://zenodo.org/deposit/20176608",
-    "publish": "https://zenodo.org/api/deposit/depositions/20176608/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20176608/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20176608/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20176608/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20616701",
+    "latest_draft_html": "https://zenodo.org/deposit/20616701",
+    "publish": "https://zenodo.org/api/deposit/depositions/20616701/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20616701/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20616701/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20616701/actions/newversion"
   },
-  "record_id": 20176608,
+  "record_id": 20616701,
   "owner": 1539729,
   "files": [
     {
-      "id": "0c7428d1-2af4-41f3-9ab6-f50c78228a43",
+      "id": "4fd3d602-0661-467d-b97d-39daf405c16d",
       "filename": "!manuscript.pdf",
-      "filesize": 88517,
-      "checksum": "27bca6481db67b193b581edc4cab2812",
+      "filesize": 90017,
+      "checksum": "698cb29ee3efc1d17250b400a91839f6",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/0c7428d1-2af4-41f3-9ab6-f50c78228a43",
-        "download": "https://zenodo.org/api/records/20176608/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20616701/files/4fd3d602-0661-467d-b97d-39daf405c16d",
+        "download": "https://zenodo.org/api/records/20616701/draft/files/!manuscript.pdf/content"
       }
     },
     {
-      "id": "0b5b8090-b19a-445f-b9d0-5dc686d883a2",
-      "filename": "HOWL-INFO-10-2026.zip",
-      "filesize": 133014,
-      "checksum": "2ac7b8530f4ee17fb1ed01fcfa332de6",
+      "id": "44abcc73-50fe-444f-be74-834a24886e4f",
+      "filename": "HOWL-INFO-11-2026.zip",
+      "filesize": 135717,
+      "checksum": "b8a10c77a3ba7ceee02299076e6963c1",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20176608/files/0b5b8090-b19a-445f-b9d0-5dc686d883a2",
-        "download": "https://zenodo.org/api/records/20176608/draft/files/HOWL-INFO-10-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/20616701/files/44abcc73-50fe-444f-be74-834a24886e4f",
+        "download": "https://zenodo.org/api/records/20616701/draft/files/HOWL-INFO-11-2026.zip/content"
       }
     }
   ],
