@@ -53,6 +53,7 @@
 | **[HOWL-COMP-8-2026](papers/papers/COMP/HOWL-COMP-8-2026/manuscript.md)** | **SiloSec Protocol Specification** | SiloSec can operate at the IP layer without "kernel integration" because it is the kernel. |
 | **[HOWL-COMP-9-2026](papers/papers/COMP/HOWL-COMP-9-2026/manuscript.md)** | **Building Applications with OpsDB Application Architecture** | A Construction Reference for the OpsDB Application Platform. |
 | **[HOWL-COMP-10-2026](papers/papers/COMP/HOWL-COMP-10-2026/manuscript.md)** | **Tall-Infra Data-Only Execution** | The End of the Software Layer Is in Sight. |
+| **[HOWL-COMP-11-2026](papers/papers/COMP/HOWL-COMP-11-2026/manuscript.md)** | **Name Driven Development** | Enumeration as Architecture. |
 
 ---
 
