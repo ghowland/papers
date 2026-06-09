@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/20617609/files",
     "bucket": "https://zenodo.org/api/files/df2fd17c-9246-4e88-aa21-325b874f5176",
+    "thumb250": "https://zenodo.org/record/20617609/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20617609/thumb10",
+      "50": "https://zenodo.org/record/20617609/thumb50",
+      "100": "https://zenodo.org/record/20617609/thumb100",
+      "250": "https://zenodo.org/record/20617609/thumb250",
+      "750": "https://zenodo.org/record/20617609/thumb750",
+      "1200": "https://zenodo.org/record/20617609/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/20617609",
     "latest_draft_html": "https://zenodo.org/deposit/20617609",
     "publish": "https://zenodo.org/api/deposit/depositions/20617609/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 20617609,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "53a181ee-c273-401f-a619-691a8d0809b4",
+      "filename": "HOWL-PHYS-58-2026.zip",
+      "filesize": 162383,
+      "checksum": "0612b382096fdb633989f772149272f0",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20617609/files/53a181ee-c273-401f-a619-691a8d0809b4",
+        "download": "https://zenodo.org/api/records/20617609/draft/files/HOWL-PHYS-58-2026.zip/content"
+      }
+    },
+    {
+      "id": "b342790e-8407-4390-8b82-e7f992467e57",
+      "filename": "!manuscript.pdf",
+      "filesize": 93905,
+      "checksum": "2028913a2ecf562a3ae5a1038c7bbead",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20617609/files/b342790e-8407-4390-8b82-e7f992467e57",
+        "download": "https://zenodo.org/api/records/20617609/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
