@@ -35,6 +35,7 @@
 | **[HOWL-INFO-8-2026](papers/papers/INFO/HOWL-INFO-8-2026/manuscript.md)** | **LLMs are not Tools, LLMs are Maybe-Tools** | Why the Category You Were Sold Is Not the Category You Received. |
 | **[HOWL-INFO-9-2026](papers/papers/INFO/HOWL-INFO-9-2026/manuscript.md)** | **Achieving High Output and High Quality** | Requires Both Experience and Falsifiability. |
 | **[HOWL-INFO-10-2026](papers/papers/INFO/HOWL-INFO-10-2026/manuscript.md)** | **Closing Domains** | A Repeatable Method for Finishing Infrastructure. |
+| **[HOWL-INFO-11-2026](papers/papers/INFO/HOWL-INFO-11-2026/manuscript.md)** | **The Relationship of Zero, One, and Infinity in Information Processing** | The Intrinsic Cardinalities of Computation. |
 
 ---
 

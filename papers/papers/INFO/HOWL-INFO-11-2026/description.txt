@@ -1,0 +1,12 @@
+Howland's Axiom of Information Locality
+
+"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid."
+
+A unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+**Status:** Architectural Blueprint for Independent Implementation
+
