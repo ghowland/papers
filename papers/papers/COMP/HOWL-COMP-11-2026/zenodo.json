@@ -1,8 +1,8 @@
 {
-  "title": "Tall-Infra Data-Only Execution",
+  "title": "Name Driven Development",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "This paper argues that the software layer \u2014 the compiled binary that sits between firmware and applications \u2014 has a completion condition. Like hardware and firmware before it, software infrastructure can be built, tested, finished, and closed. The industry has failed to recognize this because it has never cleanly separated infrastructure from application logic, fusing the two into binaries that must change every time a business goal changes. By building comprehensive infrastructure that processes arbitrary data transformations \u2014 using games as the maximal requirements domain \u2014 the compiled binary converges to a finished artifact. Applications become datasets interpreted by that infrastructure, not compiled code. What remains after completion is dataset authoring: a creative activity tied to human goals, running on a platform that never needs to change again.",
+  "description": "[Description to be added]",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -12,11 +12,11 @@
     "howland archive",
     "computation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-10-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-11-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-10-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-11-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }
