@@ -39,7 +39,7 @@ This paper removes the rest-frame assumption. It derives the velocity-dependent 
 
 ## II. A CIRCLE IN MOTION
 
-![Fig. 1: Circle to Ellipse Under Lorentz Contraction — the physical shape change at v=0, 0.5c, 0.9c, and 0.99c with L1/L2 perimeters labeled.](./figures/math13_01_circle_ellipse_progression.png)
+![Fig. 1: Circle to Ellipse Under Lorentz Contraction, the physical shape change at v=0, 0.5c, 0.9c, and 0.99c with L1/L2 perimeters labeled.](./figures/math13_01_circle_ellipse_progression.png)
 
 ### 2.1 The Contraction
 
@@ -257,7 +257,7 @@ This is the same aperture efficiency η ≈ 0.55–0.75 that appears as Z in the
 
 ## VII. THE THREE-PARAMETER FAMILY
 
-![Fig. 7: Two independent mechanisms moving β from π/4 toward 1 — Lorentz contraction (left) and Lp metric change (right).](./figures/math13_07_beta_v_vs_beta_p.png)
+![Fig. 7: Two independent mechanisms moving β from π/4 toward 1, Lorentz contraction (left) and Lp metric change (right).](./figures/math13_07_beta_v_vs_beta_p.png)
 
 ### 7.1 Three Axes of the L1/L2 Framework
 
@@ -357,7 +357,7 @@ The paper does not compute the composition of the velocity axis with the manifol
 
 The paper does not propose specific experimental tests beyond identifying the regimes where the correction exceeds measurement precision (Section VI). Specific predictions for particle scattering cross-sections, astrophysical observations, or laboratory measurements require detailed calculation in each domain and are deferred to subsequent work.
 
-![Fig. 8: MATH-13 identity card — central formula, endpoints, three-axis family, series connections.](./figures/math13_08_identity_card.png)
+![Fig. 8: MATH-13 identity card, central formula, endpoints, three-axis family, series connections.](./figures/math13_08_identity_card.png)
 
 ---
 
